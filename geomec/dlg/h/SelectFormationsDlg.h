@@ -20,15 +20,15 @@ private:
   class CFormationObserver : public IListObject
   {
   public:
-    CFormationObserver(const CFormationBase& formation, CSelectFormationsDlg& dlg, CListCtrl& ctrl);
-    virtual unsigned int Icon() const;
-    virtual QString Text() const;
-    virtual unsigned int StateIcon() const;
-    virtual void ToggleState();
+  CFormationObserver(const CFormationBase& formation, CSelectFormationsDlg& dlg, CListCtrl& ctrl);
+  virtual unsigned int Icon() const;
+  virtual QString Text() const;
+  virtual unsigned int StateIcon() const;
+  virtual void ToggleState();
 
   private:
-    const CFormationBase& m_formation;
-    CSelectFormationsDlg& m_dlg;
+  const CFormationBase& m_formation;
+  CSelectFormationsDlg& m_dlg;
   };
 
   friend class CFormationObserver;
@@ -64,10 +64,10 @@ public:
   virtual void OnNeighbourDeleted(const CGraphNode& node);
 
  	virtual unsigned int IconId() const;
-	virtual unsigned int TypeId() const;
+  virtual unsigned int TypeId() const;
 
-	virtual bool Empty() const;
-	virtual long SavedItems() const;
+  virtual bool Empty() const;
+  virtual long SavedItems() const;
 
 private:
   TFormationsSet& m_stFormations;

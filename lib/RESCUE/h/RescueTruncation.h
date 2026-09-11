@@ -19,9 +19,9 @@
 
   Pillar A: Is the truncating pillar: Does not know anything.
   Pillar B: Is the BASE truncated pillar and has a pointer to
-            the Truncation. i,j gives the node of the pillar A.
+      the Truncation. i,j gives the node of the pillar A.
   Pillar C: Is the TOP truncated pillar and has a pointer to the
-            Truncation.  i,j gives the node of pillar A.
+      Truncation.  i,j gives the node of pillar A.
 
   The self_fault_id and self_limit are used for self truncating
   pillars only.  Then the same pillar is truncating and truncated,

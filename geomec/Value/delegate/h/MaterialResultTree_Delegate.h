@@ -28,7 +28,7 @@ public:
 private:
   CMaterialResultTree_Delegate(const CMaterialResultTree_Delegate& rhs);
   CMaterialResultTree_Delegate& operator = (
-    const CMaterialResultTree_Delegate& rhs);
+  const CMaterialResultTree_Delegate& rhs);
 
   CMaterialResultTree* m_materialResultTree;
 

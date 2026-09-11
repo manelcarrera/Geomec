@@ -45,13 +45,13 @@ int CCurveColor::setColor(Curve* curve, int colorIndex, QColor curveColor,
   SbString curveColorStr;
 
   curveColorStr.sprintf("diffuseColor [%f %f %f]",
-    curveColor.redF(), curveColor.greenF(), curveColor.blueF());
+  curveColor.redF(), curveColor.greenF(), curveColor.blueF());
   curve->set("curvePointApp.material", curveColorStr);
 
   SbString markerColorStr;
 
   markerColorStr.sprintf("diffuseColor [%f %f %f]",
-    markerColor.redF(), markerColor.greenF(), markerColor.blueF());
+  markerColor.redF(), markerColor.greenF(), markerColor.blueF());
   curve->set("markerApp.material", markerColorStr);
 
   return colorIndex;

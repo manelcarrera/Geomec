@@ -39,11 +39,11 @@ void CTetraSurface_Delegate::CreateSubHorizon()
   CModelBase *model = static_cast<CModelBase *>(GetGeomecDoc()->Model());
   if (dynamic_cast<CHexaModel *>(model))
   {
-    new CHexaHorizon(*m_tetraSurface, *model, false);
+  new CHexaHorizon(*m_tetraSurface, *model, false);
   }
   else
   {
-    new CTetraSubHorizon(*m_tetraSurface, *model, false);
+  new CTetraSubHorizon(*m_tetraSurface, *model, false);
   }
   model->InvalidateMesh();
 }
@@ -59,49 +59,49 @@ void CTetraSurface_Delegate::AppendContextMenu(CContextMenuInvoker &invoker)
 {
   if (!m_tetraSurface->Used())
   {
-    CModelBase *model = static_cast<CModelBase *>(GetGeomecDoc()->Model());
-    bool bIsHexa = dynamic_cast<CHexaModel *>(model) != 0;
+  CModelBase *model = static_cast<CModelBase *>(GetGeomecDoc()->Model());
+  bool bIsHexa = dynamic_cast<CHexaModel *>(model) != 0;
 
-    const CKeyFile& keyfile =
+  const CKeyFile& keyfile =
       (dynamic_cast <const CGeomecApp*> (AfxGetApp()))->KeyFile();
 
-    if (!bIsHexa)
-    {
+  if (!bIsHexa)
+  {
       invoker.AddCommand(_T("Insert sidesurface in sub model"),
-        *(new TTetraSurfaceDelegateCommand(*this,
-        &CTetraSurface_Delegate::CreateSideSurface)));
+    *(new TTetraSurfaceDelegateCommand(*this,
+    &CTetraSurface_Delegate::CreateSideSurface)));
       invoker.AddSeparator();
-    }
-    invoker.AddCommand(_T("Insert horizon in sub model"),
+  }
+  invoker.AddCommand(_T("Insert horizon in sub model"),
       *(new TTetraSurfaceDelegateCommand(*this,
       &CTetraSurface_Delegate::CreateSubHorizon)));
 
 #ifdef TETRA_SUPERMODEL_KEYFILE
-    if (keyfile.Unlocked())
-    {
+  if (keyfile.Unlocked())
+  {
 #endif
       invoker.AddCommand(_T("Insert horizon in super model"),
-        *(new CTetraSurface::TTetraSurfaceCommand(*m_tetraSurface,
-        &CTetraSurface::CreateSuperHorizon)));
+    *(new CTetraSurface::TTetraSurfaceCommand(*m_tetraSurface,
+    &CTetraSurface::CreateSuperHorizon)));
 #ifdef TETRA_SUPERMODEL_KEYFILE
-    }
+  }
 #endif
 
 #ifdef TETRA_FAULTS_KEYFILE
-    if(keyfile.Unlocked())
-    {
+  if(keyfile.Unlocked())
+  {
 #endif
       if (!bIsHexa)
       {
-        invoker.AddSeparator();
-        invoker.AddCommand(_T("Insert fault in sub model"),
+    invoker.AddSeparator();
+    invoker.AddCommand(_T("Insert fault in sub model"),
           *(new TTetraSurfaceDelegateCommand(*this,
           &CTetraSurface_Delegate::CreateSubFault)));
       }
 #ifdef TETRA_FAULTS_KEYFILE
-    }
+  }
 #endif
-    invoker.AddSeparator();
+  invoker.AddSeparator();
   }
 
   CSurfaceBase_Delegate::AppendContextMenu(invoker);

@@ -28,15 +28,15 @@ RescueEdgeSetStub *RescueBlockUnitSide::EdgesObj()
 {
   if (Section()->ParentModel()->IsWireframeLoaded() == FALSE)
   {
-    return 0;
+  return 0;
   }
   else
   {
-    if (edges == 0)
-    {
+  if (edges == 0)
+  {
       AutoEdgeSet();
-    }
-    return edges;
+  }
+  return edges;
   }
 }
 
@@ -45,22 +45,22 @@ RescueEdgeSet *RescueBlockUnitSide::Edges()
   RescueModel *model = Section()->ParentModel();
   if (model->IsWireframeLoaded() == FALSE)
   {
-    return 0;
+  return 0;
   }
   else
   {
-    if (edges == 0)
-    {
+  if (edges == 0)
+  {
       AutoEdgeSet();
-    }
-    RescueEdgeSet *myReturn = edges->EdgeSet(model);
-    if (myReturn == 0)
-    {
+  }
+  RescueEdgeSet *myReturn = edges->EdgeSet(model);
+  if (myReturn == 0)
+  {
       delete edges;
       AutoEdgeSet();
       myReturn = edges->EdgeSet(model);
-    }
-    return myReturn;
+  }
+  return myReturn;
   }
 }
 
@@ -68,13 +68,13 @@ RescueBlockUnitSide::~RescueBlockUnitSide()
 {
   if (edges != 0)
   {
-    delete edges;
+  delete edges;
   }
 }
 
 RescueBlockUnitSide::RescueBlockUnitSide(RescueSection *existingSection)
-                                        :RescueHistoryObject(existingSection->ParentModel()->Context())
-                                        ,edges(0)
+                    :RescueHistoryObject(existingSection->ParentModel()->Context())
+                    ,edges(0)
 {
   isA = R_RescueBlockUnitSide;
   section = existingSection;
@@ -84,8 +84,8 @@ void RescueBlockUnitSide::DropWireframeMemory()
 {
   if (edges != 0)
   {
-    delete edges;
-    edges = 0;
+  delete edges;
+  edges = 0;
   }
 }
 
@@ -94,34 +94,34 @@ void RescueBlockUnitSide::UnArchiveWireframeData(RescueModel *model, FILE *archi
   RescueContext *context = model->Context();
   if (edges != 0)
   {
-    delete edges;
-    edges = 0;
+  delete edges;
+  edges = 0;
   }
   if (context->ReadFileVersion() >= 28)
   {
-    RESCUEINT64 flag;
-    myfscanf(context, archiveFile, &flag);
-    if (flag > 0)
-    {
+  RESCUEINT64 flag;
+  myfscanf(context, archiveFile, &flag);
+  if (flag > 0)
+  {
       edges = new RescueEdgeSetStub(context, archiveFile);
-    }
+  }
   }
   else
   {
-    RescueEdgeSet *edgesObj = new RescueEdgeSet(context, archiveFile);
-    edges = new RescueEdgeSetStub(context, edgesObj);
-    model->wireframes->SaveCompatibleEdgeSet(edgesObj, this, edges);
+  RescueEdgeSet *edgesObj = new RescueEdgeSet(context, archiveFile);
+  edges = new RescueEdgeSetStub(context, edgesObj);
+  model->wireframes->SaveCompatibleEdgeSet(edgesObj, this, edges);
   }
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -134,37 +134,37 @@ void RescueBlockUnitSide::ArchiveWireframeData(FILE *archiveFile)
   RescueContext *context = Section()->ParentModel()->Context();
   if (context->FileVersion() >= 28)
   {
-    if (edges == 0)
-    {
+  if (edges == 0)
+  {
       myfprintf(context, archiveFile, (RESCUEINT64) 0);
-    }
-    else
-    {
-      myfprintf(context, archiveFile, (RESCUEINT64) 1);
-      edges->ArchiveStub(context, archiveFile);
-    }
   }
   else
   {
-    RescueEdgeSet *edgesObj = 0;
-    if (edges != 0)
-    {
+      myfprintf(context, archiveFile, (RESCUEINT64) 1);
+      edges->ArchiveStub(context, archiveFile);
+  }
+  }
+  else
+  {
+  RescueEdgeSet *edgesObj = 0;
+  if (edges != 0)
+  {
       edgesObj = edges->EdgeSet(Section()->ParentModel());
-    }
-    if (edgesObj == 0)
-    {
+  }
+  if (edgesObj == 0)
+  {
       edgesObj = new RescueEdgeSet(parentVolume->ParentBlockUnit());
       if (edges != 0)
       {
-        delete edges;
+    delete edges;
       }
       edges = new RescueEdgeSetStub(context, edgesObj);
-    }
-    edgesObj->Archive(archiveFile);
+  }
+  edgesObj->Archive(archiveFile);
   }
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -175,77 +175,77 @@ void RescueBlockUnitSide::Archive(FILE *archiveFile)
   myfprintf(context, archiveFile, "; block unit side");
   if (context->FileVersion() >= 20)
   {
-    myfprintf(context, archiveFile, Identifier());
+  myfprintf(context, archiveFile, Identifier());
   }
   if (context->FileVersion() == 9)
   {
-    RescueEdgeSet *edgesObj = 0;
-    if (edges != 0)
-    {
+  RescueEdgeSet *edgesObj = 0;
+  if (edges != 0)
+  {
        edgesObj = edges->EdgeSet(Section()->ParentModel());
-    }
-    if (edgesObj == 0)
-    {
+  }
+  if (edgesObj == 0)
+  {
       edgesObj = new RescueEdgeSet(parentVolume->ParentBlockUnit());
       if (edges != 0)
       {
-        delete edges;
+    delete edges;
       }
       edges = new RescueEdgeSetStub(context, edgesObj);
-    }
-    edgesObj->Archive(archiveFile);
+  }
+  edgesObj->Archive(archiveFile);
   }
   myfprintf(context, archiveFile, section->Identifier());
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
 RescueBlockUnitSide::RescueBlockUnitSide(RescueContext *context, FILE *archiveFile)
-            :RescueHistoryObject(context),edges(0)
+      :RescueHistoryObject(context),edges(0)
 {
   isA = R_RescueBlockUnitSide;
   if (context->ReadFileVersion() >= 20)
   {
-    ReadId(context, archiveFile);
+  ReadId(context, archiveFile);
   }
   if (context->ReadFileVersion() <= 12)
   {
-    RescueEdgeSet *edgesObj = new RescueEdgeSet(context, archiveFile);
-    edges = new RescueEdgeSetStub(context, edgesObj);
-    context->unarchivingModel->wireframes->SaveCompatibleEdgeSet(edgesObj, this, edges);
+  RescueEdgeSet *edgesObj = new RescueEdgeSet(context, archiveFile);
+  edges = new RescueEdgeSetStub(context, edgesObj);
+  context->unarchivingModel->wireframes->SaveCompatibleEdgeSet(edgesObj, this, edges);
   }
   else
   {
-    edges = 0;
+  edges = 0;
   }
   RESCUEINT64 count;
   RESCUEINT64 loop;
 
   if (context->ReadFileVersion() >= 5)
   {
-    count = 1;
+  count = 1;
   }
   else
   {
-    myfscanf(context, archiveFile, &count);
+  myfscanf(context, archiveFile, &count);
   }
   for (loop = 0; loop < count; loop++)
   {
-    myfscanf(context, archiveFile, &sectionID);
+  myfscanf(context, archiveFile, &sectionID);
   }
   context->blockUnitSides->Add(this);
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -259,11 +259,11 @@ RESCUEBOOL RescueBlockUnitSide::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueBlockUnitSide)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueHistoryObject::IsOfType(thisType);
+  return RescueHistoryObject::IsOfType(thisType);
   }
 }
 

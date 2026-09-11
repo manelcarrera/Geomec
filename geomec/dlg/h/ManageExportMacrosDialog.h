@@ -11,7 +11,7 @@ class CManageExportMacrosDialog : public CDialog
 
 public:
   CManageExportMacrosDialog(const CGraphEntry::TEntryNodeSet& entryNodeSet,
-    CWnd* pParent = NULL);   // standard constructor
+  CWnd* pParent = NULL);   // standard constructor
   virtual ~CManageExportMacrosDialog();
 
 // Dialog Data

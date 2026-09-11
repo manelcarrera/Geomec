@@ -13,17 +13,17 @@ public:
   class CCoordinateType_Delegate : public CValueType_Delegate
   {
   public:
-    CCoordinateType_Delegate(CPointSet::CCoordinateType* coordinateType);
+  CCoordinateType_Delegate(CPointSet::CCoordinateType* coordinateType);
 
-    virtual bool CanDestroy() const;
+  virtual bool CanDestroy() const;
 
   private:
-    CCoordinateType_Delegate(const CCoordinateType_Delegate& rhs);
-    CCoordinateType_Delegate& operator = (const CCoordinateType_Delegate& rhs);
+  CCoordinateType_Delegate(const CCoordinateType_Delegate& rhs);
+  CCoordinateType_Delegate& operator = (const CCoordinateType_Delegate& rhs);
 
-    CPointSet::CCoordinateType* m_coordinateType;
+  CPointSet::CCoordinateType* m_coordinateType;
 
-    REGISTER_DELEGATE(CPointSet::CCoordinateType, CCoordinateType_Delegate);
+  REGISTER_DELEGATE(CPointSet::CCoordinateType, CCoordinateType_Delegate);
   };
 
   CPointSet_Delegate(CPointSet* pointSet);

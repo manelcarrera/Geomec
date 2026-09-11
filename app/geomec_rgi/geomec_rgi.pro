@@ -43,7 +43,7 @@ unix {
 
 # release
 test.commands = \
-cd ../../test/geomec_rgi && \
+cd ../../IntegrationTests/geomec_rgi && \
 python ./test_rgi.py && \
 cd -
 

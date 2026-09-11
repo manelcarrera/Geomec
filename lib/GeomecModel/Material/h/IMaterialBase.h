@@ -18,19 +18,19 @@ public:
   IMaterialBase(const IMaterialBase& rhs);
   virtual ~IMaterialBase();
 
-	virtual void OnNewNeighbour(const CGraphNode &node);
-	virtual void OnNeighbourDeleted(const CGraphNode &node);
+  virtual void OnNewNeighbour(const CGraphNode &node);
+  virtual void OnNeighbourDeleted(const CGraphNode &node);
 
   virtual bool ReadOnly() const;
   virtual bool FixedMaterialModel() const;
 
-	// return the parameter value with the given ID, no support for distributed values!
-	virtual double ParameterValue(unsigned int ValueTypeID) const = 0;
+  // return the parameter value with the given ID, no support for distributed values!
+  virtual double ParameterValue(unsigned int ValueTypeID) const = 0;
 
-	// is the given id a valid parameter?
-	virtual bool IsParameter(unsigned int ValueTypeID) const = 0;
+  // is the given id a valid parameter?
+  virtual bool IsParameter(unsigned int ValueTypeID) const = 0;
 
-	virtual bool Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const = 0;
+  virtual bool Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const = 0;
 
   virtual bool Less(const CGraphNode& node) const;
 

@@ -27,66 +27,66 @@ bool CSavePropertyPermMultFrac::saveProperty(RGInterface& rgi,
 {
   std::vector <double> values(modelBase.Mesh().Mesh().ElementSize());
   CDepletionStage& depletionStage =
-    modelBase.DepletionStageEntry().StageByIndex(
+  modelBase.DepletionStageEntry().StageByIndex(
       rgi.getCurrentDepletionStage().getDepletionStage());
   const IScalarResultComponent* scalarResultComponent =
-    getScalarResultComponent(modelBase, depletionStage);
+  getScalarResultComponent(modelBase, depletionStage);
   bool valuesSeen = false;
 
   for (int i = 0; i < modelBase.Mesh().Mesh().ElementSize(); ++i)
   {
-    const geo::IElement& element = modelBase.Mesh().Mesh().Element(i);
-    const CFormationBase* formationBase = modelBase.Mesh().Formation(element);
-    std::pair <double, bool> length = std::make_pair(1, true);
+  const geo::IElement& element = modelBase.Mesh().Mesh().Element(i);
+  const CFormationBase* formationBase = modelBase.Mesh().Formation(element);
+  std::pair <double, bool> length = std::make_pair(1, true);
 
-    if (formationBase)
-    {
+  if (formationBase)
+  {
       try
       {
-        const CFFMaterial& cffMaterial =
+    const CFFMaterial& cffMaterial =
           formationBase->Material(depletionStage).Material(element);
-        /*const CMaterialFractureApertureBase& materialFractureApertureBase =*/
+    /*const CMaterialFractureApertureBase& materialFractureApertureBase =*/
           dynamic_cast <const CMaterialFractureApertureBase&> (
-            cffMaterial.Material());
+      cffMaterial.Material());
 
-        if (scalarResultComponent)
-        {
+    if (scalarResultComponent)
+    {
           length = getLength(scalarResultComponent, modelBase, element);
 
           if (length.second)
           {
-            valuesSeen = true;
+      valuesSeen = true;
           }
-        }
+    }
       }
 
       catch (const std::bad_cast&)
       {
       }
-    }
+  }
 
-    assert(length.second);
+  assert(length.second);
 
-    values[i] = length.first;
+  values[i] = length.first;
   }
 
   rgi.saveProperty(m_RGProperty, values);
 
   if (!valuesSeen)
   {
-    if (scalarResultComponent != 0)
-    {
+  if (scalarResultComponent != 0)
+  {
       rmp.AddLogLine("No fracture aperture material has been found.");
-    }
-    else  // scalarResultComponent == 0
-    {
+  }
+  else  // scalarResultComponent == 0
+  {
       QString message = QString("No result could be found for property '%1' in "
-        "combination with depletion stage '%2'.").
-        arg(rmp.PropertyName(m_RGProperty).toStdString().c_str()).
-        arg(depletionStage.Name());
+    "combination with depletion stage '%2'.").
+    arg(rmp.PropertyName(m_RGProperty).toStdString().c_str()).
+    arg(depletionStage.Name());
 
       rmp.AddLogLine(message);
-    }
+  }
   }
 
   return true;
@@ -107,19 +107,19 @@ std::pair <double, bool> CSavePropertyPermMultFrac::getLength(
 
   for(size_t i = 0; i < values.size(); ++i)
   {
-    if (!values[i].Valid())
-    {
+  if (!values[i].Valid())
+  {
       valid = false;
 
       break;
-    }
+  }
 
-    sum += values[i].Value();
+  sum += values[i].Value();
   }
 
   if (valid && !values.empty())
   {
-    sum /= values.size();
+  sum /= values.size();
   }
 
   return std::make_pair(sum, valid);
@@ -127,26 +127,26 @@ std::pair <double, bool> CSavePropertyPermMultFrac::getLength(
 
 const IScalarResultComponent* CSavePropertyPermMultFrac::
   getScalarResultComponent(CModelBase& modelBase,
-    const CDepletionStage& depletionStage) const
+  const CDepletionStage& depletionStage) const
 {
   switch (m_DensityDirection)
   {
-    case HIGH:
+  case HIGH:
       return dynamic_cast <const IScalarResultComponent*> (
-        modelBase.ResultTree().
+    modelBase.ResultTree().
           Aperture(CResultTree::CScalarResult::PERMEABILITY_MULTIPLIER_HI).
           ResultComponent(depletionStage, CAnalysisType(CAnalysisType::AT_NONLIN)));
-    case INTERMEDIATE:
+  case INTERMEDIATE:
       return dynamic_cast <const IScalarResultComponent*> (
-        modelBase.ResultTree().
+    modelBase.ResultTree().
           Aperture(CResultTree::CScalarResult::PERMEABILITY_MULTIPLIER_ME).
           ResultComponent(depletionStage, CAnalysisType(CAnalysisType::AT_NONLIN)));
-    case LOW:
+  case LOW:
       return dynamic_cast <const IScalarResultComponent*> (
-        modelBase.ResultTree().
+    modelBase.ResultTree().
           Aperture(CResultTree::CScalarResult::PERMEABILITY_MULTIPLIER_LO).
           ResultComponent(depletionStage, CAnalysisType(CAnalysisType::AT_NONLIN)));
-    default:
+  default:
       assert(false);
   }
 
@@ -158,14 +158,14 @@ geo::CVector CSavePropertyPermMultFrac::getVector(const CFFMaterial& cffMaterial
 {
   switch (m_DensityDirection)
   {
-    case HIGH:
+  case HIGH:
       return materialFractureApertureBase.HighDensityDirection(cffMaterial);
-    case INTERMEDIATE:
+  case INTERMEDIATE:
       return materialFractureApertureBase.
-        IntermediateDensityDirection(cffMaterial);
-    case LOW:
+    IntermediateDensityDirection(cffMaterial);
+  case LOW:
       return materialFractureApertureBase.LowDensityDirection(cffMaterial);
-    default:
+  default:
       assert(false);
   }
 

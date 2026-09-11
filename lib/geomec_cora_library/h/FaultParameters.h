@@ -12,23 +12,23 @@ namespace cora
 class CFaultParameters
 {
   public:
-    CFaultParameters();
+  CFaultParameters();
 
-    static TParameters getParameters(CModelBase* modelBase,
+  static TParameters getParameters(CModelBase* modelBase,
       CHorizonBase* horizonBase);
 
   private:
-    CFaultParameters(const CFaultParameters& rhs);
-    CFaultParameters& operator = (const CFaultParameters& rhs);
+  CFaultParameters(const CFaultParameters& rhs);
+  CFaultParameters& operator = (const CFaultParameters& rhs);
 
-    static void getParameters(TParameters& faultParameters,
+  static void getParameters(TParameters& faultParameters,
       CModelBase* modelBase, const CDepletionStage& depletionStage,
       CHorizonBase* horizonBase);
-    static void getParameters(TParameters& faultParameters,
+  static void getParameters(TParameters& faultParameters,
       CModelBase* modelBase, const CDepletionStage& depletionStage,
       CHorizonBase* horizonBase, unsigned int valueTypeID,
       unsigned int valueTypeName);
-    static void getFaultParameters(TParameters& faultParameters,
+  static void getFaultParameters(TParameters& faultParameters,
       CModelBase* modelBase, const CDepletionStage& depletionStage,
       CHorizonBase* horizonBase, unsigned int valueTypeID,
       unsigned int valueTypeName);

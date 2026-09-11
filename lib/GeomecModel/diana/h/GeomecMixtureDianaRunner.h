@@ -7,8 +7,8 @@ class CGeomecMixtureDianaRunner : public CGeomecDianaRunnerBase
 {
 public:
   CGeomecMixtureDianaRunner(CMeshBase &meshbase,
-						                CModelBase &model,
-						                CDianaRunController& controller);
+                    CModelBase &model,
+                    CDianaRunController& controller);
 
 protected:
   virtual bool AllowLinearCalc() const;
@@ -17,13 +17,13 @@ protected:
   virtual bool OnWriteSupports();
   virtual bool OnWriteTyings();
 
-	virtual int LoadsProgressSize() const;
+  virtual int LoadsProgressSize() const;
   virtual int CommandsProgressSize() const;
-	virtual int SupportProgressSize() const;
-	virtual int TyingsProgressSize() const;
+  virtual int SupportProgressSize() const;
+  virtual int TyingsProgressSize() const;
 
   // for retrieval of interface materials (only if element is an interface, otherwise 0) from derived classes
-	virtual const dia::IMaterial* InterfaceMaterial(const geo::IElement &element) const;
+  virtual const dia::IMaterial* InterfaceMaterial(const geo::IElement &element) const;
 
   virtual void ElementPressures(const geo::IElement& elm, const CDepletionStage& stage, IValueDomainScalar::TValueVec& vcValues) const;
 

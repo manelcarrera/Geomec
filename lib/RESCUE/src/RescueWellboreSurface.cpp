@@ -42,14 +42,14 @@ RescueWellboreSurface::RescueWellboreSurface(RescueContext *context, FILE *archi
   myfscanf(context, archiveFile, &md);
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -58,16 +58,16 @@ void RescueWellboreSurface::Relink(RescueObject *object)
   wellbore = (RescueWellbore *) object;
   if (wellbore->ParentModel()->Context()->ReadFileVersion() < 23)
   {
-    RescueSurface *parentSurface = ((RescueWellbore *) object)->ParentModel()->SurfaceIdentifiedBy(surfaceID);
-    surface = parentSurface->NthIJSurface(0);
+  RescueSurface *parentSurface = ((RescueWellbore *) object)->ParentModel()->SurfaceIdentifiedBy(surfaceID);
+  surface = parentSurface->NthIJSurface(0);
   }
   else
   {
-    surface = ((RescueWellbore *) object)->ParentModel()->IJSurfaceIdentifiedBy(surfaceID);
+  surface = ((RescueWellbore *) object)->ParentModel()->IJSurfaceIdentifiedBy(surfaceID);
   }
   if (surface != 0)
   {
-    surface->AddWellboreSurface(this);
+  surface->AddWellboreSurface(this);
   }
 }
 
@@ -76,18 +76,18 @@ void RescueWellboreSurface::Archive(FILE *archiveFile)
   RescueContext *context = wellbore->ParentModel()->Context();
   if (context->FileVersion() >= 23)
   {
-    myfprintf(context, archiveFile, surface->Identifier());
+  myfprintf(context, archiveFile, surface->Identifier());
   }
   else
   {
-    myfprintf(context, archiveFile, surface->ParentSurface()->Identifier());
+  myfprintf(context, archiveFile, surface->ParentSurface()->Identifier());
   }
   myfprintf(context, archiveFile, u);
   myfprintf(context, archiveFile, v);
   myfprintf(context, archiveFile, md);
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -95,15 +95,15 @@ void RescueWellboreSurface::Swap(bool swapI, RescueGridAxis *iAxis, bool swapJ, 
 {
   if (swapI)
   {
-    RESCUEFLOAT axisBegin = (RESCUEFLOAT) iAxis->LowBound64();
-    RESCUEFLOAT axisEnd = (RESCUEFLOAT) iAxis->LowBound64() + (iAxis->Count64() - 1);
-    u = axisEnd - (u - axisBegin);
+  RESCUEFLOAT axisBegin = (RESCUEFLOAT) iAxis->LowBound64();
+  RESCUEFLOAT axisEnd = (RESCUEFLOAT) iAxis->LowBound64() + (iAxis->Count64() - 1);
+  u = axisEnd - (u - axisBegin);
   }
   if (swapJ)
   {
-    RESCUEFLOAT axisBegin = (RESCUEFLOAT) jAxis->LowBound64();
-    RESCUEFLOAT axisEnd = (RESCUEFLOAT) jAxis->LowBound64() + (jAxis->Count64() - 1);
-    v = axisEnd - (v - axisBegin);
+  RESCUEFLOAT axisBegin = (RESCUEFLOAT) jAxis->LowBound64();
+  RESCUEFLOAT axisEnd = (RESCUEFLOAT) jAxis->LowBound64() + (jAxis->Count64() - 1);
+  v = axisEnd - (v - axisBegin);
   }
 }
 
@@ -121,11 +121,11 @@ RESCUEBOOL RescueWellboreSurface::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueWellboreSurface)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueObject::IsOfType(thisType);
+  return RescueObject::IsOfType(thisType);
   }
 }
 

@@ -44,7 +44,7 @@ CGeoProgress::CGeoProgress(CWnd* parent, unsigned int uTitle, bool bCancel)
   m_pDlg(0)
 , m_parent(parent)
 {
-	m_strTitle = getStringTableEntry(uTitle);
+  m_strTitle = getStringTableEntry(uTitle);
 }
 
 CGeoProgress::CGeoProgress(CProgressDlg_MFC &dlg, const QString &sTitle)
@@ -70,84 +70,84 @@ CGeoProgress::CGeoProgress(CProgressDlg_MFC &dlg, unsigned int uTitle)
   m_pDlg(&dlg)
 , m_parent(FemAppGetMainWnd())
 {
-	m_strTitle = getStringTableEntry(uTitle);
+  m_strTitle = getStringTableEntry(uTitle);
 }
 
 CGeoProgress::~CGeoProgress()
 {
-	if(m_bDeleteDlg && m_pDlg)
-	{
-		m_pDlg->DestroyWindow();
-		delete m_pDlg;
-	}
+  if(m_bDeleteDlg && m_pDlg)
+  {
+    m_pDlg->DestroyWindow();
+    delete m_pDlg;
+  }
 }
 
 /*!
-	Status messages give by the progress indicator are not processed and displayed to the user.
+  Status messages give by the progress indicator are not processed and displayed to the user.
 */
 
 void CGeoProgress::BlockStatusMessage(bool bBlockStatusMessage)
 {
-	m_bBlockStatusMessage = bBlockStatusMessage;
+  m_bBlockStatusMessage = bBlockStatusMessage;
 }
 
 // set the total number of steps
 void CGeoProgress::AddSteps(int nSteps)
 {
-	// When we don't have a dialog create one
-	if(!m_pDlg)
-	{
-		assert(m_bDeleteDlg);	// Should be deleted afterwards
-		m_pDlg = new CProgressDlg_MFC(m_bCancel, m_parent);
-		m_pDlg->StartDialog();
-	}
-
-	// Start the next job when we are for the first time here 
-	if(m_nSteps == 0)
+  // When we don't have a dialog create one
+  if(!m_pDlg)
   {
-		m_pDlg->NextJob(m_strTitle.toStdString().c_str());
-    StatusMessage(m_strTitle);
+    assert(m_bDeleteDlg);	// Should be deleted afterwards
+    m_pDlg = new CProgressDlg_MFC(m_bCancel, m_parent);
+    m_pDlg->StartDialog();
   }
 
-	m_nSteps += nSteps;
+  // Start the next job when we are for the first time here 
+  if(m_nSteps == 0)
+  {
+    m_pDlg->NextJob(m_strTitle.toStdString().c_str());
+  StatusMessage(m_strTitle);
+  }
+
+  m_nSteps += nSteps;
 }
 
 // increment
 void CGeoProgress::Step(int nSteps)
 {
-	assert(m_pDlg); // must first call SetNrOfSteps
+  assert(m_pDlg); // must first call SetNrOfSteps
 
-	m_nCurStep += nSteps;
-	//wjrx assert(m_nCurStep <= m_nSteps); // too far!
+  m_nCurStep += nSteps;
+  //wjrx assert(m_nCurStep <= m_nSteps); // too far!
 
-	if(!m_pDlg->SetProgress(m_nSteps, m_nCurStep))
-		throw new CProgressCancel;
+  if(!m_pDlg->SetProgress(m_nSteps, m_nCurStep))
+    throw new CProgressCancel;
 }
 
 void CGeoProgress::StatusMessage(const QString& sMessage)
 {
-	// When we don't have a dialog create one
-	if(!m_pDlg)
-	{
-		assert(m_bDeleteDlg);	// Should be deleted afterwards
-		m_pDlg = new CProgressDlg_MFC(m_bCancel, m_parent);
-		m_pDlg->StartDialog();
-	}
+  // When we don't have a dialog create one
+  if(!m_pDlg)
+  {
+    assert(m_bDeleteDlg);	// Should be deleted afterwards
+    m_pDlg = new CProgressDlg_MFC(m_bCancel, m_parent);
+    m_pDlg->StartDialog();
+  }
 
-	assert(m_pDlg);
-	if(!m_bBlockStatusMessage)
-		m_pDlg->SetTitle(sMessage.toStdString().c_str());
+  assert(m_pDlg);
+  if(!m_bBlockStatusMessage)
+    m_pDlg->SetTitle(sMessage.toStdString().c_str());
 }
 
 void CGeoProgress::SetProgress(int nCurrent)
 {
-	assert(m_pDlg); // must first call AddSteps
-	assert(nCurrent <= m_nSteps); // too far
+  assert(m_pDlg); // must first call AddSteps
+  assert(nCurrent <= m_nSteps); // too far
 
-	m_nCurStep = nCurrent;
+  m_nCurStep = nCurrent;
 
-	if(!m_pDlg->SetProgress(m_nSteps, m_nCurStep))
-		throw new CProgressCancel;
+  if(!m_pDlg->SetProgress(m_nSteps, m_nCurStep))
+    throw new CProgressCancel;
 }
 
 

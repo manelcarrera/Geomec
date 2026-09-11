@@ -117,7 +117,7 @@ public:
 private:
   CMaterialAnisotropyCheckStrategy(const CMaterialAnisotropyCheckStrategy& rhs);
   CMaterialAnisotropyCheckStrategy& operator = (
-    const CMaterialAnisotropyCheckStrategy& rhs);
+  const CMaterialAnisotropyCheckStrategy& rhs);
 };
 
 #endif // _MATERIALMODELANISOTROPY_H_

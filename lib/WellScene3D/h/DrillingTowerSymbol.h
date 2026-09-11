@@ -16,12 +16,12 @@ class CDrillingTowerSymbol  : public CWellDrawSpecBase
 {
 friend class CWellSceneInterMed;
 public:
-	virtual void CreateScene();
+  virtual void CreateScene();
 
 private:
-	CDrillingTowerSymbol(CWellSceneInterMed& WellSceneInterMed);
+  CDrillingTowerSymbol(CWellSceneInterMed& WellSceneInterMed);
 
-	
+  
 };
 
 #endif // !defined(AFX_DRILLINGTOWERSYMBOL_H__D9631AA1_0129_42B6_8936_D655E77B2851__INCLUDED_)

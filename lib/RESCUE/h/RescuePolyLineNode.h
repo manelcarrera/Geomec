@@ -88,8 +88,8 @@ public:
 
 *****************************************************************/
   typedef enum {I_SECTION,
-                J_SECTION,
-                K_SLICE}                
+        J_SECTION,
+        K_SLICE}                
                       RescueLayerType;
   void SetLayerValue(RescueGeometry *geometry,
                      RescueLayerType layerType,

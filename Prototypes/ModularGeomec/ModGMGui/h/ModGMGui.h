@@ -9,10 +9,10 @@
 
 class ModGMGui : public QMainWindow
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-    ModGMGui(QWidget *parent = Q_NULLPTR);
+  ModGMGui(QWidget *parent = Q_NULLPTR);
 
 signals:
   void finished();

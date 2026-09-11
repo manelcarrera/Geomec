@@ -36,8 +36,8 @@ typedef struct _GScannerConfig	GScannerConfig;
 typedef union  _GTokenValue     GTokenValue;
 
 typedef void		(*GScannerMsgFunc)	(GScanner      *scanner,
-						 gchar	       *message,
-						 gint		error);
+             gchar	       *message,
+             gint		error);
 
 /* GScanner: Flexible lexical scanner for general purpose.
  */
@@ -47,13 +47,13 @@ typedef void		(*GScannerMsgFunc)	(GScanner      *scanner,
 #define G_CSET_a_2_z	"abcdefghijklmnopqrstuvwxyz"
 #define G_CSET_DIGITS	"0123456789"
 #define G_CSET_LATINC	"\300\301\302\303\304\305\306"\
-			"\307\310\311\312\313\314\315\316\317\320"\
-			"\321\322\323\324\325\326"\
-			"\330\331\332\333\334\335\336"
+      "\307\310\311\312\313\314\315\316\317\320"\
+      "\321\322\323\324\325\326"\
+      "\330\331\332\333\334\335\336"
 #define G_CSET_LATINS	"\337\340\341\342\343\344\345\346"\
-			"\347\350\351\352\353\354\355\356\357\360"\
-			"\361\362\363\364\365\366"\
-			"\370\371\372\373\374\375\376\377"
+      "\347\350\351\352\353\354\355\356\357\360"\
+      "\361\362\363\364\365\366"\
+      "\370\371\372\373\374\375\376\377"
 
 /* Error types */
 typedef enum
@@ -201,11 +201,11 @@ struct	_GScanner
 GScanner*	g_scanner_new			(GScannerConfig *config_templ);
 void		g_scanner_destroy		(GScanner	*scanner);
 void		g_scanner_input_file		(GScanner	*scanner,
-						 gint		input_fd);
+             gint		input_fd);
 void		g_scanner_sync_file_offset	(GScanner	*scanner);
 void		g_scanner_input_text		(GScanner	*scanner,
-						 const	gchar	*text,
-						 guint		text_len);
+             const	gchar	*text,
+             guint		text_len);
 GTokenType	g_scanner_get_next_token	(GScanner	*scanner);
 GTokenType	g_scanner_peek_next_token	(GScanner	*scanner);
 GTokenType	g_scanner_cur_token		(GScanner	*scanner);
@@ -214,36 +214,36 @@ guint		g_scanner_cur_line		(GScanner	*scanner);
 guint		g_scanner_cur_position		(GScanner	*scanner);
 gboolean	g_scanner_eof			(GScanner	*scanner);
 guint		g_scanner_set_scope		(GScanner	*scanner,
-						 guint		 scope_id);
+             guint		 scope_id);
 void		g_scanner_scope_add_symbol	(GScanner	*scanner,
-						 guint		 scope_id,
-						 const gchar	*symbol,
-						 gpointer	value);
+             guint		 scope_id,
+             const gchar	*symbol,
+             gpointer	value);
 void		g_scanner_scope_remove_symbol	(GScanner	*scanner,
-						 guint		 scope_id,
-						 const gchar	*symbol);
+             guint		 scope_id,
+             const gchar	*symbol);
 gpointer	g_scanner_scope_lookup_symbol	(GScanner	*scanner,
-						 guint		 scope_id,
-						 const gchar	*symbol);
+             guint		 scope_id,
+             const gchar	*symbol);
 void		g_scanner_scope_foreach_symbol	(GScanner	*scanner,
-						 guint		 scope_id,
-						 GHFunc		 func,
-						 gpointer	 user_data);
+             guint		 scope_id,
+             GHFunc		 func,
+             gpointer	 user_data);
 gpointer	g_scanner_lookup_symbol		(GScanner	*scanner,
-						 const gchar	*symbol);
+             const gchar	*symbol);
 void		g_scanner_unexp_token		(GScanner	*scanner,
-						 GTokenType	expected_token,
-						 const gchar	*identifier_spec,
-						 const gchar	*symbol_spec,
-						 const gchar	*symbol_name,
-						 const gchar	*message,
-						 gint		 is_error);
+             GTokenType	expected_token,
+             const gchar	*identifier_spec,
+             const gchar	*symbol_spec,
+             const gchar	*symbol_name,
+             const gchar	*message,
+             gint		 is_error);
 void		g_scanner_error			(GScanner	*scanner,
-						 const gchar	*format,
-						 ...) G_GNUC_PRINTF (2,3);
+             const gchar	*format,
+             ...) G_GNUC_PRINTF (2,3);
 void		g_scanner_warn			(GScanner	*scanner,
-						 const gchar	*format,
-						 ...) G_GNUC_PRINTF (2,3);
+             const gchar	*format,
+             ...) G_GNUC_PRINTF (2,3);
 gint		g_scanner_stat_mode		(const gchar	*filename);
 /* keep downward source compatibility */
 #define		g_scanner_add_symbol( scanner, symbol, value )	G_STMT_START { \

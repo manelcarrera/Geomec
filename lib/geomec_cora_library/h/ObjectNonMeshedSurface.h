@@ -17,39 +17,39 @@ namespace cora
 class CObjectNonMeshedSurface : public CObjectBase
 {
   public:
-    CObjectNonMeshedSurface(CModelBase* modelBase,
+  CObjectNonMeshedSurface(CModelBase* modelBase,
       CNonMeshedSurface* nonMeshedSurface);
-    virtual ~CObjectNonMeshedSurface();
+  virtual ~CObjectNonMeshedSurface();
 
-    virtual const QString& name() const;
-    virtual const TParameters& getParameters() const;
-    virtual const QString& prefix() const;
-    virtual const COpenGLNode* object() const;
-    virtual const QString& typeName() const;
+  virtual const QString& name() const;
+  virtual const TParameters& getParameters() const;
+  virtual const QString& prefix() const;
+  virtual const COpenGLNode* object() const;
+  virtual const QString& typeName() const;
 
-    virtual const geo::IElement* getFirstElement();
-    virtual const geo::IElement* getNextElement();
+  virtual const geo::IElement* getFirstElement();
+  virtual const geo::IElement* getNextElement();
 
-    virtual std::ostream& operator () (std::ostream& os) const;
+  virtual std::ostream& operator () (std::ostream& os) const;
 
   private:
-    CObjectNonMeshedSurface(const CObjectNonMeshedSurface& rhs);
-    CObjectNonMeshedSurface& operator = (CObjectNonMeshedSurface rhs);
+  CObjectNonMeshedSurface(const CObjectNonMeshedSurface& rhs);
+  CObjectNonMeshedSurface& operator = (CObjectNonMeshedSurface rhs);
 
-    static TParameters getParameters(CModelBase* modelBase,
+  static TParameters getParameters(CModelBase* modelBase,
       CNonMeshedSurface* nonMeshedSurface);
-    static void getParameters(TParameters& nonMeshedParameters,
+  static void getParameters(TParameters& nonMeshedParameters,
       CModelBase* modelBase, const CDepletionStage& depletionStage,
       CNonMeshedSurface* nonMeshedSurface);
-    static void getParameters(TParameters& nonMeshedParameters,
+  static void getParameters(TParameters& nonMeshedParameters,
       CModelBase* modelBase, const CDepletionStage& depletionStage,
       CNonMeshedSurface* nonMeshedSurface, unsigned int valueTypeID,
       unsigned int valueTypeName);
 
-    CNonMeshedSurface* m_nonMeshedSurface;
-    TParameters m_parameters;
-    bool m_owner;
-    int m_sequenceState;
+  CNonMeshedSurface* m_nonMeshedSurface;
+  TParameters m_parameters;
+  bool m_owner;
+  int m_sequenceState;
 };
 
 } // namespace cora

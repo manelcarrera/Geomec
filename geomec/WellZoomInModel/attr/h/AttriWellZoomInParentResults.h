@@ -9,7 +9,7 @@ public:
   CAttriWellZoomInParentResultsDlg(CModelBase& model, CWnd* pParent);
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);
+  virtual void DoDataExchange(CDataExchange* pDX);
   virtual void OnOK();
 
 private:

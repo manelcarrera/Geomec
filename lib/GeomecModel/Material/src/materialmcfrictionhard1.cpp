@@ -13,16 +13,16 @@ CMaterialMCFrictionHard1::CMaterialMCFrictionHard1(CMaterialEntry &entry, CLibra
 
 bool CMaterialMCFrictionHard1::Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const
 {
-	ftn_double_t discoh[4];
+  ftn_double_t discoh[4];
 
-	discoh[0] = 0;
-	discoh[1] = sin( PI * ( ffmat.ParameterValue(IDT_VALUETYPE_FRICTION_ANGLE ) / 180 ));
-	discoh[2] = ffmat.ParameterValue(IDT_VALUETYPE_EQUIV_PLAST_STRAIN1);
-	discoh[3] = sin( PI * ( ffmat.ParameterValue(IDT_VALUETYPE_HARD_FRICTION1 ) / 180 ));
+  discoh[0] = 0;
+  discoh[1] = sin( PI * ( ffmat.ParameterValue(IDT_VALUETYPE_FRICTION_ANGLE ) / 180 ));
+  discoh[2] = ffmat.ParameterValue(IDT_VALUETYPE_EQUIV_PLAST_STRAIN1);
+  discoh[3] = sin( PI * ( ffmat.ParameterValue(IDT_VALUETYPE_HARD_FRICTION1 ) / 180 ));
 
-	PutItemLength("DISCOH", discoh, 4);
+  PutItemLength("DISCOH", discoh, 4);
 
-	return CMaterialMohrCo::Write(ffmat, diarunner);
+  return CMaterialMohrCo::Write(ffmat, diarunner);
 }
 
 // Interface for dia::IElementProperty
@@ -38,9 +38,9 @@ bool CMaterialMCFrictionHard1::WriteFilosParamName(const CFFMaterial &ffmat, dia
 {
   if (i < 4)
   {
-    QString discoh = QString("DISCOH(%1)").arg(i + 1);
-    strncpy(name, discoh.toStdString().c_str(), 10);
-    return true;
+  QString discoh = QString("DISCOH(%1)").arg(i + 1);
+  strncpy(name, discoh.toStdString().c_str(), 10);
+  return true;
   }
   i -= 4;
 

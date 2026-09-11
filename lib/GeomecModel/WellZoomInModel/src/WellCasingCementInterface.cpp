@@ -35,7 +35,7 @@ CWellCasingCementInterface::CWellCasingCementInterface(CWellCasingModel& model)
 bool CWellCasingCementInterface::operator==(const CWellCasingCementInterface& rhs) const
 {
   if(m_color != rhs.m_color)
-    return false;
+  return false;
 
   return TBase::operator==(rhs);
 }
@@ -68,7 +68,7 @@ QString CWellCasingCementInterface::TypeName() const
 bool CWellCasingCementInterface::Less(const CGraphNode& node) const
 {
   if(dynamic_cast<const CWellCasingSteel*>(&node))
-    return false;
+  return false;
 
   return true;
 }
@@ -77,8 +77,8 @@ void CWellCasingCementInterface::OnNeighbourModified(const CGraphNode& node, enu
 {
   if(&node == &(static_cast<const CModelBase&>(Model())).Mesh() && (uHint == MeshCleared || uHint == MeshCreated))
   {
-    m_centerpoints.Clear();
-    Modified();
+  m_centerpoints.Clear();
+  Modified();
   }
 
   TBase::OnNeighbourModified(node, uHint);
@@ -98,7 +98,7 @@ int CWellCasingCementInterface::DisplayListSize() const
 {
   const CWellCasingModel& model = static_cast<const CWellCasingModel&>(Model());
   if(model.Mesh().IsMesh())
-    return 1;
+  return 1;
 
   return 0;
 }
@@ -108,16 +108,16 @@ const geo::IObject& CWellCasingCementInterface::DisplayList(int /*nIndex*/) cons
   const CWellCasingModel& model = static_cast<const CWellCasingModel&>(Model());
   if(model.Mesh().IsMesh())
   {
-    if(m_bShowMidpoints)
-    {
+  if(m_bShowMidpoints)
+  {
       if(m_centerpoints.Empty())
-        m_centerpoints.Create(model.Mesh().CementInterfaceElements());
+    m_centerpoints.Create(model.Mesh().CementInterfaceElements());
       return m_centerpoints.Get();
-    }
-    else
-    {
+  }
+  else
+  {
       return model.Mesh().CementInterfaceElements();
-    }
+  }
   }
 
   assert(false);
@@ -139,8 +139,8 @@ void CWellCasingCementInterface::OnShowElements()
 {
   if(m_bShowMidpoints)
   {
-    m_bShowMidpoints = false;
-    Modified();
+  m_bShowMidpoints = false;
+  Modified();
   }
 }
 
@@ -148,8 +148,8 @@ void CWellCasingCementInterface::OnShowMidpoints()
 {
   if(!m_bShowMidpoints)
   {
-    m_bShowMidpoints = true;
-    Modified();
+  m_bShowMidpoints = true;
+  Modified();
   }
 }
 
@@ -166,9 +166,9 @@ void CWellCasingCementInterface::LoadStream(TSTREAM &stream, CStreamVersion &ver
 
   if(version >= CStreamVersion(4, 1, 29))
   {
-    int sliptype;
-    stream >> sliptype;
-    m_sliptype = TSlipType(sliptype);
+  int sliptype;
+  stream >> sliptype;
+  m_sliptype = TSlipType(sliptype);
   }
 
   TBase::LoadStream(stream, version, progress);
@@ -183,8 +183,8 @@ void CWellCasingCementInterface::SlipType(TSlipType sliptype)
 {
   if(m_sliptype != sliptype)
   {
-    m_sliptype = sliptype;
-    Modified();
+  m_sliptype = sliptype;
+  Modified();
   }
 }
 
@@ -200,7 +200,7 @@ CWellCasingCementInterfaceMaterialServer::CWellCasingCementInterfaceMaterialServ
 
 CInterfaceMaterial* CWellCasingCementInterfaceMaterialServer::FindIndexInEntry(int nIndex) const
 {
-	CInterfaceMaterialEntry& material_entry = (CInterfaceMaterialEntry&)*((CModelBase&)Model()).GraphEntry(MD_BASE_INTERFACEMATERIAL);
-	assert(material_entry.FindIndex(nIndex));
-	return material_entry.FindIndex(nIndex);
+  CInterfaceMaterialEntry& material_entry = (CInterfaceMaterialEntry&)*((CModelBase&)Model()).GraphEntry(MD_BASE_INTERFACEMATERIAL);
+  assert(material_entry.FindIndex(nIndex));
+  return material_entry.FindIndex(nIndex);
 }

@@ -7,7 +7,7 @@
 CGlobalPressure_Delegate::CGlobalPressure_Delegate(
   CGlobalPressure* globalPressure)
 : CGlobalFormationLoad_Delegate <TPressure, CComponentConstant <TPressure> > (
-    globalPressure)
+  globalPressure)
 , m_globalPressure(globalPressure)
 {
 }

@@ -1,10 +1,10 @@
 /*************************************************************************
 
-        cSetRescueArrayFragment.cpp
+    cSetRescueArrayFragment.cpp
 
  Keeps a list of pointers to some RescueArrayFragment.
 
-        Rod Hanks               December, 2000
+    Rod Hanks               December, 2000
 
 ****************************************************************************/
 #include "RescueModel.h"
@@ -24,7 +24,7 @@ cSetRescueArrayFragment::~cSetRescueArrayFragment()
 
   for (loop = 0; loop < count; loop++)
   {
-    delete objects[loop];
+  delete objects[loop];
   }
   free(objects);
 }
@@ -35,7 +35,7 @@ void cSetRescueArrayFragment::EmptySelf(void)
  
   for (loop = 0; loop < count; loop++)
   {
-    delete objects[loop];
+  delete objects[loop];
   }
   count = 0;
 }
@@ -44,8 +44,8 @@ void cSetRescueArrayFragment::operator+=(RescueArrayFragment *newObject)
 {
   if (allocated == count)
   {
-    allocated += 10;
-    objects = (RescueArrayFragment **) realloc(objects, sizeof(RescueArrayFragment *) * (size_t) allocated);
+  allocated += 10;
+  objects = (RescueArrayFragment **) realloc(objects, sizeof(RescueArrayFragment *) * (size_t) allocated);
   }
   objects[count++] = newObject;
 }
@@ -57,25 +57,25 @@ RESCUEBOOL cSetRescueArrayFragment::operator-=(RescueArrayFragment *existingObje
 
   while (ndx < count && found == FALSE)
   {
-    if (existingObject == objects[ndx])
-    {
+  if (existingObject == objects[ndx])
+  {
       found = TRUE;
-    }
-    else
-    {
+  }
+  else
+  {
       ndx++;
-    }
+  }
   }
   if (found)
   {
-    RESCUEINT64 loop;
+  RESCUEINT64 loop;
 
-    delete objects[ndx];
-    count--;
-    for (loop = ndx; loop < count; loop++)
-    {
+  delete objects[ndx];
+  count--;
+  for (loop = ndx; loop < count; loop++)
+  {
       objects[loop] = objects[loop + 1];
-    }
+  }
   }
   return found;
 }
@@ -84,19 +84,19 @@ RESCUEBOOL cSetRescueArrayFragment::operator-=(RESCUEINT64 ndx)
 {
   if (ndx >= 0 && ndx < count)
   {
-    RESCUEINT64 loop;
+  RESCUEINT64 loop;
 
-    delete objects[ndx];
-    count--;
-    for (loop = ndx; loop < count; loop++)
-    {
+  delete objects[ndx];
+  count--;
+  for (loop = ndx; loop < count; loop++)
+  {
       objects[loop] = objects[loop + 1];
-    }
-    return TRUE;
+  }
+  return TRUE;
   }
   else
   {
-    return FALSE;
+  return FALSE;
   }
 }
 
@@ -104,11 +104,11 @@ RescueArrayFragment *cSetRescueArrayFragment::NthObject(RESCUEINT64 ordinal)
 {
   if (ordinal < 0 || ordinal >= count)
   {
-    return 0;
+  return 0;
   }
   else
   {
-    return objects[ordinal];
+  return objects[ordinal];
   }
 }
 
@@ -126,15 +126,15 @@ RESCUEINT32 cSetRescueArrayFragment::Count(RESCUEBOOL throwIfTrue)
 {
   if (count > 2147483647)
   {
-    if (throwIfTrue)
-    {
+  if (throwIfTrue)
+  {
       throw "Model is too large to be accessed in 32 bit mode.";
-    }
-    return 0;
+  }
+  return 0;
   }
   else
   {
-    return (RESCUEINT32) count;
+  return (RESCUEINT32) count;
   }
 }
 

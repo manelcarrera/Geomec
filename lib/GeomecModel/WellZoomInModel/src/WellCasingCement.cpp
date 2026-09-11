@@ -59,15 +59,15 @@ void CWellCasingCement::OnNeighbourModified(const CGraphNode& node, enum Modifie
 {
   if(&node == &(static_cast<const CModelBase&>(Model())).Mesh() && (uHint == MeshCleared || uHint == MeshCreated))
   {
-    m_centerpoints.Clear();
-    Modified();
+  m_centerpoints.Clear();
+  Modified();
   }
   else
   {
-    // if we changed the cement, then our cache is no longer valid
-    // because the cache is only relevant during Diana run, we don't bother to find out what changed
-    // that would take longer than filling the cache with this one material
-    InvalidateCache();
+  // if we changed the cement, then our cache is no longer valid
+  // because the cache is only relevant during Diana run, we don't bother to find out what changed
+  // that would take longer than filling the cache with this one material
+  InvalidateCache();
   }
 
   TBase::OnNeighbourModified(node, uHint);
@@ -82,23 +82,23 @@ void CWellCasingCement::LoadStream(TSTREAM& stream, CStreamVersion& version, TPR
 {
   if(version < CStreamVersion(3, 7, 20))
   {
-	  // Link to depletionstage entry
-	  LinkTo(*Model().GraphEntry(MD_BASE_DEPLETION_STAGE));
-    COpenGLNode::LoadStream(stream, version, progress);
+    // Link to depletionstage entry
+    LinkTo(*Model().GraphEntry(MD_BASE_DEPLETION_STAGE));
+  COpenGLNode::LoadStream(stream, version, progress);
 
-    if(version >= CStreamVersion(3, 7, 9))
-    {
+  if(version >= CStreamVersion(3, 7, 9))
+  {
       CModelBase& model = static_cast<CModelBase&>(Model());
       CDepletionStageEntry::iterator it;
       for(it = model.DepletionStageEntry().begin(); it != model.DepletionStageEntry().end(); ++it)
-        LoadMaterial(*it, stream, version, progress);
-    }
+    LoadMaterial(*it, stream, version, progress);
+  }
 
-    CreatePressuresAndTemperatures();
+  CreatePressuresAndTemperatures();
   }
   else
   {
-    CFormationBase::LoadStream(stream, version, progress);
+  CFormationBase::LoadStream(stream, version, progress);
   }
 }
 
@@ -106,7 +106,7 @@ int CWellCasingCement::DisplayListSize() const
 {
   const CWellCasingModel& model = static_cast<const CWellCasingModel&>(Model());
   if(model.Mesh().IsMesh())
-    return 1;
+  return 1;
 
   return 0;
 }
@@ -116,16 +116,16 @@ const geo::IObject& CWellCasingCement::DisplayList(int /*nIndex*/) const
   const CWellCasingModel& model = static_cast<const CWellCasingModel&>(Model());
   if(model.Mesh().IsMesh())
   {
-    if(m_bShowMidpoints)
-    {
+  if(m_bShowMidpoints)
+  {
       if(m_centerpoints.Empty())
-        m_centerpoints.Create(model.Mesh().CementElements());
+    m_centerpoints.Create(model.Mesh().CementElements());
       return m_centerpoints.Get();
-    }
-    else
-    {
+  }
+  else
+  {
       return model.Mesh().CementElements();
-    }
+  }
   }
 
   assert(FALSE);
@@ -138,7 +138,7 @@ const CWellCasingCementInitialMaterial& CWellCasingCement::GetCementMaterial(con
   CWellCasingCementInitialMaterial* pMat = new CWellCasingCementInitialMaterial(base);
   std::pair<TMaterialSet::iterator, bool> prInserted = m_stMaterials.insert(pMat);
   if(!prInserted.second)
-    delete pMat;
+  delete pMat;
 
   return **prInserted.first;
 }
@@ -147,8 +147,8 @@ void CWellCasingCement::OnShowElements()
 {
   if(m_bShowMidpoints)
   {
-    m_bShowMidpoints = false;
-    Modified();
+  m_bShowMidpoints = false;
+  Modified();
   }
 }
 
@@ -156,8 +156,8 @@ void CWellCasingCement::OnShowMidpoints()
 {
   if(!m_bShowMidpoints)
   {
-    m_bShowMidpoints = true;
-    Modified();
+  m_bShowMidpoints = true;
+  Modified();
   }
 }
 
@@ -172,6 +172,6 @@ bool CWellCasingCement::CMaterialLess::operator()(const CWellCasingCementInitial
 void CWellCasingCement::InvalidateCache()
 {
   for (TMaterialSet::iterator it = m_stMaterials.begin(); it != m_stMaterials.end(); ++it)
-    delete *it;
+  delete *it;
   m_stMaterials.clear();
 }

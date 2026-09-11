@@ -28,11 +28,11 @@ RescueGeometryUnit::RescueGeometryUnit(RescueGeometry *parentGeometryIn,
   (*parentGeometry->geometryUnit) += this;
   if (relatedUnit == 0)
   {
-    unitID = 0;
+  unitID = 0;
   }
   else
   {
-    unitID = relatedUnit->Identifier();
+  unitID = relatedUnit->Identifier();
   }
 }
 
@@ -41,11 +41,11 @@ void RescueGeometryUnit::SetRelatedUnit(RescueUnit *unitIn)
   relatedUnit = unitIn;
   if (relatedUnit == 0)
   {
-    unitID = 0;
+  unitID = 0;
   }
   else
   {
-    unitID = relatedUnit->Identifier();
+  unitID = relatedUnit->Identifier();
   }
 }
 
@@ -53,7 +53,7 @@ RescueUnit *RescueGeometryUnit::RelatedUnit()
 {
   if (relatedUnit == 0 && unitID != 0)
   {
-    relatedUnit = parentGeometry->ParentModel()->UnitIdentifiedBy(unitID);
+  relatedUnit = parentGeometry->ParentModel()->UnitIdentifiedBy(unitID);
   }
   return relatedUnit;
 }
@@ -68,7 +68,7 @@ void RescueGeometryUnit::Archive(FILE *archiveFile)
   myfprintf(context, archiveFile, bottomLayerNdx);
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -86,14 +86,14 @@ RescueGeometryUnit::RescueGeometryUnit(RescueContext *context, FILE *archiveFile
   myfscanf(context, archiveFile, &bottomLayerNdx);
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -106,11 +106,11 @@ RESCUEBOOL RescueGeometryUnit::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueGeometryUnit)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueObject::IsOfType(thisType);
+  return RescueObject::IsOfType(thisType);
   }
 }
 

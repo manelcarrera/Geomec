@@ -16,30 +16,30 @@ class CAttriEclipseFormationDlg : public CAttributesTemplate<CEclipseFormation>
 {
 // Construction
 public:
-	CAttriEclipseFormationDlg(CEclipseFormation& formation, CWnd* pParent = NULL);   // standard constructor
+  CAttriEclipseFormationDlg(CEclipseFormation& formation, CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
-	//{{AFX_DATA(CAttriEclipseFormationDlg)
-	enum { IDD = IDD_ECL_FORMATION };
-	//}}AFX_DATA
+  //{{AFX_DATA(CAttriEclipseFormationDlg)
+  enum { IDD = IDD_ECL_FORMATION };
+  //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CAttriEclipseFormationDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+  // ClassWizard generated virtual function overrides
+  //{{AFX_VIRTUAL(CAttriEclipseFormationDlg)
+  protected:
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CAttriEclipseFormationDlg)
-	afx_msg void OnPaint();
-	afx_msg void OnColor();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+  // Generated message map functions
+  //{{AFX_MSG(CAttriEclipseFormationDlg)
+  afx_msg void OnPaint();
+  afx_msg void OnColor();
+  //}}AFX_MSG
+  DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}

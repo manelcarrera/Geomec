@@ -11,7 +11,7 @@ class CTemperature;
 
 typedef CFormationLoad_Delegate <TTemperature, CTemperatureGradientComponent,
   CTemperatureRepeaterComponent, CTemperatureGWCDummyComponent>
-    TTemperatureBase_Delegate;
+  TTemperatureBase_Delegate;
 
 class CTemperature_Delegate : public TTemperatureBase_Delegate
 {

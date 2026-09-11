@@ -27,13 +27,13 @@ struct Vec4f
 
   bool operator<(const Vec4f& rhs) const
   {
-    if (x != rhs.x)
+  if (x != rhs.x)
       return x < rhs.x;
 
-    if (y != rhs.y)
+  if (y != rhs.y)
       return y < rhs.y;
 
-    return z < rhs.z;
+  return z < rhs.z;
   }
 };
 
@@ -55,14 +55,14 @@ public:
 
   void operator()(const tbb::blocked_range<size_t>& r) const
   {
-    size_t i;
-    for (i = r.begin(); i != r.end(); ++i)
-    {
+  size_t i;
+  for (i = r.begin(); i != r.end(); ++i)
+  {
       m_data[i].x = static_cast<float>(rand()) / (static_cast<float>(RAND_MAX/100));
       m_data[i].y = static_cast<float>(rand()) / (static_cast<float>(RAND_MAX/100));
       m_data[i].z = static_cast<float>(rand()) / (static_cast<float>(RAND_MAX/100));
-    }
-    if (m_dispatcher)
+  }
+  if (m_dispatcher)
       m_dispatcher->Step((int)r.size());
   }
 };
@@ -84,12 +84,12 @@ public:
 
   void operator()(const tbb::blocked_range<size_t>& r) const
   {
-    size_t i;
-    for (i = r.begin(); i != r.end(); ++i)
-    {
+  size_t i;
+  for (i = r.begin(); i != r.end(); ++i)
+  {
       m_data[i].l = std::sqrt(m_data[i].x * m_data[i].x + m_data[i].y * m_data[i].y + m_data[i].z * m_data[i].z);
-    }
-    if (m_dispatcher)
+  }
+  if (m_dispatcher)
       m_dispatcher->Step((int)r.size());
   }
 };
@@ -100,7 +100,7 @@ class Progress : public IProgressBase
 public:
   virtual void Step(int n = 1)
   {
-    std::cout << n << " ";
+  std::cout << n << " ";
   }
 };
 
@@ -171,9 +171,9 @@ int main(int argc, char *argv[])
 
   for (size_t i = 0; i < 100; ++i)
   {
-    IDispatchedTask *disTaskLengthLocal = NEW_DISPATCH_TASK(CKernelParallel, CTaskLength)(parKernelLength, taskLength);
-    kernelDispatcher.AddTask(disTaskLengthLocal);
-    kernelDispatcher.ProgressStep();
+  IDispatchedTask *disTaskLengthLocal = NEW_DISPATCH_TASK(CKernelParallel, CTaskLength)(parKernelLength, taskLength);
+  kernelDispatcher.AddTask(disTaskLengthLocal);
+  kernelDispatcher.ProgressStep();
   }
 
   kernelDispatcher.Wait();
@@ -187,9 +187,9 @@ int main(int argc, char *argv[])
 
   for (size_t i = 0; i < 100; ++i)
   {
-    IDispatchedTask *disTaskLengthLocal = NEW_DISPATCH_TASK(CKernelSequential, CTaskLength)(seqKernelLength, taskLength);
-    kernelDispatcher.AddTask(disTaskLengthLocal);
-    kernelDispatcher.ProgressStep();
+  IDispatchedTask *disTaskLengthLocal = NEW_DISPATCH_TASK(CKernelSequential, CTaskLength)(seqKernelLength, taskLength);
+  kernelDispatcher.AddTask(disTaskLengthLocal);
+  kernelDispatcher.ProgressStep();
   }
 
   kernelDispatcher.Wait();

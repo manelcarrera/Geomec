@@ -57,19 +57,19 @@ bool CLoadPropertyMaterialType::loadProperty()
 
   if (m_materialTypes.size() > 0)
   {
-    bool assigned = false;
+  bool assigned = false;
 
-    assigned = assignMaterialModel();
+  assigned = assignMaterialModel();
 
-    if (assigned && m_RMP.isExistingModel())
-    {
+  if (assigned && m_RMP.isExistingModel())
+  {
       QString propertyName = m_RMP.PropertyName(this->m_RGProperty);
       QString l = QString(MODIFYING_PROPERTY).arg(propertyName);
 
       m_RMP.AddLogLine(l, &m_RGI, false, false);
-    }
+  }
 
-    return assigned;
+  return assigned;
   }
 
   return true;
@@ -83,82 +83,82 @@ bool CLoadPropertyMaterialType::mapMaterialType2MaterialModel(
 {
   for (size_t m = 0; m < materialTypes.size(); ++m)
   {
-    if (RGUtils::isNull(materialTypes[m]) || materialTypes[m] == INT_MIN)
-    {
+  if (RGUtils::isNull(materialTypes[m]) || materialTypes[m] == INT_MIN)
+  {
       materialModels[m] = -1;
       continue;
-    }
+  }
 
-    switch (materialTypes[m])
-    {
+  switch (materialTypes[m])
+  {
       case RGMaterialType::LINEAR:
-        materialModels[m] = MM_LINEAR;
-        break;
+    materialModels[m] = MM_LINEAR;
+    break;
       case RGMaterialType::CAMCLAY:
-        materialModels[m] = MM_CAMCLAY;
-        break;
+    materialModels[m] = MM_CAMCLAY;
+    break;
       case RGMaterialType::MOHRCOULOMB:
-        materialModels[m] = MM_MOHRCOULOMB;
-        break;
+    materialModels[m] = MM_MOHRCOULOMB;
+    break;
       case RGMaterialType::MODIFIEDMOHRCOULOMB:
-        materialModels[m] = MM_MODIFIEDMOHRCOULOMB;
-        break;
+    materialModels[m] = MM_MODIFIEDMOHRCOULOMB;
+    break;
       case RGMaterialType::CREEP:
-        materialModels[m] = MM_CREEP;
-        break;
+    materialModels[m] = MM_CREEP;
+    break;
       case RGMaterialType::UNDRAINED:
-        materialModels[m] = MM_UNDRAINED;
-        break;
+    materialModels[m] = MM_UNDRAINED;
+    break;
       case RGMaterialType::MC_COHESION_HARD1:
-        materialModels[m] = MM_MC_COHESION_HARD1;
-        break;
+    materialModels[m] = MM_MC_COHESION_HARD1;
+    break;
       case RGMaterialType::MC_COHESION_HARD2:
-        materialModels[m] = MM_MC_COHESION_HARD2;
-        break;
+    materialModels[m] = MM_MC_COHESION_HARD2;
+    break;
       case RGMaterialType::MC_COHESION_HARD3:
-        materialModels[m] = MM_MC_COHESION_HARD3;
-        break;
+    materialModels[m] = MM_MC_COHESION_HARD3;
+    break;
       case RGMaterialType::MC_FRICTION_HARD1:
-        materialModels[m] = MM_MC_FRICTION_HARD1;
-        break;
+    materialModels[m] = MM_MC_FRICTION_HARD1;
+    break;
       case RGMaterialType::MC_FRICTION_HARD2:
-        materialModels[m] = MM_MC_FRICTION_HARD2;
-        break;
+    materialModels[m] = MM_MC_FRICTION_HARD2;
+    break;
       case RGMaterialType::MC_FRICTION_HARD3:
-        materialModels[m] = MM_MC_FRICTION_HARD3;
-        break;
+    materialModels[m] = MM_MC_FRICTION_HARD3;
+    break;
       case RGMaterialType::RIGIDITY:
-        materialModels[m] = MM_RIGIDITY;
-        break;
+    materialModels[m] = MM_RIGIDITY;
+    break;
       case RGMaterialType::DUALCAP_LINELA:
-        materialModels[m] = MM_DUALCAP_LINELA;
-        break;
+    materialModels[m] = MM_DUALCAP_LINELA;
+    break;
       case RGMaterialType::FRACTURE_ANISOTROPY:
-        materialModels[m] = MM_FRACTURE_ANISOTROPY;
-        break;
+    materialModels[m] = MM_FRACTURE_ANISOTROPY;
+    break;
       case RGMaterialType::UPSCALED_ANISOTROPY:
-        materialModels[m] = MM_UPSCALED_ANISOTROPY;
-        break;
+    materialModels[m] = MM_UPSCALED_ANISOTROPY;
+    break;
       case RGMaterialType::FRACTURE_APERTURE:
-        materialModels[m] = MM_FRACTURE_APERTURE;
-        break;
+    materialModels[m] = MM_FRACTURE_APERTURE;
+    break;
       case RGMaterialType::ANISOTROPIC_CAMCLAY:
-        materialModels[m] = MM_ANISOTROPIC_CAMCLAY;
-        break;
+    materialModels[m] = MM_ANISOTROPIC_CAMCLAY;
+    break;
       case RGMaterialType::FRACTURE_APERTURE2:
-        materialModels[m] = MM_FRACTURE_APERTURE2;
-        break;
+    materialModels[m] = MM_FRACTURE_APERTURE2;
+    break;
       case RGMaterialType::UNKNOWN:
       default:
-        assert(false);
+    assert(false);
 
-        QString l = QString(UNSUPPORTED_MATERIAL_TYPE).arg(materialTypes[m]);
+    QString l = QString(UNSUPPORTED_MATERIAL_TYPE).arg(materialTypes[m]);
 
-        m_RMP.AddLogLine(l, &m_RGI, false, true);
+    m_RMP.AddLogLine(l, &m_RGI, false, true);
 
-        return false;
-        break;
-    }
+    return false;
+    break;
+  }
   }
 
   return true;
@@ -175,14 +175,14 @@ std::map <int, int> createFormation2MaterialMap(
 
   for (std::size_t e = 0; e < formationIDs.size(); ++e)
   {
-    std::pair <std::map <int, int>::iterator, bool> inserted =
+  std::pair <std::map <int, int>::iterator, bool> inserted =
       formation2Material.insert(
-        std::map <int, int>::value_type(formationIDs[e], materialModels[e]));
+    std::map <int, int>::value_type(formationIDs[e], materialModels[e]));
 
-    if (!(inserted.second))
-    {
+  if (!(inserted.second))
+  {
       assert((*(inserted.first)).second == materialModels[e]);
-    }
+  }
   }
 
   return formation2Material;
@@ -196,11 +196,11 @@ bool CLoadPropertyMaterialType::assignMaterialModels() const
 
   if (mapMaterialType2MaterialModel(materialModels, m_materialTypes))
   {
-    return assignMaterialModels(materialModels);
+  return assignMaterialModels(materialModels);
   }
   else
   {
-    return false;
+  return false;
   }
 
   return true;
@@ -224,31 +224,31 @@ bool CLoadPropertyMaterialType::assignMaterialModels(
 
   //if (formationIDs.empty())
   //{
-    formationIDs = geomecFormationIDs2RGI.getFormationIDs();
+  formationIDs = geomecFormationIDs2RGI.getFormationIDs();
   //}
 
   std::map <int, int> formation2Material =
-    createFormation2MaterialMap(formationIDs, materialModels);
+  createFormation2MaterialMap(formationIDs, materialModels);
 
   for (std::map <int, int>::const_iterator materialModel =
-    formation2Material.begin(); materialModel != formation2Material.end();
-    ++materialModel)
+  formation2Material.begin(); materialModel != formation2Material.end();
+  ++materialModel)
   {
-    if ((*materialModel).second == -1)
+  if ((*materialModel).second == -1)
       continue;
 
-    IMaterial* material = assignMaterialModel((*materialModel).second);
+  IMaterial* material = assignMaterialModel((*materialModel).second);
 
-    if (material == 0)
-    {
+  if (material == 0)
+  {
       QString l = QString(MATERIAL_MODEL_NOT_CREATED);
 
       m_RMP.AddLogLine(l, &m_RGI, false, true);
 
       return false;
-    }
+  }
 
-    CRockMechProcessor::connectMaterial2Formation(m_ModelBase, material,
+  CRockMechProcessor::connectMaterial2Formation(m_ModelBase, material,
       geomecFormationIDs2RGI.getFormation((*materialModel).first));
   }
 
@@ -264,16 +264,16 @@ IMaterial* findMaterial(const CGraphEntry::TEntryNodeSet& entryNodeSet,
   IMaterial* material = 0;
 
   for (CGraphEntry::TEntryNodeSet::const_iterator entryNode =
-    entryNodeSet.begin(); entryNode != entryNodeSet.end(); ++entryNode)
+  entryNodeSet.begin(); entryNode != entryNodeSet.end(); ++entryNode)
   {
-    material = dynamic_cast <IMaterial*> (*entryNode);
+  material = dynamic_cast <IMaterial*> (*entryNode);
 
-    if (material->LibraryMaterial().MaterialModel() == materialModel)
-    {
+  if (material->LibraryMaterial().MaterialModel() == materialModel)
+  {
       break;
-    }
+  }
 
-    material = 0;
+  material = 0;
   }
 
   return material;
@@ -284,7 +284,7 @@ IMaterial* findMaterial(const CGraphEntry::TEntryNodeSet& entryNodeSet,
 IMaterial* CLoadPropertyMaterialType::assignMaterialModel(int materialModel) const
 {
   CMaterialEntry* materialEntry =
-    dynamic_cast <CMaterialEntry*> (m_ModelBase.GraphEntry(MD_ROCK_MATERIAL));
+  dynamic_cast <CMaterialEntry*> (m_ModelBase.GraphEntry(MD_ROCK_MATERIAL));
   CGraphEntry::TEntryNodeSet entryNodeSet = materialEntry->GraphEntryNodes();
   IMaterial* material = findMaterial(entryNodeSet, materialModel);
 
@@ -292,9 +292,9 @@ IMaterial* CLoadPropertyMaterialType::assignMaterialModel(int materialModel) con
 
   if (material == 0)
   {
-    materialEntry =
+  materialEntry =
       CRockMechProcessor::createMaterial(m_ModelBase, "", materialModel);
-    entryNodeSet = materialEntry->GraphEntryNodes();
+  entryNodeSet = materialEntry->GraphEntryNodes();
   }
 
   material = findMaterial(entryNodeSet, materialModel);
@@ -309,7 +309,7 @@ namespace
 
 const QString MATERIAL_MODEL_ALREADY_ASSIGNED =
   QObject::tr("A material type (model) is already assigned, "
-    "the previous assignment is ignored");
+  "the previous assignment is ignored");
 
 } // anonymous namespace
 
@@ -321,16 +321,16 @@ bool CLoadPropertyMaterialType::assignMaterialModel() const
 
   if (materialModelIsAssigned)
   {
-    QString l = QString(MATERIAL_MODEL_ALREADY_ASSIGNED);
+  QString l = QString(MATERIAL_MODEL_ALREADY_ASSIGNED);
 
-    m_RMP.AddLogLine(l, &m_RGI, false, true);
+  m_RMP.AddLogLine(l, &m_RGI, false, true);
   }
 
   if (assignMaterialModels())
   {
-    materialModelIsAssigned = true;
+  materialModelIsAssigned = true;
 
-    return true;
+  return true;
   }
 
   return false;

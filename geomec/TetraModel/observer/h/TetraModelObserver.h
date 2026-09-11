@@ -31,13 +31,13 @@ typedef CGraphEntryTemp_Delegate<COpenGLNode> TSubModelEntry_Delegate;
 typedef CNodeObserver_Delegate<TSubModelEntry, TSubModelEntry_Delegate, CDummyNode, CDummyObserver, FALSE, FIXED_ITEM> TTetraSubModelBranch;
 class CTetraSubModelBranch : public TTetraSubModelBranch
 {
-	typedef COpenGLNodeObserver_Delegate<CSurfaceBase, CSurfaceBase_Delegate, CDummyNode, CDummyObserver, FALSE, FIXED_ITEM> TSurfaceObserver;
-	typedef COpenGLNodeObserver_Delegate<CTetraSubHorizon, CTetraSubHorizon_Delegate, CSurfaceBase, TSurfaceObserver, TRUE, UNLINK_ITEM> TSubHorizonObs;
-	typedef CStateBranch_Delegate<CTetraSubHorizonEntry, CTetraSubHorizonEntry_Delegate, CTetraSubHorizon, TSubHorizonObs, CUndefinedIconProvider, TRUE, DELETE_ITEM> TSubHorizonEntryObs;
+  typedef COpenGLNodeObserver_Delegate<CSurfaceBase, CSurfaceBase_Delegate, CDummyNode, CDummyObserver, FALSE, FIXED_ITEM> TSurfaceObserver;
+  typedef COpenGLNodeObserver_Delegate<CTetraSubHorizon, CTetraSubHorizon_Delegate, CSurfaceBase, TSurfaceObserver, TRUE, UNLINK_ITEM> TSubHorizonObs;
+  typedef CStateBranch_Delegate<CTetraSubHorizonEntry, CTetraSubHorizonEntry_Delegate, CTetraSubHorizon, TSubHorizonObs, CUndefinedIconProvider, TRUE, DELETE_ITEM> TSubHorizonEntryObs;
 
-	CTetraModel& m_model;
+  CTetraModel& m_model;
 public:
-	CTetraSubModelBranch(ITreeObject& parent, CTetraModel& model);
+  CTetraSubModelBranch(ITreeObject& parent, CTetraModel& model);
 };
 
 

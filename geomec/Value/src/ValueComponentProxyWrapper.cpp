@@ -6,13 +6,13 @@
 bool valueComponentProxyWrapper(rpn::CRpnOperand::IValueProxy& proxy)
 {
   CDerivedResult::CDerivedResultComponent::CValueComponentProxy&
-    valueComponentProxy = dynamic_cast <CDerivedResult::
+  valueComponentProxy = dynamic_cast <CDerivedResult::
       CDerivedResultComponent::CValueComponentProxy&> (proxy);
   CResultSingleSelectDialog dlg(valueComponentProxy, !valueComponentProxy.StoreOnFile());
 
   if (dlg.DoModal() == IDOK)
   {
-    return valueComponentProxy.Properties(dlg.FixedLinStage(), dlg.Selection(),
+  return valueComponentProxy.Properties(dlg.FixedLinStage(), dlg.Selection(),
       (LPCSTR) dlg.Name());
   }
 

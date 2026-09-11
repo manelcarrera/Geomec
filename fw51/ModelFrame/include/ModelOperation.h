@@ -20,8 +20,8 @@ class MODELFRAME_EXPORT  CModelOperation : public QObject
   friend class CModelOperationStack;
 
 public:
-	CModelOperation( IModelObject& location, const QString& text = 0 );
-	virtual ~CModelOperation();
+  CModelOperation( IModelObject& location, const QString& text = 0 );
+  virtual ~CModelOperation();
 
   bool stackEnabled() const;
 
@@ -41,7 +41,7 @@ private:
   QString m_text;
 
   CDocumentBase* m_document;
-	CModelOperationStack* m_stack;
+  CModelOperationStack* m_stack;
   CModelOperation* m_pending;
 
   typedef QStack<CUndoOperation*> TOperationStack;

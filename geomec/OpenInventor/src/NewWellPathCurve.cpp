@@ -8,22 +8,22 @@
 
 void patch_01( CNewWellPath::TPointValueVector& pointvalue_v, OIV2DWellPathGraph::DepthAxis depth_axis )
 {
-	struct myclass {
-		myclass( OIV2DWellPathGraph::DepthAxis param ) { this->param = param; }
-		bool operator() ( CNewWellPath::TPointValue p1, CNewWellPath::TPointValue p2 ) //typedef std::pair<CNewWellPoint, geo::CValue> TPointValue;
-		{ 
-			switch( param )
-			{
-				case OIV2DWellPathGraph::DEPTH_AXIS_AHD:	return( p1.first.TMD() < p2.first.TMD() );
-				case OIV2DWellPathGraph::DEPTH_AXIS_TVD:	return( p1.first.TVD() < p2.first.TVD() );
-				case OIV2DWellPathGraph::DEPTH_AXIS_Z:		return( p1.first.Z() < p2.first.Z() );
-				default:									return( p1.first.TMD() < p2.first.TMD() ); // ERROR, FIXME
-			}
-		}
-		OIV2DWellPathGraph::DepthAxis param;
-	};
+  struct myclass {
+    myclass( OIV2DWellPathGraph::DepthAxis param ) { this->param = param; }
+    bool operator() ( CNewWellPath::TPointValue p1, CNewWellPath::TPointValue p2 ) //typedef std::pair<CNewWellPoint, geo::CValue> TPointValue;
+    { 
+      switch( param )
+      {
+        case OIV2DWellPathGraph::DEPTH_AXIS_AHD:	return( p1.first.TMD() < p2.first.TMD() );
+        case OIV2DWellPathGraph::DEPTH_AXIS_TVD:	return( p1.first.TVD() < p2.first.TVD() );
+        case OIV2DWellPathGraph::DEPTH_AXIS_Z:		return( p1.first.Z() < p2.first.Z() );
+        default:									return( p1.first.TMD() < p2.first.TMD() ); // ERROR, FIXME
+      }
+    }
+    OIV2DWellPathGraph::DepthAxis param;
+  };
 
-	std::sort( pointvalue_v.begin(), pointvalue_v.end(), myclass( depth_axis ) ); // complexity: N*log2(N)
+  std::sort( pointvalue_v.begin(), pointvalue_v.end(), myclass( depth_axis ) ); // complexity: N*log2(N)
 }
 
 void NewWellPathCurve::updatePoints()
@@ -39,21 +39,21 @@ void NewWellPathCurve::updatePoints()
 
   for (CNewWellPath::TPointValueVector::iterator it = m_wellPointValueVector.begin(); it != m_wellPointValueVector.end(); ++it)
   {
-    const CNewWellPoint& p = it->first;
-    const geo::CValue& value = it->second;
-    if (value.Valid())
-    {
+  const CNewWellPoint& p = it->first;
+  const geo::CValue& value = it->second;
+  if (value.Valid())
+  {
       double depthValue = 0.0f;
-            
+      
       switch(getDepthAxis())                     
       {
-        case OIV2DWellPathGraph::DEPTH_AXIS_AHD:
+    case OIV2DWellPathGraph::DEPTH_AXIS_AHD:
           depthValue = p.TMD();
           break;
-        case OIV2DWellPathGraph::DEPTH_AXIS_TVD:
+    case OIV2DWellPathGraph::DEPTH_AXIS_TVD:
           depthValue = p.TVD();
           break;
-        case OIV2DWellPathGraph::DEPTH_AXIS_Z:
+    case OIV2DWellPathGraph::DEPTH_AXIS_Z:
           depthValue = p.Z();
           break;
       }
@@ -62,66 +62,66 @@ void NewWellPathCurve::updatePoints()
       float y = -(float)CLengthQuantity(depthValue).Value(unit());
 
       point.set1Value(i++, SbVec2f(x, y));
-    }
+  }
   }
 }
 
 void NewWellPathCurve::onUnitChanged()
 {
-    updatePoints();
+  updatePoints();
 }
 
 NewWellPathCurve::NewWellPathCurve(const CNewWellPath* wellPath, const IValueComponentBase* valueComponent, CUnitNode::TUnitType unit, int colorIndex)
-    : WellPathCurveBase(valueComponent, unit, colorIndex)
-    , m_wellPath(wellPath)
+  : WellPathCurveBase(valueComponent, unit, colorIndex)
+  , m_wellPath(wellPath)
 {
-    updatePoints();
+  updatePoints();
 }
 
 QString NewWellPathCurve::getTextRepresentation() const
 {
-    QString clip = QString("Wellpath      : %1\r\n").arg(m_wellPath->Name());
-		
-    const IResultComponent *resultComponent = dynamic_cast<const IResultComponent*>(valueComponent());
-    if(resultComponent && resultComponent->AnalysisType().Valid())
-    {
-        clip += QString("Timestep      : %1\r\n").arg(resultComponent->Stage().Name());
-        clip += QString("Analysis type : %1\r\n").arg(resultComponent->AnalysisType().Label());
-    }
+  QString clip = QString("Wellpath      : %1\r\n").arg(m_wellPath->Name());
+    
+  const IResultComponent *resultComponent = dynamic_cast<const IResultComponent*>(valueComponent());
+  if(resultComponent && resultComponent->AnalysisType().Valid())
+  {
+    clip += QString("Timestep      : %1\r\n").arg(resultComponent->Stage().Name());
+    clip += QString("Analysis type : %1\r\n").arg(resultComponent->AnalysisType().Label());
+  }
 
-    clip += "\r\n";
+  clip += "\r\n";
 
-    QString lineFormat("%1\t%2\t%3\t%4\t%5\t%6\r\n");
-    double unitFactor = (unit() == IQuantityDouble::FIELD_UNIT) ? FF_FACTOR_LENGTH : 1.0;
+  QString lineFormat("%1\t%2\t%3\t%4\t%5\t%6\r\n");
+  double unitFactor = (unit() == IQuantityDouble::FIELD_UNIT) ? FF_FACTOR_LENGTH : 1.0;
 
-    // Start result with header
-    clip += QString("Northing\tEasting\tDepth\tAHD\tTVDKB\t%1\r\n").
+  // Start result with header
+  clip += QString("Northing\tEasting\tDepth\tAHD\tTVDKB\t%1\r\n").
       arg(getValueComponentLabel());
 
-    if (m_wellPath != 0)
-    {
+  if (m_wellPath != 0)
+  {
       for (CNewWellPath::TPointValueVector::const_iterator it = m_wellPointValueVector.begin(); it != m_wellPointValueVector.end(); ++it)
-        {
+    {
           const CNewWellPoint& p = it->first;
-            const geo::CValue& value = it->second;
-            if(value.Valid())
-            {
-                QString line = lineFormat
-                    .arg(p.X() * unitFactor, 0,'f')
-                    .arg(p.Y() * unitFactor, 0,'f')
-                    .arg(p.Z() * unitFactor, 0,'f')
-                    .arg(p.TMD() * unitFactor, 0,'f')
-                    .arg(p.TVD() * unitFactor, 0,'f')
-                    .arg(value.Representation().c_str());
+      const geo::CValue& value = it->second;
+      if(value.Valid())
+      {
+        QString line = lineFormat
+          .arg(p.X() * unitFactor, 0,'f')
+          .arg(p.Y() * unitFactor, 0,'f')
+          .arg(p.Z() * unitFactor, 0,'f')
+          .arg(p.TMD() * unitFactor, 0,'f')
+          .arg(p.TVD() * unitFactor, 0,'f')
+          .arg(value.Representation().c_str());
 
-                clip += line;
-            }
-        }
+        clip += line;
+      }
     }
+  }
 
-    clip += "\r\n";
+  clip += "\r\n";
 
-    return clip;
+  return clip;
 }
 
 QString NewWellPathCurve::getTextRepresentation(std::vector<const NewWellPathCurve *>& curves)
@@ -129,7 +129,7 @@ QString NewWellPathCurve::getTextRepresentation(std::vector<const NewWellPathCur
   QString clip;
 
   if (curves.empty())
-    return clip;
+  return clip;
 
   const NewWellPathCurve *curve = curves[0];
 
@@ -138,13 +138,13 @@ QString NewWellPathCurve::getTextRepresentation(std::vector<const NewWellPathCur
   const IResultComponent *resultComponent = 0;
   for (size_t i = 0; i < curves.size() && !resultComponent; ++i)
   {
-    resultComponent = dynamic_cast<const IResultComponent*>(curves[i]->valueComponent());
+  resultComponent = dynamic_cast<const IResultComponent*>(curves[i]->valueComponent());
   }
 
   if (resultComponent && resultComponent->AnalysisType().Valid())
   {
-    clip += QString("Timestep      : %1\r\n").arg(resultComponent->Stage().Name());
-    clip += QString("Analysis type : %1\r\n").arg(resultComponent->AnalysisType().Label());
+  clip += QString("Timestep      : %1\r\n").arg(resultComponent->Stage().Name());
+  clip += QString("Analysis type : %1\r\n").arg(resultComponent->AnalysisType().Label());
   }
 
   clip += "\r\n";
@@ -157,7 +157,7 @@ QString NewWellPathCurve::getTextRepresentation(std::vector<const NewWellPathCur
   clip += QString("Easting\tNorthing\tDepth\tAHD\tTVDKB");
 
   for (size_t i = 0; i < curves.size(); ++i)
-    clip += "\t" + curves[i]->getValueComponentLabel();
+  clip += "\t" + curves[i]->getValueComponentLabel();
 
   clip += "\r\n";
 
@@ -167,48 +167,48 @@ QString NewWellPathCurve::getTextRepresentation(std::vector<const NewWellPathCur
 
   for (size_t i = 0; i < curves.size(); ++i)
   {
-    pointLists[i] = curves[i]->m_wellPointValueVector.begin();
-    assert(curves[i]->m_wellPointValueVector.size() == NrOfPoints);
+  pointLists[i] = curves[i]->m_wellPointValueVector.begin();
+  assert(curves[i]->m_wellPointValueVector.size() == NrOfPoints);
   }
 
   QString lastLine;
 
   for (size_t j = 0; j < NrOfPoints; ++j)
   {
-    const CNewWellPoint& p = pointLists[0]->first;
-    QString line = lineBeginningFormat
+  const CNewWellPoint& p = pointLists[0]->first;
+  QString line = lineBeginningFormat
       .arg(p.Y() * unitFactor, 0, 'f')
       .arg(p.X() * unitFactor, 0, 'f')
       .arg(p.Z() * unitFactor, 0, 'f')
       .arg(p.TMD() * unitFactor, 0, 'f')
       .arg(p.TVD() * unitFactor, 0, 'f');
 
-    bool haveValid = false;
-    for (size_t i = 0; i < curves.size(); ++i)
-    {
+  bool haveValid = false;
+  for (size_t i = 0; i < curves.size(); ++i)
+  {
       line += "\t";
 
       geo::CValue value = curves[i]->m_wellPointValueVector[j].second;
       if (value.Valid())
       {
-        haveValid = true;
+    haveValid = true;
 
-        line += QString("%1").arg(value.Value(), 0, 'G', 12);
+    line += QString("%1").arg(value.Value(), 0, 'G', 12);
       }
 
       ++pointLists[i];
-    }
+  }
 
-    line += "\r\n";
+  line += "\r\n";
 
-    if (haveValid)
-    {
+  if (haveValid)
+  {
       if (line != lastLine)
       {
-        clip += line;
-        lastLine = line;
+    clip += line;
+    lastLine = line;
       }
-    }
+  }
   }
 
   clip += "\r\n";
@@ -219,15 +219,15 @@ QString NewWellPathCurve::getTextRepresentation(std::vector<const NewWellPathCur
 
 void NewWellPathCurve::refresh()
 {
-    updatePoints();
+  updatePoints();
 }
 
 QString NewWellPathCurve::getWellPathName() const
 {
-    return m_wellPath->Name();
+  return m_wellPath->Name();
 }
 
 const CNewWellPath* NewWellPathCurve::getWellPath() const
 {
-    return m_wellPath;
+  return m_wellPath;
 }

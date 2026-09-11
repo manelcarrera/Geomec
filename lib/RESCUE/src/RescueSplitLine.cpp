@@ -18,25 +18,25 @@
 RescueSplitLine::RescueSplitLine(RescueGeometry *geometry, 
                                  RESCUEFLOAT x, RESCUEFLOAT y, RESCUEFLOAT step, RESCUEFLOAT origin,
                                  RESCUEFLOAT *stackValuesIn)
-                                    :addresses(stackValuesIn)
+                  :addresses(stackValuesIn)
 {
   if (addresses == 0)
   {
-    RESCUEINT64 kLayers = geometry->Grid()->Axis(2)->Count64();
-    addresses = new RESCUEFLOAT[(size_t) (kLayers * 8 * 3)];
-    RESCUEINT64 kloop, cornerLoop;
-    RESCUEFLOAT z = step;
-    RESCUEINT64 ndx = 0;
-    for (kloop = 0; kloop < kLayers; kloop++)
-    {
+  RESCUEINT64 kLayers = geometry->Grid()->Axis(2)->Count64();
+  addresses = new RESCUEFLOAT[(size_t) (kLayers * 8 * 3)];
+  RESCUEINT64 kloop, cornerLoop;
+  RESCUEFLOAT z = step;
+  RESCUEINT64 ndx = 0;
+  for (kloop = 0; kloop < kLayers; kloop++)
+  {
       for (cornerLoop = 0; cornerLoop < 8; cornerLoop++)
       {
-        addresses[ndx++] = x;
-        addresses[ndx++] = y;
-        addresses[ndx++] = z;
+    addresses[ndx++] = x;
+    addresses[ndx++] = y;
+    addresses[ndx++] = z;
       }
       z += origin;
-    }
+  }
   }
 }
 
@@ -49,12 +49,12 @@ RescueSplitLine::RescueSplitLine(RescueGeometry *geometry, RESCUEINT64 i, RESCUE
   RESCUEINT64 cornerLoop;
   for ( kLoop = 0; kLoop < kLayers; kLoop++)
   {
-    RESCUEFLOAT x;
-    RESCUEFLOAT y;
-    RESCUEFLOAT z;
+  RESCUEFLOAT x;
+  RESCUEFLOAT y;
+  RESCUEFLOAT z;
 
-    for (cornerLoop = 0; cornerLoop < 8; cornerLoop++)
-    {
+  for (cornerLoop = 0; cornerLoop < 8; cornerLoop++)
+  {
       previous->Values(geometry, i, j, kLoop, x, y, z);
       *address = x;
       address++;
@@ -62,7 +62,7 @@ RescueSplitLine::RescueSplitLine(RescueGeometry *geometry, RESCUEINT64 i, RESCUE
       address++;
       *address = z;
       address++;
-    }
+  }
   }
 }
 
@@ -75,8 +75,8 @@ void RescueSplitLine::ZValue(RESCUEINT64 k, RESCUEFLOAT newZValue)
   RESCUEINT64 cornerLoop;
   for (cornerLoop = 0; cornerLoop < 8; cornerLoop++)
   {
-    addresses[ndx] = newZValue;
-    ndx += 3;
+  addresses[ndx] = newZValue;
+  ndx += 3;
   }
 }
 
@@ -90,17 +90,17 @@ void RescueSplitLine::ZStack(RescueGeometry *geometry, RESCUEFLOAT *newZValues)
 */
   for (kLoop = 0; kLoop < howMany; kLoop++)
   {
-    for (cornerLoop = 0; cornerLoop < 8; cornerLoop++)
-    {
+  for (cornerLoop = 0; cornerLoop < 8; cornerLoop++)
+  {
       addresses[ndx] = newZValues[kLoop];
       ndx += 3;
-    }
+  }
   }
 }
 
 void RescueSplitLine::SetCornerNode(RescueGeometry *geometry,
-                                    RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k, RESCUEINT64 corner,
-                                    RESCUEFLOAT x, RESCUEFLOAT y, RESCUEFLOAT z)
+                  RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k, RESCUEINT64 corner,
+                  RESCUEFLOAT x, RESCUEFLOAT y, RESCUEFLOAT z)
 {
   RESCUEINT64 iPrime;
   RESCUEINT64 jPrime;
@@ -117,7 +117,7 @@ void RescueSplitLine::SetCornerNode(RescueGeometry *geometry,
 }
 
 void RescueSplitLine::SetXValue(RescueGeometry *geometry,
-                                    RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k, RESCUEINT64 corner,RESCUEFLOAT x)
+                  RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k, RESCUEINT64 corner,RESCUEFLOAT x)
 {
   RESCUEINT64 iPrime;
   RESCUEINT64 jPrime;
@@ -132,7 +132,7 @@ void RescueSplitLine::SetXValue(RescueGeometry *geometry,
 }
 
 void RescueSplitLine::SetYValue(RescueGeometry *geometry,
-                                    RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k, RESCUEINT64 corner, RESCUEFLOAT y)
+                  RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k, RESCUEINT64 corner, RESCUEFLOAT y)
 {
   RESCUEINT64 iPrime;
   RESCUEINT64 jPrime;
@@ -148,7 +148,7 @@ void RescueSplitLine::SetYValue(RescueGeometry *geometry,
 }
 
 void RescueSplitLine::SetZValue(RescueGeometry *geometry,
-                                    RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k, RESCUEINT64 corner, RESCUEFLOAT z)
+                  RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k, RESCUEINT64 corner, RESCUEFLOAT z)
 {
   RESCUEINT64 iPrime;
   RESCUEINT64 jPrime;
@@ -189,29 +189,29 @@ RESCUEINT64 RescueSplitLine::GenerateAddress(RESCUEINT64 i, RESCUEINT64 j, RESCU
 
   if (iPrime == i)
   {
-    if (jPrime == j)
-    {
+  if (jPrime == j)
+  {
       ndx = 0;
-    }
-    else
-    {
-      ndx = 1;
-    }
   }
   else
   {
-    if (jPrime == j)
-    {
+      ndx = 1;
+  }
+  }
+  else
+  {
+  if (jPrime == j)
+  {
       ndx = 2;
-    }
-    else
-    {
+  }
+  else
+  {
       ndx = 3;
-    }
+  }
   }
   if (kPrime != k)
   {
-    ndx += 4;
+  ndx += 4;
   }
   return (kPrime * 8 * 3) + (ndx * 3);
 }
@@ -221,7 +221,7 @@ void RescueSplitLine::Archive(RescueContext *context, RESCUEINT64 kLayers, FILE 
   myfprintf(context, archiveFile, addresses, kLayers * 3 * 8, compress);
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -231,14 +231,14 @@ RescueSplitLine::RescueSplitLine(RescueContext *context, RESCUEINT64 kLayers, FI
   myfscanf(context, archiveFile, addresses, kLayers * 3 * 8, compress);
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -247,7 +247,7 @@ void RescueSplitLine::SwapKAxis(RESCUEINT64 kNodes)
 #if 0
   if (addresses != 0)
   {
-    RescueContext::SwapAxes(addresses, false, 3, false, 8, true, kNodes);
+  RescueContext::SwapAxes(addresses, false, 3, false, 8, true, kNodes);
   }
 #endif
 /*
@@ -260,13 +260,13 @@ void RescueSplitLine::SwapAxes(bool swapI, bool swapJ, bool swapK, RESCUEINT64 k
   RESCUEINT64 totalValues = kLayers * 8 * 3;
   if (totalValues > 2147483647)
   {
-    throw "RescueSplitLine can't swap more than 2^31 values";
+  throw "RescueSplitLine can't swap more than 2^31 values";
   }
   RESCUEFLOAT *tempValues = new RESCUEFLOAT[(size_t) totalValues];
   RESCUEINT64 loop;
   for (loop = 0; loop < totalValues; loop++)
   {
-    tempValues[loop] = addresses[loop];
+  tempValues[loop] = addresses[loop];
   }
  int corner;
  for (corner = 0; corner < 8; corner++)
@@ -276,16 +276,16 @@ void RescueSplitLine::SwapAxes(bool swapI, bool swapJ, bool swapK, RESCUEINT64 k
   {
    switch (otherCorner)
    {
-    case 0:
-    case 2:
-    case 4:
-    case 6:
+  case 0:
+  case 2:
+  case 4:
+  case 6:
      otherCorner++;
      break;
-    case 1:
-    case 3:
-    case 5:
-    case 7:
+  case 1:
+  case 3:
+  case 5:
+  case 7:
      otherCorner--;
      break;
    }
@@ -294,20 +294,20 @@ void RescueSplitLine::SwapAxes(bool swapI, bool swapJ, bool swapK, RESCUEINT64 k
   {
    switch (otherCorner)
    {
-    case 0:
-    case 4:
+  case 0:
+  case 4:
      otherCorner += 3;
      break;
-    case 1:
-    case 5:
+  case 1:
+  case 5:
      otherCorner++;
      break;
-    case 3:
-    case 7:
+  case 3:
+  case 7:
      otherCorner -= 3;
      break;
-    case 2:
-    case 6:
+  case 2:
+  case 6:
      otherCorner--;
      break;
    }
@@ -316,27 +316,27 @@ void RescueSplitLine::SwapAxes(bool swapI, bool swapJ, bool swapK, RESCUEINT64 k
   {
    switch (otherCorner)
    {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
+  case 0:
+  case 1:
+  case 2:
+  case 3:
      otherCorner += 4;
      break;
-    case 4:
-    case 5:
-    case 6:
-    case 7:
+  case 4:
+  case 5:
+  case 6:
+  case 7:
      otherCorner -= 4;
      break;
    }
   }
-    RESCUEINT64 kLayer;
-    for (kLayer = 0; kLayer < kLayers; kLayer++)
-    {
+  RESCUEINT64 kLayer;
+  for (kLayer = 0; kLayer < kLayers; kLayer++)
+  {
       RESCUEINT64 otherK = kLayer;
       if (swapK)
       {
-        otherK = (kLayers - 1) - kLayer;
+    otherK = (kLayers - 1) - kLayer;
       }
       int cornerNdxes[8] = {0, 2, 3, 1, 4, 6, 7, 5};
       RESCUEINT64 oldNdx = (kLayer * 8 * 3) + (cornerNdxes[corner] * 3);
@@ -344,9 +344,9 @@ void RescueSplitLine::SwapAxes(bool swapI, bool swapJ, bool swapK, RESCUEINT64 k
       int xyz;
       for (xyz = 0; xyz < 3; xyz++)
       {
-        addresses[newNdx + xyz] = tempValues[oldNdx + xyz];
+    addresses[newNdx + xyz] = tempValues[oldNdx + xyz];
       }
-    }
+  }
   }
   delete [] tempValues;
 }

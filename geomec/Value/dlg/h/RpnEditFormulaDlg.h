@@ -29,41 +29,41 @@ private:
 
 public:
 // Construction
-	CRpnEditFormulaDlg
-        ( const CModelBase &model
-        , const std::string & input
-        , const std::set<std::string> & operandNames
-        , std::queue<Shunt::CShunt::Op_t> &output
-        , CWnd* pParent =NULL
-        );
+  CRpnEditFormulaDlg
+    ( const CModelBase &model
+    , const std::string & input
+    , const std::set<std::string> & operandNames
+    , std::queue<Shunt::CShunt::Op_t> &output
+    , CWnd* pParent =NULL
+    );
 
 // Dialog Data
-	//{{AFX_DATA(CRpnEditFormulaDlg)
-	enum { IDD = IDD_RPN_EDIT_FORMULA };
-		// NOTE: the ClassWizard will add data members here
-	//}}AFX_DATA
+  //{{AFX_DATA(CRpnEditFormulaDlg)
+  enum { IDD = IDD_RPN_EDIT_FORMULA };
+    // NOTE: the ClassWizard will add data members here
+  //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CRpnEditFormulaDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+  // ClassWizard generated virtual function overrides
+  //{{AFX_VIRTUAL(CRpnEditFormulaDlg)
+  protected:
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CRpnEditFormulaDlg)
-		// NOTE: the ClassWizard will add member functions here
-	afx_msg void OnOK();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+  // Generated message map functions
+  //{{AFX_MSG(CRpnEditFormulaDlg)
+    // NOTE: the ClassWizard will add member functions here
+  afx_msg void OnOK();
+  //}}AFX_MSG
+  DECLARE_MESSAGE_MAP()
 private:
-    bool checkOperandNames( const std::list<Shunt::CRpnToken *> & tokens);
-    void addOperandName( const std::string & operandName);
-    const CModelBase &m_model;
+  bool checkOperandNames( const std::list<Shunt::CRpnToken *> & tokens);
+  void addOperandName( const std::string & operandName);
+  const CModelBase &m_model;
 };
 
 //{{AFX_INSERT_LOCATION}}

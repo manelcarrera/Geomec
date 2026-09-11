@@ -20,12 +20,12 @@ class RescuePolyLineNodeUVT:public RescueObject
 public:
   RescuePolyLineNodeUVT(RescueContext *context, RescueTriangulatedSurface *faceIn, RESCUEINT64 faceNdxIn, 
                           RESCUEFLOAT u, RESCUEFLOAT v)
-                            :RescueObject(context)
-                            ,uValue(u)
-                            ,vValue(v)
-                            ,faceNdx(faceNdxIn) 
-                            ,face(faceIn)
-                            ,faceID(0) {isA = R_RescuePolyLineNodeUVT;}
+              :RescueObject(context)
+              ,uValue(u)
+              ,vValue(v)
+              ,faceNdx(faceNdxIn) 
+              ,face(faceIn)
+              ,faceID(0) {isA = R_RescuePolyLineNodeUVT;}
   void SetUVValue(RESCUEINT64 faceNdxIn, RESCUEFLOAT u, RESCUEFLOAT v) {faceNdx = faceNdxIn; uValue = u; vValue = v;}
   RESCUEFLOAT U() {return uValue;} 
   RESCUEFLOAT V() {return vValue;} 
@@ -35,7 +35,7 @@ public:
                                      // Returns TRUE if the surface passed is the one
                                      // we are parameterized against.
   RescueTriangulatedSurface *Face(RescueModel *model);
-                                    // Model pointer needed for just-in-time relinking.
+                  // Model pointer needed for just-in-time relinking.
   virtual RESCUEBOOL IsOfType(_RescueObjectType thisType);
                                // Returns TRUE if the object is a
                                // member of the specified class.

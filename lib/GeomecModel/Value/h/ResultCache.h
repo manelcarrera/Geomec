@@ -27,7 +27,7 @@ class CResultCache
 public:
   CResultCache(CModelBase& model, const geo::IMesh& mesh, int nColumns, int nCacheSizeMb);
   CResultCache(CModelBase& model, const geo::IMesh& mesh, int nColumns);
-	~CResultCache();
+  ~CResultCache();
 
   mdc::CMeshDataCacher& RawCacher();
   mdc::CMeshDataCacher* AveragedCacher();

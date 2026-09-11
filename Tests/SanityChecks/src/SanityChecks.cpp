@@ -63,24 +63,24 @@ TEST(SanityCheck, verifyValidNames)
 
   for (CGraphEntryTemp<IResult>::TNodeSet::const_iterator node = nodeSet.begin(); node != nodeSet.end(); ++node)
   {
-    if (dynamic_cast<const CMaterialResult*>(*node) == 0)
-    {
+  if (dynamic_cast<const CMaterialResult*>(*node) == 0)
+  {
       int componentSize = (*node)->ComponentSize();
 
       EXPECT_GT(componentSize, 0);
 
       for (int component = 0; component < componentSize; ++component)
       {
-        std::string exportLabel = (*node)->ExportLabel(component).toStdString();
+    std::string exportLabel = (*node)->ExportLabel(component).toStdString();
 
-        bool isValid = (*node)->ValidName(exportLabel, resultInfo);
+    bool isValid = (*node)->ValidName(exportLabel, resultInfo);
 
-        EXPECT_TRUE(isValid);
+    EXPECT_TRUE(isValid);
 
-        if (!isValid)
+    if (!isValid)
           std::cout << exportLabel << " IS NOT VALID" << std::endl;
       }
-    }
+  }
   }
 }
 
@@ -98,24 +98,24 @@ void verifyChildren(const IResult* node)
 
   for (unsigned int mode = 0; mode < node->ModeSize(); ++mode)
   {
-    for (unsigned int component = 0;
+  for (unsigned int component = 0;
       component < node->ComponentSize(mode); ++component)
-    {
+  {
       const IResultComponent* resultComponent =
-        dynamic_cast <const IResultComponent*> (
+    dynamic_cast <const IResultComponent*> (
           &(node->Component(component, mode)));
 
       if (resultComponent != 0)
       {
-        QString combination = TEMPLATE.arg(resultComponent->Name()).
+    QString combination = TEMPLATE.arg(resultComponent->Name()).
           arg(resultComponent->Stage().Index()).
           arg(resultComponent->AnalysisType().AnalysisType());
-        std::pair <TStrings::iterator, bool> result =
+    std::pair <TStrings::iterator, bool> result =
           uniqueCombinations.insert(combination);
 
-        EXPECT_TRUE(result.second);
+    EXPECT_TRUE(result.second);
       }
-    }
+  }
   }
 }
 
@@ -129,22 +129,22 @@ TEST(SanityChecks, verifyUniquePaths)
   typedef std::set <QString> TStrings;
 
   const TResultEntry* resultEntry =
-    static_cast <const TResultEntry*> (modelBase->GraphEntry(MD_BASE_RESULT));
+  static_cast <const TResultEntry*> (modelBase->GraphEntry(MD_BASE_RESULT));
   const TResultEntry::TNodeSet nodeSet = resultEntry->EntryNodes();
   TStrings uniquePaths;
 
   for (TResultEntry::TNodeSet::const_iterator node = nodeSet.begin();
-    node != nodeSet.end(); ++node)
+  node != nodeSet.end(); ++node)
   {
-    if (dynamic_cast <const IResult*> (*node) != 0)
-    {
+  if (dynamic_cast <const IResult*> (*node) != 0)
+  {
       CGraphNode* parent = *node;
       QString path;
 
       while (parent != 0)
       {
-        path += parent->Name() + DOT;
-        parent = parent->parent();
+    path += parent->Name() + DOT;
+    parent = parent->parent();
       }
 
       std::pair <TStrings::iterator, bool> result = uniquePaths.insert(path);
@@ -152,7 +152,7 @@ TEST(SanityChecks, verifyUniquePaths)
       EXPECT_TRUE(result.second);
 
       verifyChildren(*node);
-    }
+  }
   }
 }
 
@@ -170,22 +170,22 @@ TEST(SanityCheck, isResultsFilterComplete)
 
   for (CGraphEntryTemp<IResult>::TNodeSet::const_iterator node = nodeSet.begin(); node != nodeSet.end(); ++node)
   {
-    if (dynamic_cast <const CMaterialResult*>(*node) == 0)
-    {
+  if (dynamic_cast <const CMaterialResult*>(*node) == 0)
+  {
       // can't call ComponentSize() when ModeSize() is 0, not fatal
 
       if ((*node)->ModeSize() == 0)
       {
-        std::cout << (*node)->Name().toStdString() << " has ModeSize() == 0" << std::endl;
-        continue;
+    std::cout << (*node)->Name().toStdString() << " has ModeSize() == 0" << std::endl;
+    continue;
       }
 
       unsigned int componentSize = (*node)->ComponentSize();
 
       for (unsigned int component = 0; component < componentSize; ++component)
       {
-        if ((*node)->Component(component).Type() == IValueComponentBase::SCALAR)
-        {
+    if ((*node)->Component(component).Type() == IValueComponentBase::SCALAR)
+    {
           QString exportLabel = (*node)->ExportLabel(component);
 
           exportLabels.push_back(exportLabel);
@@ -195,22 +195,22 @@ TEST(SanityCheck, isResultsFilterComplete)
           EXPECT_FALSE(notPresent);
 
           if (notPresent)
-            std::cout << exportLabel.toStdString() << " is NOT present in 'CFilterResults'" << std::endl;
-        }
-      }
+      std::cout << exportLabel.toStdString() << " is NOT present in 'CFilterResults'" << std::endl;
     }
+      }
+  }
   }
 
   const std::map <QString, bool>& resultsFilter = filterResults.getFilter();
 
   for (std::map<QString, bool>::const_iterator result = resultsFilter.begin(); result != resultsFilter.end(); ++result)
   {
-    bool notPresent = std::find(exportLabels.begin(), exportLabels.end(), result->first) == exportLabels.end();
+  bool notPresent = std::find(exportLabels.begin(), exportLabels.end(), result->first) == exportLabels.end();
 
-    if (result->first != "Mud")
+  if (result->first != "Mud")
       EXPECT_FALSE(notPresent);
 
-    if (notPresent)
+  if (notPresent)
       std::cout << (*result).first.toStdString() << " is NOT present in exported labels" << std::endl;
   }
 }
@@ -250,31 +250,31 @@ bool isValueTypesFilterComplete()
 
   int materialModel = 0;
   for (ml::TMaterialCreatorRefPtr materialCreator = f->getMatCreator(materialModel);
-    materialCreator != 0;
-    materialCreator = f->getMatCreator(++materialModel))
+  materialCreator != 0;
+  materialCreator = f->getMatCreator(++materialModel))
   {
-    ml::TMaterialPtr material = materialCreator->OnCreateMaterial();
+  ml::TMaterialPtr material = materialCreator->OnCreateMaterial();
 
-    materialCreator->Create(MATERIAL, *material);
+  materialCreator->Create(MATERIAL, *material);
 
-    cora::CFilterValueTypes filterValueTypes(materialModel);
-    CLibraryMaterial* libraryMaterial =
+  cora::CFilterValueTypes filterValueTypes(materialModel);
+  CLibraryMaterial* libraryMaterial =
       dynamic_cast <CLibraryMaterial*> (material);
 
-    for (size_t p = 0; (libraryMaterial != 0) &&
+  for (size_t p = 0; (libraryMaterial != 0) &&
       (p < libraryMaterial->ParameterSize()); ++p)
-    {
+  {
       if (std::find(VALUE_TYPES.begin(), VALUE_TYPES.end(),
-        libraryMaterial->Parameter(p).ValueTypeID()) == VALUE_TYPES.end())
+    libraryMaterial->Parameter(p).ValueTypeID()) == VALUE_TYPES.end())
       {
-        std::cout << VALUE_TYPE_IS_NOT_PRESENT.
+    std::cout << VALUE_TYPE_IS_NOT_PRESENT.
           arg(libraryMaterial->Parameter(p).ValueTypeID()).toStdString() <<
           std::endl;
-        isValueTypesFilterComplete = false;
+    isValueTypesFilterComplete = false;
       }
-    }
+  }
 
-    materialCreator->Destroy(material);
+  materialCreator->Destroy(material);
   }
 
   return isValueTypesFilterComplete;
@@ -286,25 +286,25 @@ void listValueTypes()
 
   int materialModel = 0;
   for (ml::TMaterialCreatorRefPtr materialCreator = f->getMatCreator(materialModel);
-    materialCreator != 0;
-    materialCreator = f->getMatCreator(++materialModel))
+  materialCreator != 0;
+  materialCreator = f->getMatCreator(++materialModel))
   {
-    ml::TMaterialPtr material = materialCreator->OnCreateMaterial();
+  ml::TMaterialPtr material = materialCreator->OnCreateMaterial();
 
-    materialCreator->Create(MATERIAL, *material);
+  materialCreator->Create(MATERIAL, *material);
 
-    cora::CFilterValueTypes filterValueTypes(materialModel);
-    CLibraryMaterial* libraryMaterial =
+  cora::CFilterValueTypes filterValueTypes(materialModel);
+  CLibraryMaterial* libraryMaterial =
       dynamic_cast <CLibraryMaterial*> (material);
 
-    for (size_t p = 0; (libraryMaterial != 0) &&
+  for (size_t p = 0; (libraryMaterial != 0) &&
       (p < libraryMaterial->ParameterSize()); ++p)
-    {
+  {
       std::cout << "material model " << materialModel << ":" <<
-        libraryMaterial->Parameter(p).ValueTypeID() << std::endl;
-    }
+    libraryMaterial->Parameter(p).ValueTypeID() << std::endl;
+  }
 
-    materialCreator->Destroy(material);
+  materialCreator->Destroy(material);
   }
 }
 
@@ -331,22 +331,22 @@ void testEquality(int lowerBoundary, int upperBoundary)
 
   for (int i = lowerBoundary; i <= upperBoundary; ++i)
   {
-    if (!cString.LoadString(i))
-    {
+  if (!cString.LoadString(i))
+  {
       cString = "";
-    }
+  }
 
-    /*
+  /*
      * When cString equals "" the function getStringTableEntry(...) will
      * trigger an assertion if both tables are equal. Therefor we will skip
      * the call to getStringTableEntry(..) when cString equals "".
      */
 
-    if (cString != "")
-    {
+  if (cString != "")
+  {
       qString = getStringTableEntry(i);
       EXPECT_TRUE(qString == (LPCSTR)cString);
-    }
+  }
   }
 }
 
@@ -395,7 +395,7 @@ void testQStringCString()
   const char* noCase = FILLED_LOWER_CASE;
 
   EXPECT_TRUE((cFilled.CompareNoCase(noCase) == 0) &&
-    (qFilled.compare(noCase, Qt::CaseInsensitive) == 0));
+  (qFilled.compare(noCase, Qt::CaseInsensitive) == 0));
 }
 
 const char* PREFIX_SUFFIX = "prefix_suffix";
@@ -418,7 +418,7 @@ void testFindAndManipulate()
 
   EXPECT_TRUE(cSuffix == qSuffix);
   EXPECT_TRUE((cSuffix.Left(SUFFIX_LENGTH) == SUFFIX_STRING) &&
-    (qSuffix.left(SUFFIX_LENGTH) == SUFFIX_STRING));
+  (qSuffix.left(SUFFIX_LENGTH) == SUFFIX_STRING));
 }
 
 const double SOME_DOUBLE = 12345.678;
@@ -456,23 +456,23 @@ void testOldSpanExcluding()
   QString qString = WITH_UNDERSCORE;
 
   EXPECT_TRUE(cString.SpanExcluding(EXCLUDE) ==
-    qString.left((qString.indexOf(EXCLUDE) != -1 ?
-    qString.indexOf(EXCLUDE) : qString.length())));
+  qString.left((qString.indexOf(EXCLUDE) != -1 ?
+  qString.indexOf(EXCLUDE) : qString.length())));
 
   cString = cString.SpanExcluding(EXCLUDE);
   qString = qString.left((qString.indexOf(EXCLUDE) != -1 ?
-    qString.indexOf(EXCLUDE) : qString.length()));
+  qString.indexOf(EXCLUDE) : qString.length()));
 
   cString = WITHOUTUNDERSCORE;
   qString = WITHOUTUNDERSCORE;
 
   EXPECT_TRUE(cString.SpanExcluding(EXCLUDE) ==
-    qString.left((qString.indexOf(EXCLUDE) != -1 ?
-    qString.indexOf(EXCLUDE) : qString.length())));
+  qString.left((qString.indexOf(EXCLUDE) != -1 ?
+  qString.indexOf(EXCLUDE) : qString.length())));
 
   cString = cString.SpanExcluding(EXCLUDE);
   qString = qString.left((qString.indexOf(EXCLUDE) != -1 ?
-    qString.indexOf(EXCLUDE) : qString.length()));
+  qString.indexOf(EXCLUDE) : qString.length()));
 }
 
 const char* CDATE_TIME_FORMAT_0 = "*** %d %b %Y, %H:%M ***";
@@ -520,9 +520,9 @@ const char* DATE_TIME_FORMAT = "yyyy,MM,dd,HH,mm,ss";
 void testTimeInterval()
 {
   QDateTime qBegin =
-    QDateTime::fromString(BEGIN_DATE_TIME, DATE_TIME_FORMAT);
+  QDateTime::fromString(BEGIN_DATE_TIME, DATE_TIME_FORMAT);
   QDateTime qEnd =
-    QDateTime::fromString(END_DATE_TIME, DATE_TIME_FORMAT);
+  QDateTime::fromString(END_DATE_TIME, DATE_TIME_FORMAT);
   TTimeInterval qTimeInterval = calculateTimeInterval(qBegin, qEnd);
   CTime cBegin(2009, 6, 12, 18, 32, 0);
   CTime cEnd(2011, 6, 13, 22, 47, 0);
@@ -723,7 +723,7 @@ void readFileRegistry(const QString& string, int integer, bool only_user = false
   ISettings* registry = ISettings::instance();
 
   QString stringValue =
-    registry->getProfileString(SECTION_NAME, STRING_ENTRY_NAME);
+  registry->getProfileString(SECTION_NAME, STRING_ENTRY_NAME);
 
   EXPECT_TRUE(stringValue == string);
 
@@ -731,7 +731,7 @@ void readFileRegistry(const QString& string, int integer, bool only_user = false
   EXPECT_TRUE(intValue == integer);
 
   if( only_user )
-	  return;
+    return;
 
   stringValue = registry->getSystemString(SECTION_NAME, STRING_ENTRY_NAME);
   EXPECT_TRUE(stringValue == string);
@@ -794,7 +794,7 @@ const char* EMPTY = "";
 void testNative2Diana()
 {
   QString assignment = QString(ASSIGNMENT).arg(TEST_NATIVE_2_DIANA).
-    arg(TEST_NATIVE_2_DIANA);
+  arg(TEST_NATIVE_2_DIANA);
 
   EXPECT_TRUE(putenv(strdup((char*)assignment.toStdString().c_str())) == 0);
 
@@ -817,12 +817,12 @@ void testNative2Diana()
 
   if (diana != 0)
   {
-    EXPECT_TRUE(strcmp(diana, TEST_NATIVE_2_DIANA) == 0);
-    std::cout << "strcmp(diana, TEST_NATIVE_2_DIANA) == 0" << std::endl;
+  EXPECT_TRUE(strcmp(diana, TEST_NATIVE_2_DIANA) == 0);
+  std::cout << "strcmp(diana, TEST_NATIVE_2_DIANA) == 0" << std::endl;
   }
 
   assignment = QString(ASSIGNMENT).arg(TEST_NATIVE_2_DIANA).
-    arg(EMPTY);
+  arg(EMPTY);
 
   EXPECT_TRUE(putenv(strdup((char*)assignment.toStdString().c_str())) == 0);
   std::cout << "putenv(strdup(assignment.toStdString().c_str())) == 0" << std::endl;
@@ -833,7 +833,7 @@ const char* TEST_DIANA_2_NATIVE = "testDiana2Native";
 void testDiana2Native()
 {
   QString assignment = QString(ASSIGNMENT).arg(TEST_DIANA_2_NATIVE).
-    arg(TEST_DIANA_2_NATIVE);
+  arg(TEST_DIANA_2_NATIVE);
 
   EXPECT_TRUE(vDiSetenv(assignment.toStdString().c_str()) == 0);
   std::cout << "vDiSetenv(assignment.toStdString().c_str()) == 0" << std::endl;
@@ -855,12 +855,12 @@ void testDiana2Native()
 
   if (native != 0)
   {
-    EXPECT_TRUE(strcmp(native, TEST_DIANA_2_NATIVE) == 0);
-    std::cout << "strcmp(native, TEST_DIANA_2_NATIVE) == 0" << std::endl;
+  EXPECT_TRUE(strcmp(native, TEST_DIANA_2_NATIVE) == 0);
+  std::cout << "strcmp(native, TEST_DIANA_2_NATIVE) == 0" << std::endl;
   }
 
   assignment = QString(ASSIGNMENT).arg(TEST_DIANA_2_NATIVE).
-    arg(EMPTY);
+  arg(EMPTY);
 
   EXPECT_TRUE(vDiSetenv(assignment.toStdString().c_str()) == 0);
   std::cout << "vDiSetenv(assignment.toStdString().c_str()) == 0" << std::endl;
@@ -915,7 +915,7 @@ void testDiana()
 }
 
 /* MCR 2018-09-28: 
-	'testNative2Diana' and 'testNative' crashes with gcc 7.3.0 and C++14
+  'testNative2Diana' and 'testNative' crashes with gcc 7.3.0 and C++14
   JH 2018-10-29:
   'QString::toStdString::c_str' goes out of scope, and 'putenv' retains
   a pointer to invalid data.
@@ -951,28 +951,28 @@ public:
 
   virtual tbb::task *execute()
   { 
-    output.push_back("-- Master");
+  output.push_back("-- Master");
 
-    RGSync sync(RGSync::Lead, name);
+  RGSync sync(RGSync::Lead, name);
 
-    sync.init();
-    sync.lock();
+  sync.init();
+  sync.lock();
 
-    output.push_back("-- Master : do RE simulation!");
+  output.push_back("-- Master : do RE simulation!");
 
-    // sleep some time to mimic the simulation.
-    mSleep(1000);
+  // sleep some time to mimic the simulation.
+  mSleep(1000);
 
-    output.push_back("-- Master : release resource");
-    sync.release();
+  output.push_back("-- Master : release resource");
+  sync.release();
 
-    // let the other process do its work.
-    output.push_back("-- Master : RE waits for GM");
-    sync.waitFor(-1);
+  // let the other process do its work.
+  output.push_back("-- Master : RE waits for GM");
+  sync.waitFor(-1);
 
-    output.push_back("-- Master : continue");
+  output.push_back("-- Master : continue");
 
-    return 0;
+  return 0;
   }
 };
 
@@ -986,21 +986,21 @@ public:
 
   virtual tbb::task *execute()
   { 
-    output.push_back("-- Slave");
+  output.push_back("-- Slave");
 
-    RGSync sync(RGSync::Follower, name);
+  RGSync sync(RGSync::Follower, name);
 
-    output.push_back("-- Slave :  GM waits for RE");
-    sync.waitFor(-1);
-    sync.lock();
+  output.push_back("-- Slave :  GM waits for RE");
+  sync.waitFor(-1);
+  sync.lock();
 
-    output.push_back("-- Slave :  do GM actions !");
-    mSleep(1000);
+  output.push_back("-- Slave :  do GM actions !");
+  mSleep(1000);
 
-    output.push_back("-- Slave : release resource");
-    sync.release();
+  output.push_back("-- Slave : release resource");
+  sync.release();
 
-    return 0;
+  return 0;
   }
 };
 
@@ -1042,7 +1042,7 @@ TEST(SanityChecks, TBBAndRGISync)
   g.wait();
 
   for (tbb::concurrent_vector<QString>::const_iterator it = output.begin(); it != output.end(); ++it)
-    std::cout << it->toStdString() << std::endl;
+  std::cout << it->toStdString() << std::endl;
 
   EXPECT_TRUE(output.back() == "-- Master : continue");
 
@@ -1119,7 +1119,7 @@ template <class NODE_TYPE, class DELEGATE_TYPE>
   name = typeid(&simple).name();
 
   DELEGATE_TYPE* simpleDelegate =
-    static_cast <DELEGATE_TYPE*> (simple.getDelegate());
+  static_cast <DELEGATE_TYPE*> (simple.getDelegate());
 
   return simpleDelegate;
 }
@@ -1128,12 +1128,12 @@ void testDelegate()
 {
   Simple simple;
   Simple_Delegate* simpleDelegate =
-    testTemplate <Simple, Simple_Delegate> (simple);
+  testTemplate <Simple, Simple_Delegate> (simple);
   std::string name = typeid(simpleDelegate).name();
 
   EXPECT_TRUE(simpleDelegate->test() != 0);
   EXPECT_TRUE((name == "class `anonymous namespace'::Simple_Delegate *") ||
-    (name == "class `anonymous namespace'::Simple_Delegate * __ptr64"));
+  (name == "class `anonymous namespace'::Simple_Delegate * __ptr64"));
 }
 
 template <class T>
@@ -1185,7 +1185,7 @@ private:
 
 template <class T>
   SimpleTemplate_Delegate <T> ::SimpleTemplate_Delegate(
-    SimpleTemplate <T> * simple)
+  SimpleTemplate <T> * simple)
 : CGraphNode_Delegate(simple)
 {
   ACTIVATE_TEMPLATE_DELEGATE(SimpleTemplate <T>, SimpleTemplate_Delegate <T>);
@@ -1200,7 +1200,7 @@ void testTemplateDelegate()
 {
   SimpleTemplate <Simple> * anotherSimple = new SimpleTemplate <Simple> ();
   SimpleTemplate_Delegate <Simple> * anotherSimpleDelegate =
-    new SimpleTemplate_Delegate <Simple> (anotherSimple);
+  new SimpleTemplate_Delegate <Simple> (anotherSimple);
 
   EXPECT_TRUE(anotherSimpleDelegate->test() != 0);
 
@@ -1209,7 +1209,7 @@ void testTemplateDelegate()
 
   SimpleTemplate <Simple> simple;
   SimpleTemplate_Delegate <Simple> * simpleDelegate =
-    testTemplate <SimpleTemplate <Simple> , SimpleTemplate_Delegate <Simple> >
+  testTemplate <SimpleTemplate <Simple> , SimpleTemplate_Delegate <Simple> >
       (simple);
 
   EXPECT_TRUE(simpleDelegate->test() != 0);
@@ -1217,7 +1217,7 @@ void testTemplateDelegate()
   std::string name = typeid(simpleDelegate).name();
 
   EXPECT_TRUE((name == "class `anonymous namespace'::SimpleTemplate_Delegate<class `anonymous namespace'::Simple> *") ||
-    (name == "class `anonymous namespace'::SimpleTemplate_Delegate<class `anonymous namespace'::Simple> * __ptr64"));
+  (name == "class `anonymous namespace'::SimpleTemplate_Delegate<class `anonymous namespace'::Simple> * __ptr64"));
 }
 
 class A
@@ -1238,7 +1238,7 @@ template <class T>
 public:
   UnaryTemplate()
   {
-    std::string name = typeid(T).name();
+  std::string name = typeid(T).name();
   }
 };
 
@@ -1248,7 +1248,7 @@ void testTypeID()
   std::string name = typeid(a).name();
 
   EXPECT_TRUE((name == "class `anonymous namespace'::A *") ||
-    (name == "class `anonymous namespace'::A * __ptr64"));
+  (name == "class `anonymous namespace'::A * __ptr64"));
   name = typeid(*a).name();
   EXPECT_TRUE(name == "class `anonymous namespace'::A");
 
@@ -1258,7 +1258,7 @@ void testTypeID()
 
   name = typeid(b).name();
   EXPECT_TRUE((name == "class `anonymous namespace'::A *") ||
-    (name == "class `anonymous namespace'::A * __ptr64"));
+  (name == "class `anonymous namespace'::A * __ptr64"));
   name = typeid(*b).name();
   EXPECT_TRUE(name == "class `anonymous namespace'::B");
 
@@ -1268,7 +1268,7 @@ void testTypeID()
 
   name = typeid(c).name();
   EXPECT_TRUE((name == "class `anonymous namespace'::B *") ||
-    (name == "class `anonymous namespace'::B * __ptr64"));
+  (name == "class `anonymous namespace'::B * __ptr64"));
   name = typeid(*c).name();
   EXPECT_TRUE(name == "class `anonymous namespace'::B");
 

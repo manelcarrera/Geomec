@@ -22,7 +22,7 @@ IElementProperty::~IElementProperty()
 bool IElementProperty::operator<(const dia::IElementProperty &rhs) const
 {
   if(typeid(*this) == typeid(rhs))
-    return this < &rhs; // sort on pointer value
+  return this < &rhs; // sort on pointer value
 
   // sort on type
   return (typeid(*this).before(typeid(rhs)) != 0);

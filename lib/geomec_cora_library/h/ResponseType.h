@@ -16,22 +16,22 @@ namespace cora
 class CResponseType
 {
   public:
-    CResponseType(CSummaryResultFile& summaryResultFile,
+  CResponseType(CSummaryResultFile& summaryResultFile,
       const QString& versionNumber, const std::vector <QString>& function);
 
-    void calculate(CResponseParameterFile& responseParameterFile,
+  void calculate(CResponseParameterFile& responseParameterFile,
       const TObject& object, const TFailureMode& failureMode);
 
   private:
-    CResponseType(const CResponseType& rhs);
-    CResponseType& operator = (CResponseType rhs);
+  CResponseType(const CResponseType& rhs);
+  CResponseType& operator = (CResponseType rhs);
 
-    static TResponseTypeBase selectResponseType(
+  static TResponseTypeBase selectResponseType(
       CSummaryResultFile& summaryResultFile, const QString& versionNumber,
       const std::vector <QString>& function);
 
-    TResponseTypeBase m_responseTypeBase;
-    CSummaryResultFile& m_summaryResultFile;
+  TResponseTypeBase m_responseTypeBase;
+  CSummaryResultFile& m_summaryResultFile;
 };
 
 typedef QSharedPointer <CResponseType> TResponseType;

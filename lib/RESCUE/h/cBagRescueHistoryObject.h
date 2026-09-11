@@ -1,10 +1,10 @@
 /*************************************************************************
 
-        cBagRescueHistoryObject.h
+    cBagRescueHistoryObject.h
 
  Keeps a list of pointers to RescueHistoryObject.
 
-        Rod Hanks               December 15th, 1995  / August 1996
+    Rod Hanks               December 15th, 1995  / August 1996
 
 ****************************************************************************/
 

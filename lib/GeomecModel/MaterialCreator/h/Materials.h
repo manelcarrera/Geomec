@@ -241,23 +241,23 @@ const QString BULKS_FILOSPATH  = "BULKS";
 // don't renumber as they are saved in the model file
 typedef enum _MaterialModel
 {
-	MM_LINEAR              =  0,
-	MM_CAMCLAY             =  1,
-	MM_MOHRCOULOMB         =  2,
-	MM_MODIFIEDMOHRCOULOMB =  3,
-	MM_CREEP               =  4,
-	MM_UNDRAINED           =  5,
-	MM_MC_COHESION_HARD1   =  6,
-	MM_MC_COHESION_HARD2   =  7,
-	MM_MC_COHESION_HARD3   =  8,
-	MM_MC_FRICTION_HARD1   =  9,
-	MM_MC_FRICTION_HARD2   = 10,
-	MM_MC_FRICTION_HARD3   = 11,
-	MM_RIGIDITY            = 13,
-	MM_DUALCAP             = 14,  // Not used anymore, maintained for preventing
-                                // magic numbers.
-	MM_DUALCAP_LINELA      = 15,
-	MM_FRACTURE_ANISOTROPY = 16,
+  MM_LINEAR              =  0,
+  MM_CAMCLAY             =  1,
+  MM_MOHRCOULOMB         =  2,
+  MM_MODIFIEDMOHRCOULOMB =  3,
+  MM_CREEP               =  4,
+  MM_UNDRAINED           =  5,
+  MM_MC_COHESION_HARD1   =  6,
+  MM_MC_COHESION_HARD2   =  7,
+  MM_MC_COHESION_HARD3   =  8,
+  MM_MC_FRICTION_HARD1   =  9,
+  MM_MC_FRICTION_HARD2   = 10,
+  MM_MC_FRICTION_HARD3   = 11,
+  MM_RIGIDITY            = 13,
+  MM_DUALCAP             = 14,  // Not used anymore, maintained for preventing
+                // magic numbers.
+  MM_DUALCAP_LINELA      = 15,
+  MM_FRACTURE_ANISOTROPY = 16,
   MM_UPSCALED_ANISOTROPY = 17,
   MM_FRACTURE_APERTURE   = 18,
   MM_ANISOTROPIC_CAMCLAY = 19,

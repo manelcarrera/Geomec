@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
-    <TBBDIR>$(DEVELOP)/lib/tbb/windows</TBBDIR>
+    <TBBDIR>$(DEVELOP)/third_party/tbb/windows</TBBDIR>
     <PATHPREFIX>$(TBBDIR)/bin/intel64/vc14;$(PATHPREFIX)</PATHPREFIX>
   </PropertyGroup>
   <PropertyGroup />

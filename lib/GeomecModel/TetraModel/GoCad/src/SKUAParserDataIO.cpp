@@ -19,8 +19,8 @@ void LoadStreamString(CStorageNode::TSTREAM& stream, CStreamVersion& version, CS
   int i = 0;
 
   do {
-    stream >> c;
-    data[i++] = c;
+  stream >> c;
+  data[i++] = c;
   } while (c && i < MAX_IDENTIFIER_SIZE);
 }
 
@@ -33,8 +33,8 @@ void SaveStreamString(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS& pr
   int i = 0;
 
   do {
-    c = data[i++];
-    stream << c;
+  c = data[i++];
+  stream << c;
   } while (c && i < MAX_IDENTIFIER_SIZE);
 }
 
@@ -45,14 +45,14 @@ void LoadStreamStringVector(CStorageNode::TSTREAM& stream, CStreamVersion& versi
 
   if (size > 0)
   {
-    string_vector_data.resize(size);
+  string_vector_data.resize(size);
 
-    for (int i = 0; i < size; ++i)
-    {
+  for (int i = 0; i < size; ++i)
+  {
       LoadStreamString(stream, version, progress, string_vector_data[i]);
       
       progress.Step();
-    }
+  }
   }
 }
 
@@ -63,9 +63,9 @@ void SaveStreamStringVector(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRE
 
   for (int i = 0; i < size; ++i)
   {
-    SaveStreamString(stream, progress, string_vector_data[i]);
+  SaveStreamString(stream, progress, string_vector_data[i]);
 
-    progress.Step();
+  progress.Step();
   }
 }
 
@@ -77,17 +77,17 @@ void LoadStreamVector(CStorageNode::TSTREAM& stream, CStreamVersion& version, CS
 
   if (size > 0)
   {
-    vector_data.resize(size);
+  vector_data.resize(size);
 
-    char *data = (char *)vector_data.data();
+  char *data = (char *)vector_data.data();
 
-    for (int i = 0; i < size; ++i)
-    {
+  for (int i = 0; i < size; ++i)
+  {
       for (int j = 0; j < sizeof(T); ++j)
-        stream >> *data++;
+    stream >> *data++;
 
       progress.Step();
-    }
+  }
   }
 }
 
@@ -99,15 +99,15 @@ void SaveStreamVector(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS& pr
 
   if (size > 0)
   {
-    char *data = (char *)vector_data.data();
+  char *data = (char *)vector_data.data();
 
-    for (int i = 0; i < size; ++i)
-    {
+  for (int i = 0; i < size; ++i)
+  {
       for (int j = 0; j < sizeof(T); ++j)
-        stream << *data++;
+    stream << *data++;
 
       progress.Step();
-    }
+  }
   }
 }
 
@@ -119,12 +119,12 @@ void LoadStreamVectorVector(CStorageNode::TSTREAM& stream, CStreamVersion& versi
 
   if (size > 0)
   {
-    vector_vector_data.resize(size);
+  vector_vector_data.resize(size);
 
-    for (int i = 0; i < size; ++i)
-    {
+  for (int i = 0; i < size; ++i)
+  {
       LoadStreamVector(stream, version, progress, vector_vector_data[i]);
-    }
+  }
   }
 }
 
@@ -136,7 +136,7 @@ void SaveStreamVectorVector(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRE
 
   for (int i = 0; i < size; ++i)
   {
-    SaveStreamVector(stream, progress, vector_vector_data[i]);
+  SaveStreamVector(stream, progress, vector_vector_data[i]);
   }
 }
 
@@ -187,7 +187,7 @@ void LoadStream(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorage
   internal::LoadStreamString(stream, version, progress, data.name);
 
   for (int i = 0; i < 3; ++i)
-    stream >> data.coord_unit[i];
+  stream >> data.coord_unit[i];
 
   stream >> data.volume;
 
@@ -222,7 +222,7 @@ void SaveStream(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS& progress
   internal::SaveStreamString(stream, progress, data.name);
 
   for (int i = 0; i < 3; ++i)
-    stream << data.coord_unit[i];
+  stream << data.coord_unit[i];
 
   stream << data.volume;
 

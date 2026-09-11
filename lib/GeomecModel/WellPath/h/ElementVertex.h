@@ -32,30 +32,30 @@ typedef std::set <TElementVertex, COrderByVertexIndices> TElementVertices;
 class CElementVertex
 {
   public:
-    typedef std::vector <int> TIndices;
+  typedef std::vector <int> TIndices;
 
-    CElementVertex(const geo::IElement& element, int index0, int index1);
-    ~CElementVertex();
+  CElementVertex(const geo::IElement& element, int index0, int index1);
+  ~CElementVertex();
 
-    const geo::IElement& element() const;
+  const geo::IElement& element() const;
 
-    TIndices vertexIndices() const;
+  TIndices vertexIndices() const;
 
-    TElementVertices& otherElementVertices();
-    const TElementVertices& otherElementVertices() const;
-    void otherElementVertex(const TElementVertex& otherElementVertex);
+  TElementVertices& otherElementVertices();
+  const TElementVertices& otherElementVertices() const;
+  void otherElementVertex(const TElementVertex& otherElementVertex);
 
-    void removeLinkWithOtherElementVertices();
+  void removeLinkWithOtherElementVertices();
 
   private:
-    CElementVertex(const CElementVertex& rhs);
-    CElementVertex& operator = (CElementVertex rhs);
+  CElementVertex(const CElementVertex& rhs);
+  CElementVertex& operator = (CElementVertex rhs);
 
-    static TIndices createVertexIndices(int index0, int index1);
+  static TIndices createVertexIndices(int index0, int index1);
 
-    const geo::IElement& m_element;
-    TIndices m_vertexIndices;
-    TElementVertices m_otherElementVertices;
+  const geo::IElement& m_element;
+  TIndices m_vertexIndices;
+  TElementVertices m_otherElementVertices;
 };
 
 } // namespace WellPath

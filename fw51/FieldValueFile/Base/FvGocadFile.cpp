@@ -48,7 +48,7 @@ CGoCadFile::~CGoCadFile()
 void CGoCadFile::RemoveAll()
 {
   for(size_t i = 0; i < m_vcSurface.size(); i++)
-    delete m_vcSurface[i];
+  delete m_vcSurface[i];
 //  for(i = 0; i < m_vcVolume.size(); i++)
 //    delete m_vcVolume[i];
 
@@ -66,7 +66,7 @@ bool CGoCadFile::OnParseFail(TInputStream& stream, const QString &sToken)
 {
   // Just deny the words we don't know ..
   if(m_state == GOCAD_CLOSED)
-    return CTextFile::OnParseFail(stream, sToken);
+  return CTextFile::OnParseFail(stream, sToken);
 
   return true;
 }
@@ -84,12 +84,12 @@ bool CGoCadFile::CloseGocad(TInputStream& /*stream*/, const QString &/*sToken*/)
   iter = m_vcSurface.begin();
   while (iter != m_vcSurface.end())
   {
-    if ((*iter)->PointSize() == 0)
-    {
+  if ((*iter)->PointSize() == 0)
+  {
       m_vcSurface.erase(iter);
       iter = m_vcSurface.begin();
-    }
-    else
+  }
+  else
       iter++;
   }
 
@@ -105,7 +105,7 @@ bool CGoCadFile::TypeSurface(TInputStream& stream, const QString &/*sToken*/)
 
   // Eat version number
   while(stream.peek() != '\n' && stream.peek() != 0)
-    stream.get();
+  stream.get();
 
   NewSurface();
 
@@ -137,7 +137,7 @@ bool CGoCadFile::TypeVolume(TInputStream& stream, const QString &/*sToken*/)
   m_type = GOCAD_VOLUME;
 
   while(stream.peek() != '\n' && stream.peek() != 0)
-    stream.get();
+  stream.get();
 
   // wtf
   m_vcVolume.resize(m_vcVolume.size() + 1);
@@ -151,38 +151,38 @@ bool CGoCadFile::ReadHeader(TInputStream& stream, const QString &/*sToken*/)
   QString sName;
   // Mini parser ....
   while(stream.get() != '{') {
-    if( stream.eof() ) {
+  if( stream.eof() ) {
       throw CReadException( "{ Expected." );
-    }
+  }
   };
 
   QString sLine;
   bool bName = false;
   while( !stream.eof() ) {
-    char ch = stream.get();
-    switch( ch ) {
-    case '\n':
+  char ch = stream.get();
+  switch( ch ) {
+  case '\n':
       sLine = "";
       bName = false;
       break;
-    case '}':
+  case '}':
       // Stop ...
       if(m_type == GOCAD_SURFACE ) {
-        LatestSurf()->Header(sName);
+    LatestSurf()->Header(sName);
       } else {
-        assert(m_type == GOCAD_VOLUME);
-        LatestVol()->Header(sName);
+    assert(m_type == GOCAD_VOLUME);
+    LatestVol()->Header(sName);
       }
 
       ItemRead();
       return true;
-    default:
+  default:
       sLine += ch;
       if( bName ) sName += ch;
       break;
-    }
+  }
 
-    if(sLine == "name:") bName = true;
+  if(sLine == "name:") bName = true;
   };
 
   throw CReadException("} expected for header end.");
@@ -194,7 +194,7 @@ bool CGoCadFile::ReadGeoType(TInputStream& stream, const QString &/*sToken*/)
 {
   // Eat version number
   while(stream.peek() != '\n' && stream.peek() != 0)
-    stream.get();
+  stream.get();
 
   return true;
 }
@@ -208,7 +208,7 @@ bool CGoCadFile::ReadPropClass(TInputStream& stream, const QString &/*sToken*/)
 bool CGoCadFile::ReadStatPos(TInputStream& stream, const QString &/*sToken*/)
 {
   while(stream.peek() != '\n' &&stream.peek() != 0)
-    stream.get();
+  stream.get();
 
   return true;
 }
@@ -227,31 +227,31 @@ bool CGoCadFile::ReadVertex(TInputStream& stream, const QString &/*sToken*/)
   // jbj
   // Mantis #2289 patch
   if ( m_unitType == FIELD_UNIT ) {
-	  // unitType has been TEMPORARILY set to FIELD in CTextFile::Parse
-	  // We are storing SI values.
-	  // Using 0.3048, see Mantis #2322: official factor (imperial ft)
-	  x *= 0.3048;
-	  y *= 0.3048;
-	  z *= 0.3048;
+    // unitType has been TEMPORARILY set to FIELD in CTextFile::Parse
+    // We are storing SI values.
+    // Using 0.3048, see Mantis #2322: official factor (imperial ft)
+    x *= 0.3048;
+    y *= 0.3048;
+    z *= 0.3048;
   }
 
   switch(m_type)
   {
   case GOCAD_SURFACE:
-    assert(m_vcSurface.size() > 0);
-    if(!LatestSurf()->InsertPoint(nIndex, y, x, z)) {
+  assert(m_vcSurface.size() > 0);
+  if(!LatestSurf()->InsertPoint(nIndex, y, x, z)) {
       throw CReadException(QString("Duplicate vertex %1").arg(nIndex));
-    }
-    break;
+  }
+  break;
   case GOCAD_VOLUME:
-    assert(m_vcVolume.size() > 0);
-    if(!LatestVol()->InsertPoint(nIndex, y, x, z)) {
+  assert(m_vcVolume.size() > 0);
+  if(!LatestVol()->InsertPoint(nIndex, y, x, z)) {
       throw CReadException(QString("Duplicate vertex %1").arg(nIndex));
-    }
-    break;
+  }
+  break;
   default:
-    throw CReadException("Define GoCad type before reading a vertex.");
-    break;
+  throw CReadException("Define GoCad type before reading a vertex.");
+  break;
   }
 
   ItemRead();
@@ -283,7 +283,7 @@ bool CGoCadFile::ReadTriangle(TInputStream& stream, const QString &/*sToken*/)
 bool CGoCadFile::ReadBorder(TInputStream& stream, const QString &/*sToken*/)
 {
   while(stream.peek() != '\n' &&stream.peek() != 0)
-    stream.get();
+  stream.get();
 
   return true;
 }
@@ -291,7 +291,7 @@ bool CGoCadFile::ReadBorder(TInputStream& stream, const QString &/*sToken*/)
 bool CGoCadFile::ReadBStone(TInputStream& stream, const QString &/*sToken*/)
 {
   while(stream.peek() != '\n' &&stream.peek() != 0)
-    stream.get();
+  stream.get();
 
   return true;
 }
@@ -329,10 +329,10 @@ long CGoCadFile::SavedItems() const
   // Count surfaces ....
   size_t i;
   for(i = 0; i < SurfaceSize(); i++)
-    lRet += Surface(i).PointSize() + Surface(i).FaceSize();
+  lRet += Surface(i).PointSize() + Surface(i).FaceSize();
 
   for(i = 0; i < VolumeSize(); i++)
-    lRet += Volume(i).PointSize() + Volume(i).ElementSize();
+  lRet += Volume(i).PointSize() + Volume(i).ElementSize();
 
   return lRet;
 }
@@ -341,11 +341,11 @@ bool CGoCadFile::OnWrite(TOutputStream& stream)
 {
   size_t i ;
   for(i = 0; i < SurfaceSize(); i++) {
-    if(!WriteSurface(stream, Surface(i)))
+  if(!WriteSurface(stream, Surface(i)))
       return false;
   }
   for(i = 0; i < VolumeSize(); i++) {
-    if(!WriteVolume(stream, Volume(i)))
+  if(!WriteVolume(stream, Volume(i)))
       return false;
   }
 
@@ -353,7 +353,7 @@ bool CGoCadFile::OnWrite(TOutputStream& stream)
 }
 
 bool CGoCadFile::WriteSurface( TOutputStream&      stream, 
-							   const CGoCadSurface &surface )
+                 const CGoCadSurface &surface )
 {
   stream << "GOCAD TSurf" << '\n';
 
@@ -364,9 +364,9 @@ bool CGoCadFile::WriteSurface( TOutputStream&      stream,
 
   stream << "AXIS_UNIT    ";
   if ( m_unitType == FIELD_UNIT )
-	  stream << "\"ft\"    \"ft\"    \"ft\"" << '\n';
+    stream << "\"ft\"    \"ft\"    \"ft\"" << '\n';
   else
-	  stream << "\"m\"     \"m\"     \"m\"" << '\n';
+    stream << "\"m\"     \"m\"     \"m\"" << '\n';
 
   // Write points
   stream << "TFACE" << '\n';
@@ -377,35 +377,35 @@ bool CGoCadFile::WriteSurface( TOutputStream&      stream,
   double unitFactor = 1.0;
   if ( m_unitType == FIELD_UNIT )
   	  // Using 0.3048, see Mantis #2322: official factor (imperial ft)
-	  unitFactor = 0.3048;
+    unitFactor = 0.3048;
 
   for ( int n = 0; n < surface.PointSize(); n++ ) {
-    const geo::INode& node = dynamic_cast<const geo::INode&>(surface.Point(n));
+  const geo::INode& node = dynamic_cast<const geo::INode&>(surface.Point(n));
 
-    // Write point to stream ...
-    stream << "VRTX ";
-    stream << node.Index() << " ";
-    // In a output we have left handed axis-system
-    stream << node.Y() / unitFactor << " ";
-    stream << node.X() / unitFactor << " ";
-    stream << node.Z() / unitFactor << '\n';
+  // Write point to stream ...
+  stream << "VRTX ";
+  stream << node.Index() << " ";
+  // In a output we have left handed axis-system
+  stream << node.Y() / unitFactor << " ";
+  stream << node.X() / unitFactor << " ";
+  stream << node.Z() / unitFactor << '\n';
 
-    // Update save ...
-    ItemSaved();
+  // Update save ...
+  ItemSaved();
   }
 
   // Write faces ...
   for ( int i = 0; i < surface.FaceSize(); i++ ) {
-    const geo::IFace& face = surface.Face(i);
-    assert(face.IndexingElementSet() == &m_mesh);
+  const geo::IFace& face = surface.Face(i);
+  assert(face.IndexingElementSet() == &m_mesh);
 
-    // Write triangle
-    stream << "TRGL";
+  // Write triangle
+  stream << "TRGL";
 
-    for(int j = 0; j < face.NrOfPoints(); j++)
+  for(int j = 0; j < face.NrOfPoints(); j++)
       stream << " " << face.PointIndex(j);
 
-    stream << '\n';
+  stream << '\n';
 
   }
 
@@ -429,18 +429,18 @@ bool CGoCadFile::WriteVolume(TOutputStream& stream, const CGoCadVolume &volume)
 
   for(int n = 0; n < volume.PointSize(); n++)
   {
-    const geo::INode& node = dynamic_cast<const geo::INode&>(volume.Point(n));
+  const geo::INode& node = dynamic_cast<const geo::INode&>(volume.Point(n));
 
-    // Write point to stream ...
-    stream << "VRTX ";
-    stream << node.Index() << " ";
-    // In a output we have left handed axis-system
-    stream << node.Y() << " ";
-    stream << node.X() << " ";
-    stream << node.Z() << '\n';
+  // Write point to stream ...
+  stream << "VRTX ";
+  stream << node.Index() << " ";
+  // In a output we have left handed axis-system
+  stream << node.Y() << " ";
+  stream << node.X() << " ";
+  stream << node.Z() << '\n';
 
-    // Update save ...
-    ItemSaved();
+  // Update save ...
+  ItemSaved();
   }
 
   // Write faces ...
@@ -454,10 +454,10 @@ bool CGoCadFile::WriteVolume(TOutputStream& stream, const CGoCadVolume &volume)
       stream << "TETRA";
 
       for(int j = 0; j < pTetra->NrOfPoints(); j++)
-        stream << " " << pTetra->PointIndex(j);
+    stream << " " << pTetra->PointIndex(j);
 
       stream << '\n';
-    }
+  }
 
   }
 
@@ -475,32 +475,32 @@ bool CGoCadFile::ReadProperties(TInputStream& stream, const QString &/*sToken*/)
   char ch;
   do
   {
-    ch = stream.get();
-    switch(ch)
-    {
-    case ' ':
-    case '\t':
-    case '\n':
+  ch = stream.get();
+  switch(ch)
+  {
+  case ' ':
+  case '\t':
+  case '\n':
       if(sLine.length() > 0)
       {
-        // Create new header item ...
-        switch(m_type)
-        {
-        case GOCAD_SURFACE:
+    // Create new header item ...
+    switch(m_type)
+    {
+    case GOCAD_SURFACE:
           LatestSurf()->Header().AddProperty(sLine);
           break;
-        case GOCAD_VOLUME:
+    case GOCAD_VOLUME:
           LatestVol()->Header().AddProperty(sLine);
           break;
-        default:
+    default:
           assert(false);
-        }
-        sLine = "";
+    }
+    sLine = "";
       }
       break;
-    default:
+  default:
       sLine += ch;
-    }
+  }
   }
   while(ch != '\n');
 
@@ -513,9 +513,9 @@ bool CGoCadFile::ReadPropertiesSize(TInputStream& stream, const QString &/*sToke
 {
   for(int i = 0; i < CurrentHeader().PropertySize(); i++)
   {
-    int nSize;
-    stream >> nSize;
-    CurrentHeader().Property(i).Size(nSize);
+  int nSize;
+  stream >> nSize;
+  CurrentHeader().Property(i).Size(nSize);
   }
 
 
@@ -539,26 +539,26 @@ bool CGoCadFile::ReadPropertyVertex(TInputStream& stream, const QString &/*sToke
   switch(m_type)
   {
   case GOCAD_SURFACE:
-    if(!LatestSurf()->InsertPoint(nIndex, y, x, z))
+  if(!LatestSurf()->InsertPoint(nIndex, y, x, z))
       throw CReadException(QString("Duplicate vertex %1").arg(nIndex));
-    break;
+  break;
   case GOCAD_VOLUME:
-    if(!LatestVol()->InsertPoint(nIndex, y, x, z))
+  if(!LatestVol()->InsertPoint(nIndex, y, x, z))
       throw CReadException(QString("Duplicate vertex %1").arg(nIndex));
-    break;
+  break;
   default:
-    // Error handling ...
-    break;
+  // Error handling ...
+  break;
 
   }
 
   // Read properties ....
   for(int i = 0; i < CurrentHeader().PropertySize(); i++)
   {
-    std::vector<double> vcProperty(CurrentHeader().Property(i).Size());
-    for(size_t j = 0; j < vcProperty.size(); j++)
+  std::vector<double> vcProperty(CurrentHeader().Property(i).Size());
+  for(size_t j = 0; j < vcProperty.size(); j++)
       stream >> vcProperty[j];
-    CurrentHeader().Property(i).AddValue(*pPoint, vcProperty);
+  CurrentHeader().Property(i).AddValue(*pPoint, vcProperty);
   }
 
   CurrentHeader().AddPoint(pPoint);
@@ -566,7 +566,7 @@ bool CGoCadFile::ReadPropertyVertex(TInputStream& stream, const QString &/*sToke
   //ItemRead();
 
   while(stream.peek() != '\n')
-    stream.get();
+  stream.get();
 
 
 
@@ -578,7 +578,7 @@ bool CGoCadFile::ReadPropertyVertex(TInputStream& stream, const QString &/*sToke
 bool CGoCadFile::ReadDefaultPropertyValues(TInputStream& stream, const QString &/*sToken*/)
 {
   while(stream.peek() != '\n' && stream.peek() != 0)
-    stream.get();
+  stream.get();
 
   return true;
 }
@@ -587,9 +587,9 @@ bool CGoCadFile::ReadPropertyUnits(TInputStream& stream, const QString &/*sToken
 {
   for(int i = 0; i < CurrentHeader().PropertySize(); i++)
   {
-    QString sUnit;
-    stream >> sUnit;
-    CurrentHeader().Property(i).UnitName(sUnit);
+  QString sUnit;
+  stream >> sUnit;
+  CurrentHeader().Property(i).UnitName(sUnit);
   }
 
 
@@ -601,9 +601,9 @@ bool CGoCadFile::ReadPropertyClasses(TInputStream& stream, const QString &/*sTok
 {
   for(int i = 0; i < CurrentHeader().PropertySize(); i++)
   {
-    QString sClass;
-    stream >> sClass;
-    CurrentHeader().Property(i).ClassName(sClass);
+  QString sClass;
+  stream >> sClass;
+  CurrentHeader().Property(i).ClassName(sClass);
   }
 
   return true;
@@ -617,14 +617,14 @@ CGoCadHeader& CGoCadFile::CurrentHeader()
   switch(m_type)
   {
   case GOCAD_SURFACE:
-    pHeader = &LatestSurf()->Header();
-    break;
+  pHeader = &LatestSurf()->Header();
+  break;
   case GOCAD_VOLUME:
-    pHeader = &LatestVol()->Header();
-    break;
+  pHeader = &LatestVol()->Header();
+  break;
   default:
-    // Error handling ..
-    break;
+  // Error handling ..
+  break;
   }
 
   return *pHeader;

@@ -13,7 +13,7 @@ CWellCasingInternalTemperature::CWellCasingInternalTemperature(CDepletionStage& 
   m_pGradient = new CWellCasingInternalTemperatureComponentGradient(*this);
 
   if(stage.Initial())
-    LoadingMode(LM_GRADIENT);
+  LoadingMode(LM_GRADIENT);
 }
 
 CWellCasingInternalTemperature::CWellCasingInternalTemperature(const CWellCasingInternalTemperature& rhs)
@@ -27,10 +27,10 @@ CWellCasingInternalTemperature& CWellCasingInternalTemperature::operator=(const 
 {
   if(!operator==(rhs))
   {
-    IWellCasingInternalLoad<TTemperature>::operator=(rhs);
+  IWellCasingInternalLoad<TTemperature>::operator=(rhs);
 
-    *m_pRepeater = *rhs.m_pRepeater;
-    *m_pGradient = *rhs.m_pGradient;
+  *m_pRepeater = *rhs.m_pRepeater;
+  *m_pGradient = *rhs.m_pGradient;
   }
 
   return *this;
@@ -39,11 +39,11 @@ CWellCasingInternalTemperature& CWellCasingInternalTemperature::operator=(const 
 bool CWellCasingInternalTemperature::operator==(const CWellCasingInternalTemperature& rhs) const
 {
   if(!IWellCasingInternalLoad<TTemperature>::operator==(rhs))
-    return false;
+  return false;
 
   return (
-    *m_pRepeater == *rhs.m_pRepeater &&
-    *m_pGradient == *rhs.m_pGradient);
+  *m_pRepeater == *rhs.m_pRepeater &&
+  *m_pGradient == *rhs.m_pGradient);
 }
 
 unsigned int CWellCasingInternalTemperature::IconId() const
@@ -60,7 +60,7 @@ bool CWellCasingInternalTemperature::Less(const CGraphNode& node) const
 {
   const CWellCasingInternalTemperature* pTemperature = dynamic_cast<const CWellCasingInternalTemperature*>(&node);
   if(pTemperature)
-    return Stage().Less(pTemperature->Stage());
+  return Stage().Less(pTemperature->Stage());
 
   return false;
 }
@@ -165,7 +165,7 @@ CWellCasingInternalTemperature::CWellCasingInternalTemperatureComponentRepeater:
 unsigned int CWellCasingInternalTemperature::CWellCasingInternalTemperatureComponentRepeater::IconId() const
 {
   if(ParentLoad().DistributedSize() > 0)
-    return IDI_COMPONENT_TEMPERATURE_REPEATER_CHANGE;
+  return IDI_COMPONENT_TEMPERATURE_REPEATER_CHANGE;
 
   return IDI_COMPONENT_TEMPERATURE_REPEATER;
 }
@@ -173,14 +173,14 @@ unsigned int CWellCasingInternalTemperature::CWellCasingInternalTemperatureCompo
 double CWellCasingInternalTemperature::CWellCasingInternalTemperatureComponentRepeater::UnitFactor(CQuantity::UNIT unit) const
 {
   if(unit == CDoubleQuantity::FIELD_UNIT)
-    return FF_FACTOR_TEMPERATURE;
+  return FF_FACTOR_TEMPERATURE;
 
   return 1;
 }
 
 QString CWellCasingInternalTemperature::CWellCasingInternalTemperatureComponentRepeater::UnitName(const CQuantity::UNIT /*unit*/) const
 {
-	return getStringTableEntry(IDS_UNIT_TEMPERATURE);
+  return getStringTableEntry(IDS_UNIT_TEMPERATURE);
 }
 
 QString CWellCasingInternalTemperature::CWellCasingInternalTemperatureComponentRepeater::ExportLabel() const
@@ -209,14 +209,14 @@ unsigned int CWellCasingInternalTemperature::CWellCasingInternalTemperatureCompo
 double CWellCasingInternalTemperature::CWellCasingInternalTemperatureComponentGradient::UnitFactor(CQuantity::UNIT unit) const
 {
   if(unit == CDoubleQuantity::FIELD_UNIT)
-    return FF_FACTOR_TEMPERATURE;
+  return FF_FACTOR_TEMPERATURE;
 
   return 1;
 }
 
 QString CWellCasingInternalTemperature::CWellCasingInternalTemperatureComponentGradient::UnitName(const CQuantity::UNIT /*unit*/) const
 {
-	return getStringTableEntry(IDS_UNIT_TEMPERATURE);
+  return getStringTableEntry(IDS_UNIT_TEMPERATURE);
 }
 
 QString CWellCasingInternalTemperature::CWellCasingInternalTemperatureComponentGradient::ExportLabel() const

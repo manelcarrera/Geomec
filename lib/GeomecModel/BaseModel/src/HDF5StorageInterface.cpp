@@ -32,13 +32,13 @@ void CHDF5StorageInterface::Directory(const char *directory)
 {
   m_directory = directory;
   if (m_fallbackStorage)
-    m_fallbackStorage->Directory(m_directory);
+  m_fallbackStorage->Directory(m_directory);
 }
 
 void CHDF5StorageInterface::SetupFallback()
 {
   if (!m_fallbackStorage)
-    m_fallbackStorage = new mdc::CStorageInterfaceDefault(m_directory);
+  m_fallbackStorage = new mdc::CStorageInterfaceDefault(m_directory);
 }
 
 void CHDF5StorageInterface::SplitColumn(int column, int& type, int& stage, int& result)
@@ -64,29 +64,29 @@ bool CHDF5StorageInterface::ReadBlock(mdc::CDataCell& cell)
   SplitColumn(cell.m_nColumn, type, stage, result);
 
   if (m_useFallback[type])
-    return m_fallbackStorage->ReadBlock(cell);
+  return m_fallbackStorage->ReadBlock(cell);
 
   cell.InitData();
 
   if (m_invalid[type])
-    return retval;
+  return retval;
 
   if (!m_h5file->CanRead())
-    return retval;
+  return retval;
 
   int nBytesToRead = cell.m_cacher.Size() * sizeof(double);
   int hint = nBytesToRead < 48 * 1024 ? CHDF5File::SMALL : 0;
 
   if (m_h5file->PushDataSet(CHDF5File::ResultGroupStream(m_modelIndex, type, stage, result), hint))
   {
-    int nBytesRead = 0;
+  int nBytesRead = 0;
 
-    nBytesRead += m_h5file->read((char *)&cell.m_checkSum, sizeof(mdc::CChecksum));
-    nBytesRead += m_h5file->read((char *)cell.m_pData, nBytesToRead);
+  nBytesRead += m_h5file->read((char *)&cell.m_checkSum, sizeof(mdc::CChecksum));
+  nBytesRead += m_h5file->read((char *)cell.m_pData, nBytesToRead);
 
-    cell.m_bDirty = false; // if we failed to read, we should not write
+  cell.m_bDirty = false; // if we failed to read, we should not write
 
-    if (!(nBytesToRead + sizeof(mdc::CChecksum) == nBytesRead && cell.ChecksumOK()))
+  if (!(nBytesToRead + sizeof(mdc::CChecksum) == nBytesRead && cell.ChecksumOK()))
       retval = false;
   }
 
@@ -100,19 +100,19 @@ bool CHDF5StorageInterface::WriteBlock(mdc::CDataCell& cell)
   bool retval = true;
 
   if (!cell.m_pData)
-    return retval;
+  return retval;
 
   int type, stage, result;
   SplitColumn(cell.m_nColumn, type, stage, result);
 
   if (!m_useFallback[type] && !m_h5file->CanWrite())
   {
-    m_useFallback[type] = true;
-    SetupFallback();
+  m_useFallback[type] = true;
+  SetupFallback();
   }
 
   if (m_useFallback[type])
-    return m_fallbackStorage->WriteBlock(cell);
+  return m_fallbackStorage->WriteBlock(cell);
 
   m_invalid[type] = false;
 
@@ -121,20 +121,20 @@ bool CHDF5StorageInterface::WriteBlock(mdc::CDataCell& cell)
 
   if (m_h5file->PushDataSet(CHDF5File::ResultGroupStream(m_modelIndex, type, stage, result), hint))
   {
-    int nBytesWritten = 0;
+  int nBytesWritten = 0;
 
-    cell.ChecksumOK();
+  cell.ChecksumOK();
 
-    nBytesWritten += m_h5file->write((char *)&cell.m_checkSum, sizeof(mdc::CChecksum));
-    nBytesWritten += m_h5file->write((char *)cell.m_pData, nBytesToWrite);
+  nBytesWritten += m_h5file->write((char *)&cell.m_checkSum, sizeof(mdc::CChecksum));
+  nBytesWritten += m_h5file->write((char *)cell.m_pData, nBytesToWrite);
 
-    if (nBytesToWrite + sizeof(mdc::CChecksum) == nBytesWritten) // if we failed to write, this cell remains dirty
+  if (nBytesToWrite + sizeof(mdc::CChecksum) == nBytesWritten) // if we failed to write, this cell remains dirty
       cell.m_bDirty = false;
-    else
+  else
       retval = false;
   }
   else
-    retval = false;
+  retval = false;
 
   m_h5file->PopDataSet();
   
@@ -158,20 +158,20 @@ void CHDF5StorageInterface::Invalidate(int nAnalysisType)
   switch (nAnalysisType)
   {
   case CAnalysisType::AT_LINEAR:
-    type = 1;
-    break;
+  type = 1;
+  break;
   case CAnalysisType::AT_NONLIN:
-    type = 0;
-    break;
+  type = 0;
+  break;
   case CAnalysisType::AT_HEAT:
-    type = 2;
-    break;
+  type = 2;
+  break;
   case CAnalysisType::AT_MIXTURE:
-    type = 3;
-    break;
+  type = 3;
+  break;
   case CAnalysisType::AT_MIXTURE_CONTAINMENT:
-    type = 4;
-    break;
+  type = 4;
+  break;
   }
   assert(type >= 0);
   

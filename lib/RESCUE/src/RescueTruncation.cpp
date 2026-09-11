@@ -19,9 +19,9 @@
 
   Pillar A: Is the truncating pillar: Does not know anything.
   Pillar B: Is the BASE truncated pillar and has a pointer to
-            the Truncation. i,j gives the node of the pillar A.
+      the Truncation. i,j gives the node of the pillar A.
   Pillar C: Is the TOP truncated pillar and has a pointer to the
-            Truncation.  i,j gives the node of pillar A.
+      Truncation.  i,j gives the node of pillar A.
 
   The self_fault_id and self_limit are used for self truncating
   pillars only.  Then the same pillar is truncating and truncated,
@@ -59,19 +59,19 @@ RESCUEBOOL RescueTruncation::isOk(RCHString &message) const
   // or (i,j) is left fully undefined for a self-truncating fault.
   if (is_i_def != is_j_def)
   {
-    message = "either I and J node index is not defined for truncation";
-    myReturn = FALSE;
+  message = "either I and J node index is not defined for truncation";
+  myReturn = FALSE;
   }
   else
   {
-    RESCUEBOOL self_fault_id_def = (self_fault_id != USHRT_MAX);
-    RESCUEBOOL self_limit_def = (self_limit != FLT_MAX);
+  RESCUEBOOL self_fault_id_def = (self_fault_id != USHRT_MAX);
+  RESCUEBOOL self_limit_def = (self_limit != FLT_MAX);
 
-    if (self_fault_id_def != self_limit_def)
-    {
+  if (self_fault_id_def != self_limit_def)
+  {
       message = "Self fault Id must be set if self limit is set or opposite";
       myReturn = FALSE;
-    }
+  }
   }
   return myReturn;
 }
@@ -97,7 +97,7 @@ void RescueTruncation::Archive(RescueContext *context, FILE *archiveFile)
   myfprintf(context, archiveFile, self_limit);
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -109,14 +109,14 @@ RescueTruncation::RescueTruncation(RescueContext *context, FILE *archiveFile)
   myfscanf(context, archiveFile, &self_limit);
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -125,11 +125,11 @@ void RescueTruncation::SwapIJAxis(bool swapI, RESCUEINT64 iLowBound, RESCUEINT64
 {
   if (swapI)
   {
-    i = ((iLowBound + iCount) - 1) + (i - iLowBound);
+  i = ((iLowBound + iCount) - 1) + (i - iLowBound);
   }
   if (swapJ)
   {
-    j = ((jLowBound + jCount) - 1) + (j - jLowBound);
+  j = ((jLowBound + jCount) - 1) + (j - jLowBound);
   }
 }
 

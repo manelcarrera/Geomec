@@ -18,7 +18,7 @@ namespace geo {
 ISupport::ISupport(IMesh& mesh, int nLimitedNode, const IVector &direction)
 :	m_mesh(mesh), m_nNode(nLimitedNode)
 {
-	m_Base.AddVector(direction);
+  m_Base.AddVector(direction);
 }
 
 ISupport::~ISupport()
@@ -27,47 +27,47 @@ ISupport::~ISupport()
 
 const IMesh &ISupport::Mesh() const
 {
-	return m_mesh;
+  return m_mesh;
 }
 
 const INode &ISupport::Node() const
 {
-	return Mesh().Node(NodeIndex());
+  return Mesh().Node(NodeIndex());
 }
 
 int ISupport::NodeIndex() const
 {
-	return m_nNode;
+  return m_nNode;
 }
 
 bool ISupport::AddDirection(const IVector &dir)
 {
-	return m_Base.AddVector(dir);
+  return m_Base.AddVector(dir);
 }
 
 size_t ISupport::DirectionSize() const
 {
-	return m_Base.Size();
+  return m_Base.Size();
 }
 
 const IVector &ISupport::Direction(size_t nIndex) const
 {
-	return m_Base.Direction(nIndex);
+  return m_Base.Direction(nIndex);
 }
 
 CVector ISupport::Projection(const IVector &dir) const
 {
-	return m_Base.Projection(dir);
+  return m_Base.Projection(dir);
 }
 
 bool ISupport::IsSupportedDirection(const IVector &dir) const
 {
-	return m_Base.Dependent(dir);
+  return m_Base.Dependent(dir);
 }
 
 void ISupport::AlignWith(const IVector &dir) const
 {
-	m_Base.AlignWith(dir);
+  m_Base.AlignWith(dir);
 }
 
 // CTranslationSupport class
@@ -82,7 +82,7 @@ CTranslationSupport::~CTranslationSupport()
 
 std::string CTranslationSupport::Type() const
 {
-	return std::string("TR");
+  return std::string("TR");
 }
 
 // CRotationSupport class
@@ -97,7 +97,7 @@ CRotationSupport::~CRotationSupport()
 
 std::string CRotationSupport::Type() const
 {
-	return std::string("RO");
+  return std::string("RO");
 }
 
 } // namespace geo

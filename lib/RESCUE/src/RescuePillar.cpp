@@ -12,21 +12,21 @@
   applied.  Z-values below the datum (normally mean sea level) are
   negative, above the datum are positive.  The logical geometries are:
 
-    VERTICAL: 2 control points and is_vertical = true.  The x and y
+  VERTICAL: 2 control points and is_vertical = true.  The x and y
               of the second control point is not stored.  When reading
               the x and y value of the second control point is set equal
               to the first control point.
-    LINEAR:   2 control points and is_vertical = false.
-    LISTRIC:  3 control points, follows spline curve.
-    CURVED:   5 control points, follows a spline curve.
-    OTHER:    Any number of points can be stored but automatic
+  LINEAR:   2 control points and is_vertical = false.
+  LISTRIC:  3 control points, follows spline curve.
+  CURVED:   5 control points, follows a spline curve.
+  OTHER:    Any number of points can be stored but automatic
               calculation of the geometry is not available.
 
   Truncation:
-    top_truncation:  Is != 0 if the pillar is truncated to top by a
+  top_truncation:  Is != 0 if the pillar is truncated to top by a
                      truncating pillar.  The LAST control point is
                      attached to the truncating pillar.
-    base_truncation: Is != 0 if the pillar is truncated to base by 
+  base_truncation: Is != 0 if the pillar is truncated to base by 
                      a truncating pillar.  The FIRST control point is
                      attached to the truncating pillar.
 
@@ -61,7 +61,7 @@ void RescuePillar::rebuildSplineCoeffs()
 {
   if (splineCoefs != 0)
   {
-    delete  [] splineCoefs;
+  delete  [] splineCoefs;
   }
   splineCoefsCount = ctrlPoints->Count();
   splineCoefs = new RescueSplineCoef[(int) (splineCoefsCount * 2)];
@@ -121,14 +121,14 @@ const RescuePoint RescuePillar::getMinTangentRef() const
   RESCUEFLOAT dz = this->getCtrlPointAt(1)->z - this->getCtrlPointAt(0)->z;
   if (dz == 0)
   {
-    return RescuePoint(FLT_MAX, FLT_MAX, FLT_MAX);
+  return RescuePoint(FLT_MAX, FLT_MAX, FLT_MAX);
   }
   else
   {
-    RESCUEFLOAT x = xcoef->derive(0) / dz;
-    RESCUEFLOAT y = ycoef->derive(0) / dz;
-    RESCUEFLOAT len = (RESCUEFLOAT) sqrt(x * x + y * y + 1);
-    return RescuePoint(x / len, y / len, 1 / len);
+  RESCUEFLOAT x = xcoef->derive(0) / dz;
+  RESCUEFLOAT y = ycoef->derive(0) / dz;
+  RESCUEFLOAT len = (RESCUEFLOAT) sqrt(x * x + y * y + 1);
+  return RescuePoint(x / len, y / len, 1 / len);
   }
 }
 
@@ -140,14 +140,14 @@ const RescuePoint RescuePillar::getMaxTangentRef() const
   RESCUEFLOAT dz = getCtrlPointAt(i + 1)->z - getCtrlPointAt(i)->z;
   if (dz == 0)
   {
-    return RescuePoint(FLT_MAX, FLT_MAX, FLT_MAX);
+  return RescuePoint(FLT_MAX, FLT_MAX, FLT_MAX);
   }
   else
   {
-    RESCUEFLOAT x = xcoef->derive(1) / dz;
-    RESCUEFLOAT y = ycoef->derive(1) / dz;
-    RESCUEFLOAT len = (RESCUEFLOAT) sqrt(x * x +y * y + 1);
-    return RescuePoint(x / len, y / len, 1 / len);
+  RESCUEFLOAT x = xcoef->derive(1) / dz;
+  RESCUEFLOAT y = ycoef->derive(1) / dz;
+  RESCUEFLOAT len = (RESCUEFLOAT) sqrt(x * x +y * y + 1);
+  return RescuePoint(x / len, y / len, 1 / len);
   }
 }
 
@@ -175,77 +175,77 @@ const RescuePoint RescuePillar::getRefByZ(RESCUEFLOAT z) const
 {
   if (z == FLT_MAX)
   {
-    return RescuePoint(FLT_MAX, FLT_MAX, FLT_MAX);
+  return RescuePoint(FLT_MAX, FLT_MAX, FLT_MAX);
   }
   else
   {
-    RESCUEINT64 num_ctrl_points = ctrlPoints->Count();
-    if (num_ctrl_points == 2)
-    {
+  RESCUEINT64 num_ctrl_points = ctrlPoints->Count();
+  if (num_ctrl_points == 2)
+  {
       if (isVertical)
       {
-        RescuePoint p(this->getMinCtrlPoint());
-        p.z = z;
-        return p;
+    RescuePoint p(this->getMinCtrlPoint());
+    p.z = z;
+    return p;
       }
       else
       {
-        const RescuePoint min = this->getMinCtrlPointRef();
-        const RescuePoint max = this->getMaxCtrlPointRef();
-        return RescuePoint(min + (max - min) * (z - min.z) / (max.z - min.z));
+    const RescuePoint min = this->getMinCtrlPointRef();
+    const RescuePoint max = this->getMaxCtrlPointRef();
+    return RescuePoint(min + (max - min) * (z - min.z) / (max.z - min.z));
       }
-    }
+  }
 /*
   Below, use a spline curve.
 */
-    if (z <= this->getMinCtrlPoint()->z)
-    {
+  if (z <= this->getMinCtrlPoint()->z)
+  {
       const RescuePoint &min = this->getMinCtrlPointRef();
       if (z == min.z)
       {
-        return min;
+    return min;
       }
       else
       {
-        const RescuePoint &tangent = this->getMinTangentRef();
-        if (tangent.z == 0)
-        {
-          return min;
-        }
-        else
-        {
-          RESCUEFLOAT t = (z - min.z) / tangent.z;
-          return min + tangent * t;
-        }
-      }
-    }
-    else if (z >= this->getMaxCtrlPoint()->z)
+    const RescuePoint &tangent = this->getMinTangentRef();
+    if (tangent.z == 0)
     {
-      const RescuePoint &max = this->getMaxCtrlPointRef();
-      if (z == max.z)
-      {
-        return max;
-      }
-      else
-      {
-        const RescuePoint &tangent = this->getMaxTangentRef();
-        if (tangent.z == 0)
-        {
-          return max;
-        }
-        else
-        {
-          RESCUEFLOAT t = (z - max.z) / tangent.z;
-          return max + tangent * t;
-        }
-      }
+          return min;
     }
     else
     {
+          RESCUEFLOAT t = (z - min.z) / tangent.z;
+          return min + tangent * t;
+    }
+      }
+  }
+  else if (z >= this->getMaxCtrlPoint()->z)
+  {
+      const RescuePoint &max = this->getMaxCtrlPointRef();
+      if (z == max.z)
+      {
+    return max;
+      }
+      else
+      {
+    const RescuePoint &tangent = this->getMaxTangentRef();
+    if (tangent.z == 0)
+    {
+          return max;
+    }
+    else
+    {
+          RESCUEFLOAT t = (z - max.z) / tangent.z;
+          return max + tangent * t;
+    }
+      }
+  }
+  else
+  {
       RESCUEINT64 i = 1;
       while (z > this->getCtrlPointAt(i)->z)
       {
-        i++;
+    i++;
       }
       i--;
 /*
@@ -262,16 +262,16 @@ const RescuePoint RescuePillar::getRefByZ(RESCUEFLOAT z) const
 
       if (Dz == 0)
       {
-        return RescuePoint(FLT_MAX, FLT_MAX, FLT_MAX);
+    return RescuePoint(FLT_MAX, FLT_MAX, FLT_MAX);
       }
       else
       {
-        dz /= Dz;
-        RESCUEFLOAT x = xcoef->interpolate(min->x, dz);
-        RESCUEFLOAT y = ycoef->interpolate(min->y, dz);
-        return RescuePoint(x, y, z);
+    dz /= Dz;
+    RESCUEFLOAT x = xcoef->interpolate(min->x, dz);
+    RESCUEFLOAT y = ycoef->interpolate(min->y, dz);
+    return RescuePoint(x, y, z);
       }
-    }
+  }
   }
 }
 
@@ -317,19 +317,19 @@ void RescuePillar::Values(RescueGeometry *geometry,
  //   {
  //     k++;
  //   }
-    if (corner >=4)
-    {
+  if (corner >=4)
+  {
       k++;
-    }
-    if (dirCount <= corner)
-    {
+  }
+  if (dirCount <= corner)
+  {
       corner = 0;
-    }
+  }
 
-    // KFLETCHER ILAB changes end
+  // KFLETCHER ILAB changes end
 
-    if (k >= 0 && k < zCount)
-    {
+  if (k >= 0 && k < zCount)
+  {
 /****** Malcolm Wilkins changes for handling truncations begin here. **
 
   In his original code, all of the RescueTruncation::SelfLimit() references
@@ -340,13 +340,13 @@ void RescuePillar::Values(RescueGeometry *geometry,
      // Handle truncations
       RescuePillar *pillar = this;
       if (top_truncation != 0 || base_truncation != 0) {
-        RescuePillar *top_pillar = 0;
-        RescuePillar *base_pillar = 0;
-        if (top_truncation != 0 && !top_truncation->isSelfTruncating() && geometry->VertexIs(top_truncation->I(), top_truncation->J()) == RescueGeometry::R_SPLINE_LINE)
+    RescuePillar *top_pillar = 0;
+    RescuePillar *base_pillar = 0;
+    if (top_truncation != 0 && !top_truncation->isSelfTruncating() && geometry->VertexIs(top_truncation->I(), top_truncation->J()) == RescueGeometry::R_SPLINE_LINE)
           top_pillar = geometry->DemandPillar(top_truncation->I(), top_truncation->J());
-        if (base_truncation != 0 && !base_truncation->isSelfTruncating() && geometry->VertexIs(base_truncation->I(), base_truncation->J()) == RescueGeometry::R_SPLINE_LINE)
+    if (base_truncation != 0 && !base_truncation->isSelfTruncating() && geometry->VertexIs(base_truncation->I(), base_truncation->J()) == RescueGeometry::R_SPLINE_LINE)
           base_pillar = geometry->DemandPillar(base_truncation->I(), base_truncation->J());
-        if (top_pillar != 0 || base_pillar != 0) {
+    if (top_pillar != 0 || base_pillar != 0) {
  
           // Is z in elevation or depth?
           RescueModel *model = geometry->ParentModel();
@@ -356,10 +356,10 @@ void RescuePillar::Values(RescueGeometry *geometry,
                                  orientation == RescueCoordinateSystem::RDF || orientation == RescueCoordinateSystem::RDB);
 
           if (top_pillar != 0 && ((z_is_elevation && z > top_truncation->SelfLimit()) || (!z_is_elevation && z < top_truncation->SelfLimit())))
-            pillar = top_pillar;
+      pillar = top_pillar;
           if (base_pillar != 0 && ((z_is_elevation && z < base_truncation->SelfLimit()) || (!z_is_elevation && z > base_truncation->SelfLimit())))
-            pillar = base_pillar;
-        }
+      pillar = base_pillar;
+    }
       }
 /****** Malcolm Wilkins changes for handling truncations end here. **/
 #if 0
@@ -371,16 +371,16 @@ void RescuePillar::Values(RescueGeometry *geometry,
       y = pnt->y;
       z = pnt->z;
       delete pnt;
-    }
-    else
-    {
+  }
+  else
+  {
       throw "Request for corner values is out of range.";
-    }
+  }
   }
 }
 
 void RescuePillar::Values(RescueGeometry *geometry, RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k, 
-                            RESCUEFLOAT &x, RESCUEFLOAT &y, RESCUEFLOAT &z)
+              RESCUEFLOAT &x, RESCUEFLOAT &y, RESCUEFLOAT &z)
 {
   // IJK are node indices; this is only called for unsplit pillars;
   // Node IJK is cnr 0 of cell IJK
@@ -405,11 +405,11 @@ void RescuePillar::Values(RESCUEINT64 k, RESCUEINT64 dir, RESCUEFLOAT &z)
 {
   if (k >= 0 && k < zCount && zValues != 0)
   {
-    if (dir >= dirCount)
-    {
+  if (dir >= dirCount)
+  {
       dir = 0;
-    }
-    z = zValues[dir][k];
+  }
+  z = zValues[dir][k];
   }
 }
 
@@ -417,20 +417,20 @@ void RescuePillar::Values(RESCUEINT64 k, RESCUEFLOAT &z)
 {
   if (k >= 0 && k < zCount && zValues != 0)
   {
-    if (dirCount == 1)
-    {
+  if (dirCount == 1)
+  {
       z = zValues[0][k];
-    }
-    else
-    {
+  }
+  else
+  {
       z = 0;
       RESCUEINT64 loop;
       for (loop = 0; loop < dirCount; loop++)
       {
-        z += zValues[loop][k];
+    z += zValues[loop][k];
       }
       z /= (RESCUEFLOAT) dirCount;
-    }
+  }
   }
 }
 
@@ -438,18 +438,18 @@ void RescuePillar::ZValue(RESCUEINT64 k, RESCUEFLOAT newZValue)
 {
   if (k >= 0 && k < zCount)
   {
-    if (dirCount == 1)
-    {
+  if (dirCount == 1)
+  {
       zValues[0][k] = newZValue;
-    }
-    else
-    {
+  }
+  else
+  {
       RESCUEINT64 loop;
       for (loop = 0; loop < dirCount; loop++)
       {
-        zValues[loop][k] = newZValue;
+    zValues[loop][k] = newZValue;
       }
-    }
+  }
   }
 }
 
@@ -458,25 +458,25 @@ void RescuePillar::ZStack(RescueGeometry *geometry, RESCUEFLOAT *newZValues)
   RESCUEINT64 howMany = geometry->Grid()->Axis(2)->Count64();
   if (zValues != 0 && zCount != howMany)
   {
-    RESCUEINT64 loop;
-    for (loop = 0; loop < dirCount; loop++)
-    {
+  RESCUEINT64 loop;
+  for (loop = 0; loop < dirCount; loop++)
+  {
       delete [] zValues[loop];
-    }
-    delete [] zValues;
-    zValues = 0;
+  }
+  delete [] zValues;
+  zValues = 0;
   }
   if (zValues == 0)
   {
-    zValues = new RESCUEFLOAT*[1];
-    zValues[0] = new RESCUEFLOAT[(size_t) howMany];
+  zValues = new RESCUEFLOAT*[1];
+  zValues[0] = new RESCUEFLOAT[(size_t) howMany];
   }
   zCount = howMany;
   dirCount = 1;
   RESCUEINT64 loop;
   for (loop = 0; loop < howMany; loop++)
   {
-    zValues[0][loop] = newZValues[loop];
+  zValues[0][loop] = newZValues[loop];
   }
 }
 
@@ -486,48 +486,48 @@ void RescuePillar::ZStack(RescueGeometry *geometry, RESCUEINT64 dir, RESCUEFLOAT
   RESCUEINT64 howMany = geometry->Grid()->Axis(2)->Count64();
   if (zValues != 0 && (zCount != howMany || dirCount != 8))
   {
-    if (zValues[0] != 0 && howMany == zCount)
-    {
+  if (zValues[0] != 0 && howMany == zCount)
+  {
       defaultZs = zValues[0];
-    }
-    RESCUEINT64 loop;
-    for (loop = 0; loop < dirCount; loop++)
-    {
+  }
+  RESCUEINT64 loop;
+  for (loop = 0; loop < dirCount; loop++)
+  {
       if (zValues[loop] != defaultZs)
       {
-        delete [] zValues[loop];
+    delete [] zValues[loop];
       }
-    }
-    delete [] zValues;
-    zValues = 0;
+  }
+  delete [] zValues;
+  zValues = 0;
   }
   if (zValues == 0)
   {
-    zValues = new RESCUEFLOAT*[8];
-    RESCUEINT64 dLoop;
-    for (dLoop = 0; dLoop < 8; dLoop++)
-    {
+  zValues = new RESCUEFLOAT*[8];
+  RESCUEINT64 dLoop;
+  for (dLoop = 0; dLoop < 8; dLoop++)
+  {
       zValues[dLoop] = new RESCUEFLOAT[(size_t) howMany];
       if (defaultZs != 0)
       {
-        RESCUEINT64 loop;
-        for (loop = 0; loop < howMany; loop++)
-        {
+    RESCUEINT64 loop;
+    for (loop = 0; loop < howMany; loop++)
+    {
           zValues[dLoop][loop] = defaultZs[loop];
-        }
-      }
     }
+      }
+  }
   }
   zCount = howMany;
   dirCount = 8;
   RESCUEINT64 loop;
   for (loop = 0; loop < howMany; loop++)
   {
-    zValues[dir][loop] = newZValues[loop];
+  zValues[dir][loop] = newZValues[loop];
   }
   if (defaultZs != 0)
   {
-    delete [] defaultZs;
+  delete [] defaultZs;
   }
 }
 
@@ -535,20 +535,20 @@ void RescuePillar::SwapKAxis(RESCUEINT64 kNodes)
 {
   if (zValues != 0)
   {
-    RESCUEINT64 dLoop;
-    for (dLoop = 0; dLoop < dirCount; dLoop++)
-    {
+  RESCUEINT64 dLoop;
+  for (dLoop = 0; dLoop < dirCount; dLoop++)
+  {
       RESCUEINT64 fNdx = 0;
       RESCUEINT64 eNdx = zCount - 1;
       while (fNdx < eNdx)
       {
-        RESCUEFLOAT temp = zValues[dLoop][fNdx];
-        zValues[dLoop][fNdx] = zValues[dLoop][eNdx];
-        zValues[dLoop][eNdx] = temp;
-        fNdx++;
-        eNdx--;
+    RESCUEFLOAT temp = zValues[dLoop][fNdx];
+    zValues[dLoop][fNdx] = zValues[dLoop][eNdx];
+    zValues[dLoop][eNdx] = temp;
+    fNdx++;
+    eNdx--;
       }
-    }
+  }
   }
 }
 
@@ -557,24 +557,24 @@ void RescuePillar::SwapIJAxis(bool swapI, RESCUEINT64 iLowBound, RESCUEINT64 iCo
 {
   if (top_truncation != 0)
   {
-    top_truncation->SwapIJAxis(swapI, iLowBound, iCount,
+  top_truncation->SwapIJAxis(swapI, iLowBound, iCount,
                                swapJ, jLowBound, jCount);
   }
   if (base_truncation != 0)
   {
-    base_truncation->SwapIJAxis(swapI, iLowBound, iCount,
+  base_truncation->SwapIJAxis(swapI, iLowBound, iCount,
                                swapJ, jLowBound, jCount);
   }
 }
 
 void RescuePillar::AddControlPoint(RESCUEFLOAT x, RESCUEFLOAT y, RESCUEFLOAT z)
 {
-                                // After you add no more than 5 control points,
-                                // use rebuildSplineCoeffs() to make the spline
-                                // coefficients.
+                // After you add no more than 5 control points,
+                // use rebuildSplineCoeffs() to make the spline
+                // coefficients.
   if (ctrlPoints->Count() < 5)
   {
-    (*ctrlPoints) += new RescuePoint(x, y, z);
+  (*ctrlPoints) += new RescuePoint(x, y, z);
   }
 }
 
@@ -582,27 +582,27 @@ void RescuePillar::AddControlPoint(RESCUEFLOAT x, RESCUEFLOAT y, RESCUEFLOAT z,
                                    RESCUEFLOAT xb, RESCUEFLOAT xc, RESCUEFLOAT xd,
                                    RESCUEFLOAT yb, RESCUEFLOAT yc, RESCUEFLOAT yd)
 {
-                                // Using this method you may add as many
-                                // control points as you wish.  You pass
-                                // both the point and the spline.  DO NOT
-                                // use rebuildSplineCoeffs() with more than
-                                // 5 control points.
-                                //
-                                // The spline coefficients associated with
-                                // the last point probably aren't used, but
-                                // you have to specify something anyway.
+                // Using this method you may add as many
+                // control points as you wish.  You pass
+                // both the point and the spline.  DO NOT
+                // use rebuildSplineCoeffs() with more than
+                // 5 control points.
+                //
+                // The spline coefficients associated with
+                // the last point probably aren't used, but
+                // you have to specify something anyway.
   (*ctrlPoints) += new RescuePoint(x, y, z);
   RESCUEINT64 howMany = ctrlPoints->Count();
   RescueSplineCoef *newSplineCoefs = new RescueSplineCoef[(int) (howMany * 2)];
   if (splineCoefsCount > 0)
   {
-    memcpy(newSplineCoefs, splineCoefs, sizeof(RescueSplineCoef) * (size_t) splineCoefsCount);
+  memcpy(newSplineCoefs, splineCoefs, sizeof(RescueSplineCoef) * (size_t) splineCoefsCount);
 /*
   Copy the x.
 */
-    memcpy(&newSplineCoefs[howMany], &splineCoefs[splineCoefsCount], 
+  memcpy(&newSplineCoefs[howMany], &splineCoefs[splineCoefsCount], 
                               sizeof(RescueSplineCoef) * (size_t) splineCoefsCount);
-    delete [] splineCoefs;
+  delete [] splineCoefs;
   }
   splineCoefs = newSplineCoefs;
   splineCoefs[splineCoefsCount].b = xb;
@@ -619,7 +619,7 @@ void RescuePillar::SetTopTruncation(RescueTruncation *newTop)
 {
   if (top_truncation != 0)
   {
-    delete top_truncation;
+  delete top_truncation;
   }
   top_truncation = newTop;
 }
@@ -628,20 +628,20 @@ void RescuePillar::SetBaseTruncation(RescueTruncation *newBase)
 {
   if (base_truncation != 0)
   {
-    delete base_truncation;
+  delete base_truncation;
   }
   base_truncation = newBase;
 }
 
 RescuePillar::RescuePillar():ctrlPoints(new cSetRescuePoint())
-                            ,top_truncation(0)
-                            ,base_truncation(0)
-                            ,splineCoefs(0)
-                            ,splineCoefsCount(0)
-                            ,isVertical(FALSE)
-                            ,zCount(0)
-                            ,dirCount(0)
-                            ,zValues(0)
+              ,top_truncation(0)
+              ,base_truncation(0)
+              ,splineCoefs(0)
+              ,splineCoefsCount(0)
+              ,isVertical(FALSE)
+              ,zCount(0)
+              ,dirCount(0)
+              ,zValues(0)
 {
 }
 
@@ -650,24 +650,24 @@ RescuePillar::~RescuePillar()
   delete ctrlPoints;
   if (splineCoefs != 0)
   {
-    delete [] splineCoefs;
+  delete [] splineCoefs;
   }
   if (top_truncation != 0)
   {
-    delete top_truncation;
+  delete top_truncation;
   }
   if (base_truncation != 0)
   {
-    delete base_truncation;
+  delete base_truncation;
   }
   if (zValues != 0)
   {
-    RESCUEINT64 loop;
-    for (loop = 0; loop < dirCount; loop++)
-    {
+  RESCUEINT64 loop;
+  for (loop = 0; loop < dirCount; loop++)
+  {
       delete [] zValues[loop];
-    }
-    delete [] zValues;
+  }
+  delete [] zValues;
   }
 }
 
@@ -676,59 +676,59 @@ void RescuePillar::Archive(RescueContext *context, RESCUEINT64 kLayers, FILE *ar
   ctrlPoints->Archive(context, archiveFile);
   if (splineCoefs == 0 || splineCoefsCount == 0)
   {
-    myfprintf(context, archiveFile, (RESCUEINT64) 0);
+  myfprintf(context, archiveFile, (RESCUEINT64) 0);
   }
   else
   {
-    myfprintf(context, archiveFile, splineCoefsCount);
-    RESCUEINT64 loop;
-    for (loop = 0; loop < splineCoefsCount * 2; loop++)
-    {
+  myfprintf(context, archiveFile, splineCoefsCount);
+  RESCUEINT64 loop;
+  for (loop = 0; loop < splineCoefsCount * 2; loop++)
+  {
       splineCoefs[loop].Archive(context, archiveFile);
-    }
+  }
   }
   if (top_truncation == 0)
   {
-    myfprintf(context, archiveFile, (RESCUEINT64) 0);
+  myfprintf(context, archiveFile, (RESCUEINT64) 0);
   }
   else
   {
-    myfprintf(context, archiveFile, (RESCUEINT64) 1);
-    top_truncation->Archive(context, archiveFile);
+  myfprintf(context, archiveFile, (RESCUEINT64) 1);
+  top_truncation->Archive(context, archiveFile);
   }
   if (base_truncation == 0)
   {
-    myfprintf(context, archiveFile, (RESCUEINT64) 0);
+  myfprintf(context, archiveFile, (RESCUEINT64) 0);
   }
   else
   {
-    myfprintf(context, archiveFile, (RESCUEINT64) 1);
-    base_truncation->Archive(context, archiveFile);
+  myfprintf(context, archiveFile, (RESCUEINT64) 1);
+  base_truncation->Archive(context, archiveFile);
   }
   myfprintf(context, archiveFile, isVertical);
   myfprintf(context, archiveFile, zCount);
   if (context->FileVersion() >= 35)
   {
-    myfprintf(context, archiveFile, dirCount);
+  myfprintf(context, archiveFile, dirCount);
   }
   if (zCount > 0)
   {
-    if (context->FileVersion() >= 35)
-    {
+  if (context->FileVersion() >= 35)
+  {
       RESCUEINT64 loop;
       for (loop = 0; loop < dirCount; loop++)
       {
-        myfprintf(context, archiveFile, zValues[loop], zCount, compress);
+    myfprintf(context, archiveFile, zValues[loop], zCount, compress);
       }
-    }
-    else
-    {
+  }
+  else
+  {
       myfprintf(context, archiveFile, zValues[0], zCount, compress);
-    }
+  }
   }
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -747,57 +747,57 @@ RescuePillar::RescuePillar(RescueContext *context, FILE *archiveFile, RESCUEBOOL
   myfscanf(context, archiveFile, &splineCoefsCount);
   if (splineCoefsCount != 0)
   {
-    splineCoefs = new RescueSplineCoef[(int) (splineCoefsCount * 2)];
-    RESCUEINT64 loop;
-    for (loop = 0; loop < splineCoefsCount * 2; loop++)
-    {
+  splineCoefs = new RescueSplineCoef[(int) (splineCoefsCount * 2)];
+  RESCUEINT64 loop;
+  for (loop = 0; loop < splineCoefsCount * 2; loop++)
+  {
       splineCoefs[loop].UnArchive(context, archiveFile);
-    }
+  }
   }
   RESCUEINT64 dummyFlag;
   myfscanf(context, archiveFile, &dummyFlag);
   if (dummyFlag == 1)
   {
-    top_truncation = new RescueTruncation(context, archiveFile);
+  top_truncation = new RescueTruncation(context, archiveFile);
   }
   myfscanf(context, archiveFile, &dummyFlag);
   if (dummyFlag == 1)
   {
-    base_truncation = new RescueTruncation(context, archiveFile);
+  base_truncation = new RescueTruncation(context, archiveFile);
   }
   myfscanf(context, archiveFile, &isVertical);
   myfscanf(context, archiveFile, &zCount);
   if (context->ReadFileVersion() < 35)
   {
-    if (zCount > 0)
-    {
+  if (zCount > 0)
+  {
       dirCount = 1;
-    }
+  }
   }
   else
   {
-    myfscanf(context, archiveFile, &dirCount);
+  myfscanf(context, archiveFile, &dirCount);
   }
   if (zCount > 0)
   {
-    zValues = new RESCUEFLOAT*[(size_t) dirCount];
-    RESCUEINT64 loop;
-    for (loop = 0; loop < dirCount; loop++)
-    {
+  zValues = new RESCUEFLOAT*[(size_t) dirCount];
+  RESCUEINT64 loop;
+  for (loop = 0; loop < dirCount; loop++)
+  {
       zValues[loop] = new RESCUEFLOAT[(size_t) zCount];
       myfscanf(context, archiveFile, zValues[loop], zCount, compress);
-    }
+  }
   }
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 

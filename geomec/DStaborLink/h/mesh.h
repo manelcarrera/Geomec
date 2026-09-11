@@ -15,28 +15,28 @@
 class CMesh : public COleDispatchDriver
 {
 public:
-	CMesh() {}		// Calls COleDispatchDriver default constructor
-	CMesh(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
-	CMesh(const CMesh& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
+  CMesh() {}		// Calls COleDispatchDriver default constructor
+  CMesh(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
+  CMesh(const CMesh& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
 // Attributes
 public:
-	double GetBoreholeRadius();
-	void SetBoreholeRadius(double);
-	double GetModelRadius();
-	void SetModelRadius(double);
-	long GetNrTangential();
-	void SetNrTangential(long);
-	long GetNrRadial();
-	void SetNrRadial(long);
-	double GetSizeFactor();
-	void SetSizeFactor(double);
-	BOOL GetQuarterMesh();
-	void SetQuarterMesh(BOOL);
+  double GetBoreholeRadius();
+  void SetBoreholeRadius(double);
+  double GetModelRadius();
+  void SetModelRadius(double);
+  long GetNrTangential();
+  void SetNrTangential(long);
+  long GetNrRadial();
+  void SetNrRadial(long);
+  double GetSizeFactor();
+  void SetSizeFactor(double);
+  BOOL GetQuarterMesh();
+  void SetQuarterMesh(BOOL);
 
 // Operations
 public:
-	BOOL SetDefault();
+  BOOL SetDefault();
 };
 
 //{{AFX_INSERT_LOCATION}}

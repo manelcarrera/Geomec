@@ -17,23 +17,23 @@ class CDCasingPointResult
 {
 
 public :
-	
-	CDCasingPointResult();
-	virtual ~CDCasingPointResult();
-	
-	//interface 
-	DCasingPointSupportedResultMap & GetDCasingPointSupportedResultMap();
-	DCasingPointUnsupportedResultMap & GetDCasingPointUnsupportedResultMap();
+  
+  CDCasingPointResult();
+  virtual ~CDCasingPointResult();
+  
+  //interface 
+  DCasingPointSupportedResultMap & GetDCasingPointSupportedResultMap();
+  DCasingPointUnsupportedResultMap & GetDCasingPointUnsupportedResultMap();
 
-	CDCasingPointResult&	operator=(const CDCasingPointResult& right);
-	
-	const DCasingPointSupportedResultMap & GetDCasingPointSupportedResultMap() const;
-	const DCasingPointUnsupportedResultMap & GetDCasingPointUnsupportedResultMap() const;
+  CDCasingPointResult&	operator=(const CDCasingPointResult& right);
+  
+  const DCasingPointSupportedResultMap & GetDCasingPointSupportedResultMap() const;
+  const DCasingPointUnsupportedResultMap & GetDCasingPointUnsupportedResultMap() const;
 
 private : 
 
-	DCasingPointSupportedResultMap m_DCasingPointSupportedResultMap;
-	DCasingPointUnsupportedResultMap m_DCasingPointUnsupportedResultMap;
+  DCasingPointSupportedResultMap m_DCasingPointSupportedResultMap;
+  DCasingPointUnsupportedResultMap m_DCasingPointUnsupportedResultMap;
 
 };
 

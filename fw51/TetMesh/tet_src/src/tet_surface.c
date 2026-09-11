@@ -265,7 +265,7 @@ static void SurfaceGetNeighbours(
       while ( list ) {
          const int eltId = EdgeListTriangleId( list );
          if ( eltId != triangleId ) {
-            SetAdd( neighbours, &eltId, 1 );
+      SetAdd( neighbours, &eltId, 1 );
          }
          list = EdgeListNext( edge, list );
       }
@@ -310,7 +310,7 @@ extern Set_t *SurfacePoints( Surface_t *surface, Set_t *work )
 }
 
 static bool_t SurfaceCommonEdge(  Surface_t *surface, int poly1, int poly2, 
-                                int *edge1, int *edge2  )
+                int *edge1, int *edge2  )
 {
    Triangle_t   *triangle1 = SurfaceGet( surface, poly1 );
    const int    numPoints1 =  TriangleSize( triangle1 );
@@ -332,9 +332,9 @@ static bool_t SurfaceCommonEdge(  Surface_t *surface, int poly1, int poly2,
       while ( list ) {
          const int triangleId = EdgeListTriangleId( list );
          if ( triangleId == poly1 ) {
-            *edge1 = list->edge;
+      *edge1 = list->edge;
          } else if ( triangleId == poly2 ) {
-            *edge2 = list->edge;
+      *edge2 = list->edge;
          }
          list = EdgeListNext( edge, list );
       }
@@ -394,14 +394,14 @@ extern void SurfaceOrientate(  Surface_t *surface )
    
          /* Loop over neighbours and push them on stack after orientation */
          for ( n = 0; n < numNgb; n++ ) {
-            const int    ngbId = ngb[n];
-            if ( status[ngbId] == surfOrientFresh ) {
+      const int    ngbId = ngb[n];
+      if ( status[ngbId] == surfOrientFresh ) {
                const bool_t ngbFlip = SurfaceOrientateTriangle( surface, curPolyId, curFlip, ngbId );
                status[ngbId] = ngbFlip ? surfOrientStackFlip : surfOrientStack;
                /* Push */
                stackP += 1;
                *stackP = ngbId;
-            }
+      }
          }
          /* Mark this triangle as done */
          status[curPolyId] = (status[curPolyId]>0) ? surfOrientDone : surfOrientDoneFlip;
@@ -416,7 +416,7 @@ extern void SurfaceOrientate(  Surface_t *surface )
       while ( triangle ) {
          assert( ABS(status[polyId]) == surfOrientDone );
          if ( status[polyId] == surfOrientDoneFlip ) {
-            SurfaceTriangleFlip( surface, polyId );
+      SurfaceTriangleFlip( surface, polyId );
          }
          triangle = SurfaceNext( surface, &polyId, &iter );
       }
@@ -467,7 +467,7 @@ extern bool_t SurfaceFrontBackOfSameFault(
       const int type2 = SurfaceType( surf2 );
       if ( ( type1 != surfNormal ) && ( type2 != surfNormal ) ) {
          if ( type1 != type2 ) {
-            sameFault = ( SurfaceID( surf1 ) == SurfaceID( surf2 ) );
+      sameFault = ( SurfaceID( surf1 ) == SurfaceID( surf2 ) );
          }
       }
    }
@@ -650,33 +650,33 @@ extern void SurfaceToGocad(
   /* Pick up active points */
   triangle = SurfaceFirst( surf, NULL, &iter );
   while ( triangle ) {
-    const int  *points = TrianglePoints( triangle );
-    RBTreeSearch( surfPoints, points+0 );
-    RBTreeSearch( surfPoints, points+1 );
-    RBTreeSearch( surfPoints, points+2 );
-    triangle = SurfaceNext( surf, NULL, &iter );
+  const int  *points = TrianglePoints( triangle );
+  RBTreeSearch( surfPoints, points+0 );
+  RBTreeSearch( surfPoints, points+1 );
+  RBTreeSearch( surfPoints, points+2 );
+  triangle = SurfaceNext( surf, NULL, &iter );
   }
   
   /* Print active points */
   {
-    const int *point = RBTreeFirst( surfPoints, &iter );
-    while ( point ) {
+  const int *point = RBTreeFirst( surfPoints, &iter );
+  while ( point ) {
       char        pointBuf[64];
       double   cor[3];
       PointSetFind( pointSet, *point, cor+0, cor+1, cor+2 );
       fprintf( file, "VRTX %s %lf %lf %lf \n", UtilInt2String( pointBuf, *point ),
                      cor[0], cor[1], cor[2] );
       point = RBTreeNext( surfPoints, &iter );
-    }
+  }
   }
   fprintf( file, "\n" );
 
   /* Print active triangles */
   triangle = SurfaceFirst( surf, NULL, &iter );
   while ( triangle ) {
-    const int  *points = TrianglePoints( triangle );
-    fprintf( file, "TRGL %d %d %d\n", points[0], points[1], points[2] );
-    triangle = SurfaceNext( surf, NULL, &iter );
+  const int  *points = TrianglePoints( triangle );
+  fprintf( file, "TRGL %d %d %d\n", points[0], points[1], points[2] );
+  triangle = SurfaceNext( surf, NULL, &iter );
   }
   fprintf( file, "END" );
   fclose( file );
@@ -693,8 +693,8 @@ extern Surface_t *SurfaceIntersectPlane(
   Iterator_t         iter;
   const Triangle_t  *triangle = SurfaceFirst( triangleSet, NULL, &iter );
   while ( triangle ) {
-    TriangleIntersectPlane( result, triangle, pointSet, planePoint, unitNormal );
-    triangle = SurfaceNext( triangleSet, NULL, &iter );
+  TriangleIntersectPlane( result, triangle, pointSet, planePoint, unitNormal );
+  triangle = SurfaceNext( triangleSet, NULL, &iter );
   }
   return result;
 }
@@ -706,39 +706,39 @@ extern bool_t SurfaceFrontBackIdenticalTest(
 {
   bool_t  identical = ( SurfaceID( front ) == SurfaceID( back ) );
   if ( identical ) {
-    if ( SurfaceType( front ) == surfFrontFault && SurfaceType( back ) == surfBackFault ) {
+  if ( SurfaceType( front ) == surfFrontFault && SurfaceType( back ) == surfBackFault ) {
       identical = ( SurfaceSize( front ) == SurfaceSize( back ) );
       if ( identical ) {
-        /* Full test on triangle points */
-        RBTree_t   *frontPoints = RBTreeCreate( 3*sizeof(int), CompareInt3 );
-        /* Store front triangles in tree */
-        Iterator_t         iter;
-        const Triangle_t  *triangle = SurfaceFirst( front, NULL, &iter );
-        while ( triangle ) {
+    /* Full test on triangle points */
+    RBTree_t   *frontPoints = RBTreeCreate( 3*sizeof(int), CompareInt3 );
+    /* Store front triangles in tree */
+    Iterator_t         iter;
+    const Triangle_t  *triangle = SurfaceFirst( front, NULL, &iter );
+    while ( triangle ) {
           const int *points = TrianglePoints( triangle );
           int        p[3];
           UTIL_COPY( p, points, 3 );
           UTIL_SORT_DIRECT( p, 3, int );
           RBTreeSearch( frontPoints, p );
           triangle = SurfaceNext( front, NULL, &iter );
-        }
+    }
 
-        /* Test if all back triangles are in front */
-        triangle = SurfaceFirst( back, NULL, &iter );
-        while ( triangle && identical ) {
+    /* Test if all back triangles are in front */
+    triangle = SurfaceFirst( back, NULL, &iter );
+    while ( triangle && identical ) {
           const int *points = TrianglePoints( triangle );
           int        p[3];
           UTIL_COPY( p, points, 3 );
           UTIL_SORT_DIRECT( p, 3, int );
           identical = ( RBTreeFind( frontPoints, p ) >= 0 );
           triangle = SurfaceNext( back, NULL, &iter );
-        }
-        RBTreeDelete( frontPoints );
+    }
+    RBTreeDelete( frontPoints );
       }
-    } else if ( SurfaceType( back ) == surfFrontFault && SurfaceType( front ) == surfBackFault ) {
+  } else if ( SurfaceType( back ) == surfFrontFault && SurfaceType( front ) == surfBackFault ) {
       /* Swap arguments */
       identical = SurfaceFrontBackIdenticalTest( back, front );
-    }
+  }
   }
   return identical;
 }
@@ -757,7 +757,7 @@ extern int SurfacePairCompare(
   const SurfacePair_t *surfPair2 = surfPair2V;
   int                  result = SurfaceComp( surfPair1->surf1, surfPair2->surf1 );
   if ( !result ) {
-    result = SurfaceComp( surfPair1->surf2, surfPair2->surf2 );
+  result = SurfaceComp( surfPair1->surf2, surfPair2->surf2 );
   }
   return result;
 }
@@ -769,11 +769,11 @@ extern SurfacePair_t *SurfacePairInit(
 {
   const int        cmp = SurfaceComp( surf1, surf2 );
   if ( cmp >= 0 ) {
-    surfPair->surf1 = surf1;
-    surfPair->surf2 = surf2;
+  surfPair->surf1 = surf1;
+  surfPair->surf2 = surf2;
   } else {
-    surfPair->surf1 = surf2;
-    surfPair->surf2 = surf1;
+  surfPair->surf1 = surf2;
+  surfPair->surf2 = surf1;
   }
   return surfPair;
 }

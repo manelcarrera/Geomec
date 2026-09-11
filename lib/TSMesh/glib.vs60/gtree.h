@@ -34,29 +34,29 @@ G_BEGIN_DECLS
 typedef struct _GTree		GTree;
 
 typedef gint		(*GTraverseFunc)	(gpointer	key,
-						 gpointer	value,
-						 gpointer	data);
+             gpointer	value,
+             gpointer	data);
 
 /* Balanced binary trees
  */
 GTree*   g_tree_new           (GCompareFunc      key_compare_func);
 GTree*   g_tree_new_with_data (GCompareFuncData  key_compare_func,
-			       gpointer          user_data);
+             gpointer          user_data);
 void     g_tree_destroy       (GTree            *tree);
 void     g_tree_insert        (GTree            *tree,
-			       gpointer          key,
-			       gpointer          value);
+             gpointer          key,
+             gpointer          value);
 void     g_tree_remove        (GTree            *tree,
-			       gconstpointer     key);
+             gconstpointer     key);
 gpointer g_tree_lookup        (GTree            *tree,
-			       gconstpointer     key);
+             gconstpointer     key);
 void     g_tree_traverse      (GTree            *tree,
-			       GTraverseFunc     traverse_func,
-			       GTraverseType     traverse_type,
-			       gpointer          data);
+             GTraverseFunc     traverse_func,
+             GTraverseType     traverse_type,
+             gpointer          data);
 gpointer g_tree_search        (GTree            *tree,
-			       GCompareFunc      search_func,
-			       gconstpointer     data);
+             GCompareFunc      search_func,
+             gconstpointer     data);
 gint     g_tree_height        (GTree            *tree);
 gint     g_tree_nnodes        (GTree            *tree);
 

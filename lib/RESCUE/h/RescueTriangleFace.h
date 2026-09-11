@@ -44,8 +44,8 @@ protected:
 
   union verticesInfo
   {
-    long ndxOrId;
-    RescueTriangleVertex *obj;
+  long ndxOrId;
+  RescueTriangleVertex *obj;
   };
 
   verticesInfo vertices[3];

@@ -7,11 +7,11 @@
 class CMaterialMCFrictionHard3 : public CMaterialMohrCo
 {
 public:
-	CMaterialMCFrictionHard3(CMaterialEntry &entry, CLibraryMaterial& libmat);
-	CMaterialMCFrictionHard3(const CMaterialMCFrictionHard3& material, CMaterialEntry &entry);
+  CMaterialMCFrictionHard3(CMaterialEntry &entry, CLibraryMaterial& libmat);
+  CMaterialMCFrictionHard3(const CMaterialMCFrictionHard3& material, CMaterialEntry &entry);
 
-	virtual bool Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const;
-	virtual int MaterialModel() const { return MM_MC_FRICTION_HARD3; }
+  virtual bool Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const;
+  virtual int MaterialModel() const { return MM_MC_FRICTION_HARD3; }
   virtual long MaterialModelFilter() const { return MLFO_MC_FRICTION_HARD3; }
 
   // the creator for this material model

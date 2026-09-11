@@ -42,9 +42,9 @@ public:
   RescueWellboreProperty *PropertyDescribedBy(const RESCUECHAR *name,
                                               const RESCUECHAR *type,
                                               const RESCUECHAR *uom);
-                                    // Do NOT delete the object returned.
-                                    // If you want to remove them from the
-                                    // model use the corresponding Drop method.
+                  // Do NOT delete the object returned.
+                  // If you want to remove them from the
+                  // model use the corresponding Drop method.
   RESCUEBOOL DropRescueWellboreProperty(RescueWellboreProperty *unitToDrop); 
 
   

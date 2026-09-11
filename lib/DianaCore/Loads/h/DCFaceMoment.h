@@ -17,13 +17,13 @@ class CLoadManager;
 
 class CFaceMoment : public IDirectedLoad  
 {
-	const geo::IFace &m_Face;
+  const geo::IFace &m_Face;
 
 public:
-	CFaceMoment(CLoadCase &loadcase, double size, const geo::IVector &vecDirection, const geo::IFace &face);
-	virtual ~CFaceMoment();
+  CFaceMoment(CLoadCase &loadcase, double size, const geo::IVector &vecDirection, const geo::IFace &face);
+  virtual ~CFaceMoment();
 
-	const geo::IFace &Face() const;
+  const geo::IFace &Face() const;
 };
 
 }

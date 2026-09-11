@@ -20,23 +20,23 @@ class CMatLibListCtrl : public CListCtrl
 
 public:
   CMatLibListCtrl(const CTabModel* tabModel);
-	virtual ~CMatLibListCtrl();
+  virtual ~CMatLibListCtrl();
 
-	int	HitTestEx(CPoint &point,int *col) const;
-	CEdit*	EditSubLabel(int nItem,int nCol);
-	virtual void OnHScroll(unsigned int nSBCode,unsigned int nPos,CScrollBar* pScrollBar);
-	virtual void OnVScroll(unsigned int nSBCode,unsigned int nPos,CScrollBar* pScrollBar);
-	void OnEndLabelEdit(NMHDR* pNMHDR,LRESULT* pResult);
+  int	HitTestEx(CPoint &point,int *col) const;
+  CEdit*	EditSubLabel(int nItem,int nCol);
+  virtual void OnHScroll(unsigned int nSBCode,unsigned int nPos,CScrollBar* pScrollBar);
+  virtual void OnVScroll(unsigned int nSBCode,unsigned int nPos,CScrollBar* pScrollBar);
+  void OnEndLabelEdit(NMHDR* pNMHDR,LRESULT* pResult);
 //	virtual void OnLButtonDown(unsigned int nFlags,CPoint point);
 
   void SetLockedParameterNames(const TNameSet& stLockedParameterNames);
   bool IsLockedParameterName(const CString& strParamName) const;
 
 protected:
-	//{{AFX_MSG(CMatLibListCtrl)
-	afx_msg void OnLButtonDown(unsigned int nFlags, CPoint point);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+  //{{AFX_MSG(CMatLibListCtrl)
+  afx_msg void OnLButtonDown(unsigned int nFlags, CPoint point);
+  //}}AFX_MSG
+  DECLARE_MESSAGE_MAP()
 
 private:
   TNameSet m_stLockedParameterNames;

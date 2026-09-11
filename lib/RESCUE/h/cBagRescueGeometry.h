@@ -18,11 +18,11 @@ Software Product or documentation licensed under this agreement.
 ****************************************************************************/
 /*************************************************************************
 
-        cBagRescueGeometry.h
+    cBagRescueGeometry.h
 
  Keeps a list of pointers to RescueGeometry.
 
-        Rod Hanks               December 15th, 1995  / August 1996
+    Rod Hanks               December 15th, 1995  / August 1996
 
 ****************************************************************************/
 

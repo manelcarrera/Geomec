@@ -11,22 +11,22 @@ namespace cora
 class CFilterResults
 {
   public:
-    typedef std::map <QString, bool> TFilterMap;
+  typedef std::map <QString, bool> TFilterMap;
 
-    CFilterResults();
+  CFilterResults();
 
-    bool isResultAllowed(const QString& result) const;
-    bool isResultPresent(const QString& result) const;
+  bool isResultAllowed(const QString& result) const;
+  bool isResultPresent(const QString& result) const;
 
-    const TFilterMap& getFilter() const;
+  const TFilterMap& getFilter() const;
 
   private:
-    CFilterResults(const CFilterResults& rhs);
-    CFilterResults& operator = (CFilterResults rhs);
+  CFilterResults(const CFilterResults& rhs);
+  CFilterResults& operator = (CFilterResults rhs);
 
-    static TFilterMap fillFilter();
+  static TFilterMap fillFilter();
 
-    TFilterMap m_filter;
+  TFilterMap m_filter;
 };
 
 } // namespace cora

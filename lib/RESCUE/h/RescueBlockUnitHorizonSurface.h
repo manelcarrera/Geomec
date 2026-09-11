@@ -21,41 +21,41 @@ class RescueBlockUnitHorizonSurface:public RescueReferenceSurface
 {
 public:
   RescueBlockUnitHorizonSurface(RescueCoordinateSystem::Orientation orientation,
-                                RescueHorizon *parentHorizon,
-                                RESCUEFLOAT i_origin, RESCUEFLOAT i_step,
-                                RESCUEINT64 i_lowbound, RESCUEINT64 i_count,
-                                RESCUEFLOAT j_origin, RESCUEFLOAT j_step,
-                                RESCUEINT64 j_lowbound, RESCUEINT64 j_count,
-                                RESCUEFLOAT missingValue,
-                                RescueSurface::SurfaceType typeIn = RescueSurface::HORIZON);
+                RescueHorizon *parentHorizon,
+                RESCUEFLOAT i_origin, RESCUEFLOAT i_step,
+                RESCUEINT64 i_lowbound, RESCUEINT64 i_count,
+                RESCUEFLOAT j_origin, RESCUEFLOAT j_step,
+                RESCUEINT64 j_lowbound, RESCUEINT64 j_count,
+                RESCUEFLOAT missingValue,
+                RescueSurface::SurfaceType typeIn = RescueSurface::HORIZON);
   RescueBlockUnitHorizonSurface(RescueCoordinateSystem::Orientation orientation,
-                                RescueHorizon *parentHorizon,
-                                RESCUEFLOAT i_origin, RESCUEFLOAT i_step,
-                                RESCUEINT64 i_lowbound, RESCUEINT64 i_count,
-                                RESCUEFLOAT j_origin, RESCUEFLOAT j_step,
-                                RESCUEINT64 j_lowbound, RESCUEINT64 j_count,
-                                RESCUEFLOAT missingValue,
-                                RESCUEFLOAT *valueTriplets,
-                                RescueSurface::SurfaceType typeIn = RescueSurface::HORIZON);
+                RescueHorizon *parentHorizon,
+                RESCUEFLOAT i_origin, RESCUEFLOAT i_step,
+                RESCUEINT64 i_lowbound, RESCUEINT64 i_count,
+                RESCUEFLOAT j_origin, RESCUEFLOAT j_step,
+                RESCUEINT64 j_lowbound, RESCUEINT64 j_count,
+                RESCUEFLOAT missingValue,
+                RESCUEFLOAT *valueTriplets,
+                RescueSurface::SurfaceType typeIn = RescueSurface::HORIZON);
   RescueBlockUnitHorizonSurface(RescueCoordinateSystem::Orientation orientation,
-                                RescueHorizon *parentHorizon,
-                                RESCUEINT64 i_lowbound, RESCUEINT64 i_count,
-                                RESCUEINT64 j_lowbound, RESCUEINT64 j_count,
-                                RESCUEFLOAT missingValue,
-                                RescueSurface::SurfaceType typeIn = RescueSurface::HORIZON);
+                RescueHorizon *parentHorizon,
+                RESCUEINT64 i_lowbound, RESCUEINT64 i_count,
+                RESCUEINT64 j_lowbound, RESCUEINT64 j_count,
+                RESCUEFLOAT missingValue,
+                RescueSurface::SurfaceType typeIn = RescueSurface::HORIZON);
   RescueBlockUnitHorizonSurface(RescueCoordinateSystem::Orientation orientation,
-                                RescueHorizon *parentHorizon,
-                                RESCUEFLOAT missingValue,
-                                RescueSurface::SurfaceType typeIn = RescueSurface::HORIZON);
+                RescueHorizon *parentHorizon,
+                RESCUEFLOAT missingValue,
+                RescueSurface::SurfaceType typeIn = RescueSurface::HORIZON);
                   // Use of the constructor above makes the model incompatible with
                   // the Rescue v9 software.
   RescueBlockUnitHorizonSurface(RescueCoordinateSystem::Orientation orientation,
-                                RescueHorizon *parentHorizon,
-                                RESCUEINT64 i_lowbound, RESCUEINT64 i_count,
-                                RESCUEINT64 j_lowbound, RESCUEINT64 j_count,
-                                RESCUEFLOAT missingValue,
-                                RESCUEFLOAT *valueTriplets,
-                                RescueSurface::SurfaceType typeIn = RescueSurface::HORIZON);
+                RescueHorizon *parentHorizon,
+                RESCUEINT64 i_lowbound, RESCUEINT64 i_count,
+                RESCUEINT64 j_lowbound, RESCUEINT64 j_count,
+                RESCUEFLOAT missingValue,
+                RESCUEFLOAT *valueTriplets,
+                RescueSurface::SurfaceType typeIn = RescueSurface::HORIZON);
   ~RescueBlockUnitHorizonSurface();
   RescueHorizon *ParentHorizon() {return parentHorizon;}
   RescueBlockUnit *BlockUnitAboveMe() {return unitAboveMe;}

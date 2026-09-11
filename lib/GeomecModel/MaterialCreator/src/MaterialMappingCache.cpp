@@ -54,11 +54,11 @@ void CMaterialMappingCache::UseCache(bool value)
 {
   if (!value)
   {
-    for (size_t i = 0; i < m_vcCache.size(); ++i)
-    {
+  for (size_t i = 0; i < m_vcCache.size(); ++i)
+  {
       m_vcCache[i].server->AddToCache(m_vcCache[i].key, m_vcCache[i].material);
-    }
-    m_vcCache.clear();
+  }
+  m_vcCache.clear();
   }
 
   m_bUseCache = value;
@@ -73,11 +73,11 @@ void CMaterialMappingCache::NoCaching(bool value)
 {
   if (!value)
   {
-    for (size_t i = 0; i < m_vcCache.size(); ++i)
-    {
+  for (size_t i = 0; i < m_vcCache.size(); ++i)
+  {
       delete m_vcCache[i].material;
-    }
-    m_vcCache.clear();
+  }
+  m_vcCache.clear();
   }
 
   m_bNoCaching = value;

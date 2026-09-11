@@ -11,7 +11,7 @@ CWellFormation::CWellFormation(const CFormationBase& parent, unsigned int /*nEnt
 {
   m_pParent = &parent;
 
-	create(model.GraphEntry(MD_WELLMODEL_FORMATION));
+  create(model.GraphEntry(MD_WELLMODEL_FORMATION));
   Color(parent.Color());
 
   DuplicateParentMaterials();
@@ -34,7 +34,7 @@ bool CWellFormation::Less(const CGraphNode &node) const
   const CWellFormation* pFor = dynamic_cast<const CWellFormation*>(&node);
   if(pFor)
   {
-    return ParentFormation()->Less(*pFor->ParentFormation());
+  return ParentFormation()->Less(*pFor->ParentFormation());
   }
 
   return C3DFormation::Less(node);
@@ -82,29 +82,29 @@ void CWellFormation::LoadMaterial(CDepletionStage& stage, TSTREAM& stream, CStre
 {
   if(version < CStreamVersion(4, 0, 2))
   {
-    if(HasMaterial(stage))
-    {
+  if(HasMaterial(stage))
+  {
       // create material server for this stage
       CMaterialServer* pMatServer = new CMaterialServer(*this, stage);
       int nHasMat;
       stream >> nHasMat;
       if(nHasMat != 0)
       {
-        IWellModel& model = static_cast<IWellModel&>(Model());
-        CMaterialEntry& parentMatEntry = (CMaterialEntry&)(*model.RootModel().GraphEntry(MD_ROCK_MATERIAL));
-        int idx;
-        stream >> idx;
-        IMaterial* pMat = parentMatEntry.FindIndex(idx);
-        assert(pMat);
-        assert(dynamic_cast<IMaterialRock*>(pMat));
-        pMatServer->LinkTo(*pMat);
+    IWellModel& model = static_cast<IWellModel&>(Model());
+    CMaterialEntry& parentMatEntry = (CMaterialEntry&)(*model.RootModel().GraphEntry(MD_ROCK_MATERIAL));
+    int idx;
+    stream >> idx;
+    IMaterial* pMat = parentMatEntry.FindIndex(idx);
+    assert(pMat);
+    assert(dynamic_cast<IMaterialRock*>(pMat));
+    pMatServer->LinkTo(*pMat);
       }
       progress.Step();
-    }
+  }
   }
   else
   {
-    C3DFormation::LoadMaterial(stage, stream, version, progress);
+  C3DFormation::LoadMaterial(stage, stream, version, progress);
   }
 }
 
@@ -120,36 +120,36 @@ void CWellFormation::DuplicateParentMaterials()
 
   while(pMyStage && pParentStage)
   {
-    CMaterialServer* pMyMatServer = ConnectedMaterial(*pMyStage);
-    if(pMyMatServer)
-    {
+  CMaterialServer* pMyMatServer = ConnectedMaterial(*pMyStage);
+  if(pMyMatServer)
+  {
       // fetch material data from parent formation
       const CMaterialServer& parentMatServer = m_pParent->Material(*pParentStage);
       const IMaterialRock* pParentMat = parentMatServer.LibraryMaterial();
       if(pParentMat)
       {
-        (const_cast<IMaterialRock*>(pParentMat))->LinkTo(*pMyMatServer);
-        const CMaterialServer::TValueTypePairVec& vcVT = parentMatServer.ValueTypePairVec();
-        for(size_t i = 0; i < vcVT.size(); ++i)
-        {
+    (const_cast<IMaterialRock*>(pParentMat))->LinkTo(*pMyMatServer);
+    const CMaterialServer::TValueTypePairVec& vcVT = parentMatServer.ValueTypePairVec();
+    for(size_t i = 0; i < vcVT.size(); ++i)
+    {
           pMyMatServer->LinkTo(const_cast<CValueType&>(*vcVT[i].first));
           std::pair <CMaterialServer::TValueTypeSet::iterator, bool> result =
-            pMyMatServer->getExtrapolatingValueTypes().insert(vcVT[i].first);
+      pMyMatServer->getExtrapolatingValueTypes().insert(vcVT[i].first);
           assert(result.second);
-        }
-      }
     }
+      }
+  }
 
-    if(pMyStage->Last() || pParentStage->Last())
-    {
+  if(pMyStage->Last() || pParentStage->Last())
+  {
       pMyStage = 0;
       pParentStage = 0;
-    }
-    else
-    {
+  }
+  else
+  {
       pMyStage = &pMyStage->Next();
       pParentStage = &pParentStage->Next();
-    }
+  }
   }
 }
 
@@ -165,13 +165,13 @@ void CWellFormation::DuplicateLoads()
 
   while(pMyStage && pParentStage)
   {
-    const CPressure& parentPressure = m_pParent->Pressure(*pParentStage);
-    CPressure& myPressure = Pressure(*pMyStage);
-    myPressure.Type(parentPressure.Type());
-    myPressure.Constant().Set(parentPressure.Constant().ReferenceValue().Value(),
+  const CPressure& parentPressure = m_pParent->Pressure(*pParentStage);
+  CPressure& myPressure = Pressure(*pMyStage);
+  myPressure.Type(parentPressure.Type());
+  myPressure.Constant().Set(parentPressure.Constant().ReferenceValue().Value(),
                               parentPressure.Constant().ReferenceDepth().Value(),
                               parentPressure.Constant().Gradient().Value());
-    myPressure.GWC().Set(parentPressure.GWC().ContactPressure().Value(),
+  myPressure.GWC().Set(parentPressure.GWC().ContactPressure().Value(),
                          parentPressure.GWC().TransitionPressure().Value(),
                          parentPressure.GWC().ContactDepth().Value(),
                          parentPressure.GWC().TransitionDepth().Value(),
@@ -179,27 +179,27 @@ void CWellFormation::DuplicateLoads()
                          parentPressure.GWC().LowerGradient().Value(),
                          parentPressure.GWC().TransitionFromPrevious());
 
-    for(int i = 0; i < parentPressure.DistributedSize(); ++i)
-    {
+  for(int i = 0; i < parentPressure.DistributedSize(); ++i)
+  {
       const TPressure& distripressure = parentPressure.DistributedValue(i);
       myPressure.LinkTo(const_cast<TPressure&>(distripressure));
-    }
+  }
 
-    const CTemperature& parentTemp = m_pParent->UserTemperature(*pParentStage);
-    CTemperature& myTemp = UserTemperature(*pMyStage);
-    myTemp.Type(parentTemp.Type());
-    myTemp.Constant().Set(parentTemp.Constant().ReferenceValue().Value(),
+  const CTemperature& parentTemp = m_pParent->UserTemperature(*pParentStage);
+  CTemperature& myTemp = UserTemperature(*pMyStage);
+  myTemp.Type(parentTemp.Type());
+  myTemp.Constant().Set(parentTemp.Constant().ReferenceValue().Value(),
                           parentTemp.Constant().ReferenceDepth().Value(),
                           parentTemp.Constant().Gradient().Value());
 
-    for(int i = 0; i < parentTemp.DistributedSize(); ++i)
-    {
+  for(int i = 0; i < parentTemp.DistributedSize(); ++i)
+  {
       const TTemperature& distritemp = parentTemp.DistributedValue(i);
       myTemp.LinkTo(const_cast<TTemperature&>(distritemp));
-    }
+  }
 
-    if (!pMyStage->Initial())
-    {
+  if (!pMyStage->Initial())
+  {
       const CStrainLoad& parentStrain = m_pParent->Strain(*pParentStage);
       CStrainLoad& myStrain = Strain(*pMyStage);
       myStrain.Type(parentStrain.Type());
@@ -213,21 +213,21 @@ void CWellFormation::DuplicateLoads()
 
       for(int i = 0; i < parentStrain.DistributedSize(); ++i)
       {
-        const CGraphNode *distriStrain = &parentStrain.DistributedValue(i);
-        myStrain.LinkTo(*const_cast<CGraphNode *>(distriStrain));
+    const CGraphNode *distriStrain = &parentStrain.DistributedValue(i);
+    myStrain.LinkTo(*const_cast<CGraphNode *>(distriStrain));
       }
-    }
+  }
 
-    if(pMyStage->Last() || pParentStage->Last())
-    {
+  if(pMyStage->Last() || pParentStage->Last())
+  {
       pMyStage = 0;
       pParentStage = 0;
-    }
-    else
-    {
+  }
+  else
+  {
       pMyStage = &pMyStage->Next();
       pParentStage = &pParentStage->Next();
-    }
+  }
   }
 }
 
@@ -245,13 +245,13 @@ IMaterialRock& CWellFormationEntry::CloneMaterial(const IMaterialRock& parentmat
   TMaterialMap::iterator it = m_mpMaterials.find(&parentmat);
   if(it == m_mpMaterials.end())
   {
-    // create a copy in this model
-    CModelBase& mymodel = static_cast<CModelBase&>(Model());
-    CMaterialEntry& myMatEntry = static_cast<CMaterialEntry&>(*mymodel.GraphEntry(MD_ROCK_MATERIAL));
-    IMaterial* pMatCopy = &myMatEntry.CreateMaterial(parentmat.MaterialModel(), parentmat.Name());
-    pMatCopy->CloneValues(parentmat);
-    assert(dynamic_cast<IMaterialRock*>(pMatCopy));
-    it = m_mpMaterials.insert(TMaterialMap::value_type(&parentmat, static_cast<IMaterialRock*>(pMatCopy))).first;
+  // create a copy in this model
+  CModelBase& mymodel = static_cast<CModelBase&>(Model());
+  CMaterialEntry& myMatEntry = static_cast<CMaterialEntry&>(*mymodel.GraphEntry(MD_ROCK_MATERIAL));
+  IMaterial* pMatCopy = &myMatEntry.CreateMaterial(parentmat.MaterialModel(), parentmat.Name());
+  pMatCopy->CloneValues(parentmat);
+  assert(dynamic_cast<IMaterialRock*>(pMatCopy));
+  it = m_mpMaterials.insert(TMaterialMap::value_type(&parentmat, static_cast<IMaterialRock*>(pMatCopy))).first;
   }
 
   IMaterialRock* pMyMat = it->second;

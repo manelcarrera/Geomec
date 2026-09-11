@@ -27,7 +27,7 @@ void CDualProgress::Step(int steps)
 
   if (before != after)
   {
-    _m()->outstream() << '*';
+  _m()->outstream() << '*';
   }
 
   m_currentSteps += steps;
@@ -38,24 +38,24 @@ void CDualProgress::StatusMessage(const QString& message)
   m_secondaryTitle = message;
   if(message != m_secondaryTitle)
   {
-    _m()->outstream() << std::endl <<
+  _m()->outstream() << std::endl <<
       CProgressBase::getDateTimeStamp().toStdString() <<
       message.toStdString() << std::endl;
-    m_secondaryTitle = message;
-    if(m_totalSteps > 0)
-    {
+  m_secondaryTitle = message;
+  if(m_totalSteps > 0)
+  {
       int n = (m_currentSteps * 80) / m_totalSteps;
       for(int i = 0; i < n; ++i)
-        _m()->outstream() << '*';
-    }
+    _m()->outstream() << '*';
+  }
   }
 }
 
 void CDualProgress::NextJob(const QString& secondaryTitle)
 {
   _m()->outstream() << std::endl <<
-    CProgressBase::getDateTimeStamp().toStdString() <<
-    secondaryTitle.toStdString() << std::endl;
+  CProgressBase::getDateTimeStamp().toStdString() <<
+  secondaryTitle.toStdString() << std::endl;
   m_secondaryTitle = secondaryTitle;
   m_totalSteps = 0;
   m_currentSteps = 0;

@@ -13,7 +13,7 @@ CRetrieveDianaFileNames::~CRetrieveDianaFileNames()
 {
   if (m_strategy)
   {
-    delete m_strategy;
+  delete m_strategy;
   }
 }
 

@@ -21,11 +21,11 @@ RESCUEBOOL RescueTrimLoopStub::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueTrimLoopStub)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueWireframeStub::IsOfType(thisType);
+  return RescueWireframeStub::IsOfType(thisType);
   }
 }
 
@@ -35,7 +35,7 @@ RESCUEBOOL RescueTrimLoopStub::Equals(RescueTrimLoopStub *other)
   if (other->WireframeId() == WireframeId()
   &&  other->ObjectId()    == ObjectId())
   {
-    myReturn = TRUE;
+  myReturn = TRUE;
   }
 /*
   Really should be sufficient just to compare the object ids.
@@ -48,13 +48,13 @@ RESCUEBOOL RescueTrimLoopStub::Equals(RescueTrimLoop *other)
   RESCUEBOOL myReturn = FALSE;
   if (other->Identifier() == ObjectId())
   {
-    myReturn = TRUE;
+  myReturn = TRUE;
   }
   return myReturn;
 }
 
 RescueTrimLoopStub::RescueTrimLoopStub(RescueContext *context, FILE *archiveFile)
-                                                    :RescueWireframeStub(context, archiveFile)
+                          :RescueWireframeStub(context, archiveFile)
                                                              ,actualLoop(0)
 {
   isA = R_RescueTrimLoopStub;
@@ -73,7 +73,7 @@ RescueTrimLoopStub::RescueTrimLoopStub(RescueContext *context, RescueTrimLoop *L
 {
   if (wireframeObj != 0)
   {
-    loadNo = wireframeObj->LoadNo();
+  loadNo = wireframeObj->LoadNo();
   }
 }
 
@@ -81,45 +81,45 @@ RescueTrimLoop *RescueTrimLoopStub::TrimLoop(RescueModel *model, RESCUEBOOL load
 {
   if (wireframeObj == 0 && model != 0)
   {
-    wireframeObj = model->WireframeIdentifiedBy(wireframeId);
+  wireframeObj = model->WireframeIdentifiedBy(wireframeId);
   }
   if (wireframeObj != 0)
   {
-    if (wireframeObj->IsWireframeLoaded() == FALSE)
-    {
+  if (wireframeObj->IsWireframeLoaded() == FALSE)
+  {
       actualLoop = 0;
       if (loadIfNeeded)
       {
-        wireframeObj->LoadWireframe();
+    wireframeObj->LoadWireframe();
       }
-    }
+  }
 /*
   If not currently loaded, load it up if the user has given us that discretion.
 */
-    if (actualLoop != 0)
-    {
+  if (actualLoop != 0)
+  {
       if (loadNo != wireframeObj->LoadNo())
       {
-        actualLoop = 0;
+    actualLoop = 0;
       }
-    }
+  }
 /*
   If we have been asked before, we may have a pointer to the object that we want,
   but first we have to check to see if it is stale.
 */
-    if (actualLoop == 0)
-    {
+  if (actualLoop == 0)
+  {
       actualLoop = wireframeObj->TrimLoopIdentifiedBy(objectId);
       loadNo = wireframeObj->LoadNo();
 /*
   If we do hook up to the object, remember which load.  If the reader unloads the
   RescueWireframe and then reloads it our pointer will be stale.
 */
-    }
+  }
   }
   else
   {
-    actualLoop = 0;
+  actualLoop = 0;
   }
   return actualLoop;;
 }

@@ -15,24 +15,24 @@
 class CAcceleration : public CDoubleQuantity 
 {
 public:
-	//##ModelId=3C036365009E
-	CAcceleration(const double &min = 5.0,
-				  const double &max = 15.0,
-				  const UNIT unit = SI_UNIT);
-	//##ModelId=3C03636500A2
-	CAcceleration(const double &value,
-				  const double &min,
-				  const double &max,
-				  const UNIT unit = SI_UNIT);
+  //##ModelId=3C036365009E
+  CAcceleration(const double &min = 5.0,
+          const double &max = 15.0,
+          const UNIT unit = SI_UNIT);
+  //##ModelId=3C03636500A2
+  CAcceleration(const double &value,
+          const double &min,
+          const double &max,
+          const UNIT unit = SI_UNIT);
 
-	CAcceleration(const CAcceleration & rhs);
+  CAcceleration(const CAcceleration & rhs);
 
-	//##ModelId=3C03636500B0
-	virtual double Convert(const double &value, const UNIT out, const UNIT in) const;
-	//##ModelId=3C03636500C0
-	virtual std::string QuantityName() const;
-	//##ModelId=3C03636500C2
-	virtual std::string UnitName(const UNIT unit = SI_UNIT) const;
+  //##ModelId=3C03636500B0
+  virtual double Convert(const double &value, const UNIT out, const UNIT in) const;
+  //##ModelId=3C03636500C0
+  virtual std::string QuantityName() const;
+  //##ModelId=3C03636500C2
+  virtual std::string UnitName(const UNIT unit = SI_UNIT) const;
 
 };
 

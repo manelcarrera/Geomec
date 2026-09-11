@@ -11,12 +11,12 @@ public:
   virtual ~CRetrieveDianaFileNamesConsole();
 
   virtual bool retrieveDianaFileNames(QString& newTitle,
-    const std::string& title) const;
+  const std::string& title) const;
 
 private:
   CRetrieveDianaFileNamesConsole(const CRetrieveDianaFileNamesConsole& rhs);
   CRetrieveDianaFileNamesConsole& operator = (
-    const CRetrieveDianaFileNamesConsole& rhs);
+  const CRetrieveDianaFileNamesConsole& rhs);
 
 private:
   QString m_strWorkingDir;

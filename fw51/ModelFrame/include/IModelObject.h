@@ -152,8 +152,8 @@ public:
 
   // The store and restore functions are used for saving, loading, redo and undo
   virtual void restore( TStream& stream,
-                        const CStreamVersion& file_version,
-                        IProgressBase& indicator );
+            const CStreamVersion& file_version,
+            IProgressBase& indicator );
   virtual void store( TStream& stream,
                       IProgressBase& indicator,
                       bool includeChildren = true ) const;
@@ -169,14 +169,14 @@ protected: // abstract class: prevent instantiation
   IModelObject( const QString& text );
 
   virtual CUndoOperation* constructCreateUndoOperation( IModelObject& object,
-                                                        const QString& descr );
+                            const QString& descr );
   virtual CUndoOperation* constructDestroyUndoOperation( IModelObject& location,
                                                           IModelObject& object,
                                                           const QString& descr);
 
 private:
   void addToParent( IModelObject*       parent,
-                    const IModelObject* pInsertBefore = 0);
+          const IModelObject* pInsertBefore = 0);
 
 private: // not copyable
   IModelObject( const IModelObject& );

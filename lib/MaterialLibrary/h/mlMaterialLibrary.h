@@ -14,11 +14,11 @@ public:
   class IObserver
   {
   public:
-    virtual ~IObserver() {}
-    // called just after the material was added
-    virtual void OnMaterialAdded(CMaterial& mat) = 0;
-    // called just before the material is deleted
-    virtual void OnDeleteMaterial(CMaterial& mat) = 0;
+  virtual ~IObserver() {}
+  // called just after the material was added
+  virtual void OnMaterialAdded(CMaterial& mat) = 0;
+  // called just before the material is deleted
+  virtual void OnDeleteMaterial(CMaterial& mat) = 0;
   };
 
 public:

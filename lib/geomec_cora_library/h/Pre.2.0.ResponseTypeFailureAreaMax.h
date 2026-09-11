@@ -9,17 +9,17 @@ namespace cora
 class CPre20ResponseTypeFailureAreaMax : public CPre20ResponseTypeBaseWithValue
 {
   public:
-    CPre20ResponseTypeFailureAreaMax(CSummaryResultFile& summaryResultFile,
+  CPre20ResponseTypeFailureAreaMax(CSummaryResultFile& summaryResultFile,
       const std::vector <QString>& function);
-    virtual ~CPre20ResponseTypeFailureAreaMax();
+  virtual ~CPre20ResponseTypeFailureAreaMax();
 
-    virtual double calculate(const TObject& object,
+  virtual double calculate(const TObject& object,
       const TFailureMode& failureMode);
 
   private:
-    CPre20ResponseTypeFailureAreaMax(
+  CPre20ResponseTypeFailureAreaMax(
       const CPre20ResponseTypeFailureAreaMax& rhs);
-    CPre20ResponseTypeFailureAreaMax& operator = (
+  CPre20ResponseTypeFailureAreaMax& operator = (
       CPre20ResponseTypeFailureAreaMax rhs);
 };
 

@@ -28,8 +28,8 @@ public:
                                // to be currently valid.
 private:
   RescueCoordinateSystemAxis(RescueCoordinateSystem *parentIn,
-        const RESCUECHAR *nameIn,
-        const RESCUECHAR *uomIn);
+    const RESCUECHAR *nameIn,
+    const RESCUECHAR *uomIn);
   void Archive(FILE *archiveFile);
   RescueCoordinateSystemAxis(RescueContext *context, FILE *archiveFile);
   void Relink(RescueObject *parentObject);

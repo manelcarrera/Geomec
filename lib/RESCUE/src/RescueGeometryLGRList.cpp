@@ -73,11 +73,11 @@ RescueGeometryLGRList::RescueGeometryLGRList(RescueGeometry *geometry,
 
   if (nullOrGroup != 0)
   {
-    AddGroup(nullOrGroup, geometry, nullOrTimeStepName);  // byTimeStep is irrelevant
+  AddGroup(nullOrGroup, geometry, nullOrTimeStepName);  // byTimeStep is irrelevant
   }
   else
   {
-    AddGeometry(geometry, nullOrTimeStepName);
+  AddGeometry(geometry, nullOrTimeStepName);
   }
 }
 
@@ -93,41 +93,41 @@ void RescueGeometryLGRList::AddGeometry(RescueGeometry *geometry, RESCUECHAR *nu
   RescueBlockUnit *bu = geometry->ParentBlockUnit();
   if (bu != 0)
   {
-    int gOrd = 0;
-    RescuePropertyGroup *group = bu->NthPropertyGroup(gOrd++);
-    while (group != 0)
-    {
+  int gOrd = 0;
+  RescuePropertyGroup *group = bu->NthPropertyGroup(gOrd++);
+  while (group != 0)
+  {
       AddGroup(group, geometry, nullOrTimeStepName);
       group = bu->NthPropertyGroup(gOrd++);
-    }
+  }
   }
   else
   {
-    RescueGeobodyPart *part = geometry->ParentGeobodyPart();
-    if (part != 0)
-    {
+  RescueGeobodyPart *part = geometry->ParentGeobodyPart();
+  if (part != 0)
+  {
       int gOrd = 0;
       RescuePropertyGroup *group = part->NthPropertyGroup(gOrd++);
       while (group != 0)
       {
-        AddGroup(group, geometry, nullOrTimeStepName);
-        group = part->NthPropertyGroup(gOrd++);
+    AddGroup(group, geometry, nullOrTimeStepName);
+    group = part->NthPropertyGroup(gOrd++);
       }
-    }
-    else
-    {
+  }
+  else
+  {
       RescueModel *model = geometry->ParentModel();
       if (model != 0)
       {
-        int gOrd = 0;
-        RescuePropertyGroup *group = model->NthRescuePropertyGroup(gOrd++);
-        while (group != 0)
-        {
+    int gOrd = 0;
+    RescuePropertyGroup *group = model->NthRescuePropertyGroup(gOrd++);
+    while (group != 0)
+    {
           AddGroup(group, geometry, nullOrTimeStepName);
           group = model->NthRescuePropertyGroup(gOrd++);
-        }
-      }
     }
+      }
+  }
   }
 }
 
@@ -139,65 +139,65 @@ void RescueGeometryLGRList::AddGroup(RescuePropertyGroup *toAdd,
   RescueTimeStepGroup *ts = toAdd->NthTimeStepGroup(tsNdx++);
   while (ts != 0)
   {
-    if ((nullOrTimeStepName == 0) ? true : (*ts->TimeStepName()) == nullOrTimeStepName)
-    {
+  if ((nullOrTimeStepName == 0) ? true : (*ts->TimeStepName()) == nullOrTimeStepName)
+  {
       int pNdx = 0;
       RescueGeometry *pGeom = ts->NthRescueGeometry(pNdx++);
       while (pGeom != 0)
       {
-        AddRow(pGeom, ts, toAdd);
-        pGeom = ts->NthRescueGeometry(pNdx++);
+    AddRow(pGeom, ts, toAdd);
+    pGeom = ts->NthRescueGeometry(pNdx++);
       }
-    }
-    ts = toAdd->NthTimeStepGroup(tsNdx++);
+  }
+  ts = toAdd->NthTimeStepGroup(tsNdx++);
   }
 }
 
 void RescueGeometryLGRList::AddRow(RescueGeometry *geom,
-                                        RescueTimeStepGroup *ts, 
-                                        RescuePropertyGroup *group)
+                    RescueTimeStepGroup *ts, 
+                    RescuePropertyGroup *group)
 {
   RESCUEINT64 ndx = NdxOf(geom, ts, group);
   RESCUEBOOL handled = FALSE;
   if (ndx >= 0 && ndx < count)
   {
-    if (CompareRow(ndx, geom, ts, group) == 0)
-    {
+  if (CompareRow(ndx, geom, ts, group) == 0)
+  {
       handled = TRUE;
-    }
+  }
   }
 /*
   We might see some rows more than once.
 */
   if (handled == FALSE)
   {
-    if (count == allocated)
-    {
+  if (count == allocated)
+  {
       allocated += count / 2;
       geometries = (RescueGeometry **) realloc(geometries, sizeof(RescueGeometry *) * allocated);
       timeSteps = (RescueTimeStepGroup **) realloc(timeSteps, sizeof(RescueTimeStepGroup *) * allocated);
       groups = (RescuePropertyGroup **) realloc(groups, sizeof(RescuePropertyGroup *) * allocated);
-    }
-    if (ndx < count)
-    {
+  }
+  if (ndx < count)
+  {
       RESCUEINT64 loop;
       for (loop = count; loop > ndx; loop--)
       {
-        geometries[loop] = geometries[loop - 1];
-        timeSteps[loop] = timeSteps[loop - 1];
-        groups[loop] = groups[loop - 1];
+    geometries[loop] = geometries[loop - 1];
+    timeSteps[loop] = timeSteps[loop - 1];
+    groups[loop] = groups[loop - 1];
       }
-    }
-    geometries[ndx] = geom;
-    timeSteps[ndx] = ts;
-    groups[ndx] = group;
-    count++;
+  }
+  geometries[ndx] = geom;
+  timeSteps[ndx] = ts;
+  groups[ndx] = group;
+  count++;
   }
 }
 
 RESCUEINT64 RescueGeometryLGRList::NdxOf(RescueGeometry *geom,
-                                            RescueTimeStepGroup *ts, 
-                                            RescuePropertyGroup *group)
+                      RescueTimeStepGroup *ts, 
+                      RescuePropertyGroup *group)
 {
   RESCUEINT64 ndx = 0;
   RESCUEINT64 upperLimit = count;
@@ -206,20 +206,20 @@ RESCUEINT64 RescueGeometryLGRList::NdxOf(RescueGeometry *geom,
 
   while ((upperLimit - lowerLimit) > 1  && result != 0)
   {
-    ndx = (lowerLimit + upperLimit) >> 1;
-    result = CompareRow(ndx, geom, ts, group);
-    if (result < 0)
-    {
+  ndx = (lowerLimit + upperLimit) >> 1;
+  result = CompareRow(ndx, geom, ts, group);
+  if (result < 0)
+  {
       upperLimit = ndx;
-    }
-    else if (result > 0)
-    {
+  }
+  else if (result > 0)
+  {
       lowerLimit = ndx;
-    }
+  }
   }
   if (result > 0)
   {
-    ndx++;
+  ndx++;
   }
   return ndx;
 }
@@ -232,25 +232,25 @@ RESCUEINT64 RescueGeometryLGRList::CompareRow(RESCUEINT64 ndx,
   RESCUEINT64 myReturn = 0;
   if (byTimeStep)
   {
-    myReturn = strcmp(ts->TimeStepName()->NonNullString(), 
+  myReturn = strcmp(ts->TimeStepName()->NonNullString(), 
                       timeSteps[ndx]->TimeStepName()->NonNullString());
-    if (myReturn == 0)
-    {
+  if (myReturn == 0)
+  {
       myReturn = IDCompare(group->Identifier(), groups[ndx]->Identifier());
-    }
+  }
   }
   else
   {
-    myReturn = IDCompare(group->Identifier(), groups[ndx]->Identifier());
-    if (myReturn == 0)
-    {
+  myReturn = IDCompare(group->Identifier(), groups[ndx]->Identifier());
+  if (myReturn == 0)
+  {
       myReturn = strcmp(ts->TimeStepName()->NonNullString(), 
-                        timeSteps[ndx]->TimeStepName()->NonNullString());
-    }
+            timeSteps[ndx]->TimeStepName()->NonNullString());
+  }
   }
   if (myReturn == 0)
   {
-    myReturn = IDCompare(geom->Identifier(), geometries[ndx]->Identifier());
+  myReturn = IDCompare(geom->Identifier(), geometries[ndx]->Identifier());
   }
   return myReturn;
 }
@@ -260,11 +260,11 @@ RESCUEINT64 RescueGeometryLGRList::IDCompare(RESCUEINT64 id1, RESCUEINT64 id2)
   RESCUEINT64 myReturn = 0;
   if (id1 < id2)
   {
-    myReturn = -1;
+  myReturn = -1;
   }
   else if (id1 > id2)
   {
-    myReturn = 1;
+  myReturn = 1;
   }
   return myReturn;
 }
@@ -274,7 +274,7 @@ RescueGeometry *RescueGeometryLGRList::NthRowGeometry(RESCUEINT32 zbn)
   RescueGeometry *myReturn = 0;
   if (zbn >= 0 && zbn < count)
   {
-    myReturn = geometries[zbn];
+  myReturn = geometries[zbn];
   }
   return myReturn;
 }
@@ -284,7 +284,7 @@ RescueTimeStepGroup *RescueGeometryLGRList::NthRowTimeStepGroup(RESCUEINT32 zbn)
   RescueTimeStepGroup *myReturn = 0;
   if (zbn >= 0 && zbn < count)
   {
-    myReturn = timeSteps[zbn];
+  myReturn = timeSteps[zbn];
   }
   return myReturn;
 }
@@ -294,7 +294,7 @@ RescuePropertyGroup *RescueGeometryLGRList::NthRowPropertyGroup(RESCUEINT32 zbn)
   RescuePropertyGroup *myReturn = 0;
   if (zbn >= 0 && zbn < count)
   {
-    myReturn = groups[zbn];
+  myReturn = groups[zbn];
   }
   return myReturn;
 }

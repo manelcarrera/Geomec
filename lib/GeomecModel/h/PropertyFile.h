@@ -38,112 +38,112 @@ private:
   class CHeaderToken : public CTokenTemplate<CElementSetFile>
   {
   public:
-    CHeaderToken(CElementSetFile& instance, const QString &sToken, pfToken token);
-    virtual bool Read(input_stream& stream, const QString &sToken);
+  CHeaderToken(CElementSetFile& instance, const QString &sToken, pfToken token);
+  virtual bool Read(input_stream& stream, const QString &sToken);
 
-    private:
+  private:
       CElementSetFile& m_instance;
   };
 
 public:
-	// Results, properties exported by the element set are defined as TValueComponent
-	typedef const IValueComponentBase* TValueComponent;
-	typedef CHeaderToken THeaderToken;
+  // Results, properties exported by the element set are defined as TValueComponent
+  typedef const IValueComponentBase* TValueComponent;
+  typedef CHeaderToken THeaderToken;
 //	typedef INodalFormat::TAxisSystem TAxisSystem;
 private:
-	// Export 
-	const CNodalExportFormat*		m_pNodalExportFormat;
-	const IElementSetExportFormat*	m_pElementSetExportFormat;
-	bool m_bCoorUnitSet; // wjrx mantis 3336
+  // Export 
+  const CNodalExportFormat*		m_pNodalExportFormat;
+  const IElementSetExportFormat*	m_pElementSetExportFormat;
+  bool m_bCoorUnitSet; // wjrx mantis 3336
 
-	IElementSet* m_pElementSet;
-	IPointSet* m_pPointSet;
-	bool m_bWeighting;
+  IElementSet* m_pElementSet;
+  IPointSet* m_pPointSet;
+  bool m_bWeighting;
 
-	QSharedPointer <CNodalImportFormat>   m_pNodalFormat;
-	QSharedPointer <CElementImportFormat> m_pElementFormat;
-	CResultImportFormat*   m_pResultFormat;
-	CWellPathInputImportFormat* m_pWellPathInputFormat;
+  QSharedPointer <CNodalImportFormat>   m_pNodalFormat;
+  QSharedPointer <CElementImportFormat> m_pElementFormat;
+  CResultImportFormat*   m_pResultFormat;
+  CWellPathInputImportFormat* m_pWellPathInputFormat;
   
   // If you don't want to write the header with all the '***' set this bool to false.
   // The 'END' statement will also not be written.
   bool m_bWriteHeader;
 
-	CModelBase& m_model;
-	IImportFormat& CurrentFormat();
-	int LineLength();
-	bool WriteUnit(TOutputStream& stream);
-	bool WriteDepStages(TOutputStream& stream);
-	bool WriteTable(const IExportFormat& format, TOutputStream& stream);
+  CModelBase& m_model;
+  IImportFormat& CurrentFormat();
+  int LineLength();
+  bool WriteUnit(TOutputStream& stream);
+  bool WriteDepStages(TOutputStream& stream);
+  bool WriteTable(const IExportFormat& format, TOutputStream& stream);
 
-	//std::map<std::string, CGeomecTime> m_mpDepTimes;
+  //std::map<std::string, CGeomecTime> m_mpDepTimes;
 
-	void ReadRow(TInputStream& stream);
-	QString ReadName(TInputStream& stream);
-	void    WriteName(const QString& sName, TOutputStream& stream); 
+  void ReadRow(TInputStream& stream);
+  QString ReadName(TInputStream& stream);
+  void    WriteName(const QString& sName, TOutputStream& stream); 
 
   QString m_strExportDelimiter;
-	CGraphNode::TNodeVec* m_created_objects;
+  CGraphNode::TNodeVec* m_created_objects;
 public:
 
 // Contruction / Destruction
-	CElementSetFile(CModelBase& model);	
-	CElementSetFile(CModelBase& model, CGraphNode::TNodeVec& created_objects);	
-	CElementSetFile(const CNodalExportFormat& export_format);	
-	CElementSetFile(const IElementSetExportFormat& export_format);	
-	CElementSetFile(CResultImportFormat &result_format);
-	CElementSetFile(CWellPathInputImportFormat &well_format);
+  CElementSetFile(CModelBase& model);	
+  CElementSetFile(CModelBase& model, CGraphNode::TNodeVec& created_objects);	
+  CElementSetFile(const CNodalExportFormat& export_format);	
+  CElementSetFile(const IElementSetExportFormat& export_format);	
+  CElementSetFile(CResultImportFormat &result_format);
+  CElementSetFile(CWellPathInputImportFormat &well_format);
 
-	virtual ~CElementSetFile();
+  virtual ~CElementSetFile();
 
-	//##ModelId=3C74E3E7034E
-	virtual bool OnParseFail(TInputStream& stream, const QString& sToken);
+  //##ModelId=3C74E3E7034E
+  virtual bool OnParseFail(TInputStream& stream, const QString& sToken);
   virtual bool IgnoreRead(TInputStream& stream, const QString& sToken);
 
-	// Access to element and point set we're reading or writing
-	bool IsElementSet() const;
-	const IElementSet& ElementSet() const;
-	IElementSet& ElementSet();
-	bool IsPointSet() const;
-	const IPointSet& PointSet() const;
-	IPointSet& PointSet();	
+  // Access to element and point set we're reading or writing
+  bool IsElementSet() const;
+  const IElementSet& ElementSet() const;
+  IElementSet& ElementSet();
+  bool IsPointSet() const;
+  const IPointSet& PointSet() const;
+  IPointSet& PointSet();	
 
   void SetDelimiter(const QString &delimiter) { m_strExportDelimiter = delimiter; }
   void WriteHeader(bool bWrite) { m_bWriteHeader = bWrite; }
 
-	// Axis system
+  // Axis system
 //	TAxisSystem AxisSystem() const;
 
 protected:
-	virtual bool OnRead(TInputStream& stream);
-	virtual long SavedItems() const;
+  virtual bool OnRead(TInputStream& stream);
+  virtual long SavedItems() const;
 
-	bool ReadHeader();
+  bool ReadHeader();
 
-	// virtual pointset and elementset creation (for own types)
-	virtual CElementSet* OnCreateElementSet(const QString& sName, CFemAppModel& model, CQuantity::UNIT coordinate_unit, CQuantity::UNIT value_unit) const;
-	virtual CPointSet* OnCreatePointSet(const QString& sName, CFemAppModel& model, int nValueSetSize, IPointSet::DIMENSION dim, bool bCreateValueSetForCoordinates) const;
+  // virtual pointset and elementset creation (for own types)
+  virtual CElementSet* OnCreateElementSet(const QString& sName, CFemAppModel& model, CQuantity::UNIT coordinate_unit, CQuantity::UNIT value_unit) const;
+  virtual CPointSet* OnCreatePointSet(const QString& sName, CFemAppModel& model, int nValueSetSize, IPointSet::DIMENSION dim, bool bCreateValueSetForCoordinates) const;
 
-	// Parse events
-	bool OnResults(TInputStream& stream, const QString& sToken);
-	bool OnElementSet(TInputStream& stream, const QString& sToken);
-	bool OnSurface(TInputStream& stream, const QString& sToken);
-	bool OnPointSet(TInputStream& stream, const QString& sToken);
-	bool OnPoint_Set(TInputStream& stream, const QString& sToken);
-	bool OnProperty(TInputStream& stream, const QString& sToken);
-	bool OnElementTrailer(TInputStream& stream, const QString& sToken);
-	bool OnCoor(TInputStream& stream, const QString& sToken);
-	bool OnUnit(TInputStream& stream, const QString& sToken);
-	bool OnElement(TInputStream& stream, const QString& sToken);
-	bool OnPoints(TInputStream& stream, const QString& sToken);
-	bool OnDepletionTimes(TInputStream& stream, const QString& sToken);
-	bool OnEnd(TInputStream& stream, const QString& sToken);
-	
-	// Write functions
-	virtual bool OnWrite(TOutputStream& stream);
+  // Parse events
+  bool OnResults(TInputStream& stream, const QString& sToken);
+  bool OnElementSet(TInputStream& stream, const QString& sToken);
+  bool OnSurface(TInputStream& stream, const QString& sToken);
+  bool OnPointSet(TInputStream& stream, const QString& sToken);
+  bool OnPoint_Set(TInputStream& stream, const QString& sToken);
+  bool OnProperty(TInputStream& stream, const QString& sToken);
+  bool OnElementTrailer(TInputStream& stream, const QString& sToken);
+  bool OnCoor(TInputStream& stream, const QString& sToken);
+  bool OnUnit(TInputStream& stream, const QString& sToken);
+  bool OnElement(TInputStream& stream, const QString& sToken);
+  bool OnPoints(TInputStream& stream, const QString& sToken);
+  bool OnDepletionTimes(TInputStream& stream, const QString& sToken);
+  bool OnEnd(TInputStream& stream, const QString& sToken);
+  
+  // Write functions
+  virtual bool OnWrite(TOutputStream& stream);
 
-	const CModelBase& Model() const;
-	CModelBase& Model();
+  const CModelBase& Model() const;
+  CModelBase& Model();
 };
 
 

@@ -17,7 +17,7 @@
 IMPLEMENT_DYNAMIC(CGVTSettingsDlg, CDialog)
 
 CGVTSettingsDlg::CGVTSettingsDlg(CGVTSettings &settings, CWnd* pParent /*=NULL*/)
-	: CDialog(CGVTSettingsDlg::IDD, pParent),
+  : CDialog(CGVTSettingsDlg::IDD, pParent),
   m_SourceSettings(settings),
   m_GVTSettings(settings),
   m_strVelocityModel(settings.VelocityModelFile().toStdString().c_str()),
@@ -30,7 +30,7 @@ CGVTSettingsDlg::CGVTSettingsDlg(CGVTSettings &settings, CWnd* pParent /*=NULL*/
 , m_velocitySource(settings.velocitySource())
 {
   //{{AFX_DATA_INIT(CGVTSettingsDlg)
-	//}}AFX_DATA_INIT
+  //}}AFX_DATA_INIT
 }
 
 CGVTSettingsDlg::~CGVTSettingsDlg()
@@ -66,22 +66,22 @@ void CGVTSettingsDlg::SetupTimeLapseListCtrl()
 {
   CRect rect;
   m_lbTimeLapse.GetWindowRect(&rect);
-	m_lbTimeLapse.InsertColumn(0, _T("Scenario"), LVCFMT_LEFT,(rect.Width() - 3) * 0.20, 0);
-	m_lbTimeLapse.InsertColumn(1, _T("Depl. Stage 1"), LVCFMT_LEFT,(rect.Width() - 3) * 0.40, 1);
+  m_lbTimeLapse.InsertColumn(0, _T("Scenario"), LVCFMT_LEFT,(rect.Width() - 3) * 0.20, 0);
+  m_lbTimeLapse.InsertColumn(1, _T("Depl. Stage 1"), LVCFMT_LEFT,(rect.Width() - 3) * 0.40, 1);
   m_lbTimeLapse.InsertColumn(2, _T("Depl. Stage 2"), LVCFMT_LEFT,(rect.Width() - 3) * 0.40, 1);
   m_lbTimeLapse.SetComboColumns(1);
   m_lbTimeLapse.SetComboColumns(2);
 
   for(size_t i = 0; i < m_GVTSettings.TimeLapses().size(); ++i)
   {
-    new CTimeLapseListObject<CGVTSettings>(m_GVTSettings.Model(), m_lbTimeLapse, 
+  new CTimeLapseListObject<CGVTSettings>(m_GVTSettings.Model(), m_lbTimeLapse, 
       m_GVTSettings.TimeLapses()[i].first, m_GVTSettings.TimeLapses()[i].second,
       &m_GVTSettings);
   }
   if(m_lbTimeLapse.GetItemCount() == 0)
   {
-    CButton *pbut = (CButton*)GetDlgItem(IDC_REMOVE_TIMELAPSE_BUTTON);
-    pbut->EnableWindow(FALSE);
+  CButton *pbut = (CButton*)GetDlgItem(IDC_REMOVE_TIMELAPSE_BUTTON);
+  pbut->EnableWindow(FALSE);
   }
 }
 
@@ -89,28 +89,28 @@ void CGVTSettingsDlg::SetupParamsListCtrl()
 {
   CRect rect;
   m_lbParameters.GetWindowRect(&rect);
-	m_lbParameters.InsertColumn(0, _T("Parameter"), LVCFMT_LEFT,(rect.Width() - 3) * 0.50, 0);
-	m_lbParameters.InsertColumn(1, _T("Value"), LVCFMT_LEFT,(rect.Width() - 3) * 0.50, 1);
+  m_lbParameters.InsertColumn(0, _T("Parameter"), LVCFMT_LEFT,(rect.Width() - 3) * 0.50, 0);
+  m_lbParameters.InsertColumn(1, _T("Value"), LVCFMT_LEFT,(rect.Width() - 3) * 0.50, 1);
 
   std::map<CFormationBase*, CGVTVelocityModel*>::const_iterator it;
   it = m_GVTSettings.FormationToVelModelMp().begin();
   std::map<QString, double>::const_iterator itParams;
   for(itParams = it->second->Parameters().begin(); itParams != it->second->Parameters().end(); ++itParams)
   {
-    new CParametersListObject(m_lbParameters, it->second, itParams->first.toStdString().c_str());
+  new CParametersListObject(m_lbParameters, it->second, itParams->first.toStdString().c_str());
   }
 
 }
 
 void CGVTSettingsDlg::SetupFormationListCtrl()
 {
-	CRect rect;
-	m_lbFormations.GetWindowRect(&rect);
+  CRect rect;
+  m_lbFormations.GetWindowRect(&rect);
 
-	m_lbFormations.InsertColumn(0, _T("Formations"), LVCFMT_LEFT,(rect.Width() - 3) * 0.65, 0);
-	m_lbFormations.InsertColumn(1, _T("Velocity Model"), LVCFMT_LEFT,(rect.Width() - 3) * 0.35, 1);
+  m_lbFormations.InsertColumn(0, _T("Formations"), LVCFMT_LEFT,(rect.Width() - 3) * 0.65, 0);
+  m_lbFormations.InsertColumn(1, _T("Velocity Model"), LVCFMT_LEFT,(rect.Width() - 3) * 0.35, 1);
 
-	m_lbFormations.SetComboColumns(1);
+  m_lbFormations.SetComboColumns(1);
 
   std::map<CFormationBase*, CGVTVelocityModel*>::const_iterator it;
   for(it = m_GVTSettings.FormationToVelModelMp().begin(); it != m_GVTSettings.FormationToVelModelMp().end(); it++)
@@ -128,9 +128,9 @@ void CGVTSettingsDlg::DoDataExchange(CDataExchange* pDX)
 
   if(!pDX->m_bSaveAndValidate)
   {
-    GetDlgItem(IDC_GVT_PREFIX_EDIT)->GetWindowTextA(m_strOutputPrefix);
-    GetDlgItem(IDC_GVT_VELMODEL_EDIT)->GetWindowTextA(m_strVelocityModel);
-    GetDlgItem(IDC_GVT_OUTPUT_EDIT)->GetWindowTextA(m_strOutputDirectory);
+  GetDlgItem(IDC_GVT_PREFIX_EDIT)->GetWindowTextA(m_strOutputPrefix);
+  GetDlgItem(IDC_GVT_VELMODEL_EDIT)->GetWindowTextA(m_strVelocityModel);
+  GetDlgItem(IDC_GVT_OUTPUT_EDIT)->GetWindowTextA(m_strOutputDirectory);
   }
 
   //{{AFX_DATA(CGVTSettingsDlg)
@@ -148,21 +148,21 @@ void CGVTSettingsDlg::DoDataExchange(CDataExchange* pDX)
 
   if(pDX->m_bSaveAndValidate)
   {
-    m_GVTSettings.VelocityModelFile((LPCSTR) m_strVelocityModel);
-    m_GVTSettings.OutputPrefix((LPCSTR) m_strOutputPrefix);
-    m_GVTSettings.OutputDirectory((LPCSTR) m_strOutputDirectory);
-    m_GVTSettings.DeltaVp(m_ndvp == 1);
-    m_GVTSettings.Deltat(m_ndt == 1);
-    m_GVTSettings.ImportBack(m_nImportBack == 1);
-    m_GVTSettings.velocitySource(m_velocitySource);
-    if (m_GVTSettings.velocitySource() != m_velocitySource)
-    {
+  m_GVTSettings.VelocityModelFile((LPCSTR) m_strVelocityModel);
+  m_GVTSettings.OutputPrefix((LPCSTR) m_strOutputPrefix);
+  m_GVTSettings.OutputDirectory((LPCSTR) m_strOutputDirectory);
+  m_GVTSettings.DeltaVp(m_ndvp == 1);
+  m_GVTSettings.Deltat(m_ndt == 1);
+  m_GVTSettings.ImportBack(m_nImportBack == 1);
+  m_GVTSettings.velocitySource(m_velocitySource);
+  if (m_GVTSettings.velocitySource() != m_velocitySource)
+  {
       m_velocitySource = m_GVTSettings.velocitySource();
       UpdateData(false);
       DDX_Radio(pDX, IDC_GVT_VELOCITY_FROM_FILE, m_velocitySource);
       pDX->Fail();
-    }
-    m_SourceSettings = m_GVTSettings;
+  }
+  m_SourceSettings = m_GVTSettings;
   }
 }
 
@@ -178,9 +178,9 @@ BEGIN_MESSAGE_MAP(CGVTSettingsDlg, CDialog)
   ON_BN_CLICKED(IDC_GVT_DELETE_BUT, &CGVTSettingsDlg::OnBnClickedGvtDeleteBut)
   ON_BN_CLICKED(IDOK, &CGVTSettingsDlg::OnBnClickedOk)
   ON_BN_CLICKED(IDC_GVT_VELOCITY_FROM_FILE,
-    &CGVTSettingsDlg::OnBnClickedGvtVelocityFromFile)
+  &CGVTSettingsDlg::OnBnClickedGvtVelocityFromFile)
   ON_BN_CLICKED(IDC_GVT_VELOCITY_FROM_MATERIAL,
-    &CGVTSettingsDlg::OnBnClickedGvtVelocityFromMaterial)
+  &CGVTSettingsDlg::OnBnClickedGvtVelocityFromMaterial)
   ON_BN_CLICKED(IDC_GVT_DT_CHECK, &CGVTSettingsDlg::OnBnClickedGvtCheckbox)
   ON_BN_CLICKED(IDC_GVT_DVP_CHECK, &CGVTSettingsDlg::OnBnClickedGvtCheckbox)
   ON_BN_CLICKED(IDC_GVT_IMPORT_CHECK, &CGVTSettingsDlg::OnBnClickedGvtCheckbox)
@@ -195,14 +195,14 @@ void CGVTSettingsDlg::OnBnClickedDefineNew()
   CGVTSeismicGridDlg dlg(*grid, m_GVTSettings.Model());
   if(dlg.DoModal() != IDOK)
   {
-    m_GVTSettings.RemoveGrid(grid);
+  m_GVTSettings.RemoveGrid(grid);
   }
   else
   {
-    GetDlgItem(IDC_GVT_EDIT_BUT)->EnableWindow(TRUE);
-    GetDlgItem(IDC_GVT_DELETE_BUT)->EnableWindow(TRUE);
-    m_GVTSettings.CurrentGrid(m_GVTSettings.NoOfGrids() - 1);
-    UpdateData(FALSE);
+  GetDlgItem(IDC_GVT_EDIT_BUT)->EnableWindow(TRUE);
+  GetDlgItem(IDC_GVT_DELETE_BUT)->EnableWindow(TRUE);
+  m_GVTSettings.CurrentGrid(m_GVTSettings.NoOfGrids() - 1);
+  UpdateData(FALSE);
   }
 }
 
@@ -224,18 +224,18 @@ void CGVTSettingsDlg::UpdateSurveyBox()
   surveys->ResetContent();
   if(m_GVTSettings.NoOfGrids() == 0)
   {
-    surveys->AddString("<No Surveys>");
-    GetDlgItem(IDC_GVT_EDIT_BUT)->EnableWindow(FALSE);
-    GetDlgItem(IDC_GVT_DELETE_BUT)->EnableWindow(FALSE);
+  surveys->AddString("<No Surveys>");
+  GetDlgItem(IDC_GVT_EDIT_BUT)->EnableWindow(FALSE);
+  GetDlgItem(IDC_GVT_DELETE_BUT)->EnableWindow(FALSE);
   }
   for(int i = 0; i < m_GVTSettings.NoOfGrids(); ++i)
   {
-    surveys->AddString(m_GVTSettings.Grid(i).Name().toStdString().c_str());
+  surveys->AddString(m_GVTSettings.Grid(i).Name().toStdString().c_str());
   }
   if(m_GVTSettings.CurrentGrid() < 0)
-    surveys->SetCurSel(0);
+  surveys->SetCurSel(0);
   else
-    surveys->SetCurSel(m_GVTSettings.CurrentGrid());
+  surveys->SetCurSel(m_GVTSettings.CurrentGrid());
 }
 
 void CGVTSettingsDlg::OnCbnSelchangeGvtSurveyCombo()
@@ -247,38 +247,38 @@ void CGVTSettingsDlg::OnCbnSelchangeGvtSurveyCombo()
 void CGVTSettingsDlg::OnBnClickedGvtBrowseVelocity()
 {
   CString sFilter = "All Files (*.*)|*.*||";
-	CTnoFileDialog dlg(TRUE, 
-					NULL, 
-					NULL,
-					NULL,
-					sFilter);
+  CTnoFileDialog dlg(TRUE, 
+          NULL, 
+          NULL,
+          NULL,
+          sFilter);
   if(dlg.DoModal() == IDOK)
-	{
-    GetDlgItem(IDC_GVT_VELMODEL_EDIT)->SetWindowTextA(dlg.GetPathName());
+  {
+  GetDlgItem(IDC_GVT_VELMODEL_EDIT)->SetWindowTextA(dlg.GetPathName());
   }
 }
 
 void CGVTSettingsDlg::OnBnClickedGvtBrowseOutput()
 {
   CString strPath = BrowseFolder(GetSafeHwnd(), "Browse", (LPCSTR) m_strOutputDirectory).toStdString().c_str();
-	if(!strPath.IsEmpty() && DirExists((LPCSTR) strPath))
-	{
-    GetDlgItem(IDC_GVT_OUTPUT_EDIT)->SetWindowTextA(strPath);
-	}
+  if(!strPath.IsEmpty() && DirExists((LPCSTR) strPath))
+  {
+  GetDlgItem(IDC_GVT_OUTPUT_EDIT)->SetWindowTextA(strPath);
+  }
 }
 
 void CGVTSettingsDlg::OnNMClickGvtFormationList(NMHDR *pNMHDR, LRESULT *pResult)
 {
   POSITION pos = m_lbFormations.GetFirstSelectedItemPosition();
   if (pos == NULL)
-    return;
+  return;
   else
   {
      while (pos)
      {
-        int nItem = m_lbFormations.GetNextSelectedItem(pos);
-        SetParametersList(nItem);
-        // you could do your own processing on nItem here
+    int nItem = m_lbFormations.GetNextSelectedItem(pos);
+    SetParametersList(nItem);
+    // you could do your own processing on nItem here
      }
   }
   *pResult = 0;
@@ -293,14 +293,14 @@ void CGVTSettingsDlg::SetParametersList(int nItem)
   std::map<QString, double>::iterator itParams;
   for(itParams = pVelMod->Parameters().begin(); itParams != pVelMod->Parameters().end(); ++itParams)
   {
-    new CParametersListObject(m_lbParameters, pVelMod, itParams->first.toStdString().c_str());
+  new CParametersListObject(m_lbParameters, pVelMod, itParams->first.toStdString().c_str());
   }
 }
 
 void CGVTSettingsDlg::OnBnClickedAddTimelapseButton()
 {
   TDepletionStageEntry* pEntry = (TDepletionStageEntry*)(GVTSettings().Model().GraphEntry(MD_BASE_DEPLETION_STAGE));
-	TDepletionStageEntry::TNodeSet stDepletionStage = pEntry->EntryNodes();
+  TDepletionStageEntry::TNodeSet stDepletionStage = pEntry->EntryNodes();
   TDepletionStageEntry::TNodeSet::const_iterator it;
   it = stDepletionStage.begin();
   CDepletionStage *depl1 = (*it);
@@ -317,8 +317,8 @@ void CGVTSettingsDlg::OnBnClickedRemoveTimelapseButton()
   m_lbTimeLapse.DeleteItem(m_lbTimeLapse.GetItemCount()-1);
   if(m_lbTimeLapse.GetItemCount() == 0)
   {
-    CButton *pbut = (CButton*)GetDlgItem(IDC_REMOVE_TIMELAPSE_BUTTON);
-    pbut->EnableWindow(FALSE);
+  CButton *pbut = (CButton*)GetDlgItem(IDC_REMOVE_TIMELAPSE_BUTTON);
+  pbut->EnableWindow(FALSE);
   }
 }
 
@@ -328,8 +328,8 @@ void CGVTSettingsDlg::OnBnClickedOk()
   /*
   if(m_strOutputPrefix == "")
   {
-    _m()->msg("The 'Output prefix' can not be empty");
-    return;
+  _m()->msg("The 'Output prefix' can not be empty");
+  return;
   }
   */
   OnOK();
@@ -398,11 +398,11 @@ void CGVTSettingsDlg::CTimeLapseListObject::SetTime2(const CString &strDepl)
 CDepletionStage *CGVTSettingsDlg::CTimeLapseListObject::Update(const CString &strDepl)
 {
   TDepletionStageEntry* pEntry = (TDepletionStageEntry*)(m_GVTSettings->Model().GraphEntry(MD_BASE_DEPLETION_STAGE));
-	TDepletionStageEntry::TNodeSet stDepletionStage = pEntry->EntryNodes();
+  TDepletionStageEntry::TNodeSet stDepletionStage = pEntry->EntryNodes();
   TDepletionStageEntry::TNodeSet::const_iterator it;
   for(it = stDepletionStage.begin(); it != stDepletionStage.end(); ++it)
   {
-    if((*it)->Name() == strDepl)
+  if((*it)->Name() == strDepl)
       return *it;
   }
   assert(FALSE);
@@ -421,17 +421,17 @@ CGVTSettingsDlg::CTimeLapseSubObject::CTimeLapseSubObject(CTimeLapseListObject &
 QString CGVTSettingsDlg::CTimeLapseSubObject::Text() const
 {
   if(Index() == 1)
-    return m_parent.Time1()->Name();
+  return m_parent.Time1()->Name();
   else
-    return m_parent.Time2()->Name();
+  return m_parent.Time2()->Name();
 }
 
 BOOL CGVTSettingsDlg::CTimeLapseSubObject::EditText(const QString& strText)
 {
   if(Index() == 1)
-    m_parent.SetTime1(strText);
+  m_parent.SetTime1(strText);
   else
-    m_parent.SetTime2(strText);
+  m_parent.SetTime2(strText);
   return TRUE;
 }
 
@@ -509,7 +509,7 @@ BOOL CGVTSettingsDlg::CParamSubObject::CanEditText() const
 // CFormationListObject implementation
 // *******************************************************************
 CGVTSettingsDlg::CFormationListObject::CFormationListObject(CListCtrl& ctrl, CFormationBase *formation, 
-                                                            CGVTVelocityModel *velmodel, CGVTSettingsDlg &parentDlg)
+                              CGVTVelocityModel *velmodel, CGVTSettingsDlg &parentDlg)
   :IListObject(ctrl), 
    m_Formation(formation), 
    m_VelModel(velmodel),
@@ -562,21 +562,21 @@ QString CGVTSettingsDlg::CVelModelSubObject::Text() const
   switch(m_parent.VelocityModel()->ModelType())
   {
   case RFactor:
-    return "R-Factor";
+  return "R-Factor";
   case SFactor:
-    return "S-Factor";
+  return "S-Factor";
   default:
-    assert(FALSE);
+  assert(FALSE);
   }
-	return "";
+  return "";
 }
 
 BOOL CGVTSettingsDlg::CVelModelSubObject::EditText(const QString& strText)
 {
   if(strText == "R-Factor")
-    m_parent.SetVelocityModel(RFactor);
+  m_parent.SetVelocityModel(RFactor);
   else if(strText == "S-Factor")
-    m_parent.SetVelocityModel(SFactor);
+  m_parent.SetVelocityModel(SFactor);
 
   return TRUE;
 
@@ -584,7 +584,7 @@ BOOL CGVTSettingsDlg::CVelModelSubObject::EditText(const QString& strText)
 
 BOOL CGVTSettingsDlg::CVelModelSubObject::CanEditText() const
 {
-	return TRUE;
+  return TRUE;
 }
 
 // ******************************************************************
@@ -592,8 +592,8 @@ BOOL CGVTSettingsDlg::CVelModelSubObject::CanEditText() const
 // ******************************************************************
 void CGVTSettingsDlg::CFormationComboListCtrl::OnGetComboItems(int iRowIndex, int iColumnIndex, CStringList& lstItems)
 {
-	lstItems.AddTail(_T("R-Factor"));
-	lstItems.AddTail(_T("S-Factor"));
+  lstItems.AddTail(_T("R-Factor"));
+  lstItems.AddTail(_T("S-Factor"));
 }
 
 // ******************************************************************
@@ -607,62 +607,62 @@ void CGVTSettingsDlg::CTimeLapseComboListCtrl::OnGetComboItems(int iRowIndex, in
 {
   const CFemAppModel &model = ((CGVTSettingsDlg*)GetParent())->GVTSettings().Model();
   TDepletionStageEntry* pEntry = (TDepletionStageEntry*)(model.GraphEntry(MD_BASE_DEPLETION_STAGE));
-	TDepletionStageEntry::TNodeSet stDepletionStage = pEntry->EntryNodes();
+  TDepletionStageEntry::TNodeSet stDepletionStage = pEntry->EntryNodes();
   TDepletionStageEntry::TNodeSet::const_iterator it;
   for(it = stDepletionStage.begin(); it != stDepletionStage.end(); ++it)
   {
-    lstItems.AddTail((*it)->Name());
+  lstItems.AddTail((*it)->Name());
   }
-	//m_nTimeSteps = stDepletionStage.size();
+  //m_nTimeSteps = stDepletionStage.size();
 }*/
 
 bool CGVTSettingsDlg::allMaterialModelsHaveVelocityP() const
 {
   const TFormationBaseEntry* formationBaseEntry =
-    dynamic_cast <const TFormationBaseEntry*> (
+  dynamic_cast <const TFormationBaseEntry*> (
       m_GVTSettings.Model().GraphEntry(MD_BASE_FORMATION));
   bool allMaterialModelsHaveVelocityP = true;
 
   for (TFormationBaseEntry::TNodeSet::const_iterator formation =
-    formationBaseEntry->EntryNodes().begin();
-    formation != formationBaseEntry->EntryNodes().end(); ++formation)
+  formationBaseEntry->EntryNodes().begin();
+  formation != formationBaseEntry->EntryNodes().end(); ++formation)
   {
-    const CDepletionStageEntry* depletionStageEntry =
+  const CDepletionStageEntry* depletionStageEntry =
       dynamic_cast <const CDepletionStageEntry*> (
-        m_GVTSettings.Model().GraphEntry(MD_BASE_DEPLETION_STAGE));
+    m_GVTSettings.Model().GraphEntry(MD_BASE_DEPLETION_STAGE));
 
-    for (CDepletionStageEntry::const_iterator stage =
+  for (CDepletionStageEntry::const_iterator stage =
       depletionStageEntry->begin(); stage != depletionStageEntry->end();
       ++stage)
-    {
+  {
       if ((*formation)->ConnectedMaterial((*stage).InitialStage()) != 0)
       {
-        CMaterialServer& materialServer = (*formation)->Material(*stage);
-        IMaterialRock* materialRock = materialServer.LibraryMaterial();
-        bool foundVelocityP = false;
+    CMaterialServer& materialServer = (*formation)->Material(*stage);
+    IMaterialRock* materialRock = materialServer.LibraryMaterial();
+    bool foundVelocityP = false;
 
-        if (materialRock != 0)
-        {
+    if (materialRock != 0)
+    {
           CLibraryMaterial& libraryMaterial = materialRock->LibraryMaterial();
 
           for (size_t i = 0; i < libraryMaterial.ParameterSize(); ++i)
           {
-            if (libraryMaterial.Parameter(i).ValueTypeID() ==
+      if (libraryMaterial.Parameter(i).ValueTypeID() ==
               IDT_VALUETYPE_VELOCITYP)
-            {
+      {
               foundVelocityP = true;
-            }
+      }
           }
-        }
+    }
 
-        allMaterialModelsHaveVelocityP =
+    allMaterialModelsHaveVelocityP =
           allMaterialModelsHaveVelocityP && foundVelocityP;
       }
       else
       {
-        allMaterialModelsHaveVelocityP = false;
+    allMaterialModelsHaveVelocityP = false;
       }
-    }
+  }
   }
 
   return allMaterialModelsHaveVelocityP;
@@ -671,11 +671,11 @@ bool CGVTSettingsDlg::allMaterialModelsHaveVelocityP() const
 void CGVTSettingsDlg::setupVelocityP()
 {
   GetDlgItem(IDC_GVT_VELMODEL_EDIT)->
-    EnableWindow(m_GVTSettings.velocitySource() == GVT::VELOCITY_FROM_FILE);
+  EnableWindow(m_GVTSettings.velocitySource() == GVT::VELOCITY_FROM_FILE);
   GetDlgItem(IDC_GVT_BROWSE_VELOCITY)->
-    EnableWindow(m_GVTSettings.velocitySource() == GVT::VELOCITY_FROM_FILE);
+  EnableWindow(m_GVTSettings.velocitySource() == GVT::VELOCITY_FROM_FILE);
   GetDlgItem(IDC_GVT_VELOCITY_FROM_MATERIAL)->
-    EnableWindow(allMaterialModelsHaveVelocityP());
+  EnableWindow(allMaterialModelsHaveVelocityP());
 }
 
 

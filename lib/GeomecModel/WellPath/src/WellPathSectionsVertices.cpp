@@ -34,19 +34,19 @@ TWellPathSectionsVertices CWellPathSectionsVertices::createElementVertices(
   TWellPathSectionsVertices wellPathSectionsVertices;
 
   for (TWellPathSections::const_iterator
-    wellPathSection = wellPathSections.wellPathSections().begin();
-    wellPathSection != wellPathSections.wellPathSections().end();
-    ++wellPathSection)
+  wellPathSection = wellPathSections.wellPathSections().begin();
+  wellPathSection != wellPathSections.wellPathSections().end();
+  ++wellPathSection)
   {
-    TWellPathSectionVertices wellPathSectionVertices;
+  TWellPathSectionVertices wellPathSectionVertices;
 
-    for (TWellPathSection::const_iterator element = (*wellPathSection).begin();
+  for (TWellPathSection::const_iterator element = (*wellPathSection).begin();
       element != (*wellPathSection).end(); ++element)
-    {
+  {
       createElementVertex(wellPathSectionVertices, (*element)->element());
-    }
+  }
 
-    wellPathSectionsVertices.push_back(wellPathSectionVertices);
+  wellPathSectionsVertices.push_back(wellPathSectionVertices);
   }
 
   return wellPathSectionsVertices;
@@ -60,9 +60,9 @@ std::pair <TWellPathSectionVertices::iterator, bool> localCreateElementVertex(
   const geo::IElement& element, size_t index0, size_t index1)
 {
   QSharedPointer <CElementVertex> elementVertex(new CElementVertex(element,
-    element.PointIndex(index0), element.PointIndex(index1)));
+  element.PointIndex(index0), element.PointIndex(index1)));
   std::pair <TWellPathSectionVertices::iterator, bool> inserted =
-    wellPathSectionVertices.insert(elementVertex);
+  wellPathSectionVertices.insert(elementVertex);
 
   return inserted;
 }
@@ -76,16 +76,16 @@ void CWellPathSectionsVertices::createElementVertex(
   const geo::IElement& element)
 {
   std::pair <TWellPathSectionVertices::iterator, bool> elementVertex0 =
-    localCreateElementVertex(wellPathSectionVertices, element,
+  localCreateElementVertex(wellPathSectionVertices, element,
       0, 0 + INDEX_OF_OPPOSITE_POINT);
   std::pair <TWellPathSectionVertices::iterator, bool> elementVertex1 =
-    localCreateElementVertex(wellPathSectionVertices, element,
+  localCreateElementVertex(wellPathSectionVertices, element,
       1, 1 + INDEX_OF_OPPOSITE_POINT);
   std::pair <TWellPathSectionVertices::iterator, bool> elementVertex2 =
-    localCreateElementVertex(wellPathSectionVertices, element,
+  localCreateElementVertex(wellPathSectionVertices, element,
       2, 2 + INDEX_OF_OPPOSITE_POINT);
   std::pair <TWellPathSectionVertices::iterator, bool> elementVertex3 =
-    localCreateElementVertex(wellPathSectionVertices, element,
+  localCreateElementVertex(wellPathSectionVertices, element,
       3, 3 + INDEX_OF_OPPOSITE_POINT);
 
   // link

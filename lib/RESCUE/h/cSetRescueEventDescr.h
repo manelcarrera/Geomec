@@ -1,10 +1,10 @@
 /*************************************************************************
 
-        cSetRescueEventDescr.h
+    cSetRescueEventDescr.h
 
  Keeps a list of pointers to some RescueEventDescr.
 
-        Rod Hanks               January 18th, 1995  /  August 1996
+    Rod Hanks               January 18th, 1995  /  August 1996
 
 ****************************************************************************/
 

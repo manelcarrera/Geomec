@@ -23,10 +23,10 @@ void ProcessManager::RegisterProcess(const QString& program, bool connectFinishe
 {
   if (!m_processes.contains(program))
   {
-    QProcess *process = new QProcess(this);
-    if (connectFinished)
+  QProcess *process = new QProcess(this);
+  if (connectFinished)
       connect(process, QOverload<int>::of(&QProcess::finished), this, &ProcessManager::processFinished);
-    m_processes.insert(program, process);
+  m_processes.insert(program, process);
   }
 }
 
@@ -36,30 +36,30 @@ void ProcessManager::handleCommand(const QString& message)
   QStringList l = message.split(' ');
   if (l.size() == 1)
   {
-    QString command = l[0];
+  QString command = l[0];
 
-    if (command == "quit")
+  if (command == "quit")
       emit quit();
   }
   else if (l.size() > 1)
   {
-    QString command = l[0];
-    QString service = l[1];
+  QString command = l[0];
+  QString service = l[1];
 
-    if (command == "register")
-    {
+  if (command == "register")
+  {
       // We should check here if we have registered this as process already
       // Let's assume we didn't for now -- that means, we expect exactly one "register" per process
       // Later on we want more flexibility here, with processes attaching and detaching, exposing different interfaces/services, etc
 
       emit registerChannel(service);
-    }
-    else if (command == "unregister")
-    {
+  }
+  else if (command == "unregister")
+  {
       // We should have similar checks as mentioned above
 
       emit unregisterChannel(service);
-    }
+  }
   }
 }
 
@@ -68,15 +68,15 @@ void ProcessManager::start()
 {
   for (QHash<QString, QProcess *>::iterator it = m_processes.begin(); it != m_processes.end(); ++it)
   {
-    QStringList l = it.key().split(':');
-    if (l.size() == 2)
-    {
+  QStringList l = it.key().split(':');
+  if (l.size() == 2)
+  {
       QStringList args = getArgs(m_pid);
       args.append(QString("name=%1").arg(l[1]));
 
       it.value()->start(l[0], args);
-    }
-    else
+  }
+  else
       it.value()->start(it.key(), getArgs(m_pid));
   }
 }
@@ -85,7 +85,7 @@ void ProcessManager::stop()
 {
   for (QHash<QString, QProcess *>::iterator it = m_processes.begin(); it != m_processes.end(); ++it)
   {
-    it.value()->kill();
+  it.value()->kill();
   }
 
   emit quit();

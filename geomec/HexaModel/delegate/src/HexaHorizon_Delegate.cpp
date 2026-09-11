@@ -18,14 +18,14 @@ bool CHexaHorizon_Delegate::Attributes()
 {
   if (C3DHorizon_Delegate::Attributes())
   {
-    if (!m_hexaHorizon->IsLinkedTo(
+  if (!m_hexaHorizon->IsLinkedTo(
       *m_hexaHorizon->Model().GraphEntry(MD_HEXA_HORIZON)))
-    {
+  {
       m_hexaHorizon->LinkTo(
-        *m_hexaHorizon->Model().GraphEntry(MD_HEXA_HORIZON));
-    }
+    *m_hexaHorizon->Model().GraphEntry(MD_HEXA_HORIZON));
+  }
 
-    return true;
+  return true;
   }
 
   return false;
@@ -35,21 +35,21 @@ void CHexaHorizon_Delegate::AppendContextMenu(CContextMenuInvoker& invoker)
 {
   if (m_hexaHorizon->UpperFormation())
   {
-    invoker.AddCommand(_T("Move &up"),
+  invoker.AddCommand(_T("Move &up"),
       *(new CSingleCommandTemplate <CHexaHorizon> (*m_hexaHorizon,
-        &CHexaHorizon::MoveUp, &CHexaHorizon::CanMove)));
+    &CHexaHorizon::MoveUp, &CHexaHorizon::CanMove)));
   }
 
   if (m_hexaHorizon->LowerFormation())
   {
-    invoker.AddCommand(_T("Move &down"),
+  invoker.AddCommand(_T("Move &down"),
       *(new CSingleCommandTemplate <CHexaHorizon> (*m_hexaHorizon,
-        &CHexaHorizon::MoveDown, &CHexaHorizon::CanMove)));
+    &CHexaHorizon::MoveDown, &CHexaHorizon::CanMove)));
   }
 
   if (m_hexaHorizon->UpperFormation() || m_hexaHorizon->LowerFormation())
   {
-    invoker.AddSeparator();
+  invoker.AddSeparator();
   }
 
   C3DHorizon_Delegate::AppendContextMenu(invoker);
@@ -68,16 +68,16 @@ bool CHexaHorizon_Delegate::Destroy()
 
   if (pUpper || pLower)
   {
-    CHorizonDelDlg dlg(pLower, pUpper);
+  CHorizonDelDlg dlg(pLower, pUpper);
 
-    if (dlg.DoModal() == IDOK)
-    {
+  if (dlg.DoModal() == IDOK)
+  {
       selection = &dlg.Selection();
-    }
-    else
-    {
+  }
+  else
+  {
       return true;
-    }
+  }
   }
 
   m_hexaHorizon->LocalDestroy(pUpper, pLower, selection);
@@ -98,10 +98,10 @@ void CHexaHorizonEntry_Delegate::AppendContextMenu(
   // Export all ...
 
   typedef CSingleCommandTemplate <CHexaHorizonEntry_Delegate>
-    THexaHorizonEntryCommand_Delegate;
+  THexaHorizonEntryCommand_Delegate;
 
   invoker.AddCommand(_T("Create horizon"),
-    *(new THexaHorizonEntryCommand_Delegate(*this,
+  *(new THexaHorizonEntryCommand_Delegate(*this,
       &CHexaHorizonEntry_Delegate::CreateHorizon,
       &CHexaHorizonEntry_Delegate::CanCreateHorizon)));
 }
@@ -111,35 +111,35 @@ void CHexaHorizonEntry_Delegate::CreateHorizon()
   QString name;
 
   name = QString("New Horizon %1").arg(
-    m_hexaHorizonEntry->GraphEntryNodes().size() + 1);
+  m_hexaHorizonEntry->GraphEntryNodes().size() + 1);
 
   CHexaHorizon *pHorizon =
-    new CHexaHorizon(name, 0, m_hexaHorizonEntry->Model(), FALSE);
+  new CHexaHorizon(name, 0, m_hexaHorizonEntry->Model(), FALSE);
   CHexaHorizon_Delegate *pHorizon_Delegate =
-    new CHexaHorizon_Delegate(pHorizon);
+  new CHexaHorizon_Delegate(pHorizon);
 
   if (!pHorizon_Delegate->Attributes())
   {
-    delete pHorizon_Delegate;
-    delete pHorizon;
+  delete pHorizon_Delegate;
+  delete pHorizon;
   }
   else
   {
-	  pHorizon->LinkToEntry();
-	  pHorizon->AttachToEntry();
+    pHorizon->LinkToEntry();
+    pHorizon->AttachToEntry();
 
-    if (pHorizon->SurfaceSize() == 1 && pHorizon->Name() == name)
-    {
+  if (pHorizon->SurfaceSize() == 1 && pHorizon->Name() == name)
+  {
       // Take over more meaningfull name than default name
       pHorizon->Name(pHorizon->Surface(0).Name());
-    }
+  }
 
-    m_hexaHorizonEntry->InsertHorizon(*pHorizon);
+  m_hexaHorizonEntry->InsertHorizon(*pHorizon);
   }
 }
 
 bool CHexaHorizonEntry_Delegate::CanCreateHorizon() const
 {
   return !(static_cast <const CModelBase&> (
-    m_hexaHorizonEntry->Model())).BranchState().IsBranch();
+  m_hexaHorizonEntry->Model())).BranchState().IsBranch();
 }

@@ -79,7 +79,7 @@ BOOL CExperimentDataLimits::OnInitDialog()
   CListBox *pListBox= (CListBox *)GetDlgItem(IDC_LIST_EXPERIMENT);
   for (size_t ii= 0; ii< m_vcExperimentData.size(); ++ii)
   {
-    pListBox->AddString(m_vcExperimentData[ii].GetLabel());
+  pListBox->AddString(m_vcExperimentData[ii].GetLabel());
   }
 
   // user friendliness
@@ -87,31 +87,31 @@ BOOL CExperimentDataLimits::OnInitDialog()
   //
   if (m_vcExperimentData.size() == 1)
   {
-    pListBox->SetCurSel(0);
-    OnSelchangeExperiments();
+  pListBox->SetCurSel(0);
+  OnSelchangeExperiments();
   }
   else
   {
-    // user friendliness
-    // if there are items selected for display in graph, select one
-    //
-    for (int ii= 0, iSelected= -1
-        ; ii< m_vcExperimentData.size() && iSelected < 0
-        ; ++ii)
-    {
+  // user friendliness
+  // if there are items selected for display in graph, select one
+  //
+  for (int ii= 0, iSelected= -1
+    ; ii< m_vcExperimentData.size() && iSelected < 0
+    ; ++ii)
+  {
       if (m_vcExperimentData[ii].Selected())
       {
-        iSelected= ii;
-        pListBox->SetCurSel(ii);
-        OnSelchangeExperiments();
-        break;
+    iSelected= ii;
+    pListBox->SetCurSel(ii);
+    OnSelchangeExperiments();
+    break;
       }
       else
       {
-        GetDlgItem(IDC_SLIDER_LIMIT_1)->EnableWindow(FALSE);
-        GetDlgItem(IDC_SLIDER_LIMIT_2)->EnableWindow(FALSE);
+    GetDlgItem(IDC_SLIDER_LIMIT_1)->EnableWindow(FALSE);
+    GetDlgItem(IDC_SLIDER_LIMIT_2)->EnableWindow(FALSE);
       }
-    }
+  }
   }
 
   OnSliderReleased(NULL,NULL);
@@ -122,7 +122,7 @@ void CExperimentDataLimits::OnSliderReleased(NMHDR* pNMHDR, LRESULT* pResult)
 {
   for (size_t s = 0; s < m_vcExperimentData.size(); ++s)
   {
-    m_iInitialLowerLimit[s] = std::min(
+  m_iInitialLowerLimit[s] = std::min(
       100 * m_vcExperimentData[s].getLowerLimitFraction(),
       100 * m_vcExperimentData[s].getUpperLimitFraction());
   }
@@ -139,9 +139,9 @@ void CExperimentDataLimits::OnSliderReleased(NMHDR* pNMHDR, LRESULT* pResult)
 
   if (m_iExperimentDataIndex != LB_ERR)
   {
-    m_vcExperimentData[m_iExperimentDataIndex].
+  m_vcExperimentData[m_iExperimentDataIndex].
       setLowerLimitFraction(m_iLowerLimit/100.0);
-    m_vcExperimentData[m_iExperimentDataIndex].
+  m_vcExperimentData[m_iExperimentDataIndex].
       setUpperLimitFraction(m_iUpperLimit/100.0);
   }
   
@@ -156,10 +156,10 @@ void CExperimentDataLimits::OnSliderReleased(NMHDR* pNMHDR, LRESULT* pResult)
   // This redraws the graph
   if (m_pTabExperiment)
   {
-    m_pTabExperiment->setInitialLowerLimit(
+  m_pTabExperiment->setInitialLowerLimit(
       true, m_iInitialLowerLimit);
-    m_pTabExperiment->OnFileListUpdated();
-    m_pTabExperiment->setInitialLowerLimit(
+  m_pTabExperiment->OnFileListUpdated();
+  m_pTabExperiment->setInitialLowerLimit(
       false, m_iInitialLowerLimit);
   }
 }
@@ -175,12 +175,12 @@ void CExperimentDataLimits::OnHScroll(unsigned int nSBCode, unsigned int nPos, C
 
   if ((CSliderCtrl *)GetDlgItem(IDC_SLIDER_LIMIT_1) == pSlide)
   {
-    SetDlgItemText(IDC_EDIT_LIMIT_1_VALUE, strText);
+  SetDlgItemText(IDC_EDIT_LIMIT_1_VALUE, strText);
   }
   else
   if ((CSliderCtrl *)GetDlgItem(IDC_SLIDER_LIMIT_2) == pSlide)
   {
-    SetDlgItemText(IDC_EDIT_LIMIT_2_VALUE, strText);
+  SetDlgItemText(IDC_EDIT_LIMIT_2_VALUE, strText);
   }
 }
 
@@ -190,35 +190,35 @@ void CExperimentDataLimits::OnSelchangeExperiments()
   m_iExperimentDataIndex = pListBox->GetCurSel();
   if (m_iExperimentDataIndex != LB_ERR)
   {
-    CSliderCtrl *s1= (CSliderCtrl *)GetDlgItem(IDC_SLIDER_LIMIT_1);
-    CSliderCtrl *s2= (CSliderCtrl *)GetDlgItem(IDC_SLIDER_LIMIT_2);
-    s1->EnableWindow(TRUE);
-    s2->EnableWindow(TRUE);
+  CSliderCtrl *s1= (CSliderCtrl *)GetDlgItem(IDC_SLIDER_LIMIT_1);
+  CSliderCtrl *s2= (CSliderCtrl *)GetDlgItem(IDC_SLIDER_LIMIT_2);
+  s1->EnableWindow(TRUE);
+  s2->EnableWindow(TRUE);
 
-    // Attempt to be user friendly
-    //
-    if (s1->GetPos() <= s2->GetPos())
-    {
+  // Attempt to be user friendly
+  //
+  if (s1->GetPos() <= s2->GetPos())
+  {
       s1->SetPos((int)(
-        100*m_vcExperimentData[m_iExperimentDataIndex].getLowerLimitFraction()));
+    100*m_vcExperimentData[m_iExperimentDataIndex].getLowerLimitFraction()));
       s2->SetPos((int)(
-        100*m_vcExperimentData[m_iExperimentDataIndex].getUpperLimitFraction()));
-    }
-    else
-    {
+    100*m_vcExperimentData[m_iExperimentDataIndex].getUpperLimitFraction()));
+  }
+  else
+  {
       s1->SetPos((int)(
-        100*m_vcExperimentData[m_iExperimentDataIndex].getUpperLimitFraction()));
+    100*m_vcExperimentData[m_iExperimentDataIndex].getUpperLimitFraction()));
       s2->SetPos((int)(
-        100*m_vcExperimentData[m_iExperimentDataIndex].getLowerLimitFraction()));
-    }
-    OnSliderReleased(NULL,NULL);
-    OnHScroll(0,0,(CScrollBar *)s1);
-    OnHScroll(0,0,(CScrollBar *)s2);
+    100*m_vcExperimentData[m_iExperimentDataIndex].getLowerLimitFraction()));
+  }
+  OnSliderReleased(NULL,NULL);
+  OnHScroll(0,0,(CScrollBar *)s1);
+  OnHScroll(0,0,(CScrollBar *)s2);
   }
   else // I don't expect this to happen ...
   {
-    GetDlgItem(IDC_SLIDER_LIMIT_1)->EnableWindow(FALSE);
-    GetDlgItem(IDC_SLIDER_LIMIT_2)->EnableWindow(FALSE);
+  GetDlgItem(IDC_SLIDER_LIMIT_1)->EnableWindow(FALSE);
+  GetDlgItem(IDC_SLIDER_LIMIT_2)->EnableWindow(FALSE);
   }
 }
 

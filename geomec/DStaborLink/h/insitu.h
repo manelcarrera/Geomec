@@ -15,50 +15,50 @@
 class CInSitu : public COleDispatchDriver
 {
 public:
-	CInSitu() {}		// Calls COleDispatchDriver default constructor
-	CInSitu(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
-	CInSitu(const CInSitu& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
+  CInSitu() {}		// Calls COleDispatchDriver default constructor
+  CInSitu(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
+  CInSitu(const CInSitu& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
 // Attributes
 public:
-	double GetPore();
-	void SetPore(double);
-	double GetVertical();
-	void SetVertical(double);
-	double GetMinimum();
-	void SetMinimum(double);
-	double GetMaximum();
-	void SetMaximum(double);
-	double GetThermalInsituGradient();
-	void SetThermalInsituGradient(double);
-	double GetMudTemperatureGradient();
-	void SetMudTemperatureGradient(double);
-	double GetSurfaceRefTemperature();
-	void SetSurfaceRefTemperature(double);
-	double GetAzimuth();
-	void SetAzimuth(double);
-	long GetStressDefinition();
-	void SetStressDefinition(long);
-	double GetDirectNorthStress();
-	void SetDirectNorthStress(double);
-	double GetDirectEastStress();
-	void SetDirectEastStress(double);
-	double GetDirectDepthStress();
-	void SetDirectDepthStress(double);
-	double GetNorthEastShearStress();
-	void SetNorthEastShearStress(double);
-	double GetNorthDepthShearStress();
-	void SetNorthDepthShearStress(double);
-	double GetEastDepthShearStress();
-	void SetEastDepthShearStress(double);
-	double GetGeneralPorePressure();
-	void SetGeneralPorePressure(double);
+  double GetPore();
+  void SetPore(double);
+  double GetVertical();
+  void SetVertical(double);
+  double GetMinimum();
+  void SetMinimum(double);
+  double GetMaximum();
+  void SetMaximum(double);
+  double GetThermalInsituGradient();
+  void SetThermalInsituGradient(double);
+  double GetMudTemperatureGradient();
+  void SetMudTemperatureGradient(double);
+  double GetSurfaceRefTemperature();
+  void SetSurfaceRefTemperature(double);
+  double GetAzimuth();
+  void SetAzimuth(double);
+  long GetStressDefinition();
+  void SetStressDefinition(long);
+  double GetDirectNorthStress();
+  void SetDirectNorthStress(double);
+  double GetDirectEastStress();
+  void SetDirectEastStress(double);
+  double GetDirectDepthStress();
+  void SetDirectDepthStress(double);
+  double GetNorthEastShearStress();
+  void SetNorthEastShearStress(double);
+  double GetNorthDepthShearStress();
+  void SetNorthDepthShearStress(double);
+  double GetEastDepthShearStress();
+  void SetEastDepthShearStress(double);
+  double GetGeneralPorePressure();
+  void SetGeneralPorePressure(double);
 
 // Operations
 public:
-	BOOL GetPrincipalStress(BOOL blnOrder, double* MaxStress, VARIANT* MaxStressDirection, double* MidStress, VARIANT* MidStressDirection, double* MinStress, VARIANT* MinStressDirection);
-	BOOL TransferGeneral();
-	BOOL TransferVertical();
+  BOOL GetPrincipalStress(BOOL blnOrder, double* MaxStress, VARIANT* MaxStressDirection, double* MidStress, VARIANT* MidStressDirection, double* MinStress, VARIANT* MinStressDirection);
+  BOOL TransferGeneral();
+  BOOL TransferVertical();
 };
 
 //{{AFX_INSERT_LOCATION}}

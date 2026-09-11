@@ -31,45 +31,45 @@ namespace geo {
 class GEOMETRY_EXPORT  CConus : public IConus  
 {
 public:
-	CConus(	const geo::IPoint& basepoint,
-			const geo::IVector& direction,
-			const double& radius,
-			const double& height,
-			const double& ratio);
-	
-	CConus(const IConus& right);
-	CConus&		operator=(const IConus& right);
+  CConus(	const geo::IPoint& basepoint,
+      const geo::IVector& direction,
+      const double& radius,
+      const double& height,
+      const double& ratio);
+  
+  CConus(const IConus& right);
+  CConus&		operator=(const IConus& right);
 
-	void Change(	const geo::IPoint& basepoint,
-			const geo::IVector& direction,
-			const double& radius,
-			const double& height,
-			const double& ratio);
+  void Change(	const geo::IPoint& basepoint,
+      const geo::IVector& direction,
+      const double& radius,
+      const double& height,
+      const double& ratio);
 
-	virtual ~CConus();
+  virtual ~CConus();
 
-	//IObject interface
-	virtual void Rotate(const IVector &vec, const double &dAngleDeg);
-	virtual void Move(const IVector &vec);
-	virtual void Transform(const IMatrix &matrix);
-	virtual void AssertValid() const;
-	virtual bool Empty() const;
-	virtual CPoint Min() const;
-	virtual CPoint Max() const;
+  //IObject interface
+  virtual void Rotate(const IVector &vec, const double &dAngleDeg);
+  virtual void Move(const IVector &vec);
+  virtual void Transform(const IMatrix &matrix);
+  virtual void AssertValid() const;
+  virtual bool Empty() const;
+  virtual CPoint Min() const;
+  virtual CPoint Max() const;
 
-	//IConus interface
-	virtual const geo::IPoint&  BasePoint() const;
-	virtual const geo::IVector& Direction() const;
-	virtual const double& Radius() const;
-	virtual const double& Height() const;
-	virtual const double& Ratio() const;
+  //IConus interface
+  virtual const geo::IPoint&  BasePoint() const;
+  virtual const geo::IVector& Direction() const;
+  virtual const double& Radius() const;
+  virtual const double& Height() const;
+  virtual const double& Ratio() const;
 
 private:
-	geo::CPoint m_BasePoint;
-	geo::CVector m_Direction;
-	double m_Radius;
-	double m_Height;
-	double m_Ratio;
+  geo::CPoint m_BasePoint;
+  geo::CVector m_Direction;
+  double m_Radius;
+  double m_Height;
+  double m_Ratio;
 
 };
 

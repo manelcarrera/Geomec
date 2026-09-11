@@ -37,7 +37,7 @@ template <unsigned int uTypeId, unsigned int uIconId, unsigned int uValueNameId,
 {
 public:
   CValueTypeTemp_Delegate(
-    CValueTypeTemp <uTypeId, uIconId, uValueNameId, uExportId> *
+  CValueTypeTemp <uTypeId, uIconId, uValueNameId, uExportId> *
       valueTypeTemp);
 
 private:
@@ -47,23 +47,23 @@ private:
   CValueTypeTemp <uTypeId, uIconId, uValueNameId, uExportId> * m_valueTypeTemp;
 
   typedef CValueTypeTemp <uTypeId, uIconId, uValueNameId, uExportId>
-    CValueTypeTempTemplate;
+  CValueTypeTempTemplate;
   typedef CValueTypeTemp_Delegate <uTypeId, uIconId, uValueNameId, uExportId>
-    CValueTypeTemp_DelegateTemplate;
+  CValueTypeTemp_DelegateTemplate;
 
   REGISTER_DELEGATE(CValueTypeTempTemplate, CValueTypeTemp_DelegateTemplate);
 };
 
 template <unsigned int uTypeId, unsigned int uIconId, unsigned int uValueNameId, unsigned int uExportId>
   CValueTypeTemp_Delegate <uTypeId, uIconId, uValueNameId, uExportId> ::
-    CValueTypeTemp_Delegate(
+  CValueTypeTemp_Delegate(
       CValueTypeTemp <uTypeId, uIconId, uValueNameId, uExportId> *
-        valueTypeTemp)
+    valueTypeTemp)
 : CValueType_Delegate(valueTypeTemp)
 , m_valueTypeTemp(valueTypeTemp)
 {
   ACTIVATE_TEMPLATE_DELEGATE(CValueTypeTempTemplate,
-    CValueTypeTemp_DelegateTemplate);
+  CValueTypeTemp_DelegateTemplate);
 }
 
 #endif  // _ValueType_Delegate_h_

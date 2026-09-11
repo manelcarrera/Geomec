@@ -19,14 +19,14 @@ class CLoadManager;
 
 class CPointMoment : public IDirectedLoad  
 {
-	const geo::INode &m_Node;
+  const geo::INode &m_Node;
 
 public:
-	CPointMoment(CLoadCase &loadcase, double size, const geo::IVector &vecDirection, const geo::INode &node);
-	virtual ~CPointMoment();
+  CPointMoment(CLoadCase &loadcase, double size, const geo::IVector &vecDirection, const geo::INode &node);
+  virtual ~CPointMoment();
 
-	virtual bool WriteFilos() const;
-	const geo::INode &Node() const;
+  virtual bool WriteFilos() const;
+  const geo::INode &Node() const;
 };
 
 }

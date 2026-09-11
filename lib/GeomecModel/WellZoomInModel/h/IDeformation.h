@@ -5,7 +5,7 @@ class IDeformation
 {
 public:
 
-	IDeformation(){};
+  IDeformation(){};
 
-	virtual void Invalidate()=0;
+  virtual void Invalidate()=0;
 };

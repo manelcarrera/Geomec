@@ -12,20 +12,20 @@ const QString FILE_NAME = "geomec.ini";
 class CApplicationInitialization
 {
   public:
-    CApplicationInitialization(
+  CApplicationInitialization(
       const QString& applicationName = APPLICATION_NAME,
       const QString& companyName = COMPANY_NAME,
       const QString& fileName = FILE_NAME);
-    ~CApplicationInitialization();
+  ~CApplicationInitialization();
 
-    const QString& applicationName() const;
+  const QString& applicationName() const;
 
   private:
-    CApplicationInitialization(const CApplicationInitialization& rhs);
-    CApplicationInitialization& operator = (
+  CApplicationInitialization(const CApplicationInitialization& rhs);
+  CApplicationInitialization& operator = (
       const CApplicationInitialization& rhs);
 
-    const QString& m_applicationName;
+  const QString& m_applicationName;
 };
 
 #endif  // _ApplicationInitialization_h_

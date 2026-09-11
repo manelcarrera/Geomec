@@ -5,19 +5,19 @@
 #include "FormationBase.h"
 
 CFormationNodeAssistant::CFormationNodeAssistant(COpenInventorEventsHandler * eventsHandler)
-    : CGraphNode("CFormationNodeAssistant")
-    , m_eventsHandler(eventsHandler)
+  : CGraphNode("CFormationNodeAssistant")
+  , m_eventsHandler(eventsHandler)
 {
 }
 
 bool CFormationNodeAssistant::CanConnectItem(const CGraphNode& item) const
 {
-    return true;
+  return true;
 }
 
 bool CFormationNodeAssistant::ConnectItem(const CGraphNode& node)
 {
-    return true;
+  return true;
 }
 
 void CFormationNodeAssistant::OnNewNeighbour(const CGraphNode& node)
@@ -28,15 +28,15 @@ void CFormationNodeAssistant::OnNewNeighbour(const CGraphNode& node)
 
 void CFormationNodeAssistant::OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint)
 {
-    if (uHint == MeshCleared) 
+  if (uHint == MeshCleared) 
       return;
 
-    if (uHint == GEOMETRY_CHANGED)
-    {
+  if (uHint == GEOMETRY_CHANGED)
+  {
       OnNeighbourDeleted(node);
       OnNewNeighbour(node);
-    }
-    else
+  }
+  else
       m_eventsHandler->OnFormationNodeModified(static_cast<const CFormationBase&>(node), uHint);
 }
 
@@ -47,10 +47,10 @@ void CFormationNodeAssistant::OnNeighbourDeleted(const CGraphNode& node)
 
 unsigned int CFormationNodeAssistant::IconId() const
 {
-    return 0;
+  return 0;
 }
 
 unsigned int CFormationNodeAssistant::TypeId() const
 {
-    return 0;
+  return 0;
 }

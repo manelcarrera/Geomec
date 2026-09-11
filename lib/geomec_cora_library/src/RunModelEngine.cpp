@@ -19,11 +19,11 @@ bool CRunModelEngine::run(CRunModelData& runModelData,
 {
   CDianaExecuter dianaExecuter;
   CSaveModelConsole saveModelConsole(*runModelData.modelData()(),
-    applicationVersion);
+  applicationVersion);
   CRetrieveDianaFileNamesConsole retrieveDianaFileNamesConsole;
 
   return m_runModelEngineBase->run(runModelData, dianaExecuter, modelName,
-    saveModelConsole, retrieveDianaFileNamesConsole);
+  saveModelConsole, retrieveDianaFileNamesConsole);
 }
 
 // private
@@ -37,12 +37,12 @@ TRunModelEngineBase CRunModelEngine::selectEngine(
 
   if (analysisType == CAnalysisType::AT_NONLIN)
   {
-    runModelEngineBase =
+  runModelEngineBase =
       TRunModelEngineBase(new CRunModelStagedRunEngine(analysisType));
   }
   else
   {
-    runModelEngineBase =
+  runModelEngineBase =
       TRunModelEngineBase(new CRunModelSingleRunEngine(analysisType));
   }
 

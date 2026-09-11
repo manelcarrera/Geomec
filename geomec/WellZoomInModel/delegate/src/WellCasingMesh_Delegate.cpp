@@ -19,14 +19,14 @@ bool CWellCasingMesh_Delegate::Attributes()
   bool bRet;
 
   {
-    COperation oper(m_wellCasingMesh->Model());
+  COperation oper(m_wellCasingMesh->Model());
 
-    bRet = (dlg.DoModal() == IDOK);
+  bRet = (dlg.DoModal() == IDOK);
 
-    if (m_wellCasingMesh->getInvalidateAfterDlg())
-    {
+  if (m_wellCasingMesh->getInvalidateAfterDlg())
+  {
       m_wellCasingMesh->InvalidateMesh();
-    }
+  }
   }
 
   return bRet;

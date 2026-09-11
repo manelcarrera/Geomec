@@ -12,9 +12,9 @@ bool CGetSetInfo::isElementSet(const IPointSet& pointSet) const
 {
   try
   {
-    dynamic_cast <const CElementSet&> (pointSet);
+  dynamic_cast <const CElementSet&> (pointSet);
 
-    return true;
+  return true;
   }
 
   catch (const std::bad_cast&)

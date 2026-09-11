@@ -18,11 +18,11 @@ Software Product or documentation licensed under this agreement.
 ****************************************************************************/
 /*************************************************************************
 
-        cBagRescueProperty.h
+    cBagRescueProperty.h
 
  Keeps a list of pointers to RescueProperty.
 
-        Rod Hanks               December 15th, 1995  / August 1996
+    Rod Hanks               December 15th, 1995  / August 1996
 
 ****************************************************************************/
 #include "myHeaders.h"
@@ -62,14 +62,14 @@ RescueProperty *cBagRescueProperty::PropertyNamed(RESCUECHAR *propertyName)
   RescueProperty *candidate = (RescueProperty *) tree->NthObject(ordinal++);
   while (myReturn == 0 && candidate != 0)
   {
-    if (candidate->IsNamed(propertyName))
-    {
+  if (candidate->IsNamed(propertyName))
+  {
       myReturn = candidate;
-    }
-    else
-    {
+  }
+  else
+  {
       candidate = (RescueProperty *) tree->NthObject(ordinal++);
-    }
+  }
   }
   return myReturn;
 }
@@ -78,15 +78,15 @@ RESCUEINT32 cBagRescueProperty::Count(RESCUEBOOL throwIfTrue)
 {
   if (tree->Count() > 2147483647)
   {
-    if (throwIfTrue)
-    {
+  if (throwIfTrue)
+  {
       throw "Model is too large to be accessed in 32 bit mode.";
-    }
-    return 0;
+  }
+  return 0;
   }
   else
   {
-    return (RESCUEINT32) tree->Count();
+  return (RESCUEINT32) tree->Count();
   }
 }
 

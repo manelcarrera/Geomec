@@ -7,7 +7,7 @@
 template <class OBSERVED_TYPE, class DELEGATE_TYPE, class CHILD_TYPE,
   class CHILD_OBS_TYPE, BOOL RENAME, enum REMOVE_TYPE REMOVE>
   class CMaterialServerObserver_Delegate : public CDeletableNodeObserver_Delegate <
-    OBSERVED_TYPE, DELEGATE_TYPE, CHILD_TYPE, CHILD_OBS_TYPE, RENAME, REMOVE>
+  OBSERVED_TYPE, DELEGATE_TYPE, CHILD_TYPE, CHILD_OBS_TYPE, RENAME, REMOVE>
 {
 public:
   CMaterialServerObserver_Delegate(OBSERVED_TYPE& node,
@@ -39,21 +39,21 @@ public:
 
   virtual void ToggleState()
   {
-    TChildren children = Children();
-    for(int i = 0; i < children.size(); ++i)
+  TChildren children = Children();
+  for(int i = 0; i < children.size(); ++i)
       children[i]->ToggleState();
 
-    CDeletableNodeObserver_Delegate<OBSERVED_TYPE, DELEGATE_TYPE, CHILD_TYPE, CHILD_OBS_TYPE, RENAME, REMOVE>::ToggleState();
+  CDeletableNodeObserver_Delegate<OBSERVED_TYPE, DELEGATE_TYPE, CHILD_TYPE, CHILD_OBS_TYPE, RENAME, REMOVE>::ToggleState();
   }
 
   virtual BOOL CanDelete() const
   {
-    return ObservedItem().CanDestroy();
+  return ObservedItem().CanDestroy();
   }
 
   virtual void Delete()
   {
-    ObservedItem().Destroy();
+  ObservedItem().Destroy();
   }
 };
 
@@ -73,18 +73,18 @@ public:
 
   virtual void AppendContextMenu(CContextMenuInvoker& invoker)
   {
-    assert(dynamic_cast<CTreeNode*>(Parent()));
-    CTreeNode& parent = static_cast<CTreeNode&>(*Parent());
+  assert(dynamic_cast<CTreeNode*>(Parent()));
+  CTreeNode& parent = static_cast<CTreeNode&>(*Parent());
 
-    CGraphNode& parent_node = parent.ObservedItem();
-    assert(dynamic_cast<CMaterialServer*>(&parent_node));
-    CMaterialServer& server = static_cast<CMaterialServer&>(parent_node);
-    CMaterialServer_Delegate& delegate = static_cast<CMaterialServer_Delegate&>(*server.getDelegate());
-    
-    invoker.AddCommand("Configure distributed properties",
+  CGraphNode& parent_node = parent.ObservedItem();
+  assert(dynamic_cast<CMaterialServer*>(&parent_node));
+  CMaterialServer& server = static_cast<CMaterialServer&>(parent_node);
+  CMaterialServer_Delegate& delegate = static_cast<CMaterialServer_Delegate&>(*server.getDelegate());
+  
+  invoker.AddCommand("Configure distributed properties",
       *new CSingleCommandTemplate<CMaterialServer_Delegate>(delegate, &CMaterialServer_Delegate::ConfigureDistributions, &CMaterialServer_Delegate::CanConfigureDistributions));
 
-    CValueCompositeObserver::AppendContextMenu(invoker);
+  CValueCompositeObserver::AppendContextMenu(invoker);
   }
 };
 

@@ -13,7 +13,7 @@ CTiedBodyTetSurface::CTiedBodyTetSurface(CSurfaceDesc& desc, CBodyGroup& body_gr
 CTiedBodyTetSurface::~CTiedBodyTetSurface()
 {
   for (int i = 0; i < FaceSize(); ++i)
-    delete &Face(i);
+  delete &Face(i);
 }
 
 }

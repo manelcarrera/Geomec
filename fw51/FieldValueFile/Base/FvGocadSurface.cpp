@@ -68,23 +68,23 @@ CGoCadSurface::CGoCadSurface(geo::IMesh& mesh, const geo::ISurface &surface, con
   int i;
   for(i = 0; i < surface.PointSize(); i++)
   {
-	if(mpPoint.insert(TPointToIndex::value_type(geo::CPoint(surface.Point(i)), i)).second) 
-		InsertPoint(i, surface.Point(i));
+  if(mpPoint.insert(TPointToIndex::value_type(geo::CPoint(surface.Point(i)), i)).second) 
+    InsertPoint(i, surface.Point(i));
 
   }
 
   // Insert triangles ...
   for(i = 0; i < surface.FaceSize(); i++)
   {
-    // Test in debug mode of the points of the face exists ...
-    assert(surface.Face(i).NrOfPoints() == 3);
+  // Test in debug mode of the points of the face exists ...
+  assert(surface.Face(i).NrOfPoints() == 3);
 #ifdef _DEBUG
-    for(int n = 0; n < 3; n++)
+  for(int n = 0; n < 3; n++)
       assert(mpPoint.find(surface.Face(i).Point(n)) != mpPoint.end());
 #endif //_DEBUG
 
-    // Insert triangle
-    InsertTriangle(mpPoint.find(surface.Face(i).Point(0))->second,
+  // Insert triangle
+  InsertTriangle(mpPoint.find(surface.Face(i).Point(0))->second,
              mpPoint.find(surface.Face(i).Point(1))->second,
              mpPoint.find(surface.Face(i).Point(2))->second);
 
@@ -113,7 +113,7 @@ bool CGoCadSurface::InsertPoint(int nIndex, const double &x, const double &y, co
 {
   int nMeshIndex = Mesh().RegisterNode(geo::CPoint(x, y, z), false);
   if(!m_mpPoint.insert(TPointMap::value_type(nIndex, nMeshIndex)).second)
-    return false;
+  return false;
   return true;
 }
 
@@ -129,21 +129,21 @@ bool CGoCadSurface::InsertTriangle(int nV1, int nV2, int nV3)
 {
   if(isPoint(nV1) && isPoint(nV2) && isPoint(nV3) ) {
 /*    const geo::CPoint p1(Mesh().Point(m_mpPoint[nV1]));
-    const geo::CPoint p2(Mesh().Point(m_mpPoint[nV2]));
-    const geo::CPoint p3(Mesh().Point(m_mpPoint[nV3]));
-    if(p1.Distance(p2) < EPS ||
+  const geo::CPoint p2(Mesh().Point(m_mpPoint[nV2]));
+  const geo::CPoint p3(Mesh().Point(m_mpPoint[nV3]));
+  if(p1.Distance(p2) < EPS ||
        p2.Distance(p3) < EPS ||
        p3.Distance(p1) < EPS)
        return false; // triangle is degenerate.
 
-    geo::CLine line(p1, p2);
-    if(line.Distance(p3) < 0.1)
+  geo::CLine line(p1, p2);
+  if(line.Distance(p3) < 0.1)
       return false;
 */
-    // The face does not exist yet.
-    new CTriGoCadFace(*this, m_mpPoint[nV1], m_mpPoint[nV2], m_mpPoint[nV3]);
+  // The face does not exist yet.
+  new CTriGoCadFace(*this, m_mpPoint[nV1], m_mpPoint[nV2], m_mpPoint[nV3]);
 
-    return true;
+  return true;
 
   }
 
@@ -175,32 +175,32 @@ void CGoCadSurface::MergeSurface(CGoCadSurface &surf)
   std::vector<int> vcPtIndices;
   for(i = 0; i < surf.FaceSize(); i++)
   {
-    vcPtIndices.clear();
-    const geo::IFace &face = surf.Face(i);
+  vcPtIndices.clear();
+  const geo::IFace &face = surf.Face(i);
 
-    for(j = 0; j < 3; j++)
-    {
+  for(j = 0; j < 3; j++)
+  {
       const geo::IPoint &pt1 = face.Point(j);
       bool point_present = false;
 
       for(k = 0; k < PointSize(); k++)
       {
-        const geo::IPoint &pt2 = Point(k);
-        if(pt1.Distance(pt2) < EPS)
-        {
+    const geo::IPoint &pt2 = Point(k);
+    if(pt1.Distance(pt2) < EPS)
+    {
           point_present = true;
           vcPtIndices.push_back(Mesh().NodeIndex(pt2)[0]);// since points can only be present once, just take the first index in the vector.
           break;
-        }
+    }
       }
 
       if(!point_present)
       {
-        vcPtIndices.push_back(Mesh().RegisterNode(geo::CPoint(pt1.X(), pt1.Y(), pt1.Z()), false));
+    vcPtIndices.push_back(Mesh().RegisterNode(geo::CPoint(pt1.X(), pt1.Y(), pt1.Z()), false));
       }
-    }
+  }
 
-    new CTriGoCadFace(*this, vcPtIndices[0], vcPtIndices[1], vcPtIndices[2]);
+  new CTriGoCadFace(*this, vcPtIndices[0], vcPtIndices[1], vcPtIndices[2]);
   }
 }
 

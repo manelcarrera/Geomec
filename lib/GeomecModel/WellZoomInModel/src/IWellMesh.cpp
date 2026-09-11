@@ -45,8 +45,8 @@ IWellMesh::~IWellMesh()
 {
   if (!IsCopy())
   {
-    m_mesh->Clear();
-    delete m_mesh;
+  m_mesh->Clear();
+  delete m_mesh;
   }
 }
 
@@ -54,8 +54,8 @@ IWellMesh& IWellMesh::operator=(const IWellMesh& rhs)
 {
   if (m_mesh)
   {
-    m_mesh->Clear();
-    delete m_mesh;
+  m_mesh->Clear();
+  delete m_mesh;
   }
   m_mesh = rhs.m_mesh;
   return *this;
@@ -81,8 +81,8 @@ void IWellMesh::OnNewNeighbour(const CGraphNode& node)
   const IFormationElementSet* pVol = dynamic_cast<const IFormationElementSet*>(&node);
   if(pVol)
   {
-    const CWellFormation& form = static_cast<const CWellFormation&>(pVol->Formation());
-    m_mpFormationVolumes.insert(TFormationVolumeMap::value_type(const_cast<CWellFormation*>(&form), (CWellFormationVolume*)pVol)).first;
+  const CWellFormation& form = static_cast<const CWellFormation&>(pVol->Formation());
+  m_mpFormationVolumes.insert(TFormationVolumeMap::value_type(const_cast<CWellFormation*>(&form), (CWellFormationVolume*)pVol)).first;
   }
 
   CMeshBase::OnNewNeighbour(node);
@@ -93,11 +93,11 @@ void IWellMesh::OnNeighbourDeleted(const CGraphNode& node)
   TFormationVolumeMap::iterator it;
   for(it = m_mpFormationVolumes.begin(); it != m_mpFormationVolumes.end(); ++it)
   {
-    if(it->second == &node)
-    {
+  if(it->second == &node)
+  {
       m_mpFormationVolumes.erase(it);
       break;
-    }
+  }
   }
 
   CMeshBase::OnNeighbourDeleted(node);
@@ -106,7 +106,7 @@ void IWellMesh::OnNeighbourDeleted(const CGraphNode& node)
 void IWellMesh::OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint)
 {
   if(&node == &Model() && uHint == GEOMETRY_CHANGED)
-    InvalidateMesh();
+  InvalidateMesh();
 }
 
 IWellMesh::DIMENSION IWellMesh::Dimension() const
@@ -136,17 +136,17 @@ void IWellMesh::InvalidateMesh()
   Mesh().Clear();
 
   while(!m_mpFormationVolumes.empty())
-    delete m_mpFormationVolumes.begin()->second;
+  delete m_mpFormationVolumes.begin()->second;
 }
 
 void IWellMesh::SwitchToTetraMesh()
 {
   if (!dynamic_cast<geo::CTetMeshBase *>(m_mesh))
   {
-    if (m_mesh)
+  if (m_mesh)
       m_mesh->Clear();
-    delete m_mesh;
-    m_mesh = geo::CTetMeshBase::GetTetMesher("CM2");
+  delete m_mesh;
+  m_mesh = geo::CTetMeshBase::GetTetMesher("CM2");
   }
 }
 
@@ -154,10 +154,10 @@ void IWellMesh::SwitchToHexaMesh()
 {
   if (dynamic_cast<geo::CTetMeshBase *>(m_mesh))
   {
-    if (m_mesh)
+  if (m_mesh)
       m_mesh->Clear();
-    delete m_mesh;
-    m_mesh = new geo::CMesh3D;
+  delete m_mesh;
+  m_mesh = new geo::CMesh3D;
   }
 }
 
@@ -187,19 +187,19 @@ geo::CVector IWellMesh::WellDirectionAt(const geo::IElement& element) const
 {
   const geo::CBodyQuadrilateral* pBodyQuad = dynamic_cast<const geo::CBodyQuadrilateral*>(&element);
   if(pBodyQuad)
-    return WellDirectionAt(*pBodyQuad->Parent());
+  return WellDirectionAt(*pBodyQuad->Parent());
 
   const geo::CBodyTriangle* pBodyTriangle = dynamic_cast<const geo::CBodyTriangle*>(&element);
   if(pBodyTriangle)
-    return WellDirectionAt(*pBodyTriangle->Parent());
+  return WellDirectionAt(*pBodyTriangle->Parent());
 
   const geo::CHexahedron* pHexa = dynamic_cast<const geo::CHexahedron*>(&element);
   if(pHexa)
-    return geo::CVector(pHexa->Point(4), pHexa->Point(0)).UnitVector();
+  return geo::CVector(pHexa->Point(4), pHexa->Point(0)).UnitVector();
 
   const geo::CInterfaceElement* pIface = dynamic_cast<const geo::CInterfaceElement*>(&element);
   if(pIface)
-    return geo::CVector(pIface->Point(0), pIface->Point(3)).UnitVector();
+  return geo::CVector(pIface->Point(0), pIface->Point(3)).UnitVector();
 
   return geo::CVector();
 }
@@ -219,16 +219,16 @@ long IWellMesh::SavedItems() const
 
   if(IsMesh())
   {
-    TFormationVolumeMap::const_iterator it;
-    for(it = m_mpFormationVolumes.begin(); it != m_mpFormationVolumes.end(); ++it)
-    {
+  TFormationVolumeMap::const_iterator it;
+  for(it = m_mpFormationVolumes.begin(); it != m_mpFormationVolumes.end(); ++it)
+  {
       assert(dynamic_cast<const CWellFormationVolume*>(it->second));
       const CWellFormationVolume& vol = static_cast<const CWellFormationVolume&>(*it->second);
       lRet += vol.Volume().ElementSize();
       int i;
       for(i = 0; i < vol.Volume().SideSurfaceSize(); ++i)
-        lRet += vol.Volume().SideSurface(i).FaceSize();
-    }
+    lRet += vol.Volume().SideSurface(i).FaceSize();
+  }
   }
 
   return lRet;
@@ -236,15 +236,15 @@ long IWellMesh::SavedItems() const
 
 void IWellMesh::LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress)
 {
-	// Unlink from the node entries
-	UnLink(*Model().GraphEntry(MD_BASE_OPENGL_NODE));
-	UnLink(*Model().GraphEntry(MD_BASE_COLOR_NODE));
+  // Unlink from the node entries
+  UnLink(*Model().GraphEntry(MD_BASE_OPENGL_NODE));
+  UnLink(*Model().GraphEntry(MD_BASE_COLOR_NODE));
 
   IWellModel& model = static_cast<IWellModel&>(Model());
   if ( model.WellPath() )
   {
-    if(version >= CStreamVersion(3, 7, 11))
-    {
+  if(version >= CStreamVersion(3, 7, 11))
+  {
       int n;
       stream >> n;
       ClearDefinitionPointList();
@@ -252,16 +252,16 @@ void IWellMesh::LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& 
       int i;
       for(i = 0; i < n; ++i)
       {
-        double tmd;
-        stream >> tmd;
-        m_vcDefPoints[i] = new well::CWellPoint(*(model.WellPath()), tmd);
+    double tmd;
+    stream >> tmd;
+    m_vcDefPoints[i] = new well::CWellPoint(*(model.WellPath()), tmd);
       }
-    }
+  }
   }
   else // wjrx mantis 3401
   {
-    if(version >= CStreamVersion(3, 7, 27))
-    {
+  if(version >= CStreamVersion(3, 7, 27))
+  {
       int n;
       stream >> n;
       ClearDefinitionPointList();
@@ -269,12 +269,12 @@ void IWellMesh::LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& 
       int i;
       for(i = 0; i < n; ++i)
       {
-        double tmd;
-        stream >> tmd;
-        m_vcNewDefPoints.
+    double tmd;
+    stream >> tmd;
+    m_vcNewDefPoints.
           push_back(CNewWellPoint(*(model.NewWellPath()), tmd));
       }
-    }
+  }
   }
 
   CMeshBase::LoadStream(stream, version, progress);
@@ -286,20 +286,20 @@ void IWellMesh::SaveStream(TSTREAM& stream, TPROGRESS& progress)
 
   if ( model.WellPath() )
   {
-    stream << int(m_vcDefPoints.size());
-    for(size_t i = 0; i < m_vcDefPoints.size(); ++i)
-    {
+  stream << int(m_vcDefPoints.size());
+  for(size_t i = 0; i < m_vcDefPoints.size(); ++i)
+  {
       const well::CWellPoint* p = m_vcDefPoints[i];
       stream << p->TMD();
-    }
+  }
   }
   else // wjrx mantis 3401
   {
-    stream << int(m_vcNewDefPoints.size());
-    for(size_t i = 0; i < m_vcNewDefPoints.size(); ++i)
-    {
+  stream << int(m_vcNewDefPoints.size());
+  for(size_t i = 0; i < m_vcNewDefPoints.size(); ++i)
+  {
       stream << m_vcNewDefPoints[i].TMD();
-    }
+  }
   }
 
   CMeshBase::SaveStream(stream, progress);
@@ -318,19 +318,19 @@ void IWellMesh::CreateDefinitionPointList(double dTargetElementSize)
 
   if ( wellmodel.WellPath() )
   {
-    m_vcDefPoints.push_back(new well::CWellPoint(*(wellmodel.WellPath()), dStartPos));
+  m_vcDefPoints.push_back(new well::CWellPoint(*(wellmodel.WellPath()), dStartPos));
 
-    int i;
-    for(i = 0; i < nSegments; ++i)
+  int i;
+  for(i = 0; i < nSegments; ++i)
       m_vcDefPoints.push_back(new well::CWellPoint(*(wellmodel.WellPath()), dStartPos + (i + 1) * dSegmentLength));
   }
   else
   {
-    // wjrx mantis 3401
-    m_vcNewDefPoints.push_back(CNewWellPoint(*(wellmodel.NewWellPath()), dStartPos));
+  // wjrx mantis 3401
+  m_vcNewDefPoints.push_back(CNewWellPoint(*(wellmodel.NewWellPath()), dStartPos));
 
-    int i;
-    for(i = 0; i < nSegments; ++i)
+  int i;
+  for(i = 0; i < nSegments; ++i)
       m_vcNewDefPoints.push_back(CNewWellPoint(*(wellmodel.NewWellPath()), dStartPos + (i + 1) * dSegmentLength));
   }
 }
@@ -338,7 +338,7 @@ void IWellMesh::CreateDefinitionPointList(double dTargetElementSize)
 void IWellMesh::ClearDefinitionPointList()
 {
   for(size_t i = 0; i < m_vcDefPoints.size(); ++i)
-    delete m_vcDefPoints[i];
+  delete m_vcDefPoints[i];
 
   m_vcDefPoints.clear();
 
@@ -376,7 +376,7 @@ typedef std::pair <double, double> TMinMax;
 class CNoHorizonFound : public std::runtime_error
 {
   public:
-    CNoHorizonFound();
+  CNoHorizonFound();
 };
 
 const QString FORMATION_WITHOUT_HORIZONS =
@@ -390,7 +390,7 @@ CNoHorizonFound::CNoHorizonFound()
 const CFormationBase* findNonWellFormation(const CFormationBase* formationBase)
 {
   while (dynamic_cast<const CWellFormation *>(formationBase))
-    formationBase = formationBase->ParentFormation();
+  formationBase = formationBase->ParentFormation();
 
   return formationBase;
 }
@@ -403,48 +403,48 @@ TMinMax retrieveBoundary(const CFormationBase* formationBase)
 
   for (int s = 0; s < formationBase->ElementSetSize(); s++)
   {
-    TGraphNodeSet graphNodeSet = formationBase->ElementSet(s).Identifier();
+  TGraphNodeSet graphNodeSet = formationBase->ElementSet(s).Identifier();
 
-    for (TGraphNodeSet::iterator graphNode = graphNodeSet.begin();
+  for (TGraphNodeSet::iterator graphNode = graphNodeSet.begin();
       graphNode != graphNodeSet.end(); ++graphNode)
-    {
+  {
       const CSurfaceBase* surfaceBase =
-        dynamic_cast <const CSurfaceBase*> (*graphNode);
+    dynamic_cast <const CSurfaceBase*> (*graphNode);
       const CHorizonBase* horizonBase = 0;
 
       if (surfaceBase != 0)
       {
-        horizonBase = dynamic_cast <const CHorizonBase*> (surfaceBase->Used());
+    horizonBase = dynamic_cast <const CHorizonBase*> (surfaceBase->Used());
       }
       else
       {
-        horizonBase = dynamic_cast <const CHorizonBase*> (*graphNode);
+    horizonBase = dynamic_cast <const CHorizonBase*> (*graphNode);
       }
 
       if (horizonBase != 0)
       {
-        geo::CPoint minimumPoint = horizonBase->Min();
-        geo::CPoint maximumPoint = horizonBase->Max();
+    geo::CPoint minimumPoint = horizonBase->Min();
+    geo::CPoint maximumPoint = horizonBase->Max();
 
-        if (!minimumPoint.Empty() && !maximumPoint.Empty())
-        {
+    if (!minimumPoint.Empty() && !maximumPoint.Empty())
+    {
           depthValues.push_back(std::min(minimumPoint.Z(), maximumPoint.Z()));
           depthValues.push_back(std::max(minimumPoint.Z(), maximumPoint.Z()));
-        }
-      }
     }
+      }
+  }
   }
 
   if (depthValues.empty())
   {
-    CNoHorizonFound noHorizonFound;
+  CNoHorizonFound noHorizonFound;
 
-    throw noHorizonFound;
+  throw noHorizonFound;
   }
 
   return TMinMax(
-    *(std::min_element(depthValues.begin(), depthValues.end())),
-    *(std::max_element(depthValues.begin(), depthValues.end())));
+  *(std::min_element(depthValues.begin(), depthValues.end())),
+  *(std::max_element(depthValues.begin(), depthValues.end())));
 }
 
 IWellMesh::TFormations collectAllFormations(const CFemAppModel& femAppModel,
@@ -452,7 +452,7 @@ IWellMesh::TFormations collectAllFormations(const CFemAppModel& femAppModel,
 {
   IWellMesh::TFormations formations;
   const TFormationBaseEntry* formationBaseEntry =
-    dynamic_cast <const TFormationBaseEntry*> (
+  dynamic_cast <const TFormationBaseEntry*> (
       femAppModel.GraphEntry(MD_BASE_FORMATION));
 
   double modelTop = grid.front().first;
@@ -463,32 +463,32 @@ IWellMesh::TFormations collectAllFormations(const CFemAppModel& femAppModel,
   TFormationBaseEntry::TNodeSet nodeSet = formationBaseEntry->EntryNodes();
 
   for (TFormationBaseEntry::TNodeSet::iterator node = nodeSet.begin();
-    node != nodeSet.end(); ++node)
+  node != nodeSet.end(); ++node)
   {
-    try
-    {
+  try
+  {
       const CWellFormation* wellFormation =
-        dynamic_cast <const CWellFormation*> (*node);
+    dynamic_cast <const CWellFormation*> (*node);
 
       if (wellFormation != 0)
       {
-        const CFormationBase* parentFormation = wellFormation->ParentFormation();
-        TMinMax boundary = retrieveBoundary(parentFormation);
+    const CFormationBase* parentFormation = wellFormation->ParentFormation();
+    TMinMax boundary = retrieveBoundary(parentFormation);
 
-        if (((modelTop <= boundary.first) && (boundary.first <= modelBottom)) ||
+    if (((modelTop <= boundary.first) && (boundary.first <= modelBottom)) ||
           ((modelTop <= boundary.second) && (boundary.second <= modelBottom)))
-        {
+    {
           std::pair <IWellMesh::TFormations::iterator, bool> inserted =
-            formations.insert(parentFormation);
+      formations.insert(parentFormation);
 
           assert(inserted.second);
-        }
+    }
       }
-    }
+  }
 
-    catch (const CNoHorizonFound&)
-    {
-    }
+  catch (const CNoHorizonFound&)
+  {
+  }
   }
 
   return formations;
@@ -517,20 +517,20 @@ void IWellMesh::CreateTetraMesh(CModelBase& model, const std::vector<geo::CPoint
 
   if (mesh)
   {
-    delete m_mesh;
-    m_mesh = mesh;
+  delete m_mesh;
+  m_mesh = mesh;
 
-    std::vector<int> boundaryNodes;
+  std::vector<int> boundaryNodes;
 
-    bool retval = AssignTetraVolumes(*prog)
+  bool retval = AssignTetraVolumes(*prog)
       && AssignTetraBoundaries(boundaryNodes, *prog)
       && AssignTetraSupports(boundaryNodes, *prog);
 
-    m_bMeshing = false;
+  m_bMeshing = false;
 
-    if (retval)
+  if (retval)
       Modified(MeshCreated);
-    else
+  else
       InvalidateMesh();
   }
 
@@ -542,47 +542,47 @@ void IWellMesh::wellCreateMesh(const QString& primaryTitle)
   TFormations formations;
 
   {
-    std::auto_ptr <IProgressBase> prog( _g->prog()->create( eProgress::Dual, primaryTitle, true, 4 ));
+  std::auto_ptr <IProgressBase> prog( _g->prog()->create( eProgress::Dual, primaryTitle, true, 4 ));
 
-    m_bMeshing = true;
+  m_bMeshing = true;
 
-    if (!Create2DGrid(*prog))
-    {
+  if (!Create2DGrid(*prog))
+  {
       InvalidateMesh();
       m_bMeshing = false;
       return;
-    }
+  }
 
-    if (!Create3DMesh(*prog, formations))
-    {
+  if (!Create3DMesh(*prog, formations))
+  {
       InvalidateMesh();
       m_bMeshing = false;
       return;
-    }
+  }
 
-    m_bMeshing = false;
+  m_bMeshing = false;
   }
 
   if (!formations.empty())
   {
-    TFormations::const_iterator formation = formations.begin();
-    QString missingFormations = QString(QUOTED_NAME).arg((*formation)->Name());
+  TFormations::const_iterator formation = formations.begin();
+  QString missingFormations = QString(QUOTED_NAME).arg((*formation)->Name());
 
-    for (++formation; formation != formations.end(); ++formation)
-    {
+  for (++formation; formation != formations.end(); ++formation)
+  {
       missingFormations =
-        QString(MERGE).arg(missingFormations).arg(COMMA_SPACE);
+    QString(MERGE).arg(missingFormations).arg(COMMA_SPACE);
 
       QString missingFormation = QString(QUOTED_NAME).arg((*formation)->Name());
 
       missingFormations =
-        QString(MERGE).arg(missingFormations).arg(missingFormation);
-    }
+    QString(MERGE).arg(missingFormations).arg(missingFormation);
+  }
 
-    QString warning = QString(MISSING_FORMATIONS).arg(missingFormations).
+  QString warning = QString(MISSING_FORMATIONS).arg(missingFormations).
       arg(formations.size() > ONE ? MORE_FORMATIONS : ONE_FORMATION);
 
-    _m()->msg(warning);
+  _m()->msg(warning);
   }
 
   Modified(MeshCreated);
@@ -592,50 +592,50 @@ bool IWellMesh::Create3DMesh(IProgressBase& prog, TFormations& formations)
 {
   std::vector<T3DGrid> vc3DGrids;
   if(!Create3DGrids(vc3DGrids, prog))
-    return false;
+  return false;
 
   TBoundaryElementVec vcBoundaryElements;
   const IWellModel& wellmodel = static_cast<const IWellModel&>(Model());
 
   if(!vc3DGrids.empty())
   {
-    formations = collectAllFormations(Model(), vc3DGrids);
+  formations = collectAllFormations(Model(), vc3DGrids);
 
-    prog.NextJob("Creating elements");  // TEST HIT
+  prog.NextJob("Creating elements");  // TEST HIT
 
-    typedef std::pair<TIndexVec, TIndexVec> TIndexVecPair;
+  typedef std::pair<TIndexVec, TIndexVec> TIndexVecPair;
 
-    TIndexVecPair prNodeIndexVectors(TIndexVec(vc3DGrids[0].second.size()), TIndexVec(vc3DGrids[0].second.size()));
-    TIndexVec* pvcFirst = &prNodeIndexVectors.first;
-    TIndexVec* pvcSecond = &prNodeIndexVectors.second;
+  TIndexVecPair prNodeIndexVectors(TIndexVec(vc3DGrids[0].second.size()), TIndexVec(vc3DGrids[0].second.size()));
+  TIndexVec* pvcFirst = &prNodeIndexVectors.first;
+  TIndexVec* pvcSecond = &prNodeIndexVectors.second;
 
-    RegisterGridNodes(vc3DGrids[0], *pvcFirst, true, false);
+  RegisterGridNodes(vc3DGrids[0], *pvcFirst, true, false);
 
-    CreateSupports(*pvcFirst, true, false);
+  CreateSupports(*pvcFirst, true, false);
 
-    prog.AddSteps(vc3DGrids.size());
+  prog.AddSteps(vc3DGrids.size());
 
-    double uppertmd = vc3DGrids[0].first;
-    const CFormationBase* pPrevFormation = 0;
+  double uppertmd = vc3DGrids[0].first;
+  const CFormationBase* pPrevFormation = 0;
 
-    // register the nodes and create the elements
-    for(size_t i = 1; i < vc3DGrids.size(); ++i)
-    {
+  // register the nodes and create the elements
+  for(size_t i = 1; i < vc3DGrids.size(); ++i)
+  {
       double lowertmd = vc3DGrids[i].first;
 
       const CFormationBase* pFormation = wellmodel.FormationContaining((uppertmd + lowertmd) / 2.);
 
       TFormations::iterator
-        formation = std::find(formations.begin(), formations.end(), pFormation);
+    formation = std::find(formations.begin(), formations.end(), pFormation);
 
       if (formation != formations.end())
       {
-        formations.erase(formation);
+    formations.erase(formation);
       }
-        
+    
       const CFormationBase* pNextFormation = 0;
       if(i < vc3DGrids.size() - 1)
-        pNextFormation = wellmodel.FormationContaining((lowertmd + vc3DGrids[i + 1].first) / 2.);
+    pNextFormation = wellmodel.FormationContaining((lowertmd + vc3DGrids[i + 1].first) / 2.);
 
       SegmentInfo segmentinfo;
       segmentinfo.bFormationTop = (pFormation != pPrevFormation);
@@ -655,19 +655,19 @@ bool IWellMesh::Create3DMesh(IProgressBase& prog, TFormations& formations)
 
       try
       {
-        prog.Step();
+    prog.Step();
       }
 
       catch (CProgressCancel* c)
       {
-        delete c;
-        return false;
+    delete c;
+    return false;
       }
-    }
+  }
   }
 
   if(!CreateBoundaryElements(vcBoundaryElements, prog))
-    return false;
+  return false;
 
   return true;
 }
@@ -681,21 +681,21 @@ bool IWellMesh::Create3DGrids(std::vector<T3DGrid>& vc3DGrids, IProgressBase& pr
 
   if ( nWellPoints > 0 ) 
   {
-    prog.AddSteps(nWellPoints);
-    const well::CWellPoint* pPrev = 0;
-    geo::CVector vecLastNormal; // empty vector
-    int i;
-    for(i = 0; i < nWellPoints; ++i)
-    {
+  prog.AddSteps(nWellPoints);
+  const well::CWellPoint* pPrev = 0;
+  geo::CVector vecLastNormal; // empty vector
+  int i;
+  for(i = 0; i < nWellPoints; ++i)
+  {
       try
       {
-        prog.Step();
+    prog.Step();
       }
 
       catch (CProgressCancel* c)
       {
-        delete c;
-        return false;
+    delete c;
+    return false;
       }
 
       const well::CWellPoint& ptWell = DefinitionPoint(i);
@@ -703,16 +703,16 @@ bool IWellMesh::Create3DGrids(std::vector<T3DGrid>& vc3DGrids, IProgressBase& pr
       // is there a next ?
       const well::CWellPoint* pNext = 0;
       if(i < nWellPoints - 1)
-        pNext = &DefinitionPoint(i + 1);
+    pNext = &DefinitionPoint(i + 1);
 
       assert(pPrev || pNext);
 
       // get the average normal for the current definition point
       geo::CVector vecNormal = geo::CVector::NullVector;
       if(pPrev)
-        vecNormal += geo::CVector(*pPrev, ptWell).UnitVector();
+    vecNormal += geo::CVector(*pPrev, ptWell).UnitVector();
       if(pNext)
-        vecNormal += geo::CVector(ptWell, *pNext).UnitVector();
+    vecNormal += geo::CVector(ptWell, *pNext).UnitVector();
       vecNormal = vecNormal.UnitVector();
 
       // create the grid for this well definition point
@@ -725,27 +725,27 @@ bool IWellMesh::Create3DGrids(std::vector<T3DGrid>& vc3DGrids, IProgressBase& pr
       vecLastNormal = vecNormal;
 
       pPrev = &ptWell;
-    }
+  }
   }
   else //wjrx mantis 3401
   {
-    nWellPoints = NewDefinitionPointSize();
-    prog.AddSteps(nWellPoints);
+  nWellPoints = NewDefinitionPointSize();
+  prog.AddSteps(nWellPoints);
 
-    const CNewWellPoint* pPrev = 0;
-    geo::CVector vecLastNormal; // empty vector
-    int i;
-    for(i = 0; i < nWellPoints; ++i)
-    {
+  const CNewWellPoint* pPrev = 0;
+  geo::CVector vecLastNormal; // empty vector
+  int i;
+  for(i = 0; i < nWellPoints; ++i)
+  {
       try
       {
-        prog.Step();
+    prog.Step();
       }
 
       catch (CProgressCancel* c)
       {
-        delete c;
-        return false;
+    delete c;
+    return false;
       }
 
       const CNewWellPoint& ptWell = NewDefinitionPoint(i);
@@ -753,16 +753,16 @@ bool IWellMesh::Create3DGrids(std::vector<T3DGrid>& vc3DGrids, IProgressBase& pr
       // is there a next ?
       const CNewWellPoint* pNext = 0;
       if(i < nWellPoints - 1)
-        pNext = &NewDefinitionPoint(i + 1);
+    pNext = &NewDefinitionPoint(i + 1);
 
       assert(pPrev || pNext);
 
       // get the average normal for the current definition point
       geo::CVector vecNormal = geo::CVector::NullVector;
       if(pPrev)
-        vecNormal += geo::CVector(*pPrev, ptWell).UnitVector();
+    vecNormal += geo::CVector(*pPrev, ptWell).UnitVector();
       if(pNext)
-        vecNormal += geo::CVector(ptWell, *pNext).UnitVector();
+    vecNormal += geo::CVector(ptWell, *pNext).UnitVector();
       vecNormal = vecNormal.UnitVector();
 
       // create the grid for this well definition point
@@ -775,7 +775,7 @@ bool IWellMesh::Create3DGrids(std::vector<T3DGrid>& vc3DGrids, IProgressBase& pr
       vecLastNormal = vecNormal;
 
       pPrev = &ptWell;
-    }
+  }
   }
   return true;
 }
@@ -788,26 +788,26 @@ geo::CMatrix IWellMesh::Create3DGridTransformationMatrix(const geo::IPoint& poin
   geo::CVector vecRotate(vecNormal.CrossProduct(geo::CVector::Zaxis));
   if(!vecRotate.isNullVector()) // do we need to rotate?
   {
-    double dAngleRad = acos(vecNormal.DotProduct(geo::CVector::Zaxis));
-    geo::CMatrix matRotate;
-    matRotate.CreateRotationMatrixRad(vecRotate, -dAngleRad);
-    assert(matRotate.RowSize() == 3 && matRotate.ColumnSize() == 3);
+  double dAngleRad = acos(vecNormal.DotProduct(geo::CVector::Zaxis));
+  geo::CMatrix matRotate;
+  matRotate.CreateRotationMatrixRad(vecRotate, -dAngleRad);
+  assert(matRotate.RowSize() == 3 && matRotate.ColumnSize() == 3);
 
-    int iRow, iCol;
-    for(iRow = 0; iRow < 3; ++iRow)
-    {
+  int iRow, iCol;
+  for(iRow = 0; iRow < 3; ++iRow)
+  {
       for(iCol = 0; iCol < 3; ++iCol)
       {
-        matTransform.Value(iRow, iCol, matRotate.Value(iRow, iCol));
+    matTransform.Value(iRow, iCol, matRotate.Value(iRow, iCol));
       }
-    }
+  }
   }
   else
   {
-    // unity rotation
-    matTransform.Value(0, 0, 1.);
-    matTransform.Value(1, 1, 1.);
-    matTransform.Value(2, 2, 1.);
+  // unity rotation
+  matTransform.Value(0, 0, 1.);
+  matTransform.Value(1, 1, 1.);
+  matTransform.Value(2, 2, 1.);
   }
 
   // translation components
@@ -824,26 +824,26 @@ void IWellMesh::SaveFormationVolumes(TSTREAM& stream, TPROGRESS& progress)
   TFormationVolumeMap::iterator itfv;
   for(itfv = m_mpFormationVolumes.begin(); itfv != m_mpFormationVolumes.end(); ++itfv)
   {
-    // save formation index
-    stream << itfv->first->Index();
+  // save formation index
+  stream << itfv->first->Index();
 
-    // save formation volume element indices
-    assert(dynamic_cast<const CWellFormationVolume*>(itfv->second));
-    const CWellFormationVolume& vol = static_cast<const CWellFormationVolume&>(*itfv->second);
-    int nElements = vol.Volume().ElementSize();
-    stream << nElements;
-    int i;
-    for(i = 0; i < nElements; ++i)
-    {
+  // save formation volume element indices
+  assert(dynamic_cast<const CWellFormationVolume*>(itfv->second));
+  const CWellFormationVolume& vol = static_cast<const CWellFormationVolume&>(*itfv->second);
+  int nElements = vol.Volume().ElementSize();
+  stream << nElements;
+  int i;
+  for(i = 0; i < nElements; ++i)
+  {
       stream << vol.Volume().Element(i).Index();
       progress.Step();
-    }
+  }
 
-    // save side surface bodyface indices
-    int nSideSurfaces = vol.Volume().SideSurfaceSize();
-    stream << nSideSurfaces;
-    for(i = 0; i < nSideSurfaces; ++i)
-    {
+  // save side surface bodyface indices
+  int nSideSurfaces = vol.Volume().SideSurfaceSize();
+  stream << nSideSurfaces;
+  for(i = 0; i < nSideSurfaces; ++i)
+  {
       const geo::CBodyGroup::CSideSurface& surf = vol.Volume().SideSurface(i);
 
       // stream the surface's faces
@@ -852,15 +852,15 @@ void IWellMesh::SaveFormationVolumes(TSTREAM& stream, TPROGRESS& progress)
       int j;
       for(j = 0; j < nFaces; ++j)
       {
-        assert(dynamic_cast<const geo::IFace*>(&surf.Face(j)));
-        const geo::IFace& quad = static_cast<const geo::IFace&>(surf.Face(j));
+    assert(dynamic_cast<const geo::IFace*>(&surf.Face(j)));
+    const geo::IFace& quad = static_cast<const geo::IFace&>(surf.Face(j));
 
-        // a face is determined by its parent index and its own index in the parent
-        stream << quad.Parent()->Index() << quad.Index();
+    // a face is determined by its parent index and its own index in the parent
+    stream << quad.Parent()->Index() << quad.Index();
 
-        progress.Step();
+    progress.Step();
       }
-    }
+  }
   }
 }
 
@@ -873,37 +873,37 @@ void IWellMesh::LoadFormationVolumes(TSTREAM& stream, CStreamVersion& /*version*
   stream >> nSize; // number of formations
   for(i = 0; i < nSize; ++i)
   {
-    // get the formation index
-    int idx;
-    stream >> idx;
+  // get the formation index
+  int idx;
+  stream >> idx;
 
-    CWellFormation* pForm = form_entry.FindIndex(idx);
-    assert(pForm);
+  CWellFormation* pForm = form_entry.FindIndex(idx);
+  assert(pForm);
 
-    // create the volume and side surfaces
-    CFormationVolume* pFormVol = new CWellFormationVolume(*pForm, *new geo::CBodyGroup(Mesh()));
-    pFormVol->reParent(pForm);
+  // create the volume and side surfaces
+  CFormationVolume* pFormVol = new CWellFormationVolume(*pForm, *new geo::CBodyGroup(Mesh()));
+  pFormVol->reParent(pForm);
 
-    // the number of elements in this formation(volume)
-    int nElements;
-    stream >> nElements;
-    int j;
-    for(j = 0; j < nElements; ++j)
-    {
+  // the number of elements in this formation(volume)
+  int nElements;
+  stream >> nElements;
+  int j;
+  for(j = 0; j < nElements; ++j)
+  {
       int nIndex;
       stream >> nIndex;
       assert((!dynamic_cast<geo::CTetMeshBase *>(m_mesh) && dynamic_cast<const geo::CHexahedron*>(&Mesh().Element(nIndex)))
-        || (dynamic_cast<geo::CTetMeshBase *>(m_mesh) && dynamic_cast<const geo::CTetrahedron*>(&Mesh().Element(nIndex))));
+    || (dynamic_cast<geo::CTetMeshBase *>(m_mesh) && dynamic_cast<const geo::CTetrahedron*>(&Mesh().Element(nIndex))));
       const geo::IBody& body = static_cast<const geo::IBody&>(Mesh().Element(nIndex));
       pFormVol->Volume().AddBody(body);
       progress.Step();
-    }
+  }
 
-    // the number of side surfaces in this formationvolume
-    int nSideSurfaces;
-    stream >> nSideSurfaces;
-    for(j = 0; j < nSideSurfaces; ++j)
-    {
+  // the number of side surfaces in this formationvolume
+  int nSideSurfaces;
+  stream >> nSideSurfaces;
+  for(j = 0; j < nSideSurfaces; ++j)
+  {
       geo::CBodyGroup::CSideSurface* pSideSurface = new geo::CBodyGroup::CSideSurface(pFormVol->Volume());
 
       // get the faces
@@ -912,17 +912,17 @@ void IWellMesh::LoadFormationVolumes(TSTREAM& stream, CStreamVersion& /*version*
       int k;
       for(k = 0; k < nFaces; ++k)
       {
-        int nBodyIndex;
-        int nFaceIndex;
-        stream >> nBodyIndex >> nFaceIndex;
-        assert((!dynamic_cast<geo::CTetMeshBase *>(m_mesh) && dynamic_cast<const geo::CHexahedron*>(&Mesh().Element(nBodyIndex)))
+    int nBodyIndex;
+    int nFaceIndex;
+    stream >> nBodyIndex >> nFaceIndex;
+    assert((!dynamic_cast<geo::CTetMeshBase *>(m_mesh) && dynamic_cast<const geo::CHexahedron*>(&Mesh().Element(nBodyIndex)))
           || (dynamic_cast<geo::CTetMeshBase *>(m_mesh) && dynamic_cast<const geo::CTetrahedron*>(&Mesh().Element(nBodyIndex))));
 
-        const geo::IBody& body = static_cast<const geo::IBody&>(Mesh().Element(nBodyIndex));
-        pSideSurface->AddFace(body.Face(nFaceIndex));
-        progress.Step();
+    const geo::IBody& body = static_cast<const geo::IBody&>(Mesh().Element(nBodyIndex));
+    pSideSurface->AddFace(body.Face(nFaceIndex));
+    progress.Step();
       }
-    }
+  }
   }
 }
 
@@ -933,11 +933,11 @@ geo::CBodyGroup* IWellMesh::getBodyGroup4Formation(IWellModel& wellModel,
 
   if (formationBase != 0)
   {
-    CWellFormation* associatedFormation =
+  CWellFormation* associatedFormation =
       wellModel.AssociatedFormation(*formationBase);
 
-    if (associatedFormation == 0)
-    {
+  if (associatedFormation == 0)
+  {
       // a formation containing a mid-point of a well path hexahedron has been
       // identified but apparently has not been detected by
       // 'IWellModel::DetectFormations()' hence the addition of the formation
@@ -945,35 +945,35 @@ geo::CBodyGroup* IWellMesh::getBodyGroup4Formation(IWellModel& wellModel,
       wellModel.addFormation(formationBase);
       associatedFormation = wellModel.AssociatedFormation(*formationBase);
       assert(associatedFormation != 0);
-    }
+  }
 
-    if (associatedFormation != 0)
-    {
+  if (associatedFormation != 0)
+  {
       if (!HasFormationVolume(*associatedFormation))
       {
-        CFormationVolume* wellFormationVolume = new CWellFormationVolume(
+    CFormationVolume* wellFormationVolume = new CWellFormationVolume(
           *associatedFormation, *new geo::CBodyGroup(Mesh()));
 
-        wellFormationVolume->reParent(associatedFormation);
+    wellFormationVolume->reParent(associatedFormation);
 
-        assert(HasFormationVolume(*associatedFormation));
+    assert(HasFormationVolume(*associatedFormation));
 
-        for (int i = 0; i < 8; ++i)
-        {
+    for (int i = 0; i < 8; ++i)
+    {
           // sides
           new geo::CBodyGroup::CSideSurface(wellFormationVolume->Volume());
-        }
+    }
 
-        // top
-        new geo::CBodyGroup::CSideSurface(wellFormationVolume->Volume());
-        // bottom
-        new geo::CBodyGroup::CSideSurface(wellFormationVolume->Volume());
+    // top
+    new geo::CBodyGroup::CSideSurface(wellFormationVolume->Volume());
+    // bottom
+    new geo::CBodyGroup::CSideSurface(wellFormationVolume->Volume());
       }
 
       CFormationVolume& formationVolume = FormationVolume(*associatedFormation);
 
       bodyGroup = &formationVolume.Volume();
-    }
+  }
   }
 
   return bodyGroup;
@@ -993,15 +993,15 @@ geo::CBodyGroup* IWellMesh::findBodyGroupContainingMidPointOfHexahedron(
 
   for (TFormationBaseEntry::TNodeSet::const_iterator entryNode = entryNodes.begin(); !formationContainsMidPoint && entryNode != entryNodes.end(); ++entryNode)
   {
-    CFormationBase* anotherFormation = (*entryNode);
+  CFormationBase* anotherFormation = (*entryNode);
 
-    if (anotherFormation != formation && anotherFormation->Contains(midPoint, true))
-    {
+  if (anotherFormation != formation && anotherFormation->Contains(midPoint, true))
+  {
       geo::CBodyGroup* anotherBodyGroup = getBodyGroup4Formation(wellModel, anotherFormation);
 
       if (anotherBodyGroup != 0)
-        return anotherBodyGroup;
-    }
+    return anotherBodyGroup;
+  }
   }
 
   return bodyGroup;
@@ -1030,33 +1030,33 @@ bool IWellMesh::CreateBoundaryElements(const TBoundaryElementVec& vcBoundaryElem
   size_t i;
   for(i = 0; i < vcBoundaryElements.size(); ++i)
   {
-    boundary.AddBoundaryElement(*new geo::CInterfaceElement(Mesh(), &vcBoundaryElements[i].Face(), &vcBoundaryElements[i].Face(), vcBoundaryElements[i].Nodes()), vcBoundaryElements[i].SurfaceDef());
-    try
-    {
+  boundary.AddBoundaryElement(*new geo::CInterfaceElement(Mesh(), &vcBoundaryElements[i].Face(), &vcBoundaryElements[i].Face(), vcBoundaryElements[i].Nodes()), vcBoundaryElements[i].SurfaceDef());
+  try
+  {
       prog.Step();
-    }
+  }
 
-    catch (CProgressCancel* c)
-    {
+  catch (CProgressCancel* c)
+  {
       delete c;
       return false;
-    }
+  }
   }
 
   if (i == 0)
   {
-    prog.AddSteps(1);
+  prog.AddSteps(1);
 
-    try
-    {
+  try
+  {
       prog.Step();
-    }
+  }
 
-    catch (CProgressCancel* c)
-    {
+  catch (CProgressCancel* c)
+  {
       delete c;
       return false;
-    }
+  }
   }
 
   return true;
@@ -1067,7 +1067,7 @@ bool IWellMesh::AssignTetraVolumes(IProgressBase& prog)
   geo::CTetMeshBase *mesh = static_cast<geo::CTetMeshBase *>(m_mesh);
 
   if (mesh->NrOfVolumes() == 0)
-    return false;
+  return false;
 
   prog.NextJob("Assign volumes");
   prog.AddSteps(mesh->NrOfVolumes());
@@ -1077,35 +1077,35 @@ bool IWellMesh::AssignTetraVolumes(IProgressBase& prog)
 
   for (int i = 0; i < mesh->NrOfVolumes(); ++i)
   {
-    geo::CBodyGroup& volume = mesh->Volume(i);
-    geo::CPoint midPoint(0, 0, 0);
+  geo::CBodyGroup& volume = mesh->Volume(i);
+  geo::CPoint midPoint(0, 0, 0);
 
-    for (int j = 0; j < volume.PointSize(); ++j)
+  for (int j = 0; j < volume.PointSize(); ++j)
       midPoint = midPoint + volume.Point(j);
-    midPoint = midPoint / volume.PointSize();
+  midPoint = midPoint / volume.PointSize();
 
-    CWellFormation *formation = nullptr;
-    for (CWellFormationEntry::TNodeSet::iterator it = forms.begin(); it != forms.end(); ++it)
+  CWellFormation *formation = nullptr;
+  for (CWellFormationEntry::TNodeSet::iterator it = forms.begin(); it != forms.end(); ++it)
       if ((*it)->ParentFormation()->Contains(midPoint, false))
       {
-        formation = *it;
-        break;
+    formation = *it;
+    break;
       }
-    if (formation)
-    {
+  if (formation)
+  {
       CWellFormationVolume *wellVolume = new CWellFormationVolume(*formation, volume);
       wellVolume->reParent(formation);
-    }
+  }
 
-    try
-    {
+  try
+  {
       prog.Step();
-    }
-    catch (CProgressCancel* c)
-    {
+  }
+  catch (CProgressCancel* c)
+  {
       delete c;
       return false;
-    }
+  }
   }
 
   return true;
@@ -1125,93 +1125,93 @@ bool IWellMesh::AssignTetraBoundaries(std::vector<int>& boundaryNodes, IProgress
   std::vector<int> nodes(6);
 
   std::vector<CBoundaryInterfaceDef::TBoundarySurface> types { 
-    CBoundaryInterfaceDef::BSURF_SIDE, 
-    CBoundaryInterfaceDef::BSURF_TOP, 
-    CBoundaryInterfaceDef::BSURF_BOTTOM
+  CBoundaryInterfaceDef::BSURF_SIDE, 
+  CBoundaryInterfaceDef::BSURF_TOP, 
+  CBoundaryInterfaceDef::BSURF_BOTTOM
   };
 
   int surfSize = mesh->NrOfSurfaces();
 
   if (surfSize < 3)
-    return false;
+  return false;
 
   for (int i = 0; i < 3; ++i)
   {
-    geo::CSurfaceDesc& surf = mesh->SurfaceDesc(i);
+  geo::CSurfaceDesc& surf = mesh->SurfaceDesc(i);
 
-    int tetSurfSize = surf.TetSurfaceSize();
-    for (int j = 0; j < tetSurfSize; ++j)
-    {
+  int tetSurfSize = surf.TetSurfaceSize();
+  for (int j = 0; j < tetSurfSize; ++j)
+  {
       const geo::CTetSurface& tetSurf = surf.TetSurface(j);
 
       const geo::CBodyGroup::CSideSurface *sideSurf = dynamic_cast<const geo::CBodyGroup::CSideSurface *>(&tetSurf);
 
       if (sideSurf)
       {
-        int faceSize = tetSurf.FaceSize();
-        for (int k = 0; k < faceSize; ++k)
-        {
+    int faceSize = tetSurf.FaceSize();
+    for (int k = 0; k < faceSize; ++k)
+    {
           const geo::CBodyTriangle& face = static_cast<const geo::CBodyTriangle&>(tetSurf.Face(k));
 
           for (int l = 0; l < 3; ++l)
           {
-            int pointIndex = face.PointIndex(l);
-            nodes[l] = pointIndex;
+      int pointIndex = face.PointIndex(l);
+      nodes[l] = pointIndex;
 
-            int duplicate = 0;
-            std::map<int, int>::iterator it = newNodes.find(pointIndex);
-            if (it == newNodes.end())
-            {
+      int duplicate = 0;
+      std::map<int, int>::iterator it = newNodes.find(pointIndex);
+      if (it == newNodes.end())
+      {
               duplicate = mesh->RegisterNode(face.Point(l), false);
               newNodes.insert(std::make_pair(pointIndex, duplicate));
-            }
-            else
-            {
+      }
+      else
+      {
               duplicate = it->second;
-            }
-            nodes[l + 3] = duplicate;
+      }
+      nodes[l + 3] = duplicate;
           }
           boundary.AddBoundaryElement(*new geo::CInterfaceElement(*mesh, &face, &face, nodes), types[i]);
-        }
+    }
       }
-    }
-    try
-    {
+  }
+  try
+  {
       prog.Step();
-    }
-    catch (CProgressCancel* c)
-    {
+  }
+  catch (CProgressCancel* c)
+  {
       delete c;
       return false;
-    }
+  }
   }
 
   RegisterTetraBoundaryNodes(newNodes);
 
   try
   {
-    prog.Step();
+  prog.Step();
   }
   catch (CProgressCancel* c)
   {
-    delete c;
-    return false;
+  delete c;
+  return false;
   }
 
   boundaryNodes.reserve(newNodes.size());
   for (std::map<int, int>::const_iterator it = newNodes.begin(); it != newNodes.end(); ++it)
   {
-    boundaryNodes.push_back(it->second);
+  boundaryNodes.push_back(it->second);
   }
 
   try
   {
-    prog.Step();
+  prog.Step();
   }
   catch (CProgressCancel* c)
   {
-    delete c;
-    return false;
+  delete c;
+  return false;
   }
 
   return true;
@@ -1224,9 +1224,9 @@ bool IWellMesh::AssignTetraSupports(const std::vector<int>& boundaryNodes, IProg
 
   for (std::vector<int>::const_iterator it = boundaryNodes.begin(); it != boundaryNodes.end(); ++it)
   {
-    Mesh().CreateTranslationSupport(*it, geo::CVector::Xaxis);
-    Mesh().CreateTranslationSupport(*it, geo::CVector::Yaxis);
-    Mesh().CreateTranslationSupport(*it, geo::CVector::Zaxis);
+  Mesh().CreateTranslationSupport(*it, geo::CVector::Xaxis);
+  Mesh().CreateTranslationSupport(*it, geo::CVector::Yaxis);
+  Mesh().CreateTranslationSupport(*it, geo::CVector::Zaxis);
   }
 
   return true;

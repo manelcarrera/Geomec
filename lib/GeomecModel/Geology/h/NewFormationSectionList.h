@@ -9,17 +9,17 @@ class CNewWellPoint;
 class CNewFormationSectionList
 {
   public:
-    CNewFormationSectionList(
+  CNewFormationSectionList(
       const std::list <CNewFormationSection>& newFormationSectionList);
 
-    std::list <const CNewFormationSection*> getSections(
+  std::list <const CNewFormationSection*> getSections(
       const CNewWellPoint& newWellPoint, bool includeEdge = true);
 
   private:
-    CNewFormationSectionList(const CNewFormationSectionList& rhs);
-    CNewFormationSectionList& operator = (const CNewFormationSectionList& rhs);
+  CNewFormationSectionList(const CNewFormationSectionList& rhs);
+  CNewFormationSectionList& operator = (const CNewFormationSectionList& rhs);
 
-    const std::list <CNewFormationSection>& m_newFormationSectionList;
+  const std::list <CNewFormationSection>& m_newFormationSectionList;
 };
 
 #endif  // _NewFormationSectionList_h_

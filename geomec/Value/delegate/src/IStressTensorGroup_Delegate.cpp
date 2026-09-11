@@ -5,17 +5,17 @@
 
 IStressTensorGroup_Delegate::CPrincipalLengthChangeComposite_Delegate ::
   CPrincipalLengthChangeComposite_Delegate (
-    IStressTensorGroup::CPrincipalLengthChangeComposite*
+  IStressTensorGroup::CPrincipalLengthChangeComposite*
       principalLengthChangeComposite)
 : ITensorGroup_Delegate::CVectorComposite_Delegate(
-    principalLengthChangeComposite)
+  principalLengthChangeComposite)
 , m_principalLengthChangeComposite(principalLengthChangeComposite)
 {
 }
 
 IStressTensorGroup_Delegate::CInvariantComposite_Delegate::
   CInvariantComposite_Delegate(
-    IStressTensorGroup::CInvariantComposite* invariantComposite)
+  IStressTensorGroup::CInvariantComposite* invariantComposite)
 : IResult_Delegate(invariantComposite)
 , m_invariantComposite(invariantComposite)
 {
@@ -23,7 +23,7 @@ IStressTensorGroup_Delegate::CInvariantComposite_Delegate::
 
 IStressTensorGroup_Delegate::CWellPathStressComposite_Delegate::
   CWellPathStressComposite_Delegate(
-    IStressTensorGroup::CWellPathStressComposite* wellPathStressComposite)
+  IStressTensorGroup::CWellPathStressComposite* wellPathStressComposite)
 : IResult_Delegate(wellPathStressComposite)
 , m_wellPathStressComposite(wellPathStressComposite)
 {
@@ -31,7 +31,7 @@ IStressTensorGroup_Delegate::CWellPathStressComposite_Delegate::
 
 IStressTensorGroup_Delegate::CVerticalGradientComposite_Delegate::
   CVerticalGradientComposite_Delegate(
-    IStressTensorGroup::CVerticalGradientComposite* verticalGradientComposite)
+  IStressTensorGroup::CVerticalGradientComposite* verticalGradientComposite)
 : IResult_Delegate(verticalGradientComposite)
 , m_verticalGradientComposite(verticalGradientComposite)
 {

@@ -12,21 +12,21 @@ class CFractureMatrixPressure;
 typedef CFormationLoad_Delegate <TFractureMatrixPressure,
   CComponentConstant <TFractureMatrixPressure>,
   CFractureMatrixComponentRepeater, CFractureMatrixComponentGWC>
-    TFractureMatrixPressureBase_Delegate;
+  TFractureMatrixPressureBase_Delegate;
 
 class CFractureMatrixPressure_Delegate :
   public TFractureMatrixPressureBase_Delegate
 {
 public:
   CFractureMatrixPressure_Delegate(
-    CFractureMatrixPressure* fractureMatrixPressure);
+  CFractureMatrixPressure* fractureMatrixPressure);
 
   virtual bool Attributes();
 
 private:
   CFractureMatrixPressure_Delegate(const CFractureMatrixPressure_Delegate& rhs);
   CFractureMatrixPressure_Delegate& operator = (
-    const CFractureMatrixPressure_Delegate& rhs);
+  const CFractureMatrixPressure_Delegate& rhs);
 
   CFractureMatrixPressure* m_fractureMatrixPressure;
 

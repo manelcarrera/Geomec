@@ -52,20 +52,20 @@ public:
 
   // bit flag
   typedef enum {
-    NONE = 0,
-    MARKED_AS_INITIAL = 1,
-    CHECK_CEMENT = 2,
-    CHECK_MARKED_VS_INITIAL = 4
+  NONE = 0,
+  MARKED_AS_INITIAL = 1,
+  CHECK_CEMENT = 2,
+  CHECK_MARKED_VS_INITIAL = 4
   } TPrepareMappingMaterialFlag;
 
   bool PrepareMappingMaterial(const CModelBase& model, const geo::IElementSet *pElementSet, const CDepletionStage& stage, int flag = NONE);
   bool HasUndrainedMaterial(const CModelBase& model, const geo::IElementSet *pElementSet, const CDepletionStage& stage);
 
   typedef enum {
-    MAP_PRESSURE = 1,
-    MAP_TEMPERATURE = 2,
-    MAP_TEMPERATURE_HEAT = 3,
-    MAP_VOLUMETRIC_STRAIN = 4
+  MAP_PRESSURE = 1,
+  MAP_TEMPERATURE = 2,
+  MAP_TEMPERATURE_HEAT = 3,
+  MAP_VOLUMETRIC_STRAIN = 4
   } TPrepareMappingComponentType;
 
   bool PrepareMappingComponent(const CModelBase& model, const geo::IElementSet *pElementSet, const CDepletionStage& stage, TPrepareMappingComponentType type);
@@ -107,9 +107,9 @@ private:
   typedef std::map<const geo::IElementSet *, bool> TElementSetMap;
 
   typedef struct {
-    TFormationElementMap mpFormationElement;
-    TCasingModelElementMap mpCasingModelElement;
-    TElementSetMap mpHandledSets;
+  TFormationElementMap mpFormationElement;
+  TCasingModelElementMap mpCasingModelElement;
+  TElementSetMap mpHandledSets;
   } TStageInfo;
   typedef std::map<const CDepletionStage *, TStageInfo> TStageInfoMap;
 

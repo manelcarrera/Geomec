@@ -20,23 +20,23 @@ class GEOMETRY_EXPORT  CSurface : public ISurface
 {
   class GEOMETRY_EXPORT CFace : public IFace
   {
-    std::vector<int> m_vcPoint;
-    CSurface& m_surface;
-    int m_nIndex;
+  std::vector<int> m_vcPoint;
+  CSurface& m_surface;
+  int m_nIndex;
   public:
-    // Construction
-    CFace(CSurface& surface, int nIndex, const std::vector<int>& vcPoint);
+  // Construction
+  CFace(CSurface& surface, int nIndex, const std::vector<int>& vcPoint);
 
-    virtual const IPoint &Point(int nIndex) const;
-    virtual void Point(int nIndex, const IPoint &pt);//Substitute point at nIndex with pt.....
-    virtual int NrOfPoints() const;
-    virtual double Size() const; // returns volume, area or length (depending on type)
-    using IFace::InterpolateValue;
-    virtual CValue InterpolateValue(const IPoint &point, const std::vector<CValue> &values) const;
-    virtual const IElementSet* IndexingElementSet() const;
-    virtual int Index() const;
-    virtual int PointIndex(int nIndex) const;
-    virtual size_t Order() const;
+  virtual const IPoint &Point(int nIndex) const;
+  virtual void Point(int nIndex, const IPoint &pt);//Substitute point at nIndex with pt.....
+  virtual int NrOfPoints() const;
+  virtual double Size() const; // returns volume, area or length (depending on type)
+  using IFace::InterpolateValue;
+  virtual CValue InterpolateValue(const IPoint &point, const std::vector<CValue> &values) const;
+  virtual const IElementSet* IndexingElementSet() const;
+  virtual int Index() const;
+  virtual int PointIndex(int nIndex) const;
+  virtual size_t Order() const;
   };
 
   typedef std::map<const geo::IPoint*, int, geo::ICoordinate::CCoordinateLess> TPointMap;

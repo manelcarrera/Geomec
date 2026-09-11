@@ -25,7 +25,7 @@ IBox::~IBox()
 
 double IBox::Size() const
 {
-	return Width() * Depth() * Height();
+  return Width() * Depth() * Height();
 }
 
 } // namespace geo

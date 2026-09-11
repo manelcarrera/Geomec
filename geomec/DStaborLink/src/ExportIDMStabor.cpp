@@ -85,34 +85,34 @@ bool CExportIDMStabor::eksport(const std::string &filename)
   stream << "GEOMEC\n";
 
   // number of point rows
-    stream << m_pNewPointList->size() << std::endl;
+  stream << m_pNewPointList->size() << std::endl;
 
   // column heading: field names
   for ( int ii= 0; ii< m_fieldNames.size()-1; ++ii)
-    stream << m_fieldNames[ii] << '\t';
+  stream << m_fieldNames[ii] << '\t';
 
   if ( m_fieldNames.size() > 0 )
-    stream<< m_fieldNames[m_fieldNames.size()-1] << std::endl;
+  stream<< m_fieldNames[m_fieldNames.size()-1] << std::endl;
 
   // column heading: units
   for ( int ii= 0; ii< m_units.size()-1; ++ii )
-    stream << m_units[ii] << '\t';
+  stream << m_units[ii] << '\t';
 
   if ( m_units.size() > 0 )
-    stream<< m_units[m_units.size()-1] << std::endl;
+  stream<< m_units[m_units.size()-1] << std::endl;
 
   {
-    int ii= 0;
-    std::list<CNewWellPoint>::const_iterator it;
+  int ii= 0;
+  std::list<CNewWellPoint>::const_iterator it;
 
-    for ( it =  m_pNewPointList->begin()
-        ; it != m_pNewPointList->end()
-        ; ++it)
-    {
+  for ( it =  m_pNewPointList->begin()
+    ; it != m_pNewPointList->end()
+    ; ++it)
+  {
       CNewGeoWellPoint gwp( *const_cast<CModelBase *>(&m_model), *it);
       CExportIDMStaborRow(m_model, m_stage, m_antype, &gwp, ii).eksport(stream);
       ++ii;
-    }
+  }
   }
   return true;
 }
@@ -181,42 +181,42 @@ CExportIDMStaborRow::CExportIDMStaborRow
   assert( m_pNewWellPoint!=0 );
 
   const CFormationBase* pFormation = 0;
-    pFormation = m_pNewWellPoint->Formation();
+  pFormation = m_pNewWellPoint->Formation();
   assert(pFormation);
 
   for(int nElementSet = 0; nElementSet < pFormation->ElementSetSize(); nElementSet++)
   {
-    for(int i = 0; i < pFormation->ElementSet(nElementSet).ElementSet().ElementSize(); i++)
-    {
+  for(int i = 0; i < pFormation->ElementSet(nElementSet).ElementSet().ElementSize(); i++)
+  {
       // get the element
       const geo::IElement &element = pFormation->ElementSet(nElementSet).ElementSet().Element(i);
       {
-        if(element.Contains(*pNewWellPoint,true))
-        {
+    if(element.Contains(*pNewWellPoint,true))
+    {
           // get the element's material
           pMat = &(pFormation->Material(stage).Material(element));
           break;
-        }
-      }
     }
+      }
+  }
   }
 
   assert(pMat);
   m_youngsModulus=
-    pMat->ParameterValue(IDT_VALUETYPE_YOUNGS_MODULUS)/1000.0; //GPa
+  pMat->ParameterValue(IDT_VALUETYPE_YOUNGS_MODULUS)/1000.0; //GPa
   m_poissonRatio= 
-    pMat->ParameterValue(IDT_VALUETYPE_POISSONS_RATIO);
+  pMat->ParameterValue(IDT_VALUETYPE_POISSONS_RATIO);
   m_cohesionStrength= 
-    pMat->ParameterValue(IDT_VALUETYPE_COHESION); //MPa
+  pMat->ParameterValue(IDT_VALUETYPE_COHESION); //MPa
   
   // friction angle is either
   // ID_VALUETYPE_FRICTION_ANGLE
   // or
   // ID_VALUETYPE_INITFRICTION
   if(pMat->IsParameter(IDT_VALUETYPE_FRICTION_ANGLE))
-    m_frictionAngle = pMat->ParameterValue(IDT_VALUETYPE_FRICTION_ANGLE);
+  m_frictionAngle = pMat->ParameterValue(IDT_VALUETYPE_FRICTION_ANGLE);
   else if(pMat->IsParameter(IDT_VALUETYPE_INITFRICTION))
-    m_frictionAngle = pMat->ParameterValue(IDT_VALUETYPE_INITFRICTION);
+  m_frictionAngle = pMat->ParameterValue(IDT_VALUETYPE_INITFRICTION);
   // remove this assert if a new material is added,
   // where no friction angle exists and we want to use 0
   else assert(FALSE);
@@ -224,18 +224,18 @@ CExportIDMStaborRow::CExportIDMStaborRow
   // dilatation angle might exist as ID_VALUETYPE_DILATATION,
   // otherwise use 0
   if(pMat->IsParameter(IDT_VALUETYPE_DILATATION))
-    m_dilatationAngle = pMat->ParameterValue(IDT_VALUETYPE_DILATATION);
+  m_dilatationAngle = pMat->ParameterValue(IDT_VALUETYPE_DILATATION);
   else
-    m_dilatationAngle= 0;
+  m_dilatationAngle= 0;
 
   {
-    CAngleQuantity azi, inc;
-    pNewWellPoint->AzimuthInclination( azi, inc);
-    m_azimuthAngle= azi.Value();
-    m_inclinationAngle= inc.Value();
+  CAngleQuantity azi, inc;
+  pNewWellPoint->AzimuthInclination( azi, inc);
+  m_azimuthAngle= azi.Value();
+  m_inclinationAngle= inc.Value();
 
-    CNewWellPath& wellpath = (CNewWellPath&)pNewWellPoint->WellPath();
-    m_verticalDepth= pNewWellPoint->Z()-wellpath.MudGradRefDepth();
+  CNewWellPath& wellpath = (CNewWellPath&)pNewWellPoint->WellPath();
+  m_verticalDepth= pNewWellPoint->Z()-wellpath.MudGradRefDepth();
   }
 
   // Set direct depthstress
@@ -243,84 +243,84 @@ CExportIDMStaborRow::CExportIDMStaborRow
   const IValueComponentBase *pResult = &model.ResultTree().TotalStress().Components().Component(ITensorGroup::CComponentComposite::TC_ZZ, uMode);
 
   geo::CValue result_value;
-    result_value = pResult->ScalarData().ValuePoint(*pNewWellPoint,IQuantityDouble::SI_UNIT);
+  result_value = pResult->ScalarData().ValuePoint(*pNewWellPoint,IQuantityDouble::SI_UNIT);
 
   if(result_value.Valid())
   {
-    m_validTotalDepthDirecStress= true;
-    m_totalDepthDirecStress= result_value.Value();
+  m_validTotalDepthDirecStress= true;
+  m_totalDepthDirecStress= result_value.Value();
   }
 
   // Set direct east stress stress
   uMode = model.ResultTree().TotalStress().Components().Mode(antype, stage.Index());
   pResult = &model.ResultTree().TotalStress().Components().Component(ITensorGroup::CComponentComposite::TC_YY, uMode);
 
-    result_value = pResult->ScalarData().ValuePoint(*pNewWellPoint,IQuantityDouble::SI_UNIT);
+  result_value = pResult->ScalarData().ValuePoint(*pNewWellPoint,IQuantityDouble::SI_UNIT);
 
   if(result_value.Valid())
   {
-    m_validTotalEastDirecStress= true;
-    m_totalEastDirecStress= result_value.Value();
+  m_validTotalEastDirecStress= true;
+  m_totalEastDirecStress= result_value.Value();
   }
 
   // Set direct north stress 
   uMode = model.ResultTree().TotalStress().Components().Mode(antype, stage.Index());
   pResult = &model.ResultTree().TotalStress().Components().Component(ITensorGroup::CComponentComposite::TC_XX, uMode);
 
-    result_value = pResult->ScalarData().ValuePoint(*pNewWellPoint,IQuantityDouble::SI_UNIT);
+  result_value = pResult->ScalarData().ValuePoint(*pNewWellPoint,IQuantityDouble::SI_UNIT);
 
   if(result_value.Valid())
   {
-    m_validTotalNorthDirecStress= true;
-    m_totalNorthDirecStress= result_value.Value();
+  m_validTotalNorthDirecStress= true;
+  m_totalNorthDirecStress= result_value.Value();
   }
 
   // Set EZ shear stress (YZ)
   uMode = model.ResultTree().TotalStress().Components().Mode(antype, stage.Index());
   pResult = &model.ResultTree().TotalStress().Components().Component(ITensorGroup::CComponentComposite::TC_YZ, uMode);
 
-    result_value = pResult->ScalarData().ValuePoint(*pNewWellPoint,IQuantityDouble::SI_UNIT);
+  result_value = pResult->ScalarData().ValuePoint(*pNewWellPoint,IQuantityDouble::SI_UNIT);
 
   if(result_value.Valid())
   {
-    m_validEastDepthShearStress= true;
-    m_eastDepthShearStress= result_value.Value();
+  m_validEastDepthShearStress= true;
+  m_eastDepthShearStress= result_value.Value();
   }
 
   // Set NZ shear stress (XZ)
   uMode = model.ResultTree().TotalStress().Components().Mode(antype, stage.Index());
   pResult = &model.ResultTree().TotalStress().Components().Component(ITensorGroup::CComponentComposite::TC_ZX, uMode);
 
-    result_value = pResult->ScalarData().ValuePoint(*pNewWellPoint,IQuantityDouble::SI_UNIT);
+  result_value = pResult->ScalarData().ValuePoint(*pNewWellPoint,IQuantityDouble::SI_UNIT);
 
   if(result_value.Valid())
   {
-    m_validNorthDepthShearStress= true;
-    m_northDepthShearStress= result_value.Value();
+  m_validNorthDepthShearStress= true;
+  m_northDepthShearStress= result_value.Value();
   }
 
   // Set NE shear stress (XY)
   uMode = model.ResultTree().TotalStress().Components().Mode(antype, stage.Index());
   pResult = &model.ResultTree().TotalStress().Components().Component(ITensorGroup::CComponentComposite::TC_XY, uMode);
 
-    result_value = pResult->ScalarData().ValuePoint(*pNewWellPoint,IQuantityDouble::SI_UNIT);
+  result_value = pResult->ScalarData().ValuePoint(*pNewWellPoint,IQuantityDouble::SI_UNIT);
 
   if(result_value.Valid())
   {
-    m_validNorthEastShearStress= true;
-    m_northEastShearStress= result_value.Value();
+  m_validNorthEastShearStress= true;
+  m_northEastShearStress= result_value.Value();
   }
   
   // Pore pressure
   uMode = model.ResultTree().PorePressure().Mode(antype, stage.Index());
   pResult = &model.ResultTree().PorePressure().Component(0, uMode);
 
-    result_value = pResult->ScalarData().ValuePoint(*pNewWellPoint,IQuantityDouble::SI_UNIT);
+  result_value = pResult->ScalarData().ValuePoint(*pNewWellPoint,IQuantityDouble::SI_UNIT);
 
   if(result_value.Valid())
   {
-    m_validPorePressure= true;
-    m_porePressure= result_value.Value();
+  m_validPorePressure= true;
+  m_porePressure= result_value.Value();
   }
 
   // Plasticity
@@ -330,28 +330,28 @@ CExportIDMStaborRow::CExportIDMStaborRow
      || mat.MaterialModel() == MM_MOHRCOULOMB
      || mat.MaterialModel() == MM_MODIFIEDMOHRCOULOMB 
      || mat.MaterialModel() == MM_CAMCLAY_CREEP )
-    m_plasticity= true;
+  m_plasticity= true;
   else
-    m_plasticity= false;
+  m_plasticity= false;
 
   // Skempton coefficient
   m_skemptonCoefficient= 1.0/(1 +
-    pMat->ParameterValue(IDT_VALUETYPE_BULKSTIFFNESS) *
-    pMat->ParameterValue(IDT_VALUETYPE_POROSITY) /
-    pMat->ParameterValue(IDT_VALUETYPE_FLUID_BULK_MOD) );
+  pMat->ParameterValue(IDT_VALUETYPE_BULKSTIFFNESS) *
+  pMat->ParameterValue(IDT_VALUETYPE_POROSITY) /
+  pMat->ParameterValue(IDT_VALUETYPE_FLUID_BULK_MOD) );
 
   if (  mat.MaterialModel() == MM_UNDRAINED )
-    m_undrained= true;
+  m_undrained= true;
   else
-    m_undrained= false;
+  m_undrained= false;
 }
 
 void CExportIDMStaborRow::eksport( std::ostream &stream )
 {
   if (m_validRow)
-    stream << "OK" << '\t';
+  stream << "OK" << '\t';
   else
-    stream << "NOK" << '\t';
+  stream << "NOK" << '\t';
 
   stream << m_rowNr << '\t';
   stream << m_verticalDepth << '\t';
@@ -360,112 +360,112 @@ void CExportIDMStaborRow::eksport( std::ostream &stream )
   stream << m_azimuthAngle << '\t';
 
   if ( m_stressDefinitionGeneral )
-    stream << "general" <<'\t';
+  stream << "general" <<'\t';
   else
   {
-    assert( m_stressDefinitionGeneral ); // not supported
-    stream << '\t';
+  assert( m_stressDefinitionGeneral ); // not supported
+  stream << '\t';
   }
 
   if ( m_validPorePressure )
-    stream << m_porePressure << '\t';
+  stream << m_porePressure << '\t';
   else
-    stream << '\t';
+  stream << '\t';
 
   if ( m_validTotalNorthDirecStress )
-    stream << m_totalNorthDirecStress << '\t';
+  stream << m_totalNorthDirecStress << '\t';
   else
-    stream << '\t';
+  stream << '\t';
 
   if ( m_validTotalEastDirecStress )
-    stream << m_totalEastDirecStress << '\t';
+  stream << m_totalEastDirecStress << '\t';
   else
-    stream << '\t';
+  stream << '\t';
 
   if ( m_validTotalDepthDirecStress )
-    stream << m_totalDepthDirecStress << '\t';
+  stream << m_totalDepthDirecStress << '\t';
   else
-    stream << '\t';
+  stream << '\t';
 
   if ( m_validNorthEastShearStress )
-    stream << m_northEastShearStress << '\t';
+  stream << m_northEastShearStress << '\t';
   else
-    stream << '\t';
+  stream << '\t';
 
   if ( m_validEastDepthShearStress )
-    stream << m_eastDepthShearStress << '\t';
+  stream << m_eastDepthShearStress << '\t';
   else
-    stream << '\t';
+  stream << '\t';
 
   if ( m_validNorthDepthShearStress )
-    stream << m_northDepthShearStress << '\t';
+  stream << m_northDepthShearStress << '\t';
   else
-    stream << '\t';
+  stream << '\t';
 
   if ( m_stressDefinitionGeneral )
   {
-    stream << 0 << '\t'; //m_porePressure_kPa_m
-    stream << 0 << '\t'; //m_vertTSG
-    stream << 0 << '\t'; //m_maxHorTSG
-    stream << 0 << '\t'; //m_minHorTSG
-    stream << 0 << '\t'; //m_azimuthMaxHor
+  stream << 0 << '\t'; //m_porePressure_kPa_m
+  stream << 0 << '\t'; //m_vertTSG
+  stream << 0 << '\t'; //m_maxHorTSG
+  stream << 0 << '\t'; //m_minHorTSG
+  stream << 0 << '\t'; //m_azimuthMaxHor
   }
   else
   {
-    assert( m_stressDefinitionGeneral ); // not supported
-    stream << '\t'; //m_porePressure_kPa_m
-    stream << '\t'; //m_vertTSG
-    stream << '\t'; //m_maxHorTSG
-    stream << '\t'; //m_minHorTSG
-    stream << '\t'; //m_azimuthMaxHor
+  assert( m_stressDefinitionGeneral ); // not supported
+  stream << '\t'; //m_porePressure_kPa_m
+  stream << '\t'; //m_vertTSG
+  stream << '\t'; //m_maxHorTSG
+  stream << '\t'; //m_minHorTSG
+  stream << '\t'; //m_azimuthMaxHor
   }
 
   if (m_undrained)
-    stream << "yes" << '\t';
+  stream << "yes" << '\t';
   else
-    stream << "no" << '\t';
+  stream << "no" << '\t';
   stream << m_biotAlpha << '\t';
   stream << m_skemptonCoefficient << '\t';
   if (m_useCorrelationFunction)
   {
-    assert(m_useCorrelationFunction==false); // not supported
-    stream << "yes" << '\t';
-    stream << m_surfaceArea << '\t';
-    stream << m_sonicTransitTime << '\t';
+  assert(m_useCorrelationFunction==false); // not supported
+  stream << "yes" << '\t';
+  stream << m_surfaceArea << '\t';
+  stream << m_sonicTransitTime << '\t';
   }
   else
   {
-    stream << "no" << '\t';
-    stream << '\t'; //m_surfaceArea
-    stream << '\t'; //m_sonicTransitTime
+  stream << "no" << '\t';
+  stream << '\t'; //m_surfaceArea
+  stream << '\t'; //m_sonicTransitTime
   }
   if (m_plasticity)
-    stream << "yes" << '\t';
+  stream << "yes" << '\t';
   else
-    stream << "no" << '\t';
+  stream << "no" << '\t';
 
   if (m_useCorrelationFunction)
   {
-    assert(m_useCorrelationFunction==false); // not supported
-    stream << '\t'; //m_cohesionStrength
-    stream << '\t'; //m_frictionAngle
-    stream << '\t'; //m_dilatationAngle
+  assert(m_useCorrelationFunction==false); // not supported
+  stream << '\t'; //m_cohesionStrength
+  stream << '\t'; //m_frictionAngle
+  stream << '\t'; //m_dilatationAngle
   }
   else
   {
-    stream << m_cohesionStrength << '\t';
-    stream << m_frictionAngle << '\t';
-    stream << m_dilatationAngle << '\t';
+  stream << m_cohesionStrength << '\t';
+  stream << m_frictionAngle << '\t';
+  stream << m_dilatationAngle << '\t';
   }
 
   if (m_isotropy)
-    stream << "Isotropy" << '\t';
+  stream << "Isotropy" << '\t';
   else
-    stream << "Anisotropy" << '\t';
+  stream << "Anisotropy" << '\t';
   if (m_isotropy)
-    stream << m_youngsModulus << '\t';
+  stream << m_youngsModulus << '\t';
   else
-    stream << 10 << '\t'; //GPa
+  stream << 10 << '\t'; //GPa
   stream << '\t'; //m_inPlaneYoungsModulus
   stream << '\t'; //m_YoungsModulusPerpendicularToBeddingPlane
   stream << '\t'; //m_dipAzimuth
@@ -473,12 +473,12 @@ void CExportIDMStaborRow::eksport( std::ostream &stream )
 
   if (m_useCorrelationFunction)
   {
-    assert(m_useCorrelationFunction==false); // not supported
-    stream << '\t'; // m_poissonRatio
+  assert(m_useCorrelationFunction==false); // not supported
+  stream << '\t'; // m_poissonRatio
   }
   else
   {
-    stream << m_poissonRatio << '\t';
+  stream << m_poissonRatio << '\t';
   }
 
   stream << "none" << '\t'; //m_hardeningType
@@ -509,53 +509,53 @@ BOOL CStartIDMStaborDlg::OnInitDialog()
 
   if(!m_model.ResultRegister().ResultsAvailable(CAnalysisType::AT_LINEAR))
   {
-    m_nAnalysisType = 1; // default to nonline
-    GetDlgItem(IDC_RAD_LINEAR)->EnableWindow(FALSE);
+  m_nAnalysisType = 1; // default to nonline
+  GetDlgItem(IDC_RAD_LINEAR)->EnableWindow(FALSE);
   }
 
   if(!m_model.ResultRegister().ResultsAvailable(CAnalysisType::AT_NONLIN))
   {
-    if(m_nAnalysisType == 1)
+  if(m_nAnalysisType == 1)
       m_nAnalysisType = 2; // default to mixture
-    GetDlgItem(IDC_RAD_NONLIN)->EnableWindow(FALSE);
+  GetDlgItem(IDC_RAD_NONLIN)->EnableWindow(FALSE);
   }
 
   if(!m_model.ResultRegister().ResultsAvailable(CAnalysisType::AT_MIXTURE))
   {
-    if(m_nAnalysisType == 2)
+  if(m_nAnalysisType == 2)
       m_nAnalysisType = 3; // default to containment
-    GetDlgItem(IDC_RAD_MIXTURE)->EnableWindow(FALSE);
+  GetDlgItem(IDC_RAD_MIXTURE)->EnableWindow(FALSE);
   }
 
   if(!m_model.ResultRegister().ResultsAvailable(CAnalysisType::AT_MIXTURE_CONTAINMENT))
   {
-    if(m_nAnalysisType == 3)
+  if(m_nAnalysisType == 3)
       m_nAnalysisType = -1; // default to none
-    GetDlgItem(IDC_RAD_MIXTURE_CONTAINMENT)->EnableWindow(FALSE);
+  GetDlgItem(IDC_RAD_MIXTURE_CONTAINMENT)->EnableWindow(FALSE);
   }
 
   if(m_nAnalysisType != -1)
   {
-    CComboBox* pDeplCombo = (CComboBox*)GetDlgItem(IDC_CBO_STAGE);
-    CDepletionStageEntry::const_iterator it;
-    for(it = m_model.DepletionStageEntry().begin(); it != m_model.DepletionStageEntry().end(); ++it)
-    {
+  CComboBox* pDeplCombo = (CComboBox*)GetDlgItem(IDC_CBO_STAGE);
+  CDepletionStageEntry::const_iterator it;
+  for(it = m_model.DepletionStageEntry().begin(); it != m_model.DepletionStageEntry().end(); ++it)
+  {
       if(m_model.ResultRegister().ResultsAvailable(AnalysisType(), *it))
       {
-        m_vcStages.push_back(&*it);
-        pDeplCombo->AddString(it->Name().toStdString().c_str());
+    m_vcStages.push_back(&*it);
+    pDeplCombo->AddString(it->Name().toStdString().c_str());
       }
-    }
-    m_nStage = 0;
+  }
+  m_nStage = 0;
   }
   else
   {
-    GetDlgItem(IDC_CBO_STAGE)->EnableWindow(FALSE);
-    m_nStage = -1;
+  GetDlgItem(IDC_CBO_STAGE)->EnableWindow(FALSE);
+  m_nStage = -1;
   }
 
   if(m_nAnalysisType == -1)
-    _m()->msg("No results are available for export");
+  _m()->msg("No results are available for export");
 
   UpdateData(FALSE);
 
@@ -577,7 +577,7 @@ void CStartIDMStaborDlg::OnExport()
 {
   UpdateData(TRUE);
 
-    assert(m_pNewPointList->empty() == false);
+  assert(m_pNewPointList->empty() == false);
 
   assert(!m_strFileName.IsEmpty());
   assert(!m_vcStages.empty());
@@ -585,8 +585,8 @@ void CStartIDMStaborDlg::OnExport()
 
   if(!m_model.ResultRegister().ResultsAvailable(AnalysisType(), *m_vcStages[m_nStage]))
   {
-    _m()->msg("No results are available for this analysis type and depletion stage");
-    return;
+  _m()->msg("No results are available for this analysis type and depletion stage");
+  return;
   }
 
   if( CExportIDMStabor
@@ -595,9 +595,9 @@ void CStartIDMStaborDlg::OnExport()
       , AnalysisType()
       , m_pNewPointList
       ).eksport(LPCSTR(m_strFileName)))
-    _m()->msg("Export successful");
+  _m()->msg("Export successful");
   else
-    _m()->msg("Export failed");
+  _m()->msg("Export failed");
 }
 
 void CStartIDMStaborDlg::OnBrowse()
@@ -605,9 +605,9 @@ void CStartIDMStaborDlg::OnBrowse()
   CFileDialog dlg(FALSE, "txt", m_strFileName, OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, "Text Files (*.txt)|*.txt|All Files (*.*)|*.*||", this);
   if(dlg.DoModal() == IDOK)
   {
-    m_strFileName = dlg.GetPathName();
-    UpdateData(FALSE);
-    UpdateExportButton();
+  m_strFileName = dlg.GetPathName();
+  UpdateData(FALSE);
+  UpdateExportButton();
   }
 }
 
@@ -625,7 +625,7 @@ void CStartIDMStaborDlg::UpdateExportButton()
 {
   UpdateData(TRUE);
   bool bPointsAvailable=
-    ( m_pNewPointList && m_pNewPointList->empty() == false );
+  ( m_pNewPointList && m_pNewPointList->empty() == false );
 
   bool bValidStage = (m_nStage >= 0 && m_nStage < m_vcStages.size() && m_model.ResultRegister().ResultsAvailable(AnalysisType(), *m_vcStages[m_nStage]));
   GetDlgItem(IDC_EXPORT)->EnableWindow(m_nAnalysisType != -1    &&
@@ -640,11 +640,11 @@ CAnalysisType::TAnalysisType CStartIDMStaborDlg::AnalysisType() const
   switch(m_nAnalysisType)
   {
   case 0:
-    return CAnalysisType::AT_LINEAR;
+  return CAnalysisType::AT_LINEAR;
   case 1:
-    return CAnalysisType::AT_NONLIN;
+  return CAnalysisType::AT_NONLIN;
   case 2:
-    return CAnalysisType::AT_MIXTURE;
+  return CAnalysisType::AT_MIXTURE;
   }
 
   assert(m_nAnalysisType == 3);

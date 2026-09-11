@@ -6,16 +6,16 @@ class CHorizonBase;
 class CFaultParametersHub
 {
   public:
-    CFaultParametersHub(CHorizonBase& horizonBase);
+  CFaultParametersHub(CHorizonBase& horizonBase);
 
-    void attributes();
-    bool hasAttributes() const;
+  void attributes();
+  bool hasAttributes() const;
 
   private:
-    CFaultParametersHub(const CFaultParametersHub& rhs);
-    CFaultParametersHub& operator = (const CFaultParametersHub& rhs);
+  CFaultParametersHub(const CFaultParametersHub& rhs);
+  CFaultParametersHub& operator = (const CFaultParametersHub& rhs);
 
-    CHorizonBase& m_horizonBase;
+  CHorizonBase& m_horizonBase;
 };
 
 #endif  // _FaultParametersHub_h_

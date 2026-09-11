@@ -83,19 +83,19 @@ double CResponseTypeBase::calculateTotalSize(const TObject& object,
 
   if (totalSizeValue != totalSizeCache.end())
   {
-    totalSize = (*totalSizeValue).second;
+  totalSize = (*totalSizeValue).second;
   }
   else
   {
-    while (element != 0)
-    {
+  while (element != 0)
+  {
       totalSize += element->Size();
       element = object->getNextElement();
-    }
+  }
 
-    element = object->getFirstElement();
+  element = object->getFirstElement();
 
-    totalSizeCache[key] = totalSize;
+  totalSizeCache[key] = totalSize;
   }
 
   return totalSize;

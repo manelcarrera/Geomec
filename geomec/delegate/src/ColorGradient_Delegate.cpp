@@ -19,14 +19,14 @@ bool CColorGradient_Delegate::Attributes()
 
   if (dlg.DoModal() == IDOK)
   {
-    if (!m_colorGradient->IsGlobal())
-    {
+  if (!m_colorGradient->IsGlobal())
+  {
       m_colorGradient->SaveRegistry("ColorScale", "Local");
-    }
+  }
 
-    m_colorGradient->Modified();
+  m_colorGradient->Modified();
 
-    return true;
+  return true;
   }
 
   return false;
@@ -40,11 +40,11 @@ bool CColorGradient_Delegate::CanFindExtents() const
 
   if (doc.CurrentScene() && m_colorGradient->IsGlobal())
   {
-    ISceneWrapper* pScene = doc.CurrentScene();
+  ISceneWrapper* pScene = doc.CurrentScene();
 
-    assert(pScene);
+  assert(pScene);
 
-    return pScene->ValueComponent() && pScene->MinMaxValue().first.Valid() &&
+  return pScene->ValueComponent() && pScene->MinMaxValue().first.Valid() &&
       pScene->MinMaxValue().second.Valid();
   }
 
@@ -55,7 +55,7 @@ bool CColorGradient_Delegate::FindExtents()
 {
   if (!CanFindExtents())
   {
-    return false;
+  return false;
   }
 
   // Get the current scene
@@ -70,5 +70,5 @@ bool CColorGradient_Delegate::FindExtents()
   assert(pScene->ValueComponent());
 
   return m_colorGradient->FindExtents(pScene->MinMaxValue().first.Value(),
-    pScene->MinMaxValue().second.Value());
+  pScene->MinMaxValue().second.Value());
 }

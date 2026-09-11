@@ -18,40 +18,40 @@ typedef unsigned long COLORREF;
 class CColorNode : public COpenGLNode  
 {
 public:
-	// Using the color factory ...
-	CColorNode(CFemAppModel& model);
-	CColorNode(const QString &strName, CFemAppModel& model, COLORREF nColor);
-	CColorNode(const unsigned int uName, CFemAppModel& model, COLORREF nColor);
-	CColorNode(const CColorNode &rhs);
+  // Using the color factory ...
+  CColorNode(CFemAppModel& model);
+  CColorNode(const QString &strName, CFemAppModel& model, COLORREF nColor);
+  CColorNode(const unsigned int uName, CFemAppModel& model, COLORREF nColor);
+  CColorNode(const CColorNode &rhs);
 
-	// Not using the color factory ...
-	CColorNode(const QString &strName, CFemAppModel& model);
-	CColorNode(const unsigned int uName, CFemAppModel& model);
+  // Not using the color factory ...
+  CColorNode(const QString &strName, CFemAppModel& model);
+  CColorNode(const unsigned int uName, CFemAppModel& model);
 
-	// Destruction ...
-	virtual ~CColorNode();
-	
-	// Color access ...
-	virtual TColor Color() const;
-	void Color(TColor nColor);
+  // Destruction ...
+  virtual ~CColorNode();
+  
+  // Color access ...
+  virtual TColor Color() const;
+  void Color(TColor nColor);
 
-	// Save and load
-	virtual bool Empty() const;
-	virtual long SavedItems() const;
+  // Save and load
+  virtual bool Empty() const;
+  virtual long SavedItems() const;
 
-	// Streaming
-	virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-	virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  // Streaming
+  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
+  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
 
-	// Assignment
-	CColorNode& operator=(const CColorNode &rhs);
-	bool operator==(const CColorNode &rhs) const;
+  // Assignment
+  CColorNode& operator=(const CColorNode &rhs);
+  bool operator==(const CColorNode &rhs) const;
 
   virtual bool Accept(graphnode::IConstVisitor& visitor) const { return visitor.VisitColorNode(*this); }
   virtual bool Accept(graphnode::IVisitor& visitor) { return visitor.VisitColorNode(*this); }
 
 private:
-	COLORREF m_nColor;
+  COLORREF m_nColor;
 };
 
 #endif // !defined(AFX_COLORNODE_H__D3F47E88_C6C3_4E3B_BAC2_83B9D3DC314D__INCLUDED_)

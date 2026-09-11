@@ -11,20 +11,20 @@ class CWellCasingSteelMaterial_Delegate : public IMaterialBase_Delegate
 {
 public:
   CWellCasingSteelMaterial_Delegate(
-    CWellCasingSteelMaterial* wellCasingSteelMaterial);
+  CWellCasingSteelMaterial* wellCasingSteelMaterial);
 
   virtual bool Attributes();
 
 private:
   CWellCasingSteelMaterial_Delegate(
-    const CWellCasingSteelMaterial_Delegate& rhs);
+  const CWellCasingSteelMaterial_Delegate& rhs);
   CWellCasingSteelMaterial_Delegate& operator = (
-    const CWellCasingSteelMaterial_Delegate& rhs);
+  const CWellCasingSteelMaterial_Delegate& rhs);
 
   CWellCasingSteelMaterial* m_wellCasingSteelMaterial;
 
   REGISTER_DELEGATE(CWellCasingSteelMaterial,
-    CWellCasingSteelMaterial_Delegate);
+  CWellCasingSteelMaterial_Delegate);
 };
 
 class CWellCasingSteelMaterialEntry_Delegate :
@@ -32,7 +32,7 @@ class CWellCasingSteelMaterialEntry_Delegate :
 {
 public:
   CWellCasingSteelMaterialEntry_Delegate(
-    CWellCasingSteelMaterialEntry* wellCasingSteelMaterialEntry);
+  CWellCasingSteelMaterialEntry* wellCasingSteelMaterialEntry);
 
   virtual bool Attributes();
 
@@ -42,14 +42,14 @@ public:
 
 private:
   CWellCasingSteelMaterialEntry_Delegate(
-    const CWellCasingSteelMaterialEntry_Delegate& rhs);
+  const CWellCasingSteelMaterialEntry_Delegate& rhs);
   CWellCasingSteelMaterialEntry_Delegate& operator = (
-    const CWellCasingSteelMaterialEntry_Delegate& rhs);
+  const CWellCasingSteelMaterialEntry_Delegate& rhs);
 
   CWellCasingSteelMaterialEntry* m_wellCasingSteelMaterialEntry;
 
   REGISTER_DELEGATE(CWellCasingSteelMaterialEntry,
-    CWellCasingSteelMaterialEntry_Delegate);
+  CWellCasingSteelMaterialEntry_Delegate);
 };
 
 #endif  // _WellCasingSteelMaterial_Delegate_h_

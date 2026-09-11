@@ -98,62 +98,62 @@ void CMaterialCamClayCreatorV2::CPQPlotter::GetYieldCurve(const CLibraryMaterial
 {
   const ml::CMatParam *pPhiInit = mat.Parameter(MLD_INITFRICTION);
   const ml::CMatParam *pCapShape = mat.Parameter(MLD_CAPSHAPE);
-	const ml::CMatParam *pCohesi = mat.Parameter(MLD_COHESION);
+  const ml::CMatParam *pCohesi = mat.Parameter(MLD_COHESION);
   const ml::CMatParam *pGamma = mat.Parameter(MLD_GAMMA);
 
-	double dPhiInit = pPhiInit->Value();
-	double dPhiInitRad = dPhiInit * PI / 180;	// phi init in radians
-	double dCapShape = pCapShape->Value();
-	double dCohesi = pCohesi->Value();
+  double dPhiInit = pPhiInit->Value();
+  double dPhiInitRad = dPhiInit * PI / 180;	// phi init in radians
+  double dCapShape = pCapShape->Value();
+  double dCohesi = pCohesi->Value();
   double dGamma = pGamma->Value();
 
-	double dPShift = dCohesi / tan(dPhiInitRad);
+  double dPShift = dCohesi / tan(dPhiInitRad);
 
-	double a = dCapShape / (1 + dCapShape) * dPrecon;
+  double a = dCapShape / (1 + dCapShape) * dPrecon;
   double dSinPhiInit = sin(dPhiInitRad);
-	double m2 = pow(6 * dSinPhiInit / (3 - dSinPhiInit), 2);
+  double m2 = pow(6 * dSinPhiInit / (3 - dSinPhiInit), 2);
 
-	dPMin = 0;
+  dPMin = 0;
   double dPRightHand = std::min(dPMax, a);
 
-	// part for p < a
-	double beta2 = dGamma * dGamma;
+  // part for p < a
+  double beta2 = dGamma * dGamma;
 
-	if(fabs(dPRightHand - dPMin) > 1e-8 && fabs(dPMin) < fabs(dPRightHand))
-	{
-		for(int i = 0; i < NUM_PQ_STEPS; ++i)
-		{
-			double p = (double)i / NUM_PQ_STEPS * (dPRightHand - dPMin) + dPMin;
-			double q = GetCapShapeQ(m2, beta2, p, a);
-			// shift:
-			p -= dPShift;
-			CStressStrain pt(p, q);
-			values.push_back(pt);
-		}
-	}
+  if(fabs(dPRightHand - dPMin) > 1e-8 && fabs(dPMin) < fabs(dPRightHand))
+  {
+    for(int i = 0; i < NUM_PQ_STEPS; ++i)
+    {
+      double p = (double)i / NUM_PQ_STEPS * (dPRightHand - dPMin) + dPMin;
+      double q = GetCapShapeQ(m2, beta2, p, a);
+      // shift:
+      p -= dPShift;
+      CStressStrain pt(p, q);
+      values.push_back(pt);
+    }
+  }
 
-	// part for p > a
-	beta2 = 1 / (dCapShape * dCapShape);
+  // part for p > a
+  beta2 = 1 / (dCapShape * dCapShape);
   dPRightHand = std::min(dPMax, dPrecon);
 
-	if(fabs(dPRightHand - a) > 1e-8 && fabs(dPRightHand) > fabs(a))
-	{
-		for(int i = 0; i < NUM_PQ_STEPS; ++i)
-		{
-			double p = (double)i / NUM_PQ_STEPS * (dPRightHand - a) + a;
-			double q = GetCapShapeQ(m2, beta2, p, a);
-			// shift:
-			p -= dPShift;
-			CStressStrain pt( p, q );
-			values.push_back( pt );
-		}
-		// add dPRightHand
-		double q = GetCapShapeQ(m2, beta2, dPRightHand, a);
-		// shift:
-		dPRightHand -= dPShift;
-		CStressStrain pt(dPRightHand, q);
-		values.push_back(pt);
-	}
+  if(fabs(dPRightHand - a) > 1e-8 && fabs(dPRightHand) > fabs(a))
+  {
+    for(int i = 0; i < NUM_PQ_STEPS; ++i)
+    {
+      double p = (double)i / NUM_PQ_STEPS * (dPRightHand - a) + a;
+      double q = GetCapShapeQ(m2, beta2, p, a);
+      // shift:
+      p -= dPShift;
+      CStressStrain pt( p, q );
+      values.push_back( pt );
+    }
+    // add dPRightHand
+    double q = GetCapShapeQ(m2, beta2, dPRightHand, a);
+    // shift:
+    dPRightHand -= dPShift;
+    CStressStrain pt(dPRightHand, q);
+    values.push_back(pt);
+  }
 }
 
 IPQPlotter* CMaterialCamClayCreatorV2::CPQPlotter::Clone() const
@@ -244,62 +244,62 @@ void CMaterialCamClayCreatorDEPRECATED::CPQPlotter::GetYieldCurve(const CLibrary
 {
   const ml::CMatParam *pPhiInit = mat.Parameter(MLD_INITFRICTION);
   const ml::CMatParam *pCapShape = mat.Parameter(MLD_CAPSHAPE);
-	const ml::CMatParam *pCohesi = mat.Parameter(MLD_COHESION);
+  const ml::CMatParam *pCohesi = mat.Parameter(MLD_COHESION);
   const ml::CMatParam *pGamma = mat.Parameter(MLD_GAMMA);
 
-	double dPhiInit = pPhiInit->Value();
-	double dPhiInitRad = dPhiInit * PI / 180;	// phi init in radians
-	double dCapShape = pCapShape->Value();
-	double dCohesi = pCohesi->Value();
+  double dPhiInit = pPhiInit->Value();
+  double dPhiInitRad = dPhiInit * PI / 180;	// phi init in radians
+  double dCapShape = pCapShape->Value();
+  double dCohesi = pCohesi->Value();
   double dGamma = pGamma->Value();
 
-	double dPShift = dCohesi / tan(dPhiInitRad);
+  double dPShift = dCohesi / tan(dPhiInitRad);
 
-	double a = dCapShape / (1 + dCapShape) * dPrecon;
+  double a = dCapShape / (1 + dCapShape) * dPrecon;
   double dSinPhiInit = sin(dPhiInitRad);
-	double m2 = pow(6 * dSinPhiInit / (3 - dSinPhiInit), 2);
+  double m2 = pow(6 * dSinPhiInit / (3 - dSinPhiInit), 2);
 
-	dPMin = 0;
+  dPMin = 0;
   double dPRightHand = std::min(dPMax, a);
 
-	// part for p < a
-	double beta2 = dGamma * dGamma;
+  // part for p < a
+  double beta2 = dGamma * dGamma;
 
-	if(fabs(dPRightHand - dPMin) > 1e-8 && fabs(dPMin) < fabs(dPRightHand))
-	{
-		for(int i = 0; i < NUM_PQ_STEPS; ++i)
-		{
-			double p = (double)i / NUM_PQ_STEPS * (dPRightHand - dPMin) + dPMin;
-			double q = GetCapShapeQ(m2, beta2, p, a);
-			// shift:
-			p -= dPShift;
-			CStressStrain pt(p, q);
-			values.push_back(pt);
-		}
-	}
+  if(fabs(dPRightHand - dPMin) > 1e-8 && fabs(dPMin) < fabs(dPRightHand))
+  {
+    for(int i = 0; i < NUM_PQ_STEPS; ++i)
+    {
+      double p = (double)i / NUM_PQ_STEPS * (dPRightHand - dPMin) + dPMin;
+      double q = GetCapShapeQ(m2, beta2, p, a);
+      // shift:
+      p -= dPShift;
+      CStressStrain pt(p, q);
+      values.push_back(pt);
+    }
+  }
 
-	// part for p > a
-	beta2 = 1 / (dCapShape * dCapShape);
+  // part for p > a
+  beta2 = 1 / (dCapShape * dCapShape);
   dPRightHand = std::min(dPMax, dPrecon);
 
-	if(fabs(dPRightHand - a) > 1e-8 && fabs(dPRightHand) > fabs(a))
-	{
-		for(int i = 0; i < NUM_PQ_STEPS; ++i)
-		{
-			double p = (double)i / NUM_PQ_STEPS * (dPRightHand - a) + a;
-			double q = GetCapShapeQ(m2, beta2, p, a);
-			// shift:
-			p -= dPShift;
-			CStressStrain pt( p, q );
-			values.push_back( pt );
-		}
-		// add dPRightHand
-		double q = GetCapShapeQ(m2, beta2, dPRightHand, a);
-		// shift:
-		dPRightHand -= dPShift;
-		CStressStrain pt(dPRightHand, q);
-		values.push_back(pt);
-	}
+  if(fabs(dPRightHand - a) > 1e-8 && fabs(dPRightHand) > fabs(a))
+  {
+    for(int i = 0; i < NUM_PQ_STEPS; ++i)
+    {
+      double p = (double)i / NUM_PQ_STEPS * (dPRightHand - a) + a;
+      double q = GetCapShapeQ(m2, beta2, p, a);
+      // shift:
+      p -= dPShift;
+      CStressStrain pt( p, q );
+      values.push_back( pt );
+    }
+    // add dPRightHand
+    double q = GetCapShapeQ(m2, beta2, dPRightHand, a);
+    // shift:
+    dPRightHand -= dPShift;
+    CStressStrain pt(dPRightHand, q);
+    values.push_back(pt);
+  }
 }
 
 IPQPlotter* CMaterialCamClayCreatorDEPRECATED::CPQPlotter::Clone() const
@@ -355,7 +355,7 @@ static void UpdateCamClayCMP(ml::CMaterial& mat)
   assert(pPlasticCompressibility);
 
   pPlasticCompressibility->Value(
-    CalcCamclayUniaxialPlasticCompressibility(pPorosity->Value(),
+  CalcCamclayUniaxialPlasticCompressibility(pPorosity->Value(),
                                               pHardening->Value(),
                                               pCapShape->Value(),
                                               pInitFriction->Value(),
@@ -469,12 +469,12 @@ bool CMaterialCamClayCMPCheckStrategy::operator()(double dValue, const ml::CMatP
   assert(pElasticCompressibility);
 
   double dLambda = CalcHardening(
-    pPreconsolidation->ValueToUserUnit(nUnitDef),
-    dValue,
-    pElasticCompressibility->ValueToUserUnit(nUnitDef),
-    pPorosity->ValueToUserUnit(nUnitDef),
-    pCapShape->ValueToUserUnit(nUnitDef),
-    pInitFriction->ValueToUserUnit(nUnitDef));
+  pPreconsolidation->ValueToUserUnit(nUnitDef),
+  dValue,
+  pElasticCompressibility->ValueToUserUnit(nUnitDef),
+  pPorosity->ValueToUserUnit(nUnitDef),
+  pCapShape->ValueToUserUnit(nUnitDef),
+  pInitFriction->ValueToUserUnit(nUnitDef));
 
   const ml::CMatParam* pHardening = mat.MatParameter(MLD_HARDENING);
   assert(pHardening);
@@ -482,10 +482,10 @@ bool CMaterialCamClayCMPCheckStrategy::operator()(double dValue, const ml::CMatP
   QString strLambdaError;
   if(!pHardening->CheckValueFromUserUnit(dLambda, nUnitDef, strLambdaError))
   {
-    strErrorMsg = QObject::tr(
+  strErrorMsg = QObject::tr(
       "This value of the uniaxial plastic compressibility leads to a value\nfor the hardening parameter of %1.\n\n%2").
                                                                                           arg(dLambda).arg(strLambdaError);
-    return false;
+  return false;
   }
 
   return true;
@@ -513,12 +513,12 @@ void CMaterialCamClayCMPSetStrategy::operator()(double dValue, ml::CMatParam& pa
   assert(pElasticCompressibility);
 
   double dLambda = CalcHardening(
-    pPreconsolidation->Value(),
-    dValue,
-    pElasticCompressibility->Value(),
-    pPorosity->Value(),
-    pCapShape->Value(),
-    pInitFriction->Value());
+  pPreconsolidation->Value(),
+  dValue,
+  pElasticCompressibility->Value(),
+  pPorosity->Value(),
+  pCapShape->Value(),
+  pInitFriction->Value());
 
   ml::CMatParam* pHardening = mat.MatParameter(MLD_HARDENING);
   assert(pHardening);

@@ -17,8 +17,8 @@ class CInterfaceDiagnostics : public CInterfaceBase
 public:
   typedef enum
   {
-    DIAGNOSTICS_PARSE = IInterfaceBase::FOR_ME + 1,
-    DIAGNOSTICS_HELP
+  DIAGNOSTICS_PARSE = IInterfaceBase::FOR_ME + 1,
+  DIAGNOSTICS_HELP
   } TDiagnosticsCommand;
 
   virtual bool Expose() const;

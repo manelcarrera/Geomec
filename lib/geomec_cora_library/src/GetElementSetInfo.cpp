@@ -15,33 +15,33 @@ CGetElementSetInfo::CGetElementSetInfo(const CModelBase* modelBase)
 std::ostream& CGetElementSetInfo::operator () (std::ostream& os) const
 {
   const TPointSetEntry* pointSetEntry =
-    dynamic_cast <const TPointSetEntry*> (
+  dynamic_cast <const TPointSetEntry*> (
       m_modelBase->GraphEntry(MD_BASE_POINTSET));
   const TPointSetEntry::TSortedNodeSet
-    elementSets = pointSetEntry->SortedEntryNodes();
+  elementSets = pointSetEntry->SortedEntryNodes();
   size_t elementSetsSize = 0;
 
   for (TPointSetEntry::TSortedNodeSet::const_iterator
-    elementSet = elementSets.begin(); elementSet != elementSets.end();
-    ++elementSet)
+  elementSet = elementSets.begin(); elementSet != elementSets.end();
+  ++elementSet)
   {
-    if (isElementSet(**elementSet))
-    {
+  if (isElementSet(**elementSet))
+  {
       ++elementSetsSize;
-    }
+  }
   }
 
   os << elementSetsSize << std::endl;
 
   for (TPointSetEntry::TSortedNodeSet::const_iterator
-    elementSet = elementSets.begin(); elementSet != elementSets.end();
-    ++elementSet)
+  elementSet = elementSets.begin(); elementSet != elementSets.end();
+  ++elementSet)
   {
-    if (isElementSet(**elementSet))
-    {
+  if (isElementSet(**elementSet))
+  {
       os << "elementset:" << (*elementSet)->Name().toStdString().c_str() <<
-        std::endl;
-    }
+    std::endl;
+  }
   }
 
   return os;

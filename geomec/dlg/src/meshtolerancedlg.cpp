@@ -21,36 +21,36 @@ static char THIS_FILE[] = __FILE__;
 
 
 CMeshToleranceDlg::CMeshToleranceDlg(geo::CTetMeshBase &mesh, CWnd* pParent /*=NULL*/)
-	: CDialog(CMeshToleranceDlg::IDD, pParent), m_mesh(mesh)
+  : CDialog(CMeshToleranceDlg::IDD, pParent), m_mesh(mesh)
 {
-	//{{AFX_DATA_INIT(CMeshToleranceDlg)
-		// NOTE: the ClassWizard will add member initialization here
-	//}}AFX_DATA_INIT
-	
-	m_dTolerance = m_mesh.Tolerance();
+  //{{AFX_DATA_INIT(CMeshToleranceDlg)
+    // NOTE: the ClassWizard will add member initialization here
+  //}}AFX_DATA_INIT
+  
+  m_dTolerance = m_mesh.Tolerance();
 }
 
 
 void CMeshToleranceDlg::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CMeshToleranceDlg)
-		// NOTE: the ClassWizard will add DDX and DDV calls here
-	//}}AFX_DATA_MAP
+  CDialog::DoDataExchange(pDX);
+  //{{AFX_DATA_MAP(CMeshToleranceDlg)
+    // NOTE: the ClassWizard will add DDX and DDV calls here
+  //}}AFX_DATA_MAP
 
-	/*if(!pDX->m_bSaveAndValidate)
-	{
-		m_dTolerance
-	}*/
+  /*if(!pDX->m_bSaveAndValidate)
+  {
+    m_dTolerance
+  }*/
 
-	DDX_Text(pDX, IDC_EDIT_TOLERANCE, m_dTolerance);
-	
+  DDX_Text(pDX, IDC_EDIT_TOLERANCE, m_dTolerance);
+  
 }
 
 
 BEGIN_MESSAGE_MAP(CMeshToleranceDlg, CDialog)
-	//{{AFX_MSG_MAP(CMeshToleranceDlg)
-	//}}AFX_MSG_MAP
+  //{{AFX_MSG_MAP(CMeshToleranceDlg)
+  //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -58,15 +58,15 @@ END_MESSAGE_MAP()
 
 void CMeshToleranceDlg::OnOK() 
 {
-	UpdateData(TRUE);
-	if(m_dTolerance < 0.0)
-	{
-		_m()->msg("Please enter a positive number.");
-		return;
-	}
+  UpdateData(TRUE);
+  if(m_dTolerance < 0.0)
+  {
+    _m()->msg("Please enter a positive number.");
+    return;
+  }
 
-	m_mesh.Tolerance(m_dTolerance);
-	
-	CDialog::OnOK();
+  m_mesh.Tolerance(m_dTolerance);
+  
+  CDialog::OnOK();
 
 }

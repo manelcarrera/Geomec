@@ -17,10 +17,10 @@
 class CDoubleSingleQuantity : public CSingleQuantity<double>
 {
 public:
-	CDoubleSingleQuantity();
+  CDoubleSingleQuantity();
 
-	virtual double MaxValue(const int nComponent = 0, const UNIT unit = SI_UNIT) const;
-	virtual double MinValue(const int nComponent = 0, const UNIT unit = SI_UNIT) const;	
+  virtual double MaxValue(const int nComponent = 0, const UNIT unit = SI_UNIT) const;
+  virtual double MinValue(const int nComponent = 0, const UNIT unit = SI_UNIT) const;	
 };
 
 #endif // !defined(AFX_DOUBLESINGLEQUANTITY_H__62E98308_F62E_408E_90C5_771E3B8FB86F__INCLUDED_)

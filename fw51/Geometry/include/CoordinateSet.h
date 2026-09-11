@@ -40,7 +40,7 @@ public:
 
   virtual const key_type& key(const value_type& val) const
   {
-    return val;
+  return val;
   }
 };
 

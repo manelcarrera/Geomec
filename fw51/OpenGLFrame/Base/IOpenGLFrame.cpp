@@ -60,7 +60,7 @@ const IOpenGLFrame* IOpenGLFrame::Parent() const
 const IOpenGLFrame& IOpenGLFrame::Root() const
 {
   if(Parent())
-    return Parent()->Root();
+  return Parent()->Root();
   return *this;
 }
 
@@ -72,7 +72,7 @@ const IOpenGLFrame& IOpenGLFrame::Root() const
 IOpenGLFrame& IOpenGLFrame::Root()
 {
   if(Parent())
-    return Parent()->Root();
+  return Parent()->Root();
   return *this;
 }
 
@@ -91,16 +91,16 @@ bool IOpenGLFrame::ReParent(IOpenGLFrame* pParent)
   m_SelectionMapRev.clear();
 
   if(DeviceContext())
-    FlushDisplayList();
+  FlushDisplayList();
 
   if(Parent())
   {
-    Parent()->OnDetachChild(*this);
-    for(size_t i = 0; i < Parent()->m_vcChild.size(); i++)
-    {
+  Parent()->OnDetachChild(*this);
+  for(size_t i = 0; i < Parent()->m_vcChild.size(); i++)
+  {
       if(Parent()->m_vcChild[i] == this)
-        Parent()->m_vcChild.erase(Parent()->m_vcChild.begin() + i);
-    }
+    Parent()->m_vcChild.erase(Parent()->m_vcChild.begin() + i);
+  }
   }
 
 
@@ -108,10 +108,10 @@ bool IOpenGLFrame::ReParent(IOpenGLFrame* pParent)
 
   if(Parent())
   {
-    Parent()->m_vcChild.push_back(this);
-    Parent()->OnAttachChild(*this);
-    
-    if(DeviceContext())
+  Parent()->m_vcChild.push_back(this);
+  Parent()->OnAttachChild(*this);
+  
+  if(DeviceContext())
       OnResizeParent(); // Force a resize event
   }
   
@@ -122,20 +122,20 @@ bool IOpenGLFrame::MousePress(TKeyboardModifiers state, TMouseButton button, con
 {
   if(MouseListener())
   {
-    if(MouseListener()->MousePress(state, button, point))
+  if(MouseListener()->MousePress(state, button, point))
       return true;
   }
 
   for(int i = 0; i < ChildSize(); i++)
   { 
-    
-    if(Child(i).HitTest(point))
-    {
+  
+  if(Child(i).HitTest(point))
+  {
       TScreenPoint child_point(point.x() - Child(i).ViewPortX(), point.y() - Child(i).ViewPortY());
       
       if(Child(i).MousePress(state, button, child_point))
-        return true;
-    }
+    return true;
+  }
   }
 
   return false;
@@ -145,20 +145,20 @@ bool IOpenGLFrame::MouseRelease(TKeyboardModifiers state, TMouseButton button, c
 {
   if(MouseListener())
   {
-    if(MouseListener()->MouseRelease(state, button, point))
+  if(MouseListener()->MouseRelease(state, button, point))
       return true;
   }
 
   for(int i = 0; i < ChildSize(); i++)
   {
-    
-    if(Child(i).HitTest(point))
-    {
+  
+  if(Child(i).HitTest(point))
+  {
       TScreenPoint child_point(point.x() - Child(i).ViewPortX(), point.y() - Child(i).ViewPortY());
 
       if(Child(i).MouseRelease(state, button, child_point))
-        return true;
-    }
+    return true;
+  }
   }
 
   return false;
@@ -168,19 +168,19 @@ bool IOpenGLFrame::MouseDblClk(TKeyboardModifiers state, TMouseButton button, co
 {
   if(MouseListener())
   {
-    if(MouseListener()->MouseDblClk(state, button, point))
+  if(MouseListener()->MouseDblClk(state, button, point))
       return true;
   }
 
   for(int i = 0; i < ChildSize(); i++)
   {
-    if(Child(i).HitTest(point))
-    {
+  if(Child(i).HitTest(point))
+  {
       TScreenPoint child_point(point.x() - Child(i).ViewPortX(), point.y() - Child(i).ViewPortY());
 
       if(Child(i).MouseDblClk(state, button, child_point))
-        return true;
-    }
+    return true;
+  }
   }
 
   return false;
@@ -190,20 +190,20 @@ bool IOpenGLFrame::MouseWheel(TKeyboardModifiers state, int nDelta, const TScree
 {
   if(MouseListener())
   {
-    if(MouseListener()->MouseWheel(state, nDelta, point))
+  if(MouseListener()->MouseWheel(state, nDelta, point))
       return true;
   }
 
   for(int i = 0; i < ChildSize(); i++)
   {
-    
-    if(Child(i).HitTest(point))
-    {
+  
+  if(Child(i).HitTest(point))
+  {
       TScreenPoint child_point(point.x() - Child(i).ViewPortX(), point.y() - Child(i).ViewPortY());
       
       if(Child(i).MouseWheel(state, nDelta, child_point))
-        return true;
-    }
+    return true;
+  }
   }
 
   return false;
@@ -213,20 +213,20 @@ bool IOpenGLFrame::MouseMove(TKeyboardModifiers state, TMouseButton button, cons
 {
   if(MouseListener())
   {
-    if(MouseListener()->MouseMove(state, button, point))
+  if(MouseListener()->MouseMove(state, button, point))
       return true;
   }
 
   for(int i = 0; i < ChildSize(); i++)
   {
-    
-    if(Child(i).HitTest(point))
-    {
+  
+  if(Child(i).HitTest(point))
+  {
       TScreenPoint child_point(point.x() - Child(i).ViewPortX(), point.y() - Child(i).ViewPortY());
       
       if(Child(i).MouseMove(state, button, child_point))
-        return true;
-    }
+    return true;
+  }
   }
 
   return false;
@@ -236,13 +236,13 @@ bool IOpenGLFrame::KeyPress(TKeyboardModifiers state, int nAscii, TKey key, int 
 {
   if(MouseListener())
   {
-    if(MouseListener()->KeyPress(state, nAscii, key, nRepCount))
+  if(MouseListener()->KeyPress(state, nAscii, key, nRepCount))
       return true;
   }
 
   for(int i = 0; i < ChildSize(); i++)
   {
-    if(Child(i).KeyPress(state, nAscii, key, nRepCount))
+  if(Child(i).KeyPress(state, nAscii, key, nRepCount))
       return true;
   }
 
@@ -253,13 +253,13 @@ bool IOpenGLFrame::KeyRelease(TKeyboardModifiers state, int nAscii, TKey key, in
 {
   if(MouseListener())
   {
-    if(MouseListener()->KeyRelease(state, nAscii, key, nRepCount))
+  if(MouseListener()->KeyRelease(state, nAscii, key, nRepCount))
       return true;
   }
 
   for(int i = 0; i < ChildSize(); i++)
   {
-    if(Child(i).KeyRelease(state, nAscii, key, nRepCount))
+  if(Child(i).KeyRelease(state, nAscii, key, nRepCount))
       return true;
   }
 
@@ -269,7 +269,7 @@ bool IOpenGLFrame::KeyRelease(TKeyboardModifiers state, int nAscii, TKey key, in
 void IOpenGLFrame::OnResizeParent()
 {
   for(int i = 0; i < ChildSize(); i++)
-    Child(i).OnResizeParent();
+  Child(i).OnResizeParent();
 }
 
 void IOpenGLFrame::OnResizeChild(IOpenGLFrame &/*child*/)
@@ -291,14 +291,14 @@ long IOpenGLFrame::CountScene()
 {
   long lRet = 0;
   for(int i = 0; i < ChildSize(); i++)
-    lRet += Child(i).CountScene();
+  lRet += Child(i).CountScene();
   return lRet;
 }
 
 CMouseListener* IOpenGLFrame::MouseListener()
 {
   if(m_skMouseListener.size())
-    return m_skMouseListener.top();
+  return m_skMouseListener.top();
 
   return 0;
 }
@@ -306,7 +306,7 @@ CMouseListener* IOpenGLFrame::MouseListener()
 IOpenGLFrame::TColor IOpenGLFrame::BackgroundColor() const
 {
   if(Parent())
-    return Parent()->BackgroundColor();
+  return Parent()->BackgroundColor();
 
   return qRgb(0, 0, 0);
 }
@@ -314,7 +314,7 @@ IOpenGLFrame::TColor IOpenGLFrame::BackgroundColor() const
 IOpenGLFrame::TColor IOpenGLFrame::BackgroundColor2() const
 {
   if (Parent())
-    return Parent()->BackgroundColor2();
+  return Parent()->BackgroundColor2();
 
   return qRgb(0, 0, 0);
 }
@@ -322,7 +322,7 @@ IOpenGLFrame::TColor IOpenGLFrame::BackgroundColor2() const
 IOpenGLFrame::TColor IOpenGLFrame::TextColor() const
 {
   if (Parent())
-    return Parent()->TextColor();
+  return Parent()->TextColor();
 
   return qRgb(255, 255, 255);
 }
@@ -341,7 +341,7 @@ IOpenGLFrame::TColor IOpenGLFrame::TextColor() const
 void IOpenGLFrame::FlushDisplayList()
 {
   for(int i = 0; i < ChildSize(); i++)
-    Child(i).FlushDisplayList();
+  Child(i).FlushDisplayList();
 }
 
 /*! 
@@ -356,9 +356,9 @@ void IOpenGLFrame::DrawList(int nList, const IDrawDef& DrawDef)
   //call the display list
   m_ptDraw->SetOpenGLAtrib(DrawDef);
   if ( glIsList( nList ) != GL_TRUE ) {
-    DIA_ASSERT( false );
-    GLuint code = glGetError();
-    if ( code ) qDebug( "glGetError() = %d", code );
+  DIA_ASSERT( false );
+  GLuint code = glGetError();
+  if ( code ) qDebug( "glGetError() = %d", code );
   }
   glCallList(nList);
   m_ptDraw->RestoreOpenGLAtrib();
@@ -399,7 +399,7 @@ void IOpenGLFrame::DrawObject(const geo::IObject &object, const IDrawDef &DrawDe
 {
   bool bRegistered = false;
   if(DrawDef.IsSelectable(object))
-    bRegistered = RegisterSelectableObject(object);
+  bRegistered = RegisterSelectableObject(object);
 
   m_ptDraw->SetOpenGLAtrib(DrawDef);
   m_ptDraw->Draw(object, DrawDef, bDrawSteps);
@@ -426,8 +426,8 @@ void IOpenGLFrame::DeleteList(int nList)
   glDeleteLists(nList, 1);
   GLuint code = glGetError();
   if ( code ) {
-    DIA_ASSERT(glGetError() != GL_INVALID_OPERATION);
-    DIA_ASSERT(glGetError() != GL_INVALID_VALUE);
+  DIA_ASSERT(glGetError() != GL_INVALID_OPERATION);
+  DIA_ASSERT(glGetError() != GL_INVALID_VALUE);
   }
   DIA_ASSERT(glIsList(nList) == GL_FALSE);
 }
@@ -448,9 +448,9 @@ bool IOpenGLFrame::RegisterSelectableObject(const geo::IObject& object)
   GLuint id = GetSelectionID(object);
   if(m_CurrenNameID != id)
   {
-    glPushName(id);
-    m_CurrenNameID=id;
-    return true;
+  glPushName(id);
+  m_CurrenNameID=id;
+  return true;
   }
   return false;
 }
@@ -509,7 +509,7 @@ IOpenGLFrame& IOpenGLFrame::Child(int nIndex)
 bool IOpenGLFrame::DeviceContext() const
 {
   if(Parent())
-    return Parent()->DeviceContext();
+  return Parent()->DeviceContext();
   return false;
 }
 
@@ -521,7 +521,7 @@ bool IOpenGLFrame::DeviceContext() const
 bool IOpenGLFrame::MakeCurrent() const
 {
   if(Parent())
-    return Parent()->MakeCurrent();
+  return Parent()->MakeCurrent();
   return false;
 }
 
@@ -534,15 +534,15 @@ void IOpenGLFrame::FlipBuffers()
 void IOpenGLFrame::OnUpdateFrame()
 {
   if ( m_updateCount > 1 ) {
-    // qDebug( "IOpenGLFrame::m_updateCount = %d", m_updateCount );
-    return;
+  // qDebug( "IOpenGLFrame::m_updateCount = %d", m_updateCount );
+  return;
   }
   
   ClearFrame();  // Clear Frame with own background color
 
   int i;
   for ( i = 0; i < ChildSize(); i++ ) {
-    Child(i).m_updateCount++;
+  Child(i).m_updateCount++;
   }
   
   glMatrixMode(GL_PROJECTION);
@@ -576,16 +576,16 @@ void IOpenGLFrame::OnUpdateFrame()
   glPopMatrix();
 
   for ( i = 0; i < ChildSize(); i++ ) {
-    Child(i).OnUpdateFrame();
+  Child(i).OnUpdateFrame();
   }
   for ( i = 0; i < ChildSize(); i++ ) {
-    Child(i).m_updateCount--;
-    if ( Child(i).m_updateCount > 0 ) {
+  Child(i).m_updateCount--;
+  if ( Child(i).m_updateCount > 0 ) {
       // An intermediate update request for child, make sure
       // it is done when this update cascade is finished.
       Child( i ).m_updateCount = 0;
       m_updateCount++;
-    }
+  }
   }
 }
 
@@ -594,9 +594,9 @@ void IOpenGLFrame::UpdateFrame()
   m_updateCount++; // ignore updates during this update
 
   while ( m_updateCount == 1 ) {
-    // Keep updating until no update requests left
+  // Keep updating until no update requests left
 
-    if(MakeCurrent()) {
+  if(MakeCurrent()) {
 
       OnBeginDraw( OnCountDrawSteps() );
       OnUpdateFrame();
@@ -604,18 +604,18 @@ void IOpenGLFrame::UpdateFrame()
       glFlush();
       FlipBuffers();
       OnEndDraw();
-    }
-    if ( m_updateCount > 1 ) {
+  }
+  if ( m_updateCount > 1 ) {
       // Apparently some requests for update came during
       // this update. Frame might be out of date so do one
       // extra update.
       m_updateCount = 1;
-    } else {
+  } else {
       if ( m_updateCount != 1 ) {
-        qDebug( "IOpenGLFrame::m_updateCount != 1" );
+    qDebug( "IOpenGLFrame::m_updateCount != 1" );
       }
       m_updateCount = 0;
-    }
+  }
   }
 }
 
@@ -676,18 +676,18 @@ void IOpenGLFrame::ClearFrame()
   TColor iColor2 = BackgroundColor2();
   if (iColor2 != iColor) // gradient
   {
-    float iRed2 = qRed(iColor2) / 255.0;
-    float iGreen2 = qGreen(iColor2) / 255.0;
-    float iBlue2 = qBlue(iColor2) / 255.0;
+  float iRed2 = qRed(iColor2) / 255.0;
+  float iGreen2 = qGreen(iColor2) / 255.0;
+  float iBlue2 = qBlue(iColor2) / 255.0;
 
-    glBegin(GL_QUADS);
-    glColor3f(iRed, iGreen, iBlue);
-    glVertex2f(1.0, -1.0);
-    glVertex2f(-1.0, -1.0);
-    glColor3f(iRed2, iGreen2, iBlue2);
-    glVertex2f(-1.0, 1.0);
-    glVertex2f(1.0, 1.0);
-    glEnd();
+  glBegin(GL_QUADS);
+  glColor3f(iRed, iGreen, iBlue);
+  glVertex2f(1.0, -1.0);
+  glVertex2f(-1.0, -1.0);
+  glColor3f(iRed2, iGreen2, iBlue2);
+  glVertex2f(-1.0, 1.0);
+  glVertex2f(1.0, 1.0);
+  glEnd();
   }
 //#endif
 }
@@ -781,9 +781,9 @@ IOpenGLFrame::TScreenPointDepth IOpenGLFrame::Project(const geo::IPoint &world_p
   gluProject(world_point.X(),
          world_point.Y(),
          world_point.Z(),
-        m_ModelMatrix,
-        m_ProjectionMatrix,
-        m_ViewPortMatrix,
+    m_ModelMatrix,
+    m_ProjectionMatrix,
+    m_ViewPortMatrix,
          &dX,
          &dY,
          &dZ);
@@ -804,39 +804,39 @@ IOpenGLFrame::TObjectVec IOpenGLFrame::ProcessHits(GLint nHitSize , GLuint *pSel
   int nBufferPosition = 0;
   for(int nHit = 0; nHit < nHitSize; nHit++)
   {
-    // The buffer contains nHitSize records with the following format.
-    // 0. StackSize for the Names Stack nStackSize
-    // 1. Minimum Z value
-    // 2. Maximum Z value
-    // 3. Bottom name stack
-    // ....
-    // nStackSize + 2. Top of stack
-    // Read stack size, Z min and Z max
-    int nStackSize = pSelectBuff[nBufferPosition];
-    nBufferPosition++;
-    GLuint uintZmin = pSelectBuff[nBufferPosition];
-    nBufferPosition++;
-    GLuint uintZmax = pSelectBuff[nBufferPosition];
-    nBufferPosition++;
+  // The buffer contains nHitSize records with the following format.
+  // 0. StackSize for the Names Stack nStackSize
+  // 1. Minimum Z value
+  // 2. Maximum Z value
+  // 3. Bottom name stack
+  // ....
+  // nStackSize + 2. Top of stack
+  // Read stack size, Z min and Z max
+  int nStackSize = pSelectBuff[nBufferPosition];
+  nBufferPosition++;
+  GLuint uintZmin = pSelectBuff[nBufferPosition];
+  nBufferPosition++;
+  GLuint uintZmax = pSelectBuff[nBufferPosition];
+  nBufferPosition++;
 
-    // divide first to prevent overflow
-    GLuint uintZAverage = uintZmin / 2 + uintZmax / 2;
+  // divide first to prevent overflow
+  GLuint uintZAverage = uintZmin / 2 + uintZmax / 2;
 
-    TZBufferObjectsMap::iterator itMap =
+  TZBufferObjectsMap::iterator itMap =
       mpZBufferObjects.insert(std::make_pair(uintZAverage, std::vector<const geo::IObject *>())).first;
 
-    // Read the name stack
-    for(int i = 0; i < nStackSize; i++)
-    {
+  // Read the name stack
+  for(int i = 0; i < nStackSize; i++)
+  {
       // Search name index of the stack in the selection map
       TSelectionMapRev::iterator it = m_SelectionMapRev.find(pSelectBuff[nBufferPosition]);
       if(it != m_SelectionMapRev.end())
       {
-        // We have a displaylist in our selection so put in the vector...
-        itMap->second.push_back(it->second);
+    // We have a displaylist in our selection so put in the vector...
+    itMap->second.push_back(it->second);
       }
       nBufferPosition++;
-    }
+  }
   }
 
   // Our return type
@@ -844,10 +844,10 @@ IOpenGLFrame::TObjectVec IOpenGLFrame::ProcessHits(GLint nHitSize , GLuint *pSel
 
   for(TZBufferObjectsMap::iterator it = mpZBufferObjects.begin(); it != mpZBufferObjects.end(); it++)
   {
-    for(size_t i = 0; i < it->second.size(); i++)
-    {
+  for(size_t i = 0; i < it->second.size(); i++)
+  {
       vcRet.push_back(it->second[i]);
-    }
+  }
   }
 
   return vcRet;
@@ -875,12 +875,12 @@ GLuint IOpenGLFrame::GetSelectionID(const geo::IObject& object) const
   
   if(it == m_SelectionMap.end())
   {
-    GLuint id = (GLuint)m_SelectionMap.size()+SELECT_ID_OFFSET;
-    std::pair<TSelectionMap::iterator, bool> check = m_SelectionMap.insert(std::make_pair(&object,id));
-    assert(check.second);
-    m_SelectionMapRev.insert(std::make_pair(id,&object));
+  GLuint id = (GLuint)m_SelectionMap.size()+SELECT_ID_OFFSET;
+  std::pair<TSelectionMap::iterator, bool> check = m_SelectionMap.insert(std::make_pair(&object,id));
+  assert(check.second);
+  m_SelectionMapRev.insert(std::make_pair(id,&object));
 
-    return id;
+  return id;
   }
 
   return (*it).second;
@@ -893,8 +893,8 @@ void IOpenGLFrame::CancelAllMouseListeners()
 
   while((MouseListener() != pPrevious) && MouseListener())
   {
-    pPrevious = MouseListener();
-    MouseListener()->Cancel();
+  pPrevious = MouseListener();
+  MouseListener()->Cancel();
   }
 }
 
@@ -905,8 +905,8 @@ void IOpenGLFrame::ValidateAllMouseListeners()
 
   while((MouseListener() != pPrevious) && MouseListener())
   {
-    pPrevious = MouseListener();
-    MouseListener()->Cancel();
+  pPrevious = MouseListener();
+  MouseListener()->Cancel();
   }
 }
 
@@ -923,8 +923,8 @@ IOpenGLFrame::TScreenPoint IOpenGLFrame::RootToChild(const TScreenPoint& root_po
 
   while(pFrame)
   {
-    ret = ret - TScreenPoint(pFrame->ViewPortX(), pFrame->ViewPortY());
-    pFrame = pFrame->Parent();
+  ret = ret - TScreenPoint(pFrame->ViewPortX(), pFrame->ViewPortY());
+  pFrame = pFrame->Parent();
   }
 
   return ret;
@@ -937,8 +937,8 @@ IOpenGLFrame::TScreenPoint IOpenGLFrame::ChildToRoot(const TScreenPoint& child_p
 
   while(pFrame)
   {
-    ret = ret + TScreenPoint(pFrame->ViewPortX(), pFrame->ViewPortY());
-    pFrame = pFrame->Parent();
+  ret = ret + TScreenPoint(pFrame->ViewPortX(), pFrame->ViewPortY());
+  pFrame = pFrame->Parent();
   }
 
   return ret;
@@ -947,28 +947,28 @@ IOpenGLFrame::TScreenPoint IOpenGLFrame::ChildToRoot(const TScreenPoint& child_p
 int IOpenGLFrame::ViewPortX() const
 {
   if(m_ViewPort)
-    return m_ViewPort[0];
+  return m_ViewPort[0];
   return 0;
 }
 
 int IOpenGLFrame::ViewPortY() const
 {
   if(m_ViewPort)
-    return m_ViewPort[1];
+  return m_ViewPort[1];
   return 0;
 }
 
 int IOpenGLFrame::ViewPortWidth() const
 {
   if(m_ViewPort)
-    return m_ViewPort[2];
+  return m_ViewPort[2];
   return Parent()->ViewPortWidth();
 }
 
 int IOpenGLFrame::ViewPortHeight() const
 {
   if(m_ViewPort)
-    return m_ViewPort[3];
+  return m_ViewPort[3];
   return Parent()->ViewPortHeight();
 }
 
@@ -1001,13 +1001,13 @@ void IOpenGLFrame::RestoreAlignToParent()
 void IOpenGLFrame::SetViewPort(int lX, int lY, int lWidth, int lHeight)
 {
   if(m_ViewPort == 0)
-    m_ViewPort = new int[4];
+  m_ViewPort = new int[4];
   m_ViewPort[0] = lX;
   m_ViewPort[1] = lY;
   m_ViewPort[2] = lWidth;
   m_ViewPort[3] = lHeight;
   if(Parent())
-    OnResizeParent();
+  OnResizeParent();
 }
 
 bool IOpenGLFrame::HitTest(const TScreenPoint& point) const
@@ -1026,7 +1026,7 @@ int IOpenGLFrame::OnCountDrawSteps() const
   // Count steps for the children
   int nRet = 0;
   for(int i = 0; i < ChildSize(); i++)
-    nRet += Child(i).OnCountDrawSteps();
+  nRet += Child(i).OnCountDrawSteps();
   return nRet;
 }
 

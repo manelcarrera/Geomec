@@ -21,9 +21,9 @@ static char THIS_FILE[]=__FILE__;#endif  // _MSC_VER
 //////////////////////////////////////////////////////////////////////
 
 CEclipseBoundary::CEclipseBoundary(const geo::IPoint& ptMin,
-								   const geo::IPoint& ptMax,
-								   CGraphModel& model,
-								   BOUNDARY_STATE state)
+                   const geo::IPoint& ptMax,
+                   CGraphModel& model,
+                   BOUNDARY_STATE state)
 : CBoundary(ptMin, ptMax, model, state)
 {
 
@@ -32,66 +32,66 @@ CEclipseBoundary::CEclipseBoundary(const geo::IPoint& ptMin,
 
 CEclipseBoundary::TMinMax CEclipseBoundary::BestFit() const
 {
-	TMinMax ret;
+  TMinMax ret;
 
-	// Calculate formation of the eclipse  ....
-	for(CGraphNode::const_iterator it = CGraphNode::begin(); it != CGraphNode::end(); it++)
-	{
-		const CEclipseFormation* pFormation = dynamic_cast<const CEclipseFormation*> (*it);
-		if(pFormation)
-		{
-				ret.first = ret.first.Min(pFormation->DisplayList().Min());
-				ret.second = ret.second.Max(pFormation->DisplayList().Max());
-		}
-	}
+  // Calculate formation of the eclipse  ....
+  for(CGraphNode::const_iterator it = CGraphNode::begin(); it != CGraphNode::end(); it++)
+  {
+    const CEclipseFormation* pFormation = dynamic_cast<const CEclipseFormation*> (*it);
+    if(pFormation)
+    {
+        ret.first = ret.first.Min(pFormation->DisplayList().Min());
+        ret.second = ret.second.Max(pFormation->DisplayList().Max());
+    }
+  }
 
-	return ret;
+  return ret;
 }
 
 void CEclipseBoundary::OnNewNeighbour(const CGraphNode &node)
 {
-	// Update boundaries ...
-	const CEclipseFormation* pFormation = dynamic_cast<const CEclipseFormation*> (&node);
+  // Update boundaries ...
+  const CEclipseFormation* pFormation = dynamic_cast<const CEclipseFormation*> (&node);
 
-	CBoundary::OnNewNeighbour(node);
+  CBoundary::OnNewNeighbour(node);
 
-	if(pFormation && (State() == USER_DEFINED))
-		return;		// Does not effect state
+  if(pFormation && (State() == USER_DEFINED))
+    return;		// Does not effect state
 
-	if(pFormation && (State() == DEFAULT_DEFINED))
-	{
-		State(BEST_FIT);
-		return;
-	}
+  if(pFormation && (State() == DEFAULT_DEFINED))
+  {
+    State(BEST_FIT);
+    return;
+  }
 
-	if(pFormation && (State() == BEST_FIT))
-	{
-		TMinMax bestfit = BestFit();
-		ASSERT(!bestfit.first.Empty() && !bestfit.second.Empty());
-		Set(bestfit.first, bestfit.second);
-	}
+  if(pFormation && (State() == BEST_FIT))
+  {
+    TMinMax bestfit = BestFit();
+    ASSERT(!bestfit.first.Empty() && !bestfit.second.Empty());
+    Set(bestfit.first, bestfit.second);
+  }
 }
-	
+  
  
 void CEclipseBoundary::OnNeighbourModified(const CGraphNode &node)
 {
-	const CEclipseFormation* pFormation = dynamic_cast<const CEclipseFormation*> (&node);
-	
-	if(pFormation && (State() == USER_DEFINED))
-		return;		// Does not effect state
+  const CEclipseFormation* pFormation = dynamic_cast<const CEclipseFormation*> (&node);
+  
+  if(pFormation && (State() == USER_DEFINED))
+    return;		// Does not effect state
 
-	if(pFormation && (State() == DEFAULT_DEFINED))
-	{
-		State(BEST_FIT);
-		return;
-	}
+  if(pFormation && (State() == DEFAULT_DEFINED))
+  {
+    State(BEST_FIT);
+    return;
+  }
 
-	if(pFormation && (State() == BEST_FIT))
-	{
-		TMinMax bestfit = BestFit();
-		ASSERT(!bestfit.first.Empty() && !bestfit.second.Empty());
-		Set(bestfit.first, bestfit.second);
-	}
+  if(pFormation && (State() == BEST_FIT))
+  {
+    TMinMax bestfit = BestFit();
+    ASSERT(!bestfit.first.Empty() && !bestfit.second.Empty());
+    Set(bestfit.first, bestfit.second);
+  }
 
-	CBoundary::OnNeighbourModified(node);
+  CBoundary::OnNeighbourModified(node);
 }

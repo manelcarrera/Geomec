@@ -11,7 +11,7 @@ CFailureTypeParameterFormation::CFailureTypeParameterFormation(
   const std::string& option, const std::string& parameter,
   std::vector <double>& value, const CGetModelInfo& modelInfo)
 : CFailureTypeParameterBase(summaryResultFile, object, option, parameter, value,
-    modelInfo.getFormationInfo().getObjects(), FORMATION)
+  modelInfo.getFormationInfo().getObjects(), FORMATION)
 {
 }
 

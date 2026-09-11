@@ -49,7 +49,7 @@ public:
   void ConvCriterion(double dConvCriterion);
 
   virtual size_t ParameterSize() const;
-    // by index, superclass
+  // by index, superclass
   virtual const ml::CMatParam& MatParameter(size_t i) const;
   virtual ml::CMatParam& MatParameter(size_t i);
 

@@ -14,8 +14,8 @@
 class IMaterialRock : public IMaterial
 {
 public:
-	IMaterialRock(CMaterialEntry &entry, CLibraryMaterial& libmat);
-	virtual unsigned int IconId() const;
+  IMaterialRock(CMaterialEntry &entry, CLibraryMaterial& libmat);
+  virtual unsigned int IconId() const;
 
   bool WriteTransverseIsotropicValues(const CFFMaterial& ffmat, dia::IDianaRunner& diarunner) const;
 

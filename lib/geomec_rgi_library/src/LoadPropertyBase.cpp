@@ -25,10 +25,10 @@ CLoadPropertyBase::CLoadPropertyBase(const RGProperty& rgProperty,
 , m_ModelBase(modelBase)
 , m_RMP(rmp)
 , m_ValueTypeName(QString("%1 %2").arg(m_RMP.PropertyName(m_RGProperty)).
-    arg(m_RGI.getCurrentDepletionStage().getDepletionStage()))
+  arg(m_RGI.getCurrentDepletionStage().getDepletionStage()))
 {
   setAnisotropic(m_IsAnisotropic, m_AnisotropicIsSet, m_RGI, m_ModelBase,
-    m_RMP);
+  m_RMP);
 }
 
 CLoadPropertyBase::~CLoadPropertyBase()
@@ -42,7 +42,7 @@ bool CLoadPropertyBase::loadProperty(unsigned int uValueType)
 
   if (!loadValues(vcValues, strPropertyName))
   {
-    return false;
+  return false;
   }
 
   return loadProperty(vcValues, strPropertyName, uValueType);
@@ -55,16 +55,16 @@ bool CLoadPropertyBase::loadProperty(const std::vector <geo::CValue>& vcValues,
 
   for (std::vector <double> ::size_type s = 0; s < vcValues.size(); ++s)
   {
-    const geo::IElement& element = m_ModelBase.Mesh().Mesh().Element(s);
-    int numberOfNodes = element.NrOfNodes();
-    std::vector <geo::CValue> nodalValues(numberOfNodes, vcValues[s]);
+  const geo::IElement& element = m_ModelBase.Mesh().Mesh().Element(s);
+  int numberOfNodes = element.NrOfNodes();
+  std::vector <geo::CValue> nodalValues(numberOfNodes, vcValues[s]);
 
-    for (int n = 0; n < numberOfNodes; ++n)
-    {
+  for (int n = 0; n < numberOfNodes; ++n)
+  {
       convertValue(nodalValues[n]);
-    }
+  }
 
-    values.push_back(nodalValues);
+  values.push_back(nodalValues);
   }
 
   return loadProperty(values, strPropertyName, uValueType);
@@ -76,7 +76,7 @@ bool CLoadPropertyBase::loadProperty(
 {
   if (valueSetIsPresent(m_ValueTypeName))
   {
-    return false;
+  return false;
   }
 
   return privateLoadProperty(vcValues, strPropertyName, uValueType);
@@ -89,10 +89,10 @@ void CLoadPropertyBase::linkValueTypes(CFormationBase& formation,
   bool /*fluidPressureFracDetected*/) const
 {
   if ((formation.ConnectedMaterial(stage) != 0) &&
-    formation.ConnectedMaterial(stage)->CanConnectItem(*pVT) &&
-    !formation.ConnectedMaterial(stage)->IsLinkedTo(*pVT))
+  formation.ConnectedMaterial(stage)->CanConnectItem(*pVT) &&
+  !formation.ConnectedMaterial(stage)->IsLinkedTo(*pVT))
   {
-    formation.ConnectedMaterial(stage)->LinkTo(*pVT);
+  formation.ConnectedMaterial(stage)->LinkTo(*pVT);
   }
 }
 
@@ -120,21 +120,21 @@ IValueDomainScalar::TValueVec CLoadPropertyBase::addDeltaSpecific(
 
 bool CLoadPropertyBase::isFractureApertureModel(
   const CFormationBase& formationBase, const CDepletionStage& depletionStage)
-    const
+  const
 {
   bool isFractureApertureModel = true;
 
   try
   {
-    const IMaterialRock& materialRock =
+  const IMaterialRock& materialRock =
       *formationBase.Material(depletionStage).LibraryMaterial();
-    /*const CMaterialFractureApertureBase& materialFractureApertureBase =*/
+  /*const CMaterialFractureApertureBase& materialFractureApertureBase =*/
       dynamic_cast <const CMaterialFractureApertureBase&> (materialRock);
   }
 
   catch (const std::bad_cast&)
   {
-    isFractureApertureModel = false;
+  isFractureApertureModel = false;
   }
 
   return isFractureApertureModel;
@@ -148,16 +148,16 @@ bool CLoadPropertyBase::isFractureApertureModel(
 
   try
   {
-    const CFFMaterial& cffMaterial =
+  const CFFMaterial& cffMaterial =
       formationBase.Material(depletionStage).Material(element);
-    /*const CMaterialFractureApertureBase& materialFractureApertureBase =*/
+  /*const CMaterialFractureApertureBase& materialFractureApertureBase =*/
       dynamic_cast <const CMaterialFractureApertureBase&> (
-        cffMaterial.Material());
+    cffMaterial.Material());
   }
 
   catch (const std::bad_cast&)
   {
-    isFractureApertureModel = false;
+  isFractureApertureModel = false;
   }
 
   return isFractureApertureModel;
@@ -169,24 +169,24 @@ bool CLoadPropertyBase::addDeltaBase(std::vector <geo::CValue>& vcNodalValues,
 {
   if (m_RGI.getCurrentDepletionStage().getDepletionStage() == 0)
   {
-    QString l = QString("Property '%1': delta property assigned in initial "
+  QString l = QString("Property '%1': delta property assigned in initial "
       "depletion stage").arg(strPropertyName);
 
-    m_RMP.AddLogLine(l, &m_RGI, false, true);
+  m_RMP.AddLogLine(l, &m_RGI, false, true);
 
-    return false;
+  return false;
   }
 
   CDepletionStage& prevstage = m_ModelBase.DepletionStageEntry().
-    StageByIndex(m_RGI.getCurrentDepletionStage().getDepletionStage() - 1);
+  StageByIndex(m_RGI.getCurrentDepletionStage().getDepletionStage() - 1);
   IValueDomainScalar::TValueVec vcPrevValues =
-    addDeltaSpecific(prevstage, pFormation, elm, nNod);
+  addDeltaSpecific(prevstage, pFormation, elm, nNod);
 
   assert(vcNodalValues.size() == vcPrevValues.size());
 
   for (int j = 0; j < nNod; ++j)
   {
-    if (vcNodalValues[j].Valid())
+  if (vcNodalValues[j].Valid())
       vcNodalValues[j] += vcPrevValues[j].Value();
   }
 
@@ -219,35 +219,35 @@ bool CLoadPropertyBase::privateLoadProperty(
   CValueType* pVT = 0;
 
   if ((uValueType == IDT_VALUETYPE_VOLUMETRICSTRAIN) &&
-    (volumetricStrainSet != 0))
+  (volumetricStrainSet != 0))
   {
-    nSet = volumetricStrainSet;
-    firstVolumetricStrain = false;
+  nSet = volumetricStrainSet;
+  firstVolumetricStrain = false;
   }
   else if ((uValueType == IDT_VALUETYPE_VOLUMETRICSTRAIN) &&
-    (volumetricStrainSet == 0))
+  (volumetricStrainSet == 0))
   {
-    nSet = m_ModelBase.Mesh().AddElementValueSet();
-    volumetricStrainSet = nSet;
+  nSet = m_ModelBase.Mesh().AddElementValueSet();
+  volumetricStrainSet = nSet;
   }
   else
   {
-    nSet = m_ModelBase.Mesh().AddElementValueSet();
+  nSet = m_ModelBase.Mesh().AddElementValueSet();
   }
 
   CElementValueSet& elementValueSet = m_ModelBase.Mesh().ElementValueSet(nSet);
   CDepletionStage& stage = m_ModelBase.DepletionStageEntry().
-    StageByIndex(m_RGI.getCurrentDepletionStage().getDepletionStage());
+  StageByIndex(m_RGI.getCurrentDepletionStage().getDepletionStage());
 
   if (enforceUniqueness(uValueType))
   {
-    unlinkValueTypes(uValueType, stage);
+  unlinkValueTypes(uValueType, stage);
   }
 
   if (!assignValues2Elements(elementValueSet, fluidPressureFracDetected,
-    vcValues, stage, strPropertyName, uValueType, firstVolumetricStrain))
+  vcValues, stage, strPropertyName, uValueType, firstVolumetricStrain))
   {
-    return false;
+  return false;
   }
 
   buildValueTypes(&pVT, elementValueSet, uValueType);
@@ -262,18 +262,18 @@ bool CLoadPropertyBase::valueSetIsPresent(const QString& valueTypeName) const
 
   for (size_t i = 0; i < m_ModelBase.Mesh().referenceSize(); ++i)
   {
-    const CGraphNode& ref = m_ModelBase.Mesh().referenceAt(i);
-    const CValueType* pVT = dynamic_cast <const CValueType*> (&ref);
+  const CGraphNode& ref = m_ModelBase.Mesh().referenceAt(i);
+  const CValueType* pVT = dynamic_cast <const CValueType*> (&ref);
 
-    if ((pVT != 0) && (pVT->Name() == valueTypeName))
-    {
+  if ((pVT != 0) && (pVT->Name() == valueTypeName))
+  {
       QString l = QString("A property with name '%1' is already present in the "
-        "model").arg(valueTypeName);
+    "model").arg(valueTypeName);
 
       m_RMP.AddLogLine(l, &m_RGI, false, true);
 
       return true;
-    }
+  }
   }
 
   return false;
@@ -289,14 +289,14 @@ bool CLoadPropertyBase::loadValues(std::vector <geo::CValue>& vcValues,
 
   if (vcValues.size() != m_ModelBase.Mesh().Mesh().ElementSize())
   {
-    QString l = QString("Property '%1', stage %2, expected %3 values, got %4 "
+  QString l = QString("Property '%1', stage %2, expected %3 values, got %4 "
       "values").arg(strPropertyName).
       arg(m_RGI.getCurrentDepletionStage().getDepletionStage()).
       arg(m_ModelBase.Mesh().Mesh().ElementSize()).arg(vcValues.size());
 
-    m_RMP.AddLogLine(l, &m_RGI, false, true);
+  m_RMP.AddLogLine(l, &m_RGI, false, true);
 
-    return false;
+  return false;
   }
 
   return true;
@@ -312,41 +312,41 @@ bool CLoadPropertyBase::assignValues2Elements(CElementValueSet& elementValueSet,
 
   for(int i = 0; i < vcValues.size(); ++i)
   {
-    const geo::IElement& elm = m_ModelBase.Mesh().Mesh().Element(i);
+  const geo::IElement& elm = m_ModelBase.Mesh().Mesh().Element(i);
 
-    if (dynamic_cast<const geo::IInterfaceElement*>(&elm))
+  if (dynamic_cast<const geo::IInterfaceElement*>(&elm))
       continue;
 
-    int nNod = elm.NrOfNodes();
-    std::vector <geo::CValue> vcNodalValues = vcValues[i];
-    std::vector<double> emptyValues(nNod);
+  int nNod = elm.NrOfNodes();
+  std::vector <geo::CValue> vcNodalValues = vcValues[i];
+  std::vector<double> emptyValues(nNod);
 
-    const CFormationBase* pFormation = m_ModelBase.Mesh().Formation(elm);
+  const CFormationBase* pFormation = m_ModelBase.Mesh().Formation(elm);
 
-    if (!addDelta(vcNodalValues, strPropertyName, pFormation, elm, nNod))
-    {
+  if (!addDelta(vcNodalValues, strPropertyName, pFormation, elm, nNod))
+  {
       return false;
-    }
+  }
 
-    if (!firstVolumetricStrain &&
+  if (!firstVolumetricStrain &&
       (uValueType == IDT_VALUETYPE_VOLUMETRICSTRAIN))
-    {
+  {
       addNodalValues(elementValueSet, i, vcNodalValues);
-    }
-    else if ((uValueType == IDT_VALUETYPE_PRESSURE) &&
+  }
+  else if ((uValueType == IDT_VALUETYPE_PRESSURE) &&
       fractureApertureFormations)
-    {
+  {
       if (isFractureApertureModel(*pFormation, stage, elm))
       {
-        fluidPressureFracDetected = true;
+    fluidPressureFracDetected = true;
       }
 
       elementValueSet.PushBack(vcNodalValues);
-    }
-    else
-    {
+  }
+  else
+  {
       elementValueSet.PushBack(vcNodalValues);
-    }
+  }
   }
 
   return true;
@@ -364,14 +364,14 @@ void CLoadPropertyBase::buildValueTypes(CValueType** pVT,
 {
   if ((*pVT) == 0)
   {
-    (*pVT) = CValueTypeFactory::instance()->BuildValueType(m_ModelBase.Mesh(), OverruleValueType(uValueType),
+  (*pVT) = CValueTypeFactory::instance()->BuildValueType(m_ModelBase.Mesh(), OverruleValueType(uValueType),
       m_ValueTypeName);
-    (*pVT)->MapType(CValueType::MT_NONE);
+  (*pVT)->MapType(CValueType::MT_NONE);
   }
 
   if (!elementValueSet.IsLinkedTo((*pVT)->Component()))
   {
-    elementValueSet.LinkTo((*pVT)->Component());
+  elementValueSet.LinkTo((*pVT)->Component());
   }
 
   assert((*pVT)->IsLinkedTo(*m_ModelBase.GraphEntry(MD_BASE_VALUE_COMPOSITE)));
@@ -380,16 +380,16 @@ void CLoadPropertyBase::buildValueTypes(CValueType** pVT,
 bool CLoadPropertyBase::hasFractureApertureFormations() const
 {
   TFormationBaseEntry* pFormationEntry = dynamic_cast <TFormationBaseEntry*> (
-    m_ModelBase.GraphEntry(MD_BASE_FORMATION));
+  m_ModelBase.GraphEntry(MD_BASE_FORMATION));
   TFormationBaseEntry::TNodeSet stNodes = pFormationEntry->EntryNodes();
   TFormationBaseEntry::TNodeSet::const_iterator it;
   CDepletionStage& stage = m_ModelBase.DepletionStageEntry().
-    StageByIndex(m_RGI.getCurrentDepletionStage().getDepletionStage());
+  StageByIndex(m_RGI.getCurrentDepletionStage().getDepletionStage());
   bool hasFractureApertureFormations = false;
 
   for (it = stNodes.begin(); it != stNodes.end(); ++it)
   {
-    hasFractureApertureFormations =
+  hasFractureApertureFormations =
       hasFractureApertureFormations || isFractureApertureModel(*(*it), stage);
   }
 
@@ -400,13 +400,13 @@ void CLoadPropertyBase::linkValueTypes(CValueType* pVT,
   const CDepletionStage& stage, bool fluidPressureFracDetected) const
 {
   TFormationBaseEntry* pFormationEntry = dynamic_cast <TFormationBaseEntry*> (
-    m_ModelBase.GraphEntry(MD_BASE_FORMATION));
+  m_ModelBase.GraphEntry(MD_BASE_FORMATION));
   TFormationBaseEntry::TNodeSet stNodes = pFormationEntry->EntryNodes();
   TFormationBaseEntry::TNodeSet::const_iterator it;
 
   for (it = stNodes.begin(); it != stNodes.end(); ++it)
   {
-    linkValueTypes(*(*it), pVT, stage, fluidPressureFracDetected);
+  linkValueTypes(*(*it), pVT, stage, fluidPressureFracDetected);
   }
 }
 
@@ -420,7 +420,7 @@ void CLoadPropertyBase::addNodalValues(CElementValueSet& elementValueSet,
 
   for (size_t i = 0; i < nodalValues.size(); ++i)
   {
-    if (nodalValues[i].Valid())
+  if (nodalValues[i].Valid())
       valueVec[i] += nodalValues[i];
   }
 
@@ -433,29 +433,29 @@ void CLoadPropertyBase::setAnisotropic(bool& isAnisotropic,
 {
   if (!anisotropicIsSet && rmp.EnsureDepletionStageAvailable(rgi))
   {
-    const TFormationBaseEntry* pFormationEntry =
+  const TFormationBaseEntry* pFormationEntry =
       dynamic_cast <const TFormationBaseEntry*> (
-        modelBase.GraphEntry(MD_BASE_FORMATION));
-    TFormationBaseEntry::TNodeSet stNodes = pFormationEntry->EntryNodes();
-    TFormationBaseEntry::TNodeSet::const_iterator it;
-    const CDepletionStage& stage = modelBase.DepletionStageEntry().
+    modelBase.GraphEntry(MD_BASE_FORMATION));
+  TFormationBaseEntry::TNodeSet stNodes = pFormationEntry->EntryNodes();
+  TFormationBaseEntry::TNodeSet::const_iterator it;
+  const CDepletionStage& stage = modelBase.DepletionStageEntry().
       StageByIndex(rgi.getCurrentDepletionStage().getDepletionStage());
 
-    for (it = stNodes.begin(); (it != stNodes.end()) && !isAnisotropic; ++it)
-    {
+  for (it = stNodes.begin(); (it != stNodes.end()) && !isAnisotropic; ++it)
+  {
       const IMaterialRock&
-        materialRock = *(*it)->Material(stage).LibraryMaterial();
+    materialRock = *(*it)->Material(stage).LibraryMaterial();
 
       if (materialRock.IsParameter(IDT_VALUETYPE_YOUNGMODULUS_NORM) &&
-        materialRock.IsParameter(IDT_VALUETYPE_YOUNGMODULUS_TRANS) &&
-        materialRock.IsParameter(IDT_VALUETYPE_POISSONRATIO_NORM) &&
-        materialRock.IsParameter(IDT_VALUETYPE_POISSONRATIO_TRANS))
+    materialRock.IsParameter(IDT_VALUETYPE_YOUNGMODULUS_TRANS) &&
+    materialRock.IsParameter(IDT_VALUETYPE_POISSONRATIO_NORM) &&
+    materialRock.IsParameter(IDT_VALUETYPE_POISSONRATIO_TRANS))
       {
-        isAnisotropic = true;
+    isAnisotropic = true;
       }
-    }
+  }
 
-    anisotropicIsSet = true;
+  anisotropicIsSet = true;
   }
 }
 
@@ -466,7 +466,7 @@ void CLoadPropertyBase::unlinkValueTypes(unsigned int uValueType, const CDepleti
   
   for (TFormationBaseEntry::TNodeSet::const_iterator it = stNodes.begin(); it != stNodes.end(); ++it)
   {
-    unlinkValueTypes(*(*it), uValueType, stage);
+  unlinkValueTypes(*(*it), uValueType, stage);
   }
 }
 
@@ -476,13 +476,13 @@ void CLoadPropertyBase::unlinkValueTypes(CFormationBase& formation, unsigned int
 
   if (matServer)
   {
-    std::set<CValueType *> links = matServer->Links<CValueType>();
+  std::set<CValueType *> links = matServer->Links<CValueType>();
 
-    for (std::set<CValueType *>::iterator it = links.begin(); it != links.end(); ++it)
-    {
+  for (std::set<CValueType *>::iterator it = links.begin(); it != links.end(); ++it)
+  {
       if ((*it)->TypeId() == uValueType)
-        matServer->UnLink(**it);
-    }
+    matServer->UnLink(**it);
+  }
   }
 }
 

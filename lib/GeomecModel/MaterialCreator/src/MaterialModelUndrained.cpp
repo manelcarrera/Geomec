@@ -178,13 +178,13 @@ static double VolumetricThermalExpansionCoefficient(double Bu, double phi, doubl
 
   if ((fabs(Kf) < 1E-6) || (fabs(Kg) < 1E-6))
   {
-    Bb = Bu;
+  Bb = Bu;
   }
   else
   {
-    double divisor = 1 + (phi * (Kb / alpha) * ((1 / Kg) - (1 / Kf)));
+  double divisor = 1 + (phi * (Kb / alpha) * ((1 / Kg) - (1 / Kf)));
 
-    Bb = (Bu - ((phi * Bf * Eu) / divisor)) / (1 - ((phi * Eu) / divisor));
+  Bb = (Bu - ((phi * Bf * Eu) / divisor)) / (1 - ((phi * Eu) / divisor));
   }
 
   return Bb;
@@ -200,13 +200,13 @@ void CMaterialUndrainedYoungSetStrategy::operator()(double dValue, ml::CMatParam
   ml::CMaterial& mat = param.ParentMaterial();
 
   const ml::CMatParam *pPoisson = mat.MatParameter(MLD_POISSONRATIO);
-	assert(pPoisson);
+  assert(pPoisson);
 
   const ml::CMatParam *pBulkFluid = mat.MatParameter(MLD_FLUIDMODULUS);
-	assert(pBulkFluid);
+  assert(pBulkFluid);
 
   const ml::CMatParam *pPorosity = mat.MatParameter(MLD_POROSITY);
-	assert(pPorosity);
+  assert(pPorosity);
 
   const ml::CMatParam* pBulkModulus = mat.MatParameter(MLD_BULKSTIFFNESS);
   assert(pBulkModulus);
@@ -227,14 +227,14 @@ void CMaterialUndrainedYoungSetStrategy::operator()(double dValue, ml::CMatParam
   double Eu = UndrainedYoung(E, alpha, nu, theta);
   double nuu = UndrainedPoisson(nu, alpha, theta, Eu, E);
 
-	// set the parameters
+  // set the parameters
   ml::CMatParam *pParam;
 
-	if((pParam = mat.MatParameter(MLD_UNDRAINEDYOUNG)))
-	  SetParamValue(*pParam, Eu);
+  if((pParam = mat.MatParameter(MLD_UNDRAINEDYOUNG)))
+    SetParamValue(*pParam, Eu);
 
-	if((pParam = mat.MatParameter(MLD_UNDRAINEDPOISSON)))
-	  SetParamValue(*pParam, nuu);
+  if((pParam = mat.MatParameter(MLD_UNDRAINEDPOISSON)))
+    SetParamValue(*pParam, nuu);
 
   CMaterialLinearYoungSetStrategy::operator()(dValue, param);
 }
@@ -244,13 +244,13 @@ void CMaterialUndrainedPoissonSetStrategy::operator()(double dValue, ml::CMatPar
   ml::CMaterial& mat = param.ParentMaterial();
 
   const ml::CMatParam *pYoung = mat.MatParameter(MLD_YOUNGMODULUS);
-	assert(pYoung);
+  assert(pYoung);
 
-	const ml::CMatParam *pBulkFluid = mat.MatParameter(MLD_FLUIDMODULUS);
-	assert(pBulkFluid);
+  const ml::CMatParam *pBulkFluid = mat.MatParameter(MLD_FLUIDMODULUS);
+  assert(pBulkFluid);
 
-	const ml::CMatParam *pPorosity = mat.MatParameter(MLD_POROSITY);
-	assert(pPorosity);
+  const ml::CMatParam *pPorosity = mat.MatParameter(MLD_POROSITY);
+  assert(pPorosity);
 
   const ml::CMatParam* pBulkModulus = mat.MatParameter(MLD_BULKSTIFFNESS);
   assert(pBulkModulus);
@@ -271,14 +271,14 @@ void CMaterialUndrainedPoissonSetStrategy::operator()(double dValue, ml::CMatPar
   double Eu = UndrainedYoung(E, alpha, nu, theta);
   double nuu = UndrainedPoisson(nu, alpha, theta, Eu, E);
 
-	// set the parameters
+  // set the parameters
   ml::CMatParam *pParam;
 
-	if((pParam = mat.MatParameter(MLD_UNDRAINEDYOUNG)))
-	  SetParamValue(*pParam, Eu);
+  if((pParam = mat.MatParameter(MLD_UNDRAINEDYOUNG)))
+    SetParamValue(*pParam, Eu);
 
-	if((pParam = mat.MatParameter(MLD_UNDRAINEDPOISSON)))
-	  SetParamValue(*pParam, nuu);
+  if((pParam = mat.MatParameter(MLD_UNDRAINEDPOISSON)))
+    SetParamValue(*pParam, nuu);
 
   CMaterialLinearPoissonSetStrategy::operator()(dValue, param);
 }
@@ -288,16 +288,16 @@ void CMaterialUndrainedUndrainedYoungSetStrategy::operator()(double dValue, ml::
   ml::CMaterial& mat = param.ParentMaterial();
 
   const ml::CMatParam *pUndrainedPoisson = mat.MatParameter(MLD_UNDRAINEDPOISSON);
-	assert(pUndrainedPoisson);
+  assert(pUndrainedPoisson);
 
-	const ml::CMatParam *pBulkFluid = mat.MatParameter(MLD_FLUIDMODULUS);
-	assert(pBulkFluid);
+  const ml::CMatParam *pBulkFluid = mat.MatParameter(MLD_FLUIDMODULUS);
+  assert(pBulkFluid);
 
-	const ml::CMatParam *pPorosity = mat.MatParameter(MLD_POROSITY);
-	assert(pPorosity);
+  const ml::CMatParam *pPorosity = mat.MatParameter(MLD_POROSITY);
+  assert(pPorosity);
 
-	const ml::CMatParam *pUndrainedYoung = mat.MatParameter(MLD_UNDRAINEDYOUNG);
-	assert(pUndrainedYoung);
+  const ml::CMatParam *pUndrainedYoung = mat.MatParameter(MLD_UNDRAINEDYOUNG);
+  assert(pUndrainedYoung);
 
   const ml::CMatParam* pBulkModulus = mat.MatParameter(MLD_BULKSTIFFNESS);
   assert(pBulkModulus);
@@ -326,38 +326,38 @@ void CMaterialUndrainedUndrainedYoungSetStrategy::operator()(double dValue, ml::
   double E = DrainedYoung(Eu, alpha, nu, theta);
   double Bu = UndrainedThermalExpansionCoefficient(Bb, phi, Bf, Eu, Kb, alpha, Kg, Kf);
 
-	// set the parameters
+  // set the parameters
   ml::CMatParam *pParam;
 
   if((pParam = mat.MatParameter(MLD_YOUNGMODULUS)))
-    SetParamValue(*pParam, E);
+  SetParamValue(*pParam, E);
 
-	if((pParam = mat.MatParameter(MLD_POISSONRATIO)))
-	  SetParamValue(*pParam, nu);
+  if((pParam = mat.MatParameter(MLD_POISSONRATIO)))
+    SetParamValue(*pParam, nu);
 
   if((pParam = mat.MatParameter(MLD_UNDRAINEDTHERMX)))
   {
-    SetParamValue(*pParam, Bu);
+  SetParamValue(*pParam, Bu);
   }
 
-	SetParamValue(param, Eu);
+  SetParamValue(param, Eu);
 }
 
 void CMaterialUndrainedUndrainedPoissonSetStrategy::operator()(double dValue, ml::CMatParam& param) const
 {
   ml::CMaterial& mat = param.ParentMaterial();
 
-	const ml::CMatParam *pUndrainedYoung = mat.MatParameter(MLD_UNDRAINEDYOUNG);
-	assert(pUndrainedYoung);
+  const ml::CMatParam *pUndrainedYoung = mat.MatParameter(MLD_UNDRAINEDYOUNG);
+  assert(pUndrainedYoung);
 
-	const ml::CMatParam *pBulkFluid = mat.MatParameter(MLD_FLUIDMODULUS);
-	assert(pBulkFluid);
+  const ml::CMatParam *pBulkFluid = mat.MatParameter(MLD_FLUIDMODULUS);
+  assert(pBulkFluid);
 
-	const ml::CMatParam *pPorosity = mat.MatParameter(MLD_POROSITY);
-	assert(pPorosity);
+  const ml::CMatParam *pPorosity = mat.MatParameter(MLD_POROSITY);
+  assert(pPorosity);
 
-	const ml::CMatParam *pUndrainedPoisson = mat.MatParameter(MLD_UNDRAINEDPOISSON);
-	assert(pUndrainedPoisson);
+  const ml::CMatParam *pUndrainedPoisson = mat.MatParameter(MLD_UNDRAINEDPOISSON);
+  assert(pUndrainedPoisson);
 
   const ml::CMatParam* pBulkModulus = mat.MatParameter(MLD_BULKSTIFFNESS);
   assert(pBulkModulus);
@@ -377,14 +377,14 @@ void CMaterialUndrainedUndrainedPoissonSetStrategy::operator()(double dValue, ml
   double nu = DrainedPoisson(alpha, theta, nuu);
   double E = DrainedYoung(Eu, alpha, nu, theta);
 
-	// set the parameters
+  // set the parameters
   ml::CMatParam *pParam;
 
-	if((pParam = mat.MatParameter(MLD_POISSONRATIO)))
-	  SetParamValue(*pParam, nu);
+  if((pParam = mat.MatParameter(MLD_POISSONRATIO)))
+    SetParamValue(*pParam, nu);
 
   if((pParam = mat.MatParameter(MLD_YOUNGMODULUS)))
-    SetParamValue(*pParam, E);
+  SetParamValue(*pParam, E);
 
   SetParamValue(param, nuu);
 }
@@ -424,7 +424,7 @@ void CMaterialUndrainedUndrainedThermalExpansionCoefficientSetStrategy::operator
 
   if ((pParam = mat.MatParameter(MLD_THERMX)))
   {
-    SetParamValue(*pParam, Bb);
+  SetParamValue(*pParam, Bb);
   }
 
   SetParamValue(param, Bu);
@@ -434,17 +434,17 @@ void CMaterialUndrainedPorositySetStrategy::operator()(double dValue, ml::CMatPa
 {
   ml::CMaterial& mat = param.ParentMaterial();
 
-	const ml::CMatParam *pYoung = mat.MatParameter(MLD_YOUNGMODULUS);
-	assert(pYoung);
+  const ml::CMatParam *pYoung = mat.MatParameter(MLD_YOUNGMODULUS);
+  assert(pYoung);
 
-	const ml::CMatParam *pPoisson = mat.MatParameter(MLD_POISSONRATIO);
-	assert(pPoisson);
+  const ml::CMatParam *pPoisson = mat.MatParameter(MLD_POISSONRATIO);
+  assert(pPoisson);
 
-	const ml::CMatParam *pBulkFluid = mat.MatParameter(MLD_FLUIDMODULUS);
-	assert(pBulkFluid);
+  const ml::CMatParam *pBulkFluid = mat.MatParameter(MLD_FLUIDMODULUS);
+  assert(pBulkFluid);
 
-	const ml::CMatParam *pPorosity = mat.MatParameter(MLD_POROSITY);
-	assert(pPorosity);
+  const ml::CMatParam *pPorosity = mat.MatParameter(MLD_POROSITY);
+  assert(pPorosity);
 
   const ml::CMatParam* pBulkModulus = mat.MatParameter(MLD_BULKSTIFFNESS);
   assert(pBulkModulus);
@@ -474,18 +474,18 @@ void CMaterialUndrainedPorositySetStrategy::operator()(double dValue, ml::CMatPa
   double nuu = UndrainedPoisson(nu, alpha, theta, Eu, E);
   double Bu = UndrainedThermalExpansionCoefficient(Bb, phi, Bf, Eu, Kb, alpha, Kg, Kf);
 
-	// set the parameters
+  // set the parameters
   ml::CMatParam *pParam;
 
-	if((pParam = mat.MatParameter(MLD_UNDRAINEDYOUNG)))
-	  SetParamValue(*pParam, Eu);
+  if((pParam = mat.MatParameter(MLD_UNDRAINEDYOUNG)))
+    SetParamValue(*pParam, Eu);
 
-	if((pParam = mat.MatParameter(MLD_UNDRAINEDPOISSON)))
-	  SetParamValue(*pParam, nuu);
+  if((pParam = mat.MatParameter(MLD_UNDRAINEDPOISSON)))
+    SetParamValue(*pParam, nuu);
 
   if((pParam = mat.MatParameter(MLD_UNDRAINEDTHERMX)))
   {
-    SetParamValue(*pParam, Bu);
+  SetParamValue(*pParam, Bu);
   }
 
   SetParamValue(param, phi);
@@ -496,16 +496,16 @@ void CMaterialUndrainedGrainStiffnessSetStrategy::operator()(double dValue, ml::
   ml::CMaterial& mat = param.ParentMaterial();
 
   const ml::CMatParam *pYoung = mat.MatParameter(MLD_YOUNGMODULUS);
-	assert(pYoung);
+  assert(pYoung);
 
-	const ml::CMatParam *pPoisson = mat.MatParameter(MLD_POISSONRATIO);
-	assert(pPoisson);
+  const ml::CMatParam *pPoisson = mat.MatParameter(MLD_POISSONRATIO);
+  assert(pPoisson);
 
-	const ml::CMatParam *pBulkFluid = mat.MatParameter(MLD_FLUIDMODULUS);
-	assert(pBulkFluid);
+  const ml::CMatParam *pBulkFluid = mat.MatParameter(MLD_FLUIDMODULUS);
+  assert(pBulkFluid);
 
-	const ml::CMatParam *pPorosity = mat.MatParameter(MLD_POROSITY);
-	assert(pPorosity);
+  const ml::CMatParam *pPorosity = mat.MatParameter(MLD_POROSITY);
+  assert(pPorosity);
 
   const ml::CMatParam* pBulkModulus = mat.MatParameter(MLD_BULKSTIFFNESS);
   assert(pBulkModulus);
@@ -535,18 +535,18 @@ void CMaterialUndrainedGrainStiffnessSetStrategy::operator()(double dValue, ml::
   double nuu = UndrainedPoisson(nu, alpha, theta, Eu, E);
   double Bu = UndrainedThermalExpansionCoefficient(Bb, phi, Bf, Eu, Kb, alpha, Kg, Kf);
 
-	// set the parameters
+  // set the parameters
   ml::CMatParam *pParam;
 
-	if((pParam = mat.MatParameter(MLD_UNDRAINEDYOUNG)))
-	  SetParamValue(*pParam, Eu);
+  if((pParam = mat.MatParameter(MLD_UNDRAINEDYOUNG)))
+    SetParamValue(*pParam, Eu);
 
-	if((pParam = mat.MatParameter(MLD_UNDRAINEDPOISSON)))
-	  SetParamValue(*pParam, nuu);
+  if((pParam = mat.MatParameter(MLD_UNDRAINEDPOISSON)))
+    SetParamValue(*pParam, nuu);
 
   if((pParam = mat.MatParameter(MLD_UNDRAINEDTHERMX)))
   {
-    SetParamValue(*pParam, Bu);
+  SetParamValue(*pParam, Bu);
   }
 
   SetParamValue(param, Kg);
@@ -556,17 +556,17 @@ void CMaterialUndrainedFluidBulkModulusSetStrategy::operator()(double dValue, ml
 {
   ml::CMaterial& mat = param.ParentMaterial();
 
-	const ml::CMatParam *pYoung = mat.MatParameter(MLD_YOUNGMODULUS);
-	assert(pYoung);
+  const ml::CMatParam *pYoung = mat.MatParameter(MLD_YOUNGMODULUS);
+  assert(pYoung);
 
-	const ml::CMatParam *pPoisson = mat.MatParameter(MLD_POISSONRATIO);
-	assert(pPoisson);
+  const ml::CMatParam *pPoisson = mat.MatParameter(MLD_POISSONRATIO);
+  assert(pPoisson);
 
-	const ml::CMatParam *pBulkFluid = mat.MatParameter(MLD_FLUIDMODULUS);
-	assert(pBulkFluid);
+  const ml::CMatParam *pBulkFluid = mat.MatParameter(MLD_FLUIDMODULUS);
+  assert(pBulkFluid);
 
-	const ml::CMatParam *pPorosity = mat.MatParameter(MLD_POROSITY);
-	assert(pPorosity);
+  const ml::CMatParam *pPorosity = mat.MatParameter(MLD_POROSITY);
+  assert(pPorosity);
 
   const ml::CMatParam* pBulkModulus = mat.MatParameter(MLD_BULKSTIFFNESS);
   assert(pBulkModulus);
@@ -596,18 +596,18 @@ void CMaterialUndrainedFluidBulkModulusSetStrategy::operator()(double dValue, ml
   double nuu = UndrainedPoisson(nu, alpha, theta, Eu, E);
   double Bu = UndrainedThermalExpansionCoefficient(Bb, phi, Bf, Eu, Kb, alpha, Kg, Kf);
 
-	// set the parameters
+  // set the parameters
   ml::CMatParam *pParam;
 
-	if((pParam = mat.MatParameter(MLD_UNDRAINEDYOUNG)))
-	  SetParamValue(*pParam, Eu);
+  if((pParam = mat.MatParameter(MLD_UNDRAINEDYOUNG)))
+    SetParamValue(*pParam, Eu);
 
-	if((pParam = mat.MatParameter(MLD_UNDRAINEDPOISSON)))
-	  SetParamValue(*pParam, nuu);
+  if((pParam = mat.MatParameter(MLD_UNDRAINEDPOISSON)))
+    SetParamValue(*pParam, nuu);
 
   if((pParam = mat.MatParameter(MLD_UNDRAINEDTHERMX)))
   {
-    SetParamValue(*pParam, Bu);
+  SetParamValue(*pParam, Bu);
   }
 
   SetParamValue(param, Kf);
@@ -649,7 +649,7 @@ void CMaterialUndrainedVolumetricThermalExpansionCoefficientSetStrategy::operato
 
   if ((pParam = mat.MatParameter(MLD_UNDRAINEDTHERMX)))
   {
-    SetParamValue(*pParam, Bu);
+  SetParamValue(*pParam, Bu);
   }
 
   SetParamValue(param, Bb);
@@ -691,7 +691,7 @@ void CMaterialUndrainedFluidThermalExpansionCoefficientSetStrategy::operator()(d
 
   if ((pParam = mat.MatParameter(MLD_UNDRAINEDTHERMX)))
   {
-    SetParamValue(*pParam, Bu);
+  SetParamValue(*pParam, Bu);
   }
 
   SetParamValue(param, Bf);

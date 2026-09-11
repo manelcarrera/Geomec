@@ -24,7 +24,7 @@ CZoominModelPlaceHolder::CZoominModelPlaceHolder(CFemAppModel& model, CModelBase
 CZoominModelPlaceHolder::~CZoominModelPlaceHolder()
 {
   if (m_pChildModel)
-    IModelLifetimeFacade::Close(m_pChildModel);
+  IModelLifetimeFacade::Close(m_pChildModel);
 
   // update surface icons (used state)
   Model().GraphEntry(MD_BASE_SURFACE)->Modified();
@@ -86,11 +86,11 @@ void CZoominModelPlaceHolder::LoadStream(TSTREAM& stream, CStreamVersion& versio
 
   if (version == CStreamVersion(4, 1, 34))
   {
-    if (nModelType != HEXA_MODEL && nModelType != GOCAD_MODEL)
-    {
+  if (nModelType != HEXA_MODEL && nModelType != GOCAD_MODEL)
+  {
       int dummy;
       for (int i = 0; i < 19; ++i)
-        stream >> dummy;
+    stream >> dummy;
 
       QString name;
       stream >> name;
@@ -103,20 +103,20 @@ void CZoominModelPlaceHolder::LoadStream(TSTREAM& stream, CStreamVersion& versio
 
       if (nModelType != HEXA_MODEL && nModelType != GOCAD_MODEL)
       {
-        _m()->msg("Warning: an error occurred while loading the zoom-in models. Please contact Geomec support.");
-        return;
+    _m()->msg("Warning: an error occurred while loading the zoom-in models. Please contact Geomec support.");
+    return;
       }
-    }
+  }
   }
 
   switch(nModelType)
   {
   case HEXA_MODEL:
   case GOCAD_MODEL:
-    m_pChildModel = IModelLifetimeFacade::NewChild(nModelType, model.Logger(), model.getVersionManager());
-    break;
+  m_pChildModel = IModelLifetimeFacade::NewChild(nModelType, model.Logger(), model.getVersionManager());
+  break;
   default:
-    assert(false);
+  assert(false);
   }
 
   reParent(model.GraphEntry(MD_BASE_ZOOMIN_MODEL));
@@ -133,12 +133,12 @@ void CZoominModelPlaceHolder::SaveStream(TSTREAM& stream, TPROGRESS& progress)
 
   if(pHexa)
   {
-    stream << HEXA_MODEL;
+  stream << HEXA_MODEL;
   }
   else
   {
-    assert(pGoCad);
-    stream << GOCAD_MODEL;
+  assert(pGoCad);
+  stream << GOCAD_MODEL;
   }
 
   CModelBase& model = static_cast<CModelBase&>(Model());

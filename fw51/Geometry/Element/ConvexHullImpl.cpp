@@ -136,11 +136,11 @@ tBoxStructure::tBoxStructure() : m_halfLengthX(0), m_halfLengthY(0), m_halfLengt
 void tBoxStructure::Set(int x, int y, int z)
 {
   if (x < 1)
-    x = 1;
+  x = 1;
   if (y < 1)
-    y = 1;
+  y = 1;
   if (z < 1)
-    z = 1;
+  z = 1;
 
   m_halfLengthX = x;
   m_halfLengthY = y;
@@ -186,8 +186,8 @@ void CConvexHullImpl::SetPoints(IProgressBase *progress, const std::vector<const
 
   if(progress)
   {
-    int times = size > 500 ? 5 : 3;
-    progress->AddSteps(times * size);
+  int times = size > 500 ? 5 : 3;
+  progress->AddSteps(times * size);
   }
 
   ftn_double_t prev = IObject::setCompareTolerance( DBL_EPSILON );
@@ -200,14 +200,14 @@ void CConvexHullImpl::SetPoints(IProgressBase *progress, const std::vector<const
   double zmax = (*points.begin())->Z();
   std::vector<const IPoint*>::const_iterator it = points.begin() + 1;
   while ( it != points.end() ) {
-    if ( (*it)->X() < xmin ) xmin = (*it)->X();
-    if ( (*it)->X() > xmax ) xmax = (*it)->X();
-    if ( (*it)->Y() < ymin ) ymin = (*it)->Y();
-    if ( (*it)->Y() > ymax ) ymax = (*it)->Y();
-    if ( (*it)->Z() < zmin ) zmin = (*it)->Z();
-    if ( (*it)->Z() > zmax ) zmax = (*it)->Z();
-    ++it;
-    if (progress) progress->Step(1);
+  if ( (*it)->X() < xmin ) xmin = (*it)->X();
+  if ( (*it)->X() > xmax ) xmax = (*it)->X();
+  if ( (*it)->Y() < ymin ) ymin = (*it)->Y();
+  if ( (*it)->Y() > ymax ) ymax = (*it)->Y();
+  if ( (*it)->Z() < zmin ) zmin = (*it)->Z();
+  if ( (*it)->Z() > zmax ) zmax = (*it)->Z();
+  ++it;
+  if (progress) progress->Step(1);
   }
   // Get (squared)distance to centre for each point as weight
   CPoint centre( ( xmin + xmax ) / 2.,
@@ -217,12 +217,12 @@ void CConvexHullImpl::SetPoints(IProgressBase *progress, const std::vector<const
   m_vcVertices.resize(points.size());
   for (size_t i = 0; i < points.size(); ++i)
   {
-    double dx = RoundNumber(points[i]->X() - centre.X());
-    double dy = RoundNumber(points[i]->Y() - centre.Y());
-    double dz = RoundNumber(points[i]->Z() - centre.Z());
-    m_vcVertices[i].Point.Set(dx, dy, dz);
-    m_vcVertices[i].dWeight = dx * dx + dy * dy + dz * dz;
-    if (progress) progress->Step(1);
+  double dx = RoundNumber(points[i]->X() - centre.X());
+  double dy = RoundNumber(points[i]->Y() - centre.Y());
+  double dz = RoundNumber(points[i]->Z() - centre.Z());
+  m_vcVertices[i].Point.Set(dx, dy, dz);
+  m_vcVertices[i].dWeight = dx * dx + dy * dy + dz * dz;
+  if (progress) progress->Step(1);
   }
 
   IObject::setCompareTolerance( prev );
@@ -244,62 +244,62 @@ void CConvexHullImpl::SetPoints(IProgressBase *progress, const std::vector<const
 
   if (m_vcVertices.size() <= 500)
   {
-    std::sort(m_vcVertices.begin(), m_vcVertices.end());
-    for (int i = 1; i < m_vcVertices.size(); ++i)
-    {
+  std::sort(m_vcVertices.begin(), m_vcVertices.end());
+  for (int i = 1; i < m_vcVertices.size(); ++i)
+  {
       if (m_vcVertices[i].Point == m_vcVertices[i - 1].Point) // skip (exact) duplicates; TBD if we can use epsilon
-        m_vcVertices[i].bProcessed = true;
-    }
+    m_vcVertices[i].bProcessed = true;
+  }
   }
   else
   {
-    tbb::parallel_sort(m_vcVertices.begin(), m_vcVertices.end());
+  tbb::parallel_sort(m_vcVertices.begin(), m_vcVertices.end());
 
-    double d[3];
+  double d[3];
 
-    d[0] = absXmax + absXmin;
-    d[1] = absYmax + absYmin;
-    d[2] = absZmax + absZmin;
+  d[0] = absXmax + absXmin;
+  d[1] = absYmax + absYmin;
+  d[2] = absZmax + absZmin;
 
-    int smallest = 0, largest = 0;
+  int smallest = 0, largest = 0;
 
-    for (int i = 1; i < 3; ++i)
-    {
+  for (int i = 1; i < 3; ++i)
+  {
       if (d[i] <= d[smallest])
-        smallest = i;
+    smallest = i;
       if (d[i] > d[largest])
-        largest = i;
-    }
+    largest = i;
+  }
 
-    if (d[smallest] == 0) // this shouldn't happen
+  if (d[smallest] == 0) // this shouldn't happen
       smallest = 3 - smallest - largest;
 
-    assert(d[smallest] != 0); // shouldn't happen either
+  assert(d[smallest] != 0); // shouldn't happen either
 
-    int other = 3 - smallest - largest;
+  int other = 3 - smallest - largest;
 
-    int factor[3];
+  int factor[3];
 
-    if (d[largest] / d[smallest] > 1.5)
-    {
+  if (d[largest] / d[smallest] > 1.5)
+  {
       factor[largest]  = ceil(d[largest] / 100);
       factor[other]    = ceil(d[other] / 100);
       factor[smallest] = ceil(d[smallest] / 40);
-    }
-    else
-    {
+  }
+  else
+  {
       factor[largest]  = ceil(d[largest] / 72);
       factor[other]    = ceil(d[other] / 72);
       factor[smallest] = ceil(d[smallest] / 72);
-    }
+  }
 
 
-    m_box.Set(ceil(d[0] / (2 * factor[0])), ceil(d[1] / (2 * factor[1])), ceil(d[2] / (2 * factor[2])));
+  m_box.Set(ceil(d[0] / (2 * factor[0])), ceil(d[1] / (2 * factor[1])), ceil(d[2] / (2 * factor[2])));
 
-    if (progress) progress->AddSteps(m_box.m_vcBoxes.size());
+  if (progress) progress->AddSteps(m_box.m_vcBoxes.size());
 
-    for (int i = 0; i < m_vcVertices.size(); ++i)
-    {
+  for (int i = 0; i < m_vcVertices.size(); ++i)
+  {
       int x = m_vcVertices[i].Point.X() / factor[0];
       int y = m_vcVertices[i].Point.Y() / factor[1];
       int z = m_vcVertices[i].Point.Z() / factor[2];
@@ -307,10 +307,10 @@ void CConvexHullImpl::SetPoints(IProgressBase *progress, const std::vector<const
       m_box.Add(x, y, z, i);
 
       if (i > 0 && m_vcVertices[i].Point == m_vcVertices[i - 1].Point) // skip (exact) duplicates; TBD if we can use epsilon
-        m_vcVertices[i].bProcessed = true;
+    m_vcVertices[i].bProcessed = true;
 
       if (progress) progress->Step(1);
-    }
+  }
   }
 }
 
@@ -344,29 +344,29 @@ void CConvexHullImpl::GetPointsAndFaces(std::vector<CPoint> &points, std::vector
   points.resize(nVertexCount);
   size_t j = 0;
   for (int i = nVertexRoot; i >= 0; i = m_vcVertices[i].nNext)
-    points[j++].Set(m_vcVertices[i].Point.X(), m_vcVertices[i].Point.Y(), m_vcVertices[i].Point.Z());
+  points[j++].Set(m_vcVertices[i].Point.X(), m_vcVertices[i].Point.Y(), m_vcVertices[i].Point.Z());
 
   if (points.size() <= 500)
-    std::sort(points.begin(), points.end());
+  std::sort(points.begin(), points.end());
   else
-    tbb::parallel_sort(points.begin(), points.end());
+  tbb::parallel_sort(points.begin(), points.end());
 
   if (!m_tFaces)
-    return;
+  return;
 
   size_t i = 0;
 
   for (tFace f = m_tFaces; f != NULL; f = f->pNext)
-    ++i;
+  ++i;
   faces.resize(i);
 
   i = 0;
   for (tFace f = m_tFaces; f != NULL; f = f->pNext)
   {
-    faces[i].Set(m_parent,
+  faces[i].Set(m_parent,
       FindPointIndex(points, f->vertex[0]->Point), FindPointIndex(points, f->vertex[1]->Point), FindPointIndex(points, f->vertex[2]->Point),
       f->normal.X(), f->normal.Y(), f->normal.Z());
-    ++i;
+  ++i;
   }
 }
 
@@ -386,17 +386,17 @@ bool CConvexHullImpl::CheckValidDigits(const double &testValue, double &digits)
   double step= 1;
   double diff= 0;
   const double eps=
-    pow(10.0,(int )log10(testValue/pow(2.0,52)));//IEEE-754 -> 52
+  pow(10.0,(int )log10(testValue/pow(2.0,52)));//IEEE-754 -> 52
   double directPow3, indirectPow3;
   double curValue;
 
   do
   {
-    // sample values around the testValue
-    for ( curValue =  0.9 * testValue
-        ; curValue <= 1.1 * testValue
-        ; curValue += 0.01 * testValue )
-    {
+  // sample values around the testValue
+  for ( curValue =  0.9 * testValue
+    ; curValue <= 1.1 * testValue
+    ; curValue += 0.01 * testValue )
+  {
       // directly calculate the 3rd power (comes from VolumeSign)
       directPow3= (curValue+step) * (curValue+step) * (curValue+step);
       double aaa, aab, abb, bbb;
@@ -409,19 +409,19 @@ bool CConvexHullImpl::CheckValidDigits(const double &testValue, double &digits)
       diff= fabs(directPow3 - indirectPow3);
       // Is the difference in outcome larger than the allowed error 'step'?
       if ( diff >= step ) break;
-    }
+  }
 
-    // For all samples there was no significant difference
-    if ( diff < step )
-    {
+  // For all samples there was no significant difference
+  if ( diff < step )
+  {
       foundIt= true;
       digits= step; // significant digits
       step /= 10;
-    }
-    else
-    {
+  }
+  else
+  {
       break;
-    }
+  }
   } while ( step >= eps); //or break
 
   return foundIt;
@@ -437,10 +437,10 @@ double CConvexHullImpl::RoundNumber(const double& d) const
 {
   if (m_validDigits > 0)
   {
-    int sign= d>=0?1:-1;
-    if ( m_validDigits == 1 )
+  int sign= d>=0?1:-1;
+  if ( m_validDigits == 1 )
       return (int )(d+sign*0.5); //faster
-    else
+  else
       return (int )d+((int )((d -(int )d)/m_validDigits)+sign*0.5)*m_validDigits;
   }
   return d;
@@ -463,9 +463,9 @@ IPoint &CConvexHullImpl::RoundPoint(IPoint& p) const
 {
   if ( m_validDigits > 0 )
   {
-    p.X( RoundNumber(p.X()));
-    p.Y( RoundNumber(p.Y()));
-    p.Z( RoundNumber(p.Z()));
+  p.X( RoundNumber(p.X()));
+  p.Y( RoundNumber(p.Y()));
+  p.Z( RoundNumber(p.Z()));
   }
   return p;
 }
@@ -476,14 +476,14 @@ IPoint &CConvexHullImpl::RoundPoint(IPoint& p) const
 int CConvexHullImpl::AddVertex(int nVertex)
 {
   if (m_vcVertices[nVertex].bProcessed)
-    return -1;
+  return -1;
 
   m_vcVertices[nVertex].bProcessed = true;
 
   if (nVertexRoot >= 0)
   {
-    m_vcVertices[nVertex].nNext = nVertexRoot;
-    m_vcVertices[nVertexRoot].nPrev = nVertex;
+  m_vcVertices[nVertex].nNext = nVertexRoot;
+  m_vcVertices[nVertexRoot].nPrev = nVertex;
   }
   nVertexRoot = nVertex;
   ++nVertexCount;
@@ -500,12 +500,12 @@ void CConvexHullImpl::DeleteVertex(int nVertex)
   int nPrev = m_vcVertices[nVertex].nPrev;
 
   if (nNext >= 0)
-    m_vcVertices[nNext].nPrev = nPrev;
+  m_vcVertices[nNext].nPrev = nPrev;
   if (nPrev >= 0)
-    m_vcVertices[nPrev].nNext = nNext;
+  m_vcVertices[nPrev].nNext = nNext;
 
   if (nVertexRoot == nVertex)
-    nVertexRoot = nNext;
+  nVertexRoot = nNext;
 
   --nVertexCount;
 }
@@ -514,7 +514,7 @@ int CConvexHullImpl::VertexSize() const
 {
   int size = 0;
   for (int i = nVertexRoot; i >= 0; i = m_vcVertices[i].nNext)
-    ++size;
+  ++size;
   return size;
 }
 
@@ -524,9 +524,9 @@ int CConvexHullImpl::FindPointIndex(const std::vector<CPoint> &points, const IPo
 {
   std::vector<CPoint>::const_iterator it = std::lower_bound(points.begin(), points.end(), pnt);
   if (it == points.end())
-    return -1;
+  return -1;
   else
-    return it - points.begin();
+  return it - points.begin();
 }
 
 
@@ -538,21 +538,21 @@ bool CConvexHullImpl::Calculate(IProgressBase *progress)
   double digits;
   if (  m_validDigits < 0 )
   {
-    if ( CheckValidDigits( m_maxDist, digits) ) 
+  if ( CheckValidDigits( m_maxDist, digits) ) 
       m_validDigits= digits;
-    else
+  else
       m_validDigits= 0.0; //undetermined.
   }
 
   if (DoubleTriangle())
   {
-    ConstructHull(progress);
-    CalcNormals();
+  ConstructHull(progress);
+  CalcNormals();
 
-    return Checks();
+  return Checks();
   }
   else
-    return false;
+  return false;
 }
 
 
@@ -576,34 +576,34 @@ bool CConvexHullImpl::DoubleTriangle()
 
   for(int i = 0; i < size - 3;)
   {
-    if (m_vcVertices[i].bProcessed)
-    {
+  if (m_vcVertices[i].bProcessed)
+  {
       ++i;
       continue;
-    }
+  }
 
-    int j = i + 1;
-    while (j < size - 2 && m_vcVertices[j].bProcessed) // skip duplicates of m_vcVertices[i]
+  int j = i + 1;
+  while (j < size - 2 && m_vcVertices[j].bProcessed) // skip duplicates of m_vcVertices[i]
       ++j;
 
-    if (j == size - 2)
+  if (j == size - 2)
       return false;
 
-    int k = j + 1;
-    while (k < size - 1 && m_vcVertices[k].bProcessed)  // skip duplicates of m_vcVertices[j]
+  int k = j + 1;
+  while (k < size - 1 && m_vcVertices[k].bProcessed)  // skip duplicates of m_vcVertices[j]
       ++k;
 
-    if (k == size - 1)
+  if (k == size - 1)
       return false;
 
-    if ( !Collinear(m_vcVertices[i].Point, m_vcVertices[j].Point, m_vcVertices[k].Point) ) {
+  if ( !Collinear(m_vcVertices[i].Point, m_vcVertices[j].Point, m_vcVertices[k].Point) ) {
       nFound1 = i;
       nFound2 = j;
       nFound3 = k;
       break;
-    }
+  }
 
-    i = k + 1;
+  i = k + 1;
   }
 
   if( nFound1 == -1 ) return false;    
@@ -619,14 +619,14 @@ bool CConvexHullImpl::DoubleTriangle()
 
   // Find a fourth, noncoplanar point to form tetrahedron.
   while( nFound3 < m_vcVertices.size() ) {
-    if( !m_vcVertices[nFound3].bProcessed && VolumeSign(f0, &m_vcVertices[nFound3]) != 0 ) {
+  if( !m_vcVertices[nFound3].bProcessed && VolumeSign(f0, &m_vcVertices[nFound3]) != 0 ) {
       // Found add to the system and make thetra
       tVertex v3 = &m_vcVertices[AddVertex(nFound3)];
       AddOne( v3 );
       CleanUp();     
       return true;
-    }
-    ++nFound3;
+  }
+  ++nFound3;
   }
 
   return false;
@@ -653,26 +653,26 @@ public:
 
   void operator()(const tbb::blocked_range<size_t>& r) const
   {
-    size_t i;
-    for (i = r.begin(); i != r.end(); ++i)
-    {
+  size_t i;
+  for (i = r.begin(); i != r.end(); ++i)
+  {
       if (!m_data[i].bProcessed)
       {
-        tFace f = m_tFaces;
-        bool bOutside = false;
-        while (f != NULL && !bOutside)
-        {
+    tFace f = m_tFaces;
+    bool bOutside = false;
+    while (f != NULL && !bOutside)
+    {
           if (m_parent.VolumeSign( f, &m_data[i] ) < 0)
           {
-            bOutside = true;
+      bOutside = true;
           }
           f = f->pNext;
-        }
-        if (!bOutside)
+    }
+    if (!bOutside)
           m_data[i].bProcessed = true;
       }
-    }
-    if (m_dispatcher)
+  }
+  if (m_dispatcher)
       m_dispatcher->Step(r.size());
   }
 };
@@ -690,59 +690,59 @@ void CConvexHullImpl::ConstructHull(IProgressBase *progress)
   if (size > 500)
   {
 
-    for(int i = 0; i < 16; i++)
-    {
+  for(int i = 0; i < 16; i++)
+  {
       int nVertex = AddVertex(i);
       if (nVertex >= 0)
       {
-        tVertex v = &m_vcVertices[nVertex];
-        AddOne( v );
-        CleanUp();
+    tVertex v = &m_vcVertices[nVertex];
+    AddOne( v );
+    CleanUp();
       }
-    }
+  }
 
-    for (int i = 0; i < m_box.m_vcBoxes.size(); ++i)
-    {
+  for (int i = 0; i < m_box.m_vcBoxes.size(); ++i)
+  {
       int nVertex = m_box.m_vcBoxes[i];
       if (nVertex >= 0)
       {
-        nVertex = AddVertex(nVertex);
-        if (nVertex >= 0)
-        {
+    nVertex = AddVertex(nVertex);
+    if (nVertex >= 0)
+    {
           tVertex v = &m_vcVertices[nVertex];
           AddOne( v );
           CleanUp();
-        }
+    }
       }
       if(progress) progress->Step();
-    }
+  }
 
-    mp::CKernelParallel<CTaskFilterVertices> parKernel;
-    CTaskFilterVertices taskFilterVertices(*this, m_vcVertices, m_tFaces);
+  mp::CKernelParallel<CTaskFilterVertices> parKernel;
+  CTaskFilterVertices taskFilterVertices(*this, m_vcVertices, m_tFaces);
 
-    if (progress)
-    {
+  if (progress)
+  {
       mp::CKernelDispatcher kernelDispatcher;
       mp::IDispatchedTask *disTaskFilterVertices = NEW_DISPATCH_TASK(mp::CKernelParallel, CTaskFilterVertices)(parKernel, taskFilterVertices);
 
       kernelDispatcher.launch(*progress, disTaskFilterVertices);
-    }
-    else
-    {
+  }
+  else
+  {
       parKernel.execute(taskFilterVertices);
-    }
+  }
   }
 
   for(int i = 0; i < m_vcVertices.size(); i++)
   {
-    int nVertex = AddVertex(i);
-    if (nVertex >= 0)
-    {
+  int nVertex = AddVertex(i);
+  if (nVertex >= 0)
+  {
       tVertex v = &m_vcVertices[nVertex];
       AddOne( v );
       CleanUp();
-    }
-    if(progress) progress->Step();
+  }
+  if(progress) progress->Step();
   }
 }
 
@@ -761,34 +761,34 @@ bool CConvexHullImpl::AddOne(tVertex p)
   tFace f = m_tFaces;
   while (f != NULL)
   {
-    if (VolumeSign( f, p ) < 0)
-    {
+  if (VolumeSign( f, p ) < 0)
+  {
       f->visible = VISIBLE;
           visibleEdges.insert( f->edge[0] );
           visibleEdges.insert( f->edge[1] );
           visibleEdges.insert( f->edge[2] );
-    }
-    f = f->pNext;
+  }
+  f = f->pNext;
   }
 
   // If no faces are visible from p, then p is inside the hull.
   if (visibleEdges.size() == 0)
   {
-    p->bOnhull = !ONHULL;
-    return false;
+  p->bOnhull = !ONHULL;
+  return false;
   }
 
   // Mark edges in interior of visible region for deletion. Erect a newface based on each border edge.
   std::set<tEdge>::const_iterator it;
   for ( it = visibleEdges.begin(); it != visibleEdges.end(); ++it )
   {
-    if ( (*it)->adjface[0]->visible && (*it)->adjface[1]->visible )
+  if ( (*it)->adjface[0]->visible && (*it)->adjface[1]->visible )
       (*it)->bDelete = REMOVED;  // e interior: mark for deletion.
-    else
-    {
+  else
+  {
       if ( (*it)->adjface[0]->visible || (*it)->adjface[1]->visible )
-        (*it)->newface = MakeConeFace( *it, p );  // e border: make a new face.
-    }
+    (*it)->newface = MakeConeFace( *it, p );  // e border: make a new face.
+  }
   }
   visibleEdges.clear();
   return true;
@@ -853,14 +853,14 @@ tFace CConvexHullImpl::MakeConeFace( tEdge e, tVertex p ) throw (const char *)
 
   // Make two new edges (if they don't already exist).
   for ( i=0; i < 2; ++i ) {
-    // If the edge exists, copy it into new_edge.
-    if ( !( new_edge[i] = e->endpts[i]->pDuplicate) ) {
+  // If the edge exists, copy it into new_edge.
+  if ( !( new_edge[i] = e->endpts[i]->pDuplicate) ) {
       // Otherwise (duplicate is NULL), MakeNullEdge.
       new_edge[i]              = MakeNullEdge();
       new_edge[i]->endpts[0]   = e->endpts[i];
       new_edge[i]->endpts[1]   = p;
       e->endpts[i]->pDuplicate = new_edge[i];
-    }
+  }
   }
 
   // Make the new face.
@@ -872,10 +872,10 @@ tFace CConvexHullImpl::MakeConeFace( tEdge e, tVertex p ) throw (const char *)
 
   // Set the adjacent face pointers.
   for ( i=0; i < 2; ++i ) {
-    // Only one NULL link should be set to new_face.
-    if (      !new_edge[i]->adjface[0] ) new_edge[i]->adjface[0] = new_face;
-    else if ( !new_edge[i]->adjface[1] ) new_edge[i]->adjface[1] = new_face;
-    else throw( (const char *)("Convex Hull Failed (MakeConeFace)"));
+  // Only one NULL link should be set to new_face.
+  if (      !new_edge[i]->adjface[0] ) new_edge[i]->adjface[0] = new_face;
+  else if ( !new_edge[i]->adjface[1] ) new_edge[i]->adjface[1] = new_face;
+  else throw( (const char *)("Convex Hull Failed (MakeConeFace)"));
   }
 
   return new_face;
@@ -898,20 +898,20 @@ void CConvexHullImpl::MakeCcw( tFace f, tEdge e, tVertex p )
   // Set vertex[0] & [1] of f to have the same orientation as
   // do the corresponding vertices of fv.
   for ( i=0; fv->vertex[i] != e->endpts[0]; ++i )
-    ;
+  ;
 
   // Orient f the same as fv.
   if ( fv->vertex[ (i+1) % 3 ] != e->endpts[1] ) {
-    f->vertex[0] = e->endpts[1];
-    f->vertex[1] = e->endpts[0];
+  f->vertex[0] = e->endpts[1];
+  f->vertex[1] = e->endpts[0];
   } else {
-    f->vertex[0] = e->endpts[0];
-    f->vertex[1] = e->endpts[1];
+  f->vertex[0] = e->endpts[0];
+  f->vertex[1] = e->endpts[1];
 
-    // Swap.
-    s = f->edge[1];
-    f->edge[1] = f->edge[2];
-    f->edge[2] = s;
+  // Swap.
+  s = f->edge[1];
+  f->edge[1] = f->edge[2];
+  f->edge[2] = s;
   }
   // This swap is tricky. e is edge[0]. edge[1] is based on endpt[0],
   // edge[2] on endpt[1].  So if e is oriented "forwards," we
@@ -935,9 +935,9 @@ tEdge CConvexHullImpl::MakeNullEdge()
   e->bDelete = !REMOVED;
 
   if (m_tEdges == NULL)
-    m_tEdges = e;
+  m_tEdges = e;
   else
-    m_tEdges->Add(e);
+  m_tEdges->Add(e);
   return e;
 }
 
@@ -954,15 +954,15 @@ tFace CConvexHullImpl::MakeNullFace()
   f = new tsFace;
   for ( i=0; i < 3; ++i )
   {
-    f->edge[i] = NULL;
-    f->vertex[i] = NULL;
+  f->edge[i] = NULL;
+  f->vertex[i] = NULL;
   }
   f->visible = !VISIBLE;
 
   if (m_tFaces == NULL)
-    m_tFaces = f;
+  m_tFaces = f;
   else
-    m_tFaces->Add(f);
+  m_tFaces->Add(f);
   return f;
 }
 
@@ -978,21 +978,21 @@ tFace CConvexHullImpl::MakeFace( tVertex v0, tVertex v1, tVertex v2, tFace fold 
   // Create edges of the initial triangle.
   if( !fold )
   {
-    e0 = MakeNullEdge();
-    e1 = MakeNullEdge();
-    e2 = MakeNullEdge();
+  e0 = MakeNullEdge();
+  e1 = MakeNullEdge();
+  e2 = MakeNullEdge();
 
-        // Initialize end points here
-    e0->endpts[0] = v0; e0->endpts[1] = v1;
-    e1->endpts[0] = v1; e1->endpts[1] = v2;
-    e2->endpts[0] = v2; e2->endpts[1] = v0;
+    // Initialize end points here
+  e0->endpts[0] = v0; e0->endpts[1] = v1;
+  e1->endpts[0] = v1; e1->endpts[1] = v2;
+  e2->endpts[0] = v2; e2->endpts[1] = v0;
   }
   else
   {
-    // Copy from fold, in reverse order.
-    e0 = fold->edge[2];
-    e1 = fold->edge[1];
-    e2 = fold->edge[0];
+  // Copy from fold, in reverse order.
+  e0 = fold->edge[2];
+  e1 = fold->edge[1];
+  e2 = fold->edge[0];
   }
 
   // Create face for triangle.
@@ -1002,9 +1002,9 @@ tFace CConvexHullImpl::MakeFace( tVertex v0, tVertex v1, tVertex v2, tFace fold 
 
   // Link edges to face.
   if ( !fold )
-    e0->adjface[0] = e1->adjface[0] = e2->adjface[0] = f;
+  e0->adjface[0] = e1->adjface[0] = e2->adjface[0] = f;
   else
-    e0->adjface[1] = e1->adjface[1] = e2->adjface[1] = f;
+  e0->adjface[1] = e1->adjface[1] = e2->adjface[1] = f;
 
   return f;
 }
@@ -1036,21 +1036,21 @@ void CConvexHullImpl::CleanEdges()
   e = m_tEdges;
   while (e != NULL)
   {
-    tEdge next = e->pNext;
-    if ( e->newface )
-    {
+  tEdge next = e->pNext;
+  if ( e->newface )
+  {
       if ( e->adjface[0]->visible )
-        e->adjface[0] = e->newface;
+    e->adjface[0] = e->newface;
       else
-        e->adjface[1] = e->newface;
+    e->adjface[1] = e->newface;
       e->newface = NULL;
-    }
-    else if ( e->bDelete )
-    {
+  }
+  else if ( e->bDelete )
+  {
       if ( m_tEdges == e ) m_tEdges = next;
       e->Delete();
-    }
-    e = next;
+  }
+  e = next;
   }
 }
 
@@ -1062,11 +1062,11 @@ void CConvexHullImpl::CalcNormals()
   tFace f= m_tFaces;
   while (f != NULL)
   {
-    CVector dir1(f->vertex[0]->Point,f->vertex[1]->Point);
-    CVector dir2(f->vertex[0]->Point,f->vertex[2]->Point);
-    f->normal = dir1.CrossProduct( dir2 ).UnitVector();
+  CVector dir1(f->vertex[0]->Point,f->vertex[1]->Point);
+  CVector dir2(f->vertex[0]->Point,f->vertex[2]->Point);
+  f->normal = dir1.CrossProduct( dir2 ).UnitVector();
 
-    f = f->pNext;
+  f = f->pNext;
   }
 }
 
@@ -1081,14 +1081,14 @@ void CConvexHullImpl::CleanFaces()
   f = m_tFaces;
   while (f != NULL)
   {
-    if ( f->visible )
-    {
+  if ( f->visible )
+  {
       t = f;
       f = f->pNext;
       if (m_tFaces == t) m_tFaces = f;
       t->Delete();
-    }
-    else
+  }
+  else
       f = f->pNext;
   }
 }
@@ -1106,24 +1106,24 @@ void CConvexHullImpl::CleanVertices()
   e = m_tEdges;
   while (e != NULL)
   {
-    e->endpts[0]->bOnhull = e->endpts[1]->bOnhull = ONHULL;
-    e = e->pNext;
+  e->endpts[0]->bOnhull = e->endpts[1]->bOnhull = ONHULL;
+  e = e->pNext;
   }
 
   int nVertex = nVertexRoot;
   while (nVertex >= 0)
   {
-    int nNext = m_vcVertices[nVertex].nNext;
-    if (m_vcVertices[nVertex].bOnhull)
-    {
+  int nNext = m_vcVertices[nVertex].nNext;
+  if (m_vcVertices[nVertex].bOnhull)
+  {
       m_vcVertices[nVertex].pDuplicate = NULL;
       m_vcVertices[nVertex].bOnhull = !ONHULL;
-    }
-    else
-    {
+  }
+  else
+  {
       DeleteVertex(nVertex);
-    }
-    nVertex = nNext;
+  }
+  nVertex = nNext;
   }
 
 }
@@ -1133,8 +1133,8 @@ void CConvexHullImpl::CleanVertices()
 // by checking to see if each element of the cross product is zero.
 //---------------------------------------------------------------------
 bool CConvexHullImpl::Collinear(const IPoint& a,
-                            const IPoint& b,
-                            const IPoint& c)
+              const IPoint& b,
+              const IPoint& c)
 {
    return
          ( c.Z() - a.Z() ) * ( b.Y() - a.Y() ) -
@@ -1159,17 +1159,17 @@ bool CConvexHullImpl::Consistency()
   e = m_tEdges;
   while (e != NULL)
   {
-    // find index of endpoint[0] in adjacent face[0].
-    for ( i = 0; e->adjface[0]->vertex[i] != e->endpts[0]; ++i ) ;
+  // find index of endpoint[0] in adjacent face[0].
+  for ( i = 0; e->adjface[0]->vertex[i] != e->endpts[0]; ++i ) ;
 
-    // find index of endpoint[0] in adjacent face[1].
-    for ( j = 0; e->adjface[1]->vertex[j] != e->endpts[0]; ++j ) ;
+  // find index of endpoint[0] in adjacent face[1].
+  for ( j = 0; e->adjface[1]->vertex[j] != e->endpts[0]; ++j ) ;
 
-    // check if the endpoints occur in opposite order.
-    if ( !( e->adjface[0]->vertex[ (i+1) % 3 ] == e->adjface[1]->vertex[ (j+2) % 3 ] ||
-        e->adjface[0]->vertex[ (i+2) % 3 ] == e->adjface[1]->vertex[ (j+1) % 3 ] )  )
+  // check if the endpoints occur in opposite order.
+  if ( !( e->adjface[0]->vertex[ (i+1) % 3 ] == e->adjface[1]->vertex[ (j+2) % 3 ] ||
+    e->adjface[0]->vertex[ (i+2) % 3 ] == e->adjface[1]->vertex[ (j+1) % 3 ] )  )
       break;
-    e = e->pNext;
+  e = e->pNext;
   }
 
   return (e == NULL);
@@ -1188,12 +1188,12 @@ bool CConvexHullImpl::Convexity()
   f = m_tFaces;
   while (f != NULL)
   {
-    for (int i = nVertexRoot; i >= 0; i = m_vcVertices[i].nNext)
-    {
+  for (int i = nVertexRoot; i >= 0; i = m_vcVertices[i].nNext)
+  {
       if (VolumeSign(f, &m_vcVertices[i]) < 0)
-        return false;
-    }
-    f = f->pNext;
+    return false;
+  }
+  f = f->pNext;
   }
 
   return (f == NULL);
@@ -1207,13 +1207,13 @@ bool CConvexHullImpl::Convexity()
 bool CConvexHullImpl::CheckEuler(int V, int E, int F)
 {
   if ((V - E + F) != 2)
-    return false;
+  return false;
 
   if (F != (2 * V - 4))
-    return false;
+  return false;
 
   if ((2 * E) != (3 * F))
-    return false;
+  return false;
 
   return true;
 }
@@ -1229,18 +1229,18 @@ bool CConvexHullImpl::NonDegenerate()
 
   while (f)
   {
-    CPoint p[3];
-    
-    for (size_t i = 0; i < 3; ++i)
-    {
+  CPoint p[3];
+  
+  for (size_t i = 0; i < 3; ++i)
+  {
       p[i] = f->vertex[i]->Point;
       p[i] = RoundPoint(p[i]);
-    }
+  }
 
-    if (p[0] == p[1] || p[0] == p[2] || p[1] == p[2])
+  if (p[0] == p[1] || p[0] == p[2] || p[1] == p[2])
       return false;
 
-    f = f->pNext;
+  f = f->pNext;
   }
 
   return true;
@@ -1261,33 +1261,33 @@ bool CConvexHullImpl::Checks()
   ret = Consistency();
   if (ret)
   {
-    ret = Convexity();
-    if (ret)
-    {
+  ret = Convexity();
+  if (ret)
+  {
       V = nVertexCount;
 
       e = m_tEdges;
       while (e != NULL)
       {
-        E++;
-        e = e->pNext;
+    E++;
+    e = e->pNext;
       }
 
 
       f = m_tFaces;
       while (f != NULL)
       {
-        F++;
-        f = f ->pNext;
+    F++;
+    f = f ->pNext;
       }
 
       ret = CheckEuler( V, E, F );
 
       if (ret)
       {
-        ret = NonDegenerate();
+    ret = NonDegenerate();
       }
-    }
+  }
   }
   return ret;
 }
@@ -1307,8 +1307,8 @@ void CConvexHullImpl::ClearVertices()
   /*
   TVertexSet::iterator it = m_tVertices.begin();
   while ( it != m_tVertices.end() ) {
-    delete *it;
-    ++it;
+  delete *it;
+  ++it;
   }
   m_tVertices.clear();
   */
@@ -1320,9 +1320,9 @@ void CConvexHullImpl::ClearEdges()
   tEdge t, v = m_tEdges;
   while (v != NULL)
   {
-    t = v->pNext;
-    v->Delete();
-    v = t;
+  t = v->pNext;
+  v->Delete();
+  v = t;
   }
   m_tEdges = NULL;
 }
@@ -1332,9 +1332,9 @@ void CConvexHullImpl::ClearFaces()
   tFace t, v = m_tFaces;
   while (v != NULL)
   {
-    t = v->pNext;
-    v->Delete();
-    v = t;
+  t = v->pNext;
+  v->Delete();
+  v = t;
   }
   m_tFaces = NULL;
 }

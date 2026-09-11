@@ -23,7 +23,7 @@ CElementValueSet& getResidualStrainSet(int& residualStrainSet,
 {
   if (residualStrainSet == NULL_TENSOR_COMPONENT)
   {
-    residualStrainSet = modelBase.Mesh().AddElementValueSet();
+  residualStrainSet = modelBase.Mesh().AddElementValueSet();
   }
 
   return modelBase.Mesh().ElementValueSet(residualStrainSet);
@@ -39,14 +39,14 @@ void loadValues(CElementValueSet& elementValueSet, RGInterface& rgi,
 
   for(int i = 0; i < values.size(); ++i)
   {
-    const geo::IElement& element = modelBase.Mesh().Mesh().Element(i);
-    int numberOfNodes = element.NrOfNodes();
-    geo::CValue v;
-    if (!RGUtils::isNull(values[i]))
+  const geo::IElement& element = modelBase.Mesh().Mesh().Element(i);
+  int numberOfNodes = element.NrOfNodes();
+  geo::CValue v;
+  if (!RGUtils::isNull(values[i]))
       v = values[i];
-    std::vector <geo::CValue> nodalValues(numberOfNodes, v);
+  std::vector <geo::CValue> nodalValues(numberOfNodes, v);
 
-    elementValueSet.PushBack(nodalValues);
+  elementValueSet.PushBack(nodalValues);
   }
 }
 
@@ -58,29 +58,29 @@ void connectStrainLoad2Tensor(CModelBase& modelBase, RGInterface& rgi,
   GeomecRGI::CRockMechProcessor& rmp)
 {
   CDepletionStage& depletionStage = modelBase.DepletionStageEntry().
-    StageByIndex(rgi.getCurrentDepletionStage().getDepletionStage());
-	TFormationBaseEntry* formationBaseEntry =
-    dynamic_cast <TFormationBaseEntry*> (
+  StageByIndex(rgi.getCurrentDepletionStage().getDepletionStage());
+  TFormationBaseEntry* formationBaseEntry =
+  dynamic_cast <TFormationBaseEntry*> (
       modelBase.GraphEntry(MD_BASE_FORMATION));
 
-	assert(formationBaseEntry != 0);
+  assert(formationBaseEntry != 0);
 
   for (TFormationBaseEntry::TNodeSet::iterator formation =
-    formationBaseEntry->EntryNodes().begin();
-    formation != formationBaseEntry->EntryNodes().end(); ++formation)
+  formationBaseEntry->EntryNodes().begin();
+  formation != formationBaseEntry->EntryNodes().end(); ++formation)
   {
-    CStrainLoad& strainLoad = (**formation).Strain(depletionStage);
+  CStrainLoad& strainLoad = (**formation).Strain(depletionStage);
 
-    if (strainLoad.Links <TStrainTensor> ().size() == 0)
-    {
+  if (strainLoad.Links <TStrainTensor> ().size() == 0)
+  {
       strainLoad.ConnectItem(*g_tensor);
-    }
-    else
-    {
+  }
+  else
+  {
       QString message = TENSOR_ALREADY_CONNECTED_2_STRAIN_LOAD;
 
       rmp.AddLogLine(message, &rgi, false, false);
-    }
+  }
   }
 }
 
@@ -94,19 +94,19 @@ namespace GeomecRGI
 class CBuildTensor::CBuildTensorImpl
 {
   public:
-    CBuildTensorImpl();
-    ~CBuildTensorImpl();
+  CBuildTensorImpl();
+  ~CBuildTensorImpl();
 
-    bool loadProperty(RGInterface& rgi, CModelBase& modelBase,
+  bool loadProperty(RGInterface& rgi, CModelBase& modelBase,
       CRockMechProcessor& rmp, const RGProperty& rgProperty,
       const ITensorGroup::CComponentComposite::TENSOR_COMPONENT&
-        tensorComponent);
+    tensorComponent);
 
-    bool isTensorComplete() const;
+  bool isTensorComplete() const;
 
   private:
-    CBuildTensorImpl(const CBuildTensorImpl& rhs);
-    CBuildTensorImpl& operator = (const CBuildTensorImpl& rhs);
+  CBuildTensorImpl(const CBuildTensorImpl& rhs);
+  CBuildTensorImpl& operator = (const CBuildTensorImpl& rhs);
 };
 
 CBuildTensor::CBuildTensorImpl::CBuildTensorImpl()
@@ -126,10 +126,10 @@ bool CBuildTensor::CBuildTensorImpl::loadProperty(RGInterface& rgi,
   const ITensorGroup::CComponentComposite::TENSOR_COMPONENT& tensorComponent)
 {
   CElementValueSet& elementValueSet =
-    getResidualStrainSet(g_residualStrainSet[tensorComponent], modelBase);
+  getResidualStrainSet(g_residualStrainSet[tensorComponent], modelBase);
 
   loadValues(elementValueSet, rgi, rgProperty, modelBase,
-    g_residualStrainSet[tensorComponent]);
+  g_residualStrainSet[tensorComponent]);
 
   QStringList l = QString(rgProperty.toString().c_str()).split("_");
 
@@ -137,22 +137,22 @@ bool CBuildTensor::CBuildTensorImpl::loadProperty(RGInterface& rgi,
 
   if (g_tensor == 0)
   {
-    g_tensor = new TStrainTensor(elementValueSet.PointSet(), l[0]);
+  g_tensor = new TStrainTensor(elementValueSet.PointSet(), l[0]);
   }
 
   IValueComponentBase& valueComponentBase =
-    g_tensor->Component(tensorComponent);
+  g_tensor->Component(tensorComponent);
 
   elementValueSet.Name(l[1]);
 
   if (!elementValueSet.IsLinkedTo(valueComponentBase))
   {
-    elementValueSet.LinkTo(valueComponentBase);
+  elementValueSet.LinkTo(valueComponentBase);
   }
 
   if (isTensorComplete())
   {
-    connectStrainLoad2Tensor(modelBase, rgi, rmp);
+  connectStrainLoad2Tensor(modelBase, rgi, rmp);
   }
 
   return true;
@@ -161,7 +161,7 @@ bool CBuildTensor::CBuildTensorImpl::loadProperty(RGInterface& rgi,
 bool CBuildTensor::CBuildTensorImpl::isTensorComplete() const
 {
   return (std::find(g_residualStrainSet.begin(), g_residualStrainSet.end(),
-    NULL_TENSOR_COMPONENT) == g_residualStrainSet.end());
+  NULL_TENSOR_COMPONENT) == g_residualStrainSet.end());
 }
 
 // CBuildTensor
@@ -177,9 +177,9 @@ QSharedPointer <CBuildTensor::CBuildTensorImpl>
 {
   if (g_tensorImpl.isNull())
   {
-    g_tensorImpl =
+  g_tensorImpl =
       QSharedPointer <CBuildTensor::CBuildTensorImpl> (
-        new CBuildTensor::CBuildTensorImpl());
+    new CBuildTensor::CBuildTensorImpl());
   }
 
   ++g_tensorImplCount;
@@ -191,7 +191,7 @@ void destructTensor()
 {
   if (--g_tensorImplCount == 0)
   {
-    g_tensorImpl.clear();
+  g_tensorImpl.clear();
   }
 }
 
@@ -212,7 +212,7 @@ bool CBuildTensor::loadProperty(RGInterface& rgi, CModelBase& modelBase,
   const ITensorGroup::CComponentComposite::TENSOR_COMPONENT& tensorComponent)
 {
   return m_Tensor->loadProperty(rgi, modelBase, rmp, rgProperty,
-    tensorComponent);
+  tensorComponent);
 }
 
 bool CBuildTensor::isTensorComplete() const

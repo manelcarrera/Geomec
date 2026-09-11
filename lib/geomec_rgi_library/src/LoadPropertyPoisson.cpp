@@ -17,8 +17,8 @@ CLoadPropertyPoisson::~CLoadPropertyPoisson()
 bool CLoadPropertyPoisson::loadProperty()
 {
   return CCalculateShearModulus::loadProperty <CLoadPropertyPoisson,
-    IDT_VALUETYPE_POISSONS_RATIO, IDT_VALUETYPE_POISSONRATIO_NORM,
-    IDT_VALUETYPE_POISSONRATIO_TRANS> ();
+  IDT_VALUETYPE_POISSONS_RATIO, IDT_VALUETYPE_POISSONRATIO_NORM,
+  IDT_VALUETYPE_POISSONRATIO_TRANS> ();
 }
 
 } // namespace GeomecRGI

@@ -15,33 +15,33 @@ class CGeomecStatusBar : public CStatusBar
 {
 // Construction
 public:
-	//##ModelId=3BE7AEC202D4
-	CGeomecStatusBar();
+  //##ModelId=3BE7AEC202D4
+  CGeomecStatusBar();
 
 // Attributes
 public:
 
 // Operations
 public:
-	int GetNeededWidth(const CString& text);
-	int GetWidth(int nPaneIndex);
-	void SetWidth(int nPaneIndex, int nWidth);
+  int GetNeededWidth(const CString& text);
+  int GetWidth(int nPaneIndex);
+  void SetWidth(int nPaneIndex, int nWidth);
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CGeomecStatusBar)
-	//}}AFX_VIRTUAL
+  // ClassWizard generated virtual function overrides
+  //{{AFX_VIRTUAL(CGeomecStatusBar)
+  //}}AFX_VIRTUAL
 
 // Implementation
 public:
 
-	// Generated message map functions
+  // Generated message map functions
 protected:
-	//{{AFX_MSG(CGeomecStatusBar)
-	//##ModelId=3BE7AEC202D5
-	afx_msg void OnLButtonDown(unsigned int nFlags, CPoint point);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+  //{{AFX_MSG(CGeomecStatusBar)
+  //##ModelId=3BE7AEC202D5
+  afx_msg void OnLButtonDown(unsigned int nFlags, CPoint point);
+  //}}AFX_MSG
+  DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////

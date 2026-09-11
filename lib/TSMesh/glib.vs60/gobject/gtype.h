@@ -202,17 +202,17 @@ gpointer g_type_get_qdata               (GType                   type,
 typedef void   (*GBaseInitFunc)              (gpointer         g_class);
 typedef void   (*GBaseFinalizeFunc)          (gpointer         g_class);
 typedef void   (*GClassInitFunc)             (gpointer         g_class,
-					      gpointer         class_data);
+                gpointer         class_data);
 typedef void   (*GClassFinalizeFunc)         (gpointer         g_class,
-					      gpointer         class_data);
+                gpointer         class_data);
 typedef void   (*GInstanceInitFunc)          (GTypeInstance   *instance,
-					      gpointer         g_class);
+                gpointer         g_class);
 typedef void   (*GInterfaceInitFunc)         (gpointer         g_iface,
-					      gpointer         iface_data);
+                gpointer         iface_data);
 typedef void   (*GInterfaceFinalizeFunc)     (gpointer         g_iface,
-					      gpointer         iface_data);
+                gpointer         iface_data);
 typedef gboolean (*GTypeClassCacheFunc)	     (gpointer	       cache_data,
-					      GTypeClass      *g_class);
+                GTypeClass      *g_class);
 typedef enum    /*< skip >*/
 {
   G_TYPE_FLAG_CLASSED           = (1 << 0),
@@ -260,79 +260,79 @@ struct _GTypeValueTable
   void     (*value_init)         (GValue       *value);
   void     (*value_free)         (GValue       *value);
   void     (*value_copy)         (const GValue *src_value,
-				  GValue       *dest_value);
+          GValue       *dest_value);
   /* varargs functionality (optional) */
   gpointer (*value_peek_pointer) (const GValue *value);
   guint      collect_type;
   gchar*   (*collect_value)      (GValue       *value,
-				  guint         nth_value,
-				  GType        *collect_type,
-				  GTypeCValue  *collect_value);
+          guint         nth_value,
+          GType        *collect_type,
+          GTypeCValue  *collect_value);
   guint      lcopy_type;
   gchar*   (*lcopy_value)        (const GValue *value,
-				  guint         nth_value,
-				  GType        *collect_type,
-				  GTypeCValue  *collect_value);
+          guint         nth_value,
+          GType        *collect_type,
+          GTypeCValue  *collect_value);
 };
 GType g_type_register_static       (GType                       parent_type,
-                                    const gchar                *type_name,
-                                    const GTypeInfo            *info,
-				    GTypeFlags			flags);
+                  const gchar                *type_name,
+                  const GTypeInfo            *info,
+          GTypeFlags			flags);
 GType g_type_register_dynamic      (GType                       parent_type,
-                                    const gchar                *type_name,
-                                    GTypePlugin                *plugin,
-				    GTypeFlags			flags);
+                  const gchar                *type_name,
+                  GTypePlugin                *plugin,
+          GTypeFlags			flags);
 GType g_type_register_fundamental  (GType                       type_id,
-                                    const gchar                *type_name,
-                                    const GTypeInfo            *info,
-                                    const GTypeFundamentalInfo *finfo,
-				    GTypeFlags			flags);
+                  const gchar                *type_name,
+                  const GTypeInfo            *info,
+                  const GTypeFundamentalInfo *finfo,
+          GTypeFlags			flags);
 void  g_type_add_interface_static  (GType                       instance_type,
-                                    GType                       interface_type,
-                                    const GInterfaceInfo       *info);
+                  GType                       interface_type,
+                  const GInterfaceInfo       *info);
 void  g_type_add_interface_dynamic (GType                       instance_type,
-                                    GType                       interface_type,
-                                    GTypePlugin                *plugin);
+                  GType                       interface_type,
+                  GTypePlugin                *plugin);
 
 
 /* --- protected (for fundamental type implementations) --- */
 GTypePlugin*	 g_type_get_plugin		(GType		     type);
 GTypePlugin*	 g_type_interface_get_plugin	(GType		     instance_type,
-						 GType               implementation_type);
+             GType               implementation_type);
 
 GType		 g_type_fundamental_last	(void);
 gboolean         g_type_check_flags             (GType               type,
-						 guint               flags);
+             guint               flags);
 GTypeInstance*   g_type_create_instance         (GType               type);
 void             g_type_free_instance           (GTypeInstance      *instance);
 void		 g_type_add_class_cache_func    (gpointer	     cache_data,
-						 GTypeClassCacheFunc cache_func);
+             GTypeClassCacheFunc cache_func);
 void		 g_type_remove_class_cache_func (gpointer	     cache_data,
-						 GTypeClassCacheFunc cache_func);
+             GTypeClassCacheFunc cache_func);
 void             g_type_class_unref_uncached    (gpointer            g_class);
 
 
 /*< private >*/
 GTypeClass*      g_type_check_class_cast        (GTypeClass         *g_class,
-						 GType               is_a_type);
+             GType               is_a_type);
 gboolean         g_type_class_is_a              (GTypeClass         *g_class,
-						 GType               is_a_type);
+             GType               is_a_type);
 GTypeInstance*   g_type_check_instance_cast     (GTypeInstance      *instance,
-						 GType               iface_type);
+             GType               iface_type);
 gboolean         g_type_instance_is_a		(GTypeInstance      *instance,
-						 GType               iface_type);
+             GType               iface_type);
 gboolean	 g_type_check_value             (GValue		    *value);
 gboolean	 g_type_value_is_a		(GValue		    *value,
-						 GType		     type);
+             GType		     type);
 gboolean	 g_type_check_instance          (GTypeInstance      *instance);
 GTypeValueTable* g_type_value_table_peek        (GType		     type);
 
 
 #ifndef G_DISABLE_CAST_CHECKS
 #  define _G_TYPE_CIC(ip, gt, ct) \
-    ((ct*) g_type_check_instance_cast ((GTypeInstance*) ip, gt))
+  ((ct*) g_type_check_instance_cast ((GTypeInstance*) ip, gt))
 #  define _G_TYPE_CCC(cp, gt, ct) \
-    ((ct*) g_type_check_class_cast ((GTypeClass*) cp, gt))
+  ((ct*) g_type_check_class_cast ((GTypeClass*) cp, gt))
 #else /* G_DISABLE_CAST_CHECKS */
 #  define _G_TYPE_CIC(ip, gt, ct)       ((ct*) ip)
 #  define _G_TYPE_CCC(cp, gt, ct)       ((ct*) cp)

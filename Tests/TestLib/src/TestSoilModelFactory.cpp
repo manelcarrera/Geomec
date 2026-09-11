@@ -24,17 +24,17 @@ IModelObject* CSoilModelFactory::createObject( const char* className ) const
   if (!m_os) m_os = TestLib::CurrentOutput();
 
   if ( s == "test_lib::CMaterial" ) {
-    item = new CMaterial(*m_os);
+  item = new CMaterial(*m_os);
   } else if ( s == "test_lib::CMaterialContainer" ) {
-    item = new CMaterialContainer(*m_os);
+  item = new CMaterialContainer(*m_os);
   } else if ( s == "test_lib::CHorizon" ) {
-    item = new CHorizon(*m_os);
+  item = new CHorizon(*m_os);
   } else if ( s == "test_lib::CHorizonContainer" ) {
-    item = new CHorizonContainer(*m_os);
+  item = new CHorizonContainer(*m_os);
   } else if ( s == "test_lib::CFormation" ) {
-    item = new CFormation(*m_os);
+  item = new CFormation(*m_os);
   } else if ( s == "test_lib::CFormationContainer" ) {
-    item = new CFormationContainer(*m_os);
+  item = new CFormationContainer(*m_os);
   }
   return item;
 }

@@ -9,26 +9,26 @@
 /////////////////////////////////////////////
 
 class Worker : public QObject {
-    Q_OBJECT
+  Q_OBJECT
 
-	bool m_quit;
+  bool m_quit;
 
 public:
-	QThread m_thread;
+  QThread m_thread;
  
 public:
-    Worker();
-    ~Worker();
+  Worker();
+  ~Worker();
 
-	void stop();
+  void stop();
  
 public slots:
-    void process();
+  void process();
  
 signals:
-    void finished();
-    void error(QString err);
+  void finished();
+  void error(QString err);
  
 private:
-    // add your variables here
+  // add your variables here
 };

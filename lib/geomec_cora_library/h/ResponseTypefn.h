@@ -9,16 +9,16 @@ namespace cora
 class CResponseTypefn : public CResponseTypeBase
 {
   public:
-    CResponseTypefn(CSummaryResultFile& summaryResultFile,
+  CResponseTypefn(CSummaryResultFile& summaryResultFile,
       const std::vector <QString>& function);
-    virtual ~CResponseTypefn();
+  virtual ~CResponseTypefn();
 
-    virtual double calculate(const TObject& object,
+  virtual double calculate(const TObject& object,
       const TFailureMode& failureMode);
 
   private:
-    CResponseTypefn(const CResponseTypefn& rhs);
-    CResponseTypefn& operator = (CResponseTypefn rhs);
+  CResponseTypefn(const CResponseTypefn& rhs);
+  CResponseTypefn& operator = (CResponseTypefn rhs);
 };
 
 } // namespace cora

@@ -9,12 +9,12 @@ class CCalculatedTemperature_Delegate : public IValueComposite_Delegate
 {
 public:
   CCalculatedTemperature_Delegate(
-    CCalculatedTemperature* calculatedTemperature);
+  CCalculatedTemperature* calculatedTemperature);
 
 private:
   CCalculatedTemperature_Delegate(const CCalculatedTemperature_Delegate& rhs);
   CCalculatedTemperature_Delegate& operator = (
-    const CCalculatedTemperature_Delegate& rhs);
+  const CCalculatedTemperature_Delegate& rhs);
 
   CCalculatedTemperature* m_calculatedTemperature;
 

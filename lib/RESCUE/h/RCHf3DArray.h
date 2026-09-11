@@ -43,12 +43,12 @@ template <class cType> RCHf3DArray<cType>::RCHf3DArray(RESCUEINT64 maxIin, RESCU
 {
   if (values == 0)
   {
-    values = new cType[maxI * maxJ * maxK];
-    freeValues = TRUE;
+  values = new cType[maxI * maxJ * maxK];
+  freeValues = TRUE;
   }
   else
   {
-    freeValues = FALSE;
+  freeValues = FALSE;
   }
 }
 

@@ -14,15 +14,15 @@ namespace cora
 class CXMLInputParameter
 {
   public:
-    CXMLInputParameter(const TParameter& inputParameter);
+  CXMLInputParameter(const TParameter& inputParameter);
 
-    std::ostream& operator () (std::ostream& stream) const;
+  std::ostream& operator () (std::ostream& stream) const;
 
   private:
-    CXMLInputParameter(const CXMLInputParameter& rhs);
-    CXMLInputParameter& operator = (CXMLInputParameter rhs);
+  CXMLInputParameter(const CXMLInputParameter& rhs);
+  CXMLInputParameter& operator = (CXMLInputParameter rhs);
 
-    const TParameter m_inputParameter;
+  const TParameter m_inputParameter;
 };
 
 typedef QSharedPointer <CXMLInputParameter> TXMLInputParameter;

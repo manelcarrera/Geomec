@@ -27,7 +27,7 @@ RescueTrimVertex::~RescueTrimVertex()
 {
   if (lines != 0)
   {
-    delete lines;
+  delete lines;
   }
 }
 
@@ -54,48 +54,48 @@ RescueTrimVertex::RescueTrimVertex(RescueWireframeOwner *ownerIn,
 }
 
 RescueTrimVertex::RescueTrimVertex(RescueContext *context, FILE *archiveFile)
-                        :RescuePolyLineNode(context, archiveFile)
-                        ,lines(new cSetRescuePolyLineStub())
-                        ,owner(0)
+            :RescuePolyLineNode(context, archiveFile)
+            ,lines(new cSetRescuePolyLineStub())
+            ,owner(0)
 {
   RESCUEINT64 loop, count;
   isA = R_RescueTrimVertex;
   ReadId(context, archiveFile);
   if (context->ReadFileVersion() < 23)
   {
-    myfscanf(context, archiveFile, &count);
-    if (count > 0)
-    {
+  myfscanf(context, archiveFile, &count);
+  if (count > 0)
+  {
       for (loop = 0; loop < count; loop++)
       {
-        RESCUEINT64 lineID;
+    RESCUEINT64 lineID;
 
-        myfscanf(context, archiveFile, &lineID);
+    myfscanf(context, archiveFile, &lineID);
       }
-    }
+  }
   }
   else if (context->ReadFileVersion() >= 28)
   {
-    myfscanf(context, archiveFile, &count);
-    if (count > 0)
-    {
+  myfscanf(context, archiveFile, &count);
+  if (count > 0)
+  {
       for (loop = 0; loop < count; loop++)
       {
-        RescuePolyLineStub *stub = new RescuePolyLineStub(context, archiveFile);
-        (*lines) += stub;
+    RescuePolyLineStub *stub = new RescuePolyLineStub(context, archiveFile);
+    (*lines) += stub;
       }
-    }
+  }
   }
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -105,33 +105,33 @@ void RescueTrimVertex::Archive(RescueContext *context, FILE *archiveFile)
   RescuePolyLineNode::Archive(context, archiveFile);
   if (context->FileVersion() >= 27)
   {
-    myfprintf(context, archiveFile, Identifier());
+  myfprintf(context, archiveFile, Identifier());
   }
   if (context->FileVersion() >= 28)
   {
-    RESCUEINT64 loop, count = (*lines).Count64();
-    myfprintf(context, archiveFile, count);
-    for (loop = 0; loop < count; loop++)
-    {
+  RESCUEINT64 loop, count = (*lines).Count64();
+  myfprintf(context, archiveFile, count);
+  for (loop = 0; loop < count; loop++)
+  {
        (*lines).NthObject(loop)->ArchiveStub(context, archiveFile);
-    }
+  }
   }
   if (context->FileVersion() < 27)
   {
-    myfprintf(context, archiveFile, Identifier());
+  myfprintf(context, archiveFile, Identifier());
   }
   if (context->FileVersion() < 23)
   {
-    RESCUEINT64 loop, count = (*lines).Count64();
-    myfprintf(context, archiveFile, count);
-    for (loop = 0; loop < count; loop++)
-    {
+  RESCUEINT64 loop, count = (*lines).Count64();
+  myfprintf(context, archiveFile, count);
+  for (loop = 0; loop < count; loop++)
+  {
        myfprintf(context, archiveFile, (*lines).NthObject(loop)->BestIdentifier());
-    }
+  }
   }
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -145,11 +145,11 @@ RESCUEBOOL RescueTrimVertex::Equals(RescueTrimVertexStub *other)
 {
   if (other == 0)
   {
-    return FALSE;
+  return FALSE;
   }
   else
   {
-    return other->Equals(this);
+  return other->Equals(this);
   }
 }
 
@@ -157,11 +157,11 @@ RESCUEBOOL RescueTrimVertex::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueTrimVertex)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescuePolyLineNode::IsOfType(thisType);
+  return RescuePolyLineNode::IsOfType(thisType);
   }
 }
 

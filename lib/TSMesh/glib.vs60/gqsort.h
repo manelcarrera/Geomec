@@ -33,10 +33,10 @@
 G_BEGIN_DECLS
 
 void g_qsort_with_data (gconstpointer    pbase,
-			gint             total_elems,
-			size_t           size,
-			GCompareFuncData compare_func,
-			gpointer         user_data);
+      gint             total_elems,
+      size_t           size,
+      GCompareFuncData compare_func,
+      gpointer         user_data);
 
 G_END_DECLS
 

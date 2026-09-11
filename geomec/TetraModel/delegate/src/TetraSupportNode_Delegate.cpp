@@ -39,21 +39,21 @@ void C3DSupportNode_Delegate::EditGlobalTensor()
   // check whether there are multiple depletion stages
 
   const CModelBase* pModel =
-    dynamic_cast <const CModelBase*> (&m_tetraSupportNode->Model());
+  dynamic_cast <const CModelBase*> (&m_tetraSupportNode->Model());
 
   assert(pModel != 0);
 
   if (pModel->InitialDepletionStage().Last())
   {
-    _m()->msg(IDP_MULTIPLEDEPLETIONSTAGESNEEDED);
+  _m()->msg(IDP_MULTIPLEDEPLETIONSTAGESNEEDED);
 
-    return;
+  return;
   }
 
   CGlobalTensorDlg dlg(*m_tetraSupportNode);
 
   if (dlg.DoModal() == IDOK)
   {
-    m_tetraSupportNode->EditGlobalTensor();
+  m_tetraSupportNode->EditGlobalTensor();
   }
 }

@@ -15,13 +15,13 @@ CWellCasingInternalPressure_Delegate::CWellCasingInternalPressure_Delegate(
 bool CWellCasingInternalPressure_Delegate::Attributes()
 {
   CAttriWellCasingInternalLoadDlg <CWellCasingInternalPressure,
-    CPressureGradientQuantity> dlg(*m_wellCasingInternalPressure,
+  CPressureGradientQuantity> dlg(*m_wellCasingInternalPressure,
       FemAppGetMainWnd());
   bool bRet = (dlg.DoModal() == IDOK);
 
   if (bRet)
   {
-    m_wellCasingInternalPressure->Modified();
+  m_wellCasingInternalPressure->Modified();
   }
 
   return bRet;

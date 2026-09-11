@@ -9,7 +9,7 @@ CParameterFormation4Material::CParameterFormation4Material(const QString& name,
   CFormationBase* formationBase, int depletionStage,
   CLibraryMaterialParameter& libraryMaterialParameter)
 : CParameterFormation(name, minimum, maximum, mean, formationBase,
-    depletionStage)
+  depletionStage)
 , m_libraryMaterialParameter(libraryMaterialParameter)
 {
 }

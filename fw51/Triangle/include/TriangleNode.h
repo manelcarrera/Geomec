@@ -15,26 +15,26 @@
 class CTriangleSurface;
 class CTriangleNode : public geo::IPoint  
 {
-	int m_nIndex;
-	CTriangleSurface& m_surface;
-	double *m_pCoord; // coordinate position in surface
+  int m_nIndex;
+  CTriangleSurface& m_surface;
+  double *m_pCoord; // coordinate position in surface
 
 public:
-	CTriangleNode(CTriangleSurface& surface, int nIndex, double *coord);
-	virtual ~CTriangleNode();
+  CTriangleNode(CTriangleSurface& surface, int nIndex, double *coord);
+  virtual ~CTriangleNode();
 
-	// Coordinate access
-	virtual const double &X() const;
-	virtual const double &Y() const;
-	virtual const double &Z() const;
+  // Coordinate access
+  virtual const double &X() const;
+  virtual const double &Y() const;
+  virtual const double &Z() const;
 
-	// Coordinate modification
-	virtual void X(const double &dX);
-	virtual void Y(const double &dY);
-	virtual void Z(const double &dZ);	
+  // Coordinate modification
+  virtual void X(const double &dX);
+  virtual void Y(const double &dY);
+  virtual void Z(const double &dZ);	
 
-	virtual void AssertValid() const;
-	virtual bool Empty() const;
+  virtual void AssertValid() const;
+  virtual bool Empty() const;
 };
 
 #endif // !defined(AFX_TRIANGLEMESHNODE_H__9DEAD1CF_367F_47A3_9D8B_95AED39E9427__INCLUDED_)

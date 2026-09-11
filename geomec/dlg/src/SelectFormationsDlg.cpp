@@ -24,7 +24,7 @@ BOOL CSelectFormationsDlg::OnInitDialog()
 {
   CDialog::OnInitDialog();
 
-	m_lbFormations.InsertColumn(0, "Formation", LVCFMT_LEFT, 230);
+  m_lbFormations.InsertColumn(0, "Formation", LVCFMT_LEFT, 230);
 
   const TFormationBaseEntry* pEntry = static_cast<const TFormationBaseEntry*>(m_container.Model().GraphEntry(MD_BASE_FORMATION));
   assert(pEntry);
@@ -32,13 +32,13 @@ BOOL CSelectFormationsDlg::OnInitDialog()
   TFormationBaseEntry::TSortedNodeSet::const_iterator it;
   for(it = stNodes.begin(); it != stNodes.end(); ++it)
   {
-    const CFormationBase& formation = **it;
-    if( !m_formationFilter || m_formationFilter->FormationValid(formation) )
-    {
+  const CFormationBase& formation = **it;
+  if( !m_formationFilter || m_formationFilter->FormationValid(formation) )
+  {
       if(m_container.IsLinkedTo(formation))
-        m_stFormations.insert(&formation);
+    m_stFormations.insert(&formation);
       new CFormationObserver(formation, *this, m_lbFormations);
-    }
+  }
   }
 
   return TRUE;
@@ -52,15 +52,15 @@ void CSelectFormationsDlg::OnOK()
   TFormationSet::iterator it;
   for(it = m_stFormations.begin(); it != m_stFormations.end(); ++it)
   {
-    if(!m_container.IsLinkedTo(**it))
+  if(!m_container.IsLinkedTo(**it))
       m_container.LinkTo(const_cast<CFormationBase&>(**it));
   }
 
   // unlink unchecked formations
   for (size_t i = 0; i < m_container.referenceSize(); ++i)
   {
-    const CFormationBase* pFormation = dynamic_cast<const CFormationBase*>(&m_container.referenceAt(i));
-    if(pFormation && m_stFormations.find(pFormation) == m_stFormations.end())
+  const CFormationBase* pFormation = dynamic_cast<const CFormationBase*>(&m_container.referenceAt(i));
+  if(pFormation && m_stFormations.find(pFormation) == m_stFormations.end())
       m_container.UnLink(const_cast<CFormationBase&>(*pFormation));
   }
 
@@ -81,7 +81,7 @@ void CSelectFormationsDlg::OnBnClickedSelectAll()
   const TFormationBaseEntry::TNodeSet& stNodes = pEntry->EntryNodes();
   TFormationBaseEntry::TNodeSet::const_iterator it;
   for(it = stNodes.begin(); it != stNodes.end(); ++it)
-    m_stFormations.insert(*it);
+  m_stFormations.insert(*it);
 
   UpdateFormationsListBox();
   UpdateData(FALSE);
@@ -103,10 +103,10 @@ void CSelectFormationsDlg::OnBnClickedInvert()
   TFormationBaseEntry::TNodeSet::const_iterator it;
   for(it = stNodes.begin(); it != stNodes.end(); ++it)
   {
-    TFormationSet::iterator itf = m_stFormations.find(*it);
-    if(itf == m_stFormations.end())
+  TFormationSet::iterator itf = m_stFormations.find(*it);
+  if(itf == m_stFormations.end())
       m_stFormations.insert(*it);
-    else
+  else
       m_stFormations.erase(itf);
   }
 
@@ -119,8 +119,8 @@ void CSelectFormationsDlg::UpdateFormationsListBox()
   int i;
   for(i = 0; i < m_lbFormations.GetItemCount(); ++i)
   {
-    IListObject* pListObject = (IListObject*)m_lbFormations.GetItemData(i);
-    pListObject->Update();
+  IListObject* pListObject = (IListObject*)m_lbFormations.GetItemData(i);
+  pListObject->Update();
   }
 }
 
@@ -147,7 +147,7 @@ QString CSelectFormationsDlg::CFormationObserver::Text() const
 unsigned int CSelectFormationsDlg::CFormationObserver::StateIcon() const
 {
   if(m_dlg.m_stFormations.find(&m_formation) != m_dlg.m_stFormations.end())
-    return IDI_CHECKED;
+  return IDI_CHECKED;
   return IDI_UNCHECKED;
 }
 
@@ -155,9 +155,9 @@ void CSelectFormationsDlg::CFormationObserver::ToggleState()
 {
   CSelectFormationsDlg::TFormationSet::iterator it = m_dlg.m_stFormations.find(&m_formation);
   if(it != m_dlg.m_stFormations.end())
-    m_dlg.m_stFormations.erase(it);
+  m_dlg.m_stFormations.erase(it);
   else
-    m_dlg.m_stFormations.insert(&m_formation);
+  m_dlg.m_stFormations.insert(&m_formation);
   Update();
   m_dlg.UpdateData();
 }
@@ -170,21 +170,21 @@ CSelectFormationsSetNode::CSelectFormationsSetNode(TFormationsSet& stFormations,
 {
   TFormationsSet::const_iterator it;
   for(it = stFormations.begin(); it != stFormations.end(); ++it)
-    LinkTo(const_cast<CFormationBase&>(**it));
+  LinkTo(const_cast<CFormationBase&>(**it));
 }
 
 void CSelectFormationsSetNode::OnNewNeighbour(const CGraphNode& node)
 {
   const CFormationBase* pFor = dynamic_cast<const CFormationBase*>(&node);
   if(pFor)
-    m_stFormations.insert(pFor);
+  m_stFormations.insert(pFor);
 }
 
 void CSelectFormationsSetNode::OnNeighbourDeleted(const CGraphNode& node)
 {
   const CFormationBase* pFor = dynamic_cast<const CFormationBase*>(&node);
   if(pFor)
-    m_stFormations.erase(pFor);
+  m_stFormations.erase(pFor);
 }
 
 unsigned int CSelectFormationsSetNode::IconId() const

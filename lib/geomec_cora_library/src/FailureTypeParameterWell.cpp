@@ -16,7 +16,7 @@ CFailureTypeParameterWell::CFailureTypeParameterWell(
   const std::string& option, const std::string& parameter,
   std::vector <double>& value, const CGetModelInfo& modelInfo)
 : CFailureTypeParameterBase(summaryResultFile, object, option, parameter, value,
-    modelInfo.getWellPathInfo().getObjects(), WELL)
+  modelInfo.getWellPathInfo().getObjects(), WELL)
 {
 }
 

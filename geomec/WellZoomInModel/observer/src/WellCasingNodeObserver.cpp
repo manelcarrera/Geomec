@@ -19,13 +19,13 @@
 ///// CWellCasingNodeObserver
 
 CWellCasingNodeObserver::CWellCasingNodeObserver(CWellCasingNode& node,
-					                                       CTreeCtrl& ctrl,
-					                                       const BOOL rename,
-					                                       const enum REMOVE_TYPE remove,
+                                                 CTreeCtrl& ctrl,
+                                                 const BOOL rename,
+                                                 const enum REMOVE_TYPE remove,
                                                  HTREEITEM hParent,
-					                                       HTREEITEM hInsertAfter,
-					                                       BOOL bInitialUpdate,
-					                                       BOOL bSortAfterInsertion)
+                                                 HTREEITEM hInsertAfter,
+                                                 BOOL bInitialUpdate,
+                                                 BOOL bSortAfterInsertion)
 : TWellCasingNodeObserverBase(node, ctrl, rename, remove, hParent, hInsertAfter, bInitialUpdate, bSortAfterInsertion)
 {
   typedef CEnumerationBranch<CWellCasingInternalPressure, CValueCompositeObserver, FALSE, FIXED_ITEM> TPressureEnumerator;
@@ -40,10 +40,10 @@ CWellCasingNodeObserver::CWellCasingNodeObserver(CWellCasingNode& node,
 BOOL CWellCasingNodeObserver::OnFilter(const CGraphNode& node) const
 {
   if(dynamic_cast<const CWellCasingSteel*>(&node))
-    return true;
+  return true;
 
   if(dynamic_cast<const CWellCasingCementInterface*>(&node))
-    return true;
+  return true;
 
   return false;
 }
@@ -53,7 +53,7 @@ CTreeNode* CWellCasingNodeObserver::InsertChild(CGraphNode& node)
   CWellCasingSteel* pSteel = dynamic_cast<CWellCasingSteel*>(&node);
   if(pSteel)
   {
-    return new TWellCasingSteelObserver(
+  return new TWellCasingSteelObserver(
       *pSteel,
       *this,
       FALSE,
@@ -66,8 +66,8 @@ CTreeNode* CWellCasingNodeObserver::InsertChild(CGraphNode& node)
   CWellCasingCementInterface* pCementInterface = dynamic_cast<CWellCasingCementInterface*>(&node);
   if(pCementInterface)
   {
-    typedef CMaterialServerObserver_Delegate<CWellCasingCementInterfaceMaterialServer, CWellCasingCementInterfaceMaterialServer_Delegate, CDummyNode, CDummyObserver, FALSE, FIXED_ITEM> TWellCasingCementInterfaceMaterialServerObs;
-    return new COpenGLNodeObserver_Delegate<CWellCasingCementInterface, CWellCasingCementInterface_Delegate, CWellCasingCementInterfaceMaterialServer, TWellCasingCementInterfaceMaterialServerObs, FALSE, FIXED_ITEM>(
+  typedef CMaterialServerObserver_Delegate<CWellCasingCementInterfaceMaterialServer, CWellCasingCementInterfaceMaterialServer_Delegate, CDummyNode, CDummyObserver, FALSE, FIXED_ITEM> TWellCasingCementInterfaceMaterialServerObs;
+  return new COpenGLNodeObserver_Delegate<CWellCasingCementInterface, CWellCasingCementInterface_Delegate, CWellCasingCementInterfaceMaterialServer, TWellCasingCementInterfaceMaterialServerObs, FALSE, FIXED_ITEM>(
       *pCementInterface,
       *this,
       FALSE,

@@ -108,19 +108,19 @@ geo::CValue CExcelCell::getDouble() const
 
   if(val.vt != VT_R8)
   {
-    if ((val.vt == VT_BSTR) && wcslen(val.bstrVal) == 3)
-    {
+  if ((val.vt == VT_BSTR) && wcslen(val.bstrVal) == 3)
+  {
       static wchar_t nan[] = L"NAN";
       bool ok = true;
 
       for (size_t i = 0; i < 3; ++i)
-        ok = ok && towupper(val.bstrVal[i]) == nan[i];
+    ok = ok && towupper(val.bstrVal[i]) == nan[i];
 
       if (ok)
-        return geo::CValue();
-    }
+    return geo::CValue();
+  }
 
-    throwMessage("Real type expected.");
+  throwMessage("Real type expected.");
   }
 
   return val.dblVal;
@@ -200,31 +200,31 @@ std::pair<const TContentVec*, int> CExcelCell::GetWriteBufferAndRowLength() cons
 {
   assert(!m_pvcReadContents); // must be in write mode
   if(m_pvcWriteContents)
-    delete m_pvcWriteContents;
+  delete m_pvcWriteContents;
 
   int nRows = 0;
   int nColumns = 0;
   for(TWriteBuffer::const_iterator it = m_buffer.begin(); it != m_buffer.end(); ++it)
   {
-    nRows = max(nRows, it->first.first + 1);
-    nColumns = max(nColumns, it->first.second + 1);
+  nRows = max(nRows, it->first.first + 1);
+  nColumns = max(nColumns, it->first.second + 1);
   }
 
   m_pvcWriteContents = new TContentVec(nRows * nColumns);
 
   for(int r = 0; r < nRows; ++r)
   {
-    for(int c = 0; c < nColumns; ++c)
-    {
+  for(int c = 0; c < nColumns; ++c)
+  {
       VARIANT varValue;
       TWriteBuffer::const_iterator it = m_buffer.find(std::make_pair(r, c));
       if(it != m_buffer.end())
-        varValue = it->second;
+    varValue = it->second;
       else
-        varValue.vt = VT_EMPTY;
+    varValue.vt = VT_EMPTY;
 
       (*m_pvcWriteContents)[r * nColumns + c] = varValue;
-    }
+  }
   }
 
   return std::make_pair(m_pvcWriteContents, nColumns);
@@ -300,20 +300,20 @@ void CExcelCell::WriteToSheet(_Worksheet ws) const
   LONG rgIndices[2];
   for(int r = 0; r < nRows; ++r)
   {
-    rgIndices[0] = r + 1;
-    for(int c = 0; c < nCols; ++c)
-    {
+  rgIndices[0] = r + 1;
+  for(int c = 0; c < nCols; ++c)
+  {
       rgIndices[1] = c + 1;
       SafeArrayPutElement(psa, rgIndices, (void*)&vcContents[r * rowlength + c]);
-    }
+  }
   }
 
   VARIANT varValues;
   varValues.vt = (VT_ARRAY | VT_VARIANT);
   varValues.parray = psa;
 
-	Range cells;
-	cells.AttachDispatch(ws.GetCells());
+  Range cells;
+  cells.AttachDispatch(ws.GetCells());
 
   Range cell1;
   // Initialize parameter containers

@@ -15,7 +15,7 @@ CLimitStateFunctionFormation::CLimitStateFunctionFormation(
   CSummaryResultFile& summaryResultFile, std::vector <QString>& function,
   CGetModelInfo& modelInfo, const QString& versionNumber)
 : CLimitStateFunctionBase(summaryResultFile, function, modelInfo, versionNumber,
-    modelInfo.getFormationInfo().getObjects(), FORMATION)
+  modelInfo.getFormationInfo().getObjects(), FORMATION)
 {
 }
 

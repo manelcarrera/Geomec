@@ -30,19 +30,19 @@ public:
   QString UnitName(const CQuantity::UNIT unit = CQuantity::SI_UNIT) const;
   virtual QString ExportLabel() const;
 
-	virtual bool Empty() const;
-	virtual long SavedItems() const;
+  virtual bool Empty() const;
+  virtual long SavedItems() const;
 
   virtual IValueDomainScalar::TValue ValuePoint(const geo::IPoint& pt, const CQuantity::UNIT unit = CQuantity::SI_UNIT, geo::IParallelInitializationCallback *cb = 0) const;
   virtual IValueDomainScalar::TValueVec ValueElement(const geo::IElement& elm, const UNIT unit = CQuantity::SI_UNIT, geo::IParallelInitializationCallback *cb = 0) const;
 
-	virtual bool CanMap(const COpenGLNode& node) const;
+  virtual bool CanMap(const COpenGLNode& node) const;
 
-	virtual unsigned int IconId() const;
-	virtual unsigned int TypeId() const;
+  virtual unsigned int IconId() const;
+  virtual unsigned int TypeId() const;
 
-	virtual bool Defined() const;
-	virtual IValueDomainScalar::TMinMax MinMax(IProgressBase& progressBase, const UNIT unit = IQuantityDouble::SI_UNIT) const;
+  virtual bool Defined() const;
+  virtual IValueDomainScalar::TMinMax MinMax(IProgressBase& progressBase, const UNIT unit = IQuantityDouble::SI_UNIT) const;
   virtual IValueDomainScalar::TValue Average(IProgressBase& progressBase, const UNIT unit = IQuantityDouble::SI_UNIT) const;
 
   ACCEPT_GEOMECMODELVISITORS(VisitNonMeshedSurfacePressureComponent);
@@ -63,13 +63,13 @@ public:
   CNonMeshedSurfacePressure& operator=(const CNonMeshedSurfacePressure& rhs);
   bool operator==(const CNonMeshedSurfacePressure& rhs) const;
 
-	// distributed values
-	size_t DistributedSize() const;
+  // distributed values
+  size_t DistributedSize() const;
   const TPressure& DistributedValue(size_t nIndex) const;
 
-	// usage of distributed values outside their convex hull
-	bool DistributedOnly() const;
-	void DistributedOnly(bool bDistributedOnly);
+  // usage of distributed values outside their convex hull
+  bool DistributedOnly() const;
+  void DistributedOnly(bool bDistributedOnly);
 
   // manual values, or from formation pressure
   bool ManualValues() const;
@@ -84,23 +84,23 @@ public:
   void ReferenceDepth(double dDepth);
   void Gradient(double dGradient);
 
-	virtual void OnNewNeighbour(const CGraphNode &node);
-	virtual void OnNeighbourDeleted(const CGraphNode &node);
-	virtual bool CanConnectItem(const CGraphNode &item) const;
+  virtual void OnNewNeighbour(const CGraphNode &node);
+  virtual void OnNeighbourDeleted(const CGraphNode &node);
+  virtual bool CanConnectItem(const CGraphNode &item) const;
 
-	// Save and load
-	virtual long SavedItems() const;
-	virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-	virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  // Save and load
+  virtual long SavedItems() const;
+  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
+  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
 
   const CNonMeshedSurface& Surface() const;
   CNonMeshedSurface& Surface();
 
-	virtual QString ExportLabel(int nComponent) const;
-	virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
+  virtual QString ExportLabel(int nComponent) const;
+  virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
 
-	virtual unsigned int IconId() const;
-	virtual unsigned int TypeId() const;
+  virtual unsigned int IconId() const;
+  virtual unsigned int TypeId() const;
 
   ACCEPT_GEOMECMODELVISITORS(VisitNonMeshedSurfacePressure);
 

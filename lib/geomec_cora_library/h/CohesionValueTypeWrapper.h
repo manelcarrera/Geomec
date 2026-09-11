@@ -10,25 +10,25 @@ template <typename ParametersNode>
   class CCohesionValueTypeWrapper : public IValueTypeWrapper
 {
   public:
-    CCohesionValueTypeWrapper(const ParametersNode& parametersNode);
-    virtual ~CCohesionValueTypeWrapper();
+  CCohesionValueTypeWrapper(const ParametersNode& parametersNode);
+  virtual ~CCohesionValueTypeWrapper();
 
-    virtual bool hasDistributedValueType() const;
-    virtual const std::vector <double> getDistributedValueType(
+  virtual bool hasDistributedValueType() const;
+  virtual const std::vector <double> getDistributedValueType(
       const geo::IElement& element, const CQuantity::UNIT unit) const;
-    virtual const CDoubleQuantity& getDistributedValueTypeQuantity() const;
-    
+  virtual const CDoubleQuantity& getDistributedValueTypeQuantity() const;
+  
   private:
-    CCohesionValueTypeWrapper(const CCohesionValueTypeWrapper& rhs);
-    CCohesionValueTypeWrapper& operator = (
+  CCohesionValueTypeWrapper(const CCohesionValueTypeWrapper& rhs);
+  CCohesionValueTypeWrapper& operator = (
       const CCohesionValueTypeWrapper& rhs);
 
-    const ParametersNode& m_parametersNode;
+  const ParametersNode& m_parametersNode;
 };
 
 template <typename ParametersNode>
   CCohesionValueTypeWrapper <ParametersNode> ::CCohesionValueTypeWrapper(
-    const ParametersNode& parametersNode)
+  const ParametersNode& parametersNode)
   : IValueTypeWrapper()
   , m_parametersNode(parametersNode)
 {
@@ -41,14 +41,14 @@ template <typename ParametersNode>
 
 template <typename ParametersNode>
   bool CCohesionValueTypeWrapper <ParametersNode> ::hasDistributedValueType()
-    const
+  const
 {
   return m_parametersNode.DistributedCohesion();
 }
 
 template <typename ParametersNode>
   const std::vector <double> CCohesionValueTypeWrapper <ParametersNode> ::
-    getDistributedValueType(const geo::IElement& element,
+  getDistributedValueType(const geo::IElement& element,
       const CQuantity::UNIT unit) const
 {
   return m_parametersNode.Cohesion(element, unit);
@@ -56,7 +56,7 @@ template <typename ParametersNode>
 
 template <typename ParametersNode>
   const CDoubleQuantity& CCohesionValueTypeWrapper <ParametersNode> ::
-    getDistributedValueTypeQuantity() const
+  getDistributedValueTypeQuantity() const
 {
   return m_parametersNode.Cohesion();
 }

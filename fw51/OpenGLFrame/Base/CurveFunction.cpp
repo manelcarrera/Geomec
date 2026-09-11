@@ -6,7 +6,7 @@
 /*!
   Convert a higher order line to bezier control points.
   \param ctrlpoints The resulting array with coordinates. The dimension needs
-                    to be ctrlpoints[i_size][3].
+          to be ctrlpoints[i_size][3].
   \param i_size     The number of control points.
   \param elem       The higher order line.
   \param coef       The transformation matrix with dimension [i_size][k_size].
@@ -22,14 +22,14 @@
 void setCoordinatesVector1d(double* ctrlpoints, int i_size, const geo::IElement &elem, const double* coef, int k_size )
 {
   for (int i=0; i<i_size; i++) {
-    ctrlpoints[i*3+0]=0;
-    ctrlpoints[i*3+1]=0;
-    ctrlpoints[i*3+2]=0;
-    for (int k=0; k<k_size; k++) {
+  ctrlpoints[i*3+0]=0;
+  ctrlpoints[i*3+1]=0;
+  ctrlpoints[i*3+2]=0;
+  for (int k=0; k<k_size; k++) {
       ctrlpoints[i*3+0] += coef[i*k_size+k] * elem.Point(k).X();
       ctrlpoints[i*3+1] += coef[i*k_size+k] * elem.Point(k).Y();
       ctrlpoints[i*3+2] += coef[i*k_size+k] * elem.Point(k).Z();
-    }
+  }
   }
 }
 
@@ -39,10 +39,10 @@ void setCoordinatesVector1d(double* ctrlpoints, int i_size, const geo::IElement 
                          needs to be ctrlpoints[i_size][4].
   \param i_size     The number of color values (control points).
   \param vcColor    The color information for the higher order line. One color
-                    for each shape-defining node of the element.
+          for each shape-defining node of the element.
   \param coef       The transformation matrix with dimension [i_size][k_size].
   \param k_size     The number of nodes defining the shape of the element, i.e.
-                    the number of color entries in vcColor.
+          the number of color entries in vcColor.
 
   For coef use
   - coef_LineD2 for second order,
@@ -54,32 +54,32 @@ void setCoordinatesVector1d(double* ctrlpoints, int i_size, const geo::IElement 
 void setColorVector1d(double* color_ctrlpoint, int i_size, std::vector<IDrawDef::TColor> &vcColor, const double* coef, int k_size)
 {
   for (int i=0; i<i_size; i++) {
-    color_ctrlpoint[i*4+0]=0;
-    color_ctrlpoint[i*4+1]=0;
-    color_ctrlpoint[i*4+2]=0;
-    color_ctrlpoint[i*4+3]=0;
-    for (int k=0; k<k_size; k++) {
+  color_ctrlpoint[i*4+0]=0;
+  color_ctrlpoint[i*4+1]=0;
+  color_ctrlpoint[i*4+2]=0;
+  color_ctrlpoint[i*4+3]=0;
+  for (int k=0; k<k_size; k++) {
       color_ctrlpoint[i*4+0] += coef[i*k_size+k] * qRed  (vcColor.at(k));
       color_ctrlpoint[i*4+1] += coef[i*k_size+k] * qGreen(vcColor.at(k));
       color_ctrlpoint[i*4+2] += coef[i*k_size+k] * qBlue (vcColor.at(k));
       color_ctrlpoint[i*4+3] += coef[i*k_size+k] * qAlpha(vcColor.at(k));
-    }
-    color_ctrlpoint[i*4+0] = color_ctrlpoint[i*4+0] / 256.;
-    color_ctrlpoint[i*4+1] = color_ctrlpoint[i*4+1] / 256.;
-    color_ctrlpoint[i*4+2] = color_ctrlpoint[i*4+2] / 256.;
-    color_ctrlpoint[i*4+3] = color_ctrlpoint[i*4+3] / 256.;
+  }
+  color_ctrlpoint[i*4+0] = color_ctrlpoint[i*4+0] / 256.;
+  color_ctrlpoint[i*4+1] = color_ctrlpoint[i*4+1] / 256.;
+  color_ctrlpoint[i*4+2] = color_ctrlpoint[i*4+2] / 256.;
+  color_ctrlpoint[i*4+3] = color_ctrlpoint[i*4+3] / 256.;
   }
 }
 
 /*!
   Convert a higher order 2 dimensional shape to a grid of bezier control points.
   \param ctrlpoints The resulting array with coordinates. The dimension needs
-                    to be ctrlpoints[i_size][j_size][3].
+          to be ctrlpoints[i_size][j_size][3].
   \param i_size     The number of control points in first grid direction.
   \param j_size     The number of control points in second grid direction.
   \param elem       The higher order 2 dimensional shape.
   \param coef       The transformation matrix with dimension
-                    [i_size*j_size][k_size].
+          [i_size*j_size][k_size].
   \param k_size     The number of nodes defining the shape of the element.
 
   For coef use
@@ -94,16 +94,16 @@ void setColorVector1d(double* color_ctrlpoint, int i_size, std::vector<IDrawDef:
 void setCoordinatesVector2d(double* ctrlpoints, int i_size, int j_size,  const geo::IElement &elem, const double* coef, int k_size)
 {
   for (int i=0; i<i_size; i++) {
-    for (int j=0; j<j_size; j++) {
+  for (int j=0; j<j_size; j++) {
       ctrlpoints[i*3*j_size+j*3+0]=0;
       ctrlpoints[i*3*j_size+j*3+1]=0;
       ctrlpoints[i*3*j_size+j*3+2]=0;
       for (int k=0; k<k_size; k++) {
-        ctrlpoints[i*3*j_size+j*3+0] += coef[(i*j_size+j)*k_size+k] * elem.Point(k).X();
-        ctrlpoints[i*3*j_size+j*3+1] += coef[(i*j_size+j)*k_size+k] * elem.Point(k).Y();
-        ctrlpoints[i*3*j_size+j*3+2] += coef[(i*j_size+j)*k_size+k] * elem.Point(k).Z();
+    ctrlpoints[i*3*j_size+j*3+0] += coef[(i*j_size+j)*k_size+k] * elem.Point(k).X();
+    ctrlpoints[i*3*j_size+j*3+1] += coef[(i*j_size+j)*k_size+k] * elem.Point(k).Y();
+    ctrlpoints[i*3*j_size+j*3+2] += coef[(i*j_size+j)*k_size+k] * elem.Point(k).Z();
       }
-    }
+  }
   }
 }
 
@@ -113,16 +113,16 @@ void setCoordinatesVector2d(double* ctrlpoints, int i_size, int j_size,  const g
   \param color_ctrlpoint The resulting array with color values. The dimension
                          needs to be ctrlpoints[i_size][j_size][4].
   \param i_size     The number of color values (control points) in first grid
-                    direction.
+          direction.
   \param j_size     The number of color values (control points) in second grid
-                    direction.
+          direction.
   \param vcColor    The color information for the higher order 2 dimensional
-                    shape. One color for each shape-defining node of the
-		    element.
+          shape. One color for each shape-defining node of the
+      element.
   \param coef       The transformation matrix with dimension
-                    [i_size*j_size][k_size].
+          [i_size*j_size][k_size].
   \param k_size     The number of nodes defining the shape of the element, i.e.
-                    the number of color entries in vcColor.
+          the number of color entries in vcColor.
 
   For coef use
   - coef_TriangleD2 for second order triangles,
@@ -136,22 +136,22 @@ void setCoordinatesVector2d(double* ctrlpoints, int i_size, int j_size,  const g
 void setColorVector2d(double* color_ctrlpoint, int i_size, int j_size, std::vector<IDrawDef::TColor> &vcColor, const double* coef, int k_size)
 {
   for (int i=0; i<i_size; i++) {
-    for (int j=0; j<j_size; j++) {
+  for (int j=0; j<j_size; j++) {
       color_ctrlpoint[i*4*j_size+j*4+0]=0;
       color_ctrlpoint[i*4*j_size+j*4+1]=0;
       color_ctrlpoint[i*4*j_size+j*4+2]=0;
       color_ctrlpoint[i*4*j_size+j*4+3]=0;
       for (int k=0; k<k_size; k++) {
-        color_ctrlpoint[i*4*j_size+j*4+0] += coef[(i*j_size+j)*k_size+k] * qRed  (vcColor.at(k));
-        color_ctrlpoint[i*4*j_size+j*4+1] += coef[(i*j_size+j)*k_size+k] * qGreen(vcColor.at(k));
-        color_ctrlpoint[i*4*j_size+j*4+2] += coef[(i*j_size+j)*k_size+k] * qBlue (vcColor.at(k));
-        color_ctrlpoint[i*4*j_size+j*4+3] += coef[(i*j_size+j)*k_size+k] * qAlpha(vcColor.at(k));
+    color_ctrlpoint[i*4*j_size+j*4+0] += coef[(i*j_size+j)*k_size+k] * qRed  (vcColor.at(k));
+    color_ctrlpoint[i*4*j_size+j*4+1] += coef[(i*j_size+j)*k_size+k] * qGreen(vcColor.at(k));
+    color_ctrlpoint[i*4*j_size+j*4+2] += coef[(i*j_size+j)*k_size+k] * qBlue (vcColor.at(k));
+    color_ctrlpoint[i*4*j_size+j*4+3] += coef[(i*j_size+j)*k_size+k] * qAlpha(vcColor.at(k));
       }
       color_ctrlpoint[i*4*j_size+j*4+0] = color_ctrlpoint[i*4*j_size+j*4+0] / 256.;
       color_ctrlpoint[i*4*j_size+j*4+1] = color_ctrlpoint[i*4*j_size+j*4+1] / 256.;
       color_ctrlpoint[i*4*j_size+j*4+2] = color_ctrlpoint[i*4*j_size+j*4+2] / 256.;
       color_ctrlpoint[i*4*j_size+j*4+3] = color_ctrlpoint[i*4*j_size+j*4+3] / 256.;
-    }
+  }
   }
 }
 

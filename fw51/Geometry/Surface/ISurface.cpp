@@ -47,9 +47,9 @@ CVector const ISurface::AverageNormal() const
 
   for(int i = 0; i < FaceSize(); i++)
   {
-    AverageNormal.X(AverageNormal.X() + Face(i).Normal().X());
-    AverageNormal.Y(AverageNormal.Y() + Face(i).Normal().Y());
-    AverageNormal.Z(AverageNormal.Z() + Face(i).Normal().Z());
+  AverageNormal.X(AverageNormal.X() + Face(i).Normal().X());
+  AverageNormal.Y(AverageNormal.Y() + Face(i).Normal().Y());
+  AverageNormal.Z(AverageNormal.Z() + Face(i).Normal().Z());
   }
 
   return AverageNormal;
@@ -70,13 +70,13 @@ const CVector ISurface::AverageNormalInPoint(const IPoint &p) const
   std::set<CVector> stVectors; // uses ICoordinate less operator
 
   for(it = facearr.begin(); it != facearr.end(); it++)
-    stVectors.insert((*it)->NormalInPoint(p).UnitVector());
+  stVectors.insert((*it)->NormalInPoint(p).UnitVector());
 
   for(std::set<CVector>::iterator itv = stVectors.begin(); itv != stVectors.end(); itv++)
-    normal += *itv;
+  normal += *itv;
 
   if ( normal.Length() == 0.0 )
-    return geo::CVector::Xaxis;
+  return geo::CVector::Xaxis;
 
   return normal.UnitVector();
 }
@@ -94,12 +94,12 @@ void ISurface::InsertPointsIntoMapAndSet(TPointPairSet &stPointPairs,
 {
   assert(!pt1.Empty());
   assert(!pt2.Empty());
-    CPointPair pp(&pt1, &pt2);
+  CPointPair pp(&pt1, &pt2);
   TPointPairSet::iterator itset = stPointPairs.insert(pp).first;
 
-    CPointPair* xpp = const_cast<CPointPair*>(&(*itset));
+  CPointPair* xpp = const_cast<CPointPair*>(&(*itset));
   std::vector<const IFace*> v;
-    TPointMap::value_type p(xpp, v );
+  TPointMap::value_type p(xpp, v );
   TPointMap::iterator itmap = mpFaces.insert(p).first;
 //  TPointMap::iterator itmap = mpFaces.insert(std::make_pair(&(*itset), std::vector<const IFace*>())).first;
 
@@ -112,20 +112,20 @@ void ISurface::CreateConnectivityPointMapAndSet(TPointPairSet &stPointPairs, TPo
 
   for(int i = 0; i < sz; i++)
   {
-    const IFace &face = Face(i);
-    int ptsz = face.NrOfPoints();
+  const IFace &face = Face(i);
+  int ptsz = face.NrOfPoints();
 
-    for(int j = 0; j < ptsz - 1; j++)
-    {
+  for(int j = 0; j < ptsz - 1; j++)
+  {
       const IPoint &pt1 = face.Point(j);
       const IPoint &pt2 = face.Point(j+1);
       InsertPointsIntoMapAndSet(stPointPairs, mpFaces, pt1, pt2, face);
-    }
+  }
 
-    // and the last and the first combined
-    const IPoint &pt1 = face.Point(ptsz - 1);
-    const IPoint &pt2 = face.Point(0);
-    InsertPointsIntoMapAndSet(stPointPairs, mpFaces, pt1, pt2, face);
+  // and the last and the first combined
+  const IPoint &pt1 = face.Point(ptsz - 1);
+  const IPoint &pt2 = face.Point(0);
+  InsertPointsIntoMapAndSet(stPointPairs, mpFaces, pt1, pt2, face);
   }
 }
 
@@ -140,12 +140,12 @@ const CArray<CLine> ISurface::Edge() const
 
   for(TPointMap::iterator it = mpFaces.begin(); it != mpFaces.end(); it++)
   {
-    std::vector<const IFace*> &vcFaces = it->second;
-    assert(vcFaces.size() == 1 || vcFaces.size() == 2);
-    if( vcFaces.size() == 1 ) {
+  std::vector<const IFace*> &vcFaces = it->second;
+  assert(vcFaces.size() == 1 || vcFaces.size() == 2);
+  if( vcFaces.size() == 1 ) {
           CLine l( (*it->first).First(), (*it->first).Second() );
           ret.PushBack(l);
-        }
+    }
   }
 
   return ret;
@@ -166,29 +166,29 @@ CPolyLine ISurface::SortedEdge() const
 
   while(stLines.size() > 1) // don't do last line, so beginpoint != endpoint
   {
-    bool bFound = false;
-    for(std::set<const ILine *>::iterator it = stLines.begin(); it != stLines.end(); it++)
-    {
+  bool bFound = false;
+  for(std::set<const ILine *>::iterator it = stLines.begin(); it != stLines.end(); it++)
+  {
       if((*it)->First() == *pLast)
       {
-        pLast = &(*it)->Second();
-        bFound = true;
+    pLast = &(*it)->Second();
+    bFound = true;
       }
       if((*it)->Second() == *pLast)
       {
-        pLast = &(*it)->First();
-        bFound = true;
+    pLast = &(*it)->First();
+    bFound = true;
       }
 
       if(bFound)
       {
-        ret.PushBack(*pLast);
-        stLines.erase(it);
-        break;
+    ret.PushBack(*pLast);
+    stLines.erase(it);
+    break;
       }
-    }
+  }
 
-    assert(bFound);
+  assert(bFound);
   }
 
   assert(arLines.Size() == ret.PointSize());
@@ -204,12 +204,12 @@ struct cmpUnitVector
 
   bool operator()(const CVector& lhs, const CVector& rhs) const
   {
-    double dot = std::abs(lhs.DotProduct(rhs) - 1);
+  double dot = std::abs(lhs.DotProduct(rhs) - 1);
 
-    if (dot > epsilon)
+  if (dot > epsilon)
       return lhs < rhs;
 
-    return false;
+  return false;
   }
 };
 
@@ -231,10 +231,10 @@ std::vector<std::vector<const IPoint *> > ISurface::SortedEdgePoints(bool bRetry
 
   for(TPointMap::iterator itfaces = mpFaces.begin(); itfaces != mpFaces.end(); itfaces++)
   {
-    std::vector<const IFace*> &vcFaces = itfaces->second;
-    assert(vcFaces.size() == 1 || vcFaces.size() == 2);
-    if(vcFaces.size() == 1)
-    {
+  std::vector<const IFace*> &vcFaces = itfaces->second;
+  assert(vcFaces.size() == 1 || vcFaces.size() == 2);
+  if(vcFaces.size() == 1)
+  {
       // this pair of points lies on the edge
       CPointPair *pPair = itfaces->first;
 
@@ -243,47 +243,47 @@ std::vector<std::vector<const IPoint *> > ISurface::SortedEdgePoints(bool bRetry
 
       it = mpEdgePoints.insert(std::make_pair(&pPair->Second(), std::vector<const IPoint *>())).first;
       it->second.push_back(&pPair->First());
-    }
+  }
   }
 
 
   if (bRetry) // If we failed to get any edge, this may be caused by mesh region touching the edge; we filter out points that have edges in the exact same direction
   {
-    cmpUnitVector::epsilon = dEpsilon;
+  cmpUnitVector::epsilon = dEpsilon;
 
-    typedef std::map<CVector, std::vector<const IPoint *>, cmpUnitVector > TSameEdge;
+  typedef std::map<CVector, std::vector<const IPoint *>, cmpUnitVector > TSameEdge;
 
-    TEdgePointMap::iterator itTyings = mpEdgePoints.begin();
-    while (itTyings != mpEdgePoints.end())
-    {
+  TEdgePointMap::iterator itTyings = mpEdgePoints.begin();
+  while (itTyings != mpEdgePoints.end())
+  {
       if (itTyings->second.size() == 4)
       {
-        TSameEdge mpSameEdge;
+    TSameEdge mpSameEdge;
 
-        for (int i = 0; i < itTyings->second.size(); ++i)
-        {
+    for (int i = 0; i < itTyings->second.size(); ++i)
+    {
           CVector p(*itTyings->first, *itTyings->second[i]);
           TSameEdge::iterator v = mpSameEdge.insert(std::make_pair(p.UnitVector(), std::vector<const IPoint *>())).first;
           v->second.push_back(itTyings->second[i]);
-        }
+    }
 
-        for (std::map<CVector, std::vector<const IPoint *> >::iterator v = mpSameEdge.begin(); v != mpSameEdge.end(); ++v)
-        {
+    for (std::map<CVector, std::vector<const IPoint *> >::iterator v = mpSameEdge.begin(); v != mpSameEdge.end(); ++v)
+    {
           if (v->second.size() == 2)
           {
-            itTyings->second.erase(std::find(itTyings->second.begin(), itTyings->second.end(), v->second[0]));
-            itTyings->second.erase(std::find(itTyings->second.begin(), itTyings->second.end(), v->second[1]));
+      itTyings->second.erase(std::find(itTyings->second.begin(), itTyings->second.end(), v->second[0]));
+      itTyings->second.erase(std::find(itTyings->second.begin(), itTyings->second.end(), v->second[1]));
           }
-        }
+    }
 
-        if (itTyings->second.size() == 0)
+    if (itTyings->second.size() == 0)
           mpEdgePoints.erase(itTyings++);
-        else
+    else
           ++itTyings;
       }
       else
-        ++itTyings;
-    }
+    ++itTyings;
+  }
   }
 
   // any point with more than two neighbours is not part of the edge
@@ -300,35 +300,35 @@ std::vector<std::vector<const IPoint *> > ISurface::SortedEdgePoints(bool bRetry
   TEdgePointMap::iterator it1 = mpEdgePoints.begin();
   while(it1 != mpEdgePoints.end())
   {
-    if(it1->second.size() > 2)
-    {
+  if(it1->second.size() > 2)
+  {
       for(int i = 0; i < it1->second.size(); ++i)
       {
-        // find and erase all (subsequently) connected points with 1 or 2 connections
-        TEdgePointMap::iterator itn = mpEdgePoints.find(it1->second[i]);
-        while(itn != mpEdgePoints.end())
-        {
+    // find and erase all (subsequently) connected points with 1 or 2 connections
+    TEdgePointMap::iterator itn = mpEdgePoints.find(it1->second[i]);
+    while(itn != mpEdgePoints.end())
+    {
           if(itn->second.size() == 1 || itn->second.size() == 2)
           {
-            // fetch the vector with connected points
-            std::vector<const IPoint*> vcPoints = itn->second;
-            // use point 0 unless we just handled it
-            const IPoint* p = vcPoints[0];
-            if(vcPoints.size() == 2 && p == itn->first)
+      // fetch the vector with connected points
+      std::vector<const IPoint*> vcPoints = itn->second;
+      // use point 0 unless we just handled it
+      const IPoint* p = vcPoints[0];
+      if(vcPoints.size() == 2 && p == itn->first)
               p = vcPoints[1];
-            // erase the current point and move on to the next
-            mpEdgePoints.erase(itn);
-            itn = mpEdgePoints.find(p);
+      // erase the current point and move on to the next
+      mpEdgePoints.erase(itn);
+      itn = mpEdgePoints.find(p);
           }
           else
-            itn = mpEdgePoints.end(); // terminate loop
-        }
+      itn = mpEdgePoints.end(); // terminate loop
+    }
       }
 
       // all connected points have been processed
       mpEdgePoints.erase(it1++);
-    }
-    else
+  }
+  else
       ++it1;
   }
 
@@ -336,27 +336,27 @@ std::vector<std::vector<const IPoint *> > ISurface::SortedEdgePoints(bool bRetry
 
   while(mpEdgePoints.size() > 1)
   {
-    // now mpEdgePoints contains links between all edge points and their 2 neighbours
-    // make a trip around the surface to find all nodes in the right order
-    std::vector<const IPoint *> vcRing;
+  // now mpEdgePoints contains links between all edge points and their 2 neighbours
+  // make a trip around the surface to find all nodes in the right order
+  std::vector<const IPoint *> vcRing;
 
-    assert(mpEdgePoints.size() > 1);
-    TEdgePointMap::iterator it2 = mpEdgePoints.begin();
-    vcRing.push_back(it2->first);
+  assert(mpEdgePoints.size() > 1);
+  TEdgePointMap::iterator it2 = mpEdgePoints.begin();
+  vcRing.push_back(it2->first);
 
-    const IPoint *prev;
-    int iNext = 0;
+  const IPoint *prev;
+  int iNext = 0;
 
-    bool bValidRing = true;
+  bool bValidRing = true;
 
-    do
-    {
+  do
+  {
       prev = it2->first;
       it2 = mpEdgePoints.find(it2->second[iNext]);
       if (it2 == mpEdgePoints.end() || vcRing.size() > mpEdgePoints.size())
       {
-        bValidRing = false;
-        break;
+    bValidRing = false;
+    break;
       }
 
       vcRing.push_back(it2->first);
@@ -365,12 +365,12 @@ std::vector<std::vector<const IPoint *> > ISurface::SortedEdgePoints(bool bRetry
       assert(it2->second[0] == prev || it2->second[1] == prev);
       if(it2->second[0] == prev) iNext = 1;
       else                       iNext = 0;
-    } while(it2->second[iNext] != vcRing[0]);
+  } while(it2->second[iNext] != vcRing[0]);
 
-    for(int i = 0; i < vcRing.size(); i++)
+  for(int i = 0; i < vcRing.size(); i++)
       mpEdgePoints.erase(vcRing[i]);
 
-    if(bValidRing)
+  if(bValidRing)
       ret.push_back(vcRing);
   }
 
@@ -383,15 +383,15 @@ bool ISurface::LocateRingIndex(const IPoint& point, std::set<const IPoint*>& stE
   std::map<const IPoint*, int>::iterator itRing = ringmap.find(&point);
   if(itRing != ringmap.end())
   {
-    // put all encountered points into the map and bail out
-    std::set<const IPoint*>::iterator it;
-    for(it = stEncountered.begin(); it != stEncountered.end(); ++it)
+  // put all encountered points into the map and bail out
+  std::set<const IPoint*>::iterator it;
+  for(it = stEncountered.begin(); it != stEncountered.end(); ++it)
       ringmap.insert(std::map<const IPoint*, int>::value_type(*it, itRing->second));
-    return true;
+  return true;
   }
 
   if(!stEncountered.insert(&point).second)
-    return false; // already processed
+  return false; // already processed
 
   // figure out a next point from the connectivity
   std::vector<int> vcElements = ElementsAt(point);
@@ -399,19 +399,19 @@ bool ISurface::LocateRingIndex(const IPoint& point, std::set<const IPoint*>& stE
   int i;
   for(i = 0; i < vcElements.size(); ++i)
   {
-    const IElement& e = Element(vcElements[i]);
-    int n;
-    for(n = 0; n < e.NrOfPoints(); ++n)
-    {
+  const IElement& e = Element(vcElements[i]);
+  int n;
+  for(n = 0; n < e.NrOfPoints(); ++n)
+  {
       const IPoint& pt = e.Point(n);
 
       // did we not process this one already?
       if(stEncountered.find(&pt) == stEncountered.end())
       {
-        if(LocateRingIndex(pt, stEncountered, ringmap))
+    if(LocateRingIndex(pt, stEncountered, ringmap))
           return true; // found and done
       }
-    }
+  }
   }
 
   return false;
@@ -428,39 +428,39 @@ std::map<const IPoint *, int> ISurface::SubSurfaceIndices(std::vector<std::vecto
   std::map<const IPoint *, int> ret;
 
   if(edgepoints.empty())
-    return ret;
+  return ret;
 
   // first check if there is only one part, because all points belong to that then
   if(edgepoints.size() == 1)
   {
-    for(i = 0; i < PointSize(); i++)
-    {
+  for(i = 0; i < PointSize(); i++)
+  {
       VERIFY(ret.insert(std::map<const IPoint *, int>::value_type(&Point(i), 0)).second);
-    }
-    return ret;
+  }
+  return ret;
   }
 
   // all points in the vector can be put in the return map already
   // because we know where they are
   for(i = 0; i < edgepoints.size(); i++)
   {
-    int j;
-    for(j = 0; j < edgepoints[i].size(); j++)
+  int j;
+  for(j = 0; j < edgepoints[i].size(); j++)
       VERIFY(ret.insert(std::map<const IPoint *, int>::value_type(edgepoints[i][j], i)).second);
   }
 
   // now walk over all points in the surface
   for(i = 0; i < PointSize(); i++)
   {
-    // are we ready?
-    if(ret.size() == PointSize()) break; // all points have been added to the map already
+  // are we ready?
+  if(ret.size() == PointSize()) break; // all points have been added to the map already
 
-    // walk over the attached elements to find an edge node
+  // walk over the attached elements to find an edge node
 
-    // a set to store all points we encounter
-    std::set<const IPoint *> stEncountered;
+  // a set to store all points we encounter
+  std::set<const IPoint *> stEncountered;
 
-    VERIFY(LocateRingIndex(Point(i), stEncountered, ret));
+  VERIFY(LocateRingIndex(Point(i), stEncountered, ret));
   }
 
   assert(ret.size() == PointSize());
@@ -525,13 +525,13 @@ void ISurface::CreateEdgeNearestNeighbours(std::vector<std::vector<const IPoint 
 
   for(i = 0; i < vcEdgePoints.size(); i++)
   {
-    std::vector<const IPoint *> &vcPoints = vcEdgePoints[i];
-    m_vcEdgeNearestNeighbour[i] =
+  std::vector<const IPoint *> &vcPoints = vcEdgePoints[i];
+  m_vcEdgeNearestNeighbour[i] =
           new CNearestNeighbour(0.5, (int)vcPoints.size());
 
-    // insert the points
-    int j;
-    for(j = 0; j < vcPoints.size(); j++)
+  // insert the points
+  int j;
+  for(j = 0; j < vcPoints.size(); j++)
       m_vcEdgeNearestNeighbour[i]->Object(j, const_cast<IPoint &> (*vcPoints[j]));
   }
 }
@@ -548,34 +548,34 @@ CValue ISurface::InterpolateZ(const IPoint& point, bool bExtraPolate) const
   CSetExpandCallBack<int>::TBucket::const_iterator it;
   for(it = call_back.Bucket().begin(); it != call_back.Bucket().end(); it++)
   {
-    const IFace& face = Face(*it);
+  const IFace& face = Face(*it);
 
-    if(face.ContainsInXYPlane(point, true))
-    {
+  if(face.ContainsInXYPlane(point, true))
+  {
       if(fabs(face.Normal().Z()) > 1e-8)
       {
-        std::vector<CValue> vcZ(face.NrOfPoints());
-        for(int i = 0; i < face.NrOfPoints(); i++) vcZ[i] = face.Point(i).Z();
-        CValue zPoint = face.InterpolateValue(point, vcZ);
-        assert(zPoint.Valid());
-        return zPoint;
+    std::vector<CValue> vcZ(face.NrOfPoints());
+    for(int i = 0; i < face.NrOfPoints(); i++) vcZ[i] = face.Point(i).Z();
+    CValue zPoint = face.InterpolateValue(point, vcZ);
+    assert(zPoint.Valid());
+    return zPoint;
       }
-    }
+  }
   }
 
   if((ElementSize() == 0) || !bExtraPolate)
-    return CValue();
+  return CValue();
 
 
 
   // create the nearest neighbour objects
   if(!m_vcEdgeNearestNeighbour.size()) 
   {
-    // retrieve all edge points, because they are the only ones we will use
-    // for the extrapolation
-    std::vector<std::vector<const IPoint *> > vcEdgePoints = SortedEdgePoints();
-    CreateEdgeNearestNeighbours(vcEdgePoints);
-    assert(m_vcEdgeNearestNeighbour.size() == vcEdgePoints.size());
+  // retrieve all edge points, because they are the only ones we will use
+  // for the extrapolation
+  std::vector<std::vector<const IPoint *> > vcEdgePoints = SortedEdgePoints();
+  CreateEdgeNearestNeighbours(vcEdgePoints);
+  assert(m_vcEdgeNearestNeighbour.size() == vcEdgePoints.size());
   }
 
   // a vector with the first and second nearest points per ring
@@ -584,11 +584,11 @@ CValue ISurface::InterpolateZ(const IPoint& point, bool bExtraPolate) const
   int i;
   for(i = 0; i < m_vcEdgeNearestNeighbour.size(); i++)
   {
-    CNearestNeighbour::CPointVec vcNearest = m_vcEdgeNearestNeighbour[i]->NearestNeighbourXY(point, 2);
-    assert(vcNearest.size() == 2);
+  CNearestNeighbour::CPointVec vcNearest = m_vcEdgeNearestNeighbour[i]->NearestNeighbourXY(point, 2);
+  assert(vcNearest.size() == 2);
 
-    vcNearestPoints[i].first = vcNearest[0];
-    vcNearestPoints[i].second = vcNearest[1];
+  vcNearestPoints[i].first = vcNearest[0];
+  vcNearestPoints[i].second = vcNearest[1];
   }
 
   // find the nearest ring, only look in 2D
@@ -597,15 +597,15 @@ CValue ISurface::InterpolateZ(const IPoint& point, bool bExtraPolate) const
 
   for(i = 0; i < vcNearestPoints.size(); i++)
   {
-    double dx = vcNearestPoints[i].first->X() - point.X();
-    double dy = vcNearestPoints[i].first->Y() - point.Y();
-    double dist = dx * dx + dy * dy;
+  double dx = vcNearestPoints[i].first->X() - point.X();
+  double dy = vcNearestPoints[i].first->Y() - point.Y();
+  double dist = dx * dx + dy * dy;
 
-    if(!i || dist < dNearest)
-    {
+  if(!i || dist < dNearest)
+  {
       dNearest = dist;
       iNearest = i;
-    }
+  }
   }
 
   assert(iNearest >= 0);
@@ -618,9 +618,9 @@ CValue ISurface::InterpolateZ(const IPoint& point, bool bExtraPolate) const
 
   double y1 = v1.DotProduct(v2) / v2.SquareLength();
   if(y1 <= 0)
-    return geo::CValue(first_point.Z());
+  return geo::CValue(first_point.Z());
   else if (y1 >= 1)
-    return geo::CValue(second_point.Z());
+  return geo::CValue(second_point.Z());
 
   return geo::CValue((1 - y1) * first_point.Z() + y1 * second_point.Z());
 }
@@ -645,8 +645,8 @@ std::multimap<double, const IPoint*> ISurface::NearestXYPoints(int size_x, int s
   CSetExpandCallBack<int> call_back;
   while(call_back.Bucket().size() == 0)
   {
-    BucketKernel().ExpandXY(call_back, size_x, size_y, nExpand);
-    nExpand++;
+  BucketKernel().ExpandXY(call_back, size_x, size_y, nExpand);
+  nExpand++;
   }
 
   // Get all the nodes in a set
@@ -655,7 +655,7 @@ std::multimap<double, const IPoint*> ISurface::NearestXYPoints(int size_x, int s
   CSetExpandCallBack<int>::TBucket::const_iterator it;
   for(it = call_back.Bucket().begin(); it != call_back.Bucket().end(); it++)
   {
-    for(int nNode = 0; nNode < Element(*it).NrOfPoints(); nNode++)
+  for(int nNode = 0; nNode < Element(*it).NrOfPoints(); nNode++)
       stPoint.insert(&Element(*it).Point(nNode));
   }
 
@@ -666,11 +666,11 @@ std::multimap<double, const IPoint*> ISurface::NearestXYPoints(int size_x, int s
   TDistanceMap mpRet;
   for(TNodeSet::iterator it_point = stPoint.begin(); it_point != stPoint.end(); it_point++)
   {
-    // Determine the square distance between X and Y
-    double dDeltaX = dX - (*it_point)->X();
-    double dDeltaY = dY - (*it_point)->Y();
-    double dDistance = dDeltaX * dDeltaX + dDeltaY * dDeltaY;
-    mpRet.insert(TDistanceMap::value_type(dDistance, *it_point));
+  // Determine the square distance between X and Y
+  double dDeltaX = dX - (*it_point)->X();
+  double dDeltaY = dY - (*it_point)->Y();
+  double dDistance = dDeltaX * dDeltaX + dDeltaY * dDeltaY;
+  mpRet.insert(TDistanceMap::value_type(dDistance, *it_point));
   }
 
   return mpRet;
@@ -687,10 +687,10 @@ ISurface::TPolyLineVec ISurface::Intersection(const IPlane& plane, IProgressBase
   std::set<int>::iterator it;
   for(it = stElementIndex.begin(); it != stElementIndex.end(); it++)
   {
-    const IFace& face = Face(*it);
-    if(face.Intersects(plane))
+  const IFace& face = Face(*it);
+  if(face.Intersects(plane))
       vcCandidates.push_back(&face);
-    else
+  else
       if(pProgress) pProgress->Step();
   }
 
@@ -702,15 +702,15 @@ ISurface::TPolyLineVec ISurface::Intersection(const IPlane& plane, IProgressBase
   int i;
   for(i = 0; i < vcCandidates.size(); i++)
   {
-    IFace::TLineVec vcFaceLines = vcCandidates[i]->Intersection(plane);
-    assert(!vcFaceLines.empty());
-    int j;
-    for(j = 0; j < vcFaceLines.size(); j++)
-    {
+  IFace::TLineVec vcFaceLines = vcCandidates[i]->Intersection(plane);
+  assert(!vcFaceLines.empty());
+  int j;
+  for(j = 0; j < vcFaceLines.size(); j++)
+  {
       vcLines.push_back(new CLine(vcFaceLines[j]));
       stLines.insert(vcLines[vcLines.size()-1]);
-    }
-    if(pProgress) pProgress->Step();
+  }
+  if(pProgress) pProgress->Step();
   }
 
   // create all polylines
@@ -718,9 +718,9 @@ ISurface::TPolyLineVec ISurface::Intersection(const IPlane& plane, IProgressBase
 
   while(!stLines.empty())
   {
-    CPolyLine pl;
-    pl.CreateFromLines(stLines);
-    vcRet.push_back(pl);
+  CPolyLine pl;
+  pl.CreateFromLines(stLines);
+  vcRet.push_back(pl);
   }
 
   for(i = 0; i < vcLines.size(); i++) delete vcLines[i];
@@ -738,21 +738,21 @@ void ISurface::FilterElementsInOrthoBox( const geo::IPoint& ptMin,
 
   for(int i = 0; i < ElementSize(); i++)
   {
-    const IElement &element = Element(i);
-    if(!box.BoundingBoxOutside(element))
-    {
+  const IElement &element = Element(i);
+  if(!box.BoundingBoxOutside(element))
+  {
       
       if(!box.BBRhsInside(element))
       {
-        elements_on_the_side.insert(&element);
-        
+    elements_on_the_side.insert(&element);
+    
       }
       else
       {
-        elements_strict_inside.insert(&element);
+    elements_strict_inside.insert(&element);
       }
-    }
-    else
+  }
+  else
       elements_strict_outside.insert(&element);
 
   }

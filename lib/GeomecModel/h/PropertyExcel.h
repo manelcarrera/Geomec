@@ -22,27 +22,27 @@ class CElementSetExcelFile
 {
 public:
 // Contruction / Destruction
-	CElementSetExcelFile
-	( CModelBase& model
-	, bool bNewWellPath = false
-	);		// Constructor for reading
-	CElementSetExcelFile(const CNodalExportFormat& export_format);	
-	CElementSetExcelFile(const IElementSetExportFormat& export_format);
-	~CElementSetExcelFile();
-	CNewWellPathInput *NewWellPathInput() const;  // wjrx mantis 3322
+  CElementSetExcelFile
+  ( CModelBase& model
+  , bool bNewWellPath = false
+  );		// Constructor for reading
+  CElementSetExcelFile(const CNodalExportFormat& export_format);	
+  CElementSetExcelFile(const IElementSetExportFormat& export_format);
+  ~CElementSetExcelFile();
+  CNewWellPathInput *NewWellPathInput() const;  // wjrx mantis 3322
 
 
-	bool ReadSheets(const QString &sFileName, IProgressBase &dlg, CGraphNode::TNodeVec &created_objects);
-	bool Write(const QString &sFileName, IProgressBase &callback, bool append = false );
+  bool ReadSheets(const QString &sFileName, IProgressBase &dlg, CGraphNode::TNodeVec &created_objects);
+  bool Write(const QString &sFileName, IProgressBase &callback, bool append = false );
 
 //	typedef CElementSetFile::INodalFormat::TAxisSystem TAxisSystem;
-	// Axis system
+  // Axis system
 //	TAxisSystem AxisSystem() const;
-	const CModelBase& Model() const;
-	CModelBase& Model();
+  const CModelBase& Model() const;
+  CModelBase& Model();
 
 protected:
-	// virtual pointset and elementset creation (for own types)
+  // virtual pointset and elementset creation (for own types)
 
 private:
   CElementSetExcelFile(const CElementSetExcelFile& rhs);

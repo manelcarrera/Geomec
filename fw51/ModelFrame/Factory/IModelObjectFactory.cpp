@@ -71,15 +71,15 @@ void IModelObjectFactoryCollection::remove( IModelObjectFactory* factory )
 IModelObject* IModelObjectFactoryCollection::create( const char* className )
 {
   for ( QList<IModelObjectFactory*>::const_iterator it = m_factories.begin();
-        it != m_factories.end();
-        ++it ) {
-    IModelObjectFactory* f = *it;
-    IModelObject* o = f->createObject( className );
-    if ( o ) return o;
+    it != m_factories.end();
+    ++it ) {
+  IModelObjectFactory* f = *it;
+  IModelObject* o = f->createObject( className );
+  if ( o ) return o;
   }
   throw TModelError( QObject::tr("Class '%1' not implemented in any of the "
                                  " registered factories"
-                                ).arg( className ) , 7030 );
+                ).arg( className ) , 7030 );
 }
 
 namespace

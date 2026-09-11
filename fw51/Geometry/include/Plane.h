@@ -26,39 +26,39 @@ class GEOMETRY_EXPORT  CPlane : public IPlane
 {
 
 private:
-	CPoint m_BasePoint;
-	CVector m_NormVector;
+  CPoint m_BasePoint;
+  CVector m_NormVector;
 public:
-	CPlane();
+  CPlane();
 
 
-	//Construction with one base point and two vectors
-	//v2 and v3 are direction vectors
-	CPlane(const IPoint& basepoint, const IVector& dir1, const IVector& dir2);
+  //Construction with one base point and two vectors
+  //v2 and v3 are direction vectors
+  CPlane(const IPoint& basepoint, const IVector& dir1, const IVector& dir2);
 
-	//Construction with 3 points
-	CPlane(const IPoint& p1, const IPoint& p2, const IPoint& p3);
+  //Construction with 3 points
+  CPlane(const IPoint& p1, const IPoint& p2, const IPoint& p3);
 
-	//construction with a point and a normal vector
-	CPlane(const IPoint& basepoint, const IVector& normal);
-	CPlane(const CPlane& rhs);
-	CPlane(const IPlane& rhs);
-	CPlane& operator=(const CPlane& rhs);
-	CPlane& operator=(const IPlane& rhs);
+  //construction with a point and a normal vector
+  CPlane(const IPoint& basepoint, const IVector& normal);
+  CPlane(const CPlane& rhs);
+  CPlane(const IPlane& rhs);
+  CPlane& operator=(const CPlane& rhs);
+  CPlane& operator=(const IPlane& rhs);
 
-	//IPlane Interface
-	virtual const IPoint& BasePoint() const;
-	virtual void BasePoint(const IPoint& base);
-	virtual const IVector& Normal() const;
-	virtual void Normal(const IVector& normal);
+  //IPlane Interface
+  virtual const IPoint& BasePoint() const;
+  virtual void BasePoint(const IPoint& base);
+  virtual const IVector& Normal() const;
+  virtual void Normal(const IVector& normal);
 
-	virtual void AssertValid() const;
+  virtual void AssertValid() const;
 
 
-	//the 3 cartisian plane definitions
-	static const CPlane PlaneXY;
-	static const CPlane PlaneYZ;
-	static const CPlane PlaneZX;
+  //the 3 cartisian plane definitions
+  static const CPlane PlaneXY;
+  static const CPlane PlaneYZ;
+  static const CPlane PlaneZX;
 };
 
 }

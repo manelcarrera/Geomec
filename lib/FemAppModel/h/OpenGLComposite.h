@@ -14,16 +14,16 @@
 class COpenGLComposite : public COpenGLNodeBase 
 {
 public:
-	typedef std::set<COpenGLNodeBase*> TOpenGLNodeSet;
-	COpenGLComposite(CFemAppModel& model);
-	COpenGLComposite(const QString &strName, CFemAppModel& model);
-	COpenGLComposite(const unsigned int uName, CFemAppModel& model);
-	COpenGLComposite(const COpenGLNodeBase &rhs);
-	virtual TOpenGLNodeSet OpenGLNodes() const = 0;
+  typedef std::set<COpenGLNodeBase*> TOpenGLNodeSet;
+  COpenGLComposite(CFemAppModel& model);
+  COpenGLComposite(const QString &strName, CFemAppModel& model);
+  COpenGLComposite(const unsigned int uName, CFemAppModel& model);
+  COpenGLComposite(const COpenGLNodeBase &rhs);
+  virtual TOpenGLNodeSet OpenGLNodes() const = 0;
 
-	// Equal and assignment
-	COpenGLComposite& operator=(const COpenGLComposite &rhs);
-	bool operator==(const COpenGLComposite &rhs) const;
+  // Equal and assignment
+  COpenGLComposite& operator=(const COpenGLComposite &rhs);
+  bool operator==(const COpenGLComposite &rhs) const;
 
   virtual bool Accept(graphnode::IConstVisitor& visitor) const { return visitor.VisitOpenGLComposite(*this); }
   virtual bool Accept(graphnode::IVisitor& visitor) { return visitor.VisitOpenGLComposite(*this); }

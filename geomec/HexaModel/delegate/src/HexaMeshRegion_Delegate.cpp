@@ -22,20 +22,20 @@ CHexaMeshRegionBase_Delegate::CHexaMeshRegionBase_Delegate(
 void CHexaMeshRegionBase_Delegate::AppendContextMenu(
   CContextMenuInvoker& invoker)
 {
-    // Append copy, paste and delete
+  // Append copy, paste and delete
 
-    invoker.AddCommand(_T("&Modify"),
+  invoker.AddCommand(_T("&Modify"),
       *(new TGraphNode_DelegateCommand(*this, &CGraphNode_Delegate::Edit,
-        &CGraphNode_Delegate::CanEdit)));
-    invoker.AddSeparator();
+    &CGraphNode_Delegate::CanEdit)));
+  invoker.AddSeparator();
 
-    CMeshRegionBase_Delegate::AppendContextMenu(invoker);
+  CMeshRegionBase_Delegate::AppendContextMenu(invoker);
 }
 
 bool CHexaMeshRegionBase_Delegate::CanEdit() const
 {
   return !(static_cast <const CModelBase&> (m_hexaMeshRegionBase->Model())).
-    BranchState().IsBranch();
+  BranchState().IsBranch();
 }
 
 bool CHexaMeshRegionBase_Delegate::CanDestroy() const
@@ -45,7 +45,7 @@ bool CHexaMeshRegionBase_Delegate::CanDestroy() const
 
 bool CHexaMeshRegionBase_Delegate::Destroy()
 {
-    return m_hexaMeshRegionBase->Destroy();
+  return m_hexaMeshRegionBase->Destroy();
 }
 
 CHexaMainMeshRegion_Delegate::CHexaMainMeshRegion_Delegate(
@@ -64,13 +64,13 @@ bool CHexaMainMeshRegion_Delegate::Attributes()
 
 bool CHexaMainMeshRegion_Delegate::Edit()
 {
-    CGeomecDoc* pDoc = GetGeomecDoc();
-    C3DGUI& model = (C3DGUI&) *(dynamic_cast <C3DGUI*> (pDoc->GUI()));
+  CGeomecDoc* pDoc = GetGeomecDoc();
+  C3DGUI& model = (C3DGUI&) *(dynamic_cast <C3DGUI*> (pDoc->GUI()));
 
-    COpenInventorSceneNode& oivNode = model.OpenInventorScene();
-    pDoc->CurrentScene(&oivNode);
-    oivNode.EditHexaMainMeshRegion (*m_hexaMainMeshRegion);
-    return true;
+  COpenInventorSceneNode& oivNode = model.OpenInventorScene();
+  pDoc->CurrentScene(&oivNode);
+  oivNode.EditHexaMainMeshRegion (*m_hexaMainMeshRegion);
+  return true;
 }
 
 bool CHexaMainMeshRegion_Delegate::CanDestroy() const
@@ -94,13 +94,13 @@ bool CHexaSubMeshRegion_Delegate::Attributes()
 
 bool CHexaSubMeshRegion_Delegate::Edit()
 {
-    CGeomecDoc* pDoc = GetGeomecDoc();
-    C3DGUI& model = (C3DGUI&) *(dynamic_cast <C3DGUI*> (pDoc->GUI()));
+  CGeomecDoc* pDoc = GetGeomecDoc();
+  C3DGUI& model = (C3DGUI&) *(dynamic_cast <C3DGUI*> (pDoc->GUI()));
 
-    COpenInventorSceneNode& oivNode = model.OpenInventorScene();
-    pDoc->CurrentScene(&oivNode);
-    oivNode.EditHexaSubMeshRegion (*m_hexaSubMeshRegion);
-    return true;
+  COpenInventorSceneNode& oivNode = model.OpenInventorScene();
+  pDoc->CurrentScene(&oivNode);
+  oivNode.EditHexaSubMeshRegion (*m_hexaSubMeshRegion);
+  return true;
 }
 
 bool CHexaSubMeshRegion_Delegate::PropertiesOK()
@@ -128,24 +128,24 @@ void CHexaMeshRegionEntry_Delegate::AppendContextMenu(
   CContextMenuInvoker& invoker)
 {
   typedef CSingleCommandTemplate <CHexaMeshRegionEntry_Delegate>
-    THexaMeshRegionEntry_DelegateCommand;
+  THexaMeshRegionEntry_DelegateCommand;
 
   // We have two inserts: Graphical rectangular and polygonal
 
   CContextMenuInvoker* pSubMenu = new CContextMenuInvoker;
 
   pSubMenu->AddCommand(_T("&Rectangular"),
-    *(new THexaMeshRegionEntry_DelegateCommand(*this,
+  *(new THexaMeshRegionEntry_DelegateCommand(*this,
       &CHexaMeshRegionEntry_Delegate::CreateMeshRegionRect,
       &CHexaMeshRegionEntry_Delegate::CanCreateMeshRegion)));
   pSubMenu->AddCommand(_T("&Polygonal"),
-    *(new THexaMeshRegionEntry_DelegateCommand(*this,
+  *(new THexaMeshRegionEntry_DelegateCommand(*this,
       &CHexaMeshRegionEntry_Delegate::CreateMeshRegionPoly,
       &CHexaMeshRegionEntry_Delegate::CanCreateMeshRegion)));
   invoker.AddInvoker("Create mesh region", *pSubMenu);
   invoker.AddSeparator();
   invoker.AddCommand(_T("&Attributes"), *(new TGraphNode_DelegateCommand(
-    *this, &CGraphNode_Delegate::Attributes)));
+  *this, &CGraphNode_Delegate::Attributes)));
 }
 
 bool CHexaMeshRegionEntry_Delegate::CanCreateMeshRegion() const
@@ -153,7 +153,7 @@ bool CHexaMeshRegionEntry_Delegate::CanCreateMeshRegion() const
   CModelBase& model = (CModelBase&) m_hexaMeshRegionEntry->Model();
 
   return (model.Boundary().State() != CBoundaryBase::DEFAULT_DEFINED &&
-    !model.BranchState().IsBranch());
+  !model.BranchState().IsBranch());
 }
 
 void CHexaMeshRegionEntry_Delegate::CreateMeshRegionPoly()

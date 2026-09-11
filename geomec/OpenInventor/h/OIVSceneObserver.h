@@ -16,24 +16,24 @@ class COIVSceneObserver : public TOIVSceneObserver
 {
 public:
   COIVSceneObserver(COIVSceneBase& scene,
-                    CTreeNode &parent,
-                    const BOOL rename,
-                    const REMOVE_TYPE remove,
-                    HTREEITEM hInsertAfter = TVI_LAST)
+          CTreeNode &parent,
+          const BOOL rename,
+          const REMOVE_TYPE remove,
+          HTREEITEM hInsertAfter = TVI_LAST)
   : TOIVSceneObserver(scene, parent, rename, remove, hInsertAfter)
   {
   }
 
-	virtual unsigned int Icon() const
-	{
-		CGeomecDoc* pDoc = &((CGeomecApp*)AfxGetApp())->GetDoc();
-		if(pDoc->CurrentScene() &&
-        (&ObservedItem() == pDoc->CurrentScene()->OpenGLScene() ||
+  virtual unsigned int Icon() const
+  {
+    CGeomecDoc* pDoc = &((CGeomecApp*)AfxGetApp())->GetDoc();
+    if(pDoc->CurrentScene() &&
+    (&ObservedItem() == pDoc->CurrentScene()->OpenGLScene() ||
          &ObservedItem() == pDoc->CurrentScene()->OpenInventorScene() ||
          &ObservedItem() == pDoc->CurrentScene()->getOIV2DScene()))
-			return IDI_RADIO_CHECKED;
-		return IDI_RADIO_UNCHECKED;
-	}
+      return IDI_RADIO_CHECKED;
+    return IDI_RADIO_UNCHECKED;
+  }
 };
 
 typedef CNodeObserver_Delegate<TOIVSceneBaseEntry, TOIVSceneBaseEntry_Delegate, COIVSceneBase, COIVSceneObserver, FALSE, FIXED_ITEM> TOIVSceneEntryObserver;

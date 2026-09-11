@@ -25,25 +25,25 @@
 QFile g_qdebug_out_file;
 void qdebug_msg_handler( QtMsgType type, const QMessageLogContext & context, const QString & msg )
 {
-    QString txt;
+  QString txt;
 
-	//QString s_time = QDateTime::currentDateTime().toTimeSpec(Qt::OffsetFromUTC).toString(Qt::ISODate);
-	QString s_time = QDateTime::currentDateTime().toString("yyyy-MM-dd, hh:mm:ss");
+  //QString s_time = QDateTime::currentDateTime().toTimeSpec(Qt::OffsetFromUTC).toString(Qt::ISODate);
+  QString s_time = QDateTime::currentDateTime().toString("yyyy-MM-dd, hh:mm:ss");
 
-    switch (type) 
-	{
-		// (%s:%u, %s)
-		// context.file, context.line, context.function
-		case QtDebugMsg:	txt = QString("Debug: %1: %2").arg( s_time, msg); break;
-		case QtWarningMsg:	txt = QString("Warning: %1").arg(msg); break;
-		case QtCriticalMsg: txt = QString("Critical: %1").arg(msg); break;
-		case QtFatalMsg:	txt = QString("Fatal: %1").arg(msg); break;
-    }
-    
-    g_qdebug_out_file.open(QIODevice::WriteOnly | QIODevice::Append);
-    QTextStream ts( &g_qdebug_out_file );
-    ts << txt << endl;
-	g_qdebug_out_file.close(); // ????
+  switch (type) 
+  {
+    // (%s:%u, %s)
+    // context.file, context.line, context.function
+    case QtDebugMsg:	txt = QString("Debug: %1: %2").arg( s_time, msg); break;
+    case QtWarningMsg:	txt = QString("Warning: %1").arg(msg); break;
+    case QtCriticalMsg: txt = QString("Critical: %1").arg(msg); break;
+    case QtFatalMsg:	txt = QString("Fatal: %1").arg(msg); break;
+  }
+  
+  g_qdebug_out_file.open(QIODevice::WriteOnly | QIODevice::Append);
+  QTextStream ts( &g_qdebug_out_file );
+  ts << txt << endl;
+  g_qdebug_out_file.close(); // ????
 }
 
 
@@ -57,11 +57,11 @@ int main(int argc, char *argv[])
   g_qdebug_out_file.setFileName( QString::fromStdString( Printer::instance()->folder() +  "/geomec_qdebug.log" ) );
   qInstallMessageHandler( qdebug_msg_handler );
 
-	void* memory_chunck = nullptr;
-	//CModelBase *pModel = reinterpret_cast< CModelBase * >( memory_chunck ); 
-	CTetraModel *pModel = reinterpret_cast< CTetraModel* >( memory_chunck ); 
+  void* memory_chunck = nullptr;
+  //CModelBase *pModel = reinterpret_cast< CModelBase * >( memory_chunck ); 
+  CTetraModel *pModel = reinterpret_cast< CTetraModel* >( memory_chunck ); 
 
-	int b=0;
+  int b=0;
 
   quint64 ppid = ModGMLocalBusHelper::getPid(argc, argv);
 
@@ -73,8 +73,8 @@ int main(int argc, char *argv[])
 
   for (int i = 1; i < argc; ++i)
   {
-    QStringList l = QString(argv[i]).split('=');
-    if (l.size() == 2 && l[0] == "name")
+  QStringList l = QString(argv[i]).split('=');
+  if (l.size() == 2 && l[0] == "name")
       name = l[1];
   }
   Printer::instance()->info("CreateFilosApp > main [pid:%d name:%s]", ppid, name.toStdString().c_str() );

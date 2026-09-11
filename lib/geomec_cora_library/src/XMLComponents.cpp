@@ -28,15 +28,15 @@ std::ostream& CXMLComponents::operator () (std::ostream& stream) const
 {
   if (m_components.empty())
   {
-    stream << COMPONENTS_EMPTY.toStdString() << std::endl;
+  stream << COMPONENTS_EMPTY.toStdString() << std::endl;
   }
   else
   {
-    stream << COMPONENTS_OPEN.toStdString() << std::endl;
+  stream << COMPONENTS_OPEN.toStdString() << std::endl;
 
-    stream << m_components;
+  stream << m_components;
 
-    stream << COMPONENTS_CLOSE.toStdString() << std::endl;
+  stream << COMPONENTS_CLOSE.toStdString() << std::endl;
   }
 
   return stream;
@@ -57,7 +57,7 @@ struct CAdd2Components
 
   void operator () (const TObject& object) const
   {
-    m_components.push_back(TXMLComponent(
+  m_components.push_back(TXMLComponent(
       new CXMLComponent(m_modelData, object)));
   }
 
@@ -81,7 +81,7 @@ TXMLComponents CXMLComponents::createComponents(CModelData& modelData)
   CGetHorizonInfo& horizonInfo(CGetHorizonInfo::instance(modelData()));
   CGetSurfaceInfo& surfaceInfo(CGetSurfaceInfo::instance(modelData()));
   CGetNonMeshedSurfaceInfo& getNonMeshedSurfaceInfo(
-    CGetNonMeshedSurfaceInfo::instance(modelData()));
+  CGetNonMeshedSurfaceInfo::instance(modelData()));
 
   objects = formationInfo.getObjects();
   std::for_each(objects.begin(), objects.end(), add2Components);

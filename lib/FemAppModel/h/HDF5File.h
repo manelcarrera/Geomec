@@ -7,13 +7,13 @@ HDF5 (.gm5) is a container format for .gm4 data.
 Currently the data is spread out over different groups/datasets:
 
   /META/Version
-    = 5.0.0, no checks are done for this yet
+  = 5.0.0, no checks are done for this yet
   ModelGroup(CModelBase::Index)/ModelStream
-    = most of the old .gm4 data
+  = most of the old .gm4 data
   ModelGroup(CModelBase::Index)/Scenes
-    = the scene info written by the GUI
+  = the scene info written by the GUI
   ResultGroupStream(CModelBase::Index, analysisType, depletionStage, resultType)
-    = cells as in the MeshDataCacher
+  = cells as in the MeshDataCacher
 
 During loading (ModelIO.cpp/LoadModel) the results are skipped. The file remains open,
 read-only, so that results can be read on demand.
@@ -117,44 +117,44 @@ private:
   class CHDF5Stream
   {
   public:
-    CHDF5Stream(H5::H5File *file, const QString& name, size_t chunkSize);
-    ~CHDF5Stream();
+  CHDF5Stream(H5::H5File *file, const QString& name, size_t chunkSize);
+  ~CHDF5Stream();
 
-    bool open(unsigned int mode);
-    void close();
+  bool open(unsigned int mode);
+  void close();
 
-    qint64 pos() const;
-    bool seek(qint64 pos);
+  qint64 pos() const;
+  bool seek(qint64 pos);
 
-    qint64 bytesRead() const;
-    void bytesRead(qint64 addBytes);
+  qint64 bytesRead() const;
+  void bytesRead(qint64 addBytes);
 
-    qint64 readData(char *data, qint64 maxSize);
-    qint64 writeData(const char *data, qint64 maxSize);
+  qint64 readData(char *data, qint64 maxSize);
+  qint64 writeData(const char *data, qint64 maxSize);
 
   private:
-    H5::H5File    *m_file;
-    unsigned int   m_mode;
-    const QString  m_name;
-    const size_t   m_chunkSize;
+  H5::H5File    *m_file;
+  unsigned int   m_mode;
+  const QString  m_name;
+  const size_t   m_chunkSize;
 
-    size_t         m_index;
-    unsigned char *m_buffer;
-    size_t         m_processed;
+  size_t         m_index;
+  unsigned char *m_buffer;
+  size_t         m_processed;
 
-    qint64         m_read;
+  qint64         m_read;
 
-    H5::DataSpace *m_dataBuffer;
-    H5::DataSpace *m_dataSpace;
-    H5::DataSet   *m_dataSet;
+  H5::DataSpace *m_dataBuffer;
+  H5::DataSpace *m_dataSpace;
+  H5::DataSet   *m_dataSet;
 
-    H5::DSetCreatPropList *m_prop;
-    H5::DataType  *m_type;
+  H5::DSetCreatPropList *m_prop;
+  H5::DataType  *m_type;
 
-    bool m_flush;
+  bool m_flush;
 
-    bool readBuffer(bool bForce = false);
-    bool writeBuffer(bool bForce = false);
+  bool readBuffer(bool bForce = false);
+  bool writeBuffer(bool bForce = false);
   };
 
   QIODevice  *m_file;

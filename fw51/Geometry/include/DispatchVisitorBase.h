@@ -51,69 +51,69 @@ class IObject;
 class GEOMETRY_EXPORT IVisitor
 {
 protected:
-	// must be derived
-	IVisitor();
+  // must be derived
+  IVisitor();
 
 public:
-	virtual ~IVisitor();
+  virtual ~IVisitor();
 
-	// default
-	virtual bool HandleDefault(const IObject &Object) = 0;
+  // default
+  virtual bool HandleDefault(const IObject &Object) = 0;
 
-	// coordinates
-	virtual bool HandlePoint(const IPoint &Point);
-	virtual bool HandleVector(const IVector &Vector);
-	virtual bool HandleCoordinate(const ICoordinate &Coord);
+  // coordinates
+  virtual bool HandlePoint(const IPoint &Point);
+  virtual bool HandleVector(const IVector &Vector);
+  virtual bool HandleCoordinate(const ICoordinate &Coord);
 
-	// lines
-	virtual bool HandleLine(const ILine &Line);
+  // lines
+  virtual bool HandleLine(const ILine &Line);
 
-	// faces
-	virtual bool HandlePolygon(const IPolygon &Polygon);
-	virtual bool HandleTriangle(const ITriangle &Triangle);
-	virtual bool HandleRectangle(const IRectangle &Rect);
-	virtual bool HandleFace(const IFace &Face);
-	virtual bool HandleQuadrilateral(const IQuadrilateral &Quad);
-	
-	// interfaces
-	virtual bool HandleInterface(const IInterfaceElement &interfaceElement);
-	
-	// plane
-	virtual bool HandlePlane(const IPlane &Plane);
+  // faces
+  virtual bool HandlePolygon(const IPolygon &Polygon);
+  virtual bool HandleTriangle(const ITriangle &Triangle);
+  virtual bool HandleRectangle(const IRectangle &Rect);
+  virtual bool HandleFace(const IFace &Face);
+  virtual bool HandleQuadrilateral(const IQuadrilateral &Quad);
+  
+  // interfaces
+  virtual bool HandleInterface(const IInterfaceElement &interfaceElement);
+  
+  // plane
+  virtual bool HandlePlane(const IPlane &Plane);
 
-	// circle
-	virtual bool HandleCircle(const ICircle &Circle);
+  // circle
+  virtual bool HandleCircle(const ICircle &Circle);
 
-	// circle
-	virtual bool HandleConus(const IConus &Conus);
+  // circle
+  virtual bool HandleConus(const IConus &Conus);
 
-	// sphere
-	virtual bool HandleSphere(const ISphere &Sphere);
+  // sphere
+  virtual bool HandleSphere(const ISphere &Sphere);
 
-	// bodies
-	virtual bool HandleBox(const IBox &Box);
-	virtual bool HandleTetrahedron(const ITetrahedron &Tetrahedron);
-	virtual bool HandleHexahedron(const IHexahedron &Hexahedron);
-	virtual bool HandleBody(const IBody &Body);
+  // bodies
+  virtual bool HandleBox(const IBox &Box);
+  virtual bool HandleTetrahedron(const ITetrahedron &Tetrahedron);
+  virtual bool HandleHexahedron(const IHexahedron &Hexahedron);
+  virtual bool HandleBody(const IBody &Body);
 
-	// point element
-	virtual bool HandlePointElement(const IPointElement &PointElement);
+  // point element
+  virtual bool HandlePointElement(const IPointElement &PointElement);
 
-	// element
-	virtual bool HandleElement(const IElement &Element);
+  // element
+  virtual bool HandleElement(const IElement &Element);
 
-	// elementsets
-	virtual bool HandleSurface(const ISurface &Surface);
-	virtual bool HandleVolume(const IVolume &Volume);
-	virtual bool HandleMesh(const IMesh &Mesh);
-	virtual bool HandlePolyLine(const IPolyLine &PolyLine);
-	virtual bool HandleElementSet(const IElementSet &ElementSet);
+  // elementsets
+  virtual bool HandleSurface(const ISurface &Surface);
+  virtual bool HandleVolume(const IVolume &Volume);
+  virtual bool HandleMesh(const IMesh &Mesh);
+  virtual bool HandlePolyLine(const IPolyLine &PolyLine);
+  virtual bool HandleElementSet(const IElementSet &ElementSet);
 
-	// array
-	virtual bool HandleArray(const IArray &Array);
+  // array
+  virtual bool HandleArray(const IArray &Array);
 
-	// object
-	virtual bool HandleObject(const IObject &Object);
+  // object
+  virtual bool HandleObject(const IObject &Object);
 
 };
 
@@ -122,12 +122,12 @@ class GEOMETRY_EXPORT CVisitorBase : public IVisitor
 {
 public:
 
-	// default
-	virtual bool HandleDefault(const IObject &/*Object*/) { return false; }
+  // default
+  virtual bool HandleDefault(const IObject &/*Object*/) { return false; }
 
-	virtual bool HandleBodyGroup(const CBodyGroup &BodyGroup);
-	virtual bool HandlePolygonPtrArray(const CPolygonPtrArray &PolygonPtrArray);
-	virtual bool HandleMeshNodeGroup(const CMeshNodeGroup &MeshNodeGroup);
+  virtual bool HandleBodyGroup(const CBodyGroup &BodyGroup);
+  virtual bool HandlePolygonPtrArray(const CPolygonPtrArray &PolygonPtrArray);
+  virtual bool HandleMeshNodeGroup(const CMeshNodeGroup &MeshNodeGroup);
 
 };
 typedef CVisitorBase CDispatchVisitorBase;

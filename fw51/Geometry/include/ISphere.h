@@ -17,7 +17,7 @@
 
 namespace geo
 {
-	class ILine;
+  class ILine;
 // Copyright (c) 2011 TNO DIANA BV                              Confidential
 // Description : The ISphere object represents a sphere 3D space 
 // Status      : Finished (80%) 
@@ -27,27 +27,27 @@ namespace geo
 class GEOMETRY_EXPORT  ISphere : public IObject
 {
 protected:
-	ISphere();
+  ISphere();
 public:
-	// Data access
-	virtual const double& Radius() const = 0;
-	virtual void Radius(const double &radius) = 0;
-	virtual const IPoint& MidPoint() const = 0;
-	virtual void MidPoint(const IPoint& midpoint) = 0;
+  // Data access
+  virtual const double& Radius() const = 0;
+  virtual void Radius(const double &radius) = 0;
+  virtual const IPoint& MidPoint() const = 0;
+  virtual void MidPoint(const IPoint& midpoint) = 0;
 
 
-	// 
-	void Rotate(const IVector &vec, const double &dAngleDeg);
-	void Move(const IVector &vec);
-	void Transform(const IMatrix &matrix);
-	void AssertValid() const;
-	virtual CPoint Min() const;
-	virtual CPoint Max() const;
-	virtual bool Empty() const;
+  // 
+  void Rotate(const IVector &vec, const double &dAngleDeg);
+  void Move(const IVector &vec);
+  void Transform(const IMatrix &matrix);
+  void AssertValid() const;
+  virtual CPoint Min() const;
+  virtual CPoint Max() const;
+  virtual bool Empty() const;
 
-	CArray<CPoint> Intersection(const ILine &line) const;
+  CArray<CPoint> Intersection(const ILine &line) const;
 
-	virtual bool Visit(IVisitor &visitor) { return visitor.HandleSphere(*this); }
+  virtual bool Visit(IVisitor &visitor) { return visitor.HandleSphere(*this); }
 
 };
 }

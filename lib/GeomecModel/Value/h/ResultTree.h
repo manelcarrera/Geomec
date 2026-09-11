@@ -204,129 +204,15 @@ class CResultInfo;
 class CResultTree : public CResultGroup
 {
 public:
-	// The effective stress tensor class is a representation of the Diana stress.
-	// Derived from the tensor
-	class CEffectiveStressResult : public IStressTensorGroup
-	{
-		double Convert(const double& dValue, CQuantity::UNIT unit) const;
-	public:
-		// Construction
-		CEffectiveStressResult(unsigned int uName, CResultGroup& group, bool bChange = false);
-		CEffectiveStressResult(const QString& sName, CResultGroup& group, bool bChange = false);
-
-		virtual bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
-
-		virtual unsigned int PreExportNameId() const;
-		virtual unsigned int ExportNameId() const;
-		virtual unsigned int TypeId() const;
-		virtual QString TypeName() const;
-		virtual unsigned int PostExportNameId() const;
-
-		// Index for referencing ..
-		virtual unsigned int ComponentIndex() const;
-		virtual unsigned int VectorIndex(CVectorComposite::PRINCIPAL_DIRECTION direction) const;
-		virtual unsigned int InvariantIndex() const;
-		virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
-  	virtual unsigned int WellPathStressIndex() const;
-	};
-
-	// The total stress tensor equipment
-	class CTotalStressResult : public IStressTensorGroup
-	{
-  public:
-    // surface stress can only be displayed for total stress
-    class CSurfaceStressComposite : public IResult
-    {
-    public:
-      class CSurfaceStressComponent : public IResultComponent
-      {
-      public:
-        typedef enum
-        {
-          SSTC_NORMAL = 0,
-          SSTC_SHEAR_PLANE = 1,
-          SSTC_SHEAR_DIP_ANGLE = 2
-        } TComponent;
-
-        CSurfaceStressComponent(unsigned int uName,
-                                CSurfaceStressComposite& parent,
-                                TComponent comp,
-                                const CDepletionStage& stage,
-                                const CAnalysisType& antype,
-                                int nRegister);
- 			  virtual unsigned int IconId() const;
-			  virtual unsigned int TypeId() const;
-			  virtual QString UnitName(const UNIT unit) const;
-        virtual bool CanComputeOnPoints() const;
-        virtual IValueDomainScalar::TValue ValuePoint(const geo::IPoint& pt, const UNIT unit = CQuantity::SI_UNIT, geo::IParallelInitializationCallback *cb = 0) const;
-        virtual void MapValueElement(const geo::IElement& elm, IValueDomainScalar::TValueVec& values, TMapType map_type, UNIT unit = CQuantity::SI_UNIT, geo::IParallelInitializationCallback *cb = 0) const;
-			  virtual IValueDomainScalar::TValue Value(const geo::IElement& /*mesh_element*/, int /*nNodeIndex*/, UNIT /*unit*/) const { assert(false); return geo::CValue(); }
-
-        virtual bool NeedParallelInitializationCallback() const;
-        virtual geo::IParallelInitializationCallback *GetParallelInitializationCallback();
-        virtual bool PrepareMapping(const geo::IElementSet *pElementSet);
-        virtual void FinishMapping();
-
-      private:
-        TComponent m_comp;
-     };
-
-    public:
-      CSurfaceStressComposite(unsigned int uName, CResultGroup& group, int storageNodeIndex);
-      CSurfaceStressComposite(const QString& sName, CResultGroup& group, int storageNodeIndex);
-
-		  virtual unsigned int IconId() const;
-		  virtual bool OnDefined(const IResultComponent& component) const;
-      virtual QString ExportLabel(int nComponent) const;
-		  virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
-
-      bool ValidName( const std::string &name, CResultInfo &resultInfo) const;
-	  protected:
-		  virtual bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
-		  virtual void BuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister);
-
-    private:
-      const IStressTensorGroup* m_pTensorGroup;
-    };
-
-  private:
-		double Convert(const double& dValue, CQuantity::UNIT unit) const;
-
-    CSurfaceStressComposite* m_pSurfaceStressComposite;
-
-  protected:
-  	virtual void CreateComposite();
-	
-	public:
-		// Construction
-		CTotalStressResult(unsigned int uName, CResultGroup& group, bool bChange = false);
-		CTotalStressResult(const QString& sName, CResultGroup& group,  bool bChange = false);
-
-		virtual bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
-
-		virtual unsigned int PreExportNameId() const;
-		virtual unsigned int TypeId() const;
-		virtual QString TypeName() const;
-		virtual unsigned int ExportNameId() const;
-		virtual unsigned int PostExportNameId() const;
-
-		// Index for referencing ..
-		virtual unsigned int ComponentIndex() const;
-		virtual unsigned int VectorIndex(CVectorComposite::PRINCIPAL_DIRECTION direction) const;
-		virtual unsigned int InvariantIndex() const;
-		virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
-  	virtual unsigned int WellPathStressIndex() const;
-	};
-
-  class CParentStressInputResult : public CEffectiveStressResult
+  // The effective stress tensor class is a representation of the Diana stress.
+  // Derived from the tensor
+  class CEffectiveStressResult : public IStressTensorGroup
   {
     double Convert(const double& dValue, CQuantity::UNIT unit) const;
-  protected:
-    virtual double GetTypicalEpsilon() const { return 1e-4; }
   public:
     // Construction
-    CParentStressInputResult(unsigned int uName, CResultGroup& group, bool bChange = false);
-    CParentStressInputResult(const QString& sName, CResultGroup& group, bool bChange = false);
+    CEffectiveStressResult(unsigned int uName, CResultGroup& group, bool bChange = false);
+    CEffectiveStressResult(const QString& sName, CResultGroup& group, bool bChange = false);
 
     virtual bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
 
@@ -336,120 +222,234 @@ public:
     virtual QString TypeName() const;
     virtual unsigned int PostExportNameId() const;
 
-    virtual bool OnDefined(const IResultComponent& component) const;
-
-    virtual const ITensor& TensorPoint(const geo::IPoint& point, const IResultComponent& component, geo::IParallelInitializationCallback *cb) const;
-    virtual const ITensor& TensorElement(const geo::IElement& element, int nNodeIndex, TMapType map_type, const IResultComponent& component, geo::IParallelInitializationCallback *cb) const;
-
-    void TensorElementFromParentModel(_ResultCache<CStressTensor>& cache, const geo::IElement& element, TMapType map_type, const CDepletionStage& stage, const CAnalysisType& antype) const;
-
-#if 0
     // Index for referencing ..
     virtual unsigned int ComponentIndex() const;
-    virtual TTensorType Type() const { return TT_STRESS; }
     virtual unsigned int VectorIndex(CVectorComposite::PRINCIPAL_DIRECTION direction) const;
     virtual unsigned int InvariantIndex() const;
-#endif
     virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
-#if 0
-    virtual unsigned int WellPathStressIndex() const;
-    virtual bool Change() const { return false; }
-    virtual double ConvertToField(const double& dDouble) const { return dDouble * FF_FACTOR_STRESS; }
-    virtual	QString UnitName(CQuantity::UNIT unit) const
+  	virtual unsigned int WellPathStressIndex() const;
+  };
+
+  // The total stress tensor equipment
+  class CTotalStressResult : public IStressTensorGroup
+  {
+  public:
+  // surface stress can only be displayed for total stress
+  class CSurfaceStressComposite : public IResult
+  {
+  public:
+      class CSurfaceStressComponent : public IResultComponent
+      {
+      public:
+    typedef enum
     {
+          SSTC_NORMAL = 0,
+          SSTC_SHEAR_PLANE = 1,
+          SSTC_SHEAR_DIP_ANGLE = 2
+    } TComponent;
+
+    CSurfaceStressComponent(unsigned int uName,
+                CSurfaceStressComposite& parent,
+                TComponent comp,
+                const CDepletionStage& stage,
+                const CAnalysisType& antype,
+                int nRegister);
+ 			  virtual unsigned int IconId() const;
+        virtual unsigned int TypeId() const;
+        virtual QString UnitName(const UNIT unit) const;
+    virtual bool CanComputeOnPoints() const;
+    virtual IValueDomainScalar::TValue ValuePoint(const geo::IPoint& pt, const UNIT unit = CQuantity::SI_UNIT, geo::IParallelInitializationCallback *cb = 0) const;
+    virtual void MapValueElement(const geo::IElement& elm, IValueDomainScalar::TValueVec& values, TMapType map_type, UNIT unit = CQuantity::SI_UNIT, geo::IParallelInitializationCallback *cb = 0) const;
+        virtual IValueDomainScalar::TValue Value(const geo::IElement& /*mesh_element*/, int /*nNodeIndex*/, UNIT /*unit*/) const { assert(false); return geo::CValue(); }
+
+    virtual bool NeedParallelInitializationCallback() const;
+    virtual geo::IParallelInitializationCallback *GetParallelInitializationCallback();
+    virtual bool PrepareMapping(const geo::IElementSet *pElementSet);
+    virtual void FinishMapping();
+
+      private:
+    TComponent m_comp;
+     };
+
+  public:
+      CSurfaceStressComposite(unsigned int uName, CResultGroup& group, int storageNodeIndex);
+      CSurfaceStressComposite(const QString& sName, CResultGroup& group, int storageNodeIndex);
+
+      virtual unsigned int IconId() const;
+      virtual bool OnDefined(const IResultComponent& component) const;
+      virtual QString ExportLabel(int nComponent) const;
+      virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
+
+      bool ValidName( const std::string &name, CResultInfo &resultInfo) const;
+    protected:
+      virtual bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
+      virtual void BuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister);
+
+  private:
+      const IStressTensorGroup* m_pTensorGroup;
+  };
+
+  private:
+    double Convert(const double& dValue, CQuantity::UNIT unit) const;
+
+  CSurfaceStressComposite* m_pSurfaceStressComposite;
+
+  protected:
+  	virtual void CreateComposite();
+  
+  public:
+    // Construction
+    CTotalStressResult(unsigned int uName, CResultGroup& group, bool bChange = false);
+    CTotalStressResult(const QString& sName, CResultGroup& group,  bool bChange = false);
+
+    virtual bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
+
+    virtual unsigned int PreExportNameId() const;
+    virtual unsigned int TypeId() const;
+    virtual QString TypeName() const;
+    virtual unsigned int ExportNameId() const;
+    virtual unsigned int PostExportNameId() const;
+
+    // Index for referencing ..
+    virtual unsigned int ComponentIndex() const;
+    virtual unsigned int VectorIndex(CVectorComposite::PRINCIPAL_DIRECTION direction) const;
+    virtual unsigned int InvariantIndex() const;
+    virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
+  	virtual unsigned int WellPathStressIndex() const;
+  };
+
+  class CParentStressInputResult : public CEffectiveStressResult
+  {
+  double Convert(const double& dValue, CQuantity::UNIT unit) const;
+  protected:
+  virtual double GetTypicalEpsilon() const { return 1e-4; }
+  public:
+  // Construction
+  CParentStressInputResult(unsigned int uName, CResultGroup& group, bool bChange = false);
+  CParentStressInputResult(const QString& sName, CResultGroup& group, bool bChange = false);
+
+  virtual bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
+
+  virtual unsigned int PreExportNameId() const;
+  virtual unsigned int ExportNameId() const;
+  virtual unsigned int TypeId() const;
+  virtual QString TypeName() const;
+  virtual unsigned int PostExportNameId() const;
+
+  virtual bool OnDefined(const IResultComponent& component) const;
+
+  virtual const ITensor& TensorPoint(const geo::IPoint& point, const IResultComponent& component, geo::IParallelInitializationCallback *cb) const;
+  virtual const ITensor& TensorElement(const geo::IElement& element, int nNodeIndex, TMapType map_type, const IResultComponent& component, geo::IParallelInitializationCallback *cb) const;
+
+  void TensorElementFromParentModel(_ResultCache<CStressTensor>& cache, const geo::IElement& element, TMapType map_type, const CDepletionStage& stage, const CAnalysisType& antype) const;
+
+#if 0
+  // Index for referencing ..
+  virtual unsigned int ComponentIndex() const;
+  virtual TTensorType Type() const { return TT_STRESS; }
+  virtual unsigned int VectorIndex(CVectorComposite::PRINCIPAL_DIRECTION direction) const;
+  virtual unsigned int InvariantIndex() const;
+#endif
+  virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
+#if 0
+  virtual unsigned int WellPathStressIndex() const;
+  virtual bool Change() const { return false; }
+  virtual double ConvertToField(const double& dDouble) const { return dDouble * FF_FACTOR_STRESS; }
+  virtual	QString UnitName(CQuantity::UNIT unit) const
+  {
       QString sUnit;
       if (unit == CQuantity::SI_UNIT)
-        sUnit = getStringTableEntry(IDS_UNIT_SI_STRESS);
+    sUnit = getStringTableEntry(IDS_UNIT_SI_STRESS);
       else
-        sUnit = getStringTableEntry(IDS_UNIT_FIELD_STRESS);
+    sUnit = getStringTableEntry(IDS_UNIT_FIELD_STRESS);
       return sUnit;
-    }
+  }
 #endif
-    virtual bool PrepareMapping(const geo::IElementSet *, const IValueComponentBase *);
+  virtual bool PrepareMapping(const geo::IElementSet *, const IValueComponentBase *);
   };
 
   // The total strain tensor equipment
-	class CTotalStrainResult : public IStrainTensorGroup
-	{
-	
-	public:
-		// Construction
-		CTotalStrainResult(unsigned int uName, CResultGroup& group);
-		CTotalStrainResult(const QString& sName, CResultGroup& group);
-		
-		virtual bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
+  class CTotalStrainResult : public IStrainTensorGroup
+  {
+  
+  public:
+    // Construction
+    CTotalStrainResult(unsigned int uName, CResultGroup& group);
+    CTotalStrainResult(const QString& sName, CResultGroup& group);
+    
+    virtual bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
 
-		virtual unsigned int PreExportNameId() const;
-		virtual unsigned int TypeId() const;
-		virtual QString TypeName() const;
-		virtual unsigned int ExportNameId() const;
-		virtual unsigned int PostExportNameId() const;
+    virtual unsigned int PreExportNameId() const;
+    virtual unsigned int TypeId() const;
+    virtual QString TypeName() const;
+    virtual unsigned int ExportNameId() const;
+    virtual unsigned int PostExportNameId() const;
 
-		// Index for referencing ..
-		virtual unsigned int ComponentIndex() const;
-		virtual unsigned int VectorIndex(CVectorComposite::PRINCIPAL_DIRECTION direction) const;
-		virtual unsigned int InvariantIndex() const;
-		virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
-    virtual unsigned int WellPathAxialStrainIndex() const { return RC_TOTAL_STRAIN_WPAXIALSTRAIN; }
-    virtual bool OnDefined(const IResultComponent& component) const;
-	};
+    // Index for referencing ..
+    virtual unsigned int ComponentIndex() const;
+    virtual unsigned int VectorIndex(CVectorComposite::PRINCIPAL_DIRECTION direction) const;
+    virtual unsigned int InvariantIndex() const;
+    virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
+  virtual unsigned int WellPathAxialStrainIndex() const { return RC_TOTAL_STRAIN_WPAXIALSTRAIN; }
+  virtual bool OnDefined(const IResultComponent& component) const;
+  };
 
-	// The plactic strain tensor equipment
-	class CPlasticStrainResult : public IStrainTensorGroup
-	{
-	
-	public:
-		// Construction
-		CPlasticStrainResult(unsigned int uName, CResultGroup& group);
-		CPlasticStrainResult(const QString& sName, CResultGroup& group);
+  // The plactic strain tensor equipment
+  class CPlasticStrainResult : public IStrainTensorGroup
+  {
+  
+  public:
+    // Construction
+    CPlasticStrainResult(unsigned int uName, CResultGroup& group);
+    CPlasticStrainResult(const QString& sName, CResultGroup& group);
 
-		virtual bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
+    virtual bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
 
-		virtual unsigned int PreExportNameId() const;
-		virtual unsigned int ExportNameId() const;
-		virtual unsigned int TypeId() const;
-		virtual QString TypeName() const;
-		virtual unsigned int PostExportNameId() const;
+    virtual unsigned int PreExportNameId() const;
+    virtual unsigned int ExportNameId() const;
+    virtual unsigned int TypeId() const;
+    virtual QString TypeName() const;
+    virtual unsigned int PostExportNameId() const;
 
-		// Index for referencing ..
-		virtual unsigned int ComponentIndex() const;
-		virtual unsigned int VectorIndex(CVectorComposite::PRINCIPAL_DIRECTION direction) const;
-		virtual unsigned int InvariantIndex() const;
-		virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
-    virtual unsigned int WellPathAxialStrainIndex() const { return RC_PLASTIC_STRAIN_WPAXIALSTRAIN; }
-    virtual bool PrepareMapping(const geo::IElementSet *, const IValueComponentBase *);
-	};
+    // Index for referencing ..
+    virtual unsigned int ComponentIndex() const;
+    virtual unsigned int VectorIndex(CVectorComposite::PRINCIPAL_DIRECTION direction) const;
+    virtual unsigned int InvariantIndex() const;
+    virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
+  virtual unsigned int WellPathAxialStrainIndex() const { return RC_PLASTIC_STRAIN_WPAXIALSTRAIN; }
+  virtual bool PrepareMapping(const geo::IElementSet *, const IValueComponentBase *);
+  };
 
 /*
-	// The creep strain tensor equipment
-	class CCreepStrainResult : public IStrainTensorGroup
-	{
-	
-	public:
-		// Construction
-		CCreepStrainResult(unsigned int uName, CResultGroup& group);
-		CCreepStrainResult(const QString& sName, CResultGroup& group);
+  // The creep strain tensor equipment
+  class CCreepStrainResult : public IStrainTensorGroup
+  {
+  
+  public:
+    // Construction
+    CCreepStrainResult(unsigned int uName, CResultGroup& group);
+    CCreepStrainResult(const QString& sName, CResultGroup& group);
 
-		virtual bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
+    virtual bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
 
-		virtual unsigned int PreExportNameId() const;
-		virtual unsigned int ExportNameId() const;
-		virtual unsigned int TypeId() const;
-		virtual QString TypeName() const;
-		virtual unsigned int PostExportNameId() const;
+    virtual unsigned int PreExportNameId() const;
+    virtual unsigned int ExportNameId() const;
+    virtual unsigned int TypeId() const;
+    virtual QString TypeName() const;
+    virtual unsigned int PostExportNameId() const;
 
-		// Index for referencing ..
-		virtual unsigned int ComponentIndex() const;
-		virtual unsigned int VectorIndex(CVectorComposite::PRINCIPAL_DIRECTION direction) const;
-		virtual unsigned int InvariantIndex() const;
-		virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
-	};
+    // Index for referencing ..
+    virtual unsigned int ComponentIndex() const;
+    virtual unsigned int VectorIndex(CVectorComposite::PRINCIPAL_DIRECTION direction) const;
+    virtual unsigned int InvariantIndex() const;
+    virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
+  };
 */
-	// The scalar results
+  // The scalar results
   class CScalarResult : public IResult
   {
   public:
-    typedef enum {
+  typedef enum {
       PORE_PRESSURE,
       PORE_PRESSURE_CHANGE,
       FRACTURE_MATRIX_PRESSURE,
@@ -493,13 +493,13 @@ public:
       TEMPERATURE_GRADIENT_INPUT,
       VOLUMETRIC_STRAIN_INPUT,
       VOLUMETRIC_STRAIN_CHANGE_INPUT
-    , NORMAL_STRAIN_INPUT
-    , LATERAL_STRAIN_INPUT
-    } TResultType;
+  , NORMAL_STRAIN_INPUT
+  , LATERAL_STRAIN_INPUT
+  } TResultType;
 
 
-    class CScalarResultComponent : public IScalarResultComponent
-    {
+  class CScalarResultComponent : public IScalarResultComponent
+  {
       friend class CThicknessParallelInitializationCallback;
       friend class CAvgVolumeParallelInitializationCallback;
       friend class CValueMapper;
@@ -515,11 +515,11 @@ public:
       void AddToCache(TDisplacementMap *cache);
       void AddToCache(TFormAvgVolMap *cache);
 
-    public:
+  public:
       CScalarResultComponent(CScalarResult& parent, // The tensor composite composite parent
-        const CDepletionStage& stage,// Depletion stage of the component
-        const CAnalysisType& antype, // Analysis type
-        int nRegister); // ResultRegister
+    const CDepletionStage& stage,// Depletion stage of the component
+    const CAnalysisType& antype, // Analysis type
+    int nRegister); // ResultRegister
       virtual unsigned int IconId() const;
       virtual unsigned int TypeId() const;
       virtual	QString UnitName(const UNIT unit) const;
@@ -529,14 +529,14 @@ public:
       virtual bool Defined() const;
 
       void calcValues
-        (const geo::CValue &sEE
-        , const geo::CValue &sNN
-        , const geo::CValue &sVV
-        , const geo::CValue &sEN
-        , geo::CValue &SHTotazimuth
-        , geo::CValue &SHTot_SvTot
-        , geo::CValue &ShTot_SvTot
-        ) const; //wjrx mantis 2870
+    (const geo::CValue &sEE
+    , const geo::CValue &sNN
+    , const geo::CValue &sVV
+    , const geo::CValue &sEN
+    , geo::CValue &SHTotazimuth
+    , geo::CValue &SHTot_SvTot
+    , geo::CValue &ShTot_SvTot
+    ) const; //wjrx mantis 2870
 
       virtual void ElementValues(IValueDomainScalar::TValueVec& values, const geo::IElement& element, UNIT unit, geo::IParallelInitializationCallback *cb) const;
       void PorePressure(IValueDomainScalar::TValueVec& values, const geo::IElement& element, const CDepletionStage& stage) const;
@@ -559,37 +559,37 @@ public:
       virtual geo::IParallelInitializationCallback *GetParallelInitializationCallback();
       virtual bool NeedParallelInitializationCallback() const { return Parent().NeedParallelInitializationCallback(); }
 
-    private:
+  private:
       geo::CValue FetchDisplacementValueFor(const geo::IPoint& pt, const CDepletionStage& stage, geo::IParallelInitializationCallback *cb) const;
       void PorePressureUndrained(IValueDomainScalar::TValueVec& values, const geo::IElement& element, const CDepletionStage& stage, const CFormationBase& formation) const;
       void apertureValues(IValueDomainScalar::TValueVec& fractureAperture,
-        const geo::IElement& mesh_element,
-        const CDepletionStage& depletionStage, UNIT unit,
-        TResultType resultType) const;
+    const geo::IElement& mesh_element,
+    const CDepletionStage& depletionStage, UNIT unit,
+    TResultType resultType) const;
       void PlasticEnergy(const CDepletionStage& stage, IValueDomainScalar::TValueVec& values, const geo::IElement& element, UNIT unit, geo::IParallelInitializationCallback *cb) const;
-    };
+  };
 
   private:
-    TResultType m_result_type;
-    unsigned int m_uLabel;
-    CScalarResultComponent *m_pVolumeAverage;
-    void SetIndex();
+  TResultType m_result_type;
+  unsigned int m_uLabel;
+  CScalarResultComponent *m_pVolumeAverage;
+  void SetIndex();
   protected:
-    virtual bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
-    virtual void BuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister);
+  virtual bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
+  virtual void BuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister);
   public:
-    // Construction
-    CScalarResult(unsigned int uName, unsigned int uLabelId, CResultGroup& group, TResultType result_type);
-    CScalarResult(const QString& sName, unsigned int uLabelId, CResultGroup& group, TResultType result_type);
-    bool ValidName(const std::string &name, CResultInfo &resultInfo) const;
-    TResultType ResultType() const;
-    virtual QString ExportLabel(int nComponent) const;
-    virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
-    virtual void OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint);
-    virtual bool OnDefined(const IResultComponent& component) const;
+  // Construction
+  CScalarResult(unsigned int uName, unsigned int uLabelId, CResultGroup& group, TResultType result_type);
+  CScalarResult(const QString& sName, unsigned int uLabelId, CResultGroup& group, TResultType result_type);
+  bool ValidName(const std::string &name, CResultInfo &resultInfo) const;
+  TResultType ResultType() const;
+  virtual QString ExportLabel(int nComponent) const;
+  virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
+  virtual void OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint);
+  virtual bool OnDefined(const IResultComponent& component) const;
 
-    class CTensorParallelInitializationCallback : public ITensorGroupTemplate<CStrainTensor>::CParallelInitializationCallback
-    {
+  class CTensorParallelInitializationCallback : public ITensorGroupTemplate<CStrainTensor>::CParallelInitializationCallback
+  {
       ITensorGroupTemplate<CStressTensor>::CParallelInitializationCallback m_cb;
 
       std::vector<IValueDomainScalar::TValueVec> m_ScalarVectors;
@@ -598,52 +598,52 @@ public:
       template<class Value>
       void initVector(std::vector<std::vector<Value> >& vectors, size_t index, size_t size);
 
-    public:
+  public:
       CTensorParallelInitializationCallback(CModelBase &model);
       virtual ~CTensorParallelInitializationCallback();
       virtual _ITensorResultCache& GetCache(const ITensorGroup *caller, const IResultComponent& component) const;
 
       virtual IValueDomainScalar::TValueVec *getScalarVector(size_t index, size_t size);
       virtual CStressTensorValueSet::TValueVec *getStressTensorVector(size_t index, size_t size);
-    };
+  };
 
-    virtual bool NeedParallelInitializationCallback() const;
+  virtual bool NeedParallelInitializationCallback() const;
 
-    virtual bool PrepareMapping(const geo::IElementSet *, const IValueComponentBase *);
+  virtual bool PrepareMapping(const geo::IElementSet *, const IValueComponentBase *);
 
   private:
-    bool m_bNeedTensorParallelInitializationCallback;
+  bool m_bNeedTensorParallelInitializationCallback;
 };
 
-	// The displacement result represents the displacemnt vector vor
-	class CDisplacementResult : public CVectorResult
-	{
-	protected:
-		virtual bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
-	public:
-		// Construction
-		CDisplacementResult(unsigned int uName, CResultGroup& group);
-		CDisplacementResult(const QString& sName, CResultGroup& group);
+  // The displacement result represents the displacemnt vector vor
+  class CDisplacementResult : public CVectorResult
+  {
+  protected:
+    virtual bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
+  public:
+    // Construction
+    CDisplacementResult(unsigned int uName, CResultGroup& group);
+    CDisplacementResult(const QString& sName, CResultGroup& group);
 
-                bool ValidName(const std::string &name, CResultInfo &resultInfo) const;
+        bool ValidName(const std::string &name, CResultInfo &resultInfo) const;
 
-		virtual double ConvertToField(const double& dValue) const;
+    virtual double ConvertToField(const double& dValue) const;
 
-		// Displacements are only in the interesting in non-initial depletionstages.
-		virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
-		virtual QString ExportLabel(int nComponent) const;
-    virtual QString VectorExportLabel() const;
-		virtual	QString UnitName(UNIT unit) const;
+    // Displacements are only in the interesting in non-initial depletionstages.
+    virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
+    virtual QString ExportLabel(int nComponent) const;
+  virtual QString VectorExportLabel() const;
+    virtual	QString UnitName(UNIT unit) const;
 
-    virtual bool PrepareMapping(const geo::IElementSet *, const IValueComponentBase *);
-	};
+  virtual bool PrepareMapping(const geo::IElementSet *, const IValueComponentBase *);
+  };
 
 
-	// Scalar results for fault computing
-	class CFaultScalarResult : public IResult
-	{
-	public:
-		typedef enum { DILATATION,
+  // Scalar results for fault computing
+  class CFaultScalarResult : public IResult
+  {
+  public:
+    typedef enum { DILATATION,
                    SHEAR_CAPACITY,
                    PORE_PRESSURE,
                    PORE_PRESSURE_CHANGE,
@@ -653,92 +653,92 @@ public:
                    BOUNDARY_DISPLACEMENT_INPUT,
                    BOUNDARY_PRESSURE_INPUT
                  } TResultType;
-		class CFaultScalarResultComponent : public IScalarResultComponent
-		{
-		public:
-			CFaultScalarResultComponent(CFaultScalarResult& parent,		// The tensor composite composite parent
-										const CDepletionStage& stage,	// Depletion stage of the component
-										const CAnalysisType& antype,					// Analysis type
-										int nRegister);					// Register index				
-			virtual unsigned int IconId() const;
-			virtual unsigned int TypeId() const;
-			virtual	QString UnitName(const UNIT unit) const;
+    class CFaultScalarResultComponent : public IScalarResultComponent
+    {
+    public:
+      CFaultScalarResultComponent(CFaultScalarResult& parent,		// The tensor composite composite parent
+                    const CDepletionStage& stage,	// Depletion stage of the component
+                    const CAnalysisType& antype,					// Analysis type
+                    int nRegister);					// Register index				
+      virtual unsigned int IconId() const;
+      virtual unsigned int TypeId() const;
+      virtual	QString UnitName(const UNIT unit) const;
       virtual void ElementValues(IValueDomainScalar::TValueVec& values, const geo::IElement& element, UNIT unit, geo::IParallelInitializationCallback *cb) const;
       virtual IValueDomainScalar::TValueVec ValueElement(const geo::IElement& elm, const UNIT unit = CQuantity::SI_UNIT, geo::IParallelInitializationCallback *cb = 0) const;
 
-		private:
-			void DilatationValues(const CDepletionStage& stage, IValueDomainScalar::TValueVec& values, const geo::IElement& mesh_element, UNIT unit) const;
+    private:
+      void DilatationValues(const CDepletionStage& stage, IValueDomainScalar::TValueVec& values, const geo::IElement& mesh_element, UNIT unit) const;
       void PlasticEnergy(const CDepletionStage& stage, IValueDomainScalar::TValueVec& values, const geo::IElement& element, UNIT unit) const;
-		};
-	private:
-		TResultType m_result_type;
-		unsigned int m_uLabel;
-		void SetIndex();
-	protected:
-		virtual bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
-		virtual void BuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister);
-	public:
-		// Construction
-		CFaultScalarResult(unsigned int uName, unsigned int uLabelId, CResultGroup& group, TResultType result_type);
-		CFaultScalarResult(const QString& sName, unsigned int uLabelId, CResultGroup& group, TResultType result_type);
-                bool ValidName( const std::string &name, CResultInfo &resultInfo) const;
-		TResultType ResultType() const;
-		virtual QString ExportLabel(int nComponent) const;
-		virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
-		virtual bool OnDefined(const IResultComponent& component) const;
-    virtual bool isFaultResult() const;
-    virtual bool PrepareMapping(const geo::IElementSet *, const IValueComponentBase *);
-	};
+    };
+  private:
+    TResultType m_result_type;
+    unsigned int m_uLabel;
+    void SetIndex();
+  protected:
+    virtual bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
+    virtual void BuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister);
+  public:
+    // Construction
+    CFaultScalarResult(unsigned int uName, unsigned int uLabelId, CResultGroup& group, TResultType result_type);
+    CFaultScalarResult(const QString& sName, unsigned int uLabelId, CResultGroup& group, TResultType result_type);
+        bool ValidName( const std::string &name, CResultInfo &resultInfo) const;
+    TResultType ResultType() const;
+    virtual QString ExportLabel(int nComponent) const;
+    virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
+    virtual bool OnDefined(const IResultComponent& component) const;
+  virtual bool isFaultResult() const;
+  virtual bool PrepareMapping(const geo::IElementSet *, const IValueComponentBase *);
+  };
 
-	// The displacement result represents the displacemnt vector for the fault
-	class CFaultDisplacementResult : public CVectorResult
-	{
-	protected:
-		virtual bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
-	public:
-		// Construction
-		CFaultDisplacementResult(unsigned int uName, CResultGroup& group);
-		CFaultDisplacementResult(const QString& sName, CResultGroup& group);
+  // The displacement result represents the displacemnt vector for the fault
+  class CFaultDisplacementResult : public CVectorResult
+  {
+  protected:
+    virtual bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
+  public:
+    // Construction
+    CFaultDisplacementResult(unsigned int uName, CResultGroup& group);
+    CFaultDisplacementResult(const QString& sName, CResultGroup& group);
 
-                bool ValidName(const std::string &name,CResultInfo &resultInfo) const;
-		// Displacements are only in the interesting in non-initial depletionstages.
-		virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
-		virtual QString ExportLabel(int nComponent) const;
-    virtual QString VectorExportLabel() const;
-		virtual	QString UnitName(UNIT unit) const;
-		virtual double ConvertToField(const double& dValue) const;
-    virtual bool isFaultResult() const;
-    virtual bool PrepareMapping(const geo::IElementSet *, const IValueComponentBase *);
-	};
+        bool ValidName(const std::string &name,CResultInfo &resultInfo) const;
+    // Displacements are only in the interesting in non-initial depletionstages.
+    virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
+    virtual QString ExportLabel(int nComponent) const;
+  virtual QString VectorExportLabel() const;
+    virtual	QString UnitName(UNIT unit) const;
+    virtual double ConvertToField(const double& dValue) const;
+  virtual bool isFaultResult() const;
+  virtual bool PrepareMapping(const geo::IElementSet *, const IValueComponentBase *);
+  };
 
   class CFaultPlasticSlipResult : public IVectorResult
   {
   public:
-		// Construction
-		CFaultPlasticSlipResult(unsigned int uName, CResultGroup& group);
-		CFaultPlasticSlipResult(const QString& sName, CResultGroup& group);
+    // Construction
+    CFaultPlasticSlipResult(unsigned int uName, CResultGroup& group);
+    CFaultPlasticSlipResult(const QString& sName, CResultGroup& group);
 
-    virtual const geo::IVector& VectorPoint(const geo::IPoint& point, const IResultComponent& component, geo::IParallelInitializationCallback *cb = 0) const;
-	  virtual const geo::IVector& VectorElement(const geo::IElement& element, 
-										                          int nNodeIndex, 
-											                        TMapType map_type,
-											                        const IResultComponent& component, geo::IParallelInitializationCallback *callback = 0) const;
-		virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
-		virtual QString ExportLabel(int nComponent) const;
-    virtual QString VectorExportLabel() const;
-		virtual	QString UnitName(UNIT unit) const;
-		virtual double ConvertToField(const double& dValue) const;
-    virtual bool isFaultResult() const;
-                bool ValidName(const std::string &name,CResultInfo &resultInfo) const;
+  virtual const geo::IVector& VectorPoint(const geo::IPoint& point, const IResultComponent& component, geo::IParallelInitializationCallback *cb = 0) const;
+    virtual const geo::IVector& VectorElement(const geo::IElement& element, 
+                                              int nNodeIndex, 
+                                  TMapType map_type,
+                                  const IResultComponent& component, geo::IParallelInitializationCallback *callback = 0) const;
+    virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
+    virtual QString ExportLabel(int nComponent) const;
+  virtual QString VectorExportLabel() const;
+    virtual	QString UnitName(UNIT unit) const;
+    virtual double ConvertToField(const double& dValue) const;
+  virtual bool isFaultResult() const;
+        bool ValidName(const std::string &name,CResultInfo &resultInfo) const;
 
-    virtual bool PrepareMapping(const geo::IElementSet *, const IValueComponentBase *);
+  virtual bool PrepareMapping(const geo::IElementSet *, const IValueComponentBase *);
 
   protected:
-		virtual bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
+    virtual bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
 
   private:
-    struct _cache
-    {
+  struct _cache
+  {
       std::vector<geo::CVector> m_vcValues;
       const geo::IElement* pElement;
       const geo::IPoint* pPoint;
@@ -746,11 +746,11 @@ public:
       CAnalysisType::TAnalysisType antype;
       int nRegisterIndex;
       std::set<int> stNodeIndex;
-    };
+  };
 
-    mutable struct _cache m_cache;
+  mutable struct _cache m_cache;
 
-    geo::CVector Calculate(const geo::IInterfaceElement& iface,
+  geo::CVector Calculate(const geo::IInterfaceElement& iface,
                            const geo::IPoint& point,
                            const geo::IVector& vecDeformation,
                            double dDilatation,
@@ -758,64 +758,64 @@ public:
                            double dElasticShearStiffness) const;
   };
 
-	class CFaultNormalStress : public IResult
-	{
-		class CNormalStressComponent : public IScalarResultComponent
-		{
-		public:
-			CNormalStressComponent(CFaultNormalStress& parent,			// The tensor composite composite parent
-							       const CDepletionStage& stage,	// Depletion stage of the component
-								   const CAnalysisType& antype,					// Analysis type
-								   int nRegister);					// 
-			virtual unsigned int IconId() const;
-			virtual unsigned int TypeId() const;
-			virtual	QString UnitName(const UNIT unit) const;
+  class CFaultNormalStress : public IResult
+  {
+    class CNormalStressComponent : public IScalarResultComponent
+    {
+    public:
+      CNormalStressComponent(CFaultNormalStress& parent,			// The tensor composite composite parent
+                     const CDepletionStage& stage,	// Depletion stage of the component
+                   const CAnalysisType& antype,					// Analysis type
+                   int nRegister);					// 
+      virtual unsigned int IconId() const;
+      virtual unsigned int TypeId() const;
+      virtual	QString UnitName(const UNIT unit) const;
       virtual void ElementValues(IValueDomainScalar::TValueVec& values, const geo::IElement& element, UNIT unit, geo::IParallelInitializationCallback *cb) const;
-		};
-	friend class CNormalStressComponent;
-	bool m_bChange;
-	unsigned int m_uLabel;
-	bool m_bTotal;
-	protected:
-		bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
-		virtual void BuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister);
-	public:
-		// Construction
-		CFaultNormalStress(unsigned int uFileIndex, unsigned int uName, unsigned int uLabelId, CResultGroup& group, bool bTotal, bool bChange);
-                bool ValidName(const std::string &name,CResultInfo &resultInfo) const;
-		virtual QString ExportLabel(int nComponent) const;
-		virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
-    virtual bool isFaultResult() const;
-    virtual bool PrepareMapping(const geo::IElementSet *, const IValueComponentBase *);
-	};
+    };
+  friend class CNormalStressComponent;
+  bool m_bChange;
+  unsigned int m_uLabel;
+  bool m_bTotal;
+  protected:
+    bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
+    virtual void BuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister);
+  public:
+    // Construction
+    CFaultNormalStress(unsigned int uFileIndex, unsigned int uName, unsigned int uLabelId, CResultGroup& group, bool bTotal, bool bChange);
+        bool ValidName(const std::string &name,CResultInfo &resultInfo) const;
+    virtual QString ExportLabel(int nComponent) const;
+    virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
+  virtual bool isFaultResult() const;
+  virtual bool PrepareMapping(const geo::IElementSet *, const IValueComponentBase *);
+  };
 
-	class CFaultShearStress : public CVectorResult
-	{
-		unsigned int m_uLabelId;
-	protected:
-		virtual bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
-	public:
-		CFaultShearStress(unsigned int uFileIndex, 
-						  unsigned int uLabelId,
-						  CResultGroup& group);
+  class CFaultShearStress : public CVectorResult
+  {
+    unsigned int m_uLabelId;
+  protected:
+    virtual bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
+  public:
+    CFaultShearStress(unsigned int uFileIndex, 
+              unsigned int uLabelId,
+              CResultGroup& group);
 
-		// Displacements are only in the interesting in non-initial depletionstages.
-                bool ValidName(const std::string &name,CResultInfo &resultInfo) const;
-		virtual double ConvertToField(const double& dValue) const;
-		virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
-		virtual QString ExportLabel(int nComponent) const;
-    virtual QString VectorExportLabel() const;
-		virtual	QString UnitName(UNIT unit) const;
-    virtual bool isFaultResult() const;
-    virtual bool PrepareMapping(const geo::IElementSet *, const IValueComponentBase *);
+    // Displacements are only in the interesting in non-initial depletionstages.
+        bool ValidName(const std::string &name,CResultInfo &resultInfo) const;
+    virtual double ConvertToField(const double& dValue) const;
+    virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
+    virtual QString ExportLabel(int nComponent) const;
+  virtual QString VectorExportLabel() const;
+    virtual	QString UnitName(UNIT unit) const;
+  virtual bool isFaultResult() const;
+  virtual bool PrepareMapping(const geo::IElementSet *, const IValueComponentBase *);
   };
 
   class CFaultShearStressLengthChangeComposite : public CVectorResult
   {
   public:
-    class CFaultShearStressLengthChangeComponent : public IVectorResult::CVectorComponent
-    {
-    public:
+  class CFaultShearStressLengthChangeComponent : public IVectorResult::CVectorComponent
+  {
+  public:
       CFaultShearStressLengthChangeComponent(unsigned int uName,
                                              CFaultShearStressLengthChangeComposite& parent,
                                              const CDepletionStage& stage,
@@ -829,43 +829,43 @@ public:
 
       virtual bool isFaultResult() const;
 
-    private:
+  private:
       CFaultShearStressLengthChangeComposite& m_parent;
       typedef std::pair<const IResultComponent*, const IResultComponent*> TSourceComponentPair;
       TSourceComponentPair SourceComponents() const;
-    };
+  };
 
-    CFaultShearStressLengthChangeComposite(unsigned int uName, unsigned int uLabelId, CResultGroup& group);
-    CFaultShearStressLengthChangeComposite(const QString& sName, unsigned int uLabelId, CResultGroup& group);
-    virtual ~CFaultShearStressLengthChangeComposite();
+  CFaultShearStressLengthChangeComposite(unsigned int uName, unsigned int uLabelId, CResultGroup& group);
+  CFaultShearStressLengthChangeComposite(const QString& sName, unsigned int uLabelId, CResultGroup& group);
+  virtual ~CFaultShearStressLengthChangeComposite();
 
-    virtual bool OnDefined(const IResultComponent& component) const;
-    virtual unsigned int IconId() const;
+  virtual bool OnDefined(const IResultComponent& component) const;
+  virtual unsigned int IconId() const;
 
   	virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
-	  virtual double ConvertToField(const double& dValue) const;
-		virtual QString ExportLabel(int nComponent) const;
-    virtual QString VectorExportLabel() const;
-	  virtual	QString UnitName(UNIT unit) const;
-    virtual bool isFaultResult() const;
-    bool ValidName ( const std::string &name , CResultInfo &resultInfo) const;
+    virtual double ConvertToField(const double& dValue) const;
+    virtual QString ExportLabel(int nComponent) const;
+  virtual QString VectorExportLabel() const;
+    virtual	QString UnitName(UNIT unit) const;
+  virtual bool isFaultResult() const;
+  bool ValidName ( const std::string &name , CResultInfo &resultInfo) const;
 
-    virtual bool PrepareMapping(const geo::IElementSet *, const IValueComponentBase *);
+  virtual bool PrepareMapping(const geo::IElementSet *, const IValueComponentBase *);
 
-	protected:
-    virtual bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
-		virtual void BuildComponent(const CDepletionStage &stage, const CAnalysisType& antype, int nRegister);
+  protected:
+  virtual bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
+    virtual void BuildComponent(const CDepletionStage &stage, const CAnalysisType& antype, int nRegister);
 
   private:
-    unsigned int m_uLabelId;
+  unsigned int m_uLabelId;
   };
 
   class CRTCIStrainResult : public IResult
   {
   public:
-    class CRTCIStrainResultComponent : public IResultComponent
-    {
-    public:
+  class CRTCIStrainResultComponent : public IResultComponent
+  {
+  public:
     	CRTCIStrainResultComponent(CRTCIStrainResult& result, const CDepletionStage& stage, const CAnalysisType& antype, int nRegister);
       virtual unsigned int IconId() const;
       virtual unsigned int TypeId() const;
@@ -875,17 +875,17 @@ public:
 
       virtual bool PrepareMapping(const geo::IElementSet *pElementSet);
       virtual void FinishMapping();
-    };
+  };
 
-    CRTCIStrainResult(CResultGroup& group);
-    bool ValidName (const std::string &name, CResultInfo &resultInfo) const;
+  CRTCIStrainResult(CResultGroup& group);
+  bool ValidName (const std::string &name, CResultInfo &resultInfo) const;
 
-    virtual QString ExportLabel(int nComponent) const;
-    virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
-		virtual bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
+  virtual QString ExportLabel(int nComponent) const;
+  virtual bool CanMap(const COpenGLNode& node, int nRegister) const;
+    virtual bool OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const;
 
   protected:
-    virtual void BuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister);
+  virtual void BuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister);
   };
 
 private:
@@ -966,26 +966,26 @@ private:
   std::map <CScalarResult::TResultType, IResult*> m_pAperture;
 
 public:
-	// Constructor
-	CResultTree(CModelBase& model);
-	virtual ~CResultTree();
+  // Constructor
+  CResultTree(CModelBase& model);
+  virtual ~CResultTree();
 
 
-	const CDisplacementResult& Displacement() const { return *m_pDisplacement; }
-	const CTotalStressResult& TotalStress() const { return *m_pTotalStress; }
+  const CDisplacementResult& Displacement() const { return *m_pDisplacement; }
+  const CTotalStressResult& TotalStress() const { return *m_pTotalStress; }
   const CTotalStressResult& TotalStressChange() const { return *m_pTotalStressChange; }
-	const CTotalStrainResult& TotalStrain() const { return *m_pTotalStrain; }
-	const CPlasticStrainResult& PlasticStrain() const { return *m_pPlasticStrain; }
-	const CEffectiveStressResult& EffectiveStress() const { return *m_pEffectiveStress; }
+  const CTotalStrainResult& TotalStrain() const { return *m_pTotalStrain; }
+  const CPlasticStrainResult& PlasticStrain() const { return *m_pPlasticStrain; }
+  const CEffectiveStressResult& EffectiveStress() const { return *m_pEffectiveStress; }
   const CEffectiveStressResult& EffectiveStressChange() const { return *m_pEffectiveStressChange; }
-	const IResult& PorePressure() const { return *m_pPorePressure; }
-        //const IResult& SHtotAzimuth() {*m_pSHtotAzimuth;} //wjrx mantis 2870
-        //const IResult& SHtotSvtot()   {*m_pSHtotSvtot;}   //wjrx mantis 2870
-        //const IResult& ShtotSvtot()   {*m_pShtotSvtot;}   //wjrx mantis 2870
-	const IResult& Temperature() const { return *m_pTemperature; }
+  const IResult& PorePressure() const { return *m_pPorePressure; }
+    //const IResult& SHtotAzimuth() {*m_pSHtotAzimuth;} //wjrx mantis 2870
+    //const IResult& SHtotSvtot()   {*m_pSHtotSvtot;}   //wjrx mantis 2870
+    //const IResult& ShtotSvtot()   {*m_pShtotSvtot;}   //wjrx mantis 2870
+  const IResult& Temperature() const { return *m_pTemperature; }
   const IResult& Consolidation() const { return *m_pConsolidation; }
   const IResult& Porosity() const { return *m_pPorosity; }
-	const CFaultNormalStress& FaultEffectiveNormalStress() const { return *m_pFaultEffectiveNormalStress; }
+  const CFaultNormalStress& FaultEffectiveNormalStress() const { return *m_pFaultEffectiveNormalStress; }
   const CFaultShearStress& FaultShearStress() const { return *m_pFaultShearStress; }
   const CFaultDisplacementResult& FaultDisplacement() const { return *m_pFaultDisplacement; }
   const CFaultScalarResult& FaultDilatation() const { return *m_pFaultDilatation; }
@@ -999,9 +999,9 @@ public:
   const CDerivedResultGroup& RegistryResults() const;
   CDerivedResultGroup& RegistryResults();
 
-	virtual void OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint);
+  virtual void OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint);
 
-	typedef std::vector<const IValueComponentBase*> TDataVec;
+  typedef std::vector<const IValueComponentBase*> TDataVec;
 
   ACCEPT_GEOMECMODELVISITORS(VisitResultTree);
 };

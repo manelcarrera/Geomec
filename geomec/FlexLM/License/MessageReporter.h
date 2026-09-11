@@ -31,10 +31,10 @@
 class MessageReporter
 {
 public:
-	MessageReporter(void);
-	~MessageReporter(void);
+  MessageReporter(void);
+  ~MessageReporter(void);
 
-	virtual int ShowMessageBox(const char *message, const char *caption);
-	virtual int ShowRetryBox(const char *message, const char *caption);
+  virtual int ShowMessageBox(const char *message, const char *caption);
+  virtual int ShowRetryBox(const char *message, const char *caption);
 };
 

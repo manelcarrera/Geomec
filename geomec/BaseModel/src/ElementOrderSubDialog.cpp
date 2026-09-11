@@ -8,7 +8,7 @@ CElementOrderSubDialog::CElementOrderSubDialog(CDialog* dialog,
 : m_dialog(dialog)
 , m_formationBase(formationBase)
 , m_inheritFromModel(
-    formationBase.inheritElementOrderFromModel() ? TRUE : FALSE)
+  formationBase.inheritElementOrderFromModel() ? TRUE : FALSE)
 , m_elementOrder(elementOrder2RadioButtonIndex(formationBase.ElementOrder()))
 {
 }
@@ -33,7 +33,7 @@ const QString FORMATION_ID_FORMAT = QObject::tr("%1%2");
 QString createFormationID(const CFormationBase& formationBase)
 {
   return FORMATION_ID_FORMAT.
-    arg(formationBase.Name()).arg(formationBase.Index());
+  arg(formationBase.Name()).arg(formationBase.Index());
 }
 
 void updateElementOrderRadioButtons(const CDialog* dialog, BOOL enable)
@@ -51,14 +51,14 @@ void CElementOrderSubDialog::onBnClickedInheritFromModel()
   QString formationID = createFormationID(m_formationBase);
 
   if ((elementOrder = previousElementOrder.find(formationID)) ==
-    previousElementOrder.end())
+  previousElementOrder.end())
   {
-    std::pair <TFormation2ElementOrder::iterator, bool> result =
+  std::pair <TFormation2ElementOrder::iterator, bool> result =
       previousElementOrder.insert(std::make_pair(formationID, m_elementOrder));
 
-    assert(result.second);
+  assert(result.second);
 
-    elementOrder = result.first;
+  elementOrder = result.first;
   }
 
   m_dialog->UpdateData(TRUE);
@@ -67,14 +67,14 @@ void CElementOrderSubDialog::onBnClickedInheritFromModel()
 
   if (m_inheritFromModel)
   {
-    (*elementOrder).second = m_elementOrder;
-    m_elementOrder = elementOrder2RadioButtonIndex(
+  (*elementOrder).second = m_elementOrder;
+  m_elementOrder = elementOrder2RadioButtonIndex(
       dynamic_cast <const CModelBase&> (
-        m_formationBase.Model()).ElementOrder());
+    m_formationBase.Model()).ElementOrder());
   }
   else
   {
-    m_elementOrder = (*elementOrder).second;
+  m_elementOrder = (*elementOrder).second;
   }
 
   m_dialog->UpdateData(FALSE);
@@ -94,20 +94,20 @@ void CElementOrderSubDialog::onOK()
   m_dialog->UpdateData(TRUE);
 
   m_formationBase.
-    inheritElementOrderFromModel(m_inheritFromModel ? true : false);
+  inheritElementOrderFromModel(m_inheritFromModel ? true : false);
 
   switch (m_elementOrder)
   {
-    case 0:
+  case 0:
       m_formationBase.ElementOrder(CElementOrder::EO_LINEAR);
       break;
-    case 1:
+  case 1:
       m_formationBase.ElementOrder(CElementOrder::EO_QUADRATIC);
       break;
-    case 2:
+  case 2:
       m_formationBase.ElementOrder(CElementOrder::EO_INIQUAD);
       break;
-    default:
+  default:
       assert(false);
   }
 }
@@ -123,16 +123,16 @@ int CElementOrderSubDialog::elementOrder2RadioButtonIndex(
 
   switch (elementOrder)
   {
-    case CElementOrder::EO_LINEAR:
+  case CElementOrder::EO_LINEAR:
       radioButtonIndex = 0;
       break;
-    case CElementOrder::EO_QUADRATIC:
+  case CElementOrder::EO_QUADRATIC:
       radioButtonIndex = 1;
       break;
-    case CElementOrder::EO_INIQUAD:
+  case CElementOrder::EO_INIQUAD:
       radioButtonIndex = 2;
       break;
-    default:
+  default:
       assert(false);
   }
 

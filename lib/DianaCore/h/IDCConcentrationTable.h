@@ -8,7 +8,7 @@ namespace dia {
 class IConcentrationTable : public IValueTable
 {
 public:
-	IConcentrationTable(const IDianaRunner &runner);
+  IConcentrationTable(const IDianaRunner &runner);
 
 protected:
   virtual std::string TableName() const;

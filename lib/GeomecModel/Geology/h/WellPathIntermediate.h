@@ -19,9 +19,9 @@ public:
                           bool bVisible,
                           const QString& strDescription);
   virtual void AddPoint(well::CWellPoint& point,
-                        QRgb color,
-                        int iPointSize,
-                        bool bVisible);
+            QRgb color,
+            int iPointSize,
+            bool bVisible);
   virtual void Color(QRgb color);
   virtual void RemoveAllPoints();
   virtual void SetSectionDescription(well::IWellSection& section, const QString& strDescription);
@@ -45,12 +45,12 @@ private slots:
 private:
   struct SectionInfo
   {
-    well::IWellSection* pSection;
-    SECTION_TYPE type;
-    QRgb color;
-    int linewidth;
-    bool visible;
-    QString description;
+  well::IWellSection* pSection;
+  SECTION_TYPE type;
+  QRgb color;
+  int linewidth;
+  bool visible;
+  QString description;
   };
 
   typedef std::list<SectionInfo> TSectionInfoList;
@@ -58,10 +58,10 @@ private:
 
   struct PointInfo
   {
-    well::CWellPoint* pPoint;
-    QRgb color;
-    int pointsize;
-    bool visible;
+  well::CWellPoint* pPoint;
+  QRgb color;
+  int pointsize;
+  bool visible;
   };
 
   typedef std::list<PointInfo> TPointInfoList;

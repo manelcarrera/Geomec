@@ -17,7 +17,7 @@
 IMPLEMENT_DYNAMIC(CGVTSeismicGridDlg, CDialog)
 
 CGVTSeismicGridDlg::CGVTSeismicGridDlg(CGVTSeismicGridDefinition &griddefinition, const CModelBase &model,CWnd* pParent /*=NULL*/)
-	: CDialog(CGVTSeismicGridDlg::IDD, pParent),
+  : CDialog(CGVTSeismicGridDlg::IDD, pParent),
   m_Model(model),
   m_SeismicGridDefinition(griddefinition),
   m_Name(griddefinition.Name().toStdString().c_str()),
@@ -81,7 +81,7 @@ CGVTSeismicGridDlg::~CGVTSeismicGridDlg()
 
 void CGVTSeismicGridDlg::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
+  CDialog::DoDataExchange(pDX);
 
   CLengthQuantity lq;
   CUnitNode::TUnitType unit = GetGeomecDoc()->UnitNode().Unit();
@@ -94,11 +94,11 @@ void CGVTSeismicGridDlg::DoDataExchange(CDataExchange* pDX)
 
   if(!pDX->m_bSaveAndValidate)
   {
-    dBinSpacing   = lq.Convert(m_BinSpacing,   unit, CLengthQuantity::SI_UNIT);
-    dEasting      = lq.Convert(m_Easting,      unit, CLengthQuantity::SI_UNIT);
-    dNorthing     = lq.Convert(m_Northing,     unit, CLengthQuantity::SI_UNIT);
-    dDepth        = lq.Convert(m_Depth,        unit, CLengthQuantity::SI_UNIT);
-    dTrackSpacing = lq.Convert(m_TrackSpacing, unit, CLengthQuantity::SI_UNIT);
+  dBinSpacing   = lq.Convert(m_BinSpacing,   unit, CLengthQuantity::SI_UNIT);
+  dEasting      = lq.Convert(m_Easting,      unit, CLengthQuantity::SI_UNIT);
+  dNorthing     = lq.Convert(m_Northing,     unit, CLengthQuantity::SI_UNIT);
+  dDepth        = lq.Convert(m_Depth,        unit, CLengthQuantity::SI_UNIT);
+  dTrackSpacing = lq.Convert(m_TrackSpacing, unit, CLengthQuantity::SI_UNIT);
   }
 
   DDX_Text(pDX, IDC_EDIT_GVTNAME,     m_Name);
@@ -122,11 +122,11 @@ void CGVTSeismicGridDlg::DoDataExchange(CDataExchange* pDX)
 
   if(pDX->m_bSaveAndValidate)
   {
-    m_BinSpacing =   lq.Convert(dBinSpacing,   CLengthQuantity::SI_UNIT, unit);
-    m_Easting =      lq.Convert(dEasting,      CLengthQuantity::SI_UNIT, unit);
-    m_Northing =     lq.Convert(dNorthing,     CLengthQuantity::SI_UNIT, unit);
-    m_Depth =        lq.Convert(dDepth,        CLengthQuantity::SI_UNIT, unit);
-    m_TrackSpacing = lq.Convert(dTrackSpacing, CLengthQuantity::SI_UNIT, unit);
+  m_BinSpacing =   lq.Convert(dBinSpacing,   CLengthQuantity::SI_UNIT, unit);
+  m_Easting =      lq.Convert(dEasting,      CLengthQuantity::SI_UNIT, unit);
+  m_Northing =     lq.Convert(dNorthing,     CLengthQuantity::SI_UNIT, unit);
+  m_Depth =        lq.Convert(dDepth,        CLengthQuantity::SI_UNIT, unit);
+  m_TrackSpacing = lq.Convert(dTrackSpacing, CLengthQuantity::SI_UNIT, unit);
   }
 }
 
@@ -140,17 +140,17 @@ END_MESSAGE_MAP()
 void CGVTSeismicGridDlg::OnBnClickedButtonGvtbrowse()
 {
   CString sFilter = "Shell File Format (*.vt)|*.vt|Key files (*.key)|*.key|All Files (*.*)|*.*||";
-	CTnoFileDialog dlg(TRUE, 
-					NULL, 
-					NULL,
-					NULL,
-					sFilter);
+  CTnoFileDialog dlg(TRUE, 
+          NULL, 
+          NULL,
+          NULL,
+          sFilter);
   if(dlg.DoModal() == IDOK)
-	{
-    bool bNoData = static_cast<CButton *>(GetDlgItem(IDC_CHECK_VT_NODATA))->GetCheck() == BST_CHECKED;
+  {
+  bool bNoData = static_cast<CButton *>(GetDlgItem(IDC_CHECK_VT_NODATA))->GetCheck() == BST_CHECKED;
 
-    if (m_SeismicGridDefinition.Import(QString(dlg.GetPathName()), const_cast<CModelBase&>(m_Model), bNoData))
-    {
+  if (m_SeismicGridDefinition.Import(QString(dlg.GetPathName()), const_cast<CModelBase&>(m_Model), bNoData))
+  {
       m_FilePath      = dlg.GetPathName();
       m_Northing      = m_SeismicGridDefinition.CornerNorthing();
       m_Easting       = m_SeismicGridDefinition.CornerEasting();
@@ -166,7 +166,7 @@ void CGVTSeismicGridDlg::OnBnClickedButtonGvtbrowse()
       m_NumTrack      = m_SeismicGridDefinition.NumTrack();
 
       UpdateData(FALSE);
-    }
+  }
   }
   
 }

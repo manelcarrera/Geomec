@@ -31,12 +31,12 @@ double determineBoundaryValue(const std::map <double, double>& contribution,
 
   for (; pair != contribution.end(); ++pair)
   {
-    size += (*pair).second;
+  size += (*pair).second;
 
-    if (size > boundary)
-    {
+  if (size > boundary)
+  {
       return (*pair).first;
-    }
+  }
   }
 
   assert(pair == contribution.end());
@@ -57,15 +57,15 @@ double CResponseTypefn::calculate(const TObject& object,
 
   if ((element != 0) && (failureMode->getResultComponent()->Defined()))
   {
-    typedef std::map <double, double> TDoublesMap;
+  typedef std::map <double, double> TDoublesMap;
 
-    TDoublesMap contribution;
-    double totalSize = 0;
+  TDoublesMap contribution;
+  double totalSize = 0;
 
-    while (element != 0)
-    {
+  while (element != 0)
+  {
       const IValueDomainScalar::TValueVec valueVec =
-        failureMode->getResultComponent()->ValueElement(*element);
+    failureMode->getResultComponent()->ValueElement(*element);
 
       verifyResponseType(valueVec);
 
@@ -76,9 +76,9 @@ double CResponseTypefn::calculate(const TObject& object,
       totalSize += valueTimesSize;
 
       element = object->getNextElement();
-    }
+  }
 
-    p = determineBoundaryValue(contribution, getResponseType(), totalSize);
+  p = determineBoundaryValue(contribution, getResponseType(), totalSize);
   }
 
   return p;

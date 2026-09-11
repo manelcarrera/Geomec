@@ -25,7 +25,7 @@ void RescueLookupTable::Archive(RescueContext *context, FILE *archiveFile)
 */
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -37,19 +37,19 @@ RescueLookupTable::RescueLookupTable(RescueContext *context, FILE *archiveFile)
   myfscanf(context, archiveFile, &rows);
   if (rows != 0)
   {
-    table = new RESCUEFLOAT [(size_t) (rows * 2)];
-    myfscanf(context, archiveFile, table, rows * 2, FALSE);
+  table = new RESCUEFLOAT [(size_t) (rows * 2)];
+  myfscanf(context, archiveFile, table, rows * 2, FALSE);
   }
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -57,11 +57,11 @@ RESCUEBOOL RescueLookupTable::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueLookupTable)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueLookupItem::IsOfType(thisType);
+  return RescueLookupItem::IsOfType(thisType);
   }
 }
 

@@ -26,36 +26,36 @@ class OPENGLFRAME_EXPORT CGeoObjectHandlerBase  :public QObject
   Q_OBJECT
 
 public:
-	CGeoObjectHandlerBase(bool autodelete=true);
-	virtual ~CGeoObjectHandlerBase();
+  CGeoObjectHandlerBase(bool autodelete=true);
+  virtual ~CGeoObjectHandlerBase();
 
 signals:
-	void GeometryObjectUpdated(const geo::IObject * pObject,IDrawDef * pDrawDef);
-	void GeometryObjectRemoved(const geo::IObject * pObject);
+  void GeometryObjectUpdated(const geo::IObject * pObject,IDrawDef * pDrawDef);
+  void GeometryObjectRemoved(const geo::IObject * pObject);
 
 public:
-	//construction destruction
-	void Update(CDisplayPair *pObject);
-	CDisplayPair* CreateNewPair();
+  //construction destruction
+  void Update(CDisplayPair *pObject);
+  CDisplayPair* CreateNewPair();
 
-	//construction with drawdef and array,see constructors of CDisplayPair
-	CDisplayPair* CreateNewPair(CDrawDef * dd,geo::CPtrArray<geo::IObject> * ptr_array);
+  //construction with drawdef and array,see constructors of CDisplayPair
+  CDisplayPair* CreateNewPair(CDrawDef * dd,geo::CPtrArray<geo::IObject> * ptr_array);
 
-	//clears and deletes all objects in arrays but leave all arrays
-	void ClearAllObject();
+  //clears and deletes all objects in arrays but leave all arrays
+  void ClearAllObject();
 
-	void RemoveAllObjects();
+  void RemoveAllObjects();
 
-	int Size() const;
-	CDisplayPair* GetPair(int index);
+  int Size() const;
+  CDisplayPair* GetPair(int index);
 
   bool AutoDelete() const;
 
 private:
-	void RemoveObject(CDisplayPair* pObject); // called from CDisplayPair destructor
+  void RemoveObject(CDisplayPair* pObject); // called from CDisplayPair destructor
 
 protected:
-	QList<CDisplayPair*> m_DisplayList;
+  QList<CDisplayPair*> m_DisplayList;
   bool m_bAutoDelete;
 };
 

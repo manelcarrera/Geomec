@@ -40,7 +40,7 @@ template <typename V, typename G>
 
 template <typename V, typename G>
   CGlobalValueObserver <V, G> ::CGlobalValueObserver(
-    const CGlobalValueObserver <V, G> & rhs)
+  const CGlobalValueObserver <V, G> & rhs)
   : CGraphNode(rhs)
   , m_Value(rhs.m_Value)
   , m_GlobalValue(rhs.m_GlobalValue)
@@ -49,7 +49,7 @@ template <typename V, typename G>
 
 template <typename V, typename G>
   CGlobalValueObserver <V, G> & CGlobalValueObserver <V, G> ::operator = (
-    const CGlobalValueObserver& rhs)
+  const CGlobalValueObserver& rhs)
 {
   CGlobalValueObserver temporaryGlobalValueObserver(rhs);
 
@@ -86,7 +86,7 @@ template <typename V, typename G>
 
 template <typename V, typename G>
   void CGlobalValueObserver <V, G> ::OnNeighbourModified(const CGraphNode& /*node*/,
-    unsigned int /*hint*/)
+  unsigned int /*hint*/)
 {
   m_Value->Component().Modified();
 }
@@ -100,7 +100,7 @@ template <typename V, typename G>
 
 template <typename V, typename G>
   void CGlobalValueObserver <V, G> ::swap(
-    CGlobalValueObserver& aGlobalValueObserver)
+  CGlobalValueObserver& aGlobalValueObserver)
 {
   V* temporaryValue = aGlobalValueObserver.m_Value;
   G* temporaryGlobalValue = aGlobalValueObserver.m_GlobalValue;

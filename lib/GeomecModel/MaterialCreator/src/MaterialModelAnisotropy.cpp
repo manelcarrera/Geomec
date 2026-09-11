@@ -65,8 +65,8 @@ static bool CalculateManualValues(QString& strErrorMsg, const TThomsen& thomsen,
   // compliance matrix
   if(mat.GetDeterminant() <= 0)
   {
-    strErrorMsg = "This combination of Thomsen parameters is invalid, the stiffness matrix cannot be inverted";
-    return false;
+  strErrorMsg = "This combination of Thomsen parameters is invalid, the stiffness matrix cannot be inverted";
+  return false;
   }
 
   geo::CMatrix matInv = mat.GetInverse();
@@ -76,32 +76,32 @@ static bool CalculateManualValues(QString& strErrorMsg, const TThomsen& thomsen,
   manual.Et = 1./matInv.Value(0, 0);
   if(manual.Et <= 0)
   {
-    strErrorMsg = QObject::tr("%1 Transverse Young's Modulus of %2, %3").arg(s1).arg(manual.Et).arg(s2);
-    return false;
+  strErrorMsg = QObject::tr("%1 Transverse Young's Modulus of %2, %3").arg(s1).arg(manual.Et).arg(s2);
+  return false;
   }
   manual.En = 1./matInv.Value(2, 2);
   if(manual.En <= 0)
   {
-    strErrorMsg = QObject::tr("%1 Normal Young's Modulus of %2, %3").arg(s1).arg(manual.En).arg(s2);
-    return false;
+  strErrorMsg = QObject::tr("%1 Normal Young's Modulus of %2, %3").arg(s1).arg(manual.En).arg(s2);
+  return false;
   }
   manual.nut = -manual.Et*matInv.Value(0, 1);
   if(manual.nut < 0 || manual.nut >= 0.5)
   {
-    strErrorMsg = QObject::tr("%1 Transverse Poisson's Ratio of %2, %3").arg(s1).arg(manual.nut).arg(s2);
-    return false;
+  strErrorMsg = QObject::tr("%1 Transverse Poisson's Ratio of %2, %3").arg(s1).arg(manual.nut).arg(s2);
+  return false;
   }
   manual.nun = -manual.En*matInv.Value(1, 2);
   if(manual.nun < 0 || manual.nun >= 0.5)
   {
-    strErrorMsg = QObject::tr("%1 Normal Poisson's Ratio of %2, %3").arg(s1).arg(manual.nun).arg(s2);
-    return false;
+  strErrorMsg = QObject::tr("%1 Normal Poisson's Ratio of %2, %3").arg(s1).arg(manual.nun).arg(s2);
+  return false;
   }
   manual.G = C44;
   if(manual.G <= 0)
   {
-    strErrorMsg = QObject::tr("%1 Shear Modulus of %2, %3").arg(s1).arg(manual.G).arg(s2);
-    return false;
+  strErrorMsg = QObject::tr("%1 Shear Modulus of %2, %3").arg(s1).arg(manual.G).arg(s2);
+  return false;
   }
 
   return true;
@@ -141,22 +141,22 @@ static void SetThomsenValues(ml::CMaterial& mat, const ml::CMatParam::CSetStrate
   QString string;
   if(CalculateManualValues(string, thomsen, manual))
   {
-    ml::CMatParam* pYoungNorm = mat.MatParameter(MLD_YOUNGMODULUS_NORM);
-    assert(pYoungNorm);
-    ml::CMatParam* pYoungTrans = mat.MatParameter(MLD_YOUNGMODULUS_TRANS);
-    assert(pYoungTrans);
-    ml::CMatParam* pPoissonNorm = mat.MatParameter(MLD_POISSONRATIO_NORM);
-    assert(pPoissonNorm);
-    ml::CMatParam* pPoissonTrans = mat.MatParameter(MLD_POISSONRATIO_TRANS);
-    assert(pPoissonTrans);
-    ml::CMatParam* pShearModulus = mat.MatParameter(MLD_ANISOTROPIC_SHEARMODULUS);
-    assert(pShearModulus);
+  ml::CMatParam* pYoungNorm = mat.MatParameter(MLD_YOUNGMODULUS_NORM);
+  assert(pYoungNorm);
+  ml::CMatParam* pYoungTrans = mat.MatParameter(MLD_YOUNGMODULUS_TRANS);
+  assert(pYoungTrans);
+  ml::CMatParam* pPoissonNorm = mat.MatParameter(MLD_POISSONRATIO_NORM);
+  assert(pPoissonNorm);
+  ml::CMatParam* pPoissonTrans = mat.MatParameter(MLD_POISSONRATIO_TRANS);
+  assert(pPoissonTrans);
+  ml::CMatParam* pShearModulus = mat.MatParameter(MLD_ANISOTROPIC_SHEARMODULUS);
+  assert(pShearModulus);
 
-    (strat.*SetParam)(*pYoungNorm, manual.En);
-    (strat.*SetParam)(*pYoungTrans, manual.Et);
-    (strat.*SetParam)(*pPoissonNorm, manual.nun);
-    (strat.*SetParam)(*pPoissonTrans, manual.nut);
-    (strat.*SetParam)(*pShearModulus, manual.G);
+  (strat.*SetParam)(*pYoungNorm, manual.En);
+  (strat.*SetParam)(*pYoungTrans, manual.Et);
+  (strat.*SetParam)(*pPoissonNorm, manual.nun);
+  (strat.*SetParam)(*pPoissonTrans, manual.nut);
+  (strat.*SetParam)(*pShearModulus, manual.G);
   }
 }
 
@@ -167,17 +167,17 @@ static void SetManualValues(ml::CMaterial& mat, const ml::CMatParam::CSetStrateg
   const ml::CMatParam* pYoungNorm = mat.MatParameter(MLD_YOUNGMODULUS_NORM);
   assert(pYoungNorm);
 
-	const ml::CMatParam *pYoungTrans = mat.MatParameter(MLD_YOUNGMODULUS_TRANS);
-	assert(pYoungTrans);
+  const ml::CMatParam *pYoungTrans = mat.MatParameter(MLD_YOUNGMODULUS_TRANS);
+  assert(pYoungTrans);
 
-	const ml::CMatParam *pPoissonNorm = mat.MatParameter(MLD_POISSONRATIO_NORM);
-	assert(pPoissonNorm);
+  const ml::CMatParam *pPoissonNorm = mat.MatParameter(MLD_POISSONRATIO_NORM);
+  assert(pPoissonNorm);
 
-	const ml::CMatParam *pPoissonTrans = mat.MatParameter(MLD_POISSONRATIO_TRANS);
-	assert(pPoissonTrans);
+  const ml::CMatParam *pPoissonTrans = mat.MatParameter(MLD_POISSONRATIO_TRANS);
+  assert(pPoissonTrans);
 
-	const ml::CMatParam *pShearStiff = mat.MatParameter(MLD_ANISOTROPIC_SHEARMODULUS);
-	assert(pShearStiff);
+  const ml::CMatParam *pShearStiff = mat.MatParameter(MLD_ANISOTROPIC_SHEARMODULUS);
+  assert(pShearStiff);
 
   const ml::CMatParam* pRhob = mat.MatParameter(MLD_RHOB);
   assert(pRhob);
@@ -251,20 +251,20 @@ void CMaterialAnisotropyYoungNormSetStrategy::operator()(double dValue, ml::CMat
   ml::CMaterial& mat = param.ParentMaterial();
 
   const ml::CMatParam *pYoungNorm = mat.MatParameter(MLD_YOUNGMODULUS_NORM);
-	assert(pYoungNorm);
+  assert(pYoungNorm);
 
   ml::CMatParam* pYoungNormDecomp = mat.MatParameter(MLD_YOUNGMODULUS_NORM_DECOMP);
   assert(pYoungNormDecomp);
 
   // decompaction Young's modulus should follow if value is equal to old Young's value
   if(fabs(pYoungNormDecomp->Value() - pYoungNorm->PreviousValue()) < 1e-4)
-    SetParamValue(*pYoungNormDecomp, dValue);
+  SetParamValue(*pYoungNormDecomp, dValue);
 
   if(mat.MatParameter(MLD_THOMSEN_EPSILON))
   {
-    // material has Thomsen parameters, calculate them
-    SetParamFunc f = &CMaterialAnisotropyYoungNormSetStrategy::SetParamValue;
-    SetManualValues(mat, *this, f);
+  // material has Thomsen parameters, calculate them
+  SetParamFunc f = &CMaterialAnisotropyYoungNormSetStrategy::SetParamValue;
+  SetManualValues(mat, *this, f);
   }
 }
 
@@ -275,20 +275,20 @@ void CMaterialAnisotropyYoungTransSetStrategy::operator()(double dValue, ml::CMa
   ml::CMaterial& mat = param.ParentMaterial();
 
   const ml::CMatParam *pYoungTrans = mat.MatParameter(MLD_YOUNGMODULUS_TRANS);
-	assert(pYoungTrans);
+  assert(pYoungTrans);
 
   ml::CMatParam* pYoungTransDecomp = mat.MatParameter(MLD_YOUNGMODULUS_TRANS_DECOMP);
   assert(pYoungTransDecomp);
 
   // decompaction Young's modulus should follow if value is equal to old Young's value
   if(fabs(pYoungTransDecomp->Value() - pYoungTrans->PreviousValue()) < 1e-4)
-    SetParamValue(*pYoungTransDecomp, dValue);
+  SetParamValue(*pYoungTransDecomp, dValue);
 
   if(mat.MatParameter(MLD_THOMSEN_EPSILON))
   {
-    // material has Thomsen parameters, calculate them
-    SetParamFunc f = &CMaterialAnisotropyYoungTransSetStrategy::SetParamValue;
-    SetManualValues(mat, *this, f);
+  // material has Thomsen parameters, calculate them
+  SetParamFunc f = &CMaterialAnisotropyYoungTransSetStrategy::SetParamValue;
+  SetManualValues(mat, *this, f);
   }
 }
 
@@ -299,20 +299,20 @@ void CMaterialAnisotropyPoissonNormSetStrategy::operator()(double dValue, ml::CM
   ml::CMaterial& mat = param.ParentMaterial();
 
   const ml::CMatParam *pPoissonNorm = mat.MatParameter(MLD_POISSONRATIO_NORM);
-	assert(pPoissonNorm);
+  assert(pPoissonNorm);
 
   ml::CMatParam* pPoissonNormDecomp = mat.MatParameter(MLD_POISSONRATIO_NORM_DECOMP);
   assert(pPoissonNormDecomp);
 
   // decompaction Poisson's ratio should follow if value is equal to old Poisson's ratio
   if(fabs(pPoissonNormDecomp->Value() - pPoissonNorm->PreviousValue()) < 1e-8)
-    SetParamValue(*pPoissonNormDecomp, dValue);
+  SetParamValue(*pPoissonNormDecomp, dValue);
 
   if(mat.MatParameter(MLD_THOMSEN_EPSILON))
   {
-    // material has Thomsen parameters, calculate them
-    SetParamFunc f = &CMaterialAnisotropyPoissonNormSetStrategy::SetParamValue;
-    SetManualValues(mat, *this, f);
+  // material has Thomsen parameters, calculate them
+  SetParamFunc f = &CMaterialAnisotropyPoissonNormSetStrategy::SetParamValue;
+  SetManualValues(mat, *this, f);
   }
 }
 
@@ -323,20 +323,20 @@ void CMaterialAnisotropyPoissonTransSetStrategy::operator()(double dValue, ml::C
   ml::CMaterial& mat = param.ParentMaterial();
 
   const ml::CMatParam *pPoissonTrans = mat.MatParameter(MLD_POISSONRATIO_TRANS);
-	assert(pPoissonTrans);
+  assert(pPoissonTrans);
 
   ml::CMatParam* pPoissonTransDecomp = mat.MatParameter(MLD_POISSONRATIO_TRANS_DECOMP);
   assert(pPoissonTransDecomp);
 
   // decompaction Poisson's ratio should follow if value is equal to old Poisson's ratio
   if(fabs(pPoissonTransDecomp->Value() - pPoissonTrans->PreviousValue()) < 1e-8)
-    SetParamValue(*pPoissonTransDecomp, dValue);
+  SetParamValue(*pPoissonTransDecomp, dValue);
 
   if(mat.MatParameter(MLD_THOMSEN_EPSILON))
   {
-    // material has Thomsen parameters, calculate them
-    SetParamFunc f = &CMaterialAnisotropyPoissonTransSetStrategy::SetParamValue;
-    SetManualValues(mat, *this, f);
+  // material has Thomsen parameters, calculate them
+  SetParamFunc f = &CMaterialAnisotropyPoissonTransSetStrategy::SetParamValue;
+  SetManualValues(mat, *this, f);
   }
 }
 
@@ -347,20 +347,20 @@ void CMaterialAnisotropyShearStiffSetStrategy::operator()(double dValue, ml::CMa
   ml::CMaterial& mat = param.ParentMaterial();
 
   const ml::CMatParam *pShearStiff = mat.MatParameter(MLD_ANISOTROPIC_SHEARMODULUS);
-	assert(pShearStiff);
+  assert(pShearStiff);
 
   ml::CMatParam* pShearStiffDecomp = mat.MatParameter(MLD_ANISOTROPIC_SHEARMODULUS_DECOMP);
   assert(pShearStiffDecomp);
 
   // decompaction shear stiffness should follow if value is equal to old shear stiffness
   if(fabs(pShearStiffDecomp->Value() - pShearStiff->PreviousValue()) < 1e-4)
-    SetParamValue(*pShearStiffDecomp, dValue);
+  SetParamValue(*pShearStiffDecomp, dValue);
 
   if(mat.MatParameter(MLD_THOMSEN_EPSILON))
   {
-    // material has Thomsen parameters, calculate them
-    SetParamFunc f = &CMaterialAnisotropyShearStiffSetStrategy::SetParamValue;
-    SetManualValues(mat, *this, f);
+  // material has Thomsen parameters, calculate them
+  SetParamFunc f = &CMaterialAnisotropyShearStiffSetStrategy::SetParamValue;
+  SetManualValues(mat, *this, f);
   }
 }
 
@@ -370,19 +370,19 @@ bool CMaterialAnisotropyVpCheckStrategy::operator()(double dValue, const ml::CMa
 
   const ml::CMatParam* pDensity = mat.MatParameter(MLD_RHOB);
   if(!pDensity)
-    return false;
+  return false;
   const ml::CMatParam* pVs = mat.MatParameter(MLD_VELOCITYS);
   if(!pVs)
-    return false;
+  return false;
   const ml::CMatParam* pEpsilon = mat.MatParameter(MLD_THOMSEN_EPSILON);
   if(!pEpsilon)
-    return false;
+  return false;
   const ml::CMatParam* pGamma = mat.MatParameter(MLD_THOMSEN_GAMMA);
   if(!pGamma)
-    return false;
+  return false;
   const ml::CMatParam* pDelta = mat.MatParameter(MLD_THOMSEN_DELTA);
   if(!pDelta)
-    return false;
+  return false;
 
   TThomsen thomsen;
   thomsen.Rhob = pDensity->Value();
@@ -394,7 +394,7 @@ bool CMaterialAnisotropyVpCheckStrategy::operator()(double dValue, const ml::CMa
 
   TManual manual;
   if(!CalculateManualValues(strErrorMsg, thomsen, manual))
-    return false;
+  return false;
 
   return true;
 }
@@ -418,19 +418,19 @@ bool CMaterialAnisotropyVsCheckStrategy::operator()(double dValue, const ml::CMa
 
   const ml::CMatParam* pDensity = mat.MatParameter(MLD_RHOB);
   if(!pDensity)
-    return false;
+  return false;
   const ml::CMatParam* pVp = mat.MatParameter(MLD_VELOCITYP);
   if(!pVp)
-    return false;
+  return false;
   const ml::CMatParam* pEpsilon = mat.MatParameter(MLD_THOMSEN_EPSILON);
   if(!pEpsilon)
-    return false;
+  return false;
   const ml::CMatParam* pGamma = mat.MatParameter(MLD_THOMSEN_GAMMA);
   if(!pGamma)
-    return false;
+  return false;
   const ml::CMatParam* pDelta = mat.MatParameter(MLD_THOMSEN_DELTA);
   if(!pDelta)
-    return false;
+  return false;
 
   TThomsen thomsen;
   thomsen.Rhob = pDensity->Value();
@@ -442,7 +442,7 @@ bool CMaterialAnisotropyVsCheckStrategy::operator()(double dValue, const ml::CMa
 
   TManual manual;
   if(!CalculateManualValues(strErrorMsg, thomsen, manual))
-    return false;
+  return false;
 
   return true;
 }
@@ -466,19 +466,19 @@ bool CMaterialAnisotropyThomsenEpsilonCheckStrategy::operator()(double dValue, c
 
   const ml::CMatParam* pDensity = mat.MatParameter(MLD_RHOB);
   if(!pDensity)
-    return false;
+  return false;
   const ml::CMatParam* pVp = mat.MatParameter(MLD_VELOCITYP);
   if(!pVp)
-    return false;
+  return false;
   const ml::CMatParam* pVs = mat.MatParameter(MLD_VELOCITYS);
   if(!pVs)
-    return false;
+  return false;
   const ml::CMatParam* pGamma = mat.MatParameter(MLD_THOMSEN_GAMMA);
   if(!pGamma)
-    return false;
+  return false;
   const ml::CMatParam* pDelta = mat.MatParameter(MLD_THOMSEN_DELTA);
   if(!pDelta)
-    return false;
+  return false;
 
   TThomsen thomsen;
   thomsen.Rhob = pDensity->Value();
@@ -490,7 +490,7 @@ bool CMaterialAnisotropyThomsenEpsilonCheckStrategy::operator()(double dValue, c
 
   TManual manual;
   if(!CalculateManualValues(strErrorMsg, thomsen, manual))
-    return false;
+  return false;
 
   return true;
 }
@@ -514,19 +514,19 @@ bool CMaterialAnisotropyThomsenGammaCheckStrategy::operator()(double dValue, con
 
   const ml::CMatParam* pDensity = mat.MatParameter(MLD_RHOB);
   if(!pDensity)
-    return false;
+  return false;
   const ml::CMatParam* pVp = mat.MatParameter(MLD_VELOCITYP);
   if(!pVp)
-    return false;
+  return false;
   const ml::CMatParam* pVs = mat.MatParameter(MLD_VELOCITYS);
   if(!pVs)
-    return false;
+  return false;
   const ml::CMatParam* pEpsilon = mat.MatParameter(MLD_THOMSEN_EPSILON);
   if(!pEpsilon)
-    return false;
+  return false;
   const ml::CMatParam* pDelta = mat.MatParameter(MLD_THOMSEN_DELTA);
   if(!pDelta)
-    return false;
+  return false;
 
   TThomsen thomsen;
   thomsen.Rhob = pDensity->Value();
@@ -538,7 +538,7 @@ bool CMaterialAnisotropyThomsenGammaCheckStrategy::operator()(double dValue, con
 
   TManual manual;
   if(!CalculateManualValues(strErrorMsg, thomsen, manual))
-    return false;
+  return false;
 
   return true;
 }
@@ -562,19 +562,19 @@ bool CMaterialAnisotropyThomsenDeltaCheckStrategy::operator()(double dValue, con
 
   const ml::CMatParam* pDensity = mat.MatParameter(MLD_RHOB);
   if(!pDensity)
-    return false;
+  return false;
   const ml::CMatParam* pVp = mat.MatParameter(MLD_VELOCITYP);
   if(!pVp)
-    return false;
+  return false;
   const ml::CMatParam* pVs = mat.MatParameter(MLD_VELOCITYS);
   if(!pVs)
-    return false;
+  return false;
   const ml::CMatParam* pEpsilon = mat.MatParameter(MLD_THOMSEN_EPSILON);
   if(!pEpsilon)
-    return false;
+  return false;
   const ml::CMatParam* pGamma = mat.MatParameter(MLD_THOMSEN_GAMMA);
   if(!pGamma)
-    return false;
+  return false;
 
   TThomsen thomsen;
   thomsen.Rhob = pDensity->Value();
@@ -586,7 +586,7 @@ bool CMaterialAnisotropyThomsenDeltaCheckStrategy::operator()(double dValue, con
 
   TManual manual;
   if(!CalculateManualValues(strErrorMsg, thomsen, manual))
-    return false;
+  return false;
 
   return true;
 }
@@ -608,24 +608,24 @@ bool CMaterialAnisotropyCheckStrategy::operator () (
   const ml::CMaterial& material) const
 {
   const ml::CMatParam* highFractureDensityInclination =
-    material.MatParameter(MLD_HIGH_FRACT_DENS_INCL);
+  material.MatParameter(MLD_HIGH_FRACT_DENS_INCL);
   const ml::CMatParam* highFractureDensityAzimuth =
-    material.MatParameter(MLD_HIGH_FRACT_DENS_AZI);
+  material.MatParameter(MLD_HIGH_FRACT_DENS_AZI);
   const ml::CMatParam* lowFractureDensityInclination =
-    material.MatParameter(MLD_LOW_FRACT_DENS_INCL);
+  material.MatParameter(MLD_LOW_FRACT_DENS_INCL);
   const ml::CMatParam* lowFractureDensityAzimuth =
-    material.MatParameter(MLD_LOW_FRACT_DENS_AZI);
+  material.MatParameter(MLD_LOW_FRACT_DENS_AZI);
 
   if ((highFractureDensityInclination != 0) &&
-    (highFractureDensityAzimuth != 0) && (lowFractureDensityInclination != 0) &&
-    (lowFractureDensityAzimuth != 0) && (highFractureDensityInclination->Value() ==
-    lowFractureDensityInclination->Value()) &&
-    (highFractureDensityAzimuth->Value() == lowFractureDensityAzimuth->Value()))
+  (highFractureDensityAzimuth != 0) && (lowFractureDensityInclination != 0) &&
+  (lowFractureDensityAzimuth != 0) && (highFractureDensityInclination->Value() ==
+  lowFractureDensityInclination->Value()) &&
+  (highFractureDensityAzimuth->Value() == lowFractureDensityAzimuth->Value()))
   {
-    _m()->error(QObject::tr("The highest and lowest fracture density "
+  _m()->error(QObject::tr("The highest and lowest fracture density "
       "directions should not be equal"));
 
-    return false;
+  return false;
   }
 
   return true;

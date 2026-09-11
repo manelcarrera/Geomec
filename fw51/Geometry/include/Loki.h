@@ -19,17 +19,17 @@ class TypeTraits
 private:
   template <class U> struct PointerTraits
   {
-    enum { result = false };
-    typedef NullType PointeeType;
-    typedef U ReferencedType;
-    static const ReferencedType& GetReference(const U& u) { return u; }
+  enum { result = false };
+  typedef NullType PointeeType;
+  typedef U ReferencedType;
+  static const ReferencedType& GetReference(const U& u) { return u; }
   };
   template <class U> struct PointerTraits<U*>
   {
-    enum { result = true };
-    typedef U PointeeType;
-    typedef U ReferencedType;
-    static const ReferencedType& GetReference(const U* u) { return *u; }
+  enum { result = true };
+  typedef U PointeeType;
+  typedef U ReferencedType;
+  static const ReferencedType& GetReference(const U* u) { return *u; }
   };
 
 public:

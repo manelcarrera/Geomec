@@ -14,12 +14,12 @@ class IDrawDef;
 class OPENGLFRAME_EXPORT IOpenGLDraw
 {
 protected:
-	IOpenGLDraw() {};
+  IOpenGLDraw() {};
 public:
-	// the number of steps this object represents
-	virtual int Count(const geo::IObject&, const IDrawDef&) const = 0;
-	// draw the object
-	virtual void Draw(const geo::IObject&, const IDrawDef&, bool bDrawSteps) = 0;
+  // the number of steps this object represents
+  virtual int Count(const geo::IObject&, const IDrawDef&) const = 0;
+  // draw the object
+  virtual void Draw(const geo::IObject&, const IDrawDef&, bool bDrawSteps) = 0;
 };
 
 #endif // !defined(OPENGL_DRAW_INTERFACE__INCLUDED_)

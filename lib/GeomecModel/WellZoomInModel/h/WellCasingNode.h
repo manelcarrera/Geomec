@@ -16,15 +16,15 @@ class CWellCasingNode : public COpenGLNode
 public:
   CWellCasingNode(CWellCasingModel& model);
 
-	virtual unsigned int IconId() const;
-	virtual unsigned int TypeId() const;
+  virtual unsigned int IconId() const;
+  virtual unsigned int TypeId() const;
 
-	virtual bool Empty() const;
+  virtual bool Empty() const;
 
   virtual int DisplayListSize() const;
-	virtual const geo::IObject& DisplayList(int nIndex) const;
-	virtual TColor Color() const;
-	virtual std::vector<CDrawDef::TColor> OnColor(const geo::IObject &object) const;
+  virtual const geo::IObject& DisplayList(int nIndex) const;
+  virtual TColor Color() const;
+  virtual std::vector<CDrawDef::TColor> OnColor(const geo::IObject &object) const;
 
   virtual void OnNewNeighbour(const CGraphNode& node);
   virtual void OnNeighbourDeleted(const CGraphNode& node);

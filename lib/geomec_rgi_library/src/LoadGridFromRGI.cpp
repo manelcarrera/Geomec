@@ -33,13 +33,13 @@ void orderPolygon(const GeomecRGI::CLoadGridFromRGI::TIndices& input,
 {
   size_t pivot = 0;
   for (size_t i = 1; i < input.size(); ++i)
-    if (input[i] < input[pivot])
+  if (input[i] < input[pivot])
       pivot = i;
 
   output.resize(input.size());
 
   for (size_t i = 0; i < input.size(); ++i)
-    output[i] = input[(i + pivot) % input.size()];
+  output[i] = input[(i + pivot) % input.size()];
 }
 
 } // anonymous namespace
@@ -51,16 +51,16 @@ CRGIGridDump::CRGIGridDump(bool bDoDump) : valid(false)
 {
   if (bDoDump)
   {
-    m_output.open("grid_dump.txt", std::ios::out | std::ios::trunc | std::ios::binary);
+  m_output.open("grid_dump.txt", std::ios::out | std::ios::trunc | std::ios::binary);
 
-    if (m_output.is_open())
-    {
+  if (m_output.is_open())
+  {
       valid = true;
 
       m_output << std::setprecision(6);
 
       m_output << ">>> START Grid Load" << std::endl;
-    }
+  }
   }
 }
 
@@ -68,33 +68,33 @@ CRGIGridDump::~CRGIGridDump()
 {
   if (valid)
   {
-    m_output << "<<< END Grid Load" << std::endl;
-    m_output.close();
+  m_output << "<<< END Grid Load" << std::endl;
+  m_output.close();
   }
 }
 
 void CRGIGridDump::section(const char *title)
 {
   if (valid)
-    m_output << title << std::endl;
+  m_output << title << std::endl;
 }
 
 void CRGIGridDump::size(size_t s)
 {
   if (valid)
-    m_output << "size: " << s << std::endl;
+  m_output << "size: " << s << std::endl;
 }
 
 void CRGIGridDump::node(size_t index, geo::CPoint& point)
 {
   if (valid)
   {
-    m_output << "node " << index << ": " << point.X() << " " << point.Y() << " " << point.Z() << std::endl;
-    std::vector<int> p(3);
-    p[0] = (int)point.X();
-    p[1] = (int)point.Y();
-    p[2] = (int)point.Z();
-    m_points.push_back(p);
+  m_output << "node " << index << ": " << point.X() << " " << point.Y() << " " << point.Z() << std::endl;
+  std::vector<int> p(3);
+  p[0] = (int)point.X();
+  p[1] = (int)point.Y();
+  p[2] = (int)point.Z();
+  m_points.push_back(p);
   }
 }
 
@@ -102,14 +102,14 @@ void CRGIGridDump::_nodes(std::vector<int> &nodes)
 {
   if (valid)
   {
-    m_output << "nodes[" << nodes.size() << "](";
-    if (nodes.size() > 0)
-    {
+  m_output << "nodes[" << nodes.size() << "](";
+  if (nodes.size() > 0)
+  {
       m_output << nodes[0];
       for (size_t i = 1; i < nodes.size(); ++i)
-        m_output << ", " << nodes[i];
-    }
-    m_output << ")";
+    m_output << ", " << nodes[i];
+  }
+  m_output << ")";
   }
 }
 
@@ -117,9 +117,9 @@ void CRGIGridDump::element(size_t index, std::vector<int> &nodes)
 {
   if (valid)
   {
-    m_output << "element " << index << ": " << index << " " << (nodes.size() == 4 ? "TE12L" : "T18IF") << " ";
-    _nodes(nodes);
-    m_output << std::endl;
+  m_output << "element " << index << ": " << index << " " << (nodes.size() == 4 ? "TE12L" : "T18IF") << " ";
+  _nodes(nodes);
+  m_output << std::endl;
   }
 }
 
@@ -127,15 +127,15 @@ void CRGIGridDump::polygon(size_t index, std::vector<int> &nodes)
 {
   if (valid)
   {
-    m_output << "polygon " << index << ": " << index << " ";
-    _nodes(nodes);
+  m_output << "polygon " << index << ": " << index << " ";
+  _nodes(nodes);
 
-    m_output << " ->  ";
+  m_output << " ->  ";
 
-    for (size_t i = 0; i < 3; ++i)
+  for (size_t i = 0; i < 3; ++i)
       m_output << m_points[nodes[i]][0] << "," << m_points[nodes[i]][1] << "," << m_points[nodes[i]][2] << "  ";
 
-    m_output << std::endl;
+  m_output << std::endl;
   }
 }
 
@@ -143,46 +143,46 @@ void CRGIGridDump::surface(const RGSurface& surface)
 {
   if (valid)
   {
-    m_output << "surface " << surface.getName() << " [";
-    switch(surface.getType())
-    {
-    case RGSurface::Horizon:
+  m_output << "surface " << surface.getName() << " [";
+  switch(surface.getType())
+  {
+  case RGSurface::Horizon:
       m_output << "Horizon";
       break;
-    case RGSurface::FaultFront:
+  case RGSurface::FaultFront:
       m_output << "FaultFront";
       break;
-    case RGSurface::FaultBack:
+  case RGSurface::FaultBack:
       m_output << "FaultBack";
       break;
-    default:
+  default:
       m_output << "Undefined " << surface.getType() << "";
       break;
-    }
-    m_output << ",";
-    switch(surface.getAttribute())
-    {
-    case RGSurface::Regular:
+  }
+  m_output << ",";
+  switch(surface.getAttribute())
+  {
+  case RGSurface::Regular:
       m_output << "Regular";
       break;
-    case RGSurface::Top:
+  case RGSurface::Top:
       m_output << "Top";
       break;
-    case RGSurface::Bottom:
+  case RGSurface::Bottom:
       m_output << "Bottom";
       break;
-    case RGSurface::Side:
+  case RGSurface::Side:
       m_output << "Side";
       break;
-    default:
+  default:
       m_output << "Undefined " << surface.getAttribute();
       break;
-    }
-    m_output << "]:" << std::endl;
-    for (size_t i = 0; i < surface.getSize(); ++i)
-    {
+  }
+  m_output << "]:" << std::endl;
+  for (size_t i = 0; i < surface.getSize(); ++i)
+  {
       m_output << "    polygon " << surface.getPolygonN(i) << std::endl;
-    }
+  }
   }
 }
 
@@ -240,12 +240,12 @@ bool CLoadGridFromRGI::operator () ()
   std::map <int, int> formationVolume2VolumeMapping;
 
   constructFormations(formationNames, formationVolume2VolumeMapping,
-    elementIndices);
+  elementIndices);
 
   std::vector <TSharedBodyTriangleMap>
-    trianglesPerVolume = getTrianglesPerVolume();
+  trianglesPerVolume = getTrianglesPerVolume();
   TNodes2Triangles nodes2Triangles =
-    createNodes2TrianglesMapping(trianglesPerVolume);
+  createNodes2TrianglesMapping(trianglesPerVolume);
 
   /*
    *  While creating horizons and the enclosing surfaces the surface
@@ -260,22 +260,22 @@ bool CLoadGridFromRGI::operator () ()
   // Faults
 
   constructFaults(linkFace2Horizon, linkFace2SurfaceDescriptor,
-    nodes2Triangles, nodeIndices, polygonInfo);
+  nodes2Triangles, nodeIndices, polygonInfo);
 
   // Horizons
 
   constructHorizons(linkFace2Horizon, linkFace2SurfaceDescriptor,
-    nodes2Triangles, nodeIndices);
+  nodes2Triangles, nodeIndices);
 
   // Side Surfaces
 
   constructSideSurfaces(linkFace2SurfaceDescriptor, nodes2Triangles,
-    nodeIndices);
+  nodeIndices);
 
   // Volumes
 
   constructFormationVolumes(linkFace2Horizon, linkFace2SurfaceDescriptor,
-    formationVolume2VolumeMapping, trianglesPerVolume, formationNames);
+  formationVolume2VolumeMapping, trianglesPerVolume, formationNames);
 
   m_model.Mesh().Unlock();
 
@@ -299,12 +299,12 @@ void CLoadGridFromRGI::insertNodes(TIndices& nodeIndices)
 
   for (size_t node = 0; node < nodes; ++node)
   {
-    const RGNode& rgNode = m_rgi.getNodeN(node);
-    geo::CPoint point(rgNode[0], rgNode[1], rgNode[2]);
+  const RGNode& rgNode = m_rgi.getNodeN(node);
+  geo::CPoint point(rgNode[0], rgNode[1], rgNode[2]);
 
-    nodeIndices[node] = m_mesh.RegisterNodeInMainMesh(point);
+  nodeIndices[node] = m_mesh.RegisterNodeInMainMesh(point);
 
-    m_dump.node(node, point);
+  m_dump.node(node, point);
   }
 }
 
@@ -317,18 +317,18 @@ void CLoadGridFromRGI::insertPolygons(TPolygonInfo& polygonInfo, TPolygonMap& po
 
   for (size_t i = 0; i < m_rgi.getNumPolygons(); ++i)
   {
-    const RGPolygon rgPolygon = m_rgi.getPolygonN(i);
+  const RGPolygon rgPolygon = m_rgi.getPolygonN(i);
 
-    TIndices polygon(rgPolygon.size());
+  TIndices polygon(rgPolygon.size());
 
-    for (size_t j = 0; j < rgPolygon.size(); ++j)
+  for (size_t j = 0; j < rgPolygon.size(); ++j)
       polygon[j] = rgPolygon[j];
 
-    polygonInfo[i].setPolygon(polygon);
+  polygonInfo[i].setPolygon(polygon);
 
-    polygonMap[polygonInfo[i].nodes] = i;
+  polygonMap[polygonInfo[i].nodes] = i;
 
-    m_dump.polygon(i, polygon);
+  m_dump.polygon(i, polygon);
   }
 
 }
@@ -364,33 +364,33 @@ CLoadGridFromRGI::TIndices insertElementTE12L(const RGInterface& rgi,
 
   for (int i = 0; i < 4; ++i)
   {
-    if (!nodeIds.insert(rgElement.getNodeN(i)).second)
-    {
+  if (!nodeIds.insert(rgElement.getNodeN(i)).second)
+  {
       QString message =
-        NO_DEGENERATES.arg(element).arg(rgElement.getNodeN(i));
+    NO_DEGENERATES.arg(element).arg(rgElement.getNodeN(i));
 
       throw std::runtime_error(message.toStdString());
-    }
+  }
   }
 
   geo::CPoint point[4];
 
   for (int i = 0; i < 4; ++i)
   {
-    tetrahedron[i] = nodeIndices[rgElement.getNodeN(i)];
+  tetrahedron[i] = nodeIndices[rgElement.getNodeN(i)];
 
-    const RGNode& rgNode = rgi.getNodeN(rgElement.getNodeN(i));
+  const RGNode& rgNode = rgi.getNodeN(rgElement.getNodeN(i));
 
-    point[i] = geo::CPoint(rgNode[0], rgNode[1], rgNode[2]);
+  point[i] = geo::CPoint(rgNode[0], rgNode[1], rgNode[2]);
   }
 
   if (!geo::ITetrahedron::CheckOrientation(point[0], point[1], point[2],
-    point[3]))
+  point[3]))
   {
-    int tmp = tetrahedron[3];
+  int tmp = tetrahedron[3];
 
-    tetrahedron[3] = tetrahedron[2];
-    tetrahedron[2] = tmp;
+  tetrahedron[3] = tetrahedron[2];
+  tetrahedron[2] = tmp;
   }
 
   return tetrahedron;
@@ -410,12 +410,12 @@ void CLoadGridFromRGI::insertElements(TIndices& elementIndices, TIndices& nodeIn
   
   for (size_t element = 0; element < elements; ++element)
   {
-    const RGElement& rgElement(m_rgi.getElementN(element));
+  const RGElement& rgElement(m_rgi.getElementN(element));
 
-    // Only linear tetra-elements and interface elements for the time being
+  // Only linear tetra-elements and interface elements for the time being
 
-    if (rgElement.getType() == RGElementType::typeTE12L)
-    {
+  if (rgElement.getType() == RGElementType::typeTE12L)
+  {
       TIndices tetrahedron = insertElementTE12L(m_rgi, nodeIndices, rgElement, element);
 
       elementIndices[element] = m_mesh.RegisterTetrahedronInMainMesh(tetrahedron);
@@ -427,44 +427,44 @@ void CLoadGridFromRGI::insertElements(TIndices& elementIndices, TIndices& nodeIn
 
       for (int face = 0; face < tetraElt.NrOfFaces(); ++face)
       {
-        const geo::CBodyTriangle* bodyTriangle = static_cast<const geo::CBodyTriangle*>(&tetraElt.Face(face));
+    const geo::CBodyTriangle* bodyTriangle = static_cast<const geo::CBodyTriangle*>(&tetraElt.Face(face));
 
-        int polyIndex = -1;
-        TIndices polygon(bodyTriangle->NrOfNodes());
+    int polyIndex = -1;
+    TIndices polygon(bodyTriangle->NrOfNodes());
 
-        for (int n = 0; n < bodyTriangle->NrOfNodes(); ++n)
+    for (int n = 0; n < bodyTriangle->NrOfNodes(); ++n)
           polygon[n] = bodyTriangle->Node(n).Index();
 
-        TIndices orderedPolygon;
-        orderPolygon(polygon, orderedPolygon);
+    TIndices orderedPolygon;
+    orderPolygon(polygon, orderedPolygon);
 
-        for (size_t j = 0; j < 2; ++j)
-        {
+    for (size_t j = 0; j < 2; ++j)
+    {
           TPolygonMap::const_iterator it = polygonMap.find(orderedPolygon);
 
           if (it != polygonMap.end())
           {
-            polyIndex = it->second;
-            polygonInfo[polyIndex].ifElement = elementIndices[element];
+      polyIndex = it->second;
+      polygonInfo[polyIndex].ifElement = elementIndices[element];
           }
 
           if (polyIndex >= 0)
-            break;
+      break;
 
           size_t tmp = orderedPolygon[1];
           orderedPolygon[1] = orderedPolygon[2];
           orderedPolygon[2] = tmp;
-        }
+    }
 
-        if (polyIndex >= 0)
+    if (polyIndex >= 0)
           polygonInfo[polyIndex].face = const_cast<geo::CBodyTriangle*>(bodyTriangle);
       }
-    }
-    else if(rgElement.getType() == RGElementType::typeT18IF)
-    {
+  }
+  else if(rgElement.getType() == RGElementType::typeT18IF)
+  {
       TIndices ifElement(rgElement.getNumNodes());
       for (size_t i = 0; i < rgElement.getNumNodes(); ++i)
-        ifElement[i] = rgElement.getNodeN(i);
+    ifElement[i] = rgElement.getNodeN(i);
 
       geo::CInterfaceElement *pIfElt = new geo::CInterfaceElement(m_mesh, 0, 0, ifElement);
       assert(pIfElt);
@@ -475,41 +475,41 @@ void CLoadGridFromRGI::insertElements(TIndices& elementIndices, TIndices& nodeIn
 
       for (size_t i = 0; i < 2; ++i)
       {
-        int polyIndex = -1;
-        TIndices polygon(3);
+    int polyIndex = -1;
+    TIndices polygon(3);
 
-        for (size_t j = 0; j < 3; ++j)
+    for (size_t j = 0; j < 3; ++j)
           polygon[j] = rgElement.getNodeN(3 * i + j);
 
-        TIndices orderedPolygon;
-        orderPolygon(polygon, orderedPolygon);
+    TIndices orderedPolygon;
+    orderPolygon(polygon, orderedPolygon);
 
-        for (size_t j = 0; j < 2; ++j)
-        {
+    for (size_t j = 0; j < 2; ++j)
+    {
           TPolygonMap::const_iterator it = polygonMap.find(orderedPolygon);
 
           if (it != polygonMap.end())
           {
-            polyIndex = it->second;
-            polygonInfo[polyIndex].ifElement = elementIndices[element];
+      polyIndex = it->second;
+      polygonInfo[polyIndex].ifElement = elementIndices[element];
           }
 
           if (polyIndex >= 0)
-            break;
+      break;
 
           size_t tmp = orderedPolygon[1];
           orderedPolygon[1] = orderedPolygon[2];
           orderedPolygon[2] = tmp;
-        }
+    }
 
-        assert(polyIndex >= 0);
+    assert(polyIndex >= 0);
       }
 
-    }
-    else
-    {
+  }
+  else
+  {
       throw std::runtime_error(ONLY_TE12L_OR_T18IF.toStdString());
-    }
+  }
   }
 
 }
@@ -525,7 +525,7 @@ std::map <int, int> retrieveCounts(
 
   for (size_t element = 0; element < elementIndices.size(); ++element)
   {
-    counts[IDs[element]]++;
+  counts[IDs[element]]++;
   }
 
   return counts;
@@ -540,22 +540,22 @@ void getFormationNames(std::vector <QString>& formationNames,
   formationNames.resize(formationSize.size());
 
   for (std::map <int, int>::const_iterator iterator = formationSize.begin();
-    iterator != formationSize.end(); ++iterator)
+  iterator != formationSize.end(); ++iterator)
   {
-    bool formationNameFilled = false;
+  bool formationNameFilled = false;
 
-    for (size_t element = 0; element < elementIndices.size(); ++element)
-    {
+  for (size_t element = 0; element < elementIndices.size(); ++element)
+  {
       if (formationID[element] == iterator->first)
       {
-        if (!formationNameFilled)
-        {
+    if (!formationNameFilled)
+    {
           formationNames[formationIndex[formationID[element]]] =
-            rgi.getFormationName(formationID[element]).c_str();
+      rgi.getFormationName(formationID[element]).c_str();
           formationNameFilled = true;
-        }
-      }
     }
+      }
+  }
   }
 }
 
@@ -566,17 +566,17 @@ CLoadGridFromRGI::TIndices loadFormationID(RGInterface& rgi,
 
   rgi.loadProperty(RGPropertyType::propElementFormation, formationID);
   propertyValuesMayNotContainNull(RGPropertyType::propElementFormation,
-    formationID);
+  formationID);
 
   // The assumption is that the size of the vector formationID and
   // the number of elements are equal!
 
   if (formationID.size() != elementIndices.size())
   {
-    QString message = INVALID_FORMATION_COUNT.arg(formationID.size()).
+  QString message = INVALID_FORMATION_COUNT.arg(formationID.size()).
       arg(elementIndices.size());
 
-    throw std::runtime_error(message.toStdString());
+  throw std::runtime_error(message.toStdString());
   }
 
   return formationID;
@@ -590,7 +590,7 @@ CLoadGridFromRGI::TIndices loadFormationVolumeID(RGInterface& rgi,
 
   rgi.loadProperty(RGPropertyType::propBodyIndex, formationVolumeID);
   propertyValuesMayNotContainNull(RGPropertyType::propBodyIndex,
-    formationVolumeID);
+  formationVolumeID);
 
   // The assumption is that the size of the vector formationVolumeID and
   // the number of elements are equal if and only if the size of the vector
@@ -598,21 +598,21 @@ CLoadGridFromRGI::TIndices loadFormationVolumeID(RGInterface& rgi,
 
   if (formationVolumeID.size() > 0)
   {
-    if (formationVolumeID.size() != elementIndices.size())
-    {
+  if (formationVolumeID.size() != elementIndices.size())
+  {
       QString message = INVALID_FORMATION_VOLUME_COUNT.arg(formationID.size()).
-        arg(elementIndices.size());
+    arg(elementIndices.size());
 
       throw std::runtime_error(message.toStdString());
-    }
+  }
   }
   else
   {
-    rmp.AddLogLine(PROPERTY_BODY_INDEX);
+  rmp.AddLogLine(PROPERTY_BODY_INDEX);
 
-    // Initialize the vector formationVolumeID with the values from formationID.
+  // Initialize the vector formationVolumeID with the values from formationID.
 
-    formationVolumeID = formationID;
+  formationVolumeID = formationID;
   }
 
   return formationVolumeID;
@@ -627,57 +627,57 @@ void CLoadGridFromRGI::constructFormations(
 {
   TIndices formationID = loadFormationID(m_rgi, elementIndices);
   std::map <int, int> formationSize =
-    retrieveCounts(elementIndices, formationID);
+  retrieveCounts(elementIndices, formationID);
   TIndices formationVolumeID =
-    loadFormationVolumeID(m_rgi, formationID, m_rmp, elementIndices);
+  loadFormationVolumeID(m_rgi, formationID, m_rmp, elementIndices);
   std::map <int, int> formationVolumeSize =
-    retrieveCounts(elementIndices, formationVolumeID);
+  retrieveCounts(elementIndices, formationVolumeID);
 
   int minimumID = std::numeric_limits <int> ::max();
   int maximumID = std::numeric_limits <int> ::min();
 
   for (std::map <int, int>::const_iterator iterator = formationSize.begin();
-    iterator != formationSize.end(); ++iterator)
+  iterator != formationSize.end(); ++iterator)
   {
-    minimumID = std::min(iterator->first, minimumID);
-    maximumID = std::max(iterator->first, maximumID);
+  minimumID = std::min(iterator->first, minimumID);
+  maximumID = std::max(iterator->first, maximumID);
   }
 
   TIndices formationIndex(maximumID + 1);
   size_t index = 0;
 
   for (std::map <int, int>::const_iterator iterator = formationSize.begin();
-    iterator != formationSize.end(); ++iterator, ++index)
+  iterator != formationSize.end(); ++iterator, ++index)
   {
-    formationIndex[iterator->first] = index;
+  formationIndex[iterator->first] = index;
   }
 
   for (std::map <int, int>::const_iterator iterator =
-    formationVolumeSize.begin(); iterator != formationVolumeSize.end();
-    ++iterator)
+  formationVolumeSize.begin(); iterator != formationVolumeSize.end();
+  ++iterator)
   {
-    TIndices formationVolumeIndices(iterator->second);
-    index = 0;
-    int volume = 0;
+  TIndices formationVolumeIndices(iterator->second);
+  index = 0;
+  int volume = 0;
 
-    for (size_t element = 0; element < elementIndices.size(); ++element)
-    {
+  for (size_t element = 0; element < elementIndices.size(); ++element)
+  {
       if (formationVolumeID[element] == iterator->first)
       {
-        formationVolumeIndices[index++] = elementIndices[element];
-        volume = formationID[element];
+    formationVolumeIndices[index++] = elementIndices[element];
+    volume = formationID[element];
       }
-    }
+  }
 
-    assert(volume >= minimumID);
+  assert(volume >= minimumID);
 
-    if (iterator->first >= 0)
+  if (iterator->first >= 0)
       formationVolume2VolumeMapping.insert(std::make_pair(
-        m_mesh.RegisterTetVolume(formationVolumeIndices), volume - minimumID));
+    m_mesh.RegisterTetVolume(formationVolumeIndices), volume - minimumID));
   }
 
   getFormationNames(formationNames, formationSize, elementIndices, formationID,
-    formationIndex, m_rgi);
+  formationIndex, m_rgi);
 }
 
 std::vector <TSharedBodyTriangleMap>
@@ -687,10 +687,10 @@ std::vector <TSharedBodyTriangleMap>
 
   for (int volume = 0; volume < m_mesh.NrOfVolumes(); ++volume)
   {
-    geo::CBodyGroup& bodyGroup = m_mesh.Volume(volume);
-    CCalculateBoundingSurfaces calculateBoundingSurfaces(bodyGroup);
+  geo::CBodyGroup& bodyGroup = m_mesh.Volume(volume);
+  CCalculateBoundingSurfaces calculateBoundingSurfaces(bodyGroup);
 
-    trianglesPerVolume[volume] =
+  trianglesPerVolume[volume] =
       calculateBoundingSurfaces.getSharedBodyTriangleMap();
   }
 
@@ -710,25 +710,25 @@ TSharedBodyTriangle findMatchingTriangle(
 
   for (int v = (volume + 1); v < mesh.NrOfVolumes(); ++v)
   {
-    TSharedBodyTriangleMap::iterator opposite =
+  TSharedBodyTriangleMap::iterator opposite =
       trianglesPerVolume[v].find(key);
 
-    if (opposite != trianglesPerVolume[v].end())
-    {
+  if (opposite != trianglesPerVolume[v].end())
+  {
       if (match)
       {
-        assert(false);
+    assert(false);
       }
 
       removeMatch = opposite;
       removeVolume = v;
       match = (*opposite).second;
-    }
+  }
   }
 
   if (match)
   {
-    trianglesPerVolume[removeVolume].erase(removeMatch);
+  trianglesPerVolume[removeVolume].erase(removeMatch);
   }
 
   return match;
@@ -743,24 +743,24 @@ TSharedBodyTriangle findMatchingTriangle(
 
 CLoadGridFromRGI::TNodes2Triangles
   CLoadGridFromRGI::createNodes2TrianglesMapping(
-    std::vector <TSharedBodyTriangleMap> trianglesPerVolume) const
+  std::vector <TSharedBodyTriangleMap> trianglesPerVolume) const
 {
   TNodes2Triangles nodes2Triangles;
 
   for (int volume = 0; volume < m_mesh.NrOfVolumes(); ++volume)
   {
-    for (TSharedBodyTriangleMap::const_iterator triangle =
+  for (TSharedBodyTriangleMap::const_iterator triangle =
       trianglesPerVolume[volume].begin();
       triangle != trianglesPerVolume[volume].end(); ++triangle)
-    {
+  {
       TSharedBodyTriangle match = findMatchingTriangle(
-        trianglesPerVolume, m_mesh, (*triangle).first, volume);
+    trianglesPerVolume, m_mesh, (*triangle).first, volume);
       std::pair <TNodes2Triangles::iterator, bool> result =
-        nodes2Triangles.insert(std::make_pair((*triangle).first,
+    nodes2Triangles.insert(std::make_pair((*triangle).first,
           std::make_pair((*triangle).second, match)));
 
       assert(result.second);
-    }
+  }
   }
 
   return nodes2Triangles;
@@ -772,19 +772,19 @@ void CLoadGridFromRGI::constructFaults(TFaceDescriptorMap& linkFace2Horizon,
 {
   for (size_t f = 0; f < m_rgi.getNumFaults(); ++f)
   {
-    const RGSurface& back = m_rgi.getFaultBackN(f);
-    const RGSurface& front = m_rgi.getFaultFrontN(f);
+  const RGSurface& back = m_rgi.getFaultBackN(f);
+  const RGSurface& front = m_rgi.getFaultFrontN(f);
 
-    assert(back.getType() == RGSurface::FaultBack);
-    assert(front.getType() == RGSurface::FaultFront);
+  assert(back.getType() == RGSurface::FaultBack);
+  assert(front.getType() == RGSurface::FaultFront);
 
-    assert(back.getAttribute() == RGSurface::Regular);
-    assert(front.getAttribute() == RGSurface::Regular);
+  assert(back.getAttribute() == RGSurface::Regular);
+  assert(front.getAttribute() == RGSurface::Regular);
 
-    assert(back.getName() == front.getName());
-    assert(back.getSize() == front.getSize());
+  assert(back.getName() == front.getName());
+  assert(back.getSize() == front.getSize());
 
-    constructFault(linkFace2Horizon, linkFace2SurfaceDescriptor,
+  constructFault(linkFace2Horizon, linkFace2SurfaceDescriptor,
       nodes2Triangles, nodeIndices, polygonInfo, back, front);
   }
 }
@@ -795,21 +795,21 @@ void CLoadGridFromRGI::constructHorizons(TFaceDescriptorMap& linkFace2Horizon,
 {
   for (size_t h = 0; h < m_rgi.getNumHorizons(); ++h)
   {
-    const RGSurface& horizon = m_rgi.getHorizonN(h);
+  const RGSurface& horizon = m_rgi.getHorizonN(h);
 
-    assert(horizon.getType() == RGSurface::Horizon);
+  assert(horizon.getType() == RGSurface::Horizon);
 
-    if (horizon.getAttribute() == RGSurface::Regular)
-    {
+  if (horizon.getAttribute() == RGSurface::Regular)
+  {
       constructRegularHorizon(linkFace2Horizon, linkFace2SurfaceDescriptor,
-        nodes2Triangles, nodeIndices, horizon);
-    }
-    else if ((horizon.getAttribute() == RGSurface::Top) ||
+    nodes2Triangles, nodeIndices, horizon);
+  }
+  else if ((horizon.getAttribute() == RGSurface::Top) ||
       (horizon.getAttribute() == RGSurface::Bottom))
-    {
+  {
       constructTopBottomHorizon(linkFace2Horizon, linkFace2SurfaceDescriptor,
-        nodes2Triangles, nodeIndices, horizon);
-    }
+    nodes2Triangles, nodeIndices, horizon);
+  }
   }
 }
 
@@ -819,28 +819,28 @@ void CLoadGridFromRGI::constructSideSurfaces(
 {
   for (size_t s = 0; s < m_rgi.getNumHorizons(); ++s)
   {
-    const RGSurface& sideSurface = m_rgi.getHorizonN(s);
+  const RGSurface& sideSurface = m_rgi.getHorizonN(s);
 
-    assert(sideSurface.getType() == RGSurface::Horizon);
+  assert(sideSurface.getType() == RGSurface::Horizon);
 
-    if (sideSurface.getAttribute() == RGSurface::Side)
-    {
+  if (sideSurface.getAttribute() == RGSurface::Side)
+  {
       CTetraSubBoundary& subBoundary =
-        static_cast <CTetraModel&> (m_model).SubBoundary();
+    static_cast <CTetraModel&> (m_model).SubBoundary();
       CMeshSurface* meshSurface =
-        constructMeshSurface(sideSurface, nodes2Triangles, nodeIndices);
+    constructMeshSurface(sideSurface, nodes2Triangles, nodeIndices);
 
       constructFaceDescriptorMap(linkFace2SurfaceDescriptor, meshSurface);
 
       m_mesh.AddSurface(*meshSurface, sideSurface.getName(), false);
 
       CTetraSurface* tetraSurface =
-        new CTetraSurface(sideSurface.getName().c_str(), *meshSurface, m_model);
+    new CTetraSurface(sideSurface.getName().c_str(), *meshSurface, m_model);
 
       subBoundary.LinkTo(*tetraSurface);
       static_cast <CTetraMesh&> (m_model.Mesh()).
-        m_vcSurfaceSource.push_back(&subBoundary);
-    }
+    m_vcSurfaceSource.push_back(&subBoundary);
+  }
   }
 }
 
@@ -858,15 +858,15 @@ std::vector <QString> constructFormationVolumeNames(
 
   for (size_t volume = 0; volume < volumes; ++volume)
   {
-    if (formationNames[formationVolume2VolumeMapping[volume]].isEmpty())
-    {
+  if (formationNames[formationVolume2VolumeMapping[volume]].isEmpty())
+  {
       formationVolumeNames[volume] = BODY.arg(volume);
-    }
-    else
-    {
+  }
+  else
+  {
       formationVolumeNames[volume] = FORMAT.
-        arg(formationNames[formationVolume2VolumeMapping[volume]]).arg(volume);
-    }
+    arg(formationNames[formationVolume2VolumeMapping[volume]]).arg(volume);
+  }
   }
 
   return formationVolumeNames;
@@ -879,21 +879,21 @@ void validateFormationNames(std::vector <QString>& formationNames)
   size_t formation = 0;
 
   for (std::vector <QString>::iterator formationName = formationNames.begin();
-    formationName != formationNames.end(); ++formationName)
+  formationName != formationNames.end(); ++formationName)
   {
-    if ((*formationName).isEmpty())
-    {
+  if ((*formationName).isEmpty())
+  {
       QString uniqueName;
 
       do
       {
-        uniqueName = FORMATION.arg(formation++);
+    uniqueName = FORMATION.arg(formation++);
       }
       while (std::find(formationNames.begin(), formationNames.end(),
-        uniqueName) != formationNames.end());
+    uniqueName) != formationNames.end());
 
       *formationName = uniqueName;
-    }
+  }
   }
 }
 
@@ -913,61 +913,61 @@ void CLoadGridFromRGI::constructFormationVolumes(
   // significant ordering (empty formation names are significant)!
 
   std::vector <QString> formationVolumeNames = constructFormationVolumeNames(
-    formationVolume2VolumeMapping, formationNames, m_mesh.NrOfVolumes());
+  formationVolume2VolumeMapping, formationNames, m_mesh.NrOfVolumes());
 
   validateFormationNames(formationNames);
 
   for (int volume = 0; volume < m_mesh.NrOfVolumes(); ++volume)
   {
-    const geo::CBodyGroup& bodyGroup = m_mesh.Volume(volume);
+  const geo::CBodyGroup& bodyGroup = m_mesh.Volume(volume);
 
-    if (formations[formationVolume2VolumeMapping[volume]] == 0)
-    {
+  if (formations[formationVolume2VolumeMapping[volume]] == 0)
+  {
       formations[formationVolume2VolumeMapping[volume]] =
-        new CTetraFormation(
+    new CTetraFormation(
           formationNames[formationVolume2VolumeMapping[volume]], m_model);
       m_geomecFormations[formationVolume2VolumeMapping[volume]] =
-        formations[formationVolume2VolumeMapping[volume]];
-    }
+    formations[formationVolume2VolumeMapping[volume]];
+  }
 
-    CTetraFormation* tetraFormation =
+  CTetraFormation* tetraFormation =
       formations[formationVolume2VolumeMapping[volume]];
-    CTetraFormationVolume* tetraFormationVolume =
+  CTetraFormationVolume* tetraFormationVolume =
       new CTetraFormationVolume(*tetraFormation,
-        const_cast <geo::CBodyGroup&> (bodyGroup));
-    std::vector <CMeshSurface*> meshSurface = extrapolateMeshSurfaces(
+    const_cast <geo::CBodyGroup&> (bodyGroup));
+  std::vector <CMeshSurface*> meshSurface = extrapolateMeshSurfaces(
       trianglesPerVolume[volume], linkFace2SurfaceDescriptor);
-    int surfaceIndex = 0;
+  int surfaceIndex = 0;
 
-    tetraFormationVolume->Name(formationVolumeNames[volume]);
-    tetraFormationVolume->reParent(tetraFormation);
+  tetraFormationVolume->Name(formationVolumeNames[volume]);
+  tetraFormationVolume->reParent(tetraFormation);
 
-    for (size_t surface = 0; surface < meshSurface.size(); ++surface)
-    {
+  for (size_t surface = 0; surface < meshSurface.size(); ++surface)
+  {
       TFaceDescriptorMap::const_iterator iterator =
-        linkFace2SurfaceDescriptor.find(&meshSurface[surface]->Face(0));
+    linkFace2SurfaceDescriptor.find(&meshSurface[surface]->Face(0));
 
       if (iterator != linkFace2SurfaceDescriptor.end())
       {
-        surfaceIndex = (*iterator).second;
+    surfaceIndex = (*iterator).second;
       }
       else
       {
-        assert(false);
+    assert(false);
       }
 
       /*geo::CTetSurface* tetSurface =*/ new geo::CTetSurface(
-        const_cast <geo::CSurfaceDesc&> (m_mesh.SurfaceDesc(surfaceIndex)),
-        const_cast <geo::CBodyGroup&> (bodyGroup));
+    const_cast <geo::CSurfaceDesc&> (m_mesh.SurfaceDesc(surfaceIndex)),
+    const_cast <geo::CBodyGroup&> (bodyGroup));
       geo::CBodyGroup::CSideSurface& sideSurface =
-        const_cast <geo::CBodyGroup&> (bodyGroup).
+    const_cast <geo::CBodyGroup&> (bodyGroup).
           SideSurface(bodyGroup.SideSurfaceSize() - 1);
 
       for (int face = 0; face < meshSurface[surface]->FaceSize(); ++face)
       {
-        sideSurface.AddFace(meshSurface[surface]->Face(face));
+    sideSurface.AddFace(meshSurface[surface]->Face(face));
       }
-    }
+  }
   }
 }
 
@@ -979,12 +979,12 @@ void CLoadGridFromRGI::constructFaceDescriptorMap(
 
   for (int face = 0; face < meshSurface->FaceSize(); ++face)
   {
-    std::pair <TFaceDescriptorMap::const_iterator, bool> result =
+  std::pair <TFaceDescriptorMap::const_iterator, bool> result =
       linkFace2SurfaceDescriptor.insert(
-        std::make_pair <const geo::IFace*, int> (&meshSurface->Face(face),
+    std::make_pair <const geo::IFace*, int> (&meshSurface->Face(face),
           m_mesh.NrOfSurfaces()));
 
-    assert(result.second);
+  assert(result.second);
   }
 }
 
@@ -1000,14 +1000,14 @@ const TSharedBodyTriangle getSharedBodyTriangle(const RGPolygonId& polygonId,
   assert(polygon.size() == 3);
 
   QString key = QString("%1.%2.%3").arg(nodeIndices[polygon[0]]).
-    arg(nodeIndices[polygon[1]]).arg(nodeIndices[polygon[2]]);
+  arg(nodeIndices[polygon[1]]).arg(nodeIndices[polygon[2]]);
   const CLoadGridFromRGI::TNodes2Triangles::const_iterator
-    result = nodes2Triangles.find(key);
+  result = nodes2Triangles.find(key);
 
   if (result == nodes2Triangles.end())
   {
-    QString s = QString("Cannot find polygon %1 (nodes %2, %3, %4) in our collection of body faces.").arg(polygonId).arg(polygon[0]).arg(polygon[1]).arg(polygon[2]);
-    throw std::runtime_error(s.toStdString());
+  QString s = QString("Cannot find polygon %1 (nodes %2, %3, %4) in our collection of body faces.").arg(polygonId).arg(polygon[0]).arg(polygon[1]).arg(polygon[2]);
+  throw std::runtime_error(s.toStdString());
   }
 
   return (*result).second.first;
@@ -1018,7 +1018,7 @@ const geo::CBodyTriangle* getBodyTriangle(const RGPolygonId& polygonId,
   const CLoadGridFromRGI::TNodes2Triangles& nodes2Triangles)
 {
   return getSharedBodyTriangle(polygonId, rgi, nodeIndices, nodes2Triangles)->
-    getBodyTriangle();
+  getBodyTriangle();
 }
 
 const QString NO_INTERFACE_ELEMENT =
@@ -1032,55 +1032,55 @@ void CLoadGridFromRGI::constructFault(TFaceDescriptorMap& /*linkFace2Horizon*/,
   const RGSurface& back, const RGSurface& front) const
 {
   CSurfaceEntry& surfaceEntry =
-    dynamic_cast <CSurfaceEntry&> (*(m_model.GraphEntry(MD_BASE_SURFACE)));
+  dynamic_cast <CSurfaceEntry&> (*(m_model.GraphEntry(MD_BASE_SURFACE)));
   QSharedPointer <geo::CSurface> geoSurface(new geo::CSurface);
 
   for (size_t p = 0; p < back.getSize(); ++p)
   {
-    if (polygonInfo[back.getPolygonN(p)].face != 0)
+  if (polygonInfo[back.getPolygonN(p)].face != 0)
       geoSurface->AddFace(*polygonInfo[back.getPolygonN(p)].face);
   }
 
   CSurfaceBase* surfaceBase =
-    surfaceEntry.InsertSurface(back.getName().c_str(), *geoSurface);
+  surfaceEntry.InsertSurface(back.getName().c_str(), *geoSurface);
   CTetraSubHorizon* tetraSubHorizon =
-    new CTetraSubHorizon(back.getName().c_str(), TRUE, m_model);
+  new CTetraSubHorizon(back.getName().c_str(), TRUE, m_model);
   geo::CSurfaceDesc* surfaceDesc = new geo::CSurfaceDesc(m_mesh,
-    surfaceBase->Surface(), std::string(), true);
+  surfaceBase->Surface(), std::string(), true);
 
   static_cast <CTetraMesh&> (
-    m_model.Mesh()).m_vcSurfaceSource.push_back(surfaceBase);
+  m_model.Mesh()).m_vcSurfaceSource.push_back(surfaceBase);
   tetraSubHorizon->LinkTo(*surfaceBase);
 
   for (size_t p = 0; p < back.getSize(); ++p)
   {
-    int ifEltIndex = polygonInfo[back.getPolygonN(p)].ifElement;
-    assert(ifEltIndex >= 0);
+  int ifEltIndex = polygonInfo[back.getPolygonN(p)].ifElement;
+  assert(ifEltIndex >= 0);
 
-    geo::IElement& elm = const_cast<geo::IElement&>(m_mesh.Element(ifEltIndex));
+  geo::IElement& elm = const_cast<geo::IElement&>(m_mesh.Element(ifEltIndex));
 
-    if (dynamic_cast<geo::CInterfaceElement*>(&elm) == 0)
-    {
+  if (dynamic_cast<geo::CInterfaceElement*>(&elm) == 0)
+  {
       throw std::runtime_error(NO_INTERFACE_ELEMENT.toStdString());
-    }
+  }
 
-    geo::CInterfaceElement& iface = static_cast<geo::CInterfaceElement&>(elm);
+  geo::CInterfaceElement& iface = static_cast<geo::CInterfaceElement&>(elm);
 
-    iface.setBack(polygonInfo[back.getPolygonN(p)].face);
+  iface.setBack(polygonInfo[back.getPolygonN(p)].face);
   }
 
   for (size_t p = 0; p < front.getSize(); ++p)
   {
-    int ifEltIndex = polygonInfo[front.getPolygonN(p)].ifElement;
-    assert(ifEltIndex >= 0);
+  int ifEltIndex = polygonInfo[front.getPolygonN(p)].ifElement;
+  assert(ifEltIndex >= 0);
 
-    geo::IElement& elm = const_cast<geo::IElement&>(m_mesh.Element(ifEltIndex));
-    assert(dynamic_cast<geo::CInterfaceElement*>(&elm));
-    geo::CInterfaceElement& iface = static_cast<geo::CInterfaceElement&>(elm);
+  geo::IElement& elm = const_cast<geo::IElement&>(m_mesh.Element(ifEltIndex));
+  assert(dynamic_cast<geo::CInterfaceElement*>(&elm));
+  geo::CInterfaceElement& iface = static_cast<geo::CInterfaceElement&>(elm);
 
-    iface.setFront(polygonInfo[front.getPolygonN(p)].face);
+  iface.setFront(polygonInfo[front.getPolygonN(p)].face);
 
-    surfaceDesc->AddInterfaceElement(iface);
+  surfaceDesc->AddInterfaceElement(iface);
   }
 }
 
@@ -1094,7 +1094,7 @@ CMeshSurface* CLoadGridFromRGI::constructMeshSurface(const RGSurface& surface,
 
   for (size_t p = 0; p < surface.getSize(); ++p)
   {
-    meshSurface->AddFace(*getBodyTriangle(surface.getPolygonN(p), m_rgi,
+  meshSurface->AddFace(*getBodyTriangle(surface.getPolygonN(p), m_rgi,
       nodeIndices, nodes2Triangles));
   }
 
@@ -1108,7 +1108,7 @@ void CLoadGridFromRGI::constructRegularHorizon(
   const RGSurface& horizon) const
 {
   CMeshSurface* meshSurface =
-    constructMeshSurface(horizon, nodes2Triangles, nodeIndices);
+  constructMeshSurface(horizon, nodes2Triangles, nodeIndices);
 
   constructFaceDescriptorMap(linkFace2Horizon, meshSurface);
   constructFaceDescriptorMap(linkFace2SurfaceDescriptor, meshSurface);
@@ -1116,13 +1116,13 @@ void CLoadGridFromRGI::constructRegularHorizon(
   m_mesh.AddSurface(*meshSurface, horizon.getName(), false);
 
   CTetraSurface* tetraSurface =
-    new CTetraSurface(horizon.getName().c_str(), *meshSurface, m_model);
+  new CTetraSurface(horizon.getName().c_str(), *meshSurface, m_model);
   CTetraSubHorizon* tetraSubHorizon =
-    new CTetraSubHorizon(horizon.getName().c_str(), FALSE, m_model);
+  new CTetraSubHorizon(horizon.getName().c_str(), FALSE, m_model);
 
   tetraSubHorizon->LinkTo(*tetraSurface);
   static_cast <CTetraMesh&> (m_model.Mesh()).
-    m_vcSurfaceSource.push_back(tetraSurface);
+  m_vcSurfaceSource.push_back(tetraSurface);
 }
 
 void CLoadGridFromRGI::constructTopBottomHorizon(
@@ -1132,30 +1132,30 @@ void CLoadGridFromRGI::constructTopBottomHorizon(
   const RGSurface& horizon) const
 {
   CMeshSurface* meshSurface =
-    constructMeshSurface(horizon, nodes2Triangles, nodeIndices);
+  constructMeshSurface(horizon, nodes2Triangles, nodeIndices);
 
   constructFaceDescriptorMap(linkFace2SurfaceDescriptor, meshSurface);
 
   m_mesh.AddSurface(*meshSurface, horizon.getName(), false);
 
   CTetraSubBoundary& subBoundary =
-    static_cast <CTetraModel&> (m_model).SubBoundary();
+  static_cast <CTetraModel&> (m_model).SubBoundary();
   CTetraSubHorizon* topHorizon = subBoundary.TopHorizon().Horizon();
   CTetraSubHorizon* bottomHorizon = subBoundary.BottomHorizon().Horizon();
 
   CTetraSurface* tetraSurface =
-    new CTetraSurface(horizon.getName().c_str(), *meshSurface, m_model);
+  new CTetraSurface(horizon.getName().c_str(), *meshSurface, m_model);
 
   if (horizon.getAttribute() == RGSurface::Top)
   {
-    topHorizon->LinkTo(*tetraSurface);
-    static_cast <CTetraMesh&> (m_model.Mesh()).
+  topHorizon->LinkTo(*tetraSurface);
+  static_cast <CTetraMesh&> (m_model.Mesh()).
       m_vcSurfaceSource.push_back(tetraSurface);
   }
   else  // horizon.getAttribute() == RGSurface::Bottom
   {
-    bottomHorizon->LinkTo(*tetraSurface);
-    static_cast <CTetraMesh&> (m_model.Mesh()).
+  bottomHorizon->LinkTo(*tetraSurface);
+  static_cast <CTetraMesh&> (m_model.Mesh()).
       m_vcSurfaceSource.push_back(tetraSurface);
   }
 }
@@ -1165,33 +1165,33 @@ namespace
 
 CLoadGridFromRGI::TSurfaceCollection
   collectSurfaces(const TSharedBodyTriangleMap& triangles,
-    const CLoadGridFromRGI::TFaceDescriptorMap& linkFace2SurfaceDescriptor)
+  const CLoadGridFromRGI::TFaceDescriptorMap& linkFace2SurfaceDescriptor)
 {
   CLoadGridFromRGI::TSurfaceCollection surfaces;
 
   for (TSharedBodyTriangleMap::const_iterator triangle = triangles.begin();
-    triangle != triangles.end(); ++triangle)
+  triangle != triangles.end(); ++triangle)
   {
-    CLoadGridFromRGI::TFaceDescriptorMap::const_iterator result =
+  CLoadGridFromRGI::TFaceDescriptorMap::const_iterator result =
       linkFace2SurfaceDescriptor.find((*triangle).second->getBodyTriangle());
 
-    if (result != linkFace2SurfaceDescriptor.end())
-    {
+  if (result != linkFace2SurfaceDescriptor.end())
+  {
       std::set <const geo::IFace*> facesSet;
 
       facesSet.insert((*result).first);
       std::pair <CLoadGridFromRGI::TSurfaceCollection::iterator, bool> surface =
-        surfaces.insert(std::make_pair((*result).second, facesSet));
+    surfaces.insert(std::make_pair((*result).second, facesSet));
 
       if (!surface.second)
       {
-        (*(surface.first)).second.insert((*result).first);
+    (*(surface.first)).second.insert((*result).first);
       }
-    }
-    else
-    {
+  }
+  else
+  {
       // internal triangles are not included in 'linkFace2SurfaceDescriptor'
-    }
+  }
   }
 
   return surfaces;
@@ -1204,24 +1204,24 @@ std::vector <CMeshSurface*> CLoadGridFromRGI::extrapolateMeshSurfaces(
   const TFaceDescriptorMap& linkFace2SurfaceDescriptor) const
 {
   TSurfaceCollection surfaces =
-    collectSurfaces(triangles, linkFace2SurfaceDescriptor);
+  collectSurfaces(triangles, linkFace2SurfaceDescriptor);
   std::vector <CMeshSurface*> meshSurfaces;
 
   for (TSurfaceCollection::const_iterator
-    surface = surfaces.begin(); surface != surfaces.end(); ++surface)
+  surface = surfaces.begin(); surface != surfaces.end(); ++surface)
   {
-    CMeshSurface* meshSurface = new CMeshSurface();
-    
-    for (std::set <const geo::IFace*>::const_iterator
+  CMeshSurface* meshSurface = new CMeshSurface();
+  
+  for (std::set <const geo::IFace*>::const_iterator
       face = (*surface).second.begin(); face != (*surface).second.end(); ++face)
-    {
+  {
       meshSurface->AddFace(*(*face));
-    }
+  }
 
-    if (meshSurface->FaceSize() > 0)
-    {
+  if (meshSurface->FaceSize() > 0)
+  {
       meshSurfaces.push_back(meshSurface);
-    }
+  }
   }
 
   return meshSurfaces;

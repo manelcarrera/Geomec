@@ -9,12 +9,12 @@ namespace cora
 class CParameterSurface : public CParameterLimit
 {
   public:
-    CParameterSurface();
-    virtual ~CParameterSurface();
+  CParameterSurface();
+  virtual ~CParameterSurface();
 
   private:
-    CParameterSurface(const CParameterSurface& rhs);
-    CParameterSurface& operator = (const CParameterSurface& rhs);
+  CParameterSurface(const CParameterSurface& rhs);
+  CParameterSurface& operator = (const CParameterSurface& rhs);
 };
 
 } // namespace cora

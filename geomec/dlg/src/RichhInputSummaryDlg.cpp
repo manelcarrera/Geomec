@@ -27,24 +27,24 @@
 IMPLEMENT_DYNAMIC(CRichhInputSummaryDlg, CDialog)
 
 CRichhInputSummaryDlg::CRichhInputSummaryDlg(const CModelBase &model, CWnd* pParent /*=NULL*/)
-	: CDialog(CRichhInputSummaryDlg::IDD, pParent), m_Model(model), m_Unit(GetGeomecDoc()->UnitNode().Unit())
+  : CDialog(CRichhInputSummaryDlg::IDD, pParent), m_Model(model), m_Unit(GetGeomecDoc()->UnitNode().Unit())
   , m_dumpModel(m_Model)
 {
   const CDepletionStage *pStage = &model.InitialDepletionStage();
-	while(pStage)
-	{
-    m_vcStages.push_back(pStage);
-    if(pStage->Last())
-			pStage = 0;
-		else
-			pStage = &pStage->Next();
+  while(pStage)
+  {
+  m_vcStages.push_back(pStage);
+  if(pStage->Last())
+      pStage = 0;
+    else
+      pStage = &pStage->Next();
   }
 
   TFormationBaseEntry& entry = (TFormationBaseEntry&)*model.GraphEntry(MD_BASE_FORMATION);
-	TFormationBaseEntry::TNodeSet stNode = entry.EntryNodes();
-	for(TFormationBaseEntry::TNodeSet::const_iterator it = stNode.begin(); it != stNode.end(); it++)
-	{
-    m_vcFormations.push_back(*it);
+  TFormationBaseEntry::TNodeSet stNode = entry.EntryNodes();
+  for(TFormationBaseEntry::TNodeSet::const_iterator it = stNode.begin(); it != stNode.end(); it++)
+  {
+  m_vcFormations.push_back(*it);
   }
 }
 
@@ -73,34 +73,34 @@ BOOL CRichhInputSummaryDlg::OnInitDialog()
   std::vector <CDumpModel::TLineType> lineTypes = m_dumpModel.getLineTypes();
   std::vector <QString> lines = m_dumpModel.getLines();
   std::vector <CDumpModel::TLineType> ::const_iterator lineType =
-    lineTypes.begin();
+  lineTypes.begin();
   std::vector <QString> ::const_iterator line = lines.begin();
 
   while ((lineType != lineTypes.end()) && (line != lines.end()))
   {
-    switch (*lineType)
-    {
+  switch (*lineType)
+  {
       case CDumpModel::text:
-        AddText(line->toStdString().c_str());
-        break;
+    AddText(line->toStdString().c_str());
+    break;
       case CDumpModel::newLine:
-        NewLine();
-        break;
+    NewLine();
+    break;
       case CDumpModel::boldText:
-        AddBoldText(line->toStdString().c_str());
-        break;
+    AddBoldText(line->toStdString().c_str());
+    break;
       case CDumpModel::boldUnderlinedText:
-        AddBoldUnderlinedText(line->toStdString().c_str());
-        break;
+    AddBoldUnderlinedText(line->toStdString().c_str());
+    break;
       case CDumpModel::redText:
-        AddRedText(line->toStdString().c_str());
-        break;
+    AddRedText(line->toStdString().c_str());
+    break;
       default:
-        assert(false);
-    }
+    assert(false);
+  }
 
-    ++line;
-    ++lineType;
+  ++line;
+  ++lineType;
   }
 
   assert(line == lines.end());
@@ -130,7 +130,7 @@ void CRichhInputSummaryDlg::NewLine(int nNewLines)
 {
   for(int i = 0; i < nNewLines; ++i)
   {
-    AddText(_T("\n"));
+  AddText(_T("\n"));
   }
 }
 
@@ -139,12 +139,12 @@ void CRichhInputSummaryDlg::AddBoldText(const CString &text)
   CHARFORMAT Cfm;
   CHARFORMAT defaultCfm;
 
-	m_ctrlSummary.GetSelectionCharFormat(Cfm);
+  m_ctrlSummary.GetSelectionCharFormat(Cfm);
   defaultCfm = Cfm;
   Cfm.cbSize = sizeof(CHARFORMAT);
-	Cfm.dwMask = CFM_BOLD;
-	Cfm.dwEffects ^= CFE_BOLD; 
-	m_ctrlSummary.SetSelectionCharFormat(Cfm);
+  Cfm.dwMask = CFM_BOLD;
+  Cfm.dwEffects ^= CFE_BOLD; 
+  m_ctrlSummary.SetSelectionCharFormat(Cfm);
   AddText(text);
   m_ctrlSummary.SetSelectionCharFormat(defaultCfm);
 }
@@ -154,12 +154,12 @@ void CRichhInputSummaryDlg::AddBoldUnderlinedText(const CString &text)
   CHARFORMAT Cfm;
   CHARFORMAT defaultCfm;
 
-	m_ctrlSummary.GetSelectionCharFormat(Cfm);
+  m_ctrlSummary.GetSelectionCharFormat(Cfm);
   defaultCfm = Cfm;
   Cfm.cbSize = sizeof(CHARFORMAT);
-	Cfm.dwMask = CFM_BOLD|CFM_UNDERLINE;
-	Cfm.dwEffects ^= CFE_BOLD|CFE_UNDERLINE; 
-	m_ctrlSummary.SetSelectionCharFormat(Cfm);
+  Cfm.dwMask = CFM_BOLD|CFM_UNDERLINE;
+  Cfm.dwEffects ^= CFE_BOLD|CFE_UNDERLINE; 
+  m_ctrlSummary.SetSelectionCharFormat(Cfm);
   AddText(text);
   m_ctrlSummary.SetSelectionCharFormat(defaultCfm);
 }
@@ -187,19 +187,19 @@ void CRichhInputSummaryDlg::OnBnClickedSummarySaveButton()
   CTnoFileDialog dialog(FALSE, "rtf", sDefaultName, OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, sFilter);
   if(dialog.DoModal() == IDOK)
   {
-    EDITSTREAM es;
-    try
-    {
+  EDITSTREAM es;
+  try
+  {
       CFile fo(dialog.GetPathName(), CFile::modeCreate|CFile::modeWrite);
       es.dwCookie = (DWORD_PTR)&fo;
       es.pfnCallback = (EDITSTREAMCALLBACK)EditStreamCallback;
       
       m_ctrlSummary.StreamOut(SF_RTF, es);
-    }
-    catch(...) 
-    {
+  }
+  catch(...) 
+  {
       _m()->msg("Unable to write file", MB_OK|MB_ICONEXCLAMATION);
-    }
+  }
   }
 }
 

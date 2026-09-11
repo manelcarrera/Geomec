@@ -19,23 +19,23 @@ namespace geo {
 class GEOMETRY_EXPORT  CValue : public IValue
 {
 #ifdef _DEBUG
-	bool m_bValid;
+  bool m_bValid;
 #endif
-	double m_dValue;
+  double m_dValue;
 public:
-	CValue();
-	CValue(const double &value);
-	CValue(const IValue &value);
+  CValue();
+  CValue(const double &value);
+  CValue(const IValue &value);
 
-	CValue& operator=(const IValue &value);
-	CValue &operator=(const double &value);
+  CValue& operator=(const IValue &value);
+  CValue &operator=(const double &value);
 
-	virtual bool Valid() const;
+  virtual bool Valid() const;
   virtual void Invalidate();
-	virtual const double &Value() const;
-	virtual void Value(const double &value);
+  virtual const double &Value() const;
+  virtual void Value(const double &value);
 
-	virtual std::string Representation() const;
+  virtual std::string Representation() const;
 };
 
 }

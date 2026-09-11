@@ -27,35 +27,35 @@
 
 struct DCasingPointSupportedResult  
 {
-	double m_LB;
-	double m_EPS1buck;
-	double m_EPS1loss_of_clear;
-	int m_Status;
+  double m_LB;
+  double m_EPS1buck;
+  double m_EPS1loss_of_clear;
+  int m_Status;
 
-	DCasingPointSupportedResult()
-	{
-		m_LB = 0;
-		m_EPS1buck = 0;
-		m_EPS1loss_of_clear = 0;
-		m_Status = -1;
-	}
+  DCasingPointSupportedResult()
+  {
+    m_LB = 0;
+    m_EPS1buck = 0;
+    m_EPS1loss_of_clear = 0;
+    m_Status = -1;
+  }
 };
 
 typedef QMap<short,DCasingPointSupportedResult> DCasingPointSupportedResultMap;
 
 struct DCasingPointUnsupportedResult  
 {
-	double m_LB1;
-	double m_LB2;
-	int m_Status;
+  double m_LB1;
+  double m_LB2;
+  int m_Status;
 
 
-	DCasingPointUnsupportedResult()
-	{
-		m_LB1 = 0;
-		m_LB2 = 0;
-		m_Status = -1;
-	}
+  DCasingPointUnsupportedResult()
+  {
+    m_LB1 = 0;
+    m_LB2 = 0;
+    m_Status = -1;
+  }
 };
 
 typedef QMap<short,DCasingPointUnsupportedResult> DCasingPointUnsupportedResultMap;

@@ -27,7 +27,7 @@ CObjectFault::~CObjectFault()
 {
   if (m_owner && (m_elementSet != 0))
   {
-    delete m_elementSet;
+  delete m_elementSet;
   }
 }
 
@@ -81,7 +81,7 @@ const geo::IElement* CObjectFault::getNextElement()
 {
   if (m_sequenceState < m_horizonBase->InterfaceElementGroup()->ElementSize())
   {
-    return
+  return
       &(m_horizonBase->InterfaceElementGroup()->Element(m_sequenceState++));
   }
 
@@ -91,12 +91,12 @@ const geo::IElement* CObjectFault::getNextElement()
 std::ostream& CObjectFault::operator () (std::ostream& os) const
 {
   os << PREFIX.toStdString() << m_horizonBase->Name().toStdString() <<
-    std::endl;
+  std::endl;
   os << m_parameters.size() << std::endl;
 
   for (size_t s = 0; s < m_parameters.size(); ++s)
   {
-    os << m_parameters[s];
+  os << m_parameters[s];
   }
 
   return os;
@@ -134,7 +134,7 @@ CElementSet* CObjectFault::createElementSet(bool& owner, CModelBase* modelBase,
 
   if (elementSet != 0)
   {
-    return elementSet;
+  return elementSet;
   }
 
   const geo::CElementGroup* elementGroup = horizonBase->InterfaceElementGroup();
@@ -142,7 +142,7 @@ CElementSet* CObjectFault::createElementSet(bool& owner, CModelBase* modelBase,
 
   for (int element = 0; element < elementGroup->ElementSize(); ++element)
   {
-    elements[element] = &((static_cast <const geo::IInterfaceElement&> (
+  elements[element] = &((static_cast <const geo::IInterfaceElement&> (
       elementGroup->Element(element))).Front());
   }
 
@@ -150,24 +150,24 @@ CElementSet* CObjectFault::createElementSet(bool& owner, CModelBase* modelBase,
 
   if (elements[0]->NrOfNodes() == 4)
   {
-    owner = true;
-    elementSet = new CElementSet(elements, horizonBase->Name(),
+  owner = true;
+  elementSet = new CElementSet(elements, horizonBase->Name(),
       CElementSet::QUAD_3D, *modelBase);
   }
   else if (elements[0]->NrOfNodes() == 3)
   {
-    owner = true;
-    elementSet = new CElementSet(elements, horizonBase->Name(),
+  owner = true;
+  elementSet = new CElementSet(elements, horizonBase->Name(),
       CElementSet::TRIANGLE_3D, *modelBase);
   }
   else
   {
-    // We do not have always a summary result file to our disposal, hence
-    // throwing an exception.
+  // We do not have always a summary result file to our disposal, hence
+  // throwing an exception.
 
-    QString message = QString(NUMBER_OF_NODES).arg(elements[0]->NrOfNodes());
+  QString message = QString(NUMBER_OF_NODES).arg(elements[0]->NrOfNodes());
 
-    throw std::runtime_error(message.toStdString());
+  throw std::runtime_error(message.toStdString());
   }
 
   return elementSet;
@@ -177,23 +177,23 @@ CElementSet* CObjectFault::elementSetExists(CModelBase* modelBase,
   CHorizonBase* horizonBase)
 {
   TPointSetEntry* pointSetEntry =
-    dynamic_cast <TPointSetEntry*> (modelBase->GraphEntry(MD_BASE_POINTSET));
+  dynamic_cast <TPointSetEntry*> (modelBase->GraphEntry(MD_BASE_POINTSET));
   TPointSetEntry::TSortedNodeSet entryNodes = pointSetEntry->SortedEntryNodes();
 
   for (TPointSetEntry::TSortedNodeSet::iterator node = entryNodes.begin();
-    node != entryNodes.end(); ++node)
+  node != entryNodes.end(); ++node)
   {
-    if ((*node)->TypeId() == IDT_ELEMENTSET)
-    {
+  if ((*node)->TypeId() == IDT_ELEMENTSET)
+  {
       CElementSet* elementSet = static_cast <CElementSet*> (*node);
 
       if ((elementSet->Name() == horizonBase->Name()) &&
-        ((elementSet->ElementType() == CElementSet::QUAD_3D) ||
-        (elementSet->ElementType() == CElementSet::TRIANGLE_3D)))
+    ((elementSet->ElementType() == CElementSet::QUAD_3D) ||
+    (elementSet->ElementType() == CElementSet::TRIANGLE_3D)))
       {
-        return elementSet;
+    return elementSet;
       }
-    }
+  }
   }
 
   return 0;

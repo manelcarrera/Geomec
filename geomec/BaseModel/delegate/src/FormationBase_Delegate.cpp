@@ -22,7 +22,7 @@ CFormationBase_Delegate::CFormationBase_Delegate(CFormationBase* formationBase)
 void CFormationBase_Delegate::AppendContextMenu(CContextMenuInvoker& invoker)
 {
   invoker.AddCommand(_T("&Export"),
-    *(new CSingleCommandTemplate <CFormationBase_Delegate> (*this,
+  *(new CSingleCommandTemplate <CFormationBase_Delegate> (*this,
       &CFormationBase_Delegate::Export, &CFormationBase_Delegate::CanExport)));
   invoker.AddSeparator();
 
@@ -43,14 +43,14 @@ void CFormationBase_Delegate::Export()
   // Insert elements
 
   CTnoFileDialog dlg(FALSE, "dat",
-    m_formationBase->Name().toStdString().c_str(),
-    OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, "ASCII Files (*.dat;*.txt;*.xyz)|"
-    "*.dat;*.txt;*.xyz|Excel Files (*.xls;*.xls*)|*.xls;*.xls*||",
-    FemAppGetMainWnd());
+  m_formationBase->Name().toStdString().c_str(),
+  OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, "ASCII Files (*.dat;*.txt;*.xyz)|"
+  "*.dat;*.txt;*.xyz|Excel Files (*.xls;*.xls*)|*.xls;*.xls*||",
+  FemAppGetMainWnd());
 
   if (dlg.DoModal() == IDOK)
   {
-    m_formationBase->Export((LPCSTR) dlg.GetPathName(), arg);
+  m_formationBase->Export((LPCSTR) dlg.GetPathName(), arg);
   }
 }
 

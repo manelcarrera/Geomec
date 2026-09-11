@@ -23,34 +23,34 @@ public:
   class CUnitType
   {
   public:
-    CUnitType();
-    virtual ~CUnitType();
-    //virtual CUnitType* Clone() const = 0;
-    virtual const char *UnitName(int nUnitDef) const = 0;
-    virtual double ToUserUnit(double dValue, int nUnitDef) const = 0;
-    virtual double FromUserUnit(double dValue, int nUnitDef) const = 0;
+  CUnitType();
+  virtual ~CUnitType();
+  //virtual CUnitType* Clone() const = 0;
+  virtual const char *UnitName(int nUnitDef) const = 0;
+  virtual double ToUserUnit(double dValue, int nUnitDef) const = 0;
+  virtual double FromUserUnit(double dValue, int nUnitDef) const = 0;
   };
 
   class CCheckStrategy
   {
   public:
-    CCheckStrategy() {}
-    virtual ~CCheckStrategy() {}
-    //virtual CCheckStrategy* Clone() const = 0;
-    virtual bool operator()(double dValue, const CMatParam& param, QString& strErrorMsg, int nUnitDef = 0) const = 0;
-    virtual bool IsDomainCheck() const { return false; }
+  CCheckStrategy() {}
+  virtual ~CCheckStrategy() {}
+  //virtual CCheckStrategy* Clone() const = 0;
+  virtual bool operator()(double dValue, const CMatParam& param, QString& strErrorMsg, int nUnitDef = 0) const = 0;
+  virtual bool IsDomainCheck() const { return false; }
   };
 
   class CSetStrategy
   {
   public:
-    CSetStrategy() {}
-    virtual ~CSetStrategy() {}
-    //virtual CSetStrategy* Clone() const = 0;
-    virtual void operator()(double dValue, CMatParam& param) const = 0;
+  CSetStrategy() {}
+  virtual ~CSetStrategy() {}
+  //virtual CSetStrategy* Clone() const = 0;
+  virtual void operator()(double dValue, CMatParam& param) const = 0;
 
   protected:
-    void SetParamValue(CMatParam& param, double dValue) const { param.InternalSetValue(dValue); }
+  void SetParamValue(CMatParam& param, double dValue) const { param.InternalSetValue(dValue); }
   };
 
   friend class CSetStrategy;
@@ -61,11 +61,11 @@ public:
    * is transferred to the CMatParam object
    */
   CMatParam(const QString& strName,
-            double dValue,
-            CMaterial& parentMat,
-            const CUnitType& unitConversion,
-            const CCheckStrategy* pCheckStrategy = 0,
-            const CSetStrategy* pSetStrategy = 0);
+      double dValue,
+      CMaterial& parentMat,
+      const CUnitType& unitConversion,
+      const CCheckStrategy* pCheckStrategy = 0,
+      const CSetStrategy* pSetStrategy = 0);
 
   CMatParam(CMaterial& parentMat);
   virtual ~CMatParam();

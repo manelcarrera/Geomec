@@ -9,18 +9,18 @@ class CMeasuredTopDisplacementsNode_Delegate : public CStorageNode_Delegate
 {
 public:
   CMeasuredTopDisplacementsNode_Delegate(
-    CMeasuredTopDisplacementsNode* measuredTopDisplacementsNode);
+  CMeasuredTopDisplacementsNode* measuredTopDisplacementsNode);
 
 private:
   CMeasuredTopDisplacementsNode_Delegate(
-    const CMeasuredTopDisplacementsNode_Delegate& rhs);
+  const CMeasuredTopDisplacementsNode_Delegate& rhs);
   CMeasuredTopDisplacementsNode_Delegate& operator = (
-    const CMeasuredTopDisplacementsNode_Delegate& rhs);
+  const CMeasuredTopDisplacementsNode_Delegate& rhs);
 
   CMeasuredTopDisplacementsNode* m_measuredTopDisplacementsNode;
 
   REGISTER_DELEGATE(CMeasuredTopDisplacementsNode,
-    CMeasuredTopDisplacementsNode_Delegate);
+  CMeasuredTopDisplacementsNode_Delegate);
 };
 
 #endif  // _MeasuredTopDisplacementsNode_Delegate_h_

@@ -56,14 +56,14 @@ CGridDefinition::CGridDefinition(const CGridDefinition &rhs)
 bool CGridDefinition::GridIsValid() const
 {
   return (
-    m_TrackSpacing > 0 &&
-    m_BinSpacing > 0 &&
-    m_NumBin > 0 &&
-    m_NumTrack > 0 &&
-    m_DeltaBin != 0 &&
-    m_DeltaTrack != 0 &&
-    m_FirstBin >= 0 &&
-    m_FirstTrack >= 0);
+  m_TrackSpacing > 0 &&
+  m_BinSpacing > 0 &&
+  m_NumBin > 0 &&
+  m_NumTrack > 0 &&
+  m_DeltaBin != 0 &&
+  m_DeltaTrack != 0 &&
+  m_FirstBin >= 0 &&
+  m_FirstTrack >= 0);
 }
 
 void CGridDefinition::GenerateGrid(CPointSet &grid)
@@ -71,9 +71,9 @@ void CGridDefinition::GenerateGrid(CPointSet &grid)
   geo::CPoint pt;
   for(int nTrack = m_FirstTrack; nTrack < m_FirstTrack + m_NumTrack && nTrack > m_FirstTrack - m_NumTrack; nTrack += m_DeltaTrack)
   {
-    double y(m_CornerEasting + nTrack * m_TrackSpacing);
-    for(int nBin = m_FirstBin; nBin < m_FirstBin + m_NumBin && nBin > m_FirstBin - m_NumBin; nBin += m_DeltaBin)
-    {
+  double y(m_CornerEasting + nTrack * m_TrackSpacing);
+  for(int nBin = m_FirstBin; nBin < m_FirstBin + m_NumBin && nBin > m_FirstBin - m_NumBin; nBin += m_DeltaBin)
+  {
       pt.Set(m_CornerNorthing + nBin * m_BinSpacing, y, 0); 
       // rotate the point
       // Add the rotated point to the pointset.
@@ -87,7 +87,7 @@ void CGridDefinition::GenerateGrid(CPointSet &grid)
       pt.X(pt.X() + m_CornerNorthing);
 
       grid.PushBack(pt, std::vector<double>());
-    }
+  }
   }
 }
 
@@ -134,9 +134,9 @@ bool CGridDefinition::FindBinTrack(double Northing, double Easting, int& nBin, i
 
   for (nTrack = m_FirstTrack; nTrack < m_FirstTrack + m_NumTrack && nTrack > m_FirstTrack - m_NumTrack; nTrack += m_DeltaTrack)
   {
-    double y(m_CornerEasting + nTrack * m_TrackSpacing);
-    for (nBin = m_FirstBin; nBin < m_FirstBin + m_NumBin && nBin > m_FirstBin - m_NumBin; nBin += m_DeltaBin)
-    {
+  double y(m_CornerEasting + nTrack * m_TrackSpacing);
+  for (nBin = m_FirstBin; nBin < m_FirstBin + m_NumBin && nBin > m_FirstBin - m_NumBin; nBin += m_DeltaBin)
+  {
       pt.Set(m_CornerNorthing + nBin * m_BinSpacing, y, 0);
       // rotate the point
       // Add the rotated point to the pointset.
@@ -150,8 +150,8 @@ bool CGridDefinition::FindBinTrack(double Northing, double Easting, int& nBin, i
       pt.X(pt.X() + m_CornerNorthing);
 
       if (std::abs(pt.X() - Northing) < 1e-4 && std::abs(pt.Y() - Easting) < 1e-4)
-        return true;
-    }
+    return true;
+  }
   }
 
   return false;

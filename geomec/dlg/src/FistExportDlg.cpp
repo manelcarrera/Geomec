@@ -63,25 +63,25 @@ void CFistExportDlg::DoDataExchange(CDataExchange* pDX)
 {
   CDialog::DoDataExchange(pDX);
   //{{AFX_DATA_MAP(CFistExportDlg)
-    DDX_Control(pDX, IDC_BTN_RMV_DATE, m_BtnRmvDate);
-    DDX_Control(pDX, ID_EXPORT, m_BtnExport);
-    DDX_Control(pDX, IDC_BTN_ADD_DATE, m_BtnAddDate);
-    DDX_Control(pDX, IDC_DATE_LIST, m_ListDateCtrl);
-    DDX_Control(pDX, IDC_POINT_LIST, m_ListPtCtrl);
+  DDX_Control(pDX, IDC_BTN_RMV_DATE, m_BtnRmvDate);
+  DDX_Control(pDX, ID_EXPORT, m_BtnExport);
+  DDX_Control(pDX, IDC_BTN_ADD_DATE, m_BtnAddDate);
+  DDX_Control(pDX, IDC_DATE_LIST, m_ListDateCtrl);
+  DDX_Control(pDX, IDC_POINT_LIST, m_ListPtCtrl);
   //}}AFX_DATA_MAP
 
   if(!pDX->m_bSaveAndValidate)
   {
-    UpdateDateList();
-    if ( 
-        (m_pNewWellPath != 0 && m_NewDateList.size() == 0)
+  UpdateDateList();
+  if ( 
+    (m_pNewWellPath != 0 && m_NewDateList.size() == 0)
        )
       m_BtnExport.EnableWindow(FALSE);
-    else
+  else
       m_BtnExport.EnableWindow(TRUE);
 
-    if(m_ListDateCtrl.GetSelectedCount() == 0)
-    m_BtnRmvDate.EnableWindow(FALSE);
+  if(m_ListDateCtrl.GetSelectedCount() == 0)
+  m_BtnRmvDate.EnableWindow(FALSE);
 
   }
 }
@@ -118,40 +118,40 @@ BOOL CFistExportDlg::OnInitDialog()
 
   if(m_pNewWellPath)
   {
-    m_NewWellList.push_front(m_pNewWellPath);
-    const std::list<const QDate *> &fd= m_pNewWellPath->FistDates();
-    std::list<const QDate *>::const_iterator it;
-    for (it= fd.begin(); it != fd.end(); ++it)
-    {
+  m_NewWellList.push_front(m_pNewWellPath);
+  const std::list<const QDate *> &fd= m_pNewWellPath->FistDates();
+  std::list<const QDate *>::const_iterator it;
+  for (it= fd.begin(); it != fd.end(); ++it)
+  {
       m_NewDateList.push_front(new QDate(**it));
-    }
+  }
 
-    m_NewDateList.sort(::less);
-    m_NewDateList.unique(::equal);
+  m_NewDateList.sort(::less);
+  m_NewDateList.unique(::equal);
   }
   else if ( m_bNewWellPaths) // all new wellpaths
   {
-    assert(m_pModel);
+  assert(m_pModel);
 
-    CNewWellPathEntry::TNodeSet new_well_paths =
+  CNewWellPathEntry::TNodeSet new_well_paths =
       ((CNewWellPathEntry*)m_pModel->GraphEntry(MD_NEW_WELLPATH))->EntryNodes();
-    for(CNewWellPathEntry::TNodeSet::iterator it = new_well_paths.begin(); it != new_well_paths.end(); ++it)
-    {
+  for(CNewWellPathEntry::TNodeSet::iterator it = new_well_paths.begin(); it != new_well_paths.end(); ++it)
+  {
       m_NewWellList.push_front(*it);
       const std::list<const QDate *> &fd= (*it)->FistDates();
       std::list<const QDate *>::const_iterator it_date;
       for (it_date= fd.begin(); it_date != fd.end(); ++it_date)
       {
-        m_NewDateList.push_front(new QDate(**it_date));
+    m_NewDateList.push_front(new QDate(**it_date));
       }
 
       m_NewDateList.sort(::less);
       m_NewDateList.unique(::equal);
-    }
+  }
   }
   else // all old wellpaths
   {
-    assert(false);
+  assert(false);
   }
 
   UpdatePointList();
@@ -178,16 +178,16 @@ void CFistExportDlg::OnBtnAddDate()
   CAnalysisType antype(m_pModel->ResultRegister().NonLinear() ? CAnalysisType::AT_NONLIN : CAnalysisType::AT_LINEAR);
   while(pLastStage && !m_pModel->ResultRegister().ResultsAvailable(antype, *pLastStage))
   {
-    if(pLastStage->Initial())
-    pLastStage = 0;
-    else
-    pLastStage = &pLastStage->Previous();
+  if(pLastStage->Initial())
+  pLastStage = 0;
+  else
+  pLastStage = &pLastStage->Previous();
   }
 
   if(pLastStage == 0)
   {
-    _m()->msg("No results found, cannot add dates");
-    return;
+  _m()->msg("No results found, cannot add dates");
+  return;
   }
 
   last.setDate(pLastStage->Time().GetYear(),
@@ -202,20 +202,20 @@ void CFistExportDlg::OnBtnAddDate()
   QDate *date = 0;
   if(dlg.DoModal() == IDOK)
   {
-    date = new QDate(dlg.DateTime().GetYear(), dlg.DateTime().GetMonth(), dlg.DateTime().GetDay());
-    if(*date < first || *date > last)
-    {
+  date = new QDate(dlg.DateTime().GetYear(), dlg.DateTime().GetMonth(), dlg.DateTime().GetDay());
+  if(*date < first || *date > last)
+  {
       _m()->msg(QString("New dates cannot be inserted before the initial depletion stage, " + first.toString("dd MM yyyy") + ",\n" + " or after the last calculated depletion stage, " + last.toString("dd MM yyyy") +"."), MB_OK|MB_ICONINFORMATION);
       delete date;
       return;
-    }
+  }
 
-    {
+  {
       m_NewDateList.push_front(date);
       m_NewDateList.sort(::less);
       m_NewDateList.unique(::equal);
       UpdateData(FALSE);
-    }
+  }
   }
 }
 
@@ -226,21 +226,21 @@ void CFistExportDlg::OnBtnIncStages()
 
   while(pStage)
   {
-    CAnalysisType antype = (m_pModel->ResultRegister().NonLinear() ? CAnalysisType::AT_NONLIN : CAnalysisType::AT_LINEAR);
-    if(m_pModel->ResultRegister().ResultsAvailable(antype, *pStage))
-    {
+  CAnalysisType antype = (m_pModel->ResultRegister().NonLinear() ? CAnalysisType::AT_NONLIN : CAnalysisType::AT_LINEAR);
+  if(m_pModel->ResultRegister().ResultsAvailable(antype, *pStage))
+  {
       date = new QDate(pStage->Time().GetYear(), pStage->Time().GetMonth(), 1);
       {
-        m_NewDateList.push_front(date);
-        m_NewDateList.sort(::less);
-        m_NewDateList.unique(::equal);
+    m_NewDateList.push_front(date);
+    m_NewDateList.sort(::less);
+    m_NewDateList.unique(::equal);
       }
-    }
+  }
 
-    if(!pStage->Last())
-    pStage = &pStage->Next();
-    else 
-    pStage = 0;
+  if(!pStage->Last())
+  pStage = &pStage->Next();
+  else 
+  pStage = 0;
   }
 
   UpdateData(FALSE);
@@ -256,8 +256,8 @@ void CFistExportDlg::OnBtnRmvDate()
 
   while (pos)
   {
-    int nItem = m_ListDateCtrl.GetNextSelectedItem(pos);
-    {
+  int nItem = m_ListDateCtrl.GetNextSelectedItem(pos);
+  {
       std::list<const QDate *>::iterator it= m_NewDateList.begin();
 
       for ( int jj= 0
@@ -265,25 +265,25 @@ void CFistExportDlg::OnBtnRmvDate()
           ; ++jj
           )
       {
-        if ( nItem == jj )
-        {
+    if ( nItem == jj )
+    {
           m_DatesToRemove.push_back( *it);
           break;
-        }
-        ++it;
-      }
     }
+    ++it;
+      }
+  }
   }
 
   {
-    std::list<const QDate *>::iterator it;
-    for ( it= m_DatesToRemove.begin()
-        ; it != m_DatesToRemove.end()
-        ; ++it
-        )
-    {
+  std::list<const QDate *>::iterator it;
+  for ( it= m_DatesToRemove.begin()
+    ; it != m_DatesToRemove.end()
+    ; ++it
+    )
+  {
       m_NewDateList.remove( *it);
-    }
+  }
   }
 
 
@@ -307,18 +307,18 @@ void CFistExportDlg::UpdateDateList()
   int nIndex;
   m_ListDateCtrl.DeleteAllItems();
   {
-    std::list<const QDate *>::iterator it;
+  std::list<const QDate *>::iterator it;
 
-    for ( it= m_NewDateList.begin()
-        ; it != m_NewDateList.end()
-        ; ++it
-        )
-    {
+  for ( it= m_NewDateList.begin()
+    ; it != m_NewDateList.end()
+    ; ++it
+    )
+  {
       const QDate *pDate = *it;
       nIndex = m_ListDateCtrl.InsertItem(j++, "");
       str = pDate->toString("dd MM yyyy");
       m_ListDateCtrl.SetItemText(nIndex, 0, str.toStdString().c_str());
-    }
+  }
   }
 }
 
@@ -330,12 +330,12 @@ void CFistExportDlg::UpdatePointList()
 
   for ( it_wpath= m_NewWellList.begin(); it_wpath != m_NewWellList.end(); ++it_wpath )
   {
-    const CNewWellPath *pWellPath = *it_wpath;
-    const std::list<CNewWellPoint> &list= pWellPath->FistExportPoints();
-    std::list<CNewWellPoint>::const_iterator it_wpoint;
-    int jj= 0;
-    for ( it_wpoint= list.begin(); it_wpoint!=list.end(); ++jj, ++it_wpoint)
-    {
+  const CNewWellPath *pWellPath = *it_wpath;
+  const std::list<CNewWellPoint> &list= pWellPath->FistExportPoints();
+  std::list<CNewWellPoint>::const_iterator it_wpoint;
+  int jj= 0;
+  for ( it_wpoint= list.begin(); it_wpoint!=list.end(); ++jj, ++it_wpoint)
+  {
       iColom = 0;
       nIndex = m_ListPtCtrl.InsertItem(jj, "");
 
@@ -346,15 +346,15 @@ void CFistExportDlg::UpdatePointList()
       CNewGeoWellPoint gwp( *const_cast<CModelBase *>(m_pModel), *it_wpoint);
       const CFormationBase *fbase= gwp.Formation();
       if (fbase)
-        strValue.Format( fbase->Name().toStdString().c_str());
+    strValue.Format( fbase->Name().toStdString().c_str());
       else
-        strValue.Format( "-");
+    strValue.Format( "-");
 
       m_ListPtCtrl.SetItemText(nIndex, iColom++, strValue);
 
       strValue.Format(pWellPath->Name().toStdString().c_str());
       m_ListPtCtrl.SetItemText(nIndex, iColom++, strValue);
-    }
+  }
   }
 }
 
@@ -364,9 +364,9 @@ void CFistExportDlg::OnItemchangedDateList(NMHDR* pNMHDR, LRESULT* pResult)
   // TODO: Add your control notification handler code here
   //UpdateData(FALSE);
   if(m_ListDateCtrl.GetSelectedCount() != 0)
-    m_BtnRmvDate.EnableWindow(TRUE);
+  m_BtnRmvDate.EnableWindow(TRUE);
   else
-    m_BtnRmvDate.EnableWindow(FALSE);
+  m_BtnRmvDate.EnableWindow(FALSE);
 
   *pResult = 0;
 }
@@ -377,9 +377,9 @@ void CFistExportDlg::AssignDatesToWellPath() const
        !( m_bNewWellPaths==false && m_pNewWellPath==0 )
      )
   {
-    std::list<const CNewWellPath*>::const_iterator it;
-    for ( it= m_NewWellList.begin(); it!= m_NewWellList.end(); ++it)
-    {
+  std::list<const CNewWellPath*>::const_iterator it;
+  for ( it= m_NewWellList.begin(); it!= m_NewWellList.end(); ++it)
+  {
       CNewWellPath *pPath= const_cast<CNewWellPath *>(*it);
       pPath->FistDates().clear();
       std::list<const QDate *>::const_iterator it2;
@@ -388,11 +388,11 @@ void CFistExportDlg::AssignDatesToWellPath() const
           ; ++it2
           )
       {
-        pPath->FistDates().push_back(new QDate(**it2));
-        pPath->FistDates().sort(::less);
-        pPath->FistDates().unique(::equal);
+    pPath->FistDates().push_back(new QDate(**it2));
+    pPath->FistDates().sort(::less);
+    pPath->FistDates().unique(::equal);
       }
-    }
+  }
   }
 }
 
@@ -414,19 +414,19 @@ void CFistExportDlg::OnExport()
 
   if(dlg.DoModal() == IDOK)
   {
-    CWaitCursor wait;
-    CString newName = dlg.GetPathName();
-    CString Title = dlg.GetFileTitle();
+  CWaitCursor wait;
+  CString newName = dlg.GetPathName();
+  CString Title = dlg.GetFileTitle();
 
-    QFile file(QString((LPCSTR)(newName)));
-    file.open(QIODevice::WriteOnly);
-    QTextStream stream(&file);
+  QFile file(QString((LPCSTR)(newName)));
+  file.open(QIODevice::WriteOnly);
+  QTextStream stream(&file);
 
-    {
+  {
       CFistExport fexport((const CModelBase*)(m_pModel),0, m_pNewWellPath);	
       fexport.Save(stream);
-    }
-    file.close();
+  }
+  file.close();
 
   }
 

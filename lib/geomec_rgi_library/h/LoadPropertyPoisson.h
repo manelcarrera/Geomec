@@ -9,17 +9,17 @@ namespace GeomecRGI
 class CLoadPropertyPoisson : public CCalculateShearModulus
 {
   public:
-    using CLoadPropertyBase::loadProperty;
+  using CLoadPropertyBase::loadProperty;
 
-    CLoadPropertyPoisson(const RGProperty& rgProperty, RGInterface& rgi,
+  CLoadPropertyPoisson(const RGProperty& rgProperty, RGInterface& rgi,
       CModelBase& modelBase, CRockMechProcessor& rmp);
-    virtual ~CLoadPropertyPoisson();
+  virtual ~CLoadPropertyPoisson();
 
-    virtual bool loadProperty();
+  virtual bool loadProperty();
 
   private:
-    CLoadPropertyPoisson(const CLoadPropertyPoisson& rhs);
-    CLoadPropertyPoisson& operator = (const CLoadPropertyPoisson& rhs);
+  CLoadPropertyPoisson(const CLoadPropertyPoisson& rhs);
+  CLoadPropertyPoisson& operator = (const CLoadPropertyPoisson& rhs);
 };
 
 } // namespace GeomecRGI

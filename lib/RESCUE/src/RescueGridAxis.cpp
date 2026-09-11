@@ -26,14 +26,14 @@ RescueGridAxis::RescueGridAxis(RescueContext *context, FILE *archiveFile)
   myfscanf(context, archiveFile, &step);
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -48,11 +48,11 @@ void RescueGridAxis::Archive(RescueContext *context, FILE *archiveFile)
   myfprintf(context, archiveFile, "; Grid Axis");
   if (relatedAxis == 0)
   {
-    myfprintf(context, archiveFile, (RESCUEINT64) 0);
+  myfprintf(context, archiveFile, (RESCUEINT64) 0);
   }
   else
   {
-    myfprintf(context, archiveFile, relatedAxis->Identifier());
+  myfprintf(context, archiveFile, relatedAxis->Identifier());
   }
   myfprintf(context, archiveFile, lowBound);
   myfprintf(context, archiveFile, count);
@@ -60,7 +60,7 @@ void RescueGridAxis::Archive(RescueContext *context, FILE *archiveFile)
   myfprintf(context, archiveFile, step);
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -71,10 +71,10 @@ RescueGridAxis::GridNdx RescueGridAxis::AxisIndex()
   RESCUEINT64 loop;
   for (loop = 0; loop < howMany && myReturn == UNKNOWN; loop++)
   {
-    if (parentGrid->axes->NthObject(loop) == this)
-    {
+  if (parentGrid->axes->NthObject(loop) == this)
+  {
       myReturn = (GridNdx) loop;
-    }
+  }
   }
   return myReturn;
 }
@@ -90,11 +90,11 @@ RESCUEBOOL RescueGridAxis::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueGridAxis)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueObject::IsOfType(thisType);
+  return RescueObject::IsOfType(thisType);
   }
 }
 
@@ -103,10 +103,10 @@ RESCUEINT32 RescueGridAxis::LowBound(RESCUEBOOL throwIfTooBig)
   RESCUEINT64 output = LowBound64();
   if (throwIfTooBig)
   {
-    if (output > 2147483647 || output < -2147483647)
-    {
+  if (output > 2147483647 || output < -2147483647)
+  {
       throw "Model is too large to be read in 32 bit mode.";
-    }
+  }
   }
   return (RESCUEINT32) output;
 }
@@ -116,10 +116,10 @@ RESCUEINT32 RescueGridAxis::Count(RESCUEBOOL throwIfTooBig)
   RESCUEINT64 output = Count64();
   if (throwIfTooBig)
   {
-    if (output > 2147483647 || output < -2147483647)
-    {
+  if (output > 2147483647 || output < -2147483647)
+  {
       throw "Model is too large to be read in 32 bit mode.";
-    }
+  }
   }
   return (RESCUEINT32) output;
 }

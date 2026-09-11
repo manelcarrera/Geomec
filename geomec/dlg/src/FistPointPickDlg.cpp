@@ -29,7 +29,7 @@ CFistPointPickDlg::~CFistPointPickDlg()
 
 /*virtual*/ CString CFistPointPickDlg::OnOutOfBoundaryMessage()
 {
-	return "Some points are not added. Either the points are outside any defined reservoirs or no reservoir is specified as being a sand.";
+  return "Some points are not added. Either the points are outside any defined reservoirs or no reservoir is specified as being a sand.";
 }
 
 
@@ -42,8 +42,8 @@ CNewWellPoint CFistPointPickDlg::OnCreateWellPoint
   CNewGeoWellPoint Pt(dynamic_cast<CNewWellPath &>(wellpath),tmd);
   if( !Pt.Defined())
   {
-    bDefined= false;
-    return Pt;
+  bDefined= false;
+  return Pt;
   }
 
   CFormationBase::TFormationType formtype = Pt.Formation()->FormationType();
@@ -53,9 +53,9 @@ CNewWellPoint CFistPointPickDlg::OnCreateWellPoint
      && formtype != CFormationBase::FT_NOTSPECIFIED)
      )
   {
-    bDefined= false;
-    Pt.Invalidate();
-    return Pt;
+  bDefined= false;
+  Pt.Invalidate();
+  return Pt;
   }
 
   bDefined= true;

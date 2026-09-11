@@ -9,12 +9,12 @@ class CMaterialDualCapLinEla_Delegate : public IMaterialRock_Delegate
 {
 public:
   CMaterialDualCapLinEla_Delegate(
-    CMaterialDualCapLinEla* materialDualCapLinEla);
+  CMaterialDualCapLinEla* materialDualCapLinEla);
 
 private:
   CMaterialDualCapLinEla_Delegate(const CMaterialDualCapLinEla_Delegate& rhs);
   CMaterialDualCapLinEla_Delegate& operator = (
-    const CMaterialDualCapLinEla_Delegate& rhs);
+  const CMaterialDualCapLinEla_Delegate& rhs);
 
   CMaterialDualCapLinEla* m_materialDualCapLinEla;
 

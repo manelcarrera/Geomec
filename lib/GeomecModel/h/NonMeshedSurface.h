@@ -18,29 +18,29 @@ public:
   class CGeoSurface : public geo::ISurface
   {
   public:
-    CGeoSurface(const geo::CTriSurface& surface, const CNonMeshedSurface& parent);
-    virtual ~CGeoSurface();
+  CGeoSurface(const geo::CTriSurface& surface, const CNonMeshedSurface& parent);
+  virtual ~CGeoSurface();
 
-	  virtual const geo::CPtrArray<geo::IFace> FacesAt(const geo::IPoint &p) const;
-	  virtual const geo::CPtrArray<geo::IFace> FacesAtNode(const geo::IPoint &p) const;
-	  virtual const geo::CTriangle &Face(int nIndex) const;
-	  virtual int FaceSize() const;
-	  virtual const geo::CPoint& Point(int nIndex) const;
-	  virtual void Clear();
-	  virtual int PointSize() const;
-	  virtual std::vector<int> Nodes(const geo::IElement &element) const;
+    virtual const geo::CPtrArray<geo::IFace> FacesAt(const geo::IPoint &p) const;
+    virtual const geo::CPtrArray<geo::IFace> FacesAtNode(const geo::IPoint &p) const;
+    virtual const geo::CTriangle &Face(int nIndex) const;
+    virtual int FaceSize() const;
+    virtual const geo::CPoint& Point(int nIndex) const;
+    virtual void Clear();
+    virtual int PointSize() const;
+    virtual std::vector<int> Nodes(const geo::IElement &element) const;
 
-    const CNonMeshedSurface& Parent() const;
+  const CNonMeshedSurface& Parent() const;
 
   protected:
   	virtual geo::CPoint &PointAt(int nIndex);
 
   private:
-    std::vector<geo::CTriangle*> m_vcTriangle;
-    std::vector<geo::CPoint> m_vcPoint;
-	  typedef std::map<const geo::IPoint *, geo::CPtrArray<geo::IFace> > TPointToFacesMap;
-	  TPointToFacesMap m_mpPointToFaces;
-    const CNonMeshedSurface& m_parent;
+  std::vector<geo::CTriangle*> m_vcTriangle;
+  std::vector<geo::CPoint> m_vcPoint;
+    typedef std::map<const geo::IPoint *, geo::CPtrArray<geo::IFace> > TPointToFacesMap;
+    TPointToFacesMap m_mpPointToFaces;
+  const CNonMeshedSurface& m_parent;
   };
 
 public:
@@ -57,9 +57,9 @@ public:
   virtual int DisplayListSize() const;
   virtual const geo::IObject& DisplayList(int nIndex) const;
 
-	virtual long SavedItems() const;
-	virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-	virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  virtual long SavedItems() const;
+  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
+  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
 
   const CNonMeshedSurfaceParametersNode& ParametersNode() const;
   const CNonMeshedSurfacePressure& Pressure() const;

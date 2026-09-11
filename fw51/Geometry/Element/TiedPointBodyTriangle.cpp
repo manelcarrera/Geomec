@@ -14,9 +14,9 @@ void CTiedPointBodyTriangle::AddTying(int nIndex, const geo::IInterfaceElement& 
 {
   if (!m_vcElements[nIndex])
   {
-    m_vcPoints[nIndex].Set(point.X(), point.Y(), point.Z());
-    m_vcElements[nIndex] = &elt;
-    m_nOffset = nOffset;
+  m_vcPoints[nIndex].Set(point.X(), point.Y(), point.Z());
+  m_vcElements[nIndex] = &elt;
+  m_nOffset = nOffset;
   }
 }
 

@@ -22,23 +22,23 @@ CFemAppModel::CFemAppModel(CAnalysisLogger& logger)
 , m_deleting(false)
 , m_savingSmoothedResults(false)
 {
-	CDocumentBase::create();
+  CDocumentBase::create();
   setModelProxy(new CModelProxyConsole(*this));
   setDocumentProxy(new CDocumentProxyConsole());
 }
 
 CFemAppModel::~CFemAppModel()
 {
-	assert(!isOpen());
+  assert(!isOpen());
 
   if (m_modelProxy != 0)
   {
-    delete m_modelProxy;
+  delete m_modelProxy;
   }
 
   if (m_documentProxy != 0)
   {
-    delete m_documentProxy;
+  delete m_documentProxy;
   }
 }
 
@@ -55,7 +55,7 @@ void CFemAppModel::OnCloseModel()
   //  getDocumentProxy()->currentScene(0);
 
   if(GraphEntry(MD_BASE_SCENE_NODE))
-    succeeded = DeleteEntry(MD_BASE_SCENE_NODE);
+  succeeded = DeleteEntry(MD_BASE_SCENE_NODE);
 
   succeeded = succeeded && DeleteEntry(MD_BASE_OPENGL_NODE);
   succeeded = succeeded && DeleteEntry(MD_BASE_COLOR_NODE);
@@ -77,60 +77,60 @@ void CFemAppModel::createDefaults()
 
 void CFemAppModel::OnInvalidateStorage()
 {
-	getDocumentProxy()->onInvalidateStorage();
+  getDocumentProxy()->onInvalidateStorage();
 }
 
 void CFemAppModel::OnInvalidateCalculation(int /*nType*/)
 {
-	// Note : Document invalidates the calculation
+  // Note : Document invalidates the calculation
 }
 
 
 //##ModelId=3BC55D39011F
 CGraphEntry* CFemAppModel::GraphEntry(const int nEntryType)
 {
-	CEntryMap::iterator it = m_mpEntry.find(nEntryType);
-	if(it != m_mpEntry.end())
-	{
-		// GraphEntry found ...
-		return it->second;
-	}
-	
-	return 0;
+  CEntryMap::iterator it = m_mpEntry.find(nEntryType);
+  if(it != m_mpEntry.end())
+  {
+    // GraphEntry found ...
+    return it->second;
+  }
+  
+  return 0;
 }
 
 const CGraphEntry* CFemAppModel::GraphEntry(const int nEntryType) const
 {
-	if((m_mpEntry.find(nEntryType) != m_mpEntry.end()) ) {
-		// GraphEntry found ...
-		return m_mpEntry.find(nEntryType)->second;
-	}
-	
-	return 0;
+  if((m_mpEntry.find(nEntryType) != m_mpEntry.end()) ) {
+    // GraphEntry found ...
+    return m_mpEntry.find(nEntryType)->second;
+  }
+  
+  return 0;
 }
 
 //##ModelId=3BF230B80263
 bool CFemAppModel::DeleteEntry(int nEntryType)
 {
-	if(!GraphEntry(nEntryType))
-		return false;
+  if(!GraphEntry(nEntryType))
+    return false;
 
-	delete GraphEntry(nEntryType);
+  delete GraphEntry(nEntryType);
 
-	return true;
+  return true;
 }
 
 //##ModelId=3BC55D390111
 bool CFemAppModel::NewModel(bool /*bAttachToDocument*/)
 {
-	// If the model is open close it
-	if(isOpen()) {
-		CloseModel();
-	}
+  // If the model is open close it
+  if(isOpen()) {
+    CloseModel();
+  }
 
-	newDocument();
+  newDocument();
 
-	return true;
+  return true;
 }
 
 void CFemAppModel::DestroyCaches()
@@ -139,15 +139,15 @@ void CFemAppModel::DestroyCaches()
 
 void CFemAppModel::CloseModel()
 {
-	// Call OnCloseModel to call the upper class set the close flag and if 
-	// have document dettach from it
+  // Call OnCloseModel to call the upper class set the close flag and if 
+  // have document dettach from it
   assert(m_modelProxy != 0);
   m_modelProxy->onCloseModel();
 
   assert(m_modelProxy != 0);
   m_modelProxy->detachModel();
 
-	closeDocument();
+  closeDocument();
 }
 
 void CFemAppModel::setModelProxy(CModelProxy* modelProxy)
@@ -160,7 +160,7 @@ void CFemAppModel::setModelProxy(CModelProxy* modelProxy)
 
   if (m_modelProxy != 0)
   {
-    delete m_modelProxy;
+  delete m_modelProxy;
   }
 
   m_modelProxy = modelProxy;
@@ -181,7 +181,7 @@ void CFemAppModel::setDocumentProxy(CDocumentProxy* documentProxy)
 
   if (m_documentProxy != 0)
   {
-    delete m_documentProxy;
+  delete m_documentProxy;
   }
 
   m_documentProxy = documentProxy;

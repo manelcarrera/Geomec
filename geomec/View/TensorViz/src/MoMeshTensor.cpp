@@ -19,138 +19,138 @@
 
 namespace
 {
-    // Calculates the bounding box of the given mesh
-    void getGeometryMinMax(const MiMeshUnstructuredI* mesh, MbVec3d& minVec, MbVec3d& maxVec)
+  // Calculates the bounding box of the given mesh
+  void getGeometryMinMax(const MiMeshUnstructuredI* mesh, MbVec3d& minVec, MbVec3d& maxVec)
+  {
+    const MiGeometryI& geometry = mesh->getGeometry();
+    const MiTopologyExplicitI& topology = mesh->getTopology();
+
+    minVec = MbVec3d::numeric_limit_max();
+    maxVec = -minVec;
+
+    size_t begin = topology.getBeginNodeId();
+    size_t end = topology.getEndNodeId();
+    for(size_t i=begin; i < end; ++i)
     {
-        const MiGeometryI& geometry = mesh->getGeometry();
-        const MiTopologyExplicitI& topology = mesh->getTopology();
+      MbVec3d v = geometry.getCoord(i);
+      for(int j=0; j < 3; ++j)
+      {
+        minVec[j] = std::min(minVec[j], v[j]);
+        maxVec[j] = std::max(maxVec[j], v[j]);
+      }
+    }
+  }
 
-        minVec = MbVec3d::numeric_limit_max();
-        maxVec = -minVec;
+  // Constructs an OpenGL 1D texture for the given colormap, to be used in the shader
+  GLuint generateTextureFromColorMap(const MiColorMapping<double, SbColorRGBA>* colorMap)
+  {
+    const int width = 512;
+    uint32_t colors[width];
 
-        size_t begin = topology.getBeginNodeId();
-        size_t end = topology.getEndNodeId();
-        for(size_t i=begin; i < end; ++i)
-        {
-            MbVec3d v = geometry.getCoord(i);
-            for(int j=0; j < 3; ++j)
-            {
-                minVec[j] = std::min(minVec[j], v[j]);
-                maxVec[j] = std::max(maxVec[j], v[j]);
-            }
-        }
+    double rangeMin, rangeMax;
+    colorMap->getRange(rangeMin, rangeMax);
+    for(int i=0; i < width; ++i)
+    {
+      double val = rangeMin + i * (rangeMax - rangeMin) / width;
+      // oiv: 0xrrggbbaa
+      // GL:  0xaabbggrr
+      uint32_t colorRGBA = colorMap->getColor(val).getPackedValue();
+      uint32_t colorABGR = 
+        ((colorRGBA & 0x000000ff) << 24) |
+        ((colorRGBA & 0x0000ff00) <<  8) |
+        ((colorRGBA & 0x00ff0000) >>  8) |
+        ((colorRGBA & 0xff000000) >> 24);
+      colors[i] = colorABGR;
     }
 
-    // Constructs an OpenGL 1D texture for the given colormap, to be used in the shader
-    GLuint generateTextureFromColorMap(const MiColorMapping<double, SbColorRGBA>* colorMap)
-    {
-        const int width = 512;
-        uint32_t colors[width];
+    GLuint tex;
+    glGenTextures(1, &tex);
+    glBindTexture(GL_TEXTURE_1D, tex);
+    glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexImage1D(GL_TEXTURE_1D, 0, GL_RGBA, width, 0, GL_RGBA, GL_UNSIGNED_BYTE, (const GLvoid*)colors);
 
-        double rangeMin, rangeMax;
-        colorMap->getRange(rangeMin, rangeMax);
-        for(int i=0; i < width; ++i)
-        {
-            double val = rangeMin + i * (rangeMax - rangeMin) / width;
-            // oiv: 0xrrggbbaa
-            // GL:  0xaabbggrr
-            uint32_t colorRGBA = colorMap->getColor(val).getPackedValue();
-            uint32_t colorABGR = 
-                ((colorRGBA & 0x000000ff) << 24) |
-                ((colorRGBA & 0x0000ff00) <<  8) |
-                ((colorRGBA & 0x00ff0000) >>  8) |
-                ((colorRGBA & 0xff000000) >> 24);
-            colors[i] = colorABGR;
-        }
-
-        GLuint tex;
-        glGenTextures(1, &tex);
-        glBindTexture(GL_TEXTURE_1D, tex);
-        glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-        glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-        glTexImage1D(GL_TEXTURE_1D, 0, GL_RGBA, width, 0, GL_RGBA, GL_UNSIGNED_BYTE, (const GLvoid*)colors);
-
-        return tex;
-    }
+    return tex;
+  }
 
   // Get a list of unique node indices for the given topology and cellfilter. When rendering per-node, care must be taken
   // to render only a single beachball on each node, even when it's shared between several cells. The cell filter must also
   // be taken into account so the "decimate" slider works for beachballs as well
   void getActiveNodeIndices(const MiTopologyExplicitI& topology, const MiCellFilterI* cellFilter, std::vector<size_t>& nodeIndices)
   {
-    nodeIndices.clear(); // just in case
+  nodeIndices.clear(); // just in case
 
-    // First gather all the node indices for which to render the tensors.
-    size_t nc = topology.getNumCells();
-    for(size_t i=0; i < nc; ++i)
-    {
+  // First gather all the node indices for which to render the tensors.
+  size_t nc = topology.getNumCells();
+  for(size_t i=0; i < nc; ++i)
+  {
       if(cellFilter == 0 || cellFilter->acceptCell(i))
       {
-        const MiCell* cell = topology.getCell(i);
-        size_t n = cell->getNumNodes();
-        for(size_t j=0; j < n; ++j)
+    const MiCell* cell = topology.getCell(i);
+    size_t n = cell->getNumNodes();
+    for(size_t j=0; j < n; ++j)
           nodeIndices.push_back(cell->getNodeIndex(j));
       }
-    }  
+  }  
 
-    // Since nodes are shared between cells, the list will probably contain duplicates. These
-    // are filtered out here.
-    std::sort(nodeIndices.begin(), nodeIndices.end(), std::less<size_t>());
-    std::vector<size_t>::iterator newEnd = std::unique(nodeIndices.begin(), nodeIndices.end());
-    nodeIndices.erase(newEnd, nodeIndices.end());
+  // Since nodes are shared between cells, the list will probably contain duplicates. These
+  // are filtered out here.
+  std::sort(nodeIndices.begin(), nodeIndices.end(), std::less<size_t>());
+  std::vector<size_t>::iterator newEnd = std::unique(nodeIndices.begin(), nodeIndices.end());
+  nodeIndices.erase(newEnd, nodeIndices.end());
   }
 
   // Create rotation matrix from principal directions
   SbMatrix3 getRotationMatrix(const CTensor& tensor)
   {
-    // Build a rotation matrix for the beachball based on the principal directions of the tensor.
-    // tensor.GetPrincipalDir() uses tensor.Matrix().EigenVectors(false). Changing the parameter
-    // to true causes the EigenVectors() function to ensure that it returns the vectors as a 
-    // right-handed system, which is what we need for the rotation matrix
-    geo::CMatrix pdirs = tensor.Matrix().EigenVectors(true);
+  // Build a rotation matrix for the beachball based on the principal directions of the tensor.
+  // tensor.GetPrincipalDir() uses tensor.Matrix().EigenVectors(false). Changing the parameter
+  // to true causes the EigenVectors() function to ensure that it returns the vectors as a 
+  // right-handed system, which is what we need for the rotation matrix
+  geo::CMatrix pdirs = tensor.Matrix().EigenVectors(true);
 
-    // The geometry for an individual beachball is built with the following orientation
-    //   x-axis: colorIndex 0 ==> min principal direction
-    //   y-axis: colorIndex 1 ==> med principal direction
-    //   z-axis: top          ==> max principal direction
-    // The corresponding rotation matrix can then be built by using the principal direction vectors
-    // as the columns of the matrix:
-    // 
-    //     minX    medX    maxX
-    //     minY    medY    maxY
-    //     minZ    medZ    maxZ
-    //
-    // The eigenvectors of the tensor matrix are returned sorted from the smallest to the largest
-    // corresponding eigenvalue, so the rotation matrix looks like this (SbMatrix3 stores the values
-    // in column-major order):
-	  SbMatrix3 rotationMatrix = SbMatrix3(
-		  (float)pdirs.Value(0, 0), (float)pdirs.Value(1, 0), (float)pdirs.Value(2, 0),
-		  (float)pdirs.Value(0, 1), (float)pdirs.Value(1, 1), (float)pdirs.Value(2, 1),
-		  (float)pdirs.Value(0, 2), (float)pdirs.Value(1, 2), (float)pdirs.Value(2, 2));
+  // The geometry for an individual beachball is built with the following orientation
+  //   x-axis: colorIndex 0 ==> min principal direction
+  //   y-axis: colorIndex 1 ==> med principal direction
+  //   z-axis: top          ==> max principal direction
+  // The corresponding rotation matrix can then be built by using the principal direction vectors
+  // as the columns of the matrix:
+  // 
+  //     minX    medX    maxX
+  //     minY    medY    maxY
+  //     minZ    medZ    maxZ
+  //
+  // The eigenvectors of the tensor matrix are returned sorted from the smallest to the largest
+  // corresponding eigenvalue, so the rotation matrix looks like this (SbMatrix3 stores the values
+  // in column-major order):
+    SbMatrix3 rotationMatrix = SbMatrix3(
+      (float)pdirs.Value(0, 0), (float)pdirs.Value(1, 0), (float)pdirs.Value(2, 0),
+      (float)pdirs.Value(0, 1), (float)pdirs.Value(1, 1), (float)pdirs.Value(2, 1),
+      (float)pdirs.Value(0, 2), (float)pdirs.Value(1, 2), (float)pdirs.Value(2, 2));
 
-	  return rotationMatrix;
+    return rotationMatrix;
   }
 
-    /**
-    * Extract the necessary parameters for instancing from the OIV components. These include the
-    * position, orientation, and (if applicable) the property values for each visible beachball
-    */
-    void generateInstancedParams(
-        const MiMeshUnstructuredI& mesh, // the mesh on which to display beachballs
-        const MiTensorSetI& tensorSet,   // the tensor set to visualize
-        const MiScalardSetI* scalarSet1, // first scalar set for coloring, may be NULL
-        const MiScalardSetI* scalarSet2, // second scalar set for coloring, may be NULL
-        const MiCellFilterI* cellFilter, // may be NULL
-        std::vector<VBOMesh::InstancedData>& instancedData) // Array that will be filled with instanced data
+  /**
+  * Extract the necessary parameters for instancing from the OIV components. These include the
+  * position, orientation, and (if applicable) the property values for each visible beachball
+  */
+  void generateInstancedParams(
+    const MiMeshUnstructuredI& mesh, // the mesh on which to display beachballs
+    const MiTensorSetI& tensorSet,   // the tensor set to visualize
+    const MiScalardSetI* scalarSet1, // first scalar set for coloring, may be NULL
+    const MiScalardSetI* scalarSet2, // second scalar set for coloring, may be NULL
+    const MiCellFilterI* cellFilter, // may be NULL
+    std::vector<VBOMesh::InstancedData>& instancedData) // Array that will be filled with instanced data
+  {
+    instancedData.clear();
+
+    const MiGeometryI& geometry = mesh.getGeometry();
+    const MiTopologyExplicitI& topology = mesh.getTopology();
+
+    if(tensorSet.getBinding() == MiDataSet::PER_NODE)
     {
-        instancedData.clear();
-
-        const MiGeometryI& geometry = mesh.getGeometry();
-        const MiTopologyExplicitI& topology = mesh.getTopology();
-
-        if(tensorSet.getBinding() == MiDataSet::PER_NODE)
-        {
           // When extracting the parameters for PER_NODE mapping, the nodes for all visible cells need
           // to be collected, and duplicates removed. This is what getActiveNodeIndices() does.
           std::vector<size_t> nodeIndices;
@@ -160,25 +160,25 @@ namespace
 
           for(size_t i=0; i < nodeIndices.size(); ++i)
           {
-            size_t nodeIndex = nodeIndices[i];
-            MbVec3d pos = geometry.getCoord(nodeIndex);
+      size_t nodeIndex = nodeIndices[i];
+      MbVec3d pos = geometry.getCoord(nodeIndex);
 
-            VBOMesh::InstancedData data;
-            data.position = SbVec3f((float)pos[0], (float)pos[1], (float)pos[2]);
-            data.rotation = getRotationMatrix(tensorSet.get(nodeIndex));
-            data.propertyValue1 = (scalarSet1 == 0) ? 0.0f : (float)scalarSet1->get(nodeIndex);
-            data.propertyValue2 = (scalarSet2 == 0) ? 0.0f : (float)scalarSet2->get(nodeIndex);
+      VBOMesh::InstancedData data;
+      data.position = SbVec3f((float)pos[0], (float)pos[1], (float)pos[2]);
+      data.rotation = getRotationMatrix(tensorSet.get(nodeIndex));
+      data.propertyValue1 = (scalarSet1 == 0) ? 0.0f : (float)scalarSet1->get(nodeIndex);
+      data.propertyValue2 = (scalarSet2 == 0) ? 0.0f : (float)scalarSet2->get(nodeIndex);
 
-            instancedData.push_back(data);
+      instancedData.push_back(data);
           }
-        }
-        else // extract values PER_CELL
-        {
+    }
+    else // extract values PER_CELL
+    {
           size_t nc = topology.getNumCells();
           for(size_t i=0; i < nc; ++i)
           {
-            if(cellFilter == 0 || cellFilter->acceptCell(i))
-            {
+      if(cellFilter == 0 || cellFilter->acceptCell(i))
+      {
               const MiCell* cell = topology.getCell(i);
               // For PER_CELL mapping, place beachball in the cell center
               MbVec3d center = cell->getCenter(geometry);
@@ -190,9 +190,9 @@ namespace
               data.propertyValue2 = (scalarSet1 == 0) ? 0.0f : (float)scalarSet2->get(i);
 
               instancedData.push_back(data);
-            }
+      }
           }
-        }
+    }
   }
 
   /**
@@ -213,54 +213,54 @@ namespace
       const MiScalardSetI* scalars2,
       const Mesh& tensorMesh)
   {
-    glBindVertexArray(0);
+  glBindVertexArray(0);
 
-    size_t vbSize = tensorMesh.vertices.size() * sizeof(Vertex); // Size in bytes of the vertex buffer
-    size_t ibSize = tensorMesh.indices.size() * sizeof(unsigned short); // Size in bytes of the index buffer
+  size_t vbSize = tensorMesh.vertices.size() * sizeof(Vertex); // Size in bytes of the vertex buffer
+  size_t ibSize = tensorMesh.indices.size() * sizeof(unsigned short); // Size in bytes of the index buffer
 
-    GLGETERROR();
+  GLGETERROR();
 
-    // Generate 3 buffer objects: 
-    //   - one for the vertex data
-    //   - one for the indices
-    //   - one for the instanced data
-    GLuint buffers[3];
-    glGenBuffers(3, buffers);
+  // Generate 3 buffer objects: 
+  //   - one for the vertex data
+  //   - one for the indices
+  //   - one for the instanced data
+  GLuint buffers[3];
+  glGenBuffers(3, buffers);
 
-    // Set up the vertex buffer object with the geometry for a beachball
-    GLuint vertexBuffer = buffers[0];
-    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, vbSize, &tensorMesh.vertices[0], GL_STATIC_DRAW);
-    GLGETERROR();
+  // Set up the vertex buffer object with the geometry for a beachball
+  GLuint vertexBuffer = buffers[0];
+  glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+  glBufferData(GL_ARRAY_BUFFER, vbSize, &tensorMesh.vertices[0], GL_STATIC_DRAW);
+  GLGETERROR();
 
-    // Set up the index buffer object for a beachball
-    GLuint indexBuffer = buffers[1];
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, ibSize, &tensorMesh.indices[0], GL_STATIC_DRAW);
-    GLGETERROR();
+  // Set up the index buffer object for a beachball
+  GLuint indexBuffer = buffers[1];
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, ibSize, &tensorMesh.indices[0], GL_STATIC_DRAW);
+  GLGETERROR();
 
-    // Setup instance data for all beachballs (position, orientation, and property values if any)
-    std::vector<VBOMesh::InstancedData> instancedData;
-    generateInstancedParams(*mesh, tensors, scalars1, scalars2, cellFilter, instancedData);
+  // Setup instance data for all beachballs (position, orientation, and property values if any)
+  std::vector<VBOMesh::InstancedData> instancedData;
+  generateInstancedParams(*mesh, tensors, scalars1, scalars2, cellFilter, instancedData);
 
-    size_t vbSizeInst = instancedData.size() * sizeof(VBOMesh::InstancedData); // size in bytes of instance data VBO
+  size_t vbSizeInst = instancedData.size() * sizeof(VBOMesh::InstancedData); // size in bytes of instance data VBO
 
-    // Create the VBO for instancing data
-    GLuint instancedDataBuffer = buffers[2];
-    glBindBuffer(GL_ARRAY_BUFFER, instancedDataBuffer);
-    glBufferData(GL_ARRAY_BUFFER, vbSizeInst, &instancedData[0], GL_STATIC_DRAW);
-    GLGETERROR();
+  // Create the VBO for instancing data
+  GLuint instancedDataBuffer = buffers[2];
+  glBindBuffer(GL_ARRAY_BUFFER, instancedDataBuffer);
+  glBufferData(GL_ARRAY_BUFFER, vbSizeInst, &instancedData[0], GL_STATIC_DRAW);
+  GLGETERROR();
 
-    // Reset buffer bindings
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-    GLGETERROR();
+  // Reset buffer bindings
+  glBindBuffer(GL_ARRAY_BUFFER, 0);
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+  GLGETERROR();
 
-    // Store results in VBOMesh
-    VBOMesh result(vertexBuffer, indexBuffer, GL_UNSIGNED_SHORT, (GLsizei)tensorMesh.indices.size());
-    result.setInstancedParams(instancedDataBuffer, instancedData.size());
+  // Store results in VBOMesh
+  VBOMesh result(vertexBuffer, indexBuffer, GL_UNSIGNED_SHORT, (GLsizei)tensorMesh.indices.size());
+  result.setInstancedParams(instancedDataBuffer, instancedData.size());
 
-    return result;
+  return result;
   }
 }
 
@@ -288,7 +288,7 @@ void MoMeshTensor::GLRender(SoGLRenderAction *action)
   int id = tensorSetId.getValue();
   const MiTensorSetI* tensors = MoTensorSetElement::get(state, id);
   if(tensors == 0)
-    return;
+  return;
 
   // Get mesh from the state
   size_t meshTimeStamp;
@@ -300,7 +300,7 @@ void MoMeshTensor::GLRender(SoGLRenderAction *action)
   const MiCellFilter* cellFilter = MoCellFilterElement::getCellFilter(state, filterType);
   const MiCellFilterI* cellFilterI = 0;
   if(filterType == CELL_FILTER_I)
-    cellFilterI = dynamic_cast<const MiCellFilterI*>(cellFilter);
+  cellFilterI = dynamic_cast<const MiCellFilterI*>(cellFilter);
 
   // Get scalarsets from the state
   const MiScalardSetI* primaryScalarSet = 0;
@@ -346,26 +346,26 @@ void MoMeshTensor::GLRender(SoGLRenderAction *action)
   // This only works for unstructured volume and surface meshes
   if(meshType == VOLUME_MESH_UNSTRUCTURED || meshType == SURFACE_MESH_UNSTRUCTURED)
   {
-    const MiMeshUnstructuredI* meshUnstructured = dynamic_cast<const MiMeshUnstructuredI*>(mesh);
-    const MiGeometryI& geometry = meshUnstructured->getGeometry();
-    const MiTopologyExplicitI& topology = meshUnstructured->getTopology();
+  const MiMeshUnstructuredI* meshUnstructured = dynamic_cast<const MiMeshUnstructuredI*>(mesh);
+  const MiGeometryI& geometry = meshUnstructured->getGeometry();
+  const MiTopologyExplicitI& topology = meshUnstructured->getTopology();
 
-    // Check timestamps to see if any updating needs to be done
-    size_t currentTopologyTimestamp = topology.getTimeStamp();
-    size_t currentGeometryTimestamp = geometry.getTimeStamp();
-    size_t currentFilterTimestamp = (cellFilterI == 0) ? 0 : cellFilterI->getTimeStamp();
-    size_t currentScalarSet1Timestamp = (primaryScalarSet == 0) ? 0 : primaryScalarSet->getTimeStamp();
-    size_t currentScalarSet2Timestamp = (secondaryScalarSet == 0) ? 0 : secondaryScalarSet->getTimeStamp();
-    size_t currentTensorTimestamp = tensors->getTimeStamp();
+  // Check timestamps to see if any updating needs to be done
+  size_t currentTopologyTimestamp = topology.getTimeStamp();
+  size_t currentGeometryTimestamp = geometry.getTimeStamp();
+  size_t currentFilterTimestamp = (cellFilterI == 0) ? 0 : cellFilterI->getTimeStamp();
+  size_t currentScalarSet1Timestamp = (primaryScalarSet == 0) ? 0 : primaryScalarSet->getTimeStamp();
+  size_t currentScalarSet2Timestamp = (secondaryScalarSet == 0) ? 0 : secondaryScalarSet->getTimeStamp();
+  size_t currentTensorTimestamp = tensors->getTimeStamp();
 
-    if(
+  if(
       (currentTopologyTimestamp != m_topologyTimestamp) ||
       (currentGeometryTimestamp != m_geometryTimestamp) ||
       (currentFilterTimestamp != m_cellFilterTimestamp) ||
       (currentScalarSet1Timestamp != m_scalarSet1Timestamp) ||
       (currentScalarSet2Timestamp != m_scalarSet2Timestamp) ||
       (currentTensorTimestamp != m_tensorsTimestamp))
-    {
+  {
       m_topologyTimestamp = currentTopologyTimestamp;
       m_geometryTimestamp = currentGeometryTimestamp;
       m_cellFilterTimestamp = currentFilterTimestamp;
@@ -377,11 +377,11 @@ void MoMeshTensor::GLRender(SoGLRenderAction *action)
       // have actually changed. However, since we only get here when the user changes 
       // something in the UI, it's not much of a problem to do it everytime.
       if(m_shaders[shaderBuildFlags].program == 0)
-        m_shaders[shaderBuildFlags].init(shaderBuildFlags);
+    m_shaders[shaderBuildFlags].init(shaderBuildFlags);
 
       // Cleanup the current mesh if necessary
       if(m_vboMesh.valid())
-        m_vboMesh.free();
+    m_vboMesh.free();
 
       // Generate a new VBOMesh
       m_vboMesh = generateInstancedTensorsMesh(
@@ -391,77 +391,77 @@ void MoMeshTensor::GLRender(SoGLRenderAction *action)
           primaryScalarSet, 
           secondaryScalarSet,
           m_mesh);
-    }
+  }
 
-    // Set some OpenGL state to prevent other OIV stuff from interfering with our rendering
-    glDisable(GL_BLEND);
-    glDisable(GL_POLYGON_STIPPLE); // because of MoMaterial::transparency 
-    glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+  // Set some OpenGL state to prevent other OIV stuff from interfering with our rendering
+  glDisable(GL_BLEND);
+  glDisable(GL_POLYGON_STIPPLE); // because of MoMaterial::transparency 
+  glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 
-    // Choose shader program based on current build flags
-    Shader& shader = m_shaders[shaderBuildFlags];
+  // Choose shader program based on current build flags
+  Shader& shader = m_shaders[shaderBuildFlags];
 
-    // Get the currently active shader, so we can restore it afterwards
-    GLuint prevProgram;
-    glGetIntegerv(GL_CURRENT_PROGRAM, (GLint*)&prevProgram);
-    glUseProgram(shader.program);
-    GLGETERROR();
+  // Get the currently active shader, so we can restore it afterwards
+  GLuint prevProgram;
+  glGetIntegerv(GL_CURRENT_PROGRAM, (GLint*)&prevProgram);
+  glUseProgram(shader.program);
+  GLGETERROR();
 
-    // Because we're using a shader program to render the beachballs, we need to do all the
-    // transforms & lighting ourselves. In order to do that, we need to retrieve some of the
-    // current opengl state, such as the modelview and projection matrices, lighting direction,
-    // and clipplane, and pass those to the shader as uniform parameters.
+  // Because we're using a shader program to render the beachballs, we need to do all the
+  // transforms & lighting ourselves. In order to do that, we need to retrieve some of the
+  // current opengl state, such as the modelview and projection matrices, lighting direction,
+  // and clipplane, and pass those to the shader as uniform parameters.
 
-    // Get the current modelview and projection matrices from OpenGL. Also compute the inverse of
-    // the modelview matrix, so we can use it later on to transform the lighting direction from
-    // world space to object space. This allows us to do all lighting in object space, which is
-    // more efficient than having to transform all normal vectors to world space and do the lighting
-    // there.
-    SbMatrix projectionMatrix, modelViewMatrix;
-    glGetFloatv(GL_MODELVIEW_MATRIX, modelViewMatrix[0]);
-    glGetFloatv(GL_PROJECTION_MATRIX, projectionMatrix[0]);
-    SbMatrix mvpMatrix = modelViewMatrix * projectionMatrix;
-    SbMatrix invModelViewMatrix = modelViewMatrix.inverse();
-    GLGETERROR();
+  // Get the current modelview and projection matrices from OpenGL. Also compute the inverse of
+  // the modelview matrix, so we can use it later on to transform the lighting direction from
+  // world space to object space. This allows us to do all lighting in object space, which is
+  // more efficient than having to transform all normal vectors to world space and do the lighting
+  // there.
+  SbMatrix projectionMatrix, modelViewMatrix;
+  glGetFloatv(GL_MODELVIEW_MATRIX, modelViewMatrix[0]);
+  glGetFloatv(GL_PROJECTION_MATRIX, projectionMatrix[0]);
+  SbMatrix mvpMatrix = modelViewMatrix * projectionMatrix;
+  SbMatrix invModelViewMatrix = modelViewMatrix.inverse();
+  GLGETERROR();
 
-    // Get the plane equation for the current clipping plane (if any)
-    double clipPlane[4];
-    glGetClipPlane(GL_CLIP_PLANE0, clipPlane);
+  // Get the plane equation for the current clipping plane (if any)
+  double clipPlane[4];
+  glGetClipPlane(GL_CLIP_PLANE0, clipPlane);
 
-    // Get the light direction from OpenGL, so we can feed it to the shader.
-    // OIV normally uses a directional light, so we'll go with that assumption here.
-    float lightPos[4];
-    glGetLightfv(GL_LIGHT0, GL_POSITION, lightPos);
-    SbVec3f lightDir(lightPos[0], lightPos[1], lightPos[2]), localLightDir; // in view space
-    invModelViewMatrix.multDirMatrix(lightDir, localLightDir); // transform to mesh local space
-    GLGETERROR();
+  // Get the light direction from OpenGL, so we can feed it to the shader.
+  // OIV normally uses a directional light, so we'll go with that assumption here.
+  float lightPos[4];
+  glGetLightfv(GL_LIGHT0, GL_POSITION, lightPos);
+  SbVec3f lightDir(lightPos[0], lightPos[1], lightPos[2]), localLightDir; // in view space
+  invModelViewMatrix.multDirMatrix(lightDir, localLightDir); // transform to mesh local space
+  GLGETERROR();
 
-    // Setup texture unit 0 to use the colormap texture
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_1D, m_colorMapTexture);
+  // Setup texture unit 0 to use the colormap texture
+  glActiveTexture(GL_TEXTURE0);
+  glBindTexture(GL_TEXTURE_1D, m_colorMapTexture);
 
-    SbColorRGBA primaryColorValue = primaryColor.getValue();
-    SbColorRGBA secondaryColorValue = secondaryColor.getValue();
+  SbColorRGBA primaryColorValue = primaryColor.getValue();
+  SbColorRGBA secondaryColorValue = secondaryColor.getValue();
 
-    // Pass the parameters to the shader
-    glUniformMatrix4fv(shader.mvMatrixLocation, 1, false, modelViewMatrix[0]);
-    glUniformMatrix4fv(shader.mvpMatrixLocation, 1, false, mvpMatrix[0]);
-    glUniform1i(shader.colorScaleLocation, 0);
-    glUniform2f(shader.colorScaleRangeLocation, m_colorMapRangeMin, m_colorMapRangeMax);
-    glUniform3f(shader.primaryColorLocation, primaryColorValue[0], primaryColorValue[1], primaryColorValue[2]);
-    glUniform3f(shader.secondaryColorLocation, secondaryColorValue[0], secondaryColorValue[1], secondaryColorValue[2]);
-    glUniform1f(shader.scaleLocation, scaleFactor.getValue());
-    glUniform3fv(shader.lightDirLocation, 1, localLightDir.getValue());
-    glUniform4f(shader.clipPlaneLocation, (float)clipPlane[0], (float)clipPlane[1], (float)clipPlane[2], (float)clipPlane[3]);
-    GLGETERROR();
+  // Pass the parameters to the shader
+  glUniformMatrix4fv(shader.mvMatrixLocation, 1, false, modelViewMatrix[0]);
+  glUniformMatrix4fv(shader.mvpMatrixLocation, 1, false, mvpMatrix[0]);
+  glUniform1i(shader.colorScaleLocation, 0);
+  glUniform2f(shader.colorScaleRangeLocation, m_colorMapRangeMin, m_colorMapRangeMax);
+  glUniform3f(shader.primaryColorLocation, primaryColorValue[0], primaryColorValue[1], primaryColorValue[2]);
+  glUniform3f(shader.secondaryColorLocation, secondaryColorValue[0], secondaryColorValue[1], secondaryColorValue[2]);
+  glUniform1f(shader.scaleLocation, scaleFactor.getValue());
+  glUniform3fv(shader.lightDirLocation, 1, localLightDir.getValue());
+  glUniform4f(shader.clipPlaneLocation, (float)clipPlane[0], (float)clipPlane[1], (float)clipPlane[2], (float)clipPlane[3]);
+  GLGETERROR();
 
-    // Finally, do the actual rendering
-    m_vboMesh.render();
-    GLGETERROR();
+  // Finally, do the actual rendering
+  m_vboMesh.render();
+  GLGETERROR();
 
-    // restore state
-    glUseProgram(prevProgram);
-    GLGETERROR();
+  // restore state
+  glUseProgram(prevProgram);
+  GLGETERROR();
   }
 }
 
@@ -479,24 +479,24 @@ void MoMeshTensor::getBoundingBox(SoGetBoundingBoxAction* action)
 
   if(meshType == VOLUME_MESH_UNSTRUCTURED || meshType == SURFACE_MESH_UNSTRUCTURED)
   {
-    const MiMeshUnstructuredI* meshUnstructured = dynamic_cast<const MiMeshUnstructuredI*>(mesh);
-    const MiGeometryI& geometry = meshUnstructured->getGeometry();
-    const MiTopologyExplicitI& topology = meshUnstructured->getTopology();
-    // See if we need to update the min- and max vectors. This only needs to happen when either
-    // the geometry or the topology has changed. Check this by looking at the timestamps.
-    if(
-        m_bboxTopologyTimestamp != topology.getTimeStamp() ||
-        m_bboxGeometryTimestamp != geometry.getTimeStamp())
-    {
-        getGeometryMinMax(meshUnstructured, m_minVec, m_maxVec);
-        m_bboxTopologyTimestamp = topology.getTimeStamp();
-        m_bboxGeometryTimestamp = geometry.getTimeStamp();
-    }
+  const MiMeshUnstructuredI* meshUnstructured = dynamic_cast<const MiMeshUnstructuredI*>(mesh);
+  const MiGeometryI& geometry = meshUnstructured->getGeometry();
+  const MiTopologyExplicitI& topology = meshUnstructured->getTopology();
+  // See if we need to update the min- and max vectors. This only needs to happen when either
+  // the geometry or the topology has changed. Check this by looking at the timestamps.
+  if(
+    m_bboxTopologyTimestamp != topology.getTimeStamp() ||
+    m_bboxGeometryTimestamp != geometry.getTimeStamp())
+  {
+    getGeometryMinMax(meshUnstructured, m_minVec, m_maxVec);
+    m_bboxTopologyTimestamp = topology.getTimeStamp();
+    m_bboxGeometryTimestamp = geometry.getTimeStamp();
+  }
 
-    float delta = scaleFactor.getValue();
+  float delta = scaleFactor.getValue();
 
-    SbBox3f& box = action->getXfBoundingBox();
-    box.setBounds(
+  SbBox3f& box = action->getXfBoundingBox();
+  box.setBounds(
       (float)m_minVec[0] - delta, (float)m_minVec[1] - delta, (float)m_minVec[2] - delta,
       (float)m_maxVec[0] + delta, (float)m_maxVec[1] + delta, (float)m_maxVec[2] + delta);
   }
@@ -547,6 +547,6 @@ MoMeshTensor::MoMeshTensor()
 
 MoMeshTensor::~MoMeshTensor()
 {
-    if(m_colorMapTexture != 0)
-        glDeleteTextures(1, &m_colorMapTexture);
+  if(m_colorMapTexture != 0)
+    glDeleteTextures(1, &m_colorMapTexture);
 }

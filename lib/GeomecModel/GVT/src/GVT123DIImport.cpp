@@ -45,8 +45,8 @@ bool CGVT123DIImport::Import(const QString& strFileName)
   m_fp = fopen(strFileName.toStdString().c_str(), "r");
   if(!m_fp)
   {
-    m_strError = "Unable to open file: " + strFileName;
-    return false;
+  m_strError = "Unable to open file: " + strFileName;
+  return false;
   }
 
   bool bParseOK = Parse();
@@ -67,8 +67,8 @@ bool CGVT123DIImport::Parse()
   char buf[1024];
   while(fgets(buf, 1024, m_fp))
   {
-    if(buf[strlen(buf)-1] == '\n' || feof(m_fp) )
-    {
+  if(buf[strlen(buf)-1] == '\n' || feof(m_fp) )
+  {
       // append contents of buf to the current line
       strLine += buf;
 
@@ -76,23 +76,23 @@ bool CGVT123DIImport::Parse()
       ++m_nLineNr;
       if(m_nLineNr != 1)// first line is ignored, just contains 'MESSAGE_FILE'
       {
-        // get rid of leading and trailing whitespace characters
-        strLine = strLine.trimmed();
+    // get rid of leading and trailing whitespace characters
+    strLine = strLine.trimmed();
 
-        // parse the contents of the line
-        if(!ParseLine(strLine))
-        {
+    // parse the contents of the line
+    if(!ParseLine(strLine))
+    {
           return false;
-        }
+    }
       }
 
       // reset line
       strLine.clear();
-    }
+  }
   }
 
   if(!CheckReadParameters())
-    return false;
+  return false;
 
   ConvertParameters();
   return true;
@@ -106,8 +106,8 @@ bool CGVT123DIImport::ParseLine(const QString &strLine)
   
   if(n == -1)
   {
-    m_strError = QString("Syntax error in line nr. %1").arg(m_nLineNr);
-    return false;
+  m_strError = QString("Syntax error in line nr. %1").arg(m_nLineNr);
+  return false;
   }
 
   s = s.left(n);
@@ -116,7 +116,7 @@ bool CGVT123DIImport::ParseLine(const QString &strLine)
 
   if(it != m_KeyToFunction.end())
   {
-    return ((*this).*(it->second))(strLine);
+  return ((*this).*(it->second))(strLine);
   }
   // might be a line we're just not interested in...
   return true;
@@ -181,18 +181,18 @@ bool CGVT123DIImport::ReadUNITS(const QString& strLine)
 
   if(n == -1)
   {
-    m_strError = QString("Syntax error in line nr. %1, 'C' expected").arg(m_nLineNr);
-    return false;
+  m_strError = QString("Syntax error in line nr. %1, 'C' expected").arg(m_nLineNr);
+  return false;
   }
 
   s = s.right(s.length() - (n + 3));
   s = s.trimmed();
   if(s == "FEET")
-    m_bFeetUnit = true;
+  m_bFeetUnit = true;
   else if(s != "METERS" && s != "METRES")
   {
-    m_strError = QString("Syntax error in line nr. %1, expect 'FEET', 'METERS' or 'METRES'").arg(m_nLineNr);
-    return false;
+  m_strError = QString("Syntax error in line nr. %1, expect 'FEET', 'METERS' or 'METRES'").arg(m_nLineNr);
+  return false;
   }
 
   return true;
@@ -225,13 +225,13 @@ bool CGVT123DIImport::ReadIntegerValue(const QString &strLine, int &nVal)
 
   if(n == -1)
   {
-    m_strError = QString("Syntax error in line nr. %1, 'I' expected").arg(m_nLineNr);
-    return false;
+  m_strError = QString("Syntax error in line nr. %1, 'I' expected").arg(m_nLineNr);
+  return false;
   }
 
   s = s.right(s.length() - (n + 3));
   if(StringToInt(s, nVal))
-    return true;
+  return true;
 
   m_strError = QString("Error in Line %1, '%2' is not an integer value").arg(m_nLineNr).arg(s);
   return false;
@@ -244,13 +244,13 @@ bool CGVT123DIImport::ReadDoubleValue(const QString &strLine, double &dVal)
 
   if(n == -1)
   {
-    m_strError = QString("Syntax error in line nr. %d, 'R' expected").arg(m_nLineNr);
-    return false;
+  m_strError = QString("Syntax error in line nr. %d, 'R' expected").arg(m_nLineNr);
+  return false;
   }
 
   s = s.right(s.length() - (n + 3));
   if(StringToDouble(s, dVal))
-    return true;
+  return true;
 
   m_strError = QString("Error in Line %1, '%2' is not a real value").arg(m_nLineNr).arg(s);
   return false;
@@ -278,44 +278,44 @@ bool CGVT123DIImport::CheckReadParameters()
 {
   if(!m_N_BIN.second)
   {
-    m_strError = "N_BIN not found";
-    return false;
+  m_strError = "N_BIN not found";
+  return false;
   }
   
   if(!m_N_TRACK.second)
   {
-    m_strError = "N_TRACK not found";
-    return false;
+  m_strError = "N_TRACK not found";
+  return false;
   }
   
   if(!m_REAL_DELTA_X.second)
   {
-    m_strError = "REAL_DELTA_X not found";
-    return false;
+  m_strError = "REAL_DELTA_X not found";
+  return false;
   }
 
   if(!m_REAL_DELTA_Y.second)
   {
-    m_strError = "REAL_DELTA_Y not found";
-    return false;
+  m_strError = "REAL_DELTA_Y not found";
+  return false;
   }
 
   if(!m_REAL_GEO_X.second)
   {
-    m_strError = "REAL_GEO_X not found";
-    return false;
+  m_strError = "REAL_GEO_X not found";
+  return false;
   }
 
   if(!m_REAL_GEO_Y.second)
   {
-    m_strError = "REAL_GEO_Y not found";
-    return false;
+  m_strError = "REAL_GEO_Y not found";
+  return false;
   }
 
   if(!m_SKEW_ANGLE.second)
   {
-    m_strError = "SKEW_ANGLE not found";
-    return false;
+  m_strError = "SKEW_ANGLE not found";
+  return false;
   }
   return true;
 }
@@ -324,10 +324,10 @@ void CGVT123DIImport::ConvertParameters()
 {
   if(m_bFeetUnit)
   {
-    // convert from feet to meters
-    m_REAL_DELTA_X.first /= FF_FACTOR_LENGTH;
-    m_REAL_DELTA_Y.first /= FF_FACTOR_LENGTH;
-    m_REAL_GEO_X.first /= FF_FACTOR_LENGTH;
-    m_REAL_GEO_Y.first /= FF_FACTOR_LENGTH;
+  // convert from feet to meters
+  m_REAL_DELTA_X.first /= FF_FACTOR_LENGTH;
+  m_REAL_DELTA_Y.first /= FF_FACTOR_LENGTH;
+  m_REAL_GEO_X.first /= FF_FACTOR_LENGTH;
+  m_REAL_GEO_Y.first /= FF_FACTOR_LENGTH;
   }
 }

@@ -12,7 +12,7 @@ CGetHorizonInfo& CGetHorizonInfo::instance(const CModelBase* modelBase)
 {
   if (m_getHorizonInfo == 0)
   {
-    m_getHorizonInfo = new CGetHorizonInfo(modelBase);
+  m_getHorizonInfo = new CGetHorizonInfo(modelBase);
   }
 
   return *m_getHorizonInfo;
@@ -53,29 +53,29 @@ TObjects CGetHorizonInfo::getObjects(const CModelBase* modelBase)
 
   if (modelBase != 0)
   {
-    const THorizonBaseEntry *horizonBaseEntry =
+  const THorizonBaseEntry *horizonBaseEntry =
       dynamic_cast <const THorizonBaseEntry*> (
-        modelBase->GraphEntry(MD_BASE_HORIZON));
+    modelBase->GraphEntry(MD_BASE_HORIZON));
 
-    // faults are not sorted on depth (hence
-    // 'EntryNodes()' instead of 'SortedEntryNodes()')
+  // faults are not sorted on depth (hence
+  // 'EntryNodes()' instead of 'SortedEntryNodes()')
 
-    const THorizonBaseEntry::TNodeSet entryNodes =
+  const THorizonBaseEntry::TNodeSet entryNodes =
       horizonBaseEntry->EntryNodes();
 
-    for (THorizonBaseEntry::TNodeSet::const_iterator
+  for (THorizonBaseEntry::TNodeSet::const_iterator
       entryNode = entryNodes.begin(); entryNode != entryNodes.end();
       ++entryNode)
-    {
+  {
       // TODO SURFACE-HORIZON
       // for now only add the top-horizon
 
       if ((dynamic_cast <C3DHorizon*> (*entryNode))->IsTopHorizon())
       {
-        objects.push_back(
+    objects.push_back(
           TObject(new CObject(CObject::horizonObject, *entryNode)));
       }
-    }
+  }
   }
 
   return objects;

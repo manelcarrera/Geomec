@@ -30,7 +30,7 @@ void CLoadPropertyTemperatureBase::convertValue(geo::CValue& dValue) const
 {
   if (dValue.Valid())
   {
-    dValue.Value(dValue.Value() - 273.15);  // from K to C
+  dValue.Value(dValue.Value() - 273.15);  // from K to C
   }
 }
 

@@ -14,19 +14,19 @@
 class CHexaSurface : public CSurfaceBase  
 {
 public:
-	typedef CSingleCommandTemplate<CHexaSurface> THexaSurfaceCommand;
+  typedef CSingleCommandTemplate<CHexaSurface> THexaSurfaceCommand;
 protected:
-	virtual CSurfaceBase* OnCreateSurface(const QString& sName, const geo::CPtrArray<geo::IPoint>& vcPoint);
+  virtual CSurfaceBase* OnCreateSurface(const QString& sName, const geo::CPtrArray<geo::IPoint>& vcPoint);
 public:
-	// Construction
-	CHexaSurface(CFemAppModel& model);
-	CHexaSurface(CSurfaceValueType &value_type);
-	CHexaSurface(const QString &strName, const geo::ISurface& surface, CFemAppModel& model);
-	CHexaSurface(const QString &strName, const geo::CPtrArray<geo::IPoint> &vcPoint, CFemAppModel& model);
-	CHexaSurface(const QString &strName, const geo::CArray<geo::CPoint> &vcPoint, CFemAppModel& model);
-	
-	// Context menu for hexa surfaces ...
-	void CreateHorizon();	// Just call the copy ...
+  // Construction
+  CHexaSurface(CFemAppModel& model);
+  CHexaSurface(CSurfaceValueType &value_type);
+  CHexaSurface(const QString &strName, const geo::ISurface& surface, CFemAppModel& model);
+  CHexaSurface(const QString &strName, const geo::CPtrArray<geo::IPoint> &vcPoint, CFemAppModel& model);
+  CHexaSurface(const QString &strName, const geo::CArray<geo::CPoint> &vcPoint, CFemAppModel& model);
+  
+  // Context menu for hexa surfaces ...
+  void CreateHorizon();	// Just call the copy ...
 
   ACCEPT_GEOMECMODELVISITORS(VisitHexaSurface);
 };

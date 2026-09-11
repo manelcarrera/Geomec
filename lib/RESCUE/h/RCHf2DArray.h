@@ -40,12 +40,12 @@ template <class cType> RCHf2DArray<cType>::RCHf2DArray(RESCUEINT64 maxIin, RESCU
 {
   if (values == 0)
   {
-    values = new cType[maxI * maxJ];
-    freeValues = TRUE;
+  values = new cType[maxI * maxJ];
+  freeValues = TRUE;
   }
   else
   {
-    freeValues = FALSE;
+  freeValues = FALSE;
   }
 }
 

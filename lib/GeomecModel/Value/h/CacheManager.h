@@ -11,20 +11,20 @@ class CCacheInterface;
 
 class CCacheManager
 {
-	typedef std::map<const geo::IElementSet *, CCacheInterface *> TInterfaces;
-	TInterfaces m_interfaces;
+  typedef std::map<const geo::IElementSet *, CCacheInterface *> TInterfaces;
+  TInterfaces m_interfaces;
 
 public:
-	CCacheManager() {}
-	virtual ~CCacheManager() {}
+  CCacheManager() {}
+  virtual ~CCacheManager() {}
 
   virtual void DestroyCaches();
 
-	virtual void RegisterElementSet(const geo::IElementSet *elt_set);
-	virtual void UnregisterElementSet(const geo::IElementSet *elt_set);
+  virtual void RegisterElementSet(const geo::IElementSet *elt_set);
+  virtual void UnregisterElementSet(const geo::IElementSet *elt_set);
 
 protected:
-	virtual void InvalidateMappings(const geo::IElementSet *elt_set);
+  virtual void InvalidateMappings(const geo::IElementSet *elt_set);
 };
 
 

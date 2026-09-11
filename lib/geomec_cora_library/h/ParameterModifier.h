@@ -18,23 +18,23 @@ namespace cora
 class CParameterModifier
 {
   public:
-    typedef std::vector <geo::CValue> TValueVec;
+  typedef std::vector <geo::CValue> TValueVec;
 
-    CParameterModifier(CSummaryResultFile& summaryResultFile,
+  CParameterModifier(CSummaryResultFile& summaryResultFile,
       const QString& option, std::vector <double>& value);
 
-    geo::CValue modify(const geo::CValue& value) const;
-    TValueVec modify(TValueVec& valueVec);
+  geo::CValue modify(const geo::CValue& value) const;
+  TValueVec modify(TValueVec& valueVec);
 
   private:
-    CParameterModifier(const CParameterModifier& rhs);
-    CParameterModifier& operator = (CParameterModifier rhs);
+  CParameterModifier(const CParameterModifier& rhs);
+  CParameterModifier& operator = (CParameterModifier rhs);
 
-    static TParameterModifierBase selectParameterModifier(
+  static TParameterModifierBase selectParameterModifier(
       CSummaryResultFile& summaryResultFile, const QString& option,
       std::vector <double>& value);
 
-    TParameterModifierBase m_parameterModifierBase;
+  TParameterModifierBase m_parameterModifierBase;
 };
 
 typedef QSharedPointer <CParameterModifier> TParameterModifier;

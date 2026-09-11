@@ -16,51 +16,51 @@ class CNonMeshedSurfaceObserver : public TNonMeshedSurfaceObserver
 {
 public:
   CNonMeshedSurfaceObserver(CNonMeshedSurface& node,
-                            CTreeNode& parent,
-                            const BOOL rename,
-                            const enum REMOVE_TYPE remove,
-                            HTREEITEM hInsertAfter = TVI_LAST,
-                            const BOOL bInitialUpdate = TRUE)
-                            : TNonMeshedSurfaceObserver(node, parent, rename, remove, hInsertAfter, FALSE)
+              CTreeNode& parent,
+              const BOOL rename,
+              const enum REMOVE_TYPE remove,
+              HTREEITEM hInsertAfter = TVI_LAST,
+              const BOOL bInitialUpdate = TRUE)
+              : TNonMeshedSurfaceObserver(node, parent, rename, remove, hInsertAfter, FALSE)
   {
-    if(bInitialUpdate)
+  if(bInitialUpdate)
       Update();
   }
 
   CNonMeshedSurfaceObserver(CNonMeshedSurface& node,
-                            CTreeCtrl& ctrl,
-                            const BOOL rename,
-                            const enum REMOVE_TYPE remove,
-                            HTREEITEM hParent = TVI_ROOT,
-                            HTREEITEM hInsertAfter = TVI_LAST,
-                            const BOOL bInitialUpdate = TRUE)
-                            : TNonMeshedSurfaceObserver(node, ctrl, rename, remove, hParent, hInsertAfter, FALSE)
+              CTreeCtrl& ctrl,
+              const BOOL rename,
+              const enum REMOVE_TYPE remove,
+              HTREEITEM hParent = TVI_ROOT,
+              HTREEITEM hInsertAfter = TVI_LAST,
+              const BOOL bInitialUpdate = TRUE)
+              : TNonMeshedSurfaceObserver(node, ctrl, rename, remove, hParent, hInsertAfter, FALSE)
   {
-    if(bInitialUpdate)
+  if(bInitialUpdate)
       Update();
   }
 
   virtual BOOL OnFilter(const CGraphNode& node) const
   {
-    return (dynamic_cast<const CNonMeshedSurfaceParametersNode*>(&node) != 0 ||
-            dynamic_cast<const CNonMeshedSurfacePressure*>(&node) != 0);
+  return (dynamic_cast<const CNonMeshedSurfaceParametersNode*>(&node) != 0 ||
+      dynamic_cast<const CNonMeshedSurfacePressure*>(&node) != 0);
   }
 
   virtual CTreeNode* InsertChild(CGraphNode& t)
   {
 //    CTreeNode* pTreeNode = TNonMeshedSurfaceObserver::InsertChild(t);
 
-    CNonMeshedSurfaceParametersNode* pNode = dynamic_cast<CNonMeshedSurfaceParametersNode*>(&t);
-    CNonMeshedSurfacePressure* pPressure = dynamic_cast<CNonMeshedSurfacePressure*>(&t);
+  CNonMeshedSurfaceParametersNode* pNode = dynamic_cast<CNonMeshedSurfaceParametersNode*>(&t);
+  CNonMeshedSurfacePressure* pPressure = dynamic_cast<CNonMeshedSurfacePressure*>(&t);
 
-    if(pNode)
+  if(pNode)
       return new TNonMeshedSurfaceParametersNodeObserver(*pNode, *this, FALSE, FIXED_ITEM);
-    else if(pPressure)
+  else if(pPressure)
       return new CValueCompositeObserver(*pPressure, *this, FALSE, FIXED_ITEM);
 //      return new TNonMeshedSurfacePressureObserver(*pPressure, *this, FALSE, FIXED_ITEM);
 
-    assert(false);
-    return 0;
+  assert(false);
+  return 0;
   }
 };
 

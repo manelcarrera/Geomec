@@ -39,36 +39,36 @@ CPointSetCoordinates::CCoordinate CPointSetCoordinates::createCoordinate(
   coordinate.m_density = 10;
   coordinate.m_index = index;
   coordinate.m_min =
-    lengthQuantity.Convert(minimumValue, unitNode.Unit(), CQuantity::SI_UNIT);
+  lengthQuantity.Convert(minimumValue, unitNode.Unit(), CQuantity::SI_UNIT);
   coordinate.m_max =
-    lengthQuantity.Convert(maximumValue, unitNode.Unit(), CQuantity::SI_UNIT);
+  lengthQuantity.Convert(maximumValue, unitNode.Unit(), CQuantity::SI_UNIT);
 
   return coordinate;
 }
 
 std::vector <CPointSetCoordinates::CCoordinate> CPointSetCoordinates::
   createCoordinates(const CModelBase& modelBase, const CUnitNode& unitNode,
-    bool is2D)
+  bool is2D)
 {
   std::vector <CCoordinate> coordinates;
 
   // Init the X coordinate
 
   coordinates.push_back(createCoordinate(IDS_RC_NORTHING,
-    0, modelBase.Boundary().Min().X(), modelBase.Boundary().Max().X(),
-    unitNode));
+  0, modelBase.Boundary().Min().X(), modelBase.Boundary().Max().X(),
+  unitNode));
 
   // Init the Y coordinate
 
   coordinates.push_back(createCoordinate(IDS_RC_EASTING,
-    1, modelBase.Boundary().Min().Y(), modelBase.Boundary().Max().Y(),
-    unitNode));
+  1, modelBase.Boundary().Min().Y(), modelBase.Boundary().Max().Y(),
+  unitNode));
 
   if (!is2D)
   {
-    // Init the Y coordinate
+  // Init the Y coordinate
 
-    coordinates.push_back(createCoordinate(
+  coordinates.push_back(createCoordinate(
       IDS_RC_DEPTH, 2, modelBase.Boundary().Min().Z(),
       modelBase.Boundary().Max().Z(), unitNode));
   }

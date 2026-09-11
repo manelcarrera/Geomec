@@ -49,11 +49,11 @@ public:
   //
   virtual CFemAppModel& Model()
   {
-	  //static CFemAppModel model; // ->abstract
-	  //return model;
+    //static CFemAppModel model; // ->abstract
+    //return model;
 
-	  // FIXME
-	  return *GetGeomecDoc()->Model();
+    // FIXME
+    return *GetGeomecDoc()->Model();
   };// = 0;
   virtual IValueComponentBase* ValueComponent() const { return nullptr; };// = 0;
   
@@ -151,11 +151,11 @@ public:
   //
   virtual const geo::CVector &DisplacementVector() const { static geo::CVector v; return v; };// const = 0;
   virtual void DisplacementVector(const geo::CVector &newval) {};// = 0;
-	virtual const geo::CVector &ModelScaleVector() const { static geo::CVector v; return v; };// const = 0;
-	virtual void ModelScaleVector(const geo::CVector &newval) {};// = 0;
+  virtual const geo::CVector &ModelScaleVector() const { static geo::CVector v; return v; };// const = 0;
+  virtual void ModelScaleVector(const geo::CVector &newval) {};// = 0;
   virtual const geo::CVector &ScaleVector() const { static geo::CVector v; return v; };// const = 0;
   virtual void ScaleVector(const geo::CVector &newVal) {};// = 0;
-	virtual const geo::CVector &RotateLockVector() const { static geo::CVector v; return v; };// const = 0;
+  virtual const geo::CVector &RotateLockVector() const { static geo::CVector v; return v; };// const = 0;
   virtual void RotateLockVector(const geo::CVector& vec) {};// = 0;
   virtual void LockRotationVector(const geo::IVector& vector) {};// = 0;
   virtual const geo::IVector& LockRotationVector() const { static geo::CVector v; return v; };// const = 0;
@@ -173,7 +173,7 @@ public:
   virtual bool Lighting() const { return false; }; // = 0
   virtual bool CanEnableLighting() const { return false; }; // = 0
   virtual void EnableLighting(bool lighting) {};// = 0;
-	virtual bool LightingEnabled() const { return false; }; // = 0
+  virtual bool LightingEnabled() const { return false; }; // = 0
   virtual void OnSize(int cx, int cy) {};// = 0;
 
   virtual void SetVectorScale(float scale) {};// = 0;

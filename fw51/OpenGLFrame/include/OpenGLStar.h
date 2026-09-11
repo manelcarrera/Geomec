@@ -25,13 +25,13 @@
 class OPENGLFRAME_EXPORT COpenGLStar  
 {
 public:
-	COpenGLStar(long NrOfStarPoints = 5,double StarPointAngle=30.0);
-	geo::IPolygon* CreateStar(double Size=1.0);
-	virtual ~COpenGLStar();
+  COpenGLStar(long NrOfStarPoints = 5,double StarPointAngle=30.0);
+  geo::IPolygon* CreateStar(double Size=1.0);
+  virtual ~COpenGLStar();
 
 private:
-	long m_NrOfStarPoints;
-	double m_StarPointAngle;
+  long m_NrOfStarPoints;
+  double m_StarPointAngle;
 
 };
 

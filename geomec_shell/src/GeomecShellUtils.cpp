@@ -17,13 +17,13 @@ const char* ProgName(const char* argv0)
 {
   const char* p = strrchr(argv0, '/');
   if(!p)
-    p = strrchr(argv0, '\\');
+  p = strrchr(argv0, '\\');
 
   if(p)
-    ++p;
+  ++p;
 
   if(p && *p)
-    return p;
+  return p;
 
   return argv0;
 }
@@ -33,9 +33,9 @@ void MakeAbsolutePath(QString& strPath)
 {
   if(QDir::isRelativePath(strPath))
   {
-    strPath = QDir::current().absoluteFilePath(strPath);
-    strPath = QDir::current().cleanPath(strPath);
-    strPath = QDir::toNativeSeparators(strPath);
+  strPath = QDir::current().absoluteFilePath(strPath);
+  strPath = QDir::current().cleanPath(strPath);
+  strPath = QDir::toNativeSeparators(strPath);
   }
 }
 
@@ -44,23 +44,23 @@ void copyFile(const QString& destination, const QString& source)
 {
   if (source == destination)
   {
-    return;
+  return;
   }
 
   std::ifstream
-    input(source.toStdString().c_str(), std::ios::in | std::ios::binary);
+  input(source.toStdString().c_str(), std::ios::in | std::ios::binary);
   std::ofstream
-    output(destination.toStdString().c_str(), std::ios::out | std::ios::binary | std::ios::trunc);
+  output(destination.toStdString().c_str(), std::ios::out | std::ios::binary | std::ios::trunc);
 
   if (input.fail())
   {
-    throw std::runtime_error((source +
+  throw std::runtime_error((source +
       " could not be opened for reading").toStdString().c_str());
   }
 
   if (output.fail())
   {
-    throw std::runtime_error((destination +
+  throw std::runtime_error((destination +
       " could not be opened for writing").toStdString().c_str());
   }
 
@@ -68,7 +68,7 @@ void copyFile(const QString& destination, const QString& source)
 
   if (output.fail())
   {
-    throw std::runtime_error((destination +
+  throw std::runtime_error((destination +
       " could not be written to").toStdString().c_str());
   }
 
@@ -83,14 +83,14 @@ void moveFile(const QString& destination, const QString& source)
 {
   if (source == destination)
   {
-    return;
+  return;
   }
 
   copyFile(destination, source);
 
   if (remove(source.toStdString().c_str()) != 0)
   {
-    throw std::runtime_error((source +
+  throw std::runtime_error((source +
       " could not be removed").toStdString().c_str());
   }
 }

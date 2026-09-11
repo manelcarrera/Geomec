@@ -77,12 +77,12 @@ class IScalarResultComponent_Delegate : public IResultComponent_Delegate
 {
 public:
   IScalarResultComponent_Delegate(
-    IScalarResultComponent* scalarResultComponent);
+  IScalarResultComponent* scalarResultComponent);
 
 private:
   IScalarResultComponent_Delegate(const IScalarResultComponent_Delegate& rhs);
   IScalarResultComponent_Delegate& operator = (
-    const IScalarResultComponent_Delegate& rhs);
+  const IScalarResultComponent_Delegate& rhs);
 
   IScalarResultComponent* m_scalarResultComponent;
 

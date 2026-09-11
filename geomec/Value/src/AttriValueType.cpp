@@ -23,20 +23,20 @@ BOOL CAttriValueType::OnInitDialog()
 
   if (!pElementSet)
   {
-    CString label;
-    switch (Copy().PointSet().Dimension())
-    {
-    case IPointSet::DIM_1D:
+  CString label;
+  switch (Copy().PointSet().Dimension())
+  {
+  case IPointSet::DIM_1D:
       label = "1";
       break;
-    case IPointSet::DIM_2D:
+  case IPointSet::DIM_2D:
       label = "2";
       break;
-    default:
+  default:
       label = "3";
-    }
-    label += "D Pointset:";
-    GetDlgItem(IDC_ELTSET_LABEL)->SetWindowTextA(label);
+  }
+  label += "D Pointset:";
+  GetDlgItem(IDC_ELTSET_LABEL)->SetWindowTextA(label);
   }
 
 
@@ -54,11 +54,11 @@ void CAttriValueType::DoDataExchange(CDataExchange* pDX)
 
   if(!pDX->m_bSaveAndValidate)
   {
-    strName = Copy().Name().toStdString().c_str();
+  strName = Copy().Name().toStdString().c_str();
 
-    if(pElementSet)
+  if(pElementSet)
       iMapType = (Copy().MapType() == CValueType::MT_POINT ? 0 : 1);
-    else
+  else
       iMapType = -1;
   }
 
@@ -70,14 +70,14 @@ void CAttriValueType::DoDataExchange(CDataExchange* pDX)
 
   if(pDX->m_bSaveAndValidate)
   {
-    Copy().Name((LPCSTR) strName);
-    if(pElementSet)
-    {
+  Copy().Name((LPCSTR) strName);
+  if(pElementSet)
+  {
       if(iMapType == 0)
-        Copy().MapType(CValueType::MT_POINT);
+    Copy().MapType(CValueType::MT_POINT);
       else if(Copy().MapType() == CValueType::MT_POINT)
-        Copy().MapType(CValueType::MT_NONE);
-    }
+    Copy().MapType(CValueType::MT_NONE);
+  }
   }
 }
 
@@ -85,8 +85,8 @@ void CAttriValueType::OnOK()
 {
   if(Copy().Name().isEmpty())
   {
-    AfxMessageBox(IDS_NAME_FIELD_EMPTY);
-    return;
+  AfxMessageBox(IDS_NAME_FIELD_EMPTY);
+  return;
   }
 
   CAttributesTemplate<CValueType>::OnOK();

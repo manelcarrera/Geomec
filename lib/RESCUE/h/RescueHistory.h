@@ -25,7 +25,7 @@ class RescueHistory:public RescueHistoryObject
 {
 public:
   RescueHistory(RescueModel *parentModelIn, RESCUECHAR *changeDescription, 
-                                            RESCUECHAR *parsableDescription = 0);
+                      RESCUECHAR *parsableDescription = 0);
                                           // The object becomes the property of the model passed.
                                           // The strings, however, are copied, so if you allocated
                                           // them you should free them.
@@ -44,13 +44,13 @@ public:
   RCHString *ParsableDescription() {return parsableDescription;}
   RCHString *TimeStamp() {return timeStamp;}
   RescueHistory *NthForwardRelatedHistory(RESCUEINT64 zeroBasedOrdinal) 
-                                {return forwardRelatedChanges->NthObject(zeroBasedOrdinal);}
+                {return forwardRelatedChanges->NthObject(zeroBasedOrdinal);}
   RescueHistory *NthBackwardRelatedHistory(RESCUEINT64 zeroBasedOrdinal) 
-                                {return backwardRelatedChanges->NthObject(zeroBasedOrdinal);}
+                {return backwardRelatedChanges->NthObject(zeroBasedOrdinal);}
   RescueHistoryObject *NthChangedObject(RESCUEINT64 zeroBasedOrdinal) 
-                                {return objectsChanged->NthObject(zeroBasedOrdinal);}
+                {return objectsChanged->NthObject(zeroBasedOrdinal);}
   RescueHistoryObject *NthRelatedObject(RESCUEINT64 zeroBasedOrdinal) 
-                                {return relatedObjects->NthObject(zeroBasedOrdinal);} 
+                {return relatedObjects->NthObject(zeroBasedOrdinal);} 
                                           // Never delete an RCHString returned by RescueHistory.
                                           // You can delete the other objects returned by following
                                           // the instructions for the object.  For example, RescueHistory

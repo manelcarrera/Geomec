@@ -20,7 +20,7 @@ bool CSavePropertyEffStress::saveProperty(RGInterface& rgi,
   CModelBase& modelBase, const CRockMechProcessor& rmp)
 {
   return CSavePropertyTensor::saveProperty(
-    modelBase.ResultTree().EffectiveStress(), rgi, modelBase, rmp, 1e6);
+  modelBase.ResultTree().EffectiveStress(), rgi, modelBase, rmp, 1e6);
 }
 
 } // namespace GeomecRGI

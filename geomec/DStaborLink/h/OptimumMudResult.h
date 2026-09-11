@@ -13,31 +13,31 @@
 
 class CResultValue  : public geo::CValue
 {
-	int m_iStatus;
+  int m_iStatus;
 public:
-	//get the label for de status of a resultvalue
-	static CString GetDsbCaseString(int iDsbCase);
+  //get the label for de status of a resultvalue
+  static CString GetDsbCaseString(int iDsbCase);
 
-	CResultValue()
-	:m_iStatus(-1)
-	{} 
-	virtual ~CResultValue(){}
-	bool IsCalculated();
-	void Invalidate()
-	{
-		m_iStatus=-1;
-	}
-	CString Info();
+  CResultValue()
+  :m_iStatus(-1)
+  {} 
+  virtual ~CResultValue(){}
+  bool IsCalculated();
+  void Invalidate()
+  {
+    m_iStatus=-1;
+  }
+  CString Info();
 
-	int Status() const 
-	{
-		return m_iStatus;
-	}
+  int Status() const 
+  {
+    return m_iStatus;
+  }
 
-	void Status(int status)
-	{
-		m_iStatus=status;
-	}
+  void Status(int status)
+  {
+    m_iStatus=status;
+  }
 
 };
 

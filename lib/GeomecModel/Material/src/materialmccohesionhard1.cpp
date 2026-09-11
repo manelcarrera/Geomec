@@ -12,16 +12,16 @@ CMaterialMCCohesionHard1::CMaterialMCCohesionHard1(CMaterialEntry &entry, CLibra
 
 bool CMaterialMCCohesionHard1::Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const
 {
-	ftn_double_t kapcoh[4];
+  ftn_double_t kapcoh[4];
 
-	kapcoh[0] = 0;
-	kapcoh[1] = ffmat.ParameterValue(IDT_VALUETYPE_COHESION) * 1e6;
-	kapcoh[2] = ffmat.ParameterValue(IDT_VALUETYPE_EQUIV_PLAST_STRAIN1);
-	kapcoh[3] = ffmat.ParameterValue(IDT_VALUETYPE_HARD_COHESION1) * 1e6;
+  kapcoh[0] = 0;
+  kapcoh[1] = ffmat.ParameterValue(IDT_VALUETYPE_COHESION) * 1e6;
+  kapcoh[2] = ffmat.ParameterValue(IDT_VALUETYPE_EQUIV_PLAST_STRAIN1);
+  kapcoh[3] = ffmat.ParameterValue(IDT_VALUETYPE_HARD_COHESION1) * 1e6;
 
-	PutItemLength("KAPCOH", kapcoh, 4);
+  PutItemLength("KAPCOH", kapcoh, 4);
 
-	return CMaterialMohrCo::Write(ffmat, diarunner);
+  return CMaterialMohrCo::Write(ffmat, diarunner);
 }
 
 // Interface for dia::IElementProperty
@@ -37,9 +37,9 @@ bool CMaterialMCCohesionHard1::WriteFilosParamName(const CFFMaterial &ffmat, dia
 {
   if (i < 4)
   {
-    QString kapcoh = QString("KAPCOH(%1)").arg(i + 1);
-    strncpy(name, kapcoh.toStdString().c_str(), 10);
-    return true;
+  QString kapcoh = QString("KAPCOH(%1)").arg(i + 1);
+  strncpy(name, kapcoh.toStdString().c_str(), 10);
+  return true;
   }
   i -= 4;
 

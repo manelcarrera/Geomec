@@ -53,7 +53,7 @@ CWellZoomInModel& CWellZoomInModel::operator=(const CWellZoomInModel& rhs)
 {
   if(!(*this == rhs))
   {
-    m_pMesh->InvalidateMesh();
+  m_pMesh->InvalidateMesh();
   }
 
   return *this;
@@ -72,7 +72,7 @@ void CWellZoomInModel::createContainers()
 {
   IWellModel::createContainers(); // creates the depletion stage entry
 
-	new CWellFormationEntry(MD_WELLMODEL_FORMATION, *this);
+  new CWellFormationEntry(MD_WELLMODEL_FORMATION, *this);
 }
 
 void CWellZoomInModel::createDefaults()
@@ -100,7 +100,7 @@ unsigned int CWellZoomInModel::TypeId() const
 
 QString CWellZoomInModel::documentType() const
 {
-	return "Wellpath Zoom-in";
+  return "Wellpath Zoom-in";
 }
 
 void CWellZoomInModel::CreateDensityPoints(const geo::IElement &/*element*/, CPointSet &/*pointset*/)
@@ -115,7 +115,7 @@ CGeomecDianaRunnerBase* CWellZoomInModel::OnCreateDianaRunner(CDianaRunControlle
 
 bool CWellZoomInModel::IsResult() const
 {
-	return ResultRegister().Linear() || ResultRegister().NonLinear();
+  return ResultRegister().Linear() || ResultRegister().NonLinear();
 }
 
 void CWellZoomInModel::Calculate()
@@ -133,8 +133,8 @@ void CWellZoomInModel::OnCloseModel()
 
   if(m_pCasingModel)
   {
-    m_pCasingModel->DestroyZoomInModel();
-    m_pCasingModel = 0;
+  m_pCasingModel->DestroyZoomInModel();
+  m_pCasingModel = 0;
   }
 
   IWellModel::OnCloseModel();
@@ -142,24 +142,24 @@ void CWellZoomInModel::OnCloseModel()
 
 long CWellZoomInModel::SavedItems() const
 {
-	long lRet = IWellModel::SavedItems();
+  long lRet = IWellModel::SavedItems();
 
-	lRet += SavedItemsPointSets();
-	const CAnalysisPointEntry& point_entry = dynamic_cast<const CAnalysisPointEntry&>(*GraphEntry(MD_BASE_ANALYSIS_POINT));
-	lRet += point_entry.SavedItems();
-	lRet += Boundary().SavedItems();
-	lRet += GlobalPressure().SavedItems();
-	const CWellFormationEntry& formation_entry = dynamic_cast<const CWellFormationEntry&>(*GraphEntry(MD_WELLMODEL_FORMATION));
-	lRet += formation_entry.SavedItems();
-	lRet += Mesh().SavedItems();
-	const CColorScaleEntry *pCSEntry = dynamic_cast<const CColorScaleEntry*>(GraphEntry(MD_BASE_COLOR_SCALE));
-	lRet += pCSEntry->SavedItems();	
-	lRet += ResultRegister().SavedItems();
+  lRet += SavedItemsPointSets();
+  const CAnalysisPointEntry& point_entry = dynamic_cast<const CAnalysisPointEntry&>(*GraphEntry(MD_BASE_ANALYSIS_POINT));
+  lRet += point_entry.SavedItems();
+  lRet += Boundary().SavedItems();
+  lRet += GlobalPressure().SavedItems();
+  const CWellFormationEntry& formation_entry = dynamic_cast<const CWellFormationEntry&>(*GraphEntry(MD_WELLMODEL_FORMATION));
+  lRet += formation_entry.SavedItems();
+  lRet += Mesh().SavedItems();
+  const CColorScaleEntry *pCSEntry = dynamic_cast<const CColorScaleEntry*>(GraphEntry(MD_BASE_COLOR_SCALE));
+  lRet += pCSEntry->SavedItems();	
+  lRet += ResultRegister().SavedItems();
   const CDerivedResultGroup& derivedresults = ResultTree().DerivedResults();
-	lRet += derivedresults.SavedItems();
+  lRet += derivedresults.SavedItems();
   lRet += SavedItemsChildModel(*m_pCasingModel);
 
-	return lRet;
+  return lRet;
 }
 
 bool CWellZoomInModel::LoadWellZoomIn1(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &prog)
@@ -196,51 +196,51 @@ bool CWellZoomInModel::LoadWellZoomIn1(CStorageNode::TSTREAM &stream, CStreamVer
 bool CWellZoomInModel::OnLoad(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &prog)
 {
   return (
-    LoadWellZoomIn1(stream, version, prog) &&
-    LoadWellZoomIn2(stream, version, prog));
+  LoadWellZoomIn1(stream, version, prog) &&
+  LoadWellZoomIn2(stream, version, prog));
 }
 
 bool CWellZoomInModel::LoadWellZoomIn2(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &prog)
 {
   if(version >= CStreamVersion(3, 7, 9))
-    LoadChildModel(stream, version, prog, *m_pCasingModel);
+  LoadChildModel(stream, version, prog, *m_pCasingModel);
   else
-    m_pCasingModel->CreateChildren();
+  m_pCasingModel->CreateChildren();
 
   return true;
 }
 
 bool CWellZoomInModel::OnSave(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &progress)
 {
-	// Number value composites
-	NumberValueComposites();
+  // Number value composites
+  NumberValueComposites();
 
-	// Number opengl nodes
-	NumberOpenGLNodes();
+  // Number opengl nodes
+  NumberOpenGLNodes();
 
-	// Save pointset
-	SavePointSets(stream, progress);
+  // Save pointset
+  SavePointSets(stream, progress);
 
-	// Save analysis points
-	CAnalysisPointEntry& point_entry = dynamic_cast<CAnalysisPointEntry&>(*GraphEntry(MD_BASE_ANALYSIS_POINT));
-	point_entry.SaveStream(stream, progress);
+  // Save analysis points
+  CAnalysisPointEntry& point_entry = dynamic_cast<CAnalysisPointEntry&>(*GraphEntry(MD_BASE_ANALYSIS_POINT));
+  point_entry.SaveStream(stream, progress);
 
   IWellModel::OnSave(stream, progress);
 
-	// Save boundary
-	Boundary().SaveStream(stream,progress);
+  // Save boundary
+  Boundary().SaveStream(stream,progress);
 
-	GlobalPressure().SaveStream(stream, progress);
+  GlobalPressure().SaveStream(stream, progress);
 
-	Mesh().SaveStream(stream,progress);
+  Mesh().SaveStream(stream,progress);
 
-	// Save the color scales
-	CColorScaleEntry *pCSEntry = dynamic_cast<CColorScaleEntry*>(GraphEntry(MD_BASE_COLOR_SCALE));	
-	pCSEntry->SaveStream(stream, progress);
+  // Save the color scales
+  CColorScaleEntry *pCSEntry = dynamic_cast<CColorScaleEntry*>(GraphEntry(MD_BASE_COLOR_SCALE));	
+  pCSEntry->SaveStream(stream, progress);
 
-	ResultRegister().SaveStream(stream,progress);
+  ResultRegister().SaveStream(stream,progress);
 
-	// Save the derived results
+  // Save the derived results
   CDerivedResultGroup& derivedresults = ResultTree().DerivedResults();
   derivedresults.SaveStream(stream, progress);
 
@@ -281,9 +281,9 @@ CModelBase* CWellZoomInModel::parentModel()
   assert( !(m_pWellPath != 0 && m_pNewWellPath != 0));
 
   if ( m_pWellPath )
-    return &static_cast<CModelBase&>(m_pWellPath->Model());
+  return &static_cast<CModelBase&>(m_pWellPath->Model());
   else
-    return &static_cast<CModelBase&>(m_pNewWellPath->Model());
+  return &static_cast<CModelBase&>(m_pNewWellPath->Model());
 }
 
 CWellZoomInModel::ModelType CWellZoomInModel::modelType() const
@@ -309,9 +309,9 @@ QString CWellZoomInModel::AttributesDialogCaption() const
 bool CWellZoomInModel::IsParentEntry(int nEntryType) const
 {
   return (
-    nEntryType == MD_BASE_SURFACE  ||
-    nEntryType == MD_BASE_POINTSET ||
-    nEntryType == MD_ROCK_MATERIAL);
+  nEntryType == MD_BASE_SURFACE  ||
+  nEntryType == MD_BASE_POINTSET ||
+  nEntryType == MD_ROCK_MATERIAL);
 }
 
 const CModelBase& CWellZoomInModel::ParentModel() const
@@ -320,9 +320,9 @@ const CModelBase& CWellZoomInModel::ParentModel() const
   assert( !(m_pWellPath != 0 && m_pNewWellPath != 0));
 
   if ( m_pWellPath )
-    return static_cast<const CModelBase&>(m_pWellPath->Model());
+  return static_cast<const CModelBase&>(m_pWellPath->Model());
   else
-    return static_cast<const CModelBase&>(m_pNewWellPath->Model());
+  return static_cast<const CModelBase&>(m_pNewWellPath->Model());
 }
 
 CModelBase& CWellZoomInModel::ParentModel()
@@ -331,9 +331,9 @@ CModelBase& CWellZoomInModel::ParentModel()
   assert( !(m_pWellPath != 0 && m_pNewWellPath != 0));
 
   if ( m_pWellPath )
-    return static_cast<CModelBase&>(m_pWellPath->Model());
+  return static_cast<CModelBase&>(m_pWellPath->Model());
   else
-    return static_cast<CModelBase&>(m_pNewWellPath->Model());
+  return static_cast<CModelBase&>(m_pNewWellPath->Model());
 }
 
 CWellPath* CWellZoomInModel::WellPath()

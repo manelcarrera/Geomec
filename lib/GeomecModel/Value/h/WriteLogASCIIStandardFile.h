@@ -8,17 +8,17 @@ class CNewWellPath;
 class CWriteLogASCIIStandardFile
 {
   public:
-    CWriteLogASCIIStandardFile(const CNewWellPath* newWellPath);
+  CWriteLogASCIIStandardFile(const CNewWellPath* newWellPath);
 
-    void writeLogASCIIStandardFile(const QString& fileName,
+  void writeLogASCIIStandardFile(const QString& fileName,
       const IExportFormat::TDataVec& dataVector,
       const IExportFormat::CExportArg& arguments);
 
   private:
-    CWriteLogASCIIStandardFile(const CWriteLogASCIIStandardFile& rhs);
-    CWriteLogASCIIStandardFile& operator = (CWriteLogASCIIStandardFile rhs);
+  CWriteLogASCIIStandardFile(const CWriteLogASCIIStandardFile& rhs);
+  CWriteLogASCIIStandardFile& operator = (CWriteLogASCIIStandardFile rhs);
 
-    const CNewWellPath* m_newWellPath;
+  const CNewWellPath* m_newWellPath;
 };
 
 #endif  // _WriteLogASCIIStandardFile_h_

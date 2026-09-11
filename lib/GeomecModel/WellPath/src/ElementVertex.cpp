@@ -57,20 +57,20 @@ void CElementVertex::otherElementVertex(
 void CElementVertex::removeLinkWithOtherElementVertices()
 {
   for (TElementVertices::const_iterator
-    otherElementVertex = m_otherElementVertices.begin();
-    otherElementVertex != m_otherElementVertices.end(); ++otherElementVertex)
+  otherElementVertex = m_otherElementVertices.begin();
+  otherElementVertex != m_otherElementVertices.end(); ++otherElementVertex)
   {
-    for (TElementVertices::const_iterator
+  for (TElementVertices::const_iterator
       elementVertex = (*otherElementVertex)->otherElementVertices().begin();
       elementVertex != (*otherElementVertex)->otherElementVertices().end();
       ++elementVertex)
-    {
+  {
       if (m_vertexIndices == (*elementVertex)->vertexIndices())
       {
-        (*otherElementVertex)->otherElementVertices().erase(elementVertex);
-        break;
+    (*otherElementVertex)->otherElementVertices().erase(elementVertex);
+    break;
       }
-    }
+  }
   }
 
   m_otherElementVertices.clear();

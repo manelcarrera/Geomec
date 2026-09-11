@@ -27,7 +27,7 @@ template <unsigned int uComponentName, unsigned int uComponentIndex>
 {
 public:
   CComponentTemp_Delegate(
-    CComponentTemp <uComponentName, uComponentIndex> * componentTemp);
+  CComponentTemp <uComponentName, uComponentIndex> * componentTemp);
 
 private:
   CComponentTemp_Delegate(const CComponentTemp_Delegate& rhs);
@@ -36,22 +36,22 @@ private:
   CComponentTemp <uComponentName, uComponentIndex> * m_componentTemp;
 
   typedef CComponentTemp <uComponentName, uComponentIndex>
-    CComponentTempTemplate;
+  CComponentTempTemplate;
   typedef CComponentTemp_Delegate <uComponentName, uComponentIndex>
-    CComponentTemp_DelegateTemplate;
+  CComponentTemp_DelegateTemplate;
 
   REGISTER_DELEGATE(CComponentTempTemplate, CComponentTemp_DelegateTemplate);
 };
 
 template <unsigned int uComponentName, unsigned int uComponentIndex>
   CComponentTemp_Delegate <uComponentName, uComponentIndex> ::
-    CComponentTemp_Delegate(CComponentTemp <uComponentName, uComponentIndex> *
+  CComponentTemp_Delegate(CComponentTemp <uComponentName, uComponentIndex> *
       componentTemp)
 : CValueComponent_Delegate(componentTemp)
 , m_componentTemp(componentTemp)
 {
   ACTIVATE_TEMPLATE_DELEGATE(CComponentTempTemplate,
-    CComponentTemp_DelegateTemplate);
+  CComponentTemp_DelegateTemplate);
 }
 
 #endif  // _ValueComponent_Delegate_h_

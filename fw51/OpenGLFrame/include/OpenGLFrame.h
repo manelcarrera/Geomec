@@ -15,8 +15,8 @@
 class OPENGLFRAME_EXPORT COpenGLFrame  
 {
 public:
-	COpenGLFrame();
-	virtual ~COpenGLFrame();
+  COpenGLFrame();
+  virtual ~COpenGLFrame();
 
 };
 

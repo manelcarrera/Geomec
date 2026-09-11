@@ -13,46 +13,46 @@ CMaterialModMohrCo::CMaterialModMohrCo(CMaterialEntry &entry, CLibraryMaterial& 
 
 bool CMaterialModMohrCo::Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const
 {
-	ftn_double_t ddum;
+  ftn_double_t ddum;
 
-	double dCohesi = ffmat.ParameterValue(IDT_VALUETYPE_COHESION) * 1e6;
-	double dFricti = ffmat.ParameterValue(IDT_VALUETYPE_FRICTION_ANGLE) * PI / 180;
-	double dPreconsolidation = ffmat.ParameterValue(IDT_VALUETYPE_PRECONSOLIDATION) * 1e6;
-	double dHardening = ffmat.ParameterValue(IDT_VALUETYPE_HARDENING);
-	double dPorosity = ffmat.ParameterValue(IDT_VALUETYPE_POROSITY);
-	double dCapShape = ffmat.ParameterValue(IDT_VALUETYPE_CAPSHAPEPARAM);
+  double dCohesi = ffmat.ParameterValue(IDT_VALUETYPE_COHESION) * 1e6;
+  double dFricti = ffmat.ParameterValue(IDT_VALUETYPE_FRICTION_ANGLE) * PI / 180;
+  double dPreconsolidation = ffmat.ParameterValue(IDT_VALUETYPE_PRECONSOLIDATION) * 1e6;
+  double dHardening = ffmat.ParameterValue(IDT_VALUETYPE_HARDENING);
+  double dPorosity = ffmat.ParameterValue(IDT_VALUETYPE_POROSITY);
+  double dCapShape = ffmat.ParameterValue(IDT_VALUETYPE_CAPSHAPEPARAM);
 
-	PutCharItem("YIELD", "MMOHRC");
+  PutCharItem("YIELD", "MMOHRC");
 
-	ddum = (ftn_double_t) (dPreconsolidation);
-	PutItemLength("PRECON", &ddum, 1);
+  ddum = (ftn_double_t) (dPreconsolidation);
+  PutItemLength("PRECON", &ddum, 1);
 
-	ddum = (ftn_double_t) (dCohesi);
+  ddum = (ftn_double_t) (dCohesi);
   PutItemLength("COHESI", &dCohesi, 1);
 
-	ddum = (ftn_double_t) (dFricti);
-	PutItemLength("PHI", &ddum, 1);
+  ddum = (ftn_double_t) (dFricti);
+  PutItemLength("PHI", &ddum, 1);
 
-	ddum = (ftn_double_t) (dCohesi / tan(dFricti));
-	PutItem("PSHIFT", &ddum);
+  ddum = (ftn_double_t) (dCohesi / tan(dFricti));
+  PutItem("PSHIFT", &ddum);
 
-	PutCharItem("COMCRV", "EXPHAR");
+  PutCharItem("COMCRV", "EXPHAR");
 
-	ddum = (ftn_double_t) (dHardening);
-	PutItem("GAMMA", &ddum);
+  ddum = (ftn_double_t) (dHardening);
+  PutItem("GAMMA", &ddum);
 
-	ddum = (ftn_double_t) (dPorosity);
-	PutItem("POROSI", &ddum);
+  ddum = (ftn_double_t) (dPorosity);
+  PutItem("POROSI", &ddum);
 
-	ddum = (ftn_double_t) (dCapShape);
-	PutItemLength("CAP", &ddum, 1);
+  ddum = (ftn_double_t) (dCapShape);
+  PutItemLength("CAP", &ddum, 1);
 
   PutCharItem("HARDEN", "COUPLE");
 
   double d = 0;
   PutItemLength("FLOCAP", &d, 0);
 
-	return IMaterial::Write(ffmat, diarunner);
+  return IMaterial::Write(ffmat, diarunner);
 }
 
 
@@ -69,36 +69,36 @@ bool CMaterialModMohrCo::WriteFilosParamName(const CFFMaterial &ffmat, dia::IDia
 {
   if (i < 8)
   {
-    switch (i)
-    {
-    case 0:
+  switch (i)
+  {
+  case 0:
       strncpy(name, "PRECON", 10);
       break;
-    case 1:
+  case 1:
       strncpy(name, "COHESI", 10);
       break;
-    case 2:
+  case 2:
       strncpy(name, "PHI", 10);
       break;
-    case 3:
+  case 3:
       strncpy(name, "PSHIFT", 10);
       break;
-    case 4:
+  case 4:
       strncpy(name, "GAMMA", 10);
       break;
-    case 5:
+  case 5:
       strncpy(name, "POROSI", 10);
       break;
-    case 6:
+  case 6:
       strncpy(name, "CAP", 10);
       break;
-    case 7:
+  case 7:
       strncpy(name, "FLOCAP", 10);
       break;
-    default:
+  default:
       assert(false);
-    }
-    return true;
+  }
+  return true;
   }
   i -= 8;
 

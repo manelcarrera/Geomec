@@ -35,15 +35,15 @@ CAnalysisPoint::~CAnalysisPoint()
 CAnalysisPoint::CAnalysisPoint(const QString& sName, const geo::IPoint& point, CModelBase& model)
 : CColorNode(sName, model), m_point(point)
 {
-	assert(Model().GraphEntry(MD_BASE_ANALYSIS_POINT));
-	reParent(Model().GraphEntry(MD_BASE_ANALYSIS_POINT));
+  assert(Model().GraphEntry(MD_BASE_ANALYSIS_POINT));
+  reParent(Model().GraphEntry(MD_BASE_ANALYSIS_POINT));
 }
 
 CAnalysisPoint::CAnalysisPoint(unsigned int uName, const geo::IPoint& point, CModelBase& model)
 : CColorNode(uName, model), m_point(point)
 {
-	assert(Model().GraphEntry(MD_BASE_ANALYSIS_POINT));
-	reParent(Model().GraphEntry(MD_BASE_ANALYSIS_POINT));
+  assert(Model().GraphEntry(MD_BASE_ANALYSIS_POINT));
+  reParent(Model().GraphEntry(MD_BASE_ANALYSIS_POINT));
 }
 
 CAnalysisPoint::CAnalysisPoint(const CAnalysisPoint& rhs)
@@ -54,94 +54,94 @@ CAnalysisPoint::CAnalysisPoint(const CAnalysisPoint& rhs)
 
 bool CAnalysisPoint::operator==(const CAnalysisPoint& rhs)
 {
-	if(!CColorNode::operator ==(rhs))
-		return false;
+  if(!CColorNode::operator ==(rhs))
+    return false;
 
-	return m_point == rhs.m_point;
+  return m_point == rhs.m_point;
 }
 
 CAnalysisPoint& CAnalysisPoint::operator=(const CAnalysisPoint& rhs)
 {
-	CColorNode::operator =(rhs);
-	m_point = rhs.m_point;
-	return *this;
+  CColorNode::operator =(rhs);
+  m_point = rhs.m_point;
+  return *this;
 }
 
 void CAnalysisPoint::DefaultName(const geo::IPoint& point)
 {
-	QString sName;
-	sName = QString("P(%1, %2, %3)").arg(point.X(), 6, 'f', 2).arg(point.Y(), 6, 'f', 2).arg(point.Z(), 6, 'f', 2);
-	Name(sName);
+  QString sName;
+  sName = QString("P(%1, %2, %3)").arg(point.X(), 6, 'f', 2).arg(point.Y(), 6, 'f', 2).arg(point.Z(), 6, 'f', 2);
+  Name(sName);
 }
 
 void CAnalysisPoint::LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress)
 {	
-	CColorNode::LoadStream(stream, version, progress);
+  CColorNode::LoadStream(stream, version, progress);
 
-	double x, y, z;
-	stream >> x;
-	stream >> y;
-	stream >> z;
+  double x, y, z;
+  stream >> x;
+  stream >> y;
+  stream >> z;
 
-	m_point = geo::CPoint(x, y, z);
+  m_point = geo::CPoint(x, y, z);
 
-	progress.Step();
+  progress.Step();
 
-	assert(Model().GraphEntry(MD_BASE_ANALYSIS_POINT));
-	reParent(Model().GraphEntry(MD_BASE_ANALYSIS_POINT));
+  assert(Model().GraphEntry(MD_BASE_ANALYSIS_POINT));
+  reParent(Model().GraphEntry(MD_BASE_ANALYSIS_POINT));
 }
 
 void CAnalysisPoint::SaveStream(TSTREAM& stream, TPROGRESS& progress)
 {
-	CColorNode::SaveStream(stream, progress);
+  CColorNode::SaveStream(stream, progress);
 
-	stream << m_point.X();
-	stream << m_point.Y();
-	stream << m_point.Z();
+  stream << m_point.X();
+  stream << m_point.Y();
+  stream << m_point.Z();
 
-	progress.Step();
+  progress.Step();
 }
 
 long CAnalysisPoint::SavedItems() const
 {
-	return 1 + CColorNode::SavedItems();
+  return 1 + CColorNode::SavedItems();
 }
 
 unsigned int CAnalysisPoint::IconId() const
 {
-	return IDI_ANALYSIS_POINT;
+  return IDI_ANALYSIS_POINT;
 }
 
 int CAnalysisPoint::DisplayListSize() const
 {
-	return 1;
+  return 1;
 }
 
 const geo::IObject& CAnalysisPoint::DisplayList(int nIndex) const
 {
-	assert(nIndex == 0);
-	return m_point;
+  assert(nIndex == 0);
+  return m_point;
 }
-	
+  
 
 const geo::IPoint& CAnalysisPoint::Point() const
 {
-	return m_point;
+  return m_point;
 }
 
 void CAnalysisPoint::Point(const geo::IPoint& point)
 {
-	m_point = point;
+  m_point = point;
 }
 
 unsigned int CAnalysisPoint::TypeId() const
 {
-	return IDT_TREE_ANALYSIS_POINTS;
+  return IDT_TREE_ANALYSIS_POINTS;
 }
 
 QString CAnalysisPoint::TypeName() const
 {
-	return getStringTableEntry(IDS_TREE_ANALYSIS_POINTS);
+  return getStringTableEntry(IDS_TREE_ANALYSIS_POINTS);
 }
 
 //////////////////////////////////////////////////////////////////////

@@ -32,66 +32,66 @@ class COutput;
 
 enum dsbHardeningType
 {
-    dsb_Hardening = 0,
-    dsb_Softening = 1,
-    dsb_Parabolic = 2,
-    dsb_Exponential = 3,
-    dsb_None = 4
+  dsb_Hardening = 0,
+  dsb_Softening = 1,
+  dsb_Parabolic = 2,
+  dsb_Exponential = 3,
+  dsb_None = 4
 };
 
 
 enum dsbInSituStressDefinition
 {
-    dsb_VerticalStress = 0,
-    dsb_GeneralStress = 1
+  dsb_VerticalStress = 0,
+  dsb_GeneralStress = 1
 };
 
 enum dsbIterationScheme
 {
-    dsb_Constant = 0,
-    dsb_Linear = 1,
-    dsb_Regular = 2,
-    dsb_Modified = 3
+  dsb_Constant = 0,
+  dsb_Linear = 1,
+  dsb_Regular = 2,
+  dsb_Modified = 3
 };
 
 enum dsbTypeCriteria
 {
-    dsb_Energy = 0,
-    dsb_Force = 1,
-    dsb_Displacement = 2
+  dsb_Energy = 0,
+  dsb_Force = 1,
+  dsb_Displacement = 2
 };
 
 enum dsbAnalysisType
 {
-    dsb_MudWeight = 0,
-    dsb_Openhole = 1
+  dsb_MudWeight = 0,
+  dsb_Openhole = 1
 };
 
 enum dsbComponentNr
 {
-    dsb_EPEQ = 0,
-    dsb_Tx = 1,
-    dsb_Ty = 2,
-    dsb_Sxx = 3,
-    dsb_Syy = 4,
-    dsb_Szz = 5,
-    dsb_Sxy = 6,
-    dsb_Syz = 7,
-    dsb_Szx = 8,
-    dsb_Exx = 9,
-    dsb_Eyy = 10,
-    dsb_Ezz = 11,
-    dsb_Gxy = 12,
-    dsb_Gyz = 13,
-    dsb_Gzx = 14,
-    dsb_Tp = 15,
-    dsb_Te = 16,
-    dsb_RR = 17,
-    dsb_HH = 18,
-    dsb_ZZ = 19,
-    dsb_RH = 20,
-    dsb_HZ = 21,
-    dsb_ZR = 22
+  dsb_EPEQ = 0,
+  dsb_Tx = 1,
+  dsb_Ty = 2,
+  dsb_Sxx = 3,
+  dsb_Syy = 4,
+  dsb_Szz = 5,
+  dsb_Sxy = 6,
+  dsb_Syz = 7,
+  dsb_Szx = 8,
+  dsb_Exx = 9,
+  dsb_Eyy = 10,
+  dsb_Ezz = 11,
+  dsb_Gxy = 12,
+  dsb_Gyz = 13,
+  dsb_Gzx = 14,
+  dsb_Tp = 15,
+  dsb_Te = 16,
+  dsb_RR = 17,
+  dsb_HH = 18,
+  dsb_ZZ = 19,
+  dsb_RH = 20,
+  dsb_HZ = 21,
+  dsb_ZR = 22
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -100,94 +100,94 @@ enum dsbComponentNr
 class CDsbX : public CWnd
 {
 protected:
-	DECLARE_DYNCREATE(CDsbX)
+  DECLARE_DYNCREATE(CDsbX)
 public:
-	CLSID const& GetClsid()
-	{
-		static CLSID const clsid
-			= { 0x4e2c43ce, 0x38f8, 0x11d3, { 0xb3, 0x8e, 0x0, 0xa0, 0xc9, 0x41, 0xc6, 0xb } };
-		return clsid;
-	}
-	virtual BOOL Create(LPCTSTR lpszClassName,
-		LPCTSTR lpszWindowName, DWORD dwStyle,
-		const RECT& rect,
-		CWnd* pParentWnd, unsigned int nID,
-		CCreateContext* pContext = NULL)
-	{ return CreateControl(GetClsid(), lpszWindowName, dwStyle, rect, pParentWnd, nID); }
+  CLSID const& GetClsid()
+  {
+    static CLSID const clsid
+      = { 0x4e2c43ce, 0x38f8, 0x11d3, { 0xb3, 0x8e, 0x0, 0xa0, 0xc9, 0x41, 0xc6, 0xb } };
+    return clsid;
+  }
+  virtual BOOL Create(LPCTSTR lpszClassName,
+    LPCTSTR lpszWindowName, DWORD dwStyle,
+    const RECT& rect,
+    CWnd* pParentWnd, unsigned int nID,
+    CCreateContext* pContext = NULL)
+  { return CreateControl(GetClsid(), lpszWindowName, dwStyle, rect, pParentWnd, nID); }
 
-    BOOL Create(LPCTSTR lpszWindowName, DWORD dwStyle,
-		const RECT& rect, CWnd* pParentWnd, unsigned int nID,
-		CFile* pPersist = NULL, BOOL bStorage = FALSE,
-		BSTR bstrLicKey = NULL)
-	{ return CreateControl(GetClsid(), lpszWindowName, dwStyle, rect, pParentWnd, nID,
-		pPersist, bStorage, bstrLicKey); }
+  BOOL Create(LPCTSTR lpszWindowName, DWORD dwStyle,
+    const RECT& rect, CWnd* pParentWnd, unsigned int nID,
+    CFile* pPersist = NULL, BOOL bStorage = FALSE,
+    BSTR bstrLicKey = NULL)
+  { return CreateControl(GetClsid(), lpszWindowName, dwStyle, rect, pParentWnd, nID,
+    pPersist, bStorage, bstrLicKey); }
 
 // Attributes
 public:
-	long GetAnalysisType();
-	void SetAnalysisType(long);
-	CWell GetWell();
-	void SetWell(LPDISPATCH);
-	CRock GetRock();
-	void SetRock(LPDISPATCH);
-	CInSitu GetInSitu();
-	void SetInSitu(LPDISPATCH);
-	CProc GetProc();
-	void SetProc(LPDISPATCH);
-	CMudWeight GetMudWeight();
-	void SetMudWeight(LPDISPATCH);
-	CTimePoints GetTimePoints();
-	void SetTimePoints(LPDISPATCH);
-	CMesh GetMesh();
-	void SetMesh(LPDISPATCH);
-	COutput GetOutput();
-	void SetOutput(LPDISPATCH);
-	BOOL GetThermalAnalysis();
-	void SetThermalAnalysis(BOOL);
-	double GetStabilityCalibrationFactor();
-	void SetStabilityCalibrationFactor(double);
-	double GetOvalisationFactor();
-	void SetOvalisationFactor(double);
+  long GetAnalysisType();
+  void SetAnalysisType(long);
+  CWell GetWell();
+  void SetWell(LPDISPATCH);
+  CRock GetRock();
+  void SetRock(LPDISPATCH);
+  CInSitu GetInSitu();
+  void SetInSitu(LPDISPATCH);
+  CProc GetProc();
+  void SetProc(LPDISPATCH);
+  CMudWeight GetMudWeight();
+  void SetMudWeight(LPDISPATCH);
+  CTimePoints GetTimePoints();
+  void SetTimePoints(LPDISPATCH);
+  CMesh GetMesh();
+  void SetMesh(LPDISPATCH);
+  COutput GetOutput();
+  void SetOutput(LPDISPATCH);
+  BOOL GetThermalAnalysis();
+  void SetThermalAnalysis(BOOL);
+  double GetStabilityCalibrationFactor();
+  void SetStabilityCalibrationFactor(double);
+  double GetOvalisationFactor();
+  void SetOvalisationFactor(double);
 
 // Operations
 public:
-	BOOL FullMeshRequired(BOOL* FullMeshRequired);
-	BOOL CalculateFailure(double MudWeight, BOOL* ShearFailure, BOOL* TensileFailure, double* TauRatio);
-	BOOL RunFem(BOOL Verbose, BOOL Debug);
-	BOOL ResultExtremes(long Component, BOOL Maximum, VARIANT* Results);
-	long GetVersion();
-	long GetRevision();
-	BOOL SetDianaPath(LPCTSTR Path);
-	BOOL SetWorkingDirectory(LPCTSTR Path);
-	BOOL ReadParameterFile(LPCTSTR Path);
-	BOOL WriteParameterFile(LPCTSTR Path);
-	CString GetCurrentParameterFilePath();
-	BOOL StopFem();
-	BOOL FemCleanup();
-	BOOL ExpandMesh();
-	BOOL FullResults(long Component, long Step, VARIANT* XCoord, VARIANT* YCoord, VARIANT* Results);
-	BOOL CriticalPlasticStrain(double CalibrationFactor, double* CriticalPlasticStrain);
-	BOOL GetRequiredFrictionAngle(double* FrictionAngle);
-	BOOL GetTauRatio(double* TauRatio);
-	BOOL PlotContours(LPCTSTR Name, long Component, long Step, VARIANT* Contours);
-	void AboutBox();
-	BOOL CleanUpWorkingDir();
-	CString GetDianaPath();
-	CString GetWorkingDir();
-	BOOL GetVersionInfo(LPCTSTR FileName, short* version, short* revision);
-	BOOL NeedToUpdateFemGVDatabase();
-	BOOL UpdateFemGVDatabase();
-	BOOL GetDianaPathVersion(short* version, short* revision);
-	BOOL RadialResults(long Component, long Step, double Angle, long NrOfPoints, VARIANT* XCoord, VARIANT* YCoord, VARIANT* Results);
-	BOOL TangentialResults(long Component, long Step, double Radius, long NrOfPoints, VARIANT* XCoord, VARIANT* YCoord, VARIANT* Results);
-	BOOL InquireTauRatio(double* FailureOnset, BOOL* FailureOnsetFound, double* FailureOffset, BOOL* FailureOffsetFound, double* Extreme, BOOL* ExtremeFound, double* TensileFailure, BOOL* TensileFailureFound, double* p1, double* pn, 
-		short* Inquirecase);
-	BOOL CriticalPlasticStrainEx(double* CriticalPlasticStrain);
-	double GetFailedSurface(long iStepNr);
-	double GetFailedSurfaceAtMudweight(double dMudweight);
+  BOOL FullMeshRequired(BOOL* FullMeshRequired);
+  BOOL CalculateFailure(double MudWeight, BOOL* ShearFailure, BOOL* TensileFailure, double* TauRatio);
+  BOOL RunFem(BOOL Verbose, BOOL Debug);
+  BOOL ResultExtremes(long Component, BOOL Maximum, VARIANT* Results);
+  long GetVersion();
+  long GetRevision();
+  BOOL SetDianaPath(LPCTSTR Path);
+  BOOL SetWorkingDirectory(LPCTSTR Path);
+  BOOL ReadParameterFile(LPCTSTR Path);
+  BOOL WriteParameterFile(LPCTSTR Path);
+  CString GetCurrentParameterFilePath();
+  BOOL StopFem();
+  BOOL FemCleanup();
+  BOOL ExpandMesh();
+  BOOL FullResults(long Component, long Step, VARIANT* XCoord, VARIANT* YCoord, VARIANT* Results);
+  BOOL CriticalPlasticStrain(double CalibrationFactor, double* CriticalPlasticStrain);
+  BOOL GetRequiredFrictionAngle(double* FrictionAngle);
+  BOOL GetTauRatio(double* TauRatio);
+  BOOL PlotContours(LPCTSTR Name, long Component, long Step, VARIANT* Contours);
+  void AboutBox();
+  BOOL CleanUpWorkingDir();
+  CString GetDianaPath();
+  CString GetWorkingDir();
+  BOOL GetVersionInfo(LPCTSTR FileName, short* version, short* revision);
+  BOOL NeedToUpdateFemGVDatabase();
+  BOOL UpdateFemGVDatabase();
+  BOOL GetDianaPathVersion(short* version, short* revision);
+  BOOL RadialResults(long Component, long Step, double Angle, long NrOfPoints, VARIANT* XCoord, VARIANT* YCoord, VARIANT* Results);
+  BOOL TangentialResults(long Component, long Step, double Radius, long NrOfPoints, VARIANT* XCoord, VARIANT* YCoord, VARIANT* Results);
+  BOOL InquireTauRatio(double* FailureOnset, BOOL* FailureOnsetFound, double* FailureOffset, BOOL* FailureOffsetFound, double* Extreme, BOOL* ExtremeFound, double* TensileFailure, BOOL* TensileFailureFound, double* p1, double* pn, 
+    short* Inquirecase);
+  BOOL CriticalPlasticStrainEx(double* CriticalPlasticStrain);
+  double GetFailedSurface(long iStepNr);
+  double GetFailedSurfaceAtMudweight(double dMudweight);
 
-	CString GetKeyFile();
-	BOOL SetKeyFile(LPCTSTR FileName);
+  CString GetKeyFile();
+  BOOL SetKeyFile(LPCTSTR FileName);
 
 };
 

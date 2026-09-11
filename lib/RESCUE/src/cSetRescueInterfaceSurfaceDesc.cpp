@@ -18,11 +18,11 @@ Software Product or documentation licensed under this agreement.
 ****************************************************************************/
 /*************************************************************************
 
-        cSetRescueInterfaceSurfaceDesc.cpp
+    cSetRescueInterfaceSurfaceDesc.cpp
 
  Keeps a list of pointers to some RescueInterfaceSurfaceDesc.
 
-        Rod Hanks               February, 1999
+    Rod Hanks               February, 1999
 
 ****************************************************************************/
 #include "RescueModel.h"
@@ -42,7 +42,7 @@ cSetRescueInterfaceSurfaceDesc::~cSetRescueInterfaceSurfaceDesc()
 
   for (loop = 0; loop < count; loop++)
   {
-    delete objects[loop];
+  delete objects[loop];
   }
   free(objects);
 }
@@ -52,7 +52,7 @@ void cSetRescueInterfaceSurfaceDesc::Relink(RescueObject *parent)
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    objects[loop]->Relink((RescueGeometry *) parent);
+  objects[loop]->Relink((RescueGeometry *) parent);
   }
 }
 
@@ -62,7 +62,7 @@ RESCUEBOOL cSetRescueInterfaceSurfaceDesc::AnyFileTruncated()
   RESCUEINT64 loop;
   for (loop = 0; loop < count && myReturn == FALSE; loop++)
   {
-    myReturn = objects[loop]->AnyFileTruncated();
+  myReturn = objects[loop]->AnyFileTruncated();
   }
   return myReturn;
 }
@@ -73,7 +73,7 @@ void cSetRescueInterfaceSurfaceDesc::Archive(RescueContext *context, FILE *archi
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    objects[loop]->Archive(context, archiveFile);
+  objects[loop]->Archive(context, archiveFile);
   }
 }
 
@@ -87,8 +87,8 @@ void cSetRescueInterfaceSurfaceDesc::UnArchive(RescueContext *context, FILE *arc
   RESCUEINT64 loop;
   for (loop = 0; loop < newCount; loop++)
   {
-    RescueInterfaceSurfaceDesc *newObject = new RescueInterfaceSurfaceDesc(context, archiveFile);
-    (*this) += newObject;
+  RescueInterfaceSurfaceDesc *newObject = new RescueInterfaceSurfaceDesc(context, archiveFile);
+  (*this) += newObject;
   }
 }
 
@@ -98,7 +98,7 @@ void cSetRescueInterfaceSurfaceDesc::EmptySelf(void)
  
   for (loop = 0; loop < count; loop++)
   {
-    delete objects[loop];
+  delete objects[loop];
   }
   count = 0;
 }
@@ -107,8 +107,8 @@ void cSetRescueInterfaceSurfaceDesc::operator+=(RescueInterfaceSurfaceDesc *newO
 {
   if (allocated == count)
   {
-    allocated += 10;
-    objects = (RescueInterfaceSurfaceDesc **) realloc(objects, sizeof(RescueInterfaceSurfaceDesc *) * (size_t) allocated);
+  allocated += 10;
+  objects = (RescueInterfaceSurfaceDesc **) realloc(objects, sizeof(RescueInterfaceSurfaceDesc *) * (size_t) allocated);
   }
   objects[count++] = newObject;
 }
@@ -120,25 +120,25 @@ RESCUEBOOL cSetRescueInterfaceSurfaceDesc::operator-=(RescueInterfaceSurfaceDesc
 
   while (ndx < count && found == FALSE)
   {
-    if (existingObject == objects[ndx])
-    {
+  if (existingObject == objects[ndx])
+  {
       found = TRUE;
-    }
-    else
-    {
+  }
+  else
+  {
       ndx++;
-    }
+  }
   }
   if (found)
   {
-    RESCUEINT64 loop;
+  RESCUEINT64 loop;
 
-    delete objects[ndx];
-    count--;
-    for (loop = ndx; loop < count; loop++)
-    {
+  delete objects[ndx];
+  count--;
+  for (loop = ndx; loop < count; loop++)
+  {
       objects[loop] = objects[loop + 1];
-    }
+  }
   }
   return found;
 }
@@ -147,19 +147,19 @@ RESCUEBOOL cSetRescueInterfaceSurfaceDesc::operator-=(RESCUEINT64 ndx)
 {
   if (ndx >= 0 && ndx < count)
   {
-    RESCUEINT64 loop;
+  RESCUEINT64 loop;
 
-    delete objects[ndx];
-    count--;
-    for (loop = ndx; loop < count; loop++)
-    {
+  delete objects[ndx];
+  count--;
+  for (loop = ndx; loop < count; loop++)
+  {
       objects[loop] = objects[loop + 1];
-    }
-    return TRUE;
+  }
+  return TRUE;
   }
   else
   {
-    return FALSE;
+  return FALSE;
   }
 }
 
@@ -167,11 +167,11 @@ RescueInterfaceSurfaceDesc *cSetRescueInterfaceSurfaceDesc::NthObject(RESCUEINT6
 {
   if (ordinal < 0 || ordinal >= count)
   {
-    return 0;
+  return 0;
   }
   else
   {
-    return objects[ordinal];
+  return objects[ordinal];
   }
 }
 
@@ -190,7 +190,7 @@ void cSetRescueInterfaceSurfaceDesc::FindUniquePropertyNames(cSetString *contain
   int loop;
   for (loop = 0; loop < count; loop++)
   {
-    objects[loop]->FindUniquePropertyNames(container);
+  objects[loop]->FindUniquePropertyNames(container);
   }
 }
 
@@ -198,15 +198,15 @@ RESCUEINT32 cSetRescueInterfaceSurfaceDesc::Count(RESCUEBOOL throwIfTrue)
 {
   if (count > 2147483647)
   {
-    if (throwIfTrue)
-    {
+  if (throwIfTrue)
+  {
       throw "Model is too large to be accessed in 32 bit mode.";
-    }
-    return 0;
+  }
+  return 0;
   }
   else
   {
-    return (RESCUEINT32) count;
+  return (RESCUEINT32) count;
   }
 }
 

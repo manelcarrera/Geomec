@@ -29,7 +29,7 @@ CWellCasingModel::CWellCasingModel(CWellZoomInModel& parent, CAnalysisLogger& lo
   m_pMesh(0),
   m_pCasingNode(0),
   m_pCasingCement(0),
-	m_deformation( 0 )
+  m_deformation( 0 )
 {
   Radius(10);
   LargeDeformations(true, false);
@@ -42,24 +42,24 @@ CWellCasingModel::CWellCasingModel(const CWellCasingModel& rhs)
 : IWellModel(rhs),
   m_parent(rhs.m_parent),
   m_pMesh(rhs.m_pMesh), // shallow copy of the mesh
-	m_deformation( 0 )
+  m_deformation( 0 )
 {
 }
 
 CWellCasingModel::~CWellCasingModel()
 {
-	if( m_deformation )
-	{
-		delete m_deformation;
-		m_deformation = 0;
-	}
+  if( m_deformation )
+  {
+    delete m_deformation;
+    m_deformation = 0;
+  }
 }
 
 CWellCasingModel& CWellCasingModel::operator=(const CWellCasingModel& rhs)
 {
   if(!(*this == rhs))
   {
-    m_pMesh->InvalidateMesh();
+  m_pMesh->InvalidateMesh();
   }
 
   return *this;
@@ -68,15 +68,15 @@ CWellCasingModel& CWellCasingModel::operator=(const CWellCasingModel& rhs)
 bool CWellCasingModel::operator==(const CWellCasingModel& /*rhs*/) const
 {
   return (
-    true
-    );
+  true
+  );
 }
 
 void CWellCasingModel::createContainers()
 {
   IWellModel::createContainers(); // creates the depletion stage entry
 
-	new CWellCasingFormationEntry(MD_WELLMODEL_FORMATION, *this);
+  new CWellCasingFormationEntry(MD_WELLMODEL_FORMATION, *this);
   new CWellCasingRTCIEntry(*this);
 }
 
@@ -109,7 +109,7 @@ unsigned int CWellCasingModel::TypeId() const
 
 QString CWellCasingModel::documentType() const
 {
-	return "Casing Model";
+  return "Casing Model";
 }
 
 void CWellCasingModel::CreateDensityPoints(const geo::IElement &/*element*/, CPointSet &/*pointset*/)
@@ -119,13 +119,13 @@ void CWellCasingModel::CreateDensityPoints(const geo::IElement &/*element*/, CPo
 
 CGeomecDianaRunnerBase* CWellCasingModel::OnCreateDianaRunner(CDianaRunController& controller)
 {
-	switch (controller.AnalysisType().AnalysisType())
-	{
-		case CAnalysisType::AT_MIXTURE:				return new CWellCasingMixtureDianaRunner(*this, controller);
-		case CAnalysisType::AT_MIXTURE_CONTAINMENT: return new CWellCasingMixtureContainmentDianaRunner(*this, controller);
-		case CAnalysisType::AT_HEAT:				return new CWellCasingHeatFlowDianaRunner(*this, controller);
-		default:									return new CWellCasingDianaRunner(*this, controller);
-	}
+  switch (controller.AnalysisType().AnalysisType())
+  {
+    case CAnalysisType::AT_MIXTURE:				return new CWellCasingMixtureDianaRunner(*this, controller);
+    case CAnalysisType::AT_MIXTURE_CONTAINMENT: return new CWellCasingMixtureContainmentDianaRunner(*this, controller);
+    case CAnalysisType::AT_HEAT:				return new CWellCasingHeatFlowDianaRunner(*this, controller);
+    default:									return new CWellCasingDianaRunner(*this, controller);
+  }
 }
 
 const double &CWellCasingModel::Depth(const geo::ICoordinate &coord) const
@@ -145,7 +145,7 @@ double CWellCasingModel::Easting(const geo::ICoordinate& coord) const
 
 bool CWellCasingModel::IsResult() const
 {
-	return ResultRegister().Linear() || ResultRegister().NonLinear();
+  return ResultRegister().Linear() || ResultRegister().NonLinear();
 }
 
 void CWellCasingModel::Calculate()
@@ -180,16 +180,16 @@ const CWellCasingMesh& CWellCasingModel::Mesh() const
 bool CWellCasingModel::CanCalculate() const
 {
   if(!HeatFlowCalculationCriteriaMet())
-    return false;
+  return false;
 
   if(!CasingCement().Material(BranchState().ActiveStage()).Valid())
-    return false;
+  return false;
 
   if(!CasingNode().Steel().Material(BranchState().ActiveStage()).Valid())
-    return false;
+  return false;
 
   if(!CasingNode().CementInterface().Material(BranchState().ActiveStage()).Valid())
-    return false;
+  return false;
 
   return true;
 }
@@ -218,23 +218,23 @@ void CWellCasingModel::OnCloseModel()
 
 long CWellCasingModel::SavedItems() const
 {
-	long lRet = IWellModel::SavedItems();
+  long lRet = IWellModel::SavedItems();
 
-	lRet += SavedItemsPointSets();
-	const CAnalysisPointEntry& point_entry = dynamic_cast<const CAnalysisPointEntry&>(*GraphEntry(MD_BASE_ANALYSIS_POINT));
-	lRet += point_entry.SavedItems();
+  lRet += SavedItemsPointSets();
+  const CAnalysisPointEntry& point_entry = dynamic_cast<const CAnalysisPointEntry&>(*GraphEntry(MD_BASE_ANALYSIS_POINT));
+  lRet += point_entry.SavedItems();
   lRet += m_pCasingNode->SavedItems();
   lRet += m_pCasingCement->SavedItems();
-	lRet += Boundary().SavedItems();
-	lRet += GlobalPressure().SavedItems();
-	lRet += Mesh().SavedItems();
-	const CColorScaleEntry *pCSEntry = dynamic_cast<const CColorScaleEntry*>(GraphEntry(MD_BASE_COLOR_SCALE));
-	lRet += pCSEntry->SavedItems();	
-	lRet += ResultRegister().SavedItems();
+  lRet += Boundary().SavedItems();
+  lRet += GlobalPressure().SavedItems();
+  lRet += Mesh().SavedItems();
+  const CColorScaleEntry *pCSEntry = dynamic_cast<const CColorScaleEntry*>(GraphEntry(MD_BASE_COLOR_SCALE));
+  lRet += pCSEntry->SavedItems();	
+  lRet += ResultRegister().SavedItems();
   const CDerivedResultGroup& derivedresults = ResultTree().DerivedResults();
-	lRet += derivedresults.SavedItems();
+  lRet += derivedresults.SavedItems();
 
-	return lRet;
+  return lRet;
 }
 
 bool CWellCasingModel::LoadWellCasing(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &prog)
@@ -256,8 +256,8 @@ bool CWellCasingModel::LoadWellCasing(CStorageNode::TSTREAM &stream, CStreamVers
 
   if(version >= CStreamVersion(3, 7, 18))
   {
-    CWellCasingRTCIEntry& rtci_entry = static_cast<CWellCasingRTCIEntry&>(*GraphEntry(MD_WELLCASING_RTCI));
-    rtci_entry.LoadStream(*this, stream, version, prog);
+  CWellCasingRTCIEntry& rtci_entry = static_cast<CWellCasingRTCIEntry&>(*GraphEntry(MD_WELLCASING_RTCI));
+  rtci_entry.LoadStream(*this, stream, version, prog);
   }
 
   Boundary().LoadStream(stream,version,prog);
@@ -275,7 +275,7 @@ bool CWellCasingModel::LoadWellCasing(CStorageNode::TSTREAM &stream, CStreamVers
 
   if (version < CStreamVersion(4, 1, 64))
   {
-    LargeDeformations(true, false);
+  LargeDeformations(true, false);
   }
 
   // Load the result server
@@ -294,18 +294,18 @@ bool CWellCasingModel::OnLoad(CStorageNode::TSTREAM &stream, CStreamVersion &ver
 
 bool CWellCasingModel::OnSave(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &progress)
 {
-	// Number value composites
-	NumberValueComposites();
+  // Number value composites
+  NumberValueComposites();
 
-	// Number opengl nodes
-	NumberOpenGLNodes();
+  // Number opengl nodes
+  NumberOpenGLNodes();
 
-	// Save pointset
-	SavePointSets(stream, progress);
+  // Save pointset
+  SavePointSets(stream, progress);
 
-	// Save analysis points
-	CAnalysisPointEntry& point_entry = dynamic_cast<CAnalysisPointEntry&>(*GraphEntry(MD_BASE_ANALYSIS_POINT));
-	point_entry.SaveStream(stream, progress);
+  // Save analysis points
+  CAnalysisPointEntry& point_entry = dynamic_cast<CAnalysisPointEntry&>(*GraphEntry(MD_BASE_ANALYSIS_POINT));
+  point_entry.SaveStream(stream, progress);
 
   IWellModel::OnSave(stream, progress);
 
@@ -315,19 +315,19 @@ bool CWellCasingModel::OnSave(CStorageNode::TSTREAM &stream, CStorageNode::TPROG
   CWellCasingRTCIEntry& rtci_entry = static_cast<CWellCasingRTCIEntry&>(*GraphEntry(MD_WELLCASING_RTCI));
   rtci_entry.SaveStream(stream, progress);
 
-	Boundary().SaveStream(stream,progress);
+  Boundary().SaveStream(stream,progress);
 
-	GlobalPressure().SaveStream(stream, progress);
+  GlobalPressure().SaveStream(stream, progress);
 
-	Mesh().SaveStream(stream,progress);
+  Mesh().SaveStream(stream,progress);
 
-	// Save the color scales
-	CColorScaleEntry *pCSEntry = dynamic_cast<CColorScaleEntry*>(GraphEntry(MD_BASE_COLOR_SCALE));	
-	pCSEntry->SaveStream(stream, progress);
+  // Save the color scales
+  CColorScaleEntry *pCSEntry = dynamic_cast<CColorScaleEntry*>(GraphEntry(MD_BASE_COLOR_SCALE));	
+  pCSEntry->SaveStream(stream, progress);
 
-	ResultRegister().SaveStream(stream,progress);
+  ResultRegister().SaveStream(stream,progress);
 
-	// Save the derived results
+  // Save the derived results
   CDerivedResultGroup& derivedresults = ResultTree().DerivedResults();
   derivedresults.SaveStream(stream, progress);
 
@@ -384,9 +384,9 @@ void CWellCasingModel::SwitchToWarning()
   if(!s_bBetaWarningSeen)
   {
 #ifndef _DEBUG
-    _m()->msg("The well casing model is still in beta stage");
+  _m()->msg("The well casing model is still in beta stage");
 #endif
-    s_bBetaWarningSeen = true;
+  s_bBetaWarningSeen = true;
   }
 }
 
@@ -427,15 +427,15 @@ QString CWellCasingModel::AttributesDialogCaption() const
 CDepletionStage::eIterationScheme CWellCasingModel::DefaultIterationScheme(const CDepletionStage& source_stage) const
 {
   if(!source_stage.Initial())
-    return CDepletionStage::REGULAR;
+  return CDepletionStage::REGULAR;
 
   return IWellModel::DefaultIterationScheme(source_stage);
 }
 
 void CWellCasingModel::InvalidateDeformation()
 { 
-	if( m_deformation ) 
-		m_deformation->Invalidate(); 
+  if( m_deformation ) 
+    m_deformation->Invalidate(); 
 }
 
 ///// CWellCasingFormationEntry

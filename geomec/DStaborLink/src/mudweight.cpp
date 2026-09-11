@@ -13,14 +13,14 @@
 
 long CMudWeight::GetCount()
 {
-	long result;
-	GetProperty(0x1, VT_I4, (void*)&result);
-	return result;
+  long result;
+  GetProperty(0x1, VT_I4, (void*)&result);
+  return result;
 }
 
 void CMudWeight::SetCount(long propVal)
 {
-	SetProperty(0x1, VT_I4, propVal);
+  SetProperty(0x1, VT_I4, propVal);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -28,65 +28,65 @@ void CMudWeight::SetCount(long propVal)
 
 double CMudWeight::Item(long itemnr)
 {
-	double result;
-	static BYTE parms[] =
-		VTS_I4;
-	InvokeHelper(0x2, DISPATCH_METHOD, VT_R8, (void*)&result, parms,
-		itemnr);
-	return result;
+  double result;
+  static BYTE parms[] =
+    VTS_I4;
+  InvokeHelper(0x2, DISPATCH_METHOD, VT_R8, (void*)&result, parms,
+    itemnr);
+  return result;
 }
 
 void CMudWeight::Remove(long itemnr)
 {
-	static BYTE parms[] =
-		VTS_I4;
-	InvokeHelper(0x3, DISPATCH_METHOD, VT_EMPTY, NULL, parms,
-		 itemnr);
+  static BYTE parms[] =
+    VTS_I4;
+  InvokeHelper(0x3, DISPATCH_METHOD, VT_EMPTY, NULL, parms,
+     itemnr);
 }
 
 void CMudWeight::Clear()
 {
-	InvokeHelper(0x4, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
+  InvokeHelper(0x4, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
 }
 
 long CMudWeight::Add(double NewValue)
 {
-	long result;
-	static BYTE parms[] =
-		VTS_R8;
-	InvokeHelper(0x5, DISPATCH_METHOD, VT_I4, (void*)&result, parms,
-		NewValue);
-	return result;
+  long result;
+  static BYTE parms[] =
+    VTS_R8;
+  InvokeHelper(0x5, DISPATCH_METHOD, VT_I4, (void*)&result, parms,
+    NewValue);
+  return result;
 }
 
 void CMudWeight::Sort()
 {
-	InvokeHelper(0x6, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
+  InvokeHelper(0x6, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
 }
 
 short CMudWeight::OrderOfMudweights()
 {
-	short result;
-	InvokeHelper(0x9, DISPATCH_METHOD, VT_I2, (void*)&result, NULL);
-	return result;
+  short result;
+  InvokeHelper(0x9, DISPATCH_METHOD, VT_I2, (void*)&result, NULL);
+  return result;
 }
 
 BOOL CMudWeight::GetOptimumMudweightEx(double CriticalPlasticStrain, VARIANT* EpeqResults, double* OptimumMudweight, BOOL* OptimumMudweightFound, short* Case)
 {
-	BOOL result;
-	static BYTE parms[] =
-		VTS_R8 VTS_PVARIANT VTS_PR8 VTS_PBOOL VTS_PI2;
-	InvokeHelper(0xa, DISPATCH_METHOD, VT_BOOL, (void*)&result, parms,
-		CriticalPlasticStrain, EpeqResults, OptimumMudweight, OptimumMudweightFound, Case);
-	return result;
+  BOOL result;
+  static BYTE parms[] =
+    VTS_R8 VTS_PVARIANT VTS_PR8 VTS_PBOOL VTS_PI2;
+  InvokeHelper(0xa, DISPATCH_METHOD, VT_BOOL, (void*)&result, parms,
+    CriticalPlasticStrain, EpeqResults, OptimumMudweight, OptimumMudweightFound, Case);
+  return result;
 }
 
 BOOL CMudWeight::SetDefaultEx(BOOL* IsDefaultSet)
 {
-	BOOL result;
-	static BYTE parms[] =
-		VTS_PBOOL;
-	InvokeHelper(0xb, DISPATCH_METHOD, VT_BOOL, (void*)&result, parms,
-		IsDefaultSet);
-	return result;
+  BOOL result;
+  static BYTE parms[] =
+    VTS_PBOOL;
+  InvokeHelper(0xb, DISPATCH_METHOD, VT_BOOL, (void*)&result, parms,
+    IsDefaultSet);
+  return result;
 }

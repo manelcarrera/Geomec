@@ -49,18 +49,18 @@ public:
   void SetModel(CModelBase& model, bool isExistingModel);
 
   void executeRockMechCommands_DEPRECATED(int& nStage, const std::string& title,
-    IDianaXWrapper* dianaXWrapper, const QString& getPathName, bool& bRet,
-    ISaveModel& saveModel, IRetrieveDianaFileNames& retrieveDianaFileNames,
-    bool& bSaveModel, bool validate = true);
+  IDianaXWrapper* dianaXWrapper, const QString& getPathName, bool& bRet,
+  ISaveModel& saveModel, IRetrieveDianaFileNames& retrieveDianaFileNames,
+  bool& bSaveModel, bool validate = true);
   bool QuitCommandReceived() const;
   bool isExistingModel() const;
 
   static CMaterialEntry* createMaterial(CModelBase& modelBase,
-    const QString& materialName, int materialModel);
+  const QString& materialName, int materialModel);
   static void connectMaterials2Formations(CModelBase& modelBase,
-    const std::vector <IMaterial*> materials);
+  const std::vector <IMaterial*> materials);
   static void connectMaterial2Formation(CModelBase& modelBase,
-    IMaterial* material, CFormationBase* formationBase);
+  IMaterial* material, CFormationBase* formationBase);
 
 private:
   bool LoadGrid(RGInterface& rgi);
@@ -69,14 +69,14 @@ private:
   bool LoadProperty(RGInterface& rgi, const RGProperty& rgProperty);
   bool SaveProperty(RGInterface& rgi, const RGProperty& rgProperty);
   bool CalculateFirst(const QString& getPathName, IDianaXWrapper* dianaXWrapper,
-    const std::string &title, RGInterface& rgi, ISaveModel& saveModel,
-    IRetrieveDianaFileNames& retrieveDianaFileNames);
+  const std::string &title, RGInterface& rgi, ISaveModel& saveModel,
+  IRetrieveDianaFileNames& retrieveDianaFileNames);
   bool CalculateNext(const QString& getPathName, IDianaXWrapper* dianaXWrapper,
-    const std::string &title, RGInterface& rgi, ISaveModel& saveModel,
-    IRetrieveDianaFileNames& retrieveDianaFileNames);
+  const std::string &title, RGInterface& rgi, ISaveModel& saveModel,
+  IRetrieveDianaFileNames& retrieveDianaFileNames);
   bool Calculate(const QString& getPathName, IDianaXWrapper* dianaXWrapper,
-    const std::string &title, RGInterface& rgi, ISaveModel& saveModel,
-    IRetrieveDianaFileNames& retrieveDianaFileNames);
+  const std::string &title, RGInterface& rgi, ISaveModel& saveModel,
+  IRetrieveDianaFileNames& retrieveDianaFileNames);
   bool DefineInitialDate(RGInterface& rgi, const RGDate& date);
   bool EnsureDepletionStageAvailable(RGInterface& rgi);
 
@@ -122,14 +122,14 @@ private:
   // monitoring pointsets
   struct Quantity
   {
-    std::string name;
-    bool doConvert;
-    double conversionFactor;
+  std::string name;
+  bool doConvert;
+  double conversionFactor;
 
-    Quantity() : doConvert(false), conversionFactor(1) {}
-    Quantity(const std::string& name, bool doConvert, double conversionFactor) : name(name), doConvert(doConvert), conversionFactor(conversionFactor) {}
+  Quantity() : doConvert(false), conversionFactor(1) {}
+  Quantity(const std::string& name, bool doConvert, double conversionFactor) : name(name), doConvert(doConvert), conversionFactor(conversionFactor) {}
 
-    double Convert(double value) { return doConvert ? value * conversionFactor : value; }
+  double Convert(double value) { return doConvert ? value * conversionFactor : value; }
   };
   std::map<std::string, Quantity> m_quantities;
 

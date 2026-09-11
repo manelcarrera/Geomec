@@ -33,7 +33,7 @@ void CWellFormationEntry_Delegate::AppendContextMenu(
 
 #if 0
   invoker.AddCommand("Show formation skin",
-    *(new TForCommand(*m_wellFormationEntry,
+  *(new TForCommand(*m_wellFormationEntry,
       &CWellFormationEntry::OnShowSkin, 0, &CWellFormationEntry::ShowSkin)));
 #endif
 }

@@ -8,11 +8,11 @@
 class CMaterialCreep : public IMaterialRock
 {
 public:
-	CMaterialCreep(CMaterialEntry &entry, CLibraryMaterial& libmat);
-	CMaterialCreep(const CMaterialCreep& material, CMaterialEntry& entry);
+  CMaterialCreep(CMaterialEntry &entry, CLibraryMaterial& libmat);
+  CMaterialCreep(const CMaterialCreep& material, CMaterialEntry& entry);
 
-	virtual bool Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const;
-	virtual int MaterialModel() const { return MM_CREEP; }
+  virtual bool Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const;
+  virtual int MaterialModel() const { return MM_CREEP; }
   virtual long MaterialModelFilter() const { return MLFO_CREEP; }
 
   // the creator for this material model

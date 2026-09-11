@@ -51,8 +51,8 @@ extern XPointSet_t *XPointSetCreate( void )
 extern XPointSet_t *XPointSetDelete( XPointSet_t *xPointSet )
 {
   if ( xPointSet ) {
-    RBTreeDelete( xPointSet->extraPoints );
-    DIFREE( xPointSet );
+  RBTreeDelete( xPointSet->extraPoints );
+  DIFREE( xPointSet );
   }
   return xPointSet;
 }
@@ -109,12 +109,12 @@ extern int XPointSetUnshift(
 {
   int                 numChange = 0;
   if ( SurfaceType( surf ) != surfNormal ) {
-    XPoint_t   *found = XPointSetFind( xpointSet, orgId, surf, triangleId );
-    /* Take care of links */
-    if ( found ) {
+  XPoint_t   *found = XPointSetFind( xpointSet, orgId, surf, triangleId );
+  /* Take care of links */
+  if ( found ) {
       found = (XPoint_t *)XPointSetFollowLink( xpointSet, found );
-    }
-    if ( found && found->type != xpointFaultUnshifted ) {
+  }
+  if ( found && found->type != xpointFaultUnshifted ) {
       found->type = xpointFaultUnshifted;
       numChange += 1;
 #if 0
@@ -124,9 +124,9 @@ SurfaceInfoPrint( surf, stderr );
 fprintf( stderr, "\n\n" );
 }
 #endif
-    }
+  }
   } else {
-    assert( FALSE );
+  assert( FALSE );
   }
   return numChange;
 }
@@ -179,18 +179,18 @@ extern const XPoint_t *XPointSetFollowLink(
   
 
   switch ( XPointType( result ) ) {
-    case xpointFaultUnshifted:
-    case xpointFault:
+  case xpointFaultUnshifted:
+  case xpointFault:
       break;
-    case xpointFaultLinked: 
-    case xpointNormal2Fault: 
+  case xpointFaultLinked: 
+  case xpointNormal2Fault: 
       {
-        const XPoint_t  *xpLink = RBTreeGet( xpointSet->extraPoints, xp->offset );
-        assert( xpLink != xp );
-        result = XPointSetFollowLink( xpointSet, xpLink );
+    const XPoint_t  *xpLink = RBTreeGet( xpointSet->extraPoints, xp->offset );
+    assert( xpLink != xp );
+    result = XPointSetFollowLink( xpointSet, xpLink );
       }
       break;
-    default:
+  default:
       assert( FALSE );
       break;
   }
@@ -206,13 +206,13 @@ extern int XPointSetPointId(
   xp = XPointSetFollowLink( xpointSet, xp );
 
   switch ( XPointType( xp ) ) {
-    case xpointFaultUnshifted:
+  case xpointFaultUnshifted:
       pointId = xp->orgId;
       break;
-    case xpointFault:
+  case xpointFault:
       pointId = xp->data.faultPoint.pointId;
       break;
-    default:
+  default:
       assert( FALSE );
       break;
   }
@@ -243,15 +243,15 @@ if ( XPointOrgId(xp1) == MRH_FIND_POINT ) {
 #endif
 
   if ( xp1Link->offset > xp2Link->offset ) {
-    /* Link faultpoint1 to faultpoint2 */
-    xp1Link->offset = xp2Link->offset;
-    xp1Link->type = xpointFaultLinked;
-    numChange += 1;
+  /* Link faultpoint1 to faultpoint2 */
+  xp1Link->offset = xp2Link->offset;
+  xp1Link->type = xpointFaultLinked;
+  numChange += 1;
   } else if ( xp1Link->offset < xp2Link->offset ) {
-    xp2Link->offset = xp1Link->offset;
-    xp2Link->type = xpointFaultLinked;
+  xp2Link->offset = xp1Link->offset;
+  xp2Link->type = xpointFaultLinked;
   } else {
-    /* Already linked... */
+  /* Already linked... */
   }
   return numChange;
 }
@@ -274,13 +274,13 @@ extern int XPointSetLinkFault(
   assert( SurfaceType( fault2 ) != surfNormal );
 
   if ( type1 == xpointFaultUnshifted ) {
-    assert( XPointOrgId( xp1 ) == XPointOrgId( xp2 ) );
-    numChange += XPointSetUnshift( xpointSet, XPointOrgId( xp2 ), fault2, triangleId2 );
+  assert( XPointOrgId( xp1 ) == XPointOrgId( xp2 ) );
+  numChange += XPointSetUnshift( xpointSet, XPointOrgId( xp2 ), fault2, triangleId2 );
   } else if ( type2 == xpointFaultUnshifted ) {
-    assert( XPointOrgId( xp1 ) == XPointOrgId( xp2 ) );
-    numChange += XPointSetUnshift( xpointSet, XPointOrgId( xp1 ), fault1, triangleId1 );
+  assert( XPointOrgId( xp1 ) == XPointOrgId( xp2 ) );
+  numChange += XPointSetUnshift( xpointSet, XPointOrgId( xp1 ), fault1, triangleId1 );
   } else {
-    numChange += LinkFaultPoint( xpointSet, xp1, xp2 );
+  numChange += LinkFaultPoint( xpointSet, xp1, xp2 );
   }
   return numChange;
 }
@@ -298,11 +298,11 @@ extern int XPointSetLinkNormal(
 
   assert( xpFault && SurfaceType( normal ) == surfNormal );
   if ( !xpNormal ) {
-    const int ofset = xpFault->offset; /* Beware of realloc that invalidates xpFault */
-    xpNormal = RBTreeSearchGet( xpointSet->extraPoints, xp );
-    numChange += 1;
-    xpNormal->type = xpointNormal2Fault;
-    xpNormal->offset = ofset;
+  const int ofset = xpFault->offset; /* Beware of realloc that invalidates xpFault */
+  xpNormal = RBTreeSearchGet( xpointSet->extraPoints, xp );
+  numChange += 1;
+  xpNormal->type = xpointNormal2Fault;
+  xpNormal->offset = ofset;
 #if 0
 if ( orgId == MRH_FIND_POINT ) {
 fprintf( stderr, "XPointSetLinkNormal orgId=%d triangleId=%d\n", orgId, triangleId );
@@ -311,33 +311,33 @@ fprintf( stderr, "\n\n" );
 }
 #endif
   } else {
-    /* Already linked, but also to the same fault point? */
-    const XPoint_t  *xp1Link = XPointSetFollowLink( xpointSet, xpFault );
-    const XPoint_t  *xp2Link = XPointSetFollowLink( xpointSet, xpNormal );
-    if ( xp1Link != xp2Link ) {
+  /* Already linked, but also to the same fault point? */
+  const XPoint_t  *xp1Link = XPointSetFollowLink( xpointSet, xpFault );
+  const XPoint_t  *xp2Link = XPointSetFollowLink( xpointSet, xpNormal );
+  if ( xp1Link != xp2Link ) {
       const XPointType_t  type1 = XPointType( xp1Link );
       const XPointType_t  type2 = XPointType( xp2Link );
       if ( ( type1 == xpointFault ) && ( type2 == xpointFault ) ) {
-        assert( xp1Link->orgId == xp2Link->orgId );
-        /* Two fault points are identical to the same point in a normal surface: link them */
-        numChange += XPointSetLinkFault( xpointSet, 
+    assert( xp1Link->orgId == xp2Link->orgId );
+    /* Two fault points are identical to the same point in a normal surface: link them */
+    numChange += XPointSetLinkFault( xpointSet, 
                                          xp1Link->orgId,
                                          xp1Link->surf,
                                          xp1Link->triangleId,
                                          xp2Link->surf,
                                          xp2Link->triangleId );
       } else if ( ( type1 == xpointFaultUnshifted ) && ( type2 == xpointFaultUnshifted ) ) {
-        /* ready */
+    /* ready */
       } else if ( ( type2 == xpointFaultUnshifted ) && ( type1 == xpointFault ) ) {
-        /* Unshift 1 */
-        numChange += XPointSetUnshift( xpointSet, XPointOrgId(xp1Link), xp1Link->surf, xp1Link->triangleId );
+    /* Unshift 1 */
+    numChange += XPointSetUnshift( xpointSet, XPointOrgId(xp1Link), xp1Link->surf, xp1Link->triangleId );
       } else if ( ( type1 == xpointFaultUnshifted ) && ( type2 == xpointFault ) ) {
-        /* Unshift 2 */
-        numChange += XPointSetUnshift( xpointSet, XPointOrgId(xp2Link), xp2Link->surf, xp2Link->triangleId );
+    /* Unshift 2 */
+    numChange += XPointSetUnshift( xpointSet, XPointOrgId(xp2Link), xp2Link->surf, xp2Link->triangleId );
       } else {
-        assert( 0 );
+    assert( 0 );
       }
-    }
+  }
   }
   return numChange;
 }
@@ -354,16 +354,16 @@ static int LinkNormalToLinkedNormal(
   /* Find fault point to which it is linked */
   xp= XPointSetFollowLink( xpointSet, xp );
   switch ( XPointType( xp ) ) {
-    case xpointFaultUnshifted:
+  case xpointFaultUnshifted:
       /* Ready */
       break;
-    case xpointFault:
+  case xpointFault:
       /* Link normal to fault point */
       numChange += XPointSetLinkNormal( xpointSet, orgId, normal, triangleId, xp );
       break;
-    case xpointFaultLinked: 
-    case xpointNormal2Fault: 
-    default:
+  case xpointFaultLinked: 
+  case xpointNormal2Fault: 
+  default:
       assert( FALSE );
       break;
   }
@@ -389,16 +389,16 @@ extern int XPointSetLinkNormal2(
   assert( SurfaceType( normal2 ) == surfNormal );
 
   if ( !xpNormal1 && !xpNormal2 ) {
-    /* Nothing to be done */
+  /* Nothing to be done */
   } else if ( xpNormal1 && !xpNormal2 ) {
-    numChange += LinkNormalToLinkedNormal( orgId, normal2, triangleId2, xpNormal1, xpointSet );
+  numChange += LinkNormalToLinkedNormal( orgId, normal2, triangleId2, xpNormal1, xpointSet );
   } else if ( xpNormal2 && !xpNormal1 ) {
-    numChange += LinkNormalToLinkedNormal( orgId, normal1, triangleId1, xpNormal2, xpointSet );
+  numChange += LinkNormalToLinkedNormal( orgId, normal1, triangleId1, xpNormal2, xpointSet );
   } else {
-    const XPoint_t  *xp1Link = XPointSetFollowLink( xpointSet, xpNormal1 );
-    const XPoint_t  *xp2Link = XPointSetFollowLink( xpointSet, xpNormal2 );
+  const XPoint_t  *xp1Link = XPointSetFollowLink( xpointSet, xpNormal1 );
+  const XPoint_t  *xp2Link = XPointSetFollowLink( xpointSet, xpNormal2 );
 
-    numChange += XPointSetLinkFault( xpointSet, orgId, XPointSurface(xp1Link), XPointTriangleId(xp1Link),
+  numChange += XPointSetLinkFault( xpointSet, orgId, XPointSurface(xp1Link), XPointTriangleId(xp1Link),
                                                        XPointSurface(xp2Link), XPointTriangleId(xp2Link) );
   }
   return numChange;
@@ -428,15 +428,15 @@ extern void XPointSetPrintPoint(
   fprintf( file, "ExtraPoint orgId=%d offset=%d type=%s surf=%s triangleId=%d", xp->orgId, xp->offset, XPointTypeToString[ xp->type ], SurfaceUserInfo( buf, xp->surf ), xp->triangleId );
 
   switch ( XPointType( xp ) ) {
-    case xpointFault:
-    case xpointFaultUnshifted:
-    case xpointFaultLinked:
+  case xpointFault:
+  case xpointFaultUnshifted:
+  case xpointFaultLinked:
       XPointSetPrintFaultPoint( &xp->data.faultPoint, file );
       break;
-    case xpointNormal2Fault:
+  case xpointNormal2Fault:
       XPointSetPrintNormalPoint( &xp->data.normalPoint, file );
       break;
-    default:
+  default:
       assert( FALSE );
       break;
   }
@@ -451,8 +451,8 @@ extern void XPointSetPrint(
   const XPoint_t  *xp = XPointSetFirst( xpointSet, &iter );
   fprintf( file, "\nExtraPointSet size=%d\n\n", XPointSetSize( xpointSet ) );
   while ( xp ) {
-    XPointSetPrintPoint( xp, file );
-    xp = XPointSetNext( xpointSet, &iter );
+  XPointSetPrintPoint( xp, file );
+  xp = XPointSetNext( xpointSet, &iter );
   }
 }
 
@@ -475,18 +475,18 @@ static bool_t XPointSetTestShift(
   const XPoint_t     **xp = SetFirst( xpoints, &iter );
   UNUSED(xpointSet);
   while ( xp ) {
-    const XPoint_t      *xpMatch = *xp;
-    if ( XPointType( xpMatch ) != xpointNormal2Fault ) {
+  const XPoint_t      *xpMatch = *xp;
+  if ( XPointType( xpMatch ) != xpointNormal2Fault ) {
       const Triangle_t    *triangle = SurfaceGet( xpMatch->surf, xpMatch->triangleId );
       const XFaultPoint_t *xfp = &(xpMatch->data.faultPoint);
       double               normal[3];
       TriangleUnitNormal( triangle, pointSet, normal );
       if ( VecInprod( xfp->shift, shift, 3 ) <= 0 ) {
-        isOK = FALSE;    
-        break;      
+    isOK = FALSE;    
+    break;      
       }
-    }
-    xp = SetNext( xpoints, &iter );
+  }
+  xp = SetNext( xpoints, &iter );
   }
   return isOK;
 }
@@ -540,31 +540,31 @@ static void XPointGetCleverShift(
   /* Restrict surface in direction space */
   xpp = SetFirst( xpoints, &iter );
   while ( xpp ) {
-    XPoint_t            *xp = *xpp;
-    double               org[] = { 0, 0, 0 };
-    const XFaultPoint_t *xfp = &(xp->data.faultPoint);
-    Surface_t           *intersect = SurfaceIntersectPlane( triangleSet, directionSet, org, xfp->shift );
-    SurfaceDelete( triangleSet );
-    triangleSet = intersect;
-    xpp = SetNext( xpoints, &iter );
+  XPoint_t            *xp = *xpp;
+  double               org[] = { 0, 0, 0 };
+  const XFaultPoint_t *xfp = &(xp->data.faultPoint);
+  Surface_t           *intersect = SurfaceIntersectPlane( triangleSet, directionSet, org, xfp->shift );
+  SurfaceDelete( triangleSet );
+  triangleSet = intersect;
+  xpp = SetNext( xpoints, &iter );
   }
 
   /* Find largest intersection triangle */
   for ( n = 0; n < SurfaceSize( triangleSet ); n++ ) {
-    const double triangleArea = TriangleArea( SurfaceGet( triangleSet, n ), directionSet );
-    if ( triangleArea > maxArea ) {
+  const double triangleArea = TriangleArea( SurfaceGet( triangleSet, n ), directionSet );
+  if ( triangleArea > maxArea ) {
       maxArea = triangleArea;
       maxAreaId = n;
-    }
+  }
   }
  
   /* Use mid-point of largest triangle for shift */
   if ( maxAreaId >= 0 ) {
-    TriangleCenter( SurfaceGet( triangleSet, maxAreaId ), directionSet, shift );
-    UtilNormalize( shift, NULL, 3 );
+  TriangleCenter( SurfaceGet( triangleSet, maxAreaId ), directionSet, shift );
+  UtilNormalize( shift, NULL, 3 );
   } else {
-    /* Zero shift, this is an error */
-    UTIL_SET( shift, 0, 3 );
+  /* Zero shift, this is an error */
+  UTIL_SET( shift, 0, 3 );
   }
 
   SurfaceDelete( triangleSet );
@@ -600,24 +600,24 @@ extern double *XPointGetShift(
 
   xpMatch = RBTreeFirstMatch( xpointSet->extraPoints, &xpSearch, &iter );
   while ( xpMatch ) {
-    const XPointType_t   type = XPointType( xpMatch );
-    if ( type != xpointNormal2Fault && XPointSetFollowLink( xpointSet, xpMatch ) == xpLink ) {
+  const XPointType_t   type = XPointType( xpMatch );
+  if ( type != xpointNormal2Fault && XPointSetFollowLink( xpointSet, xpMatch ) == xpLink ) {
       const XFaultPoint_t *xfp = &(xpMatch->data.faultPoint);
       assert( type == xpointFault || type == xpointFaultLinked );
       SetAdd( xpoints, &xpMatch, 1 );
       minimumLength = MIN( minimumLength, VecL2Norm( xfp->shift, 3 ) );
-    }
-    xpMatch = RBTreeNextMatch( xpointSet->extraPoints, &xpSearch, &iter );
+  }
+  xpMatch = RBTreeNextMatch( xpointSet->extraPoints, &xpSearch, &iter );
   }
 
   /* Determine shift */
   XPointGetCleverShift( shift, pointSet, xpointSet, xpoints );
   if( XPointSetTestShift( shift, pointSet, xpointSet, xpoints ) ) {
-    /* Length of shift: factor times minimum */
-    assert( minimumLength > DBL_MIN );
-    VecOperScal( shift, EqlPos, shift, OperTimes, shiftScaleFactor*minimumLength, 3 ); 
+  /* Length of shift: factor times minimum */
+  assert( minimumLength > DBL_MIN );
+  VecOperScal( shift, EqlPos, shift, OperTimes, shiftScaleFactor*minimumLength, 3 ); 
   } else {
-    UTIL_SET( shift, 0., 3 );
+  UTIL_SET( shift, 0., 3 );
   }
 
   SetDelete( xpoints );

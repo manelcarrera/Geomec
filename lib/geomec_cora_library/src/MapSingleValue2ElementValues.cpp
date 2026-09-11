@@ -32,51 +32,51 @@ void CMapSingleValue2ElementValues::createElementValueSet(CModelBase* modelBase,
   const CFailureTypeParameterBase* failureTypeParameterBase)
 {
   CElementSet* elementSet =
-    failureTypeParameterBase->m_actualObject->getElementSet();
+  failureTypeParameterBase->m_actualObject->getElementSet();
   int set = elementSet->AddElementValueSet();
   CElementValueSet& elementValueSet = elementSet->ElementValueSet(set);
   unsigned int valueTypeID =
-    failureTypeParameterBase->m_actualParameter->valueTypeID();
+  failureTypeParameterBase->m_actualParameter->valueTypeID();
   CHorizonBase* horizonBase = dynamic_cast <CHorizonBase*> (
-    failureTypeParameterBase->m_actualParameter->object());
+  failureTypeParameterBase->m_actualParameter->object());
   const geo::CElementGroup* elementGroup =
-    horizonBase->InterfaceElementGroup();
+  horizonBase->InterfaceElementGroup();
   const CDepletionStage& depletionStage = modelBase->DepletionStageEntry().
-    StageByIndex(failureTypeParameterBase->m_actualParameter->depletionStage());
+  StageByIndex(failureTypeParameterBase->m_actualParameter->depletionStage());
 
   for (int element = 0; element < elementGroup->ElementSize(); ++element)
   {
-    const geo::CInterfaceElement& interfaceElement =
+  const geo::CInterfaceElement& interfaceElement =
       dynamic_cast <const geo::CInterfaceElement&> (
-        elementGroup->Element(element));
-    const CInterfaceElementMaterial& interfaceElementMaterial =
+    elementGroup->Element(element));
+  const CInterfaceElementMaterial& interfaceElementMaterial =
       dynamic_cast <const CInterfaceElementMaterial&> (
-        horizonBase->InterfaceMaterial(interfaceElement, depletionStage));
-    int nodes = interfaceElement.NrOfNodes();
-    std::vector <double> newValues(nodes / 2);
-    double newValue = 0;
+    horizonBase->InterfaceMaterial(interfaceElement, depletionStage));
+  int nodes = interfaceElement.NrOfNodes();
+  std::vector <double> newValues(nodes / 2);
+  double newValue = 0;
 
-    if (interfaceElementMaterial.ValidParameterValue(valueTypeID))
-    {
+  if (interfaceElementMaterial.ValidParameterValue(valueTypeID))
+  {
       double value =
-        interfaceElementMaterial.ParameterValue(valueTypeID);
+    interfaceElementMaterial.ParameterValue(valueTypeID);
 
       newValue =
-        failureTypeParameterBase->m_parameterModifier->modify(value).Value();
-    }
-    else
-    {
+    failureTypeParameterBase->m_parameterModifier->modify(value).Value();
+  }
+  else
+  {
       failureTypeParameterBase->m_summaryResultFile.addAdditionalInformation(
-        QString(VALUE_TYPE_NOT_PRESENT).arg("").arg(FAULT).
-        arg(failureTypeParameterBase->m_object));
-    }
+    QString(VALUE_TYPE_NOT_PRESENT).arg("").arg(FAULT).
+    arg(failureTypeParameterBase->m_object));
+  }
 
-    std::fill(newValues.begin(), newValues.end(), newValue);
-    elementValueSet.PushBack(newValues);
+  std::fill(newValues.begin(), newValues.end(), newValue);
+  elementValueSet.PushBack(newValues);
   }
 
   failureTypeParameterBase->createAndLinkValueType(modelBase, elementValueSet,
-    horizonBase->FaultParameters(depletionStage), *elementSet, valueTypeID);
+  horizonBase->FaultParameters(depletionStage), *elementSet, valueTypeID);
 }
 
 } // namespace cora

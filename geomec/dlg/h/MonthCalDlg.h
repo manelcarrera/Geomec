@@ -14,38 +14,38 @@ class CMonthCalDlg : public CDialog
 {
 // Construction
 public:
-	CMonthCalDlg(const COleDateTime &time, const CPoint &point, CWnd* pParent = NULL);   // standard constructor
+  CMonthCalDlg(const COleDateTime &time, const CPoint &point, CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
-	//{{AFX_DATA(CMonthCalDlg)
-	enum { IDD = IDD_MONTHCALDLG };
-	//}}AFX_DATA
+  //{{AFX_DATA(CMonthCalDlg)
+  enum { IDD = IDD_MONTHCALDLG };
+  //}}AFX_DATA
 
-	const COleDateTime &DateTime() const;
+  const COleDateTime &DateTime() const;
 
 private:
-	COleDateTime m_DateTime;
-	CPoint m_pt;
-	BOOL m_bExiting;
+  COleDateTime m_DateTime;
+  CPoint m_pt;
+  BOOL m_bExiting;
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CMonthCalDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+  // ClassWizard generated virtual function overrides
+  //{{AFX_VIRTUAL(CMonthCalDlg)
+  protected:
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CMonthCalDlg)
-	virtual BOOL OnInitDialog();
-	afx_msg void OnLButtonDown(unsigned int nFlags, CPoint point);
-	afx_msg void OnSelectMonthcalendar(NMHDR* pNMHDR, LRESULT* pResult);
-	//}}AFX_MSG
-	afx_msg BOOL OnNcActivate(BOOL bActive);
-	DECLARE_MESSAGE_MAP()
+  // Generated message map functions
+  //{{AFX_MSG(CMonthCalDlg)
+  virtual BOOL OnInitDialog();
+  afx_msg void OnLButtonDown(unsigned int nFlags, CPoint point);
+  afx_msg void OnSelectMonthcalendar(NMHDR* pNMHDR, LRESULT* pResult);
+  //}}AFX_MSG
+  afx_msg BOOL OnNcActivate(BOOL bActive);
+  DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}

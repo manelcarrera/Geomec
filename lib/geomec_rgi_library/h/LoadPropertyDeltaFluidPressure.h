@@ -9,26 +9,26 @@ namespace GeomecRGI
 class CLoadPropertyDeltaFluidPressure : public CLoadPropertyPressureBase
 {
   public:
-    CLoadPropertyDeltaFluidPressure(const RGProperty& rgProperty,
+  CLoadPropertyDeltaFluidPressure(const RGProperty& rgProperty,
       RGInterface& rgi, CModelBase& modelBase, CRockMechProcessor& rmp);
-    virtual ~CLoadPropertyDeltaFluidPressure();
+  virtual ~CLoadPropertyDeltaFluidPressure();
 
   protected:
-    virtual unsigned int OverruleValueType(unsigned int uValueType) const;
+  virtual unsigned int OverruleValueType(unsigned int uValueType) const;
 
-    virtual bool addDelta(std::vector <geo::CValue>& vcNodalValues,
+  virtual bool addDelta(std::vector <geo::CValue>& vcNodalValues,
       const QString& strPropertyName, const CFormationBase* pFormation,
       const geo::IElement& elm, int nNod) const;
-    virtual IValueDomainScalar::TValueVec addDeltaSpecific(
+  virtual IValueDomainScalar::TValueVec addDeltaSpecific(
       const CDepletionStage& prevstage, const CFormationBase* pFormation,
       const geo::IElement& elm, int nNod) const;
 
   private:
-    CLoadPropertyDeltaFluidPressure(const CLoadPropertyDeltaFluidPressure& rhs);
-    CLoadPropertyDeltaFluidPressure& operator = (
+  CLoadPropertyDeltaFluidPressure(const CLoadPropertyDeltaFluidPressure& rhs);
+  CLoadPropertyDeltaFluidPressure& operator = (
       const CLoadPropertyDeltaFluidPressure& rhs);
 
-    mutable bool m_useFractureMatrixPressure;
+  mutable bool m_useFractureMatrixPressure;
 };
 
 } // namespace GeomecRGI

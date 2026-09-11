@@ -71,7 +71,7 @@ void ModGMBusMessage::setFrom(const char *from)
   //std::memcpy( fields.from, from, std::min( NAME_SIZE, sz ) );
   std::memcpy( fields.from, from, sz < NAME_SIZE ? sz : NAME_SIZE );
   if (sz < NAME_SIZE)
-    memset(fields.from + sz, 0, NAME_SIZE - sz);
+  memset(fields.from + sz, 0, NAME_SIZE - sz);
 }
 
 void ModGMBusMessage::setTo(const char *to)
@@ -81,7 +81,7 @@ void ModGMBusMessage::setTo(const char *to)
   //std::memcpy(fields.to, to, std::min( NAME_SIZE, sz ) );
   std::memcpy(fields.to, to, sz < NAME_SIZE ? sz : NAME_SIZE );
   if (sz < NAME_SIZE)
-    memset(fields.to + sz, 0, NAME_SIZE - sz);
+  memset(fields.to + sz, 0, NAME_SIZE - sz);
 }
 
 void ModGMBusMessage::setPayload(const char *data)
@@ -93,7 +93,7 @@ void ModGMBusMessage::setPayload(const char *data)
   //std::memcpy( fields.payload, data, std::min( PAYLOAD_SIZE, sz ) );
   std::memcpy( fields.payload, data, sz < PAYLOAD_SIZE ? sz : PAYLOAD_SIZE );
   if (sz < PAYLOAD_SIZE)
-    memset(fields.payload + sz, 0, PAYLOAD_SIZE - sz);
+  memset(fields.payload + sz, 0, PAYLOAD_SIZE - sz);
 }
 
 void ModGMBusMessage::setPayload(int data)
@@ -143,11 +143,11 @@ quint64 ModGMLocalBusHelper::getPid(int argc, char *argv[])
 
   for (int i = 1; i < argc; ++i)
   {
-    QStringList l = QString(argv[i]).split('=');
-    if (l.size() > 1 && l[0] == "pid")
-    {
+  QStringList l = QString(argv[i]).split('=');
+  if (l.size() > 1 && l[0] == "pid")
+  {
       pid = l[1].toULongLong();
-    }
+  }
   }
 
   return pid;
@@ -177,10 +177,10 @@ QString ModGMLocalBusHelper::readFrom(QLocalSocket *socket)
 #endif
 
   if (socket->bytesAvailable() > (int)sizeof(quint32))
-    in >> size;
+  in >> size;
 
   if (socket->bytesAvailable() >= size && !in.atEnd())
-    in >> msg;
+  in >> msg;
 
   return msg;
 }
@@ -209,8 +209,8 @@ ModGMBusMessage ModGMLocalBusHelper::readMessageFrom(QLocalSocket *socket)
 
   if (socket->bytesAvailable() >= (int)sizeof(ModGMBusMessage))
   {
-    qint64 len = 32;
-    while (len > 0)
+  qint64 len = 32;
+  while (len > 0)
       len -= ((MyQLocalSocket *)socket)->readData((char *)msg.data(), len);
   }
 
@@ -228,16 +228,16 @@ QString ModGMLocalBusHelper::error(QLocalSocket::LocalSocketError socketError, Q
   QString msg = "error: ";
   switch (socketError) {
   case QLocalSocket::ServerNotFoundError:
-    msg += "server not found";
-    break;
+  msg += "server not found";
+  break;
   case QLocalSocket::ConnectionRefusedError:
-    msg += "connection refused";
-    break;
+  msg += "connection refused";
+  break;
   case QLocalSocket::PeerClosedError:
-    msg += "peer closed";
-    break;
+  msg += "peer closed";
+  break;
   default:
-    if (socket)
+  if (socket)
       msg += socket->errorString();
   }
 
@@ -255,7 +255,7 @@ ModGMListener::ModGMListener(const QString& base, IConnectionManager *connection
   m_server = new QLocalServer(this);
 
   if (!m_server->listen(base + BUS_LISTENER))
-    throw std::runtime_error(ModGMLocalBusHelper::createListenException(base + BUS_LISTENER).toStdString());
+  throw std::runtime_error(ModGMLocalBusHelper::createListenException(base + BUS_LISTENER).toStdString());
 
   connect(m_server, &QLocalServer::newConnection, this, &ModGMListener::handleConnect);
 }
@@ -347,57 +347,57 @@ void ModGMSharedMemorySocket::create()
 {
   if (m_type == CLIENT)
   {
-    qDebug() << "ModGMSharedMemorySocket::create(CLIENT)";
-    m_sem_readbuf_empty = new QSystemSemaphore(m_name + "re");
-    m_sem_readbuf_full = new QSystemSemaphore(m_name + "rf");
-    m_sem_writebuf_empty = new QSystemSemaphore(m_name + "we");
-    m_sem_writebuf_full = new QSystemSemaphore(m_name + "wf");
+  qDebug() << "ModGMSharedMemorySocket::create(CLIENT)";
+  m_sem_readbuf_empty = new QSystemSemaphore(m_name + "re");
+  m_sem_readbuf_full = new QSystemSemaphore(m_name + "rf");
+  m_sem_writebuf_empty = new QSystemSemaphore(m_name + "we");
+  m_sem_writebuf_full = new QSystemSemaphore(m_name + "wf");
 
-    m_shm_readbuf.setKey(m_name + "rb");
-    m_shm_writebuf.setKey(m_name + "wb");
+  m_shm_readbuf.setKey(m_name + "rb");
+  m_shm_writebuf.setKey(m_name + "wb");
 
-    if (!m_shm_readbuf.isAttached() && !m_shm_readbuf.attach())
-    {
+  if (!m_shm_readbuf.isAttached() && !m_shm_readbuf.attach())
+  {
       qDebug() << "CLIENT: m_shm_readbuf failed to attach " << m_shm_readbuf.errorString();
       emit error(m_shm_readbuf.error() ? m_shm_readbuf.errorString() : "CLIENT: Failed to attach to read queue");
-    }
-    if (!m_shm_writebuf.isAttached() && !m_shm_writebuf.attach())
-    {
+  }
+  if (!m_shm_writebuf.isAttached() && !m_shm_writebuf.attach())
+  {
       qDebug() << "CLIENT: m_shm_writebuf failed to attach " << m_shm_writebuf.errorString();
       emit error(m_shm_writebuf.error() ? m_shm_writebuf.errorString() : "CLIENT: Failed to attach to write queue");
-    }
+  }
   }
   else
   {
-    qDebug() << "ModGMSharedMemorySocket::create(SERVER)";
-    m_sem_readbuf_empty = new QSystemSemaphore(m_name + "we", 20, QSystemSemaphore::Create);
-    m_sem_readbuf_full = new QSystemSemaphore(m_name + "wf", 0, QSystemSemaphore::Create);
-    m_sem_writebuf_empty = new QSystemSemaphore(m_name + "re", 20, QSystemSemaphore::Create);
-    m_sem_writebuf_full = new QSystemSemaphore(m_name + "rf", 0, QSystemSemaphore::Create);
+  qDebug() << "ModGMSharedMemorySocket::create(SERVER)";
+  m_sem_readbuf_empty = new QSystemSemaphore(m_name + "we", 20, QSystemSemaphore::Create);
+  m_sem_readbuf_full = new QSystemSemaphore(m_name + "wf", 0, QSystemSemaphore::Create);
+  m_sem_writebuf_empty = new QSystemSemaphore(m_name + "re", 20, QSystemSemaphore::Create);
+  m_sem_writebuf_full = new QSystemSemaphore(m_name + "rf", 0, QSystemSemaphore::Create);
 
-    m_shm_readbuf.setKey(m_name + "wb");
-    m_shm_writebuf.setKey(m_name + "rb");
+  m_shm_readbuf.setKey(m_name + "wb");
+  m_shm_writebuf.setKey(m_name + "rb");
 
-    const int size = int(sizeof(ModGMQueue));
+  const int size = int(sizeof(ModGMQueue));
 
-    if (!m_shm_readbuf.isAttached() && !m_shm_readbuf.attach() && !m_shm_readbuf.create(size))
-    {
+  if (!m_shm_readbuf.isAttached() && !m_shm_readbuf.attach() && !m_shm_readbuf.create(size))
+  {
       qDebug() << "SERVER: m_shm_readbuf failed to create " << m_shm_readbuf.errorString();
       emit error(m_shm_readbuf.error() ? m_shm_readbuf.errorString() : "SERVER: Failed to attach to write queue");
-    }
-    else
-    {
+  }
+  else
+  {
       reinterpret_cast<ModGMQueue *>(m_shm_readbuf.data())->init();
-    }
-    if (!m_shm_writebuf.isAttached() && !m_shm_writebuf.attach() && !m_shm_writebuf.create(size))
-    {
+  }
+  if (!m_shm_writebuf.isAttached() && !m_shm_writebuf.attach() && !m_shm_writebuf.create(size))
+  {
       qDebug() << "SERVER: m_shm_writebuf failed to create " << m_shm_writebuf.errorString();
       emit error(m_shm_writebuf.error() ? m_shm_writebuf.errorString() : "SERVER: Failed to attach to read queue");
-    }
-    else
-    {
+  }
+  else
+  {
       reinterpret_cast<ModGMQueue *>(m_shm_writebuf.data())->init();
-    }
+  }
   }
 
   start();
@@ -428,8 +428,8 @@ bool ModGMSharedMemorySocket::write(const ModGMBusMessage& message)
   qDebug() << "write: acquire m_sem_writebuf_empty";
   if (!m_sem_writebuf_empty->acquire())
   {
-    qDebug() << "write: error acquire m_sem_writebuf_empty: " << m_sem_writebuf_empty->errorString();
-    emit error(m_sem_writebuf_empty->error() ? m_sem_writebuf_empty->errorString() : "Failed to acquire write semaphore");
+  qDebug() << "write: error acquire m_sem_writebuf_empty: " << m_sem_writebuf_empty->errorString();
+  emit error(m_sem_writebuf_empty->error() ? m_sem_writebuf_empty->errorString() : "Failed to acquire write semaphore");
   }
 
   qDebug() << "write: lock m_shm_writebuf";
@@ -437,13 +437,13 @@ bool ModGMSharedMemorySocket::write(const ModGMBusMessage& message)
 
   if (!queue->full())
   {
-    qDebug() << "write: push";
-    queue->push(message);
-    retval = true;
+  qDebug() << "write: push";
+  queue->push(message);
+  retval = true;
   }
   else
   {
-    qDebug() << "write: full";
+  qDebug() << "write: full";
   }
 
   qDebug() << "write: unlock m_shm_writebuf";
@@ -464,8 +464,8 @@ size_t ModGMSharedMemorySocket::read(ModGMBusMessage *message, size_t max)
 
   while (!queue->empty() && number < max)
   {
-    qDebug() << "read: pop";
-    queue->pop(&message[number++]);
+  qDebug() << "read: pop";
+  queue->pop(&message[number++]);
   }
 
   qDebug() << "read: unlock m_shm_readbuf";
@@ -486,20 +486,20 @@ void ModGMSharedMemorySocket::run()
 
   while (!m_quit)
   {
-    qDebug() << "run: acquire m_sem_readbuf_full";
-    if (!m_sem_readbuf_full->acquire())
-    {
+  qDebug() << "run: acquire m_sem_readbuf_full";
+  if (!m_sem_readbuf_full->acquire())
+  {
       qDebug() << "read: error acquire m_sem_readbuf_full: " << m_sem_readbuf_full->errorString();
       emit error(m_sem_readbuf_full->error() ? m_sem_readbuf_full->errorString() : "Failed to acquire read semaphore");
-    }
+  }
 
-    qDebug() << "run: enter critical section";
-    m_mutex.lock();
+  qDebug() << "run: enter critical section";
+  m_mutex.lock();
 
-    qDebug() << "run: lock m_shm_readbuf";
-    m_shm_readbuf.lock();
+  qDebug() << "run: lock m_shm_readbuf";
+  m_shm_readbuf.lock();
 
-    emit readyRead();
+  emit readyRead();
   }
 }
 
@@ -572,7 +572,7 @@ void ModGMLocalBusClient::read()
   qDebug() << "We read " << number << " messages";
 
   for (int i = 0; i < number; ++i)
-    emit receivedMessage(msg[i]);
+  emit receivedMessage(msg[i]);
 }
 
 void ModGMLocalBusClient::send(const ModGMBusMessage& message)
@@ -604,7 +604,7 @@ void ModGMLocalBusServer::handleMessage(const ModGMBusMessage& message)
   qDebug() << "Server write...";
   if (!m_shm_socket.write(message))
   {
-    qDebug() << "Write was dropped";
+  qDebug() << "Write was dropped";
   }
 }
 
@@ -620,8 +620,8 @@ void ModGMLocalBusServer::read()
 
   for (int i = 0; i < number; ++i)
   {
-	  qDebug() << "read: " << msg[i].payloadAsInt();
-    emit receivedMessage(msg[i]);
+    qDebug() << "read: " << msg[i].payloadAsInt();
+  emit receivedMessage(msg[i]);
   }
 }
 
@@ -635,7 +635,7 @@ ModGMLocalBusManager::ModGMLocalBusManager(const QString& base, IConnectionManag
   , m_listener(base, connectionManager, this)
   , m_connectionManager(connectionManager)
 {
-	qDebug() << "";
+  qDebug() << "";
   connect(m_connectionManager, &IConnectionManager::registerChannel, this, &ModGMLocalBusManager::handleRegisterChannel);
   connect(m_connectionManager, &IConnectionManager::unregisterChannel, this, &ModGMLocalBusManager::handleUnregisterChannel);
 }
@@ -648,37 +648,37 @@ ModGMLocalBusManager::~ModGMLocalBusManager()
   disconnect(m_connectionManager, &IConnectionManager::unregisterChannel, this, &ModGMLocalBusManager::handleUnregisterChannel);
 
   for (QHash<QString, ModGMLocalBusServer *>::iterator it = m_bus.begin(); it != m_bus.end(); ++it)
-    delete it.value();
+  delete it.value();
 
   m_bus.clear();
 }
 
 void ModGMLocalBusManager::handleMessage(const ModGMBusMessage& message)
 {
-	qDebug() << "BM : handleMessage";
+  qDebug() << "BM : handleMessage";
 
   if (strncmp(message.payload(), "quit", 4) == 0)
   {
-	  qDebug() << "BM : handleMessage : 1";
-    emit quit();
+    qDebug() << "BM : handleMessage : 1";
+  emit quit();
   }
   else {
-    if (*message.to() == '*')
-    {
-		qDebug() << "BM : handleMessage : 2";
+  if (*message.to() == '*')
+  {
+    qDebug() << "BM : handleMessage : 2";
       emit receivedMessage(message);
-    }
-    else if (m_bus.contains(message.to())) {
+  }
+  else if (m_bus.contains(message.to())) {
 
-		qDebug() << "BM : handleMessage : 3";
+    qDebug() << "BM : handleMessage : 3";
 
       QTime tm = QTime::fromString(message.payload(), "hh:mm:ss.zzz");
       int x = tm.msecsTo(QTime::currentTime());
 
       if (x > 50)
-        return;
+    return;
 
-	  qDebug() << "BM : handleMessage : Ok";
+    qDebug() << "BM : handleMessage : Ok";
 
       //ModGMBusMessage msg(message);
 
@@ -686,44 +686,44 @@ void ModGMLocalBusManager::handleMessage(const ModGMBusMessage& message)
       //std::cout << message.to() << std::endl;
 
       QMetaObject::invokeMethod(m_bus.value(message.to()), "handleMessage", Qt::AutoConnection, Q_ARG(const ModGMBusMessage&, message));
-    }
-	else
-	{
-		qDebug() << "BM : handleMessage : 4 ... to:" << message.to();
+  }
+  else
+  {
+    qDebug() << "BM : handleMessage : 4 ... to:" << message.to();
 
-		for( auto service: m_bus.keys() )
-		{
-			qDebug() << "BM : handleMessage : service: " << service;
-		}
-	}
+    for( auto service: m_bus.keys() )
+    {
+      qDebug() << "BM : handleMessage : service: " << service;
+    }
+  }
   }
   //m_bus.value(message.fields.to)->handleMessage(message);
 }
 
 void ModGMLocalBusManager::handleRegisterChannel(const QString& service)
 {
-	//qDebug() << "BusManager > handleRegisterChannel";
+  //qDebug() << "BusManager > handleRegisterChannel";
 
   if (!m_bus.contains(service))
   {
-    ModGMLocalBusServer *server = new ModGMLocalBusServer(m_base, service, this);
-    connect(server, &ModGMLocalBusServer::quit, this, &ModGMLocalBusManager::quit);
-    connect(server, &ModGMLocalBusServer::receivedMessage, this, &ModGMLocalBusManager::handleMessage);
-    connect(this, &ModGMLocalBusManager::receivedMessage, server, &ModGMLocalBusServer::handleMessage);
-    m_bus.insert(service, server);
+  ModGMLocalBusServer *server = new ModGMLocalBusServer(m_base, service, this);
+  connect(server, &ModGMLocalBusServer::quit, this, &ModGMLocalBusManager::quit);
+  connect(server, &ModGMLocalBusServer::receivedMessage, this, &ModGMLocalBusManager::handleMessage);
+  connect(this, &ModGMLocalBusManager::receivedMessage, server, &ModGMLocalBusServer::handleMessage);
+  m_bus.insert(service, server);
 
-	qDebug() << "BusManager : +" << service;
-	QHashIterator<QString, ModGMLocalBusServer*> i( m_bus );
-	while (i.hasNext()) 
-	{
-		i.next();
-		qDebug() << "BusManager : Registered: " << i.key();
-	}
+  qDebug() << "BusManager : +" << service;
+  QHashIterator<QString, ModGMLocalBusServer*> i( m_bus );
+  while (i.hasNext()) 
+  {
+    i.next();
+    qDebug() << "BusManager : Registered: " << i.key();
+  }
   }
 }
 
 void ModGMLocalBusManager::handleUnregisterChannel(const QString& service)
 {
   if (m_bus.contains(service))
-    m_bus.remove(service);
+  m_bus.remove(service);
 }

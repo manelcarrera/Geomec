@@ -44,7 +44,7 @@ public:
       { 
          if ( std::fabs( static_cast<float>(m_cors[i]) - static_cast<float>(tcm.m_cors[i]) ) > eps ) 
          { 
-            return false;
+      return false;
          }
       }
       return true;

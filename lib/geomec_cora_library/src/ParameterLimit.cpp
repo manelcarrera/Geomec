@@ -44,45 +44,45 @@ const QString CParameterLimit::lowerLimit() const
 
   if (getRange(object(), valueTypeID()).first.Valid())
   {
-    lowerLimit = QString(DOUBLE2STRING).
+  lowerLimit = QString(DOUBLE2STRING).
       arg(getRange(object(), valueTypeID()).first.Value());
   }
 
   if (lowerLimit == NAN_STRING)
   {
-    lowerLimit = LOWER_LIMIT;
+  lowerLimit = LOWER_LIMIT;
   }
   else if ((valueTypeID() == IDT_VALUETYPE_POISSONS_RATIO) ||
-    (valueTypeID() == IDT_VALUETYPE_UNDRAINEDPOISSON) ||
-    (valueTypeID() == IDT_VALUETYPE_POISSONRATIO_NORM) ||
-    (valueTypeID() == IDT_VALUETYPE_POISSONRATIO_TRANS) ||
-    (valueTypeID() == IDT_VALUETYPE_POISSON_DECOMP) ||
-    (valueTypeID() == IDT_VALUETYPE_POISSONRATIO_NORM_DECOMP) ||
-    (valueTypeID() == IDT_VALUETYPE_POISSONRATIO_TRANS_DECOMP) ||
-    (valueTypeID() == IDT_VALUETYPE_PIPEPOISSONRATIO))
+  (valueTypeID() == IDT_VALUETYPE_UNDRAINEDPOISSON) ||
+  (valueTypeID() == IDT_VALUETYPE_POISSONRATIO_NORM) ||
+  (valueTypeID() == IDT_VALUETYPE_POISSONRATIO_TRANS) ||
+  (valueTypeID() == IDT_VALUETYPE_POISSON_DECOMP) ||
+  (valueTypeID() == IDT_VALUETYPE_POISSONRATIO_NORM_DECOMP) ||
+  (valueTypeID() == IDT_VALUETYPE_POISSONRATIO_TRANS_DECOMP) ||
+  (valueTypeID() == IDT_VALUETYPE_PIPEPOISSONRATIO))
   {
-    lowerLimit = LOWER_POISSON_RATIO;
+  lowerLimit = LOWER_POISSON_RATIO;
   }
   else if ((valueTypeID() == IDT_VALUETYPE_LATRATIO_MAX) ||
-    (valueTypeID() == IDT_VALUETYPE_LATRATIO_MIN))
+  (valueTypeID() == IDT_VALUETYPE_LATRATIO_MIN))
   {
-    lowerLimit = LOWER_RATIO;
+  lowerLimit = LOWER_RATIO;
   }
   else if ((valueTypeID() == IDT_VALUETYPE_BULKSTIFFNESS) ||
-    (valueTypeID() == IDT_VALUETYPE_DYNUNISTIFFNESS) ||
-    (valueTypeID() == IDT_VALUETYPE_DYNSHEARSTIFFNESS) ||
-    (valueTypeID() == IDT_VALUETYPE_FRACT_STIFF_NORMAL) ||
-    (valueTypeID() == IDT_VALUETYPE_FRACT_STIFF_SHEAR) ||
-    (valueTypeID() == IDT_VALUETYPE_GRAINSTIFFNESS) ||
-    (valueTypeID() == IDT_VALUETYPE_NORMALSTIFFNESS) ||
-    (valueTypeID() == IDT_VALUETYPE_SHEARSTIFFNESS))
+  (valueTypeID() == IDT_VALUETYPE_DYNUNISTIFFNESS) ||
+  (valueTypeID() == IDT_VALUETYPE_DYNSHEARSTIFFNESS) ||
+  (valueTypeID() == IDT_VALUETYPE_FRACT_STIFF_NORMAL) ||
+  (valueTypeID() == IDT_VALUETYPE_FRACT_STIFF_SHEAR) ||
+  (valueTypeID() == IDT_VALUETYPE_GRAINSTIFFNESS) ||
+  (valueTypeID() == IDT_VALUETYPE_NORMALSTIFFNESS) ||
+  (valueTypeID() == IDT_VALUETYPE_SHEARSTIFFNESS))
   {
-    lowerLimit = LOWER_STIFFNESS;
+  lowerLimit = LOWER_STIFFNESS;
   }
   else if ((valueTypeID() == IDT_VALUETYPE_ELASCOMPRES) ||
-    (valueTypeID() == IDT_VALUETYPE_PLASCOMPRES))
+  (valueTypeID() == IDT_VALUETYPE_PLASCOMPRES))
   {
-    lowerLimit = LOWER_COMPRESSIBILITY;
+  lowerLimit = LOWER_COMPRESSIBILITY;
   }
 
   return lowerLimit;
@@ -94,29 +94,29 @@ const QString CParameterLimit::upperLimit() const
 
   if (getRange(object(), valueTypeID()).second.Valid())
   {
-    upperLimit = QString(DOUBLE2STRING).
+  upperLimit = QString(DOUBLE2STRING).
       arg(getRange(object(), valueTypeID()).second.Value());
   }
 
   if (upperLimit == NAN_STRING)
   {
-    upperLimit = UPPER_LIMIT;
+  upperLimit = UPPER_LIMIT;
   }
   else if ((valueTypeID() == IDT_VALUETYPE_POISSONS_RATIO) ||
-    (valueTypeID() == IDT_VALUETYPE_UNDRAINEDPOISSON) ||
-    (valueTypeID() == IDT_VALUETYPE_POISSONRATIO_NORM) ||
-    (valueTypeID() == IDT_VALUETYPE_POISSONRATIO_TRANS) ||
-    (valueTypeID() == IDT_VALUETYPE_POISSON_DECOMP) ||
-    (valueTypeID() == IDT_VALUETYPE_POISSONRATIO_NORM_DECOMP) ||
-    (valueTypeID() == IDT_VALUETYPE_POISSONRATIO_TRANS_DECOMP) ||
-    (valueTypeID() == IDT_VALUETYPE_PIPEPOISSONRATIO))
+  (valueTypeID() == IDT_VALUETYPE_UNDRAINEDPOISSON) ||
+  (valueTypeID() == IDT_VALUETYPE_POISSONRATIO_NORM) ||
+  (valueTypeID() == IDT_VALUETYPE_POISSONRATIO_TRANS) ||
+  (valueTypeID() == IDT_VALUETYPE_POISSON_DECOMP) ||
+  (valueTypeID() == IDT_VALUETYPE_POISSONRATIO_NORM_DECOMP) ||
+  (valueTypeID() == IDT_VALUETYPE_POISSONRATIO_TRANS_DECOMP) ||
+  (valueTypeID() == IDT_VALUETYPE_PIPEPOISSONRATIO))
   {
-    upperLimit = UPPER_POISSON_RATIO;
+  upperLimit = UPPER_POISSON_RATIO;
   }
   else if ((valueTypeID() == IDT_VALUETYPE_LATRATIO_MAX) ||
-    (valueTypeID() == IDT_VALUETYPE_LATRATIO_MIN))
+  (valueTypeID() == IDT_VALUETYPE_LATRATIO_MIN))
   {
-    upperLimit = UPPER_RATIO;
+  upperLimit = UPPER_RATIO;
   }
 
   return upperLimit;
@@ -138,10 +138,10 @@ std::pair <geo::CValue, geo::CValue> CParameterLimit::getRange(
   CGraphNode* object, unsigned int valueTypeID)
 {
   CGetValueTypeInfo& getValueTypeInfo(CGetValueTypeInfo::instance(
-    dynamic_cast <CModelBase*> (
+  dynamic_cast <CModelBase*> (
       &(dynamic_cast <CStorageNode*> (object)->Model()))));
   QString valueTypeName =
-    getStringTableEntry(CValueTypeFactory::instance()->NameIndex(valueTypeID));
+  getStringTableEntry(CValueTypeFactory::instance()->NameIndex(valueTypeID));
 
   return getValueTypeInfo.getRange(valueTypeID, valueTypeName);
 }

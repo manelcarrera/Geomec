@@ -18,14 +18,14 @@ class CLoadManager;
 
 class IDirectedLoad : public IStructuralLoad  
 {
-	const geo::CVector m_vecDirection;
+  const geo::CVector m_vecDirection;
 
 public:
-	IDirectedLoad(CLoadCase &loadcase, double size, const geo::IVector &vecDirection);
-	IDirectedLoad(CLoadCase &loadcase, const std::vector<double>& vcValue, const geo::IVector &vecDirection);
-	virtual ~IDirectedLoad();
+  IDirectedLoad(CLoadCase &loadcase, double size, const geo::IVector &vecDirection);
+  IDirectedLoad(CLoadCase &loadcase, const std::vector<double>& vcValue, const geo::IVector &vecDirection);
+  virtual ~IDirectedLoad();
 
-	const geo::IVector &Direction() const;
+  const geo::IVector &Direction() const;
 };
 
 }

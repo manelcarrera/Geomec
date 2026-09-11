@@ -12,29 +12,29 @@ private:
   class CSurfaceListObject : public IListObject
   {
   private:
-    QString m_sName;
-    int m_nIconId;
+  QString m_sName;
+  int m_nIconId;
 
   public:
-    CSurfaceListObject(CListCtrl &ctrl, QString sName, int nIconId);
-    ~CSurfaceListObject();
-    virtual QString Text() const;
-    virtual unsigned int Icon() const;
+  CSurfaceListObject(CListCtrl &ctrl, QString sName, int nIconId);
+  ~CSurfaceListObject();
+  virtual QString Text() const;
+  virtual unsigned int Icon() const;
   };
 
 public:
-	CAttriTetraVolume(CTetraFormationVolume& volume, CWnd* pParent = 0);
+  CAttriTetraVolume(CTetraFormationVolume& volume, CWnd* pParent = 0);
 
-	virtual BOOL OnInitDialog();
+  virtual BOOL OnInitDialog();
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
 private:
-	void OnUpdateLb();
+  void OnUpdateLb();
 
 private:
-	CListCtrlBase m_lbSurfaces;
+  CListCtrlBase m_lbSurfaces;
 };
 
 #endif // _ATTRITETRAVOLUME_H_

@@ -18,28 +18,28 @@ class OPENGLFRAME_EXPORT CVectorSymbolBase : public ISymbol
 {
 
 protected:
-	geo::CPtrArray<geo::IObject> m_geometry;
-	geo::CPoint m_location;
-	geo::CPoint m_pivot;
-	virtual void CreateGeometry(const geo::IVector &/*vector*/){}
+  geo::CPtrArray<geo::IObject> m_geometry;
+  geo::CPoint m_location;
+  geo::CPoint m_pivot;
+  virtual void CreateGeometry(const geo::IVector &/*vector*/){}
 
 public:
-	CVectorSymbolBase(const geo::IPoint &location, const geo::IVector &dir, const double &length,bool TailIsPivot=true);
-	virtual ~CVectorSymbolBase();
+  CVectorSymbolBase(const geo::IPoint &location, const geo::IVector &dir, const double &length,bool TailIsPivot=true);
+  virtual ~CVectorSymbolBase();
 
-	//ISymbol interface
-	virtual int NrOfPositions() const;
-	virtual const geo::IPoint& Position(int Index) const;
-	virtual const geo::IArray& Geometry() const;
-	virtual const geo::IPoint& PivotPoint() const;
+  //ISymbol interface
+  virtual int NrOfPositions() const;
+  virtual const geo::IPoint& Position(int Index) const;
+  virtual const geo::IArray& Geometry() const;
+  virtual const geo::IPoint& PivotPoint() const;
 
-	virtual void Rotate(const geo::IVector &vec, const double &dAngleDeg);
-	virtual void Move(const geo::IVector &vec);
-	virtual void Transform(const geo::IMatrix &matrix);
-	virtual void AssertValid() const;
-	virtual bool Empty() const;
-	virtual geo::CPoint Min() const;
-	virtual geo::CPoint Max() const;
+  virtual void Rotate(const geo::IVector &vec, const double &dAngleDeg);
+  virtual void Move(const geo::IVector &vec);
+  virtual void Transform(const geo::IMatrix &matrix);
+  virtual void AssertValid() const;
+  virtual bool Empty() const;
+  virtual geo::CPoint Min() const;
+  virtual geo::CPoint Max() const;
 
 };
 
@@ -47,18 +47,18 @@ public:
 
 class OPENGLFRAME_EXPORT CVectorSymbol : public CVectorSymbolBase  
 {
-	virtual void CreateGeometry(const geo::IVector &vector);
+  virtual void CreateGeometry(const geo::IVector &vector);
 public:
-	CVectorSymbol(const geo::IPoint &location, const geo::IVector &dir, const double &length,bool TailIsPivot=true);
+  CVectorSymbol(const geo::IPoint &location, const geo::IVector &dir, const double &length,bool TailIsPivot=true);
 };
 
 
 
 class OPENGLFRAME_EXPORT CArrowSymbol : public CVectorSymbolBase  
 {
-	virtual void CreateGeometry(const geo::IVector &vector);
+  virtual void CreateGeometry(const geo::IVector &vector);
 public:
-	CArrowSymbol(const geo::IPoint &location, const geo::IVector &dir, const double &length,bool TailIsPivot=true);
+  CArrowSymbol(const geo::IPoint &location, const geo::IVector &dir, const double &length,bool TailIsPivot=true);
 };
 
 

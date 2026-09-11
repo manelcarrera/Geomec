@@ -31,15 +31,15 @@ private:
   class CMatPropObserver : public ITreeObject
   {
   public:
-    CMatPropObserver(const CValueType& valuetype, CTreeCtrl& ctrl, CDistriMatPropDlg& dlg);
-    virtual BOOL CanDelete();
+  CMatPropObserver(const CValueType& valuetype, CTreeCtrl& ctrl, CDistriMatPropDlg& dlg);
+  virtual BOOL CanDelete();
   	virtual BOOL OnSelect();
-	  virtual QString Text() const;
-	  virtual unsigned int Icon() const;
+    virtual QString Text() const;
+    virtual unsigned int Icon() const;
 
   private:
-    const CValueType& m_valuetype;
-    CDistriMatPropDlg& m_dlg;
+  const CValueType& m_valuetype;
+  CDistriMatPropDlg& m_dlg;
   };
 
 private:

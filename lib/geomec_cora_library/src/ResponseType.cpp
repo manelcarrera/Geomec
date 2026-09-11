@@ -24,7 +24,7 @@ namespace cora
 CResponseType::CResponseType(CSummaryResultFile& summaryResultFile,
   const QString& versionNumber, const std::vector <QString>& function)
 : m_responseTypeBase(
-    selectResponseType(summaryResultFile, versionNumber, function))
+  selectResponseType(summaryResultFile, versionNumber, function))
 , m_summaryResultFile(summaryResultFile)
 {
 }
@@ -42,31 +42,31 @@ void CResponseType::calculate(CResponseParameterFile& responseParameterFile,
 {
   if (m_responseTypeBase != 0)
   {
-    double value = CResponseTypeBase::UNDEFINED_OR_INVALID_RESPONSE_TYPE;
+  double value = CResponseTypeBase::UNDEFINED_OR_INVALID_RESPONSE_TYPE;
 
-    try
-    {
+  try
+  {
       value = m_responseTypeBase->calculate(object, failureMode);
-    }
+  }
 
-    catch (const CUndefinedOrInvalidValueVector&)
-    {
-    }
+  catch (const CUndefinedOrInvalidValueVector&)
+  {
+  }
 
-    QString responseParameter = QString("%1,%2,%3%4,%5").
+  QString responseParameter = QString("%1,%2,%3%4,%5").
       arg(m_responseTypeBase->getFailureType()).
       arg(failureMode->getResultComponent()->ExportLabel()).arg(object->prefix()).
       arg(object->name()).arg(m_responseTypeBase->getResponseType());
 
-    if (value == CResponseTypeBase::UNDEFINED_OR_INVALID_RESPONSE_TYPE)
-    {
+  if (value == CResponseTypeBase::UNDEFINED_OR_INVALID_RESPONSE_TYPE)
+  {
       m_summaryResultFile.setResultValue(
-        CSummaryResultFile::RESULT_VALUE_TOO_MANY);
+    CSummaryResultFile::RESULT_VALUE_TOO_MANY);
       m_summaryResultFile.addAdditionalInformation(
-        QString(INVALID_VALUE).arg(responseParameter));
-    }
+    QString(INVALID_VALUE).arg(responseParameter));
+  }
 
-    responseParameterFile.addResponseParameter(QString("%1,%2").
+  responseParameterFile.addResponseParameter(QString("%1,%2").
       arg(responseParameter).arg(value));
   }
 }
@@ -89,78 +89,78 @@ TResponseTypeBase CResponseType::selectResponseType(
 {
   try
   {
-    if (function[3] == CResponseTypeBase::RESPONSE_TYPE_MAX)
-    {
+  if (function[3] == CResponseTypeBase::RESPONSE_TYPE_MAX)
+  {
       return TResponseTypeBase(new CResponseTypeMax(
-        summaryResultFile, function));
-    }
-    else if (function[3] == CResponseTypeBase::RESPONSE_TYPE_MIN)
-    {
+    summaryResultFile, function));
+  }
+  else if (function[3] == CResponseTypeBase::RESPONSE_TYPE_MIN)
+  {
       return TResponseTypeBase(new CResponseTypeMin(
-        summaryResultFile, function));
-    }
-    else if (function[3] == CResponseTypeBase::RESPONSE_TYPE_MEAN)
-    {
+    summaryResultFile, function));
+  }
+  else if (function[3] == CResponseTypeBase::RESPONSE_TYPE_MEAN)
+  {
       return TResponseTypeBase(new CResponseTypeMean(
-        summaryResultFile, function));
-    }
-    else if ((versionNumber < MINIMUM_XML_VERSION_NUMBER) && (function[3] ==
+    summaryResultFile, function));
+  }
+  else if ((versionNumber < MINIMUM_XML_VERSION_NUMBER) && (function[3] ==
       CResponseTypeBase::RESPONSE_TYPE_FAILURE_AREA_MAX))
-    {
+  {
       return TResponseTypeBase(new CPre20ResponseTypeFailureAreaMax(
-        summaryResultFile, function));
-    }
-    else if ((versionNumber < MINIMUM_XML_VERSION_NUMBER) && (function[3] ==
+    summaryResultFile, function));
+  }
+  else if ((versionNumber < MINIMUM_XML_VERSION_NUMBER) && (function[3] ==
       CResponseTypeBase::RESPONSE_TYPE_FAILURE_AREA_MIN))
-    {
+  {
       return TResponseTypeBase(new CPre20ResponseTypeFailureAreaMin(
-        summaryResultFile, function));
-    }
-    else if ((versionNumber < MINIMUM_XML_VERSION_NUMBER) && (function[3] ==
+    summaryResultFile, function));
+  }
+  else if ((versionNumber < MINIMUM_XML_VERSION_NUMBER) && (function[3] ==
       CResponseTypeBase::RESPONSE_TYPE_FAILURE_AREA_PERCENTAGE_MAX))
-    {
+  {
       return TResponseTypeBase(new CPre20ResponseTypeFailureAreaPercMax(
-        summaryResultFile, function));
-    }
-    else if ((versionNumber < MINIMUM_XML_VERSION_NUMBER) && (function[3] ==
+    summaryResultFile, function));
+  }
+  else if ((versionNumber < MINIMUM_XML_VERSION_NUMBER) && (function[3] ==
       CResponseTypeBase::RESPONSE_TYPE_FAILURE_AREA_PERCENTAGE_MIN))
-    {
+  {
       return TResponseTypeBase(new CPre20ResponseTypeFailureAreaPercMin(
-        summaryResultFile, function));
-    }
-    else if (function[3] ==
+    summaryResultFile, function));
+  }
+  else if (function[3] ==
       CResponseTypeBase::RESPONSE_TYPE_FAILURE_AREA_MAX)
-    {
+  {
       return TResponseTypeBase(new CResponseTypeFailureAreaMax(
-        summaryResultFile, function));
-    }
-    else if (function[3] == CResponseTypeBase::RESPONSE_TYPE_FAILURE_AREA_MIN)
-    {
+    summaryResultFile, function));
+  }
+  else if (function[3] == CResponseTypeBase::RESPONSE_TYPE_FAILURE_AREA_MIN)
+  {
       return TResponseTypeBase(new CResponseTypeFailureAreaMin(
-        summaryResultFile, function));
-    }
-    else if (function[3] ==
+    summaryResultFile, function));
+  }
+  else if (function[3] ==
       CResponseTypeBase::RESPONSE_TYPE_FAILURE_AREA_PERCENTAGE_MAX)
-    {
+  {
       return TResponseTypeBase(new CResponseTypeFailureAreaPercMax(
-        summaryResultFile, function));
-    }
-    else if (function[3] ==
+    summaryResultFile, function));
+  }
+  else if (function[3] ==
       CResponseTypeBase::RESPONSE_TYPE_FAILURE_AREA_PERCENTAGE_MIN)
-    {
+  {
       return TResponseTypeBase(new CResponseTypeFailureAreaPercMin(
-        summaryResultFile, function));
-    }
-    else if (QRegExp(CResponseTypeBase::RESPONSE_TYPE_FN).
+    summaryResultFile, function));
+  }
+  else if (QRegExp(CResponseTypeBase::RESPONSE_TYPE_FN).
       exactMatch(function[3]))
-    {
+  {
       return TResponseTypeBase(new CResponseTypefn(
-        summaryResultFile, function));
-    }
+    summaryResultFile, function));
+  }
 
-    summaryResultFile.setResultValue(
+  summaryResultFile.setResultValue(
       CSummaryResultFile::RESULT_VALUE_INCONSISTENT);
-    summaryResultFile.addAdditionalInformation(
+  summaryResultFile.addAdditionalInformation(
       QString(RESPONSE_TYPE_DOES_NOT_EXIST).arg(function[3]));
   }
 

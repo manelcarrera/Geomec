@@ -15,7 +15,7 @@ CParameterFile::CParameterFile(CSummaryResultFile& summaryResultFile,
 , m_parameterFile(m_fileName.toStdString().c_str())
 , m_summaryResultFile(summaryResultFile)
 , m_parameters(readParameterFile(m_summaryResultFile, modelInfo,
-    m_parameterFile, m_fileName))
+  m_parameterFile, m_fileName))
 {
   validateParameterFile();
 }
@@ -51,36 +51,36 @@ void CParameterFile::validatePressureOrdering()
   size_t pressurePosition = 0, pressureChangePosition = 0, position = 0;
 
   for (std::vector <TFailureTypeParameter> ::const_iterator parameter =
-    m_parameters.begin(); parameter != m_parameters.end(); ++parameter,
-    ++position)
+  m_parameters.begin(); parameter != m_parameters.end(); ++parameter,
+  ++position)
   {
-    TParameter actualParameter = (*parameter)->getActualParameter();
+  TParameter actualParameter = (*parameter)->getActualParameter();
 
-    if (actualParameter->isParameterType <CParameterFormation4Pressure> ())
-    {
+  if (actualParameter->isParameterType <CParameterFormation4Pressure> ())
+  {
       if (actualParameter->depletionStage() == INITIAL_DEPLETION_STAGE)
       {
-        pressureSeen = true;
-        pressurePosition = position;
+    pressureSeen = true;
+    pressurePosition = position;
       }
-    }
+  }
 
-    if (actualParameter->
+  if (actualParameter->
       isParameterType <CParameterFormation4PressureChange> ())
-    {
+  {
       pressureChangeSeen = true;
       pressureChangePosition = position;
-    }
+  }
   }
 
   if (pressureSeen && pressureChangeSeen &&
-    (pressurePosition > pressureChangePosition))
+  (pressurePosition > pressureChangePosition))
   {
-    m_summaryResultFile.setResultValue(
+  m_summaryResultFile.setResultValue(
       CSummaryResultFile::RESULT_VALUE_INCONSISTENT);
-    m_summaryResultFile.addAdditionalInformation(PRESSURE_ORDER);
+  m_summaryResultFile.addAdditionalInformation(PRESSURE_ORDER);
 
-    m_parameters[pressurePosition].swap(m_parameters[pressureChangePosition]);
+  m_parameters[pressurePosition].swap(m_parameters[pressureChangePosition]);
   }
 }
 
@@ -90,37 +90,37 @@ void CParameterFile::validateDepletionStageDesignator()
   bool equalDepletionStageDesignator = false;
 
   for (std::vector <TFailureTypeParameter> ::const_iterator parameter =
-    m_parameters.begin(); parameter != m_parameters.end(); ++parameter)
+  m_parameters.begin(); parameter != m_parameters.end(); ++parameter)
   {
-    TParameter actualParameter = (*parameter)->getActualParameter();
+  TParameter actualParameter = (*parameter)->getActualParameter();
 
-    if (actualParameter->isParameterType <CParameterFormation4Pressure> ())
-    {
+  if (actualParameter->isParameterType <CParameterFormation4Pressure> ())
+  {
       pressureDepletionStages.insert(actualParameter->depletionStage());
-    }
+  }
   }
 
   for (std::vector <TFailureTypeParameter> ::const_iterator parameter =
-    m_parameters.begin(); parameter != m_parameters.end(); ++parameter)
+  m_parameters.begin(); parameter != m_parameters.end(); ++parameter)
   {
-    TParameter actualParameter = (*parameter)->getActualParameter();
+  TParameter actualParameter = (*parameter)->getActualParameter();
 
-    if (actualParameter->
+  if (actualParameter->
       isParameterType <CParameterFormation4PressureChange> ())
-    {
+  {
       if (!pressureDepletionStages.insert(actualParameter->depletionStage()).
-        second)
+    second)
       {
-        equalDepletionStageDesignator = true;
+    equalDepletionStageDesignator = true;
       }
-    }
+  }
   }
 
   if (equalDepletionStageDesignator)
   {
-    m_summaryResultFile.setResultValue(
+  m_summaryResultFile.setResultValue(
       CSummaryResultFile::RESULT_VALUE_INCONSISTENT);
-    m_summaryResultFile.addAdditionalInformation(DEPLETION_STAGE_DESIGNATOR);
+  m_summaryResultFile.addAdditionalInformation(DEPLETION_STAGE_DESIGNATOR);
   }
 }
 
@@ -140,9 +140,9 @@ std::vector <TFailureTypeParameter> CParameterFile::readParameterFile(
 {
   if (!parameterFile.good())
   {
-    summaryResultFile.setResultValue(
+  summaryResultFile.setResultValue(
       CSummaryResultFile::RESULT_VALUE_INCONSISTENT);
-    summaryResultFile.addAdditionalInformation(
+  summaryResultFile.addAdditionalInformation(
       QString(PARAMETER_FILE_DOES_NOT_EXIST).arg(fileName));
   }
 
@@ -151,29 +151,29 @@ std::vector <TFailureTypeParameter> CParameterFile::readParameterFile(
 
   while (!parameterFile.eof() && !std::getline(parameterFile, line).fail())
   {
-    if (!line.empty())
-    {
+  if (!line.empty())
+  {
       std::istringstream stream(line, std::istringstream::in);
       TFailureTypeParameter failureType = TFailureTypeParameter();
 
       try
       {
-        failureType = TFailureTypeParameter(
+    failureType = TFailureTypeParameter(
           new CFailureTypeParameter(summaryResultFile, stream, modelInfo));
       }
 
       catch (const std::exception& exception)
       {
-        summaryResultFile.setResultValue(
+    summaryResultFile.setResultValue(
           CSummaryResultFile::RESULT_VALUE_INCONSISTENT);
-        summaryResultFile.addAdditionalInformation(exception.what());
+    summaryResultFile.addAdditionalInformation(exception.what());
       }
 
       if (failureType)
       {
-        parameters.push_back(failureType);
+    parameters.push_back(failureType);
       }
-    }
+  }
   }
 
   return parameters;

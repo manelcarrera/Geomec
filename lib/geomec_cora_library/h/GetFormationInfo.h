@@ -11,29 +11,29 @@ namespace cora
 class CGetFormationInfo
 {
   public:
-    static CGetFormationInfo& instance(CModelBase* modelBase);
+  static CGetFormationInfo& instance(CModelBase* modelBase);
 
-    const TObjects getObjects() const;
+  const TObjects getObjects() const;
 
-    std::ostream& operator () (std::ostream& os) const;
+  std::ostream& operator () (std::ostream& os) const;
 
   private:
-    CGetFormationInfo(CModelBase* modelBase);
-    ~CGetFormationInfo();
+  CGetFormationInfo(CModelBase* modelBase);
+  ~CGetFormationInfo();
 
-    CGetFormationInfo(const CGetFormationInfo& rhs);
-    CGetFormationInfo& operator = (CGetFormationInfo rhs);
+  CGetFormationInfo(const CGetFormationInfo& rhs);
+  CGetFormationInfo& operator = (CGetFormationInfo rhs);
 
-    static TObjects getObjects(CModelBase* modelBase);
-    static void getObjects(TObjects& objects, CModelBase* modelBase,
+  static TObjects getObjects(CModelBase* modelBase);
+  static void getObjects(TObjects& objects, CModelBase* modelBase,
       CFormationBase* formationBase);
 
-    static bool hasElementSet(const CFormationBase* formationBase);
-    static void cleanup();
+  static bool hasElementSet(const CFormationBase* formationBase);
+  static void cleanup();
 
-    static CGetFormationInfo* m_getFormationInfo;
-    CModelBase* m_modelBase;
-    TObjects m_objects;
+  static CGetFormationInfo* m_getFormationInfo;
+  CModelBase* m_modelBase;
+  TObjects m_objects;
 };
 
 } // namespace cora

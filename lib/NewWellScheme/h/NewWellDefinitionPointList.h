@@ -6,14 +6,14 @@
 class CNewWellDefinitionPointList : public CNewWellPointList
 {
   public:
-    //returns the number of removed points
-    long RemoveRedundantPoints();
+  //returns the number of removed points
+  long RemoveRedundantPoints();
 
   private:
-    friend class CNewWellPathBase;
+  friend class CNewWellPathBase;
 
-    CNewWellDefinitionPointList(CNewWellPathBase& WellPath);
-    virtual ~CNewWellDefinitionPointList();
+  CNewWellDefinitionPointList(CNewWellPathBase& WellPath);
+  virtual ~CNewWellDefinitionPointList();
 };
 
 #endif  // _WellDefinitionPointList_h_

@@ -17,7 +17,7 @@ bool CWellCasingCementInitialMaterial::operator<(const dia::IMaterial& rhs) cons
 {
   const CWellCasingCementInitialMaterial* pMat = dynamic_cast<const CWellCasingCementInitialMaterial*>(&rhs);
   if(pMat)
-    return m_base < pMat->m_base;
+  return m_base < pMat->m_base;
 
   return dia::IMaterial::operator<(rhs);
 }
@@ -27,7 +27,7 @@ bool CWellCasingCementInitialMaterial::WriteFilos(dia::IDianaRunner& diarunner) 
   assert(dynamic_cast<CGeomecDianaRunnerBase*>(&diarunner));
   CGeomecDianaRunnerBase& runner = static_cast<CGeomecDianaRunnerBase&>(diarunner);
   if(runner.Controller().StartStage().Initial())
-    PutCharItem("CREEP", "NONE");
+  PutCharItem("CREEP", "NONE");
 
   return m_base.WriteFilos(diarunner);
 }

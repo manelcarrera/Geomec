@@ -23,10 +23,10 @@ CDestroyUndo::CDestroyUndo( IModelObject& parentLocation, IModelObject& object, 
   m_index( -1 )
 {
   for ( int i = 0; i < parentLocation.childSize(); ++i )
-    if ( &object == &parentLocation.childAt( i ) ) {
+  if ( &object == &parentLocation.childAt( i ) ) {
       m_index = i;
       break;
-    }
+  }
   assert( m_index != -1 );
   m_className = object.metaObject()->className();
   IProgressBase progress;
@@ -53,7 +53,7 @@ void CDestroyUndo::undo( IModelStream& stream, CDocumentBase& document )
 
   IModelObject* insertBefore = 0;
   if ( m_index < parentLocation.childSize() )
-    insertBefore = &parentLocation.childAt( m_index );
+  insertBefore = &parentLocation.childAt( m_index );
 
   //object->create( &parentLocation, insertBefore );
 

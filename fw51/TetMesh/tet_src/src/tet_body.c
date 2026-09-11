@@ -105,11 +105,11 @@ extern void BodyTypeSet( Body_t *body )
   Iterator_t     iter;
   BodySurface_t *bSurf = BodyFirst( body, &iter );
   while ( bSurf ) {
-    if ( SurfaceType( BodySurfaceGet( bSurf ) ) == surfNormal ) {
+  if ( SurfaceType( BodySurfaceGet( bSurf ) ) == surfNormal ) {
       type = bodyNormal;
       break;
-    }
-    bSurf = BodyNext( body, &iter );
+  }
+  bSurf = BodyNext( body, &iter );
   }
    body->type = type;
 }
@@ -188,8 +188,8 @@ extern bool_t BodyContains(
   bool_t isContained = FALSE;
   int    id;
   for ( id = 0; !isContained && id < BodySize( body ); id++ ) {
-    BodySurface_t *bs = BodyGet( body, id );
-    isContained = (  !SurfaceComp( surface, BodySurfaceGet( bs ) ) && ( !BodySurfacePosDir( bs ) == !posDir ) );
+  BodySurface_t *bs = BodyGet( body, id );
+  isContained = (  !SurfaceComp( surface, BodySurfaceGet( bs ) ) && ( !BodySurfacePosDir( bs ) == !posDir ) );
   }
   return isContained;
 }

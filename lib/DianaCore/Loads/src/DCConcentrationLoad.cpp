@@ -21,27 +21,27 @@ CConcentrationLoad::CConcentrationLoad(CLoadCase& loadcase, const std::vector<do
 
 bool CConcentrationLoad::WriteFilos() const
 {
-	ftn_int_t idx = Inquire("ELEMEN", "DIM");
-	if(idx < 0) idx = 0;
-	++idx;
+  ftn_int_t idx = Inquire("ELEMEN", "DIM");
+  if(idx < 0) idx = 0;
+  ++idx;
 
-	assert(!XistIndexed("ELEMEN/", &idx));
+  assert(!XistIndexed("ELEMEN/", &idx));
 
-	PushDir();
+  PushDir();
 
-	ChangeIndexedDir("ELEMEN/", &idx);
+  ChangeIndexedDir("ELEMEN/", &idx);
 
-	ftn_int_t idxelm = (ftn_int_t) (Element().Index() + 1);
-	PutItemLength("ELEMEN", &idxelm, 1);
+  ftn_int_t idxelm = (ftn_int_t) (Element().Index() + 1);
+  PutItemLength("ELEMEN", &idxelm, 1);
 
-	ftn_int_t idxcase = (ftn_int_t) (LoadCase().Index() + 1);
-	PutItem("CASE", &idxcase);
+  ftn_int_t idxcase = (ftn_int_t) (LoadCase().Index() + 1);
+  PutItem("CASE", &idxcase);
 
-	PutItemLength("CONCEN", Values(), ValueSize());
+  PutItemLength("CONCEN", Values(), ValueSize());
 
-	PopDir();
+  PopDir();
 
-	return true;
+  return true;
 }
 
 const geo::IElement& CConcentrationLoad::Element() const

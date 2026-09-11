@@ -20,10 +20,10 @@ BOOL CMaterialImportDialog::OnInitDialog()
   CMatLibDlg::OnInitDialog();
 
   GetDlgItem(IDC_EDIT_MATERIAL_LIBRARY)->SetWindowText(
-    m_materialEntry->GetExternalMatLibFileName().toStdString().c_str());
+  m_materialEntry->GetExternalMatLibFileName().toStdString().c_str());
 
   return TRUE;  // return TRUE unless you set the focus to a control
-                // EXCEPTION: OCX Property Pages should return FALSE
+        // EXCEPTION: OCX Property Pages should return FALSE
 }
 
 // private

@@ -8,28 +8,28 @@ class CModelBase;
 class CFormationElementOrder : public CElementOrder
 {
   public:
-    CFormationElementOrder(const CModelBase& modelBase, bool inheritFromModel);
-    virtual ~CFormationElementOrder();
+  CFormationElementOrder(const CModelBase& modelBase, bool inheritFromModel);
+  virtual ~CFormationElementOrder();
 
-    CFormationElementOrder(const CFormationElementOrder& rhs);
-    CFormationElementOrder& operator = (CFormationElementOrder rhs);
+  CFormationElementOrder(const CFormationElementOrder& rhs);
+  CFormationElementOrder& operator = (CFormationElementOrder rhs);
 
-    TElementOrder elementOrder() const;
-    using CElementOrder::elementOrder;
+  TElementOrder elementOrder() const;
+  using CElementOrder::elementOrder;
 
-    bool inheritFromModel() const;
-    void inheritFromModel(bool inheritFromModel);
+  bool inheritFromModel() const;
+  void inheritFromModel(bool inheritFromModel);
 
-    void loadStream(CStorageNode::TSTREAM& stream,
+  void loadStream(CStorageNode::TSTREAM& stream,
       CStreamVersion& version, CStorageNode::TPROGRESS& progress);
-    void saveStream(CStorageNode::TSTREAM& stream,
+  void saveStream(CStorageNode::TSTREAM& stream,
       CStorageNode::TPROGRESS& progress);
 
   private:
-    void swap(CFormationElementOrder& lhs, CFormationElementOrder& rhs);
+  void swap(CFormationElementOrder& lhs, CFormationElementOrder& rhs);
 
-    const CModelBase *m_pModelBase;
-    bool m_inheritFromModel;
+  const CModelBase *m_pModelBase;
+  bool m_inheritFromModel;
 };
 
 #endif  // _FormationElementOrder_h_

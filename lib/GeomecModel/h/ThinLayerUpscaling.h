@@ -18,10 +18,10 @@ namespace geo {
 class CThinLayerUpscalingNode : public IUpscalingNodeBase
 {
 public:
-	CThinLayerUpscalingNode(CFemAppModel& model);
-	CThinLayerUpscalingNode(const QString& strName, C3DModel& model);
-	CThinLayerUpscalingNode(const CThinLayerUpscalingNode &rhs);
-	virtual ~CThinLayerUpscalingNode();
+  CThinLayerUpscalingNode(CFemAppModel& model);
+  CThinLayerUpscalingNode(const QString& strName, C3DModel& model);
+  CThinLayerUpscalingNode(const CThinLayerUpscalingNode &rhs);
+  virtual ~CThinLayerUpscalingNode();
 
   virtual int FactoryType() const;
   void Execute(IProgressBase& prog);
@@ -48,23 +48,23 @@ private:
 public:
   typedef struct
   {
-    double Et;
-    double En;
-    double nut;
-    double nun;
-    double G;
-    double betat;
-    double betan;
+  double Et;
+  double En;
+  double nut;
+  double nun;
+  double G;
+  double betat;
+  double betan;
   } TUpscaledMatParams;
 
   typedef std::map<std::pair<CPillarPos, const CDepletionStage*>, TUpscaledMatParams> TMatParamsMap;
 
   typedef struct
   {
-    double P;
-    double T;
-    double eps_t;
-    double eps_n;
+  double P;
+  double T;
+  double eps_t;
+  double eps_n;
   } TUpscaledLoadParams;
 
   typedef std::map<std::pair<CPillarPos, const CDepletionStage*>, TUpscaledLoadParams> TLoadParamsMap;

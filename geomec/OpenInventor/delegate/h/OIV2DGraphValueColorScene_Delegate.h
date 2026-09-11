@@ -8,21 +8,21 @@ class OIV2DGraphValueColorScene;
 class OIV2DGraphValueColorScene_Delegate : public CStorageNode_Delegate
 {
   public:
-    OIV2DGraphValueColorScene_Delegate(OIV2DGraphValueColorScene* node);
+  OIV2DGraphValueColorScene_Delegate(OIV2DGraphValueColorScene* node);
 
   private:
-    OIV2DGraphValueColorScene_Delegate(
+  OIV2DGraphValueColorScene_Delegate(
       const OIV2DGraphValueColorScene_Delegate& rhs);
-    OIV2DGraphValueColorScene_Delegate(
+  OIV2DGraphValueColorScene_Delegate(
       OIV2DGraphValueColorScene_Delegate&& rhs);
-    OIV2DGraphValueColorScene_Delegate& operator = (
+  OIV2DGraphValueColorScene_Delegate& operator = (
       const OIV2DGraphValueColorScene_Delegate& rhs);
-    OIV2DGraphValueColorScene_Delegate& operator = (
+  OIV2DGraphValueColorScene_Delegate& operator = (
       const OIV2DGraphValueColorScene_Delegate&& rhs);
 
-    OIV2DGraphValueColorScene* m_Node;
+  OIV2DGraphValueColorScene* m_Node;
 
-    REGISTER_DELEGATE(OIV2DGraphValueColorScene,
+  REGISTER_DELEGATE(OIV2DGraphValueColorScene,
       OIV2DGraphValueColorScene_Delegate);
 };
 

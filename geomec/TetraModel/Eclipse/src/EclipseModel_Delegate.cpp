@@ -18,13 +18,13 @@ void CEclipseSubModelEntry_Delegate::AppendContextMenu(
   typedef CSingleCommandTemplate <CEclipseSubModelEntry_Delegate> TEntryCommand;
 
   invoker.AddCommand(_T("&Edit eclipse model"),
-    *(new TEntryCommand(*this, &CEclipseSubModelEntry_Delegate::EditSubModel)));
+  *(new TEntryCommand(*this, &CEclipseSubModelEntry_Delegate::EditSubModel)));
 }
 
 void CEclipseSubModelEntry_Delegate::EditSubModel()
 {
   CEclipseGUI& model =
-    (CEclipseGUI&) (*m_eclipseSubModelEntry->Model().getDelegate());
+  (CEclipseGUI&) (*m_eclipseSubModelEntry->Model().getDelegate());
 
   model.EditSubModel();
 }

@@ -30,7 +30,7 @@ class CWellCasingCementInterface : public TWellCasingCementInterfaceMaterialServ
   typedef TWellCasingCementInterfaceMaterialServerParent TBase;
 
 public:
-	typedef enum eSlipType{ STICK = 0, SLIP, USER } TSlipType;
+  typedef enum eSlipType{ STICK = 0, SLIP, USER } TSlipType;
 
 public:
   CWellCasingCementInterface(const QString& strName, CWellCasingModel& model);
@@ -39,20 +39,20 @@ public:
   bool operator==(const CWellCasingCementInterface& rhs) const;
   CWellCasingCementInterface& operator=(const CWellCasingCementInterface& rhs);
 
-	virtual unsigned int IconId() const;
-	virtual unsigned int TypeId() const;
+  virtual unsigned int IconId() const;
+  virtual unsigned int TypeId() const;
   virtual QString TypeName() const;
   virtual bool Less(const CGraphNode& node) const;
 
   virtual void OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint);
 
-	virtual bool Empty() const;
-	virtual long SavedItems() const;
+  virtual bool Empty() const;
+  virtual long SavedItems() const;
 
   virtual int DisplayListSize() const;
-	virtual const geo::IObject& DisplayList(int nIndex) const;
-	virtual TColor Color() const;
-	void Color(TColor nColor);
+  virtual const geo::IObject& DisplayList(int nIndex) const;
+  virtual TColor Color() const;
+  void Color(TColor nColor);
 
   void OnShowElements();
   void OnShowMidpoints();

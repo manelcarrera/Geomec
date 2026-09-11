@@ -9,18 +9,18 @@ class CMaterialFractureAperture_Delegate : public CMaterialFractureApertureBase_
 {
 public:
   CMaterialFractureAperture_Delegate(
-    CMaterialFractureAperture* materialFractureAperture);
+  CMaterialFractureAperture* materialFractureAperture);
 
 private:
   CMaterialFractureAperture_Delegate(
-    const CMaterialFractureAperture_Delegate& rhs);
+  const CMaterialFractureAperture_Delegate& rhs);
   CMaterialFractureAperture_Delegate& operator = (
-    const CMaterialFractureAperture_Delegate& rhs);
+  const CMaterialFractureAperture_Delegate& rhs);
 
   CMaterialFractureAperture* m_materialFractureAperture;
 
   REGISTER_DELEGATE(CMaterialFractureAperture,
-    CMaterialFractureAperture_Delegate);
+  CMaterialFractureAperture_Delegate);
 };
 
 #endif  // _MaterialFractureAperture_Delegate_h_

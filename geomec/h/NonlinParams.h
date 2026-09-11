@@ -13,54 +13,54 @@ class CModelBase;
 class CDepletionStage;
 class CNonlinParams : public CDialog
 {
-	CModelBase &m_model;
-	typedef std::pair<CDepletionStage*, CDepletionStage*> TDepletionStagePair;
-	typedef std::vector<TDepletionStagePair> TDepletionStageVec;
-	TDepletionStageVec m_vcDepletionStage;
+  CModelBase &m_model;
+  typedef std::pair<CDepletionStage*, CDepletionStage*> TDepletionStagePair;
+  typedef std::vector<TDepletionStagePair> TDepletionStageVec;
+  TDepletionStageVec m_vcDepletionStage;
 
-	int m_iPreviousSelection;
+  int m_iPreviousSelection;
 
-	void UpdateStageControls();
+  void UpdateStageControls();
 
 // Construction
 public:
-	CNonlinParams(CModelBase& model, CWnd* pParent = NULL);   // standard constructor
-	virtual ~CNonlinParams();
+  CNonlinParams(CModelBase& model, CWnd* pParent = NULL);   // standard constructor
+  virtual ~CNonlinParams();
 
 // Dialog Data
-	//{{AFX_DATA(CNonlinParams)
-	enum { IDD = IDD_NONLIN_PARAMS };
-	CComboBox	m_cbDepletionStage;
-	BOOL	m_bApplyAll;
-	BOOL	m_bLargeDeform;
+  //{{AFX_DATA(CNonlinParams)
+  enum { IDD = IDD_NONLIN_PARAMS };
+  CComboBox	m_cbDepletionStage;
+  BOOL	m_bApplyAll;
+  BOOL	m_bLargeDeform;
   BOOL  m_bAllowLinearCalc;
-	//}}AFX_DATA
+  //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CNonlinParams)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+  // ClassWizard generated virtual function overrides
+  //{{AFX_VIRTUAL(CNonlinParams)
+  protected:
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CNonlinParams)
-	virtual BOOL OnInitDialog();
-	virtual void OnOK();
-	afx_msg void OnSelchangeDepletionstage();
-	afx_msg void OnCheckApplyAll();
-	afx_msg void OnSetDefault();
-	afx_msg void OnLargeDeform();
-	afx_msg void OnAllowLinearCalc();
-	afx_msg void OnHelpClicked();
+  // Generated message map functions
+  //{{AFX_MSG(CNonlinParams)
+  virtual BOOL OnInitDialog();
+  virtual void OnOK();
+  afx_msg void OnSelchangeDepletionstage();
+  afx_msg void OnCheckApplyAll();
+  afx_msg void OnSetDefault();
+  afx_msg void OnLargeDeform();
+  afx_msg void OnAllowLinearCalc();
+  afx_msg void OnHelpClicked();
   afx_msg void OnAutoStepSizes();
   afx_msg void OnManualStepSizes();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+  //}}AFX_MSG
+  DECLARE_MESSAGE_MAP()
 public:
   afx_msg void OnBnClickedRadio2();
 };

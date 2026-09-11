@@ -28,20 +28,20 @@ MF::MF()
 geo::CValue MF::GammaVertical(const CStressTensor &init_stress, const CStressTensor &current_stress, const double &press_init, const double &press_current, STRESS_TYPE stress_type)
 {
   if(fabs(press_current - press_init) < EPS_PORE)
-    return geo::CValue();
+  return geo::CValue();
 
   switch(stress_type)
   {
   case TOTAL:
       return (current_stress.ZZ() - init_stress.ZZ()) / (press_current - press_init);
   case EFFECTIVE:
-    {
+  {
       CStressTensor init_total  = TotalStress(init_stress, press_init);
       CStressTensor current_total  = TotalStress(current_stress, press_current);
       return (current_total.ZZ() - init_total.ZZ()) / (press_current - press_init);
-    }
+  }
   default:
-    assert(false);
+  assert(false);
   }
 
   return geo::CValue();
@@ -50,20 +50,20 @@ geo::CValue MF::GammaVertical(const CStressTensor &init_stress, const CStressTen
 geo::CValue MF::GammaMax(const CStressTensor &init_stress, const CStressTensor &current_stress, const double &press_init, const double &press_current, STRESS_TYPE stress_type)
 {
   if(fabs(press_current - press_init) < EPS_PORE)
-    return geo::CValue();
+  return geo::CValue();
 
   switch(stress_type)
   {
   case TOTAL:
       return (current_stress.PrincMaxLength() - init_stress.PrincMaxLength()) / (press_current - press_init);
   case EFFECTIVE:
-    {
+  {
       CStressTensor init_total  = TotalStress(init_stress, press_init);
       CStressTensor current_total  = TotalStress(current_stress, press_current);
       return (current_total.PrincMaxLength() - init_total.PrincMaxLength()) / (press_current - press_init);
-    }
+  }
   default:
-    assert(false);
+  assert(false);
   }
 
   return geo::CValue();
@@ -72,20 +72,20 @@ geo::CValue MF::GammaMax(const CStressTensor &init_stress, const CStressTensor &
 geo::CValue MF::GammaMed(const CStressTensor &init_stress, const CStressTensor &current_stress, const double &press_init, const double &press_current, STRESS_TYPE stress_type)
 {
   if(fabs(press_current - press_init) < EPS_PORE)
-    return geo::CValue();
+  return geo::CValue();
 
   switch(stress_type)
   {
   case TOTAL:
       return (current_stress.PrincIntermLength() - init_stress.PrincIntermLength()) / (press_current - press_init);
   case EFFECTIVE:
-    {
+  {
       CStressTensor init_total  = TotalStress(init_stress, press_init);
       CStressTensor current_total  = TotalStress(current_stress, press_current);
       return (current_total.PrincIntermLength() - init_total.PrincIntermLength()) / (press_current - press_init);
-    }
+  }
   default:
-    assert(false);
+  assert(false);
   }
   return geo::CValue();
 }
@@ -93,20 +93,20 @@ geo::CValue MF::GammaMed(const CStressTensor &init_stress, const CStressTensor &
 geo::CValue MF::GammaMin(const CStressTensor &init_stress, const CStressTensor &current_stress, const double &press_init, const double &press_current, STRESS_TYPE stress_type)
 {
   if(fabs(press_current - press_init) < EPS_PORE)
-    return geo::CValue();
+  return geo::CValue();
 
   switch(stress_type)
   {
   case TOTAL:
       return (current_stress.PrincMinLength() - init_stress.PrincMinLength()) / (press_current - press_init);
   case EFFECTIVE:
-    {
+  {
       CStressTensor init_total  = TotalStress(init_stress, press_init);
       CStressTensor current_total  = TotalStress(current_stress, press_current);
       return (current_total.PrincMinLength() - init_total.PrincMinLength()) / (press_current - press_init);
-    }
+  }
   default:
-    assert(false);
+  assert(false);
   }
 
   return geo::CValue();
@@ -115,20 +115,20 @@ geo::CValue MF::GammaMin(const CStressTensor &init_stress, const CStressTensor &
 geo::CValue MF::GammaVolume(const CStressTensor &init_stress, const CStressTensor &current_stress, const double &press_init, const double &press_current, STRESS_TYPE stress_type)
 {
   if(fabs(press_current - press_init) < EPS_PORE)
-    return geo::CValue();
+  return geo::CValue();
 
   switch(stress_type)
   {
   case TOTAL:
       return (current_stress.AverageStress() - init_stress.AverageStress()) / (press_current - press_init);
   case EFFECTIVE:
-    {
+  {
       CStressTensor init_total  = TotalStress(init_stress, press_init);
       CStressTensor current_total  = TotalStress(current_stress, press_current);
       return (current_total.AverageStress() - init_total.AverageStress()) / (press_current - press_init);
-    }
+  }
   default:
-    assert(false);
+  assert(false);
   }
 
   return geo::CValue();
@@ -168,11 +168,11 @@ geo::CValue MF::ShearCapacity(const CStressTensor &effective_stress, const doubl
   switch(angle_type)
   {
   case DEG:
-    friction *= DEG_TO_RAD;
+  friction *= DEG_TO_RAD;
   case RAD:
-    break;
+  break;
   default:
-    assert(false);
+  assert(false);
   }
 
   sigverteff = effective_stress.ZZ();
@@ -180,14 +180,14 @@ geo::CValue MF::ShearCapacity(const CStressTensor &effective_stress, const doubl
   sig2eff     = effective_stress.XX();
 
   p = (sig1eff + sig2eff + sigverteff) / 3.0;
-    CStressTensor tensor( effective_stress );
+  CStressTensor tensor( effective_stress );
    tensor.XX( tensor.XX() - p );
    tensor.YY( tensor.YY() - p );
    tensor.ZZ( tensor.ZZ() - p );
 
   J2 = tensor.InvarI2();
   if( J2 > 0. ) {
-    J2 = 0.;
+  J2 = 0.;
   }
   assert( J2 <= 0 );
   q = sqrt(-3.0 * J2);
@@ -219,17 +219,17 @@ geo::CValue MF::FaultShearCapacity(const geo::IVector &shear_stress, const doubl
   switch(angle_type)
   {
   case DEG:
-    friction *= DEG_TO_RAD;
+  friction *= DEG_TO_RAD;
   case RAD:
-    break;
+  break;
   default:
-    assert(false);
+  assert(false);
   }
 
   double denom = cohesion + (effective_normal_stress * tan(friction));
 
   if(denom < 0.0)
-    return geo::CValue(-1.0);
+  return geo::CValue(-1.0);
 
   return geo::CValue(shear_stress.Length() / denom);
 
@@ -237,9 +237,9 @@ geo::CValue MF::FaultShearCapacity(const geo::IVector &shear_stress, const doubl
 // **********************************************************************************************
 
 geo::CMatrix MF::GenerateHardeningCurve(const double &Cohesion, const double &FrictionAngle,
-                    const double &DilatationAngle, const double &HardeningGradient,
-                    const double &CompFractEnergy, const double &YoungsModulus,
-                    HARD_TYPE HardeningType, ANGLE_TYPE angle_type)
+          const double &DilatationAngle, const double &HardeningGradient,
+          const double &CompFractEnergy, const double &YoungsModulus,
+          HARD_TYPE HardeningType, ANGLE_TYPE angle_type)
 {
   double A;
   double B;
@@ -249,17 +249,17 @@ geo::CMatrix MF::GenerateHardeningCurve(const double &Cohesion, const double &Fr
   switch(angle_type)
   {
   case DEG:
-    SinFricAngle = sin(DEG_TO_RAD * FrictionAngle);
-    CosFricAngle = cos(DEG_TO_RAD * FrictionAngle);
-    SinDilAngle  = sin(DEG_TO_RAD * DilatationAngle);
-    break;
+  SinFricAngle = sin(DEG_TO_RAD * FrictionAngle);
+  CosFricAngle = cos(DEG_TO_RAD * FrictionAngle);
+  SinDilAngle  = sin(DEG_TO_RAD * DilatationAngle);
+  break;
   case RAD:
-    SinFricAngle = sin(FrictionAngle);
-    CosFricAngle = cos(FrictionAngle);
-    SinDilAngle  = sin(DilatationAngle);
-    break;
+  SinFricAngle = sin(FrictionAngle);
+  CosFricAngle = cos(FrictionAngle);
+  SinDilAngle  = sin(DilatationAngle);
+  break;
   default:
-    assert(false);
+  assert(false);
   }
 
   A = (1.0 - SinFricAngle) / (2.0 * CosFricAngle);
@@ -270,7 +270,7 @@ geo::CMatrix MF::GenerateHardeningCurve(const double &Cohesion, const double &Fr
   switch(HardeningType)
   {
   case LINEAR_HARD:
-    {
+  {
       double CKHardeningGradient = (A / B) * HardeningGradient;
 
       HardeningCurve.ReSize(2, 2);
@@ -279,10 +279,10 @@ geo::CMatrix MF::GenerateHardeningCurve(const double &Cohesion, const double &Fr
       HardeningCurve.Value(0, 1, Cohesion);
       HardeningCurve.Value(1, 0, 1.0);
       HardeningCurve.Value(1, 1, Cohesion + CKHardeningGradient);
-    }
-    break;
+  }
+  break;
   case LINEAR_SOFT:
-    {
+  {
       double UltEqPlStrain1 = 2.0 * CompFractEnergy * A * B / Cohesion;
 
       HardeningCurve.ReSize(3, 2);
@@ -293,10 +293,10 @@ geo::CMatrix MF::GenerateHardeningCurve(const double &Cohesion, const double &Fr
       HardeningCurve.Value(1, 1, 0.0);
       HardeningCurve.Value(2, 0, 1000.0 * UltEqPlStrain1);
       HardeningCurve.Value(2, 1, 0.0);
-    }
-    break;
+  }
+  break;
   case PARABOLIC_HARD:
-    {
+  {
       double EqPlStrMaxCoh = (4.0 * B * Cohesion) / (3.0 * A * YoungsModulus);
       double UltEqPlStrain2 = std::max(1.75 * EqPlStrMaxCoh, ((A * B * 3.0 * CompFractEnergy) / (2.0 * Cohesion)) - EqPlStrMaxCoh / 6.0);
       double DeltaEqPlStr = UltEqPlStrain2 - EqPlStrMaxCoh;
@@ -341,12 +341,12 @@ geo::CMatrix MF::GenerateHardeningCurve(const double &Cohesion, const double &Fr
       HardeningCurve.Value(17, 1,  0.0);
       HardeningCurve.Value(18, 0,  1000.0 * UltEqPlStrain2);
       HardeningCurve.Value(18, 1,  0.0);
-    }
-    break;
+  }
+  break;
   case NONE:
   default:
-    assert(false);
-    break;
+  assert(false);
+  break;
   }
 
   return HardeningCurve;
@@ -360,17 +360,17 @@ double MF::CalcCompFluidPressure(const double &Depth, const double &FluidStressG
 
   if(FluidCompressibility > MECFUNCEPS)
   {
-    double sgs;
-    double mincompress = 0.75;
-    sgs = (1 + FluidCompressibility * FluidPressure) * FluidStressGradient;//stress gradient at surface
-    double comp_density = 1 - FluidCompressibility * sgs * Depth;
-    if(comp_density > mincompress)
+  double sgs;
+  double mincompress = 0.75;
+  sgs = (1 + FluidCompressibility * FluidPressure) * FluidStressGradient;//stress gradient at surface
+  double comp_density = 1 - FluidCompressibility * sgs * Depth;
+  if(comp_density > mincompress)
       press = FluidPressure - log(comp_density) / FluidCompressibility;
-    else
+  else
       press = FluidPressure - log(mincompress) / FluidCompressibility + sgs/mincompress*(Depth-(1-mincompress)/(sgs*FluidCompressibility));
   }
   else
-    press = FluidPressure + FluidStressGradient * Depth;
+  press = FluidPressure + FluidStressGradient * Depth;
 
   return press;
 }
@@ -383,21 +383,21 @@ double MF::CalcFluidStressGradient(const double &Depth, const double &OverPressu
 
   if(FluidCompressibility > MECFUNCEPS)
   {
-    double dTempGr1;
-    double dTempGr2;
-    double dExponent = -1 * FluidCompressibility * (FluidPressure - OverPressure);
-    dTempGr1 = (1 - pow(NrE, dExponent)) / (FluidCompressibility * Depth);
+  double dTempGr1;
+  double dTempGr2;
+  double dExponent = -1 * FluidCompressibility * (FluidPressure - OverPressure);
+  dTempGr1 = (1 - pow(NrE, dExponent)) / (FluidCompressibility * Depth);
 
-    double dTemp = 1 - FluidCompressibility * dTempGr1 * Depth;
-    if(dTemp > 0.75)
+  double dTemp = 1 - FluidCompressibility * dTempGr1 * Depth;
+  if(dTemp > 0.75)
       dTempGr2 = dTempGr1;
-    else
+  else
       dTempGr2 = 0.75 * ( (FluidPressure - OverPressure) / Depth ) + (0.25 + 0.75 * log(0.75)) / (FluidCompressibility * Depth);
 
-    StressGradient = dTempGr2 / (1 + FluidCompressibility * OverPressure);
+  StressGradient = dTempGr2 / (1 + FluidCompressibility * OverPressure);
   }
   else
-    StressGradient = (FluidPressure  - OverPressure) / Depth;
+  StressGradient = (FluidPressure  - OverPressure) / Depth;
 
   return StressGradient;
 }

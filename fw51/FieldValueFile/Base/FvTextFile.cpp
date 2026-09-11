@@ -32,9 +32,9 @@ bool CTextFile::Open(const QString &strPath, IProgressBase& progress)
   // We open the file and read it...
   m_file.setFileName( strPath );
   if(!m_file.open( QIODevice::ReadOnly | QIODevice::Text )) {
-    // Set error message first
-    m_sErrorMessage = "Cannot open file";
-    return false;
+  // Set error message first
+  m_sErrorMessage = "Cannot open file";
+  return false;
   }
 
   // Initiprogress
@@ -51,12 +51,12 @@ bool CTextFile::Open(const QString &strPath, IProgressBase& progress)
   bool ret(false);
 
   if(nextLine()) {
-    // init dummy
-    input_stream stream( *this );
+  // init dummy
+  input_stream stream( *this );
 
-    try {
+  try {
       ret = OnRead( stream );
-    } catch( CReadException error ) {
+  } catch( CReadException error ) {
       // Set error message
      if( lineNr() > 0 ) {
        m_sErrorMessage = QString("Line %1: %2").arg( lineNr() ).arg(error.ErrorMessage());
@@ -65,7 +65,7 @@ bool CTextFile::Open(const QString &strPath, IProgressBase& progress)
      } 
      
       ret = false;
-    }
+  }
   }
 
   delete m_pStream;
@@ -99,7 +99,7 @@ void CTextFile::ItemRead()
 
 void CTextFile::setUnitType( unitType icode )
 {
-	m_unitType = icode;
+  m_unitType = icode;
 }
 
 
@@ -125,7 +125,7 @@ bool CTextFile::Save(const QString &strPath, IProgressBase &progress, bool appen
   QIODevice::OpenMode flags = QIODevice::WriteOnly | QIODevice::Text;
   if ( append ) flags |= QIODevice::Append;
   if(!m_file.open( flags ))
-    return false;
+  return false;
   m_pStream = new QTextStream( &m_file );
 
   // Initialise progress callback
@@ -187,9 +187,9 @@ char CTextFile::get()
   char ch = peek();
 
   if( ch == '\n' ) {
-    nextLine();
+  nextLine();
   } else {
-    m_line_position++;
+  m_line_position++;
   }
 
   return ch;
@@ -200,7 +200,7 @@ char CTextFile::peek() const
   if( m_line.isNull() ) return 0;
   assert(m_line_position >= 0);
   if(m_line.length() == m_line_position)
-    return '\n';
+  return '\n';
   return m_line.at( m_line_position ).toLatin1();
 }
 
@@ -217,9 +217,9 @@ bool CTextFile::nextLine()
   // Retrieves the next line
   m_line = m_pStream->readLine();
   if(m_line.isNull()) {
-    // End of file ...
-    m_line_position = -1;
-    return false;
+  // End of file ...
+  m_line_position = -1;
+  return false;
   }
   m_line_nr++;
   
@@ -237,18 +237,18 @@ bool CTextFile::nextLine()
   TQuotePair prCurrent;
   while(nQuotePos != -1)
   {
-	  if(bFirst)
-	  {
-		  prCurrent.first = nQuotePos;
-	  }
-	  else
-	  {
-		  prCurrent.second = nQuotePos;
-		  vcQuotes.push_back(prCurrent);
-	  }
+    if(bFirst)
+    {
+      prCurrent.first = nQuotePos;
+    }
+    else
+    {
+      prCurrent.second = nQuotePos;
+      vcQuotes.push_back(prCurrent);
+    }
 
-	  nQuotePos = m_line.indexOf('"', nQuotePos + 1);
-	  bFirst = !bFirst;
+    nQuotePos = m_line.indexOf('"', nQuotePos + 1);
+    bFirst = !bFirst;
   }
 
   // Take out comment
@@ -259,24 +259,24 @@ bool CTextFile::nextLine()
        return nextLine();
      }
      if(nPosition > 0) {
-		 bool bIsAComment = true;
-		 // don't take out if the position is inside any of the quoted sections
-		 for(size_t i = 0; i < vcQuotes.size(); ++i)
-		 {
-			 if(nPosition > vcQuotes[i].first && nPosition < vcQuotes[i].second)
-			 {
-				 // inside quoted section, not an actual comment
-				 bIsAComment = false;
-				 break;
-			 }
-		 }
+     bool bIsAComment = true;
+     // don't take out if the position is inside any of the quoted sections
+     for(size_t i = 0; i < vcQuotes.size(); ++i)
+     {
+       if(nPosition > vcQuotes[i].first && nPosition < vcQuotes[i].second)
+       {
+         // inside quoted section, not an actual comment
+         bIsAComment = false;
+         break;
+       }
+     }
 
-		 if(bIsAComment)
-		 {
-			m_line = m_line.left(nPosition);
-			m_line_position = 0;
-			return true;
-		 }
+     if(bIsAComment)
+     {
+      m_line = m_line.left(nPosition);
+      m_line_position = 0;
+      return true;
+     }
      }
   }
 
@@ -359,11 +359,11 @@ bool CTextFile::DefineToken(CToken &token, bool bAutoDeleteToken)
 
   // Try to insert ...
   if(m_mpTokenMap.insert(token_map::value_type(token.Token().toUpper(), token_type(&token, bAutoDeleteToken))).second)
-    return true;
+  return true;
 
   // The definition of this token failed so return false and depending on bAutoDeleteToken delete the token
   if (bAutoDeleteToken)
-    delete &token;
+  delete &token;
 
   return false;
 }
@@ -373,10 +373,10 @@ void CTextFile::Clear()
   // Iterate token map and delete token pointer if auto delete is enabled
   for(token_map::iterator iter = m_mpTokenMap.begin(); iter != m_mpTokenMap.end(); iter++)
   {
-    if(iter->second.second)      // Extract auto delete tag
-    {
+  if(iter->second.second)      // Extract auto delete tag
+  {
       delete iter->second.first;  // Extract token map ptr
-    }
+  }
   }
 
   m_mpTokenMap.clear();
@@ -387,61 +387,61 @@ bool CTextFile::Parse( TInputStream& stream )
 {
   stream.eatwhite();
   while( !stream.eof() ) {
-    QString sToken; // Token we're evaluating ...
-    stream >> sToken;
+  QString sToken; // Token we're evaluating ...
+  stream >> sToken;
 
-	// jbj
-	// Mantis 2289
-	// if sToken == "AXIS_UNIT" we cannot process until we read the next 3 tokens:
-	// "ft" "ft" "ft"
-	// or
-	// "m" "m" "m"
-	//
-	// For now we will apply a quick patch so we can read "ft" input, by using
-	// this.setUnitType, and restoring to SI_UNIT afterwards.  This is NOT an
-	// optimal solution since file formats other than GoCad are now also 
-	// receiving "ft" tokens, but it is the least intrusive solution for now.
-	//
-	// TODO
-	// The ->Read indirection and the tokenmap are inadequate here.
-	// Maintenance--.
-	// There will be more new tokens in the future and the problems with the
-    // current architecture will only get worse.  Proposed solution:
-	// Remove tokenmap, remove CToken class c.s., and replace it by a much
-	// simpler design with a proper use of polymorphism.
-	//
-	
-	if ( sToken == QString("\"ft\"") )
-		setUnitType( FIELD_UNIT ); // temporarily: we are reading "ft"
-		                           // but we will store in "m" (SI_UNIT)
-	
-    // Look up the token in the tokenmap
-    if(m_mpTokenMap.find(sToken.toUpper()) != m_mpTokenMap.end()) {
+  // jbj
+  // Mantis 2289
+  // if sToken == "AXIS_UNIT" we cannot process until we read the next 3 tokens:
+  // "ft" "ft" "ft"
+  // or
+  // "m" "m" "m"
+  //
+  // For now we will apply a quick patch so we can read "ft" input, by using
+  // this.setUnitType, and restoring to SI_UNIT afterwards.  This is NOT an
+  // optimal solution since file formats other than GoCad are now also 
+  // receiving "ft" tokens, but it is the least intrusive solution for now.
+  //
+  // TODO
+  // The ->Read indirection and the tokenmap are inadequate here.
+  // Maintenance--.
+  // There will be more new tokens in the future and the problems with the
+  // current architecture will only get worse.  Proposed solution:
+  // Remove tokenmap, remove CToken class c.s., and replace it by a much
+  // simpler design with a proper use of polymorphism.
+  //
+  
+  if ( sToken == QString("\"ft\"") )
+    setUnitType( FIELD_UNIT ); // temporarily: we are reading "ft"
+                               // but we will store in "m" (SI_UNIT)
+  
+  // Look up the token in the tokenmap
+  if(m_mpTokenMap.find(sToken.toUpper()) != m_mpTokenMap.end()) {
       try {
-        if(m_mpTokenMap.find(sToken.toUpper())->second.first->Read(stream, sToken)) {
+    if(m_mpTokenMap.find(sToken.toUpper())->second.first->Read(stream, sToken)) {
           OnParseSucceed(stream, sToken);   // Go on parsing
           stream.eatwhite();
-        } else {
+    } else {
           OnParseSucceed(stream, sToken);   // Stop parsing
           return true;
-        }
+    }
       } catch( CReadException error ) {
-        // Set error message
-        if( lineNr() > 0 ) {
+    // Set error message
+    if( lineNr() > 0 ) {
           m_sErrorMessage = QString("Line %1: %2").arg( lineNr() ).arg(error.ErrorMessage());
-        } else {
-          m_sErrorMessage = error.ErrorMessage();
-        }
-        return false; // Failed
-      }
     } else {
+          m_sErrorMessage = error.ErrorMessage();
+    }
+    return false; // Failed
+      }
+  } else {
       // Parsing failure
       if( OnParseFail( stream, sToken ) ) {
-        stream.eatwhite(); // Go on parsing
+    stream.eatwhite(); // Go on parsing
       } else {
-        return false;      // Stop parsing
+    return false;      // Stop parsing
       }
-    }
+  }
   }
   setUnitType( SI_UNIT ); // Restore: data stored as "m", not "ft"
 

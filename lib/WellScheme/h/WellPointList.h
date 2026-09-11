@@ -35,98 +35,98 @@ class CWellPathBase;
 //##ModelId=3F7AA15603B1
 class CWellPointList : public QObject// , private QList<CWellPoint*>
 {
-	
+  
 
-	Q_OBJECT;
+  Q_OBJECT;
 
 public:
 
   typedef QList<CWellPoint*>::iterator Iterator;
   typedef QList<CWellPoint*>::const_iterator ConstIterator;
 
-	//constructors
-	CWellPointList();
-	CWellPointList(const CWellPathBase& pWellPath,  bool bAutoDelete=true, bool bAllowDuplicateTMD = false);
-	virtual ~CWellPointList();
-	CWellPointList& operator=(const CWellPointList& rhs);
-	CWellPointList(const CWellPointList& rhs);
+  //constructors
+  CWellPointList();
+  CWellPointList(const CWellPathBase& pWellPath,  bool bAutoDelete=true, bool bAllowDuplicateTMD = false);
+  virtual ~CWellPointList();
+  CWellPointList& operator=(const CWellPointList& rhs);
+  CWellPointList(const CWellPointList& rhs);
 
 
-	QString GetDescription() const;
+  QString GetDescription() const;
 
-	CWellPoint* First() const;
-	CWellPoint* Last() const;
-	CWellPoint* At(int index);
-	const CWellPoint* At(int index) const;
+  CWellPoint* First() const;
+  CWellPoint* Last() const;
+  CWellPoint* At(int index);
+  const CWellPoint* At(int index) const;
 
-	//for these insert/remove functions, duplicates are based on EqualPointExist(uses compareItem) !!!
-	//not the pointers
-	void InsertNonDuplicatePoints(const CWellPointList& list);
-	void RemoveDuplicatePoints(const CWellPointList& list);
-	void RemoveNonDuplicatePoints(const CWellPointList& list);
-	void RemoveUnDefinedPoints();
+  //for these insert/remove functions, duplicates are based on EqualPointExist(uses compareItem) !!!
+  //not the pointers
+  void InsertNonDuplicatePoints(const CWellPointList& list);
+  void RemoveDuplicatePoints(const CWellPointList& list);
+  void RemoveNonDuplicatePoints(const CWellPointList& list);
+  void RemoveUnDefinedPoints();
 
-	bool AutoDelete() const;
-	void AutoDelete(bool autodelete);
+  bool AutoDelete() const;
+  void AutoDelete(bool autodelete);
 
-	bool AllowDuplicateTMD() const;
-	void AllowDuplicateTMD(bool allowduplicate);
+  bool AllowDuplicateTMD() const;
+  void AllowDuplicateTMD(bool allowduplicate);
 
-	//if duplicate(uses compareItem) returns -1
-	int AddPoint(const CWellPoint* point);
-	
-	//uses pointer equalty
-	int GetIndex(const CWellPoint* point) const;  //return -1 if not exists
-	bool Exist(const CWellPoint* point) const;  
+  //if duplicate(uses compareItem) returns -1
+  int AddPoint(const CWellPoint* point);
+  
+  //uses pointer equalty
+  int GetIndex(const CWellPoint* point) const;  //return -1 if not exists
+  bool Exist(const CWellPoint* point) const;  
 
-	//look if a equal point exists (uses compareItem)
-	bool EqualPointExist(const CWellPoint& point) const;  
-	bool Exist(const double& tmd) const;  //same as above
+  //look if a equal point exists (uses compareItem)
+  bool EqualPointExist(const CWellPoint& point) const;  
+  bool Exist(const double& tmd) const;  //same as above
 
-	//state
-	bool AllPointsDefined() const;
+  //state
+  bool AllPointsDefined() const;
 
-	//list operations
-	int NrOfPoints() const;
+  //list operations
+  int NrOfPoints() const;
 
-	//iterators
-	Iterator begin() const;
+  //iterators
+  Iterator begin() const;
   Iterator end() const;
-	Iterator GetIteratorAt(const CWellPoint* point) const;
+  Iterator GetIteratorAt(const CWellPoint* point) const;
 
-	const CWellPathBase& WellPath() const;
-	//CWellPathBase& WellPath();
-	void WellPath(CWellPathBase *pWellPath);
+  const CWellPathBase& WellPath() const;
+  //CWellPathBase& WellPath();
+  void WellPath(CWellPathBase *pWellPath);
 
-	geo::CPoint MaxPoint() const;
-	geo::CPoint MinPoint() const;
-	
-	QList<CWellPoint*> GetUpperLower(const double & TMD) const;
+  geo::CPoint MaxPoint() const;
+  geo::CPoint MinPoint() const;
+  
+  QList<CWellPoint*> GetUpperLower(const double & TMD) const;
 
   void clear();
 
 public slots:
 
-	void SetDescription(QString description);
-	void RemovePoint(int index);
-	void RemovePoint(const CWellPoint* point);
-	void RemoveAllPoints();
+  void SetDescription(QString description);
+  void RemovePoint(int index);
+  void RemovePoint(const CWellPoint* point);
+  void RemoveAllPoints();
 
 protected:
 
-	mutable geo::CPoint m_MaxPoint;
-	mutable geo::CPoint m_MinPoint;
-	void CalculateMaxMin() const;
-	const CWellPathBase* m_pWellPath;
-	QString m_Description;
-	
+  mutable geo::CPoint m_MaxPoint;
+  mutable geo::CPoint m_MinPoint;
+  void CalculateMaxMin() const;
+  const CWellPathBase* m_pWellPath;
+  QString m_Description;
+  
 private:
 
-	CWellPointList* This() const;
+  CWellPointList* This() const;
   QList<CWellPoint*> m_lstPoints;
   bool m_bAutoDelete;
-	int compareItems(CWellPoint* item1, CWellPoint* item2 );
-	bool m_bAllowDuplicateTMD;
+  int compareItems(CWellPoint* item1, CWellPoint* item2 );
+  bool m_bAllowDuplicateTMD;
 };
 
 }

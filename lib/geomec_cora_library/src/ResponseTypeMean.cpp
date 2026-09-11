@@ -23,14 +23,14 @@ double CResponseTypeMean::calculate(const TObject& object,
 
   if (element != 0)
   {
-    double totalSize = calculateTotalSize(object, element);
+  double totalSize = calculateTotalSize(object, element);
 
-    weightedMean = 0;
+  weightedMean = 0;
 
-    while (element != 0)
-    {
+  while (element != 0)
+  {
       const IValueDomainScalar::TValueVec valueVec =
-        failureMode->getResultComponent()->ValueElement(*element);
+    failureMode->getResultComponent()->ValueElement(*element);
 
       verifyResponseType(valueVec);
 
@@ -38,7 +38,7 @@ double CResponseTypeMean::calculate(const TObject& object,
 
       weightedMean += mean * (element->Size() / totalSize);
       element = object->getNextElement();
-    }
+  }
   }
 
   return weightedMean;

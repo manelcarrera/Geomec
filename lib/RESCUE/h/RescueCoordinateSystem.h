@@ -25,7 +25,7 @@ public:
 /*
   The displayOrientation shows which corner the origin is located on: 
 
-    Key: Left/Right
+  Key: Left/Right
          Up/Down
          Front/Back
 */

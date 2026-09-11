@@ -38,11 +38,11 @@ CHexaSurface::CHexaSurface(const QString &strName, const geo::CArray<geo::CPoint
 
 void CHexaSurface::CreateHorizon()
 {
-	CHexaHorizonEntry* pEntry = (CHexaHorizonEntry*)(Model().GraphEntry(MD_HEXA_HORIZON));
-	pEntry->ConnectItem(*this);
+  CHexaHorizonEntry* pEntry = (CHexaHorizonEntry*)(Model().GraphEntry(MD_HEXA_HORIZON));
+  pEntry->ConnectItem(*this);
 }
 
 CSurfaceBase* CHexaSurface::OnCreateSurface(const QString& sName, const geo::CPtrArray<geo::IPoint>& vcPoint)
 {
-	return new CHexaSurface(sName, vcPoint, Model());
+  return new CHexaSurface(sName, vcPoint, Model());
 }

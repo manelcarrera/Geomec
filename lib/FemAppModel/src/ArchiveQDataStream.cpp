@@ -14,7 +14,7 @@ CArchiveQDataStream::CArchiveQDataStream(QIODevice* device, bool bIsHDF5File)
 CArchiveQDataStream::~CArchiveQDataStream()
 {
   if(m_pCompressedStream)
-    DestroyCompressedStream();
+  DestroyCompressedStream();
 }
 
 bool CArchiveQDataStream::IsLoading() const
@@ -46,14 +46,14 @@ CHDF5File *CArchiveQDataStream::GetHDF5File() const
 bool CArchiveQDataStream::PushDataSet(const QString& dataSet, int hint)
 {
   if (IsHDF5())
-    return static_cast<CHDF5File *>(archive.device())->PushDataSet(dataSet, hint);
+  return static_cast<CHDF5File *>(archive.device())->PushDataSet(dataSet, hint);
   return true;
 }
 
 bool CArchiveQDataStream::PopDataSet()
 {
   if (IsHDF5())
-    return static_cast<CHDF5File *>(archive.device())->PopDataSet();
+  return static_cast<CHDF5File *>(archive.device())->PopDataSet();
   return true;
 }
 
@@ -64,7 +64,7 @@ quint64 CArchiveQDataStream::GetPosition()
 
 void CArchiveQDataStream::SetPosition(quint64 position)
 {
-	archive.device()->seek(position);
+  archive.device()->seek(position);
 }
 
 void CArchiveQDataStream::Flush()
@@ -229,12 +229,12 @@ CArchiveQDataStream& CArchiveQDataStream::operator >> (QDateTime& dt)
 CArchiveQDataStream& CArchiveQDataStream::CreateCompressedStream()
 {
   if (m_bIsHDF5)
-    return *this;
+  return *this;
 
   assert(!m_pCompressedStream);
   assert(archive.device());
   if(dynamic_cast<QtIOCompressor*>(archive.device())) // already a compressed stream?
-    return *this;
+  return *this;
 
   m_pCompressedStream = new CArchiveQDataStream(new QtIOCompressor(archive.device()), m_bIsHDF5);
   m_pCompressedStream->archive.device()->open(archive.device()->openMode() | QIODevice::Append);
@@ -245,9 +245,9 @@ void CArchiveQDataStream::DestroyCompressedStream()
 {
   if(m_pCompressedStream)
   {
-    delete m_pCompressedStream->archive.device();
-    delete m_pCompressedStream;
-    m_pCompressedStream = 0;
+  delete m_pCompressedStream->archive.device();
+  delete m_pCompressedStream;
+  m_pCompressedStream = 0;
   }
 }
 

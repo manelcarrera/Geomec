@@ -25,7 +25,7 @@ public:
 
   void operator () (geo::CValue& rhs)
   {
-    rhs = m_parameterModifierBase.modify(rhs);
+  rhs = m_parameterModifierBase.modify(rhs);
   }
 
 private:

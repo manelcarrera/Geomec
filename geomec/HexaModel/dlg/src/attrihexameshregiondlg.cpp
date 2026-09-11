@@ -25,74 +25,74 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 
 CAttriHexaMainMeshRegionDlg::CAttriHexaMainMeshRegionDlg(CHexaMainMeshRegion& region, CWnd* pParent /*=NULL*/)
-	: CAttributesTemplate<CHexaMainMeshRegion>(CAttriHexaMainMeshRegionDlg::IDD, region, pParent)
+  : CAttributesTemplate<CHexaMainMeshRegion>(CAttriHexaMainMeshRegionDlg::IDD, region, pParent)
 {
-	//{{AFX_DATA_INIT(CAttriHexaMainMeshRegionDlg)
-	//}}AFX_DATA_INIT
+  //{{AFX_DATA_INIT(CAttriHexaMainMeshRegionDlg)
+  //}}AFX_DATA_INIT
 }
 
 
 void CAttriHexaMainMeshRegionDlg::DoDataExchange(CDataExchange* pDX)
 {
-	CAttributesTemplate<CHexaMainMeshRegion>::DoDataExchange(pDX);
+  CAttributesTemplate<CHexaMainMeshRegion>::DoDataExchange(pDX);
 
-	double dGridX, dGridY;
-	CString sUnit;
-	CLengthQuantity l;
+  double dGridX, dGridY;
+  CString sUnit;
+  CLengthQuantity l;
 
-	if(!pDX->m_bSaveAndValidate)
-	{
-		sUnit = CString(l.UnitName(UnitNode().Unit()).c_str());
-		dGridX = l.Convert(Copy().GridSizeX(), UnitNode().Unit(), CQuantity::SI_UNIT);
-		dGridY = l.Convert(Copy().GridSizeY(), UnitNode().Unit(), CQuantity::SI_UNIT);
-	}
+  if(!pDX->m_bSaveAndValidate)
+  {
+    sUnit = CString(l.UnitName(UnitNode().Unit()).c_str());
+    dGridX = l.Convert(Copy().GridSizeX(), UnitNode().Unit(), CQuantity::SI_UNIT);
+    dGridY = l.Convert(Copy().GridSizeY(), UnitNode().Unit(), CQuantity::SI_UNIT);
+  }
 
-	//{{AFX_DATA_MAP(CAttriHexaMainMeshRegionDlg)
-	//}}AFX_DATA_MAP
+  //{{AFX_DATA_MAP(CAttriHexaMainMeshRegionDlg)
+  //}}AFX_DATA_MAP
 
-	DDX_Text(pDX, IDC_ST_UNIT_I, sUnit);
-	DDX_Text(pDX, IDC_ST_UNIT_II, sUnit);
-	DDX_Text(pDX, IDC_ED_GRID_X, dGridX);
-	DDX_Text(pDX, IDC_ED_GRID_Y, dGridY);
+  DDX_Text(pDX, IDC_ST_UNIT_I, sUnit);
+  DDX_Text(pDX, IDC_ST_UNIT_II, sUnit);
+  DDX_Text(pDX, IDC_ED_GRID_X, dGridX);
+  DDX_Text(pDX, IDC_ED_GRID_Y, dGridY);
 
-	// Do some minmax validation ...
-	CModelBase *pModel = (CModelBase*)(&Copy().Model());
+  // Do some minmax validation ...
+  CModelBase *pModel = (CModelBase*)(&Copy().Model());
 
-	// Save the values.
-	if(pDX->m_bSaveAndValidate)
-	{
-		if((fabs(dGridX - l.Convert(Copy().GridSizeX(), UnitNode().Unit(), CQuantity::SI_UNIT)) > EPS) ||
-		   (fabs(dGridY - l.Convert(Copy().GridSizeY(), UnitNode().Unit(), CQuantity::SI_UNIT)) > EPS))
-		{
+  // Save the values.
+  if(pDX->m_bSaveAndValidate)
+  {
+    if((fabs(dGridX - l.Convert(Copy().GridSizeX(), UnitNode().Unit(), CQuantity::SI_UNIT)) > EPS) ||
+       (fabs(dGridY - l.Convert(Copy().GridSizeY(), UnitNode().Unit(), CQuantity::SI_UNIT)) > EPS))
+    {
       if(dGridX <= 0 || dGridY <= 0)
       {
-        AfxMessageBox("Grid size must be greater than 0");
-        pDX->PrepareEditCtrl(dGridX <= 0 ? IDC_ED_GRID_X : IDC_ED_GRID_Y);
-        pDX->Fail();
+    AfxMessageBox("Grid size must be greater than 0");
+    pDX->PrepareEditCtrl(dGridX <= 0 ? IDC_ED_GRID_X : IDC_ED_GRID_Y);
+    pDX->Fail();
       }
 
-	    double	dMaxX = pModel->Boundary().Max().X() - pModel->Boundary().Min().X(); // minimum of 1 element in x-direction
-	    double	dMaxY = pModel->Boundary().Max().Y() - pModel->Boundary().Min().Y(); // minimum of 1 element in y-direction
+    double	dMaxX = pModel->Boundary().Max().X() - pModel->Boundary().Min().X(); // minimum of 1 element in x-direction
+    double	dMaxY = pModel->Boundary().Max().Y() - pModel->Boundary().Min().Y(); // minimum of 1 element in y-direction
       if(dGridX > l.Convert(dMaxX, UnitNode().Unit(), CQuantity::SI_UNIT) || dGridY > l.Convert(dMaxY, UnitNode().Unit(), CQuantity::SI_UNIT))
       {
-        CString msg;
-        msg.Format("Grid size can be at most %g", dGridX > l.Convert(dMaxX, UnitNode().Unit(), CQuantity::SI_UNIT) ? dMaxX : dMaxY);
-        AfxMessageBox(msg);
-        pDX->PrepareEditCtrl(dGridX > l.Convert(dMaxX, UnitNode().Unit(), CQuantity::SI_UNIT) ? IDC_ED_GRID_X : IDC_ED_GRID_Y);
-        pDX->Fail();
+    CString msg;
+    msg.Format("Grid size can be at most %g", dGridX > l.Convert(dMaxX, UnitNode().Unit(), CQuantity::SI_UNIT) ? dMaxX : dMaxY);
+    AfxMessageBox(msg);
+    pDX->PrepareEditCtrl(dGridX > l.Convert(dMaxX, UnitNode().Unit(), CQuantity::SI_UNIT) ? IDC_ED_GRID_X : IDC_ED_GRID_Y);
+    pDX->Fail();
       }
-			Copy().SetMainGrid(l.Convert(dGridX, CQuantity::SI_UNIT, UnitNode().Unit()),
-							   l.Convert(dGridY, CQuantity::SI_UNIT, UnitNode().Unit()));
-		}
-	}
+      Copy().SetMainGrid(l.Convert(dGridX, CQuantity::SI_UNIT, UnitNode().Unit()),
+                 l.Convert(dGridY, CQuantity::SI_UNIT, UnitNode().Unit()));
+    }
+  }
 }
 
 
 BEGIN_MESSAGE_MAP(CAttriHexaMainMeshRegionDlg, CAttributesTemplate<CHexaMainMeshRegion>)
-	//{{AFX_MSG_MAP(CAttriHexaMainMeshRegionDlg)
-	ON_BN_CLICKED(IDC_ST_COLOR, OnColor)
-	ON_WM_PAINT()
-	//}}AFX_MSG_MAP
+  //{{AFX_MSG_MAP(CAttriHexaMainMeshRegionDlg)
+  ON_BN_CLICKED(IDC_ST_COLOR, OnColor)
+  ON_WM_PAINT()
+  //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -100,28 +100,28 @@ END_MESSAGE_MAP()
 
 BOOL CAttriHexaMainMeshRegionDlg::OnInitDialog()
 {
-	CAttributesTemplate<CHexaMainMeshRegion>::OnInitDialog();
+  CAttributesTemplate<CHexaMainMeshRegion>::OnInitDialog();
 
-	if((static_cast<const CModelBase&>(Copy().Model())).BranchState().IsBranch())
-	{
-		GetDlgItem(IDC_ED_GRID_X)->EnableWindow(FALSE);
-		GetDlgItem(IDC_ED_GRID_Y)->EnableWindow(FALSE);
-	}
+  if((static_cast<const CModelBase&>(Copy().Model())).BranchState().IsBranch())
+  {
+    GetDlgItem(IDC_ED_GRID_X)->EnableWindow(FALSE);
+    GetDlgItem(IDC_ED_GRID_Y)->EnableWindow(FALSE);
+  }
 
-	return FALSE;
+  return FALSE;
 }
 
 void CAttriHexaMainMeshRegionDlg::OnColor() 
 {
-	Copy().Color(SelectColor(Copy().Color()));
-	Invalidate();
+  Copy().Color(SelectColor(Copy().Color()));
+  Invalidate();
 }
 
 //##ModelId=3BE7AEC9019B
 void CAttriHexaMainMeshRegionDlg::OnPaint() 
 {
-	CPaintDC dc(this); // device context for painting
-	FillFrame(IDC_ST_COLOR, Copy().Color(), dc);
+  CPaintDC dc(this); // device context for painting
+  FillFrame(IDC_ST_COLOR, Copy().Color(), dc);
 }
 
 
@@ -131,91 +131,91 @@ void CAttriHexaMainMeshRegionDlg::OnPaint()
 /////////////////////////////////////////////////////////////////////////////
 
 CAttriHexaSubMeshRegionDlg::CAttriHexaSubMeshRegionDlg(CHexaSubMeshRegion& region, CWnd* pParent /*=NULL*/)
-	: CAttributesTemplate<CHexaSubMeshRegion>(CAttriHexaSubMeshRegionDlg::IDD, region, pParent)
+  : CAttributesTemplate<CHexaSubMeshRegion>(CAttriHexaSubMeshRegionDlg::IDD, region, pParent)
   , m_model(region.Model())
 {
-	//{{AFX_DATA_INIT(CAttriHexaSubMeshRegionDlg)
-	//}}AFX_DATA_INIT
+  //{{AFX_DATA_INIT(CAttriHexaSubMeshRegionDlg)
+  //}}AFX_DATA_INIT
 }
 
 void CAttriHexaSubMeshRegionDlg::DoDataExchange(CDataExchange* pDX)
 {
-	CAttributesTemplate<CHexaSubMeshRegion>::DoDataExchange(pDX);
+  CAttributesTemplate<CHexaSubMeshRegion>::DoDataExchange(pDX);
 
 //	int nGridX, nGridY;
-	CString	sName, sUnit;
-	CLengthQuantity l;
-	sUnit = CString(l.UnitName(UnitNode().Unit()).c_str());
+  CString	sName, sUnit;
+  CLengthQuantity l;
+  sUnit = CString(l.UnitName(UnitNode().Unit()).c_str());
 
-	DDX_Text(pDX, IDC_ST_UNIT_I, sUnit);
-	DDX_Text(pDX, IDC_ST_UNIT_II, sUnit);
+  DDX_Text(pDX, IDC_ST_UNIT_I, sUnit);
+  DDX_Text(pDX, IDC_ST_UNIT_II, sUnit);
 
-	//{{AFX_DATA_MAP(CAttriHexaSubMeshRegionDlg)
-	DDX_Control(pDX, IDC_CB_GRID_X, m_cbExpX);
-	DDX_Control(pDX, IDC_CB_GRID_Y, m_cbExpY);
-	//}}AFX_DATA_MAP
+  //{{AFX_DATA_MAP(CAttriHexaSubMeshRegionDlg)
+  DDX_Control(pDX, IDC_CB_GRID_X, m_cbExpX);
+  DDX_Control(pDX, IDC_CB_GRID_Y, m_cbExpY);
+  //}}AFX_DATA_MAP
   DDX_Control(pDX, IDC_LC_FORMATION, m_lcFormation);
 
-	
-	if(!pDX->m_bSaveAndValidate)
-	{
-		sName = Copy().Name().toStdString().c_str();
-		OnUpdateCombo();
-	}
+  
+  if(!pDX->m_bSaveAndValidate)
+  {
+    sName = Copy().Name().toStdString().c_str();
+    OnUpdateCombo();
+  }
 
-	DDX_Text(pDX, IDC_ED_NAME, sName);
+  DDX_Text(pDX, IDC_ED_NAME, sName);
 
-	// Save the values.
-	if(pDX->m_bSaveAndValidate)
-	{
-		Copy().Name((LPCSTR) sName);
-		if((m_cbExpX.GetCurSel() > - 1) && (m_cbExpY.GetCurSel() > -1))
-			Copy().SetSubGrid(m_cbExpX.GetCurSel(), m_cbExpY.GetCurSel());
-	}
+  // Save the values.
+  if(pDX->m_bSaveAndValidate)
+  {
+    Copy().Name((LPCSTR) sName);
+    if((m_cbExpX.GetCurSel() > - 1) && (m_cbExpY.GetCurSel() > -1))
+      Copy().SetSubGrid(m_cbExpX.GetCurSel(), m_cbExpY.GetCurSel());
+  }
 
 }
 
 void CAttriHexaSubMeshRegionDlg::OnUpdateCombo()
 {
-	// Clear combo's first
-	m_cbExpX.Clear();
-	m_cbExpY.Clear();
+  // Clear combo's first
+  m_cbExpX.Clear();
+  m_cbExpY.Clear();
 
-	// Put in new shit
-	for(int i = 0; i < 10; i++)
-	{
-		CLengthQuantity l;
-		// Fill the refinement factors
-		CString strX,strY;
-		strX.Format("%.2f", l.Convert(Copy().Main().GridSizeX() / pow((double)2,i), UnitNode().Unit(), CQuantity::SI_UNIT));
-		strY.Format("%.2f", l.Convert(Copy().Main().GridSizeY() / pow((double)2,i), UnitNode().Unit(), CQuantity::SI_UNIT));
-		m_cbExpX.AddString(strX);
-		m_cbExpY.AddString(strY);
+  // Put in new shit
+  for(int i = 0; i < 10; i++)
+  {
+    CLengthQuantity l;
+    // Fill the refinement factors
+    CString strX,strY;
+    strX.Format("%.2f", l.Convert(Copy().Main().GridSizeX() / pow((double)2,i), UnitNode().Unit(), CQuantity::SI_UNIT));
+    strY.Format("%.2f", l.Convert(Copy().Main().GridSizeY() / pow((double)2,i), UnitNode().Unit(), CQuantity::SI_UNIT));
+    m_cbExpX.AddString(strX);
+    m_cbExpY.AddString(strY);
 
-	}
+  }
 
-	// set it to the first refinement.
-	if(Copy().ExpX() == -1)
-	{
-		assert(Copy().ExpY() == -1);
-		m_cbExpX.SetCurSel(1);
-		m_cbExpY.SetCurSel(1);
-	}
-	else
-	{
-		assert(Copy().ExpX() >= 0 && Copy().ExpX() < 10);
-		assert(Copy().ExpY() >= 0 && Copy().ExpY() < 10);
-		m_cbExpX.SetCurSel(Copy().ExpX());
-		m_cbExpY.SetCurSel(Copy().ExpY());
-	}
+  // set it to the first refinement.
+  if(Copy().ExpX() == -1)
+  {
+    assert(Copy().ExpY() == -1);
+    m_cbExpX.SetCurSel(1);
+    m_cbExpY.SetCurSel(1);
+  }
+  else
+  {
+    assert(Copy().ExpX() >= 0 && Copy().ExpX() < 10);
+    assert(Copy().ExpY() >= 0 && Copy().ExpY() < 10);
+    m_cbExpX.SetCurSel(Copy().ExpX());
+    m_cbExpY.SetCurSel(Copy().ExpY());
+  }
 
 }
 
 BEGIN_MESSAGE_MAP(CAttriHexaSubMeshRegionDlg, CAttributesTemplate<CHexaSubMeshRegion>)
-	//{{AFX_MSG_MAP(CAttriHexaSubMeshRegionDlg)
-	ON_BN_CLICKED(IDC_ST_COLOR, OnColor)
-	ON_WM_PAINT()
-	//}}AFX_MSG_MAP
+  //{{AFX_MSG_MAP(CAttriHexaSubMeshRegionDlg)
+  ON_BN_CLICKED(IDC_ST_COLOR, OnColor)
+  ON_WM_PAINT()
+  //}}AFX_MSG_MAP
   ON_NOTIFY(LVN_ITEMCHANGED, IDC_LC_FORMATION, &CAttriHexaSubMeshRegionDlg::OnLvnItemchangedLcFormation)
 END_MESSAGE_MAP()
 
@@ -224,13 +224,13 @@ END_MESSAGE_MAP()
 
 BOOL CAttriHexaSubMeshRegionDlg::OnInitDialog()
 {
-	CAttributesTemplate<CHexaSubMeshRegion>::OnInitDialog();
+  CAttributesTemplate<CHexaSubMeshRegion>::OnInitDialog();
 
-	if((static_cast<const CModelBase&>(Copy().Model())).BranchState().IsBranch())
-	{
-		GetDlgItem(IDC_CB_GRID_X)->EnableWindow(FALSE);
-		GetDlgItem(IDC_CB_GRID_Y)->EnableWindow(FALSE);
-	}
+  if((static_cast<const CModelBase&>(Copy().Model())).BranchState().IsBranch())
+  {
+    GetDlgItem(IDC_CB_GRID_X)->EnableWindow(FALSE);
+    GetDlgItem(IDC_CB_GRID_Y)->EnableWindow(FALSE);
+  }
 
   CRect rect;
   m_lcFormation.GetWindowRect(&rect);
@@ -244,35 +244,35 @@ BOOL CAttriHexaSubMeshRegionDlg::OnInitDialog()
   CHexaFormationEntry::TNodeSet::iterator it;
   if (!stFormation.empty())
   {
-    CHexaFormation *pForm = *stFormation.begin();
-    while (pForm->UpperFormation()) pForm = const_cast<CHexaFormation*>(pForm->UpperFormation());
-    assert(pForm);
-    while (pForm)
-    {
+  CHexaFormation *pForm = *stFormation.begin();
+  while (pForm->UpperFormation()) pForm = const_cast<CHexaFormation*>(pForm->UpperFormation());
+  assert(pForm);
+  while (pForm)
+  {
       vcSortedFormations.push_back(pForm);
       pForm = const_cast<CHexaFormation*>(pForm->LowerFormation());
-    }
-
-    for (size_t i = 0; i < vcSortedFormations.size(); i++)
-    {
-      new CFormationListObject(m_lcFormation, *vcSortedFormations[i], Copy().Formation(*vcSortedFormations[i]));
-    }
   }
 
-	return TRUE;
+  for (size_t i = 0; i < vcSortedFormations.size(); i++)
+  {
+      new CFormationListObject(m_lcFormation, *vcSortedFormations[i], Copy().Formation(*vcSortedFormations[i]));
+  }
+  }
+
+  return TRUE;
 }
 
 void CAttriHexaSubMeshRegionDlg::OnColor() 
 {
-	Copy().Color(SelectColor(Copy().Color()));
-	Invalidate();
+  Copy().Color(SelectColor(Copy().Color()));
+  Invalidate();
 }
 
 //##ModelId=3BE7AEC9019B
 void CAttriHexaSubMeshRegionDlg::OnPaint() 
 {
-	CPaintDC dc(this); // device context for painting
-	FillFrame(IDC_ST_COLOR, Copy().Color(), dc);
+  CPaintDC dc(this); // device context for painting
+  FillFrame(IDC_ST_COLOR, Copy().Color(), dc);
 }
 
 
@@ -283,23 +283,23 @@ void CAttriHexaSubMeshRegionDlg::OnOK()
 
   for (int i = 0; i < m_lcFormation.GetItemCount(); i++)
   {
-    CFormationListObject *pObject = (CFormationListObject*)(m_lcFormation.GetItemData(i));
-    assert(pObject);
-    CMeshDepthObject* pSubObject = (CMeshDepthObject*)(pObject->SubObject(1));
-    //if (pObject->Modified())
+  CFormationListObject *pObject = (CFormationListObject*)(m_lcFormation.GetItemData(i));
+  assert(pObject);
+  CMeshDepthObject* pSubObject = (CMeshDepthObject*)(pObject->SubObject(1));
+  //if (pObject->Modified())
       //bModified = TRUE;
 
-    //pObject->Apply();
+  //pObject->Apply();
 
-    if (Copy().Formation(pObject->Formation()) != pSubObject->Elements())
-    {
+  if (Copy().Formation(pObject->Formation()) != pSubObject->Elements())
+  {
       Copy().Formation(pObject->Formation(), pSubObject->Elements());
       bModified = TRUE;
-    }
+  }
   }
 
   if (bModified)
-    ((CHexaModel&)m_model).InvalidateMesh();
+  ((CHexaModel&)m_model).InvalidateMesh();
 
   CAttributesTemplate<CHexaSubMeshRegion>::OnOK();
 }
@@ -388,14 +388,14 @@ BOOL CAttriHexaSubMeshRegionDlg::CMeshDepthObject::EditText(const QString& strTe
 {
   if (!IsInteger(strText.toStdString().c_str()))
   {
-    _m()->msg("Mesh Depth is not an integer");
-    return FALSE;
+  _m()->msg("Mesh Depth is not an integer");
+  return FALSE;
   }
 
   if (0 > atoi(strText.toStdString().c_str()))
   {
-    _m()->msg("Mesh depth > 0");
-    return FALSE;
+  _m()->msg("Mesh depth > 0");
+  return FALSE;
   }
 
   m_nElement = atoi(strText.toStdString().c_str());
@@ -409,7 +409,7 @@ BOOL CAttriHexaSubMeshRegionDlg::CMeshDepthObject::IsInteger(const CString& sStr
   // Integer
   for (int i = 0; i < sString.GetLength(); i++)
   {
-    if (!isdigit(sString[i])) return FALSE;
+  if (!isdigit(sString[i])) return FALSE;
   }
 
   return TRUE;

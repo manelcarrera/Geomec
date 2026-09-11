@@ -14,22 +14,22 @@
 class CTetraSurface : public CSurfaceBase
 {
 public:
-	typedef CSingleCommandTemplate<CTetraSurface> TTetraSurfaceCommand;
+  typedef CSingleCommandTemplate<CTetraSurface> TTetraSurfaceCommand;
 protected:
-	virtual CSurfaceBase* OnCreateSurface(const QString& sName, const geo::CPtrArray<geo::IPoint>& vcPoint);
-	CSurfaceBase* OnCreateSurface(const QString& sName,const std::vector<const geo::IFace*>& vcFaces);
+  virtual CSurfaceBase* OnCreateSurface(const QString& sName, const geo::CPtrArray<geo::IPoint>& vcPoint);
+  CSurfaceBase* OnCreateSurface(const QString& sName,const std::vector<const geo::IFace*>& vcFaces);
 public:
-	CTetraSurface(CFemAppModel& model);
-	CTetraSurface(CSurfaceValueType &value_type);
-	CTetraSurface(const QString &strName, const geo::ISurface& surface, CFemAppModel& model);
-	CTetraSurface(const QString &strName, const std::vector<const geo::IFace*> &vcFace, CFemAppModel& model);
-	CTetraSurface(const QString &strName, const geo::CPtrArray<geo::IPoint> &vcPoint, CFemAppModel& model);
-	
-	void CreateSubHorizon();
-	void CreateSideSurface();
-	void CreateSuperHorizon();
-	void CreateSubFault();
-	virtual const CGraphNode* Used() const;
+  CTetraSurface(CFemAppModel& model);
+  CTetraSurface(CSurfaceValueType &value_type);
+  CTetraSurface(const QString &strName, const geo::ISurface& surface, CFemAppModel& model);
+  CTetraSurface(const QString &strName, const std::vector<const geo::IFace*> &vcFace, CFemAppModel& model);
+  CTetraSurface(const QString &strName, const geo::CPtrArray<geo::IPoint> &vcPoint, CFemAppModel& model);
+  
+  void CreateSubHorizon();
+  void CreateSideSurface();
+  void CreateSuperHorizon();
+  void CreateSubFault();
+  virtual const CGraphNode* Used() const;
 
   ACCEPT_GEOMECMODELVISITORS(VisitTetraSurface);
 

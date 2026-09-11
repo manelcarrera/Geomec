@@ -9,7 +9,7 @@ public:
   class CNoExcelException
   {
   public:
-    CNoExcelException() {}
+  CNoExcelException() {}
   };
 
   CExcelAppGuard();

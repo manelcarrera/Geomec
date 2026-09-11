@@ -21,7 +21,7 @@
 
 
 #define HEAP_INSERT_TRIANGLE(h, t) (GTS_OBJECT (t)->reserved =\
-                                    gts_eheap_insert (h, t))
+                  gts_eheap_insert (h, t))
 
 static gdouble triangle_neighbors (GtsTriangle * t, GtsSurface * s)
 {
@@ -42,19 +42,19 @@ static GSList * triangle_neighbors_data (GtsTriangle * t)
 
   ee[0] = t->e1; ee[1] = t->e2; ee[2] = t->e3; ee[3] = NULL;
   while (*e1) {
-    i = (*e1++)->triangles;
-    while (i) {
+  i = (*e1++)->triangles;
+  while (i) {
       GtsTriangle * t1 = i->data;
       if (t1 != t && GTS_OBJECT (t1)->reserved)
-	list = g_slist_prepend (list, t1);
+  list = g_slist_prepend (list, t1);
       i = i->next;
-    }
+  }
   }
   return list;  
 }
 
 static GtsTriangle * most_isolated_neighbor (GtsTriangle * t,
-					     GtsEHeap * heap)
+               GtsEHeap * heap)
 {
   GSList * neighbors = triangle_neighbors_data (t);
   GSList * same_key = NULL; /* neighbors of t with the same key */
@@ -64,30 +64,30 @@ static GtsTriangle * most_isolated_neighbor (GtsTriangle * t,
   
   i = neighbors;
   while (i) {
-    GtsTriangle * t1 = i->data;
-    GtsEHeapPair * p = GTS_OBJECT (t1)->reserved;
-    gdouble key = p->key;
-    /* find keymin */
-    if (key < keymin) {
+  GtsTriangle * t1 = i->data;
+  GtsEHeapPair * p = GTS_OBJECT (t1)->reserved;
+  gdouble key = p->key;
+  /* find keymin */
+  if (key < keymin) {
       keymin = key;
       g_slist_free (same_key);
       same_key = g_slist_prepend (NULL, t1);
-    }
-    else if (key == keymin)
+  }
+  else if (key == keymin)
       same_key = g_slist_prepend (same_key, t1);
-    /* decrease key */
-    g_assert (key > 0.);
-    gts_eheap_decrease_key (heap, p, key - 1.);
-    i = i->next;
+  /* decrease key */
+  g_assert (key > 0.);
+  gts_eheap_decrease_key (heap, p, key - 1.);
+  i = i->next;
   }
   g_slist_free (neighbors);
   
   if (same_key == NULL) /* no neighbors */
-    return NULL;
+  return NULL;
   if (same_key->next == NULL) { /* only one neighbor with minimum key */
-    tmost = same_key->data;
-    g_slist_free (same_key);
-    return tmost;
+  tmost = same_key->data;
+  g_slist_free (same_key);
+  return tmost;
   }
 
   /* several neighbors have the same minimum key */
@@ -95,20 +95,20 @@ static GtsTriangle * most_isolated_neighbor (GtsTriangle * t,
   keymin = G_MAXDOUBLE;
   i = same_key;
   while (i) {
-    GtsTriangle * t1 = i->data;
-    GSList * j;
-    j = neighbors = triangle_neighbors_data (t1);
-    while (j) {
+  GtsTriangle * t1 = i->data;
+  GSList * j;
+  j = neighbors = triangle_neighbors_data (t1);
+  while (j) {
       GtsTriangle * t2 = j->data;
       gdouble key = ((GtsEHeapPair *) GTS_OBJECT (t2)->reserved)->key;
       if (key < keymin) {
-	keymin = key;
-	tmost = t1;
+  keymin = key;
+  tmost = t1;
       }
       j = j->next;
-    }
-    g_slist_free (neighbors);
-    i = i->next;
+  }
+  g_slist_free (neighbors);
+  i = i->next;
   }
   g_slist_free (same_key);
   
@@ -139,29 +139,29 @@ GSList * gts_surface_strip (GtsSurface * s)
   gts_eheap_thaw (heap);
 
   while ((t = gts_eheap_remove_top (heap, NULL))) {
-    GSList * newstrip;
-    GtsTriangle * tstart, * tmost;
-    GTS_OBJECT (t)->reserved = NULL;
-    /* start new strip from t */
-    newstrip = g_slist_prepend (NULL, t);
-    tstart = t;
-    while ((tmost = most_isolated_neighbor (tstart, heap))) {
+  GSList * newstrip;
+  GtsTriangle * tstart, * tmost;
+  GTS_OBJECT (t)->reserved = NULL;
+  /* start new strip from t */
+  newstrip = g_slist_prepend (NULL, t);
+  tstart = t;
+  while ((tmost = most_isolated_neighbor (tstart, heap))) {
       newstrip = g_slist_prepend (newstrip, tmost);
       gts_eheap_remove (heap, GTS_OBJECT (tmost)->reserved);
       GTS_OBJECT (tmost)->reserved = NULL;
       tstart = tmost;
-    }
-    /* restart new strip from t (i.e. both ends) */
-    newstrip = g_slist_reverse (newstrip);
-    tstart = t;
-    while ((tmost = most_isolated_neighbor (tstart, heap))) {
-      newstrip = g_slist_prepend (newstrip, tmost);
-      gts_eheap_remove (heap, GTS_OBJECT (tmost)->reserved);
-      GTS_OBJECT (tmost)->reserved = NULL;
-      tstart = tmost;
-    }
-    strips = g_slist_prepend (strips, newstrip);
   }
-    
+  /* restart new strip from t (i.e. both ends) */
+  newstrip = g_slist_reverse (newstrip);
+  tstart = t;
+  while ((tmost = most_isolated_neighbor (tstart, heap))) {
+      newstrip = g_slist_prepend (newstrip, tmost);
+      gts_eheap_remove (heap, GTS_OBJECT (tmost)->reserved);
+      GTS_OBJECT (tmost)->reserved = NULL;
+      tstart = tmost;
+  }
+  strips = g_slist_prepend (strips, newstrip);
+  }
+  
   return strips;
 }

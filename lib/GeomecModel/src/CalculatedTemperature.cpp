@@ -19,9 +19,9 @@ CCalculatedTemperature::CCalculatedTemperature(CFormationBase& formation, CDeple
 
   IWellModel* pWellModel = dynamic_cast<IWellModel*>(&formation.Model());
   if(pWellModel)
-    new CCalculatedTemperatureComponent(*this, pWellModel->RootModel());
+  new CCalculatedTemperatureComponent(*this, pWellModel->RootModel());
   else
-    new CCalculatedTemperatureComponent(*this);
+  new CCalculatedTemperatureComponent(*this);
 }
 
 const CDepletionStage& CCalculatedTemperature::DepletionStage() const
@@ -58,7 +58,7 @@ bool CCalculatedTemperature::Less(const CGraphNode& rhs) const
 {
   const CCalculatedTemperature* pRhs = dynamic_cast<const CCalculatedTemperature*>(&rhs);
   if(pRhs)
-    return m_stage.isBefore(pRhs->m_stage);
+  return m_stage.isBefore(pRhs->m_stage);
 
   return IValueComposite::Less(rhs);
 }
@@ -81,15 +81,15 @@ void CCalculatedTemperature::OnNeighbourDeleted(const CGraphNode& node)
   bool bDelete = false;
 
   if(&node == &m_formation)
-    bDelete = true;
+  bDelete = true;
 
   if(&node == &m_stage)
-    bDelete = true;
+  bDelete = true;
 
   IValueComposite::OnNeighbourDeleted(node);
 
   if(bDelete)
-    delete this;
+  delete this;
 }
 
 ///// CCalculatedTemperatureComponent
@@ -134,7 +134,7 @@ QString CCalculatedTemperature::CCalculatedTemperatureComponent::ExportLabel() c
 
 QString CCalculatedTemperature::CCalculatedTemperatureComponent::UnitName(const UNIT /*unit*/) const
 {
-	return getStringTableEntry(IDS_UNIT_TEMPERATURE);
+  return getStringTableEntry(IDS_UNIT_TEMPERATURE);
 }
 
 bool CCalculatedTemperature::CCalculatedTemperatureComponent::Defined() const
@@ -189,7 +189,7 @@ long CCalculatedTemperature::CCalculatedTemperatureComponent::SavedItems() const
 void CCalculatedTemperature::CCalculatedTemperatureComponent::OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint)
 {
   if(dynamic_cast<const CResultRegister*>(&node))
-    Modified(uHint);
+  Modified(uHint);
 }
 
 const IResultComponent& CCalculatedTemperature::CCalculatedTemperatureComponent::ResultComponent() const

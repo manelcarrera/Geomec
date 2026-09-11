@@ -11,20 +11,20 @@ namespace cora
 class CUtilities4ValueVector
 {
   public:
-    static bool isValueVectorValid(
+  static bool isValueVectorValid(
       const IValueDomainScalar::TValueVec& valueVector);
-    static double calculateAverage(
+  static double calculateAverage(
       const IValueDomainScalar::TValueVec& valueVector);
 
-    template <typename T>
+  template <typename T>
       static double calculateAverage(const std::vector <T>& values);
 
-    static void verifyValueVector(const QString& prefix,
+  static void verifyValueVector(const QString& prefix,
       const IValueDomainScalar::TValueVec& valueVector);
 
   private:
-    CUtilities4ValueVector(const CUtilities4ValueVector& rhs);
-    CUtilities4ValueVector& operator = (const CUtilities4ValueVector& rhs);
+  CUtilities4ValueVector(const CUtilities4ValueVector& rhs);
+  CUtilities4ValueVector& operator = (const CUtilities4ValueVector& rhs);
 };
 
 template <typename T>

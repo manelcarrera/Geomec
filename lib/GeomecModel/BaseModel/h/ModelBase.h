@@ -45,8 +45,8 @@ class CGeneralDataBlock;
 #define PRIMARY_RESULT 0
 
 namespace gm {
-	class CModel;
-	class CFormation;
+  class CModel;
+  class CFormation;
 }
 
 #include "FemAppModel.h"
@@ -75,105 +75,105 @@ class IAnalysisStatusContainer;
 
 class CModelBase : public CFemAppModel 
 {
-	friend class CGm3HexaModel;
+  friend class CGm3HexaModel;
 public:
   typedef enum _FaultInit
   {
-    FI_FULLSLIP = 0,
-    FI_MOD_COHESION,
-    FI_MOD_FLUIDPRESSURE
+  FI_FULLSLIP = 0,
+  FI_MOD_COHESION,
+  FI_MOD_FLUIDPRESSURE
   } TFaultInit;
 
   typedef enum
   {
-    PRD_EQUAL = 0,
-    PRD_LINEAR,
-    PRD_NONLIN
+  PRD_EQUAL = 0,
+  PRD_LINEAR,
+  PRD_NONLIN
   } TParentResultsDef;
 
   class IModelLoadSave
   {
-    QString m_appVersion;
+  QString m_appVersion;
   public:
-    virtual ~IModelLoadSave() {}
-    virtual bool LoadModel(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& prog, CModelBase& model) = 0;
-	  virtual bool SaveModel(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS& prog, CModelBase& model) = 0;
-	  virtual long SavedItems(CModelBase& model) const = 0;
+  virtual ~IModelLoadSave() {}
+  virtual bool LoadModel(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& prog, CModelBase& model) = 0;
+    virtual bool SaveModel(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS& prog, CModelBase& model) = 0;
+    virtual long SavedItems(CModelBase& model) const = 0;
 
-    virtual void SetVersionManager(CVersionManager& /*versionManager*/) {}
-    virtual QString GetAppVersion() const { return m_appVersion; }
-    virtual void SetAppVersion(const QString& appVersion) { m_appVersion = appVersion; }
+  virtual void SetVersionManager(CVersionManager& /*versionManager*/) {}
+  virtual QString GetAppVersion() const { return m_appVersion; }
+  virtual void SetAppVersion(const QString& appVersion) { m_appVersion = appVersion; }
 
-    virtual bool SupportGMP() const { return false; }
-    virtual CArchiveInterface *createCArchive(const QString& /* filename */) const { return 0; }
+  virtual bool SupportGMP() const { return false; }
+  virtual CArchiveInterface *createCArchive(const QString& /* filename */) const { return 0; }
   };
 
   class CModelLoadSaveDefault : public IModelLoadSave
   {
-    CVersionManager   *m_pVersionManager;
-    CModelBase        *m_pParentModel;
-    IModelDiagnostics *m_pModelDiagnostics;
+  CVersionManager   *m_pVersionManager;
+  CModelBase        *m_pParentModel;
+  IModelDiagnostics *m_pModelDiagnostics;
   public:
-    CModelLoadSaveDefault(CModelBase *pParentModel = 0, IModelDiagnostics *pModelDiagnostics = 0);
-    CModelLoadSaveDefault(const QString& appVersion, CModelBase *pParentModel = 0, IModelDiagnostics *pModelDiagnostics = 0);
+  CModelLoadSaveDefault(CModelBase *pParentModel = 0, IModelDiagnostics *pModelDiagnostics = 0);
+  CModelLoadSaveDefault(const QString& appVersion, CModelBase *pParentModel = 0, IModelDiagnostics *pModelDiagnostics = 0);
 
-    virtual ~CModelLoadSaveDefault();
-    virtual bool LoadModel(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& prog, CModelBase& model);
-	  virtual bool SaveModel(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS& prog, CModelBase& model);
-	  virtual long SavedItems(CModelBase& model) const;
+  virtual ~CModelLoadSaveDefault();
+  virtual bool LoadModel(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& prog, CModelBase& model);
+    virtual bool SaveModel(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS& prog, CModelBase& model);
+    virtual long SavedItems(CModelBase& model) const;
 
-    virtual void SetVersionManager(CVersionManager& versionManager);
+  virtual void SetVersionManager(CVersionManager& versionManager);
   };
 
 private:
   class CGravityNotifier : public CGraphNode
   {
   public:
-    CGravityNotifier()
-    : CGraphNode("")
-    {
-    }
+  CGravityNotifier()
+  : CGraphNode("")
+  {
+  }
 
-    virtual unsigned int IconId() const { return 0; }
-    virtual unsigned int TypeId() const { return 0; }
+  virtual unsigned int IconId() const { return 0; }
+  virtual unsigned int TypeId() const { return 0; }
   };
 
 protected:
-	IMesherDlg* m_mesher_dlg;
+  IMesherDlg* m_mesher_dlg;
 public:
-	void mesher_dlg( IMesherDlg* val ){ m_mesher_dlg = val; };
-	IMesherDlg* mesher_dlg(){ return m_mesher_dlg; };
+  void mesher_dlg( IMesherDlg* val ){ m_mesher_dlg = val; };
+  IMesherDlg* mesher_dlg(){ return m_mesher_dlg; };
 
 private:
-	CDepletionStageEntry* m_pDepletionStageEntry;
+  CDepletionStageEntry* m_pDepletionStageEntry;
   CMaterialResultTree* m_pMatResultTree;
-	CResultTree* m_pResultTree;
-	CMeshResultTree* m_pMeshResultTree;
+  CResultTree* m_pResultTree;
+  CMeshResultTree* m_pMeshResultTree;
   CGVTResultTree* m_pGVTResultTree;
-	CGlobalPressure* m_pPressure;
-	CGlobalInitialStressNode* m_pGlobalStressNode;
-	CGlobalTemperature *m_pGlobalTemperature;
-	QString m_strProjectInfo;
-	CAcceleration m_gravity;
+  CGlobalPressure* m_pPressure;
+  CGlobalInitialStressNode* m_pGlobalStressNode;
+  CGlobalTemperature *m_pGlobalTemperature;
+  QString m_strProjectInfo;
+  CAcceleration m_gravity;
   CGravityNotifier m_GravityNotifier; // sends a modified signal when the m_gravity values changes
-	CBranchState* m_pBranchState;
+  CBranchState* m_pBranchState;
 //	bool m_bTimeAnalysis;
-	bool m_bNoCSHE; // true when we don't want to use the enhanced assumed strain method for calculation
+  bool m_bNoCSHE; // true when we don't want to use the enhanced assumed strain method for calculation
   CElementOrder m_nElementOrder;
   TFaultInit m_nFaultInit;
-	bool m_bLargeDeform;
-	bool m_bLoading;
-	bool m_bInvalidateResultsAfterLoad;
+  bool m_bLargeDeform;
+  bool m_bLoading;
+  bool m_bInvalidateResultsAfterLoad;
   bool m_bAllowLinearCalc;
 
-	//bool m_bLinstaSolveDirect;
-	//bool m_bNonlinSolveDirect;
-	bool m_bSaltStressInitRelax;
+  //bool m_bLinstaSolveDirect;
+  //bool m_bNonlinSolveDirect;
+  bool m_bSaltStressInitRelax;
 
-	int m_nIniStressMaxIterations;
-	double m_dIniStressConvCriterion;
-	bool m_bLinstaOnlyInitialStress;
-	bool m_bPressureSupportNodeLoadWarningDone;
+  int m_nIniStressMaxIterations;
+  double m_dIniStressConvCriterion;
+  bool m_bLinstaOnlyInitialStress;
+  bool m_bPressureSupportNodeLoadWarningDone;
   bool m_bAverageResults;
 
   CGVTSettings *m_pGVTSettings;
@@ -223,13 +223,13 @@ private:
 protected:
   bool HeatFlowCalculationCriteriaMet() const;
 
-	// Save function (STREAM)
-	long SavedItemsPointSets() const;
-	void SavePointSets(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS& progress) const;
+  // Save function (STREAM)
+  long SavedItemsPointSets() const;
+  void SavePointSets(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS& progress) const;
 
-	// Load functions (STREAM)
-	void LoadPointSets(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS& progress);
-	void EnablePointSets();
+  // Load functions (STREAM)
+  void LoadPointSets(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS& progress);
+  void EnablePointSets();
 
   long SavedItemsSurfaces() const;
   void SaveSurfaces(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS& progress);
@@ -239,22 +239,22 @@ protected:
   void SaveRockMaterials(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS& progress);
   void LoadRockMaterials(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& progress);
 
-	// Generic copy functions
-	void CopyDepletionStages(const CDepletionStageEntry& source, CDepletionStageEntry& target, CStorageNode::TPROGRESS& progress);
-	void CopyHomogenizationBox(const CHomogenizationBox &source,CHomogenizationBox &target);
-	void CopyMaterial(const CModelBase& source, CStorageNode::TPROGRESS& progress);
-	void CopyFormation(const CFormationBase& source, CFormationBase& target);
-	void CopyFormationElementSet(const IFormationElementSet& source, IFormationElementSet& target);
-	void CopyHorizon(const CHorizonBase& source, CHorizonBase& target);
-	void CopyInitialStressAndPressure(const CModelBase& source);
-	void CopyTemperature(const CModelBase& source);
-	bool m_bIsMeshed;
+  // Generic copy functions
+  void CopyDepletionStages(const CDepletionStageEntry& source, CDepletionStageEntry& target, CStorageNode::TPROGRESS& progress);
+  void CopyHomogenizationBox(const CHomogenizationBox &source,CHomogenizationBox &target);
+  void CopyMaterial(const CModelBase& source, CStorageNode::TPROGRESS& progress);
+  void CopyFormation(const CFormationBase& source, CFormationBase& target);
+  void CopyFormationElementSet(const IFormationElementSet& source, IFormationElementSet& target);
+  void CopyHorizon(const CHorizonBase& source, CHorizonBase& target);
+  void CopyInitialStressAndPressure(const CModelBase& source);
+  void CopyTemperature(const CModelBase& source);
+  bool m_bIsMeshed;
   virtual CDepletionStage::eIterationScheme DefaultIterationScheme(const CDepletionStage& source_stage) const;
   void LoadZoominProperties(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& progress);
-	virtual bool DeleteEntry(const int nEntryType);
+  virtual bool DeleteEntry(const int nEntryType);
 
 public:
-	bool m_show_cm2_dlg;
+  bool m_show_cm2_dlg;
 
 private:
   void FindParentFormations();
@@ -265,20 +265,20 @@ public:
 
   CConsistencyGuard *GetConsistencyGuard();
 
-	void LoadMaterial(const QString &sPath, IProgressBase &progress);
+  void LoadMaterial(const QString &sPath, IProgressBase &progress);
 
 protected:
-	virtual void CreateDensityPoints(const geo::IElement &element, CPointSet &pointset) = 0;
+  virtual void CreateDensityPoints(const geo::IElement &element, CPointSet &pointset) = 0;
 
 public:
-	void DoDensityCorrection();
+  void DoDensityCorrection();
 
 protected:
-	CBoundaryBase* m_pBoundary;
+  CBoundaryBase* m_pBoundary;
 
-	// create model-specific DIANA runner object
-	// the method will allocated the pointer, ownership is transferred to the calling routine
-	virtual CGeomecDianaRunnerBase* OnCreateDianaRunner(CDianaRunController& controller) = 0;
+  // create model-specific DIANA runner object
+  // the method will allocated the pointer, ownership is transferred to the calling routine
+  virtual CGeomecDianaRunnerBase* OnCreateDianaRunner(CDianaRunController& controller) = 0;
 
   virtual bool IsHexaModel() const { return false; }
   virtual bool OnModelSpecificAnalysisCheck(const CAnalysisType& antype, bool bWriteInputFiles, bool bWriteQuadDat);
@@ -287,37 +287,37 @@ public:
   virtual bool IsCylindricalModel() const { return false; }
   
   // The filos relationship between nodes and elements
-	typedef std::vector<int> TNodeVec;
-	typedef std::pair<const geo::IElement*, TNodeVec> TFilosElement;
-	typedef std::map<unsigned int, TFilosElement> TFilosElementMap;
+  typedef std::vector<int> TNodeVec;
+  typedef std::pair<const geo::IElement*, TNodeVec> TFilosElement;
+  typedef std::map<unsigned int, TFilosElement> TFilosElementMap;
 
-	// returns the depth component of the given coordinate
-	virtual const double &Depth(const geo::ICoordinate &coord) const = 0;
-	virtual double Northing(const geo::ICoordinate& coord) const = 0;
-	virtual double Easting(const geo::ICoordinate& coord) const = 0;
+  // returns the depth component of the given coordinate
+  virtual const double &Depth(const geo::ICoordinate &coord) const = 0;
+  virtual double Northing(const geo::ICoordinate& coord) const = 0;
+  virtual double Easting(const geo::ICoordinate& coord) const = 0;
 
-	bool WriteFilosModel(const QString& getPathName,
-						 IDianaXWrapper* dianaXWrapper,
-						 const std::string &title, 
-						 const CAnalysisType& antype, 
-						 bool bWriteInputFiles, 
-						 bool bWriteQuadDat,
-						 ISaveModel& saveModel,
-						 IRetrieveDianaFileNames& retrieveDianaFileNames,
+  bool WriteFilosModel(const QString& getPathName,
+             IDianaXWrapper* dianaXWrapper,
+             const std::string &title, 
+             const CAnalysisType& antype, 
+             bool bWriteInputFiles, 
+             bool bWriteQuadDat,
+             ISaveModel& saveModel,
+             IRetrieveDianaFileNames& retrieveDianaFileNames,
              dia::IAnalysisStatusContainer *pAnalysisStatusContainer = 0);
 
   bool CheckForAnalysis(const CAnalysisType& antype,
-								        bool bWriteInputFiles,
-						            bool bWriteQuadDat);
+                    bool bWriteInputFiles,
+                  bool bWriteQuadDat);
 
 //	bool TimeAnalysis() const;
 //	void TimeAnalysis(bool bTimeAnalysis);
-	bool NoCSHE() const {return m_bNoCSHE;} 
-	void NoCSHE(bool bNoCSHE);
-	bool LargeDeformations() const;
-	void LargeDeformations(bool bLargeDeform, bool bUpdateResults = true);
-	bool AllowLinearCalc() const;
-	void AllowLinearCalc(bool bAllowLinearCalc);
+  bool NoCSHE() const {return m_bNoCSHE;} 
+  void NoCSHE(bool bNoCSHE);
+  bool LargeDeformations() const;
+  void LargeDeformations(bool bLargeDeform, bool bUpdateResults = true);
+  bool AllowLinearCalc() const;
+  void AllowLinearCalc(bool bAllowLinearCalc);
 
   bool UseParallelSolver() const;
   void UseParallelSolver(bool bOn);
@@ -337,51 +337,51 @@ public:
   void FaultInit(TFaultInit nFaultInit);
 //	virtual bool ValidateForAnalysis() const = 0;
 
-	virtual bool SaltInitRelax() const { return m_bSaltStressInitRelax; }
-	void SaltInitRelax(bool bRelax) { m_bSaltStressInitRelax = bRelax; }
+  virtual bool SaltInitRelax() const { return m_bSaltStressInitRelax; }
+  void SaltInitRelax(bool bRelax) { m_bSaltStressInitRelax = bRelax; }
   virtual bool CanDisableSaltInitRelax() const { return true; }
 
   virtual bool CanUseCalculatedTemperatures() const;
 
-	const CGlobalInitialStressNode& GlobalInitialStress() const;
-	CGlobalInitialStressNode& GlobalInitialStress();
-	const CGlobalPressure& GlobalPressure() const;
-	CGlobalPressure& GlobalPressure();
-	const CGlobalTemperature &InitialTemperature() const;
-	CGlobalTemperature &InitialTemperature();
-	// Gradients ...
-	//##ModelId=3BC55D6102A5
-	void ProjectInfo(const QString & strProjectInfo);
-	//##ModelId=3BC55D6102A7
-	const QString& ProjectInfo() const;
-	//##ModelId=3BC55D6102A9
+  const CGlobalInitialStressNode& GlobalInitialStress() const;
+  CGlobalInitialStressNode& GlobalInitialStress();
+  const CGlobalPressure& GlobalPressure() const;
+  CGlobalPressure& GlobalPressure();
+  const CGlobalTemperature &InitialTemperature() const;
+  CGlobalTemperature &InitialTemperature();
+  // Gradients ...
+  //##ModelId=3BC55D6102A5
+  void ProjectInfo(const QString & strProjectInfo);
+  //##ModelId=3BC55D6102A7
+  const QString& ProjectInfo() const;
+  //##ModelId=3BC55D6102A9
 protected:
-	CModelBase(CAnalysisLogger& logger, const CVersionManager& versionManager);
+  CModelBase(CAnalysisLogger& logger, const CVersionManager& versionManager);
 public:
 
-	virtual CStreamVersion documentVersion() const;
-	virtual CStreamVersion currentVersion() const;
+  virtual CStreamVersion documentVersion() const;
+  virtual CStreamVersion currentVersion() const;
 
   bool LoadPre(CStorageNode::TSTREAM &stream, CStorageNode::TSTREAM** ppcstream, CStreamVersion &version, CStorageNode::TPROGRESS &prog, bool bLoadHeader);
-	bool Load(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &prog, bool bLoadHeader);
+  bool Load(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &prog, bool bLoadHeader);
   bool LoadPost(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &prog);
-	int LoadSceneMarker(CStorageNode::TSTREAM& stream, CStreamVersion& version);
-	bool Save(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &prog, bool bSaveHeader);
-	void SaveFileHeader(CStorageNode::TSTREAM &stream,
-		const QString& currentAppVersion);
-	void SaveSceneMarker(CStorageNode::TSTREAM& stream, bool marker);
+  int LoadSceneMarker(CStorageNode::TSTREAM& stream, CStreamVersion& version);
+  bool Save(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &prog, bool bSaveHeader);
+  void SaveFileHeader(CStorageNode::TSTREAM &stream,
+    const QString& currentAppVersion);
+  void SaveSceneMarker(CStorageNode::TSTREAM& stream, bool marker);
 
-	virtual bool OnLoad(CStorageNode::TSTREAM &/*stream*/, CStreamVersion &/*version*/, CStorageNode::TPROGRESS& /*prog*/){ return true;}
-	virtual bool OnSave(CStorageNode::TSTREAM &/*stream*/, CStorageNode::TPROGRESS& /*prog*/){ return true;}
-	virtual long SavedItems() const;
+  virtual bool OnLoad(CStorageNode::TSTREAM &/*stream*/, CStreamVersion &/*version*/, CStorageNode::TPROGRESS& /*prog*/){ return true;}
+  virtual bool OnSave(CStorageNode::TSTREAM &/*stream*/, CStorageNode::TPROGRESS& /*prog*/){ return true;}
+  virtual long SavedItems() const;
 
-	bool LoadChildModel(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS& prog, CModelBase& childModel);
-	bool SaveChildModel(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS& prog, CModelBase& childModel);
-	long SavedItemsChildModel(CModelBase& childModel) const;
+  bool LoadChildModel(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS& prog, CModelBase& childModel);
+  bool SaveChildModel(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS& prog, CModelBase& childModel);
+  long SavedItemsChildModel(CModelBase& childModel) const;
 
-	// Numbering before saving
-	void NumberOpenGLNodes();
-	void NumberValueComposites();
+  // Numbering before saving
+  void NumberOpenGLNodes();
+  void NumberValueComposites();
   void NumberModels();
 private:
   int MaxModelIndex();
@@ -389,23 +389,23 @@ private:
 public:
   void RemoveModelNumbering();
 
-	virtual void CreatePointSet() const; // wjrx mantis 2896
-			  
-	//##ModelId=3BC55D6102AB
+  virtual void CreatePointSet() const; // wjrx mantis 2896
+        
+  //##ModelId=3BC55D6102AB
 protected:
   friend class IModelLifetimeFacade;
 
-	virtual ~CModelBase();
+  virtual ~CModelBase();
   virtual void destroy();
 
   virtual void CloseModel();
 
 public:
-	virtual QString documentType() const { return ""; }
+  virtual QString documentType() const { return ""; }
 
-	// Acces to  the gravity
-	const CAcceleration& Gravity() const;
-	void Gravity(const double& value, const CAcceleration::UNIT = CAcceleration::SI_UNIT);
+  // Acces to  the gravity
+  const CAcceleration& Gravity() const;
+  void Gravity(const double& value, const CAcceleration::UNIT = CAcceleration::SI_UNIT);
   CGraphNode& GravityNotifier();
 
   // Access to GVTSettings
@@ -416,102 +416,102 @@ public:
   const CQBSettings &QBSettings() const;
   CQBSettings &QBSettings();
 
-	// Access to the pressure gradient
+  // Access to the pressure gradient
 
-	// First timestep
-	const CDepletionStage& InitialDepletionStage() const;
-	CDepletionStage& InitialDepletionStage();
+  // First timestep
+  const CDepletionStage& InitialDepletionStage() const;
+  CDepletionStage& InitialDepletionStage();
 
-	const CDepletionStage& LastDepletionStage() const;
-	CDepletionStage& LastDepletionStage();
+  const CDepletionStage& LastDepletionStage() const;
+  CDepletionStage& LastDepletionStage();
 
-	const CDepletionStageEntry& DepletionStageEntry() const;
-	CDepletionStageEntry& DepletionStageEntry();
+  const CDepletionStageEntry& DepletionStageEntry() const;
+  CDepletionStageEntry& DepletionStageEntry();
 
-	int NrOfDepletionStages() const;
+  int NrOfDepletionStages() const;
 
-        const CDepletionStage* FindDepletionStage
+    const CDepletionStage* FindDepletionStage
           (int timeStepIndex) const;
-	// Boundary
-	CBoundaryBase& Boundary();
-	const CBoundaryBase& Boundary() const;
+  // Boundary
+  CBoundaryBase& Boundary();
+  const CBoundaryBase& Boundary() const;
 
   static const std::set<unsigned int>& DataStorageEntryTypes();
-	virtual CGraphEntry* GraphEntry(const int nEntryType);
-	virtual const CGraphEntry* GraphEntry(const int nEntryType) const;
+  virtual CGraphEntry* GraphEntry(const int nEntryType);
+  virtual const CGraphEntry* GraphEntry(const int nEntryType) const;
 
-	// This routine only creates the entries for the graph
-	virtual void createContainers();
-	// This routine creates all default items we want to have.
-	virtual void createDefaults();
+  // This routine only creates the entries for the graph
+  virtual void createContainers();
+  // This routine creates all default items we want to have.
+  virtual void createDefaults();
   virtual void OnExit();
   virtual void DestroyCaches();
-	virtual void OnCloseModel();
+  virtual void OnCloseModel();
 
-	// The result register contains the basic results
-	virtual int ResultRegisterSize() const;
-	virtual QString ResultRegisterName(int nIndex) const;
-	virtual	CResultRegister& ResultRegister(int nRegister = PRIMARY_RESULT);
-	virtual const CResultRegister& ResultRegister(int nRegister = PRIMARY_RESULT) const;
+  // The result register contains the basic results
+  virtual int ResultRegisterSize() const;
+  virtual QString ResultRegisterName(int nIndex) const;
+  virtual	CResultRegister& ResultRegister(int nRegister = PRIMARY_RESULT);
+  virtual const CResultRegister& ResultRegister(int nRegister = PRIMARY_RESULT) const;
 
-	// The resulttree represents the resulttree in the tree control. Derived results can
-	// be accessed from here
+  // The resulttree represents the resulttree in the tree control. Derived results can
+  // be accessed from here
   CMaterialResultTree& MaterialResultTree();
   const CMaterialResultTree& MaterialResultTree() const;
-	CResultTree& ResultTree();
-	const CResultTree& ResultTree() const;
-	CMeshResultTree& MeshResultTree();
-	const CMeshResultTree& MeshResultTree() const;
+  CResultTree& ResultTree();
+  const CResultTree& ResultTree() const;
+  CMeshResultTree& MeshResultTree();
+  const CMeshResultTree& MeshResultTree() const;
   CGVTResultTree& GVTResultTree();
   const CGVTResultTree& GVTResultTree() const;
 
-	// Mesh/state methods.
-	virtual bool HasFormations() const;
-	virtual bool HasHorizons() const;
+  // Mesh/state methods.
+  virtual bool HasFormations() const;
+  virtual bool HasHorizons() const;
   virtual bool HasFaults() const;
   virtual bool HasDoubleSidedFaults() const;
-	virtual bool CanCreateMesh();
-	virtual bool IsMesh() const;
-	virtual bool CanCalculate() const;
+  virtual bool CanCreateMesh();
+  virtual bool IsMesh() const;
+  virtual bool CanCalculate() const;
   virtual bool CanCalculateHeatFlow() const;
   virtual bool CanCalculateMixture() const;
-	virtual bool IsResult() const = 0;
+  virtual bool IsResult() const = 0;
 
-	virtual void CreateMesh();
-	virtual void Calculate() = 0;
-	virtual void InvalidateMesh();
-	virtual const CMeshBase& Mesh() const = 0;
-	virtual CMeshBase& Mesh() = 0;
+  virtual void CreateMesh();
+  virtual void Calculate() = 0;
+  virtual void InvalidateMesh();
+  virtual const CMeshBase& Mesh() const = 0;
+  virtual CMeshBase& Mesh() = 0;
 
-	// see if we are currently loading
-	bool Loading() const { return m_bLoading; }
+  // see if we are currently loading
+  bool Loading() const { return m_bLoading; }
 
-	// invalidate the results after the load (must be loading)
-	void InvalidateResultsAfterLoad();
+  // invalidate the results after the load (must be loading)
+  void InvalidateResultsAfterLoad();
 
-	virtual int Dimension() const = 0;
+  virtual int Dimension() const = 0;
 
-	virtual void ConvertSet(IPointSet* pSet, bool b3DSystem);
+  virtual void ConvertSet(IPointSet* pSet, bool b3DSystem);
 
-	int IniStressMaxIterations() const;
-	void IniStressMaxIterations(int n);
+  int IniStressMaxIterations() const;
+  void IniStressMaxIterations(int n);
 
-	double IniStressConvCriterion() const;
-	void IniStressConvCriterion(double c);
+  double IniStressConvCriterion() const;
+  void IniStressConvCriterion(double c);
 
-	bool LinstaOnlyInitialStress() const;
-	void LinstaOnlyInitialStress(bool b);
+  bool LinstaOnlyInitialStress() const;
+  void LinstaOnlyInitialStress(bool b);
 
-	bool isPressureSupportNodeLoadWarningDone() const;
-	void setPressureSupportNodeLoadWarningDone();
+  bool isPressureSupportNodeLoadWarningDone() const;
+  void setPressureSupportNodeLoadWarningDone();
 
-	const CBranchState& BranchState() const;
-	CBranchState& BranchState();
-	void ClearBranch();
+  const CBranchState& BranchState() const;
+  CBranchState& BranchState();
+  void ClearBranch();
   bool HasBranches() const;
   bool HasPhases() const;
 
-	CGeomecDianaRunnerBase* CreateDianaRunner(CDianaRunController& controller);
+  CGeomecDianaRunnerBase* CreateDianaRunner(CDianaRunController& controller);
 
   void PrepareFaultsForAnalysis(bool bSilent = false);
 

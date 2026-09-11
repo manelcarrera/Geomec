@@ -35,19 +35,19 @@ CLineInterface::CLineInterface(IMesh &mesh,
                  int n3, int n4, const geo::IFace &back)
 : m_front(front), m_back(back), m_mesh(mesh)
 {
-	m_nodes[0] = n1;
-	m_nodes[1] = n2;
-	m_nodes[2] = n3;
-	m_nodes[3] = n4;
+  m_nodes[0] = n1;
+  m_nodes[1] = n2;
+  m_nodes[2] = n3;
+  m_nodes[3] = n4;
 
-	int i;
-	for(i = 0; i < 4; i++)
-	{
-		INode& node = const_cast<INode&> (Node(i));
-		node.RegisterElement(*this);
-	}
+  int i;
+  for(i = 0; i < 4; i++)
+  {
+    INode& node = const_cast<INode&> (Node(i));
+    node.RegisterElement(*this);
+  }
 
-	m_nIndex = mesh.RegisterElement(*this);
+  m_nIndex = mesh.RegisterElement(*this);
 }
 
 CLineInterface::~CLineInterface()
@@ -56,42 +56,42 @@ CLineInterface::~CLineInterface()
 
 int CLineInterface::PointIndex(int nIndex) const
 {
-	assert(nIndex >= 0 && nIndex < NrOfNodes());
-	return m_nodes[nIndex];
+  assert(nIndex >= 0 && nIndex < NrOfNodes());
+  return m_nodes[nIndex];
 }
 
 size_t CLineInterface::NrOfNodes() const
 {
-	return 4;
+  return 4;
 }
 
 const INode& CLineInterface::Node(int nIndex) const
 {
-	assert(nIndex >= 0 && nIndex < NrOfNodes());
-	return m_mesh.Node(PointIndex(nIndex));
+  assert(nIndex >= 0 && nIndex < NrOfNodes());
+  return m_mesh.Node(PointIndex(nIndex));
 }
 
 void CLineInterface::Node(int nIndex, const IPoint& point)
 {
-	assert(nIndex >= 0 && nIndex < NrOfNodes());
-	m_mesh.Node(PointIndex(nIndex), point);
+  assert(nIndex >= 0 && nIndex < NrOfNodes());
+  m_mesh.Node(PointIndex(nIndex), point);
 }
 
 const IElementSet* CLineInterface::IndexingElementSet() const
 {
-	return &m_mesh;
+  return &m_mesh;
 }
 
 int CLineInterface::Index() const
 {
-	return m_nIndex;
+  return m_nIndex;
 }
 
 const ILine& CLineInterface::getLine(int n0, int n1, const geo::IFace& face) const
 {
   for(int i = 0; i < face.NrOfLines(); i++) {
-    assert(face.Line(i).NrOfNodes() == 2);
-    if(( face.Line(i).Node(0).Index() == n0 && face.Line(i).Node(1).Index() == n1) ||
+  assert(face.Line(i).NrOfNodes() == 2);
+  if(( face.Line(i).Node(0).Index() == n0 && face.Line(i).Node(1).Index() == n1) ||
        ( face.Line(i).Node(0).Index() == n1 && face.Line(i).Node(1).Index() == n0)) return face.Line(i);
   }
   assert(false);
@@ -109,13 +109,13 @@ int CLineInterface::FaceNode(int nIndex) const
   assert(nIndex < 4 );
 
   if( nIndex == 0 || nIndex == 1 ) {
-    for(int i = 0; i < m_front.NrOfNodes(); i++) {
+  for(int i = 0; i < m_front.NrOfNodes(); i++) {
        if( m_nodes[nIndex] == m_front.Node(i).Index() ) return i;
-    }
+  }
   } else {
-    for(int i = 0; i < m_back.NrOfNodes(); i++) {
+  for(int i = 0; i < m_back.NrOfNodes(); i++) {
        if( m_nodes[nIndex] == m_back.Node(i).Index() ) return i;
-    }
+  }
   }
   assert(false);
   return -1;
@@ -153,41 +153,41 @@ const IFace& CLineInterface:: BackFace() const
 
 std::string CLineInterface::Type() const
 {
-	return std::string("L8IF");
+  return std::string("L8IF");
 }
 
 void CLineInterface::AssertValid() const
 {
-	// assert proper connectivity (no crossing, etc)
-	assert(&Node(0) == &FrontFace().Node(FaceNode(0)));
-	assert(&Node(1) == &FrontFace().Node(FaceNode(1)));
-	assert(&Node(2) == &BackFace().Node(FaceNode(2)));
-	assert(&Node(3) == &BackFace().Node(FaceNode(3)));
+  // assert proper connectivity (no crossing, etc)
+  assert(&Node(0) == &FrontFace().Node(FaceNode(0)));
+  assert(&Node(1) == &FrontFace().Node(FaceNode(1)));
+  assert(&Node(2) == &BackFace().Node(FaceNode(2)));
+  assert(&Node(3) == &BackFace().Node(FaceNode(3)));
 
-	// assert that face1 is connected to the 'left' side and face2 to the 'right' side
-	// (when walking from node 1 to node 2)
+  // assert that face1 is connected to the 'left' side and face2 to the 'right' side
+  // (when walking from node 1 to node 2)
 
-	// the element is 2D, so ignore z-coordinate
-	CPoint p1(Point(0));
-	p1.Z(0);
-	CPoint p2(Point(1));
-	p2.Z(0);
-	CPoint m1 = m_front.MidPoint();
-	m1.Z(0);
-	CPoint m2 = m_back.MidPoint();
+  // the element is 2D, so ignore z-coordinate
+  CPoint p1(Point(0));
+  p1.Z(0);
+  CPoint p2(Point(1));
+  p2.Z(0);
+  CPoint m1 = m_front.MidPoint();
+  m1.Z(0);
+  CPoint m2 = m_back.MidPoint();
 
-	CVector v  = p2 - p1; // the vector along the line
-	CVector v1 = m1 - p1; // the vector to the midpoint of face1
-	CVector v2 = m2 - p1; // the vector to the midpoint of face2
+  CVector v  = p2 - p1; // the vector along the line
+  CVector v1 = m1 - p1; // the vector to the midpoint of face1
+  CVector v2 = m2 - p1; // the vector to the midpoint of face2
 
-	// cross products should point outward
+  // cross products should point outward
 
-	// if this fails face1 is not at the 'left' side of the line
-	CVector c1 = v1.CrossProduct(v).UnitVector();
-	assert(c1 == CVector::Zaxis);
-	// if this fails face2 is not at the 'right' side of the line
-	CVector c2 = v.CrossProduct(v2).UnitVector();
-	assert(c2 == CVector::Zaxis);
+  // if this fails face1 is not at the 'left' side of the line
+  CVector c1 = v1.CrossProduct(v).UnitVector();
+  assert(c1 == CVector::Zaxis);
+  // if this fails face2 is not at the 'right' side of the line
+  CVector c2 = v.CrossProduct(v2).UnitVector();
+  assert(c2 == CVector::Zaxis);
 }
 
 /*!

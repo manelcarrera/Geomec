@@ -20,25 +20,25 @@ class RescueTriangleVertex:public RescueObject
 {
 public:
   RescueTriangleVertex(RescueContext *context, RESCUEFLOAT xIn, RESCUEFLOAT yIn, RESCUEFLOAT zIn)
-                            :RescueObject(context)
-                            ,faceCount(0)
-                            ,faceAllocated(0)
-                            ,faces(0)
-                            ,x(xIn)
-                            ,y(yIn)
-                            ,z(zIn)
-                            ,u((RESCUEFLOAT) -999)
-                            ,v((RESCUEFLOAT) -999) {};
+              :RescueObject(context)
+              ,faceCount(0)
+              ,faceAllocated(0)
+              ,faces(0)
+              ,x(xIn)
+              ,y(yIn)
+              ,z(zIn)
+              ,u((RESCUEFLOAT) -999)
+              ,v((RESCUEFLOAT) -999) {};
   RescueTriangleVertex(RescueContext *context, RESCUEFLOAT xIn, RESCUEFLOAT yIn, RESCUEFLOAT zIn, RESCUEFLOAT uIn, RESCUEFLOAT vIn)
-                            :RescueObject(context)
-                            ,faceCount(0)
-                            ,faceAllocated(0)
-                            ,faces(0)
-                            ,x(xIn)
-                            ,y(yIn)
-                            ,z(zIn)
-                            ,u(uIn)
-                            ,v(vIn) {};
+              :RescueObject(context)
+              ,faceCount(0)
+              ,faceAllocated(0)
+              ,faces(0)
+              ,x(xIn)
+              ,y(yIn)
+              ,z(zIn)
+              ,u(uIn)
+              ,v(vIn) {};
   ~RescueTriangleVertex();
 
   RESCUEFLOAT X() {return x;}

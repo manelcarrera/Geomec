@@ -135,7 +135,7 @@ void CConvexHull_2D::Save(STREAM& stream, IProgressBase& progress)
   stream << m_size;
 
   for(int i = 0; i < m_size; ++i)
-    m_aPoint[i].Save(stream, progress);
+  m_aPoint[i].Save(stream, progress);
 
   progress.Step();
 }
@@ -149,8 +149,8 @@ void CConvexHull_2D::Load(STREAM& stream, IProgressBase& progress)
 
   for(int i = 0; i < m_size; ++i)
   {
-    m_aPoint[i] = tPointStructure();
-    m_aPoint[i].Load(stream, progress);
+  m_aPoint[i] = tPointStructure();
+  m_aPoint[i].Load(stream, progress);
   }
 
   StoreHull();

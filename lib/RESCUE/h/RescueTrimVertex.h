@@ -40,7 +40,7 @@ public:
                    RESCUEFLOAT x, RESCUEFLOAT y, RESCUEFLOAT z);
   ~RescueTrimVertex();
   RescuePolyLineStub *NthPolyLine(RESCUEINT64 zeroBasedOrdinal)
-                {return (*lines).NthObject(zeroBasedOrdinal);}
+        {return (*lines).NthObject(zeroBasedOrdinal);}
   virtual RescueWireframe *Owner() {return owner;}
   virtual RESCUEBOOL Equals(RescueTrimVertexStub *other);
   virtual RESCUEBOOL Equals(RescueTrimVertex *other) {return other==this;}

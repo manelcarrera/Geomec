@@ -17,22 +17,22 @@ class CWnd;
 
 class CGeoProgress : public CProgressBase  
 {
-	int m_nSteps;
-	int m_nCurStep;
-	QString m_strTitle;
-	bool m_bDeleteDlg;
-	bool m_bCancel;
-	bool m_bBlockStatusMessage;
+  int m_nSteps;
+  int m_nCurStep;
+  QString m_strTitle;
+  bool m_bDeleteDlg;
+  bool m_bCancel;
+  bool m_bBlockStatusMessage;
   QString m_strStatusMessage;
 public:
-	// This constructor creates a progress dialog with the following title
-	CGeoProgress(CWnd* parent, const QString &sTitle, bool bCancel = true);
-	CGeoProgress(CWnd* parent, unsigned int uTitle, bool bCancel = true);
-	virtual ~CGeoProgress();
+  // This constructor creates a progress dialog with the following title
+  CGeoProgress(CWnd* parent, const QString &sTitle, bool bCancel = true);
+  CGeoProgress(CWnd* parent, unsigned int uTitle, bool bCancel = true);
+  virtual ~CGeoProgress();
 
-	virtual void AddSteps(int nSteps);
-	virtual void Step(int nSteps = 1);
-	virtual void StatusMessage(const QString& sMessage);
+  virtual void AddSteps(int nSteps);
+  virtual void Step(int nSteps = 1);
+  virtual void StatusMessage(const QString& sMessage);
 };
 
 #endif // !defined(AFX_GEOPROGRESS_H__667A34C8_800F_43ae_B947_5812D11F7608__INCLUDED_)

@@ -54,7 +54,7 @@ int CDefineRegular2DGridDlg::NumPointsEasting() const
 
 void CDefineRegular2DGridDlg::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
+  CDialog::DoDataExchange(pDX);
 
   CString strLengthUnit = m_Corner1Northing.UnitName(GetGeomecDoc()->UnitNode().Unit()).c_str();
   double dCorner1Northing;
@@ -64,10 +64,10 @@ void CDefineRegular2DGridDlg::DoDataExchange(CDataExchange* pDX)
 
   if(!pDX->m_bSaveAndValidate)
   {
-    dCorner1Northing = m_Corner1Northing.Value(GetGeomecDoc()->UnitNode().Unit());
-    dCorner1Easting  = m_Corner1Easting.Value( GetGeomecDoc()->UnitNode().Unit());
-    dCorner2Northing = m_Corner2Northing.Value(GetGeomecDoc()->UnitNode().Unit());
-    dCorner2Easting  = m_Corner2Easting.Value( GetGeomecDoc()->UnitNode().Unit());
+  dCorner1Northing = m_Corner1Northing.Value(GetGeomecDoc()->UnitNode().Unit());
+  dCorner1Easting  = m_Corner1Easting.Value( GetGeomecDoc()->UnitNode().Unit());
+  dCorner2Northing = m_Corner2Northing.Value(GetGeomecDoc()->UnitNode().Unit());
+  dCorner2Easting  = m_Corner2Easting.Value( GetGeomecDoc()->UnitNode().Unit());
   }
 
   DDX_Text(pDX, IDC_UN_CORNER1_NORTHING, strLengthUnit);
@@ -85,10 +85,10 @@ void CDefineRegular2DGridDlg::DoDataExchange(CDataExchange* pDX)
 
   if(pDX->m_bSaveAndValidate)
   {
-    m_Corner1Northing.Value(dCorner1Northing, GetGeomecDoc()->UnitNode().Unit());
-    m_Corner1Easting.Value( dCorner1Easting,  GetGeomecDoc()->UnitNode().Unit());
-    m_Corner2Northing.Value(dCorner2Northing, GetGeomecDoc()->UnitNode().Unit());
-    m_Corner2Easting.Value( dCorner2Easting,  GetGeomecDoc()->UnitNode().Unit());
+  m_Corner1Northing.Value(dCorner1Northing, GetGeomecDoc()->UnitNode().Unit());
+  m_Corner1Easting.Value( dCorner1Easting,  GetGeomecDoc()->UnitNode().Unit());
+  m_Corner2Northing.Value(dCorner2Northing, GetGeomecDoc()->UnitNode().Unit());
+  m_Corner2Easting.Value( dCorner2Easting,  GetGeomecDoc()->UnitNode().Unit());
   }
 }
 
@@ -106,7 +106,7 @@ const CModelBase& ISelectObjectDlg::Model() const
 
 void ISelectObjectDlg::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
+  CDialog::DoDataExchange(pDX);
   DDX_Control(pDX, IDC_LIST_OBJECTS, m_lbObjects);
 }
 
@@ -119,7 +119,7 @@ BOOL ISelectObjectDlg::OnInitDialog()
   CRect rect;
   GetDlgItem(IDC_LIST_OBJECTS)->GetClientRect(&rect);
 
-	m_lbObjects.InsertColumn(0, ObjectTitle(), LVCFMT_LEFT, rect.Width());
+  m_lbObjects.InsertColumn(0, ObjectTitle(), LVCFMT_LEFT, rect.Width());
   CreateListObjects(m_lbObjects);
 
   GetDlgItem(IDOK)->EnableWindow(FALSE);
@@ -159,8 +159,8 @@ void CSelect2DPointsetDlg::CreateListObjects(CListCtrl& ctrl)
   TPointSetEntry::TSortedNodeSet::const_iterator it;
   for(it = stSortedNodes.begin(); it != stSortedNodes.end(); ++it)
   {
-    const CPointSet* pPointset = dynamic_cast<const CPointSet*>(*it);
-    if(pPointset && pPointset->Dimension() == IPointSet::DIM_2D)
+  const CPointSet* pPointset = dynamic_cast<const CPointSet*>(*it);
+  if(pPointset && pPointset->Dimension() == IPointSet::DIM_2D)
       new CPointsetListObject(*pPointset, *this, ctrl);
   }
 }
@@ -187,9 +187,9 @@ QString CSelect2DPointsetDlg::CPointsetListObject::Text() const
 void CSelect2DPointsetDlg::CPointsetListObject::SelectionStateChanged(bool bSelected)
 {
   if(bSelected)
-    m_dlg.SelectPointset(&m_pointset);
+  m_dlg.SelectPointset(&m_pointset);
   else if(m_dlg.SelectedPointset() == &m_pointset)
-    m_dlg.SelectPointset(0);
+  m_dlg.SelectPointset(0);
 }
 
 void CSelect2DPointsetDlg::CPointsetListObject::OnDoubleClick()
@@ -228,7 +228,7 @@ void CSelectSurfaceDlg::CreateListObjects(CListCtrl& ctrl)
   CSurfaceEntry::TSortedNodeSet::const_iterator it;
   for(it = stSortedNodes.begin(); it != stSortedNodes.end(); ++it)
   {
-    new CSurfaceListObject(**it, *this, ctrl);
+  new CSurfaceListObject(**it, *this, ctrl);
   }
 }
 
@@ -255,9 +255,9 @@ QString CSelectSurfaceDlg::CSurfaceListObject::Text() const
 void CSelectSurfaceDlg::CSurfaceListObject::SelectionStateChanged(bool bSelected)
 {
   if(bSelected)
-    m_dlg.SelectSurface(&m_surface);
+  m_dlg.SelectSurface(&m_surface);
   else if(m_dlg.SelectedSurface() == &m_surface)
-    m_dlg.SelectSurface(0);
+  m_dlg.SelectSurface(0);
 }
 
 void CSelectSurfaceDlg::CSurfaceListObject::OnDoubleClick()

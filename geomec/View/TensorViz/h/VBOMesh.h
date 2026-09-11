@@ -11,36 +11,36 @@
 
 class VBOMesh
 {
-    GLuint  m_vertexBuffer;
-    GLuint  m_indexBuffer;
-    GLsizei m_count;
-    GLenum  m_indexType;
+  GLuint  m_vertexBuffer;
+  GLuint  m_indexBuffer;
+  GLsizei m_count;
+  GLenum  m_indexType;
 
-    // instanced rendering 
-    GLuint  m_instancedDataBuffer;
-    size_t  m_instanceCount;
+  // instanced rendering 
+  GLuint  m_instancedDataBuffer;
+  size_t  m_instanceCount;
 
 public:
 
-    struct InstancedData
-    {
-        float     propertyValue1;
-        float     propertyValue2;
-        SbVec3f   position;
-        SbMatrix3 rotation;
-    };
+  struct InstancedData
+  {
+    float     propertyValue1;
+    float     propertyValue2;
+    SbVec3f   position;
+    SbMatrix3 rotation;
+  };
 
-    VBOMesh();
+  VBOMesh();
 
-    VBOMesh(GLuint vertexBuffer, GLuint indexBuffer, GLenum indexType, GLsizei count);
+  VBOMesh(GLuint vertexBuffer, GLuint indexBuffer, GLenum indexType, GLsizei count);
 
-    void setInstancedParams(GLuint instancedDataBuffer, size_t count);
+  void setInstancedParams(GLuint instancedDataBuffer, size_t count);
 
-    bool valid() const;
+  bool valid() const;
 
-    void free();
+  void free();
 
-    void render();
+  void render();
 };
 
 #endif

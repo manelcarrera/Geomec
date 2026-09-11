@@ -21,15 +21,15 @@ const geo::INode& CNodalTemperature::Node() const
 
 bool CNodalTemperature::WriteFilos() const
 {
-	ftn_int_t idx = Inquire("NODAL", "DIM");
-	if(idx < 0) idx = 0;
-	++idx;
+  ftn_int_t idx = Inquire("NODAL", "DIM");
+  if(idx < 0) idx = 0;
+  ++idx;
 
-	assert(!XistIndexed("NODAL/", &idx));
+  assert(!XistIndexed("NODAL/", &idx));
 
-	PushDir();
+  PushDir();
 
-	ChangeIndexedDir("NODAL/", &idx);
+  ChangeIndexedDir("NODAL/", &idx);
 
   ftn_int_t iNode = ftn_int_t(m_Node.Index() + 1);
   PutItemLength("NODES", &iNode, 1);

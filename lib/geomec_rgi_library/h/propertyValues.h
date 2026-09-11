@@ -14,10 +14,10 @@ template <typename T>
 {
   for (size_t s = 0; s < propertyValues.size(); ++s)
   {
-    if (RGUtils::isNull(propertyValues[s]))
-    {
+  if (RGUtils::isNull(propertyValues[s]))
+  {
       return true;
-    }
+  }
   }
 
   return false;
@@ -32,29 +32,29 @@ QString NULL_VALUES = "properties of type %1 may not contain 'NULL' values";
 
 template <typename T>
   void propertyValuesMayNotContainNull(const RGPropertyType::Type& propertyType,
-    const std::vector <T>& propertyValues)
+  const std::vector <T>& propertyValues)
 {
   if ((propertyValues.size() > 0) && propertyValuesContainNull(propertyValues))
   {
-    QString message =
+  QString message =
       NULL_VALUES.arg(RGProperty::toString(propertyType).c_str());
 
-    throw message;
+  throw message;
   }
 }
 
 template <typename T>
   void convert2geoCValue(std::vector <geo::CValue>& geoCValues,
-    const std::vector <T>& values)
+  const std::vector <T>& values)
 {
   geoCValues.resize(values.size());
 
   for (size_t s = 0; s < values.size(); ++s)
   {
-    if (!RGUtils::isNull(values[s]))
-    {
+  if (!RGUtils::isNull(values[s]))
+  {
       geoCValues[s] = values[s];
-    }
+  }
   }
 }
 

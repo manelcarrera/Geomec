@@ -56,15 +56,15 @@ struct _GCompletion
 
 GCompletion* g_completion_new          (GCompletionFunc func);
 void         g_completion_add_items    (GCompletion*    cmp,
-                                        GList*          items);
+                    GList*          items);
 void         g_completion_remove_items (GCompletion*    cmp,
-                                        GList*          items);
+                    GList*          items);
 void         g_completion_clear_items  (GCompletion*    cmp);
 GList*       g_completion_complete     (GCompletion*    cmp,
-                                        gchar*          prefix,
-                                        gchar**         new_prefix);
+                    gchar*          prefix,
+                    gchar**         new_prefix);
 void         g_completion_set_compare (GCompletion *cmp,
-				       GCompletionStrncmpFunc strncmp_func);
+               GCompletionStrncmpFunc strncmp_func);
 void         g_completion_free         (GCompletion*    cmp);
 
 G_END_DECLS

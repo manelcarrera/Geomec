@@ -59,16 +59,16 @@ protected:
 
   Fw51BaseTestTemplate() : m_ModelsPath(test_lib::TestLib::ModelPath()), m_OutputPath(test_lib::TestLib::ModelPath())
   {
-    m_ModelsPath.append("Fw51Input/");
-    m_OutputPath.append("Fw51Output/");
+  m_ModelsPath.append("Fw51Input/");
+  m_OutputPath.append("Fw51Output/");
   }
 
   void SetUp()
   {
-    m_FileBase = ::testing::TestWithParam<T>::GetParam().fileBase;
+  m_FileBase = ::testing::TestWithParam<T>::GetParam().fileBase;
 
-    m_Output   = m_OutputPath + m_FileBase + ".new";
-    m_Expected = m_ModelsPath + m_FileBase + ".res";
+  m_Output   = m_OutputPath + m_FileBase + ".new";
+  m_Expected = m_ModelsPath + m_FileBase + ".res";
   }
 
 };
@@ -87,20 +87,20 @@ protected:
 
   Fw51BaseTest() : m_ModelsPath(test_lib::TestLib::ModelPath()), m_OutputPath(test_lib::TestLib::ModelPath())
   {
-    m_ModelsPath.append("Fw51Input/");
-    m_OutputPath.append("Fw51Output/");
+  m_ModelsPath.append("Fw51Input/");
+  m_OutputPath.append("Fw51Output/");
   }
 
   void SetUp()
   {
-    std::string fileName = GetParam();
+  std::string fileName = GetParam();
 
-    fileName = fileName.substr(0, fileName.find(' '));
+  fileName = fileName.substr(0, fileName.find(' '));
 
-    m_FileBase = fileName.substr(0, fileName.rfind('.'));
+  m_FileBase = fileName.substr(0, fileName.rfind('.'));
 
-    m_Output   = m_OutputPath + m_FileBase + ".new";
-    m_Expected = m_ModelsPath + m_FileBase + ".res";
+  m_Output   = m_OutputPath + m_FileBase + ".new";
+  m_Expected = m_ModelsPath + m_FileBase + ".res";
   }
 
 };
@@ -114,13 +114,13 @@ protected:
 
   void SetUp()
   {
-    Fw51BaseTestTemplate<T>::SetUp();
+  Fw51BaseTestTemplate<T>::SetUp();
 
-    std::string fileName = ::testing::TestWithParam<T>::GetParam();
+  std::string fileName = ::testing::TestWithParam<T>::GetParam();
 
-    fileName = fileName.substr(0, fileName.find(' '));
+  fileName = fileName.substr(0, fileName.find(' '));
 
-    m_Input    = Fw51BaseTestTemplate<T>::m_ModelsPath + fileName;
+  m_Input    = Fw51BaseTestTemplate<T>::m_ModelsPath + fileName;
   }
 
 };
@@ -133,13 +133,13 @@ protected:
 
   void SetUp()
   {
-    Fw51BaseTest::SetUp();
+  Fw51BaseTest::SetUp();
 
-    std::string fileName = GetParam();
+  std::string fileName = GetParam();
 
-    fileName = fileName.substr(0, fileName.find(' '));
+  fileName = fileName.substr(0, fileName.find(' '));
 
-    m_Input    = m_ModelsPath + fileName;
+  m_Input    = m_ModelsPath + fileName;
   }
 
 };

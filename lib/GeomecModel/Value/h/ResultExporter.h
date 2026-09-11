@@ -40,10 +40,10 @@ public:
 
 protected:
   template <typename TExportFormat>
-    bool exportExcel(TExportFormat& exportFormat, const QString& sFileName,
+  bool exportExcel(TExportFormat& exportFormat, const QString& sFileName,
       bool bAppend) const;
   template <typename TExportFormat>
-    bool exportASCII(TExportFormat& exportFormat, const QString& sFileName,
+  bool exportASCII(TExportFormat& exportFormat, const QString& sFileName,
       bool bAppend) const;
 
 private:
@@ -112,7 +112,7 @@ public:
 private:
   CPointSet* CreateFormationPlaneCenterPointSet(const IExportFormat::TDataVec& vcData) const;
   static std::vector <const CFormationPlane*> sortFormationPlanes(
-    const std::vector <const CFormationPlane*>& formationPlanes);
+  const std::vector <const CFormationPlane*>& formationPlanes);
 
 private:
   std::vector<const CFormationPlane*> m_vcFormplane;
@@ -263,21 +263,21 @@ void CWellPathExporter<WELLPATH>::ExportExcel(const QString& sFileName,
 {
   for(size_t i = 0; i < m_vcWellpath.size(); ++i)
   {
-	  CNodalExportFormat format(*m_vcWellpath[i], vcData, arg);
-	  CElementSetExcelFile file(format);
-	  std::auto_ptr <IProgressBase> prog;
-	  try
-	  {
-		  prog.reset(_g->prog()->create( eProgress::Geo, sFileName));
-		  file.Write(sFileName, *prog, bAppend);
-	  }
-	  catch (CProgressCancel* p)
-	  {
-		  delete p;
-		  return;
-	  }
+    CNodalExportFormat format(*m_vcWellpath[i], vcData, arg);
+    CElementSetExcelFile file(format);
+    std::auto_ptr <IProgressBase> prog;
+    try
+    {
+      prog.reset(_g->prog()->create( eProgress::Geo, sFileName));
+      file.Write(sFileName, *prog, bAppend);
+    }
+    catch (CProgressCancel* p)
+    {
+      delete p;
+      return;
+    }
 
-    bAppend = true;
+  bAppend = true;
   }
 }
 
@@ -289,22 +289,22 @@ void CWellPathExporter<WELLPATH>::ExportASCII(const QString& sFileName,
 {
   for(size_t i = 0; i < m_vcWellpath.size(); ++i)
   {
-	  CNodalExportFormat format(*m_vcWellpath[i], vcData, arg);
-	  CElementSetFile file(format);
-	  std::auto_ptr <IProgressBase> prog;
-	  try
-	  {
-		  prog.reset( _g->prog()->create( eProgress::Geo, sFileName) );
-		  file.Save(sFileName, *prog, bAppend);
-	  }
-	  catch (CProgressCancel* p)
-		{
-		  delete p;
-		  file.Close();
-		  return;
-	  }
+    CNodalExportFormat format(*m_vcWellpath[i], vcData, arg);
+    CElementSetFile file(format);
+    std::auto_ptr <IProgressBase> prog;
+    try
+    {
+      prog.reset( _g->prog()->create( eProgress::Geo, sFileName) );
+      file.Save(sFileName, *prog, bAppend);
+    }
+    catch (CProgressCancel* p)
+    {
+      delete p;
+      file.Close();
+      return;
+    }
 
-    bAppend = true;
+  bAppend = true;
   }
 }
 
@@ -317,9 +317,9 @@ void CWellPathExporter<WELLPATH>::Export2LAS(const QString& sFileName,
 
   for(size_t i = 0; i < m_vcWellpath.size(); ++i)
   {
-    CWriteLogASCIIStandardFile writeLogASCIIStandardFile(m_vcWellpath[i]);
+  CWriteLogASCIIStandardFile writeLogASCIIStandardFile(m_vcWellpath[i]);
 
-    writeLogASCIIStandardFile.writeLogASCIIStandardFile(sFileName, vcData, arg);
+  writeLogASCIIStandardFile.writeLogASCIIStandardFile(sFileName, vcData, arg);
   }
 }
 
@@ -327,7 +327,7 @@ template <class WELLPATH>
 const COpenGLNode* CWellPathExporter<WELLPATH>::GetFirstNode() const
 {
   if(!m_vcWellpath.empty())
-    return m_vcWellpath[0];
+  return m_vcWellpath[0];
 
   return 0;
 }
@@ -340,10 +340,10 @@ public:
   template <class T>
   const IResultExporter* CreateExporter(const CTypedSelection<T>& selection)
   {
-    if(selection.empty())
+  if(selection.empty())
       return 0;
 
-    return CreateTypedExporter(MakeVector<T>(selection));
+  return CreateTypedExporter(MakeVector<T>(selection));
   }
 
 private:
@@ -394,7 +394,7 @@ std::vector<const T*> CExporterFactory::MakeVector(const CTypedSelection<T>& sel
   for(typename CTypedSelection<T>::const_iterator it = selection.begin();
       it != selection.end(); ++it)
   {
-    vcRet.push_back(&*it);
+  vcRet.push_back(&*it);
   }
 
   return vcRet;

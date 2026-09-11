@@ -35,14 +35,14 @@ RescueWellboreCell::RescueWellboreCell(RescueContext *context, FILE *archiveFile
   myfscanf(context, archiveFile, &cellNumber);
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -60,7 +60,7 @@ void RescueWellboreCell::Archive(FILE *archiveFile)
   myfprintf(context, archiveFile, cellNumber);
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -77,15 +77,15 @@ void RescueWellboreCell::CellIndex(RescueGeometry *geometryIn, RESCUEINT64 *retu
   CellIndex(geometryIn, i, j, k);
   if (arraySize >= 1)
   {
-    returnArray[0] = i;
+  returnArray[0] = i;
   }
   if (arraySize >= 2)
   {
-    returnArray[1] = j;
+  returnArray[1] = j;
   }
   if (arraySize >= 3)
   {
-    returnArray[2] = k;
+  returnArray[2] = k;
   }
 }
 
@@ -110,15 +110,15 @@ void RescueWellboreCell::CellIndex(RescueGeometry *geometryIn, RESCUEINT32 *retu
   CellIndex(geometryIn, i, j, k, throwIfTooBig);
   if (arraySize >= 1)
   {
-    returnArray[0] = i;
+  returnArray[0] = i;
   }
   if (arraySize >= 2)
   {
-    returnArray[1] = j;
+  returnArray[1] = j;
   }
   if (arraySize >= 3)
   {
-    returnArray[2] = k;
+  returnArray[2] = k;
   }
 }
 
@@ -136,11 +136,11 @@ RESCUEBOOL RescueWellboreCell::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueWellboreCell)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueObject::IsOfType(thisType);
+  return RescueObject::IsOfType(thisType);
   }
 }
 

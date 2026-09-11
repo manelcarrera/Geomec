@@ -28,20 +28,20 @@ CWellCasingCementObserver::CWellCasingCementObserver(CWellCasingCement& node,
                                                      BOOL bSortAfterInsertion)
 : TWellCasingCementObserver(node, ctrl, rename, remove, hParent, hInsertAfter, bInitialUpdate, bSortAfterInsertion)
 {
-	typedef CEnumerationBranch<CPressure, CValueCompositeObserver, FALSE, FIXED_ITEM> TPressureEnumerator;
-	typedef CEnumerationBranch<CTemperature, CValueCompositeObserver, FALSE, FIXED_ITEM> TTemperatureEnumerator;
+  typedef CEnumerationBranch<CPressure, CValueCompositeObserver, FALSE, FIXED_ITEM> TPressureEnumerator;
+  typedef CEnumerationBranch<CTemperature, CValueCompositeObserver, FALSE, FIXED_ITEM> TTemperatureEnumerator;
   typedef CEnumerationBranch<CCalculatedTemperature, CValueCompositeObserver, FALSE, FIXED_ITEM> TCalcTemperEnumerator;
   typedef CEnumerationBranch<CStrainLoad, CValueCompositeObserver, FALSE, FIXED_ITEM> TStrainEnumerator;
-	typedef CMaterialServerObserver_Delegate<CMaterialServer, CMaterialServer_Delegate, CValueType, CDistributedMaterialPropertyObserver, FALSE, UNLINK_ITEM> TMaterialObserver;
+  typedef CMaterialServerObserver_Delegate<CMaterialServer, CMaterialServer_Delegate, CValueType, CDistributedMaterialPropertyObserver, FALSE, UNLINK_ITEM> TMaterialObserver;
   typedef CEnumerationBranch<CMaterialServer, TMaterialObserver, TRUE, FIXED_ITEM> TMaterialEnumerator;
 
-	new TPressureEnumerator(*this,
-						   _T("Pressure"),
-						   IDI_PRESSURES);
+  new TPressureEnumerator(*this,
+               _T("Pressure"),
+               IDI_PRESSURES);
 
-	new TTemperatureEnumerator(*this,
-							   _T("Temperature"),
-							   IDI_TEMPERATURES);
+  new TTemperatureEnumerator(*this,
+                 _T("Temperature"),
+                 IDI_TEMPERATURES);
 
   new TCalcTemperEnumerator(*this,
                  _T("Calculated temperatures"),

@@ -1,10 +1,10 @@
 /*************************************************************************
 
-        cSetRescueGeobodyVolume.h
+    cSetRescueGeobodyVolume.h
 
  Keeps a list of pointers to some RescueGeobodyVolume.
 
-        Rod Hanks               June, 1999
+    Rod Hanks               June, 1999
 
 ****************************************************************************/
 

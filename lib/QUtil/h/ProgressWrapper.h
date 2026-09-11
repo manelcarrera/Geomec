@@ -25,50 +25,50 @@ namespace std{ class thread; }
 //
 class CProgressWrapper : public CProgressBase  
 {
-	int m_num_steps;
+  int m_num_steps;
 
-	IProgressBase* m_progress;
+  IProgressBase* m_progress;
 
 public:
 
-	static const char* cmd_cp[];
-	static const char* type_cp[];
+  static const char* cmd_cp[];
+  static const char* type_cp[];
 
 private:
-	eProgress m_type; // needed to skip msg when Silent type
+  eProgress m_type; // needed to skip msg when Silent type
 
   IProgressFactory *m_factory;
 
 public slots:
-	void on_cancel();
+  void on_cancel();
 
 public:
-	
-	CProgressWrapper(
-		eProgress type, 
-		const QString &title="", 
-		bool bCancel=true,
-		int jobs = 1 );
+  
+  CProgressWrapper(
+    eProgress type, 
+    const QString &title="", 
+    bool bCancel=true,
+    int jobs = 1 );
 
-	virtual ~CProgressWrapper();
+  virtual ~CProgressWrapper();
 
-	void BlockStatusMessage(bool bEnable);
+  void BlockStatusMessage(bool bEnable);
 
-	virtual void AddSteps(int num_steps);
-	virtual void Step(int num_steps = 1);
-	virtual void StatusMessage(const QString& msg);
-	virtual void Enable(bool bEnable);
+  virtual void AddSteps(int num_steps);
+  virtual void Step(int num_steps = 1);
+  virtual void StatusMessage(const QString& msg);
+  virtual void Enable(bool bEnable);
 
-	void SetProgress(int nCurrent);
+  void SetProgress(int nCurrent);
 
-	//
-	// only IDualProgressBase
-	//
-	void NextJob(const QString name );
+  //
+  // only IDualProgressBase
+  //
+  void NextJob(const QString name );
 
 
-	//
-	// for testing purpose
-	//
-	void test();
+  //
+  // for testing purpose
+  //
+  void test();
 };

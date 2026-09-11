@@ -49,13 +49,13 @@ void CFormationElementOrder::loadStream(CStorageNode::TSTREAM& stream,
 {
   if (version >= CStreamVersion(4, 1, 44))
   {
-    CElementOrder::loadStream(stream, version, progress);
+  CElementOrder::loadStream(stream, version, progress);
 
-    int temporaryInheritFromModel;
+  int temporaryInheritFromModel;
 
-    stream >> temporaryInheritFromModel;
+  stream >> temporaryInheritFromModel;
 
-    inheritFromModel(static_cast <bool> (temporaryInheritFromModel));
+  inheritFromModel(static_cast <bool> (temporaryInheritFromModel));
   }
 }
 

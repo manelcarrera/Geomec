@@ -18,44 +18,44 @@ class CProgramResult;
 class CResultEntry : public CGraphEntryTemp<IResult>
 {
 public:
-	typedef IValueComposite::TWeightingType TWeightingType;
+  typedef IValueComposite::TWeightingType TWeightingType;
 private:
-	typedef std::map<UINT, CProgramResult*> TResultMap;
-	TResultMap m_mpResult;
-	TWeightingType m_weighting_type;
+  typedef std::map<UINT, CProgramResult*> TResultMap;
+  TResultMap m_mpResult;
+  TWeightingType m_weighting_type;
 public:
 
-	CResultServer& m_server;
-	void CreateProgramResults();
-	void CreateProgramResult(CResultServer::TResultType uResultID,
-							 UINT uResultName, 
-							 UINT uExportLabel,
-							 UINT uBranchName,
-							 UINT uClassType,
-							 UINT uSIUnit,
-							 UINT uFieldUnit,
-							 const double &dFieldFactor);
+  CResultServer& m_server;
+  void CreateProgramResults();
+  void CreateProgramResult(CResultServer::TResultType uResultID,
+               UINT uResultName, 
+               UINT uExportLabel,
+               UINT uBranchName,
+               UINT uClassType,
+               UINT uSIUnit,
+               UINT uFieldUnit,
+               const double &dFieldFactor);
 public:
-	CResultEntry(CResultServer& server);
-	virtual ~CResultEntry();
+  CResultEntry(CResultServer& server);
+  virtual ~CResultEntry();
 
-	CResultServer& Server();
-	const CResultServer& Server() const;
+  CResultServer& Server();
+  const CResultServer& Server() const;
 
-	const CModelBase& Model() const;
-	CModelBase& Model();
+  const CModelBase& Model() const;
+  CModelBase& Model();
 
-	const CProgramResult& Result(UINT uResultID) const;
+  const CProgramResult& Result(UINT uResultID) const;
 
-	void ClearResults();
+  void ClearResults();
 
-	TWeightingType WeightingType() const;
-	void WeightingType(TWeightingType type);
+  TWeightingType WeightingType() const;
+  void WeightingType(TWeightingType type);
 
-	virtual void AppendMenu(CMenu& menu);
-	virtual void Properties();
-	virtual void OnNeighbourModified(const CGraphNode& node, UINT uHint);
-	const CProgramResult& Result(CResultServer::TResultType uResultID) const;
+  virtual void AppendMenu(CMenu& menu);
+  virtual void Properties();
+  virtual void OnNeighbourModified(const CGraphNode& node, UINT uHint);
+  const CProgramResult& Result(CResultServer::TResultType uResultID) const;
 };
 
 

@@ -17,11 +17,11 @@ bool CRetrieveDianaFileNamesConsole::retrieveDianaFileNames(QString& newTitle,
 {
   newTitle = QString::fromStdString(title);
   if(newTitle.right(4) == ".gm4" || newTitle.right(4) == ".gmp")
-    newTitle = newTitle.left(newTitle.length() - 4);
+  newTitle = newTitle.left(newTitle.length() - 4);
 
   if(!m_strWorkingDir.isEmpty())
   {
-    newTitle = m_strWorkingDir + QDir::separator() + newTitle;
+  newTitle = m_strWorkingDir + QDir::separator() + newTitle;
   }
 
   return true;

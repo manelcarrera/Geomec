@@ -9,13 +9,13 @@ namespace GeomecRGI
 class CLoadPropertyFluidPressureFrac : public CLoadPropertyPressureBase
 {
   public:
-    CLoadPropertyFluidPressureFrac(const RGProperty& rgProperty,
+  CLoadPropertyFluidPressureFrac(const RGProperty& rgProperty,
       RGInterface& rgi, CModelBase& modelBase, CRockMechProcessor& rmp);
-    virtual ~CLoadPropertyFluidPressureFrac();
+  virtual ~CLoadPropertyFluidPressureFrac();
 
   private:
-    CLoadPropertyFluidPressureFrac(const CLoadPropertyFluidPressureFrac& rhs);
-    CLoadPropertyFluidPressureFrac& operator = (
+  CLoadPropertyFluidPressureFrac(const CLoadPropertyFluidPressureFrac& rhs);
+  CLoadPropertyFluidPressureFrac& operator = (
       const CLoadPropertyFluidPressureFrac& rhs);
 };
 

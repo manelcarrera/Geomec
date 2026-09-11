@@ -18,12 +18,12 @@ CSetGlobalFaultBehaviour::CSetGlobalFaultBehaviour(CFemAppModel* femAppModel)
 bool CSetGlobalFaultBehaviour::canModifyPressure() const
 {
   for (TFaultPressures::const_iterator faultPressure = m_faultPressures.begin();
-    faultPressure != m_faultPressures.end(); ++faultPressure)
+  faultPressure != m_faultPressures.end(); ++faultPressure)
   {
-    if (!canModifyPressure(*faultPressure))
-    {
+  if (!canModifyPressure(*faultPressure))
+  {
       return false;
-    }
+  }
   }
 
   return true;
@@ -35,27 +35,27 @@ std::vector <QString>
   std::vector <QString> unitNames;
 
   for (TFaultPressures::const_iterator faultPressure = m_faultPressures.begin();
-    faultPressure != m_faultPressures.end(); ++faultPressure)
+  faultPressure != m_faultPressures.end(); ++faultPressure)
   {
-    std::string referenceDepthUnitName = (*faultPressure)->Gradient().
+  std::string referenceDepthUnitName = (*faultPressure)->Gradient().
       ReferenceDepth().UnitName(unitNode.Unit());
-    std::string referencePressureUnitName = (*faultPressure)->Gradient().
+  std::string referencePressureUnitName = (*faultPressure)->Gradient().
       ReferencePressure().UnitName(unitNode.Unit());
-    std::string gradientUnitName = (*faultPressure)->Gradient().
+  std::string gradientUnitName = (*faultPressure)->Gradient().
       Gradient().UnitName(unitNode.Unit());
 
-    if (unitNames.size() > 0)
-    {
+  if (unitNames.size() > 0)
+  {
       assert(referenceDepthUnitName == unitNames[DEPTH].toStdString());
       assert(referencePressureUnitName == unitNames[PRESSURE].toStdString());
       assert(gradientUnitName == unitNames[GRADIENT].toStdString());
-    }
-    else
-    {
+  }
+  else
+  {
       unitNames.push_back(referenceDepthUnitName.c_str());
       unitNames.push_back(referencePressureUnitName.c_str());
       unitNames.push_back(gradientUnitName.c_str());
-    }
+  }
   }
 
   return unitNames;
@@ -67,17 +67,17 @@ bool CSetGlobalFaultBehaviour::getModeType(CFaultPressure::TModeType& modeType)
   bool firstTime = true;
 
   for (TFaultPressures::const_iterator faultPressure = m_faultPressures.begin();
-    faultPressure != m_faultPressures.end(); ++faultPressure)
+  faultPressure != m_faultPressures.end(); ++faultPressure)
   {
-    if (firstTime)
-    {
+  if (firstTime)
+  {
       firstTime = false;
       modeType = (*faultPressure)->Mode();
-    }
-    else if (modeType != (*faultPressure)->Mode())
-    {
+  }
+  else if (modeType != (*faultPressure)->Mode())
+  {
       return false;
-    }
+  }
   }
 
   return true;
@@ -89,36 +89,36 @@ bool CSetGlobalFaultBehaviour::getValues(std::vector <double>& values,
   bool firstTime = true;
 
   for (TFaultPressures::const_iterator faultPressure = m_faultPressures.begin();
-    faultPressure != m_faultPressures.end(); ++faultPressure)
+  faultPressure != m_faultPressures.end(); ++faultPressure)
   {
-    if (firstTime)
-    {
+  if (firstTime)
+  {
       firstTime = false;
       values[CSetGlobalFaultBehaviour::DEPTH] =
-        (*faultPressure)->Gradient().ReferenceDepth().Value(unitNode.Unit());
+    (*faultPressure)->Gradient().ReferenceDepth().Value(unitNode.Unit());
       values[CSetGlobalFaultBehaviour::PRESSURE] =
-        (*faultPressure)->Gradient().ReferencePressure().Value(unitNode.Unit());
+    (*faultPressure)->Gradient().ReferencePressure().Value(unitNode.Unit());
       values[CSetGlobalFaultBehaviour::GRADIENT] =
-        (*faultPressure)->Gradient().Gradient().Value(unitNode.Unit());
-    }
-    else
-    {
+    (*faultPressure)->Gradient().Gradient().Value(unitNode.Unit());
+  }
+  else
+  {
       if (values[CSetGlobalFaultBehaviour::DEPTH] !=
-        (*faultPressure)->Gradient().ReferenceDepth().Value(unitNode.Unit()))
+    (*faultPressure)->Gradient().ReferenceDepth().Value(unitNode.Unit()))
       {
-        return false;
+    return false;
       }
       else if (values[CSetGlobalFaultBehaviour::PRESSURE] !=
-        (*faultPressure)->Gradient().ReferencePressure().Value(unitNode.Unit()))
+    (*faultPressure)->Gradient().ReferencePressure().Value(unitNode.Unit()))
       {
-        return false;
+    return false;
       }
       else if (values[CSetGlobalFaultBehaviour::GRADIENT] !=
-        (*faultPressure)->Gradient().Gradient().Value(unitNode.Unit()))
+    (*faultPressure)->Gradient().Gradient().Value(unitNode.Unit()))
       {
-        return false;
+    return false;
       }
-    }
+  }
   }
 
   return true;
@@ -129,19 +129,19 @@ void CSetGlobalFaultBehaviour::setGlobalFaultBehaviour(
   CFaultPressure::TModeType modeType)
 {
   for (TFaultPressures::const_iterator faultPressure = m_faultPressures.begin();
-    faultPressure != m_faultPressures.end(); ++faultPressure)
+  faultPressure != m_faultPressures.end(); ++faultPressure)
   {
-    (*faultPressure)->Mode(modeType);
+  (*faultPressure)->Mode(modeType);
 
-    if (modeType == CFaultPressure::MT_GRADIENT)
-    {
+  if (modeType == CFaultPressure::MT_GRADIENT)
+  {
       (*faultPressure)->Gradient().ReferenceDepth(
-        values[CSetGlobalFaultBehaviour::DEPTH], unitNode.Unit());
+    values[CSetGlobalFaultBehaviour::DEPTH], unitNode.Unit());
       (*faultPressure)->Gradient().ReferencePressure(
-        values[CSetGlobalFaultBehaviour::PRESSURE], unitNode.Unit());
+    values[CSetGlobalFaultBehaviour::PRESSURE], unitNode.Unit());
       (*faultPressure)->Gradient().Gradient(
-        values[CSetGlobalFaultBehaviour::GRADIENT], unitNode.Unit());
-    }
+    values[CSetGlobalFaultBehaviour::GRADIENT], unitNode.Unit());
+  }
   }
 }
 
@@ -151,16 +151,16 @@ bool CSetGlobalFaultBehaviour::isLocked(const CFaultPressure* faultPressure)
   const
 {
   return m_modelBase->BranchState().
-    IsFixedStage(faultPressure->DepletionStage());
+  IsFixedStage(faultPressure->DepletionStage());
 }
 
 bool CSetGlobalFaultBehaviour::canModifyPressure(
   const CFaultPressure* faultPressure) const
 {
   if ((!faultPressure->DistributedOnly() ||
-    (faultPressure->DistributedSize() == 0)) && !isLocked(faultPressure))
+  (faultPressure->DistributedSize() == 0)) && !isLocked(faultPressure))
   {
-    return true;
+  return true;
   }
 
   return false;
@@ -171,26 +171,26 @@ CSetGlobalFaultBehaviour::TFaultPressures
 {
   TFaultPressures faultPressures;
   THorizonBaseEntry::TEntryNodeSet entryNodeSet =
-    modelBase->GraphEntry(MD_BASE_HORIZON)->GraphEntryNodes();
+  modelBase->GraphEntry(MD_BASE_HORIZON)->GraphEntryNodes();
 
   for (THorizonBaseEntry::TEntryNodeSet::iterator
-    entryNode = entryNodeSet.begin(); entryNode != entryNodeSet.end();
-    ++entryNode)
+  entryNode = entryNodeSet.begin(); entryNode != entryNodeSet.end();
+  ++entryNode)
   {
-    CHorizonBase* horizonBase = dynamic_cast <CHorizonBase*> (*entryNode);
+  CHorizonBase* horizonBase = dynamic_cast <CHorizonBase*> (*entryNode);
 
-    if (horizonBase->Slip())
-    {
+  if (horizonBase->Slip())
+  {
       const CDepletionStageEntry& depletionStageEntry =
-        modelBase->DepletionStageEntry();
+    modelBase->DepletionStageEntry();
 
       for (CDepletionStageEntry::const_iterator
-        depletionStage = depletionStageEntry.begin();
-        depletionStage != depletionStageEntry.end(); ++depletionStage)
+    depletionStage = depletionStageEntry.begin();
+    depletionStage != depletionStageEntry.end(); ++depletionStage)
       {
-        faultPressures.push_back(&(horizonBase->Pressure(*depletionStage)));
+    faultPressures.push_back(&(horizonBase->Pressure(*depletionStage)));
       }
-    }
+  }
   }
 
   return faultPressures;

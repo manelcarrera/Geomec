@@ -9,16 +9,16 @@ namespace cora
 class CResponseTypeMean : public CResponseTypeBase
 {
   public:
-    CResponseTypeMean(CSummaryResultFile& summaryResultFile,
+  CResponseTypeMean(CSummaryResultFile& summaryResultFile,
       const std::vector <QString>& function);
-    virtual ~CResponseTypeMean();
+  virtual ~CResponseTypeMean();
 
-    virtual double calculate(const TObject& object,
+  virtual double calculate(const TObject& object,
       const TFailureMode& failureMode);
 
   private:
-    CResponseTypeMean(const CResponseTypeMean& rhs);
-    CResponseTypeMean& operator = (CResponseTypeMean rhs);
+  CResponseTypeMean(const CResponseTypeMean& rhs);
+  CResponseTypeMean& operator = (CResponseTypeMean rhs);
 };
 
 } // namespace cora

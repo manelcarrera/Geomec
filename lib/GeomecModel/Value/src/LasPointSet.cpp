@@ -26,7 +26,7 @@ CLasPointSet::CLasPointSet(const CNewWellPath& well,
   LinkTo(const_cast<CNewWellPath&>(well));
   assert(m_pNewWellPath == &well);
   CFemAppModel& model = const_cast<CFemAppModel&>(well.Model());
-	reParent(model.GraphEntry(MD_BASE_POINTSET));
+  reParent(model.GraphEntry(MD_BASE_POINTSET));
 }
 
 const CNewWellPath* CLasPointSet::NewWellPath() const
@@ -48,14 +48,14 @@ void CLasPointSet::OnNewNeighbour(const CGraphNode& node)
   const CNewWellPath* pNewWellPath = dynamic_cast<const CNewWellPath*>(&node);
   if(pNewWellPath)
   {
-    m_pNewWellPath = pNewWellPath;
+  m_pNewWellPath = pNewWellPath;
   }
 }
 
 void CLasPointSet::OnNeighbourDeleted(const CGraphNode& item)
 {
   if(&item == m_pNewWellPath)
-    m_pNewWellPath = 0; // release reference to the wellpath when it gets deleted
+  m_pNewWellPath = 0; // release reference to the wellpath when it gets deleted
 
   CPointSet::OnNeighbourDeleted(item);
 }

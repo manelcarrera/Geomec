@@ -13,7 +13,7 @@ public:
   IExportDlg(unsigned int nID, CWnd* pParent);
   virtual void OnSelect(const COpenGLNode& node) = 0;
   virtual bool TimeStep(const CDepletionStage& stage) const = 0;
-	virtual void TimeStep(const CDepletionStage& stage, bool bEnable) = 0;
+  virtual void TimeStep(const CDepletionStage& stage, bool bEnable) = 0;
 
   COpenGLNodeSelection& Selection();
   const COpenGLNodeSelection& Selection() const;
@@ -27,12 +27,12 @@ private:
   class CSelectionObserver : public COpenGLNodeSelection::CObserver
   {
   public:
-    CSelectionObserver(IExportDlg& dlg);
-    virtual void OnNodeErased(const COpenGLNode& node);
-    virtual void OnNodeInserted(const COpenGLNode& node);
+  CSelectionObserver(IExportDlg& dlg);
+  virtual void OnNodeErased(const COpenGLNode& node);
+  virtual void OnNodeInserted(const COpenGLNode& node);
 
   private:
-    IExportDlg& m_dlg;
+  IExportDlg& m_dlg;
   };
 
 private:

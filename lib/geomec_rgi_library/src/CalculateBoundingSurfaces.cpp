@@ -10,15 +10,15 @@ void addTrianglesCount(GeomecRGI::TSharedBodyTriangleMap& triangleMap,
   size_t i0, size_t i1, size_t i2)
 {
   QString hash = QString("%1.%2.%3").arg(nodes[i0]).arg(nodes[i1]).
-    arg(nodes[i2]);
+  arg(nodes[i2]);
   std::pair <GeomecRGI::TSharedBodyTriangleMap::iterator, bool> result =
-    triangleMap.insert(std::make_pair(hash, sharedBodyTriangle));
+  triangleMap.insert(std::make_pair(hash, sharedBodyTriangle));
 
   if (!result.second)
   {
-    size_t count = result.first->second->getCount();
+  size_t count = result.first->second->getCount();
 
-    result.first->second->setCount(++count);
+  result.first->second->setCount(++count);
   }
 }
 
@@ -30,15 +30,15 @@ GeomecRGI::TSharedBodyTriangleMap collectTriangles(geo::IElementSet& elementSet)
 
   for (int element = 0; element < elementSet.ElementSize(); ++element)
   {
-    const geo::CTetrahedron& tetrahedron =
+  const geo::CTetrahedron& tetrahedron =
       static_cast <const geo::CTetrahedron&> (elementSet.Element(element));
 
-    for (int face = 0; face < tetrahedron.NrOfFaces(); ++face)
-    {
+  for (int face = 0; face < tetrahedron.NrOfFaces(); ++face)
+  {
       const geo::CBodyTriangle* bodyTriangle =
-        static_cast <const geo::CBodyTriangle*> (&tetrahedron.Face(face));
+    static_cast <const geo::CBodyTriangle*> (&tetrahedron.Face(face));
       GeomecRGI::TSharedBodyTriangle bodyTriangleCountPair =
-        QSharedPointer <GeomecRGI::CSharedBodyTriangle> (
+    QSharedPointer <GeomecRGI::CSharedBodyTriangle> (
           new GeomecRGI::CSharedBodyTriangle(elementSet, bodyTriangle, 0));
       int nodes[NUMBER_OF_NODES];
 
@@ -46,7 +46,7 @@ GeomecRGI::TSharedBodyTriangleMap collectTriangles(geo::IElementSet& elementSet)
 
       for (int n = 0; n < bodyTriangle->NrOfNodes(); ++n)
       {
-        nodes[n] = bodyTriangle->Node(n).Index();
+    nodes[n] = bodyTriangle->Node(n).Index();
       }
 
       addTrianglesCount(triangleMap, bodyTriangleCountPair, nodes, 0, 1, 2);
@@ -55,7 +55,7 @@ GeomecRGI::TSharedBodyTriangleMap collectTriangles(geo::IElementSet& elementSet)
       addTrianglesCount(triangleMap, bodyTriangleCountPair, nodes, 1, 2, 0);
       addTrianglesCount(triangleMap, bodyTriangleCountPair, nodes, 2, 0, 1);
       addTrianglesCount(triangleMap, bodyTriangleCountPair, nodes, 2, 1, 0);
-    }
+  }
   }
 
   return triangleMap;

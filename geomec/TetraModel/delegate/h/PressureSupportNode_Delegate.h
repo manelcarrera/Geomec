@@ -11,7 +11,7 @@ public:
   CPressureSupportNode_Delegate(CPressureSupportNode* pressureSupportNode);
 
   virtual bool MouseRelease(TFrame& frame, TKeyboardModifiers state,
-    TMouseButton button, const TScreenPoint& point, const TObjectVec& vcHit);
+  TMouseButton button, const TScreenPoint& point, const TObjectVec& vcHit);
 
   virtual void AppendContextMenu(CContextMenuInvoker& invoker);
 
@@ -24,7 +24,7 @@ protected:
 private:
   CPressureSupportNode_Delegate(const CPressureSupportNode_Delegate& rhs);
   CPressureSupportNode_Delegate& operator = (
-    const CPressureSupportNode_Delegate& rhs);
+  const CPressureSupportNode_Delegate& rhs);
 
   CPressureSupportNode* m_pressureSupportNode;
 

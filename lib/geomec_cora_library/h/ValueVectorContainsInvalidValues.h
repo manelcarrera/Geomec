@@ -11,7 +11,7 @@ namespace cora
 class CValueVectorContainsInvalidValues : public std::runtime_error
 {
   public:
-    CValueVectorContainsInvalidValues(const QString& valueType);
+  CValueVectorContainsInvalidValues(const QString& valueType);
 };
 
 } // namespace cora

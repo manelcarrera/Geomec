@@ -10,7 +10,7 @@ CNodeLocationHighlighter_Delegate::CNodeLocationHighlighter_Delegate(
 
 CNodeLocationHighlighter_Delegate::CPointHighlightNode_Delegate::
   CPointHighlightNode_Delegate(
-    CNodeLocationHighlighter::CPointHighlightNode* pointHighlightNode)
+  CNodeLocationHighlighter::CPointHighlightNode* pointHighlightNode)
 : COpenGLNode_Delegate(pointHighlightNode)
 , m_pointHighlightNode(pointHighlightNode)
 {

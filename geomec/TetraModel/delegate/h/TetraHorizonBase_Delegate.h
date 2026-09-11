@@ -13,7 +13,7 @@ public:
 private:
   CTetraHorizonBase_Delegate(const CTetraHorizonBase_Delegate& rhs);
   CTetraHorizonBase_Delegate& operator = (
-    const CTetraHorizonBase_Delegate& rhs);
+  const CTetraHorizonBase_Delegate& rhs);
 
   CTetraHorizonBase* m_tetraHorizonBase;
 

@@ -13,14 +13,14 @@
 
 class CFileProgressCallBack : public CProgressCallBack  
 {
-	CProgressDlg *m_pProgressDlg;
+  CProgressDlg *m_pProgressDlg;
 public:
-	CFileProgressCallBack(CProgressDlg &dlg);
-	virtual ~CFileProgressCallBack();
+  CFileProgressCallBack(CProgressDlg &dlg);
+  virtual ~CFileProgressCallBack();
 protected:
-	virtual void OnOpenFile(const CTextFile &file);
-	virtual void OnSaveFile(const CTextFile &file);
-	virtual void OnProgressUpdate(const int nProgress);
+  virtual void OnOpenFile(const CTextFile &file);
+  virtual void OnSaveFile(const CTextFile &file);
+  virtual void OnProgressUpdate(const int nProgress);
 };
 
 #endif // !defined(AFX_FILEPROGRESSCALLBACK_H__9E4D3E03_A87F_44B6_8ADC_95714C372C6D__INCLUDED_)

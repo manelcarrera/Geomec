@@ -50,52 +50,52 @@ private:
 
   struct TriangleInfo
   {
-    double x, y, z;
-    double r2;
-    const geo::IFace *triangle;
+  double x, y, z;
+  double r2;
+  const geo::IFace *triangle;
 
-    double SquaredDistance(const geo::IPoint& p) const;
-    double Contains(const geo::IPoint& p) const;
+  double SquaredDistance(const geo::IPoint& p) const;
+  double Contains(const geo::IPoint& p) const;
 
-    TriangleInfo(const geo::IFace *triangle);
+  TriangleInfo(const geo::IFace *triangle);
   };
 
   struct InterfaceInfo
   {
-    std::vector<TriangleInfo> front;
-    std::vector<TriangleInfo> back;
-    std::vector<const geo::IInterfaceElement *> if_elts;
+  std::vector<TriangleInfo> front;
+  std::vector<TriangleInfo> back;
+  std::vector<const geo::IInterfaceElement *> if_elts;
   };
 
   struct TyingInfo
   {
-    geo::CPoint point_dst;
-    const geo::IFace *face_dst;
+  geo::CPoint point_dst;
+  const geo::IFace *face_dst;
 
-    TyingInfo() : face_dst(nullptr) {}
-    TyingInfo(const geo::CPoint& point, const geo::IFace *face) : face_dst(face)
-    {
+  TyingInfo() : face_dst(nullptr) {}
+  TyingInfo(const geo::CPoint& point, const geo::IFace *face) : face_dst(face)
+  {
       point_dst.Set(point.X(), point.Y(), point.Z());
-    }
+  }
   };
 
   struct TNodeInfo
   {
-    int duplicate_node;
-    TyingInfo tying_info;
+  int duplicate_node;
+  TyingInfo tying_info;
 
-    std::vector<TyingInfo> tmp_tying_infos;
-    TyingInfo tmp_reverse_tying_info;
+  std::vector<TyingInfo> tmp_tying_infos;
+  TyingInfo tmp_reverse_tying_info;
 
-    geo::CPoint tmp_reverse_point_src;
+  geo::CPoint tmp_reverse_point_src;
 
-    TNodeInfo() : duplicate_node(-1)
-    {
+  TNodeInfo() : duplicate_node(-1)
+  {
       tmp_tying_infos.reserve(6);
-    }
+  }
 
-    void add(const geo::IPoint& point, const geo::IFace *face, bool precise = false);
-    void process();
+  void add(const geo::IPoint& point, const geo::IFace *face, bool precise = false);
+  void process();
   };
 
   typedef std::map<int, TNodeInfo> TNodeInfoMap;

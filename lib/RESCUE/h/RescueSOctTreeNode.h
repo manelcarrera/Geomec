@@ -1,10 +1,10 @@
 /*************************************************************************
 
-        RescueSOctTreeNode.h
+    RescueSOctTreeNode.h
 
  Node of a tree of RescueOctTreeNodes, used for triangulated surfaces.
 
-        Rod Hanks               January, 2000
+    Rod Hanks               January, 2000
 
 ****************************************************************************/
 
@@ -20,9 +20,9 @@ class RescueSOctTreeNode
 {
 public:
   typedef enum {BOTTOM_LEFT_FRONT, BOTTOM_RIGHT_FRONT,
-                BOTTOM_RIGHT_REAR, BOTTOM_LEFT_REAR,
-                TOP_LEFT_FRONT   , TOP_RIGHT_FRONT,
-                TOP_RIGHT_REAR   , TOP_LEFT_REAR} OctTreeBranches;
+        BOTTOM_RIGHT_REAR, BOTTOM_LEFT_REAR,
+        TOP_LEFT_FRONT   , TOP_RIGHT_FRONT,
+        TOP_RIGHT_REAR   , TOP_LEFT_REAR} OctTreeBranches;
 /*
   Topological key to Oct Tree branches.
 */
@@ -41,7 +41,7 @@ public:
   virtual RESCUEINT64 VertexCount64() {return (vertices == 0) ? 0 : vertices->Count64();}
   virtual RESCUEINT32 VertexCount() {return (vertices == 0) ? 0 : vertices->Count();}
   virtual RescueTriangleVertex *NthVertex(RESCUEINT64 zeroBasedOrdinal) 
-                    {return (vertices == 0) ? 0 : vertices->NthObject(zeroBasedOrdinal);}
+          {return (vertices == 0) ? 0 : vertices->NthObject(zeroBasedOrdinal);}
                                       // These will return 0 unless this is a
                                       // terminal node.
   virtual RescueSOctTreeNode *Leaf(OctTreeBranches which) {return leaf[(RESCUEINT64) which];}
@@ -58,8 +58,8 @@ public:
   RESCUEFLOAT MaxZ() {return maxZ;}
 protected:
   void CommonInitialization(RESCUEFLOAT minX, RESCUEFLOAT maxX, 
-                            RESCUEFLOAT minY, RESCUEFLOAT maxY,
-                            RESCUEFLOAT minZ, RESCUEFLOAT maxZ); // Called during constructor, so cannot polymorph.
+              RESCUEFLOAT minY, RESCUEFLOAT maxY,
+              RESCUEFLOAT minZ, RESCUEFLOAT maxZ); // Called during constructor, so cannot polymorph.
   RescueSOctTreeNode(FILE *archiveFile, RescueTriangulatedSurface *parentTriangulatedSurface);
   virtual void Archive(RescueContext *context, FILE *archiveFile);
 /*

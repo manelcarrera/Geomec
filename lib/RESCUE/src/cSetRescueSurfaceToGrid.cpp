@@ -1,10 +1,10 @@
 /*************************************************************************
 
-        cSetRescueSurfaceToGrid.cpp
+    cSetRescueSurfaceToGrid.cpp
 
  Keeps a list of pointers to some RescueSurfaceToGrid.
 
-        Rod Hanks               January 18th, 1995  /  August 1996
+    Rod Hanks               January 18th, 1995  /  August 1996
 
 ****************************************************************************/
 #include "RescueModel.h"
@@ -24,7 +24,7 @@ cSetRescueSurfaceToGrid::~cSetRescueSurfaceToGrid()
 
   for (loop = 0; loop < count; loop++)
   {
-    delete objects[loop];
+  delete objects[loop];
   }
   free(objects);
 }
@@ -35,7 +35,7 @@ RESCUEBOOL cSetRescueSurfaceToGrid::AnyFileTruncated()
   RESCUEINT64 loop;
   for (loop = 0; loop < count && myReturn == FALSE; loop++)
   {
-    myReturn = objects[loop]->AnyFileTruncated();
+  myReturn = objects[loop]->AnyFileTruncated();
   }
   return myReturn;
 }
@@ -46,7 +46,7 @@ void cSetRescueSurfaceToGrid::Archive(RescueContext *context, FILE *archiveFile)
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    objects[loop]->Archive(archiveFile);
+  objects[loop]->Archive(archiveFile);
   }
 }
 
@@ -55,7 +55,7 @@ void cSetRescueSurfaceToGrid::Relink(RescueObject *parent)
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    objects[loop]->Relink(parent);
+  objects[loop]->Relink(parent);
   }
 }
 
@@ -69,8 +69,8 @@ void cSetRescueSurfaceToGrid::UnArchive(RescueContext *context, FILE *archiveFil
   RESCUEINT64 loop;
   for (loop = 0; loop < newCount; loop++)
   {
-    RescueSurfaceToGrid *newObject = new RescueSurfaceToGrid(context, archiveFile);
-    (*this) += newObject;
+  RescueSurfaceToGrid *newObject = new RescueSurfaceToGrid(context, archiveFile);
+  (*this) += newObject;
   }
 }
 
@@ -80,7 +80,7 @@ void cSetRescueSurfaceToGrid::EmptySelf(void)
  
   for (loop = 0; loop < count; loop++)
   {
-    delete objects[loop];
+  delete objects[loop];
   }
   count = 0;
 }
@@ -89,8 +89,8 @@ void cSetRescueSurfaceToGrid::operator+=(RescueSurfaceToGrid *newObject)
 {
   if (allocated == count)
   {
-    allocated += 10;
-    objects = (RescueSurfaceToGrid **) realloc(objects, sizeof(RescueSurfaceToGrid *) * (size_t) allocated);
+  allocated += 10;
+  objects = (RescueSurfaceToGrid **) realloc(objects, sizeof(RescueSurfaceToGrid *) * (size_t) allocated);
   }
   objects[count++] = newObject;
 }
@@ -102,25 +102,25 @@ RESCUEBOOL cSetRescueSurfaceToGrid::operator-=(RescueSurfaceToGrid *existingObje
 
   while (ndx < count && found == FALSE)
   {
-    if (existingObject == objects[ndx])
-    {
+  if (existingObject == objects[ndx])
+  {
       found = TRUE;
-    }
-    else
-    {
+  }
+  else
+  {
       ndx++;
-    }
+  }
   }
   if (found)
   {
-    RESCUEINT64 loop;
+  RESCUEINT64 loop;
 
-    delete objects[ndx];
-    count--;
-    for (loop = ndx; loop < count; loop++)
-    {
+  delete objects[ndx];
+  count--;
+  for (loop = ndx; loop < count; loop++)
+  {
       objects[loop] = objects[loop + 1];
-    }
+  }
   }
   return found;
 }
@@ -132,22 +132,22 @@ RescueSurfaceToGrid *cSetRescueSurfaceToGrid::ObjectIdentifiedBy(RESCUEINT64 ide
 
   while (ndx < count && found == FALSE)
   {
-    if (objects[ndx]->IsIdentifiedBy(identifier))
-    {
-      found = TRUE;
-    }
-    else
-    {
-      ndx++;
-    }
-  }
-  if (found)
+  if (objects[ndx]->IsIdentifiedBy(identifier))
   {
-    return objects[ndx];
+      found = TRUE;
   }
   else
   {
-    return 0;
+      ndx++;
+  }
+  }
+  if (found)
+  {
+  return objects[ndx];
+  }
+  else
+  {
+  return 0;
   }
 }
 
@@ -155,19 +155,19 @@ RESCUEBOOL cSetRescueSurfaceToGrid::operator-=(RESCUEINT64 ndx)
 {
   if (ndx >= 0 && ndx < count)
   {
-    RESCUEINT64 loop;
+  RESCUEINT64 loop;
 
-    delete objects[ndx];
-    count--;
-    for (loop = ndx; loop < count; loop++)
-    {
+  delete objects[ndx];
+  count--;
+  for (loop = ndx; loop < count; loop++)
+  {
       objects[loop] = objects[loop + 1];
-    }
-    return TRUE;
+  }
+  return TRUE;
   }
   else
   {
-    return FALSE;
+  return FALSE;
   }
 }
 
@@ -175,11 +175,11 @@ RescueSurfaceToGrid *cSetRescueSurfaceToGrid::NthObject(RESCUEINT64 ordinal)
 {
   if (ordinal < 0 || ordinal >= count)
   {
-    return 0;
+  return 0;
   }
   else
   {
-    return objects[ordinal];
+  return objects[ordinal];
   }
 }
 
@@ -198,7 +198,7 @@ void cSetRescueSurfaceToGrid::FindUniquePropertyNames(cSetString *container)
   int loop;
   for (loop = 0; loop < count; loop++)
   {
-    objects[loop]->FindUniquePropertyNames(container);
+  objects[loop]->FindUniquePropertyNames(container);
   }
 }
 
@@ -206,15 +206,15 @@ RESCUEINT32 cSetRescueSurfaceToGrid::Count(RESCUEBOOL throwIfTrue)
 {
   if (count > 2147483647)
   {
-    if (throwIfTrue)
-    {
+  if (throwIfTrue)
+  {
       throw "Model is too large to be accessed in 32 bit mode.";
-    }
-    return 0;
+  }
+  return 0;
   }
   else
   {
-    return (RESCUEINT32) count;
+  return (RESCUEINT32) count;
   }
 }
 

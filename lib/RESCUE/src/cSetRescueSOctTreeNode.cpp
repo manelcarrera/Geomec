@@ -1,10 +1,10 @@
 /*************************************************************************
 
-        cSetRescueSOctTreeNode.cpp
+    cSetRescueSOctTreeNode.cpp
 
  Keeps a list of pointers to some RescueSOctTreeNode.
 
-        Rod Hanks               January 2000
+    Rod Hanks               January 2000
 
 ****************************************************************************/
 #include "RescueModel.h"
@@ -24,7 +24,7 @@ cSetRescueSOctTreeNode::~cSetRescueSOctTreeNode()
 
   for (loop = 0; loop < count; loop++)
   {
-    delete objects[loop];
+  delete objects[loop];
   }
   free(objects);
 }
@@ -35,7 +35,7 @@ void cSetRescueSOctTreeNode::Archive(RescueContext *context, FILE *archiveFile)
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    objects[loop]->Archive(context, archiveFile);
+  objects[loop]->Archive(context, archiveFile);
   }
 }
 
@@ -49,8 +49,8 @@ void cSetRescueSOctTreeNode::UnArchive(RescueContext *context, FILE *archiveFile
   RESCUEINT64 loop;
   for (loop = 0; loop < newCount; loop++)
   {
-    RescueSOctTreeNode *newObject = new RescueSOctTreeNode(archiveFile, surface);
-    (*this) += newObject;
+  RescueSOctTreeNode *newObject = new RescueSOctTreeNode(archiveFile, surface);
+  (*this) += newObject;
   }
 }
 
@@ -60,7 +60,7 @@ void cSetRescueSOctTreeNode::EmptySelf(void)
  
   for (loop = 0; loop < count; loop++)
   {
-    delete objects[loop];
+  delete objects[loop];
   }
   count = 0;
 }
@@ -69,8 +69,8 @@ void cSetRescueSOctTreeNode::operator+=(RescueSOctTreeNode *newObject)
 {
   if (allocated == count)
   {
-    allocated += 10;
-    objects = (RescueSOctTreeNode **) realloc(objects, sizeof(RescueSOctTreeNode *) * (size_t) allocated);
+  allocated += 10;
+  objects = (RescueSOctTreeNode **) realloc(objects, sizeof(RescueSOctTreeNode *) * (size_t) allocated);
   }
   objects[count++] = newObject;
 }
@@ -82,25 +82,25 @@ RESCUEBOOL cSetRescueSOctTreeNode::operator-=(RescueSOctTreeNode *existingObject
 
   while (ndx < count && found == FALSE)
   {
-    if (existingObject == objects[ndx])
-    {
+  if (existingObject == objects[ndx])
+  {
       found = TRUE;
-    }
-    else
-    {
+  }
+  else
+  {
       ndx++;
-    }
+  }
   }
   if (found)
   {
-    RESCUEINT64 loop;
+  RESCUEINT64 loop;
 
-    delete objects[ndx];
-    count--;
-    for (loop = ndx; loop < count; loop++)
-    {
+  delete objects[ndx];
+  count--;
+  for (loop = ndx; loop < count; loop++)
+  {
       objects[loop] = objects[loop + 1];
-    }
+  }
   }
   return found;
 }
@@ -109,19 +109,19 @@ RESCUEBOOL cSetRescueSOctTreeNode::operator-=(RESCUEINT64 ndx)
 {
   if (ndx >= 0 && ndx < count)
   {
-    RESCUEINT64 loop;
+  RESCUEINT64 loop;
 
-    delete objects[ndx];
-    count--;
-    for (loop = ndx; loop < count; loop++)
-    {
+  delete objects[ndx];
+  count--;
+  for (loop = ndx; loop < count; loop++)
+  {
       objects[loop] = objects[loop + 1];
-    }
-    return TRUE;
+  }
+  return TRUE;
   }
   else
   {
-    return FALSE;
+  return FALSE;
   }
 }
 
@@ -129,11 +129,11 @@ RescueSOctTreeNode *cSetRescueSOctTreeNode::NthObject(RESCUEINT64 ordinal)
 {
   if (ordinal < 0 || ordinal >= count)
   {
-    return 0;
+  return 0;
   }
   else
   {
-    return objects[ordinal];
+  return objects[ordinal];
   }
 }
 
@@ -151,15 +151,15 @@ RESCUEINT32 cSetRescueSOctTreeNode::Count(RESCUEBOOL throwIfTrue)
 {
   if (count > 2147483647)
   {
-    if (throwIfTrue)
-    {
+  if (throwIfTrue)
+  {
       throw "Model is too large to be accessed in 32 bit mode.";
-    }
-    return 0;
+  }
+  return 0;
   }
   else
   {
-    return (RESCUEINT32) count;
+  return (RESCUEINT32) count;
   }
 }
 

@@ -32,23 +32,23 @@ class IParallelInitializationCallback;
 class IValueComponentBase : public CStorageNode
 {
 protected:
-	IValueComponentBase(IValueComposite &composite, unsigned int uComponent = 0, unsigned int uMode = 0);
-	IValueComponentBase(unsigned int uName, IValueComposite &composite, unsigned int uComponent = 0, unsigned int uMode = 0);
-	IValueComponentBase(const QString& sName, IValueComposite &composite, unsigned int uComponent = 0, unsigned int uMode = 0);
+  IValueComponentBase(IValueComposite &composite, unsigned int uComponent = 0, unsigned int uMode = 0);
+  IValueComponentBase(unsigned int uName, IValueComposite &composite, unsigned int uComponent = 0, unsigned int uMode = 0);
+  IValueComponentBase(const QString& sName, IValueComposite &composite, unsigned int uComponent = 0, unsigned int uMode = 0);
 public:
 
   enum TValueComponentType : int
   {
-    SCALAR = 0,
-    VECTOR,
-    TENSOR,
-    OTHER
+  SCALAR = 0,
+  VECTOR,
+  TENSOR,
+  OTHER
   };
 
-	// Pre-defined return values
-	typedef IQuantityDouble::UNIT UNIT;
+  // Pre-defined return values
+  typedef IQuantityDouble::UNIT UNIT;
 
-	IValueComponentBase(const IValueComponentBase &rhs);
+  IValueComponentBase(const IValueComponentBase &rhs);
 
   virtual TValueComponentType Type() const = 0;
 
@@ -67,33 +67,33 @@ public:
   virtual IValueDataInterface *Data(int type = 0);
 
   // Parent
-	const IValueComposite& Parent() const;
-	IValueComposite& Parent();
+  const IValueComposite& Parent() const;
+  IValueComposite& Parent();
 
-	// Indices of the component by the parent. These functions are search functions and are inefficient.
-	int ComponentIndex() const;
-	int ModeIndex() const;
+  // Indices of the component by the parent. These functions are search functions and are inefficient.
+  int ComponentIndex() const;
+  int ModeIndex() const;
 
-	// Export label
-	virtual QString ExportLabel() const = 0;
+  // Export label
+  virtual QString ExportLabel() const = 0;
 
 
-	// Unit description ...
-	virtual	QString UnitName(const UNIT unit = IQuantityDouble::SI_UNIT) const = 0;
+  // Unit description ...
+  virtual	QString UnitName(const UNIT unit = IQuantityDouble::SI_UNIT) const = 0;
 
-	// Value discription ...
-	virtual bool Defined() const = 0;
-	int MinMaxSteps(const geo::IObject &object) const;
+  // Value discription ...
+  virtual bool Defined() const = 0;
+  int MinMaxSteps(const geo::IObject &object) const;
 
-	// Can map on opengl node
-	virtual bool CanMap(const COpenGLNode& node) const;
-    virtual bool CanComputeOnPoints() const;
+  // Can map on opengl node
+  virtual bool CanMap(const COpenGLNode& node) const;
+  virtual bool CanComputeOnPoints() const;
 
-	// Component name
-	IValueComponentBase& operator=(const IValueComponentBase &rhs);
-	bool operator==(const IValueComponentBase &rhs) const;
+  // Component name
+  IValueComponentBase& operator=(const IValueComponentBase &rhs);
+  bool operator==(const IValueComponentBase &rhs) const;
 
-	virtual bool Less(const CGraphNode &node) const;
+  virtual bool Less(const CGraphNode &node) const;
 
   virtual bool NeedParallelInitializationCallback() const;
   virtual geo::IParallelInitializationCallback *GetParallelInitializationCallback(); // factory method, caller owns the pointer

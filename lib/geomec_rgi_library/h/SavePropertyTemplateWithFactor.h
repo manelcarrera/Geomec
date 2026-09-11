@@ -9,27 +9,27 @@ namespace GeomecRGI
 
 template <unsigned int VALUETYPE>
   class CSavePropertyTemplateWithFactor :
-    public CSavePropertyTemplate <VALUETYPE>
+  public CSavePropertyTemplate <VALUETYPE>
 {
   public:
-    CSavePropertyTemplateWithFactor(const RGProperty& rgProperty,
+  CSavePropertyTemplateWithFactor(const RGProperty& rgProperty,
       double factor);
-    virtual ~CSavePropertyTemplateWithFactor();
+  virtual ~CSavePropertyTemplateWithFactor();
 
-    virtual bool saveProperty(RGInterface& rgi, CModelBase& modelBase,
+  virtual bool saveProperty(RGInterface& rgi, CModelBase& modelBase,
       const CRockMechProcessor& rmp);
 
   private:
-    CSavePropertyTemplateWithFactor(const CSavePropertyTemplateWithFactor& rhs);
-    CSavePropertyTemplateWithFactor& operator = (
+  CSavePropertyTemplateWithFactor(const CSavePropertyTemplateWithFactor& rhs);
+  CSavePropertyTemplateWithFactor& operator = (
       const CSavePropertyTemplateWithFactor& rhs);
 
-    double m_factor;
+  double m_factor;
 };
 
 template <unsigned int VALUETYPE>
   CSavePropertyTemplateWithFactor <VALUETYPE> ::CSavePropertyTemplateWithFactor(
-    const RGProperty& rgProperty, double factor)
+  const RGProperty& rgProperty, double factor)
   : CSavePropertyTemplate <VALUETYPE> (rgProperty)
   , m_factor(factor)
 {
@@ -37,7 +37,7 @@ template <unsigned int VALUETYPE>
 
 template <unsigned int VALUETYPE>
   CSavePropertyTemplateWithFactor <VALUETYPE> ::
-    ~CSavePropertyTemplateWithFactor()
+  ~CSavePropertyTemplateWithFactor()
 {
 }
 
@@ -50,7 +50,7 @@ struct CMultiply
 
   void operator () (double& rhs) const
   {
-    if (!RGUtils::isNull(rhs))
+  if (!RGUtils::isNull(rhs))
       rhs *= m_factor;
   }
 
@@ -59,7 +59,7 @@ struct CMultiply
 
 template <unsigned int VALUETYPE>
   bool CSavePropertyTemplateWithFactor <VALUETYPE> ::saveProperty(
-    RGInterface& rgi, CModelBase& modelBase, const CRockMechProcessor& rmp)
+  RGInterface& rgi, CModelBase& modelBase, const CRockMechProcessor& rmp)
 {
   std::vector <double> values(modelBase.Mesh().Mesh().ElementSize());
 

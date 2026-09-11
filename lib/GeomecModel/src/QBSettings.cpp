@@ -33,7 +33,7 @@ CQBSettings::CQBSettings(CModelBase &model)
 CQBSettings::~CQBSettings()
 {
   if(m_fpLog)
-    fclose(m_fpLog);
+  fclose(m_fpLog);
 }
 
 void CQBSettings::StartQB()
@@ -72,18 +72,18 @@ void CQBSettings::WriteDat(const QString &path)
   AddDepths(*progress);
   if(!qbIW.WriteInput(path.toStdString().c_str(), *progress))
   {
-    _m()->msg(qbIW.Error());
+  _m()->msg(qbIW.Error());
   }
   else if(m_fpLog)
   {
-    QString message;
-    message = QString("Multiple intersections found for some of the sample points, see %1 for more details").arg(QuickBlocksLogPath());
-    _m()->msg(message);
+  QString message;
+  message = QString("Multiple intersections found for some of the sample points, see %1 for more details").arg(QuickBlocksLogPath());
+  _m()->msg(message);
   }
   if(m_fpLog)
   {
-    fclose(m_fpLog);
-    m_fpLog = 0;
+  fclose(m_fpLog);
+  m_fpLog = 0;
   }
   delete m_QBPointSet;
   m_QBPointSet = 0;
@@ -92,7 +92,7 @@ void CQBSettings::WriteDat(const QString &path)
 void CQBSettings::GeneratePointSet(IProgressBase &progress)
 {
   if(m_QBPointSet)
-    delete m_QBPointSet;
+  delete m_QBPointSet;
   
   m_QBPointSet = new CPointSet("QB", m_Model, 0, CPointSet::DIM_2D);
   progress.StatusMessage("Constructing grid");
@@ -111,11 +111,11 @@ void CQBSettings::AddDepths(IProgressBase &progress)
   progress.StatusMessage("Determining analysis depths");
   for(int i = 0; i < m_QBPointSet->PointSize(); ++i)
   {
-    TFormationIntersects formIntersections;
+  TFormationIntersects formIntersections;
 
-    std::set<const CFormationBase*>::const_iterator it;
-    for(it = m_stSelectedFormations.begin(); it != m_stSelectedFormations.end(); ++it)
-    {
+  std::set<const CFormationBase*>::const_iterator it;
+  for(it = m_stSelectedFormations.begin(); it != m_stSelectedFormations.end(); ++it)
+  {
       intersectPoints.clear();
       filteredPoints.clear();
 
@@ -128,11 +128,11 @@ void CQBSettings::AddDepths(IProgressBase &progress)
       // calculate intersection points with top and bottom of the reservoir
       for(int j = 0; j < (*it)->ElementSetSize(); j++)
       {
-	      const geo::CBodyGroup *pGeoVolume = dynamic_cast<const geo::CBodyGroup*>(&(*it)->ElementSet(j).ElementSet());
-	      assert(pGeoVolume);
+        const geo::CBodyGroup *pGeoVolume = dynamic_cast<const geo::CBodyGroup*>(&(*it)->ElementSet(j).ElementSet());
+        assert(pGeoVolume);
 
-	      //get the intersection points with the volume and the vertical line
-	      pGeoVolume->IntersectionWithEdgeFaces(line,intersectPoints);
+        //get the intersection points with the volume and the vertical line
+        pGeoVolume->IntersectionWithEdgeFaces(line,intersectPoints);
       }
    
       geo::CPoint top;
@@ -142,59 +142,59 @@ void CQBSettings::AddDepths(IProgressBase &progress)
       std::set<geo::CPoint>::iterator ptIt;
       for(ptIt = intersectPoints.begin(); ptIt != intersectPoints.end(); ++ptIt)
       {
-        filteredPoints.insert(*ptIt);
+    filteredPoints.insert(*ptIt);
       }
 
-	    if(filteredPoints.size() > 1)
-	    {
-        if(filteredPoints.size() > 2)
-        {
+    if(filteredPoints.size() > 1)
+    {
+    if(filteredPoints.size() > 2)
+    {
           
           // still more than two points? write logline
           if(filteredPoints.size() > 2)
           {
-            if(!m_fpLog)
-            {
+      if(!m_fpLog)
+      {
               m_fpLog = fopen(QuickBlocksLogPath().toStdString().c_str(), "w");
               fprintf(m_fpLog, "********** QuickBlocks Logfile **********\n");
-            }
-            assert(m_fpLog);
-            fprintf(m_fpLog, "Multiple intersections found for formation \"%s\" at Northing: %f; Easting: %f; Depths: ", (*it)->Name().toStdString().c_str(), intersect.Y(), intersect.X());
-            geo::CCoordinateSet<geo::CPoint>::iterator ptFilIt;
-            for(ptFilIt = filteredPoints.begin(); ptFilIt != filteredPoints.end(); ++ptFilIt)
-            {
+      }
+      assert(m_fpLog);
+      fprintf(m_fpLog, "Multiple intersections found for formation \"%s\" at Northing: %f; Easting: %f; Depths: ", (*it)->Name().toStdString().c_str(), intersect.Y(), intersect.X());
+      geo::CCoordinateSet<geo::CPoint>::iterator ptFilIt;
+      for(ptFilIt = filteredPoints.begin(); ptFilIt != filteredPoints.end(); ++ptFilIt)
+      {
               fprintf(m_fpLog, "%f; ", (*ptFilIt).Z());  
-            }
-            fprintf(m_fpLog, "\n");
+      }
+      fprintf(m_fpLog, "\n");
           }
-        }
-        
-        geo::CCoordinateSet<geo::CPoint>::iterator filtPtsIt;
-        for(filtPtsIt = filteredPoints.begin(); filtPtsIt != filteredPoints.end(); ++filtPtsIt)
-        {
+    }
+    
+    geo::CCoordinateSet<geo::CPoint>::iterator filtPtsIt;
+    for(filtPtsIt = filteredPoints.begin(); filtPtsIt != filteredPoints.end(); ++filtPtsIt)
+    {
           if(filtPtsIt == filteredPoints.begin())
           {
-            top = *filtPtsIt;
-            bot = *filtPtsIt;
-            continue;
+      top = *filtPtsIt;
+      bot = *filtPtsIt;
+      continue;
           }
 
           if((*filtPtsIt).Z() < top.Z())
-            top = *filtPtsIt;
+      top = *filtPtsIt;
           if((*filtPtsIt).Z() > bot.Z())
-            bot = *filtPtsIt;
-        }
-    
+      bot = *filtPtsIt;
+    }
+  
       }
       else
       {
-        top = geo::CPoint::NullPoint;
-        bot = geo::CPoint::NullPoint;
+    top = geo::CPoint::NullPoint;
+    bot = geo::CPoint::NullPoint;
       }
       formIntersections.push_back(new CQBFormationIntersection(*it, top, bot));
-    }
-    m_Intersections.insert(TGrid2Intersects::value_type(i, formIntersections));
-    progress.Step();
+  }
+  m_Intersections.insert(TGrid2Intersects::value_type(i, formIntersections));
+  progress.Step();
   }
 }
 
@@ -234,19 +234,19 @@ void CQBSettings::SetTimeLapse(int nIndex, CDepletionStage *time1, CDepletionSta
 {
   if (TLT == Pressure)
   {
-    assert(nIndex >= 0 && nIndex < m_DeltaPressures.size());
-    m_DeltaPressures[nIndex].first = time1;
-    m_DeltaPressures[nIndex].second = time2;
+  assert(nIndex >= 0 && nIndex < m_DeltaPressures.size());
+  m_DeltaPressures[nIndex].first = time1;
+  m_DeltaPressures[nIndex].second = time2;
   }
   else if (TLT == Temperature)
   {
-    assert(nIndex >= 0 && nIndex < m_DeltaTemperatures.size());
-    m_DeltaTemperatures[nIndex].first = time1;
-    m_DeltaTemperatures[nIndex].second = time2;
+  assert(nIndex >= 0 && nIndex < m_DeltaTemperatures.size());
+  m_DeltaTemperatures[nIndex].first = time1;
+  m_DeltaTemperatures[nIndex].second = time2;
   }
   else
   {
-    assert(false);
+  assert(false);
   }
 }
 
@@ -259,14 +259,14 @@ void CQBSettings::OnNeighbourModified(const CGraphNode& node, enum ModifiedHint 
 {
   if (uHint == NEW_FORMATION_ATTACHED)
   {
-    TFormationBaseEntry& entry = (TFormationBaseEntry&)*Model().GraphEntry(MD_BASE_FORMATION);
-    TFormationBaseEntry::TNodeSet stNodes = entry.EntryNodes();
-    for (TFormationBaseEntry::TNodeSet::iterator it = stNodes.begin(); it != stNodes.end(); ++it)
-    {
+  TFormationBaseEntry& entry = (TFormationBaseEntry&)*Model().GraphEntry(MD_BASE_FORMATION);
+  TFormationBaseEntry::TNodeSet stNodes = entry.EntryNodes();
+  for (TFormationBaseEntry::TNodeSet::iterator it = stNodes.begin(); it != stNodes.end(); ++it)
+  {
       if (!IsLinkedTo(**it))
-        LinkTo(**it);
-    }
-    Modified(uHint);
+    LinkTo(**it);
+  }
+  Modified(uHint);
   }
 }
 
@@ -276,8 +276,8 @@ void CQBSettings::OnNeighbourDeleted(const CGraphNode& node)
   std::set<const CFormationBase*>::iterator it = m_stSelectedFormations.find(pFormation);
   if (it != m_stSelectedFormations.end())
   {
-    m_stSelectedFormations.erase(it);
-    Modified();
+  m_stSelectedFormations.erase(it);
+  Modified();
   }
 }
 
@@ -304,20 +304,20 @@ void CQBSettings::LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS
   stream >> temp;
   for(int i = 0; i < temp; ++i)
   {
-    int idx1, idx2;
-    stream >> idx1;
-    stream >> idx2;
-    TDepletionStageEntry& form_entry = (TDepletionStageEntry&)(*m_Model.GraphEntry(MD_BASE_DEPLETION_STAGE));
-    CDepletionStage *ds1 = form_entry.FindIndex(idx1);
-    CDepletionStage *ds2 = form_entry.FindIndex(idx2);
-    AddDeltaPressure(ds1, ds2);
+  int idx1, idx2;
+  stream >> idx1;
+  stream >> idx2;
+  TDepletionStageEntry& form_entry = (TDepletionStageEntry&)(*m_Model.GraphEntry(MD_BASE_DEPLETION_STAGE));
+  CDepletionStage *ds1 = form_entry.FindIndex(idx1);
+  CDepletionStage *ds2 = form_entry.FindIndex(idx2);
+  AddDeltaPressure(ds1, ds2);
   }
 
   if(version >= CStreamVersion(4, 1, 15))
   {
-    stream >> temp;
-    for(int i = 0; i < temp; ++i)
-    {
+  stream >> temp;
+  for(int i = 0; i < temp; ++i)
+  {
       int idx1, idx2;
       stream >> idx1;
       stream >> idx2;
@@ -325,22 +325,22 @@ void CQBSettings::LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS
       CDepletionStage *ds1 = form_entry.FindIndex(idx1);
       CDepletionStage *ds2 = form_entry.FindIndex(idx2);
       AddDeltaTemperature(ds1, ds2);
-    }
+  }
   }
 
   // selected formations are saved from version 3.7.0
   if(version >= CStreamVersion(3, 7, 0))
   {
-    int size, nIndex;
-    stream >> size;
-    for(int i = 0; i < size; ++i)
-    {
+  int size, nIndex;
+  stream >> size;
+  for(int i = 0; i < size; ++i)
+  {
       stream >> nIndex;
       TFormationBaseEntry& form_entry = (TFormationBaseEntry&)(*m_Model.GraphEntry(MD_BASE_FORMATION));
       CFormationBase *fb = form_entry.FindIndex(nIndex);
       if (fb) // Bug 208350
-        m_stSelectedFormations.insert(fb);
-    }
+    m_stSelectedFormations.insert(fb);
+  }
   }
 }
 
@@ -357,22 +357,22 @@ void CQBSettings::SaveStream(TSTREAM& stream, TPROGRESS& /*progress*/)
   stream << (int)m_DeltaPressures.size();
   for(size_t i = 0; i < m_DeltaPressures.size(); ++i)
   {
-    stream << m_DeltaPressures[i].first->Index();
-    stream << m_DeltaPressures[i].second->Index();
+  stream << m_DeltaPressures[i].first->Index();
+  stream << m_DeltaPressures[i].second->Index();
   }
  
   stream << (int)m_DeltaTemperatures.size();
   for(size_t i = 0; i < m_DeltaTemperatures.size(); ++i)
   {
-    stream << m_DeltaTemperatures[i].first->Index();
-    stream << m_DeltaTemperatures[i].second->Index();
+  stream << m_DeltaTemperatures[i].first->Index();
+  stream << m_DeltaTemperatures[i].second->Index();
   }
  
   stream << (int)m_stSelectedFormations.size();
   std::set<const CFormationBase*>::const_iterator it;
   for(it = m_stSelectedFormations.begin(); it != m_stSelectedFormations.end(); ++it)
   {
-    stream << (*it)->Index();
+  stream << (*it)->Index();
   }
 }
 
@@ -389,7 +389,7 @@ CQBInputWriter::CQBInputWriter(CQBSettings &settings)
 CQBInputWriter::~CQBInputWriter(void)
 {
   if(m_fp)
-    fclose(m_fp);
+  fclose(m_fp);
 }
 
 int CQBInputWriter::StepSize() const
@@ -401,12 +401,12 @@ bool CQBInputWriter::WriteInput(const QString &sPath, IProgressBase &progress)
 {
   CPointSet *ptSet = m_QBSettings.PointSet();
   progress.StatusMessage("Writing QuickBlocks input file");
-    
+  
   m_fp = fopen(sPath.toStdString().c_str(), "w");
   if(!m_fp)
   {
-    m_strError = QString("Failed to open file '%1' for writing").arg(sPath);
-    return false;
+  m_strError = QString("Failed to open file '%1' for writing").arg(sPath);
+  return false;
   }
   fprintf(m_fp, "MESSAGE_FILE\n");
   fprintf(m_fp, "REAL_GEO_X R %f\n", m_QBSettings.Grid().CornerNorthing());
@@ -426,11 +426,11 @@ bool CQBInputWriter::WriteInput(const QString &sPath, IProgressBase &progress)
 
   for(int i = 0; i < ptSet->PointSize(); ++i)
   {
-    fprintf(m_fp, "%f ", ptSet->PointAt(i).X());
-    fprintf(m_fp, "%f ", ptSet->PointAt(i).Y());
-    PrintDepthsAndPressures(i);
-    fprintf(m_fp, "\n");
-    progress.Step();
+  fprintf(m_fp, "%f ", ptSet->PointAt(i).X());
+  fprintf(m_fp, "%f ", ptSet->PointAt(i).Y());
+  PrintDepthsAndPressures(i);
+  fprintf(m_fp, "\n");
+  progress.Step();
   }
 
   fprintf(m_fp, "~POINTSET");
@@ -445,41 +445,41 @@ void CQBInputWriter::PrintHeader()
   TFormationIntersects formIntersects1 = m_QBSettings.Intersections().begin()->second;
   for(size_t i = 0; i < formIntersects1.size(); ++i)
   {
-    QString depthName;
-    depthName = QString("top_%1").arg(formIntersects1[i]->Formation()->Name());
-    depthName.replace(" ","_");
-    fprintf(m_fp, depthName.toStdString().c_str());
-    fprintf(m_fp, " ");
-    depthName = QString("base_%1").arg(formIntersects1[i]->Formation()->Name());
-    depthName.replace(" ","_");
-    fprintf(m_fp, depthName.toStdString().c_str());
-    fprintf(m_fp, " ");
+  QString depthName;
+  depthName = QString("top_%1").arg(formIntersects1[i]->Formation()->Name());
+  depthName.replace(" ","_");
+  fprintf(m_fp, depthName.toStdString().c_str());
+  fprintf(m_fp, " ");
+  depthName = QString("base_%1").arg(formIntersects1[i]->Formation()->Name());
+  depthName.replace(" ","_");
+  fprintf(m_fp, depthName.toStdString().c_str());
+  fprintf(m_fp, " ");
   }
 
   for(size_t i = 0; i < m_QBSettings.DeltaPressures().size(); ++i)
   {
-    TFormationIntersects formIntersects2 = m_QBSettings.Intersections().begin()->second;
-    for(size_t j = 0; j < formIntersects2.size(); ++j)
-    {
+  TFormationIntersects formIntersects2 = m_QBSettings.Intersections().begin()->second;
+  for(size_t j = 0; j < formIntersects2.size(); ++j)
+  {
       QString press;
       press = QString("dP%1_%2").arg(i + 1).arg(formIntersects2[j]->Formation()->Name());
       press.replace(" ", "_");
       fprintf(m_fp, press.toStdString().c_str());
       fprintf(m_fp, " ");
-    }
+  }
   }
 
   for(size_t i = 0; i < m_QBSettings.DeltaTemperatures().size(); ++i)
   {
-    TFormationIntersects formIntersects = m_QBSettings.Intersections().begin()->second;
-    for(size_t j = 0; j < formIntersects.size(); ++j)
-    {
+  TFormationIntersects formIntersects = m_QBSettings.Intersections().begin()->second;
+  for(size_t j = 0; j < formIntersects.size(); ++j)
+  {
       QString temp;
       temp = QString("dP%1_%2").arg(i + 1).arg(formIntersects[j]->Formation()->Name());
       temp.replace(" ", "_");
       fprintf(m_fp, temp.toStdString().c_str());
       fprintf(m_fp, " ");
-    }
+  }
   }
 }
 
@@ -491,9 +491,9 @@ void CQBInputWriter::PrintDepthsAndPressures(int index)
 
   for(size_t i = 0; i < formIntersects.size(); ++i)
   {
-    if(formIntersects[i]->TopIntersect() == geo::CPoint::NullPoint)
+  if(formIntersects[i]->TopIntersect() == geo::CPoint::NullPoint)
       fprintf(m_fp, "NaN NaN ");
-    else
+  else
       fprintf(m_fp, "%f %f ", formIntersects[i]->TopIntersect().Z(), formIntersects[i]->BotIntersect().Z());
   }
 
@@ -501,41 +501,41 @@ void CQBInputWriter::PrintDepthsAndPressures(int index)
   geo::CValue val1, val2;
   for(size_t i = 0; i < pressures.size(); ++i)
   {
-    for(size_t j = 0; j < formIntersects.size(); ++j)
-    {
+  for(size_t j = 0; j < formIntersects.size(); ++j)
+  {
       const CFormationBase *form = formIntersects[j]->Formation();
       if(formIntersects[j]->TopIntersect() == geo::CPoint::NullPoint)
-        fprintf(m_fp, "NaN ");
+    fprintf(m_fp, "NaN ");
       else
       {
-        const geo::CPoint &top = formIntersects[j]->TopIntersect();
-        const geo::CPoint &bot = formIntersects[j]->BotIntersect();
-        geo::CPoint presPoint(top.X(), top.Y(), (top.Z() + bot.Z())/2.0);
-        val1 = form->Pressure(*(pressures[i].first)).Component().ScalarData().ValuePoint(presPoint);
-        val2 = form->Pressure(*(pressures[i].second)).Component().ScalarData().ValuePoint(presPoint);
-        fprintf(m_fp, "%f ", val2.Value() - val1.Value());
+    const geo::CPoint &top = formIntersects[j]->TopIntersect();
+    const geo::CPoint &bot = formIntersects[j]->BotIntersect();
+    geo::CPoint presPoint(top.X(), top.Y(), (top.Z() + bot.Z())/2.0);
+    val1 = form->Pressure(*(pressures[i].first)).Component().ScalarData().ValuePoint(presPoint);
+    val2 = form->Pressure(*(pressures[i].second)).Component().ScalarData().ValuePoint(presPoint);
+    fprintf(m_fp, "%f ", val2.Value() - val1.Value());
       }
-    }
+  }
   }
 
   const std::vector<std::pair<CDepletionStage*, CDepletionStage*> > &temperatures = m_QBSettings.DeltaTemperatures();
   for(size_t i = 0; i < temperatures.size(); ++i)
   {
-    for(size_t j = 0; j < formIntersects.size(); ++j)
-    {
+  for(size_t j = 0; j < formIntersects.size(); ++j)
+  {
       const CFormationBase *form = formIntersects[j]->Formation();
       if(formIntersects[j]->TopIntersect() == geo::CPoint::NullPoint)
-        fprintf(m_fp, "NaN ");
+    fprintf(m_fp, "NaN ");
       else
       {
-        const geo::CPoint &top = formIntersects[j]->TopIntersect();
-        const geo::CPoint &bot = formIntersects[j]->BotIntersect();
-        geo::CPoint presPoint(top.X(), top.Y(), (top.Z() + bot.Z())/2.0);
-        val1 = form->UserTemperature(*(temperatures[i].first)).Component().ScalarData().ValuePoint(presPoint);
-        val2 = form->UserTemperature(*(temperatures[i].second)).Component().ScalarData().ValuePoint(presPoint);
-        fprintf(m_fp, "%f ", val2.Value() - val1.Value());
+    const geo::CPoint &top = formIntersects[j]->TopIntersect();
+    const geo::CPoint &bot = formIntersects[j]->BotIntersect();
+    geo::CPoint presPoint(top.X(), top.Y(), (top.Z() + bot.Z())/2.0);
+    val1 = form->UserTemperature(*(temperatures[i].first)).Component().ScalarData().ValuePoint(presPoint);
+    val2 = form->UserTemperature(*(temperatures[i].second)).Component().ScalarData().ValuePoint(presPoint);
+    fprintf(m_fp, "%f ", val2.Value() - val1.Value());
       }
-    }
+  }
   }
 }
 

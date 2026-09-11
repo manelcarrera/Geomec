@@ -67,17 +67,17 @@ int consumer()
       do{
          scoped_lock<interprocess_mutex> lock(data->mutex);
          if(!data->message_in){
-            data->cond_empty.wait(lock);
+      data->cond_empty.wait(lock);
          }
          if(std::strcmp(data->items, "last message") == 0){
-            end_loop = true;
+      end_loop = true;
          }
          else{
-            //Print the message
-            std::cout << data->items << std::endl;
-            //Notify the other process that the buffer is empty
-            data->message_in = false;
-            data->cond_full.notify_one();
+      //Print the message
+      std::cout << data->items << std::endl;
+      //Notify the other process that the buffer is empty
+      data->message_in = false;
+      data->cond_full.notify_one();
          }
       }
       while(!end_loop);
@@ -127,19 +127,19 @@ int producer()
 
       const int NumMsg = 100;
 
-	  //
-	  //
-	  //
+    //
+    //
+    //
       for(int i = 0; i < NumMsg; ++i)
-	  {
+    {
          scoped_lock<interprocess_mutex> lock(data->mutex);
          if(data->message_in)
-            data->cond_full.wait(lock);
+      data->cond_full.wait(lock);
 
-		 if(i == (NumMsg-1))
-            std::sprintf(data->items, "%s", "last message");
+     if(i == (NumMsg-1))
+      std::sprintf(data->items, "%s", "last message");
          else
-            std::sprintf(data->items, "%s_%d", "my_trace", i);
+      std::sprintf(data->items, "%s_%d", "my_trace", i);
 
          //Notify to the other process that there is a message
          data->cond_empty.notify_one();
@@ -147,9 +147,9 @@ int producer()
          //Mark message buffer as full
          data->message_in = true;
       }
-	  //
-	  //
-	  //
+    //
+    //
+    //
 
    }
    catch(interprocess_exception &ex)
@@ -170,32 +170,32 @@ int producer()
 
 int consumer_red()
 {
-	shared_memory_object shm( open_only, "MySharedMemory", read_write );
+  shared_memory_object shm( open_only, "MySharedMemory", read_write );
 
-    mapped_region region( shm, read_write );
-    void* addr = region.get_address();
-    trace_queue* data = static_cast< trace_queue* >( addr );
+  mapped_region region( shm, read_write );
+  void* addr = region.get_address();
+  trace_queue* data = static_cast< trace_queue* >( addr );
 
-    bool end_loop = false;
-    do
-	{
-        scoped_lock<interprocess_mutex> lock(data->mutex);
+  bool end_loop = false;
+  do
+  {
+    scoped_lock<interprocess_mutex> lock(data->mutex);
 
-        if(!data->message_in)
-	        data->cond_empty.wait(lock);
+    if(!data->message_in)
+      data->cond_empty.wait(lock);
 
-        if(std::strcmp(data->items, "last message") == 0)
-		{
-			end_loop = true;
-        }
-        else
-		{
-			std::cout << data->items << std::endl;
-			data->message_in = false;
-			data->cond_full.notify_one();
-        }
+    if(std::strcmp(data->items, "last message") == 0)
+    {
+      end_loop = true;
     }
-    while( !end_loop );
+    else
+    {
+      std::cout << data->items << std::endl;
+      data->message_in = false;
+      data->cond_full.notify_one();
+    }
+  }
+  while( !end_loop );
 
    return 0;
 }
@@ -211,62 +211,62 @@ int producer_red()
 
    shared_memory_object shm( create_only, "MySharedMemory", read_write );
 
-	shm.truncate(sizeof(trace_queue));
-	mapped_region region( shm, read_write );
-	void* addr = region.get_address();
-	trace_queue * data = new (addr) trace_queue;
+  shm.truncate(sizeof(trace_queue));
+  mapped_region region( shm, read_write );
+  void* addr = region.get_address();
+  trace_queue * data = new (addr) trace_queue;
 
 
-	// 1)
-	//
-	// Launch child process
-	// it waits forever
-	//
-    /*std::string s( argv[ 0 ] ); s += " child ";
-    //if( 0 != std::system( s.c_str() ) )
-	if( std::system( s.c_str() ) )
-        return 1;*/
+  // 1)
+  //
+  // Launch child process
+  // it waits forever
+  //
+  /*std::string s( argv[ 0 ] ); s += " child ";
+  //if( 0 != std::system( s.c_str() ) )
+  if( std::system( s.c_str() ) )
+    return 1;*/
 
-	// 2)
-	//
-	// this works Ok
-	/*QProcess p1;
-	p1.setProgram( argv[ 0 ] );
-	p1.setArguments( QStringList() << "child" );
-	p1.startDetached();*/
+  // 2)
+  //
+  // this works Ok
+  /*QProcess p1;
+  p1.setProgram( argv[ 0 ] );
+  p1.setArguments( QStringList() << "child" );
+  p1.startDetached();*/
 
-	const int NumMsg = 5;//100;
-	for(int i = 0; i < NumMsg; ++i)
-	{
-		scoped_lock<interprocess_mutex> lock(data->mutex);
-		if( data->message_in )
-			data->cond_full.wait(lock);
+  const int NumMsg = 5;//100;
+  for(int i = 0; i < NumMsg; ++i)
+  {
+    scoped_lock<interprocess_mutex> lock(data->mutex);
+    if( data->message_in )
+      data->cond_full.wait(lock);
 
-		//
-		std::this_thread::sleep_for(std::chrono::milliseconds( 5*1000 ));
-		//
+    //
+    std::this_thread::sleep_for(std::chrono::milliseconds( 5*1000 ));
+    //
 
-		if(i == (NumMsg-1))
-		{
-			std::cout << "-> last message" << std::endl;
-			std::sprintf(data->items, "%s", "last message");
-		}
-		else
-		{
-			std::cout << "-> my_trace" << std::endl;
-		}
+    if(i == (NumMsg-1))
+    {
+      std::cout << "-> last message" << std::endl;
+      std::sprintf(data->items, "%s", "last message");
+    }
+    else
+    {
+      std::cout << "-> my_trace" << std::endl;
+    }
 
-		data->cond_empty.notify_one();
+    data->cond_empty.notify_one();
 
-		data->message_in = true;
-	}
+    data->message_in = true;
+  }
 
-	//
-	// to keep shm alive for the consumer
-	//
-	std::this_thread::sleep_for(std::chrono::milliseconds( 1*1000 ));
+  //
+  // to keep shm alive for the consumer
+  //
+  std::this_thread::sleep_for(std::chrono::milliseconds( 1*1000 ));
 
-	return 0;
+  return 0;
 }
 
 }//namespace boost
@@ -279,8 +279,8 @@ int producer_red()
 //
 void Class_03::start( eType type_ )
 {
-	if( type_ == Class_03::Producer )
-		gm::boost::producer_red();
-	else
-		gm::boost::consumer_red();
+  if( type_ == Class_03::Producer )
+    gm::boost::producer_red();
+  else
+    gm::boost::consumer_red();
 }

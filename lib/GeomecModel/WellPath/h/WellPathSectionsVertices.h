@@ -28,22 +28,22 @@ typedef std::vector <TWellPathSectionVertices> TWellPathSectionsVertices;
 class CWellPathSectionsVertices
 {
   public:
-    CWellPathSectionsVertices(const CWellPathSections& wellPathSections);
+  CWellPathSectionsVertices(const CWellPathSections& wellPathSections);
 
-    TWellPathSectionsVertices& wellPathSectionsVertices();
-    const TWellPathSectionsVertices& wellPathSectionsVertices() const;
+  TWellPathSectionsVertices& wellPathSectionsVertices();
+  const TWellPathSectionsVertices& wellPathSectionsVertices() const;
 
   private:
-    CWellPathSectionsVertices(const CWellPathSectionsVertices& rhs);
-    CWellPathSectionsVertices& operator = (const CWellPathSectionsVertices& rhs);
+  CWellPathSectionsVertices(const CWellPathSectionsVertices& rhs);
+  CWellPathSectionsVertices& operator = (const CWellPathSectionsVertices& rhs);
 
-    static TWellPathSectionsVertices createElementVertices(
+  static TWellPathSectionsVertices createElementVertices(
       const CWellPathSections& wellPathSections);
-    static void createElementVertex(
+  static void createElementVertex(
       TWellPathSectionVertices& wellPathSectionVertices,
       const geo::IElement& element);
 
-    TWellPathSectionsVertices m_wellPathSectionsVertices;
+  TWellPathSectionsVertices m_wellPathSectionsVertices;
 };
 
 } // namespace WellPath

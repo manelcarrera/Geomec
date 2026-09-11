@@ -49,16 +49,16 @@ typedef GeomecRGI::CSavePropertyTemplateWithFactor <IDT_VALUETYPE_SHEARMODULUS>
 
 typedef GeomecRGI::CSavePropertyTemplateWithFactor
   <IDT_VALUETYPE_YOUNGS_MODULUS>
-    TSavePropertyYoung;
+  TSavePropertyYoung;
 typedef GeomecRGI::CSavePropertyTemplateWithFactor
   <IDT_VALUETYPE_YOUNGMODULUS_NORM>
-    TSavePropertyYoungNormal;
+  TSavePropertyYoungNormal;
 typedef GeomecRGI::CSavePropertyTemplateWithFactor
   <IDT_VALUETYPE_YOUNGMODULUS_TRANS>
-    TSavePropertyYoungPlane;
+  TSavePropertyYoungPlane;
 typedef GeomecRGI::CSavePropertyTemplateWithFactor
   <IDT_VALUETYPE_UNDRAINEDYOUNG>
-	TSavePropertyYoungUndrained;
+  TSavePropertyYoungUndrained;
 
 typedef GeomecRGI::CSavePropertyTemplate <IDT_VALUETYPE_POISSONRATIO_TRANS>
   TSavePropertyPoissonPlane;
@@ -67,18 +67,18 @@ typedef GeomecRGI::CSavePropertyTemplate <IDT_VALUETYPE_POISSONRATIO_NORM>
 
 typedef GeomecRGI::CSavePropertyTemplateDegrees2Radials
   <IDT_VALUETYPE_LAYER_NORMAL_INCL>
-    TSavePropertyOrientation_Dip;
+  TSavePropertyOrientation_Dip;
 typedef GeomecRGI::CSavePropertyTemplateDegrees2Radials
   <IDT_VALUETYPE_LAYER_NORMAL_AZI>
-    TSavePropertyOrientation_Azimuth;
+  TSavePropertyOrientation_Azimuth;
 
 typedef GeomecRGI::CSavePropertyTemplateWithFactor
   <IDT_VALUETYPE_ANISOTROPIC_SHEARMODULUS>
-    TSavePropertyShearNormal;
+  TSavePropertyShearNormal;
 
 typedef GeomecRGI::CSavePropertyTemplateWithFactor
   <IDT_VALUETYPE_GRAINSTIFFNESS>
-    TLoadPropertyGrainBulkModulus;
+  TLoadPropertyGrainBulkModulus;
 
 typedef GeomecRGI::CSavePropertyTemplate <IDT_VALUETYPE_NRMSTRAIN>
   TSavePropertyStrainLoadingNormal;
@@ -92,268 +92,268 @@ QSharedPointer <GeomecRGI::CSavePropertyBase> selectSaveProperty(
 
   switch (rgProperty.getType())
   {
-    case RGPropertyType::propElementVolumetricStrain:
+  case RGPropertyType::propElementVolumetricStrain:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyVolumetricStrain(rgProperty));
+    new GeomecRGI::CSavePropertyVolumetricStrain(rgProperty));
       break;
-    case RGPropertyType::propElementFluidPressure:
+  case RGPropertyType::propElementFluidPressure:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyFluidPressure(rgProperty));
+    new GeomecRGI::CSavePropertyFluidPressure(rgProperty));
       break;
-    case RGPropertyType::propElementTemperature:
+  case RGPropertyType::propElementTemperature:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyTemperature(rgProperty));
+    new GeomecRGI::CSavePropertyTemperature(rgProperty));
       break;
-    case RGPropertyType::propElementEffStress_NN:
+  case RGPropertyType::propElementEffStress_NN:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyEffStress(rgProperty,
+    new GeomecRGI::CSavePropertyEffStress(rgProperty,
           ITensorGroup::CComponentComposite::TC_XX));
       break;
-    case RGPropertyType::propElementEffStress_EE:
+  case RGPropertyType::propElementEffStress_EE:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyEffStress(rgProperty,
+    new GeomecRGI::CSavePropertyEffStress(rgProperty,
           ITensorGroup::CComponentComposite::TC_YY));
       break;
-    case RGPropertyType::propElementEffStress_DD:
+  case RGPropertyType::propElementEffStress_DD:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyEffStress(rgProperty,
+    new GeomecRGI::CSavePropertyEffStress(rgProperty,
           ITensorGroup::CComponentComposite::TC_ZZ));
       break;
-    case RGPropertyType::propElementEffStress_NE:
+  case RGPropertyType::propElementEffStress_NE:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyEffStress(rgProperty,
+    new GeomecRGI::CSavePropertyEffStress(rgProperty,
           ITensorGroup::CComponentComposite::TC_XY));
       break;
-    case RGPropertyType::propElementEffStress_ND:
+  case RGPropertyType::propElementEffStress_ND:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyEffStress(rgProperty,
+    new GeomecRGI::CSavePropertyEffStress(rgProperty,
           ITensorGroup::CComponentComposite::TC_ZX));
       break;
-    case RGPropertyType::propElementEffStress_ED:
+  case RGPropertyType::propElementEffStress_ED:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyEffStress(rgProperty,
+    new GeomecRGI::CSavePropertyEffStress(rgProperty,
           ITensorGroup::CComponentComposite::TC_YZ));
       break;
-    case RGPropertyType::propElementFormation:
+  case RGPropertyType::propElementFormation:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyFormation(rgProperty));
+    new GeomecRGI::CSavePropertyFormation(rgProperty));
       break;
-    case RGPropertyType::propFracDens_1_N:
+  case RGPropertyType::propFracDens_1_N:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyFracDens(rgProperty,
+    new GeomecRGI::CSavePropertyFracDens(rgProperty,
           GeomecRGI::CSavePropertyFracDens::HIGH,
           GeomecRGI::CSavePropertyFracDens::X));
       break;
-    case RGPropertyType::propFracDens_1_E:
+  case RGPropertyType::propFracDens_1_E:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyFracDens(rgProperty,
+    new GeomecRGI::CSavePropertyFracDens(rgProperty,
           GeomecRGI::CSavePropertyFracDens::HIGH,
           GeomecRGI::CSavePropertyFracDens::Y));
       break;
-    case RGPropertyType::propFracDens_1_D:
+  case RGPropertyType::propFracDens_1_D:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyFracDens(rgProperty,
+    new GeomecRGI::CSavePropertyFracDens(rgProperty,
           GeomecRGI::CSavePropertyFracDens::HIGH,
           GeomecRGI::CSavePropertyFracDens::Z));
       break;
-    case RGPropertyType::propFracDens_2_N:
+  case RGPropertyType::propFracDens_2_N:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyFracDens(rgProperty,
+    new GeomecRGI::CSavePropertyFracDens(rgProperty,
           GeomecRGI::CSavePropertyFracDens::INTERMEDIATE,
           GeomecRGI::CSavePropertyFracDens::X));
       break;
-    case RGPropertyType::propFracDens_2_E:
+  case RGPropertyType::propFracDens_2_E:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyFracDens(rgProperty,
+    new GeomecRGI::CSavePropertyFracDens(rgProperty,
           GeomecRGI::CSavePropertyFracDens::INTERMEDIATE,
           GeomecRGI::CSavePropertyFracDens::Y));
       break;
-    case RGPropertyType::propFracDens_2_D:
+  case RGPropertyType::propFracDens_2_D:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyFracDens(rgProperty,
+    new GeomecRGI::CSavePropertyFracDens(rgProperty,
           GeomecRGI::CSavePropertyFracDens::INTERMEDIATE,
           GeomecRGI::CSavePropertyFracDens::Z));
       break;
-    case RGPropertyType::propFracDens_3_N:
+  case RGPropertyType::propFracDens_3_N:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyFracDens(rgProperty,
+    new GeomecRGI::CSavePropertyFracDens(rgProperty,
           GeomecRGI::CSavePropertyFracDens::LOW,
           GeomecRGI::CSavePropertyFracDens::X));
       break;
-    case RGPropertyType::propFracDens_3_E:
+  case RGPropertyType::propFracDens_3_E:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyFracDens(rgProperty,
+    new GeomecRGI::CSavePropertyFracDens(rgProperty,
           GeomecRGI::CSavePropertyFracDens::LOW,
           GeomecRGI::CSavePropertyFracDens::Y));
       break;
-    case RGPropertyType::propFracDens_3_D:
+  case RGPropertyType::propFracDens_3_D:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyFracDens(rgProperty,
+    new GeomecRGI::CSavePropertyFracDens(rgProperty,
           GeomecRGI::CSavePropertyFracDens::LOW,
           GeomecRGI::CSavePropertyFracDens::Z));
       break;
-    case RGPropertyType::propPermMultFrac_1:
+  case RGPropertyType::propPermMultFrac_1:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyPermMultFrac(rgProperty,
+    new GeomecRGI::CSavePropertyPermMultFrac(rgProperty,
           GeomecRGI::CSavePropertyPermMultFrac::HIGH));
       break;
-    case RGPropertyType::propPermMultFrac_2:
+  case RGPropertyType::propPermMultFrac_2:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyPermMultFrac(rgProperty,
+    new GeomecRGI::CSavePropertyPermMultFrac(rgProperty,
           GeomecRGI::CSavePropertyPermMultFrac::INTERMEDIATE));
       break;
-    case RGPropertyType::propPermMultFrac_3:
+  case RGPropertyType::propPermMultFrac_3:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyPermMultFrac(rgProperty,
+    new GeomecRGI::CSavePropertyPermMultFrac(rgProperty,
           GeomecRGI::CSavePropertyPermMultFrac::LOW));
       break;
-    case RGPropertyType::propElementYoung:
+  case RGPropertyType::propElementYoung:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new TSavePropertyYoung(rgProperty, 1e6));
+    new TSavePropertyYoung(rgProperty, 1e6));
       break;
-    case RGPropertyType::propElementPoisson:
+  case RGPropertyType::propElementPoisson:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new TSavePropertyPoisson(rgProperty));
+    new TSavePropertyPoisson(rgProperty));
       break;
-    case RGPropertyType::propElementPorosity:
+  case RGPropertyType::propElementPorosity:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyPorosity(rgProperty));
+    new GeomecRGI::CSavePropertyPorosity(rgProperty));
       break;
-    case RGPropertyType::propSaturatedRockDensity:
+  case RGPropertyType::propSaturatedRockDensity:
       return QSharedPointer<GeomecRGI::CSavePropertyBase> (
-        new TSavePropertyDensity(rgProperty));
+    new TSavePropertyDensity(rgProperty));
       break;
-    case RGPropertyType::propElementShearModulus:
+  case RGPropertyType::propElementShearModulus:
       return QSharedPointer<GeomecRGI::CSavePropertyBase> (
-        new TSavePropertyShearModulus(rgProperty, 1e6));
+    new TSavePropertyShearModulus(rgProperty, 1e6));
       break;
-    case RGPropertyType::propBodyIndex:
+  case RGPropertyType::propBodyIndex:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyBodyIndex(rgProperty));
+    new GeomecRGI::CSavePropertyBodyIndex(rgProperty));
       break;
-    case RGPropertyType::propElementOrientation_Dip:
+  case RGPropertyType::propElementOrientation_Dip:
       return QSharedPointer<GeomecRGI::CSavePropertyBase> (
-        new TSavePropertyOrientation_Dip(rgProperty));
+    new TSavePropertyOrientation_Dip(rgProperty));
       break;
-    case RGPropertyType::propElementOrientation_Azimuth:
+  case RGPropertyType::propElementOrientation_Azimuth:
       return QSharedPointer<GeomecRGI::CSavePropertyBase> (
-        new TSavePropertyOrientation_Azimuth(rgProperty));
+    new TSavePropertyOrientation_Azimuth(rgProperty));
       break;
-    case RGPropertyType::propElementYoungNormal:
+  case RGPropertyType::propElementYoungNormal:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new TSavePropertyYoungNormal(rgProperty, 1e6));
+    new TSavePropertyYoungNormal(rgProperty, 1e6));
       break;
-    case RGPropertyType::propElementYoungPlane:
+  case RGPropertyType::propElementYoungPlane:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new TSavePropertyYoungPlane(rgProperty, 1e6));
+    new TSavePropertyYoungPlane(rgProperty, 1e6));
       break;
-    case RGPropertyType::propElementPoissonPlane:
+  case RGPropertyType::propElementPoissonPlane:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new TSavePropertyPoissonPlane(rgProperty));
+    new TSavePropertyPoissonPlane(rgProperty));
       break;
-    case RGPropertyType::propElementPoissonNormal:
+  case RGPropertyType::propElementPoissonNormal:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new TSavePropertyPoissonNormal(rgProperty));
+    new TSavePropertyPoissonNormal(rgProperty));
       break;
-    case RGPropertyType::propElementShearNormal:
+  case RGPropertyType::propElementShearNormal:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new TSavePropertyShearNormal(rgProperty, 1e6));
+    new TSavePropertyShearNormal(rgProperty, 1e6));
       break;
-    case RGPropertyType::propElementMaterialType:
+  case RGPropertyType::propElementMaterialType:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyMaterialType(rgProperty));
+    new GeomecRGI::CSavePropertyMaterialType(rgProperty));
       break;
-    case RGPropertyType::propElementGrainBulkModulus:
+  case RGPropertyType::propElementGrainBulkModulus:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new TLoadPropertyGrainBulkModulus(rgProperty, 1e6));
+    new TLoadPropertyGrainBulkModulus(rgProperty, 1e6));
       break;
-    case RGPropertyType::propElementStrainLoadingNormal:
+  case RGPropertyType::propElementStrainLoadingNormal:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new TSavePropertyStrainLoadingNormal(rgProperty));
+    new TSavePropertyStrainLoadingNormal(rgProperty));
       break;
-    case RGPropertyType::propElementStrainLoadingPlane:
+  case RGPropertyType::propElementStrainLoadingPlane:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new TSavePropertyStrainLoadingPlane(rgProperty));
+    new TSavePropertyStrainLoadingPlane(rgProperty));
       break;
-    case RGPropertyType::propElementTotalStress_NN:
+  case RGPropertyType::propElementTotalStress_NN:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyTotalStress(rgProperty,
+    new GeomecRGI::CSavePropertyTotalStress(rgProperty,
           ITensorGroup::CComponentComposite::TC_XX));
       break;
-    case RGPropertyType::propElementTotalStress_EE:
+  case RGPropertyType::propElementTotalStress_EE:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyTotalStress(rgProperty,
+    new GeomecRGI::CSavePropertyTotalStress(rgProperty,
           ITensorGroup::CComponentComposite::TC_YY));
       break;
-    case RGPropertyType::propElementTotalStress_DD:
+  case RGPropertyType::propElementTotalStress_DD:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyTotalStress(rgProperty,
+    new GeomecRGI::CSavePropertyTotalStress(rgProperty,
           ITensorGroup::CComponentComposite::TC_ZZ));
       break;
-    case RGPropertyType::propElementTotalStress_NE:
+  case RGPropertyType::propElementTotalStress_NE:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyTotalStress(rgProperty,
+    new GeomecRGI::CSavePropertyTotalStress(rgProperty,
           ITensorGroup::CComponentComposite::TC_XY));
       break;
-    case RGPropertyType::propElementTotalStress_ND:
+  case RGPropertyType::propElementTotalStress_ND:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyTotalStress(rgProperty,
+    new GeomecRGI::CSavePropertyTotalStress(rgProperty,
           ITensorGroup::CComponentComposite::TC_ZX));
       break;
-    case RGPropertyType::propElementTotalStress_ED:
+  case RGPropertyType::propElementTotalStress_ED:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyTotalStress(rgProperty,
+    new GeomecRGI::CSavePropertyTotalStress(rgProperty,
           ITensorGroup::CComponentComposite::TC_YZ));
       break;
-    case RGPropertyType::propElementTotalStrain_NN:
+  case RGPropertyType::propElementTotalStrain_NN:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyTotalStrain(rgProperty,
+    new GeomecRGI::CSavePropertyTotalStrain(rgProperty,
           ITensorGroup::CComponentComposite::TC_XX));
       break;
-    case RGPropertyType::propElementTotalStrain_EE:
+  case RGPropertyType::propElementTotalStrain_EE:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyTotalStrain(rgProperty,
+    new GeomecRGI::CSavePropertyTotalStrain(rgProperty,
           ITensorGroup::CComponentComposite::TC_YY));
       break;
-    case RGPropertyType::propElementTotalStrain_DD:
+  case RGPropertyType::propElementTotalStrain_DD:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyTotalStrain(rgProperty,
+    new GeomecRGI::CSavePropertyTotalStrain(rgProperty,
           ITensorGroup::CComponentComposite::TC_ZZ));
       break;
-    case RGPropertyType::propElementTotalStrain_NE:
+  case RGPropertyType::propElementTotalStrain_NE:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyTotalStrain(rgProperty,
+    new GeomecRGI::CSavePropertyTotalStrain(rgProperty,
           ITensorGroup::CComponentComposite::TC_XY));
       break;
-    case RGPropertyType::propElementTotalStrain_ND:
+  case RGPropertyType::propElementTotalStrain_ND:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyTotalStrain(rgProperty,
+    new GeomecRGI::CSavePropertyTotalStrain(rgProperty,
           ITensorGroup::CComponentComposite::TC_ZX));
       break;
-    case RGPropertyType::propElementTotalStrain_ED:
+  case RGPropertyType::propElementTotalStrain_ED:
       return QSharedPointer <GeomecRGI::CSavePropertyBase> (
-        new GeomecRGI::CSavePropertyTotalStrain(rgProperty,
+    new GeomecRGI::CSavePropertyTotalStrain(rgProperty,
           ITensorGroup::CComponentComposite::TC_YZ));
       break;
-	case RGPropertyType::propElementYoungUndrained:
-		return QSharedPointer <GeomecRGI::CSavePropertyBase>(
-			new TSavePropertyYoungUndrained(rgProperty, 1e6));
-		break;
-	case RGPropertyType::propElementPoissonUndrained:
-		return QSharedPointer <GeomecRGI::CSavePropertyBase>(
-			new TSavePropertyPoissonUndrained(rgProperty));
-		break;
-	case RGPropertyType::propElementIsReservoir:
-		return QSharedPointer <GeomecRGI::CSavePropertyBase>(
-			new GeomecRGI::CSavePropertyIsReservoir(rgProperty));
-		break;
-	case RGPropertyType::propLast:
+  case RGPropertyType::propElementYoungUndrained:
+    return QSharedPointer <GeomecRGI::CSavePropertyBase>(
+      new TSavePropertyYoungUndrained(rgProperty, 1e6));
+    break;
+  case RGPropertyType::propElementPoissonUndrained:
+    return QSharedPointer <GeomecRGI::CSavePropertyBase>(
+      new TSavePropertyPoissonUndrained(rgProperty));
+    break;
+  case RGPropertyType::propElementIsReservoir:
+    return QSharedPointer <GeomecRGI::CSavePropertyBase>(
+      new GeomecRGI::CSavePropertyIsReservoir(rgProperty));
+    break;
+  case RGPropertyType::propLast:
       throw QString("The saving of property propLast is currently "
-        "not implemented");
+    "not implemented");
       break;
-    default:
+  default:
       QString errorMessage = QString("The saving of property %1 is currently "
-        "not implemented").arg(rgProperty.toString().c_str());
+    "not implemented").arg(rgProperty.toString().c_str());
       throw errorMessage;
       break;
   }

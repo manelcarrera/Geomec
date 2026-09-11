@@ -37,24 +37,24 @@ CFormationVolume::CFormationVolume(const CFormationVolume& rhs)
 
 bool CFormationVolume::operator==(const CFormationVolume& rhs) const
 {
-	return IElementSet::operator ==(rhs);
+  return IElementSet::operator ==(rhs);
 }
 
 CFormationVolume& CFormationVolume::operator=(const CFormationVolume& rhs)
 {
-	IElementSet::operator =(rhs);
-	m_BodyGroup = rhs.m_BodyGroup;
-	return *this;
+  IElementSet::operator =(rhs);
+  m_BodyGroup = rhs.m_BodyGroup;
+  return *this;
 }
 
 unsigned int CFormationVolume::IconId() const
 {
-	return IDI_BODY;
+  return IDI_BODY;
 }
 
 unsigned int CFormationVolume::TypeId() const
 {
-	return 0;
+  return 0;
 }
 
 QString CFormationVolume::TypeName() const
@@ -64,77 +64,77 @@ QString CFormationVolume::TypeName() const
 
 int CFormationVolume::BodyGroupIndex(const geo::IMesh& mesh, const geo::CBodyGroup& group) const
 {
-	for(int i = 0; i < mesh.ElementGroupSize(); i++)
-	{
-		if(&group == &mesh.ElementGroup(i))
-			return i;
+  for(int i = 0; i < mesh.ElementGroupSize(); i++)
+  {
+    if(&group == &mesh.ElementGroup(i))
+      return i;
 
-	}
+  }
 
-	return -1;
+  return -1;
 }
 
 bool CFormationVolume::Valid() const
 {
-	return (m_BodyGroup != 0);
+  return (m_BodyGroup != 0);
 }
 
 void CFormationVolume::OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint)
 {
-	CModelBase& model = dynamic_cast<CModelBase&>(Model());
-	if(&model.Mesh() == &node)
-	{
-		// Reset group index if there is no mesh ...
-		if(!model.Mesh().IsMesh())
-			m_BodyGroup = 0;
-		Modified(uHint);
-	}
+  CModelBase& model = dynamic_cast<CModelBase&>(Model());
+  if(&model.Mesh() == &node)
+  {
+    // Reset group index if there is no mesh ...
+    if(!model.Mesh().IsMesh())
+      m_BodyGroup = 0;
+    Modified(uHint);
+  }
 }
 
 bool CFormationVolume::Volume(const geo::CBodyGroup& group)
 {
-	m_BodyGroup = const_cast <geo::CBodyGroup*> (&group);
-	return (m_BodyGroup != 0);
+  m_BodyGroup = const_cast <geo::CBodyGroup*> (&group);
+  return (m_BodyGroup != 0);
 }
 
 const geo::CBodyGroup& CFormationVolume::Volume() const
 {
-	return *m_BodyGroup;
+  return *m_BodyGroup;
 }
 
 geo::CBodyGroup& CFormationVolume::Volume()
 {
-	return *m_BodyGroup;
+  return *m_BodyGroup;
 }
 
 const geo::IElementSet &CFormationVolume::ElementSet() const
 {
-	return Volume();
+  return Volume();
 }
 
 geo::IElementSet &CFormationVolume::ElementSet()
 {
-	return Volume();
+  return Volume();
 }
 
 CFormationVolume::DIMENSION CFormationVolume::Dimension() const
 {
-	 return DIM_3D;
+   return DIM_3D;
 }
 
 bool CFormationVolume::PointInConvexHull(const geo::IPoint& /*pt*/) const
 {
-	assert(false);
-	return false;
+  assert(false);
+  return false;
 }
 
 int CFormationVolume::DisplayListSize() const
 {
-	CModelBase& model = (CModelBase&)(Model());
-	// Do we have a mesh?
-	if(model.Mesh().IsMesh() && (m_BodyGroup != 0))
-		return IElementSet::DisplayListSize();
-	return 0;	// No mesh, nothing to display
+  CModelBase& model = (CModelBase&)(Model());
+  // Do we have a mesh?
+  if(model.Mesh().IsMesh() && (m_BodyGroup != 0))
+    return IElementSet::DisplayListSize();
+  return 0;	// No mesh, nothing to display
 }
 
 namespace
@@ -145,7 +145,7 @@ class CZLess
 public:
   bool operator()(const geo::CPoint& lhs, const geo::CPoint& rhs)
   {
-    return lhs.Z() < rhs.Z();
+  return lhs.Z() < rhs.Z();
   }
 };
 
@@ -160,23 +160,23 @@ geo::CValue CFormationVolume::ThicknessAt(const geo::IPoint& pt, geo::IPoint& pt
   TThicknessCache::iterator it1 = cache->find(ptKey); // first try our sequential cache
   if (it1 != cache->end())
   {
-    ptTop = it1->second.ptTop;
-    ptBottom = it1->second.ptBottom;
-    return it1->second.value;
+  ptTop = it1->second.ptTop;
+  ptBottom = it1->second.ptBottom;
+  return it1->second.value;
   }
 
 
   if (dynamic_cast<CThicknessParallelInitializationCallback *>(cb)) // else, our thread-local cache
   {
-    static_cast<CThicknessParallelInitializationCallback *>(cb)->GetCache(this, &cache);
+  static_cast<CThicknessParallelInitializationCallback *>(cb)->GetCache(this, &cache);
 
-    it1 = cache->find(ptKey);
-    if (it1 != cache->end())
-    {
+  it1 = cache->find(ptKey);
+  if (it1 != cache->end())
+  {
       ptTop = it1->second.ptTop;
       ptBottom = it1->second.ptBottom;
       return it1->second.value;
-    }
+  }
   }
 
   geo::CPoint ptMin = Min();
@@ -193,28 +193,28 @@ geo::CValue CFormationVolume::ThicknessAt(const geo::IPoint& pt, geo::IPoint& pt
   int i;
   for(i = 0; i < Volume().SideSurfaceSize(); ++i)
   {
-    const geo::CBodyGroup::CSideSurface& surf = Volume().SideSurface(i);
-    if(surf.PointSize() == 0)
+  const geo::CBodyGroup::CSideSurface& surf = Volume().SideSurface(i);
+  if(surf.PointSize() == 0)
       continue;
 
-    // check for intersections
-    std::set<int> stCandidates = surf.Candidates(ptMin, ptMax);
-    for(std::set<int>::iterator it2 = stCandidates.begin(); it2 != stCandidates.end(); ++it2)
-    {
+  // check for intersections
+  std::set<int> stCandidates = surf.Candidates(ptMin, ptMax);
+  for(std::set<int>::iterator it2 = stCandidates.begin(); it2 != stCandidates.end(); ++it2)
+  {
       const geo::IFace& face = surf.Face(*it2);
       geo::CPoint ptIntersect = face.Intersection(l);
       if(!ptIntersect.Empty())
-        stPoints.insert(ptIntersect);
-    }
+    stPoints.insert(ptIntersect);
+  }
   }
 
   geo::CValue valRet;
 
   if (stPoints.size() == 0) // in case of wellpaths and multiple volumes in a formation, we don't need to intersect at all
   {
-    ptTop    = pt;
-    ptBottom = pt;
-    return valRet;
+  ptTop    = pt;
+  ptBottom = pt;
+  return valRet;
   }
 
   ptTop = *stPoints.begin();
@@ -242,6 +242,6 @@ void CFormationVolume::AddToCache(TThicknessCache *cache) const
 {
   for (TThicknessCache::iterator it = cache->begin(); it != cache->end(); ++it)
   {
-    m_mpThicknessCache.insert(*it);
+  m_mpThicknessCache.insert(*it);
   }
 }

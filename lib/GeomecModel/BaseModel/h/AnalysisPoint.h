@@ -17,31 +17,31 @@ class CModelBase;
 class CAnalysisPoint : public CColorNode
 {
 protected:
-	geo::CPoint m_point;
+  geo::CPoint m_point;
 public:
-	// Construction / Destruction
-	CAnalysisPoint(CFemAppModel& model);
-	CAnalysisPoint(const QString& sName, const geo::IPoint& point, CModelBase& model);
-	CAnalysisPoint(unsigned int uName, const geo::IPoint& point, CModelBase& model);
-	CAnalysisPoint(const CAnalysisPoint& rhs);
-	virtual ~CAnalysisPoint();
+  // Construction / Destruction
+  CAnalysisPoint(CFemAppModel& model);
+  CAnalysisPoint(const QString& sName, const geo::IPoint& point, CModelBase& model);
+  CAnalysisPoint(unsigned int uName, const geo::IPoint& point, CModelBase& model);
+  CAnalysisPoint(const CAnalysisPoint& rhs);
+  virtual ~CAnalysisPoint();
 
-	bool operator==(const CAnalysisPoint& rhs);
-	CAnalysisPoint& operator=(const CAnalysisPoint& rhs);
+  bool operator==(const CAnalysisPoint& rhs);
+  CAnalysisPoint& operator=(const CAnalysisPoint& rhs);
 
-	void DefaultName(const geo::IPoint& point);
+  void DefaultName(const geo::IPoint& point);
 
-	virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-	virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
-	virtual long SavedItems() const;
-	virtual unsigned int IconId() const;
-	virtual int DisplayListSize() const;
-	virtual const geo::IObject& DisplayList(int nIndex) const;
-	
-	const geo::IPoint& Point() const;
-	void Point(const geo::IPoint& point);
-	virtual unsigned int TypeId() const;
-	virtual QString TypeName() const;
+  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
+  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  virtual long SavedItems() const;
+  virtual unsigned int IconId() const;
+  virtual int DisplayListSize() const;
+  virtual const geo::IObject& DisplayList(int nIndex) const;
+  
+  const geo::IPoint& Point() const;
+  void Point(const geo::IPoint& point);
+  virtual unsigned int TypeId() const;
+  virtual QString TypeName() const;
 
   ACCEPT_GEOMECMODELVISITORS(VisitAnalysisPoint);
 };
@@ -49,7 +49,7 @@ public:
 class CAnalysisPointEntry : public CStorageNodeEntry<CAnalysisPoint>
 {
 public:
-	CAnalysisPointEntry(CModelBase& model);
+  CAnalysisPointEntry(CModelBase& model);
 
   ACCEPT_GEOMECMODELVISITORS(VisitAnalysisPointEntry);
 };

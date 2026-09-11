@@ -25,10 +25,10 @@ void CModelBase_Delegate::AppendSwitchTo(CContextMenuInvoker& invoker)
   typedef CSingleCommandTemplate <CGUIBase> TGUIBaseCommand;
 
   CGUIBase* GUI = static_cast <CGUIBase*> (
-    GetGeomecDoc()->retrieveMatchingGUI(
+  GetGeomecDoc()->retrieveMatchingGUI(
       GetGeomecDoc()->GUI(), m_modelBase));
 
   invoker.AddCommand(_T("Switch to this model"),
-    *new TGUIBaseCommand(*GUI, &CGUIBase::SwitchTo,
+  *new TGUIBaseCommand(*GUI, &CGUIBase::SwitchTo,
       &CGUIBase::CanSwitchTo));
 }

@@ -13,18 +13,18 @@ bool CMaterialMCHardEquivalentPlasticStrain1CheckStrategy::operator()(double dVa
   const ml::CMatParam* pEqPlStr2 = mat.MatParameter(MLD_EQUIV_PLAST_STRAIN2);
   if(pEqPlStr2)
   {
-    double dEqPlStr2 = pEqPlStr2->ValueToUserUnit(nUnitDef);
+  double dEqPlStr2 = pEqPlStr2->ValueToUserUnit(nUnitDef);
 
-    if(dValue < 0 || dValue >= dEqPlStr2)
-    {
+  if(dValue < 0 || dValue >= dEqPlStr2)
+  {
       strErrorMsg = QObject::tr("Equivalent Plastic Strain 1 must be at least equal to 0 and smaller than Equivalent Plastic Strain 2.");
       return false;
-    }
+  }
   }
   else if(dValue < 0 || dValue > 1)
   {
-    strErrorMsg = QObject::tr("Equivalent Plastic Strain 1 must be at least equal to 0 and at most equal to 1.");
-    return false;
+  strErrorMsg = QObject::tr("Equivalent Plastic Strain 1 must be at least equal to 0 and at most equal to 1.");
+  return false;
   }
 
   return true;
@@ -42,18 +42,18 @@ bool CMaterialMCHardEquivalentPlasticStrain2CheckStrategy::operator()(double dVa
 
   if(pEqPlStr3)
   {
-    double dEqPlStr3 = pEqPlStr3->ValueToUserUnit(nUnitDef);
+  double dEqPlStr3 = pEqPlStr3->ValueToUserUnit(nUnitDef);
 
-    if(dValue <= dEqPlStr1 || dValue >= dEqPlStr3)
-    {
+  if(dValue <= dEqPlStr1 || dValue >= dEqPlStr3)
+  {
       strErrorMsg = QObject::tr("Equivalent Plastic Strain 2 must be larger than Equivalent Plastic Strain 1 and smaller than Equivalent Plastic Strain 3.");
       return false;
-    }
+  }
   }
   else if(dValue <= dEqPlStr1 || dValue > 1)
   {
-    strErrorMsg = QObject::tr("Equivalent Plastic Strain 2 must be larger than Equivalent Plastic Strain 1 and at most equal to 1.");
-    return false;
+  strErrorMsg = QObject::tr("Equivalent Plastic Strain 2 must be larger than Equivalent Plastic Strain 1 and at most equal to 1.");
+  return false;
   }
 
   return true;
@@ -69,8 +69,8 @@ bool CMaterialMCHardEquivalentPlasticStrain3CheckStrategy::operator()(double dVa
 
   if(dValue <= dEqPlStr2 || dValue > 1)
   {
-    strErrorMsg = QObject::tr("Equivalent Plastic Strain 3 must be larger than Equivalent Plastic Strain 2 and at most equal to 1.");
-    return false;
+  strErrorMsg = QObject::tr("Equivalent Plastic Strain 3 must be larger than Equivalent Plastic Strain 2 and at most equal to 1.");
+  return false;
   }
 
   return true;

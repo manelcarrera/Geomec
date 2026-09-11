@@ -9,12 +9,12 @@ template <class TENSOR_TYPE>
 {
 public:
   ITensorGroupTemplate_Delegate(
-    ITensorGroupTemplate <TENSOR_TYPE> * tensorGroupTemplate);
+  ITensorGroupTemplate <TENSOR_TYPE> * tensorGroupTemplate);
 
 private:
   ITensorGroupTemplate_Delegate(const ITensorGroupTemplate_Delegate& rhs);
   ITensorGroupTemplate_Delegate& operator = (
-    const ITensorGroupTemplate_Delegate& rhs);
+  const ITensorGroupTemplate_Delegate& rhs);
 
   ITensorGroupTemplate <TENSOR_TYPE> * m_tensorGroupTemplate;
 
@@ -23,7 +23,7 @@ private:
 
 template <class TENSOR_TYPE>
   ITensorGroupTemplate_Delegate <TENSOR_TYPE> ::
-    ITensorGroupTemplate_Delegate(
+  ITensorGroupTemplate_Delegate(
       ITensorGroupTemplate <TENSOR_TYPE> * tensorGroupTemplate)
 : ITensorGroup_Delegate(tensorGroupTemplate)
 , m_tensorGroupTemplate(tensorGroupTemplate)

@@ -7,24 +7,24 @@ template <typename Pressure>
   class CCommonPressureComponent : public CPressureComponent <Pressure>
 {
   public:
-    CCommonPressureComponent<Pressure>(CFormationLoadBase <Pressure>& pressure,
+  CCommonPressureComponent<Pressure>(CFormationLoadBase <Pressure>& pressure,
       unsigned int mode, bool empty = false);
 
-    virtual unsigned int IconId() const;
-    virtual unsigned int TypeId() const;
+  virtual unsigned int IconId() const;
+  virtual unsigned int TypeId() const;
 
   protected:
-    CCommonPressureComponent<Pressure>(const CCommonPressureComponent <Pressure>& rhs);
-    CCommonPressureComponent <Pressure>& operator = (
+  CCommonPressureComponent<Pressure>(const CCommonPressureComponent <Pressure>& rhs);
+  CCommonPressureComponent <Pressure>& operator = (
       const CCommonPressureComponent <Pressure>& rhs);
 
-    virtual long SavedItems() const;
-    virtual bool Defined() const;
+  virtual long SavedItems() const;
+  virtual bool Defined() const;
 };
 
 template <typename Pressure>
   CCommonPressureComponent <Pressure>::CCommonPressureComponent(
-    CFormationLoadBase <Pressure>& pressure, unsigned int mode, bool empty)
+  CFormationLoadBase <Pressure>& pressure, unsigned int mode, bool empty)
   : CPressureComponent <Pressure>(pressure, mode, empty)
 {
 }
@@ -45,14 +45,14 @@ template <typename Pressure>
 
 template <typename Pressure>
   CCommonPressureComponent <Pressure>::CCommonPressureComponent(
-    const CCommonPressureComponent <Pressure>& rhs)
+  const CCommonPressureComponent <Pressure>& rhs)
   : CPressureComponent <Pressure>(rhs)
 {
 }
 
 template <typename Pressure>
   CCommonPressureComponent <Pressure>&
-    CCommonPressureComponent <Pressure>::operator = (
+  CCommonPressureComponent <Pressure>::operator = (
       const CCommonPressureComponent <Pressure>& rhs)
 {
   /*
@@ -76,7 +76,7 @@ template <typename Pressure>
 template <typename Pressure>
   long CCommonPressureComponent <Pressure>::SavedItems() const
 {
-	return CPressureComponent <Pressure>::SavedItems();
+  return CPressureComponent <Pressure>::SavedItems();
 }
 
 template <typename Pressure>

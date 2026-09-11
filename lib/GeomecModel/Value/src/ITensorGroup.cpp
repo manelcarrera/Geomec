@@ -14,7 +14,7 @@
 
 template <typename T> int sgn(T val)
 {
-    return (T(0) < val) - (val < T(0));
+  return (T(0) < val) - (val < T(0));
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -26,9 +26,9 @@ ITensorGroup::ITensorGroup(const QString& sName, CResultGroup& parent)
   m_pComponent(0),
   m_pCylindric(0)
 {
-	m_pPrincipal[CVectorComposite::PD_MAX] = 0;
-	m_pPrincipal[CVectorComposite::PD_MED] = 0;
-	m_pPrincipal[CVectorComposite::PD_MIN] = 0;
+  m_pPrincipal[CVectorComposite::PD_MAX] = 0;
+  m_pPrincipal[CVectorComposite::PD_MED] = 0;
+  m_pPrincipal[CVectorComposite::PD_MIN] = 0;
 }
 
 ITensorGroup::ITensorGroup(unsigned int uName, CResultGroup& parent)
@@ -36,9 +36,9 @@ ITensorGroup::ITensorGroup(unsigned int uName, CResultGroup& parent)
   m_pComponent(0),
   m_pCylindric(0)
 {
-	m_pPrincipal[CVectorComposite::PD_MAX] = 0;
-	m_pPrincipal[CVectorComposite::PD_MED] = 0;
-	m_pPrincipal[CVectorComposite::PD_MIN] = 0;
+  m_pPrincipal[CVectorComposite::PD_MAX] = 0;
+  m_pPrincipal[CVectorComposite::PD_MED] = 0;
+  m_pPrincipal[CVectorComposite::PD_MIN] = 0;
 }
 
 ITensorGroup::~ITensorGroup()
@@ -47,20 +47,20 @@ ITensorGroup::~ITensorGroup()
 
 bool ITensorGroup::OnBuildComponent(const CDepletionStage& /*stage*/, const CAnalysisType& /*antype*/, int /*nRegister*/) const
 {
-	return true;
+  return true;
 }
 
 void ITensorGroup::CreateComposite()
 {
-	delete m_pComponent;
+  delete m_pComponent;
 //	delete m_pInVariant;
-	
-	m_pComponent = new CComponentComposite(IDS_RG_TENSOR_COMPONENTS, *this);
+  
+  m_pComponent = new CComponentComposite(IDS_RG_TENSOR_COMPONENTS, *this);
 
 //	m_pInVariant = new CInvariantComposite(IDS_RG_INVARIANTS, *this);
 
   if (static_cast<CModelBase&>(Model()).IsCylindricalModel())
-    CreateCylindricalComposite();
+  CreateCylindricalComposite();
 }
 
 void ITensorGroup::CreatePrincipalDirections()
@@ -90,17 +90,17 @@ bool ITensorGroup::OnDefined(const IResultComponent& component) const
 
 const ITensorGroup::CVectorComposite *ITensorGroup::MaxDirection() const
 { 
-	return m_pPrincipal[CVectorComposite::PD_MAX];
+  return m_pPrincipal[CVectorComposite::PD_MAX];
 }
 
 const ITensorGroup::CVectorComposite *ITensorGroup::MedDirection() const
 { 
-	return m_pPrincipal[CVectorComposite::PD_MED];
+  return m_pPrincipal[CVectorComposite::PD_MED];
 }
 
 const ITensorGroup::CVectorComposite *ITensorGroup::MinDirection() const
 { 
-	return m_pPrincipal[CVectorComposite::PD_MIN];
+  return m_pPrincipal[CVectorComposite::PD_MIN];
 }
 
 const ITensorGroup::CVectorComposite& ITensorGroup::Direction(CVectorComposite::PRINCIPAL_DIRECTION direction) const
@@ -120,11 +120,11 @@ ITensorGroup::CTensorData::CTensorData(const IResultComponent& parent)
   ITensorGroup *pTensorGroup = dynamic_cast<ITensorGroup *>(parent.parent()->parent());
   if (pTensorGroup)
   {
-    m_Group = pTensorGroup;
+  m_Group = pTensorGroup;
   }
   else
   {
-    const ITensorGroup::CVectorComposite *pResult = static_cast<const ITensorGroup::CVectorComposite *>(&parent.Parent());
+  const ITensorGroup::CVectorComposite *pResult = static_cast<const ITensorGroup::CVectorComposite *>(&parent.Parent());
 
   	m_Group = const_cast<ITensorGroup *>(static_cast<const ITensorGroup *>(pResult->Parent()->Parent()));
   }
@@ -151,22 +151,22 @@ IValueDataInterfaceTensor::TValue ITensorGroup::CTensorData::Average(IProgressBa
 
 void ScaleTensor(CTensor &v, IQuantityDouble::UNIT unit, const ITensorGroup * pTensorGroup)
 {
-	if (unit == IQuantityDouble::FIELD_UNIT)
-	{
-		v.XX(pTensorGroup->ConvertToField(v.XX()));
-		v.YY(pTensorGroup->ConvertToField(v.YY()));
-		v.ZZ(pTensorGroup->ConvertToField(v.ZZ()));
-		v.XY(pTensorGroup->ConvertToField(v.XY()));
-		v.YZ(pTensorGroup->ConvertToField(v.YZ()));
-		v.XZ(pTensorGroup->ConvertToField(v.XZ()));
-	}
+  if (unit == IQuantityDouble::FIELD_UNIT)
+  {
+    v.XX(pTensorGroup->ConvertToField(v.XX()));
+    v.YY(pTensorGroup->ConvertToField(v.YY()));
+    v.ZZ(pTensorGroup->ConvertToField(v.ZZ()));
+    v.XY(pTensorGroup->ConvertToField(v.XY()));
+    v.YZ(pTensorGroup->ConvertToField(v.YZ()));
+    v.XZ(pTensorGroup->ConvertToField(v.XZ()));
+  }
 
-    if (pTensorGroup->Type() != ITensorGroup::TT_STRESS)
-	{
-		v.XY(2.0 * v.XY());
-		v.YZ(2.0 * v.YZ());
-		v.XZ(2.0 * v.XZ());
-	}
+  if (pTensorGroup->Type() != ITensorGroup::TT_STRESS)
+  {
+    v.XY(2.0 * v.XY());
+    v.YZ(2.0 * v.YZ());
+    v.XZ(2.0 * v.XZ());
+  }
 }
 
 void ITensorGroup::CTensorData::ResetMinMax() const
@@ -199,10 +199,10 @@ IValueDataInterfaceTensor::TValueVec ITensorGroup::CTensorData::ValueElement(con
 
   for (size_t i = 0; i < elt.NrOfNodes(); ++i) // TODO: for now we do it like this, but ITensorGroup needs to return a TValueVec, with the right values
   {
-    CTensor t = m_Group->TensorElement(elt, i, CValueType::MT_NONE, m_Parent, cb);
-    ScaleTensor(t, unit, m_Group);
-    SetMinMax(t);
-    tensors.push_back(t);
+  CTensor t = m_Group->TensorElement(elt, i, CValueType::MT_NONE, m_Parent, cb);
+  ScaleTensor(t, unit, m_Group);
+  SetMinMax(t);
+  tensors.push_back(t);
   }
 
   return tensors;
@@ -214,115 +214,115 @@ IValueDataInterfaceTensor::TValueVec ITensorGroup::CTensorData::ValueElement(con
 ITensorGroup::CComponentComposite::CComponentComposite(unsigned int uName, ITensorGroup& group)
 : IResult(uName, group)
 {
-	BuildComponents();
-	Index(group.ComponentIndex());	// Set the component index for saving and loading references
+  BuildComponents();
+  Index(group.ComponentIndex());	// Set the component index for saving and loading references
 }
 
 ITensorGroup::CComponentComposite::CComponentComposite(const QString& sName, ITensorGroup& group)
 : IResult(sName, group)
 {
-	BuildComponents();
-	Index(group.ComponentIndex());	// Set the component index for saving and loading references
+  BuildComponents();
+  Index(group.ComponentIndex());	// Set the component index for saving and loading references
 }
 
 void ITensorGroup::CComponentComposite::BuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister)
 {
-	const ITensorGroup& parent = dynamic_cast<const ITensorGroup&>(*Parent());
-	if(parent.OnBuildComponent(stage, antype, nRegister))
-	{
-		new CComponent(IDS_RC_NN, *this, TC_XX, stage, antype, nRegister);
-		new CComponent(IDS_RC_EE, *this, TC_YY, stage, antype, nRegister);
-		new CComponent(IDS_RC_DD, *this, TC_ZZ, stage, antype, nRegister);
-		new CComponent(IDS_RC_EN, *this, TC_XY, stage, antype, nRegister);
-		new CComponent(IDS_RC_ED, *this, TC_YZ, stage, antype, nRegister);
-		new CComponent(IDS_RC_ND, *this, TC_ZX, stage, antype, nRegister);
-    new CFullTensorComponent(*this, stage, antype, nRegister);
-	}
+  const ITensorGroup& parent = dynamic_cast<const ITensorGroup&>(*Parent());
+  if(parent.OnBuildComponent(stage, antype, nRegister))
+  {
+    new CComponent(IDS_RC_NN, *this, TC_XX, stage, antype, nRegister);
+    new CComponent(IDS_RC_EE, *this, TC_YY, stage, antype, nRegister);
+    new CComponent(IDS_RC_DD, *this, TC_ZZ, stage, antype, nRegister);
+    new CComponent(IDS_RC_EN, *this, TC_XY, stage, antype, nRegister);
+    new CComponent(IDS_RC_ED, *this, TC_YZ, stage, antype, nRegister);
+    new CComponent(IDS_RC_ND, *this, TC_ZX, stage, antype, nRegister);
+  new CFullTensorComponent(*this, stage, antype, nRegister);
+  }
 }
 
 unsigned int ITensorGroup::CComponentComposite::IconId() const
 {
-	return IDI_RESULT_MAP;
+  return IDI_RESULT_MAP;
 }
 
 bool ITensorGroup::CComponentComposite::OnDefined(const IResultComponent& component) const
 {
-	const ITensorGroup* pParent = dynamic_cast<const ITensorGroup*>(Parent());
-	assert(pParent);
-	return pParent->OnDefined(component);
+  const ITensorGroup* pParent = dynamic_cast<const ITensorGroup*>(Parent());
+  assert(pParent);
+  return pParent->OnDefined(component);
 }
 
 bool ITensorGroup::CComponentComposite::CanMap(const COpenGLNode& node, int nRegister) const
 {
-	const ITensorGroup* pParent = dynamic_cast<const ITensorGroup*>(Parent());
-	assert(pParent);
-	return pParent->CanMap(node, nRegister);
+  const ITensorGroup* pParent = dynamic_cast<const ITensorGroup*>(Parent());
+  assert(pParent);
+  return pParent->CanMap(node, nRegister);
 }
 
 QString ITensorGroup::CComponentComposite::ExportLabel(int nComponent) const
 {
-	// Get the type name of the current tensor
-	const ITensorGroup* pParent = dynamic_cast<const ITensorGroup*>(Parent());
-	assert(pParent);
+  // Get the type name of the current tensor
+  const ITensorGroup* pParent = dynamic_cast<const ITensorGroup*>(Parent());
+  assert(pParent);
 
-	// Fetch names
-	QString sPreName, sName, sPostName;
-	if(pParent->PreExportNameId())
-		sPreName = getStringTableEntry(pParent->PreExportNameId());
-	sName = getStringTableEntry(pParent->ExportNameId());
-	if(pParent->PostExportNameId())
-		sPostName = getStringTableEntry(pParent->PostExportNameId());
+  // Fetch names
+  QString sPreName, sName, sPostName;
+  if(pParent->PreExportNameId())
+    sPreName = getStringTableEntry(pParent->PreExportNameId());
+  sName = getStringTableEntry(pParent->ExportNameId());
+  if(pParent->PostExportNameId())
+    sPostName = getStringTableEntry(pParent->PostExportNameId());
 
-	// Get name of current component
-	unsigned int uStringId;
-	switch(nComponent)
-	{
-	case TC_XX:
-		uStringId = IDS_ET_TENSOR_XX;
-		break;
-	case TC_YY:
-		uStringId = IDS_ET_TENSOR_YY;
-		break;
-	case TC_ZZ:
-		uStringId = IDS_ET_TENSOR_ZZ;
-		break;
-	case TC_XY:
-		uStringId = IDS_ET_TENSOR_XY;
-		break;
-	case TC_YZ:
-		uStringId = IDS_ET_TENSOR_YZ;
-		break;
-	case TC_ZX:
-		uStringId = IDS_ET_TENSOR_XZ;
-		break;
-	case TC_FT:
-		uStringId = IDS_ET_TENSOR_FT;
-		break;
-	default:
-		uStringId = IDS_ERROR;
-		assert(false);	// Bogus
-	}	
+  // Get name of current component
+  unsigned int uStringId;
+  switch(nComponent)
+  {
+  case TC_XX:
+    uStringId = IDS_ET_TENSOR_XX;
+    break;
+  case TC_YY:
+    uStringId = IDS_ET_TENSOR_YY;
+    break;
+  case TC_ZZ:
+    uStringId = IDS_ET_TENSOR_ZZ;
+    break;
+  case TC_XY:
+    uStringId = IDS_ET_TENSOR_XY;
+    break;
+  case TC_YZ:
+    uStringId = IDS_ET_TENSOR_YZ;
+    break;
+  case TC_ZX:
+    uStringId = IDS_ET_TENSOR_XZ;
+    break;
+  case TC_FT:
+    uStringId = IDS_ET_TENSOR_FT;
+    break;
+  default:
+    uStringId = IDS_ERROR;
+    assert(false);	// Bogus
+  }	
 
-	// Load component name
-	QString sComponent;
-	sComponent = getStringTableEntry(uStringId);
+  // Load component name
+  QString sComponent;
+  sComponent = getStringTableEntry(uStringId);
 
-	return sPreName + sName + sPostName + sComponent;
+  return sPreName + sName + sPostName + sComponent;
 }
 
 QString ITensorGroup::CComponentComposite::ExportLabel() const
 {
-	// Get the type name of the current tensor
-	const ITensorGroup* pParent = dynamic_cast<const ITensorGroup*>(Parent());
-	assert(pParent);
+  // Get the type name of the current tensor
+  const ITensorGroup* pParent = dynamic_cast<const ITensorGroup*>(Parent());
+  assert(pParent);
 
-	// Fetch names
-	QString sPreName, sName, sPostName;
-	if(pParent->PreExportNameId())
-		sPreName = getStringTableEntry(pParent->PreExportNameId());
-	sName = getStringTableEntry(pParent->ExportNameId());
-	if(pParent->PostExportNameId())
-		sPostName = getStringTableEntry(pParent->PostExportNameId());
+  // Fetch names
+  QString sPreName, sName, sPostName;
+  if(pParent->PreExportNameId())
+    sPreName = getStringTableEntry(pParent->PreExportNameId());
+  sName = getStringTableEntry(pParent->ExportNameId());
+  if(pParent->PostExportNameId())
+    sPostName = getStringTableEntry(pParent->PostExportNameId());
 
   return sPreName + sName + sPostName;
 }
@@ -340,17 +340,17 @@ bool ITensorGroup::CComponentComposite::ValidName
   std::string sPreName, sName, sPostName;
 
   if(pParent->PreExportNameId())
-    sPreName = getStringTableEntry(pParent->PreExportNameId());
+  sPreName = getStringTableEntry(pParent->PreExportNameId());
 
   sName = getStringTableEntry(pParent->ExportNameId());
 
   if(pParent->PostExportNameId())
-    sPostName = getStringTableEntry(pParent->PostExportNameId());
+  sPostName = getStringTableEntry(pParent->PostExportNameId());
 
   std::string sCombinedName= sPreName + sName + sPostName;
 
   return validateName(resultInfo, name, sCombinedName,
-    TensorResultComponentList(), "_L|_M|_C|_N", pParent);
+  TensorResultComponentList(), "_L|_M|_C|_N", pParent);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -361,39 +361,39 @@ bool ITensorGroup::CComponentComposite::ValidName
 // component is used here as two different types: size_t index and the semantic TENSOR_COMPONENT indicator
 
 ITensorGroup::CComponentComposite::CComponent::CComponent(unsigned int uComponentName,
-														  CComponentComposite& parent,
-														  enum TENSOR_COMPONENT component,		
-														  const CDepletionStage& stage,
-														  const CAnalysisType& antype,
-														  int nRegister)
+                              CComponentComposite& parent,
+                              enum TENSOR_COMPONENT component,		
+                              const CDepletionStage& stage,
+                              const CAnalysisType& antype,
+                              int nRegister)
 : IResultComponent(uComponentName, parent, stage, antype, nRegister, (int)component), m_component(component)
 {
 }
 
 unsigned int ITensorGroup::CComponentComposite::CComponent::IconId() const
 {
-	return IDI_RESULT;
+  return IDI_RESULT;
 }
 
 unsigned int ITensorGroup::CComponentComposite::CComponent::TypeId() const
 {
-	return 0;
+  return 0;
 }
 
 QString ITensorGroup::CComponentComposite::CComponent::UnitName(const UNIT unit) const
 {
-	const IResult &result = (const IResult&)(Parent());
-	const ITensorGroup *pParent = dynamic_cast<const ITensorGroup*>(result.Parent());
-	assert(pParent);
-	return pParent->UnitName(unit);
+  const IResult &result = (const IResult&)(Parent());
+  const ITensorGroup *pParent = dynamic_cast<const ITensorGroup*>(result.Parent());
+  assert(pParent);
+  return pParent->UnitName(unit);
 }
 
 geo::CValue ITensorGroup::CComponentComposite::CComponent::ValuePoint(const geo::IPoint& pt, const UNIT unit, geo::IParallelInitializationCallback *cb) const
 {
-	const IResult &result = (const IResult&)(Parent());
-	const ITensorGroup *pParent = dynamic_cast<const ITensorGroup*>(result.Parent());
-	assert(pParent);
-	return ComponentAt(pParent->TensorPoint(pt, *this, cb), unit);
+  const IResult &result = (const IResult&)(Parent());
+  const ITensorGroup *pParent = dynamic_cast<const ITensorGroup*>(result.Parent());
+  assert(pParent);
+  return ComponentAt(pParent->TensorPoint(pt, *this, cb), unit);
 }
 
 void ITensorGroup::CComponentComposite::CComponent::MapValueElement(const geo::IElement& elm, IValueDomainScalar::TValueVec& values, TMapType map_type, UNIT unit, geo::IParallelInitializationCallback *cb) const
@@ -403,55 +403,55 @@ void ITensorGroup::CComponentComposite::CComponent::MapValueElement(const geo::I
   const ITensorGroup *pParent = dynamic_cast<const ITensorGroup*>(result.Parent());
   assert(pParent);
   for(int i = 0; i < values.size(); i++) {
-	values[i] = ComponentAt(pParent->TensorElement(elm, i, map_type, *this, cb), unit);
+  values[i] = ComponentAt(pParent->TensorElement(elm, i, map_type, *this, cb), unit);
   }
 }
 
 geo::CValue ITensorGroup::CComponentComposite::CComponent::ComponentAt(const ITensor& tensor, UNIT unit) const
 {
-	// Is the tensor valid?
-	if( tensor.Empty() ) return geo::CValue();
+  // Is the tensor valid?
+  if( tensor.Empty() ) return geo::CValue();
 
-	const ITensorGroup* pParent = dynamic_cast<const ITensorGroup*>(parent()->parent());
-	assert(pParent);
+  const ITensorGroup* pParent = dynamic_cast<const ITensorGroup*>(parent()->parent());
+  assert(pParent);
 
 
-	if( unit == CQuantity::FIELD_UNIT ) 
-		return geo::CValue( pParent->ConvertToField( ComponentAt( tensor, CQuantity::SI_UNIT ).Value() ));
+  if( unit == CQuantity::FIELD_UNIT ) 
+    return geo::CValue( pParent->ConvertToField( ComponentAt( tensor, CQuantity::SI_UNIT ).Value() ));
 
-	switch(m_component)
-	{
-	case TC_XX:
-		return geo::CValue( tensor.XX() );
-	case TC_YY:
-		return geo::CValue( tensor.YY() );
-	case TC_ZZ:
-		return geo::CValue( tensor.ZZ() );
-	case TC_XY:
-		if(pParent->Type() == TT_STRESS )
-			return geo::CValue( tensor.XY() );
-		else
-			return geo::CValue( tensor.XY() * 2.0 );
-	case TC_YZ:
-		if(pParent->Type() == TT_STRESS )
-			return geo::CValue( tensor.YZ() );
-		else
-			return geo::CValue( tensor.YZ() * 2.0 );
-	case TC_ZX:
-		if(pParent->Type() == TT_STRESS )
-			return geo::CValue( tensor.XZ() );
-		else
-			return geo::CValue( tensor.XZ() * 2.0 );
-	default:
-		assert(false);	// Bogus
-	}	
+  switch(m_component)
+  {
+  case TC_XX:
+    return geo::CValue( tensor.XX() );
+  case TC_YY:
+    return geo::CValue( tensor.YY() );
+  case TC_ZZ:
+    return geo::CValue( tensor.ZZ() );
+  case TC_XY:
+    if(pParent->Type() == TT_STRESS )
+      return geo::CValue( tensor.XY() );
+    else
+      return geo::CValue( tensor.XY() * 2.0 );
+  case TC_YZ:
+    if(pParent->Type() == TT_STRESS )
+      return geo::CValue( tensor.YZ() );
+    else
+      return geo::CValue( tensor.YZ() * 2.0 );
+  case TC_ZX:
+    if(pParent->Type() == TT_STRESS )
+      return geo::CValue( tensor.XZ() );
+    else
+      return geo::CValue( tensor.XZ() * 2.0 );
+  default:
+    assert(false);	// Bogus
+  }	
 
-	return geo::CValue();
+  return geo::CValue();
 }
 
 ITensorGroup::CComponentComposite::TENSOR_COMPONENT ITensorGroup::CComponentComposite::CComponent::Component() const
 {
-    return m_component;
+  return m_component;
 }
 
 bool ITensorGroup::CComponentComposite::CComponent::NeedParallelInitializationCallback() const
@@ -473,17 +473,17 @@ bool ITensorGroup::CComponentComposite::CComponent::PrepareMapping(const geo::IE
   ITensorGroup* pTensorGroup = dynamic_cast<ITensorGroup*>(Parent().parent());
 
   if (!pTensorGroup->PrepareMapping(pElementSet, this))
-    return false;
+  return false;
 
   int c = ResultRegister().ColumnNumber(AnalysisType(), ResultRegister().DepletionStageEntry().MarkedAsInitialStage().Index(), CI_POREPRES);
 
   if (!ResultRegister().Cache().ActiveCacher().StartCriticalSection(c, 13))
-    retval = false;
+  retval = false;
 
   c = ResultRegister().ColumnNumber(AnalysisType(), Stage().Index(), CI_POREPRES);
 
   if (!ResultRegister().Cache().ActiveCacher().StartCriticalSection(c, 13))
-    retval = false;
+  retval = false;
 
 
   return retval;
@@ -499,29 +499,29 @@ void ITensorGroup::CComponentComposite::CComponent::FinishMapping()
 ////////////////////////////////////////////////////////////////////////////
 
 ITensorGroup::CComponentComposite::CFullTensorComponent::CFullTensorComponent(CComponentComposite& parent,
-														  const CDepletionStage& stage,
-														  const CAnalysisType& antype,
-														  int nRegister)
+                              const CDepletionStage& stage,
+                              const CAnalysisType& antype,
+                              int nRegister)
 : IResultComponent("Full Tensor", parent, stage, antype, nRegister, 6), m_Data(*this)
 {
 }
 
 unsigned int ITensorGroup::CComponentComposite::CFullTensorComponent::IconId() const
 {
-	return IDI_RESULT;
+  return IDI_RESULT;
 }
 
 unsigned int ITensorGroup::CComponentComposite::CFullTensorComponent::TypeId() const
 {
-	return 0;
+  return 0;
 }
 
 QString ITensorGroup::CComponentComposite::CFullTensorComponent::UnitName(const UNIT unit) const
 {
-	const IResult &result = (const IResult&)(Parent());
-	const ITensorGroup *pParent = dynamic_cast<const ITensorGroup*>(result.Parent());
-	assert(pParent);
-	return pParent->UnitName(unit);
+  const IResult &result = (const IResult&)(Parent());
+  const ITensorGroup *pParent = dynamic_cast<const ITensorGroup*>(result.Parent());
+  assert(pParent);
+  return pParent->UnitName(unit);
 }
 
 geo::CValue ITensorGroup::CComponentComposite::CFullTensorComponent::ValuePoint(const geo::IPoint& /*pt*/, const UNIT /*unit*/, geo::IParallelInitializationCallback* /*cb*/) const
@@ -572,17 +572,17 @@ bool ITensorGroup::CComponentComposite::CFullTensorComponent::PrepareMapping(con
   ITensorGroup* pTensorGroup = dynamic_cast<ITensorGroup*>(Parent().parent());
 
   if (!pTensorGroup->PrepareMapping(pElementSet, this))
-    return false;
+  return false;
 
   int c = ResultRegister().ColumnNumber(AnalysisType(), ResultRegister().DepletionStageEntry().MarkedAsInitialStage().Index(), CI_POREPRES);
 
   if (!ResultRegister().Cache().ActiveCacher().StartCriticalSection(c, 13))
-    retval = false;
+  retval = false;
 
   c = ResultRegister().ColumnNumber(AnalysisType(), Stage().Index(), CI_POREPRES);
 
   if (!ResultRegister().Cache().ActiveCacher().StartCriticalSection(c, 13))
-    retval = false;
+  retval = false;
 
   return retval;
 }
@@ -597,12 +597,12 @@ void ITensorGroup::CComponentComposite::CFullTensorComponent::FinishMapping()
 //////////////////////////////////////////////////////////////////////
 double ITensorGroup::CVectorComposite::ConvertToField(const double& dValue) const
 {
-	return m_pTensorGroup->ConvertToField(dValue);
+  return m_pTensorGroup->ConvertToField(dValue);
 }
 
 ITensorGroup::CVectorComposite::PRINCIPAL_DIRECTION ITensorGroup::CVectorComposite::Direction() const
 {
-	return m_direction;
+  return m_direction;
 }
 
 bool ITensorGroup::CVectorComposite::ValidName
@@ -615,40 +615,40 @@ bool ITensorGroup::CVectorComposite::ValidName
   switch(m_direction)
   {
   case PD_MAX:
-    sDirection = getStringTableEntry(IDS_ET_TENSOR_MAX);
-    break;
+  sDirection = getStringTableEntry(IDS_ET_TENSOR_MAX);
+  break;
   case PD_MED:
-    sDirection = getStringTableEntry(IDS_ET_TENSOR_MED);
-    break;
+  sDirection = getStringTableEntry(IDS_ET_TENSOR_MED);
+  break;
   case PD_MIN:
-    sDirection = getStringTableEntry(IDS_ET_TENSOR_MIN);
-    break;
+  sDirection = getStringTableEntry(IDS_ET_TENSOR_MIN);
+  break;
   default:
-    assert(false);
-    break;
+  assert(false);
+  break;
   };
 
   // Fetch names
   std::string sPreName, sName, sPostName;
   if(m_pTensorGroup->PreExportNameId())
-    sPreName = getStringTableEntry(m_pTensorGroup->PreExportNameId());
+  sPreName = getStringTableEntry(m_pTensorGroup->PreExportNameId());
 
   sName = getStringTableEntry(m_pTensorGroup->ExportNameId());
 
   if(m_pTensorGroup->PostExportNameId())
-    sPostName = getStringTableEntry(m_pTensorGroup->PostExportNameId());
+  sPostName = getStringTableEntry(m_pTensorGroup->PostExportNameId());
 
   std::string sCombinedName=
-    sPreName + std::string("P") + sName + sDirection + sPostName;
+  sPreName + std::string("P") + sName + sDirection + sPostName;
 
   return validateName(resultInfo, name, sCombinedName,
-    VectorResultComponentList(), "_L|_M|_C|_N");
+  VectorResultComponentList(), "_L|_M|_C|_N");
 }
 
 
 bool ITensorGroup::CVectorComposite::OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const
 {
-	return m_pTensorGroup->OnBuildComponent(stage, antype, nRegister);
+  return m_pTensorGroup->OnBuildComponent(stage, antype, nRegister);
 }
 
 ITensorGroup *findTensorGroup(CResultGroup& group)
@@ -656,7 +656,7 @@ ITensorGroup *findTensorGroup(CResultGroup& group)
   // find parent ancestor that is tensor group
   CResultGroup *findTensorGroup = &group;
   while (findTensorGroup && !dynamic_cast<const ITensorGroup*>(findTensorGroup))
-    findTensorGroup = findTensorGroup->Parent();
+  findTensorGroup = findTensorGroup->Parent();
 
   assert(findTensorGroup);
 
@@ -676,9 +676,9 @@ const ITensorGroup *ITensorGroup::CVectorComposite::TensorGroup() const
 ITensorGroup::CVectorComposite::CVectorComposite(unsigned int uName, CResultGroup& group, PRINCIPAL_DIRECTION direction)
 : IVectorResult(uName, group), m_direction(direction) 
 {
-	m_pTensorGroup = findTensorGroup(group);
+  m_pTensorGroup = findTensorGroup(group);
 
-	BuildComponents();
+  BuildComponents();
 
   // Set references for saving and loading ....
   Index(m_pTensorGroup->VectorIndex(m_direction));
@@ -687,63 +687,63 @@ ITensorGroup::CVectorComposite::CVectorComposite(unsigned int uName, CResultGrou
 ITensorGroup::CVectorComposite::CVectorComposite(const QString& sName, CResultGroup& group, PRINCIPAL_DIRECTION direction)
 : IVectorResult(sName, group), m_direction(direction) 
 {
-	m_pTensorGroup = findTensorGroup(group);
+  m_pTensorGroup = findTensorGroup(group);
 
-	BuildComponents();
-	// Set references for saving and loading ....
-	Index(m_pTensorGroup->VectorIndex(m_direction));
+  BuildComponents();
+  // Set references for saving and loading ....
+  Index(m_pTensorGroup->VectorIndex(m_direction));
 }
 
 const geo::IVector& ITensorGroup::CVectorComposite::VectorPoint(const geo::IPoint& point, const IResultComponent& component, geo::IParallelInitializationCallback *cb) const
 {
-	return m_pTensorGroup->VectorPoint(point, m_direction, component, cb).first;
+  return m_pTensorGroup->VectorPoint(point, m_direction, component, cb).first;
 }
 
 const geo::IVector& ITensorGroup::CVectorComposite::VectorElement(const geo::IElement& element, 
-															      int nNodeIndex, 
-																  TMapType map_type,
+                                    int nNodeIndex, 
+                                  TMapType map_type,
                                   const IResultComponent& component, geo::IParallelInitializationCallback *cb) const
 {
-	return m_pTensorGroup->VectorElement(element, m_direction, nNodeIndex, map_type, component, cb).first;
+  return m_pTensorGroup->VectorElement(element, m_direction, nNodeIndex, map_type, component, cb).first;
 }
 
 
 const ITensor & ITensorGroup::CVectorComposite::TensorElement(const geo::IElement& element,
-	int nNodeIndex,
-	TMapType map_type,
+  int nNodeIndex,
+  TMapType map_type,
   const IResultComponent& component, geo::IParallelInitializationCallback *cb) const
 {
-	return m_pTensorGroup->TensorElement(element, nNodeIndex, map_type, component, cb);
+  return m_pTensorGroup->TensorElement(element, nNodeIndex, map_type, component, cb);
 }
 
 void ITensorGroup::CVectorComposite::BuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister)
 {
-	if(OnBuildComponent(stage, antype, nRegister))
-	{
-    //new CFullVectorComponent(*this, stage, antype, nRegister);
-    if (m_direction == CYLINDRICAL)
-    {
+  if(OnBuildComponent(stage, antype, nRegister))
+  {
+  //new CFullVectorComponent(*this, stage, antype, nRegister);
+  if (m_direction == CYLINDRICAL)
+  {
       new CVectorComponent(IDS_RC_RADIAL, *this, stage, antype, nRegister, VC_X);
       new CVectorComponent(IDS_RC_TANGENTIAL, *this, stage, antype, nRegister, VC_Y);
       new CVectorComponent(IDS_RC_AXIAL, *this, stage, antype, nRegister, VC_Z);
-    }
-    else
-    {
+  }
+  else
+  {
       new CVectorComponent(IDS_RC_NORTHING, *this, stage, antype, nRegister, VC_X);
       new CVectorComponent(IDS_RC_EASTING, *this, stage, antype, nRegister, VC_Y);
       new CVectorComponent(IDS_RC_DEPTH, *this, stage, antype, nRegister, VC_Z);
-    }
-		new CLengthComponent(*this, stage, antype, nRegister);
-    new CFullVectorComponent(*this, stage, antype, nRegister);
-	}
+  }
+    new CLengthComponent(*this, stage, antype, nRegister);
+  new CFullVectorComponent(*this, stage, antype, nRegister);
+  }
 }
 
 
 ITensorGroup::CVectorComposite::CVectorComponent::CVectorComponent(unsigned int uComponentName,				// Name from resource
                                                                    IVectorResult& parent,				// The vector composite parent
                                                                    const CDepletionStage& stage,		// Depletion stage of the component
-					                    		                   const CAnalysisType& antype,						// Analysis type
-							                                       int nRegister,
+                              		                   const CAnalysisType& antype,						// Analysis type
+                                                     int nRegister,
                                                      VECTOR_COMPONENT uComponent) 					// Register index
 : IVectorResult::CVectorComponent(uComponentName, parent, uComponent, stage, antype, nRegister), m_TensorData(*this)
 {
@@ -773,7 +773,7 @@ geo::IParallelInitializationCallback *ITensorGroup::CVectorComposite::CVectorCom
 {
   ITensorGroup* pTensorGroup = dynamic_cast<ITensorGroup*>(Parent().parent());
   if (!pTensorGroup)
-    pTensorGroup = dynamic_cast<ITensorGroup*>(Parent().parent()->parent());
+  pTensorGroup = dynamic_cast<ITensorGroup*>(Parent().parent()->parent());
   assert(pTensorGroup);
   return pTensorGroup->GetParallelInitializationCallback();
 }
@@ -784,21 +784,21 @@ bool ITensorGroup::CVectorComposite::CVectorComponent::PrepareMapping(const geo:
 
   ITensorGroup* pTensorGroup = dynamic_cast<ITensorGroup*>(Parent().parent());
   if (!pTensorGroup)
-    pTensorGroup = dynamic_cast<ITensorGroup*>(Parent().parent()->parent());
+  pTensorGroup = dynamic_cast<ITensorGroup*>(Parent().parent()->parent());
   assert(pTensorGroup);
 
   if (!pTensorGroup->PrepareMapping(pElementSet, this))
-    return false;
+  return false;
 
   int c = ResultRegister().ColumnNumber(AnalysisType(), ResultRegister().DepletionStageEntry().MarkedAsInitialStage().Index(), CI_POREPRES);
 
   if (!ResultRegister().Cache().ActiveCacher().StartCriticalSection(c, 13))
-    retval = false;
+  retval = false;
 
   c = ResultRegister().ColumnNumber(AnalysisType(), Stage().Index(), CI_POREPRES);
 
   if (!ResultRegister().Cache().ActiveCacher().StartCriticalSection(c, 13))
-    retval = false;
+  retval = false;
 
 
   return retval;
@@ -811,8 +811,8 @@ void ITensorGroup::CVectorComposite::CVectorComponent::FinishMapping()
 
 ITensorGroup::CVectorComposite::CLengthComponent::CLengthComponent(IVectorResult& parent,				// The vector composite parent
                                                                    const CDepletionStage& stage,		// Depletion stage of the component
-					                    		                   const CAnalysisType& antype,						// Analysis type
-							                                       int nRegister,
+                              		                   const CAnalysisType& antype,						// Analysis type
+                                                     int nRegister,
                                                      VECTOR_COMPONENT uComponent) 					// Register index
 : CVectorComponent(IDS_RC_LENGTH, parent, stage, antype, nRegister, uComponent)
 {
@@ -820,17 +820,17 @@ ITensorGroup::CVectorComposite::CLengthComponent::CLengthComponent(IVectorResult
 
 geo::CValue ITensorGroup::CVectorComposite::CLengthComponent::ValuePoint(const geo::IPoint& pt, const UNIT unit, geo::IParallelInitializationCallback *cb) const
 {
-	const CVectorComposite* pResult = dynamic_cast<const CVectorComposite*>(&Parent());
-	assert(pResult);
+  const CVectorComposite* pResult = dynamic_cast<const CVectorComposite*>(&Parent());
+  assert(pResult);
   const ITensorGroup* pTensorGroup = pResult->TensorGroup();
 
-	if(pTensorGroup->VectorPoint(pt, pResult->Direction(), *this, cb).first.Empty()) return geo::CValue();
+  if(pTensorGroup->VectorPoint(pt, pResult->Direction(), *this, cb).first.Empty()) return geo::CValue();
 
-	double dValue = pTensorGroup->VectorPoint(pt, pResult->Direction(), *this, cb).second;
-	if(unit == CQuantity::FIELD_UNIT)
-		dValue = pTensorGroup->ConvertToField(dValue);
+  double dValue = pTensorGroup->VectorPoint(pt, pResult->Direction(), *this, cb).second;
+  if(unit == CQuantity::FIELD_UNIT)
+    dValue = pTensorGroup->ConvertToField(dValue);
 
-	return geo::CValue(dValue);
+  return geo::CValue(dValue);
 }
 
 void ITensorGroup::CVectorComposite::CLengthComponent::MapValueElement(const geo::IElement& elm, IValueDomainScalar::TValueVec& values, TMapType map_type, UNIT unit, geo::IParallelInitializationCallback *cb) const
@@ -841,34 +841,34 @@ void ITensorGroup::CVectorComposite::CLengthComponent::MapValueElement(const geo
   const ITensorGroup* pTensorGroup = pResult->TensorGroup();
 
   for(int i = 0; i < values.size(); i++) {
-	  if(pTensorGroup->VectorElement(elm, pResult->Direction(), i, map_type, *this, cb).first.Empty()) {
-		  values[i] = geo::CValue();
-	  } else {
-        double dValue = pTensorGroup->VectorElement(elm, pResult->Direction(), i, map_type, *this, cb).second;
-		if(unit == CQuantity::FIELD_UNIT)
-			dValue = pTensorGroup->ConvertToField(dValue);
+    if(pTensorGroup->VectorElement(elm, pResult->Direction(), i, map_type, *this, cb).first.Empty()) {
+      values[i] = geo::CValue();
+    } else {
+    double dValue = pTensorGroup->VectorElement(elm, pResult->Direction(), i, map_type, *this, cb).second;
+    if(unit == CQuantity::FIELD_UNIT)
+      dValue = pTensorGroup->ConvertToField(dValue);
 
-		values[i] = geo::CValue(dValue);
-	  }
+    values[i] = geo::CValue(dValue);
+    }
   }
 }
 /*
 geo::CVector ITensorGroup::CVectorComposite::VectorAtComponent(const geo::IElement& mesh_element, int nNodeIndex, const IResultComponent& component, UNIT unit) const
 {
-	const ITensorGroup* pParent = dynamic_cast<const ITensorGroup*>(Parent()->Parent());
-	assert(pParent); 
-	geo::CVector vector = VectorAtEx(mesh_element, nNodeIndex, component).first;
-		if(unit == CQuantity::FIELD_UNIT)
-			vector = vector * FF_FACTOR_STRESS;
-	return vector;
+  const ITensorGroup* pParent = dynamic_cast<const ITensorGroup*>(Parent()->Parent());
+  assert(pParent); 
+  geo::CVector vector = VectorAtEx(mesh_element, nNodeIndex, component).first;
+    if(unit == CQuantity::FIELD_UNIT)
+      vector = vector * FF_FACTOR_STRESS;
+  return vector;
 }
 */
 
 
 ITensorGroup::CVectorComposite::CFullVectorComponent::CFullVectorComponent(IVectorResult& parent,				// The vector composite parent
                                                                    const CDepletionStage& stage,		// Depletion stage of the component
-					                    		                   const CAnalysisType& antype,						// Analysis type
-							                                       int nRegister)
+                              		                   const CAnalysisType& antype,						// Analysis type
+                                                     int nRegister)
 : IVectorResult::CFullVectorComponent(parent, stage, antype, nRegister), m_TensorData(*this)
 {
 }
@@ -913,17 +913,17 @@ bool ITensorGroup::CVectorComposite::CFullVectorComponent::PrepareMapping(const 
   const ITensorGroup* pTensorGroup = pResult->TensorGroup();
   assert(pTensorGroup);
   if (!const_cast<ITensorGroup *>(pTensorGroup)->PrepareMapping(pElementSet, this))
-    return false;
+  return false;
 
   int c = ResultRegister().ColumnNumber(AnalysisType(), ResultRegister().DepletionStageEntry().MarkedAsInitialStage().Index(), CI_POREPRES);
 
   if (!ResultRegister().Cache().ActiveCacher().StartCriticalSection(c, 13))
-    retval = false;
+  retval = false;
 
   c = ResultRegister().ColumnNumber(AnalysisType(), Stage().Index(), CI_POREPRES);
 
   if (!ResultRegister().Cache().ActiveCacher().StartCriticalSection(c, 13))
-    retval = false;
+  retval = false;
 
   return retval;
 }
@@ -936,95 +936,95 @@ void ITensorGroup::CVectorComposite::CFullVectorComponent::FinishMapping()
 class CVectorLess
 {
 public:
-	bool operator()(const geo::CVector& v1, const geo::CVector& v2) const
-	{
-	   if(v1.Z() < v2.Z()) return true;
-	   if(v1.Z() > v2.Z()) return false;
-	   if(v1.Y() < v2.Y()) return true;
-	   if(v1.Y() > v2.Y()) return false;
-	   return v1.X() < v2.X();
-	}
+  bool operator()(const geo::CVector& v1, const geo::CVector& v2) const
+  {
+     if(v1.Z() < v2.Z()) return true;
+     if(v1.Z() > v2.Z()) return false;
+     if(v1.Y() < v2.Y()) return true;
+     if(v1.Y() > v2.Y()) return false;
+     return v1.X() < v2.X();
+  }
 };
 
 /*
 static void switchVector(geo::CVector& v1, geo::CVector&v2)
 {
-	geo::CVector temp(v1);
-	v1 = v2;
-	v2 = temp;
+  geo::CVector temp(v1);
+  v1 = v2;
+  v2 = temp;
 }
 */
 
 void ITensorGroup::PrincipalDirections(geo::CVector& vcmax,
-									   double& max_length,
-									   geo::CVector& vcmed,
-									   double& med_length,
-									   geo::CVector& vcmin,
-									   double& min_length,
-									   const ITensor& tensor) const
+                     double& max_length,
+                     geo::CVector& vcmed,
+                     double& med_length,
+                     geo::CVector& vcmin,
+                     double& min_length,
+                     const ITensor& tensor) const
 {
-	if(tensor.Empty()) vcmax = vcmed = vcmin = geo::CVector();
+  if(tensor.Empty()) vcmax = vcmed = vcmin = geo::CVector();
 
-	geo::CMatrix matrix1 = tensor.GetPrincipalDir();
-	geo::CMatrix matrix2 = tensor.GetPrincipalStr();
+  geo::CMatrix matrix1 = tensor.GetPrincipalDir();
+  geo::CMatrix matrix2 = tensor.GetPrincipalStr();
 
-	vcmax.Set(matrix1.Value(0, 2), matrix1.Value(1, 2), matrix1.Value(2, 2)); 
-	vcmed.Set(matrix1.Value(0, 1), matrix1.Value(1, 1), matrix1.Value(2, 1)); 
-	vcmin.Set(matrix1.Value(0, 0), matrix1.Value(1, 0), matrix1.Value(2, 0)); 
+  vcmax.Set(matrix1.Value(0, 2), matrix1.Value(1, 2), matrix1.Value(2, 2)); 
+  vcmed.Set(matrix1.Value(0, 1), matrix1.Value(1, 1), matrix1.Value(2, 1)); 
+  vcmin.Set(matrix1.Value(0, 0), matrix1.Value(1, 0), matrix1.Value(2, 0)); 
 
 //	assert(fabs(vcmax.Length() - 1.0) < EPS);
 //	assert(fabs(vcmed.Length() - 1.0) < EPS);
 //	assert(fabs(vcmin.Length() - 1.0) < EPS);
 
-	min_length = matrix2.Value(0, 0);
-	med_length = matrix2.Value(1, 1);
-	max_length = matrix2.Value(2, 2);
-	
-	if(fabs(min_length) < EPS && fabs(med_length) < EPS && fabs(max_length) < EPS) {
-		vcmax = vcmin = vcmed = geo::CVector::NullVector;
-		return;
-	}
+  min_length = matrix2.Value(0, 0);
+  med_length = matrix2.Value(1, 1);
+  max_length = matrix2.Value(2, 2);
+  
+  if(fabs(min_length) < EPS && fabs(med_length) < EPS && fabs(max_length) < EPS) {
+    vcmax = vcmin = vcmed = geo::CVector::NullVector;
+    return;
+  }
 
-	typedef std::set<geo::CVector, CVectorLess> TVectorSet;
-	if((fabs(max_length - med_length) < EPS) && !(fabs(min_length - med_length) < EPS))
-	{ // Max and Med principal values are equal.
-		TVectorSet stVector;
-		stVector.insert(vcmed);
-		stVector.insert(vcmax);
-		TVectorSet::iterator it = stVector.begin();
-		vcmed = *it;
-		vcmax = *++it;
-	}
+  typedef std::set<geo::CVector, CVectorLess> TVectorSet;
+  if((fabs(max_length - med_length) < EPS) && !(fabs(min_length - med_length) < EPS))
+  { // Max and Med principal values are equal.
+    TVectorSet stVector;
+    stVector.insert(vcmed);
+    stVector.insert(vcmax);
+    TVectorSet::iterator it = stVector.begin();
+    vcmed = *it;
+    vcmax = *++it;
+  }
 
-	if((fabs(min_length - med_length) < EPS) && !(fabs(max_length - med_length) < EPS))
-	{ // Min and Med principal values are equal.
-		TVectorSet stVector;
-		stVector.insert(vcmed);
-		stVector.insert(vcmin);
-		TVectorSet::iterator it = stVector.begin();
-		vcmin = *it;
-		vcmed = *++it;
-	}
+  if((fabs(min_length - med_length) < EPS) && !(fabs(max_length - med_length) < EPS))
+  { // Min and Med principal values are equal.
+    TVectorSet stVector;
+    stVector.insert(vcmed);
+    stVector.insert(vcmin);
+    TVectorSet::iterator it = stVector.begin();
+    vcmin = *it;
+    vcmed = *++it;
+  }
 
-	if((fabs(min_length - med_length) < EPS) && (fabs(max_length - med_length) < EPS))
-	{ // Min and Med principal values are equal.
-		TVectorSet stVector;
-		stVector.insert(vcmax);
-		stVector.insert(vcmed);
-		stVector.insert(vcmin);
-		TVectorSet::iterator it = stVector.begin();
-		vcmin = *it;
-		vcmed = *++it;
-		vcmax = *++it;
-	}
+  if((fabs(min_length - med_length) < EPS) && (fabs(max_length - med_length) < EPS))
+  { // Min and Med principal values are equal.
+    TVectorSet stVector;
+    stVector.insert(vcmax);
+    stVector.insert(vcmed);
+    stVector.insert(vcmin);
+    TVectorSet::iterator it = stVector.begin();
+    vcmin = *it;
+    vcmed = *++it;
+    vcmax = *++it;
+  }
 
-	assert(fabs(vcmax.Length() - 1.0) < EPS);
-	assert(fabs(vcmed.Length() - 1.0) < EPS);
-	assert(fabs(vcmin.Length() - 1.0) < EPS);
+  assert(fabs(vcmax.Length() - 1.0) < EPS);
+  assert(fabs(vcmed.Length() - 1.0) < EPS);
+  assert(fabs(vcmin.Length() - 1.0) < EPS);
 
-	vcmax = vcmax * max_length;
-	vcmed = vcmed * med_length;
-	vcmin = vcmin * min_length;
+  vcmax = vcmax * max_length;
+  vcmed = vcmed * med_length;
+  vcmin = vcmin * min_length;
 
 
 }
@@ -1035,112 +1035,112 @@ void ITensorGroup::SetSignConvention(geo::IVector& vec, double dLength) const
 
   if(fabs(dLength) > eps)
   {
-    // get the current sign of the product of the vector components
-    double d = 1.;
-    if(fabs(vec.X()) > eps)
+  // get the current sign of the product of the vector components
+  double d = 1.;
+  if(fabs(vec.X()) > eps)
       d *= vec.X();
-    if(fabs(vec.Y()) > eps)
+  if(fabs(vec.Y()) > eps)
       d *= vec.Y();
-    if(fabs(vec.Z()) > eps)
+  if(fabs(vec.Z()) > eps)
       d *= vec.Z();
 
-    // the product should have the same sign as the length
-    if((d < 0 && dLength > 0) || (d > 0 && dLength < 0))
+  // the product should have the same sign as the length
+  if((d < 0 && dLength > 0) || (d > 0 && dLength < 0))
       vec.Flip();
   }
 }
 
 QString ITensorGroup::CVectorComposite::UnitName(UNIT unit) const
 {
-	return m_pTensorGroup->UnitName(unit);
+  return m_pTensorGroup->UnitName(unit);
 }
 
 unsigned int ITensorGroup::CVectorComposite::IconId() const
 {
-	return IDI_RESULT_MAP;
+  return IDI_RESULT_MAP;
 }
 
 bool ITensorGroup::CVectorComposite::OnDefined(const IResultComponent& component) const
 {
-	return m_pTensorGroup->OnDefined(component);
+  return m_pTensorGroup->OnDefined(component);
 }
 
 bool ITensorGroup::CVectorComposite::CanMap(const COpenGLNode& node, int nRegister) const
 {
-	return m_pTensorGroup->CanMap(node, nRegister);
+  return m_pTensorGroup->CanMap(node, nRegister);
 }
 
 QString ITensorGroup::CVectorComposite::ExportLabel(int nComponent) const
 {
-	// Fetch names
-	QString sPreName, sName, sPostName;
-	if(m_pTensorGroup->PreExportNameId())
-		sPreName = getStringTableEntry(m_pTensorGroup->PreExportNameId());
-	sName = getStringTableEntry(m_pTensorGroup->ExportNameId());
-	if(m_pTensorGroup->PostExportNameId())
-		sPostName = getStringTableEntry(m_pTensorGroup->PostExportNameId());
+  // Fetch names
+  QString sPreName, sName, sPostName;
+  if(m_pTensorGroup->PreExportNameId())
+    sPreName = getStringTableEntry(m_pTensorGroup->PreExportNameId());
+  sName = getStringTableEntry(m_pTensorGroup->ExportNameId());
+  if(m_pTensorGroup->PostExportNameId())
+    sPostName = getStringTableEntry(m_pTensorGroup->PostExportNameId());
 
-	// Get direction
-	QString sDirection;
-	switch(m_direction)
-	{
-	case PD_MAX:
-		sDirection = getStringTableEntry(IDS_ET_TENSOR_MAX);
-		break;
-	case PD_MED:
-		sDirection = getStringTableEntry(IDS_ET_TENSOR_MED);
-		break;
-	case PD_MIN:
-		sDirection = getStringTableEntry(IDS_ET_TENSOR_MIN);
-		break;
-	default:
-		assert(false);
-		break;
-	};
+  // Get direction
+  QString sDirection;
+  switch(m_direction)
+  {
+  case PD_MAX:
+    sDirection = getStringTableEntry(IDS_ET_TENSOR_MAX);
+    break;
+  case PD_MED:
+    sDirection = getStringTableEntry(IDS_ET_TENSOR_MED);
+    break;
+  case PD_MIN:
+    sDirection = getStringTableEntry(IDS_ET_TENSOR_MIN);
+    break;
+  default:
+    assert(false);
+    break;
+  };
 
-	return sPreName + "P" + sName + sDirection + sPostName + IVectorResult::ExportLabel(nComponent); 
+  return sPreName + "P" + sName + sDirection + sPostName + IVectorResult::ExportLabel(nComponent); 
 }
 
 QString ITensorGroup::CVectorComposite::ExportLabel() const
 {
-	// Fetch names
-	QString sPreName, sName, sPostName;
-	if(m_pTensorGroup->PreExportNameId())
-		sPreName = getStringTableEntry(m_pTensorGroup->PreExportNameId());
-	sName = getStringTableEntry(m_pTensorGroup->ExportNameId());
-	if(m_pTensorGroup->PostExportNameId())
-		sPostName = getStringTableEntry(m_pTensorGroup->PostExportNameId());
+  // Fetch names
+  QString sPreName, sName, sPostName;
+  if(m_pTensorGroup->PreExportNameId())
+    sPreName = getStringTableEntry(m_pTensorGroup->PreExportNameId());
+  sName = getStringTableEntry(m_pTensorGroup->ExportNameId());
+  if(m_pTensorGroup->PostExportNameId())
+    sPostName = getStringTableEntry(m_pTensorGroup->PostExportNameId());
 
   return sPreName + "P" + sName + sPostName;
 }
 
 QString ITensorGroup::CVectorComposite::VectorExportLabel() const
 {
-	// Fetch names
-	QString sPreName, sName, sPostName;
-	if(m_pTensorGroup->PreExportNameId())
-		sPreName = getStringTableEntry(m_pTensorGroup->PreExportNameId());
-	sName = getStringTableEntry(m_pTensorGroup->ExportNameId());
-	if(m_pTensorGroup->PostExportNameId())
-		sPostName = getStringTableEntry(m_pTensorGroup->PostExportNameId());
+  // Fetch names
+  QString sPreName, sName, sPostName;
+  if(m_pTensorGroup->PreExportNameId())
+    sPreName = getStringTableEntry(m_pTensorGroup->PreExportNameId());
+  sName = getStringTableEntry(m_pTensorGroup->ExportNameId());
+  if(m_pTensorGroup->PostExportNameId())
+    sPostName = getStringTableEntry(m_pTensorGroup->PostExportNameId());
 
-	// Get direction
-	QString sDirection;
-	switch(m_direction)
-	{
-	case PD_MAX:
-		sDirection = getStringTableEntry(IDS_ET_TENSOR_MAX);
-		break;
-	case PD_MED:
-		sDirection = getStringTableEntry(IDS_ET_TENSOR_MED);
-		break;
-	case PD_MIN:
-		sDirection = getStringTableEntry(IDS_ET_TENSOR_MIN);
-		break;
-	default:
-		assert(false);
-		break;
-	};
+  // Get direction
+  QString sDirection;
+  switch(m_direction)
+  {
+  case PD_MAX:
+    sDirection = getStringTableEntry(IDS_ET_TENSOR_MAX);
+    break;
+  case PD_MED:
+    sDirection = getStringTableEntry(IDS_ET_TENSOR_MED);
+    break;
+  case PD_MIN:
+    sDirection = getStringTableEntry(IDS_ET_TENSOR_MIN);
+    break;
+  default:
+    assert(false);
+    break;
+  };
 
-	return sPreName + "P" + sName + sDirection + sPostName; 
+  return sPreName + "P" + sName + sDirection + sPostName; 
 }

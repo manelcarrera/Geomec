@@ -20,36 +20,36 @@ class CDCasing;
 
 class CDCasingPoint //: public QObject  
 {
-	//friend CDCasing;
-	//Q_OBJECT
+  //friend CDCasing;
+  //Q_OBJECT
 
 private:
 
-	//member attributes
+  //member attributes
 //	CDCasing* m_pDCasing;
-	CSinglePressure m_ElasticSupportYoungsMod;
-	CNoneQuantity m_ElasticSupportPoissonRatio;
-	CSinglePressure m_InternalPressure;
-	CSinglePressure m_ExternalPressure;
-	CNoneQuantity m_Epscom;
-	CDCasingPointResult m_CDCasingPointResult;
-		
+  CSinglePressure m_ElasticSupportYoungsMod;
+  CNoneQuantity m_ElasticSupportPoissonRatio;
+  CSinglePressure m_InternalPressure;
+  CSinglePressure m_ExternalPressure;
+  CNoneQuantity m_Epscom;
+  CDCasingPointResult m_CDCasingPointResult;
+    
 public:
-	
-	//construction / destruction
-	CDCasingPoint();
-	virtual ~CDCasingPoint();
+  
+  //construction / destruction
+  CDCasingPoint();
+  virtual ~CDCasingPoint();
 
-	//interface
-	bool Defined();
+  //interface
+  bool Defined();
 
-	CSinglePressure& ElasticSupportYoungsMod();
-	CNoneQuantity& ElasticSupportPoissonRatio();
-	CSinglePressure& InternalPressure();
-	CSinglePressure& ExternalPressure();
-	CNoneQuantity &Epscom();
-	CDCasingPointResult &GetCDCasingPointResult();
-	const CDCasingPointResult & GetCDCasingPointResult() const;
+  CSinglePressure& ElasticSupportYoungsMod();
+  CNoneQuantity& ElasticSupportPoissonRatio();
+  CSinglePressure& InternalPressure();
+  CSinglePressure& ExternalPressure();
+  CNoneQuantity &Epscom();
+  CDCasingPointResult &GetCDCasingPointResult();
+  const CDCasingPointResult & GetCDCasingPointResult() const;
 
 };
 

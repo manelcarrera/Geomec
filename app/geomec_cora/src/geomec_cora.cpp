@@ -71,9 +71,9 @@ namespace
 void header_DEPRECATED()
 {
   std::cout << APPLICATION.toStdString() << " " << VERSION.toStdString() <<
-    std::endl << std::endl;
+  std::endl << std::endl;
   std::cout << "supports files up to version " << VERSION_MAJOR << "." <<
-    VERSION_MINOR << "." << VERSION_REVISION << std::endl << std::endl;
+  VERSION_MINOR << "." << VERSION_REVISION << std::endl << std::endl;
 }
 
 const QString GETMODELINFO = "getmodelinfo";
@@ -82,44 +82,44 @@ const QString RUNMODEL = "runmodel";
 void usage_DEPRECATED(int /*argc*/, char* /*argv*/[])
 {
   std::cerr << std::endl << "geomec_cora.exe <modeldata> " <<
-    GETMODELINFO.toStdString() << " [version number] <modelinfofile>" <<
-    std::endl << "\t\t" << "<summary_result_file>" << std::endl;
+  GETMODELINFO.toStdString() << " [version number] <modelinfofile>" <<
+  std::endl << "\t\t" << "<summary_result_file>" << std::endl;
   std::cerr << "\t" << "<modeldata> is the filename of the Geomec model " <<
-    "(gm4)" << std::endl;
+  "(gm4)" << std::endl;
   std::cerr << "\t" << "[version number] is the optional version number" <<
-    std::endl << "\t\t" << "the model info will be text output when the "
-    "version number" << std::endl << "\t\t" << "is absent or less than "
-    "\"2.0\"" << std::endl << "\t\t" << "the model info will be XML output "
-    "when the version number" << std::endl << "\t\t" << "is equal to or "
-    "greater than \"2.0\"" << std::endl;
+  std::endl << "\t\t" << "the model info will be text output when the "
+  "version number" << std::endl << "\t\t" << "is absent or less than "
+  "\"2.0\"" << std::endl << "\t\t" << "the model info will be XML output "
+  "when the version number" << std::endl << "\t\t" << "is equal to or "
+  "greater than \"2.0\"" << std::endl;
   std::cerr << "\t" << "<modelinfofile> the filename where the model info " <<
-    "will be printed to" << std::endl;
+  "will be printed to" << std::endl;
   std::cerr << "\t" << "<summary_result_file> the filename for Geomec " <<
-    "output especially for" << std::endl << "\t\t" << "CORA" << std::endl <<
-    std::endl;
+  "output especially for" << std::endl << "\t\t" << "CORA" << std::endl <<
+  std::endl;
   std::cerr << "geomec_cora.exe <modeldata> " << RUNMODEL.toStdString() <<
-    " <version number> <parameterfile>" << std::endl << "\t\t" <<
-    "<selectedlsfs> <responseparameterfile> <summary_result_file>" <<
-    std::endl << "\t\t" << "[" <<
-    cora::CRunModelData::MINIMUM_OUTPUT.toStdString() << "]" << std::endl;
+  " <version number> <parameterfile>" << std::endl << "\t\t" <<
+  "<selectedlsfs> <responseparameterfile> <summary_result_file>" <<
+  std::endl << "\t\t" << "[" <<
+  cora::CRunModelData::MINIMUM_OUTPUT.toStdString() << "]" << std::endl;
   std::cerr << "\t" << "<modeldata> is the filename of the Geomec model " <<
-    "(gm4)" << std::endl;
+  "(gm4)" << std::endl;
   std::cerr << "\t" << "<version number> is the version number of the " <<
-    "interface" << std::endl;
+  "interface" << std::endl;
   std::cerr << "\t" << "<parameterfile> is the filename of the file with " <<
-    "the altered parameters" << std::endl;
+  "the altered parameters" << std::endl;
   std::cerr << "\t" << "<selectedlsfs> is a filename with the actual limit " <<
-    "state functions" << std::endl;
+  "state functions" << std::endl;
   std::cerr << "\t" << "<responseparameterfile> the filename with the " <<
-    "resulting" << std::endl << "\t\t" << "responseparameters" << std::endl;
+  "resulting" << std::endl << "\t\t" << "responseparameters" << std::endl;
   std::cerr << "\t" << "<summary_result_file> the filename for Geomec " <<
-    "output especially for" << std::endl << "\t\t" << "CORA" << std::endl;
+  "output especially for" << std::endl << "\t\t" << "CORA" << std::endl;
   std::cerr << "\t" << "[" <<
-    cora::CRunModelData::MINIMUM_OUTPUT.toStdString() <<
-    "] is an optional flag to indicate that the user is only " << std::endl <<
-    "\t\t" << "interested in the response parameters and therefore geomec " <<
-    std::endl << "\t\t" << "does not have to write output to the gm4 file" <<
-    std::endl << std::endl;
+  cora::CRunModelData::MINIMUM_OUTPUT.toStdString() <<
+  "] is an optional flag to indicate that the user is only " << std::endl <<
+  "\t\t" << "interested in the response parameters and therefore geomec " <<
+  std::endl << "\t\t" << "does not have to write output to the gm4 file" <<
+  std::endl << std::endl;
 }
 
 const QString INVALID_MODEL =
@@ -130,27 +130,27 @@ bool validateModel_DEPRECATED(cora::CSummaryResultFile& summaryResultFile,
 {
   if (modelData() == 0)
   {
-    summaryResultFile.setResultValue(
+  summaryResultFile.setResultValue(
       cora::CSummaryResultFile::RESULT_VALUE_INCONSISTENT);
 
-    for (int l = 0; l < modelData.getAnalysisLogger().LineSize(); ++l)
-    {
+  for (int l = 0; l < modelData.getAnalysisLogger().LineSize(); ++l)
+  {
       summaryResultFile.addAdditionalInformation(
-        modelData.getAnalysisLogger().Line(l).c_str());
-    }
+    modelData.getAnalysisLogger().Line(l).c_str());
+  }
 
-    return false;
+  return false;
   }
 
   CValidateModel validateModel(modelData());
 
   if (!validateModel.checkModel(false))
   {
-    summaryResultFile.setResultValue(
+  summaryResultFile.setResultValue(
       cora::CSummaryResultFile::RESULT_VALUE_INCONSISTENT);
-    summaryResultFile.addAdditionalInformation(INVALID_MODEL);
+  summaryResultFile.addAdditionalInformation(INVALID_MODEL);
 
-    return false;
+  return false;
   }
 
   return true;
@@ -161,21 +161,21 @@ int getModelInfo_DEPRECATED(int argc, char* argv[])
   cora::CGetModelInfoData getModelInfoData(argc, argv);
 
   if (!validateModel_DEPRECATED(getModelInfoData.summaryResultFile(),
-    getModelInfoData.modelData()))
+  getModelInfoData.modelData()))
   {
-    return 1;
+  return 1;
   }
 
   if (getModelInfoData.versionNumber() >= cora::MINIMUM_XML_VERSION_NUMBER)
   {
-    cora::CXMLModelInfo getXMLModelInfo(getModelInfoData.modelData(),
+  cora::CXMLModelInfo getXMLModelInfo(getModelInfoData.modelData(),
       getModelInfoData.modelInfoFileName());
 
-    return (getXMLModelInfo() ? 0 : 1);
+  return (getXMLModelInfo() ? 0 : 1);
   }
 
   cora::CGetModelInfo getModelInfo(getModelInfoData.modelData(),
-    getModelInfoData.modelInfoFileName());
+  getModelInfoData.modelInfoFileName());
 
   return (getModelInfo() ? 0 : 1);
 }
@@ -185,9 +185,9 @@ int runModel_DEPRECATED(int argc, char* argv[])
   cora::CRunModelData runModelData(argc, argv);
 
   if (!validateModel_DEPRECATED(runModelData.summaryResultFile(),
-    runModelData.modelData()))
+  runModelData.modelData()))
   {
-    return 1;
+  return 1;
   }
 
   cora::CRunModel runModel(runModelData, APPLICATION + " " + VERSION);
@@ -195,7 +195,7 @@ int runModel_DEPRECATED(int argc, char* argv[])
 
   if (!runModelSucceeded)
   {
-    runModelData.summaryResultFile().setResultValue(
+  runModelData.summaryResultFile().setResultValue(
       cora::CSummaryResultFile::RESULT_VALUE_DIVERGENCE);
   }
 
@@ -206,25 +206,25 @@ int runModel_DEPRECATED(int argc, char* argv[])
 
 int main_DEPRECATED(int argc, char* argv[])
 {
-	GlobalMessage::init( new GlobalMessage_CLI() );
+  GlobalMessage::init( new GlobalMessage_CLI() );
 
   CApplicationInitialization consoleApplicationInitialization;
 
-    Printer::instance()->url( QUtil::url( 
-		QUtil::eUsrDir::Goemec, 
-		"gm_" + CSettingsIni::instance()->version_str().toStdString() + ".log" ) );
-	Printer::instance()->info( "" );
-	Printer::instance()->info( "gm_cora > main" );
+  Printer::instance()->url( QUtil::url( 
+    QUtil::eUsrDir::Goemec, 
+    "gm_" + CSettingsIni::instance()->version_str().toStdString() + ".log" ) );
+  Printer::instance()->info( "" );
+  Printer::instance()->info( "gm_cora > main" );
 
-	// Config file
-	CSettingsIni::instance()->init();
-	CSettingsIni::instance()->print_();
+  // Config file
+  CSettingsIni::instance()->init();
+  CSettingsIni::instance()->print_();
 
-	_g->prog( new CProgressFactory_CLI );
+  _g->prog( new CProgressFactory_CLI );
 
-	CDianaStartUp* dsu = CDianaStartUp::instance();
+  CDianaStartUp* dsu = CDianaStartUp::instance();
   	dsu->SetDianaEnv(); 
-	dsu->Print_DianaEnv();
+  dsu->Print_DianaEnv();
 
   header_DEPRECATED();
 
@@ -232,16 +232,16 @@ int main_DEPRECATED(int argc, char* argv[])
 
   if ((argc >= 5) && (argc <= 6) && (argv[2] == GETMODELINFO))
   {
-    result = getModelInfo_DEPRECATED(argc, argv);
+  result = getModelInfo_DEPRECATED(argc, argv);
   }
   else if ((argc >= 8) && (argv[2] == RUNMODEL))
   {
-    result = runModel_DEPRECATED(argc, argv);
+  result = runModel_DEPRECATED(argc, argv);
   }
 
   if (result != 0)
   {
-    usage_DEPRECATED(argc, argv);
+  usage_DEPRECATED(argc, argv);
   }
 
   return result;
@@ -249,5 +249,5 @@ int main_DEPRECATED(int argc, char* argv[])
 
 int main(int argc, char* argv[])
 {
-	return main_DEPRECATED(argc, argv);
+  return main_DEPRECATED(argc, argv);
 }

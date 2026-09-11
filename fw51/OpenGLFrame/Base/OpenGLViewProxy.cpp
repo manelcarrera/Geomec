@@ -22,25 +22,25 @@ CDrawDefProxy::CDrawDefProxy(const IColorProxy& color_proxy, const IValueProxy& 
 
 const IColorProxy& CDrawDefProxy::ColorProxy() const
 {
-	return *m_pColor;
+  return *m_pColor;
 }
 
 void CDrawDefProxy::ColorProxy(const IColorProxy& color_proxy)
 {
-	m_pColor = &color_proxy;
+  m_pColor = &color_proxy;
 }
 
 const IValueProxy& CDrawDefProxy::ValueProxy()
 {
-	return *m_pValue;
+  return *m_pValue;
 }
 
 void CDrawDefProxy::ValueProxy(IValueProxy &value_proxy)
 {
-	m_pValue = &value_proxy;
+  m_pValue = &value_proxy;
 }
 
 CDrawDefProxy::TColor CDrawDefProxy::Color(const geo::IPoint &pt) const
 {
-	return m_pColor->Color(*m_pValue, pt);
+  return m_pColor->Color(*m_pValue, pt);
 }

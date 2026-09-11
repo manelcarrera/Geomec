@@ -24,31 +24,31 @@ RescueRadialGrid::~RescueRadialGrid()
 {
   if (vertexX != 0)
   {
-    delete [] vertexX;
+  delete [] vertexX;
   }
   if (vertexY != 0)
   {
-    delete [] vertexY;
+  delete [] vertexY;
   }
   if (vertexZ != 0)
   {
-    delete [] vertexZ;
+  delete [] vertexZ;
   }
   if (centerX != 0)
   {
-    delete [] centerX;
+  delete [] centerX;
   }
   if (centerY != 0)
   {
-    delete [] centerY;
+  delete [] centerY;
   }
   if (centerZ != 0)
   {
-    delete [] centerZ;
+  delete [] centerZ;
   }
   if (centerMD != 0)
   {
-    delete [] centerMD;
+  delete [] centerMD;
   }
 }
 
@@ -60,23 +60,23 @@ RESCUEINT64 RescueRadialGrid::CopyArrays(RESCUEINT64 lowNdx, RESCUEINT64 count,
   RESCUEINT64 vertexCount = Nodes();
   if (vertexX != 0 && vertexY != 0 && vertexZ != 0)
   {
-    RESCUEINT64 loop;
-    for (loop = 0; loop < count && lowNdx + loop < vertexCount; loop++)
-    {
+  RESCUEINT64 loop;
+  for (loop = 0; loop < count && lowNdx + loop < vertexCount; loop++)
+  {
       if (preAllocatedX != 0)
       {
-        preAllocatedX[offset + loop] = vertexX[lowNdx + loop];
+    preAllocatedX[offset + loop] = vertexX[lowNdx + loop];
       }
       if (preAllocatedY != 0)
       {
-        preAllocatedY[offset + loop] = vertexY[lowNdx + loop];
+    preAllocatedY[offset + loop] = vertexY[lowNdx + loop];
       }
       if (preAllocatedZ != 0)
       {
-        preAllocatedZ[offset + loop] = vertexZ[lowNdx + loop];
+    preAllocatedZ[offset + loop] = vertexZ[lowNdx + loop];
       }
       myReturn++;
-    }
+  }
   }
   return myReturn;
 }
@@ -90,27 +90,27 @@ RESCUEINT64 RescueRadialGrid::CopyCenter(RESCUEINT64 lowNdx, RESCUEINT64 count,
   RESCUEINT64 vertexCount = MaxK();
   if (centerX != 0 && centerY != 0 && centerZ != 0 && centerMD != 0)
   {
-    RESCUEINT64 loop;
-    for (loop = 0; loop < count && lowNdx + loop < vertexCount; loop++)
-    {
+  RESCUEINT64 loop;
+  for (loop = 0; loop < count && lowNdx + loop < vertexCount; loop++)
+  {
       if (preAllocatedX != 0)
       {
-        preAllocatedX[offset + loop] = centerX[lowNdx + loop];
+    preAllocatedX[offset + loop] = centerX[lowNdx + loop];
       }
       if (preAllocatedY != 0)
       {
-        preAllocatedY[offset + loop] = centerY[lowNdx + loop];
+    preAllocatedY[offset + loop] = centerY[lowNdx + loop];
       }
       if (preAllocatedZ != 0)
       {
-        preAllocatedZ[offset + loop] = centerZ[lowNdx + loop];
+    preAllocatedZ[offset + loop] = centerZ[lowNdx + loop];
       }
       if (preAllocatedMD != 0)
       {
-        preAllocatedMD[offset + loop] = centerMD[lowNdx + loop];
+    preAllocatedMD[offset + loop] = centerMD[lowNdx + loop];
       }
       myReturn++;
-    }
+  }
   }
   return myReturn;
 }
@@ -122,31 +122,31 @@ void RescueRadialGrid::Accept(RESCUEINT64 radialCellsIn, RESCUEINT64 angularCell
 {
   if (vertexX != 0)
   {
-    delete [] vertexX;
+  delete [] vertexX;
   }
   if (vertexY != 0)
   {
-    delete [] vertexY;
+  delete [] vertexY;
   }
   if (vertexZ != 0)
   {
-    delete [] vertexZ;
+  delete [] vertexZ;
   }
   if (centerX != 0)
   {
-    delete [] centerX;
+  delete [] centerX;
   }
   if (centerY != 0)
   {
-    delete [] centerY;
+  delete [] centerY;
   }
   if (centerZ != 0)
   {
-    delete [] centerZ;
+  delete [] centerZ;
   }
   if (centerMD != 0)
   {
-    delete [] centerMD;
+  delete [] centerMD;
   }
   radialCells = radialCellsIn;
   angularCells = angularCellsIn;
@@ -179,46 +179,46 @@ void RescueRadialGrid::Set(RESCUEINT64 radialCellsIn, RESCUEINT64 angularCellsIn
   RESCUEINT64 vertexCount = Nodes();
   if (vertexCount != newNodes)
   {
-    if (vertexX != 0)
-    {
+  if (vertexX != 0)
+  {
       delete [] vertexX;
-    }
-    if (vertexY != 0)
-    {
+  }
+  if (vertexY != 0)
+  {
       delete [] vertexY;
-    }
-    if (vertexZ != 0)
-    {
+  }
+  if (vertexZ != 0)
+  {
       delete [] vertexZ;
-    }
-    vertexX = new RESCUEFLOAT[(size_t) newNodes];
-    vertexY = new RESCUEFLOAT[(size_t) newNodes];
-    vertexZ = new RESCUEFLOAT[(size_t) newNodes];
+  }
+  vertexX = new RESCUEFLOAT[(size_t) newNodes];
+  vertexY = new RESCUEFLOAT[(size_t) newNodes];
+  vertexZ = new RESCUEFLOAT[(size_t) newNodes];
   }
   RESCUEINT64 loop;
   for (loop = 0; loop < newNodes; loop++)
   {
-    vertexX[loop] = vertexXin[loop];
-    vertexY[loop] = vertexYin[loop];
-    vertexZ[loop] = vertexZin[loop];
+  vertexX[loop] = vertexXin[loop];
+  vertexY[loop] = vertexYin[loop];
+  vertexZ[loop] = vertexZin[loop];
   }
   if (centerXin == 0)
   {
       if (centerX != 0)
       {
-        delete [] centerX;
+    delete [] centerX;
       }
       if (centerY != 0)
       {
-        delete [] centerY;
+    delete [] centerY;
       }
       if (centerZ != 0)
       {
-        delete [] centerZ;
+    delete [] centerZ;
       }
       if (centerMD != 0)
       {
-        delete [] centerMD;
+    delete [] centerMD;
       }
       centerX = 0;
       centerY = 0;
@@ -227,38 +227,38 @@ void RescueRadialGrid::Set(RESCUEINT64 radialCellsIn, RESCUEINT64 angularCellsIn
   }
   else
   {
-    RESCUEINT64 newCenters = MaxK(kLayersIn);
-    RESCUEINT64 nowCenters = MaxK();
-    if (newCenters != nowCenters)
-    {
+  RESCUEINT64 newCenters = MaxK(kLayersIn);
+  RESCUEINT64 nowCenters = MaxK();
+  if (newCenters != nowCenters)
+  {
       if (centerX != 0)
       {
-        delete [] centerX;
+    delete [] centerX;
       }
       if (centerY != 0)
       {
-        delete [] centerY;
+    delete [] centerY;
       }
       if (centerZ != 0)
       {
-        delete [] centerZ;
+    delete [] centerZ;
       }
       if (centerMD != 0)
       {
-        delete [] centerMD;
+    delete [] centerMD;
       }
       centerX = new RESCUEFLOAT[(size_t) newCenters];
       centerY = new RESCUEFLOAT[(size_t) newCenters];
       centerZ = new RESCUEFLOAT[(size_t) newCenters];
       centerMD = new RESCUEFLOAT[(size_t) newCenters];
-    }
-    for (loop = 0; loop < newCenters; loop++)
-    {
+  }
+  for (loop = 0; loop < newCenters; loop++)
+  {
       centerX[loop] = vertexXin[loop];
       centerY[loop] = vertexYin[loop];
       centerZ[loop] = vertexZin[loop];
       centerMD[loop] = vertexZin[loop];
-    }
+  }
   }
   radialCells = radialCellsIn;
   angularCells = angularCellsIn;
@@ -280,19 +280,19 @@ void RescueRadialGrid::Archive(RescueContext *context, FILE *archiveFile)
   howMany = MaxK();
   if (centerX == 0)
   {
-    myfprintf(context, archiveFile, (RESCUEINT64) 0);
+  myfprintf(context, archiveFile, (RESCUEINT64) 0);
   }
   else
   {
-    myfprintf(context, archiveFile, (RESCUEINT64) 1);
-    myfprintf(context, archiveFile, centerX, howMany, TRUE);
-    myfprintf(context, archiveFile, centerY, howMany, TRUE);
-    myfprintf(context, archiveFile, centerZ, howMany, TRUE);
-    myfprintf(context, archiveFile, centerMD, howMany, TRUE);
+  myfprintf(context, archiveFile, (RESCUEINT64) 1);
+  myfprintf(context, archiveFile, centerX, howMany, TRUE);
+  myfprintf(context, archiveFile, centerY, howMany, TRUE);
+  myfprintf(context, archiveFile, centerZ, howMany, TRUE);
+  myfprintf(context, archiveFile, centerMD, howMany, TRUE);
   }
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -335,25 +335,25 @@ RescueRadialGrid::RescueRadialGrid(RescueContext *context, FILE *archiveFile)
   myfscanf(context, archiveFile, &temp);
   if (temp == 1)
   {
-    centerX = new RESCUEFLOAT[(size_t) howMany];
-    myfscanf(context, archiveFile, centerX, howMany, TRUE);
-    centerY = new RESCUEFLOAT[(size_t) howMany];
-    myfscanf(context, archiveFile, centerY, howMany, TRUE);
-    centerZ = new RESCUEFLOAT[(size_t) howMany];
-    myfscanf(context, archiveFile, centerZ, howMany, TRUE);
-    centerMD = new RESCUEFLOAT[(size_t) howMany];
-    myfscanf(context, archiveFile, centerMD, howMany, TRUE);
+  centerX = new RESCUEFLOAT[(size_t) howMany];
+  myfscanf(context, archiveFile, centerX, howMany, TRUE);
+  centerY = new RESCUEFLOAT[(size_t) howMany];
+  myfscanf(context, archiveFile, centerY, howMany, TRUE);
+  centerZ = new RESCUEFLOAT[(size_t) howMany];
+  myfscanf(context, archiveFile, centerZ, howMany, TRUE);
+  centerMD = new RESCUEFLOAT[(size_t) howMany];
+  myfscanf(context, archiveFile, centerMD, howMany, TRUE);
   }
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -374,66 +374,66 @@ void RescueRadialGrid::CalculateMinMax(RESCUEFLOAT &minX, RESCUEFLOAT &maxX,
   RESCUEINT64 loop;
   for (loop = 0; loop < howMany; loop++)
   {
-    if (vertexX[loop] != missingValue)
-    {
+  if (vertexX[loop] != missingValue)
+  {
       if (firstXIteration)
       {
-        minX = vertexX[loop];
-        maxX = vertexX[loop];
-        firstXIteration = false;
+    minX = vertexX[loop];
+    maxX = vertexX[loop];
+    firstXIteration = false;
       }
       else
       {
-        if (vertexX[loop] < minX)
-        {
-          minX = vertexX[loop];
-        }
-        if (vertexX[loop] > maxX)
-        {
-          maxX = vertexX[loop];
-        }
-      }
-    }
-    if (vertexY[loop] != missingValue)
+    if (vertexX[loop] < minX)
     {
+          minX = vertexX[loop];
+    }
+    if (vertexX[loop] > maxX)
+    {
+          maxX = vertexX[loop];
+    }
+      }
+  }
+  if (vertexY[loop] != missingValue)
+  {
       if (firstYIteration)
       {
-        minY = vertexY[loop];
-        maxY = vertexY[loop];
-        firstYIteration = false;
+    minY = vertexY[loop];
+    maxY = vertexY[loop];
+    firstYIteration = false;
       }
       else
       {
-        if (vertexY[loop] < minY)
-        {
-          minY = vertexY[loop];
-        }
-        if (vertexY[loop] > maxY)
-        {
-          maxY = vertexY[loop];
-        }
-      }
-    }
-    if (vertexZ[loop] != missingValue)
+    if (vertexY[loop] < minY)
     {
+          minY = vertexY[loop];
+    }
+    if (vertexY[loop] > maxY)
+    {
+          maxY = vertexY[loop];
+    }
+      }
+  }
+  if (vertexZ[loop] != missingValue)
+  {
       if (firstZIteration)
       {
-        minZ = vertexZ[loop];
-        maxZ = vertexZ[loop];
-        firstZIteration = false;
+    minZ = vertexZ[loop];
+    maxZ = vertexZ[loop];
+    firstZIteration = false;
       }
       else
       {
-        if (vertexZ[loop] < minZ)
-        {
+    if (vertexZ[loop] < minZ)
+    {
           minZ = vertexZ[loop];
-        }
-        if (vertexZ[loop] > maxZ)
-        {
-          maxZ = vertexZ[loop];
-        }
-      }
     }
+    if (vertexZ[loop] > maxZ)
+    {
+          maxZ = vertexZ[loop];
+    }
+      }
+  }
   }
 }
 

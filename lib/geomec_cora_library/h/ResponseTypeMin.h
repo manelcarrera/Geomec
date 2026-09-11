@@ -9,16 +9,16 @@ namespace cora
 class CResponseTypeMin : public CResponseTypeBase
 {
   public:
-    CResponseTypeMin(CSummaryResultFile& summaryResultFile,
+  CResponseTypeMin(CSummaryResultFile& summaryResultFile,
       const std::vector <QString>& function);
-    virtual ~CResponseTypeMin();
+  virtual ~CResponseTypeMin();
 
-    virtual double calculate(const TObject& object,
+  virtual double calculate(const TObject& object,
       const TFailureMode& failureMode);
 
   private:
-    CResponseTypeMin(const CResponseTypeMin& rhs);
-    CResponseTypeMin& operator = (CResponseTypeMin rhs);
+  CResponseTypeMin(const CResponseTypeMin& rhs);
+  CResponseTypeMin& operator = (CResponseTypeMin rhs);
 };
 
 } // namespace cora

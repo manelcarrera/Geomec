@@ -7,7 +7,7 @@ CParameterFormation4Pressure::CParameterFormation4Pressure(const QString& name,
   const geo::CValue& minimum, const geo::CValue& maximum, double mean,
   CFormationBase* formationBase, int depletionStage, unsigned int valueTypeID)
 : CParameterFormation(name, minimum, maximum, mean, formationBase,
-    depletionStage)
+  depletionStage)
 , m_valueTypeID(valueTypeID)
 {
 }

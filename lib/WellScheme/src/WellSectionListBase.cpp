@@ -22,13 +22,13 @@ namespace well {
 CWellSectionListBase::CWellSectionListBase(const CWellPathBase& WellPath,  bool bAutoDelete)
 : m_pWellPath(&WellPath)
 {
-	AutoDelete(bAutoDelete);
+  AutoDelete(bAutoDelete);
 }
 
 //##ModelId=3F7AA15602DD
 CWellSectionListBase::~CWellSectionListBase()
 {
-	clear();
+  clear();
 }
 
 CWellSectionListBase& CWellSectionListBase::operator=(const CWellSectionListBase& rhs)
@@ -37,7 +37,7 @@ CWellSectionListBase& CWellSectionListBase::operator=(const CWellSectionListBase
   m_Description = rhs.m_Description;
   m_lstSections = rhs.m_lstSections;
   m_bAutoDelete = false;
-	return *this;
+  return *this;
 }
 
 CWellSectionListBase::CWellSectionListBase(const CWellSectionListBase& rhs)
@@ -54,33 +54,33 @@ CWellSectionListBase::CWellSectionListBase(const CWellSectionListBase& rhs)
 //##ModelId=3F7AA15602EA
 bool CWellSectionListBase::AutoDelete() const
 {
-	return m_bAutoDelete;
+  return m_bAutoDelete;
 }
 
 void CWellSectionListBase::AutoDelete(bool autodelete)
 {
-	m_bAutoDelete = autodelete;
+  m_bAutoDelete = autodelete;
 }
 
 
 
 int CWellSectionListBase::NrOfSections() const
 {
-	return m_lstSections.size();
+  return m_lstSections.size();
 }
 
 
 bool CWellSectionListBase::AllSectionsDefined() const
 {
-	Iterator it = begin();
-	while(it != end())
-	{
-		if(!(*it)->Defined())
-			return false;
+  Iterator it = begin();
+  while(it != end())
+  {
+    if(!(*it)->Defined())
+      return false;
 
-		++it;
-	}
-	return true;
+    ++it;
+  }
+  return true;
 }
 
 
@@ -93,7 +93,7 @@ int CWellSectionListBase::GetIndex(IWellSection* section) const
 
 bool CWellSectionListBase::Exist(IWellSection* section) const
 {
-	return !(GetIndex(section)==-1); 
+  return !(GetIndex(section)==-1); 
 }
 
 
@@ -105,63 +105,63 @@ bool CWellSectionListBase::Exist(IWellSection* section) const
 //virtual
 int CWellSectionListBase::compareItems(IWellSection* item1, IWellSection* item2 )
 {
-	IWellSection* s1 =(IWellSection*)item1;
-	IWellSection* s2 =(IWellSection*)item2;
+  IWellSection* s1 =(IWellSection*)item1;
+  IWellSection* s2 =(IWellSection*)item2;
 
-	if(*s1 == *s2)
-		return 0;
+  if(*s1 == *s2)
+    return 0;
 
-	if(*s1 > *s2)
-		return 1;
+  if(*s1 > *s2)
+    return 1;
 
-	return -1;
+  return -1;
 
 }
 
 
 CWellPathBase& CWellSectionListBase::WellPath()
 {
-	return *const_cast<CWellPathBase*>(m_pWellPath);
+  return *const_cast<CWellPathBase*>(m_pWellPath);
 }
 
 const CWellPathBase& CWellSectionListBase::WellPath() const
 {
-	return *m_pWellPath;
+  return *m_pWellPath;
 }
 
 
 QString CWellSectionListBase::GetDescription() const
 {
-	return m_Description;
+  return m_Description;
 }
 
 void CWellSectionListBase::SetDescription(QString description) 
 {
-	m_Description=description;
+  m_Description=description;
 }
 
 
 CWellSectionList CWellSectionListBase::GetSections(const CWellPoint& point, bool IncludeEdge ) const
 {
-	CWellSectionList ret(*m_pWellPath);
-	ret.AutoDelete(false);
-	CWellSectionListBase::Iterator it = begin();
-	while(it != end())
-	{
+  CWellSectionList ret(*m_pWellPath);
+  ret.AutoDelete(false);
+  CWellSectionListBase::Iterator it = begin();
+  while(it != end())
+  {
   	IWellSection* section = *it;
-		if(section->Contains(point,IncludeEdge))
-		{
-			ret.AddSection(section);
-		}
-		++it;
-	}
-	return ret;
+    if(section->Contains(point,IncludeEdge))
+    {
+      ret.AddSection(section);
+    }
+    ++it;
+  }
+  return ret;
 }
 
 
 CWellSectionList::Iterator CWellSectionListBase::begin() const
 {
-	return m_lstSections.begin();
+  return m_lstSections.begin();
 }
 
 CWellSectionList::Iterator CWellSectionListBase::end() const
@@ -173,7 +173,7 @@ const IWellSection* CWellSectionListBase::LookUpNext(IWellSection* section) cons
 {
   int index = m_lstSections.indexOf(section);
   if(index > -1 && index < NrOfSections())
-    return m_lstSections.at(index + 1);
+  return m_lstSections.at(index + 1);
 
   return 0;
 }
@@ -182,7 +182,7 @@ const IWellSection* CWellSectionListBase::LookUpPrevious(IWellSection* section) 
 {
   int index = m_lstSections.indexOf(section);
   if(index > 0)
-    return m_lstSections.at(index - 1);
+  return m_lstSections.at(index - 1);
 
   return 0;
 }
@@ -191,8 +191,8 @@ void CWellSectionListBase::clear()
 {
   if(m_bAutoDelete)
   {
-    Iterator it;
-    for(it = begin(); it != end(); ++it)
+  Iterator it;
+  for(it = begin(); it != end(); ++it)
       delete *it;
   }
 

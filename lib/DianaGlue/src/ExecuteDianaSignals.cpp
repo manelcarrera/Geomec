@@ -4,7 +4,7 @@
 #include "IExecuteDianaDialog.h"
 
 CExecuteDianaSignals::CExecuteDianaSignals( const QObject* sender,
-											IExecuteDianaDialog* exe_diana_dlg)
+                      IExecuteDianaDialog* exe_diana_dlg)
 : CDianaSignals(sender), m_exe_diana_dlg( exe_diana_dlg )
 {
 }

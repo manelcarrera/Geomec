@@ -25,18 +25,18 @@ double CResponseTypeMax::calculate(const TObject& object,
 
   if (element != 0)
   {
-    max = -std::numeric_limits <double> ::max();
+  max = -std::numeric_limits <double> ::max();
 
-    while (element != 0)
-    {
+  while (element != 0)
+  {
       const IValueDomainScalar::TValueVec valueVec =
-        failureMode->getResultComponent()->ValueElement(*element);
+    failureMode->getResultComponent()->ValueElement(*element);
 
       verifyResponseType(valueVec);
 
       max = std::max(max, CUtilities4ValueVector::calculateAverage(valueVec));
       element = object->getNextElement();
-    }
+  }
   }
 
   return max;

@@ -22,10 +22,10 @@ class CLoadManager;
 class CPrescribedDisplacement : public ISupportLoad  
 {
 public:
-	CPrescribedDisplacement(CLoadCase &loadcase, double size, const geo::IVector &vecDirection, const geo::CTranslationSupport &support);
-	virtual ~CPrescribedDisplacement();
+  CPrescribedDisplacement(CLoadCase &loadcase, double size, const geo::IVector &vecDirection, const geo::CTranslationSupport &support);
+  virtual ~CPrescribedDisplacement();
 
-	virtual bool WriteFilos() const;
+  virtual bool WriteFilos() const;
 };
 
 }

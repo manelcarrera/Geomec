@@ -15,7 +15,7 @@ CLimitStateFunctionWell::CLimitStateFunctionWell(
   CSummaryResultFile& summaryResultFile, std::vector <QString>& function,
   CGetModelInfo& modelInfo, const QString& versionNumber)
 : CLimitStateFunctionBase(summaryResultFile, function, modelInfo, versionNumber,
-    modelInfo.getWellPathInfo().getObjects(), WELL)
+  modelInfo.getWellPathInfo().getObjects(), WELL)
 {
 }
 

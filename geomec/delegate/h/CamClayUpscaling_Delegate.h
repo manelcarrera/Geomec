@@ -16,7 +16,7 @@ public:
 private:
   CCamClayUpscalingNode_Delegate(const CCamClayUpscalingNode_Delegate& rhs);
   CCamClayUpscalingNode_Delegate& operator = (
-    const CCamClayUpscalingNode_Delegate& rhs);
+  const CCamClayUpscalingNode_Delegate& rhs);
 
   CCamClayUpscalingNode* m_camClayUpscalingNode;
 

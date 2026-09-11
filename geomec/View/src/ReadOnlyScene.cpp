@@ -29,11 +29,11 @@ void CReadOnlyScene::LoadStream(TSTREAM& stream, CStreamVersion &version,
   TPROGRESS& progress)
 {
   if ((m_type == BIRDEYE_SCENE) || (m_type == XSEC_SCENE) ||
-    (m_type == WPGRPH_SCENE) || (m_type == HISTORY_SCENE) ||
-    (m_type == RTCI_SCENE) || (m_type == TOP_SCENE) ||
-    (m_type == DEFAULT_SCENE))
+  (m_type == WPGRPH_SCENE) || (m_type == HISTORY_SCENE) ||
+  (m_type == RTCI_SCENE) || (m_type == TOP_SCENE) ||
+  (m_type == DEFAULT_SCENE))
   {
-    COpenGLSceneBase::LoadStream(stream, version, progress);
+  COpenGLSceneBase::LoadStream(stream, version, progress);
   }
 }
 
@@ -42,10 +42,10 @@ void CReadOnlyScene::SaveStream(TSTREAM& stream, TPROGRESS& progress)
   assert(false);
 
   if ((m_type == BIRDEYE_SCENE) || (m_type == XSEC_SCENE) ||
-    (m_type == WPGRPH_SCENE) || (m_type == HISTORY_SCENE) ||
-    (m_type == RTCI_SCENE) || (m_type == TOP_SCENE) ||
-    (m_type == DEFAULT_SCENE))
+  (m_type == WPGRPH_SCENE) || (m_type == HISTORY_SCENE) ||
+  (m_type == RTCI_SCENE) || (m_type == TOP_SCENE) ||
+  (m_type == DEFAULT_SCENE))
   {
-    COpenGLSceneBase::SaveStream(stream, progress);
+  COpenGLSceneBase::SaveStream(stream, progress);
   }
 }

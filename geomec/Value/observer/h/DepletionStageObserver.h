@@ -4,43 +4,43 @@
 template <typename DIALOG>
   class CDepletionStageObserver : public IListObject
 {
-	const CDepletionStage& m_stage;
-	DIALOG& m_dlg;
+  const CDepletionStage& m_stage;
+  DIALOG& m_dlg;
 public:
-	CDepletionStageObserver(const CDepletionStage& stage, DIALOG& dlg, CListCtrl& ctrl)
+  CDepletionStageObserver(const CDepletionStage& stage, DIALOG& dlg, CListCtrl& ctrl)
   : IListObject(ctrl), m_stage(stage), m_dlg(dlg)
   {
-	  ctrl.SetItemData(ctrl.GetItemCount() - 1, (DWORD_PTR) this);
-	  Update();
+    ctrl.SetItemData(ctrl.GetItemCount() - 1, (DWORD_PTR) this);
+    Update();
   }
 
-	virtual unsigned int Icon() const
+  virtual unsigned int Icon() const
   {
-	  return m_stage.IconId();
+    return m_stage.IconId();
   }
 
-	virtual QString Text() const
+  virtual QString Text() const
   {
-	  return m_stage.Name();
+    return m_stage.Name();
   }
 
-	virtual unsigned int StateIcon() const
+  virtual unsigned int StateIcon() const
   {
-	  if(m_dlg.TimeStep(m_stage))
-		  return IDI_CHECKED;
-	  return IDI_UNCHECKED;
+    if(m_dlg.TimeStep(m_stage))
+      return IDI_CHECKED;
+    return IDI_UNCHECKED;
   }
 
-	virtual void ToggleState()
+  virtual void ToggleState()
   {
-	  m_dlg.TimeStep(m_stage, !m_dlg.TimeStep(m_stage));
-	  Update();
+    m_dlg.TimeStep(m_stage, !m_dlg.TimeStep(m_stage));
+    Update();
 
-	  if (!m_dlg.UpdateData())
-    {
-	    m_dlg.TimeStep(m_stage, !m_dlg.TimeStep(m_stage));
-	    Update();
-    }
+    if (!m_dlg.UpdateData())
+  {
+    m_dlg.TimeStep(m_stage, !m_dlg.TimeStep(m_stage));
+    Update();
+  }
   }
 };
 

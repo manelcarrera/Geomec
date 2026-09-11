@@ -29,9 +29,9 @@ public:
   // FrontStartIndex should be the local node number of bodyface front corresponding with vcPoint[0]
   // BackStartIndex should be the local node number of bodyface back corresponding with vcPoint[4]
   CInterfaceElement(IMesh& mesh,
-                    const IFace* front,
-                    const IFace* back,
-                    const std::vector<int>& vcPoint);
+          const IFace* front,
+          const IFace* back,
+          const std::vector<int>& vcPoint);
   virtual ~CInterfaceElement();
 
   virtual const IElementSet* IndexingElementSet() const;

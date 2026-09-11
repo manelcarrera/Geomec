@@ -24,10 +24,10 @@
 /* compute the normal (nx, ny, nz) as the cross-product of the first two 
    oriented edges and the norm nt = |t| as (v1xv2).v3 */
 static void triangle_normal (GtsTriangle * t, 
-			     gdouble * nx, 
-			     gdouble * ny, 
-			     gdouble * nz,
-			     gdouble * nt)
+           gdouble * nx, 
+           gdouble * ny, 
+           gdouble * nz,
+           gdouble * nt)
 {
   GtsPoint * p1, * p2 = NULL, * p3 = NULL;
   gdouble x1, y1, z1, x2, y2, z2;
@@ -36,23 +36,23 @@ static void triangle_normal (GtsTriangle * t,
 
   p1 = GTS_POINT (GTS_SEGMENT (t->e1)->v1);
   if (GTS_SEGMENT (t->e1)->v1 == GTS_SEGMENT (t->e2)->v1) {
-    p2 = GTS_POINT (GTS_SEGMENT (t->e2)->v2);
-    p3 = GTS_POINT (GTS_SEGMENT (t->e1)->v2);
+  p2 = GTS_POINT (GTS_SEGMENT (t->e2)->v2);
+  p3 = GTS_POINT (GTS_SEGMENT (t->e1)->v2);
   }
   else if (GTS_SEGMENT (t->e1)->v2 == GTS_SEGMENT (t->e2)->v2) {
-    p2 = GTS_POINT (GTS_SEGMENT (t->e1)->v2);
-    p3 = GTS_POINT (GTS_SEGMENT (t->e2)->v1);
+  p2 = GTS_POINT (GTS_SEGMENT (t->e1)->v2);
+  p3 = GTS_POINT (GTS_SEGMENT (t->e2)->v1);
   }
   else if (GTS_SEGMENT (t->e1)->v1 == GTS_SEGMENT (t->e2)->v2) {
-    p2 = GTS_POINT (GTS_SEGMENT (t->e2)->v1);
-    p3 = GTS_POINT (GTS_SEGMENT (t->e1)->v2);
+  p2 = GTS_POINT (GTS_SEGMENT (t->e2)->v1);
+  p3 = GTS_POINT (GTS_SEGMENT (t->e1)->v2);
   }
   else if (GTS_SEGMENT (t->e1)->v2 == GTS_SEGMENT (t->e2)->v1) {
-    p2 = GTS_POINT (GTS_SEGMENT (t->e1)->v2);
-    p3 = GTS_POINT (GTS_SEGMENT (t->e2)->v2);
+  p2 = GTS_POINT (GTS_SEGMENT (t->e1)->v2);
+  p3 = GTS_POINT (GTS_SEGMENT (t->e2)->v2);
   }
   else
-    g_assert_not_reached ();
+  g_assert_not_reached ();
 
   x1 = p2->x - p1->x;
   y1 = p2->y - p1->y;
@@ -63,17 +63,17 @@ static void triangle_normal (GtsTriangle * t,
   z2 = p3->z - p1->z;
 
   *nt = ((p1->y*p2->z - p1->z*p2->y)*p3->x + 
-	 (p1->z*p2->x - p1->x*p2->z)*p3->y + 
-	 (p1->x*p2->y - p1->y*p2->x)*p3->z);
+   (p1->z*p2->x - p1->x*p2->z)*p3->y + 
+   (p1->x*p2->y - p1->y*p2->x)*p3->z);
   *nx = y1*z2 - z1*y2;
   *ny = z1*x2 - x1*z2;
   *nz = x1*y2 - y1*x2;
 }
 
 static void boundary_preservation (GtsEdge * edge,
-				   GtsFace * f,
-				   GtsVector e1, GtsVector e2,
-				   GtsMatrix * H, GtsVector c)
+           GtsFace * f,
+           GtsVector e1, GtsVector e2,
+           GtsMatrix * H, GtsVector c)
 {
   GtsTriangle * t = GTS_TRIANGLE (f);
   GtsEdge * edge2;
@@ -84,7 +84,7 @@ static void boundary_preservation (GtsEdge * edge,
   /* find orientation of segment */
   edge2 = edge == t->e1 ? t->e2 : edge == t->e2 ? t->e3 : t->e1;
   if (v2 != GTS_SEGMENT (edge2)->v1 && v2 != GTS_SEGMENT (edge2)->v2) {
-    v2 = v1; v1 = GTS_SEGMENT (edge)->v2;
+  v2 = v1; v1 = GTS_SEGMENT (edge)->v2;
   }
   p1 = GTS_POINT (v1);
   p2 = GTS_POINT (v2);
@@ -121,8 +121,8 @@ static void boundary_preservation (GtsEdge * edge,
 }
 
 static gdouble boundary_cost (GtsEdge * edge, 
-			      GtsFace * f,
-			      GtsVertex * v)
+            GtsFace * f,
+            GtsVertex * v)
 {
   GtsTriangle * t = GTS_TRIANGLE (f);
   GtsEdge * edge2;
@@ -134,7 +134,7 @@ static gdouble boundary_cost (GtsEdge * edge,
   /* find orientation of segment */
   edge2 = edge == t->e1 ? t->e2 : edge == t->e2 ? t->e3 : t->e1;
   if (v2 != GTS_SEGMENT (edge2)->v1 && v2 != GTS_SEGMENT (edge2)->v2) {
-    v2 = v1; v1 = GTS_SEGMENT (edge)->v2;
+  v2 = v1; v1 = GTS_SEGMENT (edge)->v2;
   }
   p1 = GTS_POINT (v1);
   p2 = GTS_POINT (v2);  
@@ -153,20 +153,20 @@ static gdouble edge_boundary_cost (GtsEdge * e, GtsVertex * v)
 
   i = GTS_SEGMENT (e)->v1->segments;
   while (i) {
-    GtsFace * f;
-    if (GTS_IS_EDGE (i->data) && 
-	(f = gts_edge_is_boundary (i->data, NULL)))
+  GtsFace * f;
+  if (GTS_IS_EDGE (i->data) && 
+  (f = gts_edge_is_boundary (i->data, NULL)))
       cost += boundary_cost (i->data, f, v);
-    i = i->next;
+  i = i->next;
   }
   i = GTS_SEGMENT (e)->v2->segments;
   while (i) {
-    GtsFace * f;
-    if (i->data != e && 
-	GTS_IS_EDGE (i->data) && 
-	(f = gts_edge_is_boundary (i->data, NULL)))
+  GtsFace * f;
+  if (i->data != e && 
+  GTS_IS_EDGE (i->data) && 
+  (f = gts_edge_is_boundary (i->data, NULL)))
       cost += boundary_cost (i->data, f, v);
-    i = i->next;
+  i = i->next;
   }
 
   return cost/4.;
@@ -183,14 +183,14 @@ static gdouble edge_volume_cost (GtsEdge * e, GtsVertex * v)
 
   i = triangles;
   while (i) {
-    if (GTS_IS_FACE (i->data)) {
+  if (GTS_IS_FACE (i->data)) {
       triangle_normal (i->data, &n1, &n2, &n3, &nt);
       a = GTS_POINT (v)->x*n1 + 
-	GTS_POINT (v)->y*n2 + 
-	GTS_POINT (v)->z*n3 - nt;
+  GTS_POINT (v)->y*n2 + 
+  GTS_POINT (v)->z*n3 - nt;
       cost += a*a;
-    }
-    i = i->next;
+  }
+  i = i->next;
   }
   g_slist_free (triangles);
 
@@ -201,18 +201,18 @@ static gdouble edge_shape_cost (GtsEdge * e, GtsVertex * v)
 {
   GSList * list, * i;
   GtsVertex 
-    * v1 = GTS_SEGMENT (e)->v1,
-    * v2 = GTS_SEGMENT (e)->v2;
+  * v1 = GTS_SEGMENT (e)->v1,
+  * v2 = GTS_SEGMENT (e)->v2;
   gdouble cost = 0.;
 
   list = gts_vertex_neighbors (v1, NULL, NULL);
   list = gts_vertex_neighbors (v2, list, NULL);
   i = list;
   while (i) {
-    GtsPoint * p = i->data;
-    if (p != GTS_POINT (v1) && p != GTS_POINT (v2))
+  GtsPoint * p = i->data;
+  if (p != GTS_POINT (v1) && p != GTS_POINT (v2))
       cost += gts_point_distance2 (p, GTS_POINT (v));
-    i = i->next;
+  i = i->next;
   }
   g_slist_free (list);
 
@@ -234,8 +234,8 @@ static gdouble edge_shape_cost (GtsEdge * e, GtsVertex * v)
  * simplification" (1999) by Lindstrom and Turk.  
  */
 GtsVertex * gts_volume_optimized_vertex (GtsEdge * edge,
-					 GtsVertexClass * klass,
-					 GtsVolumeOptimizedParams * params)
+           GtsVertexClass * klass,
+           GtsVolumeOptimizedParams * params)
 {
   GSList * triangles, * i;
   gdouble sn1 = 0., sn2 = 0., sn3 = 0.;
@@ -267,47 +267,47 @@ GtsVertex * gts_volume_optimized_vertex (GtsEdge * edge,
   /* boundary preservation */
   i = v1->segments;
   while (i) {
-    GtsEdge * edge1 = i->data;
-    GtsFace * f;
-    if (GTS_IS_EDGE (edge1) &&
-	(f = gts_edge_is_boundary (edge1, NULL))) {
+  GtsEdge * edge1 = i->data;
+  GtsFace * f;
+  if (GTS_IS_EDGE (edge1) &&
+  (f = gts_edge_is_boundary (edge1, NULL))) {
       boundary_preservation (edge1, f, e1, e2, Hb, cb);
       nb++;
-    }
-    i = i->next;
+  }
+  i = i->next;
   }
   i = v2->segments;
   while (i) {
-    GtsEdge * edge1 = i->data;
-    GtsFace * f;
-    if (edge1 != edge && 
-	GTS_IS_EDGE (edge1) &&
-	(f = gts_edge_is_boundary (edge1, NULL))) {
+  GtsEdge * edge1 = i->data;
+  GtsFace * f;
+  if (edge1 != edge && 
+  GTS_IS_EDGE (edge1) &&
+  (f = gts_edge_is_boundary (edge1, NULL))) {
       boundary_preservation (edge1, f, e1, e2, Hb, cb);
       nb++;
-    }
-    i = i->next;
+  }
+  i = i->next;
   }
   if (nb > 0) {
-    GtsMatrix * H = gts_matrix_new (
-	       e1[2]*e1[2] + e1[1]*e1[1], - e1[0]*e1[1], - e1[0]*e1[2],
-	     - e1[0]*e1[1], e1[2]*e1[2] + e1[0]*e1[0], - e1[1]*e1[2],
-	     - e1[0]*e1[2], - e1[1]*e1[2], e1[1]*e1[1] + e1[0]*e1[0]);
-    GtsVector c = { e1[1]*e2[2] - e1[2]*e2[1],
-		    e1[2]*e2[0] - e1[0]*e2[2],
-		    e1[0]*e2[1] - e1[1]*e2[0] };
-    n = gts_matrix_quadratic_optimization (A, b, n, H, c);
-    gts_matrix_destroy (H);
+  GtsMatrix * H = gts_matrix_new (
+         e1[2]*e1[2] + e1[1]*e1[1], - e1[0]*e1[1], - e1[0]*e1[2],
+       - e1[0]*e1[1], e1[2]*e1[2] + e1[0]*e1[0], - e1[1]*e1[2],
+       - e1[0]*e1[2], - e1[1]*e1[2], e1[1]*e1[1] + e1[0]*e1[0]);
+  GtsVector c = { e1[1]*e2[2] - e1[2]*e2[1],
+      e1[2]*e2[0] - e1[0]*e2[2],
+      e1[0]*e2[1] - e1[1]*e2[0] };
+  n = gts_matrix_quadratic_optimization (A, b, n, H, c);
+  gts_matrix_destroy (H);
   }
 
   g_assert (n <= 2);
 
 #ifdef DEBUG_VOPT
   if (n != nold) {
-    fprintf (stderr, "--- boundary preservation ---\n");
-    gts_matrix_print (A, stderr);
-    gts_vector_print (b, stderr);
-    nold = n;
+  fprintf (stderr, "--- boundary preservation ---\n");
+  gts_matrix_print (A, stderr);
+  gts_vector_print (b, stderr);
+  nold = n;
   }
 #endif
 
@@ -317,14 +317,14 @@ GtsVertex * gts_volume_optimized_vertex (GtsEdge * edge,
 
   i = triangles;
   while (i) {
-    if (GTS_IS_FACE (i->data)) {
+  if (GTS_IS_FACE (i->data)) {
       triangle_normal (i->data, &n1, &n2, &n3, &nt);
       sn1 += n1; sn2 += n2; sn3 += n3;
       sn11 += n1*n1; sn22 += n2*n2; sn33 += n3*n3;
       sn12 += n1*n2; sn13 += n1*n3; sn23 += n2*n3;
       st += nt; stn1 += nt*n1; stn2 += nt*n2; stn3 += nt*n3;
-    }
-    i = i->next;
+  }
+  i = i->next;
   }
   g_slist_free (triangles);
 
@@ -333,137 +333,137 @@ GtsVertex * gts_volume_optimized_vertex (GtsEdge * edge,
 
 #ifdef DEBUG_VOPT
   if (n != nold) {
-    fprintf (stderr, "--- volume preservation ---\n");
-    gts_matrix_print (A, stderr);
-    gts_vector_print (b, stderr);
-    nold = n;
+  fprintf (stderr, "--- volume preservation ---\n");
+  gts_matrix_print (A, stderr);
+  gts_vector_print (b, stderr);
+  nold = n;
   }
 #endif
 
 #if 1 /* Weighted average of volume and boundary optimization */
   if (n < 3) {
-    /* volume optimization and boundary optimization */
-    GtsMatrix * H = gts_matrix_new (sn11, sn12, sn13,
-				    sn12, sn22, sn23,
-				    sn13, sn23, sn33);
-    GtsVector c = { - stn1, - stn2, - stn3};
-    gdouble le = 9.*params->boundary_weight*
+  /* volume optimization and boundary optimization */
+  GtsMatrix * H = gts_matrix_new (sn11, sn12, sn13,
+          sn12, sn22, sn23,
+          sn13, sn23, sn33);
+  GtsVector c = { - stn1, - stn2, - stn3};
+  gdouble le = 9.*params->boundary_weight*
       gts_point_distance2 (GTS_POINT (v1), 
-			   GTS_POINT (v2));
-    guint i, j;
+         GTS_POINT (v2));
+  guint i, j;
 
-    if (nb > 0)
+  if (nb > 0)
       for (i = 0; i < 3; i++) {
-	for (j = 0; j < 3; j++)
-	  H[i][j] = params->volume_weight*H[i][j] + le*Hb[i][j];
-	c[i] = params->volume_weight*c[i] + le*cb[i];
+  for (j = 0; j < 3; j++)
+    H[i][j] = params->volume_weight*H[i][j] + le*Hb[i][j];
+  c[i] = params->volume_weight*c[i] + le*cb[i];
       }
-    n = gts_matrix_quadratic_optimization (A, b, n, H, c);
-    gts_matrix_destroy (H);
+  n = gts_matrix_quadratic_optimization (A, b, n, H, c);
+  gts_matrix_destroy (H);
   }
 
 #ifdef DEBUG_VOPT
   if (n != nold) {
-    fprintf (stderr, "--- volume and boundary optimization ---\n");
-    gts_matrix_print (A, stderr);
-    gts_vector_print (b, stderr);
-    nold = n;
+  fprintf (stderr, "--- volume and boundary optimization ---\n");
+  gts_matrix_print (A, stderr);
+  gts_vector_print (b, stderr);
+  nold = n;
   }
 #endif
 
   if (n < 3) {
-    /* triangle shape optimization */
-    gdouble nv = 0.0;
-    GtsMatrix * H;
-    GtsVector c = {0., 0., 0.};
-    GSList * list, * i;
+  /* triangle shape optimization */
+  gdouble nv = 0.0;
+  GtsMatrix * H;
+  GtsVector c = {0., 0., 0.};
+  GSList * list, * i;
 
-    list = gts_vertex_neighbors (v1, NULL, NULL);
-    list = gts_vertex_neighbors (v2, list, NULL);
+  list = gts_vertex_neighbors (v1, NULL, NULL);
+  list = gts_vertex_neighbors (v2, list, NULL);
 
-    i = list;
-    while (i) {
+  i = list;
+  while (i) {
       GtsPoint * p1 = i->data;
       if (p1 != GTS_POINT (v1) && p1 != GTS_POINT (v2)) {
-	nv += 1.0;
-	c[0] -= p1->x;
-	c[1] -= p1->y;
-	c[2] -= p1->z;
+  nv += 1.0;
+  c[0] -= p1->x;
+  c[1] -= p1->y;
+  c[2] -= p1->z;
       }
       i = i->next;
-    }
-    g_slist_free (list);
-    
-    H = gts_matrix_new (nv, 0., 0.,
-			0., nv, 0.,
-			0., 0., nv);
-    n = gts_matrix_quadratic_optimization (A, b, n, H, c);
-    gts_matrix_destroy (H);
+  }
+  g_slist_free (list);
+  
+  H = gts_matrix_new (nv, 0., 0.,
+      0., nv, 0.,
+      0., 0., nv);
+  n = gts_matrix_quadratic_optimization (A, b, n, H, c);
+  gts_matrix_destroy (H);
   }
 
 #ifdef DEBUG_VOPT
   if (n != nold) {
-    fprintf (stderr, "--- triangle shape optimization ---\n");
-    gts_matrix_print (A, stderr);
-    gts_vector_print (b, stderr);
-    nold = n;
+  fprintf (stderr, "--- triangle shape optimization ---\n");
+  gts_matrix_print (A, stderr);
+  gts_vector_print (b, stderr);
+  nold = n;
   }
 #endif
 #else /* Weighted average of volume, boundary and shape optimization */
   if (n < 3) {
-    /* volume optimization, boundary and shape optimization */
-    GtsMatrix * H; 
-    GtsVector c;
-    gdouble l2 = gts_point_distance2 (GTS_POINT (v1), 
-				      GTS_POINT (v2));
-    gdouble wv = params->volume_weight/32.;
-    gdouble wb = params->boundary_weight/4.*l2;
-    gdouble ws = params->shape_weight*l2*l2;
-    
-    gdouble nv = 0.0;
-    GtsVector cs = {0., 0., 0.};
-    GSList * list, * i;
+  /* volume optimization, boundary and shape optimization */
+  GtsMatrix * H; 
+  GtsVector c;
+  gdouble l2 = gts_point_distance2 (GTS_POINT (v1), 
+              GTS_POINT (v2));
+  gdouble wv = params->volume_weight/32.;
+  gdouble wb = params->boundary_weight/4.*l2;
+  gdouble ws = params->shape_weight*l2*l2;
+  
+  gdouble nv = 0.0;
+  GtsVector cs = {0., 0., 0.};
+  GSList * list, * i;
 
-    list = gts_vertex_neighbors (v1, NULL, NULL);
-    list = gts_vertex_neighbors (v2, list, NULL);
+  list = gts_vertex_neighbors (v1, NULL, NULL);
+  list = gts_vertex_neighbors (v2, list, NULL);
 
-    i = list;
-    while (i) {
+  i = list;
+  while (i) {
       GtsPoint * p1 = i->data;
       if (p1 != GTS_POINT (v1) && p1 != GTS_POINT (v2)) {
-	nv += 1.0;
-	cs[0] -= p1->x;
-	cs[1] -= p1->y;
-	cs[2] -= p1->z;
+  nv += 1.0;
+  cs[0] -= p1->x;
+  cs[1] -= p1->y;
+  cs[2] -= p1->z;
       }
       i = i->next;
-    }
-    g_slist_free (list);
+  }
+  g_slist_free (list);
 
-    H = gts_matrix_new (wv*sn11 + wb*Hb[0][0] + ws*nv, 
-			wv*sn12 + wb*Hb[0][1], 
-			wv*sn13 + wb*Hb[0][2],
-			wv*sn12 + wb*Hb[1][0], 
-			wv*sn22 + wb*Hb[1][1] + ws*nv, 
-			wv*sn23 + wb*Hb[1][2],
-			wv*sn13 + wb*Hb[2][0], 
-			wv*sn23 + wb*Hb[2][1], 
-			wv*sn33 + wb*Hb[2][2] + ws*nv);
+  H = gts_matrix_new (wv*sn11 + wb*Hb[0][0] + ws*nv, 
+      wv*sn12 + wb*Hb[0][1], 
+      wv*sn13 + wb*Hb[0][2],
+      wv*sn12 + wb*Hb[1][0], 
+      wv*sn22 + wb*Hb[1][1] + ws*nv, 
+      wv*sn23 + wb*Hb[1][2],
+      wv*sn13 + wb*Hb[2][0], 
+      wv*sn23 + wb*Hb[2][1], 
+      wv*sn33 + wb*Hb[2][2] + ws*nv);
 
-    c[0] = - wv*stn1 + wb*cb[0] + ws*cs[0];
-    c[1] = - wv*stn2 + wb*cb[1] + ws*cs[1];
-    c[2] = - wv*stn3 + wb*cb[2] + ws*cs[2];
+  c[0] = - wv*stn1 + wb*cb[0] + ws*cs[0];
+  c[1] = - wv*stn2 + wb*cb[1] + ws*cs[1];
+  c[2] = - wv*stn3 + wb*cb[2] + ws*cs[2];
 
-    n = gts_matrix_quadratic_optimization (A, b, n, H, c);
-    gts_matrix_destroy (H);
+  n = gts_matrix_quadratic_optimization (A, b, n, H, c);
+  gts_matrix_destroy (H);
   }
 
 #ifdef DEBUG_VOPT
   if (n != nold) {
-    fprintf (stderr, "--- volume, boundary and shape optimization ---\n");
-    gts_matrix_print (A, stderr);
-    gts_vector_print (b, stderr);
-    nold = n;
+  fprintf (stderr, "--- volume, boundary and shape optimization ---\n");
+  gts_matrix_print (A, stderr);
+  gts_vector_print (b, stderr);
+  nold = n;
   }
 #endif
 #endif /* Weighted average of volume, boundary and shape optimization */
@@ -472,9 +472,9 @@ GtsVertex * gts_volume_optimized_vertex (GtsEdge * edge,
   g_assert ((Ai = gts_matrix_inverse (A)));
 
   v = gts_vertex_new (klass,
-		      Ai[0][0]*b[0] + Ai[0][1]*b[1] + Ai[0][2]*b[2],
-		      Ai[1][0]*b[0] + Ai[1][1]*b[1] + Ai[1][2]*b[2],
-		      Ai[2][0]*b[0] + Ai[2][1]*b[1] + Ai[2][2]*b[2]);
+          Ai[0][0]*b[0] + Ai[0][1]*b[1] + Ai[0][2]*b[2],
+          Ai[1][0]*b[0] + Ai[1][1]*b[1] + Ai[1][2]*b[2],
+          Ai[2][0]*b[0] + Ai[2][1]*b[1] + Ai[2][2]*b[2]);
 
   gts_matrix_destroy (A);
   gts_matrix_destroy (Ai);
@@ -492,7 +492,7 @@ GtsVertex * gts_volume_optimized_vertex (GtsEdge * edge,
  * gts_volume_optimized_vertex().
  */
 gdouble gts_volume_optimized_cost (GtsEdge * e, 
-				   GtsVolumeOptimizedParams * params)
+           GtsVolumeOptimizedParams * params)
 {
   GtsVertex * v;
   gdouble cost;
@@ -504,11 +504,11 @@ gdouble gts_volume_optimized_cost (GtsEdge * e,
   v = gts_volume_optimized_vertex (e, gts_vertex_class (), params);
 
   length2 = gts_point_distance2 (GTS_POINT (GTS_SEGMENT (e)->v1), 
-				 GTS_POINT (GTS_SEGMENT (e)->v2));
+         GTS_POINT (GTS_SEGMENT (e)->v2));
   cost = 
-    params->volume_weight*edge_volume_cost (e, v) +
-    params->boundary_weight*length2*edge_boundary_cost (e, v) +
-    params->shape_weight*length2*length2*edge_shape_cost (e, v);
+  params->volume_weight*edge_volume_cost (e, v) +
+  params->boundary_weight*length2*edge_boundary_cost (e, v) +
+  params->shape_weight*length2*length2*edge_shape_cost (e, v);
   gts_object_destroy (GTS_OBJECT (v));
 
   return cost;

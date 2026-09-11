@@ -33,46 +33,46 @@
 
 /*int main( int argc, char *argv[] )
 {
-	//int k;
-	//std::cin >> k;
+  //int k;
+  //std::cin >> k;
 
-	CModelBase model;
-	const CAnalysisType analysis;
-	bool bWriteInputFiles = true;
-	bool bWriteQuadDat = true;
-	bool bWriteOutputStreamFile = true;
-	const QString strTempPath = "tmp_path";
+  CModelBase model;
+  const CAnalysisType analysis;
+  bool bWriteInputFiles = true;
+  bool bWriteQuadDat = true;
+  bool bWriteOutputStreamFile = true;
+  const QString strTempPath = "tmp_path";
 
-	QApplication* qapp = new QApplication( argc, argv ); // Needed
+  QApplication* qapp = new QApplication( argc, argv ); // Needed
 
-	CDianaRunController controller(	model,
-									analysis,
-									bWriteInputFiles,
-									bWriteQuadDat,
-									bWriteOutputStreamFile,
-									strTempPath );
+  CDianaRunController controller(	model,
+                  analysis,
+                  bWriteInputFiles,
+                  bWriteQuadDat,
+                  bWriteOutputStreamFile,
+                  strTempPath );
 
 
-	//------------------------
+  //------------------------
 
-	const QString getPathName = "path_name";
-	CExecuteDianaDialogQt* exe_diana_dlg = new CExecuteDianaDialogQt();
-	CDianaXWrapper* dianaXWrapper = new CDianaXWrapper( exe_diana_dlg );
-	const std::string title = "title";
-	CSaveModel saveModel;
-	CRetrieveDianaFileNames retrieveDianaFileNames;
-	dia::IAnalysisStatusContainer *pAnalysisStatusContainer = 0;
-	bool bSilent = false;
+  const QString getPathName = "path_name";
+  CExecuteDianaDialogQt* exe_diana_dlg = new CExecuteDianaDialogQt();
+  CDianaXWrapper* dianaXWrapper = new CDianaXWrapper( exe_diana_dlg );
+  const std::string title = "title";
+  CSaveModel saveModel;
+  CRetrieveDianaFileNames retrieveDianaFileNames;
+  dia::IAnalysisStatusContainer *pAnalysisStatusContainer = 0;
+  bool bSilent = false;
 
-	controller.Run(	getPathName,
-					dianaXWrapper,
-					title,
-					saveModel,
-					retrieveDianaFileNames,
-					pAnalysisStatusContainer,
-					bSilent);
+  controller.Run(	getPathName,
+          dianaXWrapper,
+          title,
+          saveModel,
+          retrieveDianaFileNames,
+          pAnalysisStatusContainer,
+          bSilent);
 
-	return 0;
+  return 0;
 }*/
 
 //#include <QtCore\QtDebug>
@@ -88,31 +88,31 @@
 QFile g_qdebug_out_file;
 void qdebug_msg_handler( QtMsgType type, const QMessageLogContext & context, const QString & msg )
 {
-    QString txt;
+  QString txt;
 
-	//QString s_time = QDateTime::currentDateTime().toTimeSpec(Qt::OffsetFromUTC).toString(Qt::ISODate);
-	QString s_time = QDateTime::currentDateTime().toString("yyyy-MM-dd, hh:mm:ss");
+  //QString s_time = QDateTime::currentDateTime().toTimeSpec(Qt::OffsetFromUTC).toString(Qt::ISODate);
+  QString s_time = QDateTime::currentDateTime().toString("yyyy-MM-dd, hh:mm:ss");
 
-    switch (type) 
-	{
-		// (%s:%u, %s)
-		// context.file, context.line, context.function
-		case QtDebugMsg:	txt = QString("Debug: %1: %2").arg( s_time, msg); break;
-		case QtWarningMsg:	txt = QString("Warning: %1").arg(msg); break;
-		case QtCriticalMsg: txt = QString("Critical: %1").arg(msg); break;
-		case QtFatalMsg:	txt = QString("Fatal: %1").arg(msg); break;
-    }
-    
-    g_qdebug_out_file.open(QIODevice::WriteOnly | QIODevice::Append);
-    QTextStream ts( &g_qdebug_out_file );
-    ts << txt << endl;
-	g_qdebug_out_file.close(); // ????
+  switch (type) 
+  {
+    // (%s:%u, %s)
+    // context.file, context.line, context.function
+    case QtDebugMsg:	txt = QString("Debug: %1: %2").arg( s_time, msg); break;
+    case QtWarningMsg:	txt = QString("Warning: %1").arg(msg); break;
+    case QtCriticalMsg: txt = QString("Critical: %1").arg(msg); break;
+    case QtFatalMsg:	txt = QString("Fatal: %1").arg(msg); break;
+  }
+  
+  g_qdebug_out_file.open(QIODevice::WriteOnly | QIODevice::Append);
+  QTextStream ts( &g_qdebug_out_file );
+  ts << txt << endl;
+  g_qdebug_out_file.close(); // ????
 }
 
 
 int main(int argc, char *argv[])
 {
-	Printer::multiprocess( true );
+  Printer::multiprocess( true );
 
   //Printer::instance()->file("geomec_diana.log");
   Printer::instance()->file("geomec.log");
@@ -123,14 +123,14 @@ int main(int argc, char *argv[])
   QString id_s;
   if( argc > 1 )
   {
-	  id_s = argv[ 1 ];
+    id_s = argv[ 1 ];
   }
 
-	//QString path = "C:\\Users\\MANEL~1.CAR\\AppData\\Local\\Temp\\dra31952";
-	QString path = "C:\\Users\\MANEL~1.CAR\\AppData\\Local\\Temp\\dra"+id_s;
-	DianaBusClient::run_diana( path );
-	return 0;
-	*/
+  //QString path = "C:\\Users\\MANEL~1.CAR\\AppData\\Local\\Temp\\dra31952";
+  QString path = "C:\\Users\\MANEL~1.CAR\\AppData\\Local\\Temp\\dra"+id_s;
+  DianaBusClient::run_diana( path );
+  return 0;
+  */
 
 //#ifdef KK
 
@@ -149,8 +149,8 @@ int main(int argc, char *argv[])
 
   for (int i = 1; i < argc; ++i)
   {
-    QStringList l = QString(argv[i]).split('=');
-    if (l.size() == 2 && l[0] == "name")
+  QStringList l = QString(argv[i]).split('=');
+  if (l.size() == 2 && l[0] == "name")
       name = l[1];
   }
   Printer::instance()->info(" [DianaApp] > main [pid:%d name:%s]", ppid, name.toStdString().c_str() );

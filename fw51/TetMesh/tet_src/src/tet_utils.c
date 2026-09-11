@@ -8,9 +8,9 @@ extern double ArcCosinus( double arg )
   assert(arg >= -1.01);
   assert(arg <= 1.01);
   if ( arg > 1. ) {
-    arg = 1.;
+  arg = 1.;
   } else if ( arg < -1. ) {
-    arg = -1.;
+  arg = -1.;
   }
 
   return acos( arg );
@@ -23,17 +23,17 @@ extern char *UtilInt2String(
 {
   assert( num >= 0 );
   if ( num < 10 ) {
-    sprintf( string, "%1d", num );
+  sprintf( string, "%1d", num );
   } else if ( num < 100 ) {
-    sprintf( string, "%2d", num );
+  sprintf( string, "%2d", num );
   } else if ( num < 1000 ) {
-    sprintf( string, "%3d", num );
+  sprintf( string, "%3d", num );
   } else if ( num < 10000 ) {
-    sprintf( string, "%4d", num );
+  sprintf( string, "%4d", num );
   } else if ( num < 100000 ) {
-    sprintf( string, "%5d", num );
+  sprintf( string, "%5d", num );
   } else {
-    assert( 0 );
+  assert( 0 );
   }
   return string;
 }

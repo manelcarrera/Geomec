@@ -31,7 +31,7 @@ bool CMaterial::validateMaterial() const
 {
   if (m_pCheckStrategy != 0)
   {
-    return (*m_pCheckStrategy) (*this);
+  return (*m_pCheckStrategy) (*this);
   }
 
   return true;
@@ -63,16 +63,16 @@ CMaterial& CMaterial::operator=(const CMaterial& rhs)
   size_t i;
   for(i = 0; i < rhs.m_vcParams.size(); ++i)
   {
-    m_vcParams[i] = rhs.m_vcParams[i]->Clone(*this);
+  m_vcParams[i] = rhs.m_vcParams[i]->Clone(*this);
   }
 #endif
 
   m_vcGroups.reserve(rhs.m_vcGroups.size());
   for(size_t i = 0; i < rhs.m_vcGroups.size(); ++i)
   {
-    m_vcGroups.push_back(CGroup(this, rhs.m_vcGroups[i].Name()));
-    m_vcGroups[i].m_vcParameters = rhs.m_vcGroups[i].m_vcParameters;
-    assert(m_vcGroups[i].m_vcParameters.size() == m_vcGroups[i].m_vcParameters.size());
+  m_vcGroups.push_back(CGroup(this, rhs.m_vcGroups[i].Name()));
+  m_vcGroups[i].m_vcParameters = rhs.m_vcGroups[i].m_vcParameters;
+  assert(m_vcGroups[i].m_vcParameters.size() == m_vcGroups[i].m_vcParameters.size());
   }
 
   m_vcParam2Group = rhs.m_vcParam2Group;
@@ -87,17 +87,17 @@ CMaterial& CMaterial::operator=(const CMaterial& rhs)
 bool CMaterial::operator==(const CMaterial& rhs) const
 {
   if(m_strName        != rhs.m_strName)
-    return false;
+  return false;
   if(m_nMaterialModel != rhs.m_nMaterialModel)
-    return false;
+  return false;
   if(m_strModelName   != rhs.m_strModelName)
-    return false;
+  return false;
 
   assert(ParameterSize() == rhs.ParameterSize());
   size_t i;
   for(i = 0; i < ParameterSize(); ++i)
   {
-    if(MatParameter(i) != rhs.MatParameter(i))
+  if(MatParameter(i) != rhs.MatParameter(i))
       return false;
   }
 
@@ -158,15 +158,15 @@ CMatParam* CMaterial::MatParameter(const QString& strName)
 {
 #ifdef OLD_N2P
   if(m_mpName2Param.empty())
-    CreateName2ParamMap();
+  CreateName2ParamMap();
 
   TName2ParamMap::const_iterator it = m_mpName2Param.find(strName);
   if(it != m_mpName2Param.end())
-    return it->second;
+  return it->second;
 #else
   for (size_t i = 0; i < ParameterSize(); ++i)
   {
-    if (MatParameter(i).Name() == strName)
+  if (MatParameter(i).Name() == strName)
       return &MatParameter(i);
   }
 #endif
@@ -200,11 +200,11 @@ const CMaterial::CGroup* CMaterial::ParameterGroup(const CMatParam& param) const
 #ifdef OLD_P2G
   TParam2GroupMap::const_iterator it = m_mpParam2Group.find(&param);
   if(it != m_mpParam2Group.end())
-    return it->second;
+  return it->second;
 #else
   for (size_t i = 0; i < ParameterSize(); ++i)
   {
-    if (&MatParameter(i) == &param)
+  if (&MatParameter(i) == &param)
       return m_vcParam2Group[i] >= 0 ? &m_vcGroups[m_vcParam2Group[i]] : 0;
   }
 #endif
@@ -217,11 +217,11 @@ CMaterial::CGroup* CMaterial::ParameterGroup(CMatParam& param)
 #ifdef OLD_P2G
   TParam2GroupMap::const_iterator it = m_mpParam2Group.find(&param);
   if(it != m_mpParam2Group.end())
-    return it->second;
+  return it->second;
 #else
   for (size_t i = 0; i < ParameterSize(); ++i)
   {
-    if (&MatParameter(i) == &param)
+  if (&MatParameter(i) == &param)
       return m_vcParam2Group[i] >= 0 ? &m_vcGroups[m_vcParam2Group[i]] : 0;
   }
 #endif
@@ -235,7 +235,7 @@ void CMaterial::SwitchMaterialModel(CCreator& creator, bool bKeepParamValues)
 
   if(bKeepParamValues)
   {
-    for(size_t i = 0; i < ParameterSize(); ++i)
+  for(size_t i = 0; i < ParameterSize(); ++i)
       mpNameValue.insert(TNameValueMap::value_type(MatParameter(i).Name(), MatParameter(i).Value()));
   }
 
@@ -250,17 +250,17 @@ void CMaterial::SwitchMaterialModel(CCreator& creator, bool bKeepParamValues)
 
   if(bKeepParamValues)
   {
-    for(size_t i = 0; i < ParameterSize(); ++i)
-    {
+  for(size_t i = 0; i < ParameterSize(); ++i)
+  {
       TNameValueMap::iterator it = mpNameValue.find(MatParameter(i).Name());
       if(it != mpNameValue.end())
       {
-        if(MatParameter(i).CheckValue(it->second))
+    if(MatParameter(i).CheckValue(it->second))
           MatParameter(i).LoadValue(it->second);
       }
-    }
+  }
 
-    Finalize();
+  Finalize();
   }
 
   m_nMaterialModel = creator.MaterialModel();
@@ -273,14 +273,14 @@ void CMaterial::RegisterObserver(IObserver& observer)
 {
   // unless we have a lot of observers, it's overkill to sort (which would make this identical to std::set)
   if (std::find(m_vcObservers.begin(), m_vcObservers.end(), &observer) == m_vcObservers.end())
-    m_vcObservers.push_back(&observer);
+  m_vcObservers.push_back(&observer);
 }
 
 void CMaterial::UnregisterObserver(IObserver& observer)
 {
   TObserverVector::iterator it = std::find(m_vcObservers.begin(), m_vcObservers.end(), &observer);
   if (it != m_vcObservers.end())
-    m_vcObservers.erase(it);
+  m_vcObservers.erase(it);
 }
 
 #ifdef OLD_N2P
@@ -289,7 +289,7 @@ void CMaterial::CreateName2ParamMap() const
   assert(m_mpName2Param.empty());
   size_t i;
   for(i = 0; i < m_vcParams.size(); ++i)
-    m_mpName2Param.insert(TName2ParamMap::value_type(m_vcParams[i]->Name(), m_vcParams[i]));
+  m_mpName2Param.insert(TName2ParamMap::value_type(m_vcParams[i]->Name(), m_vcParams[i]));
 }
 #endif
 
@@ -298,7 +298,7 @@ void CMaterial::DestroyParameters()
 {
   size_t i;
   for(i = 0; i < m_vcParams.size(); ++i)
-    delete m_vcParams[i];
+  delete m_vcParams[i];
   m_vcParams.clear();
 }
 #endif
@@ -312,7 +312,7 @@ void CMaterial::DestroyGroups()
 #endif
   //size_t i;
   //for(i = 0; i < m_vcGroups.size(); ++i)
-    //delete m_vcGroups[i];
+  //delete m_vcGroups[i];
   m_vcGroups.clear();
 }
 
@@ -324,7 +324,7 @@ void CMaterial::Finalize()
   static bool bLockRecursion = false;
 #endif
   if(bLockRecursion)
-    return;
+  return;
 
   bLockRecursion = true;
 
@@ -332,9 +332,9 @@ void CMaterial::Finalize()
   size_t i;
   for(i = 0; i <ParameterSize(); ++i)
   {
-    // trigger dependencies
-    QString s;
-    MatParameter(i).ForceValue(MatParameter(i).Value(), s);
+  // trigger dependencies
+  QString s;
+  MatParameter(i).ForceValue(MatParameter(i).Value(), s);
 //    assert(bRet); // must be a valid default
   }
 
@@ -346,13 +346,13 @@ void CMaterial::Modified()
   TObserverVector vcObservers = m_vcObservers; // this might be deleted...
   TObserverVector::iterator it;
   for(it = vcObservers.begin(); it != vcObservers.end(); ++it)
-    (*it)->Modified();
+  (*it)->Modified();
 }
 
 void CMaterial::ForceUnregisterObservers()
 {
   for (TObserverVector::iterator it = m_vcObservers.begin(); it != m_vcObservers.end(); ++it)
-    (*it)->ForcedUnregister();
+  (*it)->ForcedUnregister();
   m_vcObservers.clear();
 }
 
@@ -396,7 +396,7 @@ void CMaterial::CGroup::AddParameter(size_t parent_i)
   // this doesn't work, we reference parameters before they exist?
 #ifdef _DEBUG
   for(size_t i = 0; i < m_vcParameters.size(); ++i)
-    assert(MatParameter(i).Name() != m_mat->MatParameter(parent_i).Name());
+  assert(MatParameter(i).Name() != m_mat->MatParameter(parent_i).Name());
 #endif
 #endif
 
@@ -442,26 +442,26 @@ void CMaterial::CCreator::Add(CMatParam* pParam, const QString& strGroupName)
   if(!strGroupName.isEmpty()) // named group
   {
 #ifndef OLD_P2G
-    long long group_index = -1;
+  long long group_index = -1;
 #endif
 
-    // does group already exist?
-    //CGroup* pGroup = 0;
-    size_t i;
-    for(i = 0; i < mat.m_vcGroups.size(); ++i)
-    {
+  // does group already exist?
+  //CGroup* pGroup = 0;
+  size_t i;
+  for(i = 0; i < mat.m_vcGroups.size(); ++i)
+  {
       if(mat.m_vcGroups[i].Name() == strGroupName)
       {
-        //pGroup = mat.m_vcGroups[i];
+    //pGroup = mat.m_vcGroups[i];
 #ifndef OLD_P2G
-        group_index = i;
+    group_index = i;
 #endif
-        break;
+    break;
       }
-    }
+  }
 
-    if(group_index < 0)
-    {
+  if(group_index < 0)
+  {
       // create new group
       //pGroup = new CGroup(mat, strGroupName);
 #ifndef OLD_P2G
@@ -471,31 +471,31 @@ void CMaterial::CCreator::Add(CMatParam* pParam, const QString& strGroupName)
 
       // add ungrouped parameters we've already encountered to this group also
       for(i = 0; i < m_vcUngrouped.size(); ++i)
-        mat.m_vcGroups[group_index].AddParameter(m_vcUngrouped[i]);
-    }
+    mat.m_vcGroups[group_index].AddParameter(m_vcUngrouped[i]);
+  }
 
-    // add this parameter to the group
-    mat.m_vcGroups[group_index].AddParameter(param_index);
+  // add this parameter to the group
+  mat.m_vcGroups[group_index].AddParameter(param_index);
 
-    // register the group name with the parameter
+  // register the group name with the parameter
 #ifdef OLD_P2G
-    mat.m_mpParam2Group.insert(CMaterial::TParam2GroupMap::value_type(pParam, pGroup));
+  mat.m_mpParam2Group.insert(CMaterial::TParam2GroupMap::value_type(pParam, pGroup));
 #else
-    assert(group_index >= 0);
-    assert(param_index < mat.m_vcParam2Group.size());
-    assert(mat.m_vcParam2Group[param_index] == -1);
-    mat.m_vcParam2Group[param_index] = group_index;
+  assert(group_index >= 0);
+  assert(param_index < mat.m_vcParam2Group.size());
+  assert(mat.m_vcParam2Group[param_index] == -1);
+  mat.m_vcParam2Group[param_index] = group_index;
 #endif
   }
   else // unnamed
   {
-    // add to all groups
-    size_t i;
-    for(i = 0; i < mat.m_vcGroups.size(); ++i)
+  // add to all groups
+  size_t i;
+  for(i = 0; i < mat.m_vcGroups.size(); ++i)
       mat.m_vcGroups[i].AddParameter(param_index);
 
-    // add to vector with ungrouped parameters, so can be added to new groups later
-    m_vcUngrouped.push_back(param_index);
+  // add to vector with ungrouped parameters, so can be added to new groups later
+  m_vcUngrouped.push_back(param_index);
   }
 }
 

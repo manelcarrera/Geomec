@@ -48,30 +48,30 @@ GQuark g_convert_error_quark();
 typedef struct _GIConv *GIConv;
 
 GIConv g_iconv_open   (const gchar  *to_codeset,
-		       const gchar  *from_codeset);
+           const gchar  *from_codeset);
 size_t g_iconv        (GIConv        converter,
-		       gchar       **inbuf,
-		       size_t       *inbytes_left,
-		       gchar       **outbuf,
-		       size_t       *outbytes_left);
+           gchar       **inbuf,
+           size_t       *inbytes_left,
+           gchar       **outbuf,
+           size_t       *outbytes_left);
 gint   g_iconv_close  (GIConv        converter);
 
 
 gchar* g_convert               (const gchar  *str,
-				gint          len,
-				const gchar  *to_codeset,
-				const gchar  *from_codeset,
-				gint         *bytes_read,
-				gint         *bytes_written,
-				GError      **error);
+        gint          len,
+        const gchar  *to_codeset,
+        const gchar  *from_codeset,
+        gint         *bytes_read,
+        gint         *bytes_written,
+        GError      **error);
 gchar* g_convert_with_fallback (const gchar  *str,
-				gint          len,
-				const gchar  *to_codeset,
-				const gchar  *from_codeset,
-				gchar        *fallback,
-				gint         *bytes_read,
-				gint         *bytes_written,
-				GError      **error);
+        gint          len,
+        const gchar  *to_codeset,
+        const gchar  *from_codeset,
+        gchar        *fallback,
+        gint         *bytes_read,
+        gint         *bytes_written,
+        GError      **error);
 
 
 /* Convert between libc's idea of strings and UTF-8.

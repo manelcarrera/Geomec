@@ -17,19 +17,19 @@ public:
   CWellCasingInternalPressure& operator=(const CWellCasingInternalPressure& rhs);
   bool operator==(const CWellCasingInternalPressure& rhs) const;
 
-	virtual unsigned int IconId() const;
-	virtual unsigned int TypeId() const;
+  virtual unsigned int IconId() const;
+  virtual unsigned int TypeId() const;
   virtual bool Less(const CGraphNode& node) const;
 
   virtual QString LoadName() const;
 
   virtual const CWellCasingInternalPressure& PreviousStageLoad() const;
   virtual const CWellCasingInternalPressure& NextStageLoad() const;
-	virtual geo::CPoint Min() const;
-	virtual geo::CPoint Max() const;
+  virtual geo::CPoint Min() const;
+  virtual geo::CPoint Max() const;
   virtual QString TypeName() const;
 
-	virtual bool Empty() const;
+  virtual bool Empty() const;
 
   const CWellCasingInternalPressureComponentRepeater& Repeater() const;
   CWellCasingInternalPressureComponentRepeater& Repeater();
@@ -47,10 +47,10 @@ private:
   class CWellCasingInternalPressureComponentRepeater : public IWellCasingInternalLoadComponentRepeater<TPressure>
   {
   public:
-    CWellCasingInternalPressureComponentRepeater(CWellCasingInternalPressure& parent);
-    CWellCasingInternalPressureComponentRepeater(const CWellCasingInternalPressureComponentRepeater& rhs);
-    virtual unsigned int IconId() const;
-    virtual double UnitFactor(CQuantity::UNIT unit) const;
+  CWellCasingInternalPressureComponentRepeater(CWellCasingInternalPressure& parent);
+  CWellCasingInternalPressureComponentRepeater(const CWellCasingInternalPressureComponentRepeater& rhs);
+  virtual unsigned int IconId() const;
+  virtual double UnitFactor(CQuantity::UNIT unit) const;
   	virtual	QString UnitName(const CQuantity::UNIT unit = CQuantity::SI_UNIT) const;
   	virtual QString ExportLabel() const;
   };
@@ -58,10 +58,10 @@ private:
   class CWellCasingInternalPressureComponentGradient : public IWellCasingInternalLoadComponentGradient<TPressure>
   {
   public:
-    CWellCasingInternalPressureComponentGradient(CWellCasingInternalPressure& parent);
-    CWellCasingInternalPressureComponentGradient(const CWellCasingInternalPressureComponentGradient& rhs);
-    virtual unsigned int IconId() const;
-    virtual double UnitFactor(CQuantity::UNIT unit) const;
+  CWellCasingInternalPressureComponentGradient(CWellCasingInternalPressure& parent);
+  CWellCasingInternalPressureComponentGradient(const CWellCasingInternalPressureComponentGradient& rhs);
+  virtual unsigned int IconId() const;
+  virtual double UnitFactor(CQuantity::UNIT unit) const;
   	virtual	QString UnitName(const CQuantity::UNIT unit = CQuantity::SI_UNIT) const;
   	virtual QString ExportLabel() const;
   };

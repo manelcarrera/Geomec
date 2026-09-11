@@ -12,17 +12,17 @@ CMaterialUndrained::CMaterialUndrained(CMaterialEntry &entry, CLibraryMaterial& 
 
 bool CMaterialUndrained::Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const
 {
-	ftn_double_t ddum;
+  ftn_double_t ddum;
 
-	ddum = (ftn_double_t) ffmat.ParameterValue(IDT_VALUETYPE_POROSITY);
-	PutItem("POROSI", &ddum);
+  ddum = (ftn_double_t) ffmat.ParameterValue(IDT_VALUETYPE_POROSITY);
+  PutItem("POROSI", &ddum);
 
-	ddum = (ftn_double_t) (ffmat.ParameterValue(IDT_VALUETYPE_FLUID_BULK_MOD) * 1e6);
-	PutItem("BULKF", &ddum);
+  ddum = (ftn_double_t) (ffmat.ParameterValue(IDT_VALUETYPE_FLUID_BULK_MOD) * 1e6);
+  PutItem("BULKF", &ddum);
 
-	SetActive("SKEMPT", FTN_TRUE);
+  SetActive("SKEMPT", FTN_TRUE);
 
-	return IMaterial::Write(ffmat, diarunner);
+  return IMaterial::Write(ffmat, diarunner);
 }
 
 
@@ -39,15 +39,15 @@ bool CMaterialUndrained::WriteFilosParamName(const CFFMaterial &ffmat, dia::IDia
 {
   if (i == 0)
   {
-    strncpy(name, "POROSI", 10);
-    return true;
+  strncpy(name, "POROSI", 10);
+  return true;
   }
   --i;
 
   if (i == 0)
   {
-    strncpy(name, "BULKF", 10);
-    return true;
+  strncpy(name, "BULKF", 10);
+  return true;
   }
   --i;
 

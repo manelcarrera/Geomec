@@ -20,7 +20,7 @@ RESCUEINT64 RescueArrayFragment::NodeCount64()
   RESCUEINT64 myReturn = iCount * jCount;
   if (dimensions == 3)
   {
-    myReturn *= kCount;
+  myReturn *= kCount;
   }
   return myReturn;
 }

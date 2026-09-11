@@ -13,7 +13,7 @@ const CAnalysisType AnalysisType(const std::string &atype)
 {
   CAnalysisType analysisType;
   if ( atype.length() > 1 )
-    analysisType.FromExportCharacter( atype[1]);
+  analysisType.FromExportCharacter( atype[1]);
 
   return analysisType;
 }
@@ -23,7 +23,7 @@ const std::string StripQuotes(const std::string& string)
   std::string stripped(string);
 
   stripped.erase(remove(stripped.begin(), stripped.end(), '\''),
-    stripped.end());
+  stripped.end());
 
   return stripped;
 }
@@ -167,21 +167,21 @@ bool SplitTextTag
   
   if ( ! componentList.empty() )
   {
-    QRegExp compRegExp(
+  QRegExp compRegExp(
       QString("(")
       +QString(componentList.c_str())
       +QString(")($|_)")
       );
 
-    if (compRegExp.indexIn(qTextTag) != -1)
-    {
+  if (compRegExp.indexIn(qTextTag) != -1)
+  {
       int pos= -1;
       if ( (pos= compRegExp.pos(1)) != -1 )
       {
-        baseTag= qTextTag.left(pos).toStdString();
-        component= compRegExp.cap(1).toStdString();
+    baseTag= qTextTag.left(pos).toStdString();
+    component= compRegExp.cap(1).toStdString();
       }
-    }
+  }
   }
   
   // _D followed by one or more digits 
@@ -189,51 +189,51 @@ bool SplitTextTag
 
   if (tsRegExp.indexIn(qTextTag) != -1)
   {
-    int pos= -1;
-    if ( (pos= tsRegExp.pos(1)) != -1 )
-    {
+  int pos= -1;
+  if ( (pos= tsRegExp.pos(1)) != -1 )
+  {
       bool hasTimeStepIndex= false;
       timeStepIndexSize= tsRegExp.cap(1).toStdString().size()+2; //_D
       timeStepIndex= tsRegExp.cap(1).toInt(&hasTimeStepIndex);
       bOk= bOk && hasTimeStepIndex;
       if (baseTag.empty())
       {
-        baseTag= qTextTag.left(pos-2).toStdString(); //_D
+    baseTag= qTextTag.left(pos-2).toStdString(); //_D
       }
-    }
+  }
   }
 
   if ( !analysisTypeList.empty() )
   {
-    const QRegExp atRegExp(
+  const QRegExp atRegExp(
       QString("(")
       +QString(analysisTypeList.c_str())
       +QString(")$")
       );
 
-    if (atRegExp.indexIn(qTextTag) != -1)
-    {
+  if (atRegExp.indexIn(qTextTag) != -1)
+  {
       int pos= -1;
       if ( (pos= atRegExp.pos(1)) != -1 )
       {
-        if ( baseTag.empty() )
-        {
+    if ( baseTag.empty() )
+    {
           baseTag= qTextTag.left(pos).toStdString();
-        }
-        analysisType= atRegExp.cap(1).toStdString();
-      }
     }
+    analysisType= atRegExp.cap(1).toStdString();
+      }
+  }
   }
 
   if ( baseTag.empty() )
-    baseTag= textTag;
+  baseTag= textTag;
 
   if ( bOk )
-    bOk= textTag.size() ==
-    ( baseTag.size()
-    + component.size()
-    + timeStepIndexSize
-    + analysisType.size() );
+  bOk= textTag.size() ==
+  ( baseTag.size()
+  + component.size()
+  + timeStepIndexSize
+  + analysisType.size() );
   
   return bOk;
 }

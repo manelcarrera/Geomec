@@ -17,34 +17,34 @@
 class CModelGeneralPg : public CPropertyPage
 {
 // Construction
-	CGeomecDoc& m_doc;
+  CGeomecDoc& m_doc;
 public:
-	//##ModelId=3BC55D610278
-	CModelGeneralPg(CGeomecDoc &doc);   // standard constructor
+  //##ModelId=3BC55D610278
+  CModelGeneralPg(CGeomecDoc &doc);   // standard constructor
 
 // Dialog Data
-	//{{AFX_DATA(CModelGeneralPg)
-	enum { IDD = IDD_ATTRI_MODEL_GENERAL };
-	CStaticFile	m_stPath;
-	//}}AFX_DATA
+  //{{AFX_DATA(CModelGeneralPg)
+  enum { IDD = IDD_ATTRI_MODEL_GENERAL };
+  CStaticFile	m_stPath;
+  //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CModelGeneralPg)
-	protected:
-	//##ModelId=3BC55D610279
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+  // ClassWizard generated virtual function overrides
+  //{{AFX_VIRTUAL(CModelGeneralPg)
+  protected:
+  //##ModelId=3BC55D610279
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CModelGeneralPg)
-	afx_msg void OnChangeProjectInfo();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+  // Generated message map functions
+  //{{AFX_MSG(CModelGeneralPg)
+  afx_msg void OnChangeProjectInfo();
+  //}}AFX_MSG
+  DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}

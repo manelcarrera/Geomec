@@ -66,66 +66,66 @@ public:
 class LicenseData 
 {
 public:
-	enum LicenseType
-	{
-		NO_LICENSE = -1,
-		DEMO_LICENSE,
-		FULL_LICENSE
-	};
+  enum LicenseType
+  {
+    NO_LICENSE = -1,
+    DEMO_LICENSE,
+    FULL_LICENSE
+  };
 
 
-	LicenseData(const char *  p_csAppName, const char *  p_csAppVersion);
+  LicenseData(const char *  p_csAppName, const char *  p_csAppVersion);
 
-	// Attributes
+  // Attributes
 public:
-	bool  m_bInitialized;
+  bool  m_bInitialized;
 
 protected:
-	static LicenseData* m_pLicenseInstance;
+  static LicenseData* m_pLicenseInstance;
 
-	// Operations
+  // Operations
 public:
-	bool CheckOut(const char * p_pType, const char * p_pVersionNumber);
-	bool CheckOut();
-	void CheckIn();
-	void BorrowLicense( __time64_t p_ctEndDate);
-	// p_pBorrow should be at least EPTFLEXLM_MAX_MESS_LEN characters long.
-	char *GetBorrowList(char* p_pBorrow);
-	bool ReturnBorrowLicense();
-	static LicenseData* CreateInstance (const char *  p_csAppName, const char *  p_csAppVersion);
-	static LicenseData* GetInstance ();
-	static bool DestroyInstance ();
-	virtual bool Initialize ();
-	virtual void SetIntialized (bool p_bInitialized);
-	bool IsInitialized ();
-	LicenseType GetLicenseType() {return m_eLicenseType;}
-	void SetLicenseType(LicenseType p_eLicenseType) {m_eLicenseType = p_eLicenseType;}
-	const char * GetFullLicenseName () {return m_csFullLicense; }
-	void SetFullLicenseName(const char* p_csFullLicense) {m_csFullLicense = p_csFullLicense; }
-	const char * GetDemoLicenseName () {return m_csDemoLicense; }
-	void SetDemoLicenseName(const char* p_csDemoLicense) {m_csDemoLicense = p_csDemoLicense; }
-	bool SetupLicense(const bool p_bChecking, bool p_bLogginOnly = false, bool (*p_GracePeriod)() = NULL);
-	void SetReporter(MessageReporter *p_pReporter);
+  bool CheckOut(const char * p_pType, const char * p_pVersionNumber);
+  bool CheckOut();
+  void CheckIn();
+  void BorrowLicense( __time64_t p_ctEndDate);
+  // p_pBorrow should be at least EPTFLEXLM_MAX_MESS_LEN characters long.
+  char *GetBorrowList(char* p_pBorrow);
+  bool ReturnBorrowLicense();
+  static LicenseData* CreateInstance (const char *  p_csAppName, const char *  p_csAppVersion);
+  static LicenseData* GetInstance ();
+  static bool DestroyInstance ();
+  virtual bool Initialize ();
+  virtual void SetIntialized (bool p_bInitialized);
+  bool IsInitialized ();
+  LicenseType GetLicenseType() {return m_eLicenseType;}
+  void SetLicenseType(LicenseType p_eLicenseType) {m_eLicenseType = p_eLicenseType;}
+  const char * GetFullLicenseName () {return m_csFullLicense; }
+  void SetFullLicenseName(const char* p_csFullLicense) {m_csFullLicense = p_csFullLicense; }
+  const char * GetDemoLicenseName () {return m_csDemoLicense; }
+  void SetDemoLicenseName(const char* p_csDemoLicense) {m_csDemoLicense = p_csDemoLicense; }
+  bool SetupLicense(const bool p_bChecking, bool p_bLogginOnly = false, bool (*p_GracePeriod)() = NULL);
+  void SetReporter(MessageReporter *p_pReporter);
 
 
 
 
-	// Implementation
+  // Implementation
 protected:
-	virtual ~LicenseData();
+  virtual ~LicenseData();
 
 private:
-	const char *		m_csFullLicense;
-	const char *		m_csDemoLicense;
-	const char *		m_csAppName;
-	const char *		m_csAppVersion;
-	int  m_nLicenseCounter;
+  const char *		m_csFullLicense;
+  const char *		m_csDemoLicense;
+  const char *		m_csAppName;
+  const char *		m_csAppVersion;
+  int  m_nLicenseCounter;
 
-	char* GetFeature();
-	bool ReInitAndCheckoutLicense();
-	bool HasLicenseBorrowed();
+  char* GetFeature();
+  bool ReInitAndCheckoutLicense();
+  bool HasLicenseBorrowed();
 
-	LicenseType m_eLicenseType;
-	MessageReporter *m_pReporter;
+  LicenseType m_eLicenseType;
+  MessageReporter *m_pReporter;
 };
 

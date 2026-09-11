@@ -9,19 +9,19 @@
 
 class CVectorDialogBar : public CDialogBar
 {
-	DECLARE_DYNAMIC(CVectorDialogBar)
+  DECLARE_DYNAMIC(CVectorDialogBar)
 
 public:
-	CVectorDialogBar();   // standard constructor
-	virtual ~CVectorDialogBar();
+  CVectorDialogBar();   // standard constructor
+  virtual ~CVectorDialogBar();
 
 // Dialog Data
-	enum { IDD = IDD_VECTOR_DIALOGBAR };
+  enum { IDD = IDD_VECTOR_DIALOGBAR };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-	DECLARE_MESSAGE_MAP()
+  DECLARE_MESSAGE_MAP()
 public:
   CSliderCtrl m_scaleSlider;
   CSliderCtrl m_decimateSlider;

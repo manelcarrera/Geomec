@@ -22,65 +22,65 @@ static char THIS_FILE[]=__FILE__;
 CGraphEntry::CGraphEntry(int nEntryId, unsigned int uIconId, const QString& strInstanceName, CFemAppModel& model)
 : CGraphNode(strInstanceName), m_uIconId(uIconId), m_nEntryId(nEntryId)
 {
-	bool succeeded = model.m_mpEntry.insert(CFemAppModel::CEntryMap::value_type(nEntryId, this)).second;
+  bool succeeded = model.m_mpEntry.insert(CFemAppModel::CEntryMap::value_type(nEntryId, this)).second;
 
-	assert(succeeded);
-	create(&model);
+  assert(succeeded);
+  create(&model);
 }
 
 //##ModelId=3B653D020374
 CGraphEntry::CGraphEntry(int nEntryId, unsigned int uIconId, unsigned int uNameId, CFemAppModel& model)
 : CGraphNode(uNameId), m_uIconId(uIconId), m_nEntryId(nEntryId)
 {
-	bool succeeded = model.m_mpEntry.insert(CFemAppModel::CEntryMap::value_type(nEntryId, this)).second;
+  bool succeeded = model.m_mpEntry.insert(CFemAppModel::CEntryMap::value_type(nEntryId, this)).second;
 
-	assert(succeeded);
-	create(&model);
+  assert(succeeded);
+  create(&model);
 }
 
 //##ModelId=3B653D02037E
 CGraphEntry::~CGraphEntry()
 {
-	Model().m_mpEntry.erase(EntryId());
+  Model().m_mpEntry.erase(EntryId());
 }
 
 //##ModelId=3B653D02036D
 unsigned int CGraphEntry::TypeId() const
 {
-	return 0;
+  return 0;
 }
 
 //##ModelId=3B653D02036F
 unsigned int CGraphEntry::IconId() const
 {
-	return m_uIconId;
+  return m_uIconId;
 }
 
 int CGraphEntry::EntryId() const
 {
-	return m_nEntryId;
+  return m_nEntryId;
 }
 
 bool CGraphEntry::UniqueName(const QString& sName) const
 {
-	TEntryNodeSet stNode = GraphEntryNodes();
-	for(TEntryNodeSet::const_iterator it = stNode.begin(); it != stNode.end(); it++)
-	{
-		if(sName.compare((*it)->Name(), Qt::CaseInsensitive) == 0)
-			return false;
-	}
+  TEntryNodeSet stNode = GraphEntryNodes();
+  for(TEntryNodeSet::const_iterator it = stNode.begin(); it != stNode.end(); it++)
+  {
+    if(sName.compare((*it)->Name(), Qt::CaseInsensitive) == 0)
+      return false;
+  }
 
-	return true;
+  return true;
 }
 
 CFemAppModel& CGraphEntry::Model()
 {
-	return dynamic_cast<CFemAppModel&>(*parent());
+  return dynamic_cast<CFemAppModel&>(*parent());
 }
 
 const CFemAppModel& CGraphEntry::Model() const
 {
-	return dynamic_cast<CFemAppModel&>(*parent());
+  return dynamic_cast<CFemAppModel&>(*parent());
 }
 
 QString CGraphEntry::createUniqueName(const QString& defaultName,
@@ -90,7 +90,7 @@ QString CGraphEntry::createUniqueName(const QString& defaultName,
 
   do
   {
-    uniqueName = defaultName.arg(initialNumber++);
+  uniqueName = defaultName.arg(initialNumber++);
   } while (!UniqueName(uniqueName));
 
   return uniqueName;
@@ -104,8 +104,8 @@ std::pair <QString, QString> CGraphEntry::createUniqueNames(
 
   do
   {
-    uniqueFirstName = firstName.arg(initialNumber);
-    uniqueSecondName = secondName.arg(initialNumber++);
+  uniqueFirstName = firstName.arg(initialNumber);
+  uniqueSecondName = secondName.arg(initialNumber++);
   } while (!UniqueName(uniqueFirstName) || !UniqueName(uniqueSecondName));
 
   return std::make_pair(uniqueFirstName, uniqueSecondName);

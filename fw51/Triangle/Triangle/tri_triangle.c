@@ -588,8 +588,8 @@ struct flipstacker {
   // prevflip (data pointer) is also used to store a function pointer, and that mix is not allowed.
   // needs to be tested on linux too; for now, there are guards in place to only use this on windows
   union {
-    struct flipstacker *data;
-    vertexfunction function;
+  struct flipstacker *data;
+  vertexfunction function;
   } prevflip_union;
 #else
   struct flipstacker *prevflip;               /* Previous flip in the stack. */
@@ -1147,11 +1147,11 @@ int minus1mod3[3] = {2, 0, 1};
 
 #define infect(otri)                                                          \
   (otri).tri[6] = (triangle)                                                  \
-                    ((size_t) (otri).tri[6] | (size_t) 2l)
+          ((size_t) (otri).tri[6] | (size_t) 2l)
 
 #define uninfect(otri)                                                        \
   (otri).tri[6] = (triangle)                                                  \
-                    ((size_t) (otri).tri[6] & ~ (size_t) 2l)
+          ((size_t) (otri).tri[6] & ~ (size_t) 2l)
 
 /* Test a triangle for viral infection.                                      */
 
@@ -1426,9 +1426,9 @@ REAL area;                                      /* The area of the triangle. */
   maxlen = (odlen > maxlen) ? odlen : maxlen;
 
   if (maxlen > 0.05 * (triorg[0] * triorg[0] + triorg[1] * triorg[1]) + 0.02) {
-    return 1;
+  return 1;
   } else {
-    return 0;
+  return 0;
   }
 }
 
@@ -1454,8 +1454,8 @@ int size;
 
   memptr = malloc(size);
   if (memptr == (VOID *) NULL) {
-    printf("Error:  Out of memory.\n");
-    exit(1);
+  printf("Error:  Out of memory.\n");
+  exit(1);
   }
   return(memptr);
 }
@@ -1507,12 +1507,12 @@ void syntax()
 #ifndef CDT_ONLY
   printf("    -r  Refines a previously generated mesh.\n");
   printf(
-    "    -q  Quality mesh generation.  A minimum angle may be specified.\n");
+  "    -q  Quality mesh generation.  A minimum angle may be specified.\n");
   printf("    -a  Applies a maximum triangle area constraint.\n");
   printf("    -u  Applies a user-defined triangle constraint.\n");
 #endif /* not CDT_ONLY */
   printf(
-    "    -A  Applies attributes to identify triangles in certain regions.\n");
+  "    -A  Applies attributes to identify triangles in certain regions.\n");
   printf("    -c  Encloses the convex hull with segments.\n");
   printf("    -w  Weighted Delaunay triangulation.\n");
   printf("    -W  Regular triangulation (lower hull of a height field).\n");
@@ -1543,7 +1543,7 @@ void syntax()
 #ifndef REDUCED
 #ifndef CDT_ONLY
   printf(
-    "    -s  Force segments into mesh by splitting (instead of using CDT).\n");
+  "    -s  Force segments into mesh by splitting (instead of using CDT).\n");
   printf("    -L  Uses Ruppert's diametral spheres, not diametral lenses.\n");
 #endif /* not CDT_ONLY */
   printf("    -C  Check consistency of final mesh.\n");
@@ -3229,196 +3229,196 @@ struct behavior *b;
 
   for (i = STARTINDEX; i < argc; i++) {
 #ifndef TRILIBRARY
-    if (argv[i][0] == '-') {
+  if (argv[i][0] == '-') {
 #endif /* not TRILIBRARY */
       for (j = STARTINDEX; argv[i][j] != '\0'; j++) {
-        if (argv[i][j] == 'p') {
+    if (argv[i][j] == 'p') {
           b->poly = 1;
-	}
+  }
 #ifndef CDT_ONLY
-        if (argv[i][j] == 'r') {
+    if (argv[i][j] == 'r') {
           b->refine = 1;
-	}
-        if (argv[i][j] == 'q') {
+  }
+    if (argv[i][j] == 'q') {
           b->quality = 1;
           if (((argv[i][j + 1] >= '0') && (argv[i][j + 1] <= '9')) ||
               (argv[i][j + 1] == '.')) {
-            k = 0;
-            while (((argv[i][j + 1] >= '0') && (argv[i][j + 1] <= '9')) ||
+      k = 0;
+      while (((argv[i][j + 1] >= '0') && (argv[i][j + 1] <= '9')) ||
                    (argv[i][j + 1] == '.')) {
               j++;
               workstring[k] = argv[i][j];
               k++;
-            }
-            workstring[k] = '\0';
-            b->minangle = (REAL) strtod(workstring, (char **) NULL);
-	  } else {
-            b->minangle = 20.0;
-	  }
-	}
-        if (argv[i][j] == 'a') {
+      }
+      workstring[k] = '\0';
+      b->minangle = (REAL) strtod(workstring, (char **) NULL);
+    } else {
+      b->minangle = 20.0;
+    }
+  }
+    if (argv[i][j] == 'a') {
           b->quality = 1;
           if (((argv[i][j + 1] >= '0') && (argv[i][j + 1] <= '9')) ||
               (argv[i][j + 1] == '.')) {
-            b->fixedarea = 1;
-            k = 0;
-            while (((argv[i][j + 1] >= '0') && (argv[i][j + 1] <= '9')) ||
+      b->fixedarea = 1;
+      k = 0;
+      while (((argv[i][j + 1] >= '0') && (argv[i][j + 1] <= '9')) ||
                    (argv[i][j + 1] == '.')) {
               j++;
               workstring[k] = argv[i][j];
               k++;
-            }
-            workstring[k] = '\0';
-            b->maxarea = (REAL) strtod(workstring, (char **) NULL);
-            if (b->maxarea <= 0.0) {
+      }
+      workstring[k] = '\0';
+      b->maxarea = (REAL) strtod(workstring, (char **) NULL);
+      if (b->maxarea <= 0.0) {
               printf("Error:  Maximum area must be greater than zero.\n");
               exit(1);
-	    }
-	  } else {
-            b->vararea = 1;
-	  }
-	}
-        if (argv[i][j] == 'u') {
+    }
+    } else {
+      b->vararea = 1;
+    }
+  }
+    if (argv[i][j] == 'u') {
           b->quality = 1;
           b->usertest = 1;
-        }
+    }
 #endif /* not CDT_ONLY */
-        if (argv[i][j] == 'A') {
+    if (argv[i][j] == 'A') {
           b->regionattrib = 1;
-        }
-        if (argv[i][j] == 'c') {
+    }
+    if (argv[i][j] == 'c') {
           b->convex = 1;
-        }
-        if (argv[i][j] == 'w') {
+    }
+    if (argv[i][j] == 'w') {
           b->weighted = 1;
-        }
-        if (argv[i][j] == 'W') {
+    }
+    if (argv[i][j] == 'W') {
           b->weighted = 2;
-        }
-        if (argv[i][j] == 'j') {
+    }
+    if (argv[i][j] == 'j') {
           b->jettison = 1;
-        }
-        if (argv[i][j] == 'z') {
+    }
+    if (argv[i][j] == 'z') {
           b->firstnumber = 0;
-        }
-        if (argv[i][j] == 'e') {
+    }
+    if (argv[i][j] == 'e') {
           b->edgesout = 1;
-	}
-        if (argv[i][j] == 'v') {
+  }
+    if (argv[i][j] == 'v') {
           b->voronoi = 1;
-	}
-        if (argv[i][j] == 'n') {
+  }
+    if (argv[i][j] == 'n') {
           b->neighbors = 1;
-	}
-        if (argv[i][j] == 'g') {
+  }
+    if (argv[i][j] == 'g') {
           b->geomview = 1;
-	}
-        if (argv[i][j] == 'B') {
+  }
+    if (argv[i][j] == 'B') {
           b->nobound = 1;
-	}
-        if (argv[i][j] == 'P') {
+  }
+    if (argv[i][j] == 'P') {
           b->nopolywritten = 1;
-	}
-        if (argv[i][j] == 'N') {
+  }
+    if (argv[i][j] == 'N') {
           b->nonodewritten = 1;
-	}
-        if (argv[i][j] == 'E') {
+  }
+    if (argv[i][j] == 'E') {
           b->noelewritten = 1;
-	}
+  }
 #ifndef TRILIBRARY
-        if (argv[i][j] == 'I') {
+    if (argv[i][j] == 'I') {
           b->noiterationnum = 1;
-	}
+  }
 #endif /* not TRILIBRARY */
-        if (argv[i][j] == 'O') {
+    if (argv[i][j] == 'O') {
           b->noholes = 1;
-	}
-        if (argv[i][j] == 'X') {
+  }
+    if (argv[i][j] == 'X') {
           b->noexact = 1;
-	}
-        if (argv[i][j] == 'o') {
+  }
+    if (argv[i][j] == 'o') {
           if (argv[i][j + 1] == '2') {
-            j++;
-            b->order = 2;
+      j++;
+      b->order = 2;
           }
-	}
+  }
 #ifndef CDT_ONLY
-        if (argv[i][j] == 'Y') {
+    if (argv[i][j] == 'Y') {
           b->nobisect++;
-	}
-        if (argv[i][j] == 'S') {
+  }
+    if (argv[i][j] == 'S') {
           b->steiner = 0;
           while ((argv[i][j + 1] >= '0') && (argv[i][j + 1] <= '9')) {
-            j++;
-            b->steiner = b->steiner * 10 + (int) (argv[i][j] - '0');
+      j++;
+      b->steiner = b->steiner * 10 + (int) (argv[i][j] - '0');
           }
-        }
+    }
 #endif /* not CDT_ONLY */
 #ifndef REDUCED
-        if (argv[i][j] == 'i') {
+    if (argv[i][j] == 'i') {
           b->incremental = 1;
-        }
-        if (argv[i][j] == 'F') {
+    }
+    if (argv[i][j] == 'F') {
           b->sweepline = 1;
-        }
+    }
 #endif /* not REDUCED */
-        if (argv[i][j] == 'l') {
+    if (argv[i][j] == 'l') {
           b->dwyer = 0;
-        }
+    }
 #ifndef REDUCED
 #ifndef CDT_ONLY
-        if (argv[i][j] == 's') {
+    if (argv[i][j] == 's') {
           b->splitseg = 1;
-        }
-        if (argv[i][j] == 'L') {
+    }
+    if (argv[i][j] == 'L') {
           b->nolenses = 1;
-        }
+    }
 #endif /* not CDT_ONLY */
-        if (argv[i][j] == 'C') {
+    if (argv[i][j] == 'C') {
           b->docheck = 1;
-        }
+    }
 #endif /* not REDUCED */
-        if (argv[i][j] == 'Q') {
+    if (argv[i][j] == 'Q') {
           b->quiet = 1;
-        }
-        if (argv[i][j] == 'V') {
+    }
+    if (argv[i][j] == 'V') {
           b->verbose++;
-        }
+    }
 #ifndef TRILIBRARY
-        if ((argv[i][j] == 'h') || (argv[i][j] == 'H') ||
-            (argv[i][j] == '?')) {
+    if ((argv[i][j] == 'h') || (argv[i][j] == 'H') ||
+      (argv[i][j] == '?')) {
           info();
-	}
+  }
 #endif /* not TRILIBRARY */
       }
 #ifndef TRILIBRARY
-    } else {
+  } else {
       strncpy(b->innodefilename, argv[i], FILENAMESIZE - 1);
       b->innodefilename[FILENAMESIZE - 1] = '\0';
-    }
+  }
 #endif /* not TRILIBRARY */
   }
 #ifndef TRILIBRARY
   if (b->innodefilename[0] == '\0') {
-    syntax();
+  syntax();
   }
   if (!strcmp(&b->innodefilename[strlen(b->innodefilename) - 5], ".node")) {
-    b->innodefilename[strlen(b->innodefilename) - 5] = '\0';
+  b->innodefilename[strlen(b->innodefilename) - 5] = '\0';
   }
   if (!strcmp(&b->innodefilename[strlen(b->innodefilename) - 5], ".poly")) {
-    b->innodefilename[strlen(b->innodefilename) - 5] = '\0';
-    b->poly = 1;
+  b->innodefilename[strlen(b->innodefilename) - 5] = '\0';
+  b->poly = 1;
   }
 #ifndef CDT_ONLY
   if (!strcmp(&b->innodefilename[strlen(b->innodefilename) - 4], ".ele")) {
-    b->innodefilename[strlen(b->innodefilename) - 4] = '\0';
-    b->refine = 1;
+  b->innodefilename[strlen(b->innodefilename) - 4] = '\0';
+  b->refine = 1;
   }
   if (!strcmp(&b->innodefilename[strlen(b->innodefilename) - 5], ".area")) {
-    b->innodefilename[strlen(b->innodefilename) - 5] = '\0';
-    b->refine = 1;
-    b->quality = 1;
-    b->vararea = 1;
+  b->innodefilename[strlen(b->innodefilename) - 5] = '\0';
+  b->refine = 1;
+  b->quality = 1;
+  b->vararea = 1;
   }
 #endif /* not CDT_ONLY */
 #endif /* not TRILIBRARY */
@@ -3426,34 +3426,34 @@ struct behavior *b;
   b->goodangle = cos(b->minangle * PI / 180.0);
   b->goodangle *= b->goodangle;
   if (b->refine && b->noiterationnum) {
-    printf(
+  printf(
       "Error:  You cannot use the -I switch when refining a triangulation.\n");
-    exit(1);
+  exit(1);
   }
   /* Be careful not to allocate space for element area constraints that */
   /*   will never be assigned any value (other than the default -1.0).  */
   if (!b->refine && !b->poly) {
-    b->vararea = 0;
+  b->vararea = 0;
   }
   /* Be careful not to add an extra attribute to each element unless the */
   /*   input supports it (PSLG in, but not refining a preexisting mesh). */
   if (b->refine || !b->poly) {
-    b->regionattrib = 0;
+  b->regionattrib = 0;
   }
   /* Regular/weighted triangulations are incompatible with PSLGs */
   /*   and meshing.                                              */
   if (b->weighted && (b->poly || b->quality)) {
-    b->weighted = 0;
-    if (!b->quiet) {
+  b->weighted = 0;
+  if (!b->quiet) {
       printf("Warning:  weighted triangulations (-w, -W) are incompatible\n");
       printf("  with PSLGs (-p) and meshing (-q, -a, -u).  Weights ignored.\n"
              );
-    }
+  }
   }
   if (b->jettison && b->nonodewritten && !b->quiet) {
-    printf("Warning:  -j and -N switches are somewhat incompatible.\n");
-    printf("  If any vertices are jettisoned, you will need the output\n");
-    printf("  .node file to reconstruct the new node indices.");
+  printf("Warning:  -j and -N switches are somewhat incompatible.\n");
+  printf("  If any vertices are jettisoned, you will need the output\n");
+  printf("  .node file to reconstruct the new node indices.");
   }
 
 #ifndef TRILIBRARY
@@ -3464,75 +3464,75 @@ struct behavior *b;
   strcpy(workstring, b->innodefilename);
   j = 1;
   while (workstring[j] != '\0') {
-    if ((workstring[j] == '.') && (workstring[j + 1] != '\0')) {
+  if ((workstring[j] == '.') && (workstring[j + 1] != '\0')) {
       increment = j + 1;
-    }
-    j++;
+  }
+  j++;
   }
   meshnumber = 0;
   if (increment > 0) {
-    j = increment;
-    do {
+  j = increment;
+  do {
       if ((workstring[j] >= '0') && (workstring[j] <= '9')) {
-        meshnumber = meshnumber * 10 + (int) (workstring[j] - '0');
+    meshnumber = meshnumber * 10 + (int) (workstring[j] - '0');
       } else {
-        increment = 0;
+    increment = 0;
       }
       j++;
-    } while (workstring[j] != '\0');
+  } while (workstring[j] != '\0');
   }
   if (b->noiterationnum) {
-    strcpy(b->outnodefilename, b->innodefilename);
-    strcpy(b->outelefilename, b->innodefilename);
-    strcpy(b->edgefilename, b->innodefilename);
-    strcpy(b->vnodefilename, b->innodefilename);
-    strcpy(b->vedgefilename, b->innodefilename);
-    strcpy(b->neighborfilename, b->innodefilename);
-    strcpy(b->offfilename, b->innodefilename);
-    strcat(b->outnodefilename, ".node");
-    strcat(b->outelefilename, ".ele");
-    strcat(b->edgefilename, ".edge");
-    strcat(b->vnodefilename, ".v.node");
-    strcat(b->vedgefilename, ".v.edge");
-    strcat(b->neighborfilename, ".neigh");
-    strcat(b->offfilename, ".off");
+  strcpy(b->outnodefilename, b->innodefilename);
+  strcpy(b->outelefilename, b->innodefilename);
+  strcpy(b->edgefilename, b->innodefilename);
+  strcpy(b->vnodefilename, b->innodefilename);
+  strcpy(b->vedgefilename, b->innodefilename);
+  strcpy(b->neighborfilename, b->innodefilename);
+  strcpy(b->offfilename, b->innodefilename);
+  strcat(b->outnodefilename, ".node");
+  strcat(b->outelefilename, ".ele");
+  strcat(b->edgefilename, ".edge");
+  strcat(b->vnodefilename, ".v.node");
+  strcat(b->vedgefilename, ".v.edge");
+  strcat(b->neighborfilename, ".neigh");
+  strcat(b->offfilename, ".off");
   } else if (increment == 0) {
-    strcpy(b->outnodefilename, b->innodefilename);
-    strcpy(b->outpolyfilename, b->innodefilename);
-    strcpy(b->outelefilename, b->innodefilename);
-    strcpy(b->edgefilename, b->innodefilename);
-    strcpy(b->vnodefilename, b->innodefilename);
-    strcpy(b->vedgefilename, b->innodefilename);
-    strcpy(b->neighborfilename, b->innodefilename);
-    strcpy(b->offfilename, b->innodefilename);
-    strcat(b->outnodefilename, ".1.node");
-    strcat(b->outpolyfilename, ".1.poly");
-    strcat(b->outelefilename, ".1.ele");
-    strcat(b->edgefilename, ".1.edge");
-    strcat(b->vnodefilename, ".1.v.node");
-    strcat(b->vedgefilename, ".1.v.edge");
-    strcat(b->neighborfilename, ".1.neigh");
-    strcat(b->offfilename, ".1.off");
+  strcpy(b->outnodefilename, b->innodefilename);
+  strcpy(b->outpolyfilename, b->innodefilename);
+  strcpy(b->outelefilename, b->innodefilename);
+  strcpy(b->edgefilename, b->innodefilename);
+  strcpy(b->vnodefilename, b->innodefilename);
+  strcpy(b->vedgefilename, b->innodefilename);
+  strcpy(b->neighborfilename, b->innodefilename);
+  strcpy(b->offfilename, b->innodefilename);
+  strcat(b->outnodefilename, ".1.node");
+  strcat(b->outpolyfilename, ".1.poly");
+  strcat(b->outelefilename, ".1.ele");
+  strcat(b->edgefilename, ".1.edge");
+  strcat(b->vnodefilename, ".1.v.node");
+  strcat(b->vedgefilename, ".1.v.edge");
+  strcat(b->neighborfilename, ".1.neigh");
+  strcat(b->offfilename, ".1.off");
   } else {
-    workstring[increment] = '%';
-    workstring[increment + 1] = 'd';
-    workstring[increment + 2] = '\0';
-    sprintf(b->outnodefilename, workstring, meshnumber + 1);
-    strcpy(b->outpolyfilename, b->outnodefilename);
-    strcpy(b->outelefilename, b->outnodefilename);
-    strcpy(b->edgefilename, b->outnodefilename);
-    strcpy(b->vnodefilename, b->outnodefilename);
-    strcpy(b->vedgefilename, b->outnodefilename);
-    strcpy(b->neighborfilename, b->outnodefilename);
-    strcpy(b->offfilename, b->outnodefilename);
-    strcat(b->outnodefilename, ".node");
-    strcat(b->outpolyfilename, ".poly");
-    strcat(b->outelefilename, ".ele");
-    strcat(b->edgefilename, ".edge");
-    strcat(b->vnodefilename, ".v.node");
-    strcat(b->vedgefilename, ".v.edge");
-    strcat(b->neighborfilename, ".neigh");
-    strcat(b->offfilename, ".off");
+  workstring[increment] = '%';
+  workstring[increment + 1] = 'd';
+  workstring[increment + 2] = '\0';
+  sprintf(b->outnodefilename, workstring, meshnumber + 1);
+  strcpy(b->outpolyfilename, b->outnodefilename);
+  strcpy(b->outelefilename, b->outnodefilename);
+  strcpy(b->edgefilename, b->outnodefilename);
+  strcpy(b->vnodefilename, b->outnodefilename);
+  strcpy(b->vedgefilename, b->outnodefilename);
+  strcpy(b->neighborfilename, b->outnodefilename);
+  strcpy(b->offfilename, b->outnodefilename);
+  strcat(b->outnodefilename, ".node");
+  strcat(b->outpolyfilename, ".poly");
+  strcat(b->outelefilename, ".ele");
+  strcat(b->edgefilename, ".edge");
+  strcat(b->vnodefilename, ".v.node");
+  strcat(b->vedgefilename, ".v.edge");
+  strcat(b->neighborfilename, ".neigh");
+  strcat(b->offfilename, ".off");
   }
   strcat(b->innodefilename, ".node");
   strcat(b->inpolyfilename, ".poly");
@@ -3578,68 +3578,68 @@ struct otri *t;
          t->orient);
   decode(t->tri[0], printtri);
   if (printtri.tri == m->dummytri) {
-    printf("    [0] = Outer space\n");
+  printf("    [0] = Outer space\n");
   } else {
-    printf("    [0] = x%llx  %d\n", (size_t) printtri.tri,
+  printf("    [0] = x%llx  %d\n", (size_t) printtri.tri,
            printtri.orient);
   }
   decode(t->tri[1], printtri);
   if (printtri.tri == m->dummytri) {
-    printf("    [1] = Outer space\n");
+  printf("    [1] = Outer space\n");
   } else {
-    printf("    [1] = x%llx  %d\n", (size_t) printtri.tri,
+  printf("    [1] = x%llx  %d\n", (size_t) printtri.tri,
            printtri.orient);
   }
   decode(t->tri[2], printtri);
   if (printtri.tri == m->dummytri) {
-    printf("    [2] = Outer space\n");
+  printf("    [2] = Outer space\n");
   } else {
-    printf("    [2] = x%llx  %d\n", (size_t) printtri.tri,
+  printf("    [2] = x%llx  %d\n", (size_t) printtri.tri,
            printtri.orient);
   }
 
   org(*t, printvertex);
   if (printvertex == (vertex) NULL)
-    printf("    Origin[%d] = NULL\n", (t->orient + 1) % 3 + 3);
+  printf("    Origin[%d] = NULL\n", (t->orient + 1) % 3 + 3);
   else
-    printf("    Origin[%d] = x%llx  (%.12g, %.12g)\n",
+  printf("    Origin[%d] = x%llx  (%.12g, %.12g)\n",
            (t->orient + 1) % 3 + 3, (size_t) printvertex,
            printvertex[0], printvertex[1]);
   dest(*t, printvertex);
   if (printvertex == (vertex) NULL)
-    printf("    Dest  [%d] = NULL\n", (t->orient + 2) % 3 + 3);
+  printf("    Dest  [%d] = NULL\n", (t->orient + 2) % 3 + 3);
   else
-    printf("    Dest  [%d] = x%llx  (%.12g, %.12g)\n",
+  printf("    Dest  [%d] = x%llx  (%.12g, %.12g)\n",
            (t->orient + 2) % 3 + 3, (size_t) printvertex,
            printvertex[0], printvertex[1]);
   apex(*t, printvertex);
   if (printvertex == (vertex) NULL)
-    printf("    Apex  [%d] = NULL\n", t->orient + 3);
+  printf("    Apex  [%d] = NULL\n", t->orient + 3);
   else
-    printf("    Apex  [%d] = x%llx  (%.12g, %.12g)\n",
+  printf("    Apex  [%d] = x%llx  (%.12g, %.12g)\n",
            t->orient + 3, (size_t) printvertex,
            printvertex[0], printvertex[1]);
 
   if (b->usesegments) {
-    sdecode(t->tri[6], printsh);
-    if (printsh.ss != m->dummysub) {
+  sdecode(t->tri[6], printsh);
+  if (printsh.ss != m->dummysub) {
       printf("    [6] = x%llx  %d\n", (size_t) printsh.ss,
              printsh.ssorient);
-    }
-    sdecode(t->tri[7], printsh);
-    if (printsh.ss != m->dummysub) {
+  }
+  sdecode(t->tri[7], printsh);
+  if (printsh.ss != m->dummysub) {
       printf("    [7] = x%llx  %d\n", (size_t) printsh.ss,
              printsh.ssorient);
-    }
-    sdecode(t->tri[8], printsh);
-    if (printsh.ss != m->dummysub) {
+  }
+  sdecode(t->tri[8], printsh);
+  if (printsh.ss != m->dummysub) {
       printf("    [8] = x%llx  %d\n", (size_t) printsh.ss,
              printsh.ssorient);
-    }
+  }
   }
 
   if (b->vararea) {
-    printf("    Area constraint:  %.4g\n", areabound(*t));
+  printf("    Area constraint:  %.4g\n", areabound(*t));
   }
 }
 
@@ -3674,46 +3674,46 @@ struct osub *s;
          (size_t) s->ss, s->ssorient, mark(*s));
   sdecode(s->ss[0], printsh);
   if (printsh.ss == m->dummysub) {
-    printf("    [0] = No subsegment\n");
+  printf("    [0] = No subsegment\n");
   } else {
-    printf("    [0] = x%llx  %d\n", (size_t) printsh.ss,
+  printf("    [0] = x%llx  %d\n", (size_t) printsh.ss,
            printsh.ssorient);
   }
   sdecode(s->ss[1], printsh);
   if (printsh.ss == m->dummysub) {
-    printf("    [1] = No subsegment\n");
+  printf("    [1] = No subsegment\n");
   } else {
-    printf("    [1] = x%llx  %d\n", (size_t) printsh.ss,
+  printf("    [1] = x%llx  %d\n", (size_t) printsh.ss,
            printsh.ssorient);
   }
 
   sorg(*s, printvertex);
   if (printvertex == (vertex) NULL)
-    printf("    Origin[%d] = NULL\n", 2 + s->ssorient);
+  printf("    Origin[%d] = NULL\n", 2 + s->ssorient);
   else
-    printf("    Origin[%d] = x%llx  (%.12g, %.12g)\n",
+  printf("    Origin[%d] = x%llx  (%.12g, %.12g)\n",
            2 + s->ssorient, (size_t) printvertex,
            printvertex[0], printvertex[1]);
   sdest(*s, printvertex);
   if (printvertex == (vertex) NULL)
-    printf("    Dest  [%d] = NULL\n", 3 - s->ssorient);
+  printf("    Dest  [%d] = NULL\n", 3 - s->ssorient);
   else
-    printf("    Dest  [%d] = x%llx  (%.12g, %.12g)\n",
+  printf("    Dest  [%d] = x%llx  (%.12g, %.12g)\n",
            3 - s->ssorient, (size_t) printvertex,
            printvertex[0], printvertex[1]);
 
   decode(s->ss[4], printtri);
   if (printtri.tri == m->dummytri) {
-    printf("    [4] = Outer space\n");
+  printf("    [4] = Outer space\n");
   } else {
-    printf("    [4] = x%llx  %d\n", (size_t) printtri.tri,
+  printf("    [4] = x%llx  %d\n", (size_t) printtri.tri,
            printtri.orient);
   }
   decode(s->ss[5], printtri);
   if (printtri.tri == m->dummytri) {
-    printf("    [5] = Outer space\n");
+  printf("    [5] = Outer space\n");
   } else {
-    printf("    [5] = x%llx  %d\n", (size_t) printtri.tri,
+  printf("    [5] = x%llx  %d\n", (size_t) printtri.tri,
            printtri.orient);
   }
 }
@@ -3755,7 +3755,7 @@ struct memorypool *pool;
   alignptr = (size_t) (pool->nowblock + 1);
   /* Align the item on an `alignbytes'-byte boundary. */
   pool->nextitem = (VOID *)
-    (alignptr + (size_t) pool->alignbytes -
+  (alignptr + (size_t) pool->alignbytes -
      (alignptr % (size_t) pool->alignbytes));
   /* There are lots of unallocated items left in this block. */
   pool->unallocateditems = pool->itemsperblock;
@@ -3806,12 +3806,12 @@ int alignment;
   /*   - sizeof(VOID *), so the stack of dead items can be maintained */
   /*       without unaligned accesses.                                */
   if (alignment > wordsize) {
-    pool->alignbytes = alignment;
+  pool->alignbytes = alignment;
   } else {
-    pool->alignbytes = wordsize;
+  pool->alignbytes = wordsize;
   }
   if (sizeof(VOID *) > pool->alignbytes) {
-    pool->alignbytes = sizeof(VOID *);
+  pool->alignbytes = sizeof(VOID *);
   }
   pool->itemwords = ((bytecount + pool->alignbytes - 1) / pool->alignbytes)
                   * (pool->alignbytes / wordsize);
@@ -3843,9 +3843,9 @@ struct memorypool *pool;
 
 {
   while (pool->firstblock != (VOID **) NULL) {
-    pool->nowblock = (VOID **) *(pool->firstblock);
-    trifree((VOID *) pool->firstblock);
-    pool->firstblock = pool->nowblock;
+  pool->nowblock = (VOID **) *(pool->firstblock);
+  trifree((VOID *) pool->firstblock);
+  pool->firstblock = pool->nowblock;
   }
 }
 
@@ -3870,19 +3870,19 @@ struct memorypool *pool;
   /* First check the linked list of dead items.  If the list is not   */
   /*   empty, allocate an item from the list rather than a fresh one. */
   if (pool->deaditemstack != (VOID *) NULL) {
-    newitem = pool->deaditemstack;               /* Take first item in list. */
-    pool->deaditemstack = * (VOID **) pool->deaditemstack;
+  newitem = pool->deaditemstack;               /* Take first item in list. */
+  pool->deaditemstack = * (VOID **) pool->deaditemstack;
   } else {
-    /* Check if there are any free items left in the current block. */
-    if (pool->unallocateditems == 0) {
+  /* Check if there are any free items left in the current block. */
+  if (pool->unallocateditems == 0) {
       /* Check if another block must be allocated. */
       if (*(pool->nowblock) == (VOID *) NULL) {
-        /* Allocate a new block of items, pointed to by the previous block. */
-        newblock = (VOID **) trimalloc(pool->itemsperblock * pool->itembytes +
+    /* Allocate a new block of items, pointed to by the previous block. */
+    newblock = (VOID **) trimalloc(pool->itemsperblock * pool->itembytes +
                                        sizeof(VOID *) + pool->alignbytes);
-        *(pool->nowblock) = (VOID *) newblock;
-        /* The next block pointer is NULL. */
-        *newblock = (VOID *) NULL;
+    *(pool->nowblock) = (VOID *) newblock;
+    /* The next block pointer is NULL. */
+    *newblock = (VOID *) NULL;
       }
       /* Move to the new block. */
       pool->nowblock = (VOID **) *(pool->nowblock);
@@ -3891,21 +3891,21 @@ struct memorypool *pool;
       alignptr = (size_t) (pool->nowblock + 1);
       /* Align the item on an `alignbytes'-byte boundary. */
       pool->nextitem = (VOID *)
-        (alignptr + (size_t) pool->alignbytes -
+    (alignptr + (size_t) pool->alignbytes -
          (alignptr % (size_t) pool->alignbytes));
       /* There are lots of unallocated items left in this block. */
       pool->unallocateditems = pool->itemsperblock;
-    }
-    /* Allocate a new item. */
-    newitem = pool->nextitem;
-    /* Advance `nextitem' pointer to next free item in block. */
-    if (pool->itemwordtype == POINTER) {
+  }
+  /* Allocate a new item. */
+  newitem = pool->nextitem;
+  /* Advance `nextitem' pointer to next free item in block. */
+  if (pool->itemwordtype == POINTER) {
       pool->nextitem = (VOID *) ((VOID **) pool->nextitem + pool->itemwords);
-    } else {
+  } else {
       pool->nextitem = (VOID *) ((REAL *) pool->nextitem + pool->itemwords);
-    }
-    pool->unallocateditems--;
-    pool->maxitems++;
+  }
+  pool->unallocateditems--;
+  pool->maxitems++;
   }
   pool->items++;
   return newitem;
@@ -3958,7 +3958,7 @@ struct memorypool *pool;
   alignptr = (size_t) (pool->pathblock + 1);
   /* Align with item on an `alignbytes'-byte boundary. */
   pool->pathitem = (VOID *)
-    (alignptr + (size_t) pool->alignbytes -
+  (alignptr + (size_t) pool->alignbytes -
      (alignptr % (size_t) pool->alignbytes));
   /* Set the number of items left in the current block. */
   pool->pathitemsleft = pool->itemsperblock;
@@ -3991,27 +3991,27 @@ struct memorypool *pool;
 
   /* Stop upon exhausting the list of items. */
   if (pool->pathitem == pool->nextitem) {
-    return (VOID *) NULL;
+  return (VOID *) NULL;
   }
   /* Check whether any untraversed items remain in the current block. */
   if (pool->pathitemsleft == 0) {
-    /* Find the next block. */
-    pool->pathblock = (VOID **) *(pool->pathblock);
-    /* Find the first item in the block.  Increment by the size of (VOID *). */
-    alignptr = (size_t) (pool->pathblock + 1);
-    /* Align with item on an `alignbytes'-byte boundary. */
-    pool->pathitem = (VOID *)
+  /* Find the next block. */
+  pool->pathblock = (VOID **) *(pool->pathblock);
+  /* Find the first item in the block.  Increment by the size of (VOID *). */
+  alignptr = (size_t) (pool->pathblock + 1);
+  /* Align with item on an `alignbytes'-byte boundary. */
+  pool->pathitem = (VOID *)
       (alignptr + (size_t) pool->alignbytes -
        (alignptr % (size_t) pool->alignbytes));
-    /* Set the number of items left in the current block. */
-    pool->pathitemsleft = pool->itemsperblock;
+  /* Set the number of items left in the current block. */
+  pool->pathitemsleft = pool->itemsperblock;
   }
   newitem = pool->pathitem;
   /* Find the next item in the block. */
   if (pool->itemwordtype == POINTER) {
-    pool->pathitem = (VOID *) ((VOID **) pool->pathitem + pool->itemwords);
+  pool->pathitem = (VOID *) ((VOID **) pool->pathitem + pool->itemwords);
   } else {
-    pool->pathitem = (VOID *) ((REAL *) pool->pathitem + pool->itemwords);
+  pool->pathitem = (VOID *) ((REAL *) pool->pathitem + pool->itemwords);
   }
   pool->pathitemsleft--;
   return newitem;
@@ -4065,7 +4065,7 @@ int subsegwords;
   /* Align `dummytri' on a `triangles.alignbytes'-byte boundary. */
   alignptr = (size_t) m->dummytribase;
   m->dummytri = (triangle *)
-    (alignptr + (size_t) m->triangles.alignbytes -
+  (alignptr + (size_t) m->triangles.alignbytes -
      (alignptr % (size_t) m->triangles.alignbytes));
   /* Initialize the three adjoining triangles to be "outer space."  These  */
   /*   will eventually be changed by various bonding operations, but their */
@@ -4080,36 +4080,36 @@ int subsegwords;
   m->dummytri[5] = (triangle) NULL;
 
   if (b->usesegments) {
-    /* Set up `dummysub', the omnipresent subsegment pointed to by any */
-    /*   triangle side or subsegment end that isn't attached to a real */
-    /*   subsegment.                                                   */
-    m->dummysubbase = (subseg *) trimalloc(subsegwords * sizeof(subseg) +
+  /* Set up `dummysub', the omnipresent subsegment pointed to by any */
+  /*   triangle side or subsegment end that isn't attached to a real */
+  /*   subsegment.                                                   */
+  m->dummysubbase = (subseg *) trimalloc(subsegwords * sizeof(subseg) +
                                            m->subsegs.alignbytes);
-    /* Align `dummysub' on a `subsegs.alignbytes'-byte boundary. */
-    alignptr = (size_t) m->dummysubbase;
-    m->dummysub = (subseg *)
+  /* Align `dummysub' on a `subsegs.alignbytes'-byte boundary. */
+  alignptr = (size_t) m->dummysubbase;
+  m->dummysub = (subseg *)
       (alignptr + (size_t) m->subsegs.alignbytes -
        (alignptr % (size_t) m->subsegs.alignbytes));
-    /* Initialize the two adjoining subsegments to be the omnipresent      */
-    /*   subsegment.  These will eventually be changed by various bonding  */
-    /*   operations, but their values don't really matter, as long as they */
-    /*   can legally be dereferenced.                                      */
-    m->dummysub[0] = (subseg) m->dummysub;
-    m->dummysub[1] = (subseg) m->dummysub;
-    /* Two NULL vertices. */
-    m->dummysub[2] = (subseg) NULL;
-    m->dummysub[3] = (subseg) NULL;
-    /* Initialize the two adjoining triangles to be "outer space." */
-    m->dummysub[4] = (subseg) m->dummytri;
-    m->dummysub[5] = (subseg) m->dummytri;
-    /* Set the boundary marker to zero. */
-    * (int *) (m->dummysub + 6) = 0;
+  /* Initialize the two adjoining subsegments to be the omnipresent      */
+  /*   subsegment.  These will eventually be changed by various bonding  */
+  /*   operations, but their values don't really matter, as long as they */
+  /*   can legally be dereferenced.                                      */
+  m->dummysub[0] = (subseg) m->dummysub;
+  m->dummysub[1] = (subseg) m->dummysub;
+  /* Two NULL vertices. */
+  m->dummysub[2] = (subseg) NULL;
+  m->dummysub[3] = (subseg) NULL;
+  /* Initialize the two adjoining triangles to be "outer space." */
+  m->dummysub[4] = (subseg) m->dummytri;
+  m->dummysub[5] = (subseg) m->dummytri;
+  /* Set the boundary marker to zero. */
+  * (int *) (m->dummysub + 6) = 0;
 
-    /* Initialize the three adjoining subsegments of `dummytri' to be */
-    /*   the omnipresent subsegment.                                  */
-    m->dummytri[6] = (triangle) m->dummysub;
-    m->dummytri[7] = (triangle) m->dummysub;
-    m->dummytri[8] = (triangle) m->dummysub;
+  /* Initialize the three adjoining subsegments of `dummytri' to be */
+  /*   the omnipresent subsegment.                                  */
+  m->dummytri[6] = (triangle) m->dummysub;
+  m->dummytri[7] = (triangle) m->dummysub;
+  m->dummytri[8] = (triangle) m->dummysub;
   }
 }
 
@@ -4138,15 +4138,15 @@ struct behavior *b;
   /*   followed by the vertex type.  Ensure the vertex marker is aligned to */
   /*   a sizeof(int)-byte address.                                          */
   m->vertexmarkindex = ((m->mesh_dim + m->nextras) * sizeof(REAL) +
-                        sizeof(int) - 1) /
+            sizeof(int) - 1) /
                        sizeof(int);
   vertexsize = (m->vertexmarkindex + 2) * sizeof(int);
   if (b->poly) {
-    /* The index within each vertex at which a triangle pointer is found.  */
-    /*   Ensure the pointer is aligned to a sizeof(triangle)-byte address. */
-    m->vertex2triindex = (vertexsize + sizeof(triangle) - 1) /
+  /* The index within each vertex at which a triangle pointer is found.  */
+  /*   Ensure the pointer is aligned to a sizeof(triangle)-byte address. */
+  m->vertex2triindex = (vertexsize + sizeof(triangle) - 1) /
                          sizeof(triangle);
-    vertexsize = (m->vertex2triindex + 1) * sizeof(triangle);
+  vertexsize = (m->vertex2triindex + 1) * sizeof(triangle);
   }
   /* Initialize the pool of vertices. */
   poolinit(&m->vertices, vertexsize, VERTEXPERBLOCK,
@@ -4182,7 +4182,7 @@ struct behavior *b;
   m->highorderindex = 6 + (b->usesegments * 3);
   /* The number of bytes occupied by a triangle. */
   trisize = ((b->order + 1) * (b->order + 2) / 2 + (m->highorderindex - 3)) *
-            sizeof(triangle);
+      sizeof(triangle);
   /* The index within each triangle at which its attributes are found, */
   /*   where the index is measured in REALs.                           */
   m->elemattribindex = (trisize + sizeof(REAL) - 1) / sizeof(REAL);
@@ -4193,9 +4193,9 @@ struct behavior *b;
   /* If triangle attributes or an area bound are needed, increase the number */
   /*   of bytes occupied by a triangle.                                      */
   if (b->vararea) {
-    trisize = (m->areaboundindex + 1) * sizeof(REAL);
+  trisize = (m->areaboundindex + 1) * sizeof(REAL);
   } else if (m->eextras + b->regionattrib > 0) {
-    trisize = m->areaboundindex * sizeof(REAL);
+  trisize = m->areaboundindex * sizeof(REAL);
   }
   /* If a Voronoi diagram or triangle neighbor graph is requested, make    */
   /*   sure there's room to store an integer index in each triangle.  This */
@@ -4203,22 +4203,22 @@ struct behavior *b;
   /*   or attributes or area constraint or extra nodes.                    */
   if ((b->voronoi || b->neighbors) &&
       (trisize < 6 * sizeof(triangle) + sizeof(int))) {
-    trisize = 6 * sizeof(triangle) + sizeof(int);
+  trisize = 6 * sizeof(triangle) + sizeof(int);
   }
   /* Having determined the memory size of a triangle, initialize the pool. */
   poolinit(&m->triangles, trisize, TRIPERBLOCK, POINTER, 4);
 
   if (b->usesegments) {
-    /* Initialize the pool of subsegments.  Take into account all six */
-    /*   pointers and one boundary marker.                            */
-    poolinit(&m->subsegs, 6 * sizeof(triangle) + sizeof(int), SUBSEGPERBLOCK,
+  /* Initialize the pool of subsegments.  Take into account all six */
+  /*   pointers and one boundary marker.                            */
+  poolinit(&m->subsegs, 6 * sizeof(triangle) + sizeof(int), SUBSEGPERBLOCK,
              POINTER, 4);
 
-    /* Initialize the "outer space" triangle and omnipresent subsegment. */
-    dummyinit(m, b, m->triangles.itemwords, m->subsegs.itemwords);
+  /* Initialize the "outer space" triangle and omnipresent subsegment. */
+  dummyinit(m, b, m->triangles.itemwords, m->subsegs.itemwords);
   } else {
-    /* Initialize the "outer space" triangle. */
-    dummyinit(m, b, m->triangles.itemwords, 0);
+  /* Initialize the "outer space" triangle. */
+  dummyinit(m, b, m->triangles.itemwords, 0);
   }
 }
 
@@ -4260,10 +4260,10 @@ struct mesh *m;
   triangle *newtriangle;
 
   do {
-    newtriangle = (triangle *) traverse(&m->triangles);
-    if (newtriangle == (triangle *) NULL) {
+  newtriangle = (triangle *) traverse(&m->triangles);
+  if (newtriangle == (triangle *) NULL) {
       return (triangle *) NULL;
-    }
+  }
   } while (deadtri(newtriangle));                         /* Skip dead ones. */
   return newtriangle;
 }
@@ -4306,10 +4306,10 @@ struct mesh *m;
   subseg *newsubseg;
 
   do {
-    newsubseg = (subseg *) traverse(&m->subsegs);
-    if (newsubseg == (subseg *) NULL) {
+  newsubseg = (subseg *) traverse(&m->subsegs);
+  if (newsubseg == (subseg *) NULL) {
       return (subseg *) NULL;
-    }
+  }
   } while (deadsubseg(newsubseg));                        /* Skip dead ones. */
   return newsubseg;
 }
@@ -4352,10 +4352,10 @@ struct mesh *m;
   vertex newvertex;
 
   do {
-    newvertex = (vertex) traverse(&m->vertices);
-    if (newvertex == (vertex) NULL) {
+  newvertex = (vertex) traverse(&m->vertices);
+  if (newvertex == (vertex) NULL) {
       return (vertex) NULL;
-    }
+  }
   } while (vertextype(newvertex) == DEADVERTEX);          /* Skip dead ones. */
   return newvertex;
 }
@@ -4405,10 +4405,10 @@ struct mesh *m;
   struct badsubseg *newseg;
 
   do {
-    newseg = (struct badsubseg *) traverse(&m->badsubsegs);
-    if (newseg == (struct badsubseg *) NULL) {
+  newseg = (struct badsubseg *) traverse(&m->badsubsegs);
+  if (newseg == (struct badsubseg *) NULL) {
       return (struct badsubseg *) NULL;
-    }
+  }
   } while (newseg->subsegorg == (vertex) NULL);           /* Skip dead ones. */
   return newseg;
 }
@@ -4446,16 +4446,16 @@ int number;
   current = b->firstnumber;
   /* Find the right block. */
   while (current + m->vertices.itemsperblock <= number) {
-    getblock = (VOID **) *getblock;
-    current += m->vertices.itemsperblock;
+  getblock = (VOID **) *getblock;
+  current += m->vertices.itemsperblock;
   }
   /* Now find the right vertex. */
   alignptr = (size_t) (getblock + 1);
   foundvertex = (vertex) (alignptr + (size_t) m->vertices.alignbytes -
                           (alignptr % (size_t) m->vertices.alignbytes));
   while (current < number) {
-    foundvertex += m->vertices.itemwords;
-    current++;
+  foundvertex += m->vertices.itemwords;
+  current++;
   }
   return foundvertex;
 }
@@ -4478,17 +4478,17 @@ struct behavior *b;
   pooldeinit(&m->triangles);
   trifree((VOID *) m->dummytribase);
   if (b->usesegments) {
-    pooldeinit(&m->subsegs);
-    trifree((VOID *) m->dummysubbase);
+  pooldeinit(&m->subsegs);
+  trifree((VOID *) m->dummysubbase);
   }
   pooldeinit(&m->vertices);
 #ifndef CDT_ONLY
   if (b->quality) {
-    pooldeinit(&m->badsubsegs);
-    if ((b->minangle > 0.0) || b->vararea || b->fixedarea || b->usertest) {
+  pooldeinit(&m->badsubsegs);
+  if ((b->minangle > 0.0) || b->vararea || b->fixedarea || b->usertest) {
       pooldeinit(&m->badtriangles);
       pooldeinit(&m->flipstackers);
-    }
+  }
   }
 #endif /* not CDT_ONLY */
 }
@@ -4529,17 +4529,17 @@ struct otri *newotri;
   newotri->tri[4] = (triangle) NULL;
   newotri->tri[5] = (triangle) NULL;
   if (b->usesegments) {
-    /* Initialize the three adjoining subsegments to be the omnipresent */
-    /*   subsegment.                                                    */
-    newotri->tri[6] = (triangle) m->dummysub;
-    newotri->tri[7] = (triangle) m->dummysub;
-    newotri->tri[8] = (triangle) m->dummysub;
+  /* Initialize the three adjoining subsegments to be the omnipresent */
+  /*   subsegment.                                                    */
+  newotri->tri[6] = (triangle) m->dummysub;
+  newotri->tri[7] = (triangle) m->dummysub;
+  newotri->tri[8] = (triangle) m->dummysub;
   }
   for (i = 0; i < m->eextras; i++) {
-    setelemattribute(*newotri, i, 0.0);
+  setelemattribute(*newotri, i, 0.0);
   }
   if (b->vararea) {
-    setareabound(*newotri, -1.0);
+  setareabound(*newotri, -1.0);
   }
 
   newotri->orient = 0;
@@ -4769,13 +4769,13 @@ static void exactinit()
   /*   the previous sum, for machines that round up instead of using exact   */
   /*   rounding.  Not that these routines will work on such machines.)       */
   do {
-    lastcheck = check;
-    epsilon *= half;
-    if (every_other) {
+  lastcheck = check;
+  epsilon *= half;
+  if (every_other) {
       splitter *= 2.0;
-    }
-    every_other = !every_other;
-    check = 1.0 + epsilon;
+  }
+  every_other = !every_other;
+  check = 1.0 + epsilon;
   } while ((check != 1.0) && (check != lastcheck));
   splitter += 1.0;
   /* Error bounds for orientation and incircle tests. */
@@ -4829,57 +4829,57 @@ REAL *h;
   fnow = f[0];
   eindex = findex = 0;
   if ((fnow > enow) == (fnow > -enow)) {
-    Q = enow;
-    enow = e[++eindex];
+  Q = enow;
+  enow = e[++eindex];
   } else {
-    Q = fnow;
-    fnow = f[++findex];
+  Q = fnow;
+  fnow = f[++findex];
   }
   hindex = 0;
   if ((eindex < elen) && (findex < flen)) {
-    if ((fnow > enow) == (fnow > -enow)) {
+  if ((fnow > enow) == (fnow > -enow)) {
       Fast_Two_Sum(enow, Q, Qnew, hh);
       enow = e[++eindex];
-    } else {
+  } else {
       Fast_Two_Sum(fnow, Q, Qnew, hh);
       fnow = f[++findex];
-    }
-    Q = Qnew;
-    if (hh != 0.0) {
+  }
+  Q = Qnew;
+  if (hh != 0.0) {
       h[hindex++] = hh;
-    }
-    while ((eindex < elen) && (findex < flen)) {
+  }
+  while ((eindex < elen) && (findex < flen)) {
       if ((fnow > enow) == (fnow > -enow)) {
-        Two_Sum(Q, enow, Qnew, hh);
-        enow = e[++eindex];
+    Two_Sum(Q, enow, Qnew, hh);
+    enow = e[++eindex];
       } else {
-        Two_Sum(Q, fnow, Qnew, hh);
-        fnow = f[++findex];
+    Two_Sum(Q, fnow, Qnew, hh);
+    fnow = f[++findex];
       }
       Q = Qnew;
       if (hh != 0.0) {
-        h[hindex++] = hh;
+    h[hindex++] = hh;
       }
-    }
+  }
   }
   while (eindex < elen) {
-    Two_Sum(Q, enow, Qnew, hh);
-    enow = e[++eindex];
-    Q = Qnew;
-    if (hh != 0.0) {
+  Two_Sum(Q, enow, Qnew, hh);
+  enow = e[++eindex];
+  Q = Qnew;
+  if (hh != 0.0) {
       h[hindex++] = hh;
-    }
+  }
   }
   while (findex < flen) {
-    Two_Sum(Q, fnow, Qnew, hh);
-    fnow = f[++findex];
-    Q = Qnew;
-    if (hh != 0.0) {
+  Two_Sum(Q, fnow, Qnew, hh);
+  fnow = f[++findex];
+  Q = Qnew;
+  if (hh != 0.0) {
       h[hindex++] = hh;
-    }
+  }
   }
   if ((Q != 0.0) || (hindex == 0)) {
-    h[hindex++] = Q;
+  h[hindex++] = Q;
   }
   return hindex;
 }
@@ -4927,22 +4927,22 @@ REAL *h;
   Two_Product_Presplit(e[0], b, bhi, blo, Q, hh);
   hindex = 0;
   if (hh != 0) {
-    h[hindex++] = hh;
+  h[hindex++] = hh;
   }
   for (eindex = 1; eindex < elen; eindex++) {
-    enow = e[eindex];
-    Two_Product_Presplit(enow, b, bhi, blo, product1, product0);
-    Two_Sum(Q, product0, sum, hh);
-    if (hh != 0) {
+  enow = e[eindex];
+  Two_Product_Presplit(enow, b, bhi, blo, product1, product0);
+  Two_Sum(Q, product0, sum, hh);
+  if (hh != 0) {
       h[hindex++] = hh;
-    }
-    Fast_Two_Sum(product1, sum, Q, hh);
-    if (hh != 0) {
+  }
+  Fast_Two_Sum(product1, sum, Q, hh);
+  if (hh != 0) {
       h[hindex++] = hh;
-    }
+  }
   }
   if ((Q != 0.0) || (hindex == 0)) {
-    h[hindex++] = Q;
+  h[hindex++] = Q;
   }
   return hindex;
 }
@@ -4969,7 +4969,7 @@ REAL *e;
 
   Q = e[0];
   for (eindex = 1; eindex < elen; eindex++) {
-    Q += e[eindex];
+  Q += e[eindex];
   }
   return Q;
 }
@@ -5042,7 +5042,7 @@ REAL detsum;
   det = estimate(4, B);
   errbound = ccwerrboundB * detsum;
   if ((det >= errbound) || (-det >= errbound)) {
-    return det;
+  return det;
   }
 
   Two_Diff_Tail(pa[0], pc[0], acx, acxtail);
@@ -5052,14 +5052,14 @@ REAL detsum;
 
   if ((acxtail == 0.0) && (acytail == 0.0)
       && (bcxtail == 0.0) && (bcytail == 0.0)) {
-    return det;
+  return det;
   }
 
   errbound = ccwerrboundC * detsum + resulterrbound * Absolute(det);
   det += (acx * bcytail + bcy * acxtail)
        - (acy * bcxtail + bcx * acytail);
   if ((det >= errbound) || (-det >= errbound)) {
-    return det;
+  return det;
   }
 
   Two_Product(acxtail, bcy, s1, s0);
@@ -5106,28 +5106,28 @@ vertex pc;
   det = detleft - detright;
 
   if (b->noexact) {
-    return det;
+  return det;
   }
 
   if (detleft > 0.0) {
-    if (detright <= 0.0) {
+  if (detright <= 0.0) {
       return det;
-    } else {
-      detsum = detleft + detright;
-    }
-  } else if (detleft < 0.0) {
-    if (detright >= 0.0) {
-      return det;
-    } else {
-      detsum = -detleft - detright;
-    }
   } else {
-    return det;
+      detsum = detleft + detright;
+  }
+  } else if (detleft < 0.0) {
+  if (detright >= 0.0) {
+      return det;
+  } else {
+      detsum = -detleft - detright;
+  }
+  } else {
+  return det;
   }
 
   errbound = ccwerrboundA * detsum;
   if ((det >= errbound) || (-det >= errbound)) {
-    return det;
+  return det;
   }
 
   return counterclockwiseadapt(pa, pb, pc, detsum);
@@ -5280,7 +5280,7 @@ REAL permanent;
   det = estimate(finlength, fin1);
   errbound = iccerrboundB * permanent;
   if ((det >= errbound) || (-det >= errbound)) {
-    return det;
+  return det;
   }
 
   Two_Diff_Tail(pa[0], pd[0], adx, adxtail);
@@ -5291,7 +5291,7 @@ REAL permanent;
   Two_Diff_Tail(pc[1], pd[1], cdy, cdytail);
   if ((adxtail == 0.0) && (bdxtail == 0.0) && (cdxtail == 0.0)
       && (adytail == 0.0) && (bdytail == 0.0) && (cdytail == 0.0)) {
-    return det;
+  return det;
   }
 
   errbound = iccerrboundC * permanent + resulterrbound * Absolute(det);
@@ -5305,7 +5305,7 @@ REAL permanent;
                                      - (ady * bdxtail + bdx * adytail))
           + 2.0 * (cdx * cdxtail + cdy * cdytail) * (adx * bdy - ady * bdx));
   if ((det >= errbound) || (-det >= errbound)) {
-    return det;
+  return det;
   }
 
   finnow = fin1;
@@ -5313,144 +5313,144 @@ REAL permanent;
 
   if ((bdxtail != 0.0) || (bdytail != 0.0)
       || (cdxtail != 0.0) || (cdytail != 0.0)) {
-    Square(adx, adxadx1, adxadx0);
-    Square(ady, adyady1, adyady0);
-    Two_Two_Sum(adxadx1, adxadx0, adyady1, adyady0, aa3, aa[2], aa[1], aa[0]);
-    aa[3] = aa3;
+  Square(adx, adxadx1, adxadx0);
+  Square(ady, adyady1, adyady0);
+  Two_Two_Sum(adxadx1, adxadx0, adyady1, adyady0, aa3, aa[2], aa[1], aa[0]);
+  aa[3] = aa3;
   }
   if ((cdxtail != 0.0) || (cdytail != 0.0)
       || (adxtail != 0.0) || (adytail != 0.0)) {
-    Square(bdx, bdxbdx1, bdxbdx0);
-    Square(bdy, bdybdy1, bdybdy0);
-    Two_Two_Sum(bdxbdx1, bdxbdx0, bdybdy1, bdybdy0, bb3, bb[2], bb[1], bb[0]);
-    bb[3] = bb3;
+  Square(bdx, bdxbdx1, bdxbdx0);
+  Square(bdy, bdybdy1, bdybdy0);
+  Two_Two_Sum(bdxbdx1, bdxbdx0, bdybdy1, bdybdy0, bb3, bb[2], bb[1], bb[0]);
+  bb[3] = bb3;
   }
   if ((adxtail != 0.0) || (adytail != 0.0)
       || (bdxtail != 0.0) || (bdytail != 0.0)) {
-    Square(cdx, cdxcdx1, cdxcdx0);
-    Square(cdy, cdycdy1, cdycdy0);
-    Two_Two_Sum(cdxcdx1, cdxcdx0, cdycdy1, cdycdy0, cc3, cc[2], cc[1], cc[0]);
-    cc[3] = cc3;
+  Square(cdx, cdxcdx1, cdxcdx0);
+  Square(cdy, cdycdy1, cdycdy0);
+  Two_Two_Sum(cdxcdx1, cdxcdx0, cdycdy1, cdycdy0, cc3, cc[2], cc[1], cc[0]);
+  cc[3] = cc3;
   }
 
   if (adxtail != 0.0) {
-    axtbclen = scale_expansion_zeroelim(4, bc, adxtail, axtbc);
-    temp16alen = scale_expansion_zeroelim(axtbclen, axtbc, 2.0 * adx,
+  axtbclen = scale_expansion_zeroelim(4, bc, adxtail, axtbc);
+  temp16alen = scale_expansion_zeroelim(axtbclen, axtbc, 2.0 * adx,
                                           temp16a);
 
-    axtcclen = scale_expansion_zeroelim(4, cc, adxtail, axtcc);
-    temp16blen = scale_expansion_zeroelim(axtcclen, axtcc, bdy, temp16b);
+  axtcclen = scale_expansion_zeroelim(4, cc, adxtail, axtcc);
+  temp16blen = scale_expansion_zeroelim(axtcclen, axtcc, bdy, temp16b);
 
-    axtbblen = scale_expansion_zeroelim(4, bb, adxtail, axtbb);
-    temp16clen = scale_expansion_zeroelim(axtbblen, axtbb, -cdy, temp16c);
+  axtbblen = scale_expansion_zeroelim(4, bb, adxtail, axtbb);
+  temp16clen = scale_expansion_zeroelim(axtbblen, axtbb, -cdy, temp16c);
 
-    temp32alen = fast_expansion_sum_zeroelim(temp16alen, temp16a,
-                                            temp16blen, temp16b, temp32a);
-    temp48len = fast_expansion_sum_zeroelim(temp16clen, temp16c,
-                                            temp32alen, temp32a, temp48);
-    finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,
-                                            temp48, finother);
-    finswap = finnow; finnow = finother; finother = finswap;
+  temp32alen = fast_expansion_sum_zeroelim(temp16alen, temp16a,
+                      temp16blen, temp16b, temp32a);
+  temp48len = fast_expansion_sum_zeroelim(temp16clen, temp16c,
+                      temp32alen, temp32a, temp48);
+  finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,
+                      temp48, finother);
+  finswap = finnow; finnow = finother; finother = finswap;
   }
   if (adytail != 0.0) {
-    aytbclen = scale_expansion_zeroelim(4, bc, adytail, aytbc);
-    temp16alen = scale_expansion_zeroelim(aytbclen, aytbc, 2.0 * ady,
+  aytbclen = scale_expansion_zeroelim(4, bc, adytail, aytbc);
+  temp16alen = scale_expansion_zeroelim(aytbclen, aytbc, 2.0 * ady,
                                           temp16a);
 
-    aytbblen = scale_expansion_zeroelim(4, bb, adytail, aytbb);
-    temp16blen = scale_expansion_zeroelim(aytbblen, aytbb, cdx, temp16b);
+  aytbblen = scale_expansion_zeroelim(4, bb, adytail, aytbb);
+  temp16blen = scale_expansion_zeroelim(aytbblen, aytbb, cdx, temp16b);
 
-    aytcclen = scale_expansion_zeroelim(4, cc, adytail, aytcc);
-    temp16clen = scale_expansion_zeroelim(aytcclen, aytcc, -bdx, temp16c);
+  aytcclen = scale_expansion_zeroelim(4, cc, adytail, aytcc);
+  temp16clen = scale_expansion_zeroelim(aytcclen, aytcc, -bdx, temp16c);
 
-    temp32alen = fast_expansion_sum_zeroelim(temp16alen, temp16a,
-                                            temp16blen, temp16b, temp32a);
-    temp48len = fast_expansion_sum_zeroelim(temp16clen, temp16c,
-                                            temp32alen, temp32a, temp48);
-    finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,
-                                            temp48, finother);
-    finswap = finnow; finnow = finother; finother = finswap;
+  temp32alen = fast_expansion_sum_zeroelim(temp16alen, temp16a,
+                      temp16blen, temp16b, temp32a);
+  temp48len = fast_expansion_sum_zeroelim(temp16clen, temp16c,
+                      temp32alen, temp32a, temp48);
+  finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,
+                      temp48, finother);
+  finswap = finnow; finnow = finother; finother = finswap;
   }
   if (bdxtail != 0.0) {
-    bxtcalen = scale_expansion_zeroelim(4, ca, bdxtail, bxtca);
-    temp16alen = scale_expansion_zeroelim(bxtcalen, bxtca, 2.0 * bdx,
+  bxtcalen = scale_expansion_zeroelim(4, ca, bdxtail, bxtca);
+  temp16alen = scale_expansion_zeroelim(bxtcalen, bxtca, 2.0 * bdx,
                                           temp16a);
 
-    bxtaalen = scale_expansion_zeroelim(4, aa, bdxtail, bxtaa);
-    temp16blen = scale_expansion_zeroelim(bxtaalen, bxtaa, cdy, temp16b);
+  bxtaalen = scale_expansion_zeroelim(4, aa, bdxtail, bxtaa);
+  temp16blen = scale_expansion_zeroelim(bxtaalen, bxtaa, cdy, temp16b);
 
-    bxtcclen = scale_expansion_zeroelim(4, cc, bdxtail, bxtcc);
-    temp16clen = scale_expansion_zeroelim(bxtcclen, bxtcc, -ady, temp16c);
+  bxtcclen = scale_expansion_zeroelim(4, cc, bdxtail, bxtcc);
+  temp16clen = scale_expansion_zeroelim(bxtcclen, bxtcc, -ady, temp16c);
 
-    temp32alen = fast_expansion_sum_zeroelim(temp16alen, temp16a,
-                                            temp16blen, temp16b, temp32a);
-    temp48len = fast_expansion_sum_zeroelim(temp16clen, temp16c,
-                                            temp32alen, temp32a, temp48);
-    finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,
-                                            temp48, finother);
-    finswap = finnow; finnow = finother; finother = finswap;
+  temp32alen = fast_expansion_sum_zeroelim(temp16alen, temp16a,
+                      temp16blen, temp16b, temp32a);
+  temp48len = fast_expansion_sum_zeroelim(temp16clen, temp16c,
+                      temp32alen, temp32a, temp48);
+  finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,
+                      temp48, finother);
+  finswap = finnow; finnow = finother; finother = finswap;
   }
   if (bdytail != 0.0) {
-    bytcalen = scale_expansion_zeroelim(4, ca, bdytail, bytca);
-    temp16alen = scale_expansion_zeroelim(bytcalen, bytca, 2.0 * bdy,
+  bytcalen = scale_expansion_zeroelim(4, ca, bdytail, bytca);
+  temp16alen = scale_expansion_zeroelim(bytcalen, bytca, 2.0 * bdy,
                                           temp16a);
 
-    bytcclen = scale_expansion_zeroelim(4, cc, bdytail, bytcc);
-    temp16blen = scale_expansion_zeroelim(bytcclen, bytcc, adx, temp16b);
+  bytcclen = scale_expansion_zeroelim(4, cc, bdytail, bytcc);
+  temp16blen = scale_expansion_zeroelim(bytcclen, bytcc, adx, temp16b);
 
-    bytaalen = scale_expansion_zeroelim(4, aa, bdytail, bytaa);
-    temp16clen = scale_expansion_zeroelim(bytaalen, bytaa, -cdx, temp16c);
+  bytaalen = scale_expansion_zeroelim(4, aa, bdytail, bytaa);
+  temp16clen = scale_expansion_zeroelim(bytaalen, bytaa, -cdx, temp16c);
 
-    temp32alen = fast_expansion_sum_zeroelim(temp16alen, temp16a,
-                                            temp16blen, temp16b, temp32a);
-    temp48len = fast_expansion_sum_zeroelim(temp16clen, temp16c,
-                                            temp32alen, temp32a, temp48);
-    finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,
-                                            temp48, finother);
-    finswap = finnow; finnow = finother; finother = finswap;
+  temp32alen = fast_expansion_sum_zeroelim(temp16alen, temp16a,
+                      temp16blen, temp16b, temp32a);
+  temp48len = fast_expansion_sum_zeroelim(temp16clen, temp16c,
+                      temp32alen, temp32a, temp48);
+  finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,
+                      temp48, finother);
+  finswap = finnow; finnow = finother; finother = finswap;
   }
   if (cdxtail != 0.0) {
-    cxtablen = scale_expansion_zeroelim(4, ab, cdxtail, cxtab);
-    temp16alen = scale_expansion_zeroelim(cxtablen, cxtab, 2.0 * cdx,
+  cxtablen = scale_expansion_zeroelim(4, ab, cdxtail, cxtab);
+  temp16alen = scale_expansion_zeroelim(cxtablen, cxtab, 2.0 * cdx,
                                           temp16a);
 
-    cxtbblen = scale_expansion_zeroelim(4, bb, cdxtail, cxtbb);
-    temp16blen = scale_expansion_zeroelim(cxtbblen, cxtbb, ady, temp16b);
+  cxtbblen = scale_expansion_zeroelim(4, bb, cdxtail, cxtbb);
+  temp16blen = scale_expansion_zeroelim(cxtbblen, cxtbb, ady, temp16b);
 
-    cxtaalen = scale_expansion_zeroelim(4, aa, cdxtail, cxtaa);
-    temp16clen = scale_expansion_zeroelim(cxtaalen, cxtaa, -bdy, temp16c);
+  cxtaalen = scale_expansion_zeroelim(4, aa, cdxtail, cxtaa);
+  temp16clen = scale_expansion_zeroelim(cxtaalen, cxtaa, -bdy, temp16c);
 
-    temp32alen = fast_expansion_sum_zeroelim(temp16alen, temp16a,
-                                            temp16blen, temp16b, temp32a);
-    temp48len = fast_expansion_sum_zeroelim(temp16clen, temp16c,
-                                            temp32alen, temp32a, temp48);
-    finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,
-                                            temp48, finother);
-    finswap = finnow; finnow = finother; finother = finswap;
+  temp32alen = fast_expansion_sum_zeroelim(temp16alen, temp16a,
+                      temp16blen, temp16b, temp32a);
+  temp48len = fast_expansion_sum_zeroelim(temp16clen, temp16c,
+                      temp32alen, temp32a, temp48);
+  finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,
+                      temp48, finother);
+  finswap = finnow; finnow = finother; finother = finswap;
   }
   if (cdytail != 0.0) {
-    cytablen = scale_expansion_zeroelim(4, ab, cdytail, cytab);
-    temp16alen = scale_expansion_zeroelim(cytablen, cytab, 2.0 * cdy,
+  cytablen = scale_expansion_zeroelim(4, ab, cdytail, cytab);
+  temp16alen = scale_expansion_zeroelim(cytablen, cytab, 2.0 * cdy,
                                           temp16a);
 
-    cytaalen = scale_expansion_zeroelim(4, aa, cdytail, cytaa);
-    temp16blen = scale_expansion_zeroelim(cytaalen, cytaa, bdx, temp16b);
+  cytaalen = scale_expansion_zeroelim(4, aa, cdytail, cytaa);
+  temp16blen = scale_expansion_zeroelim(cytaalen, cytaa, bdx, temp16b);
 
-    cytbblen = scale_expansion_zeroelim(4, bb, cdytail, cytbb);
-    temp16clen = scale_expansion_zeroelim(cytbblen, cytbb, -adx, temp16c);
+  cytbblen = scale_expansion_zeroelim(4, bb, cdytail, cytbb);
+  temp16clen = scale_expansion_zeroelim(cytbblen, cytbb, -adx, temp16c);
 
-    temp32alen = fast_expansion_sum_zeroelim(temp16alen, temp16a,
-                                            temp16blen, temp16b, temp32a);
-    temp48len = fast_expansion_sum_zeroelim(temp16clen, temp16c,
-                                            temp32alen, temp32a, temp48);
-    finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,
-                                            temp48, finother);
-    finswap = finnow; finnow = finother; finother = finswap;
+  temp32alen = fast_expansion_sum_zeroelim(temp16alen, temp16a,
+                      temp16blen, temp16b, temp32a);
+  temp48len = fast_expansion_sum_zeroelim(temp16clen, temp16c,
+                      temp32alen, temp32a, temp48);
+  finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,
+                      temp48, finother);
+  finswap = finnow; finnow = finother; finother = finswap;
   }
 
   if ((adxtail != 0.0) || (adytail != 0.0)) {
-    if ((bdxtail != 0.0) || (bdytail != 0.0)
-        || (cdxtail != 0.0) || (cdytail != 0.0)) {
+  if ((bdxtail != 0.0) || (bdytail != 0.0)
+    || (cdxtail != 0.0) || (cdytail != 0.0)) {
       Two_Product(bdxtail, cdy, ti1, ti0);
       Two_Product(bdx, cdytail, tj1, tj0);
       Two_Two_Sum(ti1, ti0, tj1, tj0, u3, u[2], u[1], u[0]);
@@ -5468,47 +5468,47 @@ REAL permanent;
       Two_Two_Diff(ti1, ti0, tj1, tj0, bctt3, bctt[2], bctt[1], bctt[0]);
       bctt[3] = bctt3;
       bcttlen = 4;
-    } else {
+  } else {
       bct[0] = 0.0;
       bctlen = 1;
       bctt[0] = 0.0;
       bcttlen = 1;
-    }
+  }
 
-    if (adxtail != 0.0) {
+  if (adxtail != 0.0) {
       temp16alen = scale_expansion_zeroelim(axtbclen, axtbc, adxtail, temp16a);
       axtbctlen = scale_expansion_zeroelim(bctlen, bct, adxtail, axtbct);
       temp32alen = scale_expansion_zeroelim(axtbctlen, axtbct, 2.0 * adx,
-                                            temp32a);
+                      temp32a);
       temp48len = fast_expansion_sum_zeroelim(temp16alen, temp16a,
                                               temp32alen, temp32a, temp48);
       finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,
                                               temp48, finother);
       finswap = finnow; finnow = finother; finother = finswap;
       if (bdytail != 0.0) {
-        temp8len = scale_expansion_zeroelim(4, cc, adxtail, temp8);
-        temp16alen = scale_expansion_zeroelim(temp8len, temp8, bdytail,
+    temp8len = scale_expansion_zeroelim(4, cc, adxtail, temp8);
+    temp16alen = scale_expansion_zeroelim(temp8len, temp8, bdytail,
                                               temp16a);
-        finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp16alen,
-                                                temp16a, finother);
-        finswap = finnow; finnow = finother; finother = finswap;
+    finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp16alen,
+                        temp16a, finother);
+    finswap = finnow; finnow = finother; finother = finswap;
       }
       if (cdytail != 0.0) {
-        temp8len = scale_expansion_zeroelim(4, bb, -adxtail, temp8);
-        temp16alen = scale_expansion_zeroelim(temp8len, temp8, cdytail,
+    temp8len = scale_expansion_zeroelim(4, bb, -adxtail, temp8);
+    temp16alen = scale_expansion_zeroelim(temp8len, temp8, cdytail,
                                               temp16a);
-        finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp16alen,
-                                                temp16a, finother);
-        finswap = finnow; finnow = finother; finother = finswap;
+    finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp16alen,
+                        temp16a, finother);
+    finswap = finnow; finnow = finother; finother = finswap;
       }
 
       temp32alen = scale_expansion_zeroelim(axtbctlen, axtbct, adxtail,
-                                            temp32a);
+                      temp32a);
       axtbcttlen = scale_expansion_zeroelim(bcttlen, bctt, adxtail, axtbctt);
       temp16alen = scale_expansion_zeroelim(axtbcttlen, axtbctt, 2.0 * adx,
-                                            temp16a);
+                      temp16a);
       temp16blen = scale_expansion_zeroelim(axtbcttlen, axtbctt, adxtail,
-                                            temp16b);
+                      temp16b);
       temp32blen = fast_expansion_sum_zeroelim(temp16alen, temp16a,
                                               temp16blen, temp16b, temp32b);
       temp64len = fast_expansion_sum_zeroelim(temp32alen, temp32a,
@@ -5516,12 +5516,12 @@ REAL permanent;
       finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp64len,
                                               temp64, finother);
       finswap = finnow; finnow = finother; finother = finswap;
-    }
-    if (adytail != 0.0) {
+  }
+  if (adytail != 0.0) {
       temp16alen = scale_expansion_zeroelim(aytbclen, aytbc, adytail, temp16a);
       aytbctlen = scale_expansion_zeroelim(bctlen, bct, adytail, aytbct);
       temp32alen = scale_expansion_zeroelim(aytbctlen, aytbct, 2.0 * ady,
-                                            temp32a);
+                      temp32a);
       temp48len = fast_expansion_sum_zeroelim(temp16alen, temp16a,
                                               temp32alen, temp32a, temp48);
       finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,
@@ -5530,12 +5530,12 @@ REAL permanent;
 
 
       temp32alen = scale_expansion_zeroelim(aytbctlen, aytbct, adytail,
-                                            temp32a);
+                      temp32a);
       aytbcttlen = scale_expansion_zeroelim(bcttlen, bctt, adytail, aytbctt);
       temp16alen = scale_expansion_zeroelim(aytbcttlen, aytbctt, 2.0 * ady,
-                                            temp16a);
+                      temp16a);
       temp16blen = scale_expansion_zeroelim(aytbcttlen, aytbctt, adytail,
-                                            temp16b);
+                      temp16b);
       temp32blen = fast_expansion_sum_zeroelim(temp16alen, temp16a,
                                               temp16blen, temp16b, temp32b);
       temp64len = fast_expansion_sum_zeroelim(temp32alen, temp32a,
@@ -5543,11 +5543,11 @@ REAL permanent;
       finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp64len,
                                               temp64, finother);
       finswap = finnow; finnow = finother; finother = finswap;
-    }
+  }
   }
   if ((bdxtail != 0.0) || (bdytail != 0.0)) {
-    if ((cdxtail != 0.0) || (cdytail != 0.0)
-        || (adxtail != 0.0) || (adytail != 0.0)) {
+  if ((cdxtail != 0.0) || (cdytail != 0.0)
+    || (adxtail != 0.0) || (adytail != 0.0)) {
       Two_Product(cdxtail, ady, ti1, ti0);
       Two_Product(cdx, adytail, tj1, tj0);
       Two_Two_Sum(ti1, ti0, tj1, tj0, u3, u[2], u[1], u[0]);
@@ -5565,47 +5565,47 @@ REAL permanent;
       Two_Two_Diff(ti1, ti0, tj1, tj0, catt3, catt[2], catt[1], catt[0]);
       catt[3] = catt3;
       cattlen = 4;
-    } else {
+  } else {
       cat[0] = 0.0;
       catlen = 1;
       catt[0] = 0.0;
       cattlen = 1;
-    }
+  }
 
-    if (bdxtail != 0.0) {
+  if (bdxtail != 0.0) {
       temp16alen = scale_expansion_zeroelim(bxtcalen, bxtca, bdxtail, temp16a);
       bxtcatlen = scale_expansion_zeroelim(catlen, cat, bdxtail, bxtcat);
       temp32alen = scale_expansion_zeroelim(bxtcatlen, bxtcat, 2.0 * bdx,
-                                            temp32a);
+                      temp32a);
       temp48len = fast_expansion_sum_zeroelim(temp16alen, temp16a,
                                               temp32alen, temp32a, temp48);
       finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,
                                               temp48, finother);
       finswap = finnow; finnow = finother; finother = finswap;
       if (cdytail != 0.0) {
-        temp8len = scale_expansion_zeroelim(4, aa, bdxtail, temp8);
-        temp16alen = scale_expansion_zeroelim(temp8len, temp8, cdytail,
+    temp8len = scale_expansion_zeroelim(4, aa, bdxtail, temp8);
+    temp16alen = scale_expansion_zeroelim(temp8len, temp8, cdytail,
                                               temp16a);
-        finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp16alen,
-                                                temp16a, finother);
-        finswap = finnow; finnow = finother; finother = finswap;
+    finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp16alen,
+                        temp16a, finother);
+    finswap = finnow; finnow = finother; finother = finswap;
       }
       if (adytail != 0.0) {
-        temp8len = scale_expansion_zeroelim(4, cc, -bdxtail, temp8);
-        temp16alen = scale_expansion_zeroelim(temp8len, temp8, adytail,
+    temp8len = scale_expansion_zeroelim(4, cc, -bdxtail, temp8);
+    temp16alen = scale_expansion_zeroelim(temp8len, temp8, adytail,
                                               temp16a);
-        finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp16alen,
-                                                temp16a, finother);
-        finswap = finnow; finnow = finother; finother = finswap;
+    finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp16alen,
+                        temp16a, finother);
+    finswap = finnow; finnow = finother; finother = finswap;
       }
 
       temp32alen = scale_expansion_zeroelim(bxtcatlen, bxtcat, bdxtail,
-                                            temp32a);
+                      temp32a);
       bxtcattlen = scale_expansion_zeroelim(cattlen, catt, bdxtail, bxtcatt);
       temp16alen = scale_expansion_zeroelim(bxtcattlen, bxtcatt, 2.0 * bdx,
-                                            temp16a);
+                      temp16a);
       temp16blen = scale_expansion_zeroelim(bxtcattlen, bxtcatt, bdxtail,
-                                            temp16b);
+                      temp16b);
       temp32blen = fast_expansion_sum_zeroelim(temp16alen, temp16a,
                                               temp16blen, temp16b, temp32b);
       temp64len = fast_expansion_sum_zeroelim(temp32alen, temp32a,
@@ -5613,12 +5613,12 @@ REAL permanent;
       finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp64len,
                                               temp64, finother);
       finswap = finnow; finnow = finother; finother = finswap;
-    }
-    if (bdytail != 0.0) {
+  }
+  if (bdytail != 0.0) {
       temp16alen = scale_expansion_zeroelim(bytcalen, bytca, bdytail, temp16a);
       bytcatlen = scale_expansion_zeroelim(catlen, cat, bdytail, bytcat);
       temp32alen = scale_expansion_zeroelim(bytcatlen, bytcat, 2.0 * bdy,
-                                            temp32a);
+                      temp32a);
       temp48len = fast_expansion_sum_zeroelim(temp16alen, temp16a,
                                               temp32alen, temp32a, temp48);
       finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,
@@ -5627,12 +5627,12 @@ REAL permanent;
 
 
       temp32alen = scale_expansion_zeroelim(bytcatlen, bytcat, bdytail,
-                                            temp32a);
+                      temp32a);
       bytcattlen = scale_expansion_zeroelim(cattlen, catt, bdytail, bytcatt);
       temp16alen = scale_expansion_zeroelim(bytcattlen, bytcatt, 2.0 * bdy,
-                                            temp16a);
+                      temp16a);
       temp16blen = scale_expansion_zeroelim(bytcattlen, bytcatt, bdytail,
-                                            temp16b);
+                      temp16b);
       temp32blen = fast_expansion_sum_zeroelim(temp16alen, temp16a,
                                               temp16blen, temp16b, temp32b);
       temp64len = fast_expansion_sum_zeroelim(temp32alen, temp32a,
@@ -5640,11 +5640,11 @@ REAL permanent;
       finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp64len,
                                               temp64, finother);
       finswap = finnow; finnow = finother; finother = finswap;
-    }
+  }
   }
   if ((cdxtail != 0.0) || (cdytail != 0.0)) {
-    if ((adxtail != 0.0) || (adytail != 0.0)
-        || (bdxtail != 0.0) || (bdytail != 0.0)) {
+  if ((adxtail != 0.0) || (adytail != 0.0)
+    || (bdxtail != 0.0) || (bdytail != 0.0)) {
       Two_Product(adxtail, bdy, ti1, ti0);
       Two_Product(adx, bdytail, tj1, tj0);
       Two_Two_Sum(ti1, ti0, tj1, tj0, u3, u[2], u[1], u[0]);
@@ -5662,47 +5662,47 @@ REAL permanent;
       Two_Two_Diff(ti1, ti0, tj1, tj0, abtt3, abtt[2], abtt[1], abtt[0]);
       abtt[3] = abtt3;
       abttlen = 4;
-    } else {
+  } else {
       abt[0] = 0.0;
       abtlen = 1;
       abtt[0] = 0.0;
       abttlen = 1;
-    }
+  }
 
-    if (cdxtail != 0.0) {
+  if (cdxtail != 0.0) {
       temp16alen = scale_expansion_zeroelim(cxtablen, cxtab, cdxtail, temp16a);
       cxtabtlen = scale_expansion_zeroelim(abtlen, abt, cdxtail, cxtabt);
       temp32alen = scale_expansion_zeroelim(cxtabtlen, cxtabt, 2.0 * cdx,
-                                            temp32a);
+                      temp32a);
       temp48len = fast_expansion_sum_zeroelim(temp16alen, temp16a,
                                               temp32alen, temp32a, temp48);
       finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,
                                               temp48, finother);
       finswap = finnow; finnow = finother; finother = finswap;
       if (adytail != 0.0) {
-        temp8len = scale_expansion_zeroelim(4, bb, cdxtail, temp8);
-        temp16alen = scale_expansion_zeroelim(temp8len, temp8, adytail,
+    temp8len = scale_expansion_zeroelim(4, bb, cdxtail, temp8);
+    temp16alen = scale_expansion_zeroelim(temp8len, temp8, adytail,
                                               temp16a);
-        finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp16alen,
-                                                temp16a, finother);
-        finswap = finnow; finnow = finother; finother = finswap;
+    finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp16alen,
+                        temp16a, finother);
+    finswap = finnow; finnow = finother; finother = finswap;
       }
       if (bdytail != 0.0) {
-        temp8len = scale_expansion_zeroelim(4, aa, -cdxtail, temp8);
-        temp16alen = scale_expansion_zeroelim(temp8len, temp8, bdytail,
+    temp8len = scale_expansion_zeroelim(4, aa, -cdxtail, temp8);
+    temp16alen = scale_expansion_zeroelim(temp8len, temp8, bdytail,
                                               temp16a);
-        finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp16alen,
-                                                temp16a, finother);
-        finswap = finnow; finnow = finother; finother = finswap;
+    finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp16alen,
+                        temp16a, finother);
+    finswap = finnow; finnow = finother; finother = finswap;
       }
 
       temp32alen = scale_expansion_zeroelim(cxtabtlen, cxtabt, cdxtail,
-                                            temp32a);
+                      temp32a);
       cxtabttlen = scale_expansion_zeroelim(abttlen, abtt, cdxtail, cxtabtt);
       temp16alen = scale_expansion_zeroelim(cxtabttlen, cxtabtt, 2.0 * cdx,
-                                            temp16a);
+                      temp16a);
       temp16blen = scale_expansion_zeroelim(cxtabttlen, cxtabtt, cdxtail,
-                                            temp16b);
+                      temp16b);
       temp32blen = fast_expansion_sum_zeroelim(temp16alen, temp16a,
                                               temp16blen, temp16b, temp32b);
       temp64len = fast_expansion_sum_zeroelim(temp32alen, temp32a,
@@ -5710,12 +5710,12 @@ REAL permanent;
       finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp64len,
                                               temp64, finother);
       finswap = finnow; finnow = finother; finother = finswap;
-    }
-    if (cdytail != 0.0) {
+  }
+  if (cdytail != 0.0) {
       temp16alen = scale_expansion_zeroelim(cytablen, cytab, cdytail, temp16a);
       cytabtlen = scale_expansion_zeroelim(abtlen, abt, cdytail, cytabt);
       temp32alen = scale_expansion_zeroelim(cytabtlen, cytabt, 2.0 * cdy,
-                                            temp32a);
+                      temp32a);
       temp48len = fast_expansion_sum_zeroelim(temp16alen, temp16a,
                                               temp32alen, temp32a, temp48);
       finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp48len,
@@ -5724,12 +5724,12 @@ REAL permanent;
 
 
       temp32alen = scale_expansion_zeroelim(cytabtlen, cytabt, cdytail,
-                                            temp32a);
+                      temp32a);
       cytabttlen = scale_expansion_zeroelim(abttlen, abtt, cdytail, cytabtt);
       temp16alen = scale_expansion_zeroelim(cytabttlen, cytabtt, 2.0 * cdy,
-                                            temp16a);
+                      temp16a);
       temp16blen = scale_expansion_zeroelim(cytabttlen, cytabtt, cdytail,
-                                            temp16b);
+                      temp16b);
       temp32blen = fast_expansion_sum_zeroelim(temp16alen, temp16a,
                                               temp16blen, temp16b, temp32b);
       temp64len = fast_expansion_sum_zeroelim(temp32alen, temp32a,
@@ -5737,7 +5737,7 @@ REAL permanent;
       finlength = fast_expansion_sum_zeroelim(finlength, finnow, temp64len,
                                               temp64, finother);
       finswap = finnow; finnow = finother; finother = finswap;
-    }
+  }
   }
 
   return finnow[finlength - 1];
@@ -5789,15 +5789,15 @@ vertex pd;
       + clift * (adxbdy - bdxady);
 
   if (b->noexact) {
-    return det;
+  return det;
   }
 
   permanent = (Absolute(bdxcdy) + Absolute(cdxbdy)) * alift
-            + (Absolute(cdxady) + Absolute(adxcdy)) * blift
-            + (Absolute(adxbdy) + Absolute(bdxady)) * clift;
+      + (Absolute(cdxady) + Absolute(adxcdy)) * blift
+      + (Absolute(adxbdy) + Absolute(bdxady)) * clift;
   errbound = iccerrboundA * permanent;
   if ((det > errbound) || (-det > errbound)) {
-    return det;
+  return det;
   }
 
   return incircleadapt(pa, pb, pc, pd, permanent);
@@ -5929,7 +5929,7 @@ REAL permanent;
   det = estimate(finlength, fin1);
   errbound = o3derrboundB * permanent;
   if ((det >= errbound) || (-det >= errbound)) {
-    return det;
+  return det;
   }
 
   Two_Diff_Tail(pa[0], pd[0], adx, adxtail);
@@ -5947,7 +5947,7 @@ REAL permanent;
       (adheighttail == 0.0) &&
       (bdheighttail == 0.0) &&
       (cdheighttail == 0.0)) {
-    return det;
+  return det;
   }
 
   errbound = o3derrboundC * permanent + resulterrbound * Absolute(det);
@@ -5961,19 +5961,19 @@ REAL permanent;
                       (ady * bdxtail + bdx * adytail)) +
           cdheighttail * (adx * bdy - ady * bdx));
   if ((det >= errbound) || (-det >= errbound)) {
-    return det;
+  return det;
   }
 
   finnow = fin1;
   finother = fin2;
 
   if (adxtail == 0.0) {
-    if (adytail == 0.0) {
+  if (adytail == 0.0) {
       at_b[0] = 0.0;
       at_blen = 1;
       at_c[0] = 0.0;
       at_clen = 1;
-    } else {
+  } else {
       negate = -adytail;
       Two_Product(negate, bdx, at_blarge, at_b[0]);
       at_b[1] = at_blarge;
@@ -5981,9 +5981,9 @@ REAL permanent;
       Two_Product(adytail, cdx, at_clarge, at_c[0]);
       at_c[1] = at_clarge;
       at_clen = 2;
-    }
+  }
   } else {
-    if (adytail == 0.0) {
+  if (adytail == 0.0) {
       Two_Product(adxtail, bdy, at_blarge, at_b[0]);
       at_b[1] = at_blarge;
       at_blen = 2;
@@ -5991,7 +5991,7 @@ REAL permanent;
       Two_Product(negate, cdy, at_clarge, at_c[0]);
       at_c[1] = at_clarge;
       at_clen = 2;
-    } else {
+  } else {
       Two_Product(adxtail, bdy, adxt_bdy1, adxt_bdy0);
       Two_Product(adytail, bdx, adyt_bdx1, adyt_bdx0);
       Two_Two_Diff(adxt_bdy1, adxt_bdy0, adyt_bdx1, adyt_bdx0,
@@ -6004,15 +6004,15 @@ REAL permanent;
                    at_clarge, at_c[2], at_c[1], at_c[0]);
       at_c[3] = at_clarge;
       at_clen = 4;
-    }
+  }
   }
   if (bdxtail == 0.0) {
-    if (bdytail == 0.0) {
+  if (bdytail == 0.0) {
       bt_c[0] = 0.0;
       bt_clen = 1;
       bt_a[0] = 0.0;
       bt_alen = 1;
-    } else {
+  } else {
       negate = -bdytail;
       Two_Product(negate, cdx, bt_clarge, bt_c[0]);
       bt_c[1] = bt_clarge;
@@ -6020,9 +6020,9 @@ REAL permanent;
       Two_Product(bdytail, adx, bt_alarge, bt_a[0]);
       bt_a[1] = bt_alarge;
       bt_alen = 2;
-    }
+  }
   } else {
-    if (bdytail == 0.0) {
+  if (bdytail == 0.0) {
       Two_Product(bdxtail, cdy, bt_clarge, bt_c[0]);
       bt_c[1] = bt_clarge;
       bt_clen = 2;
@@ -6030,7 +6030,7 @@ REAL permanent;
       Two_Product(negate, ady, bt_alarge, bt_a[0]);
       bt_a[1] = bt_alarge;
       bt_alen = 2;
-    } else {
+  } else {
       Two_Product(bdxtail, cdy, bdxt_cdy1, bdxt_cdy0);
       Two_Product(bdytail, cdx, bdyt_cdx1, bdyt_cdx0);
       Two_Two_Diff(bdxt_cdy1, bdxt_cdy0, bdyt_cdx1, bdyt_cdx0,
@@ -6043,15 +6043,15 @@ REAL permanent;
                   bt_alarge, bt_a[2], bt_a[1], bt_a[0]);
       bt_a[3] = bt_alarge;
       bt_alen = 4;
-    }
+  }
   }
   if (cdxtail == 0.0) {
-    if (cdytail == 0.0) {
+  if (cdytail == 0.0) {
       ct_a[0] = 0.0;
       ct_alen = 1;
       ct_b[0] = 0.0;
       ct_blen = 1;
-    } else {
+  } else {
       negate = -cdytail;
       Two_Product(negate, adx, ct_alarge, ct_a[0]);
       ct_a[1] = ct_alarge;
@@ -6059,9 +6059,9 @@ REAL permanent;
       Two_Product(cdytail, bdx, ct_blarge, ct_b[0]);
       ct_b[1] = ct_blarge;
       ct_blen = 2;
-    }
+  }
   } else {
-    if (cdytail == 0.0) {
+  if (cdytail == 0.0) {
       Two_Product(cdxtail, ady, ct_alarge, ct_a[0]);
       ct_a[1] = ct_alarge;
       ct_alen = 2;
@@ -6069,7 +6069,7 @@ REAL permanent;
       Two_Product(negate, bdy, ct_blarge, ct_b[0]);
       ct_b[1] = ct_blarge;
       ct_blen = 2;
-    } else {
+  } else {
       Two_Product(cdxtail, ady, cdxt_ady1, cdxt_ady0);
       Two_Product(cdytail, adx, cdyt_adx1, cdyt_adx0);
       Two_Two_Diff(cdxt_ady1, cdxt_ady0, cdyt_adx1, cdyt_adx0,
@@ -6082,7 +6082,7 @@ REAL permanent;
                    ct_blarge, ct_b[2], ct_b[1], ct_b[0]);
       ct_b[3] = ct_blarge;
       ct_blen = 4;
-    }
+  }
   }
 
   bctlen = fast_expansion_sum_zeroelim(bt_clen, bt_c, ct_blen, ct_b, bct);
@@ -6104,26 +6104,26 @@ REAL permanent;
   finswap = finnow; finnow = finother; finother = finswap;
 
   if (adheighttail != 0.0) {
-    vlength = scale_expansion_zeroelim(4, bc, adheighttail, v);
-    finlength = fast_expansion_sum_zeroelim(finlength, finnow, vlength, v,
-                                            finother);
-    finswap = finnow; finnow = finother; finother = finswap;
+  vlength = scale_expansion_zeroelim(4, bc, adheighttail, v);
+  finlength = fast_expansion_sum_zeroelim(finlength, finnow, vlength, v,
+                      finother);
+  finswap = finnow; finnow = finother; finother = finswap;
   }
   if (bdheighttail != 0.0) {
-    vlength = scale_expansion_zeroelim(4, ca, bdheighttail, v);
-    finlength = fast_expansion_sum_zeroelim(finlength, finnow, vlength, v,
-                                            finother);
-    finswap = finnow; finnow = finother; finother = finswap;
+  vlength = scale_expansion_zeroelim(4, ca, bdheighttail, v);
+  finlength = fast_expansion_sum_zeroelim(finlength, finnow, vlength, v,
+                      finother);
+  finswap = finnow; finnow = finother; finother = finswap;
   }
   if (cdheighttail != 0.0) {
-    vlength = scale_expansion_zeroelim(4, ab, cdheighttail, v);
-    finlength = fast_expansion_sum_zeroelim(finlength, finnow, vlength, v,
-                                            finother);
-    finswap = finnow; finnow = finother; finother = finswap;
+  vlength = scale_expansion_zeroelim(4, ab, cdheighttail, v);
+  finlength = fast_expansion_sum_zeroelim(finlength, finnow, vlength, v,
+                      finother);
+  finswap = finnow; finnow = finother; finother = finswap;
   }
 
   if (adxtail != 0.0) {
-    if (bdytail != 0.0) {
+  if (bdytail != 0.0) {
       Two_Product(adxtail, bdytail, adxt_bdyt1, adxt_bdyt0);
       Two_One_Product(adxt_bdyt1, adxt_bdyt0, cdheight, u3, u[2], u[1], u[0]);
       u[3] = u3;
@@ -6131,15 +6131,15 @@ REAL permanent;
                                               finother);
       finswap = finnow; finnow = finother; finother = finswap;
       if (cdheighttail != 0.0) {
-        Two_One_Product(adxt_bdyt1, adxt_bdyt0, cdheighttail,
-                        u3, u[2], u[1], u[0]);
-        u[3] = u3;
-        finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,
-                                                finother);
-        finswap = finnow; finnow = finother; finother = finswap;
+    Two_One_Product(adxt_bdyt1, adxt_bdyt0, cdheighttail,
+            u3, u[2], u[1], u[0]);
+    u[3] = u3;
+    finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,
+                        finother);
+    finswap = finnow; finnow = finother; finother = finswap;
       }
-    }
-    if (cdytail != 0.0) {
+  }
+  if (cdytail != 0.0) {
       negate = -adxtail;
       Two_Product(negate, cdytail, adxt_cdyt1, adxt_cdyt0);
       Two_One_Product(adxt_cdyt1, adxt_cdyt0, bdheight, u3, u[2], u[1], u[0]);
@@ -6148,17 +6148,17 @@ REAL permanent;
                                               finother);
       finswap = finnow; finnow = finother; finother = finswap;
       if (bdheighttail != 0.0) {
-        Two_One_Product(adxt_cdyt1, adxt_cdyt0, bdheighttail,
-                        u3, u[2], u[1], u[0]);
-        u[3] = u3;
-        finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,
-                                                finother);
-        finswap = finnow; finnow = finother; finother = finswap;
+    Two_One_Product(adxt_cdyt1, adxt_cdyt0, bdheighttail,
+            u3, u[2], u[1], u[0]);
+    u[3] = u3;
+    finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,
+                        finother);
+    finswap = finnow; finnow = finother; finother = finswap;
       }
-    }
+  }
   }
   if (bdxtail != 0.0) {
-    if (cdytail != 0.0) {
+  if (cdytail != 0.0) {
       Two_Product(bdxtail, cdytail, bdxt_cdyt1, bdxt_cdyt0);
       Two_One_Product(bdxt_cdyt1, bdxt_cdyt0, adheight, u3, u[2], u[1], u[0]);
       u[3] = u3;
@@ -6166,15 +6166,15 @@ REAL permanent;
                                               finother);
       finswap = finnow; finnow = finother; finother = finswap;
       if (adheighttail != 0.0) {
-        Two_One_Product(bdxt_cdyt1, bdxt_cdyt0, adheighttail,
-                        u3, u[2], u[1], u[0]);
-        u[3] = u3;
-        finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,
-                                                finother);
-        finswap = finnow; finnow = finother; finother = finswap;
+    Two_One_Product(bdxt_cdyt1, bdxt_cdyt0, adheighttail,
+            u3, u[2], u[1], u[0]);
+    u[3] = u3;
+    finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,
+                        finother);
+    finswap = finnow; finnow = finother; finother = finswap;
       }
-    }
-    if (adytail != 0.0) {
+  }
+  if (adytail != 0.0) {
       negate = -bdxtail;
       Two_Product(negate, adytail, bdxt_adyt1, bdxt_adyt0);
       Two_One_Product(bdxt_adyt1, bdxt_adyt0, cdheight, u3, u[2], u[1], u[0]);
@@ -6183,17 +6183,17 @@ REAL permanent;
                                               finother);
       finswap = finnow; finnow = finother; finother = finswap;
       if (cdheighttail != 0.0) {
-        Two_One_Product(bdxt_adyt1, bdxt_adyt0, cdheighttail,
-                        u3, u[2], u[1], u[0]);
-        u[3] = u3;
-        finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,
-                                                finother);
-        finswap = finnow; finnow = finother; finother = finswap;
+    Two_One_Product(bdxt_adyt1, bdxt_adyt0, cdheighttail,
+            u3, u[2], u[1], u[0]);
+    u[3] = u3;
+    finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,
+                        finother);
+    finswap = finnow; finnow = finother; finother = finswap;
       }
-    }
+  }
   }
   if (cdxtail != 0.0) {
-    if (adytail != 0.0) {
+  if (adytail != 0.0) {
       Two_Product(cdxtail, adytail, cdxt_adyt1, cdxt_adyt0);
       Two_One_Product(cdxt_adyt1, cdxt_adyt0, bdheight, u3, u[2], u[1], u[0]);
       u[3] = u3;
@@ -6201,15 +6201,15 @@ REAL permanent;
                                               finother);
       finswap = finnow; finnow = finother; finother = finswap;
       if (bdheighttail != 0.0) {
-        Two_One_Product(cdxt_adyt1, cdxt_adyt0, bdheighttail,
-                        u3, u[2], u[1], u[0]);
-        u[3] = u3;
-        finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,
-                                                finother);
-        finswap = finnow; finnow = finother; finother = finswap;
+    Two_One_Product(cdxt_adyt1, cdxt_adyt0, bdheighttail,
+            u3, u[2], u[1], u[0]);
+    u[3] = u3;
+    finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,
+                        finother);
+    finswap = finnow; finnow = finother; finother = finswap;
       }
-    }
-    if (bdytail != 0.0) {
+  }
+  if (bdytail != 0.0) {
       negate = -cdxtail;
       Two_Product(negate, bdytail, cdxt_bdyt1, cdxt_bdyt0);
       Two_One_Product(cdxt_bdyt1, cdxt_bdyt0, adheight, u3, u[2], u[1], u[0]);
@@ -6218,33 +6218,33 @@ REAL permanent;
                                               finother);
       finswap = finnow; finnow = finother; finother = finswap;
       if (adheighttail != 0.0) {
-        Two_One_Product(cdxt_bdyt1, cdxt_bdyt0, adheighttail,
-                        u3, u[2], u[1], u[0]);
-        u[3] = u3;
-        finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,
-                                                finother);
-        finswap = finnow; finnow = finother; finother = finswap;
+    Two_One_Product(cdxt_bdyt1, cdxt_bdyt0, adheighttail,
+            u3, u[2], u[1], u[0]);
+    u[3] = u3;
+    finlength = fast_expansion_sum_zeroelim(finlength, finnow, 4, u,
+                        finother);
+    finswap = finnow; finnow = finother; finother = finswap;
       }
-    }
+  }
   }
 
   if (adheighttail != 0.0) {
-    wlength = scale_expansion_zeroelim(bctlen, bct, adheighttail, w);
-    finlength = fast_expansion_sum_zeroelim(finlength, finnow, wlength, w,
-                                            finother);
-    finswap = finnow; finnow = finother; finother = finswap;
+  wlength = scale_expansion_zeroelim(bctlen, bct, adheighttail, w);
+  finlength = fast_expansion_sum_zeroelim(finlength, finnow, wlength, w,
+                      finother);
+  finswap = finnow; finnow = finother; finother = finswap;
   }
   if (bdheighttail != 0.0) {
-    wlength = scale_expansion_zeroelim(catlen, cat, bdheighttail, w);
-    finlength = fast_expansion_sum_zeroelim(finlength, finnow, wlength, w,
-                                            finother);
-    finswap = finnow; finnow = finother; finother = finswap;
+  wlength = scale_expansion_zeroelim(catlen, cat, bdheighttail, w);
+  finlength = fast_expansion_sum_zeroelim(finlength, finnow, wlength, w,
+                      finother);
+  finswap = finnow; finnow = finother; finother = finswap;
   }
   if (cdheighttail != 0.0) {
-    wlength = scale_expansion_zeroelim(abtlen, abt, cdheighttail, w);
-    finlength = fast_expansion_sum_zeroelim(finlength, finnow, wlength, w,
-                                            finother);
-    finswap = finnow; finnow = finother; finother = finswap;
+  wlength = scale_expansion_zeroelim(abtlen, abt, cdheighttail, w);
+  finlength = fast_expansion_sum_zeroelim(finlength, finnow, wlength, w,
+                      finother);
+  finswap = finnow; finnow = finother; finother = finswap;
   }
 
   return finnow[finlength - 1];
@@ -6300,15 +6300,15 @@ REAL dheight;
       + cdheight * (adxbdy - bdxady);
 
   if (b->noexact) {
-    return det;
+  return det;
   }
 
   permanent = (Absolute(bdxcdy) + Absolute(cdxbdy)) * Absolute(adheight)
-            + (Absolute(cdxady) + Absolute(adxcdy)) * Absolute(bdheight)
-            + (Absolute(adxbdy) + Absolute(bdxady)) * Absolute(cdheight);
+      + (Absolute(cdxady) + Absolute(adxcdy)) * Absolute(bdheight)
+      + (Absolute(adxbdy) + Absolute(bdxady)) * Absolute(cdheight);
   errbound = o3derrboundA * permanent;
   if ((det > errbound) || (-det > errbound)) {
-    return det;
+  return det;
   }
 
   return orient3dadapt(pa, pb, pc, pd, aheight, bheight, cheight, dheight,
@@ -6335,7 +6335,7 @@ REAL dheight;
 
 #ifdef ANSI_DECLARATORS
 REAL nonregular(struct mesh *m, struct behavior *b,
-                vertex pa, vertex pb, vertex pc, vertex pd)
+        vertex pa, vertex pb, vertex pc, vertex pd)
 #else /* not ANSI_DECLARATORS */
 REAL nonregular(m, b, pa, pb, pc, pd)
 struct mesh *m;
@@ -6348,15 +6348,15 @@ vertex pd;
 
 {
   if (b->weighted == 0) {
-    return incircle(m, b, pa, pb, pc, pd);
+  return incircle(m, b, pa, pb, pc, pd);
   } else if (b->weighted == 1) {
-    return orient3d(m, b, pa, pb, pc, pd,
-                    pa[0] * pa[0] + pa[1] * pa[1] - pa[2],
-                    pb[0] * pb[0] + pb[1] * pb[1] - pb[2],
-                    pc[0] * pc[0] + pc[1] * pc[1] - pc[2],
-                    pd[0] * pd[0] + pd[1] * pd[1] - pd[2]);
+  return orient3d(m, b, pa, pb, pc, pd,
+          pa[0] * pa[0] + pa[1] * pa[1] - pa[2],
+          pb[0] * pb[0] + pb[1] * pb[1] - pb[2],
+          pc[0] * pc[0] + pc[1] * pc[1] - pc[2],
+          pd[0] * pd[0] + pd[1] * pd[1] - pd[2]);
   } else {
-    return orient3d(m, b, pa, pb, pc, pd, pa[2], pb[2], pc[2], pd[2]);
+  return orient3d(m, b, pa, pb, pc, pd, pa[2], pb[2], pc[2], pd[2]);
   }
 }
 
@@ -6409,14 +6409,14 @@ REAL *minedge;
   dadist = (tdest[0] - tapex[0]) * (tdest[0] - tapex[0]) +
            (tdest[1] - tapex[1]) * (tdest[1] - tapex[1]);
   if (b->noexact) {
-    denominator = 0.5 / (xdo * yao - xao * ydo);
+  denominator = 0.5 / (xdo * yao - xao * ydo);
   } else {
-    /* Use the counterclockwise() routine to ensure a positive (and */
-    /*   reasonably accurate) result, avoiding any possibility of   */
-    /*   division by zero.                                          */
-    denominator = 0.5 / counterclockwise(m, b, tdest, tapex, torg);
-    /* Don't count the above as an orientation test. */
-    m->counterclockcount--;
+  /* Use the counterclockwise() routine to ensure a positive (and */
+  /*   reasonably accurate) result, avoiding any possibility of   */
+  /*   division by zero.                                          */
+  denominator = 0.5 / counterclockwise(m, b, tdest, tapex, torg);
+  /* Don't count the above as an orientation test. */
+  m->counterclockcount--;
   }
   circumcenter[0] = torg[0] - (ydo * aodist - yao * dodist) * denominator;  
   circumcenter[1] = torg[1] + (xdo * aodist - xao * dodist) * denominator;  
@@ -6459,11 +6459,11 @@ struct mesh *m;
 
 {
   m->vertices.maxitems = m->triangles.maxitems = m->subsegs.maxitems =
-    m->viri.maxitems = m->badsubsegs.maxitems = m->badtriangles.maxitems =
-    m->flipstackers.maxitems = m->splaynodes.maxitems = 0l;
+  m->viri.maxitems = m->badsubsegs.maxitems = m->badtriangles.maxitems =
+  m->flipstackers.maxitems = m->splaynodes.maxitems = 0l;
   m->vertices.itembytes = m->triangles.itembytes = m->subsegs.itembytes =
-    m->viri.itembytes = m->badsubsegs.itembytes = m->badtriangles.itembytes =
-    m->flipstackers.itembytes = m->splaynodes.itembytes = 0;
+  m->viri.itembytes = m->badsubsegs.itembytes = m->badtriangles.itembytes =
+  m->flipstackers.itembytes = m->splaynodes.itembytes = 0;
   m->recenttri.tri = (triangle *) NULL; /* No triangle has been visited yet. */
   m->undeads = 0;                       /* No eliminated input vertices yet. */
   m->samples = 1;         /* Point location should take at least one sample. */
@@ -6531,49 +6531,49 @@ struct behavior *b;
   saveexact = b->noexact;
   b->noexact = 0;
   if (!b->quiet) {
-    printf("  Checking consistency of mesh...\n");
+  printf("  Checking consistency of mesh...\n");
   }
   horrors = 0;
   /* Run through the list of triangles, checking each one. */
   traversalinit(&m->triangles);
   triangleloop.tri = triangletraverse(m);
   while (triangleloop.tri != (triangle *) NULL) {
-    /* Check all three edges of the triangle. */
-    for (triangleloop.orient = 0; triangleloop.orient < 3;
+  /* Check all three edges of the triangle. */
+  for (triangleloop.orient = 0; triangleloop.orient < 3;
          triangleloop.orient++) {
       org(triangleloop, triorg);
       dest(triangleloop, tridest);
       if (triangleloop.orient == 0) {       /* Only test for inversion once. */
-        /* Test if the triangle is flat or inverted. */
-        apex(triangleloop, triapex);
-        if (counterclockwise(m, b, triorg, tridest, triapex) <= 0.0) {
+    /* Test if the triangle is flat or inverted. */
+    apex(triangleloop, triapex);
+    if (counterclockwise(m, b, triorg, tridest, triapex) <= 0.0) {
           printf("  !! !! Inverted ");
           printtriangle(m, b, &triangleloop);
           horrors++;
-        }
+    }
       }
       /* Find the neighboring triangle on this edge. */
       sym(triangleloop, oppotri);
       if (oppotri.tri != m->dummytri) {
-        /* Check that the triangle's neighbor knows it's a neighbor. */
-        sym(oppotri, oppooppotri);
-        if ((triangleloop.tri != oppooppotri.tri)
-            || (triangleloop.orient != oppooppotri.orient)) {
+    /* Check that the triangle's neighbor knows it's a neighbor. */
+    sym(oppotri, oppooppotri);
+    if ((triangleloop.tri != oppooppotri.tri)
+      || (triangleloop.orient != oppooppotri.orient)) {
           printf("  !! !! Asymmetric triangle-triangle bond:\n");
           if (triangleloop.tri == oppooppotri.tri) {
-            printf("   (Right triangle, wrong orientation)\n");
+      printf("   (Right triangle, wrong orientation)\n");
           }
           printf("    First ");
           printtriangle(m, b, &triangleloop);
           printf("    Second (nonreciprocating) ");
           printtriangle(m, b, &oppotri);
           horrors++;
-        }
-        /* Check that both triangles agree on the identities */
-        /*   of their shared vertices.                       */
-        org(oppotri, oppoorg);
-        dest(oppotri, oppodest);
-        if ((triorg != oppodest) || (tridest != oppoorg)) {
+    }
+    /* Check that both triangles agree on the identities */
+    /*   of their shared vertices.                       */
+    org(oppotri, oppoorg);
+    dest(oppotri, oppodest);
+    if ((triorg != oppodest) || (tridest != oppoorg)) {
           printf("  !! !! Mismatched edge coordinates between two triangles:\n"
                  );
           printf("    First mismatched ");
@@ -6581,19 +6581,19 @@ struct behavior *b;
           printf("    Second mismatched ");
           printtriangle(m, b, &oppotri);
           horrors++;
-        }
-      }
     }
-    triangleloop.tri = triangletraverse(m);
+      }
+  }
+  triangleloop.tri = triangletraverse(m);
   }
   if (horrors == 0) {
-    if (!b->quiet) {
+  if (!b->quiet) {
       printf("  In my studied opinion, the mesh appears to be consistent.\n");
-    }
+  }
   } else if (horrors == 1) {
-    printf("  !! !! !! !! Precisely one festering wound discovered.\n");
+  printf("  !! !! !! !! Precisely one festering wound discovered.\n");
   } else {
-    printf("  !! !! !! !! %d abominations witnessed.\n", horrors);
+  printf("  !! !! !! !! %d abominations witnessed.\n", horrors);
   }
   /* Restore the status of exact arithmetic. */
   b->noexact = saveexact;
@@ -6633,15 +6633,15 @@ struct behavior *b;
   saveexact = b->noexact;
   b->noexact = 0;
   if (!b->quiet) {
-    printf("  Checking Delaunay property of mesh...\n");
+  printf("  Checking Delaunay property of mesh...\n");
   }
   horrors = 0;
   /* Run through the list of triangles, checking each one. */
   traversalinit(&m->triangles);
   triangleloop.tri = triangletraverse(m);
   while (triangleloop.tri != (triangle *) NULL) {
-    /* Check all three edges of the triangle. */
-    for (triangleloop.orient = 0; triangleloop.orient < 3;
+  /* Check all three edges of the triangle. */
+  for (triangleloop.orient = 0; triangleloop.orient < 3;
          triangleloop.orient++) {
       org(triangleloop, triorg);
       dest(triangleloop, tridest);
@@ -6652,53 +6652,53 @@ struct behavior *b;
       /*   adjoining triangle whose pointer is larger (to ensure that */
       /*   each pair isn't tested twice).                             */
       shouldbedelaunay = (oppotri.tri != m->dummytri) &&
-            !deadtri(oppotri.tri) && (triangleloop.tri < oppotri.tri) &&
-            (triorg != m->infvertex1) && (triorg != m->infvertex2) &&
-            (triorg != m->infvertex3) &&
-            (tridest != m->infvertex1) && (tridest != m->infvertex2) &&
-            (tridest != m->infvertex3) &&
-            (triapex != m->infvertex1) && (triapex != m->infvertex2) &&
-            (triapex != m->infvertex3) &&
-            (oppoapex != m->infvertex1) && (oppoapex != m->infvertex2) &&
-            (oppoapex != m->infvertex3);
+      !deadtri(oppotri.tri) && (triangleloop.tri < oppotri.tri) &&
+      (triorg != m->infvertex1) && (triorg != m->infvertex2) &&
+      (triorg != m->infvertex3) &&
+      (tridest != m->infvertex1) && (tridest != m->infvertex2) &&
+      (tridest != m->infvertex3) &&
+      (triapex != m->infvertex1) && (triapex != m->infvertex2) &&
+      (triapex != m->infvertex3) &&
+      (oppoapex != m->infvertex1) && (oppoapex != m->infvertex2) &&
+      (oppoapex != m->infvertex3);
       if (m->checksegments && shouldbedelaunay) {
-        /* If a subsegment separates the triangles, then the edge is */
-        /*   constrained, so no local Delaunay test should be done.  */
-        tspivot(triangleloop, opposubseg);
-        if (opposubseg.ss != m->dummysub){
+    /* If a subsegment separates the triangles, then the edge is */
+    /*   constrained, so no local Delaunay test should be done.  */
+    tspivot(triangleloop, opposubseg);
+    if (opposubseg.ss != m->dummysub){
           shouldbedelaunay = 0;
-        }
+    }
       }
       if (shouldbedelaunay) {
-        if (nonregular(m, b, triorg, tridest, triapex, oppoapex) > 0.0) {
+    if (nonregular(m, b, triorg, tridest, triapex, oppoapex) > 0.0) {
           if (!b->weighted) {
-            printf("  !! !! Non-Delaunay pair of triangles:\n");
-            printf("    First non-Delaunay ");
-            printtriangle(m, b, &triangleloop);
-            printf("    Second non-Delaunay ");
+      printf("  !! !! Non-Delaunay pair of triangles:\n");
+      printf("    First non-Delaunay ");
+      printtriangle(m, b, &triangleloop);
+      printf("    Second non-Delaunay ");
           } else {
-            printf("  !! !! Non-regular pair of triangles:\n");
-            printf("    First non-regular ");
-            printtriangle(m, b, &triangleloop);
-            printf("    Second non-regular ");
+      printf("  !! !! Non-regular pair of triangles:\n");
+      printf("    First non-regular ");
+      printtriangle(m, b, &triangleloop);
+      printf("    Second non-regular ");
           }
           printtriangle(m, b, &oppotri);
           horrors++;
-        }
-      }
     }
-    triangleloop.tri = triangletraverse(m);
+      }
+  }
+  triangleloop.tri = triangletraverse(m);
   }
   if (horrors == 0) {
-    if (!b->quiet) {
+  if (!b->quiet) {
       printf(
   "  By virtue of my perceptive intelligence, I declare the mesh Delaunay.\n");
-    }
+  }
   } else if (horrors == 1) {
-    printf(
+  printf(
          "  !! !! !! !! Precisely one terrifying transgression identified.\n");
   } else {
-    printf("  !! !! !! !! %d obscenities viewed with horror.\n", horrors);
+  printf("  !! !! !! !! %d obscenities viewed with horror.\n", horrors);
   }
   /* Restore the status of exact arithmetic. */
   b->noexact = saveexact;
@@ -6734,47 +6734,47 @@ struct badtriang *badtri;
   int i;
 
   if (b->verbose > 2) {
-    printf("  Queueing bad triangle:\n");
-    printf("    (%.12g, %.12g) (%.12g, %.12g) (%.12g, %.12g)\n",
+  printf("  Queueing bad triangle:\n");
+  printf("    (%.12g, %.12g) (%.12g, %.12g) (%.12g, %.12g)\n",
            badtri->triangorg[0], badtri->triangorg[1],
            badtri->triangdest[0], badtri->triangdest[1],
            badtri->triangapex[0], badtri->triangapex[1]);
   }
   /* Determine the appropriate queue to put the bad triangle into. */
   if (badtri->key > 0.6) {
-    queuenumber = (int) (160.0 * (badtri->key - 0.6));
-    if (queuenumber > 63) {
+  queuenumber = (int) (160.0 * (badtri->key - 0.6));
+  if (queuenumber > 63) {
       queuenumber = 63;
-    }
+  }
   } else {
-    /* It's not a bad angle; put the triangle in the lowest-priority queue. */
-    queuenumber = 0;
+  /* It's not a bad angle; put the triangle in the lowest-priority queue. */
+  queuenumber = 0;
   }
 
   /* Are we inserting into an empty queue? */
   if (m->queuefront[queuenumber] == (struct badtriang *) NULL) {
-    /* Yes, we are inserting into an empty queue.     */
-    /*   Will this become the highest-priority queue? */
-    if (queuenumber > m->firstnonemptyq) {
+  /* Yes, we are inserting into an empty queue.     */
+  /*   Will this become the highest-priority queue? */
+  if (queuenumber > m->firstnonemptyq) {
       /* Yes, this is the highest-priority queue. */
       m->nextnonemptyq[queuenumber] = m->firstnonemptyq;
       m->firstnonemptyq = queuenumber;
-    } else {
+  } else {
       /* No, this is not the highest-priority queue. */
       /*   Find the queue with next higher priority. */
       i = queuenumber + 1;
       while (m->queuefront[i] == (struct badtriang *) NULL) {
-        i++;
+    i++;
       }
       /* Mark the newly nonempty queue as following a higher-priority queue. */
       m->nextnonemptyq[queuenumber] = m->nextnonemptyq[i];
       m->nextnonemptyq[i] = queuenumber;
-    }
-    /* Put the bad triangle at the beginning of the (empty) queue. */
-    m->queuefront[queuenumber] = badtri;
+  }
+  /* Put the bad triangle at the beginning of the (empty) queue. */
+  m->queuefront[queuenumber] = badtri;
   } else {
-    /* Add the bad triangle to the end of an already nonempty queue. */
-    m->queuetail[queuenumber]->nexttriang = badtri;
+  /* Add the bad triangle to the end of an already nonempty queue. */
+  m->queuetail[queuenumber]->nexttriang = badtri;
   }
   /* Maintain a pointer to the last triangle of the queue. */
   m->queuetail[queuenumber] = badtri;
@@ -6844,7 +6844,7 @@ struct mesh *m;
 
   /* If no queues are nonempty, return NULL. */
   if (m->firstnonemptyq < 0) {
-    return (struct badtriang *) NULL;
+  return (struct badtriang *) NULL;
   }
   /* Find the first triangle of the highest-priority queue. */
   result = m->queuefront[m->firstnonemptyq];
@@ -6853,7 +6853,7 @@ struct mesh *m;
   /* If this queue is now empty, note the new highest-priority */
   /*   nonempty queue.                                         */
   if (result == m->queuetail[m->firstnonemptyq]) {
-    m->firstnonemptyq = m->nextnonemptyq[m->firstnonemptyq];
+  m->firstnonemptyq = m->nextnonemptyq[m->firstnonemptyq];
   }
   return result;
 }
@@ -6880,7 +6880,7 @@ int under60degrees(struct osub *sub1, struct osub *sub2) {
   sdest(*sub1, v1);
   sdest(*sub2, v2);
   dotprod = (v2[0] - segmentapex[0]) * (v1[0] - segmentapex[0]) +
-            (v2[1] - segmentapex[1]) * (v1[1] - segmentapex[1]);
+      (v2[1] - segmentapex[1]) * (v1[1] - segmentapex[1]);
   return (dotprod > 0.0) &&
          (4.0 * dotprod * dotprod >
           ((v1[0] - segmentapex[0]) * (v1[0] - segmentapex[0]) +
@@ -6911,17 +6911,17 @@ int clockwiseseg(struct mesh *m, struct osub *thissub, struct osub *nextsub) {
 
   stpivot(*thissub, neighbortri);
   if (neighbortri.tri == m->dummytri) {
-    return 0;
+  return 0;
   } else {
-    lnextself(neighbortri);
-    tspivot(neighbortri, *nextsub);
-    while (nextsub->ss == m->dummysub) {
+  lnextself(neighbortri);
+  tspivot(neighbortri, *nextsub);
+  while (nextsub->ss == m->dummysub) {
       symself(neighbortri);
       lnextself(neighbortri);
       tspivot(neighbortri, *nextsub);
-    }
-    ssymself(*nextsub);
-    return under60degrees(thissub, nextsub);
+  }
+  ssymself(*nextsub);
+  return under60degrees(thissub, nextsub);
   }
 }
 
@@ -6942,7 +6942,7 @@ int clockwiseseg(struct mesh *m, struct osub *thissub, struct osub *nextsub) {
 #ifndef CDT_ONLY
 
 int counterclockwiseseg(struct mesh *m, struct osub *thissub,
-                        struct osub *nextsub) {
+            struct osub *nextsub) {
   struct otri neighbortri;
   struct osub subsym;
   triangle ptr;           /* Temporary variable used by sym() and stpivot(). */
@@ -6951,16 +6951,16 @@ int counterclockwiseseg(struct mesh *m, struct osub *thissub,
   ssym(*thissub, subsym);
   stpivot(subsym, neighbortri);
   if (neighbortri.tri == m->dummytri) {
-    return 0;
+  return 0;
   } else {
-    lprevself(neighbortri);
-    tspivot(neighbortri, *nextsub);
-    while (nextsub->ss == m->dummysub) {
+  lprevself(neighbortri);
+  tspivot(neighbortri, *nextsub);
+  while (nextsub->ss == m->dummysub) {
       symself(neighbortri);
       lprevself(neighbortri);
       tspivot(neighbortri, *nextsub);
-    }
-    return under60degrees(thissub, nextsub);
+  }
+  return under60degrees(thissub, nextsub);
   }
 }
 
@@ -7011,16 +7011,16 @@ int splitpermitted(struct mesh *m, struct osub *testsubseg, REAL iradius) {
               (dest1[1] - suborg[1]) * (dest1[1] - suborg[1]);
   nearestpoweroffour = 1.0;
   while (seglength > 2.0 * nearestpoweroffour) {
-    nearestpoweroffour *= 4.0;
+  nearestpoweroffour *= 4.0;
   }
   while (seglength < 0.5 * nearestpoweroffour) {
-    nearestpoweroffour *= 0.25;
+  nearestpoweroffour *= 0.25;
   }
   /* If the segment's length is not a power of two, the segment */
   /*   is eligible for splitting.                               */
   if ((nearestpoweroffour > 1.001 * seglength) ||
       (nearestpoweroffour < 0.999 * seglength)) {
-    return 1;
+  return 1;
   }
 
   /* Is `testsubseg' part of a subsegment cluster at its origin? */
@@ -7035,37 +7035,37 @@ int splitpermitted(struct mesh *m, struct osub *testsubseg, REAL iradius) {
   destcluster = cwsmall2 || ccwsmall2;
 
   if (orgcluster == destcluster) {
-    /* `testsubseg' is part of two clusters or none, */
-    /*   and thus should be split.                   */
-    return 1;
+  /* `testsubseg' is part of two clusters or none, */
+  /*   and thus should be split.                   */
+  return 1;
   } else if (orgcluster) {
-    /* `testsubseg' is part of a cluster at its origin. */
-    subsegcopy(*testsubseg, startsubseg);
+  /* `testsubseg' is part of a cluster at its origin. */
+  subsegcopy(*testsubseg, startsubseg);
   } else {
-    /* `testsubseg' is part of a cluster at its destination; switch to */
-    /*   the symmetric case, so we can use the same code to handle it. */
-    subsegcopy(testsym, startsubseg);
-    subsegcopy(cwsubseg2, cwsubseg);
-    subsegcopy(ccwsubseg2, ccwsubseg);
-    cwsmall = cwsmall2;
-    ccwsmall = ccwsmall2;
+  /* `testsubseg' is part of a cluster at its destination; switch to */
+  /*   the symmetric case, so we can use the same code to handle it. */
+  subsegcopy(testsym, startsubseg);
+  subsegcopy(cwsubseg2, cwsubseg);
+  subsegcopy(ccwsubseg2, ccwsubseg);
+  cwsmall = cwsmall2;
+  ccwsmall = ccwsmall2;
   }
 
   toosmall = 0;
   if (cwsmall) {
-    /* Check the subsegment(s) clockwise from `testsubseg'. */
-    subsegcopy(startsubseg, nowsubseg);
-    sorg(nowsubseg, suborg);
-    sdest(nowsubseg, dest1);
-    prevseglength = nearestpoweroffour;
-    do {
+  /* Check the subsegment(s) clockwise from `testsubseg'. */
+  subsegcopy(startsubseg, nowsubseg);
+  sorg(nowsubseg, suborg);
+  sdest(nowsubseg, dest1);
+  prevseglength = nearestpoweroffour;
+  do {
       /* Is the next subsegment shorter than `startsubseg'? */
       sdest(cwsubseg, dest2);
       seglength = (dest2[0] - suborg[0]) * (dest2[0] - suborg[0]) +
                   (dest2[1] - suborg[1]) * (dest2[1] - suborg[1]);
       if (nearestpoweroffour > 1.001 * seglength) {
-        /* It's shorter; it's safe to split `startsubseg'. */
-        return 1;
+    /* It's shorter; it's safe to split `startsubseg'. */
+    return 1;
       }
       /* If the current and previous subsegments are split to a length  */
       /*   half that of `startsubseg' (which is a likely consequence if */
@@ -7076,15 +7076,15 @@ int splitpermitted(struct mesh *m, struct osub *testsubseg, REAL iradius) {
                           (dest1[1] - suborg[1]) * (dest2[1] - suborg[1])) /
                          sqrt(prevseglength * seglength)));
       if (edgelength < iradius) {
-        /* If this cluster is split, the new edge dest1-dest2 will be     */
-        /*   smaller than the insertion radius of the encroaching vertex. */
-        /*   Hence, we'd prefer to avoid splitting it if possible.        */
-        toosmall = 1;
+    /* If this cluster is split, the new edge dest1-dest2 will be     */
+    /*   smaller than the insertion radius of the encroaching vertex. */
+    /*   Hence, we'd prefer to avoid splitting it if possible.        */
+    toosmall = 1;
       }
       if (cwsubseg.ss == startsubseg.ss) {
-        /* We've gone all the way around the vertex.  Split the cluster */
-        /*   if no edges will be too short.                             */
-        return !toosmall;
+    /* We've gone all the way around the vertex.  Split the cluster */
+    /*   if no edges will be too short.                             */
+    return !toosmall;
       }
 
       /* Find the next subsegment clockwise around the vertex. */
@@ -7092,27 +7092,27 @@ int splitpermitted(struct mesh *m, struct osub *testsubseg, REAL iradius) {
       dest1 = dest2;
       prevseglength = seglength;
       cwsmall = clockwiseseg(m, &nowsubseg, &cwsubseg);
-    } while (cwsmall);
+  } while (cwsmall);
 
-    /* Prepare to start searching counterclockwise from */
-    /*   the starting subsegment.                       */
-    ccwsmall = counterclockwiseseg(m, &startsubseg, &ccwsubseg);
+  /* Prepare to start searching counterclockwise from */
+  /*   the starting subsegment.                       */
+  ccwsmall = counterclockwiseseg(m, &startsubseg, &ccwsubseg);
   }
 
   if (ccwsmall) {
-    /* Check the subsegment(s) counterclockwise from `testsubseg'. */
-    subsegcopy(startsubseg, nowsubseg);
-    sorg(nowsubseg, suborg);
-    sdest(nowsubseg, dest1);
-    prevseglength = nearestpoweroffour;
-    do {
+  /* Check the subsegment(s) counterclockwise from `testsubseg'. */
+  subsegcopy(startsubseg, nowsubseg);
+  sorg(nowsubseg, suborg);
+  sdest(nowsubseg, dest1);
+  prevseglength = nearestpoweroffour;
+  do {
       /* Is the next subsegment shorter than `startsubseg'? */
       sdest(ccwsubseg, dest2);
       seglength = (dest2[0] - suborg[0]) * (dest2[0] - suborg[0]) +
                   (dest2[1] - suborg[1]) * (dest2[1] - suborg[1]);
       if (nearestpoweroffour > 1.001 * seglength) {
-        /* It's shorter; it's safe to split `startsubseg'. */
-        return 1;
+    /* It's shorter; it's safe to split `startsubseg'. */
+    return 1;
       }
       /*   half that of `startsubseg' (which is a likely consequence if */
       /*   `startsubseg' is split), what will be (the square of) the    */
@@ -7122,15 +7122,15 @@ int splitpermitted(struct mesh *m, struct osub *testsubseg, REAL iradius) {
                           (dest1[1] - suborg[1]) * (dest2[1] - suborg[1])) /
                          sqrt(prevseglength * seglength)));
       if (edgelength < iradius) {
-        /* If this cluster is split, the new edge dest1-dest2 will be     */
-        /*   smaller than the insertion radius of the encroaching vertex. */
-        /*   Hence, we'd prefer to avoid splitting it if possible.        */
-        toosmall = 1;
+    /* If this cluster is split, the new edge dest1-dest2 will be     */
+    /*   smaller than the insertion radius of the encroaching vertex. */
+    /*   Hence, we'd prefer to avoid splitting it if possible.        */
+    toosmall = 1;
       }
       if (ccwsubseg.ss == startsubseg.ss) {
-        /* We've gone all the way around the vertex.  Split the cluster */
-        /*   if no edges will be too short.                             */
-        return !toosmall;
+    /* We've gone all the way around the vertex.  Split the cluster */
+    /*   if no edges will be too short.                             */
+    return !toosmall;
       }
 
       /* Find the next subsegment counterclockwise around the vertex. */
@@ -7138,7 +7138,7 @@ int splitpermitted(struct mesh *m, struct osub *testsubseg, REAL iradius) {
       dest1 = dest2;
       prevseglength = seglength;
       ccwsmall = counterclockwiseseg(m, &nowsubseg, &ccwsubseg);
-    } while (ccwsmall);
+  } while (ccwsmall);
   }
 
   /* We've found every subsegment in the cluster.  Split the cluster */
@@ -7194,68 +7194,68 @@ REAL iradius;
   stpivot(*testsubseg, neighbortri);
   /* Does the neighbor exist, or is this a boundary edge? */
   if (neighbortri.tri != m->dummytri) {
-    sides++;
-    /* Find a vertex opposite this subsegment. */
-    apex(neighbortri, eapex);
-    /* Check whether the apex is in the diametral lens of the subsegment */
-    /*   (or the diametral circle, if `nolenses' is set).  A dot product */
-    /*   of two sides of the triangle is used to check whether the angle */
-    /*   at the apex is greater than 120 degrees (for lenses; 90 degrees */
-    /*   for diametral circles).                                         */
-    dotproduct = (eorg[0] - eapex[0]) * (edest[0] - eapex[0]) +
+  sides++;
+  /* Find a vertex opposite this subsegment. */
+  apex(neighbortri, eapex);
+  /* Check whether the apex is in the diametral lens of the subsegment */
+  /*   (or the diametral circle, if `nolenses' is set).  A dot product */
+  /*   of two sides of the triangle is used to check whether the angle */
+  /*   at the apex is greater than 120 degrees (for lenses; 90 degrees */
+  /*   for diametral circles).                                         */
+  dotproduct = (eorg[0] - eapex[0]) * (edest[0] - eapex[0]) +
                  (eorg[1] - eapex[1]) * (edest[1] - eapex[1]);
-    if (dotproduct < 0.0) {
+  if (dotproduct < 0.0) {
       if (b->nolenses ||
           (dotproduct * dotproduct >=
            0.25 * ((eorg[0] - eapex[0]) * (eorg[0] - eapex[0]) +
                    (eorg[1] - eapex[1]) * (eorg[1] - eapex[1])) *
                   ((edest[0] - eapex[0]) * (edest[0] - eapex[0]) +
                    (edest[1] - eapex[1]) * (edest[1] - eapex[1])))) {
-        encroached = 1;
+    encroached = 1;
       }
-    }
+  }
   }
   /* Check the other neighbor of the subsegment. */
   ssym(*testsubseg, testsym);
   stpivot(testsym, neighbortri);
   /* Does the neighbor exist, or is this a boundary edge? */
   if (neighbortri.tri != m->dummytri) {
-    sides++;
-    /* Find the other vertex opposite this subsegment. */
-    apex(neighbortri, eapex);
-    /* Check whether the apex is in the diametral lens of the subsegment */
-    /*   (or the diametral circle, if `nolenses' is set).                */
-    dotproduct = (eorg[0] - eapex[0]) * (edest[0] - eapex[0]) +
+  sides++;
+  /* Find the other vertex opposite this subsegment. */
+  apex(neighbortri, eapex);
+  /* Check whether the apex is in the diametral lens of the subsegment */
+  /*   (or the diametral circle, if `nolenses' is set).                */
+  dotproduct = (eorg[0] - eapex[0]) * (edest[0] - eapex[0]) +
                  (eorg[1] - eapex[1]) * (edest[1] - eapex[1]);
-    if (dotproduct < 0.0) {
+  if (dotproduct < 0.0) {
       if (b->nolenses ||
           (dotproduct * dotproduct >=
            0.25 * ((eorg[0] - eapex[0]) * (eorg[0] - eapex[0]) +
                    (eorg[1] - eapex[1]) * (eorg[1] - eapex[1])) *
                   ((edest[0] - eapex[0]) * (edest[0] - eapex[0]) +
                    (edest[1] - eapex[1]) * (edest[1] - eapex[1])))) {
-        encroached += 2;
+    encroached += 2;
       }
-    }
+  }
   }
 
   if (encroached && (!b->nobisect || ((b->nobisect == 1) && (sides == 2)))) {
-    /* Decide whether `testsubseg' should be split. */
-    if (iradius > 0.0) {
+  /* Decide whether `testsubseg' should be split. */
+  if (iradius > 0.0) {
       /* The encroaching vertex is a triangle circumcenter, which will be   */
       /*   rejected.  Hence, `testsubseg' probably should be split, unless  */
       /*   it is part of a subsegment cluster which, according to the rules */
       /*   described in my paper "Mesh Generation for Domains with Small    */
       /*   Angles," should not be split.                                    */
       enq = splitpermitted(m, testsubseg, iradius);
-    } else {
+  } else {
       /* The encroaching vertex is an input vertex or was inserted in a */
       /*   subsegment, so the encroached subsegment must be split.      */
       enq = 1;
-    }
-    if (enq) {
+  }
+  if (enq) {
       if (b->verbose > 2) {
-        printf(
+    printf(
           "  Queueing encroached subsegment (%.12g, %.12g) (%.12g, %.12g).\n",
           eorg[0], eorg[1], edest[0], edest[1]);
       }
@@ -7263,15 +7263,15 @@ REAL iradius;
       /*   Be sure to get the orientation right.                   */
       encroachedseg = (struct badsubseg *) poolalloc(&m->badsubsegs);
       if (encroached == 1) {
-        encroachedseg->encsubseg = sencode(*testsubseg);
-        encroachedseg->subsegorg = eorg;
-        encroachedseg->subsegdest = edest;
+    encroachedseg->encsubseg = sencode(*testsubseg);
+    encroachedseg->subsegorg = eorg;
+    encroachedseg->subsegdest = edest;
       } else {
-        encroachedseg->encsubseg = sencode(testsym);
-        encroachedseg->subsegorg = edest;
-        encroachedseg->subsegdest = eorg;
+    encroachedseg->encsubseg = sencode(testsym);
+    encroachedseg->subsegorg = edest;
+    encroachedseg->subsegdest = eorg;
       }
-    }
+  }
   }
 
   return encroached;
@@ -7331,71 +7331,71 @@ struct otri *testtri;
   orglen = dxda2 + dyda2;
   destlen = dxao2 + dyao2;
   if ((apexlen < orglen) && (apexlen < destlen)) {
-    /* The edge opposite the apex is shortest. */
-    /* Find the square of the cosine of the angle at the apex. */
-    angle = dxda * dxao + dyda * dyao;
-    angle = angle * angle / (orglen * destlen);
-    lnext(*testtri, sametesttri);
-    tspivot(sametesttri, subseg1);
-    lnextself(sametesttri);
-    tspivot(sametesttri, subseg2);
+  /* The edge opposite the apex is shortest. */
+  /* Find the square of the cosine of the angle at the apex. */
+  angle = dxda * dxao + dyda * dyao;
+  angle = angle * angle / (orglen * destlen);
+  lnext(*testtri, sametesttri);
+  tspivot(sametesttri, subseg1);
+  lnextself(sametesttri);
+  tspivot(sametesttri, subseg2);
   } else if (orglen < destlen) {
-    /* The edge opposite the origin is shortest. */
-    /* Find the square of the cosine of the angle at the origin. */
-    angle = dxod * dxao + dyod * dyao;
-    angle = angle * angle / (apexlen * destlen);
-    tspivot(*testtri, subseg1);
-    lprev(*testtri, sametesttri);
-    tspivot(sametesttri, subseg2);
+  /* The edge opposite the origin is shortest. */
+  /* Find the square of the cosine of the angle at the origin. */
+  angle = dxod * dxao + dyod * dyao;
+  angle = angle * angle / (apexlen * destlen);
+  tspivot(*testtri, subseg1);
+  lprev(*testtri, sametesttri);
+  tspivot(sametesttri, subseg2);
   } else {
-    /* The edge opposite the destination is shortest. */
-    /* Find the square of the cosine of the angle at the destination. */
-    angle = dxod * dxda + dyod * dyda;
-    angle = angle * angle / (apexlen * orglen);
-    tspivot(*testtri, subseg1);
-    lnext(*testtri, sametesttri);
-    tspivot(sametesttri, subseg2);
+  /* The edge opposite the destination is shortest. */
+  /* Find the square of the cosine of the angle at the destination. */
+  angle = dxod * dxda + dyod * dyda;
+  angle = angle * angle / (apexlen * orglen);
+  tspivot(*testtri, subseg1);
+  lnext(*testtri, sametesttri);
+  tspivot(sametesttri, subseg2);
   }
 
   /* Check if both edges that form the angle are segments. */
   if ((subseg1.ss != m->dummysub) && (subseg2.ss != m->dummysub)) {
-    /* The angle is a segment intersection.  Don't add this bad triangle to */
-    /*   the list; there's nothing that can be done about a small angle     */
-    /*   between two segments.                                              */
-    angle = 0.0;
+  /* The angle is a segment intersection.  Don't add this bad triangle to */
+  /*   the list; there's nothing that can be done about a small angle     */
+  /*   between two segments.                                              */
+  angle = 0.0;
   }
 
   /* Check whether the angle is smaller than permitted. */
   if (angle > b->goodangle) {
-    /* Add this triangle to the list of bad triangles. */
-    enqueuebadtri(m, b, testtri, angle, tapex, torg, tdest);
-    return;
+  /* Add this triangle to the list of bad triangles. */
+  enqueuebadtri(m, b, testtri, angle, tapex, torg, tdest);
+  return;
   }
 
   if (b->vararea || b->fixedarea || b->usertest) {
-    /* Check whether the area is larger than permitted. */
-    area = 0.5 * (dxod * dyda - dyod * dxda);
-    if (b->fixedarea && (area > b->maxarea)) {
+  /* Check whether the area is larger than permitted. */
+  area = 0.5 * (dxod * dyda - dyod * dxda);
+  if (b->fixedarea && (area > b->maxarea)) {
       /* Add this triangle to the list of bad triangles. */
       enqueuebadtri(m, b, testtri, angle, tapex, torg, tdest);
       return;
-    }
+  }
 
-    /* Nonpositive area constraints are treated as unconstrained. */
-    if ((b->vararea) && (area > areabound(*testtri)) &&
-        (areabound(*testtri) > 0.0)) {
+  /* Nonpositive area constraints are treated as unconstrained. */
+  if ((b->vararea) && (area > areabound(*testtri)) &&
+    (areabound(*testtri) > 0.0)) {
       /* Add this triangle to the list of bad triangles. */
       enqueuebadtri(m, b, testtri, angle, tapex, torg, tdest);
       return;
-    }
+  }
 
-    if (b->usertest) {
+  if (b->usertest) {
       /* Check whether the user thinks this triangle is too large. */
       if (triunsuitable(torg, tdest, tapex, area)) {
-        enqueuebadtri(m, b, testtri, angle, tapex, torg, tdest);
-        return;
+    enqueuebadtri(m, b, testtri, angle, tapex, torg, tdest);
+    return;
       }
-    }
+  }
   }
 }
 
@@ -7436,18 +7436,18 @@ struct behavior *b;
   vertex triorg;
 
   if (b->verbose) {
-    printf("    Constructing mapping from vertices to triangles.\n");
+  printf("    Constructing mapping from vertices to triangles.\n");
   }
   traversalinit(&m->triangles);
   triangleloop.tri = triangletraverse(m);
   while (triangleloop.tri != (triangle *) NULL) {
-    /* Check all three vertices of the triangle. */
-    for (triangleloop.orient = 0; triangleloop.orient < 3;
+  /* Check all three vertices of the triangle. */
+  for (triangleloop.orient = 0; triangleloop.orient < 3;
          triangleloop.orient++) {
       org(triangleloop, triorg);
       setvertex2tri(triorg, encode(triangleloop));
-    }
-    triangleloop.tri = triangletraverse(m);
+  }
+  triangleloop.tri = triangletraverse(m);
   }
 }
 
@@ -7520,8 +7520,8 @@ struct behavior *b;
 
 #ifdef ANSI_DECLARATORS
 enum locateresult preciselocate(struct mesh *m, struct behavior *b,
-                                vertex searchpoint, struct otri *searchtri,
-                                int stopatsubsegment)
+                vertex searchpoint, struct otri *searchtri,
+                int stopatsubsegment)
 #else /* not ANSI_DECLARATORS */
 enum locateresult preciselocate(m, b, searchpoint, searchtri, stopatsubsegment)
 struct mesh *m;
@@ -7541,7 +7541,7 @@ int stopatsubsegment;
   subseg sptr;                      /* Temporary variable used by tspivot(). */
 
   if (b->verbose > 2) {
-    printf("  Searching for point (%.12g, %.12g).\n",
+  printf("  Searching for point (%.12g, %.12g).\n",
            searchpoint[0], searchpoint[1]);
   }
   /* Where are we? */
@@ -7549,80 +7549,80 @@ int stopatsubsegment;
   dest(*searchtri, fdest);
   apex(*searchtri, fapex);
   while (1) {
-    if (b->verbose > 2) {
+  if (b->verbose > 2) {
       printf("    At (%.12g, %.12g) (%.12g, %.12g) (%.12g, %.12g)\n",
              forg[0], forg[1], fdest[0], fdest[1], fapex[0], fapex[1]);
-    }
-    /* Check whether the apex is the point we seek. */
-    if ((fapex[0] == searchpoint[0]) && (fapex[1] == searchpoint[1])) {
+  }
+  /* Check whether the apex is the point we seek. */
+  if ((fapex[0] == searchpoint[0]) && (fapex[1] == searchpoint[1])) {
       lprevself(*searchtri);
       return ONVERTEX;
-    }
-    /* Does the point lie on the other side of the line defined by the */
-    /*   triangle edge opposite the triangle's destination?            */
-    destorient = counterclockwise(m, b, forg, fapex, searchpoint);
-    /* Does the point lie on the other side of the line defined by the */
-    /*   triangle edge opposite the triangle's origin?                 */
-    orgorient = counterclockwise(m, b, fapex, fdest, searchpoint);
-    if (destorient > 0.0) {
+  }
+  /* Does the point lie on the other side of the line defined by the */
+  /*   triangle edge opposite the triangle's destination?            */
+  destorient = counterclockwise(m, b, forg, fapex, searchpoint);
+  /* Does the point lie on the other side of the line defined by the */
+  /*   triangle edge opposite the triangle's origin?                 */
+  orgorient = counterclockwise(m, b, fapex, fdest, searchpoint);
+  if (destorient > 0.0) {
       if (orgorient > 0.0) {
-        /* Move left if the inner product of (fapex - searchpoint) and  */
-        /*   (fdest - forg) is positive.  This is equivalent to drawing */
-        /*   a line perpendicular to the line (forg, fdest) and passing */
-        /*   through `fapex', and determining which side of this line   */
-        /*   `searchpoint' falls on.                                    */
-        moveleft = (fapex[0] - searchpoint[0]) * (fdest[0] - forg[0]) +
+    /* Move left if the inner product of (fapex - searchpoint) and  */
+    /*   (fdest - forg) is positive.  This is equivalent to drawing */
+    /*   a line perpendicular to the line (forg, fdest) and passing */
+    /*   through `fapex', and determining which side of this line   */
+    /*   `searchpoint' falls on.                                    */
+    moveleft = (fapex[0] - searchpoint[0]) * (fdest[0] - forg[0]) +
                    (fapex[1] - searchpoint[1]) * (fdest[1] - forg[1]) > 0.0;
       } else {
-        moveleft = 1;
+    moveleft = 1;
       }
-    } else {
+  } else {
       if (orgorient > 0.0) {
-        moveleft = 0;
+    moveleft = 0;
       } else {
-        /* The point we seek must be on the boundary of or inside this */
-        /*   triangle.                                                 */
-        if (destorient == 0.0) {
+    /* The point we seek must be on the boundary of or inside this */
+    /*   triangle.                                                 */
+    if (destorient == 0.0) {
           lprevself(*searchtri);
           return ONEDGE;
-        }
-        if (orgorient == 0.0) {
+    }
+    if (orgorient == 0.0) {
           lnextself(*searchtri);
           return ONEDGE;
-        }
-        return INTRIANGLE;
-      }
     }
+    return INTRIANGLE;
+      }
+  }
 
-    /* Move to another triangle.  Leave a trace `backtracktri' in case */
-    /*   floating-point roundoff or some such bogey causes us to walk  */
-    /*   off a boundary of the triangulation.                          */
-    if (moveleft) {
+  /* Move to another triangle.  Leave a trace `backtracktri' in case */
+  /*   floating-point roundoff or some such bogey causes us to walk  */
+  /*   off a boundary of the triangulation.                          */
+  if (moveleft) {
       lprev(*searchtri, backtracktri);
       fdest = fapex;
-    } else {
+  } else {
       lnext(*searchtri, backtracktri);
       forg = fapex;
-    }
-    sym(backtracktri, *searchtri);
+  }
+  sym(backtracktri, *searchtri);
 
-    if (m->checksegments && stopatsubsegment) {
+  if (m->checksegments && stopatsubsegment) {
       /* Check for walking through a subsegment. */
       tspivot(backtracktri, checkedge);
       if (checkedge.ss != m->dummysub) {
-        /* Go back to the last triangle. */
-        otricopy(backtracktri, *searchtri);
-        return OUTSIDE;
+    /* Go back to the last triangle. */
+    otricopy(backtracktri, *searchtri);
+    return OUTSIDE;
       }
-    }
-    /* Check for walking right out of the triangulation. */
-    if (searchtri->tri == m->dummytri) {
+  }
+  /* Check for walking right out of the triangulation. */
+  if (searchtri->tri == m->dummytri) {
       /* Go back to the last triangle. */
       otricopy(backtracktri, *searchtri);
       return OUTSIDE;
-    }
+  }
 
-    apex(*searchtri, fapex);
+  apex(*searchtri, fapex);
   }
 }
 
@@ -7687,7 +7687,7 @@ struct otri *searchtri;
   triangle ptr;                         /* Temporary variable used by sym(). */
 
   if (b->verbose > 2) {
-    printf("  Randomly sampling for a triangle near point (%.12g, %.12g).\n",
+  printf("  Randomly sampling for a triangle near point (%.12g, %.12g).\n",
            searchpoint[0], searchpoint[1]);
   }
   /* Record the distance from the suggested starting triangle to the */
@@ -7696,30 +7696,30 @@ struct otri *searchtri;
   searchdist = (searchpoint[0] - torg[0]) * (searchpoint[0] - torg[0]) +
                (searchpoint[1] - torg[1]) * (searchpoint[1] - torg[1]);
   if (b->verbose > 2) {
-    printf("    Boundary triangle has origin (%.12g, %.12g).\n",
+  printf("    Boundary triangle has origin (%.12g, %.12g).\n",
            torg[0], torg[1]);
   }
 
   /* If a recently encountered triangle has been recorded and has not been */
   /*   deallocated, test it as a good starting point.                      */
   if (m->recenttri.tri != (triangle *) NULL) {
-    if (!deadtri(m->recenttri.tri)) {
+  if (!deadtri(m->recenttri.tri)) {
       org(m->recenttri, torg);
       if ((torg[0] == searchpoint[0]) && (torg[1] == searchpoint[1])) {
-        otricopy(m->recenttri, *searchtri);
-        return ONVERTEX;
+    otricopy(m->recenttri, *searchtri);
+    return ONVERTEX;
       }
       dist = (searchpoint[0] - torg[0]) * (searchpoint[0] - torg[0]) +
              (searchpoint[1] - torg[1]) * (searchpoint[1] - torg[1]);
       if (dist < searchdist) {
-        otricopy(m->recenttri, *searchtri);
-        searchdist = dist;
-        if (b->verbose > 2) {
+    otricopy(m->recenttri, *searchtri);
+    searchdist = dist;
+    if (b->verbose > 2) {
           printf("    Choosing recent triangle with origin (%.12g, %.12g).\n",
                  torg[0], torg[1]);
-        }
-      }
     }
+      }
+  }
   }
 
   /* The number of random samples taken is proportional to the cube root of */
@@ -7727,7 +7727,7 @@ struct otri *searchtri;
   /*   that the number of triangles increases monotonically.                */
   while (SAMPLEFACTOR * m->samples * m->samples * m->samples <
          m->triangles.items) {
-    m->samples++;
+  m->samples++;
   }
   triblocks = (m->triangles.maxitems + TRIPERBLOCK - 1) / TRIPERBLOCK;
   samplesperblock = (m->samples + triblocks - 1) / triblocks;
@@ -7735,33 +7735,33 @@ struct otri *searchtri;
   sampleblock = m->triangles.firstblock;
   sampletri.orient = 0;
   for (i = 0; i < sampleblocks; i++) {
-    alignptr = (size_t) (sampleblock + 1);
-    firsttri = (triangle *) (alignptr + (size_t) m->triangles.alignbytes
+  alignptr = (size_t) (sampleblock + 1);
+  firsttri = (triangle *) (alignptr + (size_t) m->triangles.alignbytes
                       - (alignptr % (size_t) m->triangles.alignbytes));
-    for (j = 0; j < samplesperblock; j++) {
+  for (j = 0; j < samplesperblock; j++) {
       if (i == triblocks - 1) {
-        samplenum = randomnation((int)
+    samplenum = randomnation((int)
                                  (m->triangles.maxitems - (i * TRIPERBLOCK)));
       } else {
-        samplenum = randomnation(TRIPERBLOCK);
+    samplenum = randomnation(TRIPERBLOCK);
       }
       sampletri.tri = (triangle *)
                       (firsttri + (samplenum * m->triangles.itemwords));
       if (!deadtri(sampletri.tri)) {
-        org(sampletri, torg);
-        dist = (searchpoint[0] - torg[0]) * (searchpoint[0] - torg[0]) +
+    org(sampletri, torg);
+    dist = (searchpoint[0] - torg[0]) * (searchpoint[0] - torg[0]) +
                (searchpoint[1] - torg[1]) * (searchpoint[1] - torg[1]);
-        if (dist < searchdist) {
+    if (dist < searchdist) {
           otricopy(sampletri, *searchtri);
           searchdist = dist;
           if (b->verbose > 2) {
-            printf("    Choosing triangle with origin (%.12g, %.12g).\n",
+      printf("    Choosing triangle with origin (%.12g, %.12g).\n",
                    torg[0], torg[1]);
           }
-        }
-      }
     }
-    sampleblock = (VOID **) *sampleblock;
+      }
+  }
+  sampleblock = (VOID **) *sampleblock;
   }
 
   /* Where are we? */
@@ -7769,24 +7769,24 @@ struct otri *searchtri;
   dest(*searchtri, tdest);
   /* Check the starting triangle's vertices. */
   if ((torg[0] == searchpoint[0]) && (torg[1] == searchpoint[1])) {
-    return ONVERTEX;
+  return ONVERTEX;
   }
   if ((tdest[0] == searchpoint[0]) && (tdest[1] == searchpoint[1])) {
-    lnextself(*searchtri);
-    return ONVERTEX;
+  lnextself(*searchtri);
+  return ONVERTEX;
   }
   /* Orient `searchtri' to fit the preconditions of calling preciselocate(). */
   ahead = counterclockwise(m, b, torg, tdest, searchpoint);
   if (ahead < 0.0) {
-    /* Turn around so that `searchpoint' is to the left of the */
-    /*   edge specified by `searchtri'.                        */
-    symself(*searchtri);
+  /* Turn around so that `searchpoint' is to the left of the */
+  /*   edge specified by `searchtri'.                        */
+  symself(*searchtri);
   } else if (ahead == 0.0) {
-    /* Check if `searchpoint' is between `torg' and `tdest'. */
-    if (((torg[0] < searchpoint[0]) == (searchpoint[0] < tdest[0])) &&
-        ((torg[1] < searchpoint[1]) == (searchpoint[1] < tdest[1]))) {
+  /* Check if `searchpoint' is between `torg' and `tdest'. */
+  if (((torg[0] < searchpoint[0]) == (searchpoint[0] < tdest[0])) &&
+    ((torg[1] < searchpoint[1]) == (searchpoint[1] < tdest[1]))) {
       return ONEDGE;
-    }
+  }
   }
   return preciselocate(m, b, searchpoint, searchtri, 0);
 }
@@ -7832,35 +7832,35 @@ int subsegmark;                            /* Marker for the new subsegment. */
   dest(*tri, tridest);
   /* Mark vertices if possible. */
   if (vertexmark(triorg) == 0) {
-    setvertexmark(triorg, subsegmark);
+  setvertexmark(triorg, subsegmark);
   }
   if (vertexmark(tridest) == 0) {
-    setvertexmark(tridest, subsegmark);
+  setvertexmark(tridest, subsegmark);
   }
   /* Check if there's already a subsegment here. */
   tspivot(*tri, newsubseg);
   if (newsubseg.ss == m->dummysub) {
-    /* Make new subsegment and initialize its vertices. */
-    makesubseg(m, &newsubseg);
-    setsorg(newsubseg, tridest);
-    setsdest(newsubseg, triorg);
-    /* Bond new subsegment to the two triangles it is sandwiched between. */
-    /*   Note that the facing triangle `oppotri' might be equal to        */
-    /*   `dummytri' (outer space), but the new subsegment is bonded to it */
-    /*   all the same.                                                    */
-    tsbond(*tri, newsubseg);
-    sym(*tri, oppotri);
-    ssymself(newsubseg);
-    tsbond(oppotri, newsubseg);
-    setmark(newsubseg, subsegmark);
-    if (b->verbose > 2) {
+  /* Make new subsegment and initialize its vertices. */
+  makesubseg(m, &newsubseg);
+  setsorg(newsubseg, tridest);
+  setsdest(newsubseg, triorg);
+  /* Bond new subsegment to the two triangles it is sandwiched between. */
+  /*   Note that the facing triangle `oppotri' might be equal to        */
+  /*   `dummytri' (outer space), but the new subsegment is bonded to it */
+  /*   all the same.                                                    */
+  tsbond(*tri, newsubseg);
+  sym(*tri, oppotri);
+  ssymself(newsubseg);
+  tsbond(oppotri, newsubseg);
+  setmark(newsubseg, subsegmark);
+  if (b->verbose > 2) {
       printf("  Inserting new ");
       printsubseg(m, b, &newsubseg);
-    }
+  }
   } else {
-    if (mark(newsubseg) == 0) {
+  if (mark(newsubseg) == 0) {
       setmark(newsubseg, subsegmark);
-    }
+  }
   }
 }
 
@@ -7941,17 +7941,17 @@ struct otri *flipedge;                    /* Handle for the triangle abc. */
   sym(*flipedge, top);
 #ifdef SELF_CHECK
   if (top.tri == m->dummytri) {
-    printf("Internal error in flip():  Attempt to flip on boundary.\n");
-    lnextself(*flipedge);
-    return;
+  printf("Internal error in flip():  Attempt to flip on boundary.\n");
+  lnextself(*flipedge);
+  return;
   }
   if (m->checksegments) {
-    tspivot(*flipedge, toplsubseg);
-    if (toplsubseg.ss != m->dummysub) {
+  tspivot(*flipedge, toplsubseg);
+  if (toplsubseg.ss != m->dummysub) {
       printf("Internal error in flip():  Attempt to flip a segment.\n");
       lnextself(*flipedge);
       return;
-    }
+  }
   }
 #endif /* SELF_CHECK */
   apex(top, farvertex);
@@ -7972,31 +7972,31 @@ struct otri *flipedge;                    /* Handle for the triangle abc. */
   bond(topright, toplcasing);
 
   if (m->checksegments) {
-    /* Check for subsegments and rebond them to the quadrilateral. */
-    tspivot(topleft, toplsubseg);
-    tspivot(botleft, botlsubseg);
-    tspivot(botright, botrsubseg);
-    tspivot(topright, toprsubseg);
-    if (toplsubseg.ss == m->dummysub) {
+  /* Check for subsegments and rebond them to the quadrilateral. */
+  tspivot(topleft, toplsubseg);
+  tspivot(botleft, botlsubseg);
+  tspivot(botright, botrsubseg);
+  tspivot(topright, toprsubseg);
+  if (toplsubseg.ss == m->dummysub) {
       tsdissolve(topright);
-    } else {
+  } else {
       tsbond(topright, toplsubseg);
-    }
-    if (botlsubseg.ss == m->dummysub) {
+  }
+  if (botlsubseg.ss == m->dummysub) {
       tsdissolve(topleft);
-    } else {
+  } else {
       tsbond(topleft, botlsubseg);
-    }
-    if (botrsubseg.ss == m->dummysub) {
+  }
+  if (botrsubseg.ss == m->dummysub) {
       tsdissolve(botleft);
-    } else {
+  } else {
       tsbond(botleft, botrsubseg);
-    }
-    if (toprsubseg.ss == m->dummysub) {
+  }
+  if (toprsubseg.ss == m->dummysub) {
       tsdissolve(botright);
-    } else {
+  } else {
       tsbond(botright, toprsubseg);
-    }
+  }
   }
 
   /* New vertex assignments for the rotated quadrilateral. */
@@ -8007,10 +8007,10 @@ struct otri *flipedge;                    /* Handle for the triangle abc. */
   setdest(top, farvertex);
   setapex(top, leftvertex);
   if (b->verbose > 2) {
-    printf("  Edge flip results in left ");
-    printtriangle(m, b, &top);
-    printf("  and right ");
-    printtriangle(m, b, flipedge);
+  printf("  Edge flip results in left ");
+  printtriangle(m, b, &top);
+  printf("  and right ");
+  printtriangle(m, b, flipedge);
   }
 }
 
@@ -8076,17 +8076,17 @@ struct otri *flipedge;                    /* Handle for the triangle abc. */
   sym(*flipedge, top);
 #ifdef SELF_CHECK
   if (top.tri == m->dummytri) {
-    printf("Internal error in unflip():  Attempt to flip on boundary.\n");
-    lnextself(*flipedge);
-    return;
+  printf("Internal error in unflip():  Attempt to flip on boundary.\n");
+  lnextself(*flipedge);
+  return;
   }
   if (m->checksegments) {
-    tspivot(*flipedge, toplsubseg);
-    if (toplsubseg.ss != m->dummysub) {
+  tspivot(*flipedge, toplsubseg);
+  if (toplsubseg.ss != m->dummysub) {
       printf("Internal error in unflip():  Attempt to flip a subsegment.\n");
       lnextself(*flipedge);
       return;
-    }
+  }
   }
 #endif /* SELF_CHECK */
   apex(top, farvertex);
@@ -8107,31 +8107,31 @@ struct otri *flipedge;                    /* Handle for the triangle abc. */
   bond(topright, botrcasing);
 
   if (m->checksegments) {
-    /* Check for subsegments and rebond them to the quadrilateral. */
-    tspivot(topleft, toplsubseg);
-    tspivot(botleft, botlsubseg);
-    tspivot(botright, botrsubseg);
-    tspivot(topright, toprsubseg);
-    if (toplsubseg.ss == m->dummysub) {
+  /* Check for subsegments and rebond them to the quadrilateral. */
+  tspivot(topleft, toplsubseg);
+  tspivot(botleft, botlsubseg);
+  tspivot(botright, botrsubseg);
+  tspivot(topright, toprsubseg);
+  if (toplsubseg.ss == m->dummysub) {
       tsdissolve(botleft);
-    } else {
+  } else {
       tsbond(botleft, toplsubseg);
-    }
-    if (botlsubseg.ss == m->dummysub) {
+  }
+  if (botlsubseg.ss == m->dummysub) {
       tsdissolve(botright);
-    } else {
+  } else {
       tsbond(botright, botlsubseg);
-    }
-    if (botrsubseg.ss == m->dummysub) {
+  }
+  if (botrsubseg.ss == m->dummysub) {
       tsdissolve(topright);
-    } else {
+  } else {
       tsbond(topright, botrsubseg);
-    }
-    if (toprsubseg.ss == m->dummysub) {
+  }
+  if (toprsubseg.ss == m->dummysub) {
       tsdissolve(topleft);
-    } else {
+  } else {
       tsbond(topleft, toprsubseg);
-    }
+  }
   }
 
   /* New vertex assignments for the rotated quadrilateral. */
@@ -8142,10 +8142,10 @@ struct otri *flipedge;                    /* Handle for the triangle abc. */
   setdest(top, botvertex);
   setapex(top, rightvertex);
   if (b->verbose > 2) {
-    printf("  Edge unflip results in left ");
-    printtriangle(m, b, flipedge);
-    printf("  and right ");
-    printtriangle(m, b, &top);
+  printf("  Edge unflip results in left ");
+  printtriangle(m, b, flipedge);
+  printf("  and right ");
+  printtriangle(m, b, &top);
   }
 }
 
@@ -8247,162 +8247,162 @@ REAL iradius;
   subseg sptr;         /* Temporary variable used by spivot() and tspivot(). */
 
   if (b->verbose > 1) {
-    printf("  Inserting (%.12g, %.12g).\n", newvertex[0], newvertex[1]);
+  printf("  Inserting (%.12g, %.12g).\n", newvertex[0], newvertex[1]);
   }
 
   if (splitseg == (struct osub *) NULL) {
-    /* Find the location of the vertex to be inserted.  Check if a good */
-    /*   starting triangle has already been provided by the caller.     */
-    if (searchtri->tri == m->dummytri) {
+  /* Find the location of the vertex to be inserted.  Check if a good */
+  /*   starting triangle has already been provided by the caller.     */
+  if (searchtri->tri == m->dummytri) {
       /* Find a boundary triangle. */
       horiz.tri = m->dummytri;
       horiz.orient = 0;
       symself(horiz);
       /* Search for a triangle containing `newvertex'. */
       intersect = locate(m, b, newvertex, &horiz);
-    } else {
+  } else {
       /* Start searching from the triangle provided by the caller. */
       otricopy(*searchtri, horiz);
       intersect = preciselocate(m, b, newvertex, &horiz, 1);
-    }
+  }
   } else {
-    /* The calling routine provides the subsegment in which */
-    /*   the vertex is inserted.                             */
-    otricopy(*searchtri, horiz);
-    intersect = ONEDGE;
+  /* The calling routine provides the subsegment in which */
+  /*   the vertex is inserted.                             */
+  otricopy(*searchtri, horiz);
+  intersect = ONEDGE;
   }
   if (intersect == ONVERTEX) {
-    /* There's already a vertex there.  Return in `searchtri' a triangle */
-    /*   whose origin is the existing vertex.                            */
-    otricopy(horiz, *searchtri);
-    otricopy(horiz, m->recenttri);
-    return DUPLICATEVERTEX;
+  /* There's already a vertex there.  Return in `searchtri' a triangle */
+  /*   whose origin is the existing vertex.                            */
+  otricopy(horiz, *searchtri);
+  otricopy(horiz, m->recenttri);
+  return DUPLICATEVERTEX;
   }
   if ((intersect == ONEDGE) || (intersect == OUTSIDE)) {
-    /* The vertex falls on an edge or boundary. */
-    if (m->checksegments && (splitseg == (struct osub *) NULL)) {
+  /* The vertex falls on an edge or boundary. */
+  if (m->checksegments && (splitseg == (struct osub *) NULL)) {
       /* Check whether the vertex falls on a subsegment. */
       tspivot(horiz, brokensubseg);
       if (brokensubseg.ss != m->dummysub) {
-        /* The vertex falls on a subsegment, and hence will not be inserted. */
-        if (segmentflaws) {
+    /* The vertex falls on a subsegment, and hence will not be inserted. */
+    if (segmentflaws) {
           if (b->nobisect == 2) {
-            enq = 0;
+      enq = 0;
 #ifndef CDT_ONLY
           } else if (iradius > 0.0) {
-            enq = splitpermitted(m, &brokensubseg, iradius);
+      enq = splitpermitted(m, &brokensubseg, iradius);
 #endif /* not CDT_ONLY */
           } else {
-            enq = 1;
+      enq = 1;
           }
           if (enq && (b->nobisect == 1)) {
-            /* This subsegment may be split only if it is an */
-            /*   internal boundary.                          */
-            sym(horiz, testtri);
-            enq = testtri.tri != m->dummytri;
+      /* This subsegment may be split only if it is an */
+      /*   internal boundary.                          */
+      sym(horiz, testtri);
+      enq = testtri.tri != m->dummytri;
           }
           if (enq) {
-            /* Add the subsegment to the list of encroached subsegments. */
-            encroached = (struct badsubseg *) poolalloc(&m->badsubsegs);
-            encroached->encsubseg = sencode(brokensubseg);
-            sorg(brokensubseg, encroached->subsegorg);
-            sdest(brokensubseg, encroached->subsegdest);
-            if (b->verbose > 2) {
+      /* Add the subsegment to the list of encroached subsegments. */
+      encroached = (struct badsubseg *) poolalloc(&m->badsubsegs);
+      encroached->encsubseg = sencode(brokensubseg);
+      sorg(brokensubseg, encroached->subsegorg);
+      sdest(brokensubseg, encroached->subsegdest);
+      if (b->verbose > 2) {
               printf(
           "  Queueing encroached subsegment (%.12g, %.12g) (%.12g, %.12g).\n",
                      encroached->subsegorg[0], encroached->subsegorg[1],
                      encroached->subsegdest[0], encroached->subsegdest[1]);
-            }
-          }
-        }
-        /* Return a handle whose primary edge contains the vertex, */
-        /*   which has not been inserted.                          */
-        otricopy(horiz, *searchtri);
-        otricopy(horiz, m->recenttri);
-        return VIOLATINGVERTEX;
       }
+          }
     }
+    /* Return a handle whose primary edge contains the vertex, */
+    /*   which has not been inserted.                          */
+    otricopy(horiz, *searchtri);
+    otricopy(horiz, m->recenttri);
+    return VIOLATINGVERTEX;
+      }
+  }
 
-    /* Insert the vertex on an edge, dividing one triangle into two (if */
-    /*   the edge lies on a boundary) or two triangles into four.       */
-    lprev(horiz, botright);
-    sym(botright, botrcasing);
-    sym(horiz, topright);
-    /* Is there a second triangle?  (Or does this edge lie on a boundary?) */
-    mirrorflag = topright.tri != m->dummytri;
-    if (mirrorflag) {
+  /* Insert the vertex on an edge, dividing one triangle into two (if */
+  /*   the edge lies on a boundary) or two triangles into four.       */
+  lprev(horiz, botright);
+  sym(botright, botrcasing);
+  sym(horiz, topright);
+  /* Is there a second triangle?  (Or does this edge lie on a boundary?) */
+  mirrorflag = topright.tri != m->dummytri;
+  if (mirrorflag) {
       lnextself(topright);
       sym(topright, toprcasing);
       maketriangle(m, b, &newtopright);
-    } else {
+  } else {
       /* Splitting a boundary edge increases the number of boundary edges. */
       m->hullsize++;
-    }
-    maketriangle(m, b, &newbotright);
+  }
+  maketriangle(m, b, &newbotright);
 
-    /* Set the vertices of changed and new triangles. */
-    org(horiz, rightvertex);
-    dest(horiz, leftvertex);
-    apex(horiz, botvertex);
-    setorg(newbotright, botvertex);
-    setdest(newbotright, rightvertex);
-    setapex(newbotright, newvertex);
-    setorg(horiz, newvertex);
-    for (i = 0; i < m->eextras; i++) {
+  /* Set the vertices of changed and new triangles. */
+  org(horiz, rightvertex);
+  dest(horiz, leftvertex);
+  apex(horiz, botvertex);
+  setorg(newbotright, botvertex);
+  setdest(newbotright, rightvertex);
+  setapex(newbotright, newvertex);
+  setorg(horiz, newvertex);
+  for (i = 0; i < m->eextras; i++) {
       /* Set the element attributes of a new triangle. */
       setelemattribute(newbotright, i, elemattribute(botright, i));
-    }
-    if (b->vararea) {
+  }
+  if (b->vararea) {
       /* Set the area constraint of a new triangle. */
       setareabound(newbotright, areabound(botright));
-    }
-    if (mirrorflag) {
+  }
+  if (mirrorflag) {
       dest(topright, topvertex);
       setorg(newtopright, rightvertex);
       setdest(newtopright, topvertex);
       setapex(newtopright, newvertex);
       setorg(topright, newvertex);
       for (i = 0; i < m->eextras; i++) {
-        /* Set the element attributes of another new triangle. */
-        setelemattribute(newtopright, i, elemattribute(topright, i));
+    /* Set the element attributes of another new triangle. */
+    setelemattribute(newtopright, i, elemattribute(topright, i));
       }
       if (b->vararea) {
-        /* Set the area constraint of another new triangle. */
-        setareabound(newtopright, areabound(topright));
+    /* Set the area constraint of another new triangle. */
+    setareabound(newtopright, areabound(topright));
       }
-    }
+  }
 
-    /* There may be subsegments that need to be bonded */
-    /*   to the new triangle(s).                       */
-    if (m->checksegments) {
+  /* There may be subsegments that need to be bonded */
+  /*   to the new triangle(s).                       */
+  if (m->checksegments) {
       tspivot(botright, botrsubseg);
       if (botrsubseg.ss != m->dummysub) {
-        tsdissolve(botright);
-        tsbond(newbotright, botrsubseg);
+    tsdissolve(botright);
+    tsbond(newbotright, botrsubseg);
       }
       if (mirrorflag) {
-        tspivot(topright, toprsubseg);
-        if (toprsubseg.ss != m->dummysub) {
+    tspivot(topright, toprsubseg);
+    if (toprsubseg.ss != m->dummysub) {
           tsdissolve(topright);
           tsbond(newtopright, toprsubseg);
-        }
-      }
     }
+      }
+  }
 
-    /* Bond the new triangle(s) to the surrounding triangles. */
-    bond(newbotright, botrcasing);
-    lprevself(newbotright);
-    bond(newbotright, botright);
-    lprevself(newbotright);
-    if (mirrorflag) {
+  /* Bond the new triangle(s) to the surrounding triangles. */
+  bond(newbotright, botrcasing);
+  lprevself(newbotright);
+  bond(newbotright, botright);
+  lprevself(newbotright);
+  if (mirrorflag) {
       bond(newtopright, toprcasing);
       lnextself(newtopright);
       bond(newtopright, topright);
       lnextself(newtopright);
       bond(newtopright, newbotright);
-    }
+  }
 
-    if (splitseg != (struct osub *) NULL) {
+  if (splitseg != (struct osub *) NULL) {
       /* Split the subsegment into two. */
       setsdest(*splitseg, newvertex);
       ssymself(*splitseg);
@@ -8416,11 +8416,11 @@ REAL iradius;
       /* Transfer the subsegment's boundary marker to the vertex */
       /*   if required.                                          */
       if (vertexmark(newvertex) == 0) {
-        setvertexmark(newvertex, mark(*splitseg));
+    setvertexmark(newvertex, mark(*splitseg));
       }
-    }
+  }
 
-    if (m->checkquality) {
+  if (m->checkquality) {
       poolrestart(&m->flipstackers);
       m->lastflip = (struct flipstacker *) poolalloc(&m->flipstackers);
       m->lastflip->flippedtri = encode(horiz);
@@ -8429,117 +8429,117 @@ REAL iradius;
 #else
       m->lastflip->prevflip = (struct flipstacker *) &insertvertex;
 #endif
-    }
+  }
 
 #ifdef SELF_CHECK
-    if (counterclockwise(m, b, rightvertex, leftvertex, botvertex) < 0.0) {
+  if (counterclockwise(m, b, rightvertex, leftvertex, botvertex) < 0.0) {
       printf("Internal error in insertvertex():\n");
       printf(
-            "  Clockwise triangle prior to edge vertex insertion (bottom).\n");
-    }
-    if (mirrorflag) {
+      "  Clockwise triangle prior to edge vertex insertion (bottom).\n");
+  }
+  if (mirrorflag) {
       if (counterclockwise(m, b, leftvertex, rightvertex, topvertex) < 0.0) {
-        printf("Internal error in insertvertex():\n");
-        printf("  Clockwise triangle prior to edge vertex insertion (top).\n");
+    printf("Internal error in insertvertex():\n");
+    printf("  Clockwise triangle prior to edge vertex insertion (top).\n");
       }
       if (counterclockwise(m, b, rightvertex, topvertex, newvertex) < 0.0) {
-        printf("Internal error in insertvertex():\n");
-        printf(
-            "  Clockwise triangle after edge vertex insertion (top right).\n");
+    printf("Internal error in insertvertex():\n");
+    printf(
+      "  Clockwise triangle after edge vertex insertion (top right).\n");
       }
       if (counterclockwise(m, b, topvertex, leftvertex, newvertex) < 0.0) {
-        printf("Internal error in insertvertex():\n");
-        printf(
-            "  Clockwise triangle after edge vertex insertion (top left).\n");
+    printf("Internal error in insertvertex():\n");
+    printf(
+      "  Clockwise triangle after edge vertex insertion (top left).\n");
       }
-    }
-    if (counterclockwise(m, b, leftvertex, botvertex, newvertex) < 0.0) {
+  }
+  if (counterclockwise(m, b, leftvertex, botvertex, newvertex) < 0.0) {
       printf("Internal error in insertvertex():\n");
       printf(
           "  Clockwise triangle after edge vertex insertion (bottom left).\n");
-    }
-    if (counterclockwise(m, b, botvertex, rightvertex, newvertex) < 0.0) {
+  }
+  if (counterclockwise(m, b, botvertex, rightvertex, newvertex) < 0.0) {
       printf("Internal error in insertvertex():\n");
       printf(
-        "  Clockwise triangle after edge vertex insertion (bottom right).\n");
-    }
+    "  Clockwise triangle after edge vertex insertion (bottom right).\n");
+  }
 #endif /* SELF_CHECK */
-    if (b->verbose > 2) {
+  if (b->verbose > 2) {
       printf("  Updating bottom left ");
       printtriangle(m, b, &botright);
       if (mirrorflag) {
-        printf("  Updating top left ");
-        printtriangle(m, b, &topright);
-        printf("  Creating top right ");
-        printtriangle(m, b, &newtopright);
+    printf("  Updating top left ");
+    printtriangle(m, b, &topright);
+    printf("  Creating top right ");
+    printtriangle(m, b, &newtopright);
       }
       printf("  Creating bottom right ");
       printtriangle(m, b, &newbotright);
-    }
+  }
 
-    /* Position `horiz' on the first edge to check for */
-    /*   the Delaunay property.                        */
-    lnextself(horiz);
+  /* Position `horiz' on the first edge to check for */
+  /*   the Delaunay property.                        */
+  lnextself(horiz);
   } else {
-    /* Insert the vertex in a triangle, splitting it into three. */
-    lnext(horiz, botleft);
-    lprev(horiz, botright);
-    sym(botleft, botlcasing);
-    sym(botright, botrcasing);
-    maketriangle(m, b, &newbotleft);
-    maketriangle(m, b, &newbotright);
+  /* Insert the vertex in a triangle, splitting it into three. */
+  lnext(horiz, botleft);
+  lprev(horiz, botright);
+  sym(botleft, botlcasing);
+  sym(botright, botrcasing);
+  maketriangle(m, b, &newbotleft);
+  maketriangle(m, b, &newbotright);
 
-    /* Set the vertices of changed and new triangles. */
-    org(horiz, rightvertex);
-    dest(horiz, leftvertex);
-    apex(horiz, botvertex);
-    setorg(newbotleft, leftvertex);
-    setdest(newbotleft, botvertex);
-    setapex(newbotleft, newvertex);
-    setorg(newbotright, botvertex);
-    setdest(newbotright, rightvertex);
-    setapex(newbotright, newvertex);
-    setapex(horiz, newvertex);
-    for (i = 0; i < m->eextras; i++) {
+  /* Set the vertices of changed and new triangles. */
+  org(horiz, rightvertex);
+  dest(horiz, leftvertex);
+  apex(horiz, botvertex);
+  setorg(newbotleft, leftvertex);
+  setdest(newbotleft, botvertex);
+  setapex(newbotleft, newvertex);
+  setorg(newbotright, botvertex);
+  setdest(newbotright, rightvertex);
+  setapex(newbotright, newvertex);
+  setapex(horiz, newvertex);
+  for (i = 0; i < m->eextras; i++) {
       /* Set the element attributes of the new triangles. */
       attrib = elemattribute(horiz, i);
       setelemattribute(newbotleft, i, attrib);
       setelemattribute(newbotright, i, attrib);
-    }
-    if (b->vararea) {
+  }
+  if (b->vararea) {
       /* Set the area constraint of the new triangles. */
       area = areabound(horiz);
       setareabound(newbotleft, area);
       setareabound(newbotright, area);
-    }
+  }
 
-    /* There may be subsegments that need to be bonded */
-    /*   to the new triangles.                         */
-    if (m->checksegments) {
+  /* There may be subsegments that need to be bonded */
+  /*   to the new triangles.                         */
+  if (m->checksegments) {
       tspivot(botleft, botlsubseg);
       if (botlsubseg.ss != m->dummysub) {
-        tsdissolve(botleft);
-        tsbond(newbotleft, botlsubseg);
+    tsdissolve(botleft);
+    tsbond(newbotleft, botlsubseg);
       }
       tspivot(botright, botrsubseg);
       if (botrsubseg.ss != m->dummysub) {
-        tsdissolve(botright);
-        tsbond(newbotright, botrsubseg);
+    tsdissolve(botright);
+    tsbond(newbotright, botrsubseg);
       }
-    }
+  }
 
-    /* Bond the new triangles to the surrounding triangles. */
-    bond(newbotleft, botlcasing);
-    bond(newbotright, botrcasing);
-    lnextself(newbotleft);
-    lprevself(newbotright);
-    bond(newbotleft, newbotright);
-    lnextself(newbotleft);
-    bond(botleft, newbotleft);
-    lprevself(newbotright);
-    bond(botright, newbotright);
+  /* Bond the new triangles to the surrounding triangles. */
+  bond(newbotleft, botlcasing);
+  bond(newbotright, botrcasing);
+  lnextself(newbotleft);
+  lprevself(newbotright);
+  bond(newbotleft, newbotright);
+  lnextself(newbotleft);
+  bond(botleft, newbotleft);
+  lprevself(newbotright);
+  bond(botright, newbotright);
 
-    if (m->checkquality) {
+  if (m->checkquality) {
       poolrestart(&m->flipstackers);
       m->lastflip = (struct flipstacker *) poolalloc(&m->flipstackers);
       m->lastflip->flippedtri = encode(horiz);
@@ -8548,34 +8548,34 @@ REAL iradius;
 #else
       m->lastflip->prevflip = (struct flipstacker *) NULL;
 #endif
-    }
+  }
 
 #ifdef SELF_CHECK
-    if (counterclockwise(m, b, rightvertex, leftvertex, botvertex) < 0.0) {
+  if (counterclockwise(m, b, rightvertex, leftvertex, botvertex) < 0.0) {
       printf("Internal error in insertvertex():\n");
       printf("  Clockwise triangle prior to vertex insertion.\n");
-    }
-    if (counterclockwise(m, b, rightvertex, leftvertex, newvertex) < 0.0) {
+  }
+  if (counterclockwise(m, b, rightvertex, leftvertex, newvertex) < 0.0) {
       printf("Internal error in insertvertex():\n");
       printf("  Clockwise triangle after vertex insertion (top).\n");
-    }
-    if (counterclockwise(m, b, leftvertex, botvertex, newvertex) < 0.0) {
+  }
+  if (counterclockwise(m, b, leftvertex, botvertex, newvertex) < 0.0) {
       printf("Internal error in insertvertex():\n");
       printf("  Clockwise triangle after vertex insertion (left).\n");
-    }
-    if (counterclockwise(m, b, botvertex, rightvertex, newvertex) < 0.0) {
+  }
+  if (counterclockwise(m, b, botvertex, rightvertex, newvertex) < 0.0) {
       printf("Internal error in insertvertex():\n");
       printf("  Clockwise triangle after vertex insertion (right).\n");
-    }
+  }
 #endif /* SELF_CHECK */
-    if (b->verbose > 2) {
+  if (b->verbose > 2) {
       printf("  Updating top ");
       printtriangle(m, b, &horiz);
       printf("  Creating left ");
       printtriangle(m, b, &newbotleft);
       printf("  Creating right ");
       printtriangle(m, b, &newbotright);
-    }
+  }
   }
 
   /* The insertion is successful by default, unless an encroached */
@@ -8590,49 +8590,49 @@ REAL iradius;
   dest(horiz, leftvertex);
   /* Circle until finished. */
   while (1) {
-    /* By default, the edge will be flipped. */
-    doflip = 1;
+  /* By default, the edge will be flipped. */
+  doflip = 1;
 
-    if (m->checksegments) {
+  if (m->checksegments) {
       /* Check for a subsegment, which cannot be flipped. */
       tspivot(horiz, checksubseg);
       if (checksubseg.ss != m->dummysub) {
-        /* The edge is a subsegment and cannot be flipped. */
-        doflip = 0;
+    /* The edge is a subsegment and cannot be flipped. */
+    doflip = 0;
 #ifndef CDT_ONLY
-        if (segmentflaws) {
+    if (segmentflaws) {
           /* Does the new vertex encroach upon this subsegment? */
           if (checkseg4encroach(m, b, &checksubseg, iradius)) {
-            success = ENCROACHINGVERTEX;
+      success = ENCROACHINGVERTEX;
           }
-        }
+    }
 #endif /* not CDT_ONLY */
       }
-    }
+  }
 
-    if (doflip) {
+  if (doflip) {
       /* Check if the edge is a boundary edge. */
       sym(horiz, top);
       if (top.tri == m->dummytri) {
-        /* The edge is a boundary edge and cannot be flipped. */
-        doflip = 0;
+    /* The edge is a boundary edge and cannot be flipped. */
+    doflip = 0;
       } else {
-        /* Find the vertex on the other side of the edge. */
-        apex(top, farvertex);
-        /* In the incremental Delaunay triangulation algorithm, any of      */
-        /*   `leftvertex', `rightvertex', and `farvertex' could be vertices */
-        /*   of the triangular bounding box.  These vertices must be        */
-        /*   treated as if they are infinitely distant, even though their   */
-        /*   "coordinates" are not.                                         */
-        if ((leftvertex == m->infvertex1) || (leftvertex == m->infvertex2) ||
-            (leftvertex == m->infvertex3)) {
+    /* Find the vertex on the other side of the edge. */
+    apex(top, farvertex);
+    /* In the incremental Delaunay triangulation algorithm, any of      */
+    /*   `leftvertex', `rightvertex', and `farvertex' could be vertices */
+    /*   of the triangular bounding box.  These vertices must be        */
+    /*   treated as if they are infinitely distant, even though their   */
+    /*   "coordinates" are not.                                         */
+    if ((leftvertex == m->infvertex1) || (leftvertex == m->infvertex2) ||
+      (leftvertex == m->infvertex3)) {
           /* `leftvertex' is infinitely distant.  Check the convexity of  */
           /*   the boundary of the triangulation.  'farvertex' might be   */
           /*   infinite as well, but trust me, this same condition should */
           /*   be applied.                                                */
           doflip = counterclockwise(m, b, newvertex, rightvertex, farvertex)
                    > 0.0;
-        } else if ((rightvertex == m->infvertex1) ||
+    } else if ((rightvertex == m->infvertex1) ||
                    (rightvertex == m->infvertex2) ||
                    (rightvertex == m->infvertex3)) {
           /* `rightvertex' is infinitely distant.  Check the convexity of */
@@ -8641,18 +8641,18 @@ REAL iradius;
           /*   be applied.                                                */
           doflip = counterclockwise(m, b, farvertex, leftvertex, newvertex)
                    > 0.0;
-        } else if ((farvertex == m->infvertex1) ||
+    } else if ((farvertex == m->infvertex1) ||
                    (farvertex == m->infvertex2) ||
                    (farvertex == m->infvertex3)) {
           /* `farvertex' is infinitely distant and cannot be inside */
           /*   the circumcircle of the triangle `horiz'.            */
           doflip = 0;
-        } else {
+    } else {
           /* Test whether the edge is locally Delaunay. */
           doflip = incircle(m, b, leftvertex, newvertex, rightvertex,
-                            farvertex) > 0.0;
-        }
-        if (doflip) {
+              farvertex) > 0.0;
+    }
+    if (doflip) {
           /* We made it!  Flip the edge `horiz' by rotating its containing */
           /*   quadrilateral (the two triangles adjacent to `horiz').      */
           /* Identify the casing of the quadrilateral. */
@@ -8670,31 +8670,31 @@ REAL iradius;
           bond(botright, toprcasing);
           bond(topright, toplcasing);
           if (m->checksegments) {
-            /* Check for subsegments and rebond them to the quadrilateral. */
-            tspivot(topleft, toplsubseg);
-            tspivot(botleft, botlsubseg);
-            tspivot(botright, botrsubseg);
-            tspivot(topright, toprsubseg);
-            if (toplsubseg.ss == m->dummysub) {
+      /* Check for subsegments and rebond them to the quadrilateral. */
+      tspivot(topleft, toplsubseg);
+      tspivot(botleft, botlsubseg);
+      tspivot(botright, botrsubseg);
+      tspivot(topright, toprsubseg);
+      if (toplsubseg.ss == m->dummysub) {
               tsdissolve(topright);
-            } else {
+      } else {
               tsbond(topright, toplsubseg);
-            }
-            if (botlsubseg.ss == m->dummysub) {
+      }
+      if (botlsubseg.ss == m->dummysub) {
               tsdissolve(topleft);
-            } else {
+      } else {
               tsbond(topleft, botlsubseg);
-            }
-            if (botrsubseg.ss == m->dummysub) {
+      }
+      if (botrsubseg.ss == m->dummysub) {
               tsdissolve(botleft);
-            } else {
+      } else {
               tsbond(botleft, botrsubseg);
-            }
-            if (toprsubseg.ss == m->dummysub) {
+      }
+      if (toprsubseg.ss == m->dummysub) {
               tsdissolve(botright);
-            } else {
+      } else {
               tsbond(botright, toprsubseg);
-            }
+      }
           }
           /* New vertex assignments for the rotated quadrilateral. */
           setorg(horiz, farvertex);
@@ -8704,85 +8704,85 @@ REAL iradius;
           setdest(top, farvertex);
           setapex(top, leftvertex);
           for (i = 0; i < m->eextras; i++) {
-            /* Take the average of the two triangles' attributes. */
-            attrib = 0.5 * (elemattribute(top, i) + elemattribute(horiz, i));
-            setelemattribute(top, i, attrib);
-            setelemattribute(horiz, i, attrib);
+      /* Take the average of the two triangles' attributes. */
+      attrib = 0.5 * (elemattribute(top, i) + elemattribute(horiz, i));
+      setelemattribute(top, i, attrib);
+      setelemattribute(horiz, i, attrib);
           }
           if (b->vararea) {
-            if ((areabound(top) <= 0.0) || (areabound(horiz) <= 0.0)) {
+      if ((areabound(top) <= 0.0) || (areabound(horiz) <= 0.0)) {
               area = -1.0;
-            } else {
+      } else {
               /* Take the average of the two triangles' area constraints.    */
               /*   This prevents small area constraints from migrating a     */
               /*   long, long way from their original location due to flips. */
               area = 0.5 * (areabound(top) + areabound(horiz));
-            }
-            setareabound(top, area);
-            setareabound(horiz, area);
+      }
+      setareabound(top, area);
+      setareabound(horiz, area);
           }
 
           if (m->checkquality) {
-            newflip = (struct flipstacker *) poolalloc(&m->flipstackers);
-            newflip->flippedtri = encode(horiz);
+      newflip = (struct flipstacker *) poolalloc(&m->flipstackers);
+      newflip->flippedtri = encode(horiz);
 #ifdef _WIN32
-            newflip->prevflip_union.data = m->lastflip;
+      newflip->prevflip_union.data = m->lastflip;
 #else
-            newflip->prevflip = m->lastflip;
+      newflip->prevflip = m->lastflip;
 #endif
-            m->lastflip = newflip;
+      m->lastflip = newflip;
           }
 
 #ifdef SELF_CHECK
           if (newvertex != (vertex) NULL) {
-            if (counterclockwise(m, b, leftvertex, newvertex, rightvertex) <
-                0.0) {
+      if (counterclockwise(m, b, leftvertex, newvertex, rightvertex) <
+        0.0) {
               printf("Internal error in insertvertex():\n");
               printf("  Clockwise triangle prior to edge flip (bottom).\n");
-            }
-            /* The following test has been removed because constrainededge() */
-            /*   sometimes generates inverted triangles that insertvertex()  */
-            /*   removes.                                                    */
+      }
+      /* The following test has been removed because constrainededge() */
+      /*   sometimes generates inverted triangles that insertvertex()  */
+      /*   removes.                                                    */
 /*
-            if (counterclockwise(m, b, rightvertex, farvertex, leftvertex) <
-                0.0) {
+      if (counterclockwise(m, b, rightvertex, farvertex, leftvertex) <
+        0.0) {
               printf("Internal error in insertvertex():\n");
               printf("  Clockwise triangle prior to edge flip (top).\n");
-            }
+      }
 */
-            if (counterclockwise(m, b, farvertex, leftvertex, newvertex) <
-                0.0) {
+      if (counterclockwise(m, b, farvertex, leftvertex, newvertex) <
+        0.0) {
               printf("Internal error in insertvertex():\n");
               printf("  Clockwise triangle after edge flip (left).\n");
-            }
-            if (counterclockwise(m, b, newvertex, rightvertex, farvertex) <
-                0.0) {
+      }
+      if (counterclockwise(m, b, newvertex, rightvertex, farvertex) <
+        0.0) {
               printf("Internal error in insertvertex():\n");
               printf("  Clockwise triangle after edge flip (right).\n");
-            }
+      }
           }
 #endif /* SELF_CHECK */
           if (b->verbose > 2) {
-            printf("  Edge flip results in left ");
-            lnextself(topleft);
-            printtriangle(m, b, &topleft);
-            printf("  and right ");
-            printtriangle(m, b, &horiz);
+      printf("  Edge flip results in left ");
+      lnextself(topleft);
+      printtriangle(m, b, &topleft);
+      printf("  and right ");
+      printtriangle(m, b, &horiz);
           }
           /* On the next iterations, consider the two edges that were  */
           /*   exposed (this is, are now visible to the newly inserted */
           /*   vertex) by the edge flip.                               */
           lprevself(horiz);
           leftvertex = farvertex;
-        }
-      }
     }
-    if (!doflip) {
+      }
+  }
+  if (!doflip) {
       /* The handle `horiz' is accepted as locally Delaunay. */
 #ifndef CDT_ONLY
       if (triflaws) {
-        /* Check the triangle `horiz' for quality. */
-        testtriangle(m, b, &horiz);
+    /* Check the triangle `horiz' for quality. */
+    testtriangle(m, b, &horiz);
       }
 #endif /* not CDT_ONLY */
       /* Look for the next edge around the newly inserted vertex. */
@@ -8792,16 +8792,16 @@ REAL iradius;
       /*   falling outside  of the triangulation.  The latter will happen   */
       /*   when a vertex is inserted at a boundary.                         */
       if ((leftvertex == first) || (testtri.tri == m->dummytri)) {
-        /* We're done.  Return a triangle whose origin is the new vertex. */
-        lnext(horiz, *searchtri);
-        lnext(horiz, m->recenttri);
-        return success;
+    /* We're done.  Return a triangle whose origin is the new vertex. */
+    lnext(horiz, *searchtri);
+    lnext(horiz, m->recenttri);
+    return success;
       }
       /* Finish finding the next edge around the newly inserted vertex. */
       lnext(testtri, horiz);
       rightvertex = leftvertex;
       dest(horiz, leftvertex);
-    }
+  }
   }
 }
 
@@ -8871,8 +8871,8 @@ REAL iradius;
 
 #ifdef ANSI_DECLARATORS
 void triangulatepolygon(struct mesh *m, struct behavior *b,
-                        struct otri *firstedge, struct otri *lastedge,
-                        int edgecount, int doflip, int triflaws)
+            struct otri *firstedge, struct otri *lastedge,
+            int edgecount, int doflip, int triflaws)
 #else /* not ANSI_DECLARATORS */
 void triangulatepolygon(m, b, firstedge, lastedge, edgecount, doflip, triflaws)
 struct mesh *m;
@@ -8899,8 +8899,8 @@ int triflaws;
   apex(*lastedge, leftbasevertex);
   dest(*firstedge, rightbasevertex);
   if (b->verbose > 2) {
-    printf("  Triangulating interior polygon at edge\n");
-    printf("    (%.12g, %.12g) (%.12g, %.12g)\n", leftbasevertex[0],
+  printf("  Triangulating interior polygon at edge\n");
+  printf("    (%.12g, %.12g) (%.12g, %.12g)\n", leftbasevertex[0],
            leftbasevertex[1], rightbasevertex[0], rightbasevertex[1]);
   }
   /* Find the best vertex to connect the base to. */
@@ -8909,43 +8909,43 @@ int triflaws;
   otricopy(besttri, testtri);
   bestnumber = 1;
   for (i = 2; i <= edgecount - 2; i++) {
-    onextself(testtri);
-    dest(testtri, testvertex);
-    /* Is this a better vertex? */
-    if (incircle(m, b, leftbasevertex, rightbasevertex, bestvertex,
+  onextself(testtri);
+  dest(testtri, testvertex);
+  /* Is this a better vertex? */
+  if (incircle(m, b, leftbasevertex, rightbasevertex, bestvertex,
                  testvertex) > 0.0) {
       otricopy(testtri, besttri);
       bestvertex = testvertex;
       bestnumber = i;
-    }
+  }
   }
   if (b->verbose > 2) {
-    printf("    Connecting edge to (%.12g, %.12g)\n", bestvertex[0],
+  printf("    Connecting edge to (%.12g, %.12g)\n", bestvertex[0],
            bestvertex[1]);
   }
   if (bestnumber > 1) {
-    /* Recursively triangulate the smaller polygon on the right. */
-    oprev(besttri, tempedge);
-    triangulatepolygon(m, b, firstedge, &tempedge, bestnumber + 1, 1,
+  /* Recursively triangulate the smaller polygon on the right. */
+  oprev(besttri, tempedge);
+  triangulatepolygon(m, b, firstedge, &tempedge, bestnumber + 1, 1,
                        triflaws);
   }
   if (bestnumber < edgecount - 2) {
-    /* Recursively triangulate the smaller polygon on the left. */
-    sym(besttri, tempedge);
-    triangulatepolygon(m, b, &besttri, lastedge, edgecount - bestnumber, 1,
+  /* Recursively triangulate the smaller polygon on the left. */
+  sym(besttri, tempedge);
+  triangulatepolygon(m, b, &besttri, lastedge, edgecount - bestnumber, 1,
                        triflaws);
-    /* Find `besttri' again; it may have been lost to edge flips. */
-    sym(tempedge, besttri);
+  /* Find `besttri' again; it may have been lost to edge flips. */
+  sym(tempedge, besttri);
   }
   if (doflip) {
-    /* Do one final edge flip. */
-    flip(m, b, &besttri);
+  /* Do one final edge flip. */
+  flip(m, b, &besttri);
 #ifndef CDT_ONLY
-    if (triflaws) {
+  if (triflaws) {
       /* Check the quality of the newly committed triangle. */
       sym(besttri, testtri);
       testtriangle(m, b, &testtri);
-    }
+  }
 #endif /* not CDT_ONLY */
   }
   /* Return the base triangle. */
@@ -8992,7 +8992,7 @@ struct otri *deltri;
 
   org(*deltri, delvertex);
   if (b->verbose > 1) {
-    printf("  Deleting (%.12g, %.12g).\n", delvertex[0], delvertex[1]);
+  printf("  Deleting (%.12g, %.12g).\n", delvertex[0], delvertex[1]);
   }
   vertexdealloc(m, delvertex);
 
@@ -9001,30 +9001,30 @@ struct otri *deltri;
   edgecount = 1;
   while (!otriequal(*deltri, countingtri)) {
 #ifdef SELF_CHECK
-    if (countingtri.tri == m->dummytri) {
+  if (countingtri.tri == m->dummytri) {
       printf("Internal error in deletevertex():\n");
       printf("  Attempt to delete boundary vertex.\n");
       internalerror();
-    }
+  }
 #endif /* SELF_CHECK */
-    edgecount++;
-    onextself(countingtri);
+  edgecount++;
+  onextself(countingtri);
   }
 
 #ifdef SELF_CHECK
   if (edgecount < 3) {
-    printf("Internal error in deletevertex():\n  Vertex has degree %d.\n",
+  printf("Internal error in deletevertex():\n  Vertex has degree %d.\n",
            edgecount);
-    internalerror();
+  internalerror();
   }
 #endif /* SELF_CHECK */
   if (edgecount > 3) {
-    /* Triangulate the polygon defined by the union of all triangles */
-    /*   adjacent to the vertex being deleted.  Check the quality of */
-    /*   the resulting triangles.                                    */
-    onext(*deltri, firstedge);
-    oprev(*deltri, lastedge);
-    triangulatepolygon(m, b, &firstedge, &lastedge, edgecount, 0,
+  /* Triangulate the polygon defined by the union of all triangles */
+  /*   adjacent to the vertex being deleted.  Check the quality of */
+  /*   the resulting triangles.                                    */
+  onext(*deltri, firstedge);
+  oprev(*deltri, lastedge);
+  triangulatepolygon(m, b, &firstedge, &lastedge, edgecount, 0,
                        !b->nobisect);
   }
   /* Splice out two triangles. */
@@ -9037,18 +9037,18 @@ struct otri *deltri;
   bond(deltriright, rightcasing);
   tspivot(lefttri, leftsubseg);
   if (leftsubseg.ss != m->dummysub) {
-    tsbond(*deltri, leftsubseg);
+  tsbond(*deltri, leftsubseg);
   }
   tspivot(righttri, rightsubseg);
   if (rightsubseg.ss != m->dummysub) {
-    tsbond(deltriright, rightsubseg);
+  tsbond(deltriright, rightsubseg);
   }
 
   /* Set the new origin of `deltri' and check its quality. */
   org(lefttri, neworg);
   setorg(*deltri, neworg);
   if (!b->nobisect) {
-    testtriangle(m, b, deltri);
+  testtriangle(m, b, deltri);
   }
 
   /* Delete the two spliced-out triangles. */
@@ -9092,17 +9092,17 @@ struct behavior *b;
   /* Walk through the list of transformations (flips and a vertex insertion) */
   /*   in the reverse of the order in which they were done, and undo them.   */
   while (m->lastflip != (struct flipstacker *) NULL) {
-    /* Find a triangle involved in the last unreversed transformation. */
-    decode(m->lastflip->flippedtri, fliptri);
+  /* Find a triangle involved in the last unreversed transformation. */
+  decode(m->lastflip->flippedtri, fliptri);
 
-    /* We are reversing one of three transformations:  a trisection of one */
-    /*   triangle into three (by inserting a vertex in the triangle), a    */
-    /*   bisection of two triangles into four (by inserting a vertex in an */
-    /*   edge), or an edge flip.                                           */
+  /* We are reversing one of three transformations:  a trisection of one */
+  /*   triangle into three (by inserting a vertex in the triangle), a    */
+  /*   bisection of two triangles into four (by inserting a vertex in an */
+  /*   edge), or an edge flip.                                           */
 #ifdef _WIN32
-    if (m->lastflip->prevflip_union.data == NULL) {
+  if (m->lastflip->prevflip_union.data == NULL) {
 #else
-    if (m->lastflip->prevflip == (struct flipstacker *) NULL) {
+  if (m->lastflip->prevflip == (struct flipstacker *) NULL) {
 #endif
       /* Restore a triangle that was split into three triangles, */
       /*   so it is again one triangle.                          */
@@ -9128,9 +9128,9 @@ struct behavior *b;
       triangledealloc(m, botleft.tri);
       triangledealloc(m, botright.tri);
 #ifdef _WIN32
-    } else if (m->lastflip->prevflip_union.function == &insertvertex) {
+  } else if (m->lastflip->prevflip_union.function == &insertvertex) {
 #else
-    } else if (m->lastflip->prevflip == (struct flipstacker *) &insertvertex) {
+  } else if (m->lastflip->prevflip == (struct flipstacker *) &insertvertex) {
 #endif
       /* Restore two triangles that were split into four triangles, */
       /*   so they are again two triangles.                         */
@@ -9150,17 +9150,17 @@ struct behavior *b;
 
       sym(fliptri, gluetri);
       if (gluetri.tri != m->dummytri) {
-        lnextself(gluetri);
-        dnext(gluetri, topright);
-        sym(topright, toprcasing);
+    lnextself(gluetri);
+    dnext(gluetri, topright);
+    sym(topright, toprcasing);
 
-        setorg(gluetri, rightvertex);
-        bond(gluetri, toprcasing);
-        tspivot(topright, toprsubseg);
-        tsbond(gluetri, toprsubseg);
+    setorg(gluetri, rightvertex);
+    bond(gluetri, toprcasing);
+    tspivot(topright, toprsubseg);
+    tsbond(gluetri, toprsubseg);
 
-        /* Delete the spliced-out triangle. */
-        triangledealloc(m, topright.tri);
+    /* Delete the spliced-out triangle. */
+    triangledealloc(m, topright.tri);
       }
 
       /* This is the end of the list, sneakily encoded. */
@@ -9169,16 +9169,16 @@ struct behavior *b;
 #else
       m->lastflip->prevflip = (struct flipstacker *) NULL;
 #endif
-    } else {
+  } else {
       /* Undo an edge flip. */
       unflip(m, b, &fliptri);
-    }
+  }
 
-    /* Go on and process the next transformation. */
+  /* Go on and process the next transformation. */
 #ifdef _WIN32
-    m->lastflip = m->lastflip->prevflip_union.data;
+  m->lastflip = m->lastflip->prevflip_union.data;
 #else
-    m->lastflip = m->lastflip->prevflip;
+  m->lastflip = m->lastflip->prevflip;
 #endif
   }
 }
@@ -9249,15 +9249,15 @@ int arraysize;
   vertex temp;
 
   if (arraysize == 2) {
-    /* Recursive base case. */
-    if ((sortarray[0][0] > sortarray[1][0]) ||
-        ((sortarray[0][0] == sortarray[1][0]) &&
+  /* Recursive base case. */
+  if ((sortarray[0][0] > sortarray[1][0]) ||
+    ((sortarray[0][0] == sortarray[1][0]) &&
          (sortarray[0][1] > sortarray[1][1]))) {
       temp = sortarray[1];
       sortarray[1] = sortarray[0];
       sortarray[0] = temp;
-    }
-    return;
+  }
+  return;
   }
   /* Choose a random pivot to split the array. */
   pivot = (int) randomnation(arraysize);
@@ -9267,32 +9267,32 @@ int arraysize;
   left = -1;
   right = arraysize;
   while (left < right) {
-    /* Search for a vertex whose x-coordinate is too large for the left. */
-    do {
+  /* Search for a vertex whose x-coordinate is too large for the left. */
+  do {
       left++;
-    } while ((left <= right) && ((sortarray[left][0] < pivotx) ||
+  } while ((left <= right) && ((sortarray[left][0] < pivotx) ||
                                  ((sortarray[left][0] == pivotx) &&
                                   (sortarray[left][1] < pivoty))));
-    /* Search for a vertex whose x-coordinate is too small for the right. */
-    do {
+  /* Search for a vertex whose x-coordinate is too small for the right. */
+  do {
       right--;
-    } while ((left <= right) && ((sortarray[right][0] > pivotx) ||
+  } while ((left <= right) && ((sortarray[right][0] > pivotx) ||
                                  ((sortarray[right][0] == pivotx) &&
                                   (sortarray[right][1] > pivoty))));
-    if (left < right) {
+  if (left < right) {
       /* Swap the left and right vertices. */
       temp = sortarray[left];
       sortarray[left] = sortarray[right];
       sortarray[right] = temp;
-    }
+  }
   }
   if (left > 1) {
-    /* Recursively sort the left subset. */
-    vertexsort(sortarray, left);
+  /* Recursively sort the left subset. */
+  vertexsort(sortarray, left);
   }
   if (right < arraysize - 2) {
-    /* Recursively sort the right subset. */
-    vertexsort(&sortarray[right + 1], arraysize - right - 1);
+  /* Recursively sort the right subset. */
+  vertexsort(&sortarray[right + 1], arraysize - right - 1);
   }
 }
 
@@ -9325,15 +9325,15 @@ int axis;
   vertex temp;
 
   if (arraysize == 2) {
-    /* Recursive base case. */
-    if ((sortarray[0][axis] > sortarray[1][axis]) ||
-        ((sortarray[0][axis] == sortarray[1][axis]) &&
+  /* Recursive base case. */
+  if ((sortarray[0][axis] > sortarray[1][axis]) ||
+    ((sortarray[0][axis] == sortarray[1][axis]) &&
          (sortarray[0][1 - axis] > sortarray[1][1 - axis]))) {
       temp = sortarray[1];
       sortarray[1] = sortarray[0];
       sortarray[0] = temp;
-    }
-    return;
+  }
+  return;
   }
   /* Choose a random pivot to split the array. */
   pivot = (int) randomnation(arraysize);
@@ -9343,34 +9343,34 @@ int axis;
   left = -1;
   right = arraysize;
   while (left < right) {
-    /* Search for a vertex whose x-coordinate is too large for the left. */
-    do {
+  /* Search for a vertex whose x-coordinate is too large for the left. */
+  do {
       left++;
-    } while ((left <= right) && ((sortarray[left][axis] < pivot1) ||
+  } while ((left <= right) && ((sortarray[left][axis] < pivot1) ||
                                  ((sortarray[left][axis] == pivot1) &&
                                   (sortarray[left][1 - axis] < pivot2))));
-    /* Search for a vertex whose x-coordinate is too small for the right. */
-    do {
+  /* Search for a vertex whose x-coordinate is too small for the right. */
+  do {
       right--;
-    } while ((left <= right) && ((sortarray[right][axis] > pivot1) ||
+  } while ((left <= right) && ((sortarray[right][axis] > pivot1) ||
                                  ((sortarray[right][axis] == pivot1) &&
                                   (sortarray[right][1 - axis] > pivot2))));
-    if (left < right) {
+  if (left < right) {
       /* Swap the left and right vertices. */
       temp = sortarray[left];
       sortarray[left] = sortarray[right];
       sortarray[right] = temp;
-    }
+  }
   }
   /* Unlike in vertexsort(), at most one of the following */
   /*   conditionals is true.                             */
   if (left > median) {
-    /* Recursively shuffle the left subset. */
-    vertexmedian(sortarray, left, median, axis);
+  /* Recursively shuffle the left subset. */
+  vertexmedian(sortarray, left, median, axis);
   }
   if (right < median - 1) {
-    /* Recursively shuffle the right subset. */
-    vertexmedian(&sortarray[right + 1], arraysize - right - 1,
+  /* Recursively shuffle the right subset. */
+  vertexmedian(&sortarray[right + 1], arraysize - right - 1,
                  median - right - 1, axis);
   }
 }
@@ -9400,18 +9400,18 @@ int axis;
 
   divider = arraysize >> 1;
   if (arraysize <= 3) {
-    /* Recursive base case:  subsets of two or three vertices will be    */
-    /*   handled specially, and should always be sorted by x-coordinate. */
-    axis = 0;
+  /* Recursive base case:  subsets of two or three vertices will be    */
+  /*   handled specially, and should always be sorted by x-coordinate. */
+  axis = 0;
   }
   /* Partition with a horizontal or vertical cut. */
   vertexmedian(sortarray, arraysize, divider, axis);
   /* Recursively partition the subsets with a cross cut. */
   if (arraysize - divider >= 2) {
-    if (divider >= 2) {
+  if (divider >= 2) {
       alternateaxes(sortarray, divider, 1 - axis);
-    }
-    alternateaxes(&sortarray[divider], arraysize - divider, 1 - axis);
+  }
+  alternateaxes(&sortarray[divider], arraysize - divider, 1 - axis);
   }
 }
 
@@ -9452,8 +9452,8 @@ int axis;
 
 #ifdef ANSI_DECLARATORS
 void mergehulls(struct mesh *m, struct behavior *b, struct otri *farleft,
-                struct otri *innerleft, struct otri *innerright,
-                struct otri *farright, int axis)
+        struct otri *innerleft, struct otri *innerright,
+        struct otri *farright, int axis)
 #else /* not ANSI_DECLARATORS */
 void mergehulls(m, b, farleft, innerleft, innerright, farright, axis)
 struct mesh *m;
@@ -9491,65 +9491,65 @@ int axis;
   apex(*innerright, innerrightapex);
   /* Special treatment for horizontal cuts. */
   if (b->dwyer && (axis == 1)) {
-    org(*farleft, farleftpt);
-    apex(*farleft, farleftapex);
-    dest(*farright, farrightpt);
-    apex(*farright, farrightapex);
-    /* The pointers to the extremal vertices are shifted to point to the */
-    /*   topmost and bottommost vertex of each hull, rather than the     */
-    /*   leftmost and rightmost vertices.                                */
-    while (farleftapex[1] < farleftpt[1]) {
+  org(*farleft, farleftpt);
+  apex(*farleft, farleftapex);
+  dest(*farright, farrightpt);
+  apex(*farright, farrightapex);
+  /* The pointers to the extremal vertices are shifted to point to the */
+  /*   topmost and bottommost vertex of each hull, rather than the     */
+  /*   leftmost and rightmost vertices.                                */
+  while (farleftapex[1] < farleftpt[1]) {
       lnextself(*farleft);
       symself(*farleft);
       farleftpt = farleftapex;
       apex(*farleft, farleftapex);
-    }
-    sym(*innerleft, checkedge);
-    apex(checkedge, checkvertex);
-    while (checkvertex[1] > innerleftdest[1]) {
+  }
+  sym(*innerleft, checkedge);
+  apex(checkedge, checkvertex);
+  while (checkvertex[1] > innerleftdest[1]) {
       lnext(checkedge, *innerleft);
       innerleftapex = innerleftdest;
       innerleftdest = checkvertex;
       sym(*innerleft, checkedge);
       apex(checkedge, checkvertex);
-    }
-    while (innerrightapex[1] < innerrightorg[1]) {
+  }
+  while (innerrightapex[1] < innerrightorg[1]) {
       lnextself(*innerright);
       symself(*innerright);
       innerrightorg = innerrightapex;
       apex(*innerright, innerrightapex);
-    }
-    sym(*farright, checkedge);
-    apex(checkedge, checkvertex);
-    while (checkvertex[1] > farrightpt[1]) {
+  }
+  sym(*farright, checkedge);
+  apex(checkedge, checkvertex);
+  while (checkvertex[1] > farrightpt[1]) {
       lnext(checkedge, *farright);
       farrightapex = farrightpt;
       farrightpt = checkvertex;
       sym(*farright, checkedge);
       apex(checkedge, checkvertex);
-    }
+  }
   }
   /* Find a line tangent to and below both hulls. */
   do {
-    changemade = 0;
-    /* Make innerleftdest the "bottommost" vertex of the left hull. */
-    if (counterclockwise(m, b, innerleftdest, innerleftapex, innerrightorg) >
-        0.0) {
+  changemade = 0;
+  /* Make innerleftdest the "bottommost" vertex of the left hull. */
+  if (counterclockwise(m, b, innerleftdest, innerleftapex, innerrightorg) >
+    0.0) {
       lprevself(*innerleft);
       symself(*innerleft);
       innerleftdest = innerleftapex;
       apex(*innerleft, innerleftapex);
       changemade = 1;
-    }
-    /* Make innerrightorg the "bottommost" vertex of the right hull. */
-    if (counterclockwise(m, b, innerrightapex, innerrightorg, innerleftdest) >
-        0.0) {
+  }
+  /* Make innerrightorg the "bottommost" vertex of the right hull. */
+  if (counterclockwise(m, b, innerrightapex, innerrightorg, innerleftdest) >
+    0.0) {
       lnextself(*innerright);
       symself(*innerright);
       innerrightorg = innerrightapex;
       apex(*innerright, innerrightapex);
       changemade = 1;
-    }
+  }
   } while (changemade);
   /* Find the two candidates to be the next "gear tooth." */
   sym(*innerleft, leftcand);
@@ -9565,17 +9565,17 @@ int axis;
   setdest(baseedge, innerleftdest);
   /* Apex is intentionally left NULL. */
   if (b->verbose > 2) {
-    printf("  Creating base bounding ");
-    printtriangle(m, b, &baseedge);
+  printf("  Creating base bounding ");
+  printtriangle(m, b, &baseedge);
   }
   /* Fix the extreme triangles if necessary. */
   org(*farleft, farleftpt);
   if (innerleftdest == farleftpt) {
-    lnext(baseedge, *farleft);
+  lnext(baseedge, *farleft);
   }
   dest(*farright, farrightpt);
   if (innerrightorg == farrightpt) {
-    lprev(baseedge, *farright);
+  lprev(baseedge, *farright);
   }
   /* The vertices of the current knitting edge. */
   lowerleft = innerleftdest;
@@ -9585,15 +9585,15 @@ int axis;
   apex(rightcand, upperright);
   /* Walk up the gap between the two triangulations, knitting them together. */
   while (1) {
-    /* Have we reached the top?  (This isn't quite the right question,       */
-    /*   because even though the left triangulation might seem finished now, */
-    /*   moving up on the right triangulation might reveal a new vertex of   */
-    /*   the left triangulation.  And vice-versa.)                           */
-    leftfinished = counterclockwise(m, b, upperleft, lowerleft, lowerright) <=
+  /* Have we reached the top?  (This isn't quite the right question,       */
+  /*   because even though the left triangulation might seem finished now, */
+  /*   moving up on the right triangulation might reveal a new vertex of   */
+  /*   the left triangulation.  And vice-versa.)                           */
+  leftfinished = counterclockwise(m, b, upperleft, lowerleft, lowerright) <=
                    0.0;
-    rightfinished = counterclockwise(m, b, upperright, lowerleft, lowerright)
+  rightfinished = counterclockwise(m, b, upperright, lowerleft, lowerright)
                  <= 0.0;
-    if (leftfinished && rightfinished) {
+  if (leftfinished && rightfinished) {
       /* Create the top new bounding triangle. */
       maketriangle(m, b, &nextedge);
       setorg(nextedge, lowerleft);
@@ -9606,38 +9606,38 @@ int axis;
       lnextself(nextedge);
       bond(nextedge, leftcand);
       if (b->verbose > 2) {
-        printf("  Creating top bounding ");
-        printtriangle(m, b, &nextedge);
+    printf("  Creating top bounding ");
+    printtriangle(m, b, &nextedge);
       }
       /* Special treatment for horizontal cuts. */
       if (b->dwyer && (axis == 1)) {
-        org(*farleft, farleftpt);
-        apex(*farleft, farleftapex);
-        dest(*farright, farrightpt);
-        apex(*farright, farrightapex);
-        sym(*farleft, checkedge);
-        apex(checkedge, checkvertex);
-        /* The pointers to the extremal vertices are restored to the  */
-        /*   leftmost and rightmost vertices (rather than topmost and */
-        /*   bottommost).                                             */
-        while (checkvertex[0] < farleftpt[0]) {
+    org(*farleft, farleftpt);
+    apex(*farleft, farleftapex);
+    dest(*farright, farrightpt);
+    apex(*farright, farrightapex);
+    sym(*farleft, checkedge);
+    apex(checkedge, checkvertex);
+    /* The pointers to the extremal vertices are restored to the  */
+    /*   leftmost and rightmost vertices (rather than topmost and */
+    /*   bottommost).                                             */
+    while (checkvertex[0] < farleftpt[0]) {
           lprev(checkedge, *farleft);
           farleftapex = farleftpt;
           farleftpt = checkvertex;
           sym(*farleft, checkedge);
           apex(checkedge, checkvertex);
-        }
-        while (farrightapex[0] > farrightpt[0]) {
+    }
+    while (farrightapex[0] > farrightpt[0]) {
           lprevself(*farright);
           symself(*farright);
           farrightpt = farrightapex;
           apex(*farright, farrightapex);
-        }
+    }
       }
       return;
-    }
-    /* Consider eliminating edges from the left triangulation. */
-    if (!leftfinished) {
+  }
+  /* Consider eliminating edges from the left triangulation. */
+  if (!leftfinished) {
       /* What vertex would be exposed if an edge were deleted? */
       lprev(leftcand, nextedge);
       symself(nextedge);
@@ -9645,10 +9645,10 @@ int axis;
       /* If nextapex is NULL, then no vertex would be exposed; the */
       /*   triangulation would have been eaten right through.      */
       if (nextapex != (vertex) NULL) {
-        /* Check whether the edge is Delaunay. */
-        badedge = incircle(m, b, lowerleft, lowerright, upperleft, nextapex) >
+    /* Check whether the edge is Delaunay. */
+    badedge = incircle(m, b, lowerleft, lowerright, upperleft, nextapex) >
                   0.0;
-        while (badedge) {
+    while (badedge) {
           /* Eliminate the edge with an edge flip.  As a result, the    */
           /*   left triangulation will have one more boundary triangle. */
           lnextself(nextedge);
@@ -9674,18 +9674,18 @@ int axis;
           otricopy(sidecasing, nextedge);
           apex(nextedge, nextapex);
           if (nextapex != (vertex) NULL) {
-            /* Check whether the edge is Delaunay. */
-            badedge = incircle(m, b, lowerleft, lowerright, upperleft,
+      /* Check whether the edge is Delaunay. */
+      badedge = incircle(m, b, lowerleft, lowerright, upperleft,
                                nextapex) > 0.0;
           } else {
-            /* Avoid eating right through the triangulation. */
-            badedge = 0;
+      /* Avoid eating right through the triangulation. */
+      badedge = 0;
           }
-        }
-      }
     }
-    /* Consider eliminating edges from the right triangulation. */
-    if (!rightfinished) {
+      }
+  }
+  /* Consider eliminating edges from the right triangulation. */
+  if (!rightfinished) {
       /* What vertex would be exposed if an edge were deleted? */
       lnext(rightcand, nextedge);
       symself(nextedge);
@@ -9693,10 +9693,10 @@ int axis;
       /* If nextapex is NULL, then no vertex would be exposed; the */
       /*   triangulation would have been eaten right through.      */
       if (nextapex != (vertex) NULL) {
-        /* Check whether the edge is Delaunay. */
-        badedge = incircle(m, b, lowerleft, lowerright, upperright, nextapex) >
+    /* Check whether the edge is Delaunay. */
+    badedge = incircle(m, b, lowerleft, lowerright, upperright, nextapex) >
                   0.0;
-        while (badedge) {
+    while (badedge) {
           /* Eliminate the edge with an edge flip.  As a result, the     */
           /*   right triangulation will have one more boundary triangle. */
           lprevself(nextedge);
@@ -9722,19 +9722,19 @@ int axis;
           otricopy(sidecasing, nextedge);
           apex(nextedge, nextapex);
           if (nextapex != (vertex) NULL) {
-            /* Check whether the edge is Delaunay. */
-            badedge = incircle(m, b, lowerleft, lowerright, upperright,
+      /* Check whether the edge is Delaunay. */
+      badedge = incircle(m, b, lowerleft, lowerright, upperright,
                                nextapex) > 0.0;
           } else {
-            /* Avoid eating right through the triangulation. */
-            badedge = 0;
+      /* Avoid eating right through the triangulation. */
+      badedge = 0;
           }
-        }
-      }
     }
-    if (leftfinished || (!rightfinished &&
+      }
+  }
+  if (leftfinished || (!rightfinished &&
            (incircle(m, b, upperleft, lowerleft, lowerright, upperright) >
-            0.0))) {
+      0.0))) {
       /* Knit the triangulations, adding an edge from `lowerleft' */
       /*   to `upperright'.                                       */
       bond(baseedge, rightcand);
@@ -9743,7 +9743,7 @@ int axis;
       lowerright = upperright;
       sym(baseedge, rightcand);
       apex(rightcand, upperright);
-    } else {
+  } else {
       /* Knit the triangulations, adding an edge from `upperleft' */
       /*   to `lowerright'.                                       */
       bond(baseedge, leftcand);
@@ -9752,11 +9752,11 @@ int axis;
       lowerleft = upperleft;
       sym(baseedge, leftcand);
       apex(leftcand, upperleft);
-    }
-    if (b->verbose > 2) {
+  }
+  if (b->verbose > 2) {
       printf("  Connecting ");
       printtriangle(m, b, &baseedge);
-    }
+  }
   }
 }
 
@@ -9779,8 +9779,8 @@ int axis;
 
 #ifdef ANSI_DECLARATORS
 void divconqrecurse(struct mesh *m, struct behavior *b, vertex *sortarray,
-                    int vertices, int axis,
-                    struct otri *farleft, struct otri *farright)
+          int vertices, int axis,
+          struct otri *farleft, struct otri *farright)
 #else /* not ANSI_DECLARATORS */
 void divconqrecurse(m, b, sortarray, vertices, axis, farleft, farright)
 struct mesh *m;
@@ -9799,45 +9799,45 @@ struct otri *farright;
   int divider;
 
   if (b->verbose > 2) {
-    printf("  Triangulating %d vertices.\n", vertices);
+  printf("  Triangulating %d vertices.\n", vertices);
   }
   if (vertices == 2) {
-    /* The triangulation of two vertices is an edge.  An edge is */
-    /*   represented by two bounding triangles.                  */
-    maketriangle(m, b, farleft);
-    setorg(*farleft, sortarray[0]);
-    setdest(*farleft, sortarray[1]);
-    /* The apex is intentionally left NULL. */
-    maketriangle(m, b, farright);
-    setorg(*farright, sortarray[1]);
-    setdest(*farright, sortarray[0]);
-    /* The apex is intentionally left NULL. */
-    bond(*farleft, *farright);
-    lprevself(*farleft);
-    lnextself(*farright);
-    bond(*farleft, *farright);
-    lprevself(*farleft);
-    lnextself(*farright);
-    bond(*farleft, *farright);
-    if (b->verbose > 2) {
+  /* The triangulation of two vertices is an edge.  An edge is */
+  /*   represented by two bounding triangles.                  */
+  maketriangle(m, b, farleft);
+  setorg(*farleft, sortarray[0]);
+  setdest(*farleft, sortarray[1]);
+  /* The apex is intentionally left NULL. */
+  maketriangle(m, b, farright);
+  setorg(*farright, sortarray[1]);
+  setdest(*farright, sortarray[0]);
+  /* The apex is intentionally left NULL. */
+  bond(*farleft, *farright);
+  lprevself(*farleft);
+  lnextself(*farright);
+  bond(*farleft, *farright);
+  lprevself(*farleft);
+  lnextself(*farright);
+  bond(*farleft, *farright);
+  if (b->verbose > 2) {
       printf("  Creating ");
       printtriangle(m, b, farleft);
       printf("  Creating ");
       printtriangle(m, b, farright);
-    }
-    /* Ensure that the origin of `farleft' is sortarray[0]. */
-    lprev(*farright, *farleft);
-    return;
+  }
+  /* Ensure that the origin of `farleft' is sortarray[0]. */
+  lprev(*farright, *farleft);
+  return;
   } else if (vertices == 3) {
-    /* The triangulation of three vertices is either a triangle (with */
-    /*   three bounding triangles) or two edges (with four bounding   */
-    /*   triangles).  In either case, four triangles are created.     */
-    maketriangle(m, b, &midtri);
-    maketriangle(m, b, &tri1);
-    maketriangle(m, b, &tri2);
-    maketriangle(m, b, &tri3);
-    area = counterclockwise(m, b, sortarray[0], sortarray[1], sortarray[2]);
-    if (area == 0.0) {
+  /* The triangulation of three vertices is either a triangle (with */
+  /*   three bounding triangles) or two edges (with four bounding   */
+  /*   triangles).  In either case, four triangles are created.     */
+  maketriangle(m, b, &midtri);
+  maketriangle(m, b, &tri1);
+  maketriangle(m, b, &tri2);
+  maketriangle(m, b, &tri3);
+  area = counterclockwise(m, b, sortarray[0], sortarray[1], sortarray[2]);
+  if (area == 0.0) {
       /* Three collinear vertices; the triangulation is two edges. */
       setorg(midtri, sortarray[0]);
       setdest(midtri, sortarray[1]);
@@ -9866,7 +9866,7 @@ struct otri *farright;
       otricopy(tri1, *farleft);
       /* Ensure that the destination of `farright' is sortarray[2]. */
       otricopy(tri2, *farright);
-    } else {
+  } else {
       /* The three vertices are not collinear; the triangulation is one */
       /*   triangle, namely `midtri'.                                   */
       setorg(midtri, sortarray[0]);
@@ -9874,21 +9874,21 @@ struct otri *farright;
       setorg(tri3, sortarray[0]);
       /* Apices of tri1, tri2, and tri3 are left NULL. */
       if (area > 0.0) {
-        /* The vertices are in counterclockwise order. */
-        setdest(midtri, sortarray[1]);
-        setorg(tri1, sortarray[1]);
-        setdest(tri2, sortarray[1]);
-        setapex(midtri, sortarray[2]);
-        setorg(tri2, sortarray[2]);
-        setdest(tri3, sortarray[2]);
+    /* The vertices are in counterclockwise order. */
+    setdest(midtri, sortarray[1]);
+    setorg(tri1, sortarray[1]);
+    setdest(tri2, sortarray[1]);
+    setapex(midtri, sortarray[2]);
+    setorg(tri2, sortarray[2]);
+    setdest(tri3, sortarray[2]);
       } else {
-        /* The vertices are in clockwise order. */
-        setdest(midtri, sortarray[2]);
-        setorg(tri1, sortarray[2]);
-        setdest(tri2, sortarray[2]);
-        setapex(midtri, sortarray[1]);
-        setorg(tri2, sortarray[1]);
-        setdest(tri3, sortarray[1]);
+    /* The vertices are in clockwise order. */
+    setdest(midtri, sortarray[2]);
+    setorg(tri1, sortarray[2]);
+    setdest(tri2, sortarray[2]);
+    setapex(midtri, sortarray[1]);
+    setorg(tri2, sortarray[1]);
+    setdest(tri3, sortarray[1]);
       }
       /* The topology does not depend on how the vertices are ordered. */
       bond(midtri, tri1);
@@ -9909,12 +9909,12 @@ struct otri *farright;
       otricopy(tri1, *farleft);
       /* Ensure that the destination of `farright' is sortarray[2]. */
       if (area > 0.0) {
-        otricopy(tri2, *farright);
+    otricopy(tri2, *farright);
       } else {
-        lnext(*farleft, *farright);
+    lnext(*farleft, *farright);
       }
-    }
-    if (b->verbose > 2) {
+  }
+  if (b->verbose > 2) {
       printf("  Creating ");
       printtriangle(m, b, &midtri);
       printf("  Creating ");
@@ -9923,21 +9923,21 @@ struct otri *farright;
       printtriangle(m, b, &tri2);
       printf("  Creating ");
       printtriangle(m, b, &tri3);
-    }
-    return;
+  }
+  return;
   } else {
-    /* Split the vertices in half. */
-    divider = vertices >> 1;
-    /* Recursively triangulate each half. */
-    divconqrecurse(m, b, sortarray, divider, 1 - axis, farleft, &innerleft);
-    divconqrecurse(m, b, &sortarray[divider], vertices - divider, 1 - axis,
+  /* Split the vertices in half. */
+  divider = vertices >> 1;
+  /* Recursively triangulate each half. */
+  divconqrecurse(m, b, sortarray, divider, 1 - axis, farleft, &innerleft);
+  divconqrecurse(m, b, &sortarray[divider], vertices - divider, 1 - axis,
                    &innerright, farright);
-    if (b->verbose > 1) {
+  if (b->verbose > 1) {
       printf("  Joining triangulations with %d and %d vertices.\n", divider,
              vertices - divider);
-    }
-    /* Merge the two triangulations into one. */
-    mergehulls(m, b, farleft, &innerleft, &innerright, farright, axis);
+  }
+  /* Merge the two triangulations into one. */
+  mergehulls(m, b, farleft, &innerleft, &innerright, farright, axis);
   }
 }
 
@@ -9959,7 +9959,7 @@ struct otri *startghost;
   triangle ptr;                         /* Temporary variable used by sym(). */
 
   if (b->verbose) {
-    printf("  Removing ghost triangles.\n");
+  printf("  Removing ghost triangles.\n");
   }
   /* Find an edge on the convex hull to start point location from. */
   lprev(*startghost, searchedge);
@@ -9969,27 +9969,27 @@ struct otri *startghost;
   otricopy(*startghost, dissolveedge);
   hullsize = 0;
   do {
-    hullsize++;
-    lnext(dissolveedge, deadtriangle);
-    lprevself(dissolveedge);
-    symself(dissolveedge);
-    /* If no PSLG is involved, set the boundary markers of all the vertices */
-    /*   on the convex hull.  If a PSLG is used, this step is done later.   */
-    if (!b->poly) {
+  hullsize++;
+  lnext(dissolveedge, deadtriangle);
+  lprevself(dissolveedge);
+  symself(dissolveedge);
+  /* If no PSLG is involved, set the boundary markers of all the vertices */
+  /*   on the convex hull.  If a PSLG is used, this step is done later.   */
+  if (!b->poly) {
       /* Watch out for the case where all the input vertices are collinear. */
       if (dissolveedge.tri != m->dummytri) {
-        org(dissolveedge, markorg);
-        if (vertexmark(markorg) == 0) {
+    org(dissolveedge, markorg);
+    if (vertexmark(markorg) == 0) {
           setvertexmark(markorg, 1);
-        }
-      }
     }
-    /* Remove a bounding triangle from a convex hull triangle. */
-    dissolve(dissolveedge);
-    /* Find the next bounding triangle. */
-    sym(deadtriangle, dissolveedge);
-    /* Delete the bounding triangle. */
-    triangledealloc(m, deadtriangle.tri);
+      }
+  }
+  /* Remove a bounding triangle from a convex hull triangle. */
+  dissolve(dissolveedge);
+  /* Find the next bounding triangle. */
+  sym(deadtriangle, dissolveedge);
+  /* Delete the bounding triangle. */
+  triangledealloc(m, deadtriangle.tri);
   } while (!otriequal(dissolveedge, *startghost));
   return hullsize;
 }
@@ -10019,48 +10019,48 @@ struct behavior *b;
   int i, j;
 
   if (b->verbose) {
-    printf("  Sorting vertices.\n");
+  printf("  Sorting vertices.\n");
   }
 
   /* Allocate an array of pointers to vertices for sorting. */
   sortarray = (vertex *) trimalloc(m->invertices * sizeof(vertex));
   traversalinit(&m->vertices);
   for (i = 0; i < m->invertices; i++) {
-    sortarray[i] = vertextraverse(m);
+  sortarray[i] = vertextraverse(m);
   }
   /* Sort the vertices. */
   vertexsort(sortarray, m->invertices);
   /* Discard duplicate vertices, which can really mess up the algorithm. */
   i = 0;
   for (j = 1; j < m->invertices; j++) {
-    if ((sortarray[i][0] == sortarray[j][0])
-        && (sortarray[i][1] == sortarray[j][1])) {
+  if ((sortarray[i][0] == sortarray[j][0])
+    && (sortarray[i][1] == sortarray[j][1])) {
       if (!b->quiet) {
-        printf(
+    printf(
 "Warning:  A duplicate vertex at (%.12g, %.12g) appeared and was ignored.\n",
                sortarray[j][0], sortarray[j][1]);
       }
       setvertextype(sortarray[j], UNDEADVERTEX);
       m->undeads++;
-    } else {
+  } else {
       i++;
       sortarray[i] = sortarray[j];
-    }
+  }
   }
   i++;
   if (b->dwyer) {
-    /* Re-sort the array of vertices to accommodate alternating cuts. */
-    divider = i >> 1;
-    if (i - divider >= 2) {
+  /* Re-sort the array of vertices to accommodate alternating cuts. */
+  divider = i >> 1;
+  if (i - divider >= 2) {
       if (divider >= 2) {
-        alternateaxes(sortarray, divider, 1);
+    alternateaxes(sortarray, divider, 1);
       }
       alternateaxes(&sortarray[divider], i - divider, 1);
-    }
+  }
   }
 
   if (b->verbose) {
-    printf("  Forming triangulation.\n");
+  printf("  Forming triangulation.\n");
   }
 
   /* Form the Delaunay triangulation. */
@@ -10104,15 +10104,15 @@ struct behavior *b;
   REAL width;
 
   if (b->verbose) {
-    printf("  Creating triangular bounding box.\n");
+  printf("  Creating triangular bounding box.\n");
   }
   /* Find the width (or height, whichever is larger) of the triangulation. */
   width = m->xmax - m->xmin;
   if (m->ymax - m->ymin > width) {
-    width = m->ymax - m->ymin;
+  width = m->ymax - m->ymin;
   }
   if (width == 0.0) {
-    width = 1.0;
+  width = 1.0;
   }
   /* Create the vertices of the bounding box. */
   m->infvertex1 = (vertex) trimalloc(m->vertices.itembytes);
@@ -10134,8 +10134,8 @@ struct behavior *b;
   /*   edge to begin searching (point location) from.           */
   m->dummytri[0] = (triangle) inftri.tri;
   if (b->verbose > 2) {
-    printf("  Creating ");
-    printtriangle(m, b, &inftri);
+  printf("  Creating ");
+  printtriangle(m, b, &inftri);
   }
 }
 
@@ -10175,7 +10175,7 @@ struct behavior *b;
   triangle ptr;                         /* Temporary variable used by sym(). */
 
   if (b->verbose) {
-    printf("  Removing triangular bounding box.\n");
+  printf("  Removing triangular bounding box.\n");
   }
   /* Find a boundary triangle. */
   nextedge.tri = m->dummytri;
@@ -10194,45 +10194,45 @@ struct behavior *b;
   lnext(nextedge, checkedge);
   symself(checkedge);
   if (checkedge.tri == m->dummytri) {
-    /* Go on to the next triangle.  There are only three boundary   */
-    /*   triangles, and this next triangle cannot be the third one, */
-    /*   so it's safe to stop here.                                 */
-    lprevself(searchedge);
-    symself(searchedge);
+  /* Go on to the next triangle.  There are only three boundary   */
+  /*   triangles, and this next triangle cannot be the third one, */
+  /*   so it's safe to stop here.                                 */
+  lprevself(searchedge);
+  symself(searchedge);
   }
   /* Find a new boundary edge to search from, as the current search */
   /*   edge lies on a bounding box triangle and will be deleted.    */
   m->dummytri[0] = encode(searchedge);
   hullsize = -2l;
   while (!otriequal(nextedge, finaledge)) {
-    hullsize++;
-    lprev(nextedge, dissolveedge);
-    symself(dissolveedge);
-    /* If not using a PSLG, the vertices should be marked now. */
-    /*   (If using a PSLG, markhull() will do the job.)        */
-    if (!b->poly) {
+  hullsize++;
+  lprev(nextedge, dissolveedge);
+  symself(dissolveedge);
+  /* If not using a PSLG, the vertices should be marked now. */
+  /*   (If using a PSLG, markhull() will do the job.)        */
+  if (!b->poly) {
       /* Be careful!  One must check for the case where all the input     */
       /*   vertices are collinear, and thus all the triangles are part of */
       /*   the bounding box.  Otherwise, the setvertexmark() call below   */
       /*   will cause a bad pointer reference.                            */
       if (dissolveedge.tri != m->dummytri) {
-        org(dissolveedge, markorg);
-        if (vertexmark(markorg) == 0) {
+    org(dissolveedge, markorg);
+    if (vertexmark(markorg) == 0) {
           setvertexmark(markorg, 1);
-        }
-      }
     }
-    /* Disconnect the bounding box triangle from the mesh triangle. */
-    dissolve(dissolveedge);
-    lnext(nextedge, deadtriangle);
-    sym(deadtriangle, nextedge);
-    /* Get rid of the bounding box triangle. */
-    triangledealloc(m, deadtriangle.tri);
-    /* Do we need to turn the corner? */
-    if (nextedge.tri == m->dummytri) {
+      }
+  }
+  /* Disconnect the bounding box triangle from the mesh triangle. */
+  dissolve(dissolveedge);
+  lnext(nextedge, deadtriangle);
+  sym(deadtriangle, nextedge);
+  /* Get rid of the bounding box triangle. */
+  triangledealloc(m, deadtriangle.tri);
+  /* Do we need to turn the corner? */
+  if (nextedge.tri == m->dummytri) {
       /* Turn the corner. */
       otricopy(dissolveedge, nextedge);
-    }
+  }
   }
   triangledealloc(m, finaledge.tri);
 
@@ -10271,23 +10271,23 @@ struct behavior *b;
   /* Create a triangular bounding box. */
   boundingbox(m, b);
   if (b->verbose) {
-    printf("  Incrementally inserting vertices.\n");
+  printf("  Incrementally inserting vertices.\n");
   }
   traversalinit(&m->vertices);
   vertexloop = vertextraverse(m);
   while (vertexloop != (vertex) NULL) {
-    starttri.tri = m->dummytri;
-    if (insertvertex(m, b, vertexloop, &starttri, (struct osub *) NULL, 0, 0,
+  starttri.tri = m->dummytri;
+  if (insertvertex(m, b, vertexloop, &starttri, (struct osub *) NULL, 0, 0,
                      0.0) == DUPLICATEVERTEX) {
       if (!b->quiet) {
-        printf(
+    printf(
 "Warning:  A duplicate vertex at (%.12g, %.12g) appeared and was ignored.\n",
                vertexloop[0], vertexloop[1]);
       }
       setvertextype(vertexloop, UNDEADVERTEX);
       m->undeads++;
-    }
-    vertexloop = vertextraverse(m);
+  }
+  vertexloop = vertextraverse(m);
   }
   /* Remove the bounding box. */
   return removebox(m, b);
@@ -10325,18 +10325,18 @@ struct event *newevent;
   eventnum = heapsize;
   notdone = eventnum > 0;
   while (notdone) {
-    parent = (eventnum - 1) >> 1;
-    if ((heap[parent]->ykey < eventy) ||
-        ((heap[parent]->ykey == eventy)
+  parent = (eventnum - 1) >> 1;
+  if ((heap[parent]->ykey < eventy) ||
+    ((heap[parent]->ykey == eventy)
          && (heap[parent]->xkey <= eventx))) {
       notdone = 0;
-    } else {
+  } else {
       heap[eventnum] = heap[parent];
       heap[eventnum]->heapposition = eventnum;
 
       eventnum = parent;
       notdone = eventnum > 0;
-    }
+  }
   }
   heap[eventnum] = newevent;
   newevent->heapposition = eventnum;
@@ -10368,24 +10368,24 @@ int eventnum;
   leftchild = 2 * eventnum + 1;
   notdone = leftchild < heapsize;
   while (notdone) {
-    if ((heap[leftchild]->ykey < eventy) ||
-        ((heap[leftchild]->ykey == eventy)
+  if ((heap[leftchild]->ykey < eventy) ||
+    ((heap[leftchild]->ykey == eventy)
          && (heap[leftchild]->xkey < eventx))) {
       smallest = leftchild;
-    } else {
+  } else {
       smallest = eventnum;
-    }
-    rightchild = leftchild + 1;
-    if (rightchild < heapsize) {
+  }
+  rightchild = leftchild + 1;
+  if (rightchild < heapsize) {
       if ((heap[rightchild]->ykey < heap[smallest]->ykey) ||
           ((heap[rightchild]->ykey == heap[smallest]->ykey)
            && (heap[rightchild]->xkey < heap[smallest]->xkey))) {
-        smallest = rightchild;
+    smallest = rightchild;
       }
-    }
-    if (smallest == eventnum) {
+  }
+  if (smallest == eventnum) {
       notdone = 0;
-    } else {
+  } else {
       heap[eventnum] = heap[smallest];
       heap[eventnum]->heapposition = eventnum;
       heap[smallest] = thisevent;
@@ -10394,7 +10394,7 @@ int eventnum;
       eventnum = smallest;
       leftchild = 2 * eventnum + 1;
       notdone = leftchild < heapsize;
-    }
+  }
   }
 }
 
@@ -10419,22 +10419,22 @@ int eventnum;
 
   moveevent = heap[heapsize - 1];
   if (eventnum > 0) {
-    eventx = moveevent->xkey;
-    eventy = moveevent->ykey;
-    do {
+  eventx = moveevent->xkey;
+  eventy = moveevent->ykey;
+  do {
       parent = (eventnum - 1) >> 1;
       if ((heap[parent]->ykey < eventy) ||
           ((heap[parent]->ykey == eventy)
            && (heap[parent]->xkey <= eventx))) {
-        notdone = 0;
+    notdone = 0;
       } else {
-        heap[eventnum] = heap[parent];
-        heap[eventnum]->heapposition = eventnum;
+    heap[eventnum] = heap[parent];
+    heap[eventnum]->heapposition = eventnum;
 
-        eventnum = parent;
-        notdone = eventnum > 0;
+    eventnum = parent;
+    notdone = eventnum > 0;
       }
-    } while (notdone);
+  } while (notdone);
   }
   heap[eventnum] = moveevent;
   moveevent->heapposition = eventnum;
@@ -10466,16 +10466,16 @@ struct event **freeevents;
   *events = (struct event *) trimalloc(maxevents * sizeof(struct event));
   traversalinit(&m->vertices);
   for (i = 0; i < m->invertices; i++) {
-    thisvertex = vertextraverse(m);
-    (*events)[i].eventptr = (VOID *) thisvertex;
-    (*events)[i].xkey = thisvertex[0];
-    (*events)[i].ykey = thisvertex[1];
-    eventheapinsert(*eventheap, i, *events + i);
+  thisvertex = vertextraverse(m);
+  (*events)[i].eventptr = (VOID *) thisvertex;
+  (*events)[i].xkey = thisvertex[0];
+  (*events)[i].ykey = thisvertex[1];
+  eventheapinsert(*eventheap, i, *events + i);
   }
   *freeevents = (struct event *) NULL;
   for (i = maxevents - 1; i >= m->invertices; i--) {
-    (*events)[i].eventptr = (VOID *) *freeevents;
-    *freeevents = *events + i;
+  (*events)[i].eventptr = (VOID *) *freeevents;
+  *freeevents = *events + i;
   }
 }
 
@@ -10503,13 +10503,13 @@ vertex newsite;
   if ((leftvertex[1] < rightvertex[1]) ||
       ((leftvertex[1] == rightvertex[1]) &&
        (leftvertex[0] < rightvertex[0]))) {
-    if (newsite[0] >= rightvertex[0]) {
+  if (newsite[0] >= rightvertex[0]) {
       return 1;
-    }
+  }
   } else {
-    if (newsite[0] <= leftvertex[0]) {
+  if (newsite[0] <= leftvertex[0]) {
       return 0;
-    }
+  }
   }
   dxa = leftvertex[0] - newsite[0];
   dya = leftvertex[1] - newsite[1];
@@ -10574,13 +10574,13 @@ int *heapsize;
 
   org(*checktri, eventvertex);
   if (eventvertex != (vertex) NULL) {
-    deadevent = (struct event *) eventvertex;
-    eventnum = deadevent->heapposition;
-    deadevent->eventptr = (VOID *) *freeevents;
-    *freeevents = deadevent;
-    eventheapdelete(eventheap, *heapsize, eventnum);
-    (*heapsize)--;
-    setorg(*checktri, NULL);
+  deadevent = (struct event *) eventvertex;
+  eventnum = deadevent->heapposition;
+  deadevent->eventptr = (VOID *) *freeevents;
+  *freeevents = deadevent;
+  eventheapdelete(eventheap, *heapsize, eventnum);
+  (*heapsize)--;
+  setorg(*checktri, NULL);
   }
 }
 
@@ -10590,7 +10590,7 @@ int *heapsize;
 
 #ifdef ANSI_DECLARATORS
 struct splaynode *splay(struct mesh *m, struct splaynode *splaytree,
-                        vertex searchpoint, struct otri *searchtri)
+            vertex searchpoint, struct otri *searchtri)
 #else /* not ANSI_DECLARATORS */
 struct splaynode *splay(m, splaytree, searchpoint, searchtri)
 struct mesh *m;
@@ -10607,99 +10607,99 @@ struct otri *searchtri;
   int rightofroot, rightofchild;
 
   if (splaytree == (struct splaynode *) NULL) {
-    return (struct splaynode *) NULL;
+  return (struct splaynode *) NULL;
   }
   dest(splaytree->keyedge, checkvertex);
   if (checkvertex == splaytree->keydest) {
-    rightofroot = rightofhyperbola(m, &splaytree->keyedge, searchpoint);
-    if (rightofroot) {
+  rightofroot = rightofhyperbola(m, &splaytree->keyedge, searchpoint);
+  if (rightofroot) {
       otricopy(splaytree->keyedge, *searchtri);
       child = splaytree->rchild;
-    } else {
+  } else {
       child = splaytree->lchild;
-    }
-    if (child == (struct splaynode *) NULL) {
+  }
+  if (child == (struct splaynode *) NULL) {
       return splaytree;
-    }
-    dest(child->keyedge, checkvertex);
-    if (checkvertex != child->keydest) {
+  }
+  dest(child->keyedge, checkvertex);
+  if (checkvertex != child->keydest) {
       child = splay(m, child, searchpoint, searchtri);
       if (child == (struct splaynode *) NULL) {
-        if (rightofroot) {
+    if (rightofroot) {
           splaytree->rchild = (struct splaynode *) NULL;
-        } else {
+    } else {
           splaytree->lchild = (struct splaynode *) NULL;
-        }
-        return splaytree;
-      }
     }
-    rightofchild = rightofhyperbola(m, &child->keyedge, searchpoint);
-    if (rightofchild) {
+    return splaytree;
+      }
+  }
+  rightofchild = rightofhyperbola(m, &child->keyedge, searchpoint);
+  if (rightofchild) {
       otricopy(child->keyedge, *searchtri);
       grandchild = splay(m, child->rchild, searchpoint, searchtri);
       child->rchild = grandchild;
-    } else {
+  } else {
       grandchild = splay(m, child->lchild, searchpoint, searchtri);
       child->lchild = grandchild;
-    }
-    if (grandchild == (struct splaynode *) NULL) {
+  }
+  if (grandchild == (struct splaynode *) NULL) {
       if (rightofroot) {
-        splaytree->rchild = child->lchild;
-        child->lchild = splaytree;
+    splaytree->rchild = child->lchild;
+    child->lchild = splaytree;
       } else {
-        splaytree->lchild = child->rchild;
-        child->rchild = splaytree;
+    splaytree->lchild = child->rchild;
+    child->rchild = splaytree;
       }
       return child;
-    }
-    if (rightofchild) {
+  }
+  if (rightofchild) {
       if (rightofroot) {
-        splaytree->rchild = child->lchild;
-        child->lchild = splaytree;
+    splaytree->rchild = child->lchild;
+    child->lchild = splaytree;
       } else {
-        splaytree->lchild = grandchild->rchild;
-        grandchild->rchild = splaytree;
+    splaytree->lchild = grandchild->rchild;
+    grandchild->rchild = splaytree;
       }
       child->rchild = grandchild->lchild;
       grandchild->lchild = child;
-    } else {
+  } else {
       if (rightofroot) {
-        splaytree->rchild = grandchild->lchild;
-        grandchild->lchild = splaytree;
+    splaytree->rchild = grandchild->lchild;
+    grandchild->lchild = splaytree;
       } else {
-        splaytree->lchild = child->rchild;
-        child->rchild = splaytree;
+    splaytree->lchild = child->rchild;
+    child->rchild = splaytree;
       }
       child->lchild = grandchild->rchild;
       grandchild->rchild = child;
-    }
-    return grandchild;
+  }
+  return grandchild;
   } else {
-    lefttree = splay(m, splaytree->lchild, searchpoint, searchtri);
-    righttree = splay(m, splaytree->rchild, searchpoint, searchtri);
+  lefttree = splay(m, splaytree->lchild, searchpoint, searchtri);
+  righttree = splay(m, splaytree->rchild, searchpoint, searchtri);
 
-    pooldealloc(&m->splaynodes, (VOID *) splaytree);
-    if (lefttree == (struct splaynode *) NULL) {
+  pooldealloc(&m->splaynodes, (VOID *) splaytree);
+  if (lefttree == (struct splaynode *) NULL) {
       return righttree;
-    } else if (righttree == (struct splaynode *) NULL) {
+  } else if (righttree == (struct splaynode *) NULL) {
       return lefttree;
-    } else if (lefttree->rchild == (struct splaynode *) NULL) {
+  } else if (lefttree->rchild == (struct splaynode *) NULL) {
       lefttree->rchild = righttree->lchild;
       righttree->lchild = lefttree;
       return righttree;
-    } else if (righttree->lchild == (struct splaynode *) NULL) {
+  } else if (righttree->lchild == (struct splaynode *) NULL) {
       righttree->lchild = lefttree->rchild;
       lefttree->rchild = righttree;
       return lefttree;
-    } else {
+  } else {
 /*      printf("Holy Toledo!!!\n"); */
       leftright = lefttree->rchild;
       while (leftright->rchild != (struct splaynode *) NULL) {
-        leftright = leftright->rchild;
+    leftright = leftright->rchild;
       }
       leftright->rchild = righttree;
       return lefttree;
-    }
+  }
   }
 }
 
@@ -10725,16 +10725,16 @@ vertex searchpoint;
   otricopy(*newkey, newsplaynode->keyedge);
   dest(*newkey, newsplaynode->keydest);
   if (splayroot == (struct splaynode *) NULL) {
-    newsplaynode->lchild = (struct splaynode *) NULL;
-    newsplaynode->rchild = (struct splaynode *) NULL;
+  newsplaynode->lchild = (struct splaynode *) NULL;
+  newsplaynode->rchild = (struct splaynode *) NULL;
   } else if (rightofhyperbola(m, &splayroot->keyedge, searchpoint)) {
-    newsplaynode->lchild = splayroot;
-    newsplaynode->rchild = splayroot->rchild;
-    splayroot->rchild = (struct splaynode *) NULL;
+  newsplaynode->lchild = splayroot;
+  newsplaynode->rchild = splayroot->rchild;
+  splayroot->rchild = (struct splaynode *) NULL;
   } else {
-    newsplaynode->lchild = splayroot->lchild;
-    newsplaynode->rchild = splayroot;
-    splayroot->lchild = (struct splaynode *) NULL;
+  newsplaynode->lchild = splayroot->lchild;
+  newsplaynode->rchild = splayroot;
+  splayroot->lchild = (struct splaynode *) NULL;
   }
   return newsplaynode;
 }
@@ -10808,8 +10808,8 @@ int *farright;
 
   farrightflag = 0;
   while (!farrightflag && rightofhyperbola(m, searchtri, searchvertex)) {
-    onextself(*searchtri);
-    farrightflag = otriequal(*searchtri, *bottommost);
+  onextself(*searchtri);
+  farrightflag = otriequal(*searchtri, *bottommost);
   }
   *farright = farrightflag;
   return splayroot;
@@ -10853,13 +10853,13 @@ struct behavior *b;
   splayroot = (struct splaynode *) NULL;
 
   if (b->verbose) {
-    printf("  Placing vertices in event heap.\n");
+  printf("  Placing vertices in event heap.\n");
   }
   createeventheap(m, &eventheap, &events, &freeevents);
   heapsize = m->invertices;
 
   if (b->verbose) {
-    printf("  Forming triangulation.\n");
+  printf("  Forming triangulation.\n");
   }
   maketriangle(m, b, &lefttri);
   maketriangle(m, b, &righttri);
@@ -10876,25 +10876,25 @@ struct behavior *b;
   eventheapdelete(eventheap, heapsize, 0);
   heapsize--;
   do {
-    if (heapsize == 0) {
+  if (heapsize == 0) {
       printf("Error:  Input vertices are all identical.\n");
       exit(1);
-    }
-    secondvertex = (vertex) eventheap[0]->eventptr;
-    eventheap[0]->eventptr = (VOID *) freeevents;
-    freeevents = eventheap[0];
-    eventheapdelete(eventheap, heapsize, 0);
-    heapsize--;
-    if ((firstvertex[0] == secondvertex[0]) &&
-        (firstvertex[1] == secondvertex[1])) {
+  }
+  secondvertex = (vertex) eventheap[0]->eventptr;
+  eventheap[0]->eventptr = (VOID *) freeevents;
+  freeevents = eventheap[0];
+  eventheapdelete(eventheap, heapsize, 0);
+  heapsize--;
+  if ((firstvertex[0] == secondvertex[0]) &&
+    (firstvertex[1] == secondvertex[1])) {
       if (!b->quiet) {
-        printf(
+    printf(
 "Warning:  A duplicate vertex at (%.12g, %.12g) appeared and was ignored.\n",
                secondvertex[0], secondvertex[1]);
       }
       setvertextype(secondvertex, UNDEADVERTEX);
       m->undeads++;
-    }
+  }
   } while ((firstvertex[0] == secondvertex[0]) &&
            (firstvertex[1] == secondvertex[1]));
   setorg(lefttri, firstvertex);
@@ -10904,11 +10904,11 @@ struct behavior *b;
   lprev(lefttri, bottommost);
   lastvertex = secondvertex;
   while (heapsize > 0) {
-    nextevent = eventheap[0];
-    eventheapdelete(eventheap, heapsize, 0);
-    heapsize--;
-    check4events = 1;
-    if (nextevent->xkey < m->xmin) {
+  nextevent = eventheap[0];
+  eventheapdelete(eventheap, heapsize, 0);
+  heapsize--;
+  check4events = 1;
+  if (nextevent->xkey < m->xmin) {
       decode(nextevent->eventptr, fliptri);
       oprev(fliptri, farlefttri);
       check4deadevent(&farlefttri, &freeevents, eventheap, &heapsize);
@@ -10916,7 +10916,7 @@ struct behavior *b;
       check4deadevent(&farrighttri, &freeevents, eventheap, &heapsize);
 
       if (otriequal(farlefttri, bottommost)) {
-        lprev(fliptri, bottommost);
+    lprev(fliptri, bottommost);
       }
       flip(m, b, &fliptri);
       setapex(fliptri, NULL);
@@ -10925,105 +10925,105 @@ struct behavior *b;
       sym(lefttri, farlefttri);
 
       if (randomnation(SAMPLERATE) == 0) {
-        symself(fliptri);
-        dest(fliptri, leftvertex);
-        apex(fliptri, midvertex);
-        org(fliptri, rightvertex);
-        splayroot = circletopinsert(m, b, splayroot, &lefttri, leftvertex,
-                                    midvertex, rightvertex, nextevent->ykey);
+    symself(fliptri);
+    dest(fliptri, leftvertex);
+    apex(fliptri, midvertex);
+    org(fliptri, rightvertex);
+    splayroot = circletopinsert(m, b, splayroot, &lefttri, leftvertex,
+                  midvertex, rightvertex, nextevent->ykey);
       }
-    } else {
+  } else {
       nextvertex = (vertex) nextevent->eventptr;
       if ((nextvertex[0] == lastvertex[0]) &&
           (nextvertex[1] == lastvertex[1])) {
-        if (!b->quiet) {
+    if (!b->quiet) {
           printf(
 "Warning:  A duplicate vertex at (%.12g, %.12g) appeared and was ignored.\n",
                  nextvertex[0], nextvertex[1]);
-        }
-        setvertextype(nextvertex, UNDEADVERTEX);
-        m->undeads++;
-        check4events = 0;
+    }
+    setvertextype(nextvertex, UNDEADVERTEX);
+    m->undeads++;
+    check4events = 0;
       } else {
-        lastvertex = nextvertex;
+    lastvertex = nextvertex;
 
-        splayroot = frontlocate(m, splayroot, &bottommost, nextvertex,
-                                &searchtri, &farrightflag);
+    splayroot = frontlocate(m, splayroot, &bottommost, nextvertex,
+                &searchtri, &farrightflag);
 /*
-        otricopy(bottommost, searchtri);
-        farrightflag = 0;
-        while (!farrightflag && rightofhyperbola(m, &searchtri, nextvertex)) {
+    otricopy(bottommost, searchtri);
+    farrightflag = 0;
+    while (!farrightflag && rightofhyperbola(m, &searchtri, nextvertex)) {
           onextself(searchtri);
           farrightflag = otriequal(searchtri, bottommost);
-        }
+    }
 */
 
-        check4deadevent(&searchtri, &freeevents, eventheap, &heapsize);
+    check4deadevent(&searchtri, &freeevents, eventheap, &heapsize);
 
-        otricopy(searchtri, farrighttri);
-        sym(searchtri, farlefttri);
-        maketriangle(m, b, &lefttri);
-        maketriangle(m, b, &righttri);
-        dest(farrighttri, connectvertex);
-        setorg(lefttri, connectvertex);
-        setdest(lefttri, nextvertex);
-        setorg(righttri, nextvertex);
-        setdest(righttri, connectvertex);
-        bond(lefttri, righttri);
-        lnextself(lefttri);
-        lprevself(righttri);
-        bond(lefttri, righttri);
-        lnextself(lefttri);
-        lprevself(righttri);
-        bond(lefttri, farlefttri);
-        bond(righttri, farrighttri);
-        if (!farrightflag && otriequal(farrighttri, bottommost)) {
+    otricopy(searchtri, farrighttri);
+    sym(searchtri, farlefttri);
+    maketriangle(m, b, &lefttri);
+    maketriangle(m, b, &righttri);
+    dest(farrighttri, connectvertex);
+    setorg(lefttri, connectvertex);
+    setdest(lefttri, nextvertex);
+    setorg(righttri, nextvertex);
+    setdest(righttri, connectvertex);
+    bond(lefttri, righttri);
+    lnextself(lefttri);
+    lprevself(righttri);
+    bond(lefttri, righttri);
+    lnextself(lefttri);
+    lprevself(righttri);
+    bond(lefttri, farlefttri);
+    bond(righttri, farrighttri);
+    if (!farrightflag && otriequal(farrighttri, bottommost)) {
           otricopy(lefttri, bottommost);
-        }
+    }
 
-        if (randomnation(SAMPLERATE) == 0) {
+    if (randomnation(SAMPLERATE) == 0) {
           splayroot = splayinsert(m, splayroot, &lefttri, nextvertex);
-        } else if (randomnation(SAMPLERATE) == 0) {
+    } else if (randomnation(SAMPLERATE) == 0) {
           lnext(righttri, inserttri);
           splayroot = splayinsert(m, splayroot, &inserttri, nextvertex);
-        }
-      }
     }
-    nextevent->eventptr = (VOID *) freeevents;
-    freeevents = nextevent;
+      }
+  }
+  nextevent->eventptr = (VOID *) freeevents;
+  freeevents = nextevent;
 
-    if (check4events) {
+  if (check4events) {
       apex(farlefttri, leftvertex);
       dest(lefttri, midvertex);
       apex(lefttri, rightvertex);
       lefttest = counterclockwise(m, b, leftvertex, midvertex, rightvertex);
       if (lefttest > 0.0) {
-        newevent = freeevents;
-        freeevents = (struct event *) freeevents->eventptr;
-        newevent->xkey = m->xminextreme;
-        newevent->ykey = circletop(m, leftvertex, midvertex, rightvertex,
+    newevent = freeevents;
+    freeevents = (struct event *) freeevents->eventptr;
+    newevent->xkey = m->xminextreme;
+    newevent->ykey = circletop(m, leftvertex, midvertex, rightvertex,
                                    lefttest);
-        newevent->eventptr = (VOID *) encode(lefttri);
-        eventheapinsert(eventheap, heapsize, newevent);
-        heapsize++;
-        setorg(lefttri, newevent);
+    newevent->eventptr = (VOID *) encode(lefttri);
+    eventheapinsert(eventheap, heapsize, newevent);
+    heapsize++;
+    setorg(lefttri, newevent);
       }
       apex(righttri, leftvertex);
       org(righttri, midvertex);
       apex(farrighttri, rightvertex);
       righttest = counterclockwise(m, b, leftvertex, midvertex, rightvertex);
       if (righttest > 0.0) {
-        newevent = freeevents;
-        freeevents = (struct event *) freeevents->eventptr;
-        newevent->xkey = m->xminextreme;
-        newevent->ykey = circletop(m, leftvertex, midvertex, rightvertex,
+    newevent = freeevents;
+    freeevents = (struct event *) freeevents->eventptr;
+    newevent->xkey = m->xminextreme;
+    newevent->ykey = circletop(m, leftvertex, midvertex, rightvertex,
                                    righttest);
-        newevent->eventptr = (VOID *) encode(farrighttri);
-        eventheapinsert(eventheap, heapsize, newevent);
-        heapsize++;
-        setorg(farrighttri, newevent);
+    newevent->eventptr = (VOID *) encode(farrighttri);
+    eventheapinsert(eventheap, heapsize, newevent);
+    heapsize++;
+    setorg(farrighttri, newevent);
       }
-    }
+  }
   }
 
   pooldeinit(&m->splaynodes);
@@ -11063,35 +11063,35 @@ struct behavior *b;
 
 #ifdef REDUCED
   if (!b->quiet) {
-    printf(
+  printf(
       "Constructing Delaunay triangulation by divide-and-conquer method.\n");
   }
   hulledges = divconqdelaunay(m, b);
 #else /* not REDUCED */
   if (!b->quiet) {
-    printf("Constructing Delaunay triangulation ");
-    if (b->incremental) {
+  printf("Constructing Delaunay triangulation ");
+  if (b->incremental) {
       printf("by incremental method.\n");
-    } else if (b->sweepline) {
+  } else if (b->sweepline) {
       printf("by sweepline method.\n");
-    } else {
+  } else {
       printf("by divide-and-conquer method.\n");
-    }
+  }
   }
   if (b->incremental) {
-    hulledges = incrementaldelaunay(m, b);
+  hulledges = incrementaldelaunay(m, b);
   } else if (b->sweepline) {
-    hulledges = sweeplinedelaunay(m, b);
+  hulledges = sweeplinedelaunay(m, b);
   } else {
-    hulledges = divconqdelaunay(m, b);
+  hulledges = divconqdelaunay(m, b);
   }
 #endif /* not REDUCED */
 
   if (m->triangles.items == 0) {
-    /* The input vertices were all collinear, so there are no triangles. */
-    return 0l;
+  /* The input vertices were all collinear, so there are no triangles. */
+  return 0l;
   } else {
-    return hulledges;
+  return hulledges;
   }
 }
 
@@ -11126,13 +11126,13 @@ struct behavior *b;
 
 #ifdef ANSI_DECLARATORS
 int reconstruct(struct mesh *m, struct behavior *b, int *trianglelist,
-                REAL *triangleattriblist, REAL *trianglearealist,
-                int elements, int corners, int attribs,
-                int *segmentlist,int *segmentmarkerlist, int numberofsegments)
+        REAL *triangleattriblist, REAL *trianglearealist,
+        int elements, int corners, int attribs,
+        int *segmentlist,int *segmentmarkerlist, int numberofsegments)
 #else /* not ANSI_DECLARATORS */
 int reconstruct(m, b, trianglelist, triangleattriblist, trianglearealist,
-                elements, corners, attribs, segmentlist, segmentmarkerlist,
-                numberofsegments)
+        elements, corners, attribs, segmentlist, segmentmarkerlist,
+        numberofsegments)
 struct mesh *m;
 struct behavior *b;
 int *trianglelist;
@@ -11205,19 +11205,19 @@ FILE *polyfile;
   m->inelements = elements;
   incorners = corners;
   if (incorners < 3) {
-    printf("Error:  Triangles must have at least 3 vertices.\n");
-    exit(1);
+  printf("Error:  Triangles must have at least 3 vertices.\n");
+  exit(1);
   }
   m->eextras = attribs;
 #else /* not TRILIBRARY */
   /* Read the triangles from an .ele file. */
   if (!b->quiet) {
-    printf("Opening %s.\n", elefilename);
+  printf("Opening %s.\n", elefilename);
   }
   elefile = fopen(elefilename, "r");
   if (elefile == (FILE *) NULL) {
-    printf("  Error:  Cannot access file %s.\n", elefilename);
-    exit(1);
+  printf("  Error:  Cannot access file %s.\n", elefilename);
+  exit(1);
   }
   /* Read number of triangles, number of vertices per triangle, and */
   /*   number of triangle attributes from .ele file.                */
@@ -11225,20 +11225,20 @@ FILE *polyfile;
   m->inelements = (int) strtol(stringptr, &stringptr, 0);
   stringptr = findfield(stringptr);
   if (*stringptr == '\0') {
-    incorners = 3;
+  incorners = 3;
   } else {
-    incorners = (int) strtol(stringptr, &stringptr, 0);
-    if (incorners < 3) {
+  incorners = (int) strtol(stringptr, &stringptr, 0);
+  if (incorners < 3) {
       printf("Error:  Triangles in %s must have at least 3 vertices.\n",
              elefilename);
       exit(1);
-    }
+  }
   }
   stringptr = findfield(stringptr);
   if (*stringptr == '\0') {
-    m->eextras = 0;
+  m->eextras = 0;
   } else {
-    m->eextras = (int) strtol(stringptr, &stringptr, 0);
+  m->eextras = (int) strtol(stringptr, &stringptr, 0);
   }
 #endif /* not TRILIBRARY */
 
@@ -11246,34 +11246,34 @@ FILE *polyfile;
 
   /* Create the triangles. */
   for (elementnumber = 1; elementnumber <= m->inelements; elementnumber++) {
-    maketriangle(m, b, &triangleloop);
-    /* Mark the triangle as living. */
-    triangleloop.tri[3] = (triangle) triangleloop.tri;
+  maketriangle(m, b, &triangleloop);
+  /* Mark the triangle as living. */
+  triangleloop.tri[3] = (triangle) triangleloop.tri;
   }
 
   if (b->poly) {
 #ifdef TRILIBRARY
-    m->insegments = numberofsegments;
-    segmentmarkers = segmentmarkerlist != (int *) NULL;
+  m->insegments = numberofsegments;
+  segmentmarkers = segmentmarkerlist != (int *) NULL;
 #else /* not TRILIBRARY */
-    /* Read number of segments and number of segment */
-    /*   boundary markers from .poly file.           */
-    stringptr = readline(inputline, polyfile, b->inpolyfilename);
-    m->insegments = (int) strtol(stringptr, &stringptr, 0);
-    stringptr = findfield(stringptr);
-    if (*stringptr == '\0') {
+  /* Read number of segments and number of segment */
+  /*   boundary markers from .poly file.           */
+  stringptr = readline(inputline, polyfile, b->inpolyfilename);
+  m->insegments = (int) strtol(stringptr, &stringptr, 0);
+  stringptr = findfield(stringptr);
+  if (*stringptr == '\0') {
       segmentmarkers = 0;
-    } else {
+  } else {
       segmentmarkers = (int) strtol(stringptr, &stringptr, 0);
-    }
+  }
 #endif /* not TRILIBRARY */
 
-    /* Create the subsegments. */
-    for (segmentnumber = 1; segmentnumber <= m->insegments; segmentnumber++) {
+  /* Create the subsegments. */
+  for (segmentnumber = 1; segmentnumber <= m->insegments; segmentnumber++) {
       makesubseg(m, &subsegloop);
       /* Mark the subsegment as living. */
       subsegloop.ss[2] = (subseg) subsegloop.ss;
-    }
+  }
   }
 
 #ifdef TRILIBRARY
@@ -11281,27 +11281,27 @@ FILE *polyfile;
   attribindex = 0;
 #else /* not TRILIBRARY */
   if (b->vararea) {
-    /* Open an .area file, check for consistency with the .ele file. */
-    if (!b->quiet) {
+  /* Open an .area file, check for consistency with the .ele file. */
+  if (!b->quiet) {
       printf("Opening %s.\n", areafilename);
-    }
-    areafile = fopen(areafilename, "r");
-    if (areafile == (FILE *) NULL) {
+  }
+  areafile = fopen(areafilename, "r");
+  if (areafile == (FILE *) NULL) {
       printf("  Error:  Cannot access file %s.\n", areafilename);
       exit(1);
-    }
-    stringptr = readline(inputline, areafile, areafilename);
-    areaelements = (int) strtol(stringptr, &stringptr, 0);
-    if (areaelements != m->inelements) {
+  }
+  stringptr = readline(inputline, areafile, areafilename);
+  areaelements = (int) strtol(stringptr, &stringptr, 0);
+  if (areaelements != m->inelements) {
       printf("Error:  %s and %s disagree on number of triangles.\n",
              elefilename, areafilename);
       exit(1);
-    }
+  }
   }
 #endif /* not TRILIBRARY */
 
   if (!b->quiet) {
-    printf("Reconstructing mesh.\n");
+  printf("Reconstructing mesh.\n");
   }
   /* Allocate a temporary array that maps each vertex to some adjacent */
   /*   triangle.  I took care to allocate all the permanent memory for */
@@ -11309,11 +11309,11 @@ FILE *polyfile;
   vertexarray = (triangle *) trimalloc(m->vertices.items * sizeof(triangle));
   /* Each vertex is initially unrepresented. */
   for (i = 0; i < m->vertices.items; i++) {
-    vertexarray[i] = (triangle) m->dummytri;
+  vertexarray[i] = (triangle) m->dummytri;
   }
 
   if (b->verbose) {
-    printf("  Assembling triangles.\n");
+  printf("  Assembling triangles.\n");
   }
   /* Read the triangles from the .ele file, and link */
   /*   together those that share an edge.            */
@@ -11322,75 +11322,75 @@ FILE *polyfile;
   elementnumber = b->firstnumber;
   while (triangleloop.tri != (triangle *) NULL) {
 #ifdef TRILIBRARY
-    /* Copy the triangle's three corners. */
-    for (j = 0; j < 3; j++) {
+  /* Copy the triangle's three corners. */
+  for (j = 0; j < 3; j++) {
       corner[j] = trianglelist[vertexindex++];
       if ((corner[j] < b->firstnumber) ||
           (corner[j] >= b->firstnumber + m->invertices)) {
-        printf("Error:  Triangle %ld has an invalid vertex index.\n",
+    printf("Error:  Triangle %ld has an invalid vertex index.\n",
                elementnumber);
-        exit(1);
+    exit(1);
       }
-    }
+  }
 #else /* not TRILIBRARY */
-    /* Read triangle number and the triangle's three corners. */
-    stringptr = readline(inputline, elefile, elefilename);
-    for (j = 0; j < 3; j++) {
+  /* Read triangle number and the triangle's three corners. */
+  stringptr = readline(inputline, elefile, elefilename);
+  for (j = 0; j < 3; j++) {
       stringptr = findfield(stringptr);
       if (*stringptr == '\0') {
-        printf("Error:  Triangle %ld is missing vertex %d in %s.\n",
+    printf("Error:  Triangle %ld is missing vertex %d in %s.\n",
                elementnumber, j + 1, elefilename);
-        exit(1);
+    exit(1);
       } else {
-        corner[j] = (int) strtol(stringptr, &stringptr, 0);
-        if ((corner[j] < b->firstnumber) ||
-            (corner[j] >= b->firstnumber + m->invertices)) {
+    corner[j] = (int) strtol(stringptr, &stringptr, 0);
+    if ((corner[j] < b->firstnumber) ||
+      (corner[j] >= b->firstnumber + m->invertices)) {
           printf("Error:  Triangle %ld has an invalid vertex index.\n",
                  elementnumber);
           exit(1);
-        }
-      }
     }
+      }
+  }
 #endif /* not TRILIBRARY */
 
-    /* Find out about (and throw away) extra nodes. */
-    for (j = 3; j < incorners; j++) {
+  /* Find out about (and throw away) extra nodes. */
+  for (j = 3; j < incorners; j++) {
 #ifdef TRILIBRARY
       killvertexindex = trianglelist[vertexindex++];
 #else /* not TRILIBRARY */
       stringptr = findfield(stringptr);
       if (*stringptr != '\0') {
-        killvertexindex = (int) strtol(stringptr, &stringptr, 0);
+    killvertexindex = (int) strtol(stringptr, &stringptr, 0);
 #endif /* not TRILIBRARY */
-        if ((killvertexindex >= b->firstnumber) &&
-            (killvertexindex < b->firstnumber + m->invertices)) {
+    if ((killvertexindex >= b->firstnumber) &&
+      (killvertexindex < b->firstnumber + m->invertices)) {
           /* Delete the non-corner vertex if it's not already deleted. */
           killvertex = getvertex(m, b, killvertexindex);
           if (vertextype(killvertex) != DEADVERTEX) {
-            vertexdealloc(m, killvertex);
+      vertexdealloc(m, killvertex);
           }
-        }
+    }
 #ifndef TRILIBRARY
       }
 #endif /* not TRILIBRARY */
-    }
+  }
 
-    /* Read the triangle's attributes. */
-    for (j = 0; j < m->eextras; j++) {
+  /* Read the triangle's attributes. */
+  for (j = 0; j < m->eextras; j++) {
 #ifdef TRILIBRARY
       setelemattribute(triangleloop, j, triangleattriblist[attribindex++]);
 #else /* not TRILIBRARY */
       stringptr = findfield(stringptr);
       if (*stringptr == '\0') {
-        setelemattribute(triangleloop, j, 0);
+    setelemattribute(triangleloop, j, 0);
       } else {
-        setelemattribute(triangleloop, j,
+    setelemattribute(triangleloop, j,
                          (REAL) strtod(stringptr, &stringptr));
       }
 #endif /* not TRILIBRARY */
-    }
+  }
 
-    if (b->vararea) {
+  if (b->vararea) {
 #ifdef TRILIBRARY
       area = trianglearealist[elementnumber - b->firstnumber];
 #else /* not TRILIBRARY */
@@ -11398,21 +11398,21 @@ FILE *polyfile;
       stringptr = readline(inputline, areafile, areafilename);
       stringptr = findfield(stringptr);
       if (*stringptr == '\0') {
-        area = -1.0;                      /* No constraint on this triangle. */
+    area = -1.0;                      /* No constraint on this triangle. */
       } else {
-        area = (REAL) strtod(stringptr, &stringptr);
+    area = (REAL) strtod(stringptr, &stringptr);
       }
 #endif /* not TRILIBRARY */
       setareabound(triangleloop, area);
-    }
+  }
 
-    /* Set the triangle's vertices. */
-    triangleloop.orient = 0;
-    setorg(triangleloop, getvertex(m, b, corner[0]));
-    setdest(triangleloop, getvertex(m, b, corner[1]));
-    setapex(triangleloop, getvertex(m, b, corner[2]));
-    /* Try linking the triangle to others that share these vertices. */
-    for (triangleloop.orient = 0; triangleloop.orient < 3;
+  /* Set the triangle's vertices. */
+  triangleloop.orient = 0;
+  setorg(triangleloop, getvertex(m, b, corner[0]));
+  setdest(triangleloop, getvertex(m, b, corner[1]));
+  setapex(triangleloop, getvertex(m, b, corner[2]));
+  /* Try linking the triangle to others that share these vertices. */
+  for (triangleloop.orient = 0; triangleloop.orient < 3;
          triangleloop.orient++) {
       /* Take the number for the origin of triangleloop. */
       aroundvertex = corner[triangleloop.orient];
@@ -11424,30 +11424,30 @@ FILE *polyfile;
       vertexarray[aroundvertex - b->firstnumber] = encode(triangleloop);
       decode(nexttri, checktri);
       if (checktri.tri != m->dummytri) {
-        dest(triangleloop, tdest);
-        apex(triangleloop, tapex);
-        /* Look for other triangles that share an edge. */
-        do {
+    dest(triangleloop, tdest);
+    apex(triangleloop, tapex);
+    /* Look for other triangles that share an edge. */
+    do {
           dest(checktri, checkdest);
           apex(checktri, checkapex);
           if (tapex == checkdest) {
-            /* The two triangles share an edge; bond them together. */
-            lprev(triangleloop, triangleleft);
-            bond(triangleleft, checktri);
+      /* The two triangles share an edge; bond them together. */
+      lprev(triangleloop, triangleleft);
+      bond(triangleleft, checktri);
           }
           if (tdest == checkapex) {
-            /* The two triangles share an edge; bond them together. */
-            lprev(checktri, checkleft);
-            bond(triangleloop, checkleft);
+      /* The two triangles share an edge; bond them together. */
+      lprev(checktri, checkleft);
+      bond(triangleloop, checkleft);
           }
           /* Find the next triangle in the stack. */
           nexttri = checktri.tri[6 + checktri.orient];
           decode(nexttri, checktri);
-        } while (checktri.tri != m->dummytri);
+    } while (checktri.tri != m->dummytri);
       }
-    }
-    triangleloop.tri = triangletraverse(m);
-    elementnumber++;
+  }
+  triangleloop.tri = triangletraverse(m);
+  elementnumber++;
   }
 
 #ifdef TRILIBRARY
@@ -11455,27 +11455,27 @@ FILE *polyfile;
 #else /* not TRILIBRARY */
   fclose(elefile);
   if (b->vararea) {
-    fclose(areafile);
+  fclose(areafile);
   }
 #endif /* not TRILIBRARY */
 
   hullsize = 0;                      /* Prepare to count the boundary edges. */
   if (b->poly) {
-    if (b->verbose) {
+  if (b->verbose) {
       printf("  Marking segments in triangulation.\n");
-    }
-    /* Read the segments from the .poly file, and link them */
-    /*   to their neighboring triangles.                    */
-    boundmarker = 0;
-    traversalinit(&m->subsegs);
-    subsegloop.ss = subsegtraverse(m);
-    segmentnumber = b->firstnumber;
-    while (subsegloop.ss != (subseg *) NULL) {
+  }
+  /* Read the segments from the .poly file, and link them */
+  /*   to their neighboring triangles.                    */
+  boundmarker = 0;
+  traversalinit(&m->subsegs);
+  subsegloop.ss = subsegtraverse(m);
+  segmentnumber = b->firstnumber;
+  while (subsegloop.ss != (subseg *) NULL) {
 #ifdef TRILIBRARY
       end[0] = segmentlist[vertexindex++];
       end[1] = segmentlist[vertexindex++];
       if (segmentmarkers) {
-        boundmarker = segmentmarkerlist[segmentnumber - b->firstnumber];
+    boundmarker = segmentmarkerlist[segmentnumber - b->firstnumber];
       }
 #else /* not TRILIBRARY */
       /* Read the endpoints of each segment, and possibly a boundary marker. */
@@ -11483,36 +11483,36 @@ FILE *polyfile;
       /* Skip the first (segment number) field. */
       stringptr = findfield(stringptr);
       if (*stringptr == '\0') {
-        printf("Error:  Segment %ld has no endpoints in %s.\n", segmentnumber,
+    printf("Error:  Segment %ld has no endpoints in %s.\n", segmentnumber,
                polyfilename);
-        exit(1);
+    exit(1);
       } else {
-        end[0] = (int) strtol(stringptr, &stringptr, 0);
+    end[0] = (int) strtol(stringptr, &stringptr, 0);
       }
       stringptr = findfield(stringptr);
       if (*stringptr == '\0') {
-        printf("Error:  Segment %ld is missing its second endpoint in %s.\n",
+    printf("Error:  Segment %ld is missing its second endpoint in %s.\n",
                segmentnumber, polyfilename);
-        exit(1);
+    exit(1);
       } else {
-        end[1] = (int) strtol(stringptr, &stringptr, 0);
+    end[1] = (int) strtol(stringptr, &stringptr, 0);
       }
       if (segmentmarkers) {
-        stringptr = findfield(stringptr);
-        if (*stringptr == '\0') {
+    stringptr = findfield(stringptr);
+    if (*stringptr == '\0') {
           boundmarker = 0;
-        } else {
+    } else {
           boundmarker = (int) strtol(stringptr, &stringptr, 0);
-        }
+    }
       }
 #endif /* not TRILIBRARY */
       for (j = 0; j < 2; j++) {
-        if ((end[j] < b->firstnumber) ||
-            (end[j] >= b->firstnumber + m->invertices)) {
+    if ((end[j] < b->firstnumber) ||
+      (end[j] >= b->firstnumber + m->invertices)) {
           printf("Error:  Segment %ld has an invalid vertex index.\n", 
                  segmentnumber);
           exit(1);
-        }
+    }
       }
 
       /* set the subsegment's vertices. */
@@ -11523,57 +11523,57 @@ FILE *polyfile;
       /* Try linking the subsegment to triangles that share these vertices. */
       for (subsegloop.ssorient = 0; subsegloop.ssorient < 2;
            subsegloop.ssorient++) {
-        /* Take the number for the destination of subsegloop. */
-        aroundvertex = end[1 - subsegloop.ssorient];
-        /* Look for triangles having this vertex. */
-        prevlink = &vertexarray[aroundvertex - b->firstnumber];
-        nexttri = vertexarray[aroundvertex - b->firstnumber];
-        decode(nexttri, checktri);
-        sorg(subsegloop, shorg);
-        notfound = 1;
-        /* Look for triangles having this edge.  Note that I'm only       */
-        /*   comparing each triangle's destination with the subsegment;   */
-        /*   each triangle's apex is handled through a different vertex.  */
-        /*   Because each triangle appears on three vertices' lists, each */
-        /*   occurrence of a triangle on a list can (and does) represent  */
-        /*   an edge.  In this way, most edges are represented twice, and */
-        /*   every triangle-subsegment bond is represented once.          */
-        while (notfound && (checktri.tri != m->dummytri)) {
+    /* Take the number for the destination of subsegloop. */
+    aroundvertex = end[1 - subsegloop.ssorient];
+    /* Look for triangles having this vertex. */
+    prevlink = &vertexarray[aroundvertex - b->firstnumber];
+    nexttri = vertexarray[aroundvertex - b->firstnumber];
+    decode(nexttri, checktri);
+    sorg(subsegloop, shorg);
+    notfound = 1;
+    /* Look for triangles having this edge.  Note that I'm only       */
+    /*   comparing each triangle's destination with the subsegment;   */
+    /*   each triangle's apex is handled through a different vertex.  */
+    /*   Because each triangle appears on three vertices' lists, each */
+    /*   occurrence of a triangle on a list can (and does) represent  */
+    /*   an edge.  In this way, most edges are represented twice, and */
+    /*   every triangle-subsegment bond is represented once.          */
+    while (notfound && (checktri.tri != m->dummytri)) {
           dest(checktri, checkdest);
           if (shorg == checkdest) {
-            /* We have a match.  Remove this triangle from the list. */
-            *prevlink = checktri.tri[6 + checktri.orient];
-            /* Bond the subsegment to the triangle. */
-            tsbond(checktri, subsegloop);
-            /* Check if this is a boundary edge. */
-            sym(checktri, checkneighbor);
-            if (checkneighbor.tri == m->dummytri) {
+      /* We have a match.  Remove this triangle from the list. */
+      *prevlink = checktri.tri[6 + checktri.orient];
+      /* Bond the subsegment to the triangle. */
+      tsbond(checktri, subsegloop);
+      /* Check if this is a boundary edge. */
+      sym(checktri, checkneighbor);
+      if (checkneighbor.tri == m->dummytri) {
               /* The next line doesn't insert a subsegment (because there's */
               /*   already one there), but it sets the boundary markers of  */
               /*   the existing subsegment and its vertices.                */
               insertsubseg(m, b, &checktri, 1);
               hullsize++;
-            }
-            notfound = 0;
+      }
+      notfound = 0;
           }
           /* Find the next triangle in the stack. */
           prevlink = &checktri.tri[6 + checktri.orient];
           nexttri = checktri.tri[6 + checktri.orient];
           decode(nexttri, checktri);
-        }
+    }
       }
       subsegloop.ss = subsegtraverse(m);
       segmentnumber++;
-    }
+  }
   }
 
   /* Mark the remaining edges as not being attached to any subsegment. */
   /* Also, count the (yet uncounted) boundary edges.                   */
   for (i = 0; i < m->vertices.items; i++) {
-    /* Search the stack of triangles adjacent to a vertex. */
-    nexttri = vertexarray[i];
-    decode(nexttri, checktri);
-    while (checktri.tri != m->dummytri) {
+  /* Search the stack of triangles adjacent to a vertex. */
+  nexttri = vertexarray[i];
+  decode(nexttri, checktri);
+  while (checktri.tri != m->dummytri) {
       /* Find the next triangle in the stack before this */
       /*   information gets overwritten.                 */
       nexttri = checktri.tri[6 + checktri.orient];
@@ -11581,11 +11581,11 @@ FILE *polyfile;
       tsdissolve(checktri);
       sym(checktri, checkneighbor);
       if (checkneighbor.tri == m->dummytri) {
-        insertsubseg(m, b, &checktri, 1);
-        hullsize++;
+    insertsubseg(m, b, &checktri, 1);
+    hullsize++;
       }
       decode(nexttri, checktri);
-    }
+  }
   }
 
   trifree((VOID *) vertexarray);
@@ -11649,51 +11649,51 @@ vertex searchpoint;
   rightccw = counterclockwise(m, b, startvertex, searchpoint, rightvertex);
   rightflag = rightccw > 0.0;
   if (leftflag && rightflag) {
-    /* `searchtri' faces directly away from `searchpoint'.  We could go left */
-    /*   or right.  Ask whether it's a triangle or a boundary on the left.   */
-    onext(*searchtri, checktri);
-    if (checktri.tri == m->dummytri) {
+  /* `searchtri' faces directly away from `searchpoint'.  We could go left */
+  /*   or right.  Ask whether it's a triangle or a boundary on the left.   */
+  onext(*searchtri, checktri);
+  if (checktri.tri == m->dummytri) {
       leftflag = 0;
-    } else {
+  } else {
       rightflag = 0;
-    }
+  }
   }
   while (leftflag) {
-    /* Turn left until satisfied. */
-    onextself(*searchtri);
-    if (searchtri->tri == m->dummytri) {
+  /* Turn left until satisfied. */
+  onextself(*searchtri);
+  if (searchtri->tri == m->dummytri) {
       printf("Internal error in finddirection():  Unable to find a\n");
       printf("  triangle leading from (%.12g, %.12g) to", startvertex[0],
              startvertex[1]);
       printf("  (%.12g, %.12g).\n", searchpoint[0], searchpoint[1]);
       internalerror();
-    }
-    apex(*searchtri, leftvertex);
-    rightccw = leftccw;
-    leftccw = counterclockwise(m, b, searchpoint, startvertex, leftvertex);
-    leftflag = leftccw > 0.0;
+  }
+  apex(*searchtri, leftvertex);
+  rightccw = leftccw;
+  leftccw = counterclockwise(m, b, searchpoint, startvertex, leftvertex);
+  leftflag = leftccw > 0.0;
   }
   while (rightflag) {
-    /* Turn right until satisfied. */
-    oprevself(*searchtri);
-    if (searchtri->tri == m->dummytri) {
+  /* Turn right until satisfied. */
+  oprevself(*searchtri);
+  if (searchtri->tri == m->dummytri) {
       printf("Internal error in finddirection():  Unable to find a\n");
       printf("  triangle leading from (%.12g, %.12g) to", startvertex[0],
              startvertex[1]);
       printf("  (%.12g, %.12g).\n", searchpoint[0], searchpoint[1]);
       internalerror();
-    }
-    dest(*searchtri, rightvertex);
-    leftccw = rightccw;
-    rightccw = counterclockwise(m, b, startvertex, searchpoint, rightvertex);
-    rightflag = rightccw > 0.0;
+  }
+  dest(*searchtri, rightvertex);
+  leftccw = rightccw;
+  rightccw = counterclockwise(m, b, startvertex, searchpoint, rightvertex);
+  rightflag = rightccw > 0.0;
   }
   if (leftccw == 0.0) {
-    return LEFTCOLLINEAR;
+  return LEFTCOLLINEAR;
   } else if (rightccw == 0.0) {
-    return RIGHTCOLLINEAR;
+  return RIGHTCOLLINEAR;
   } else {
-    return WITHIN;
+  return WITHIN;
   }
 }
 
@@ -11753,33 +11753,33 @@ vertex endpoint2;
   ety = torg[1] - endpoint2[1];
   denom = ty * ex - tx * ey;
   if (denom == 0.0) {
-    printf("Internal error in segmentintersection():");
-    printf("  Attempt to find intersection of parallel segments.\n");
-    internalerror();
+  printf("Internal error in segmentintersection():");
+  printf("  Attempt to find intersection of parallel segments.\n");
+  internalerror();
   }
   split = (ey * etx - ex * ety) / denom;
   /* Create the new vertex. */
   newvertex = (vertex) poolalloc(&m->vertices);
   /* Interpolate its coordinate and attributes. */
   for (i = 0; i < 2 + m->nextras; i++) {
-    newvertex[i] = torg[i] + split * (tdest[i] - torg[i]);
+  newvertex[i] = torg[i] + split * (tdest[i] - torg[i]);
   }
   setvertexmark(newvertex, mark(*splitsubseg));
   setvertextype(newvertex, INPUTVERTEX);
   if (b->verbose > 1) {
-    printf(
+  printf(
   "  Splitting subsegment (%.12g, %.12g) (%.12g, %.12g) at (%.12g, %.12g).\n",
            torg[0], torg[1], tdest[0], tdest[1], newvertex[0], newvertex[1]);
   }
   /* Insert the intersection vertex.  This should always succeed. */
   success = insertvertex(m, b, newvertex, splittri, splitsubseg, 0, 0, 0.0);
   if (success != SUCCESSFULVERTEX) {
-    printf("Internal error in segmentintersection():\n");
-    printf("  Failure to split a segment.\n");
-    internalerror();
+  printf("Internal error in segmentintersection():\n");
+  printf("  Failure to split a segment.\n");
+  internalerror();
   }
   if (m->steinerleft > 0) {
-    m->steinerleft--;
+  m->steinerleft--;
   }
   /* Inserting the vertex may have caused edge flips.  We wish to rediscover */
   /*   the edge connecting endpoint1 to the new intersection vertex.         */
@@ -11787,12 +11787,12 @@ vertex endpoint2;
   dest(*splittri, rightvertex);
   apex(*splittri, leftvertex);
   if ((leftvertex[0] == endpoint1[0]) && (leftvertex[1] == endpoint1[1])) {
-    onextself(*splittri);
+  onextself(*splittri);
   } else if ((rightvertex[0] != endpoint1[0]) ||
              (rightvertex[1] != endpoint1[1])) {
-    printf("Internal error in segmentintersection():\n");
-    printf("  Topological inconsistency after splitting a segment.\n");
-    internalerror();
+  printf("Internal error in segmentintersection():\n");
+  printf("  Topological inconsistency after splitting a segment.\n");
+  internalerror();
   }
   /* `splittri' should have destination endpoint1. */
 }
@@ -11845,41 +11845,41 @@ int newmark;
   apex(*searchtri, leftvertex);
   if (((leftvertex[0] == endpoint2[0]) && (leftvertex[1] == endpoint2[1])) ||
       ((rightvertex[0] == endpoint2[0]) && (rightvertex[1] == endpoint2[1]))) {
-    /* The segment is already an edge in the mesh. */
-    if ((leftvertex[0] == endpoint2[0]) && (leftvertex[1] == endpoint2[1])) {
+  /* The segment is already an edge in the mesh. */
+  if ((leftvertex[0] == endpoint2[0]) && (leftvertex[1] == endpoint2[1])) {
       lprevself(*searchtri);
-    }
-    /* Insert a subsegment, if there isn't already one there. */
-    insertsubseg(m, b, searchtri, newmark);
-    return 1;
+  }
+  /* Insert a subsegment, if there isn't already one there. */
+  insertsubseg(m, b, searchtri, newmark);
+  return 1;
   } else if (collinear == LEFTCOLLINEAR) {
-    /* We've collided with a vertex between the segment's endpoints. */
-    /* Make the collinear vertex be the triangle's origin. */
-    lprevself(*searchtri);
-    insertsubseg(m, b, searchtri, newmark);
-    /* Insert the remainder of the segment. */
-    return scoutsegment(m, b, searchtri, endpoint2, newmark);
+  /* We've collided with a vertex between the segment's endpoints. */
+  /* Make the collinear vertex be the triangle's origin. */
+  lprevself(*searchtri);
+  insertsubseg(m, b, searchtri, newmark);
+  /* Insert the remainder of the segment. */
+  return scoutsegment(m, b, searchtri, endpoint2, newmark);
   } else if (collinear == RIGHTCOLLINEAR) {
-    /* We've collided with a vertex between the segment's endpoints. */
-    insertsubseg(m, b, searchtri, newmark);
-    /* Make the collinear vertex be the triangle's origin. */
-    lnextself(*searchtri);
-    /* Insert the remainder of the segment. */
-    return scoutsegment(m, b, searchtri, endpoint2, newmark);
+  /* We've collided with a vertex between the segment's endpoints. */
+  insertsubseg(m, b, searchtri, newmark);
+  /* Make the collinear vertex be the triangle's origin. */
+  lnextself(*searchtri);
+  /* Insert the remainder of the segment. */
+  return scoutsegment(m, b, searchtri, endpoint2, newmark);
   } else {
-    lnext(*searchtri, crosstri);
-    tspivot(crosstri, crosssubseg);
-    /* Check for a crossing segment. */
-    if (crosssubseg.ss == m->dummysub) {
+  lnext(*searchtri, crosstri);
+  tspivot(crosstri, crosssubseg);
+  /* Check for a crossing segment. */
+  if (crosssubseg.ss == m->dummysub) {
       return 0;
-    } else {
+  } else {
       /* Insert a vertex at the intersection. */
       segmentintersection(m, b, &crosstri, &crosssubseg, endpoint2);
       otricopy(crosstri, *searchtri);
       insertsubseg(m, b, searchtri, newmark);
       /* Insert the remainder of the segment. */
       return scoutsegment(m, b, searchtri, endpoint2, newmark);
-    }
+  }
   }
 }
 
@@ -11907,7 +11907,7 @@ int newmark;
 
 #ifdef ANSI_DECLARATORS
 void conformingedge(struct mesh *m, struct behavior *b,
-                    vertex endpoint1, vertex endpoint2, int newmark)
+          vertex endpoint1, vertex endpoint2, int newmark)
 #else /* not ANSI_DECLARATORS */
 void conformingedge(m, b, endpoint1, endpoint2, newmark)
 struct mesh *m;
@@ -11927,15 +11927,15 @@ int newmark;
   subseg sptr;                      /* Temporary variable used by tspivot(). */
 
   if (b->verbose > 2) {
-    printf("Forcing segment into triangulation by recursive splitting:\n");
-    printf("  (%.12g, %.12g) (%.12g, %.12g)\n", endpoint1[0], endpoint1[1],
+  printf("Forcing segment into triangulation by recursive splitting:\n");
+  printf("  (%.12g, %.12g) (%.12g, %.12g)\n", endpoint1[0], endpoint1[1],
            endpoint2[0], endpoint2[1]);
   }
   /* Create a new vertex to insert in the middle of the segment. */
   newvertex = (vertex) poolalloc(&m->vertices);
   /* Interpolate coordinates and attributes. */
   for (i = 0; i < 2 + m->nextras; i++) {
-    newvertex[i] = 0.5 * (endpoint1[i] + endpoint2[i]);
+  newvertex[i] = 0.5 * (endpoint1[i] + endpoint2[i]);
   }
   setvertexmark(newvertex, newmark);
   setvertextype(newvertex, SEGMENTVERTEX);
@@ -11945,17 +11945,17 @@ int newmark;
   success = insertvertex(m, b, newvertex, &searchtri1, (struct osub *) NULL,
                          0, 0, 0.0);
   if (success == DUPLICATEVERTEX) {
-    if (b->verbose > 2) {
+  if (b->verbose > 2) {
       printf("  Segment intersects existing vertex (%.12g, %.12g).\n",
              newvertex[0], newvertex[1]);
-    }
-    /* Use the vertex that's already there. */
-    vertexdealloc(m, newvertex);
-    org(searchtri1, newvertex);
+  }
+  /* Use the vertex that's already there. */
+  vertexdealloc(m, newvertex);
+  org(searchtri1, newvertex);
   } else {
-    if (success == VIOLATINGVERTEX) {
+  if (success == VIOLATINGVERTEX) {
       if (b->verbose > 2) {
-        printf("  Two segments intersect at (%.12g, %.12g).\n",
+    printf("  Two segments intersect at (%.12g, %.12g).\n",
                newvertex[0], newvertex[1]);
       }
       /* By fluke, we've landed right on another segment.  Split it. */
@@ -11963,15 +11963,15 @@ int newmark;
       success = insertvertex(m, b, newvertex, &searchtri1, &brokensubseg,
                              0, 0, 0.0);
       if (success != SUCCESSFULVERTEX) {
-        printf("Internal error in conformingedge():\n");
-        printf("  Failure to split a segment.\n");
-        internalerror();
+    printf("Internal error in conformingedge():\n");
+    printf("  Failure to split a segment.\n");
+    internalerror();
       }
-    }
-    /* The vertex has been inserted successfully. */
-    if (m->steinerleft > 0) {
+  }
+  /* The vertex has been inserted successfully. */
+  if (m->steinerleft > 0) {
       m->steinerleft--;
-    }
+  }
   }
   otricopy(searchtri1, searchtri2);
   /* `searchtri1' and `searchtri2' are fastened at their origins to         */
@@ -11981,16 +11981,16 @@ int newmark;
   /*   segment.                                                             */
   finddirection(m, b, &searchtri2, endpoint2);
   if (!scoutsegment(m, b, &searchtri1, endpoint1, newmark)) {
-    /* The origin of searchtri1 may have changed if a collision with an */
-    /*   intervening vertex on the segment occurred.                    */
-    org(searchtri1, midvertex1);
-    conformingedge(m, b, midvertex1, endpoint1, newmark);
+  /* The origin of searchtri1 may have changed if a collision with an */
+  /*   intervening vertex on the segment occurred.                    */
+  org(searchtri1, midvertex1);
+  conformingedge(m, b, midvertex1, endpoint1, newmark);
   }
   if (!scoutsegment(m, b, &searchtri2, endpoint2, newmark)) {
-    /* The origin of searchtri2 may have changed if a collision with an */
-    /*   intervening vertex on the segment occurred.                    */
-    org(searchtri2, midvertex2);
-    conformingedge(m, b, midvertex2, endpoint2, newmark);
+  /* The origin of searchtri2 may have changed if a collision with an */
+  /*   intervening vertex on the segment occurred.                    */
+  org(searchtri2, midvertex2);
+  conformingedge(m, b, midvertex2, endpoint2, newmark);
   }
 }
 
@@ -12058,11 +12058,11 @@ int leftside;
   sym(neartri, fartri);
   /* Check if the edge opposite the origin of fixuptri can be flipped. */
   if (fartri.tri == m->dummytri) {
-    return;
+  return;
   }
   tspivot(neartri, faredge);
   if (faredge.ss != m->dummysub) {
-    return;
+  return;
   }
   /* Find all the relevant vertices. */
   apex(neartri, nearvertex);
@@ -12071,28 +12071,28 @@ int leftside;
   apex(fartri, farvertex);
   /* Check whether the previous polygon vertex is a reflex vertex. */
   if (leftside) {
-    if (counterclockwise(m, b, nearvertex, leftvertex, farvertex) <= 0.0) {
+  if (counterclockwise(m, b, nearvertex, leftvertex, farvertex) <= 0.0) {
       /* leftvertex is a reflex vertex too.  Nothing can */
       /*   be done until a convex section is found.      */
       return;
-    }
+  }
   } else {
-    if (counterclockwise(m, b, farvertex, rightvertex, nearvertex) <= 0.0) {
+  if (counterclockwise(m, b, farvertex, rightvertex, nearvertex) <= 0.0) {
       /* rightvertex is a reflex vertex too.  Nothing can */
       /*   be done until a convex section is found.       */
       return;
-    }
+  }
   }
   if (counterclockwise(m, b, rightvertex, leftvertex, farvertex) > 0.0) {
-    /* fartri is not an inverted triangle, and farvertex is not a reflex */
-    /*   vertex.  As there are no reflex vertices, fixuptri isn't an     */
-    /*   inverted triangle, either.  Hence, test the edge between the    */
-    /*   triangles to ensure it is locally Delaunay.                     */
-    if (incircle(m, b, leftvertex, farvertex, rightvertex, nearvertex) <=
-        0.0) {
+  /* fartri is not an inverted triangle, and farvertex is not a reflex */
+  /*   vertex.  As there are no reflex vertices, fixuptri isn't an     */
+  /*   inverted triangle, either.  Hence, test the edge between the    */
+  /*   triangles to ensure it is locally Delaunay.                     */
+  if (incircle(m, b, leftvertex, farvertex, rightvertex, nearvertex) <=
+    0.0) {
       return;
-    }
-    /* Not locally Delaunay; go on to an edge flip. */
+  }
+  /* Not locally Delaunay; go on to an edge flip. */
   }        /* else fartri is inverted; remove it from the stack by flipping. */
   flip(m, b, &neartri);
   lprevself(*fixuptri);    /* Restore the origin of fixuptri after the flip. */
@@ -12186,30 +12186,30 @@ int newmark;
   collision = 0;
   done = 0;
   do {
-    org(fixuptri, farvertex);
-    /* `farvertex' is the extreme point of the polygon we are "digging" */
-    /*   to get from endpoint1 to endpoint2.                           */
-    if ((farvertex[0] == endpoint2[0]) && (farvertex[1] == endpoint2[1])) {
+  org(fixuptri, farvertex);
+  /* `farvertex' is the extreme point of the polygon we are "digging" */
+  /*   to get from endpoint1 to endpoint2.                           */
+  if ((farvertex[0] == endpoint2[0]) && (farvertex[1] == endpoint2[1])) {
       oprev(fixuptri, fixuptri2);
       /* Enforce the Delaunay condition around endpoint2. */
       delaunayfixup(m, b, &fixuptri, 0);
       delaunayfixup(m, b, &fixuptri2, 1);
       done = 1;
-    } else {
+  } else {
       /* Check whether farvertex is to the left or right of the segment */
       /*   being inserted, to decide which edge of fixuptri to dig      */
       /*   through next.                                                */
       area = counterclockwise(m, b, endpoint1, endpoint2, farvertex);
       if (area == 0.0) {
-        /* We've collided with a vertex between endpoint1 and endpoint2. */
-        collision = 1;
-        oprev(fixuptri, fixuptri2);
-        /* Enforce the Delaunay condition around farvertex. */
-        delaunayfixup(m, b, &fixuptri, 0);
-        delaunayfixup(m, b, &fixuptri2, 1);
-        done = 1;
+    /* We've collided with a vertex between endpoint1 and endpoint2. */
+    collision = 1;
+    oprev(fixuptri, fixuptri2);
+    /* Enforce the Delaunay condition around farvertex. */
+    delaunayfixup(m, b, &fixuptri, 0);
+    delaunayfixup(m, b, &fixuptri2, 1);
+    done = 1;
       } else {
-        if (area > 0.0) {        /* farvertex is to the left of the segment. */
+    if (area > 0.0) {        /* farvertex is to the left of the segment. */
           oprev(fixuptri, fixuptri2);
           /* Enforce the Delaunay condition around farvertex, on the */
           /*   left side of the segment only.                        */
@@ -12218,36 +12218,36 @@ int newmark;
           /*   flipped, one of its endpoints is the fan vertex, and the */
           /*   destination of fixuptri is the fan vertex.               */
           lprevself(fixuptri);
-        } else {                /* farvertex is to the right of the segment. */
+    } else {                /* farvertex is to the right of the segment. */
           delaunayfixup(m, b, &fixuptri, 0);
           /* Flip the edge that crosses the segment.  After the edge is */
           /*   flipped, one of its endpoints is the fan vertex, and the */
           /*   destination of fixuptri is the fan vertex.               */
           oprevself(fixuptri);
-        }
-        /* Check for two intersecting segments. */
-        tspivot(fixuptri, crosssubseg);
-        if (crosssubseg.ss == m->dummysub) {
+    }
+    /* Check for two intersecting segments. */
+    tspivot(fixuptri, crosssubseg);
+    if (crosssubseg.ss == m->dummysub) {
           flip(m, b, &fixuptri);    /* May create inverted triangle at left. */
-        } else {
+    } else {
           /* We've collided with a segment between endpoint1 and endpoint2. */
           collision = 1;
           /* Insert a vertex at the intersection. */
           segmentintersection(m, b, &fixuptri, &crosssubseg, endpoint2);
           done = 1;
-        }
-      }
     }
+      }
+  }
   } while (!done);
   /* Insert a subsegment to make the segment permanent. */
   insertsubseg(m, b, &fixuptri, newmark);
   /* If there was a collision with an interceding vertex, install another */
   /*   segment connecting that vertex with endpoint2.                     */
   if (collision) {
-    /* Insert the remainder of the segment. */
-    if (!scoutsegment(m, b, &fixuptri, endpoint2, newmark)) {
+  /* Insert the remainder of the segment. */
+  if (!scoutsegment(m, b, &fixuptri, endpoint2, newmark)) {
       constrainededge(m, b, &fixuptri, endpoint2, newmark);
-    }
+  }
   }
 }
 
@@ -12276,7 +12276,7 @@ int newmark;
   triangle ptr;                         /* Temporary variable used by sym(). */
 
   if (b->verbose > 1) {
-    printf("  Connecting (%.12g, %.12g) to (%.12g, %.12g).\n",
+  printf("  Connecting (%.12g, %.12g) to (%.12g, %.12g).\n",
            endpoint1[0], endpoint1[1], endpoint2[0], endpoint2[1]);
   }
 
@@ -12284,30 +12284,30 @@ int newmark;
   checkvertex = (vertex) NULL;
   encodedtri = vertex2tri(endpoint1);
   if (encodedtri != (triangle) NULL) {
-    decode(encodedtri, searchtri1);
-    org(searchtri1, checkvertex);
+  decode(encodedtri, searchtri1);
+  org(searchtri1, checkvertex);
   }
   if (checkvertex != endpoint1) {
-    /* Find a boundary triangle to search from. */
-    searchtri1.tri = m->dummytri;
-    searchtri1.orient = 0;
-    symself(searchtri1);
-    /* Search for the segment's first endpoint by point location. */
-    if (locate(m, b, endpoint1, &searchtri1) != ONVERTEX) {
+  /* Find a boundary triangle to search from. */
+  searchtri1.tri = m->dummytri;
+  searchtri1.orient = 0;
+  symself(searchtri1);
+  /* Search for the segment's first endpoint by point location. */
+  if (locate(m, b, endpoint1, &searchtri1) != ONVERTEX) {
       printf(
-        "Internal error in insertsegment():  Unable to locate PSLG vertex\n");
+    "Internal error in insertsegment():  Unable to locate PSLG vertex\n");
       printf("  (%.12g, %.12g) in triangulation.\n",
              endpoint1[0], endpoint1[1]);
       internalerror();
-    }
+  }
   }
   /* Remember this triangle to improve subsequent point location. */
   otricopy(searchtri1, m->recenttri);
   /* Scout the beginnings of a path from the first endpoint */
   /*   toward the second.                                   */
   if (scoutsegment(m, b, &searchtri1, endpoint2, newmark)) {
-    /* The segment was easily inserted. */
-    return;
+  /* The segment was easily inserted. */
+  return;
   }
   /* The first endpoint may have changed if a collision with an intervening */
   /*   vertex on the segment occurred.                                      */
@@ -12317,30 +12317,30 @@ int newmark;
   checkvertex = (vertex) NULL;
   encodedtri = vertex2tri(endpoint2);
   if (encodedtri != (triangle) NULL) {
-    decode(encodedtri, searchtri2);
-    org(searchtri2, checkvertex);
+  decode(encodedtri, searchtri2);
+  org(searchtri2, checkvertex);
   }
   if (checkvertex != endpoint2) {
-    /* Find a boundary triangle to search from. */
-    searchtri2.tri = m->dummytri;
-    searchtri2.orient = 0;
-    symself(searchtri2);
-    /* Search for the segment's second endpoint by point location. */
-    if (locate(m, b, endpoint2, &searchtri2) != ONVERTEX) {
+  /* Find a boundary triangle to search from. */
+  searchtri2.tri = m->dummytri;
+  searchtri2.orient = 0;
+  symself(searchtri2);
+  /* Search for the segment's second endpoint by point location. */
+  if (locate(m, b, endpoint2, &searchtri2) != ONVERTEX) {
       printf(
-        "Internal error in insertsegment():  Unable to locate PSLG vertex\n");
+    "Internal error in insertsegment():  Unable to locate PSLG vertex\n");
       printf("  (%.12g, %.12g) in triangulation.\n",
              endpoint2[0], endpoint2[1]);
       internalerror();
-    }
+  }
   }
   /* Remember this triangle to improve subsequent point location. */
   otricopy(searchtri2, m->recenttri);
   /* Scout the beginnings of a path from the second endpoint */
   /*   toward the first.                                     */
   if (scoutsegment(m, b, &searchtri2, endpoint1, newmark)) {
-    /* The segment was easily inserted. */
-    return;
+  /* The segment was easily inserted. */
+  return;
   }
   /* The second endpoint may have changed if a collision with an intervening */
   /*   vertex on the segment occurred.                                       */
@@ -12349,13 +12349,13 @@ int newmark;
 #ifndef REDUCED
 #ifndef CDT_ONLY
   if (b->splitseg) {
-    /* Insert vertices to force the segment into the triangulation. */
-    conformingedge(m, b, endpoint1, endpoint2, newmark);
+  /* Insert vertices to force the segment into the triangulation. */
+  conformingedge(m, b, endpoint1, endpoint2, newmark);
   } else {
 #endif /* not CDT_ONLY */
 #endif /* not REDUCED */
-    /* Insert the segment directly into the triangulation. */
-    constrainededge(m, b, &searchtri1, endpoint2, newmark);
+  /* Insert the segment directly into the triangulation. */
+  constrainededge(m, b, &searchtri1, endpoint2, newmark);
 #ifndef REDUCED
 #ifndef CDT_ONLY
   }
@@ -12391,15 +12391,15 @@ struct behavior *b;
   otricopy(hulltri, starttri);
   /* Go once counterclockwise around the convex hull. */
   do {
-    /* Create a subsegment if there isn't already one here. */
-    insertsubseg(m, b, &hulltri, 1);
-    /* To find the next hull edge, go clockwise around the next vertex. */
-    lnextself(hulltri);
-    oprev(hulltri, nexttri);
-    while (nexttri.tri != m->dummytri) {
+  /* Create a subsegment if there isn't already one here. */
+  insertsubseg(m, b, &hulltri, 1);
+  /* To find the next hull edge, go clockwise around the next vertex. */
+  lnextself(hulltri);
+  oprev(hulltri, nexttri);
+  while (nexttri.tri != m->dummytri) {
       otricopy(nexttri, hulltri);
       oprev(hulltri, nexttri);
-    }
+  }
   } while (!otriequal(hulltri, starttri));
 }
 
@@ -12457,111 +12457,111 @@ char *polyfilename;
   int i;
 
   if (b->poly) {
-    if (!b->quiet) {
+  if (!b->quiet) {
       printf("Recovering segments in Delaunay triangulation.\n");
-    }
+  }
 #ifdef TRILIBRARY
-    strcpy(polyfilename, "input");
-    m->insegments = numberofsegments;
-    segmentmarkers = segmentmarkerlist != (int *) NULL;
-    index = 0;
+  strcpy(polyfilename, "input");
+  m->insegments = numberofsegments;
+  segmentmarkers = segmentmarkerlist != (int *) NULL;
+  index = 0;
 #else /* not TRILIBRARY */
-    /* Read the segments from a .poly file. */
-    /* Read number of segments and number of boundary markers. */
-    stringptr = readline(inputline, polyfile, polyfilename);
-    m->insegments = (int) strtol(stringptr, &stringptr, 0);
-    stringptr = findfield(stringptr);
-    if (*stringptr == '\0') {
+  /* Read the segments from a .poly file. */
+  /* Read number of segments and number of boundary markers. */
+  stringptr = readline(inputline, polyfile, polyfilename);
+  m->insegments = (int) strtol(stringptr, &stringptr, 0);
+  stringptr = findfield(stringptr);
+  if (*stringptr == '\0') {
       segmentmarkers = 0;
-    } else {
+  } else {
       segmentmarkers = (int) strtol(stringptr, &stringptr, 0);
-    }
+  }
 #endif /* not TRILIBRARY */
-    /* If the input vertices are collinear, there is no triangulation, */
-    /*   so don't try to insert segments.                              */
-    if (m->triangles.items == 0) {
+  /* If the input vertices are collinear, there is no triangulation, */
+  /*   so don't try to insert segments.                              */
+  if (m->triangles.items == 0) {
       return;
-    }
+  }
 
-    /* If segments are to be inserted, compute a mapping */
-    /*   from vertices to triangles.                     */
-    if (m->insegments > 0) {
+  /* If segments are to be inserted, compute a mapping */
+  /*   from vertices to triangles.                     */
+  if (m->insegments > 0) {
       makevertexmap(m, b);
       if (b->verbose) {
-        printf("  Recovering PSLG segments.\n");
+    printf("  Recovering PSLG segments.\n");
       }
-    }
+  }
 
-    boundmarker = 0;
-    /* Read and insert the segments. */
-    for (i = 0; i < m->insegments; i++) {
+  boundmarker = 0;
+  /* Read and insert the segments. */
+  for (i = 0; i < m->insegments; i++) {
 #ifdef TRILIBRARY
       end1 = segmentlist[index++];
       end2 = segmentlist[index++];
       if (segmentmarkers) {
-        boundmarker = segmentmarkerlist[i];
+    boundmarker = segmentmarkerlist[i];
       }
 #else /* not TRILIBRARY */
       stringptr = readline(inputline, polyfile, b->inpolyfilename);
       stringptr = findfield(stringptr);
       if (*stringptr == '\0') {
-        printf("Error:  Segment %d has no endpoints in %s.\n",
+    printf("Error:  Segment %d has no endpoints in %s.\n",
                b->firstnumber + i, polyfilename);
-        exit(1);
+    exit(1);
       } else {
-        end1 = (int) strtol(stringptr, &stringptr, 0);
+    end1 = (int) strtol(stringptr, &stringptr, 0);
       }
       stringptr = findfield(stringptr);
       if (*stringptr == '\0') {
-        printf("Error:  Segment %d is missing its second endpoint in %s.\n",
+    printf("Error:  Segment %d is missing its second endpoint in %s.\n",
                b->firstnumber + i, polyfilename);
-        exit(1);
+    exit(1);
       } else {
-        end2 = (int) strtol(stringptr, &stringptr, 0);
+    end2 = (int) strtol(stringptr, &stringptr, 0);
       }
       if (segmentmarkers) {
-        stringptr = findfield(stringptr);
-        if (*stringptr == '\0') {
+    stringptr = findfield(stringptr);
+    if (*stringptr == '\0') {
           boundmarker = 0;
-        } else {
+    } else {
           boundmarker = (int) strtol(stringptr, &stringptr, 0);
-        }
+    }
       }
 #endif /* not TRILIBRARY */
       if ((end1 < b->firstnumber) ||
           (end1 >= b->firstnumber + m->invertices)) {
-        if (!b->quiet) {
+    if (!b->quiet) {
           printf("Warning:  Invalid first endpoint of segment %d in %s.\n",
                  b->firstnumber + i, polyfilename);
-        }
+    }
       } else if ((end2 < b->firstnumber) ||
                  (end2 >= b->firstnumber + m->invertices)) {
-        if (!b->quiet) {
+    if (!b->quiet) {
           printf("Warning:  Invalid second endpoint of segment %d in %s.\n",
                  b->firstnumber + i, polyfilename);
-        }
+    }
       } else {
-        endpoint1 = getvertex(m, b, end1);
-        endpoint2 = getvertex(m, b, end2);
-        if ((endpoint1[0] == endpoint2[0]) && (endpoint1[1] == endpoint2[1])) {
+    endpoint1 = getvertex(m, b, end1);
+    endpoint2 = getvertex(m, b, end2);
+    if ((endpoint1[0] == endpoint2[0]) && (endpoint1[1] == endpoint2[1])) {
           if (!b->quiet) {
-            printf("Warning:  Endpoints of segment %d are coincident in %s.\n",
+      printf("Warning:  Endpoints of segment %d are coincident in %s.\n",
                    b->firstnumber + i, polyfilename);
           }
-        } else {
+    } else {
           insertsegment(m, b, endpoint1, endpoint2, boundmarker);
-        }
-      }
     }
+      }
+  }
   } else {
-    m->insegments = 0;
+  m->insegments = 0;
   }
   if (b->convex || !b->poly) {
-    /* Enclose the convex hull with subsegments. */
-    if (b->verbose) {
+  /* Enclose the convex hull with subsegments. */
+  if (b->verbose) {
       printf("  Enclosing convex hull with segments.\n");
-    }
-    markhull(m, b);
+  }
+  markhull(m, b);
   }
 }
 
@@ -12600,7 +12600,7 @@ struct behavior *b;
   subseg sptr;                      /* Temporary variable used by tspivot(). */
 
   if (b->verbose) {
-    printf("  Marking concavities (external triangles) for elimination.\n");
+  printf("  Marking concavities (external triangles) for elimination.\n");
   }
   /* Find a triangle handle on the hull. */
   hulltri.tri = m->dummytri;
@@ -12610,39 +12610,39 @@ struct behavior *b;
   otricopy(hulltri, starttri);
   /* Go once counterclockwise around the convex hull. */
   do {
-    /* Ignore triangles that are already infected. */
-    if (!infected(hulltri)) {
+  /* Ignore triangles that are already infected. */
+  if (!infected(hulltri)) {
       /* Is the triangle protected by a subsegment? */
       tspivot(hulltri, hullsubseg);
       if (hullsubseg.ss == m->dummysub) {
-        /* The triangle is not protected; infect it. */
-        if (!infected(hulltri)) {
+    /* The triangle is not protected; infect it. */
+    if (!infected(hulltri)) {
           infect(hulltri);
           deadtriangle = (triangle **) poolalloc(&m->viri);
           *deadtriangle = hulltri.tri;
-        }
+    }
       } else {
-        /* The triangle is protected; set boundary markers if appropriate. */
-        if (mark(hullsubseg) == 0) {
+    /* The triangle is protected; set boundary markers if appropriate. */
+    if (mark(hullsubseg) == 0) {
           setmark(hullsubseg, 1);
           org(hulltri, horg);
           dest(hulltri, hdest);
           if (vertexmark(horg) == 0) {
-            setvertexmark(horg, 1);
+      setvertexmark(horg, 1);
           }
           if (vertexmark(hdest) == 0) {
-            setvertexmark(hdest, 1);
+      setvertexmark(hdest, 1);
           }
-        }
-      }
     }
-    /* To find the next hull edge, go clockwise around the next vertex. */
-    lnextself(hulltri);
-    oprev(hulltri, nexttri);
-    while (nexttri.tri != m->dummytri) {
+      }
+  }
+  /* To find the next hull edge, go clockwise around the next vertex. */
+  lnextself(hulltri);
+  oprev(hulltri, nexttri);
+  while (nexttri.tri != m->dummytri) {
       otricopy(nexttri, hulltri);
       oprev(hulltri, nexttri);
-    }
+  }
   } while (!otriequal(hulltri, starttri));
 }
 
@@ -12685,20 +12685,20 @@ struct behavior *b;
   subseg sptr;                      /* Temporary variable used by tspivot(). */
 
   if (b->verbose) {
-    printf("  Marking neighbors of marked triangles.\n");
+  printf("  Marking neighbors of marked triangles.\n");
   }
   /* Loop through all the infected triangles, spreading the virus to */
   /*   their neighbors, then to their neighbors' neighbors.          */
   traversalinit(&m->viri);
   virusloop = (triangle **) traverse(&m->viri);
   while (virusloop != (triangle **) NULL) {
-    testtri.tri = *virusloop;
-    /* A triangle is marked as infected by messing with one of its pointers */
-    /*   to subsegments, setting it to an illegal value.  Hence, we have to */
-    /*   temporarily uninfect this triangle so that we can examine its      */
-    /*   adjacent subsegments.                                              */
-    uninfect(testtri);
-    if (b->verbose > 2) {
+  testtri.tri = *virusloop;
+  /* A triangle is marked as infected by messing with one of its pointers */
+  /*   to subsegments, setting it to an illegal value.  Hence, we have to */
+  /*   temporarily uninfect this triangle so that we can examine its      */
+  /*   adjacent subsegments.                                              */
+  uninfect(testtri);
+  if (b->verbose > 2) {
       /* Assign the triangle an orientation for convenience in */
       /*   checking its vertices.                              */
       testtri.orient = 0;
@@ -12708,37 +12708,37 @@ struct behavior *b;
       printf("    Checking (%.12g, %.12g) (%.12g, %.12g) (%.12g, %.12g)\n",
              deadorg[0], deadorg[1], deaddest[0], deaddest[1],
              deadapex[0], deadapex[1]);
-    }
-    /* Check each of the triangle's three neighbors. */
-    for (testtri.orient = 0; testtri.orient < 3; testtri.orient++) {
+  }
+  /* Check each of the triangle's three neighbors. */
+  for (testtri.orient = 0; testtri.orient < 3; testtri.orient++) {
       /* Find the neighbor. */
       sym(testtri, neighbor);
       /* Check for a subsegment between the triangle and its neighbor. */
       tspivot(testtri, neighborsubseg);
       /* Check if the neighbor is nonexistent or already infected. */
       if ((neighbor.tri == m->dummytri) || infected(neighbor)) {
-        if (neighborsubseg.ss != m->dummysub) {
+    if (neighborsubseg.ss != m->dummysub) {
           /* There is a subsegment separating the triangle from its      */
           /*   neighbor, but both triangles are dying, so the subsegment */
           /*   dies too.                                                 */
           subsegdealloc(m, neighborsubseg.ss);
           if (neighbor.tri != m->dummytri) {
-            /* Make sure the subsegment doesn't get deallocated again */
-            /*   later when the infected neighbor is visited.         */
-            uninfect(neighbor);
-            tsdissolve(neighbor);
-            infect(neighbor);
+      /* Make sure the subsegment doesn't get deallocated again */
+      /*   later when the infected neighbor is visited.         */
+      uninfect(neighbor);
+      tsdissolve(neighbor);
+      infect(neighbor);
           }
-        }
+    }
       } else {                   /* The neighbor exists and is not infected. */
-        if (neighborsubseg.ss == m->dummysub) {
+    if (neighborsubseg.ss == m->dummysub) {
           /* There is no subsegment protecting the neighbor, so */
           /*   the neighbor becomes infected.                   */
           if (b->verbose > 2) {
-            org(neighbor, deadorg);
-            dest(neighbor, deaddest);
-            apex(neighbor, deadapex);
-            printf(
+      org(neighbor, deadorg);
+      dest(neighbor, deaddest);
+      apex(neighbor, deadapex);
+      printf(
               "    Marking (%.12g, %.12g) (%.12g, %.12g) (%.12g, %.12g)\n",
                    deadorg[0], deadorg[1], deaddest[0], deaddest[1],
                    deadapex[0], deadapex[1]);
@@ -12747,112 +12747,112 @@ struct behavior *b;
           /* Ensure that the neighbor's neighbors will be infected. */
           deadtriangle = (triangle **) poolalloc(&m->viri);
           *deadtriangle = neighbor.tri;
-        } else {               /* The neighbor is protected by a subsegment. */
+    } else {               /* The neighbor is protected by a subsegment. */
           /* Remove this triangle from the subsegment. */
           stdissolve(neighborsubseg);
           /* The subsegment becomes a boundary.  Set markers accordingly. */
           if (mark(neighborsubseg) == 0) {
-            setmark(neighborsubseg, 1);
+      setmark(neighborsubseg, 1);
           }
           org(neighbor, norg);
           dest(neighbor, ndest);
           if (vertexmark(norg) == 0) {
-            setvertexmark(norg, 1);
+      setvertexmark(norg, 1);
           }
           if (vertexmark(ndest) == 0) {
-            setvertexmark(ndest, 1);
+      setvertexmark(ndest, 1);
           }
-        }
-      }
     }
-    /* Remark the triangle as infected, so it doesn't get added to the */
-    /*   virus pool again.                                             */
-    infect(testtri);
-    virusloop = (triangle **) traverse(&m->viri);
+      }
+  }
+  /* Remark the triangle as infected, so it doesn't get added to the */
+  /*   virus pool again.                                             */
+  infect(testtri);
+  virusloop = (triangle **) traverse(&m->viri);
   }
 
   if (b->verbose) {
-    printf("  Deleting marked triangles.\n");
+  printf("  Deleting marked triangles.\n");
   }
 
   traversalinit(&m->viri);
   virusloop = (triangle **) traverse(&m->viri);
   while (virusloop != (triangle **) NULL) {
-    testtri.tri = *virusloop;
+  testtri.tri = *virusloop;
 
-    /* Check each of the three corners of the triangle for elimination. */
-    /*   This is done by walking around each vertex, checking if it is  */
-    /*   still connected to at least one live triangle.                 */
-    for (testtri.orient = 0; testtri.orient < 3; testtri.orient++) {
+  /* Check each of the three corners of the triangle for elimination. */
+  /*   This is done by walking around each vertex, checking if it is  */
+  /*   still connected to at least one live triangle.                 */
+  for (testtri.orient = 0; testtri.orient < 3; testtri.orient++) {
       org(testtri, testvertex);
       /* Check if the vertex has already been tested. */
       if (testvertex != (vertex) NULL) {
-        killorg = 1;
-        /* Mark the corner of the triangle as having been tested. */
-        setorg(testtri, NULL);
-        /* Walk counterclockwise about the vertex. */
-        onext(testtri, neighbor);
-        /* Stop upon reaching a boundary or the starting triangle. */
-        while ((neighbor.tri != m->dummytri) &&
+    killorg = 1;
+    /* Mark the corner of the triangle as having been tested. */
+    setorg(testtri, NULL);
+    /* Walk counterclockwise about the vertex. */
+    onext(testtri, neighbor);
+    /* Stop upon reaching a boundary or the starting triangle. */
+    while ((neighbor.tri != m->dummytri) &&
                (!otriequal(neighbor, testtri))) {
           if (infected(neighbor)) {
-            /* Mark the corner of this triangle as having been tested. */
-            setorg(neighbor, NULL);
+      /* Mark the corner of this triangle as having been tested. */
+      setorg(neighbor, NULL);
           } else {
-            /* A live triangle.  The vertex survives. */
-            killorg = 0;
+      /* A live triangle.  The vertex survives. */
+      killorg = 0;
           }
           /* Walk counterclockwise about the vertex. */
           onextself(neighbor);
-        }
-        /* If we reached a boundary, we must walk clockwise as well. */
-        if (neighbor.tri == m->dummytri) {
+    }
+    /* If we reached a boundary, we must walk clockwise as well. */
+    if (neighbor.tri == m->dummytri) {
           /* Walk clockwise about the vertex. */
           oprev(testtri, neighbor);
           /* Stop upon reaching a boundary. */
           while (neighbor.tri != m->dummytri) {
-            if (infected(neighbor)) {
-            /* Mark the corner of this triangle as having been tested. */
+      if (infected(neighbor)) {
+      /* Mark the corner of this triangle as having been tested. */
               setorg(neighbor, NULL);
-            } else {
+      } else {
               /* A live triangle.  The vertex survives. */
               killorg = 0;
-            }
-            /* Walk clockwise about the vertex. */
-            oprevself(neighbor);
+      }
+      /* Walk clockwise about the vertex. */
+      oprevself(neighbor);
           }
-        }
-        if (killorg) {
+    }
+    if (killorg) {
           if (b->verbose > 1) {
-            printf("    Deleting vertex (%.12g, %.12g)\n",
+      printf("    Deleting vertex (%.12g, %.12g)\n",
                    testvertex[0], testvertex[1]);
           }
           setvertextype(testvertex, UNDEADVERTEX);
           m->undeads++;
-        }
-      }
     }
+      }
+  }
 
-    /* Record changes in the number of boundary edges, and disconnect */
-    /*   dead triangles from their neighbors.                         */
-    for (testtri.orient = 0; testtri.orient < 3; testtri.orient++) {
+  /* Record changes in the number of boundary edges, and disconnect */
+  /*   dead triangles from their neighbors.                         */
+  for (testtri.orient = 0; testtri.orient < 3; testtri.orient++) {
       sym(testtri, neighbor);
       if (neighbor.tri == m->dummytri) {
-        /* There is no neighboring triangle on this edge, so this edge    */
-        /*   is a boundary edge.  This triangle is being deleted, so this */
-        /*   boundary edge is deleted.                                    */
-        m->hullsize--;
+    /* There is no neighboring triangle on this edge, so this edge    */
+    /*   is a boundary edge.  This triangle is being deleted, so this */
+    /*   boundary edge is deleted.                                    */
+    m->hullsize--;
       } else {
-        /* Disconnect the triangle from its neighbor. */
-        dissolve(neighbor);
-        /* There is a neighboring triangle on this edge, so this edge */
-        /*   becomes a boundary edge when this triangle is deleted.   */
-        m->hullsize++;
+    /* Disconnect the triangle from its neighbor. */
+    dissolve(neighbor);
+    /* There is a neighboring triangle on this edge, so this edge */
+    /*   becomes a boundary edge when this triangle is deleted.   */
+    m->hullsize++;
       }
-    }
-    /* Return the dead triangle to the pool of triangles. */
-    triangledealloc(m, testtri.tri);
-    virusloop = (triangle **) traverse(&m->viri);
+  }
+  /* Return the dead triangle to the pool of triangles. */
+  triangledealloc(m, testtri.tri);
+  virusloop = (triangle **) traverse(&m->viri);
   }
   /* Empty the virus pool. */
   poolrestart(&m->viri);
@@ -12895,7 +12895,7 @@ REAL area;
   subseg sptr;                      /* Temporary variable used by tspivot(). */
 
   if (b->verbose > 1) {
-    printf("  Marking neighbors of marked triangles.\n");
+  printf("  Marking neighbors of marked triangles.\n");
   }
   /* Loop through all the infected triangles, spreading the attribute      */
   /*   and/or area constraint to their neighbors, then to their neighbors' */
@@ -12903,21 +12903,21 @@ REAL area;
   traversalinit(&m->viri);
   virusloop = (triangle **) traverse(&m->viri);
   while (virusloop != (triangle **) NULL) {
-    testtri.tri = *virusloop;
-    /* A triangle is marked as infected by messing with one of its pointers */
-    /*   to subsegments, setting it to an illegal value.  Hence, we have to */
-    /*   temporarily uninfect this triangle so that we can examine its      */
-    /*   adjacent subsegments.                                              */
-    uninfect(testtri);
-    if (b->regionattrib) {
+  testtri.tri = *virusloop;
+  /* A triangle is marked as infected by messing with one of its pointers */
+  /*   to subsegments, setting it to an illegal value.  Hence, we have to */
+  /*   temporarily uninfect this triangle so that we can examine its      */
+  /*   adjacent subsegments.                                              */
+  uninfect(testtri);
+  if (b->regionattrib) {
       /* Set an attribute. */
       setelemattribute(testtri, m->eextras, attribute);
-    }
-    if (b->vararea) {
+  }
+  if (b->vararea) {
       /* Set an area constraint. */
       setareabound(testtri, area);
-    }
-    if (b->verbose > 2) {
+  }
+  if (b->verbose > 2) {
       /* Assign the triangle an orientation for convenience in */
       /*   checking its vertices.                              */
       testtri.orient = 0;
@@ -12927,9 +12927,9 @@ REAL area;
       printf("    Checking (%.12g, %.12g) (%.12g, %.12g) (%.12g, %.12g)\n",
              regionorg[0], regionorg[1], regiondest[0], regiondest[1],
              regionapex[0], regionapex[1]);
-    }
-    /* Check each of the triangle's three neighbors. */
-    for (testtri.orient = 0; testtri.orient < 3; testtri.orient++) {
+  }
+  /* Check each of the triangle's three neighbors. */
+  for (testtri.orient = 0; testtri.orient < 3; testtri.orient++) {
       /* Find the neighbor. */
       sym(testtri, neighbor);
       /* Check for a subsegment between the triangle and its neighbor. */
@@ -12938,37 +12938,37 @@ REAL area;
       /*   isn't protected by a subsegment.                          */
       if ((neighbor.tri != m->dummytri) && !infected(neighbor)
           && (neighborsubseg.ss == m->dummysub)) {
-        if (b->verbose > 2) {
+    if (b->verbose > 2) {
           org(neighbor, regionorg);
           dest(neighbor, regiondest);
           apex(neighbor, regionapex);
           printf("    Marking (%.12g, %.12g) (%.12g, %.12g) (%.12g, %.12g)\n",
                  regionorg[0], regionorg[1], regiondest[0], regiondest[1],
                  regionapex[0], regionapex[1]);
-        }
-        /* Infect the neighbor. */
-        infect(neighbor);
-        /* Ensure that the neighbor's neighbors will be infected. */
-        regiontri = (triangle **) poolalloc(&m->viri);
-        *regiontri = neighbor.tri;
-      }
     }
-    /* Remark the triangle as infected, so it doesn't get added to the */
-    /*   virus pool again.                                             */
-    infect(testtri);
-    virusloop = (triangle **) traverse(&m->viri);
+    /* Infect the neighbor. */
+    infect(neighbor);
+    /* Ensure that the neighbor's neighbors will be infected. */
+    regiontri = (triangle **) poolalloc(&m->viri);
+    *regiontri = neighbor.tri;
+      }
+  }
+  /* Remark the triangle as infected, so it doesn't get added to the */
+  /*   virus pool again.                                             */
+  infect(testtri);
+  virusloop = (triangle **) traverse(&m->viri);
   }
 
   /* Uninfect all triangles. */
   if (b->verbose > 1) {
-    printf("  Unmarking marked triangles.\n");
+  printf("  Unmarking marked triangles.\n");
   }
   traversalinit(&m->viri);
   virusloop = (triangle **) traverse(&m->viri);
   while (virusloop != (triangle **) NULL) {
-    testtri.tri = *virusloop;
-    uninfect(testtri);
-    virusloop = (triangle **) traverse(&m->viri);
+  testtri.tri = *virusloop;
+  uninfect(testtri);
+  virusloop = (triangle **) traverse(&m->viri);
   }
   /* Empty the virus pool. */
   poolrestart(&m->viri);
@@ -12988,7 +12988,7 @@ REAL area;
 
 #ifdef ANSI_DECLARATORS
 void carveholes(struct mesh *m, struct behavior *b, REAL *holelist, int holes,
-                REAL *regionlist, int regions)
+        REAL *regionlist, int regions)
 #else /* not ANSI_DECLARATORS */
 void carveholes(m, b, holelist, holes, regionlist, regions)
 struct mesh *m;
@@ -13011,58 +13011,58 @@ int regions;
   triangle ptr;                         /* Temporary variable used by sym(). */
 
   if (!(b->quiet || (b->noholes && b->convex))) {
-    printf("Removing unwanted triangles.\n");
-    if (b->verbose && (holes > 0)) {
+  printf("Removing unwanted triangles.\n");
+  if (b->verbose && (holes > 0)) {
       printf("  Marking holes for elimination.\n");
-    }
+  }
   }
 
   if (regions > 0) {
-    /* Allocate storage for the triangles in which region points fall. */
-    regiontris = (struct otri *) trimalloc(regions * sizeof(struct otri));
+  /* Allocate storage for the triangles in which region points fall. */
+  regiontris = (struct otri *) trimalloc(regions * sizeof(struct otri));
   }
 
   if (((holes > 0) && !b->noholes) || !b->convex || (regions > 0)) {
-    /* Initialize a pool of viri to be used for holes, concavities, */
-    /*   regional attributes, and/or regional area constraints.     */
-    poolinit(&m->viri, sizeof(triangle *), VIRUSPERBLOCK, POINTER, 0);
+  /* Initialize a pool of viri to be used for holes, concavities, */
+  /*   regional attributes, and/or regional area constraints.     */
+  poolinit(&m->viri, sizeof(triangle *), VIRUSPERBLOCK, POINTER, 0);
   }
 
   if (!b->convex) {
-    /* Mark as infected any unprotected triangles on the boundary. */
-    /*   This is one way by which concavities are created.         */
-    infecthull(m, b);
+  /* Mark as infected any unprotected triangles on the boundary. */
+  /*   This is one way by which concavities are created.         */
+  infecthull(m, b);
   }
 
   if ((holes > 0) && !b->noholes) {
-    /* Infect each triangle in which a hole lies. */
-    for (i = 0; i < 2 * holes; i += 2) {
+  /* Infect each triangle in which a hole lies. */
+  for (i = 0; i < 2 * holes; i += 2) {
       /* Ignore holes that aren't within the bounds of the mesh. */
       if ((holelist[i] >= m->xmin) && (holelist[i] <= m->xmax)
           && (holelist[i + 1] >= m->ymin) && (holelist[i + 1] <= m->ymax)) {
-        /* Start searching from some triangle on the outer boundary. */
-        searchtri.tri = m->dummytri;
-        searchtri.orient = 0;
-        symself(searchtri);
-        /* Ensure that the hole is to the left of this boundary edge; */
-        /*   otherwise, locate() will falsely report that the hole    */
-        /*   falls within the starting triangle.                      */
-        org(searchtri, searchorg);
-        dest(searchtri, searchdest);
-        if (counterclockwise(m, b, searchorg, searchdest, &holelist[i]) >
-            0.0) {
+    /* Start searching from some triangle on the outer boundary. */
+    searchtri.tri = m->dummytri;
+    searchtri.orient = 0;
+    symself(searchtri);
+    /* Ensure that the hole is to the left of this boundary edge; */
+    /*   otherwise, locate() will falsely report that the hole    */
+    /*   falls within the starting triangle.                      */
+    org(searchtri, searchorg);
+    dest(searchtri, searchdest);
+    if (counterclockwise(m, b, searchorg, searchdest, &holelist[i]) >
+      0.0) {
           /* Find a triangle that contains the hole. */
           intersect = locate(m, b, &holelist[i], &searchtri);
           if ((intersect != OUTSIDE) && (!infected(searchtri))) {
-            /* Infect the triangle.  This is done by marking the triangle  */
-            /*   as infected and including the triangle in the virus pool. */
-            infect(searchtri);
-            holetri = (triangle **) poolalloc(&m->viri);
-            *holetri = searchtri.tri;
+      /* Infect the triangle.  This is done by marking the triangle  */
+      /*   as infected and including the triangle in the virus pool. */
+      infect(searchtri);
+      holetri = (triangle **) poolalloc(&m->viri);
+      *holetri = searchtri.tri;
           }
-        }
-      }
     }
+      }
+  }
   }
 
   /* Now, we have to find all the regions BEFORE we carve the holes, because */
@@ -13072,69 +13072,69 @@ int regions;
   /*   might not be convex; they can only be used with a freshly             */
   /*   triangulated PSLG.)                                                   */
   if (regions > 0) {
-    /* Find the starting triangle for each region. */
-    for (i = 0; i < regions; i++) {
+  /* Find the starting triangle for each region. */
+  for (i = 0; i < regions; i++) {
       regiontris[i].tri = m->dummytri;
       /* Ignore region points that aren't within the bounds of the mesh. */
       if ((regionlist[4 * i] >= m->xmin) && (regionlist[4 * i] <= m->xmax) &&
           (regionlist[4 * i + 1] >= m->ymin) &&
           (regionlist[4 * i + 1] <= m->ymax)) {
-        /* Start searching from some triangle on the outer boundary. */
-        searchtri.tri = m->dummytri;
-        searchtri.orient = 0;
-        symself(searchtri);
-        /* Ensure that the region point is to the left of this boundary */
-        /*   edge; otherwise, locate() will falsely report that the     */
-        /*   region point falls within the starting triangle.           */
-        org(searchtri, searchorg);
-        dest(searchtri, searchdest);
-        if (counterclockwise(m, b, searchorg, searchdest, &regionlist[4 * i]) >
-            0.0) {
+    /* Start searching from some triangle on the outer boundary. */
+    searchtri.tri = m->dummytri;
+    searchtri.orient = 0;
+    symself(searchtri);
+    /* Ensure that the region point is to the left of this boundary */
+    /*   edge; otherwise, locate() will falsely report that the     */
+    /*   region point falls within the starting triangle.           */
+    org(searchtri, searchorg);
+    dest(searchtri, searchdest);
+    if (counterclockwise(m, b, searchorg, searchdest, &regionlist[4 * i]) >
+      0.0) {
           /* Find a triangle that contains the region point. */
           intersect = locate(m, b, &regionlist[4 * i], &searchtri);
           if ((intersect != OUTSIDE) && (!infected(searchtri))) {
-            /* Record the triangle for processing after the */
-            /*   holes have been carved.                    */
-            otricopy(searchtri, regiontris[i]);
+      /* Record the triangle for processing after the */
+      /*   holes have been carved.                    */
+      otricopy(searchtri, regiontris[i]);
           }
-        }
-      }
     }
+      }
+  }
   }
 
   if (m->viri.items > 0) {
-    /* Carve the holes and concavities. */
-    plague(m, b);
+  /* Carve the holes and concavities. */
+  plague(m, b);
   }
   /* The virus pool should be empty now. */
 
   if (regions > 0) {
-    if (!b->quiet) {
+  if (!b->quiet) {
       if (b->regionattrib) {
-        if (b->vararea) {
+    if (b->vararea) {
           printf("Spreading regional attributes and area constraints.\n");
-        } else {
+    } else {
           printf("Spreading regional attributes.\n");
-        }
-      } else { 
-        printf("Spreading regional area constraints.\n");
-      }
     }
-    if (b->regionattrib && !b->refine) {
+      } else { 
+    printf("Spreading regional area constraints.\n");
+      }
+  }
+  if (b->regionattrib && !b->refine) {
       /* Assign every triangle a regional attribute of zero. */
       traversalinit(&m->triangles);
       triangleloop.orient = 0;
       triangleloop.tri = triangletraverse(m);
       while (triangleloop.tri != (triangle *) NULL) {
-        setelemattribute(triangleloop, m->eextras, 0.0);
-        triangleloop.tri = triangletraverse(m);
+    setelemattribute(triangleloop, m->eextras, 0.0);
+    triangleloop.tri = triangletraverse(m);
       }
-    }
-    for (i = 0; i < regions; i++) {
+  }
+  for (i = 0; i < regions; i++) {
       if (regiontris[i].tri != m->dummytri) {
-        /* Make sure the triangle under consideration still exists. */
-        /*   It may have been eaten by the virus.                   */
-        if (!deadtri(regiontris[i].tri)) {
+    /* Make sure the triangle under consideration still exists. */
+    /*   It may have been eaten by the virus.                   */
+    if (!deadtri(regiontris[i].tri)) {
           /* Put one triangle in the virus pool. */
           infect(regiontris[i]);
           regiontri = (triangle **) poolalloc(&m->viri);
@@ -13142,21 +13142,21 @@ int regions;
           /* Apply one region's attribute and/or area constraint. */
           regionplague(m, b, regionlist[4 * i + 2], regionlist[4 * i + 3]);
           /* The virus pool should be empty now. */
-        }
-      }
     }
-    if (b->regionattrib && !b->refine) {
+      }
+  }
+  if (b->regionattrib && !b->refine) {
       /* Note the fact that each triangle has an additional attribute. */
       m->eextras++;
-    }
+  }
   }
 
   /* Free up memory. */
   if (((holes > 0) && !b->noholes) || !b->convex || (regions > 0)) {
-    pooldeinit(&m->viri);
+  pooldeinit(&m->viri);
   }
   if (regions > 0) {
-    trifree((VOID *) regiontris);
+  trifree((VOID *) regiontris);
   }
 }
 
@@ -13192,9 +13192,9 @@ struct behavior *b;
   subsegloop.ssorient = 0;
   subsegloop.ss = subsegtraverse(m);
   while (subsegloop.ss != (subseg *) NULL) {
-    /* If the segment is encroached, add it to the list. */
-    checkseg4encroach(m, b, &subsegloop, 0.0);
-    subsegloop.ss = subsegtraverse(m);
+  /* If the segment is encroached, add it to the list. */
+  checkseg4encroach(m, b, &subsegloop, 0.0);
+  subsegloop.ss = subsegtraverse(m);
   }
 }
 
@@ -13266,9 +13266,9 @@ int triflaws;
   /* Note that steinerleft == -1 if an unlimited number */
   /*   of Steiner points is allowed.                    */
   while ((m->badsubsegs.items > 0) && (m->steinerleft != 0)) {
-    traversalinit(&m->badsubsegs);
-    encloop = badsubsegtraverse(m);
-    while ((encloop != (struct badsubseg *) NULL) && (m->steinerleft != 0)) {
+  traversalinit(&m->badsubsegs);
+  encloop = badsubsegtraverse(m);
+  while ((encloop != (struct badsubseg *) NULL) && (m->steinerleft != 0)) {
       sdecode(encloop->encsubseg, currentenc);
       sorg(currentenc, eorg);
       sdest(currentenc, edest);
@@ -13278,50 +13278,50 @@ int triflaws;
       /*   vertices encroached it), it may have already been split.     */
       if (!deadsubseg(currentenc.ss) &&
           (eorg == encloop->subsegorg) && (edest == encloop->subsegdest)) {
-        /* To decide where to split a segment, we need to know if the   */
-        /*   segment shares an endpoint with an adjacent segment.       */
-        /*   The concern is that, if we simply split every encroached   */
-        /*   segment in its center, two adjacent segments with a small  */
-        /*   angle between them might lead to an infinite loop; each    */
-        /*   vertex added to split one segment will encroach upon the   */
-        /*   other segment, which must then be split with a vertex that */
-        /*   will encroach upon the first segment, and so on forever.   */
-        /* To avoid this, imagine a set of concentric circles, whose    */
-        /*   radii are powers of two, about each segment endpoint.      */
-        /*   These concentric circles determine where the segment is    */
-        /*   split.  (If both endpoints are shared with adjacent        */
-        /*   segments, split the segment in the middle, and apply the   */
-        /*   concentric circles for later splittings.)                  */
+    /* To decide where to split a segment, we need to know if the   */
+    /*   segment shares an endpoint with an adjacent segment.       */
+    /*   The concern is that, if we simply split every encroached   */
+    /*   segment in its center, two adjacent segments with a small  */
+    /*   angle between them might lead to an infinite loop; each    */
+    /*   vertex added to split one segment will encroach upon the   */
+    /*   other segment, which must then be split with a vertex that */
+    /*   will encroach upon the first segment, and so on forever.   */
+    /* To avoid this, imagine a set of concentric circles, whose    */
+    /*   radii are powers of two, about each segment endpoint.      */
+    /*   These concentric circles determine where the segment is    */
+    /*   split.  (If both endpoints are shared with adjacent        */
+    /*   segments, split the segment in the middle, and apply the   */
+    /*   concentric circles for later splittings.)                  */
 
-        /* Is the origin shared with another segment? */
-        stpivot(currentenc, enctri);
-        lnext(enctri, testtri);
-        tspivot(testtri, testsh);
-        acuteorg = testsh.ss != m->dummysub;
-        /* Is the destination shared with another segment? */
-        lnextself(testtri);
-        tspivot(testtri, testsh);
-        acutedest = testsh.ss != m->dummysub;
+    /* Is the origin shared with another segment? */
+    stpivot(currentenc, enctri);
+    lnext(enctri, testtri);
+    tspivot(testtri, testsh);
+    acuteorg = testsh.ss != m->dummysub;
+    /* Is the destination shared with another segment? */
+    lnextself(testtri);
+    tspivot(testtri, testsh);
+    acutedest = testsh.ss != m->dummysub;
 
-        /* If we're using diametral lenses (rather than diametral circles) */
-        /*   to define encroachment, delete free vertices from the         */
-        /*   subsegment's diametral circle.                                */
-        if (!b->nolenses && !acuteorg && !acutedest) {
+    /* If we're using diametral lenses (rather than diametral circles) */
+    /*   to define encroachment, delete free vertices from the         */
+    /*   subsegment's diametral circle.                                */
+    if (!b->nolenses && !acuteorg && !acutedest) {
           apex(enctri, eapex);
           while ((vertextype(eapex) == FREEVERTEX) &&
                  ((eorg[0] - eapex[0]) * (edest[0] - eapex[0]) +
                   (eorg[1] - eapex[1]) * (edest[1] - eapex[1]) < 0.0)) {
-            deletevertex(m, b, &testtri);
-            stpivot(currentenc, enctri);
-            apex(enctri, eapex);
-            lprev(enctri, testtri);
+      deletevertex(m, b, &testtri);
+      stpivot(currentenc, enctri);
+      apex(enctri, eapex);
+      lprev(enctri, testtri);
           }
-        }
+    }
 
-        /* Now, check the other side of the segment, if there's a triangle */
-        /*   there.                                                        */
-        sym(enctri, testtri);
-        if (testtri.tri != m->dummytri) {
+    /* Now, check the other side of the segment, if there's a triangle */
+    /*   there.                                                        */
+    sym(enctri, testtri);
+    if (testtri.tri != m->dummytri) {
           /* Is the destination shared with another segment? */
           lnextself(testtri);
           tspivot(testtri, testsh);
@@ -13335,51 +13335,51 @@ int triflaws;
 
           /* Delete free vertices from the subsegment's diametral circle. */
           if (!b->nolenses && !acuteorg2 && !acutedest2) {
-            org(testtri, eapex);
-            while ((vertextype(eapex) == FREEVERTEX) &&
+      org(testtri, eapex);
+      while ((vertextype(eapex) == FREEVERTEX) &&
                    ((eorg[0] - eapex[0]) * (edest[0] - eapex[0]) +
-                    (eorg[1] - eapex[1]) * (edest[1] - eapex[1]) < 0.0)) {
+          (eorg[1] - eapex[1]) * (edest[1] - eapex[1]) < 0.0)) {
               deletevertex(m, b, &testtri);
               sym(enctri, testtri);
               apex(testtri, eapex);
               lprevself(testtri);
-            }
+      }
           }
-        }
+    }
 
-        /* Use the concentric circles if exactly one endpoint is shared */
-        /*   with another adjacent segment.                             */
-        if (acuteorg || acutedest) {
+    /* Use the concentric circles if exactly one endpoint is shared */
+    /*   with another adjacent segment.                             */
+    if (acuteorg || acutedest) {
           segmentlength = sqrt((edest[0] - eorg[0]) * (edest[0] - eorg[0]) +
                                (edest[1] - eorg[1]) * (edest[1] - eorg[1]));
           /* Find the power of two that most evenly splits the segment.  */
           /*   The worst case is a 2:1 ratio between subsegment lengths. */
           nearestpoweroftwo = 1.0;
           while (segmentlength > 3.0 * nearestpoweroftwo) {
-            nearestpoweroftwo *= 2.0;
+      nearestpoweroftwo *= 2.0;
           }
           while (segmentlength < 1.5 * nearestpoweroftwo) {
-            nearestpoweroftwo *= 0.5;
+      nearestpoweroftwo *= 0.5;
           }
           /* Where do we split the segment? */
           split = nearestpoweroftwo / segmentlength;
           if (acutedest) {
-            split = 1.0 - split;
+      split = 1.0 - split;
           }
-        } else {
+    } else {
           /* If we're not worried about adjacent segments, split */
           /*   this segment in the middle.                       */
           split = 0.5;
-        }
+    }
 
-        /* Create the new vertex. */
-        newvertex = (vertex) poolalloc(&m->vertices);
-        /* Interpolate its coordinate and attributes. */
-        for (i = 0; i < 2 + m->nextras; i++) {
+    /* Create the new vertex. */
+    newvertex = (vertex) poolalloc(&m->vertices);
+    /* Interpolate its coordinate and attributes. */
+    for (i = 0; i < 2 + m->nextras; i++) {
           newvertex[i] = eorg[i] + split * (edest[i] - eorg[i]);
-        }
+    }
 
-        if (!b->noexact) {
+    if (!b->noexact) {
           /* Roundoff in the above calculation may yield a `newvertex'   */
           /*   that is not precisely collinear with `eorg' and `edest'.  */
           /*   Improve collinearity by one step of iterative refinement. */
@@ -13387,26 +13387,26 @@ int triflaws;
           divisor = ((eorg[0] - edest[0]) * (eorg[0] - edest[0]) +
                      (eorg[1] - edest[1]) * (eorg[1] - edest[1]));
           if ((multiplier != 0.0) && (divisor != 0.0)) {
-            multiplier = multiplier / divisor;
-            /* Watch out for NANs. */
-            if (multiplier == multiplier) {
+      multiplier = multiplier / divisor;
+      /* Watch out for NANs. */
+      if (multiplier == multiplier) {
               newvertex[0] += multiplier * (edest[1] - eorg[1]);
               newvertex[1] += multiplier * (eorg[0] - edest[0]);
-            }
+      }
           }
-        }
+    }
 
-        setvertexmark(newvertex, mark(currentenc));
-        setvertextype(newvertex, SEGMENTVERTEX);
-        if (b->verbose > 1) {
+    setvertexmark(newvertex, mark(currentenc));
+    setvertextype(newvertex, SEGMENTVERTEX);
+    if (b->verbose > 1) {
           printf(
   "  Splitting subsegment (%.12g, %.12g) (%.12g, %.12g) at (%.12g, %.12g).\n",
                  eorg[0], eorg[1], edest[0], edest[1],
                  newvertex[0], newvertex[1]);
-        }
-        /* Check whether the new vertex lies on an endpoint. */
-        if (((newvertex[0] == eorg[0]) && (newvertex[1] == eorg[1])) ||
-            ((newvertex[0] == edest[0]) && (newvertex[1] == edest[1]))) {
+    }
+    /* Check whether the new vertex lies on an endpoint. */
+    if (((newvertex[0] == eorg[0]) && (newvertex[1] == eorg[1])) ||
+      ((newvertex[0] == edest[0]) && (newvertex[1] == edest[1]))) {
           printf("Error:  Ran out of precision at (%.12g, %.12g).\n",
                  newvertex[0], newvertex[1]);
           printf("I attempted to split a segment to a smaller size than\n");
@@ -13414,27 +13414,27 @@ int triflaws;
           printf("  floating point arithmetic.\n");
           precisionerror();
           exit(1);
-        }
-        /* Insert the splitting vertex.  This should always succeed. */
-        success = insertvertex(m, b, newvertex, &enctri, &currentenc,
+    }
+    /* Insert the splitting vertex.  This should always succeed. */
+    success = insertvertex(m, b, newvertex, &enctri, &currentenc,
                                1, triflaws, 0.0);
-        if ((success != SUCCESSFULVERTEX) && (success != ENCROACHINGVERTEX)) {
+    if ((success != SUCCESSFULVERTEX) && (success != ENCROACHINGVERTEX)) {
           printf("Internal error in splitencsegs():\n");
           printf("  Failure to split a segment.\n");
           internalerror();
-        }
-        if (m->steinerleft > 0) {
+    }
+    if (m->steinerleft > 0) {
           m->steinerleft--;
-        }
-        /* Check the two new subsegments to see if they're encroached. */
-        checkseg4encroach(m, b, &currentenc, 0.0);
-        snextself(currentenc);
-        checkseg4encroach(m, b, &currentenc, 0.0);
+    }
+    /* Check the two new subsegments to see if they're encroached. */
+    checkseg4encroach(m, b, &currentenc, 0.0);
+    snextself(currentenc);
+    checkseg4encroach(m, b, &currentenc, 0.0);
       }
 
       badsubsegdealloc(m, encloop);
       encloop = badsubsegtraverse(m);
-    }
+  }
   }
 }
 
@@ -13460,15 +13460,15 @@ struct behavior *b;
   struct otri triangleloop;
 
   if (b->verbose) {
-    printf("  Making a list of bad triangles.\n");
+  printf("  Making a list of bad triangles.\n");
   }
   traversalinit(&m->triangles);
   triangleloop.orient = 0;
   triangleloop.tri = triangletraverse(m);
   while (triangleloop.tri != (triangle *) NULL) {
-    /* If the triangle is bad, enqueue it. */
-    testtriangle(m, b, &triangleloop);
-    triangleloop.tri = triangletraverse(m);
+  /* If the triangle is bad, enqueue it. */
+  testtriangle(m, b, &triangleloop);
+  triangleloop.tri = triangletraverse(m);
   }
 }
 
@@ -13513,32 +13513,32 @@ struct badtriang *badtri;
   /*   Subsequent transformations may have made it a different triangle. */
   if (!deadtri(badotri.tri) && (borg == badtri->triangorg) &&
       (bdest == badtri->triangdest) && (bapex == badtri->triangapex)) {
-    if (b->verbose > 1) {
+  if (b->verbose > 1) {
       printf("  Splitting this triangle at its circumcenter:\n");
       printf("    (%.12g, %.12g) (%.12g, %.12g) (%.12g, %.12g)\n", borg[0],
              borg[1], bdest[0], bdest[1], bapex[0], bapex[1]);
-    }
+  }
 
-    errorflag = 0;
-    /* Create a new vertex at the triangle's circumcenter. */
-    newvertex = (vertex) poolalloc(&m->vertices);
-    findcircumcenter(m, b, borg, bdest, bapex, newvertex, &xi, &eta, &minedge);
+  errorflag = 0;
+  /* Create a new vertex at the triangle's circumcenter. */
+  newvertex = (vertex) poolalloc(&m->vertices);
+  findcircumcenter(m, b, borg, bdest, bapex, newvertex, &xi, &eta, &minedge);
 
-    /* Check whether the new vertex lies on a triangle vertex. */
-    if (((newvertex[0] == borg[0]) && (newvertex[1] == borg[1])) ||
-        ((newvertex[0] == bdest[0]) && (newvertex[1] == bdest[1])) ||
-        ((newvertex[0] == bapex[0]) && (newvertex[1] == bapex[1]))) {
+  /* Check whether the new vertex lies on a triangle vertex. */
+  if (((newvertex[0] == borg[0]) && (newvertex[1] == borg[1])) ||
+    ((newvertex[0] == bdest[0]) && (newvertex[1] == bdest[1])) ||
+    ((newvertex[0] == bapex[0]) && (newvertex[1] == bapex[1]))) {
       if (!b->quiet) {
-        printf(
-            "Warning:  New vertex (%.12g, %.12g) falls on existing vertex.\n",
+    printf(
+      "Warning:  New vertex (%.12g, %.12g) falls on existing vertex.\n",
                newvertex[0], newvertex[1]);
-        errorflag = 1;
+    errorflag = 1;
       }
       vertexdealloc(m, newvertex);
-    } else {
+  } else {
       for (i = 2; i < 2 + m->nextras; i++) {
-        /* Interpolate the vertex attributes at the circumcenter. */
-        newvertex[i] = borg[i] + xi * (bdest[i] - borg[i])
+    /* Interpolate the vertex attributes at the circumcenter. */
+    newvertex[i] = borg[i] + xi * (bdest[i] - borg[i])
                               + eta * (bapex[i] - borg[i]);
       }
       /* The new vertex must be in the interior, and therefore is a */
@@ -13554,7 +13554,7 @@ struct badtriang *badtri;
       /*   negative.  Roundoff error might prevent eta from being         */
       /*   negative when it should be, so I test eta against xi.)         */
       if (eta < xi) {
-        lprevself(badotri);
+    lprevself(badotri);
       }
 
       /* Insert the circumcenter, searching from the edge of the triangle, */
@@ -13562,36 +13562,36 @@ struct badtriang *badtri;
       success = insertvertex(m, b, newvertex, &badotri, (struct osub *) NULL,
                              1, 1, minedge);
       if (success == SUCCESSFULVERTEX) {
-        if (m->steinerleft > 0) {
+    if (m->steinerleft > 0) {
           m->steinerleft--;
-        }
+    }
       } else if (success == ENCROACHINGVERTEX) {
-        /* If the newly inserted vertex encroaches upon a subsegment, */
-        /*   delete the new vertex.                                   */
-        undovertex(m, b);
-        if (b->verbose > 1) {
+    /* If the newly inserted vertex encroaches upon a subsegment, */
+    /*   delete the new vertex.                                   */
+    undovertex(m, b);
+    if (b->verbose > 1) {
           printf("  Rejecting (%.12g, %.12g).\n", newvertex[0], newvertex[1]);
-        }
-        vertexdealloc(m, newvertex);
+    }
+    vertexdealloc(m, newvertex);
       } else if (success == VIOLATINGVERTEX) {
-        /* Failed to insert the new vertex, but some subsegment was */
-        /*   marked as being encroached.                            */
-        vertexdealloc(m, newvertex);
+    /* Failed to insert the new vertex, but some subsegment was */
+    /*   marked as being encroached.                            */
+    vertexdealloc(m, newvertex);
       } else {                                 /* success == DUPLICATEVERTEX */
-        /* Couldn't insert the new vertex because a vertex is already there. */
-        if (!b->quiet) {
+    /* Couldn't insert the new vertex because a vertex is already there. */
+    if (!b->quiet) {
           printf(
-            "Warning:  New vertex (%.12g, %.12g) falls on existing vertex.\n",
+      "Warning:  New vertex (%.12g, %.12g) falls on existing vertex.\n",
                  newvertex[0], newvertex[1]);
           errorflag = 1;
-        }
-        vertexdealloc(m, newvertex);
-      }
     }
-    if (errorflag) {
+    vertexdealloc(m, newvertex);
+      }
+  }
+  if (errorflag) {
       if (b->verbose) {
-        printf("  The new vertex is at the circumcenter of triangle\n");
-        printf("    (%.12g, %.12g) (%.12g, %.12g) (%.12g, %.12g)\n",
+    printf("  The new vertex is at the circumcenter of triangle\n");
+    printf("    (%.12g, %.12g) (%.12g, %.12g) (%.12g, %.12g)\n",
                borg[0], borg[1], bdest[0], bdest[1], bapex[0], bapex[1]);
       }
       printf("This probably means that I am trying to refine triangles\n");
@@ -13599,7 +13599,7 @@ struct badtriang *badtri;
       printf("  precision of floating point arithmetic.  (You can be\n");
       printf("  sure of this if I fail to terminate.)\n");
       precisionerror();
-    }
+  }
   }
 }
 
@@ -13627,18 +13627,18 @@ struct behavior *b;
   int i;
 
   if (!b->quiet) {
-    printf("Adding Steiner points to enforce quality.\n");
+  printf("Adding Steiner points to enforce quality.\n");
   }
   /* Initialize the pool of encroached subsegments. */
   poolinit(&m->badsubsegs, sizeof(struct badsubseg), BADSUBSEGPERBLOCK,
            POINTER, 0);
   if (b->verbose) {
-    printf("  Looking for encroached subsegments.\n");
+  printf("  Looking for encroached subsegments.\n");
   }
   /* Test all segments to see if they're encroached. */
   tallyencs(m, b);
   if (b->verbose && (m->badsubsegs.items > 0)) {
-    printf("  Splitting encroached subsegments.\n");
+  printf("  Splitting encroached subsegments.\n");
   }
   /* Fix encroached subsegments without noting bad triangles. */
   splitencsegs(m, b, 0);
@@ -13647,38 +13647,38 @@ struct behavior *b;
 
   /* Next, we worry about enforcing triangle quality. */
   if ((b->minangle > 0.0) || b->vararea || b->fixedarea || b->usertest) {
-    /* Initialize the pool of bad triangles. */
-    poolinit(&m->badtriangles, sizeof(struct badtriang), BADTRIPERBLOCK,
+  /* Initialize the pool of bad triangles. */
+  poolinit(&m->badtriangles, sizeof(struct badtriang), BADTRIPERBLOCK,
              POINTER, 0);
-    /* Initialize the queues of bad triangles. */
-    for (i = 0; i < 64; i++) {
+  /* Initialize the queues of bad triangles. */
+  for (i = 0; i < 64; i++) {
       m->queuefront[i] = (struct badtriang *) NULL;
-    }
-    m->firstnonemptyq = -1;
-    /* Test all triangles to see if they're bad. */
-    tallyfaces(m, b);
-    /* Initialize the pool of recently flipped triangles. */
-    poolinit(&m->flipstackers, sizeof(struct flipstacker), FLIPSTACKERPERBLOCK,
+  }
+  m->firstnonemptyq = -1;
+  /* Test all triangles to see if they're bad. */
+  tallyfaces(m, b);
+  /* Initialize the pool of recently flipped triangles. */
+  poolinit(&m->flipstackers, sizeof(struct flipstacker), FLIPSTACKERPERBLOCK,
              POINTER, 0);
-    m->checkquality = 1;
-    if (b->verbose) {
+  m->checkquality = 1;
+  if (b->verbose) {
       printf("  Splitting bad triangles.\n");
-    }
-    while ((m->badtriangles.items > 0) && (m->steinerleft != 0)) {
+  }
+  while ((m->badtriangles.items > 0) && (m->steinerleft != 0)) {
       /* Fix one bad triangle by inserting a vertex at its circumcenter. */
       badtri = dequeuebadtriang(m);
       splittriangle(m, b, badtri);
       if (m->badsubsegs.items > 0) {
-        /* Put bad triangle back in queue for another try later. */
-        enqueuebadtriang(m, b, badtri);
-        /* Fix any encroached subsegments that resulted. */
-        /*   Record any new bad triangles that result.   */
-        splitencsegs(m, b, 1);
+    /* Put bad triangle back in queue for another try later. */
+    enqueuebadtriang(m, b, badtri);
+    /* Fix any encroached subsegments that resulted. */
+    /*   Record any new bad triangles that result.   */
+    splitencsegs(m, b, 1);
       } else {
-        /* Return the bad triangle to the pool. */
-        pooldealloc(&m->badtriangles, (VOID *) badtri);
+    /* Return the bad triangle to the pool. */
+    pooldealloc(&m->badtriangles, (VOID *) badtri);
       }
-    }
+  }
   }
   /* At this point, if we haven't run out of Steiner points, the */
   /*   triangulation should be (conforming) Delaunay and have no */
@@ -13686,16 +13686,16 @@ struct behavior *b;
 
   /* Might we have run out of Steiner points too soon? */
   if (!b->quiet && (m->badsubsegs.items > 0) && (m->steinerleft == 0)) {
-    printf("\nWarning:  I ran out of Steiner points, but the mesh has\n");
-    if (m->badsubsegs.items == 1) {
+  printf("\nWarning:  I ran out of Steiner points, but the mesh has\n");
+  if (m->badsubsegs.items == 1) {
       printf("  an encroached subsegment, and therefore might not be truly\n");
-    } else {
+  } else {
       printf("  %ld encroached subsegments, and therefore might not be truly\n"
              , m->badsubsegs.items);
-    }
-    printf("  Delaunay.  If the Delaunay property is important to you,\n");
-    printf("  try increasing the number of Steiner points (controlled by\n");
-    printf("  the -S switch) slightly and try again.\n\n");
+  }
+  printf("  Delaunay.  If the Delaunay property is important to you,\n");
+  printf("  try increasing the number of Steiner points (controlled by\n");
+  printf("  the -S switch) slightly and try again.\n\n");
   }
 }
 
@@ -13729,7 +13729,7 @@ struct behavior *b;
   subseg sptr;                      /* Temporary variable used by tspivot(). */
 
   if (!b->quiet) {
-    printf("Adding vertices for second-order triangles.\n");
+  printf("Adding vertices for second-order triangles.\n");
   }
   /* The following line ensures that dead items in the pool of nodes    */
   /*   cannot be allocated for the extra nodes associated with high     */
@@ -13747,43 +13747,43 @@ struct behavior *b;
   /*   has a smaller pointer than its neighbor.  This way, each edge is    */
   /*   considered only once.                                               */
   while (triangleloop.tri != (triangle *) NULL) {
-    for (triangleloop.orient = 0; triangleloop.orient < 3;
+  for (triangleloop.orient = 0; triangleloop.orient < 3;
          triangleloop.orient++) {
       sym(triangleloop, trisym);
       if ((triangleloop.tri < trisym.tri) || (trisym.tri == m->dummytri)) {
-        org(triangleloop, torg);
-        dest(triangleloop, tdest);
-        /* Create a new node in the middle of the edge.  Interpolate */
-        /*   its attributes.                                         */
-        newvertex = (vertex) poolalloc(&m->vertices);
-        for (i = 0; i < 2 + m->nextras; i++) {
+    org(triangleloop, torg);
+    dest(triangleloop, tdest);
+    /* Create a new node in the middle of the edge.  Interpolate */
+    /*   its attributes.                                         */
+    newvertex = (vertex) poolalloc(&m->vertices);
+    for (i = 0; i < 2 + m->nextras; i++) {
           newvertex[i] = 0.5 * (torg[i] + tdest[i]);
-        }
-        /* Set the new node's marker to zero or one, depending on */
-        /*   whether it lies on a boundary.                       */
-        setvertexmark(newvertex, trisym.tri == m->dummytri);
-        setvertextype(newvertex,
+    }
+    /* Set the new node's marker to zero or one, depending on */
+    /*   whether it lies on a boundary.                       */
+    setvertexmark(newvertex, trisym.tri == m->dummytri);
+    setvertextype(newvertex,
                       trisym.tri == m->dummytri ? FREEVERTEX : SEGMENTVERTEX);
-        if (b->usesegments) {
+    if (b->usesegments) {
           tspivot(triangleloop, checkmark);
           /* If this edge is a segment, transfer the marker to the new node. */
           if (checkmark.ss != m->dummysub) {
-            setvertexmark(newvertex, mark(checkmark));
-            setvertextype(newvertex, SEGMENTVERTEX);
+      setvertexmark(newvertex, mark(checkmark));
+      setvertextype(newvertex, SEGMENTVERTEX);
           }
-        }
-        if (b->verbose > 1) {
-          printf("  Creating (%.12g, %.12g).\n", newvertex[0], newvertex[1]);
-        }
-        /* Record the new node in the (one or two) adjacent elements. */
-        triangleloop.tri[m->highorderindex + triangleloop.orient] =
-                (triangle) newvertex;
-        if (trisym.tri != m->dummytri) {
-          trisym.tri[m->highorderindex + trisym.orient] = (triangle) newvertex;
-        }
-      }
     }
-    triangleloop.tri = triangletraverse(m);
+    if (b->verbose > 1) {
+          printf("  Creating (%.12g, %.12g).\n", newvertex[0], newvertex[1]);
+    }
+    /* Record the new node in the (one or two) adjacent elements. */
+    triangleloop.tri[m->highorderindex + triangleloop.orient] =
+        (triangle) newvertex;
+    if (trisym.tri != m->dummytri) {
+          trisym.tri[m->highorderindex + trisym.orient] = (triangle) newvertex;
+    }
+      }
+  }
+  triangleloop.tri = triangletraverse(m);
   }
 }
 
@@ -13816,18 +13816,18 @@ char *infilename;
 
   /* Search for something that looks like a number. */
   do {
-    result = fgets(string, INPUTLINESIZE, infile);
-    if (result == (char *) NULL) {
+  result = fgets(string, INPUTLINESIZE, infile);
+  if (result == (char *) NULL) {
       printf("  Error:  Unexpected end of file in %s.\n", infilename);
       exit(1);
-    }
-    /* Skip anything that doesn't look like a number, a comment, */
-    /*   or the end of a line.                                   */
-    while ((*result != '\0') && (*result != '#')
+  }
+  /* Skip anything that doesn't look like a number, a comment, */
+  /*   or the end of a line.                                   */
+  while ((*result != '\0') && (*result != '#')
            && (*result != '.') && (*result != '+') && (*result != '-')
            && ((*result < '0') || (*result > '9'))) {
       result++;
-    }
+  }
   /* If it's a comment or end of line, read another line and try again. */
   } while ((*result == '#') || (*result == '\0'));
   return result;
@@ -13860,18 +13860,18 @@ char *string;
   /* Skip the current field.  Stop upon reaching whitespace. */
   while ((*result != '\0') && (*result != '#')
          && (*result != ' ') && (*result != '\t')) {
-    result++;
+  result++;
   }
   /* Now skip the whitespace and anything else that doesn't look like a */
   /*   number, a comment, or the end of a line.                         */
   while ((*result != '\0') && (*result != '#')
          && (*result != '.') && (*result != '+') && (*result != '-')
          && ((*result < '0') || (*result > '9'))) {
-    result++;
+  result++;
   }
   /* Check for a comment (prefixed with `#'). */
   if (*result == '#') {
-    *result = '\0';
+  *result = '\0';
   }
   return result;
 }
@@ -13912,161 +13912,161 @@ FILE **polyfile;
   int i, j;
 
   if (b->poly) {
-    /* Read the vertices from a .poly file. */
-    if (!b->quiet) {
+  /* Read the vertices from a .poly file. */
+  if (!b->quiet) {
       printf("Opening %s.\n", polyfilename);
-    }
-    *polyfile = fopen(polyfilename, "r");
-    if (*polyfile == (FILE *) NULL) {
+  }
+  *polyfile = fopen(polyfilename, "r");
+  if (*polyfile == (FILE *) NULL) {
       printf("  Error:  Cannot access file %s.\n", polyfilename);
       exit(1);
-    }
-    /* Read number of vertices, number of dimensions, number of vertex */
-    /*   attributes, and number of boundary markers.                   */
-    stringptr = readline(inputline, *polyfile, polyfilename);
-    m->invertices = (int) strtol(stringptr, &stringptr, 0);
-    stringptr = findfield(stringptr);
-    if (*stringptr == '\0') {
+  }
+  /* Read number of vertices, number of dimensions, number of vertex */
+  /*   attributes, and number of boundary markers.                   */
+  stringptr = readline(inputline, *polyfile, polyfilename);
+  m->invertices = (int) strtol(stringptr, &stringptr, 0);
+  stringptr = findfield(stringptr);
+  if (*stringptr == '\0') {
       m->mesh_dim = 2;
-    } else {
+  } else {
       m->mesh_dim = (int) strtol(stringptr, &stringptr, 0);
-    }
-    stringptr = findfield(stringptr);
-    if (*stringptr == '\0') {
+  }
+  stringptr = findfield(stringptr);
+  if (*stringptr == '\0') {
       m->nextras = 0;
-    } else {
+  } else {
       m->nextras = (int) strtol(stringptr, &stringptr, 0);
-    }
-    stringptr = findfield(stringptr);
-    if (*stringptr == '\0') {
+  }
+  stringptr = findfield(stringptr);
+  if (*stringptr == '\0') {
       nodemarkers = 0;
-    } else {
+  } else {
       nodemarkers = (int) strtol(stringptr, &stringptr, 0);
-    }
-    if (m->invertices > 0) {
+  }
+  if (m->invertices > 0) {
       infile = *polyfile;
       infilename = polyfilename;
       m->readnodefile = 0;
-    } else {
+  } else {
       /* If the .poly file claims there are zero vertices, that means that */
       /*   the vertices should be read from a separate .node file.         */
       m->readnodefile = 1;
       infilename = nodefilename;
-    }
+  }
   } else {
-    m->readnodefile = 1;
-    infilename = nodefilename;
-    *polyfile = (FILE *) NULL;
+  m->readnodefile = 1;
+  infilename = nodefilename;
+  *polyfile = (FILE *) NULL;
   }
 
   if (m->readnodefile) {
-    /* Read the vertices from a .node file. */
-    if (!b->quiet) {
+  /* Read the vertices from a .node file. */
+  if (!b->quiet) {
       printf("Opening %s.\n", nodefilename);
-    }
-    infile = fopen(nodefilename, "r");
-    if (infile == (FILE *) NULL) {
+  }
+  infile = fopen(nodefilename, "r");
+  if (infile == (FILE *) NULL) {
       printf("  Error:  Cannot access file %s.\n", nodefilename);
       exit(1);
-    }
-    /* Read number of vertices, number of dimensions, number of vertex */
-    /*   attributes, and number of boundary markers.                   */
-    stringptr = readline(inputline, infile, nodefilename);
-    m->invertices = (int) strtol(stringptr, &stringptr, 0);
-    stringptr = findfield(stringptr);
-    if (*stringptr == '\0') {
+  }
+  /* Read number of vertices, number of dimensions, number of vertex */
+  /*   attributes, and number of boundary markers.                   */
+  stringptr = readline(inputline, infile, nodefilename);
+  m->invertices = (int) strtol(stringptr, &stringptr, 0);
+  stringptr = findfield(stringptr);
+  if (*stringptr == '\0') {
       m->mesh_dim = 2;
-    } else {
+  } else {
       m->mesh_dim = (int) strtol(stringptr, &stringptr, 0);
-    }
-    stringptr = findfield(stringptr);
-    if (*stringptr == '\0') {
+  }
+  stringptr = findfield(stringptr);
+  if (*stringptr == '\0') {
       m->nextras = 0;
-    } else {
+  } else {
       m->nextras = (int) strtol(stringptr, &stringptr, 0);
-    }
-    stringptr = findfield(stringptr);
-    if (*stringptr == '\0') {
+  }
+  stringptr = findfield(stringptr);
+  if (*stringptr == '\0') {
       nodemarkers = 0;
-    } else {
+  } else {
       nodemarkers = (int) strtol(stringptr, &stringptr, 0);
-    }
+  }
   }
 
   if (m->invertices < 3) {
-    printf("Error:  Input must have at least three input vertices.\n");
-    exit(1);
+  printf("Error:  Input must have at least three input vertices.\n");
+  exit(1);
   }
   if (m->mesh_dim != 2) {
-    printf("Error:  Triangle only works with two-dimensional meshes.\n");
-    exit(1);
+  printf("Error:  Triangle only works with two-dimensional meshes.\n");
+  exit(1);
   }
   if (m->nextras == 0) {
-    b->weighted = 0;
+  b->weighted = 0;
   }
 
   initializevertexpool(m, b);
 
   /* Read the vertices. */
   for (i = 0; i < m->invertices; i++) {
-    vertexloop = (vertex) poolalloc(&m->vertices);
-    stringptr = readline(inputline, infile, infilename);
-    if (i == 0) {
+  vertexloop = (vertex) poolalloc(&m->vertices);
+  stringptr = readline(inputline, infile, infilename);
+  if (i == 0) {
       firstnode = (int) strtol(stringptr, &stringptr, 0);
       if ((firstnode == 0) || (firstnode == 1)) {
-        b->firstnumber = firstnode;
+    b->firstnumber = firstnode;
       }
-    }
-    stringptr = findfield(stringptr);
-    if (*stringptr == '\0') {
+  }
+  stringptr = findfield(stringptr);
+  if (*stringptr == '\0') {
       printf("Error:  Vertex %d has no x coordinate.\n", b->firstnumber + i);
       exit(1);
-    }
-    x = (REAL) strtod(stringptr, &stringptr);
-    stringptr = findfield(stringptr);
-    if (*stringptr == '\0') {
+  }
+  x = (REAL) strtod(stringptr, &stringptr);
+  stringptr = findfield(stringptr);
+  if (*stringptr == '\0') {
       printf("Error:  Vertex %d has no y coordinate.\n", b->firstnumber + i);
       exit(1);
-    }
-    y = (REAL) strtod(stringptr, &stringptr);
-    vertexloop[0] = x;
-    vertexloop[1] = y;
-    /* Read the vertex attributes. */
-    for (j = 2; j < 2 + m->nextras; j++) {
+  }
+  y = (REAL) strtod(stringptr, &stringptr);
+  vertexloop[0] = x;
+  vertexloop[1] = y;
+  /* Read the vertex attributes. */
+  for (j = 2; j < 2 + m->nextras; j++) {
       stringptr = findfield(stringptr);
       if (*stringptr == '\0') {
-        vertexloop[j] = 0.0;
+    vertexloop[j] = 0.0;
       } else {
-        vertexloop[j] = (REAL) strtod(stringptr, &stringptr);
+    vertexloop[j] = (REAL) strtod(stringptr, &stringptr);
       }
-    }
-    if (nodemarkers) {
+  }
+  if (nodemarkers) {
       /* Read a vertex marker. */
       stringptr = findfield(stringptr);
       if (*stringptr == '\0') {
-        setvertexmark(vertexloop, 0);
+    setvertexmark(vertexloop, 0);
       } else {
-        currentmarker = (int) strtol(stringptr, &stringptr, 0);
-        setvertexmark(vertexloop, currentmarker);
+    currentmarker = (int) strtol(stringptr, &stringptr, 0);
+    setvertexmark(vertexloop, currentmarker);
       }
-    } else {
+  } else {
       /* If no markers are specified in the file, they default to zero. */
       setvertexmark(vertexloop, 0);
-    }
-    setvertextype(vertexloop, INPUTVERTEX);
-    /* Determine the smallest and largest x and y coordinates. */
-    if (i == 0) {
+  }
+  setvertextype(vertexloop, INPUTVERTEX);
+  /* Determine the smallest and largest x and y coordinates. */
+  if (i == 0) {
       m->xmin = m->xmax = x;
       m->ymin = m->ymax = y;
-    } else {
+  } else {
       m->xmin = (x < m->xmin) ? x : m->xmin;
       m->xmax = (x > m->xmax) ? x : m->xmax;
       m->ymin = (y < m->ymin) ? y : m->ymin;
       m->ymax = (y > m->ymax) ? y : m->ymax;
-    }
+  }
   }
   if (m->readnodefile) {
-    fclose(infile);
+  fclose(infile);
   }
 
   /* Nonexistent x value used as a flag to mark circle events in sweepline */
@@ -14112,11 +14112,11 @@ int numberofpointattribs;
   m->nextras = numberofpointattribs;
   m->readnodefile = 0;
   if (m->invertices < 3) {
-    printf("Error:  Input must have at least three input vertices.\n");
-    exit(1);
+  printf("Error:  Input must have at least three input vertices.\n");
+  exit(1);
   }
   if (m->nextras == 0) {
-    b->weighted = 0;
+  b->weighted = 0;
   }
 
   initializevertexpool(m, b);
@@ -14125,32 +14125,32 @@ int numberofpointattribs;
   coordindex = 0;
   attribindex = 0;
   for (i = 0; i < m->invertices; i++) {
-    vertexloop = (vertex) poolalloc(&m->vertices);
-    /* Read the vertex coordinates. */
-    x = vertexloop[0] = pointlist[coordindex++];
-    y = vertexloop[1] = pointlist[coordindex++];
-    /* Read the vertex attributes. */
-    for (j = 0; j < numberofpointattribs; j++) {
+  vertexloop = (vertex) poolalloc(&m->vertices);
+  /* Read the vertex coordinates. */
+  x = vertexloop[0] = pointlist[coordindex++];
+  y = vertexloop[1] = pointlist[coordindex++];
+  /* Read the vertex attributes. */
+  for (j = 0; j < numberofpointattribs; j++) {
       vertexloop[2 + j] = pointattriblist[attribindex++];
-    }
-    if (pointmarkerlist != (int *) NULL) {
+  }
+  if (pointmarkerlist != (int *) NULL) {
       /* Read a vertex marker. */
       setvertexmark(vertexloop, pointmarkerlist[i]);
-    } else {
+  } else {
       /* If no markers are specified, they default to zero. */
       setvertexmark(vertexloop, 0);
-    }
-    setvertextype(vertexloop, INPUTVERTEX);
-    /* Determine the smallest and largest x and y coordinates. */
-    if (i == 0) {
+  }
+  setvertextype(vertexloop, INPUTVERTEX);
+  /* Determine the smallest and largest x and y coordinates. */
+  if (i == 0) {
       m->xmin = m->xmax = x;
       m->ymin = m->ymax = y;
-    } else {
+  } else {
       m->xmin = (x < m->xmin) ? x : m->xmin;
       m->xmax = (x > m->xmax) ? x : m->xmax;
       m->ymin = (y < m->ymin) ? y : m->ymin;
       m->ymax = (y > m->ymax) ? y : m->ymax;
-    }
+  }
   }
 
   /* Nonexistent x value used as a flag to mark circle events in sweepline */
@@ -14197,80 +14197,80 @@ int *regions;
   stringptr = readline(inputline, polyfile, polyfilename);
   *holes = (int) strtol(stringptr, &stringptr, 0);
   if (*holes > 0) {
-    holelist = (REAL *) trimalloc(2 * *holes * sizeof(REAL));
-    *hlist = holelist;
-    for (i = 0; i < 2 * *holes; i += 2) {
+  holelist = (REAL *) trimalloc(2 * *holes * sizeof(REAL));
+  *hlist = holelist;
+  for (i = 0; i < 2 * *holes; i += 2) {
       stringptr = readline(inputline, polyfile, polyfilename);
       stringptr = findfield(stringptr);
       if (*stringptr == '\0') {
-        printf("Error:  Hole %d has no x coordinate.\n",
+    printf("Error:  Hole %d has no x coordinate.\n",
                b->firstnumber + (i >> 1));
-        exit(1);
+    exit(1);
       } else {
-        holelist[i] = (REAL) strtod(stringptr, &stringptr);
+    holelist[i] = (REAL) strtod(stringptr, &stringptr);
       }
       stringptr = findfield(stringptr);
       if (*stringptr == '\0') {
-        printf("Error:  Hole %d has no y coordinate.\n",
+    printf("Error:  Hole %d has no y coordinate.\n",
                b->firstnumber + (i >> 1));
-        exit(1);
+    exit(1);
       } else {
-        holelist[i + 1] = (REAL) strtod(stringptr, &stringptr);
+    holelist[i + 1] = (REAL) strtod(stringptr, &stringptr);
       }
-    }
+  }
   } else {
-    *hlist = (REAL *) NULL;
+  *hlist = (REAL *) NULL;
   }
 
 #ifndef CDT_ONLY
   if ((b->regionattrib || b->vararea) && !b->refine) {
-    /* Read the area constraints. */
-    stringptr = readline(inputline, polyfile, polyfilename);
-    *regions = (int) strtol(stringptr, &stringptr, 0);
-    if (*regions > 0) {
+  /* Read the area constraints. */
+  stringptr = readline(inputline, polyfile, polyfilename);
+  *regions = (int) strtol(stringptr, &stringptr, 0);
+  if (*regions > 0) {
       regionlist = (REAL *) trimalloc(4 * *regions * sizeof(REAL));
       *rlist = regionlist;
       index = 0;
       for (i = 0; i < *regions; i++) {
-        stringptr = readline(inputline, polyfile, polyfilename);
-        stringptr = findfield(stringptr);
-        if (*stringptr == '\0') {
+    stringptr = readline(inputline, polyfile, polyfilename);
+    stringptr = findfield(stringptr);
+    if (*stringptr == '\0') {
           printf("Error:  Region %d has no x coordinate.\n",
                  b->firstnumber + i);
           exit(1);
-        } else {
+    } else {
           regionlist[index++] = (REAL) strtod(stringptr, &stringptr);
-        }
-        stringptr = findfield(stringptr);
-        if (*stringptr == '\0') {
+    }
+    stringptr = findfield(stringptr);
+    if (*stringptr == '\0') {
           printf("Error:  Region %d has no y coordinate.\n",
                  b->firstnumber + i);
           exit(1);
-        } else {
+    } else {
           regionlist[index++] = (REAL) strtod(stringptr, &stringptr);
-        }
-        stringptr = findfield(stringptr);
-        if (*stringptr == '\0') {
+    }
+    stringptr = findfield(stringptr);
+    if (*stringptr == '\0') {
           printf(
-            "Error:  Region %d has no region attribute or area constraint.\n",
+      "Error:  Region %d has no region attribute or area constraint.\n",
                  b->firstnumber + i);
           exit(1);
-        } else {
+    } else {
           regionlist[index++] = (REAL) strtod(stringptr, &stringptr);
-        }
-        stringptr = findfield(stringptr);
-        if (*stringptr == '\0') {
-          regionlist[index] = regionlist[index - 1];
-        } else {
-          regionlist[index] = (REAL) strtod(stringptr, &stringptr);
-        }
-        index++;
-      }
     }
+    stringptr = findfield(stringptr);
+    if (*stringptr == '\0') {
+          regionlist[index] = regionlist[index - 1];
+    } else {
+          regionlist[index] = (REAL) strtod(stringptr, &stringptr);
+    }
+    index++;
+      }
+  }
   } else {
-    /* Set `*regions' to zero to avoid an accidental free() later. */
-    *regions = 0;
-    *rlist = (REAL *) NULL;
+  /* Set `*regions' to zero to avoid an accidental free() later. */
+  *regions = 0;
+  *rlist = (REAL *) NULL;
   }
 #endif /* not CDT_ONLY */
 
@@ -14302,8 +14302,8 @@ char **argv;
 
   fprintf(outfile, "# Generated by");
   for (i = 0; i < argc; i++) {
-    fprintf(outfile, " ");
-    fputs(argv[i], outfile);
+  fprintf(outfile, " ");
+  fputs(argv[i], outfile);
   }
   fprintf(outfile, "\n");
   fclose(outfile);
@@ -14324,7 +14324,7 @@ char **argv;
 
 #ifdef ANSI_DECLARATORS
 void writenodes(struct mesh *m, struct behavior *b, REAL **pointlist,
-                REAL **pointattriblist, int **pointmarkerlist)
+        REAL **pointattriblist, int **pointmarkerlist)
 #else /* not ANSI_DECLARATORS */
 void writenodes(m, b, pointlist, pointattriblist, pointmarkerlist)
 struct mesh *m;
@@ -14338,7 +14338,7 @@ int **pointmarkerlist;
 
 #ifdef ANSI_DECLARATORS
 void writenodes(struct mesh *m, struct behavior *b, char *nodefilename,
-                int argc, char **argv)
+        int argc, char **argv)
 #else /* not ANSI_DECLARATORS */
 void writenodes(m, b, nodefilename, argc, argv)
 struct mesh *m;
@@ -14366,27 +14366,27 @@ char **argv;
   int i;
 
   if (b->jettison) {
-    outvertices = m->vertices.items - m->undeads;
+  outvertices = m->vertices.items - m->undeads;
   } else {
-    outvertices = m->vertices.items;
+  outvertices = m->vertices.items;
   }
 
 #ifdef TRILIBRARY
   if (!b->quiet) {
-    printf("Writing vertices.\n");
+  printf("Writing vertices.\n");
   }
   /* Allocate memory for output vertices if necessary. */
   if (*pointlist == (REAL *) NULL) {
-    *pointlist = (REAL *) trimalloc(outvertices * 2 * sizeof(REAL));
+  *pointlist = (REAL *) trimalloc(outvertices * 2 * sizeof(REAL));
   }
   /* Allocate memory for output vertex attributes if necessary. */
   if ((m->nextras > 0) && (*pointattriblist == (REAL *) NULL)) {
-    *pointattriblist = (REAL *) trimalloc(outvertices * m->nextras *
+  *pointattriblist = (REAL *) trimalloc(outvertices * m->nextras *
                                           sizeof(REAL));
   }
   /* Allocate memory for output vertex markers if necessary. */
   if (!b->nobound && (*pointmarkerlist == (int *) NULL)) {
-    *pointmarkerlist = (int *) trimalloc(outvertices * sizeof(int));
+  *pointmarkerlist = (int *) trimalloc(outvertices * sizeof(int));
   }
   plist = *pointlist;
   palist = *pointattriblist;
@@ -14395,12 +14395,12 @@ char **argv;
   attribindex = 0;
 #else /* not TRILIBRARY */
   if (!b->quiet) {
-    printf("Writing %s.\n", nodefilename);
+  printf("Writing %s.\n", nodefilename);
   }
   outfile = fopen(nodefilename, "w");
   if (outfile == (FILE *) NULL) {
-    printf("  Error:  Cannot create file %s.\n", nodefilename);
-    exit(1);
+  printf("  Error:  Cannot create file %s.\n", nodefilename);
+  exit(1);
   }
   /* Number of vertices, number of dimensions, number of vertex attributes, */
   /*   and number of boundary markers (zero or one).                        */
@@ -14412,39 +14412,39 @@ char **argv;
   vertexnumber = b->firstnumber;
   vertexloop = vertextraverse(m);
   while (vertexloop != (vertex) NULL) {
-    if (!b->jettison || (vertextype(vertexloop) != UNDEADVERTEX)) {
+  if (!b->jettison || (vertextype(vertexloop) != UNDEADVERTEX)) {
 #ifdef TRILIBRARY
       /* X and y coordinates. */
       plist[coordindex++] = vertexloop[0];
       plist[coordindex++] = vertexloop[1];
       /* Vertex attributes. */
       for (i = 0; i < m->nextras; i++) {
-        palist[attribindex++] = vertexloop[2 + i];
+    palist[attribindex++] = vertexloop[2 + i];
       }
       if (!b->nobound) {
-        /* Copy the boundary marker. */
-        pmlist[vertexnumber - b->firstnumber] = vertexmark(vertexloop);
+    /* Copy the boundary marker. */
+    pmlist[vertexnumber - b->firstnumber] = vertexmark(vertexloop);
       }
 #else /* not TRILIBRARY */
       /* Vertex number, x and y coordinates. */
       fprintf(outfile, "%4d    %.17g  %.17g", vertexnumber, vertexloop[0],
               vertexloop[1]);
       for (i = 0; i < m->nextras; i++) {
-        /* Write an attribute. */
-        fprintf(outfile, "  %.17g", vertexloop[i + 2]);
+    /* Write an attribute. */
+    fprintf(outfile, "  %.17g", vertexloop[i + 2]);
       }
       if (b->nobound) {
-        fprintf(outfile, "\n");
+    fprintf(outfile, "\n");
       } else {
-        /* Write the boundary marker. */
-        fprintf(outfile, "    %d\n", vertexmark(vertexloop));
+    /* Write the boundary marker. */
+    fprintf(outfile, "    %d\n", vertexmark(vertexloop));
       }
 #endif /* not TRILIBRARY */
 
       setvertexmark(vertexloop, vertexnumber);
       vertexnumber++;
-    }
-    vertexloop = vertextraverse(m);
+  }
+  vertexloop = vertextraverse(m);
   }
 
 #ifndef TRILIBRARY
@@ -14478,11 +14478,11 @@ struct behavior *b;
   vertexnumber = b->firstnumber;
   vertexloop = vertextraverse(m);
   while (vertexloop != (vertex) NULL) {
-    setvertexmark(vertexloop, vertexnumber);
-    if (!b->jettison || (vertextype(vertexloop) != UNDEADVERTEX)) {
+  setvertexmark(vertexloop, vertexnumber);
+  if (!b->jettison || (vertextype(vertexloop) != UNDEADVERTEX)) {
       vertexnumber++;
-    }
-    vertexloop = vertextraverse(m);
+  }
+  vertexloop = vertextraverse(m);
   }
 }
 
@@ -14538,17 +14538,17 @@ char **argv;
 
 #ifdef TRILIBRARY
   if (!b->quiet) {
-    printf("Writing triangles.\n");
+  printf("Writing triangles.\n");
   }
   /* Allocate memory for output triangles if necessary. */
   if (*trianglelist == (int *) NULL) {
-    *trianglelist = (int *) trimalloc(m->triangles.items *
+  *trianglelist = (int *) trimalloc(m->triangles.items *
                                       ((b->order + 1) * (b->order + 2) / 2) *
                                       sizeof(int));
   }
   /* Allocate memory for output triangle attributes if necessary. */
   if ((m->eextras > 0) && (*triangleattriblist == (REAL *) NULL)) {
-    *triangleattriblist = (REAL *) trimalloc(m->triangles.items * m->eextras *
+  *triangleattriblist = (REAL *) trimalloc(m->triangles.items * m->eextras *
                                              sizeof(REAL));
   }
   tlist = *trianglelist;
@@ -14557,12 +14557,12 @@ char **argv;
   attribindex = 0;
 #else /* not TRILIBRARY */
   if (!b->quiet) {
-    printf("Writing %s.\n", elefilename);
+  printf("Writing %s.\n", elefilename);
   }
   outfile = fopen(elefilename, "w");
   if (outfile == (FILE *) NULL) {
-    printf("  Error:  Cannot create file %s.\n", elefilename);
-    exit(1);
+  printf("  Error:  Cannot create file %s.\n", elefilename);
+  exit(1);
   }
   /* Number of triangles, vertices per triangle, attributes per triangle. */
   fprintf(outfile, "%ld  %d  %d\n", m->triangles.items,
@@ -14574,10 +14574,10 @@ char **argv;
   triangleloop.orient = 0;
   elementnumber = b->firstnumber;
   while (triangleloop.tri != (triangle *) NULL) {
-    org(triangleloop, p1);
-    dest(triangleloop, p2);
-    apex(triangleloop, p3);
-    if (b->order == 1) {
+  org(triangleloop, p1);
+  dest(triangleloop, p2);
+  apex(triangleloop, p3);
+  if (b->order == 1) {
 #ifdef TRILIBRARY
       tlist[vertexindex++] = vertexmark(p1);
       tlist[vertexindex++] = vertexmark(p2);
@@ -14587,7 +14587,7 @@ char **argv;
       fprintf(outfile, "%4ld    %4d  %4d  %4d", elementnumber,
               vertexmark(p1), vertexmark(p2), vertexmark(p3));
 #endif /* not TRILIBRARY */
-    } else {
+  } else {
       mid1 = (vertex) triangleloop.tri[m->highorderindex + 1];
       mid2 = (vertex) triangleloop.tri[m->highorderindex + 2];
       mid3 = (vertex) triangleloop.tri[m->highorderindex];
@@ -14604,21 +14604,21 @@ char **argv;
               vertexmark(p1), vertexmark(p2), vertexmark(p3), vertexmark(mid1),
               vertexmark(mid2), vertexmark(mid3));
 #endif /* not TRILIBRARY */
-    }
+  }
 
 #ifdef TRILIBRARY
-    for (i = 0; i < m->eextras; i++) {
+  for (i = 0; i < m->eextras; i++) {
       talist[attribindex++] = elemattribute(triangleloop, i);
-    }
+  }
 #else /* not TRILIBRARY */
-    for (i = 0; i < m->eextras; i++) {
+  for (i = 0; i < m->eextras; i++) {
       fprintf(outfile, "  %.17g", elemattribute(triangleloop, i));
-    }
-    fprintf(outfile, "\n");
+  }
+  fprintf(outfile, "\n");
 #endif /* not TRILIBRARY */
 
-    triangleloop.tri = triangletraverse(m);
-    elementnumber++;
+  triangleloop.tri = triangletraverse(m);
+  elementnumber++;
   }
 
 #ifndef TRILIBRARY
@@ -14682,27 +14682,27 @@ char **argv;
 
 #ifdef TRILIBRARY
   if (!b->quiet) {
-    printf("Writing segments.\n");
+  printf("Writing segments.\n");
   }
   /* Allocate memory for output segments if necessary. */
   if (*segmentlist == (int *) NULL) {
-    *segmentlist = (int *) trimalloc(m->subsegs.items * 2 * sizeof(int));
+  *segmentlist = (int *) trimalloc(m->subsegs.items * 2 * sizeof(int));
   }
   /* Allocate memory for output segment markers if necessary. */
   if (!b->nobound && (*segmentmarkerlist == (int *) NULL)) {
-    *segmentmarkerlist = (int *) trimalloc(m->subsegs.items * sizeof(int));
+  *segmentmarkerlist = (int *) trimalloc(m->subsegs.items * sizeof(int));
   }
   slist = *segmentlist;
   smlist = *segmentmarkerlist;
   index = 0;
 #else /* not TRILIBRARY */
   if (!b->quiet) {
-    printf("Writing %s.\n", polyfilename);
+  printf("Writing %s.\n", polyfilename);
   }
   outfile = fopen(polyfilename, "w");
   if (outfile == (FILE *) NULL) {
-    printf("  Error:  Cannot create file %s.\n", polyfilename);
-    exit(1);
+  printf("  Error:  Cannot create file %s.\n", polyfilename);
+  exit(1);
   }
   /* The zero indicates that the vertices are in a separate .node file. */
   /*   Followed by number of dimensions, number of vertex attributes,   */
@@ -14718,51 +14718,51 @@ char **argv;
   subsegloop.ssorient = 0;
   subsegnumber = b->firstnumber;
   while (subsegloop.ss != (subseg *) NULL) {
-    sorg(subsegloop, endpoint1);
-    sdest(subsegloop, endpoint2);
+  sorg(subsegloop, endpoint1);
+  sdest(subsegloop, endpoint2);
 #ifdef TRILIBRARY
-    /* Copy indices of the segment's two endpoints. */
-    slist[index++] = vertexmark(endpoint1);
-    slist[index++] = vertexmark(endpoint2);
-    if (!b->nobound) {
+  /* Copy indices of the segment's two endpoints. */
+  slist[index++] = vertexmark(endpoint1);
+  slist[index++] = vertexmark(endpoint2);
+  if (!b->nobound) {
       /* Copy the boundary marker. */
       smlist[subsegnumber - b->firstnumber] = mark(subsegloop);
-    }
+  }
 #else /* not TRILIBRARY */
-    /* Segment number, indices of its two endpoints, and possibly a marker. */
-    if (b->nobound) {
+  /* Segment number, indices of its two endpoints, and possibly a marker. */
+  if (b->nobound) {
       fprintf(outfile, "%4ld    %4d  %4d\n", subsegnumber,
               vertexmark(endpoint1), vertexmark(endpoint2));
-    } else {
+  } else {
       fprintf(outfile, "%4ld    %4d  %4d    %4d\n", subsegnumber,
               vertexmark(endpoint1), vertexmark(endpoint2), mark(subsegloop));
-    }
+  }
 #endif /* not TRILIBRARY */
 
-    subsegloop.ss = subsegtraverse(m);
-    subsegnumber++;
+  subsegloop.ss = subsegtraverse(m);
+  subsegnumber++;
   }
 
 #ifndef TRILIBRARY
 #ifndef CDT_ONLY
   fprintf(outfile, "%d\n", holes);
   if (holes > 0) {
-    for (holenumber = 0; holenumber < holes; holenumber++) {
+  for (holenumber = 0; holenumber < holes; holenumber++) {
       /* Hole number, x and y coordinates. */
       fprintf(outfile, "%4ld   %.17g  %.17g\n", b->firstnumber + holenumber,
               holelist[2 * holenumber], holelist[2 * holenumber + 1]);
-    }
+  }
   }
   if (regions > 0) {
-    fprintf(outfile, "%d\n", regions);
-    for (regionnumber = 0; regionnumber < regions; regionnumber++) {
+  fprintf(outfile, "%d\n", regions);
+  for (regionnumber = 0; regionnumber < regions; regionnumber++) {
       /* Region number, x and y coordinates, attribute, maximum area. */
       fprintf(outfile, "%4ld   %.17g  %.17g  %.17g  %.17g\n",
               b->firstnumber + regionnumber,
               regionlist[4 * regionnumber], regionlist[4 * regionnumber + 1],
               regionlist[4 * regionnumber + 2],
               regionlist[4 * regionnumber + 3]);
-    }
+  }
   }
 #endif /* not CDT_ONLY */
 
@@ -14780,7 +14780,7 @@ char **argv;
 
 #ifdef ANSI_DECLARATORS
 void writeedges(struct mesh *m, struct behavior *b,
-                int **edgelist, int **edgemarkerlist)
+        int **edgelist, int **edgemarkerlist)
 #else /* not ANSI_DECLARATORS */
 void writeedges(m, b, edgelist, edgemarkerlist)
 struct mesh *m;
@@ -14793,7 +14793,7 @@ int **edgemarkerlist;
 
 #ifdef ANSI_DECLARATORS
 void writeedges(struct mesh *m, struct behavior *b, char *edgefilename,
-                int argc, char **argv)
+        int argc, char **argv)
 #else /* not ANSI_DECLARATORS */
 void writeedges(m, b, edgefilename, argc, argv)
 struct mesh *m;
@@ -14822,27 +14822,27 @@ char **argv;
 
 #ifdef TRILIBRARY
   if (!b->quiet) {
-    printf("Writing edges.\n");
+  printf("Writing edges.\n");
   }
   /* Allocate memory for edges if necessary. */
   if (*edgelist == (int *) NULL) {
-    *edgelist = (int *) trimalloc(m->edges * 2 * sizeof(int));
+  *edgelist = (int *) trimalloc(m->edges * 2 * sizeof(int));
   }
   /* Allocate memory for edge markers if necessary. */
   if (!b->nobound && (*edgemarkerlist == (int *) NULL)) {
-    *edgemarkerlist = (int *) trimalloc(m->edges * sizeof(int));
+  *edgemarkerlist = (int *) trimalloc(m->edges * sizeof(int));
   }
   elist = *edgelist;
   emlist = *edgemarkerlist;
   index = 0;
 #else /* not TRILIBRARY */
   if (!b->quiet) {
-    printf("Writing %s.\n", edgefilename);
+  printf("Writing %s.\n", edgefilename);
   }
   outfile = fopen(edgefilename, "w");
   if (outfile == (FILE *) NULL) {
-    printf("  Error:  Cannot create file %s.\n", edgefilename);
-    exit(1);
+  printf("  Error:  Cannot create file %s.\n", edgefilename);
+  exit(1);
   }
   /* Number of edges, number of boundary markers (zero or one). */
   fprintf(outfile, "%ld  %d\n", m->edges, 1 - b->nobound);
@@ -14858,55 +14858,55 @@ char **argv;
   /*   has a smaller pointer than its neighbor.  This way, each edge is    */
   /*   considered only once.                                               */
   while (triangleloop.tri != (triangle *) NULL) {
-    for (triangleloop.orient = 0; triangleloop.orient < 3;
+  for (triangleloop.orient = 0; triangleloop.orient < 3;
          triangleloop.orient++) {
       sym(triangleloop, trisym);
       if ((triangleloop.tri < trisym.tri) || (trisym.tri == m->dummytri)) {
-        org(triangleloop, p1);
-        dest(triangleloop, p2);
+    org(triangleloop, p1);
+    dest(triangleloop, p2);
 #ifdef TRILIBRARY
-        elist[index++] = vertexmark(p1);
-        elist[index++] = vertexmark(p2);
+    elist[index++] = vertexmark(p1);
+    elist[index++] = vertexmark(p2);
 #endif /* TRILIBRARY */
-        if (b->nobound) {
+    if (b->nobound) {
 #ifndef TRILIBRARY
           /* Edge number, indices of two endpoints. */
           fprintf(outfile, "%4ld   %d  %d\n", edgenumber,
                   vertexmark(p1), vertexmark(p2));
 #endif /* not TRILIBRARY */
-        } else {
+    } else {
           /* Edge number, indices of two endpoints, and a boundary marker. */
           /*   If there's no subsegment, the boundary marker is zero.      */
           if (b->usesegments) {
-            tspivot(triangleloop, checkmark);
-            if (checkmark.ss == m->dummysub) {
+      tspivot(triangleloop, checkmark);
+      if (checkmark.ss == m->dummysub) {
 #ifdef TRILIBRARY
               emlist[edgenumber - b->firstnumber] = 0;
 #else /* not TRILIBRARY */
               fprintf(outfile, "%4ld   %d  %d  %d\n", edgenumber,
                       vertexmark(p1), vertexmark(p2), 0);
 #endif /* not TRILIBRARY */
-            } else {
+      } else {
 #ifdef TRILIBRARY
               emlist[edgenumber - b->firstnumber] = mark(checkmark);
 #else /* not TRILIBRARY */
               fprintf(outfile, "%4ld   %d  %d  %d\n", edgenumber,
                       vertexmark(p1), vertexmark(p2), mark(checkmark));
 #endif /* not TRILIBRARY */
-            }
+      }
           } else {
 #ifdef TRILIBRARY
-            emlist[edgenumber - b->firstnumber] = trisym.tri == m->dummytri;
+      emlist[edgenumber - b->firstnumber] = trisym.tri == m->dummytri;
 #else /* not TRILIBRARY */
-            fprintf(outfile, "%4ld   %d  %d  %d\n", edgenumber,
-                    vertexmark(p1), vertexmark(p2), trisym.tri == m->dummytri);
+      fprintf(outfile, "%4ld   %d  %d  %d\n", edgenumber,
+          vertexmark(p1), vertexmark(p2), trisym.tri == m->dummytri);
 #endif /* not TRILIBRARY */
           }
-        }
-        edgenumber++;
-      }
     }
-    triangleloop.tri = triangletraverse(m);
+    edgenumber++;
+      }
+  }
+  triangleloop.tri = triangletraverse(m);
   }
 
 #ifndef TRILIBRARY
@@ -14989,15 +14989,15 @@ char **argv;
 
 #ifdef TRILIBRARY
   if (!b->quiet) {
-    printf("Writing Voronoi vertices.\n");
+  printf("Writing Voronoi vertices.\n");
   }
   /* Allocate memory for Voronoi vertices if necessary. */
   if (*vpointlist == (REAL *) NULL) {
-    *vpointlist = (REAL *) trimalloc(m->triangles.items * 2 * sizeof(REAL));
+  *vpointlist = (REAL *) trimalloc(m->triangles.items * 2 * sizeof(REAL));
   }
   /* Allocate memory for Voronoi vertex attributes if necessary. */
   if (*vpointattriblist == (REAL *) NULL) {
-    *vpointattriblist = (REAL *) trimalloc(m->triangles.items * m->nextras *
+  *vpointattriblist = (REAL *) trimalloc(m->triangles.items * m->nextras *
                                            sizeof(REAL));
   }
   *vpointmarkerlist = (int *) NULL;
@@ -15007,12 +15007,12 @@ char **argv;
   attribindex = 0;
 #else /* not TRILIBRARY */
   if (!b->quiet) {
-    printf("Writing %s.\n", vnodefilename);
+  printf("Writing %s.\n", vnodefilename);
   }
   outfile = fopen(vnodefilename, "w");
   if (outfile == (FILE *) NULL) {
-    printf("  Error:  Cannot create file %s.\n", vnodefilename);
-    exit(1);
+  printf("  Error:  Cannot create file %s.\n", vnodefilename);
+  exit(1);
   }
   /* Number of triangles, two dimensions, number of vertex attributes, */
   /*   no markers.                                                     */
@@ -15024,34 +15024,34 @@ char **argv;
   triangleloop.orient = 0;
   vnodenumber = b->firstnumber;
   while (triangleloop.tri != (triangle *) NULL) {
-    org(triangleloop, torg);
-    dest(triangleloop, tdest);
-    apex(triangleloop, tapex);
-    findcircumcenter(m, b, torg, tdest, tapex, circumcenter, &xi, &eta, &dum);
+  org(triangleloop, torg);
+  dest(triangleloop, tdest);
+  apex(triangleloop, tapex);
+  findcircumcenter(m, b, torg, tdest, tapex, circumcenter, &xi, &eta, &dum);
 #ifdef TRILIBRARY
-    /* X and y coordinates. */
-    plist[coordindex++] = circumcenter[0];
-    plist[coordindex++] = circumcenter[1];
-    for (i = 2; i < 2 + m->nextras; i++) {
+  /* X and y coordinates. */
+  plist[coordindex++] = circumcenter[0];
+  plist[coordindex++] = circumcenter[1];
+  for (i = 2; i < 2 + m->nextras; i++) {
       /* Interpolate the vertex attributes at the circumcenter. */
       palist[attribindex++] = torg[i] + xi * (tdest[i] - torg[i])
                                      + eta * (tapex[i] - torg[i]);
-    }
+  }
 #else /* not TRILIBRARY */
-    /* Voronoi vertex number, x and y coordinates. */
-    fprintf(outfile, "%4ld    %.17g  %.17g", vnodenumber, circumcenter[0],
-            circumcenter[1]);
-    for (i = 2; i < 2 + m->nextras; i++) {
+  /* Voronoi vertex number, x and y coordinates. */
+  fprintf(outfile, "%4ld    %.17g  %.17g", vnodenumber, circumcenter[0],
+      circumcenter[1]);
+  for (i = 2; i < 2 + m->nextras; i++) {
       /* Interpolate the vertex attributes at the circumcenter. */
       fprintf(outfile, "  %.17g", torg[i] + xi * (tdest[i] - torg[i])
                                          + eta * (tapex[i] - torg[i]));
-    }
-    fprintf(outfile, "\n");
+  }
+  fprintf(outfile, "\n");
 #endif /* not TRILIBRARY */
 
-    * (int *) (triangleloop.tri + 6) = (int) vnodenumber;
-    triangleloop.tri = triangletraverse(m);
-    vnodenumber++;
+  * (int *) (triangleloop.tri + 6) = (int) vnodenumber;
+  triangleloop.tri = triangletraverse(m);
+  vnodenumber++;
   }
 
 #ifndef TRILIBRARY
@@ -15060,28 +15060,28 @@ char **argv;
 
 #ifdef TRILIBRARY
   if (!b->quiet) {
-    printf("Writing Voronoi edges.\n");
+  printf("Writing Voronoi edges.\n");
   }
   /* Allocate memory for output Voronoi edges if necessary. */
   if (*vedgelist == (int *) NULL) {
-    *vedgelist = (int *) trimalloc(m->edges * 2 * sizeof(int));
+  *vedgelist = (int *) trimalloc(m->edges * 2 * sizeof(int));
   }
   *vedgemarkerlist = (int *) NULL;
   /* Allocate memory for output Voronoi norms if necessary. */
   if (*vnormlist == (REAL *) NULL) {
-    *vnormlist = (REAL *) trimalloc(m->edges * 2 * sizeof(REAL));
+  *vnormlist = (REAL *) trimalloc(m->edges * 2 * sizeof(REAL));
   }
   elist = *vedgelist;
   normlist = *vnormlist;
   coordindex = 0;
 #else /* not TRILIBRARY */
   if (!b->quiet) {
-    printf("Writing %s.\n", vedgefilename);
+  printf("Writing %s.\n", vedgefilename);
   }
   outfile = fopen(vedgefilename, "w");
   if (outfile == (FILE *) NULL) {
-    printf("  Error:  Cannot create file %s.\n", vedgefilename);
-    exit(1);
+  printf("  Error:  Cannot create file %s.\n", vedgefilename);
+  exit(1);
   }
   /* Number of edges, zero boundary markers. */
   fprintf(outfile, "%ld  %d\n", m->edges, 0);
@@ -15097,13 +15097,13 @@ char **argv;
   /*   has a smaller pointer than its neighbor.  This way, each edge is    */
   /*   considered only once.                                               */
   while (triangleloop.tri != (triangle *) NULL) {
-    for (triangleloop.orient = 0; triangleloop.orient < 3;
+  for (triangleloop.orient = 0; triangleloop.orient < 3;
          triangleloop.orient++) {
       sym(triangleloop, trisym);
       if ((triangleloop.tri < trisym.tri) || (trisym.tri == m->dummytri)) {
-        /* Find the number of this triangle (and Voronoi vertex). */
-        p1 = * (int *) (triangleloop.tri + 6);
-        if (trisym.tri == m->dummytri) {
+    /* Find the number of this triangle (and Voronoi vertex). */
+    p1 = * (int *) (triangleloop.tri + 6);
+    if (trisym.tri == m->dummytri) {
           org(triangleloop, torg);
           dest(triangleloop, tdest);
 #ifdef TRILIBRARY
@@ -15119,7 +15119,7 @@ char **argv;
           fprintf(outfile, "%4ld   %d  %d   %.17g  %.17g\n", vedgenumber,
                   p1, -1, tdest[1] - torg[1], torg[0] - tdest[0]);
 #endif /* not TRILIBRARY */
-        } else {
+    } else {
           /* Find the number of the adjacent triangle (and Voronoi vertex). */
           p2 = * (int *) (trisym.tri + 6);
           /* Finite edge.  Write indices of two endpoints. */
@@ -15131,11 +15131,11 @@ char **argv;
 #else /* not TRILIBRARY */
           fprintf(outfile, "%4ld   %d  %d\n", vedgenumber, p1, p2);
 #endif /* not TRILIBRARY */
-        }
-        vedgenumber++;
-      }
     }
-    triangleloop.tri = triangletraverse(m);
+    vedgenumber++;
+      }
+  }
+  triangleloop.tri = triangletraverse(m);
   }
 
 #ifndef TRILIBRARY
@@ -15158,7 +15158,7 @@ int **neighborlist;
 
 #ifdef ANSI_DECLARATORS
 void writeneighbors(struct mesh *m, struct behavior *b, char *neighborfilename,
-                    int argc, char **argv)
+          int argc, char **argv)
 #else /* not ANSI_DECLARATORS */
 void writeneighbors(m, b, neighborfilename, argc, argv)
 struct mesh *m;
@@ -15184,22 +15184,22 @@ char **argv;
 
 #ifdef TRILIBRARY
   if (!b->quiet) {
-    printf("Writing neighbors.\n");
+  printf("Writing neighbors.\n");
   }
   /* Allocate memory for neighbors if necessary. */
   if (*neighborlist == (int *) NULL) {
-    *neighborlist = (int *) trimalloc(m->triangles.items * 3 * sizeof(int));
+  *neighborlist = (int *) trimalloc(m->triangles.items * 3 * sizeof(int));
   }
   nlist = *neighborlist;
   index = 0;
 #else /* not TRILIBRARY */
   if (!b->quiet) {
-    printf("Writing %s.\n", neighborfilename);
+  printf("Writing %s.\n", neighborfilename);
   }
   outfile = fopen(neighborfilename, "w");
   if (outfile == (FILE *) NULL) {
-    printf("  Error:  Cannot create file %s.\n", neighborfilename);
-    exit(1);
+  printf("  Error:  Cannot create file %s.\n", neighborfilename);
+  exit(1);
   }
   /* Number of triangles, three neighbors per triangle. */
   fprintf(outfile, "%ld  %d\n", m->triangles.items, 3);
@@ -15210,9 +15210,9 @@ char **argv;
   triangleloop.orient = 0;
   elementnumber = b->firstnumber;
   while (triangleloop.tri != (triangle *) NULL) {
-    * (int *) (triangleloop.tri + 6) = (int) elementnumber;
-    triangleloop.tri = triangletraverse(m);
-    elementnumber++;
+  * (int *) (triangleloop.tri + 6) = (int) elementnumber;
+  triangleloop.tri = triangletraverse(m);
+  elementnumber++;
   }
   * (int *) (m->dummytri + 6) = -1;
 
@@ -15220,27 +15220,27 @@ char **argv;
   triangleloop.tri = triangletraverse(m);
   elementnumber = b->firstnumber;
   while (triangleloop.tri != (triangle *) NULL) {
-    triangleloop.orient = 1;
-    sym(triangleloop, trisym);
-    neighbor1 = * (int *) (trisym.tri + 6);
-    triangleloop.orient = 2;
-    sym(triangleloop, trisym);
-    neighbor2 = * (int *) (trisym.tri + 6);
-    triangleloop.orient = 0;
-    sym(triangleloop, trisym);
-    neighbor3 = * (int *) (trisym.tri + 6);
+  triangleloop.orient = 1;
+  sym(triangleloop, trisym);
+  neighbor1 = * (int *) (trisym.tri + 6);
+  triangleloop.orient = 2;
+  sym(triangleloop, trisym);
+  neighbor2 = * (int *) (trisym.tri + 6);
+  triangleloop.orient = 0;
+  sym(triangleloop, trisym);
+  neighbor3 = * (int *) (trisym.tri + 6);
 #ifdef TRILIBRARY
-    nlist[index++] = neighbor1;
-    nlist[index++] = neighbor2;
-    nlist[index++] = neighbor3;
+  nlist[index++] = neighbor1;
+  nlist[index++] = neighbor2;
+  nlist[index++] = neighbor3;
 #else /* not TRILIBRARY */
-    /* Triangle number, neighboring triangle numbers. */
-    fprintf(outfile, "%4ld    %d  %d  %d\n", elementnumber,
-            neighbor1, neighbor2, neighbor3);
+  /* Triangle number, neighboring triangle numbers. */
+  fprintf(outfile, "%4ld    %d  %d  %d\n", elementnumber,
+      neighbor1, neighbor2, neighbor3);
 #endif /* not TRILIBRARY */
 
-    triangleloop.tri = triangletraverse(m);
-    elementnumber++;
+  triangleloop.tri = triangletraverse(m);
+  elementnumber++;
   }
 
 #ifndef TRILIBRARY
@@ -15279,19 +15279,19 @@ char **argv;
   long outvertices;
 
   if (!b->quiet) {
-    printf("Writing %s.\n", offfilename);
+  printf("Writing %s.\n", offfilename);
   }
 
   if (b->jettison) {
-    outvertices = m->vertices.items - m->undeads;
+  outvertices = m->vertices.items - m->undeads;
   } else {
-    outvertices = m->vertices.items;
+  outvertices = m->vertices.items;
   }
 
   outfile = fopen(offfilename, "w");
   if (outfile == (FILE *) NULL) {
-    printf("  Error:  Cannot create file %s.\n", offfilename);
-    exit(1);
+  printf("  Error:  Cannot create file %s.\n", offfilename);
+  exit(1);
   }
   /* Number of vertices, triangles, and edges. */
   fprintf(outfile, "OFF\n%ld  %ld  %ld\n", outvertices, m->triangles.items,
@@ -15301,12 +15301,12 @@ char **argv;
   traversalinit(&m->vertices);
   vertexloop = vertextraverse(m);
   while (vertexloop != (vertex) NULL) {
-    if (!b->jettison || (vertextype(vertexloop) != UNDEADVERTEX)) {
+  if (!b->jettison || (vertextype(vertexloop) != UNDEADVERTEX)) {
       /* The "0.0" is here because the OFF format uses 3D coordinates. */
       fprintf(outfile, " %.17g  %.17g  %.17g\n", vertexloop[0], vertexloop[1],
               0.0);
-    }
-    vertexloop = vertextraverse(m);
+  }
+  vertexloop = vertextraverse(m);
   }
 
   /* Write the triangles. */
@@ -15314,13 +15314,13 @@ char **argv;
   triangleloop.tri = triangletraverse(m);
   triangleloop.orient = 0;
   while (triangleloop.tri != (triangle *) NULL) {
-    org(triangleloop, p1);
-    dest(triangleloop, p2);
-    apex(triangleloop, p3);
-    /* The "3" means a three-vertex polygon. */
-    fprintf(outfile, " 3   %4d  %4d  %4d\n", vertexmark(p1) - 1,
-            vertexmark(p2) - 1, vertexmark(p3) - 1);
-    triangleloop.tri = triangletraverse(m);
+  org(triangleloop, p1);
+  dest(triangleloop, p2);
+  apex(triangleloop, p3);
+  /* The "3" means a three-vertex polygon. */
+  fprintf(outfile, " 3   %4d  %4d  %4d\n", vertexmark(p1) - 1,
+      vertexmark(p2) - 1, vertexmark(p3) - 1);
+  triangleloop.tri = triangletraverse(m);
   }
   finishfile(outfile, argc, argv);
 }
@@ -15375,11 +15375,11 @@ struct behavior *b;
   radconst = PI / 18.0;
   degconst = 180.0 / PI;
   for (i = 0; i < 8; i++) {
-    cossquaretable[i] = cos(radconst * (REAL) (i + 1));
-    cossquaretable[i] = cossquaretable[i] * cossquaretable[i];
+  cossquaretable[i] = cos(radconst * (REAL) (i + 1));
+  cossquaretable[i] = cossquaretable[i] * cossquaretable[i];
   }
   for (i = 0; i < 18; i++) {
-    angletable[i] = 0;
+  angletable[i] = 0;
   }
 
   ratiotable[0]  =      1.5;      ratiotable[1]  =     2.0;
@@ -15391,7 +15391,7 @@ struct behavior *b;
   ratiotable[12] =   1000.0;      ratiotable[13] = 10000.0;
   ratiotable[14] = 100000.0;      ratiotable[15] =     0.0;
   for (i = 0; i < 16; i++) {
-    aspecttable[i] = 0;
+  aspecttable[i] = 0;
   }
 
   worstaspect = 0.0;
@@ -15410,78 +15410,78 @@ struct behavior *b;
   triangleloop.tri = triangletraverse(m);
   triangleloop.orient = 0;
   while (triangleloop.tri != (triangle *) NULL) {
-    org(triangleloop, p[0]);
-    dest(triangleloop, p[1]);
-    apex(triangleloop, p[2]);
-    trilongest2 = 0.0;
+  org(triangleloop, p[0]);
+  dest(triangleloop, p[1]);
+  apex(triangleloop, p[2]);
+  trilongest2 = 0.0;
 
-    for (i = 0; i < 3; i++) {
+  for (i = 0; i < 3; i++) {
       j = plus1mod3[i];
       k = minus1mod3[i];
       dx[i] = p[j][0] - p[k][0];
       dy[i] = p[j][1] - p[k][1];
       edgelength[i] = dx[i] * dx[i] + dy[i] * dy[i];
       if (edgelength[i] > trilongest2) {
-        trilongest2 = edgelength[i];
+    trilongest2 = edgelength[i];
       }
       if (edgelength[i] > longest) {
-        longest = edgelength[i];
+    longest = edgelength[i];
       }
       if (edgelength[i] < shortest) {
-        shortest = edgelength[i];
+    shortest = edgelength[i];
       }
-    }
+  }
 
-    triarea = counterclockwise(m, b, p[0], p[1], p[2]);
-    if (triarea < smallestarea) {
+  triarea = counterclockwise(m, b, p[0], p[1], p[2]);
+  if (triarea < smallestarea) {
       smallestarea = triarea;
-    }
-    if (triarea > biggestarea) {
+  }
+  if (triarea > biggestarea) {
       biggestarea = triarea;
-    }
-    triminaltitude2 = triarea * triarea / trilongest2;
-    if (triminaltitude2 < minaltitude) {
+  }
+  triminaltitude2 = triarea * triarea / trilongest2;
+  if (triminaltitude2 < minaltitude) {
       minaltitude = triminaltitude2;
-    }
-    triaspect2 = trilongest2 / triminaltitude2;
-    if (triaspect2 > worstaspect) {
+  }
+  triaspect2 = trilongest2 / triminaltitude2;
+  if (triaspect2 > worstaspect) {
       worstaspect = triaspect2;
-    }
-    aspectindex = 0;
-    while ((triaspect2 > ratiotable[aspectindex] * ratiotable[aspectindex])
+  }
+  aspectindex = 0;
+  while ((triaspect2 > ratiotable[aspectindex] * ratiotable[aspectindex])
            && (aspectindex < 15)) {
       aspectindex++;
-    }
-    aspecttable[aspectindex]++;
+  }
+  aspecttable[aspectindex]++;
 
-    for (i = 0; i < 3; i++) {
+  for (i = 0; i < 3; i++) {
       j = plus1mod3[i];
       k = minus1mod3[i];
       dotproduct = dx[j] * dx[k] + dy[j] * dy[k];
       cossquare = dotproduct * dotproduct / (edgelength[j] * edgelength[k]);
       tendegree = 8;
       for (ii = 7; ii >= 0; ii--) {
-        if (cossquare > cossquaretable[ii]) {
+    if (cossquare > cossquaretable[ii]) {
           tendegree = ii;
-        }
+    }
       }
       if (dotproduct <= 0.0) {
-        angletable[tendegree]++;
-        if (cossquare > smallestangle) {
+    angletable[tendegree]++;
+    if (cossquare > smallestangle) {
           smallestangle = cossquare;
-        }
-        if (acutebiggest && (cossquare < biggestangle)) {
+    }
+    if (acutebiggest && (cossquare < biggestangle)) {
           biggestangle = cossquare;
-        }
+    }
       } else {
-        angletable[17 - tendegree]++;
-        if (acutebiggest || (cossquare > biggestangle)) {
+    angletable[17 - tendegree]++;
+    if (acutebiggest || (cossquare > biggestangle)) {
           biggestangle = cossquare;
           acutebiggest = 0;
-        }
-      }
     }
-    triangleloop.tri = triangletraverse(m);
+      }
+  }
+  triangleloop.tri = triangletraverse(m);
   }
 
   shortest = sqrt(shortest);
@@ -15491,18 +15491,18 @@ struct behavior *b;
   smallestarea *= 0.5;
   biggestarea *= 0.5;
   if (smallestangle >= 1.0) {
-    smallestangle = 0.0;
+  smallestangle = 0.0;
   } else {
-    smallestangle = degconst * acos(sqrt(smallestangle));
+  smallestangle = degconst * acos(sqrt(smallestangle));
   }
   if (biggestangle >= 1.0) {
-    biggestangle = 180.0;
+  biggestangle = 180.0;
   } else {
-    if (acutebiggest) {
+  if (acutebiggest) {
       biggestangle = degconst * acos(sqrt(biggestangle));
-    } else {
+  } else {
       biggestangle = 180.0 - degconst * acos(sqrt(biggestangle));
-    }
+  }
   }
 
   printf("  Smallest area: %16.5g   |  Largest area: %16.5g\n",
@@ -15517,7 +15517,7 @@ struct behavior *b;
          ratiotable[0], aspecttable[0], ratiotable[7], ratiotable[8],
          aspecttable[8]);
   for (i = 1; i < 7; i++) {
-    printf("  %6.6g - %-6.6g    :  %8d    | %6.6g - %-6.6g     :  %8d\n",
+  printf("  %6.6g - %-6.6g    :  %8d    | %6.6g - %-6.6g     :  %8d\n",
            ratiotable[i - 1], ratiotable[i], aspecttable[i],
            ratiotable[i + 7], ratiotable[i + 8], aspecttable[i + 8]);
   }
@@ -15531,7 +15531,7 @@ struct behavior *b;
 
   printf("  Angle histogram:\n");
   for (i = 0; i < 9; i++) {
-    printf("    %3d - %3d degrees:  %8d    |    %3d - %3d degrees:  %8d\n",
+  printf("    %3d - %3d degrees:  %8d    |    %3d - %3d degrees:  %8d\n",
            i * 10, i * 10 + 10, angletable[i],
            i * 10 + 90, i * 10 + 100, angletable[i + 9]);
   }
@@ -15556,13 +15556,13 @@ struct behavior *b;
   printf("\nStatistics:\n\n");
   printf("  Input vertices: %d\n", m->invertices);
   if (b->refine) {
-    printf("  Input triangles: %d\n", m->inelements);
+  printf("  Input triangles: %d\n", m->inelements);
   }
   if (b->poly) {
-    printf("  Input segments: %d\n", m->insegments);
-    if (!b->refine) {
+  printf("  Input segments: %d\n", m->insegments);
+  if (!b->refine) {
       printf("  Input holes: %d\n", m->holes);
-    }
+  }
   }
 
   printf("\n  Mesh vertices: %ld\n", m->vertices.items - m->undeads);
@@ -15570,41 +15570,41 @@ struct behavior *b;
   printf("  Mesh edges: %ld\n", m->edges);
   printf("  Mesh exterior boundary edges: %ld\n", m->hullsize);
   if (b->poly || b->refine) {
-    printf("  Mesh interior boundary edges: %ld\n",
+  printf("  Mesh interior boundary edges: %ld\n",
            m->subsegs.items - m->hullsize);
-    printf("  Mesh subsegments (constrained edges): %ld\n",
+  printf("  Mesh subsegments (constrained edges): %ld\n",
            m->subsegs.items);
   }
   printf("\n");
 
   if (b->verbose) {
-    quality_statistics(m, b);
-    printf("Memory allocation statistics:\n\n");
-    printf("  Maximum number of vertices: %ld\n", m->vertices.maxitems);
-    printf("  Maximum number of triangles: %ld\n", m->triangles.maxitems);
-    if (m->subsegs.maxitems > 0) {
+  quality_statistics(m, b);
+  printf("Memory allocation statistics:\n\n");
+  printf("  Maximum number of vertices: %ld\n", m->vertices.maxitems);
+  printf("  Maximum number of triangles: %ld\n", m->triangles.maxitems);
+  if (m->subsegs.maxitems > 0) {
       printf("  Maximum number of subsegments: %ld\n", m->subsegs.maxitems);
-    }
-    if (m->viri.maxitems > 0) {
+  }
+  if (m->viri.maxitems > 0) {
       printf("  Maximum number of viri: %ld\n", m->viri.maxitems);
-    }
-    if (m->badsubsegs.maxitems > 0) {
+  }
+  if (m->badsubsegs.maxitems > 0) {
       printf("  Maximum number of encroached subsegments: %ld\n",
              m->badsubsegs.maxitems);
-    }
-    if (m->badtriangles.maxitems > 0) {
+  }
+  if (m->badtriangles.maxitems > 0) {
       printf("  Maximum number of bad triangles: %ld\n",
              m->badtriangles.maxitems);
-    }
-    if (m->flipstackers.maxitems > 0) {
+  }
+  if (m->flipstackers.maxitems > 0) {
       printf("  Maximum number of stacked triangle flips: %ld\n",
              m->flipstackers.maxitems);
-    }
-    if (m->splaynodes.maxitems > 0) {
+  }
+  if (m->splaynodes.maxitems > 0) {
       printf("  Maximum number of splay tree nodes: %ld\n",
              m->splaynodes.maxitems);
-    }
-    printf("  Approximate heap memory use (bytes): %ld\n\n",
+  }
+  printf("  Approximate heap memory use (bytes): %ld\n\n",
            m->vertices.maxitems * m->vertices.itembytes +
            m->triangles.maxitems * m->triangles.itembytes +
            m->subsegs.maxitems * m->subsegs.itembytes +
@@ -15614,26 +15614,26 @@ struct behavior *b;
            m->flipstackers.maxitems * m->flipstackers.itembytes +
            m->splaynodes.maxitems * m->splaynodes.itembytes);
 
-    printf("Algorithmic statistics:\n\n");
-    if (!b->weighted) {
+  printf("Algorithmic statistics:\n\n");
+  if (!b->weighted) {
       printf("  Number of incircle tests: %ld\n", m->incirclecount);
-    } else {
+  } else {
       printf("  Number of 3D orientation tests: %ld\n", m->orient3dcount);
-    }
-    printf("  Number of 2D orientation tests: %ld\n", m->counterclockcount);
-    if (m->hyperbolacount > 0) {
+  }
+  printf("  Number of 2D orientation tests: %ld\n", m->counterclockcount);
+  if (m->hyperbolacount > 0) {
       printf("  Number of right-of-hyperbola tests: %ld\n",
              m->hyperbolacount);
-    }
-    if (m->circletopcount > 0) {
+  }
+  if (m->circletopcount > 0) {
       printf("  Number of circle top computations: %ld\n",
              m->circletopcount);
-    }
-    if (m->circumcentercount > 0) {
+  }
+  if (m->circumcentercount > 0) {
       printf("  Number of triangle circumcenter computations: %ld\n",
              m->circumcentercount);
-    }
-    printf("\n");
+  }
+  printf("\n");
   }
 }
 
@@ -15716,15 +15716,15 @@ char **argv;
 
 #ifdef TRILIBRARY
   transfernodes(&m, &b, in->pointlist, in->pointattributelist,
-                in->pointmarkerlist, in->numberofpoints,
-                in->numberofpointattributes);
+        in->pointmarkerlist, in->numberofpoints,
+        in->numberofpointattributes);
 #else /* not TRILIBRARY */
   readnodes(&m, &b, b.innodefilename, b.inpolyfilename, &polyfile);
 #endif /* not TRILIBRARY */
 
 #ifndef NO_TIMER
   if (!b.quiet) {
-    gettimeofday(&tv1, &tz);
+  gettimeofday(&tv1, &tz);
   }
 #endif /* not NO_TIMER */
 
@@ -15732,32 +15732,32 @@ char **argv;
   m.hullsize = delaunay(&m, &b);                /* Triangulate the vertices. */
 #else /* not CDT_ONLY */
   if (b.refine) {
-    /* Read and reconstruct a mesh. */
+  /* Read and reconstruct a mesh. */
 #ifdef TRILIBRARY
-    m.hullsize = reconstruct(&m, &b, in->trianglelist,
+  m.hullsize = reconstruct(&m, &b, in->trianglelist,
                              in->triangleattributelist, in->trianglearealist,
                              in->numberoftriangles, in->numberofcorners,
                              in->numberoftriangleattributes,
                              in->segmentlist, in->segmentmarkerlist,
                              in->numberofsegments);
 #else /* not TRILIBRARY */
-    m.hullsize = reconstruct(&m, &b, b.inelefilename, b.areafilename,
+  m.hullsize = reconstruct(&m, &b, b.inelefilename, b.areafilename,
                              b.inpolyfilename, polyfile);
 #endif /* not TRILIBRARY */
   } else {
-    m.hullsize = delaunay(&m, &b);              /* Triangulate the vertices. */
+  m.hullsize = delaunay(&m, &b);              /* Triangulate the vertices. */
   }
 #endif /* not CDT_ONLY */
 
 #ifndef NO_TIMER
   if (!b.quiet) {
-    gettimeofday(&tv2, &tz);
-    if (b.refine) {
+  gettimeofday(&tv2, &tz);
+  if (b.refine) {
       printf("Mesh reconstruction");
-    } else {
+  } else {
       printf("Delaunay");
-    }
-    printf(" milliseconds:  %ld\n", 1000l * (tv2.tv_sec - tv1.tv_sec) +
+  }
+  printf(" milliseconds:  %ld\n", 1000l * (tv2.tv_sec - tv1.tv_sec) +
            (tv2.tv_usec - tv1.tv_usec) / 1000l);
   }
 #endif /* not NO_TIMER */
@@ -15769,8 +15769,8 @@ char **argv;
   m.infvertex3 = (vertex) NULL;
 
   if (b.usesegments) {
-    m.checksegments = 1;                /* Segments will be introduced next. */
-    if (!b.refine) {
+  m.checksegments = 1;                /* Segments will be introduced next. */
+  if (!b.refine) {
       /* Insert PSLG segments and/or convex hull segments. */
 #ifdef TRILIBRARY
       formskeleton(&m, &b, in->segmentlist,
@@ -15778,67 +15778,67 @@ char **argv;
 #else /* not TRILIBRARY */
       formskeleton(&m, &b, polyfile, b.inpolyfilename);
 #endif /* not TRILIBRARY */
-    }
+  }
   }
 
 #ifndef NO_TIMER
   if (!b.quiet) {
-    gettimeofday(&tv3, &tz);
-    if (b.usesegments && !b.refine) {
+  gettimeofday(&tv3, &tz);
+  if (b.usesegments && !b.refine) {
       printf("Segment milliseconds:  %ld\n",
              1000l * (tv3.tv_sec - tv2.tv_sec) +
              (tv3.tv_usec - tv2.tv_usec) / 1000l);
-    }
+  }
   }
 #endif /* not NO_TIMER */
 
   if (b.poly && (m.triangles.items > 0)) {
 #ifdef TRILIBRARY
-    holearray = in->holelist;
-    m.holes = in->numberofholes;
-    regionarray = in->regionlist;
-    m.regions = in->numberofregions;
+  holearray = in->holelist;
+  m.holes = in->numberofholes;
+  regionarray = in->regionlist;
+  m.regions = in->numberofregions;
 #else /* not TRILIBRARY */
-    readholes(&m, &b, polyfile, b.inpolyfilename, &holearray, &m.holes,
+  readholes(&m, &b, polyfile, b.inpolyfilename, &holearray, &m.holes,
               &regionarray, &m.regions);
 #endif /* not TRILIBRARY */
-    if (!b.refine) {
+  if (!b.refine) {
       /* Carve out holes and concavities. */
       carveholes(&m, &b, holearray, m.holes, regionarray, m.regions);
-    }
+  }
   } else {
-    /* Without a PSLG, there can be no holes or regional attributes   */
-    /*   or area constraints.  The following are set to zero to avoid */
-    /*   an accidental free() later.                                  */
-    m.holes = 0;
-    m.regions = 0;
+  /* Without a PSLG, there can be no holes or regional attributes   */
+  /*   or area constraints.  The following are set to zero to avoid */
+  /*   an accidental free() later.                                  */
+  m.holes = 0;
+  m.regions = 0;
   }
 
 #ifndef NO_TIMER
   if (!b.quiet) {
-    gettimeofday(&tv4, &tz);
-    if (b.poly && !b.refine) {
+  gettimeofday(&tv4, &tz);
+  if (b.poly && !b.refine) {
       printf("Hole milliseconds:  %ld\n", 1000l * (tv4.tv_sec - tv3.tv_sec) +
              (tv4.tv_usec - tv3.tv_usec) / 1000l);
-    }
+  }
   }
 #endif /* not NO_TIMER */
 
 #ifndef CDT_ONLY
   if (b.quality && (m.triangles.items > 0)) {
-    enforcequality(&m, &b);           /* Enforce angle and area constraints. */
+  enforcequality(&m, &b);           /* Enforce angle and area constraints. */
   }
 #endif /* not CDT_ONLY */
 
 #ifndef NO_TIMER
   if (!b.quiet) {
-    gettimeofday(&tv5, &tz);
+  gettimeofday(&tv5, &tz);
 #ifndef CDT_ONLY
-    if (b.quality) {
+  if (b.quality) {
       printf("Quality milliseconds:  %ld\n",
              1000l * (tv5.tv_sec - tv4.tv_sec) +
              (tv5.tv_usec - tv4.tv_usec) / 1000l);
-    }
+  }
 #endif /* not CDT_ONLY */
   }
 #endif /* not NO_TIMER */
@@ -15847,10 +15847,10 @@ char **argv;
   m.edges = (3l * m.triangles.items + m.hullsize) / 2l;
 
   if (b.order > 1) {
-    highorder(&m, &b);       /* Promote elements to higher polynomial order. */
+  highorder(&m, &b);       /* Promote elements to higher polynomial order. */
   }
   if (!b.quiet) {
-    printf("\n");
+  printf("\n");
   }
 
 #ifdef TRILIBRARY
@@ -15861,136 +15861,136 @@ char **argv;
   out->numberoftriangleattributes = m.eextras;
   out->numberofedges = m.edges;
   if (b.usesegments) {
-    out->numberofsegments = m.subsegs.items;
+  out->numberofsegments = m.subsegs.items;
   } else {
-    out->numberofsegments = m.hullsize;
+  out->numberofsegments = m.hullsize;
   }
   if (vorout != (struct triangulateio *) NULL) {
-    vorout->numberofpoints = m.triangles.items;
-    vorout->numberofpointattributes = m.nextras;
-    vorout->numberofedges = m.edges;
+  vorout->numberofpoints = m.triangles.items;
+  vorout->numberofpointattributes = m.nextras;
+  vorout->numberofedges = m.edges;
   }
 #endif /* TRILIBRARY */
   /* If not using iteration numbers, don't write a .node file if one was */
   /*   read, because the original one would be overwritten!              */
   if (b.nonodewritten || (b.noiterationnum && m.readnodefile)) {
-    if (!b.quiet) {
+  if (!b.quiet) {
 #ifdef TRILIBRARY
       printf("NOT writing vertices.\n");
 #else /* not TRILIBRARY */
       printf("NOT writing a .node file.\n");
 #endif /* not TRILIBRARY */
-    }
-    numbernodes(&m, &b);         /* We must remember to number the vertices. */
+  }
+  numbernodes(&m, &b);         /* We must remember to number the vertices. */
   } else {
-    /* writenodes() numbers the vertices too. */
+  /* writenodes() numbers the vertices too. */
 #ifdef TRILIBRARY
-    writenodes(&m, &b, &out->pointlist, &out->pointattributelist,
+  writenodes(&m, &b, &out->pointlist, &out->pointattributelist,
                &out->pointmarkerlist);
 #else /* not TRILIBRARY */
-    writenodes(&m, &b, b.outnodefilename, argc, argv);
+  writenodes(&m, &b, b.outnodefilename, argc, argv);
 #endif /* TRILIBRARY */
   }
   if (b.noelewritten) {
-    if (!b.quiet) {
+  if (!b.quiet) {
 #ifdef TRILIBRARY
       printf("NOT writing triangles.\n");
 #else /* not TRILIBRARY */
       printf("NOT writing an .ele file.\n");
 #endif /* not TRILIBRARY */
-    }
+  }
   } else {
 #ifdef TRILIBRARY
-    writeelements(&m, &b, &out->trianglelist, &out->triangleattributelist);
+  writeelements(&m, &b, &out->trianglelist, &out->triangleattributelist);
 #else /* not TRILIBRARY */
-    writeelements(&m, &b, b.outelefilename, argc, argv);
+  writeelements(&m, &b, b.outelefilename, argc, argv);
 #endif /* not TRILIBRARY */
   }
   /* The -c switch (convex switch) causes a PSLG to be written */
   /*   even if none was read.                                  */
   if (b.poly || b.convex) {
-    /* If not using iteration numbers, don't overwrite the .poly file. */
-    if (b.nopolywritten || b.noiterationnum) {
+  /* If not using iteration numbers, don't overwrite the .poly file. */
+  if (b.nopolywritten || b.noiterationnum) {
       if (!b.quiet) {
 #ifdef TRILIBRARY
-        printf("NOT writing segments.\n");
+    printf("NOT writing segments.\n");
 #else /* not TRILIBRARY */
-        printf("NOT writing a .poly file.\n");
+    printf("NOT writing a .poly file.\n");
 #endif /* not TRILIBRARY */
       }
-    } else {
+  } else {
 #ifdef TRILIBRARY
       writepoly(&m, &b, &out->segmentlist, &out->segmentmarkerlist);
       out->numberofholes = m.holes;
       out->numberofregions = m.regions;
       if (b.poly) {
-        out->holelist = in->holelist;
-        out->regionlist = in->regionlist;
+    out->holelist = in->holelist;
+    out->regionlist = in->regionlist;
       } else {
-        out->holelist = (REAL *) NULL;
-        out->regionlist = (REAL *) NULL;
+    out->holelist = (REAL *) NULL;
+    out->regionlist = (REAL *) NULL;
       }
 #else /* not TRILIBRARY */
       writepoly(&m, &b, b.outpolyfilename, holearray, m.holes, regionarray,
-                m.regions, argc, argv);
+        m.regions, argc, argv);
 #endif /* not TRILIBRARY */
-    }
+  }
   }
 #ifndef TRILIBRARY
 #ifndef CDT_ONLY
   if (m.regions > 0) {
-    trifree((VOID *) regionarray);
+  trifree((VOID *) regionarray);
   }
 #endif /* not CDT_ONLY */
   if (m.holes > 0) {
-    trifree((VOID *) holearray);
+  trifree((VOID *) holearray);
   }
   if (b.geomview) {
-    writeoff(&m, &b, b.offfilename, argc, argv);
+  writeoff(&m, &b, b.offfilename, argc, argv);
   }
 #endif /* not TRILIBRARY */
   if (b.edgesout) {
 #ifdef TRILIBRARY
-    writeedges(&m, &b, &out->edgelist, &out->edgemarkerlist);
+  writeedges(&m, &b, &out->edgelist, &out->edgemarkerlist);
 #else /* not TRILIBRARY */
-    writeedges(&m, &b, b.edgefilename, argc, argv);
+  writeedges(&m, &b, b.edgefilename, argc, argv);
 #endif /* not TRILIBRARY */
   }
   if (b.voronoi) {
 #ifdef TRILIBRARY
-    writevoronoi(&m, &b, &vorout->pointlist, &vorout->pointattributelist,
+  writevoronoi(&m, &b, &vorout->pointlist, &vorout->pointattributelist,
                  &vorout->pointmarkerlist, &vorout->edgelist,
                  &vorout->edgemarkerlist, &vorout->normlist);
 #else /* not TRILIBRARY */
-    writevoronoi(&m, &b, b.vnodefilename, b.vedgefilename, argc, argv);
+  writevoronoi(&m, &b, b.vnodefilename, b.vedgefilename, argc, argv);
 #endif /* not TRILIBRARY */
   }
   if (b.neighbors) {
 #ifdef TRILIBRARY
-    writeneighbors(&m, &b, &out->neighborlist);
+  writeneighbors(&m, &b, &out->neighborlist);
 #else /* not TRILIBRARY */
-    writeneighbors(&m, &b, b.neighborfilename, argc, argv);
+  writeneighbors(&m, &b, b.neighborfilename, argc, argv);
 #endif /* not TRILIBRARY */
   }
 
   if (!b.quiet) {
 #ifndef NO_TIMER
-    gettimeofday(&tv6, &tz);
-    printf("\nOutput milliseconds:  %ld\n",
+  gettimeofday(&tv6, &tz);
+  printf("\nOutput milliseconds:  %ld\n",
            1000l * (tv6.tv_sec - tv5.tv_sec) +
            (tv6.tv_usec - tv5.tv_usec) / 1000l);
-    printf("Total running milliseconds:  %ld\n",
+  printf("Total running milliseconds:  %ld\n",
            1000l * (tv6.tv_sec - tv0.tv_sec) +
            (tv6.tv_usec - tv0.tv_usec) / 1000l);
 #endif /* not NO_TIMER */
 
-    statistics(&m, &b);
+  statistics(&m, &b);
   }
 
 #ifndef REDUCED
   if (b.docheck) {
-    checkmesh(&m, &b);
-    checkdelaunay(&m, &b);
+  checkmesh(&m, &b);
+  checkdelaunay(&m, &b);
   }
 #endif /* not REDUCED */
 

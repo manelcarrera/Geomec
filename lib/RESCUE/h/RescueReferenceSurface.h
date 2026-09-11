@@ -48,15 +48,15 @@ public:
                           RESCUEINT64 i_lowbound, RESCUEINT64 i_count,
                           RESCUEINT64 j_lowbound, RESCUEINT64 j_count,
                           RESCUEFLOAT missingValue, RescueSurface::SurfaceType typeIn = RescueSurface::HORIZON)
-                :RescueSurface(model, orientation, i_lowbound, i_count, j_lowbound, j_count, missingValue,
-                                typeIn)
-                                    {CommonInitialization(model);}
+        :RescueSurface(model, orientation, i_lowbound, i_count, j_lowbound, j_count, missingValue,
+                typeIn)
+                  {CommonInitialization(model);}
   RescueReferenceSurface(RescueModel *model,
                          RescueCoordinateSystem::Orientation orientation,
                           RESCUEFLOAT missingValue, RescueSurface::SurfaceType typeIn = RescueSurface::HORIZON)
-                :RescueSurface(model, orientation, 0, 0, 0, 0, missingValue,
-                                typeIn)
-                                    {CommonInitialization(model);}
+        :RescueSurface(model, orientation, 0, 0, 0, 0, missingValue,
+                typeIn)
+                  {CommonInitialization(model);}
   RescueReferenceSurface(RescueModel *model,
                          RescueCoordinateSystem::Orientation orientation,
                          RESCUEINT64 i_lowbound, RESCUEINT64 i_count,
@@ -65,8 +65,8 @@ public:
                          RESCUEFLOAT *tripletArray, RescueSurface::SurfaceType typeIn = RescueSurface::HORIZON)
                :RescueSurface(model, orientation, i_lowbound, i_count, j_lowbound, 
                               j_count, missingValue, tripletArray,
-                                typeIn)
-                                    {CommonInitialization(model);}
+                typeIn)
+                  {CommonInitialization(model);}
           // Creates a new parametric surface.
   
   virtual RESCUEBOOL IsOfType(_RescueObjectType thisType);
@@ -83,11 +83,11 @@ protected:
                          RESCUEINT64 j_lowbound, RESCUEINT64 j_count,
                          RESCUEFLOAT missingValue, 
                          RescueSurface::SurfaceType typeIn = RescueSurface::HORIZON)
-                :RescueSurface(modelIn, orientation, i_axis, i_origin, i_step,
+        :RescueSurface(modelIn, orientation, i_axis, i_origin, i_step,
                                i_lowbound, i_count, j_axis, j_origin, j_step,
                                j_lowbound, j_count, missingValue, 
                                typeIn) 
-                                    {}
+                  {}
   RescueReferenceSurface(RescueModel *modelIn,
                          RescueCoordinateSystem::Orientation orientation,
                          RescueCoordinateSystemAxis *i_axis,
@@ -100,8 +100,8 @@ protected:
                          RESCUEFLOAT *values, 
                          RescueSurface::SurfaceType typeIn = RescueSurface::HORIZON)
                  :RescueSurface(modelIn, orientation, i_axis, i_origin, i_step, i_lowbound, 
-                                i_count, j_axis, j_origin, j_step, j_lowbound, j_count,
-                                missingValue, values, typeIn) 
+                i_count, j_axis, j_origin, j_step, j_lowbound, j_count,
+                missingValue, values, typeIn) 
                                      {}
   RescueReferenceSurface(RescueContext *context, FILE *archiveFile);
   void Archive(FILE *archiveFile);

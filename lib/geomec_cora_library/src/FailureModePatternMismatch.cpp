@@ -14,7 +14,7 @@ const QString PATTERN_NOT_FOUND =
 CFailureModePatternMismatch::CFailureModePatternMismatch(
   const QString& failureMode, const QString& pattern)
 : std::runtime_error(QString(PATTERN_NOT_FOUND).arg(pattern).arg(failureMode).
-    toStdString())
+  toStdString())
 {
 }
 

@@ -15,55 +15,55 @@ class IPointSet;
 
 class CNodalValueSet : public IValueSet
 {
-	TValueVec m_data;							// Vector with data
+  TValueVec m_data;							// Vector with data
 
-	// Properties of the valueset ....
-	mutable double m_dMin;						// Cache min
-	mutable double m_dMax;						// Cache max
-	mutable double m_dSum;						// Cache sum
-	mutable double m_dStdDev;					// Cache std dev
-	mutable bool m_bDirty;						// Dirty flag
-	void CalculateProperties() const;
+  // Properties of the valueset ....
+  mutable double m_dMin;						// Cache min
+  mutable double m_dMax;						// Cache max
+  mutable double m_dSum;						// Cache sum
+  mutable double m_dStdDev;					// Cache std dev
+  mutable bool m_bDirty;						// Dirty flag
+  void CalculateProperties() const;
 public:
-	CNodalValueSet(const QString &sName, CQuantity::UNIT unit, IPointSet& set);
-	CNodalValueSet(IPointSet& point_set, const CNodalValueSet& rhs, TPROGRESS& progress);
-	CNodalValueSet(const CNodalValueSet& rhs);
-	CNodalValueSet(IPointSet& set);
-	virtual ~CNodalValueSet();
+  CNodalValueSet(const QString &sName, CQuantity::UNIT unit, IPointSet& set);
+  CNodalValueSet(IPointSet& point_set, const CNodalValueSet& rhs, TPROGRESS& progress);
+  CNodalValueSet(const CNodalValueSet& rhs);
+  CNodalValueSet(IPointSet& set);
+  virtual ~CNodalValueSet();
 
   virtual CNodalValueSet* clone();
 
-	// Equal and assignment
-	bool operator==(const CNodalValueSet &rhs) const;
-	CNodalValueSet& operator=(const CNodalValueSet& rhs);
-	bool EqualValue(const CNodalValueSet &set) const;
-	
-	// Adding and modifying values
-	int PushBack(const double& dValue);
-	int PushBack(const geo::IValue& value);
-	int ValueSize() const;
-	const TValue& Value(const int nIndex) const;
-	void Value(const int nIndex, const double& value); 
-	void Value(const int nIndex, const geo::IValue& value); 
+  // Equal and assignment
+  bool operator==(const CNodalValueSet &rhs) const;
+  CNodalValueSet& operator=(const CNodalValueSet& rhs);
+  bool EqualValue(const CNodalValueSet &set) const;
+  
+  // Adding and modifying values
+  int PushBack(const double& dValue);
+  int PushBack(const geo::IValue& value);
+  int ValueSize() const;
+  const TValue& Value(const int nIndex) const;
+  void Value(const int nIndex, const double& value); 
+  void Value(const int nIndex, const geo::IValue& value); 
 
-	// Present element and point
+  // Present element and point
   virtual TValue ValuePoint(const geo::IPoint& pt, geo::IParallelInitializationCallback *cb) const;
   virtual TValueVec ValueElement(const geo::IElement& element, geo::IParallelInitializationCallback *cb) const;
 
-	// Graph visualisation
-	virtual unsigned int TypeId() const;
-	virtual unsigned int IconId() const;
+  // Graph visualisation
+  virtual unsigned int TypeId() const;
+  virtual unsigned int IconId() const;
 
-	// Min and max
-	virtual TValue Min() const;
-	virtual TValue Max() const;
-	const double& StdDev() const;
-	double Average() const;
+  // Min and max
+  virtual TValue Min() const;
+  virtual TValue Max() const;
+  const double& StdDev() const;
+  double Average() const;
 
-	// Save and load
-	virtual void LoadStream(TSTREAM& stream, CStreamVersion &version, TPROGRESS& progress);
-	virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
-	virtual long SavedItems() const;
+  // Save and load
+  virtual void LoadStream(TSTREAM& stream, CStreamVersion &version, TPROGRESS& progress);
+  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  virtual long SavedItems() const;
 
   virtual bool PrepareMapping(const geo::IElementSet *);
 

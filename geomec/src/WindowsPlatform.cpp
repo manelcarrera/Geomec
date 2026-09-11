@@ -25,9 +25,9 @@ long CWindowsPlatform::processMemorySize() const
   processMemoryCounters.cb = sizeof(PROCESS_MEMORY_COUNTERS);
 
   if (GetProcessMemoryInfo(process, &processMemoryCounters,
-    processMemoryCounters.cb))
+  processMemoryCounters.cb))
   {
-    memorySize = processMemoryCounters.WorkingSetSize;
+  memorySize = processMemoryCounters.WorkingSetSize;
   }
 
   return memorySize;

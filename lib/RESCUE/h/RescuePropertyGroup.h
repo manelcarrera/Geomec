@@ -79,34 +79,34 @@ public:
                               // etc.
   RESCUEINT32 TimeStepCount() {return (RESCUEINT32) timeSteps->Count();}
   RescueTimeStepGroup *NthTimeStepGroup(RESCUEINT32 zeroBasedOrdinal) 
-                {return timeSteps->NthObject(zeroBasedOrdinal);}
-                                    // DO NOT delete the object returned.  Instead,
-                                    // use the corresponding drop method.
+        {return timeSteps->NthObject(zeroBasedOrdinal);}
+                  // DO NOT delete the object returned.  Instead,
+                  // use the corresponding drop method.
   RescueTimeStepGroup *GetStaticGroup();
-                                    // Returns "Default Group", creating it if it
-                                    // doesn't already exist.
+                  // Returns "Default Group", creating it if it
+                  // doesn't already exist.
   RescueTimeStepGroup *GetInitializationGroup();
-                                    // Returns "Initialization Group", creating it if it
-                                    // doesn't already exist.
+                  // Returns "Initialization Group", creating it if it
+                  // doesn't already exist.
   RESCUEBOOL DropRescueTimeStepGroup(RescueTimeStepGroup *timeStep)
-                {return ((*timeSteps) -= timeStep);}
-                                    // This does not affect the RescueProperties which
-                                    // were part of this time step.
+        {return ((*timeSteps) -= timeStep);}
+                  // This does not affect the RescueProperties which
+                  // were part of this time step.
   RESCUEINT64 RescuePropertyCount64() {return timeSteps->NthObject(0)->RescuePropertyCount64();}
   RESCUEINT32 RescuePropertyCount() {return timeSteps->NthObject(0)->RescuePropertyCount();}
-                                    // This function returns the property count
-                                    // from the first time step only.  It is kept
-                                    // for compatibility with older application code.
-                                    // DO NOT use this method in new code.
+                  // This function returns the property count
+                  // from the first time step only.  It is kept
+                  // for compatibility with older application code.
+                  // DO NOT use this method in new code.
   RescueProperty *NthRescueProperty(RESCUEINT32 zeroBasedOrdinal) 
                   {return timeSteps->NthObject(0)->NthRescueProperty(zeroBasedOrdinal);}
-                                    // Do NOT delete the object returned.
-                                    // If you want to remove them from the
-                                    // model use the corresponding Drop method.
-                                    // This function returns properties from the first
-                                    // time step only.  It is kept
-                                    // for compatibility with older application code.
-                                    // DO NOT use this method in new code.
+                  // Do NOT delete the object returned.
+                  // If you want to remove them from the
+                  // model use the corresponding Drop method.
+                  // This function returns properties from the first
+                  // time step only.  It is kept
+                  // for compatibility with older application code.
+                  // DO NOT use this method in new code.
   RESCUEBOOL RemoveRescueProperty(RescueProperty *unitToDrop);
                                      // This method removes the RescueProperty from any
                                      // RescueTimeStepGroups but does not affect the RescueProperty
@@ -124,7 +124,7 @@ public:
   RESCUEBOOL TestLock() {return isLocked;} // By convention when you lock a property or group
   void SetLock();                    // you should create a RescueHistory object with a
   void ResetLock()                   // parsable description containing 'write-lock'
-                {isLocked = FALSE;}  // See Property Locking
+        {isLocked = FALSE;}  // See Property Locking
   RescueContext *Context() {return context;}
   virtual RESCUEBOOL IsOfType(_RescueObjectType thisType);
      // Returns TRUE if the object is a

@@ -24,7 +24,7 @@
 IMPLEMENT_DYNAMIC(CLicenseBorrowDlg, CDialog)
 
 CLicenseBorrowDlg::CLicenseBorrowDlg(CWnd* pParent /*=NULL*/)
-	: CDialog(CLicenseBorrowDlg::IDD, pParent)
+  : CDialog(CLicenseBorrowDlg::IDD, pParent)
   , m_LicenseData(LicenseData::GetInstance())
   , m_BorrowEndDate()
 {
@@ -39,7 +39,7 @@ BOOL CLicenseBorrowDlg::OnInitDialog()
   CDialog::OnInitDialog();
 
   if (m_font.CreatePointFont(80, "Courier New"))
-    GetDlgItem(IDC_BORROWED_LICENSES)->SetFont(&m_font);
+  GetDlgItem(IDC_BORROWED_LICENSES)->SetFont(&m_font);
 
   fillBorrowList();
 
@@ -63,8 +63,8 @@ void CLicenseBorrowDlg::OnBnClickedRequestBorrow()
 
   if (dwFlag == GDT_VALID)
   {
-	  m_LicenseData->BorrowLicense(borrowEndDate.GetTime());
-    fillBorrowList();
+    m_LicenseData->BorrowLicense(borrowEndDate.GetTime());
+  fillBorrowList();
   }
 
   COivLicenseData::setupBorrow
@@ -114,15 +114,15 @@ void CLicenseBorrowDlg::OnBnClickedBorrowDianaButton()
   char buffer[MAX_PATH];
 
   if(RegOpenKeyEx(HKEY_LOCAL_MACHINE, _T("Software\\Microsoft\\Windows\\CurrentVersion\\App Paths\\IEXPLORE.EXE"), 0, KEY_QUERY_VALUE,
-    &hSoftKey) == ERROR_SUCCESS)
+  &hSoftKey) == ERROR_SUCCESS)
   {
-    DWORD cbData= MAX_PATH;
-    RegQueryValueEx(hSoftKey, NULL, NULL, NULL, (LPBYTE )buffer, &cbData);
+  DWORD cbData= MAX_PATH;
+  RegQueryValueEx(hSoftKey, NULL, NULL, NULL, (LPBYTE )buffer, &cbData);
 
-    std::string cmdstr= std::string("\"");
-    cmdstr += std::string(buffer);
-    cmdstr += std::string("\" ");
-    cmdstr += "http://localhost:1947/_int_/products.html";
-    system(cmdstr.c_str());
+  std::string cmdstr= std::string("\"");
+  cmdstr += std::string(buffer);
+  cmdstr += std::string("\" ");
+  cmdstr += "http://localhost:1947/_int_/products.html";
+  system(cmdstr.c_str());
   }
 }

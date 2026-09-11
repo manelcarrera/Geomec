@@ -62,8 +62,8 @@ class CConsistencyGuard
 
 public:
 
-	//enum eScope{ Deformation, XSecImprovement };
-	//enum eModel{ Casing, ZoomIn, Main };
+  //enum eScope{ Deformation, XSecImprovement };
+  //enum eModel{ Casing, ZoomIn, Main };
 
 public:
   CConsistencyGuard(CModelBase& rootModel);

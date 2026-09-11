@@ -38,45 +38,45 @@ CLineLoad::~CLineLoad()
 
 bool CLineLoad::WriteFilos() const
 {
-	ftn_int_t idxdir = (ftn_int_t) Manager().Runner().AddDirection(Direction());
+  ftn_int_t idxdir = (ftn_int_t) Manager().Runner().AddDirection(Direction());
 
-	ftn_int_t idx = Inquire("ELEMEN", "DIM");
-	if(idx < 0) idx = 0;
-	idx++;
+  ftn_int_t idx = Inquire("ELEMEN", "DIM");
+  if(idx < 0) idx = 0;
+  idx++;
 
-	assert(!XistIndexed("ELEMEN/", &idx));
+  assert(!XistIndexed("ELEMEN/", &idx));
 
-	PushDir();
+  PushDir();
 
-	ChangeIndexedDir("ELEMEN/", &idx);
+  ChangeIndexedDir("ELEMEN/", &idx);
 
-	const geo::ILine *pLine = dynamic_cast<const geo::ILine *> (&m_Object);
-	const geo::CElementGroup *pGroup = dynamic_cast<const geo::CElementGroup *> (&m_Object);
-	assert(pLine || pGroup);
+  const geo::ILine *pLine = dynamic_cast<const geo::ILine *> (&m_Object);
+  const geo::CElementGroup *pGroup = dynamic_cast<const geo::CElementGroup *> (&m_Object);
+  assert(pLine || pGroup);
 
-	if(pLine)
-	{
-		ftn_int_t idxelm = (ftn_int_t) (pLine->Index() + 1);
-		PutItemLength("ELEMEN", &idxelm, 1);
-	}
-	else
-	{
-		assert(m_nSetIndex >= 0);
-		WriteGroupName(*pGroup, m_nSetIndex);
-	}
+  if(pLine)
+  {
+    ftn_int_t idxelm = (ftn_int_t) (pLine->Index() + 1);
+    PutItemLength("ELEMEN", &idxelm, 1);
+  }
+  else
+  {
+    assert(m_nSetIndex >= 0);
+    WriteGroupName(*pGroup, m_nSetIndex);
+  }
 
-	ftn_int_t idxcase = (ftn_int_t) (LoadCase().Index() + 1);
-	PutItem("CASE", &idxcase);
+  ftn_int_t idxcase = (ftn_int_t) (LoadCase().Index() + 1);
+  PutItem("CASE", &idxcase);
 
-	PutItem("DIRECT", &idxdir);
+  PutItem("DIRECT", &idxdir);
 
-	PutItemLength("FORCE", Values(), ValueSize());
+  PutItemLength("FORCE", Values(), ValueSize());
 
-	SetActive("LINE", FTN_TRUE);
+  SetActive("LINE", FTN_TRUE);
 
-	PopDir();
+  PopDir();
 
-	return true;
+  return true;
 }
 
 } // namespace dia

@@ -64,26 +64,26 @@ struct _CFaceClass {
                                  else g_assert (e3 == e); }
 #define SEGMENT_USE_VERTEX(s, v) ((s)->v1 == v || (s)->v2 == v)
 #define TRIANGLE_REPLACE_EDGE(t, e, with) { if ((t)->e1 == e)\
-					      (t)->e1 = with;\
-					    else if ((t)->e2 == e)\
-					      (t)->e2 = with;\
-					    else {\
-					      g_assert ((t)->e3 == e);\
-					      (t)->e3 = with;\
-					    }\
+                (t)->e1 = with;\
+            else if ((t)->e2 == e)\
+                (t)->e2 = with;\
+            else {\
+                g_assert ((t)->e3 == e);\
+                (t)->e3 = with;\
+            }\
                                           }
 
 #define HEAP_INSERT_OBJECT(h, e) (GTS_OBJECT (e)->reserved =\
-				  gts_eheap_insert (h, e))
+          gts_eheap_insert (h, e))
 #define HEAP_REMOVE_OBJECT(h, e) (gts_eheap_remove (h, GTS_OBJECT (e)->reserved),\
-				   GTS_OBJECT (e)->reserved = NULL)
+           GTS_OBJECT (e)->reserved = NULL)
 
 static GtsObjectClass * cface_class (void)
 {
   static GtsObjectClass * klass = NULL;
 
   if (klass == NULL) {
-    GtsObjectClassInfo cface_info = {
+  GtsObjectClassInfo cface_info = {
       "GtsCFace",
       sizeof (CFace),
       sizeof (CFaceClass),
@@ -91,9 +91,9 @@ static GtsObjectClass * cface_class (void)
       (GtsObjectInitFunc) NULL,
       (GtsArgSetFunc) NULL,
       (GtsArgGetFunc) NULL
-    };
-    klass = gts_object_class_new (gts_object_class (), &cface_info);
-    g_assert (sizeof (CFace) <= sizeof (GtsFace));
+  };
+  klass = gts_object_class_new (gts_object_class (), &cface_info);
+  g_assert (sizeof (CFace) <= sizeof (GtsFace));
   }
 
   return klass;
@@ -103,16 +103,16 @@ static GtsObjectClass * cface_class (void)
    Destroys @e and removes it from @heap (if not %NULL). 
    Returns a triangle using e different from f or %NULL. */
 static GtsTriangle * replace_edge_collapse (GtsEdge * e, 
-					    GtsEdge * with, 
-					    CFace * cf,
-					    GtsEHeap * heap
+            GtsEdge * with, 
+            CFace * cf,
+            GtsEHeap * heap
 #ifdef DYNAMIC_SPLIT
-					    , GtsTriangle *** a1
+            , GtsTriangle *** a1
 #endif
 #ifdef NEW
-					    , guint edge_flag
+            , guint edge_flag
 #endif
-					    )
+            )
 {
   GSList * i;
   GtsTriangle * rt = NULL;
@@ -127,33 +127,33 @@ static GtsTriangle * replace_edge_collapse (GtsEdge * e,
   size = g_slist_length (i)*sizeof (GtsTriangle *);
   *a1 = a = g_malloc (size > 0 ? size : sizeof (GtsTriangle *));
   while (i) {
-    GtsTriangle * t = i->data;
-    GSList * next = i->next;
-    if (t != ((GtsTriangle *) cf)) {
+  GtsTriangle * t = i->data;
+  GSList * next = i->next;
+  if (t != ((GtsTriangle *) cf)) {
       if (IS_CFACE (t)) {
-	i->next = e->triangles;
-	e->triangles = i;
-	/* set the edge given by edge_flag (CFACE_E1 or CFACE_E2) */
-	GTS_OBJECT (t)->reserved = GUINT_TO_POINTER (edge_flag);
-	cf->flags |= CFACE_KEEP_VVS;
+  i->next = e->triangles;
+  e->triangles = i;
+  /* set the edge given by edge_flag (CFACE_E1 or CFACE_E2) */
+  GTS_OBJECT (t)->reserved = GUINT_TO_POINTER (edge_flag);
+  cf->flags |= CFACE_KEEP_VVS;
       }
       else {
-	TRIANGLE_REPLACE_EDGE (t, e, with);
-	i->next = with->triangles;
-	with->triangles = i;
-	rt = t;
-	*(a++) = t;
+  TRIANGLE_REPLACE_EDGE (t, e, with);
+  i->next = with->triangles;
+  with->triangles = i;
+  rt = t;
+  *(a++) = t;
       }
-    }
-    else
+  }
+  else
       g_slist_free_1 (i);
-    i = next;
+  i = next;
   }
   *a = NULL;
   if (!e->triangles) {
-    if (heap)
+  if (heap)
       HEAP_REMOVE_OBJECT (heap, e);
-    gts_object_destroy (GTS_OBJECT (e));
+  gts_object_destroy (GTS_OBJECT (e));
   }
 #else /* not NEW */
   i = e->triangles;
@@ -162,9 +162,9 @@ static GtsTriangle * replace_edge_collapse (GtsEdge * e,
   *a1 = a = g_malloc (size > 0 ? size : sizeof (GtsTriangle *));
 #endif
   while (i) {
-    GtsTriangle * t = i->data;
-    GSList * next = i->next;
-    if (t != ((GtsTriangle *) cf)) {
+  GtsTriangle * t = i->data;
+  GSList * next = i->next;
+  if (t != ((GtsTriangle *) cf)) {
       TRIANGLE_REPLACE_EDGE (t, e, with);
       i->next = with->triangles;
       with->triangles = i;
@@ -172,16 +172,16 @@ static GtsTriangle * replace_edge_collapse (GtsEdge * e,
 #ifdef DYNAMIC_SPLIT
       *(a++) = t;
 #endif
-    }
-    else
+  }
+  else
       g_slist_free_1 (i);
-    i = next;
+  i = next;
   }
 #ifdef DYNAMIC_SPLIT
   *a = NULL;
 #endif
   if (heap)
-    HEAP_REMOVE_OBJECT (heap, e);
+  HEAP_REMOVE_OBJECT (heap, e);
   e->triangles = NULL;
   gts_object_destroy (GTS_OBJECT (e));
 #endif /* NEW */
@@ -190,16 +190,16 @@ static GtsTriangle * replace_edge_collapse (GtsEdge * e,
 }
 
 static CFace * cface_new (GtsFace * f,
-			  GtsEdge * e,
-			  GtsVertex * v1, 
-			  GtsVertex * v2,
-			  GtsSplit * vs,
-			  GtsEHeap * heap,
-			  GtsEdgeClass * klass
+        GtsEdge * e,
+        GtsVertex * v1, 
+        GtsVertex * v2,
+        GtsSplit * vs,
+        GtsEHeap * heap,
+        GtsEdgeClass * klass
 #ifdef DYNAMIC_SPLIT
-			  , GtsSplitCFace * scf
+        , GtsSplitCFace * scf
 #endif
-			  )
+        )
 {
   CFace * cf;
   GtsVertex * v;
@@ -217,7 +217,7 @@ static CFace * cface_new (GtsFace * f,
 
   t = ((GtsTriangle *) f);
   if (heap)
-    g_return_val_if_fail (!gts_triangle_is_duplicate (t), NULL);
+  g_return_val_if_fail (!gts_triangle_is_duplicate (t), NULL);
 
 #ifdef NEW
   /* get CFACE_E1 and CFACE_E2 info */
@@ -227,9 +227,9 @@ static CFace * cface_new (GtsFace * f,
 
   i = f->surfaces;
   while (i) {
-    GSList * next = i->next;
-    gts_surface_remove_face (i->data, f);
-    i = next;
+  GSList * next = i->next;
+  gts_surface_remove_face (i->data, f);
+  i = next;
   }
   g_slist_free (f->surfaces);
 
@@ -246,34 +246,34 @@ static CFace * cface_new (GtsFace * f,
   cf->parent_split = vs;
 
   if (SEGMENT_USE_VERTEX (GTS_SEGMENT (e1), v2)) {
-    CFACE_ORIENTATION_DIRECT (cf); /* v1->v2->v */
-    e3 = e1; e1 = e2; e2 = e3;
+  CFACE_ORIENTATION_DIRECT (cf); /* v1->v2->v */
+  e3 = e1; e1 = e2; e2 = e3;
   }
   v = GTS_SEGMENT (e1)->v1 == v1 ?
-    GTS_SEGMENT (e1)->v2 : GTS_SEGMENT (e1)->v1;
+  GTS_SEGMENT (e1)->v2 : GTS_SEGMENT (e1)->v1;
 #ifdef NEW
   if ((cf->flags & CFACE_E1) || (cf->flags & CFACE_E2))
-    g_assert ((vvs = GTS_EDGE (gts_vertices_are_connected (vs->v, v))));
+  g_assert ((vvs = GTS_EDGE (gts_vertices_are_connected (vs->v, v))));
   else
 #endif
   vvs = gts_edge_new (klass, v, vs->v);
 
   t1 = replace_edge_collapse (e1, vvs, cf, heap
 #ifdef DYNAMIC_SPLIT
-			      , &scf->a1
+            , &scf->a1
 #endif
 #ifdef NEW
-			      , CFACE_E1
+            , CFACE_E1
 #endif
-			      );
+            );
   t2 = replace_edge_collapse (e2, vvs, cf, heap
 #ifdef DYNAMIC_SPLIT
-			      , &scf->a2
+            , &scf->a2
 #endif
 #ifdef NEW
-			      , CFACE_E2
+            , CFACE_E2
 #endif
-			      );
+            );
   t = cf->t = t1 ? t1 : t2;
   g_assert (t);
 
@@ -281,80 +281,80 @@ static CFace * cface_new (GtsFace * f,
   if (t->e1 == vvs) e2 = t->e2;
   else if (t->e2 == vvs) e2 = t->e3;
   else {
-    g_assert (t->e3 == vvs);
-    e2 = t->e1;
+  g_assert (t->e3 == vvs);
+  e2 = t->e1;
   }
   if (SEGMENT_USE_VERTEX (GTS_SEGMENT (e2), v))
-    CFACE_VVS_DIRECT (cf);
+  CFACE_VVS_DIRECT (cf);
 
   return cf;
 }
 
 static void find_vvs (GtsVertex * vs,
-		      GtsTriangle * t,
-		      GtsVertex ** v, GtsEdge ** vvs,
-		      gboolean orientation)
+          GtsTriangle * t,
+          GtsVertex ** v, GtsEdge ** vvs,
+          gboolean orientation)
 {
   GtsEdge * e1 = t->e1, * e2 = t->e2, * e3 = t->e3, * tmp;
 
   if (SEGMENT_USE_VERTEX (GTS_SEGMENT (e2), vs)) {
-    tmp = e1; e1 = e2; e2 = e3; e3 = tmp;
+  tmp = e1; e1 = e2; e2 = e3; e3 = tmp;
   }
   else if (SEGMENT_USE_VERTEX (GTS_SEGMENT (e3), vs)) {
-    tmp = e1; e1 = e3; e3 = e2; e2 = tmp;
+  tmp = e1; e1 = e3; e3 = e2; e2 = tmp;
   }
   else
-    g_assert (SEGMENT_USE_VERTEX (GTS_SEGMENT (e1), vs));
+  g_assert (SEGMENT_USE_VERTEX (GTS_SEGMENT (e1), vs));
   if (SEGMENT_USE_VERTEX (GTS_SEGMENT (e2), vs) ||
       !gts_segments_touch (GTS_SEGMENT (e1), GTS_SEGMENT (e2))) {
-    tmp = e1; e1 = e2; e2 = e3; e3 = tmp;
-    g_assert (gts_segments_touch (GTS_SEGMENT (e1), GTS_SEGMENT (e2)));
+  tmp = e1; e1 = e2; e2 = e3; e3 = tmp;
+  g_assert (gts_segments_touch (GTS_SEGMENT (e1), GTS_SEGMENT (e2)));
   }
 
   *vvs = orientation ? e1 : e3;
 
   if (GTS_SEGMENT (*vvs)->v1 != vs) {
-    g_assert (GTS_SEGMENT (*vvs)->v2 == vs);
-    *v = GTS_SEGMENT (*vvs)->v1;
+  g_assert (GTS_SEGMENT (*vvs)->v2 == vs);
+  *v = GTS_SEGMENT (*vvs)->v1;
   }
   else
-    *v = GTS_SEGMENT (*vvs)->v2;
+  *v = GTS_SEGMENT (*vvs)->v2;
 }
 
 static void replace_edge_expand (GtsEdge * e, 
-				 GtsEdge * with,
-				 GtsTriangle ** a,
-				 GtsVertex * v)
+         GtsEdge * with,
+         GtsTriangle ** a,
+         GtsVertex * v)
 {
   GtsTriangle ** i = a, * t;
 
   while ((t = *(i++))) {
 #ifdef DEBUG_EXPAND
-    g_assert (!IS_CFACE (t));
-    fprintf (stderr, "replacing %p->%d: e: %p->%d with: %p->%d\n",
-	     t, id (t), e, id (e), with, id (with));
+  g_assert (!IS_CFACE (t));
+  fprintf (stderr, "replacing %p->%d: e: %p->%d with: %p->%d\n",
+       t, id (t), e, id (e), with, id (with));
 #endif
-    TRIANGLE_REPLACE_EDGE (t, e, with);
-    with->triangles = g_slist_prepend (with->triangles, t);
-    if (GTS_OBJECT (t)->reserved) {
+  TRIANGLE_REPLACE_EDGE (t, e, with);
+  with->triangles = g_slist_prepend (with->triangles, t);
+  if (GTS_OBJECT (t)->reserved) {
       /* apart from the triangles having e as an edge, t is the only
-	 triangle using v */
+   triangle using v */
       g_assert (GTS_OBJECT (t)->reserved == v);
       GTS_OBJECT (t)->reserved = NULL;
-    }
-    else
+  }
+  else
       GTS_OBJECT (t)->reserved = v;
   }
 }
 
 static void cface_expand (CFace * cf,
-			  GtsTriangle ** a1,
-			  GtsTriangle ** a2,
-			  GtsEdge * e,
-			  GtsVertex * v1, 
-			  GtsVertex * v2,
-			  GtsVertex * vs,
-			  GtsEdgeClass * klass)
+        GtsTriangle ** a1,
+        GtsTriangle ** a2,
+        GtsEdge * e,
+        GtsVertex * v1, 
+        GtsVertex * v2,
+        GtsVertex * vs,
+        GtsEdgeClass * klass)
 {
   GtsVertex * v;
   GtsEdge * e1, * e2, * vvs;
@@ -373,13 +373,13 @@ static void cface_expand (CFace * cf,
 
 #ifdef NEW
   if (flags & CFACE_E1)
-    e1 = GTS_EDGE (gts_vertices_are_connected (v1, v));
+  e1 = GTS_EDGE (gts_vertices_are_connected (v1, v));
   else
-    e1 = gts_edge_new (klass, v, v1);
+  e1 = gts_edge_new (klass, v, v1);
   if (flags & CFACE_E2)
-    e2 = GTS_EDGE (gts_vertices_are_connected (v2, v));
+  e2 = GTS_EDGE (gts_vertices_are_connected (v2, v));
   else
-    e2 = gts_edge_new (klass, v, v2);
+  e2 = gts_edge_new (klass, v, v2);
 #else
   e1 = gts_edge_new (v, v1);
   e2 = gts_edge_new (v, v2);
@@ -390,9 +390,9 @@ static void cface_expand (CFace * cf,
 
 #ifdef NEW
   if (!(flags & CFACE_KEEP_VVS)) {
-    g_slist_free (vvs->triangles);
-    vvs->triangles = NULL;
-    gts_object_destroy (GTS_OBJECT (vvs));
+  g_slist_free (vvs->triangles);
+  vvs->triangles = NULL;
+  gts_object_destroy (GTS_OBJECT (vvs));
   }
 #else
   g_slist_free (vvs->triangles);
@@ -405,9 +405,9 @@ static void cface_expand (CFace * cf,
   gts_object_init (GTS_OBJECT (cf), GTS_OBJECT (cf)->klass);
   
   if (orientation)
-    gts_triangle_set (GTS_TRIANGLE (cf), e, e2, e1);
+  gts_triangle_set (GTS_TRIANGLE (cf), e, e2, e1);
   else
-    gts_triangle_set (GTS_TRIANGLE (cf), e, e1, e2);
+  gts_triangle_set (GTS_TRIANGLE (cf), e, e1, e2);
 }
 
 static void split_destroy (GtsObject * object)
@@ -417,16 +417,16 @@ static void split_destroy (GtsObject * object)
   GtsSplitCFace * cf = vs->cfaces;
 
   while (i--) {
-    if (IS_CFACE (cf->f))
+  if (IS_CFACE (cf->f))
       gts_object_destroy (GTS_OBJECT (cf->f));
-    g_free (cf->a1);
-    g_free (cf->a2);
-    cf++;
+  g_free (cf->a1);
+  g_free (cf->a2);
+  cf++;
   }
   g_free (vs->cfaces);
 
   if (!gts_allow_floating_vertices && vs->v && vs->v->segments == NULL)
-    gts_object_destroy (GTS_OBJECT (vs->v));
+  gts_object_destroy (GTS_OBJECT (vs->v));
 
   (* GTS_OBJECT_CLASS (gts_split_class ())->parent_class->destroy) (object);
 }
@@ -454,7 +454,7 @@ GtsSplitClass * gts_split_class (void)
   static GtsSplitClass * klass = NULL;
 
   if (klass == NULL) {
-    GtsObjectClassInfo split_info = {
+  GtsObjectClassInfo split_info = {
       "GtsSplit",
       sizeof (GtsSplit),
       sizeof (GtsSplitClass),
@@ -462,9 +462,9 @@ GtsSplitClass * gts_split_class (void)
       (GtsObjectInitFunc) split_init,
       (GtsArgSetFunc) NULL,
       (GtsArgGetFunc) NULL
-    };
-    klass = gts_object_class_new (gts_object_class (), 
-				  &split_info);
+  };
+  klass = gts_object_class_new (gts_object_class (), 
+          &split_info);
   }
 
   return klass;
@@ -478,52 +478,52 @@ static gboolean edge_collapse_is_valid (GtsEdge * e)
   g_return_val_if_fail (e != NULL, FALSE);
   
   if (gts_segment_is_duplicate (GTS_SEGMENT (e))) {
-    g_warning ("collapsing duplicate edge");
-    return FALSE;
+  g_warning ("collapsing duplicate edge");
+  return FALSE;
   }
-    
+  
   i = GTS_SEGMENT (e)->v1->segments;
   while (i) {
-    GtsEdge * e1 = i->data;
-    if (e1 != e && GTS_IS_EDGE (e1)) {
+  GtsEdge * e1 = i->data;
+  if (e1 != e && GTS_IS_EDGE (e1)) {
       GtsEdge * e2 = NULL;
       GSList * j = GTS_SEGMENT (e1)->v1 == GTS_SEGMENT (e)->v1 ? 
-	GTS_SEGMENT (e1)->v2->segments : GTS_SEGMENT (e1)->v1->segments;
+  GTS_SEGMENT (e1)->v2->segments : GTS_SEGMENT (e1)->v1->segments;
       while (j && !e2) {
-	GtsEdge * e1 = j->data;
-	if (GTS_IS_EDGE (e1) && 
-	    (GTS_SEGMENT (e1)->v1 == GTS_SEGMENT (e)->v2 || 
-	     GTS_SEGMENT (e1)->v2 == GTS_SEGMENT (e)->v2))
-	  e2 = e1;
-	j = j->next;
+  GtsEdge * e1 = j->data;
+  if (GTS_IS_EDGE (e1) && 
+    (GTS_SEGMENT (e1)->v1 == GTS_SEGMENT (e)->v2 || 
+       GTS_SEGMENT (e1)->v2 == GTS_SEGMENT (e)->v2))
+    e2 = e1;
+  j = j->next;
       }
       if (e2 && !gts_triangle_use_edges (e, e1, e2)) {
-	g_warning ("collapsing empty triangle");
-	return FALSE;
+  g_warning ("collapsing empty triangle");
+  return FALSE;
       }
-    }
-    i = i->next;
+  }
+  i = i->next;
   }
 
   if (gts_edge_is_boundary (e, NULL)) {
-    GtsTriangle * t = e->triangles->data;
-    if (gts_edge_is_boundary (t->e1, NULL) &&
-	gts_edge_is_boundary (t->e2, NULL) &&
-	gts_edge_is_boundary (t->e3, NULL)) {
+  GtsTriangle * t = e->triangles->data;
+  if (gts_edge_is_boundary (t->e1, NULL) &&
+  gts_edge_is_boundary (t->e2, NULL) &&
+  gts_edge_is_boundary (t->e3, NULL)) {
       g_warning ("collapsing single triangle");
       return FALSE;
-    }
+  }
   }
   else {
-    if (gts_vertex_is_boundary (GTS_SEGMENT (e)->v1, NULL) &&
-	gts_vertex_is_boundary (GTS_SEGMENT (e)->v2, NULL)) {
+  if (gts_vertex_is_boundary (GTS_SEGMENT (e)->v1, NULL) &&
+  gts_vertex_is_boundary (GTS_SEGMENT (e)->v2, NULL)) {
       g_warning ("collapsing two sides of a strip");
       return FALSE;    
-    }
-    if (gts_edge_belongs_to_tetrahedron (e)) {
+  }
+  if (gts_edge_belongs_to_tetrahedron (e)) {
       g_warning ("collapsing tetrahedron");
       return FALSE;
-    }
+  }
   }
 
   return TRUE;
@@ -540,13 +540,13 @@ static void print_split (GtsSplit * vs, FILE * fptr)
   g_return_if_fail (fptr != NULL);
 
   fprintf (fptr, "%p: v: %p v1: %p v2: %p ncf: %u cfaces: %p\n",
-	   vs, vs->v, vs->v1, vs->v2, vs->ncf, vs->cfaces);
+     vs, vs->v, vs->v1, vs->v2, vs->ncf, vs->cfaces);
   cf = vs->cfaces;
   j = vs->ncf;
   while (j--) {
-    fprintf (stderr, "  f: %p a1: %p a2: %p\n",
-	     cf->f, cf->a1, cf->a2);
-    cf++;
+  fprintf (stderr, "  f: %p a1: %p a2: %p\n",
+       cf->f, cf->a1, cf->a2);
+  cf++;
   }
 }
 */
@@ -562,8 +562,8 @@ static void print_split (GtsSplit * vs, FILE * fptr)
  * into it and the destroyed edges will be removed from it.
  */
 void gts_split_collapse (GtsSplit * vs, 
-			 GtsEdgeClass * klass,
-			 GtsEHeap * heap)
+       GtsEdgeClass * klass,
+       GtsEHeap * heap)
 {
   GtsEdge * e;
   GtsVertex * v, * v1, * v2;
@@ -594,24 +594,24 @@ void gts_split_collapse (GtsSplit * vs,
 #ifdef DEBUG
   fprintf (stderr, "collapsing %p: v1: %p v2: %p v: %p\n", vs, v1, v2, v);
   if (!edge_collapse_is_valid (e)) {
-    char fname[80];
-    FILE * fptr;
-    GSList * triangles, * i;
+  char fname[80];
+  FILE * fptr;
+  GSList * triangles, * i;
 
-    g_warning ("invalid edge collapse");
-    invalid = TRUE;
-    sprintf (fname, "invalid.%d", ninvalid);
-    fptr = fopen (fname, "wt");
-    gts_write_segment (GTS_SEGMENT (e), GTS_POINT (v), fptr);
-    triangles = gts_vertex_triangles (v1, NULL);
-    triangles = gts_vertex_triangles (v2, triangles);
-    i = triangles;
-    while (i) {
+  g_warning ("invalid edge collapse");
+  invalid = TRUE;
+  sprintf (fname, "invalid.%d", ninvalid);
+  fptr = fopen (fname, "wt");
+  gts_write_segment (GTS_SEGMENT (e), GTS_POINT (v), fptr);
+  triangles = gts_vertex_triangles (v1, NULL);
+  triangles = gts_vertex_triangles (v2, triangles);
+  i = triangles;
+  while (i) {
       gts_write_triangle (i->data, GTS_POINT (v), fptr);
       i = i->next;
-    }
-    g_slist_free (triangles);
-    fclose (fptr);
+  }
+  g_slist_free (triangles);
+  fclose (fptr);
   }
 #endif
 
@@ -620,9 +620,9 @@ void gts_split_collapse (GtsSplit * vs,
   cf = vs->cfaces;
   j = vs->ncf;
   while (j--) {
-    g_free (cf->a1);
-    g_free (cf->a2);
-    cf++;
+  g_free (cf->a1);
+  g_free (cf->a2);
+  cf++;
   }
   g_free (vs->cfaces);
 
@@ -632,46 +632,46 @@ void gts_split_collapse (GtsSplit * vs,
 #endif /* DYNAMIC_SPLIT */
 #ifdef NEW
   while (i) {
-    cf->f = i->data;
-    g_assert (GTS_IS_FACE (cf->f));
-    GTS_OBJECT (cf->f)->klass = GTS_OBJECT_CLASS (cface_class ());
-    cf++;
-    i = i->next;
+  cf->f = i->data;
+  g_assert (GTS_IS_FACE (cf->f));
+  GTS_OBJECT (cf->f)->klass = GTS_OBJECT_CLASS (cface_class ());
+  cf++;
+  i = i->next;
   }
   i = e->triangles;
   cf = vs->cfaces;
   while (i) {
-    cface_new (i->data, e, v1, v2, vs, heap, klass, cf);
+  cface_new (i->data, e, v1, v2, vs, heap, klass, cf);
 #ifdef DEBUG
-    fprintf (stderr, "cface: %p->%d t: %p->%d a1: ", 
-	     cf->f, id (cf->f), CFACE (cf->f)->t, id (CFACE (cf->f)->t));
-    {
+  fprintf (stderr, "cface: %p->%d t: %p->%d a1: ", 
+       cf->f, id (cf->f), CFACE (cf->f)->t, id (CFACE (cf->f)->t));
+  {
       GtsTriangle * t, ** a;
       a = cf->a1;
       while ((t = *(a++)))
-	fprintf (stderr, "%p->%d ", t, id (t));
+  fprintf (stderr, "%p->%d ", t, id (t));
       fprintf (stderr, "a2: ");
       a = cf->a2;
       while ((t = *(a++)))
-	fprintf (stderr, "%p->%d ", t, id (t));
+  fprintf (stderr, "%p->%d ", t, id (t));
       fprintf (stderr, "\n");
-    }
+  }
 #endif
-    cf++;
-    i = i->next;
+  cf++;
+  i = i->next;
   }
 #else /* not NEW */
   while (i) {
-    cface_new (i->data, e, v1, v2, vs, heap
+  cface_new (i->data, e, v1, v2, vs, heap
 #ifdef DYNAMIC_SPLIT
-	       , cf
+         , cf
 #endif /* DYNAMIC_SPLIT */
-	       );
+         );
 #ifdef DYNAMIC_SPLIT
-    cf->f = i->data;
-    cf++;
+  cf->f = i->data;
+  cf++;
 #endif /* DYNAMIC_SPLIT */
-    i = i->next;
+  i = i->next;
   }
 #endif /* NEW */
   g_slist_free (e->triangles);
@@ -683,92 +683,92 @@ void gts_split_collapse (GtsSplit * vs,
   end = NULL;
   i = v1->segments;
   while (i) {
-    GtsSegment * s = i->data;
-    if (s->v1 == v1)
+  GtsSegment * s = i->data;
+  if (s->v1 == v1)
       s->v1 = v;
-    else
+  else
       s->v2 = v;
-    end = i;
-    i = i->next;
+  end = i;
+  i = i->next;
   }
   if (end) {
-    end->next = v->segments;
-    v->segments = v1->segments;
-    v1->segments = NULL;
+  end->next = v->segments;
+  v->segments = v1->segments;
+  v1->segments = NULL;
   }
 
   end = NULL;
   i = v2->segments;
   while (i) {
-    GtsSegment * s = i->data;
-    if (s->v1 == v2)
+  GtsSegment * s = i->data;
+  if (s->v1 == v2)
       s->v1 = v;
-    else
+  else
       s->v2 = v;
-    end = i;
-    i = i->next;
+  end = i;
+  i = i->next;
   }
   if (end) {
-    end->next = v->segments;
-    v->segments = v2->segments;
-    v2->segments = NULL;
+  end->next = v->segments;
+  v->segments = v2->segments;
+  v2->segments = NULL;
   }
 
 #ifdef DEBUG
   if (invalid) {
-    char fname[80];
-    FILE * fptr;
-    GSList * triangles, * i;
+  char fname[80];
+  FILE * fptr;
+  GSList * triangles, * i;
 
-    sprintf (fname, "invalid_after.%d", ninvalid);
-    fptr = fopen (fname, "wt");
-    triangles = gts_vertex_triangles (v, NULL);
-    i = triangles;
-    while (i) {
+  sprintf (fname, "invalid_after.%d", ninvalid);
+  fptr = fopen (fname, "wt");
+  triangles = gts_vertex_triangles (v, NULL);
+  i = triangles;
+  while (i) {
       GtsTriangle * t = i->data;
       fprintf (stderr, "checking %p->%d\n", t, id (t));
       g_assert (GTS_IS_FACE (t));
       gts_write_triangle (t, GTS_POINT (v), fptr);
       if (gts_triangle_is_duplicate (t))
-	fprintf (stderr, "%p->%d is duplicate\n", t, id (t));
+  fprintf (stderr, "%p->%d is duplicate\n", t, id (t));
       if (gts_segment_is_duplicate (GTS_SEGMENT (t->e1)))
-	fprintf (stderr, "e1 of %p->%d is duplicate\n", t, id (t));
+  fprintf (stderr, "e1 of %p->%d is duplicate\n", t, id (t));
       if (gts_segment_is_duplicate (GTS_SEGMENT (t->e2)))
-	fprintf (stderr, "e2 of %p->%d is duplicate\n", t, id (t));
+  fprintf (stderr, "e2 of %p->%d is duplicate\n", t, id (t));
       if (gts_segment_is_duplicate (GTS_SEGMENT (t->e3)))
-	fprintf (stderr, "e3 of %p->%d is duplicate\n", t, id (t));
+  fprintf (stderr, "e3 of %p->%d is duplicate\n", t, id (t));
       i = i->next;
-    }
-    fclose (fptr);
-    g_slist_free (triangles);
+  }
+  fclose (fptr);
+  g_slist_free (triangles);
 #if 0
-    gts_split_expand (vs, surface);
+  gts_split_expand (vs, surface);
 
-    sprintf (fname, "invalid_after_after.%d", ninvalid);
-    fptr = fopen (fname, "wt");
-    triangles = gts_vertex_triangles (v1, NULL);
-    triangles = gts_vertex_triangles (v2, triangles);
-    i = triangles;
-    while (i) {
+  sprintf (fname, "invalid_after_after.%d", ninvalid);
+  fptr = fopen (fname, "wt");
+  triangles = gts_vertex_triangles (v1, NULL);
+  triangles = gts_vertex_triangles (v2, triangles);
+  i = triangles;
+  while (i) {
       GtsTriangle * t = i->data;
       gts_write_triangle (t, GTS_POINT (v), fptr);
       surface = GTS_FACE (t)->surfaces->data;
       if (gts_triangle_is_duplicate (t))
-	fprintf (stderr, "%p->%d is duplicate\n", t, id (t));
+  fprintf (stderr, "%p->%d is duplicate\n", t, id (t));
       if (gts_segment_is_duplicate (GTS_SEGMENT (t->e1)))
-	fprintf (stderr, "e1 of %p->%d is duplicate\n", t, id (t));
+  fprintf (stderr, "e1 of %p->%d is duplicate\n", t, id (t));
       if (gts_segment_is_duplicate (GTS_SEGMENT (t->e2)))
-	fprintf (stderr, "e2 of %p->%d is duplicate\n", t, id (t));
+  fprintf (stderr, "e2 of %p->%d is duplicate\n", t, id (t));
       if (gts_segment_is_duplicate (GTS_SEGMENT (t->e3)))
-	fprintf (stderr, "e3 of %p->%d is duplicate\n", t, id (t));
+  fprintf (stderr, "e3 of %p->%d is duplicate\n", t, id (t));
       i = i->next;
-    }
-    fclose (fptr);
-    g_slist_free (triangles);
+  }
+  fclose (fptr);
+  g_slist_free (triangles);
 
-    exit (1);
+  exit (1);
 #endif
-    ninvalid++;
+  ninvalid++;
   }
 #endif
 }
@@ -783,8 +783,8 @@ void gts_split_collapse (GtsSplit * vs,
  * new edge will be of class @klass.
  */
 void gts_split_expand (GtsSplit * vs, 
-		       GtsSurface * s,
-		       GtsEdgeClass * klass)
+           GtsSurface * s,
+           GtsEdgeClass * klass)
 {
   GSList * i;
   GtsEdge * e;
@@ -805,15 +805,15 @@ void gts_split_expand (GtsSplit * vs,
   v = vs->v;
 #ifdef DEBUG_EXPAND
   fprintf (stderr, "expanding %p->%d: v1: %p->%d v2: %p->%d v: %p->%d\n",
-	   vs, id (vs), v1, id (v1), v2, id (v2), v, id (v));
+     vs, id (vs), v1, id (v1), v2, id (v2), v, id (v));
 #endif
   e = gts_edge_new (klass, v1, v2);
   cf = vs->cfaces;
   j = vs->ncf;
   while (j--) {
-    cface_expand (CFACE (cf->f), cf->a1, cf->a2, e, v1, v2, v, klass);
-    gts_surface_add_face (s, cf->f);
-    cf++;
+  cface_expand (CFACE (cf->f), cf->a1, cf->a2, e, v1, v2, v, klass);
+  gts_surface_add_face (s, cf->f);
+  cf++;
   }
 
   gts_allow_floating_vertices = FALSE;
@@ -821,53 +821,53 @@ void gts_split_expand (GtsSplit * vs,
   /* this part is described by figure "expand.fig" */
   i = v->segments;
   while (i) {
-    GtsEdge * e1 = i->data;
-    GtsVertex * with = NULL;
-    GSList * j = e1->triangles, * next = i->next;
-    // fprintf (stderr, "e1: %p->%d\n", e1, id (e1));
-    while (j && !with) {
+  GtsEdge * e1 = i->data;
+  GtsVertex * with = NULL;
+  GSList * j = e1->triangles, * next = i->next;
+  // fprintf (stderr, "e1: %p->%d\n", e1, id (e1));
+  while (j && !with) {
       with = GTS_OBJECT (j->data)->reserved;
       j = j->next;
-    }
-    if (with) {
+  }
+  if (with) {
       j = e1->triangles;
       while (j) {
-	GtsTriangle * t = j->data;
-	if (GTS_OBJECT (t)->reserved) {
-	  g_assert (GTS_OBJECT (t)->reserved == with);
-	  GTS_OBJECT (t)->reserved = NULL;
-	}
-	else
-	  GTS_OBJECT (t)->reserved = with;
-	j = j->next;
+  GtsTriangle * t = j->data;
+  if (GTS_OBJECT (t)->reserved) {
+    g_assert (GTS_OBJECT (t)->reserved == with);
+    GTS_OBJECT (t)->reserved = NULL;
+  }
+  else
+    GTS_OBJECT (t)->reserved = with;
+  j = j->next;
       }
       if (GTS_SEGMENT (e1)->v1 == v)
-	GTS_SEGMENT (e1)->v1 = with;
+  GTS_SEGMENT (e1)->v1 = with;
       else
-	GTS_SEGMENT (e1)->v2 = with;
+  GTS_SEGMENT (e1)->v2 = with;
 
       v->segments = g_slist_remove_link (v->segments, i);
       i->next = with->segments;
       with->segments = i;
       changed = TRUE;
-    }
-    if (next)
+  }
+  if (next)
       i = next;
-    else {
+  else {
       /* check for infinite loop (the crossed out case in 
-	 figure "expand.fig") */
+   figure "expand.fig") */
       g_assert (changed);
       changed = FALSE;
       i = v->segments;
-    }
+  }
   }
 }
 
 /*
 static void cface_neighbors (GtsSplitCFace * cf,
-			     GtsEdge * e,
-			     GtsVertex * v1,
-			     GtsVertex * v2)
+           GtsEdge * e,
+           GtsVertex * v1,
+           GtsVertex * v2)
 {
   GtsTriangle * t = GTS_TRIANGLE (cf->f), ** a;
   GtsEdge * e1 = t->e1, * e2 = t->e2, * e3 = t->e3;
@@ -878,16 +878,16 @@ static void cface_neighbors (GtsSplitCFace * cf,
 
   ROTATE_ORIENT (e, e1, e2, e3);
   if (SEGMENT_USE_VERTEX (GTS_SEGMENT (e1), v2)) {
-    e3 = e1; e1 = e2; e2 = e3;
+  e3 = e1; e1 = e2; e2 = e3;
   }
   
   i = e1->triangles;
   size = g_slist_length (i)*sizeof (GtsTriangle *);
   a = cf->a1 = g_malloc (size > 0 ? size : sizeof (GtsTriangle *));
   while (i) {
-    if (i->data != t)
+  if (i->data != t)
       *(a++) = i->data;
-    i = i->next;
+  i = i->next;
   }
   *a = NULL;
 
@@ -895,9 +895,9 @@ static void cface_neighbors (GtsSplitCFace * cf,
   size = g_slist_length (i)*sizeof (GtsTriangle *);
   a = cf->a2 = g_malloc (size > 0 ? size : sizeof (GtsTriangle *));
   while (i) {
-    if (i->data != t)
+  if (i->data != t)
       *(a++) = i->data;
-    i = i->next;
+  i = i->next;
   }
   *a = NULL;
 }
@@ -916,9 +916,9 @@ static void cface_neighbors (GtsSplitCFace * cf,
  * Returns: the new #GtsSplit.
  */
 GtsSplit * gts_split_new (GtsSplitClass * klass,
-			  GtsVertex * v,
-			  GtsObject * o1,
-			  GtsObject * o2)
+        GtsVertex * v,
+        GtsObject * o1,
+        GtsObject * o2)
 {
   GtsSplit * vs;
 #ifndef DYNAMIC_SPLIT
@@ -949,10 +949,10 @@ GtsSplit * gts_split_new (GtsSplitClass * klass,
   g_assert (vs->ncf > 0);
   cf = vs->cfaces = g_malloc (vs->ncf*sizeof (GtsSplitCFace));
   while (i) {
-    cf->f = i->data;
-    cface_neighbors (cf, e, v1, v2);
-    i = i->next;
-    cf++;
+  cf->f = i->data;
+  cface_neighbors (cf, e, v1, v2);
+  i = i->next;
+  cf++;
   }
 #endif
   
@@ -961,77 +961,77 @@ GtsSplit * gts_split_new (GtsSplitClass * klass,
 
 static gboolean 
 split_traverse_pre_order (GtsSplit *           vs,
-			  GtsSplitTraverseFunc func,
-			  gpointer	       data)
+        GtsSplitTraverseFunc func,
+        gpointer	       data)
 {
   if (func (vs, data))
-    return TRUE;
+  return TRUE;
   if (GTS_IS_SPLIT (vs->v1) &&
       split_traverse_pre_order (GTS_SPLIT (vs->v1), func, data))
-    return TRUE;
+  return TRUE;
   if (GTS_IS_SPLIT (vs->v2) &&
       split_traverse_pre_order (GTS_SPLIT (vs->v2), func, data))
-    return TRUE;
+  return TRUE;
   return FALSE;
 }
 
 static gboolean 
 split_depth_traverse_pre_order (GtsSplit *             vs,
-				guint                  depth,
-				GtsSplitTraverseFunc   func,
-				gpointer	       data)
+        guint                  depth,
+        GtsSplitTraverseFunc   func,
+        gpointer	       data)
 {
   if (func (vs, data))
       return TRUE;
-    
+  
   depth--;
   if (!depth)
-    return FALSE;
+  return FALSE;
 
   if (GTS_IS_SPLIT (vs->v1) &&
       split_depth_traverse_pre_order (GTS_SPLIT (vs->v1), depth, func, data))
-    return TRUE;
+  return TRUE;
   if (GTS_IS_SPLIT (vs->v2) &&
       split_depth_traverse_pre_order (GTS_SPLIT (vs->v2), depth, func, data))
-    return TRUE;
+  return TRUE;
   return FALSE;
 }
 
 static gboolean 
 split_traverse_post_order (GtsSplit *           vs,
-			   GtsSplitTraverseFunc func,
-			   gpointer	        data)
+         GtsSplitTraverseFunc func,
+         gpointer	        data)
 {
   if (GTS_IS_SPLIT (vs->v1) &&
       split_traverse_post_order (GTS_SPLIT (vs->v1), func, data))
-    return TRUE;
+  return TRUE;
   if (GTS_IS_SPLIT (vs->v2) &&
       split_traverse_post_order (GTS_SPLIT (vs->v2), func, data))
-    return TRUE;
+  return TRUE;
   if (func (vs, data))
-    return TRUE;
+  return TRUE;
   return FALSE;
 }
 
 static gboolean
 split_depth_traverse_post_order (GtsSplit *           vs,
-				 guint                depth,
-				 GtsSplitTraverseFunc func,
-				 gpointer	      data)
+         guint                depth,
+         GtsSplitTraverseFunc func,
+         gpointer	      data)
 {
   depth--;
   if (depth) {
-    if (GTS_IS_SPLIT (vs->v1) &&
-	split_depth_traverse_post_order (GTS_SPLIT (vs->v1), 
-					 depth, func, data))
+  if (GTS_IS_SPLIT (vs->v1) &&
+  split_depth_traverse_post_order (GTS_SPLIT (vs->v1), 
+           depth, func, data))
       return TRUE;
-    if (GTS_IS_SPLIT (vs->v2) &&
-	split_depth_traverse_post_order (GTS_SPLIT (vs->v2),
-					 depth, func, data))
+  if (GTS_IS_SPLIT (vs->v2) &&
+  split_depth_traverse_post_order (GTS_SPLIT (vs->v2),
+           depth, func, data))
       return TRUE;
   }
   if (func (vs, data))
-    return TRUE;
+  return TRUE;
   return FALSE;
 }
 
@@ -1053,10 +1053,10 @@ split_depth_traverse_post_order (GtsSplit *           vs,
  * #GtsSplit.
  */
 void gts_split_traverse (GtsSplit *           root,
-			 GTraverseType        order,
-			 gint                 depth,
-			 GtsSplitTraverseFunc func,
-			 gpointer             data)
+       GTraverseType        order,
+       gint                 depth,
+       GtsSplitTraverseFunc func,
+       gpointer             data)
 {
   g_return_if_fail (root != NULL);
   g_return_if_fail (func != NULL);
@@ -1065,19 +1065,19 @@ void gts_split_traverse (GtsSplit *           root,
 
   switch (order) {
   case G_PRE_ORDER:
-    if (depth < 0)
+  if (depth < 0)
       split_traverse_pre_order (root, func, data);
-    else
+  else
       split_depth_traverse_pre_order (root, depth, func, data);
-    break;
+  break;
   case G_POST_ORDER:
-    if (depth < 0)
+  if (depth < 0)
       split_traverse_post_order (root, func, data);
-    else
+  else
       split_depth_traverse_post_order (root, depth, func, data);
-    break;
+  break;
   default:
-    g_assert_not_reached ();
+  g_assert_not_reached ();
   }
 }
 
@@ -1094,13 +1094,13 @@ guint gts_split_height (GtsSplit * root)
   g_return_val_if_fail (root != NULL, 0);
 
   if (GTS_IS_SPLIT (root->v1)) {
-    tmp_height = gts_split_height (GTS_SPLIT (root->v1));
-    if (tmp_height > height)
+  tmp_height = gts_split_height (GTS_SPLIT (root->v1));
+  if (tmp_height > height)
       height = tmp_height;
   }
   if (GTS_IS_SPLIT (root->v2)) {
-    tmp_height = gts_split_height (GTS_SPLIT (root->v2));
-    if (tmp_height > height)
+  tmp_height = gts_split_height (GTS_SPLIT (root->v2));
+  if (tmp_height > height)
       height = tmp_height;
   }
 
@@ -1109,22 +1109,22 @@ guint gts_split_height (GtsSplit * root)
 
 /*
 static gboolean list_array_are_identical (GSList * list, 
-					  gpointer * array,
-					  gpointer excluded)
+            gpointer * array,
+            gpointer excluded)
 {
   while (list) {
-    gpointer data = list->data;
-    if (data != excluded) {
+  gpointer data = list->data;
+  if (data != excluded) {
       gboolean found = FALSE;
       gpointer * a = array;
       
       while (!found && *a)
-	if (*(a++) == data)
-	  found = TRUE;
+  if (*(a++) == data)
+    found = TRUE;
       if (!found)
-	return FALSE;
-    }
-    list = list->next;
+  return FALSE;
+  }
+  list = list->next;
   }
   return TRUE;
 }
@@ -1143,29 +1143,29 @@ gboolean gts_split_is_collapsable (GtsSplit * vs)
   v1 = GTS_SPLIT_V1 (vs);
   v2 = GTS_SPLIT_V2 (vs);
   g_return_val_if_fail ((e = GTS_EDGE (gts_vertices_are_connected (v1, v2))),
-			FALSE);
+      FALSE);
 
 #ifdef DYNAMIC_SPLIT
   if (!gts_edge_collapse_is_valid (e))
-    return FALSE;
+  return FALSE;
 #else 
   i = vs->ncf;
   cf = vs->cfaces;
   while (i--) {
-    GtsTriangle * t = GTS_TRIANGLE (cf->f);
-    GtsEdge * e1 = t->e1, * e2 = t->e2, * e3 = t->e3;
+  GtsTriangle * t = GTS_TRIANGLE (cf->f);
+  GtsEdge * e1 = t->e1, * e2 = t->e2, * e3 = t->e3;
 
-    ROTATE_ORIENT (e, e1, e2, e3);
-    if (SEGMENT_USE_VERTEX (GTS_SEGMENT (e1), v2)) {
+  ROTATE_ORIENT (e, e1, e2, e3);
+  if (SEGMENT_USE_VERTEX (GTS_SEGMENT (e1), v2)) {
       e3 = e1; e1 = e2; e2 = e3;
-    }
+  }
 
-    if (!list_array_are_identical (e1->triangles, (gpointer *) cf->a1, t))
+  if (!list_array_are_identical (e1->triangles, (gpointer *) cf->a1, t))
       return FALSE;
-    if (!list_array_are_identical (e2->triangles, (gpointer *) cf->a2, t))
+  if (!list_array_are_identical (e2->triangles, (gpointer *) cf->a2, t))
       return FALSE;
-    
-    cf++;
+  
+  cf++;
   }
 #endif
   return TRUE;
@@ -1179,7 +1179,7 @@ static void expand_indent (FILE * fptr)
 {
   guint i = expand_level;
   while (i--)
-    fputc (' ', fptr);
+  fputc (' ', fptr);
 }
 #endif
 
@@ -1192,7 +1192,7 @@ static void expand_indent (FILE * fptr)
  * already expanded.
  */
 void gts_hsplit_force_expand (GtsHSplit * hs,
-			      GtsHSurface * hsurface)
+            GtsHSurface * hsurface)
 {
   guint i;
   GtsSplitCFace * cf;
@@ -1207,47 +1207,47 @@ void gts_hsplit_force_expand (GtsHSplit * hs,
 
   if (hs->parent && hs->parent->nchild == 0) {
 #ifdef DEBUG_HEXPAND
-    expand_indent (stderr); 
-    fprintf (stderr, "expand parent %p\n", hs->parent);
+  expand_indent (stderr); 
+  fprintf (stderr, "expand parent %p\n", hs->parent);
 #endif
-    gts_hsplit_force_expand (hs->parent, hsurface);
+  gts_hsplit_force_expand (hs->parent, hsurface);
   }
 
   i = GTS_SPLIT (hs)->ncf;
   cf = GTS_SPLIT (hs)->cfaces;
   while (i--) {
-    GtsTriangle ** j, * t;
+  GtsTriangle ** j, * t;
 
-    j = cf->a1;
-    while ((t = *(j++)))
+  j = cf->a1;
+  while ((t = *(j++)))
       if (IS_CFACE (t)) {
 #ifdef DEBUG_HEXPAND
-	expand_indent (stderr); 
-	fprintf (stderr, "expand a1: cf->f: %p t: %p parent_split: %p\n", 
-		 cf->f,
-		 t,
-		 GTS_HSPLIT (CFACE (t)->parent_split));
+  expand_indent (stderr); 
+  fprintf (stderr, "expand a1: cf->f: %p t: %p parent_split: %p\n", 
+     cf->f,
+     t,
+     GTS_HSPLIT (CFACE (t)->parent_split));
 #endif
-	gts_hsplit_force_expand (GTS_HSPLIT (CFACE (t)->parent_split),
-				 hsurface);
+  gts_hsplit_force_expand (GTS_HSPLIT (CFACE (t)->parent_split),
+         hsurface);
 #ifdef DEBUG_HEXPAND
-	g_assert (!IS_CFACE (t));
+  g_assert (!IS_CFACE (t));
 #endif
       }
-    j = cf->a2;
-    while ((t = *(j++)))
+  j = cf->a2;
+  while ((t = *(j++)))
       if (IS_CFACE (t)) {
 #ifdef DEBUG_HEXPAND
-	expand_indent (stderr); 
-	fprintf (stderr, "expand a2: cf->f: %p t: %p parent_split: %p\n", 
-		 cf->f,
-		 t,
-		 GTS_HSPLIT (CFACE (t)->parent_split));
+  expand_indent (stderr); 
+  fprintf (stderr, "expand a2: cf->f: %p t: %p parent_split: %p\n", 
+     cf->f,
+     t,
+     GTS_HSPLIT (CFACE (t)->parent_split));
 #endif
-	gts_hsplit_force_expand (GTS_HSPLIT (CFACE (t)->parent_split),
-				 hsurface);
+  gts_hsplit_force_expand (GTS_HSPLIT (CFACE (t)->parent_split),
+         hsurface);
       }
-    cf++;
+  cf++;
   }
 
   gts_hsplit_expand (hs, hsurface);
@@ -1290,7 +1290,7 @@ void gts_psurface_write (GtsPSurface * ps, FILE * fptr)
   g_return_if_fail (GTS_PSURFACE_IS_CLOSED (ps));
 
   while (gts_psurface_remove_vertex (ps))
-    ;
+  ;
 
   gts_surface_write (ps->s, fptr);
   
@@ -1302,70 +1302,70 @@ void gts_psurface_write (GtsPSurface * ps, FILE * fptr)
 
   fprintf (fptr, "%llu\n", ps->split->len);
   while (ps->pos) {
-    GtsSplit * vs = g_ptr_array_index (ps->split, --ps->pos);
-    GtsSplitCFace * scf = vs->cfaces;
-    GtsVertex * v1, * v2;
-    guint i = vs->ncf;
+  GtsSplit * vs = g_ptr_array_index (ps->split, --ps->pos);
+  GtsSplitCFace * scf = vs->cfaces;
+  GtsVertex * v1, * v2;
+  guint i = vs->ncf;
 
-    fprintf (fptr, "%llu %llu",
-	     GPOINTER_TO_UINT (GTS_OBJECT (vs->v)->reserved),
-	     vs->ncf);
-    if (GTS_OBJECT (vs)->klass->write)
+  fprintf (fptr, "%llu %llu",
+       GPOINTER_TO_UINT (GTS_OBJECT (vs->v)->reserved),
+       vs->ncf);
+  if (GTS_OBJECT (vs)->klass->write)
       (*GTS_OBJECT (vs)->klass->write) (GTS_OBJECT (vs), fptr);
-    fputc ('\n', fptr);
+  fputc ('\n', fptr);
 
-    v1 = GTS_IS_SPLIT (vs->v1) ? GTS_SPLIT (vs->v1)->v : GTS_VERTEX (vs->v1);
-    GTS_OBJECT (v1)->reserved = GUINT_TO_POINTER (nv++);
-    v2 = GTS_IS_SPLIT (vs->v2) ? GTS_SPLIT (vs->v2)->v : GTS_VERTEX (vs->v2);
-    GTS_OBJECT (v2)->reserved = GUINT_TO_POINTER (nv++);
+  v1 = GTS_IS_SPLIT (vs->v1) ? GTS_SPLIT (vs->v1)->v : GTS_VERTEX (vs->v1);
+  GTS_OBJECT (v1)->reserved = GUINT_TO_POINTER (nv++);
+  v2 = GTS_IS_SPLIT (vs->v2) ? GTS_SPLIT (vs->v2)->v : GTS_VERTEX (vs->v2);
+  GTS_OBJECT (v2)->reserved = GUINT_TO_POINTER (nv++);
 
-    (*GTS_OBJECT (v1)->klass->write) (GTS_OBJECT (v1), fptr);
-    fputc ('\n', fptr);
+  (*GTS_OBJECT (v1)->klass->write) (GTS_OBJECT (v1), fptr);
+  fputc ('\n', fptr);
 
-    (*GTS_OBJECT (v2)->klass->write) (GTS_OBJECT (v2), fptr);
-    fputc ('\n', fptr);
-    
-    while (i--) {
+  (*GTS_OBJECT (v2)->klass->write) (GTS_OBJECT (v2), fptr);
+  fputc ('\n', fptr);
+  
+  while (i--) {
       CFace * cf = CFACE (scf->f);
       GtsTriangle ** a, * t;
 
       fprintf (fptr, "%llu %llu",
-	       GPOINTER_TO_UINT (g_hash_table_lookup (hash, cf->t)),
-	       cf->flags);
+         GPOINTER_TO_UINT (g_hash_table_lookup (hash, cf->t)),
+         cf->flags);
       if (GTS_OBJECT_CLASS (ps->s->face_class)->write)
-	(*GTS_OBJECT_CLASS (ps->s->face_class)->write) (GTS_OBJECT (cf), fptr);
+  (*GTS_OBJECT_CLASS (ps->s->face_class)->write) (GTS_OBJECT (cf), fptr);
       fputc ('\n', fptr);
 
       a = scf->a1;
       while ((t = *(a++)))
-	fprintf (fptr, "%llu\n",
-		 GPOINTER_TO_UINT (g_hash_table_lookup (hash, t)));
+  fprintf (fptr, "%llu\n",
+     GPOINTER_TO_UINT (g_hash_table_lookup (hash, t)));
       fprintf (fptr, "0\n");
 
       a = scf->a2;
       while ((t = *(a++)))
-	fprintf (fptr, "%llu\n",
-		 GPOINTER_TO_UINT (g_hash_table_lookup (hash, t)));
+  fprintf (fptr, "%llu\n",
+     GPOINTER_TO_UINT (g_hash_table_lookup (hash, t)));
       fprintf (fptr, "0\n");
 
       g_hash_table_insert (hash, cf, GUINT_TO_POINTER (nf++));
 
       scf++;
-    }
+  }
 
-    gts_split_expand (vs, ps->s, ps->s->edge_class);
+  gts_split_expand (vs, ps->s, ps->s->edge_class);
   }
 
   gts_surface_foreach_vertex (ps->s, 
-			      (GtsFunc) gts_object_reset_reserved, NULL);
+            (GtsFunc) gts_object_reset_reserved, NULL);
   g_hash_table_destroy (hash);
 }
 
 static GtsSurface * surface_read (GtsSurface * surface, 
-				  FILE * fptr, 
-				  guint * line,
-				  GPtrArray * vertices,
-				  GPtrArray * faces)
+          FILE * fptr, 
+          guint * line,
+          GPtrArray * vertices,
+          GPtrArray * faces)
 {
   GtsEdge ** edges;
   guint n, np, ns, nt, line_number = 1;
@@ -1380,24 +1380,24 @@ static GtsSurface * surface_read (GtsSurface * surface,
 
   delim = gts_get_token (fptr, buf, " \t\n", GTS_COMMENTS);
   if (delim == EOF || delim == '\n') {
-    g_string_free (buf, TRUE);
-    return NULL;
+  g_string_free (buf, TRUE);
+  return NULL;
   }
   np = atoi (buf->str);
   delim = gts_get_token (fptr, buf, " \t\n", GTS_COMMENTS);
   if (delim == EOF || delim == '\n') {
-    g_string_free (buf, TRUE);
-    return NULL;
+  g_string_free (buf, TRUE);
+  return NULL;
   }
   ns = atoi (buf->str);
   delim = gts_get_token (fptr, buf, " \t\n", GTS_COMMENTS);
   if (delim == EOF) {
-    g_string_free (buf, TRUE);
-    return NULL;
+  g_string_free (buf, TRUE);
+  return NULL;
   }
   nt = atoi (buf->str);
   if (delim != '\n')
-    gts_get_newline (fptr);
+  gts_get_newline (fptr);
 
   g_ptr_array_set_size (vertices, np);
   g_ptr_array_set_size (faces, nt);
@@ -1406,108 +1406,108 @@ static GtsSurface * surface_read (GtsSurface * surface,
   
   n = 0;
   while (n < np && !syntax_error) {
-    GtsObject * new_vertex = 
+  GtsObject * new_vertex = 
       gts_object_new (GTS_OBJECT_CLASS (surface->vertex_class));
 
-    line_number++;
-    delim = (*GTS_OBJECT_CLASS (surface->vertex_class)->read)
+  line_number++;
+  delim = (*GTS_OBJECT_CLASS (surface->vertex_class)->read)
       (&new_vertex, fptr);
-    if (delim == EOF)
+  if (delim == EOF)
       syntax_error = TRUE;
-    else if (delim != '\n')
+  else if (delim != '\n')
       gts_get_newline (fptr);
-    g_ptr_array_index (vertices, n++) = new_vertex;
+  g_ptr_array_index (vertices, n++) = new_vertex;
   }
   if (syntax_error)
-    np = n;
+  np = n;
 
   n = 0;
   while (n < ns && !syntax_error) {
-    guint p1, p2;
+  guint p1, p2;
 
-    line_number++;
-    delim = gts_get_token (fptr, buf, " \t\n", GTS_COMMENTS);
-    if (delim == EOF || delim == '\n')
+  line_number++;
+  delim = gts_get_token (fptr, buf, " \t\n", GTS_COMMENTS);
+  if (delim == EOF || delim == '\n')
       syntax_error = TRUE;
-    else {
+  else {
       p1 = atoi (buf->str);
       delim = gts_get_token (fptr, buf, " \t\n", GTS_COMMENTS);
       if (delim == EOF)
-	syntax_error = TRUE;
+  syntax_error = TRUE;
       else {
-	p2 = atoi (buf->str);
-	if (p1 == 0 || p2 == 0 || p1 > np || p2 > np)
-	  syntax_error = TRUE;
-	else {
-	  GtsEdge * new_edge = 
-	    gts_edge_new (surface->edge_class,
-			  g_ptr_array_index (vertices, p1 - 1),
-			  g_ptr_array_index (vertices, p2 - 1));
-	  if (delim != '\n') {
-	    if (GTS_OBJECT_CLASS (surface->edge_class)->read)
-	      delim = (*GTS_OBJECT_CLASS (surface->edge_class)->read)
-		((GtsObject **) &new_edge, fptr);
-	    if (delim != '\n')
-	      gts_get_newline (fptr);
-	  }
-	  edges[n++] = new_edge;
-	}
-      }
+  p2 = atoi (buf->str);
+  if (p1 == 0 || p2 == 0 || p1 > np || p2 > np)
+    syntax_error = TRUE;
+  else {
+    GtsEdge * new_edge = 
+    gts_edge_new (surface->edge_class,
+        g_ptr_array_index (vertices, p1 - 1),
+        g_ptr_array_index (vertices, p2 - 1));
+    if (delim != '\n') {
+    if (GTS_OBJECT_CLASS (surface->edge_class)->read)
+        delim = (*GTS_OBJECT_CLASS (surface->edge_class)->read)
+    ((GtsObject **) &new_edge, fptr);
+    if (delim != '\n')
+        gts_get_newline (fptr);
     }
+    edges[n++] = new_edge;
+  }
+      }
+  }
   }
   if (syntax_error)
-    ns = n;
+  ns = n;
 
   n = 0;
   while (n < nt && !syntax_error) {
-    guint s1, s2, s3;
+  guint s1, s2, s3;
 
-    line_number++;
-    delim = gts_get_token (fptr, buf, " \t\n", GTS_COMMENTS);
-    if (delim == EOF || delim == '\n')
+  line_number++;
+  delim = gts_get_token (fptr, buf, " \t\n", GTS_COMMENTS);
+  if (delim == EOF || delim == '\n')
       syntax_error = TRUE;
-    else {
+  else {
       s1 = atoi (buf->str);
       delim = gts_get_token (fptr, buf, " \t\n", GTS_COMMENTS);
       if (delim == EOF || delim == '\n')
-	syntax_error = TRUE;
+  syntax_error = TRUE;
       else {
-	s2 = atoi (buf->str);
-	delim = gts_get_token (fptr, buf, " \t\n", GTS_COMMENTS);
-	if (delim == EOF)
-	  syntax_error = TRUE;
-	else {
-	  s3 = atoi (buf->str);
-	  if (s1 == 0 || s2 == 0 || s3 == 0 || s1 > ns || s2 > ns || s3 > ns)
-	    syntax_error = TRUE;
-	  else {
-	    GtsFace * new_face = gts_face_new (surface->face_class,
-					       edges[s1 - 1],
-					       edges[s2 - 1],
-					       edges[s3 - 1]);
-	    if (delim != '\n') {
-	      if (GTS_OBJECT_CLASS (surface->face_class)->read)
-		delim = (*GTS_OBJECT_CLASS (surface->face_class)->read)
-		  ((GtsObject **) &new_face, fptr);
-	      if (delim != '\n')
-		gts_get_newline (fptr);
-	    }
-	    gts_surface_add_face (surface, new_face);
-	    g_ptr_array_index (faces, n++) = new_face;
-	  }
-	}
-      }
+  s2 = atoi (buf->str);
+  delim = gts_get_token (fptr, buf, " \t\n", GTS_COMMENTS);
+  if (delim == EOF)
+    syntax_error = TRUE;
+  else {
+    s3 = atoi (buf->str);
+    if (s1 == 0 || s2 == 0 || s3 == 0 || s1 > ns || s2 > ns || s3 > ns)
+    syntax_error = TRUE;
+    else {
+    GtsFace * new_face = gts_face_new (surface->face_class,
+                 edges[s1 - 1],
+                 edges[s2 - 1],
+                 edges[s3 - 1]);
+    if (delim != '\n') {
+        if (GTS_OBJECT_CLASS (surface->face_class)->read)
+    delim = (*GTS_OBJECT_CLASS (surface->face_class)->read)
+      ((GtsObject **) &new_face, fptr);
+        if (delim != '\n')
+    gts_get_newline (fptr);
     }
+    gts_surface_add_face (surface, new_face);
+    g_ptr_array_index (faces, n++) = new_face;
+    }
+  }
+      }
+  }
   }
 
   if (syntax_error) {
-    while (np)
+  while (np)
       gts_object_destroy (GTS_OBJECT (g_ptr_array_index (vertices, np-- - 1)));
-    while (ns)
+  while (ns)
       gts_object_destroy (GTS_OBJECT (edges[ns-- - 1]));
-    gts_object_destroy (GTS_OBJECT (surface));
-    surface = NULL;
-    if (line)
+  gts_object_destroy (GTS_OBJECT (surface));
+  surface = NULL;
+  if (line)
       *line = line_number;
   }
 
@@ -1540,10 +1540,10 @@ static GtsSurface * surface_read (GtsSurface * surface,
  * the error occured.
  */
 GtsPSurface * gts_psurface_open (GtsPSurfaceClass * klass,
-				 GtsSurface * s,
-				 GtsSplitClass * split_class,
-				 FILE * fptr,
-				 guint * line)
+         GtsSurface * s,
+         GtsSplitClass * split_class,
+         FILE * fptr,
+         guint * line)
 {
   GtsPSurface * ps;
   guint ns = 0;
@@ -1561,13 +1561,13 @@ GtsPSurface * gts_psurface_open (GtsPSurfaceClass * klass,
   ps->faces = g_ptr_array_new ();
 
   if (surface_read (s, fptr, line, ps->vertices, ps->faces) == NULL)
-    return ps;
+  return ps;
 
   ps->min = gts_surface_vertex_number (ps->s);
   ps->pos = 0;
 
   if (fscanf (fptr, "%llu", &ns) == 1)
-    g_ptr_array_set_size (ps->split, ns);
+  g_ptr_array_set_size (ps->split, ns);
 
   return ps;
 }
@@ -1596,23 +1596,23 @@ GtsSplit * gts_psurface_read_vertex (GtsPSurface * ps, FILE * fptr)
   g_return_val_if_fail (!GTS_PSURFACE_IS_CLOSED (ps), NULL);
   
   if (ps->pos >= ps->split->len)
-    return NULL;
+  return NULL;
 
   buf = g_string_new ("");
   delim = gts_get_token (fptr, buf, " \t\n", GTS_COMMENTS);
   if (delim == EOF || delim == '\n') {
-    g_string_free (buf, TRUE);
-    return NULL;
+  g_string_free (buf, TRUE);
+  return NULL;
   }
   nv = atoi (buf->str);
   if (nv == 0 || nv > ps->vertices->len) {
-    g_string_free (buf, TRUE);
-    return NULL;
+  g_string_free (buf, TRUE);
+  return NULL;
   }
   delim = gts_get_token (fptr, buf, " \t\n", GTS_COMMENTS);
   if (delim == EOF) {
-    g_string_free (buf, TRUE);
-    return NULL;
+  g_string_free (buf, TRUE);
+  return NULL;
   }
   ncf = atoi (buf->str);
   
@@ -1624,42 +1624,42 @@ GtsSplit * gts_psurface_read_vertex (GtsPSurface * ps, FILE * fptr)
   vs->ncf = 0;
 
   if (delim != '\n') {
-    if (GTS_OBJECT (vs)->klass->read)
+  if (GTS_OBJECT (vs)->klass->read)
       delim = (*GTS_OBJECT (vs)->klass->read) ((GtsObject **) &vs, fptr);
-    if (delim != '\n')
+  if (delim != '\n')
       gts_get_newline (fptr);
   }
   
   vs->v1 = gts_object_new (GTS_OBJECT_CLASS (ps->s->vertex_class));
 
   delim = (*GTS_OBJECT_CLASS (ps->s->vertex_class)->read) 
-    (&(vs->v1), fptr);
+  (&(vs->v1), fptr);
   if (delim == EOF)
-    ok = FALSE;
+  ok = FALSE;
   else {
-    vs->v1->reserved = vs;
-    g_ptr_array_add (ps->vertices, vs->v1);
+  vs->v1->reserved = vs;
+  g_ptr_array_add (ps->vertices, vs->v1);
 
-    if (delim != '\n') 
+  if (delim != '\n') 
       gts_get_newline (fptr);
 
-    vs->v2 = gts_object_new (GTS_OBJECT_CLASS (ps->s->vertex_class));
+  vs->v2 = gts_object_new (GTS_OBJECT_CLASS (ps->s->vertex_class));
 
-    delim = (*GTS_OBJECT_CLASS (ps->s->vertex_class)->read) 
+  delim = (*GTS_OBJECT_CLASS (ps->s->vertex_class)->read) 
       (&(vs->v2), fptr);
-    if (delim == EOF)
+  if (delim == EOF)
       ok = FALSE;
-    else {
+  else {
       vs->v2->reserved = vs;
       g_ptr_array_add (ps->vertices, vs->v2);
 
       if (delim != '\n')
-	gts_get_newline (fptr);
-    }
+  gts_get_newline (fptr);
+  }
   }
   if (ok) {
-    scf = vs->cfaces = g_malloc (sizeof (GtsSplitCFace)*ncf);
-    while (ok && ncf--) {
+  scf = vs->cfaces = g_malloc (sizeof (GtsSplitCFace)*ncf);
+  while (ok && ncf--) {
       guint it, flags;
       GtsFace * f;
       CFace * cf;
@@ -1667,78 +1667,78 @@ GtsSplit * gts_psurface_read_vertex (GtsPSurface * ps, FILE * fptr)
 
       delim = gts_get_token (fptr, buf, " \t\n", GTS_COMMENTS);
       if (delim == EOF || delim == '\n')
-	ok = FALSE;
+  ok = FALSE;
       else {
-	it = atoi (buf->str);
-	delim = gts_get_token (fptr, buf, " \t\n", GTS_COMMENTS);
-	if (delim == EOF || it == 0 || it > ps->faces->len)
-	  ok = FALSE;
-	else {
-	  flags = atoi (buf->str);
-	  f = GTS_FACE (gts_object_new (GTS_OBJECT_CLASS (ps->s->face_class)));
-	  
-	  if (delim != '\n') {
-	    if (GTS_OBJECT (f)->klass->read)
-	      delim = (*GTS_OBJECT (f)->klass->read) 
-		((GtsObject **) &f, fptr);
-	    if (delim != '\n')
-	      gts_get_newline (fptr);
-	  }
-	  scf->f = f;
-
-	  cf = (CFace *) f;
-	  GTS_OBJECT (cf)->klass = GTS_OBJECT_CLASS (cface_class ());
-	  cf->parent_split = vs;
-	  cf->t = g_ptr_array_index (ps->faces, it - 1);
-	  cf->flags = flags;
-	  
-	  a = g_ptr_array_new ();
-	  while (ok && fscanf (fptr, "%llu", &it) == 1 && it > 0) {
-	    if (it > ps->faces->len)
-	      ok = FALSE;
-	    else
-	      g_ptr_array_add (a, g_ptr_array_index (ps->faces, it - 1));
-	  }
-	  g_ptr_array_add (a, NULL);
-	  scf->a1 = (GtsTriangle **) a->pdata;
-	  g_ptr_array_free (a, FALSE);
-	  
-	  a = g_ptr_array_new ();
-	  while (ok && fscanf (fptr, "%llu", &it) == 1 && it > 0) {
-	    if (it > ps->faces->len)
-	      ok = FALSE;
-	    else
-	      g_ptr_array_add (a, g_ptr_array_index (ps->faces, it - 1));
-	  }
-	  g_ptr_array_add (a, NULL);
-	  scf->a2 = (GtsTriangle **) a->pdata;
-	  g_ptr_array_free (a, FALSE);
-	  
-	  g_ptr_array_add (ps->faces, f);
-	  
-	  vs->ncf++;
-	  scf++;
-	}
-      }
+  it = atoi (buf->str);
+  delim = gts_get_token (fptr, buf, " \t\n", GTS_COMMENTS);
+  if (delim == EOF || it == 0 || it > ps->faces->len)
+    ok = FALSE;
+  else {
+    flags = atoi (buf->str);
+    f = GTS_FACE (gts_object_new (GTS_OBJECT_CLASS (ps->s->face_class)));
+    
+    if (delim != '\n') {
+    if (GTS_OBJECT (f)->klass->read)
+        delim = (*GTS_OBJECT (f)->klass->read) 
+    ((GtsObject **) &f, fptr);
+    if (delim != '\n')
+        gts_get_newline (fptr);
     }
+    scf->f = f;
+
+    cf = (CFace *) f;
+    GTS_OBJECT (cf)->klass = GTS_OBJECT_CLASS (cface_class ());
+    cf->parent_split = vs;
+    cf->t = g_ptr_array_index (ps->faces, it - 1);
+    cf->flags = flags;
+    
+    a = g_ptr_array_new ();
+    while (ok && fscanf (fptr, "%llu", &it) == 1 && it > 0) {
+    if (it > ps->faces->len)
+        ok = FALSE;
+    else
+        g_ptr_array_add (a, g_ptr_array_index (ps->faces, it - 1));
+    }
+    g_ptr_array_add (a, NULL);
+    scf->a1 = (GtsTriangle **) a->pdata;
+    g_ptr_array_free (a, FALSE);
+    
+    a = g_ptr_array_new ();
+    while (ok && fscanf (fptr, "%llu", &it) == 1 && it > 0) {
+    if (it > ps->faces->len)
+        ok = FALSE;
+    else
+        g_ptr_array_add (a, g_ptr_array_index (ps->faces, it - 1));
+    }
+    g_ptr_array_add (a, NULL);
+    scf->a2 = (GtsTriangle **) a->pdata;
+    g_ptr_array_free (a, FALSE);
+    
+    g_ptr_array_add (ps->faces, f);
+    
+    vs->ncf++;
+    scf++;
+  }
+      }
+  }
   }
 
   if (ok) {
-    if ((parent = GTS_OBJECT (vs->v)->reserved)) {
+  if ((parent = GTS_OBJECT (vs->v)->reserved)) {
       GTS_OBJECT (vs->v)->reserved = NULL;
       if (parent->v1 == GTS_OBJECT (vs->v))
-	parent->v1 = GTS_OBJECT (vs);
+  parent->v1 = GTS_OBJECT (vs);
       else {
-	g_assert (parent->v2 == GTS_OBJECT (vs->v));
-	parent->v2 = GTS_OBJECT (vs);
+  g_assert (parent->v2 == GTS_OBJECT (vs->v));
+  parent->v2 = GTS_OBJECT (vs);
       }
-    }
-    g_ptr_array_index (ps->split, ps->pos++) = vs;
-    gts_split_expand (vs, ps->s, ps->s->edge_class);
-    
-    g_string_free (buf, TRUE);
+  }
+  g_ptr_array_index (ps->split, ps->pos++) = vs;
+  gts_split_expand (vs, ps->s, ps->s->edge_class);
+  
+  g_string_free (buf, TRUE);
 
-    return vs;
+  return vs;
   }
 
   if (vs->v1) gts_object_destroy (vs->v1);
@@ -1765,18 +1765,18 @@ void gts_psurface_close (GtsPSurface * ps)
   ps->faces = ps->vertices = NULL;
   
   gts_surface_foreach_vertex (ps->s, 
-			      (GtsFunc) gts_object_reset_reserved, NULL);
+            (GtsFunc) gts_object_reset_reserved, NULL);
   if (ps->pos > 0)
-    g_ptr_array_set_size (ps->split, ps->pos);
+  g_ptr_array_set_size (ps->split, ps->pos);
   if (ps->split->len > 1) {
-    guint i, half = ps->split->len/2, n = ps->split->len - 1;
-    
-    for (i = 0; i < half; i++) {
+  guint i, half = ps->split->len/2, n = ps->split->len - 1;
+  
+  for (i = 0; i < half; i++) {
       gpointer p1 = g_ptr_array_index (ps->split, i);
       gpointer p2 = g_ptr_array_index (ps->split, n - i);
       g_ptr_array_index (ps->split, n - i) = p1;
       g_ptr_array_index (ps->split, i) = p2;
-    }
+  }
   }
   ps->pos = 0;
 }

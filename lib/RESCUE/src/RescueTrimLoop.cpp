@@ -18,9 +18,9 @@
 
 RescueTrimLoop::RescueTrimLoop(RescueContext *context, RESCUECHAR *loopClassIn)
                   :RescueObject(context)
-    ,faceHint(-1)
-    ,ownerSet(0)
-    ,propertyID(0)
+  ,faceHint(-1)
+  ,ownerSet(0)
+  ,propertyID(0)
 {
   isA = R_RescueTrimLoop;
   owner = 0;
@@ -30,9 +30,9 @@ RescueTrimLoop::RescueTrimLoop(RescueContext *context, RESCUECHAR *loopClassIn)
 
 RescueTrimLoop::RescueTrimLoop(RescueWireframeOwner *ownerIn, RESCUECHAR *loopClassIn)
                   :RescueObject(ownerIn->ParentModel()->Context())
-    ,faceHint(-1)
-    ,ownerSet(0)
-    ,propertyID(0)
+  ,faceHint(-1)
+  ,ownerSet(0)
+  ,propertyID(0)
 {
   isA = R_RescueTrimLoop;
   loopEdges = new cSetRescueTrimEdge();
@@ -45,7 +45,7 @@ RescueTrimLoop::~RescueTrimLoop()
 {
   if (loopClass != 0)
   {
-    delete loopClass;
+  delete loopClass;
   }
   delete loopEdges;
 }
@@ -67,24 +67,24 @@ void RescueTrimLoop::Archive(RescueContext *context, FILE *archiveFile)
   myfprintf(context, archiveFile, "; trim loop");
   if (context->FileVersion() >= 24)
   {
-    myfprintf(context, archiveFile, Identifier());
+  myfprintf(context, archiveFile, Identifier());
   }
   if (context->FileVersion() >= 23)
   {
-    loopClass->Archive(context, archiveFile);
+  loopClass->Archive(context, archiveFile);
   }
   if (context->FileVersion() >= 28)
   {
-    myfprintf(context, archiveFile, faceHint);
+  myfprintf(context, archiveFile, faceHint);
   }
   if (context->FileVersion() >= 29)
   {
-    myfprintf(context, archiveFile, propertyID);
+  myfprintf(context, archiveFile, propertyID);
   }
   loopEdges->Archive(context, archiveFile);
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -99,41 +99,41 @@ RescueTrimLoop::RescueTrimLoop(RescueContext *context, FILE *archiveFile)
   isA = R_RescueTrimLoop;
   if (context->ReadFileVersion() >= 24)
   {
-    ReadId(context, archiveFile);
+  ReadId(context, archiveFile);
   }
   if (context->ReadFileVersion() >= 23)
   {
-    loopClass = new RCHString(context, archiveFile);
+  loopClass = new RCHString(context, archiveFile);
   }
   else
   {
-    loopClass = new RCHString();
+  loopClass = new RCHString();
   }
   if (context->ReadFileVersion() >= 28)
   {
-    myfscanf(context, archiveFile, &faceHint);
+  myfscanf(context, archiveFile, &faceHint);
   }
   if (context->ReadFileVersion() >= 29)
   {
-    myfscanf(context, archiveFile, &propertyID);
+  myfscanf(context, archiveFile, &propertyID);
   }
   loopEdges = new cSetRescueTrimEdge();
   loopEdges->UnArchive(context, archiveFile);
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
 RescueTrimLoop::RescueTrimLoop(RescueContext *context, cSetRescueTrimEdge *loopEdgesIn)
-                        :RescueObject(context)
+            :RescueObject(context)
    ,faceHint(-1)
    ,owner(0)
    ,ownerSet(0)
@@ -152,8 +152,8 @@ void RescueTrimLoop::Relink(RescueObject *object)
   RescueTrimEdge *edge = NthLoopEdge(ndx++);
   while (edge != 0)
   {
-    edge->ownerLoop = this;
-    edge = NthLoopEdge(ndx++);
+  edge->ownerLoop = this;
+  edge = NthLoopEdge(ndx++);
   }
 }
 
@@ -162,7 +162,7 @@ RescueProperty *RescueTrimLoop::OwnerProperty(RescueModel *model)
   RescueProperty *myReturn = 0;
   if (propertyID != 0)
   {
-    myReturn = model->GlobalPropertyIdentifiedBy(propertyID);
+  myReturn = model->GlobalPropertyIdentifiedBy(propertyID);
   }
   return myReturn;
 }
@@ -173,27 +173,27 @@ RESCUEBOOL RescueTrimLoop::IsLoop(RescueModel *model)
   RESCUEINT64 howMany = CountOfLoopEdge();
   if (howMany > 1)
   {
-    RESCUEINT64 ndx = 0;
-    RescueTrimEdge *edge = NthLoopEdge(ndx++);
-    RescueTrimEdge *first = edge;
-    myReturn = TRUE;
+  RESCUEINT64 ndx = 0;
+  RescueTrimEdge *edge = NthLoopEdge(ndx++);
+  RescueTrimEdge *first = edge;
+  myReturn = TRUE;
 
-    while (myReturn == TRUE && ndx < howMany)
-    {
+  while (myReturn == TRUE && ndx < howMany)
+  {
       RescueTrimEdge *adjacent = NthLoopEdge(ndx++);
       if (edge->EndingPoint(model) != adjacent->StartingPoint(model))
       {
-        myReturn = FALSE;
+    myReturn = FALSE;
       }
 /*
   Means loop is broken in the middle.
 */
       edge = adjacent;
-    }
-    if (edge->EndingPoint(model) != first->StartingPoint(model))
-    {
+  }
+  if (edge->EndingPoint(model) != first->StartingPoint(model))
+  {
       myReturn = FALSE;
-    }
+  }
 /*
   Means loop does not start and end at the same place.
 */
@@ -205,11 +205,11 @@ RESCUEBOOL RescueTrimLoop::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueTrimLoop)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueObject::IsOfType(thisType);
+  return RescueObject::IsOfType(thisType);
   }
 }
 
@@ -218,10 +218,10 @@ RESCUEINT32 RescueTrimLoop::CountOfLoopEdge(RESCUEBOOL throwIfTooBig)
   RESCUEINT64 output = CountOfLoopEdge();
   if (throwIfTooBig)
   {
-    if (output > 2147483647 || output < -2147483647)
-    {
+  if (output > 2147483647 || output < -2147483647)
+  {
       throw "Model is too large to be read in 32 bit mode.";
-    }
+  }
   }
   return (RESCUEINT32) output;
 }

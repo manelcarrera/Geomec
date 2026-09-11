@@ -15,11 +15,11 @@
   Constructor of the tensor result
 */
 CScalarValueSet::CScalarValueSet(const CResultRegister& parent, 
-								 const CDepletionStage& stage, 
-								 const CAnalysisType& antype, 
-								 int nStart,
-								 bool bInterface,
-								 bool bChange)
+                 const CDepletionStage& stage, 
+                 const CAnalysisType& antype, 
+                 int nStart,
+                 bool bInterface,
+                 bool bChange)
 : m_nStart(nStart), 
   m_antype(antype), 
   m_bChange(bChange),
@@ -34,20 +34,20 @@ CScalarValueSet::CScalarValueSet(const CResultRegister& parent,
 */
 const geo::IElementSet &CScalarValueSet::ElementSet() const
 {
-	assert(m_pParent);
-	return m_pParent->Mesh().Mesh();
+  assert(m_pParent);
+  return m_pParent->Mesh().Mesh();
 }
 
 /*!
   Returns a pointer to the array of values of the result register
 */
 const double* CScalarValueSet::ValuesFromCache( int nElementIndex,
-		                                       const CAnalysisType& antype,
-								               const CDepletionStage& stage,
-								               int nStart) const 
+                                           const CAnalysisType& antype,
+                               const CDepletionStage& stage,
+                               int nStart) const 
 {
   return m_pParent->ValuesFromCache(nElementIndex, 
-                                    m_pParent->ColumnNumber(antype, stage.Index(), nStart));
+                  m_pParent->ColumnNumber(antype, stage.Index(), nStart));
 }
 
 /*!
@@ -55,32 +55,32 @@ const double* CScalarValueSet::ValuesFromCache( int nElementIndex,
 */
 void CScalarValueSet::ElementValues(TValueVec& values, int iElementIndex, geo::IParallelInitializationCallback * /*cb*/) const
 {
-	assert(values.size() == ElementSet().Element(iElementIndex).NrOfNodes());
+  assert(values.size() == ElementSet().Element(iElementIndex).NrOfNodes());
 
-	bool bInterface = dynamic_cast<const geo::IInterfaceElement*>( &ElementSet().Element(iElementIndex) );
+  bool bInterface = dynamic_cast<const geo::IInterfaceElement*>( &ElementSet().Element(iElementIndex) );
 
-	if(!ElementValuesAvailable(iElementIndex) || bInterface != m_bInterface ) {
-		// Result does not exist
-		for(size_t i = 0; i < values.size(); i++) values[i] = geo::CValue();
-		return;
-	}
+  if(!ElementValuesAvailable(iElementIndex) || bInterface != m_bInterface ) {
+    // Result does not exist
+    for(size_t i = 0; i < values.size(); i++) values[i] = geo::CValue();
+    return;
+  }
 
-	// Read in tensor
-	const double *pVectorVal = ValuesFromCache(iElementIndex, m_antype, *m_pStage, m_nStart);
-	assert(pVectorVal);
+  // Read in tensor
+  const double *pVectorVal = ValuesFromCache(iElementIndex, m_antype, *m_pStage, m_nStart);
+  assert(pVectorVal);
 
-	if( m_bChange ) {
-		const CDepletionStage& init_stage = m_pParent->DepletionStageEntry().MarkedAsInitialStage();
-		const double *pInitVectorVal = ValuesFromCache(iElementIndex, m_antype, init_stage, m_nStart);
-		assert(pInitVectorVal);
-		for(size_t i = 0; i < values.size(); i++) {
-			values[i] = geo::CValue(pVectorVal[i] - pInitVectorVal[i]);
-		}
-	} else {
-		for(size_t i = 0; i < values.size(); i++) {
-			values[i] = geo::CValue(pVectorVal[i]);
-		}
-	}
+  if( m_bChange ) {
+    const CDepletionStage& init_stage = m_pParent->DepletionStageEntry().MarkedAsInitialStage();
+    const double *pInitVectorVal = ValuesFromCache(iElementIndex, m_antype, init_stage, m_nStart);
+    assert(pInitVectorVal);
+    for(size_t i = 0; i < values.size(); i++) {
+      values[i] = geo::CValue(pVectorVal[i] - pInitVectorVal[i]);
+    }
+  } else {
+    for(size_t i = 0; i < values.size(); i++) {
+      values[i] = geo::CValue(pVectorVal[i]);
+    }
+  }
 }
 
 /*!
@@ -88,7 +88,7 @@ void CScalarValueSet::ElementValues(TValueVec& values, int iElementIndex, geo::I
 */
 bool CScalarValueSet::IsEmpty() const
 {
-	return true;
+  return true;
 }
 
 bool CScalarValueSet::ElementValuesAvailable(int nElementIndex ) const
@@ -96,8 +96,8 @@ bool CScalarValueSet::ElementValuesAvailable(int nElementIndex ) const
   if(!m_pParent->ResultAvailable(*m_pStage, m_antype, nElementIndex, m_nStart)) return false;
 
   if(m_bChange) {
-	const CDepletionStage& init_stage = m_pParent->DepletionStageEntry().MarkedAsInitialStage();
-	if(!m_pParent->ResultAvailable(init_stage, m_antype, nElementIndex, m_nStart)) return false;
+  const CDepletionStage& init_stage = m_pParent->DepletionStageEntry().MarkedAsInitialStage();
+  if(!m_pParent->ResultAvailable(init_stage, m_antype, nElementIndex, m_nStart)) return false;
   }
 
   return true;

@@ -29,7 +29,7 @@ void CSurfaceBase_Delegate::AppendContextMenu(CContextMenuInvoker &invoker)
   typedef CSingleCommandTemplate <CSurfaceBase_Delegate> TSurfaceCommand;
 
   invoker.AddCommand(_T("&Export"),
-    *(new TSurfaceCommand(*this, &CSurfaceBase_Delegate::ExportSurface)));
+  *(new TSurfaceCommand(*this, &CSurfaceBase_Delegate::ExportSurface)));
   invoker.AddSeparator();
 
   IElementSet_Delegate::AppendContextMenu(invoker);
@@ -44,15 +44,15 @@ void CSurfaceBase_Delegate::ExportSurface()
 {
   QString sFileName = m_surfaceBase->Name();
   CTnoFileDialog dlg(FALSE, "ts", sFileName.toStdString().c_str(),
-    OFN_OVERWRITEPROMPT, "GoCad surface (*.ts)|*.ts|ASCII Files (*.dat;*.txt)|"
-    "*.dat;*.txt|Excel Files (*.xls;*.xls*)|*.xls;*.xls*|||");
+  OFN_OVERWRITEPROMPT, "GoCad surface (*.ts)|*.ts|ASCII Files (*.dat;*.txt)|"
+  "*.dat;*.txt|Excel Files (*.xls;*.xls*)|*.xls;*.xls*|||");
 
   if (dlg.DoModal() == IDOK)
   {
-    CFemAppDoc& doc = *GetGeomecDoc();
-    QString sExt = dlg.GetPathName().Right(4);
+  CFemAppDoc& doc = *GetGeomecDoc();
+  QString sExt = dlg.GetPathName().Right(4);
 
-    m_surfaceBase->ExportSurface(sExt, doc.UnitNode(),
+  m_surfaceBase->ExportSurface(sExt, doc.UnitNode(),
       (LPCSTR) dlg.GetPathName());
   }
 }
@@ -67,50 +67,50 @@ void CSurfaceEntry_Delegate::AppendContextMenu(CContextMenuInvoker &invoker)
 {
   typedef CSingleCommandTemplate <CSurfaceEntry> TEntryCommand;
   typedef CSingleCommandTemplate <CSurfaceEntry_Delegate>
-    TEntry_DelegateCommand;
+  TEntry_DelegateCommand;
 
   invoker.AddCommand(_T("&Import..."),
-    *(new TEntry_DelegateCommand(*this, &CSurfaceEntry_Delegate::Import,
+  *(new TEntry_DelegateCommand(*this, &CSurfaceEntry_Delegate::Import,
       &CSurfaceEntry_Delegate::CanImport)));
   invoker.AddSeparator();
   invoker.AddCommand(_T("Export surfaces"),
-    *(new TEntry_DelegateCommand(*this, &CSurfaceEntry_Delegate::ExportSurfaces,
+  *(new TEntry_DelegateCommand(*this, &CSurfaceEntry_Delegate::ExportSurfaces,
       &CSurfaceEntry_Delegate::GetSurfaceCount)));
   invoker.AddCommand(_T("Delete unused surfaces"),
-    *(new TEntryCommand(*m_surfaceEntry, &CSurfaceEntry::RemoveUnused,
+  *(new TEntryCommand(*m_surfaceEntry, &CSurfaceEntry::RemoveUnused,
       &CSurfaceEntry::NonUsedSurface)));
   invoker.AddCommand(_T("Unassign surfaces"),
-    *(new TEntry_DelegateCommand(*this,
+  *(new TEntry_DelegateCommand(*this,
       &CSurfaceEntry_Delegate::DoSelectAndUnassignSurfaces,
       &CSurfaceEntry_Delegate::CanSelectAndUnassignSurfaces)));
   invoker.AddCommand(_T("Delete surfaces"),
-    *(new TEntry_DelegateCommand(*this,
+  *(new TEntry_DelegateCommand(*this,
       &CSurfaceEntry_Delegate::DoSelectAndDeleteSurfaces,
       &CSurfaceEntry_Delegate::CanSelectAndDeleteSurfaces)));
   invoker.AddSeparator();
   invoker.AddCommand(_T("Create horizons"),
-    *(new TEntry_DelegateCommand(*this,
+  *(new TEntry_DelegateCommand(*this,
       &CSurfaceEntry_Delegate::DoSelectAndCreateHorizons,
       &CSurfaceEntry_Delegate::NonUsedSurface)));
   invoker.AddCommand(_T("Create boundary sides"),
-    *(new TEntry_DelegateCommand(*this,
+  *(new TEntry_DelegateCommand(*this,
       &CSurfaceEntry_Delegate::DoSelectAndCreateSubBoundarySides,
       &CSurfaceEntry_Delegate::CanSelectAndCreateSubBoundarySides)));
   invoker.AddCommand(_T("Auto-assign boundary top and bottom"),
-    *(new TEntry_DelegateCommand(*this,
+  *(new TEntry_DelegateCommand(*this,
       &CSurfaceEntry_Delegate::DoCreateSubBoundaryTopAndBottom,
       &CSurfaceEntry_Delegate::CanCreateSubBoundaryTopAndBottom)));
   invoker.AddCommand(_T("Create faults"),
-    *(new TEntry_DelegateCommand(*this,
+  *(new TEntry_DelegateCommand(*this,
       &CSurfaceEntry_Delegate::DoSelectAndCreateFaults,
       &CSurfaceEntry_Delegate::CanSelectAndCreateFaults)));
   invoker.AddSeparator();
   invoker.AddCommand(_T("Merge surfaces in faults"),
-    *(new TEntry_DelegateCommand(*this,
+  *(new TEntry_DelegateCommand(*this,
       &CSurfaceEntry_Delegate::DoMergeFaultSurfaces,
       &CSurfaceEntry_Delegate::CanMergeFaultSurfaces)));
   invoker.AddCommand(_T("Merge surfaces"),
-    *(new TEntry_DelegateCommand(*this,
+  *(new TEntry_DelegateCommand(*this,
       &CSurfaceEntry_Delegate::MergeSurfaces,
       &CSurfaceEntry_Delegate::GetSurfaceCount)));
 
@@ -120,10 +120,10 @@ void CSurfaceEntry_Delegate::AppendContextMenu(CContextMenuInvoker &invoker)
   if (pApp->KeyFile().Unlocked())
   {
 #endif
-    invoker.AddSeparator();
-    invoker.AddCommand(_T("Cut surfaces"),
+  invoker.AddSeparator();
+  invoker.AddCommand(_T("Cut surfaces"),
       *(new TEntry_DelegateCommand(*this, &CSurfaceEntry_Delegate::CutSurfaces,
-        &CSurfaceEntry_Delegate::NonUsedSurface)));
+    &CSurfaceEntry_Delegate::NonUsedSurface)));
 #ifdef ZOOMIN_KEYFILE
   }
 #endif
@@ -132,13 +132,13 @@ void CSurfaceEntry_Delegate::AppendContextMenu(CContextMenuInvoker &invoker)
 /// \brief menu entry will be enabled or not
 bool CSurfaceEntry_Delegate::CanImport() const
 {
-	return GetGeomecDoc()->Model() != 0;
+  return GetGeomecDoc()->Model() != 0;
 }
 
 /// \brief Import (surface) files
 void CSurfaceEntry_Delegate::Import()
 {
-	GetGeomecDoc()->OnImportSurface();
+  GetGeomecDoc()->OnImportSurface();
 }
 
 bool CSurfaceEntry_Delegate::GetSurfaceCount() const
@@ -154,17 +154,17 @@ void CSurfaceEntry_Delegate::ExportSurfaces()
 
   if (slected_surfaces.size() == 0)
   {
-    return;
+  return;
   }
 
   CTnoFileDialog dlg(FALSE, "mx", "Surfaces.mx", OFN_OVERWRITEPROMPT,
-    "GoCad surface (*.mx)|*.mx|All Files (*.*)|*.*||");
+  "GoCad surface (*.mx)|*.mx|All Files (*.*)|*.*||");
 
   if (dlg.DoModal() == IDOK)
   {
-    CFemAppDoc& doc = *GetGeomecDoc();
+  CFemAppDoc& doc = *GetGeomecDoc();
 
-    m_surfaceEntry->ExportSurfaces(slected_surfaces, (LPCSTR)dlg.GetPathName(), doc.UnitNode());
+  m_surfaceEntry->ExportSurfaces(slected_surfaces, (LPCSTR)dlg.GetPathName(), doc.UnitNode());
   }
 }
 
@@ -181,7 +181,7 @@ void CSurfaceEntry_Delegate::DoSelectAndCreateHorizons()
 
   if (slected_surfaces.size() == 0)
   {
-    return;
+  return;
   }
 
   CGeomecDoc* pDoc = GetGeomecDoc();
@@ -206,7 +206,7 @@ void CSurfaceEntry_Delegate::DoSelectAndCreateSubBoundarySides()
 
   if (slected_surfaces.size() == 0)
   {
-    return;
+  return;
   }
 
   CGeomecDoc* pDoc = GetGeomecDoc();
@@ -247,7 +247,7 @@ void CSurfaceEntry_Delegate::DoSelectAndCreateFaults()
 
   if (slected_surfaces.size() == 0)
   {
-    return;
+  return;
   }
 
   CGeomecDoc* pDoc = GetGeomecDoc();
@@ -269,7 +269,7 @@ void CSurfaceEntry_Delegate::DoSelectAndUnassignSurfaces()
 
   if (selected_surfaces.size() == 0)
   {
-    return;
+  return;
   }
 
   m_surfaceEntry->DoSelectAndUnassignSurfaces(selected_surfaces);
@@ -288,7 +288,7 @@ void CSurfaceEntry_Delegate::DoSelectAndDeleteSurfaces()
 
   if (selected_surfaces.size() == 0)
   {
-    return;
+  return;
   }
 
   m_surfaceEntry->DoSelectAndDeleteSurfaces(selected_surfaces);
@@ -312,7 +312,7 @@ void CSurfaceEntry_Delegate::DoMergeFaultSurfaces()
 
 void CSurfaceEntry_Delegate::CutSurfaces()
 {
-	DoCutSurfaces();
+  DoCutSurfaces();
 }
 
 void CSurfaceEntry_Delegate::MergeSurfaces()
@@ -323,7 +323,7 @@ void CSurfaceEntry_Delegate::MergeSurfaces()
 
   if (selected_surfaces.size() < 2)
   {
-    return;
+  return;
   }
 
   m_surfaceEntry->MergeSurfaces(selected_surfaces);
@@ -344,39 +344,39 @@ void CSurfaceEntry_Delegate::DoCutSurfaces(const geo::CBox* pbox)
 
   if (slected_surfaces.size() == 0)
   {
-    return;
+  return;
   }
 
   CCutSurfaceDlg* pDlg;
 
   if (pbox)
   {
-    pDlg = new CCutSurfaceDlg(*pbox, GetGeomecDoc()->UnitNode().Unit());
+  pDlg = new CCutSurfaceDlg(*pbox, GetGeomecDoc()->UnitNode().Unit());
   }
   else
   {
-    pDlg = new CCutSurfaceDlg(GetGeomecDoc()->UnitNode().Unit());
+  pDlg = new CCutSurfaceDlg(GetGeomecDoc()->UnitNode().Unit());
   }
 
   for (size_t i = 0; i < slected_surfaces.size(); i++)
   {
-    STNamedSurface& ns = slected_surfaces.at(i);
+  STNamedSurface& ns = slected_surfaces.at(i);
 
-    pDlg->InsertSurface(ns.Surface, ns.Name.c_str());
+  pDlg->InsertSurface(ns.Surface, ns.Name.c_str());
   }
 
   if (pDlg->DoModal() == IDCANCEL)
   {
-    delete pDlg;
-    return;
+  delete pDlg;
+  return;
   }
 
   CGeomecDoc* pDoc = GetGeomecDoc();
   CModelBase* pModel = static_cast<CModelBase*>(pDoc->Model());
   assert(pModel);
   m_surfaceEntry->DoCutSurfaces(*pModel, pDlg->CutSurfacesCount(),
-    pDlg->getCutSurfaces(), pDlg->getSideSurfaces(), (LPCSTR) pDlg->BaseName(),
-    pDlg->GetSides(), pbox);
+  pDlg->getCutSurfaces(), pDlg->getSideSurfaces(), (LPCSTR) pDlg->BaseName(),
+  pDlg->GetSides(), pbox);
 
   delete pDlg;
 }
@@ -387,44 +387,44 @@ void CSurfaceEntry_Delegate::SelectSurfaces(CNamedSurfaces& ret, eCheckUsed chec
   SelSurfDlg dlgsel(NULL, caption);
 
   for (CSurfaceEntry::TNodeSet::const_iterator it = stSurfaces.begin();
-    it != stSurfaces.end(); it++)
+  it != stSurfaces.end(); it++)
   {
-    switch(check)
-    {
-    case USED_IN_MODEL:
+  switch(check)
+  {
+  case USED_IN_MODEL:
       if ((*it)->CanDestroy())
       {
-        continue;
+    continue;
       }
       break;
-    case NOT_USED_IN_MODEL:
+  case NOT_USED_IN_MODEL:
       if (!(*it)->CanDestroy())
       {
-        continue;
+    continue;
       }
       break;
-    }
+  }
 
-    const CSurfaceBase* sb = (*it);
-    const geo::ISurface* surf =
+  const CSurfaceBase* sb = (*it);
+  const geo::ISurface* surf =
       dynamic_cast <const geo::ISurface*> (&((*it)->Surface()));
 
-    if (surf)
-    {
+  if (surf)
+  {
       dlgsel.InsertSurface(surf, sb->Name().toStdString().c_str());
-    }
+  }
   }
 
   if (dlgsel.DoModal() == IDOK)
   {
-    int i;
-    int count = dlgsel.SelectedSurfacesCount();
+  int i;
+  int count = dlgsel.SelectedSurfacesCount();
 
-    for (i = 0; i < count; i++)
-    {
+  for (i = 0; i < count; i++)
+  {
       const STNamedSurface& ns = dlgsel.GetSelectedSurfaces(i);
 
       ret.push_back(ns);
-    }
+  }
   }
 }

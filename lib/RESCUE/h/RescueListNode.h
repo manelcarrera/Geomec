@@ -1,11 +1,11 @@
 /*************************************************************************
 
-        RescueListNode.h
+    RescueListNode.h
 
  Class for lists.  This specialized object keeps track
   of objects, where the key is the void* pointer to the object.
 
-        Rod Hanks               May, 1999
+    Rod Hanks               May, 1999
 
 ****************************************************************************/
 #ifndef RescueListNode_H

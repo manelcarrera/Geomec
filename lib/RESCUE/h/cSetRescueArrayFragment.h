@@ -1,10 +1,10 @@
 /*************************************************************************
 
-        cSetRescueArrayFragment.h
+    cSetRescueArrayFragment.h
 
  Keeps a list of pointers to some RescueArrayFragment.
 
-        Rod Hanks               December, 2000
+    Rod Hanks               December, 2000
 
 ****************************************************************************/
 

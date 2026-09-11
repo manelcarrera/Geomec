@@ -7,11 +7,11 @@
 class CThread
 {
 public:
-	QWaitCondition		m_cmds_available;
-	QMutex				m_mutex;
-	QList< QString >	m_cmds;
+  QWaitCondition		m_cmds_available;
+  QMutex				m_mutex;
+  QList< QString >	m_cmds;
 public:
-	CThread(){};
+  CThread(){};
 };
 
 

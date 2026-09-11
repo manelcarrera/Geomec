@@ -5,8 +5,8 @@ namespace geo {
 /*
 CCacheInterfaceDefault& CCacheInterfaceDefault::Instance()
 {
-	static CCacheInterfaceDefault instance;
-	return instance;
+  static CCacheInterfaceDefault instance;
+  return instance;
 }
 */
 
@@ -18,8 +18,8 @@ namespace geo {
 /*
 CCacheInterfaceDefault& CCacheInterfaceDefault::Instance()
 {
-	static CCacheInterfaceDefault instance;
-	return instance;
+  static CCacheInterfaceDefault instance;
+  return instance;
 }
 */
 

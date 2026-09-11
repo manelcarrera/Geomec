@@ -16,17 +16,17 @@ namespace cora
 class CXMLComponent
 {
   public:
-    CXMLComponent(CModelData& modelData, TObject object);
+  CXMLComponent(CModelData& modelData, TObject object);
 
-    std::ostream& operator () (std::ostream& stream) const;
+  std::ostream& operator () (std::ostream& stream) const;
 
   private:
-    CXMLComponent(const CXMLComponent& rhs);
-    CXMLComponent& operator = (CXMLComponent rhs);
+  CXMLComponent(const CXMLComponent& rhs);
+  CXMLComponent& operator = (CXMLComponent rhs);
 
-    TObject m_object;
-    CXMLResponseParameters m_responseParameters;
-    CXMLInputParameters m_inputParameters;
+  TObject m_object;
+  CXMLResponseParameters m_responseParameters;
+  CXMLInputParameters m_inputParameters;
 };
 
 typedef QSharedPointer <CXMLComponent> TXMLComponent;

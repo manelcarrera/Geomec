@@ -4,7 +4,7 @@
           Both this software and its documentation are
 
               Copyright 1993 by IRISA /Universite de Rennes I -
-	      France, Copyright 1995,1996 by BYU, Provo, Utah
+        France, Copyright 1995,1996 by BYU, Provo, Utah
                          all rights reserved.
 
           Permission is granted to copy, use, and distribute
@@ -30,44 +30,44 @@ Matrix *Matrix_Alloc(unsigned NbRows,unsigned NbColumns) {
 
   Mat=(Matrix *)malloc(sizeof(Matrix));
   if(!Mat) {	
-    errormsg1("Matrix_Alloc", "outofmem", "out of memory space");
-    return 0;
+  errormsg1("Matrix_Alloc", "outofmem", "out of memory space");
+  return 0;
   }
   Mat->NbRows=NbRows;
   Mat->NbColumns=NbColumns;
   if(NbRows==0) {
-    Mat->p = (Value **)0;
-    Mat->p_Init= (Value *)0;
+  Mat->p = (Value **)0;
+  Mat->p_Init= (Value *)0;
   }  
   else {
-    q = (Value **)malloc(NbRows * sizeof(*q));
-    if(!q) {
+  q = (Value **)malloc(NbRows * sizeof(*q));
+  if(!q) {
       free(Mat);
       errormsg1("Matrix_Alloc", "outofmem", "out of memory space");
       return 0;
-    }
-    if(NbColumns==0) {
+  }
+  if(NbColumns==0) {
       Mat->p = (Value **)0;
       Mat->p_Init= (Value *)0;
       free(q);
-    }
-    else {
+  }
+  else {
       p = (Value *)malloc(NbRows * NbColumns * sizeof(Value));
       if(!p) {
-	free(q);
-	free(Mat);
-	errormsg1("Matrix_Alloc", "outofmem", "out of memory space");
-	return 0;
+  free(q);
+  free(Mat);
+  errormsg1("Matrix_Alloc", "outofmem", "out of memory space");
+  return 0;
       }
       Mat->p = q;
       Mat->p_Init = p;
       for (i=0;i<NbRows;i++) {
-	*q++ = p;
-	for (j=0;j<NbColumns;j++)   
-	  value_init(*(p+j));
-	p += NbColumns;
+  *q++ = p;
+  for (j=0;j<NbColumns;j++)   
+    value_init(*(p+j));
+  p += NbColumns;
       }
-    }
+  }
   }
   p = NULL;
   q = NULL;
@@ -83,8 +83,8 @@ void Matrix_Free(Matrix *Mat) {
   Value *p;
 
   for(i=0;i<Mat->NbRows;i++) {
-    p = *(Mat->p+i);
-    for(j=0;j<Mat->NbColumns;j++) 
+  p = *(Mat->p+i);
+  for(j=0;j<Mat->NbColumns;j++) 
       value_clear(*p++);
   }
   free((Value *) Mat->p_Init);
@@ -104,16 +104,16 @@ void Matrix_Print(FILE *Dst,char *Format,Matrix *Mat) {
   
   fprintf(Dst,"%d %d\n", NbRows=Mat->NbRows, NbColumns=Mat->NbColumns);
   for (i=0;i<NbRows;i++) {
-    p=*(Mat->p+i);
-    for (j=0;j<NbColumns;j++) {
+  p=*(Mat->p+i);
+  for (j=0;j<NbColumns;j++) {
       if (!Format) {
-	value_print(Dst," "VALUE_FMT" ",*p++);
+  value_print(Dst," "VALUE_FMT" ",*p++);
       }
       else { 
-	value_print(Dst,Format,*p++);
+  value_print(Dst,Format,*p++);
       }	
-    }
-    fprintf(Dst, "\n");
+  }
+  fprintf(Dst, "\n");
   }
 } /* Matrix_Print */
 
@@ -128,28 +128,28 @@ void Matrix_Read_Input(Matrix *Mat) {
   
   p = Mat->p_Init;
   for (i=0;i<Mat->NbRows;i++) {
-    do {
+  do {
       c = fgets(s, 1024, stdin);
       while(isspace(*c) && *c!='\n')
-	++c;
-    } while(c && (*c =='#' || *c== '\n'));
-    
-    if (!c) {
+  ++c;
+  } while(c && (*c =='#' || *c== '\n'));
+  
+  if (!c) {
       errormsg1( "Matrix_Read", "baddim", "not enough rows" );
       break;
-    }
-    for (j=0;j<Mat->NbColumns;j++) {
+  }
+  for (j=0;j<Mat->NbColumns;j++) {
       if(!c || *c=='\n' || *c=='#') {
-	errormsg1("Matrix_Read", "baddim", "not enough columns");
-	break;
+  errormsg1("Matrix_Read", "baddim", "not enough columns");
+  break;
       }
       if (sscanf(c,"%s%n",str,&n) == 0) {
-	errormsg1( "Matrix_Read", "baddim", "not enough columns" );
-	break;
+  errormsg1( "Matrix_Read", "baddim", "not enough columns" );
+  break;
       }
       value_read(*(p++),str);
       c += n;
-    }
+  }
   }
 } /* Matrix_Read_Input */
 
@@ -165,12 +165,12 @@ Matrix *Matrix_Read(void) {
   
   while(fgets(s, 1024, stdin)==0);
   while ((*s=='#' || *s=='\n') ||
-	 (sscanf(s, "%d %d", &NbRows, &NbColumns)<2))
-    fgets(s, 1024, stdin);
+   (sscanf(s, "%d %d", &NbRows, &NbColumns)<2))
+  fgets(s, 1024, stdin);
   Mat = Matrix_Alloc(NbRows,NbColumns);
   if(!Mat) {
-    errormsg1("Matrix_Read", "outofmem", "out of memory space");
-    return(NULL);
+  errormsg1("Matrix_Read", "outofmem", "out of memory space");
+  return(NULL);
   }
   Matrix_Read_Input(Mat);
   return Mat;
@@ -189,36 +189,36 @@ static int hermite(Matrix *H,Matrix *U,Matrix *Q) {
   /* Computes form: A = Q H  and U A = H  and U  = Q  */
   
   if (!H) { 
-    errormsg1("Domlib", "nullH", "hermite: ? Null H");
-    return -1;
+  errormsg1("Domlib", "nullH", "hermite: ? Null H");
+  return -1;
   }
   nc = H->NbColumns;
   nr = H->NbRows;
   temp1 = (Value *) malloc(nc * sizeof(Value));
   temp2 = (Value *) malloc(nr * sizeof(Value));
   if (!temp1 ||!temp2) {
-    errormsg1("Domlib", "outofmem", "out of memory space");
-    return -1;
+  errormsg1("Domlib", "outofmem", "out of memory space");
+  return -1;
   }
   
   /* Initialize all the 'Value' variables */
   value_init(pivot); value_init(x); 
   value_init(aux);   
   for(i=0;i<nc;i++)
-    value_init(temp1[i]);
+  value_init(temp1[i]);
   for(i=0;i<nr;i++)
-    value_init(temp2[i]);
+  value_init(temp2[i]);
   
 #ifdef DEBUG
   fprintf(stderr,"Start  -----------\n");
   Matrix_Print(stderr,0,H);
 #endif
   for (k=0, rank=0; k<nc && rank<nr; k=k+1) {
-    reduced = 1;	/* go through loop the first time */
+  reduced = 1;	/* go through loop the first time */
 #ifdef DEBUG
-    fprintf(stderr, "Working on col %d.  Rank=%d ----------\n", k+1, rank+1);
+  fprintf(stderr, "Working on col %d.  Rank=%d ----------\n", k+1, rank+1);
 #endif
-    while (reduced) {
+  while (reduced) {
       reduced=0;
       
       /* 1. find pivot row */
@@ -229,160 +229,160 @@ static int hermite(Matrix *H,Matrix *U,Matrix *Q) {
       
       /* find the row i>rank with smallest nonzero element in col k */
       for (i=rank+1; i<nr; i++) {
-	value_absolute(x,H->p[i][k]);
-	if (value_notzero_p(x) &&
-	    (value_lt(x,pivot) || value_zero_p(pivot))) {
-	  value_assign(pivot,x);
-	  pivotrow = i;
-	}
+  value_absolute(x,H->p[i][k]);
+  if (value_notzero_p(x) &&
+    (value_lt(x,pivot) || value_zero_p(pivot))) {
+    value_assign(pivot,x);
+    pivotrow = i;
+  }
       }
       
       /* 2. Bring pivot to diagonal (exchange rows pivotrow and rank) */
       if (pivotrow != rank) {
-	Vector_Exchange(H->p[pivotrow],H->p[rank],nc);
-	if (U)
-	  Vector_Exchange(U->p[pivotrow],U->p[rank],nr);
-	if (Q)
-	  Vector_Exchange(Q->p[pivotrow],Q->p[rank],nr);
+  Vector_Exchange(H->p[pivotrow],H->p[rank],nc);
+  if (U)
+    Vector_Exchange(U->p[pivotrow],U->p[rank],nr);
+  if (Q)
+    Vector_Exchange(Q->p[pivotrow],Q->p[rank],nr);
 
 #ifdef DEBUG
-	fprintf(stderr,"Exchange rows %d and %d  -----------\n", rank+1, pivotrow+1);
-	Matrix_Print(stderr,0,H);
+  fprintf(stderr,"Exchange rows %d and %d  -----------\n", rank+1, pivotrow+1);
+  Matrix_Print(stderr,0,H);
 #endif
       }
       value_assign(pivot,H->p[rank][k]);	/* actual ( no abs() ) pivot */
       
       /* 3. Invert the row 'rank' if pivot is negative */
       if (value_neg_p(pivot)) {
-	value_oppose(pivot,pivot); /* pivot = -pivot */
-	for (j=0; j<nc; j++)
-	  value_oppose(H->p[rank][j],H->p[rank][j]);
-	
-	/* H->p[rank][j] = -(H->p[rank][j]); */
-	if (U)
-	  for (j=0; j<nr; j++)
-	    value_oppose(U->p[rank][j],U->p[rank][j]);
-	
-	/* U->p[rank][j] = -(U->p[rank][j]); */
-	if (Q)
-	  for (j=0; j<nr; j++)
-	    value_oppose(Q->p[rank][j],Q->p[rank][j]);
-	
-	/* Q->p[rank][j] = -(Q->p[rank][j]); */
+  value_oppose(pivot,pivot); /* pivot = -pivot */
+  for (j=0; j<nc; j++)
+    value_oppose(H->p[rank][j],H->p[rank][j]);
+  
+  /* H->p[rank][j] = -(H->p[rank][j]); */
+  if (U)
+    for (j=0; j<nr; j++)
+    value_oppose(U->p[rank][j],U->p[rank][j]);
+  
+  /* U->p[rank][j] = -(U->p[rank][j]); */
+  if (Q)
+    for (j=0; j<nr; j++)
+    value_oppose(Q->p[rank][j],Q->p[rank][j]);
+  
+  /* Q->p[rank][j] = -(Q->p[rank][j]); */
 #ifdef DEBUG
-	fprintf(stderr,"Negate row %d  -----------\n", rank+1);
-	Matrix_Print(stderr,0,H);
+  fprintf(stderr,"Negate row %d  -----------\n", rank+1);
+  Matrix_Print(stderr,0,H);
 #endif
 
       }      
       if (value_notzero_p(pivot)) {
-	
-	/* 4. Reduce the column modulo the pivot */
-	/*    This eventually zeros out everything below the */
-	/*    diagonal and produces an upper triangular matrix */
-	
-	for (i=rank+1;i<nr;i++) {
-	  value_assign(x,H->p[i][k]);
-	  if (value_notzero_p(x)) {	    
-	    value_modulus(aux,x,pivot);
-	    
-	    /* floor[integer division] (corrected for neg x) */
-	    if (value_neg_p(x) && value_notzero_p(aux)) {
-	      
-	      /* x=(x/pivot)-1; */
-	      value_division(x,x,pivot);
-	      value_decrement(x,x);
-	    }	
-	    else 
-	      value_division(x,x,pivot);
-	    for (j=0; j<nc; j++) {
-	      value_multiply(aux,x,H->p[rank][j]);
-	      value_substract(H->p[i][j],H->p[i][j],aux);
-	    }
-	    
-	    /* U->p[i][j] -= (x * U->p[rank][j]); */
-	    if (U)
-	      for (j=0; j<nr; j++) {
-		value_multiply(aux,x,U->p[rank][j]);
-		value_substract(U->p[i][j],U->p[i][j],aux);
-	      }
-	    
-	    /* Q->p[rank][j] += (x * Q->p[i][j]); */
-	    if (Q)
-	      for(j=0;j<nr;j++) {
-		value_multiply(aux,x,Q->p[i][j]);
-		value_addto(Q->p[rank][j],Q->p[rank][j],aux);
-	      }
-	    reduced = 1;
+  
+  /* 4. Reduce the column modulo the pivot */
+  /*    This eventually zeros out everything below the */
+  /*    diagonal and produces an upper triangular matrix */
+  
+  for (i=rank+1;i<nr;i++) {
+    value_assign(x,H->p[i][k]);
+    if (value_notzero_p(x)) {	    
+    value_modulus(aux,x,pivot);
+    
+    /* floor[integer division] (corrected for neg x) */
+    if (value_neg_p(x) && value_notzero_p(aux)) {
+        
+        /* x=(x/pivot)-1; */
+        value_division(x,x,pivot);
+        value_decrement(x,x);
+    }	
+    else 
+        value_division(x,x,pivot);
+    for (j=0; j<nc; j++) {
+        value_multiply(aux,x,H->p[rank][j]);
+        value_substract(H->p[i][j],H->p[i][j],aux);
+    }
+    
+    /* U->p[i][j] -= (x * U->p[rank][j]); */
+    if (U)
+        for (j=0; j<nr; j++) {
+    value_multiply(aux,x,U->p[rank][j]);
+    value_substract(U->p[i][j],U->p[i][j],aux);
+        }
+    
+    /* Q->p[rank][j] += (x * Q->p[i][j]); */
+    if (Q)
+        for(j=0;j<nr;j++) {
+    value_multiply(aux,x,Q->p[i][j]);
+    value_addto(Q->p[rank][j],Q->p[rank][j],aux);
+        }
+    reduced = 1;
 
 #ifdef DEBUG
-	    fprintf(stderr,
-		    "row %d = row %d - %d row %d -----------\n", i+1, i+1, x, rank+1);
-	    Matrix_Print(stderr,0,H);
+    fprintf(stderr,
+      "row %d = row %d - %d row %d -----------\n", i+1, i+1, x, rank+1);
+    Matrix_Print(stderr,0,H);
 #endif
-	
-	  } /* if (x) */
-	} /* for (i) */
+  
+    } /* if (x) */
+  } /* for (i) */
       } /* if (pivot != 0) */
-    } /* while (reduced) */
-    
-    /* Last finish up this column */
-    /* 5. Make pivot column positive (above pivot row) */
-    /*    x should be zero for i>k */
-    
-    if (value_notzero_p(pivot)) {
+  } /* while (reduced) */
+  
+  /* Last finish up this column */
+  /* 5. Make pivot column positive (above pivot row) */
+  /*    x should be zero for i>k */
+  
+  if (value_notzero_p(pivot)) {
       for (i=0; i<rank; i++) {
-	value_assign(x,H->p[i][k]);
-	if (value_notzero_p(x)) { 	  
-	  value_modulus(aux,x,pivot);
-	  
-	  /* floor[integer division] (corrected for neg x) */
-	  if (value_neg_p(x) && value_notzero_p(aux)) {
-	    value_division(x,x,pivot);
-	    value_decrement(x,x);
-	    
-	    /* x=(x/pivot)-1; */
-	  }
-	  else
-	    value_division(x,x,pivot);
-	  
-	  /* H->p[i][j] -= x * H->p[rank][j]; */
-	  for (j=0; j<nc; j++) {
-	    value_multiply(aux,x,H->p[rank][j]);
-	    value_substract(H->p[i][j],H->p[i][j],aux);
-	  }
-	  
-	  /* U->p[i][j] -= x * U->p[rank][j]; */
-	  if (U)
-	    for (j=0; j<nr; j++) {
-	      value_multiply(aux,x,U->p[rank][j]);
-	      value_substract(U->p[i][j],U->p[i][j],aux);
-	    }
-	  
-	  /* Q->p[rank][j] += x * Q->p[i][j]; */
-	  if (Q)
-	    for (j=0; j<nr; j++) {
-	      value_multiply(aux,x,Q->p[i][j]);
-	      value_addto(Q->p[rank][j],Q->p[rank][j],aux);
-	    }  
+  value_assign(x,H->p[i][k]);
+  if (value_notzero_p(x)) { 	  
+    value_modulus(aux,x,pivot);
+    
+    /* floor[integer division] (corrected for neg x) */
+    if (value_neg_p(x) && value_notzero_p(aux)) {
+    value_division(x,x,pivot);
+    value_decrement(x,x);
+    
+    /* x=(x/pivot)-1; */
+    }
+    else
+    value_division(x,x,pivot);
+    
+    /* H->p[i][j] -= x * H->p[rank][j]; */
+    for (j=0; j<nc; j++) {
+    value_multiply(aux,x,H->p[rank][j]);
+    value_substract(H->p[i][j],H->p[i][j],aux);
+    }
+    
+    /* U->p[i][j] -= x * U->p[rank][j]; */
+    if (U)
+    for (j=0; j<nr; j++) {
+        value_multiply(aux,x,U->p[rank][j]);
+        value_substract(U->p[i][j],U->p[i][j],aux);
+    }
+    
+    /* Q->p[rank][j] += x * Q->p[i][j]; */
+    if (Q)
+    for (j=0; j<nr; j++) {
+        value_multiply(aux,x,Q->p[i][j]);
+        value_addto(Q->p[rank][j],Q->p[rank][j],aux);
+    }  
 #ifdef DEBUG
-	  fprintf(stderr,
-		  "row %d = row %d - %d row %d -----------\n", i+1, i+1, x, rank+1);
-	  Matrix_Print(stderr,0,H);
+    fprintf(stderr,
+      "row %d = row %d - %d row %d -----------\n", i+1, i+1, x, rank+1);
+    Matrix_Print(stderr,0,H);
 #endif
-	} /* if (x) */
+  } /* if (x) */
       } /* for (i) */
       rank++;
-    } /* if (pivot!=0) */
+  } /* if (pivot!=0) */
   } /* for (k) */
   
   /* Clear all the 'Value' variables */
   value_clear(pivot); value_clear(x); 
   value_clear(aux); 
   for(i=0;i<nc;i++)
-    value_clear(temp1[i]);
+  value_clear(temp1[i]);
   for(i=0;i<nr;i++)
-    value_clear(temp2[i]);
+  value_clear(temp2[i]);
   free(temp2);
   free(temp1);
   return rank;
@@ -401,8 +401,8 @@ void right_hermite(Matrix *A,Matrix **Hp,Matrix **Up,Matrix **Qp) {
   /* H = A */
   *Hp = H = Matrix_Alloc(nr,nc);
   if (!H) { 
-    errormsg1("DomRightHermite", "outofmem", "out of memory space");
-    return;
+  errormsg1("DomRightHermite", "outofmem", "out of memory space");
+  return;
   }
   
   /* Initialize all the 'Value' variables */
@@ -412,47 +412,47 @@ void right_hermite(Matrix *A,Matrix **Hp,Matrix **Up,Matrix **Qp) {
   
   /* U = I */
   if (Up) {
-    *Up = U = Matrix_Alloc(nr, nr);
-    if (!U) {
+  *Up = U = Matrix_Alloc(nr, nr);
+  if (!U) {
       errormsg1("DomRightHermite", "outofmem", "out of memory space");
       value_clear(tmp);
       return;
-    }
-    Vector_Set(U->p_Init,0,nr*nr);             /* zero's */
-    for(i=0;i<nr;i++)                          /* with diagonal of 1's */
+  }
+  Vector_Set(U->p_Init,0,nr*nr);             /* zero's */
+  for(i=0;i<nr;i++)                          /* with diagonal of 1's */
       value_set_si(U->p[i][i],1);
   }
   else
-    U = (Matrix *)0;
+  U = (Matrix *)0;
   
   /* Q = I */
   /* Actually I compute Q transpose... its easier */
   if (Qp) {
-    *Qp = Q = Matrix_Alloc(nr,nr);
-    if (!Q) {
+  *Qp = Q = Matrix_Alloc(nr,nr);
+  if (!Q) {
       errormsg1("DomRightHermite", "outofmem", "out of memory space");
       value_clear(tmp);
       return;
-    }
-    Vector_Set(Q->p_Init,0,nr*nr);            /* zero's */
-    for (i=0;i<nr;i++)                      /* with diagonal of 1's */
+  }
+  Vector_Set(Q->p_Init,0,nr*nr);            /* zero's */
+  for (i=0;i<nr;i++)                      /* with diagonal of 1's */
       value_set_si(Q->p[i][i],1);
   }
   else
-    Q = (Matrix *)0;
+  Q = (Matrix *)0;
   
   hermite(H,U,Q);
   
   /* Q is returned transposed */ 
   /* Transpose Q */
   if (Q) {
-    for (i=0; i<nr; i++) {
+  for (i=0; i<nr; i++) {
       for (j=i+1; j<nr; j++) {
-	value_assign(tmp,Q->p[i][j]);
-	value_assign(Q->p[i][j],Q->p[j][i] );
-	value_assign(Q->p[j][i],tmp);
+  value_assign(tmp,Q->p[i][j]);
+  value_assign(Q->p[i][j],Q->p[j][i] );
+  value_assign(Q->p[j][i],tmp);
       }
-    }
+  }
   }
   value_clear(tmp);
   return;
@@ -474,38 +474,38 @@ void left_hermite(Matrix *A,Matrix **Hp,Matrix **Qp,Matrix **Up) {
   /* HT = A transpose */
   HT = Matrix_Alloc(nc, nr);
   if (!HT) {
-    errormsg1("DomLeftHermite", "outofmem", "out of memory space");
-    return;
+  errormsg1("DomLeftHermite", "outofmem", "out of memory space");
+  return;
   }
   value_init(tmp);
   for (i=0; i<nr; i++)
-    for (j=0; j<nc; j++)
+  for (j=0; j<nc; j++)
       value_assign(HT->p[j][i],A->p[i][j]);
   
   /* U = I */
   if (Up) {
-    *Up = U = Matrix_Alloc(nc,nc);
-    if (!U) {
+  *Up = U = Matrix_Alloc(nc,nc);
+  if (!U) {
       errormsg1("DomLeftHermite", "outofmem", "out of memory space");
       value_clear(tmp);
       return;
-    }
-    Vector_Set(U->p_Init,0,nc*nc);            /* zero's */
-    for (i=0;i<nc;i++)                        /* with diagonal of 1's */
+  }
+  Vector_Set(U->p_Init,0,nc*nc);            /* zero's */
+  for (i=0;i<nc;i++)                        /* with diagonal of 1's */
       value_set_si(U->p[i][i],1);
   }
   else U=(Matrix *)0;
   
   /* Q = I */
   if (Qp) {
-    *Qp = Q = Matrix_Alloc(nc, nc);
-    if (!Q) {
+  *Qp = Q = Matrix_Alloc(nc, nc);
+  if (!Q) {
       errormsg1("DomLeftHermite", "outofmem", "out of memory space");
       value_clear(tmp);
       return;
-    }
-    Vector_Set(Q->p_Init,0,nc*nc);            /* zero's */
-    for (i=0;i<nc;i++)                        /* with diagonal of 1's */
+  }
+  Vector_Set(Q->p_Init,0,nc*nc);            /* zero's */
+  for (i=0;i<nc;i++)                        /* with diagonal of 1's */
       value_set_si(Q->p[i][i],1);
   }
   else Q=(Matrix *)0;
@@ -514,24 +514,24 @@ void left_hermite(Matrix *A,Matrix **Hp,Matrix **Qp,Matrix **Up) {
   /* H = HT transpose */
   *Hp = H = Matrix_Alloc(nr,nc);
   if (!H) {
-    errormsg1("DomLeftHermite", "outofmem", "out of memory space");
-    value_clear(tmp);
-    return;
+  errormsg1("DomLeftHermite", "outofmem", "out of memory space");
+  value_clear(tmp);
+  return;
   }
   for (i=0; i<nr; i++)
-    for (j=0;j<nc;j++)
+  for (j=0;j<nc;j++)
       value_assign(H->p[i][j],HT->p[j][i]);
   Matrix_Free(HT);
   
   /* Transpose U */
   if (U) {
-    for (i=0; i<nc; i++) {
+  for (i=0; i<nc; i++) {
       for (j=i+1; j<nc; j++) {
-	value_assign(tmp,U->p[i][j]);
-	value_assign(U->p[i][j],U->p[j][i] );
-	value_assign(U->p[j][i],tmp);
+  value_assign(tmp,U->p[i][j]);
+  value_assign(U->p[i][j],U->p[j][i] );
+  value_assign(U->p[j][i],tmp);
       }
-    }
+  }
   }
 } /* left_hermite */
 
@@ -551,7 +551,7 @@ int MatInverse(Matrix *Mat,Matrix *MatInv ) {
   
   if(Mat->NbRows != Mat->NbColumns) {
    fprintf(stderr,"Trying to invert a non-square matrix !\n");
-    return 0;
+  return 0;
   }
   
   /* Initialize all the 'Value' variables */
@@ -567,29 +567,29 @@ int MatInverse(Matrix *Mat,Matrix *MatInv ) {
   /* to 1. Last column of each row (denominator of each entry in a row) is  */
   /* also set to 1.                                                         */ 
   for(i=0;i<k;++i) {
-    value_set_si(MatInv->p[i][i],1);	
-    value_set_si(MatInv->p[i][k],1);	/* denum */
+  value_set_si(MatInv->p[i][i],1);	
+  value_set_si(MatInv->p[i][k],1);	/* denum */
   }  
   /* Apply Gauss-Jordan elimination method on the two matrices 'Mat' and  */
   /* 'MatInv' in parallel.                                                */
   for(i=0;i<k;++i) {
-    
-    /* Check if the diagonal entry (new pivot) is non-zero or not */
-    if(value_zero_p(Mat->p[i][i])) {   	
+  
+  /* Check if the diagonal entry (new pivot) is non-zero or not */
+  if(value_zero_p(Mat->p[i][i])) {   	
       
       /* Search for a non-zero pivot down the column(i) */
       for(j=i;j<k;++j)      
-	if(value_notzero_p(Mat->p[j][i]))
-	  break;
+  if(value_notzero_p(Mat->p[j][i]))
+    break;
       
       /* If no non-zero pivot is found, the matrix 'Mat' is non-invertible */
       /* Return 0.                                                         */
       if(j==k) {
-	
-	/* Clear all the 'Value' variables */
-	value_clear(x);  value_clear(gcd); value_clear(piv);
-	value_clear(m1); value_clear(m2);
-	return 0;
+  
+  /* Clear all the 'Value' variables */
+  value_clear(x);  value_clear(gcd); value_clear(piv);
+  value_clear(m1); value_clear(m2);
+  return 0;
       }	
       
       /* Exchange the rows, row(i) and row(j) so that the diagonal element */
@@ -597,65 +597,65 @@ int MatInverse(Matrix *Mat,Matrix *MatInv ) {
       /* matrix 'MatInv'.                                                   */
       for(c=0;c<k;++c) {
 
-	/* Interchange rows, row(i) and row(j) of matrix 'Mat'    */
-	value_assign(x,Mat->p[j][c]);
-	value_assign(Mat->p[j][c],Mat->p[i][c]);
-	value_assign(Mat->p[i][c],x);
-	
-	/* Interchange rows, row(i) and row(j) of matrix 'MatInv' */
-	value_assign(x,MatInv->p[j][c]);
-	value_assign(MatInv->p[j][c],MatInv->p[i][c]);
-	value_assign(MatInv->p[i][c],x);
+  /* Interchange rows, row(i) and row(j) of matrix 'Mat'    */
+  value_assign(x,Mat->p[j][c]);
+  value_assign(Mat->p[j][c],Mat->p[i][c]);
+  value_assign(Mat->p[i][c],x);
+  
+  /* Interchange rows, row(i) and row(j) of matrix 'MatInv' */
+  value_assign(x,MatInv->p[j][c]);
+  value_assign(MatInv->p[j][c],MatInv->p[i][c]);
+  value_assign(MatInv->p[i][c],x);
       }
-    }
-    
-    /* Make all the entries in column(i) of matrix 'Mat' zero except the */
-    /* diagonal entry. Repeat the same sequence of operations on matrix  */
-    /* 'MatInv'.                                                         */
-    for(j=0;j<k;++j) {
+  }
+  
+  /* Make all the entries in column(i) of matrix 'Mat' zero except the */
+  /* diagonal entry. Repeat the same sequence of operations on matrix  */
+  /* 'MatInv'.                                                         */
+  for(j=0;j<k;++j) {
       if (j==i) continue;	         /* Skip the pivot */
       value_assign(x,Mat->p[j][i]);
       if(value_notzero_p(x)) {
-	value_assign(piv,Mat->p[i][i]);
-	value_assign(gcd,*Gcd(x,piv));
-	if (value_notone_p(gcd) ) {
-	  value_division(x,x,gcd);
-	  value_division(piv,piv,gcd);
-	}
-	for(c=((j>i)?i:0);c<k;++c) {
-	  value_multiply(m1,piv,Mat->p[j][c]);
-	  value_multiply(m2,x,Mat->p[i][c]);
-	  value_substract(Mat->p[j][c],m1,m2); 
-	}
-	for(c=0;c<k;++c) {
-	  value_multiply(m1,piv,MatInv->p[j][c]);
-	  value_multiply(m2,x,MatInv->p[i][c]);
-	  value_substract(MatInv->p[j][c],m1,m2);
-	}
-	      
-	/* Simplify row(j) of the two matrices 'Mat' and 'MatInv' by */
-	/* dividing the rows with the common GCD.                     */
-	value_assign(m1,*Vector_Gcd(&MatInv->p[j][0],k));
-	value_assign(m2,*Vector_Gcd(&Mat->p[j][0],k));
-	value_assign(gcd,*Gcd(m1,m2));
-	if(value_notone_p(gcd)) {
-	  for(c=0;c<k;++c) {
-	    value_division(Mat->p[j][c],Mat->p[j][c],gcd);
-	    value_division(MatInv->p[j][c],MatInv->p[j][c],gcd);
-	  }
-	}
-      }
+  value_assign(piv,Mat->p[i][i]);
+  value_assign(gcd,*Gcd(x,piv));
+  if (value_notone_p(gcd) ) {
+    value_division(x,x,gcd);
+    value_division(piv,piv,gcd);
+  }
+  for(c=((j>i)?i:0);c<k;++c) {
+    value_multiply(m1,piv,Mat->p[j][c]);
+    value_multiply(m2,x,Mat->p[i][c]);
+    value_substract(Mat->p[j][c],m1,m2); 
+  }
+  for(c=0;c<k;++c) {
+    value_multiply(m1,piv,MatInv->p[j][c]);
+    value_multiply(m2,x,MatInv->p[i][c]);
+    value_substract(MatInv->p[j][c],m1,m2);
+  }
+        
+  /* Simplify row(j) of the two matrices 'Mat' and 'MatInv' by */
+  /* dividing the rows with the common GCD.                     */
+  value_assign(m1,*Vector_Gcd(&MatInv->p[j][0],k));
+  value_assign(m2,*Vector_Gcd(&Mat->p[j][0],k));
+  value_assign(gcd,*Gcd(m1,m2));
+  if(value_notone_p(gcd)) {
+    for(c=0;c<k;++c) {
+    value_division(Mat->p[j][c],Mat->p[j][c],gcd);
+    value_division(MatInv->p[j][c],MatInv->p[j][c],gcd);
     }
+  }
+      }
+  }
   }
   
   /* Simplify every row so that 'Mat' reduces to Identity matrix. Perform  */
   /* the same sequence of operations on the matrix 'MatInv'.               */
   for(j=0;j<k;++j) {
-    value_assign(MatInv->p[j][k],Mat->p[j][j]);
-    
-    /* Make the last column (denominator of each entry) of every row greater */
-    /* than zero.                                                            */
-    Vector_Normalize_Positive(&MatInv->p[j][0],k+1,k); 
+  value_assign(MatInv->p[j][k],Mat->p[j][j]);
+  
+  /* Make the last column (denominator of each entry) of every row greater */
+  /* than zero.                                                            */
+  Vector_Normalize_Positive(&MatInv->p[j][0],k+1,k); 
   }
   
   /* Clear all the 'Value' variables */
@@ -686,45 +686,45 @@ void rat_prodmat(Matrix *S,Matrix *X,Matrix *P) {
   /* Compute the LCM of last column entries (denominators) of rows */
   value_assign(lcm,P->p[0][last_column_index]);	
   for(k=1;k<P->NbRows;++k) {
-    value_assign(last_column_entry,P->p[k][last_column_index]);
-    value_assign(gcd,*Gcd(lcm,last_column_entry));
-    value_division(m1,last_column_entry,gcd);
-    value_multiply(lcm,lcm,m1);
+  value_assign(last_column_entry,P->p[k][last_column_index]);
+  value_assign(gcd,*Gcd(lcm,last_column_entry));
+  value_division(m1,last_column_entry,gcd);
+  value_multiply(lcm,lcm,m1);
   }
   
   /* S[i][j] = Sum(X[i][k] * P[k][j] where Sum is extended over k = 1..nbrows*/
   for(i=0;i<X->NbRows;++i)
-    for(j=0;j<P->NbColumns-1;++j) {
+  for(j=0;j<P->NbColumns-1;++j) {
       
       /* Initialize s1 to zero. */
       value_set_si(s1,0);
       for(k=0;k<P->NbRows;++k) {
-	
-	/* If the LCM of last column entries is one, simply add the products */
-	if(value_one_p(lcm)) {
-	  value_set_si(s2,0);
-	  value_multiply(s2,X->p[i][k],P->p[k][j]);
+  
+  /* If the LCM of last column entries is one, simply add the products */
+  if(value_one_p(lcm)) {
+    value_set_si(s2,0);
+    value_multiply(s2,X->p[i][k],P->p[k][j]);
           value_addto(s1,s1,s2);
-	}  
-	
-	/* Numerator (num) and denominator (denom) of S[i][j] is given by :- */
-	/* numerator  = Sum(X[i][k]*P[k][j]*lcm/P[k][last_column_index]) and */
-	/* denominator= lcm where Sum is extended over k = 1..nbrows.        */
-	else {
-	  value_multiply(m1,X->p[i][k],P->p[k][j]);
-	  value_division(m2,lcm,P->p[k][last_column_index]);
-	  value_multiply(s2,m1,m2);
-	  value_addto(s1,s1,s2);
-	}
+  }  
+  
+  /* Numerator (num) and denominator (denom) of S[i][j] is given by :- */
+  /* numerator  = Sum(X[i][k]*P[k][j]*lcm/P[k][last_column_index]) and */
+  /* denominator= lcm where Sum is extended over k = 1..nbrows.        */
+  else {
+    value_multiply(m1,X->p[i][k],P->p[k][j]);
+    value_division(m2,lcm,P->p[k][last_column_index]);
+    value_multiply(s2,m1,m2);
+    value_addto(s1,s1,s2);
+  }
       }	
       value_assign(S->p[i][j],s1);
-    }
+  }
   
   for(i=0;i<S->NbRows;++i) {
-    value_assign(S->p[i][last_column_index],lcm);
+  value_assign(S->p[i][last_column_index],lcm);
 
-    /* Normalize the rows so that last element >=0 */
-    Vector_Normalize_Positive(&S->p[i][0],S->NbColumns,S->NbColumns-1);
+  /* Normalize the rows so that last element >=0 */
+  Vector_Normalize_Positive(&S->p[i][0],S->NbColumns,S->NbColumns-1);
   }
   
   /* Clear all the 'Value' variables */
@@ -752,22 +752,22 @@ void Matrix_Vector_Product(Matrix *Mat,Value *p1,Value *p2) {
   cm = Mat->p;
   cp2 = p2;
   for(i=0;i<NbRows;i++) {
-    q = *cm++;
-    cp1 = p1;
-    value_multiply(*cp2,*q,*cp1);
-    q++;
-    cp1++;
-    
-    /* *cp2 = *q++ * *cp1++ */
-    for(j=1;j<NbColumns;j++) {
+  q = *cm++;
+  cp1 = p1;
+  value_multiply(*cp2,*q,*cp1);
+  q++;
+  cp1++;
+  
+  /* *cp2 = *q++ * *cp1++ */
+  for(j=1;j<NbColumns;j++) {
       
       value_set_si(s,0);
       value_multiply(s,*q, *cp1);
       value_addto(*cp2,*cp2,s);
       q++;
       cp1++;
-    }
-    cp2++;
+  }
+  cp2++;
   }
   value_clear(s);
   return;
@@ -789,19 +789,19 @@ void Vector_Matrix_Product(Value *p1,Matrix *Mat,Value *p2) {
   cp2 = p2;
   cm  = Mat->p;
   for (j=0;j<NbColumns;j++) {
-    cp1 = p1;
-    value_multiply(*cp2,*(*cm+j),*cp1);
-    cp1++;
-    
-    /* *cp2= *(*cm+j) * *cp1++; */
-    for (i=1;i<NbRows;i++) {
+  cp1 = p1;
+  value_multiply(*cp2,*(*cm+j),*cp1);
+  cp1++;
+  
+  /* *cp2= *(*cm+j) * *cp1++; */
+  for (i=1;i<NbRows;i++) {
       
       value_set_si(s,0);
       value_multiply(s,*(*(cm+i)+j),*cp1);
       value_addto(*cp2,*cp2,s);
       cp1++;
-    }
-    cp2++;
+  }
+  cp2++;
   }
   value_clear(s);
   return;
@@ -822,8 +822,8 @@ void Matrix_Product(Matrix *Mat1,Matrix *Mat2,Matrix *Mat3) {
   
   Size      = Mat1->NbColumns;
   if(Mat2->NbRows!=Size||Mat3->NbRows!=NbRows||Mat3->NbColumns!=NbColumns) {
-    fprintf(stderr, "? Matrix_Product : incompatable matrix dimension\n");
-    return;
+  fprintf(stderr, "? Matrix_Product : incompatable matrix dimension\n");
+  return;
   }     
   value_init(sum); value_init(s);
   p3 = Mat3->p_Init;
@@ -832,20 +832,20 @@ void Matrix_Product(Matrix *Mat1,Matrix *Mat2,Matrix *Mat3) {
   
   /* Mat3[i][j] = Sum(Mat1[i][k]*Mat2[k][j] where sum is over k = 1..nbrows */
   for (i=0;i<NbRows;i++) {
-    for (j=0;j<NbColumns;j++) {
+  for (j=0;j<NbColumns;j++) {
       p1 = *(q1+i);
       value_set_si(sum,0);
       for (k=0;k<Size;k++) {
-	
-	/* sum+=*p1++ * *(*(q2+k)+j); */
-	value_set_si(s,0);
-	value_multiply(s,*p1, *(*(q2+k)+j));
-	value_addto(sum,sum,s);
-	p1++;
+  
+  /* sum+=*p1++ * *(*(q2+k)+j); */
+  value_set_si(s,0);
+  value_multiply(s,*p1, *(*(q2+k)+j));
+  value_addto(sum,sum,s);
+  p1++;
       }
       value_assign(*p3,sum);
       p3++;
-    }
+  }
   }
   value_clear(sum); value_clear(s);
   return;
@@ -868,7 +868,7 @@ int Matrix_Inverse(Matrix *Mat,Matrix *MatInv ) {
   
   if(Mat->NbRows != Mat->NbColumns) {
    fprintf(stderr,"Trying to invert a non-square matrix !\n");
-    return 0;
+  return 0;
   }
   
   /* Initialize all the 'Value' variables */
@@ -884,28 +884,28 @@ int Matrix_Inverse(Matrix *Mat,Matrix *MatInv ) {
   /* to 1. Last column of each row (denominator of each entry in a row) is  */
   /* also set to 1.                                                         */ 
   for(i=0;i<k;++i) {
-    value_set_si(MatInv->p[i][i],1);	
+  value_set_si(MatInv->p[i][i],1);	
   }  
   /* Apply Gauss-Jordan elimination method on the two matrices 'Mat' and  */
   /* 'MatInv' in parallel.                                                */
   for(i=0;i<k;++i) {
-    
-    /* Check if the diagonal entry (new pivot) is non-zero or not */
-    if(value_zero_p(Mat->p[i][i])) {   	
+  
+  /* Check if the diagonal entry (new pivot) is non-zero or not */
+  if(value_zero_p(Mat->p[i][i])) {   	
       
       /* Search for a non-zero pivot down the column(i) */
       for(j=i;j<k;++j)      
-	if(value_notzero_p(Mat->p[j][i]))
-	  break;
+  if(value_notzero_p(Mat->p[j][i]))
+    break;
       
       /* If no non-zero pivot is found, the matrix 'Mat' is non-invertible */
       /* Return 0.                                                         */
       if(j==k) {
-	
-	/* Clear all the 'Value' variables */
-	value_clear(x);  value_clear(gcd); value_clear(piv);
-	value_clear(m1); value_clear(m2);
-	return 0;
+  
+  /* Clear all the 'Value' variables */
+  value_clear(x);  value_clear(gcd); value_clear(piv);
+  value_clear(m1); value_clear(m2);
+  return 0;
       }	
       
       /* Exchange the rows, row(i) and row(j) so that the diagonal element */
@@ -913,55 +913,55 @@ int Matrix_Inverse(Matrix *Mat,Matrix *MatInv ) {
       /* matrix 'MatInv'.                                                   */
       for(c=0;c<k;++c) {
 
-	/* Interchange rows, row(i) and row(j) of matrix 'Mat'    */
-	value_assign(x,Mat->p[j][c]);
-	value_assign(Mat->p[j][c],Mat->p[i][c]);
-	value_assign(Mat->p[i][c],x);
-	
-	/* Interchange rows, row(i) and row(j) of matrix 'MatInv' */
-	value_assign(x,MatInv->p[j][c]);
-	value_assign(MatInv->p[j][c],MatInv->p[i][c]);
-	value_assign(MatInv->p[i][c],x);
+  /* Interchange rows, row(i) and row(j) of matrix 'Mat'    */
+  value_assign(x,Mat->p[j][c]);
+  value_assign(Mat->p[j][c],Mat->p[i][c]);
+  value_assign(Mat->p[i][c],x);
+  
+  /* Interchange rows, row(i) and row(j) of matrix 'MatInv' */
+  value_assign(x,MatInv->p[j][c]);
+  value_assign(MatInv->p[j][c],MatInv->p[i][c]);
+  value_assign(MatInv->p[i][c],x);
       }
-    }
-    
-    /* Make all the entries in column(i) of matrix 'Mat' zero except the */
-    /* diagonal entry. Repeat the same sequence of operations on matrix  */
-    /* 'MatInv'.                                                         */
-    for(j=0;j<k;++j) {
+  }
+  
+  /* Make all the entries in column(i) of matrix 'Mat' zero except the */
+  /* diagonal entry. Repeat the same sequence of operations on matrix  */
+  /* 'MatInv'.                                                         */
+  for(j=0;j<k;++j) {
       if (j==i) continue;	         /* Skip the pivot */
       value_assign(x,Mat->p[j][i]);
       if(value_notzero_p(x)) {
-	value_assign(piv,Mat->p[i][i]);
-	value_assign(gcd,*Gcd(x,piv));
-	if (value_notone_p(gcd) ) {
-	  value_division(x,x,gcd);
-	  value_division(piv,piv,gcd);
-	}
-	for(c=((j>i)?i:0);c<k;++c) {
-	  value_multiply(m1,piv,Mat->p[j][c]);
-	  value_multiply(m2,x,Mat->p[i][c]);
-	  value_substract(Mat->p[j][c],m1,m2); 
-	}
-	for(c=0;c<k;++c) {
-	  value_multiply(m1,piv,MatInv->p[j][c]);
-	  value_multiply(m2,x,MatInv->p[i][c]);
-	  value_substract(MatInv->p[j][c],m1,m2);
-	}
-	      
-	/* Simplify row(j) of the two matrices 'Mat' and 'MatInv' by */
-	/* dividing the rows with the common GCD.                     */
-	value_assign(m1,*Vector_Gcd(&MatInv->p[j][0],k));
-	value_assign(m2,*Vector_Gcd(&Mat->p[j][0],k));
-	value_assign(gcd,*Gcd(m1,m2));
-	if(value_notone_p(gcd)) {
-	  for(c=0;c<k;++c) {
-	    value_division(Mat->p[j][c],Mat->p[j][c],gcd);
-	    value_division(MatInv->p[j][c],MatInv->p[j][c],gcd);
-	  }
-	}
-      }
+  value_assign(piv,Mat->p[i][i]);
+  value_assign(gcd,*Gcd(x,piv));
+  if (value_notone_p(gcd) ) {
+    value_division(x,x,gcd);
+    value_division(piv,piv,gcd);
+  }
+  for(c=((j>i)?i:0);c<k;++c) {
+    value_multiply(m1,piv,Mat->p[j][c]);
+    value_multiply(m2,x,Mat->p[i][c]);
+    value_substract(Mat->p[j][c],m1,m2); 
+  }
+  for(c=0;c<k;++c) {
+    value_multiply(m1,piv,MatInv->p[j][c]);
+    value_multiply(m2,x,MatInv->p[i][c]);
+    value_substract(MatInv->p[j][c],m1,m2);
+  }
+        
+  /* Simplify row(j) of the two matrices 'Mat' and 'MatInv' by */
+  /* dividing the rows with the common GCD.                     */
+  value_assign(m1,*Vector_Gcd(&MatInv->p[j][0],k));
+  value_assign(m2,*Vector_Gcd(&Mat->p[j][0],k));
+  value_assign(gcd,*Gcd(m1,m2));
+  if(value_notone_p(gcd)) {
+    for(c=0;c<k;++c) {
+    value_division(Mat->p[j][c],Mat->p[j][c],gcd);
+    value_division(MatInv->p[j][c],MatInv->p[j][c],gcd);
     }
+  }
+      }
+  }
   }
   
   /* Find common denom for each row */ 
@@ -978,7 +978,7 @@ int Matrix_Inverse(Matrix *Mat,Matrix *MatInv ) {
        value_oppose(gcd,gcd); /* make denominator positive */
      if (value_notone_p(gcd)) {
        for (c=0; c<k; c++) 
-	 value_division(MatInv->p[j][c],MatInv->p[j][c],gcd); /* normalize */
+   value_division(MatInv->p[j][c],MatInv->p[j][c],gcd); /* normalize */
        value_division(den[j],den[j],gcd);
      }  
      value_assign(gcd,*Gcd(x,den[j]));
@@ -988,8 +988,8 @@ int Matrix_Inverse(Matrix *Mat,Matrix *MatInv ) {
    if (value_notone_p(x)) 
      for(j=0 ; j<k ; ++j) {       
        for (c=0; c<k; c++) {
-	 value_division(m1,x,den[j]);
-	 value_multiply(MatInv->p[j][c],MatInv->p[j][c],m1);  /* normalize */
+   value_division(m1,x,den[j]);
+   value_multiply(MatInv->p[j][c],MatInv->p[j][c],m1);  /* normalize */
        }
      }
 

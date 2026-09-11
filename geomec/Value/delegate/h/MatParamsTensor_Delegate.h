@@ -14,17 +14,17 @@ public:
   class CMatTensorComponent_Delegate : public CValueComponent_Delegate
   {
   public:
-    CMatTensorComponent_Delegate(
+  CMatTensorComponent_Delegate(
       CMatParamsTensor::CMatTensorComponent* matTensorComponent);
 
   private:
-    CMatTensorComponent_Delegate(const CMatTensorComponent_Delegate& rhs);
-    CMatTensorComponent_Delegate& operator = (
+  CMatTensorComponent_Delegate(const CMatTensorComponent_Delegate& rhs);
+  CMatTensorComponent_Delegate& operator = (
       const CMatTensorComponent_Delegate& rhs);
 
-    CMatParamsTensor::CMatTensorComponent* m_matTensorComponent;
+  CMatParamsTensor::CMatTensorComponent* m_matTensorComponent;
 
-    REGISTER_DELEGATE(CMatParamsTensor::CMatTensorComponent,
+  REGISTER_DELEGATE(CMatParamsTensor::CMatTensorComponent,
       CMatTensorComponent_Delegate);
   };
 

@@ -33,7 +33,7 @@ bool CZoominModelEntry::AddChildModel(CModelBase& childModel)
   if(!dynamic_cast<CHexaModel*>(&childModel) &&
      !dynamic_cast<CGoCadModel*>(&childModel))
   {
-    _m()->msg(QObject::tr("Only GoCad models and hexahedron models "
+  _m()->msg(QObject::tr("Only GoCad models and hexahedron models "
                               "are supported as zoom-in models"));
      return false;
   }
@@ -44,7 +44,7 @@ bool CZoominModelEntry::AddChildModel(CModelBase& childModel)
   model.OnNewChildModel(childModel, false);
 
   QString sName = createUniqueName(DEFAULT_ZOOM_IN_MODEL_NAME,
-    DEFAULT_INITIAL_NUMBER);
+  DEFAULT_INITIAL_NUMBER);
 
   pPlaceHolder->Name(sName);
 

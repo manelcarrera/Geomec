@@ -37,7 +37,7 @@ protected:
   std::vector<CBodyGroup*> m_vcVolume;
   CTetMeshBase();
   static const geo::INode& NearestNode(const IPoint& point,
-    const IFace* face);
+  const IFace* face);
 private:
   typedef std::vector<CTetSurface*> TTetSurfaceVec;
   typedef std::map<int, TTetSurfaceVec> TTetSurfaceMap;
@@ -54,7 +54,7 @@ private:
   bool AddSurfaceToMesh(void* pMesh, const ISurface& surface, int nSurfaceId, const std::string& sName, bool bSlip);
   void AddSurfacePointsToMesh(void* pMesh, const ISurface& surface);
   bool RunFemGV(const std::string &sDianaPath, const std::string &sDiaSharePath,
-    const std::string &sDianaLibPath, const std::string &sDianaSLibPath, const std::string &sFgvExeName);
+  const std::string &sDianaLibPath, const std::string &sDianaSLibPath, const std::string &sFgvExeName);
   TRet OnMeshError(void* pMesh);
 
 public:
@@ -68,11 +68,11 @@ public:
 
   // generate the mesh, fails if no correct input was given
   virtual TRet CreateMesh(const std::string &sDianaPath,
-    const std::string &sDiaSharePath,
-    const std::string &sDianaLibPath,
-    const std::string &sDianaSLibPath,
-    const std::string &sFgvExeName,
-    CTetMeshProgress& progress /* = CTetMeshProgress()*/);
+  const std::string &sDiaSharePath,
+  const std::string &sDianaLibPath,
+  const std::string &sDianaSLibPath,
+  const std::string &sFgvExeName,
+  CTetMeshProgress& progress /* = CTetMeshProgress()*/);
 
   //! Returns the tolerance of the mesher (EPS)
   ftn_double_t Tolerance() const { return m_dMeshTolerance; }

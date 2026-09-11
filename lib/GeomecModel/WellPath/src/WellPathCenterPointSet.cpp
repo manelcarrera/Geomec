@@ -11,7 +11,7 @@ namespace WellPath
 CWellPathCenterPointSet::CWellPathCenterPointSet(
   const std::vector <const CFormationBase*>& formations, CModelBase& modelBase)
 : CPointSet("", modelBase, 0,
-    static_cast <IPointSet::DIMENSION> (modelBase.Dimension()))
+  static_cast <IPointSet::DIMENSION> (modelBase.Dimension()))
 {
   populatePointSet(formations, modelBase);
 }
@@ -26,28 +26,28 @@ TElementVertex
 {
   while (wellPathSectionVertices.size() > 1)
   {
-    std::vector <TElementVertex> elementVertices2Clean;
+  std::vector <TElementVertex> elementVertices2Clean;
 
-    for (TWellPathSectionVertices::const_iterator
+  for (TWellPathSectionVertices::const_iterator
       elementVertex = wellPathSectionVertices.begin();
       elementVertex != wellPathSectionVertices.end(); ++elementVertex)
-    {
+  {
       size_t referenceCount = (*elementVertex)->otherElementVertices().size();
 
       if ((0 < referenceCount) && (referenceCount <= 2))
       {
-        elementVertices2Clean.push_back(*elementVertex);
-        wellPathSectionVertices.erase(elementVertex);
-        elementVertex = wellPathSectionVertices.begin();
+    elementVertices2Clean.push_back(*elementVertex);
+    wellPathSectionVertices.erase(elementVertex);
+    elementVertex = wellPathSectionVertices.begin();
       }
-    }
+  }
 
-    for (std::vector <TElementVertex>::const_iterator elementVertex =
+  for (std::vector <TElementVertex>::const_iterator elementVertex =
       elementVertices2Clean.begin(); elementVertex !=
       elementVertices2Clean.end(); ++elementVertex)
-    {
+  {
       (*elementVertex)->removeLinkWithOtherElementVertices();
-    }
+  }
   }
 
   return (*wellPathSectionVertices.begin());
@@ -66,30 +66,30 @@ void CWellPathCenterPointSet::populatePointSet(
   std::vector <TElementVertex> centerVertices;
 
   for (TWellPathSectionsVertices::iterator wellPathSectionVertices =
-    wellPathSectionsVertices.wellPathSectionsVertices().begin();
-    wellPathSectionVertices !=
+  wellPathSectionsVertices.wellPathSectionsVertices().begin();
+  wellPathSectionVertices !=
       wellPathSectionsVertices.wellPathSectionsVertices().end();
-    ++wellPathSectionVertices)
+  ++wellPathSectionVertices)
   {
-    centerVertices.push_back(retrieveCenterVertex(*wellPathSectionVertices));
+  centerVertices.push_back(retrieveCenterVertex(*wellPathSectionVertices));
   }
 
   std::vector <TElementVertex>::const_iterator centerVertex =
-    centerVertices.begin();
+  centerVertices.begin();
 
   {
-    geo::CElementPoint elementPoint = (*centerVertex)->element().
+  geo::CElementPoint elementPoint = (*centerVertex)->element().
       IndexingElementSet()->Point((*centerVertex)->vertexIndices()[0]);
 
-    PushBack(elementPoint, std::vector <double> ());
+  PushBack(elementPoint, std::vector <double> ());
   }
 
   for (; centerVertex != centerVertices.end(); ++centerVertex)
   {
-    geo::CElementPoint elementPoint = (*centerVertex)->element().
+  geo::CElementPoint elementPoint = (*centerVertex)->element().
       IndexingElementSet()->Point((*centerVertex)->vertexIndices()[1]);
 
-    PushBack(elementPoint, std::vector <double> ());
+  PushBack(elementPoint, std::vector <double> ());
   }
 }
 

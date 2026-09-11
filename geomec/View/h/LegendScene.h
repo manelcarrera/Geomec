@@ -26,130 +26,130 @@ class SoVertexProperty;
 struct GeologyLegendItem
 {
 public:
-    GeologyLegendItem(const COpenGLNode * reference, const std::string & name) : m_reference (reference), m_name (name), m_referenceCount (0)
-    {
-        refreshContents();
-    }
+  GeologyLegendItem(const COpenGLNode * reference, const std::string & name) : m_reference (reference), m_name (name), m_referenceCount (0)
+  {
+    refreshContents();
+  }
 
-    const COpenGLNode * reference() { return m_reference; }
-    const float * color() { return m_color; }
-    const std::string & name() { return m_name; }
+  const COpenGLNode * reference() { return m_reference; }
+  const float * color() { return m_color; }
+  const std::string & name() { return m_name; }
 
-    int & referenceCount () { return m_referenceCount; }
+  int & referenceCount () { return m_referenceCount; }
 
-    void refreshContents();
+  void refreshContents();
 
 
 private:
-    const COpenGLNode * m_reference;
-    std::string m_name;
-    float m_color[3];
-    int m_referenceCount;
+  const COpenGLNode * m_reference;
+  std::string m_name;
+  float m_color[3];
+  int m_referenceCount;
 };
 
 class GeologyLegendItemList
 {
 public:
-    GeologyLegendItemList(const std::string & name)
-        : m_name(name)
-    {}
+  GeologyLegendItemList(const std::string & name)
+    : m_name(name)
+  {}
 
-    const std::string & name()
-    {
-        return m_name;
-    }
+  const std::string & name()
+  {
+    return m_name;
+  }
 
-    void addGeologyLegendItem (const COpenGLNode * reference);
-    void refreshGeologyLegendItem (const COpenGLNode * reference);
-    void removeGeologyLegendItem (const COpenGLNode * reference);
-    void listItems(size_t & itemIndex,  SoMFString & geologyHeaders, SoMFString & geologyItems, SoMFVec3f & point, SoMFColor & diffuseColor );
-    bool empty();
-    size_t size();
+  void addGeologyLegendItem (const COpenGLNode * reference);
+  void refreshGeologyLegendItem (const COpenGLNode * reference);
+  void removeGeologyLegendItem (const COpenGLNode * reference);
+  void listItems(size_t & itemIndex,  SoMFString & geologyHeaders, SoMFString & geologyItems, SoMFVec3f & point, SoMFColor & diffuseColor );
+  bool empty();
+  size_t size();
 private:
-    std::string m_name;
-    std::vector<GeologyLegendItem *> m_geologyLegendItemList;
+  std::string m_name;
+  std::vector<GeologyLegendItem *> m_geologyLegendItemList;
 };
 
 class ListOfGeologyLegendItemLists
 {
 public:
-    GeologyLegendItemList * getGeologyLegendItemList (const std::string & listName);
-    void addLegendItem( const COpenGLNode * reference );
-    void refreshLegendItem( const COpenGLNode * reference );
-    void removeLegendItem( const COpenGLNode * reference );
-    void listLegendItems(size_t & itemIndex, SoMFString &geologyHeaders, SoMFString &geologyItems, SoMFVec3f &point, SoMFColor &diffuseColor );
+  GeologyLegendItemList * getGeologyLegendItemList (const std::string & listName);
+  void addLegendItem( const COpenGLNode * reference );
+  void refreshLegendItem( const COpenGLNode * reference );
+  void removeLegendItem( const COpenGLNode * reference );
+  void listLegendItems(size_t & itemIndex, SoMFString &geologyHeaders, SoMFString &geologyItems, SoMFVec3f &point, SoMFColor &diffuseColor );
 private:
-    std::vector<GeologyLegendItemList *> m_listOfGeologyLegendItemLists;
+  std::vector<GeologyLegendItemList *> m_listOfGeologyLegendItemLists;
 };
 
 class LegendScene : public SoSeparator
 {
 public:
 
-    LegendScene();
+  LegendScene();
 
-    void initLegend();
+  void initLegend();
 
-    void setTitle(const std::string & title);
-    const std::string getTitle() const;
+  void setTitle(const std::string & title);
+  const std::string getTitle() const;
 
-    void addValuesAdornment (const std::string & adornment);
-    void clearValuesAdornments();
-    
-    void displayValuesLegend();
-    void displayGeologyLegend();
-    bool isDisplayingValueLegend();
-    void updateValuesLegend(float w, float h, double minimum, double maximum);
+  void addValuesAdornment (const std::string & adornment);
+  void clearValuesAdornments();
+  
+  void displayValuesLegend();
+  void displayGeologyLegend();
+  bool isDisplayingValueLegend();
+  void updateValuesLegend(float w, float h, double minimum, double maximum);
 
-    void addGeologyLegendItem (const COpenGLNode * reference);
-    void refreshGeologyLegendItem (const COpenGLNode * reference);
-    void removeGeologyLegendItem (const COpenGLNode * reference);
-    void updateGeologyLegend( );
+  void addGeologyLegendItem (const COpenGLNode * reference);
+  void refreshGeologyLegendItem (const COpenGLNode * reference);
+  void removeGeologyLegendItem (const COpenGLNode * reference);
+  void updateGeologyLegend( );
 
-    void SetTextColor( float * rgb );
-    void GetTextColor( float * rgb );
-    SbBox2i32 getValuesLegendBoundingBox();
+  void SetTextColor( float * rgb );
+  void GetTextColor( float * rgb );
+  SbBox2i32 getValuesLegendBoundingBox();
 
-    int getFullValuesLegendOffsetY();
+  int getFullValuesLegendOffsetY();
 
 private:
-    SoFont   *      m_font;
-    SoMaterial *    m_material;
-    SoSwitch *      m_valuesTextSwitch;
-    SoSwitch *      m_valuesLegendSwitch;
-    SoSwitch *      m_geologySwitch;
+  SoFont   *      m_font;
+  SoMaterial *    m_material;
+  SoSwitch *      m_valuesTextSwitch;
+  SoSwitch *      m_valuesLegendSwitch;
+  SoSwitch *      m_geologySwitch;
 
 
 
-    MoLegend *       m_valuesLegend;
+  MoLegend *       m_valuesLegend;
 
-    
-    SoText2 *        m_valuesAdornments;
-    int              m_valuesAdornmentCount;
+  
+  SoText2 *        m_valuesAdornments;
+  int              m_valuesAdornmentCount;
 
-    int              m_textSize;
-    float            m_textSpacing;
+  int              m_textSize;
+  float            m_textSpacing;
 
-    SoText2 *        m_valuesText;
-    int              m_valuesTextOffset; // offset from legend bar
-    SoTranslation *  m_valuesTextTranslation;
+  SoText2 *        m_valuesText;
+  int              m_valuesTextOffset; // offset from legend bar
+  SoTranslation *  m_valuesTextTranslation;
    
-    int              m_valuesCount;
+  int              m_valuesCount;
 
-    SoText2 *        m_geologyHeadersText;
-    SoText2 *        m_geologyItemsText;
-    SoVertexProperty * m_geologyMarkersCoordinates;
-    SoMarkerSet *    m_geologyMarkersSet;
-    SoMaterial  *    m_geologyMarkersMaterial;
-    SoMaterialBinding * m_geologyMarkersMaterialBinding;
+  SoText2 *        m_geologyHeadersText;
+  SoText2 *        m_geologyItemsText;
+  SoVertexProperty * m_geologyMarkersCoordinates;
+  SoMarkerSet *    m_geologyMarkersSet;
+  SoMaterial  *    m_geologyMarkersMaterial;
+  SoMaterialBinding * m_geologyMarkersMaterialBinding;
 
-    ListOfGeologyLegendItemLists m_listOfGeologyLegendItemLists;
+  ListOfGeologyLegendItemLists m_listOfGeologyLegendItemLists;
 
-    // all in pixels
-    int m_valuesLegendOffsetX;
-    int m_valuesLegendOffsetY;
-    int m_valuesLegendWidth;
-    int m_valuesLegendHeight;
+  // all in pixels
+  int m_valuesLegendOffsetX;
+  int m_valuesLegendOffsetY;
+  int m_valuesLegendWidth;
+  int m_valuesLegendHeight;
 };
 
 #endif // _LEGEND_SCENE_H__

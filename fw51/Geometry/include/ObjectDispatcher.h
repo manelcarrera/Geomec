@@ -17,11 +17,11 @@ namespace geo {
 class GEOMETRY_EXPORT  CObjectDispatcher  
 {
 public:
-	CObjectDispatcher();
-	virtual ~CObjectDispatcher();
+  CObjectDispatcher();
+  virtual ~CObjectDispatcher();
 
-	// dispatches the object and delegates to handler to handle the dispatched object
-	bool Dispatch(const IObject &object, CDispatchVisitorBase &handler);
+  // dispatches the object and delegates to handler to handle the dispatched object
+  bool Dispatch(const IObject &object, CDispatchVisitorBase &handler);
 };
 
 } // namespace geo

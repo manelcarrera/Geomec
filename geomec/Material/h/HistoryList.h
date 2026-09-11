@@ -45,13 +45,13 @@ void CHistoryList<HISTORYITEM>::Append(const HISTORYITEM& item)
 {
   if(m_current != m_lstItems.end())
   {
-    iterator next = m_current;
-    ++next;
-    if(next != m_lstItems.end())
-    {
+  iterator next = m_current;
+  ++next;
+  if(next != m_lstItems.end())
+  {
       // remove tail
       m_lstItems.erase(next, m_lstItems.end());
-    }
+  }
   }
 
   m_lstItems.push_back(item);
@@ -76,7 +76,7 @@ template <class HISTORYITEM>
 bool CHistoryList<HISTORYITEM>::CanGoForward() const
 {
   if(m_current == m_lstItems.end())
-    return false;
+  return false;
 
   iterator next = m_current;
   ++next;

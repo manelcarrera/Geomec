@@ -14,34 +14,34 @@
 
 class CHorizonDelDlg : public CDialog
 {
-	CHexaFormation *m_pLower, *m_pUpper;
+  CHexaFormation *m_pLower, *m_pUpper;
 // Construction
 public:
-	CHorizonDelDlg(CHexaFormation *pLower, CHexaFormation *pUpper, CWnd* pParent = NULL);   // standard constructor
-	const CHexaFormation& Selection() const;	
+  CHorizonDelDlg(CHexaFormation *pLower, CHexaFormation *pUpper, CWnd* pParent = NULL);   // standard constructor
+  const CHexaFormation& Selection() const;	
 // Dialog Data
-	//{{AFX_DATA(CHorizonDelDlg)
-	enum { IDD = IDD_DELHORIZONDLG };
-	int		m_nUpper;
-	//}}AFX_DATA
+  //{{AFX_DATA(CHorizonDelDlg)
+  enum { IDD = IDD_DELHORIZONDLG };
+  int		m_nUpper;
+  //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CHorizonDelDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
-	
+  // ClassWizard generated virtual function overrides
+  //{{AFX_VIRTUAL(CHorizonDelDlg)
+  protected:
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  //}}AFX_VIRTUAL
+  
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CHorizonDelDlg)
-		// NOTE: the ClassWizard will add member functions here
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+  // Generated message map functions
+  //{{AFX_MSG(CHorizonDelDlg)
+    // NOTE: the ClassWizard will add member functions here
+  //}}AFX_MSG
+  DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}

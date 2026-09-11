@@ -20,79 +20,79 @@
 
 namespace RGFailure
 {
-	// The object is the actual physical object 
-	enum RGFailureMechamismObject
-	{
-		Fault = 0,
-		Formation,
-		Well,
-		TopSurface,
-		Property,
-		UndefinedObject
-	};
+  // The object is the actual physical object 
+  enum RGFailureMechamismObject
+  {
+    Fault = 0,
+    Formation,
+    Well,
+    TopSurface,
+    Property,
+    UndefinedObject
+  };
 
-	// this is the failure mechanism type
-	// in contrast to the LSF type below
-	enum RGFailureMechanismFailureTypes
-	{
-		FaultShearCapacity = 0,
-		FaultDisplacementL,
-		ShearCapacity,
-		EPStress1L,
-		EPStress3L,
-		PStrain1L,
-		PStrain3L,
-		StrainInvVolumetric,
-		PStrain1PlasticL,
-		PStrain3PlasticL,
-		CompactionCapacity,
-		WPAxialStrain,
-		DisplacementV,
-		UndefinedFailureType
-	};
+  // this is the failure mechanism type
+  // in contrast to the LSF type below
+  enum RGFailureMechanismFailureTypes
+  {
+    FaultShearCapacity = 0,
+    FaultDisplacementL,
+    ShearCapacity,
+    EPStress1L,
+    EPStress3L,
+    PStrain1L,
+    PStrain3L,
+    StrainInvVolumetric,
+    PStrain1PlasticL,
+    PStrain3PlasticL,
+    CompactionCapacity,
+    WPAxialStrain,
+    DisplacementV,
+    UndefinedFailureType
+  };
 
-	// The LSF type
-	enum RGFailureMechanismLsfType
-	{
-		Minimum = 0,
-		Maximum,
+  // The LSF type
+  enum RGFailureMechanismLsfType
+  {
+    Minimum = 0,
+    Maximum,
 
-		MeasureWeightedAverage,
+    MeasureWeightedAverage,
 
-		MeasureOfMinimumThresholdExceeded,
-		MeasureOfMaximumThresholdExceeded,
-		FractionOfMinimumThresholdExceeded,
-		FractionOfMaximumThresholdExceeded,
+    MeasureOfMinimumThresholdExceeded,
+    MeasureOfMaximumThresholdExceeded,
+    FractionOfMinimumThresholdExceeded,
+    FractionOfMaximumThresholdExceeded,
 
-		UndefinedLsfType
-	};
+    UndefinedLsfType
+  };
 }
 
 class INTERFACE_RGINTERFACE RGFailureMechanism
 {
 public:
-	std::string                                objectName;
-	RGFailure::RGFailureMechamismObject        object;
-	RGFailure::RGFailureMechanismFailureTypes  failureType;
-	RGFailure::RGFailureMechanismLsfType       lsfType;
-	std::vector<double>                         value;
+  std::string                                objectName;
+  RGFailure::RGFailureMechamismObject        object;
+  RGFailure::RGFailureMechanismFailureTypes  failureType;
+  RGFailure::RGFailureMechanismLsfType       lsfType;
+  std::vector<double>                         value;
 };
 
 // Evaluate for a specified instance and threshold
 class INTERFACE_RGINTERFACE RGLimitStateFunctionEvaluate
 {
 public:
-	std::unique_ptr<RGFailureMechanism> failureMechanism;
-	int                       depletionStage; // std::numeric_limits<int>::max() means last one?
-	double                    threshold;       // Optional: failureMechanism.lsfType >= MeasureOfMinimumThresholdExceeded
-	double                    limitStateFunctionValue; // the value of the LSF
+  std::unique_ptr<RGFailureMechanism> failureMechanism;
+  int                       depletionStage; // std::numeric_limits<int>::max() means last one?
+  double                    threshold;       // Optional: failureMechanism.lsfType >= MeasureOfMinimumThresholdExceeded
+  double                    limitStateFunctionValue; // the value of the LSF
 
-	RGLimitStateFunctionEvaluate();
-	RGLimitStateFunctionEvaluate(RGFailureMechanism );
-	~RGLimitStateFunctionEvaluate();
-	RGLimitStateFunctionEvaluate(const RGLimitStateFunctionEvaluate &);
-	RGLimitStateFunctionEvaluate& operator=(const RGLimitStateFunctionEvaluate &);
-	void SetFailureMechanism(RGFailureMechanism  &);
+  RGLimitStateFunctionEvaluate();
+  RGLimitStateFunctionEvaluate(RGFailureMechanism );
+  ~RGLimitStateFunctionEvaluate();
+  RGLimitStateFunctionEvaluate(const RGLimitStateFunctionEvaluate &);
+  RGLimitStateFunctionEvaluate& operator=(const RGLimitStateFunctionEvaluate &);
+  void SetFailureMechanism(RGFailureMechanism  &);
 };
 
 // utility methods for conversion

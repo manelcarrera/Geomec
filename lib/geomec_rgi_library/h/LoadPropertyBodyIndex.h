@@ -9,15 +9,15 @@ namespace GeomecRGI
 class CLoadPropertyBodyIndex : public CLoadPropertyBase
 {
   public:
-    CLoadPropertyBodyIndex(const RGProperty& rgProperty, RGInterface& rgi,
+  CLoadPropertyBodyIndex(const RGProperty& rgProperty, RGInterface& rgi,
       CModelBase& modelBase, CRockMechProcessor& rmp);
-    virtual ~CLoadPropertyBodyIndex();
+  virtual ~CLoadPropertyBodyIndex();
 
-    virtual bool loadProperty();
+  virtual bool loadProperty();
 
   private:
-    CLoadPropertyBodyIndex(const CLoadPropertyBodyIndex& rhs);
-    CLoadPropertyBodyIndex& operator = (const CLoadPropertyBodyIndex& rhs);
+  CLoadPropertyBodyIndex(const CLoadPropertyBodyIndex& rhs);
+  CLoadPropertyBodyIndex& operator = (const CLoadPropertyBodyIndex& rhs);
 };
 
 } // namespace GeomecRGI

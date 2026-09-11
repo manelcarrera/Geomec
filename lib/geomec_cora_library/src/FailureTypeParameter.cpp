@@ -22,7 +22,7 @@ CFailureTypeParameter::CFailureTypeParameter(
   CSummaryResultFile& summaryResultFile, std::istream& stream,
   const CGetModelInfo& modelInfo)
 : m_failureTypeParameterBase(
-    selectFailureType(summaryResultFile, stream, modelInfo))
+  selectFailureType(summaryResultFile, stream, modelInfo))
 {
 }
 
@@ -30,7 +30,7 @@ void CFailureTypeParameter::modify(CModelBase* modelBase)
 {
   if (m_failureTypeParameterBase != 0)
   {
-    m_failureTypeParameterBase->modify(modelBase);
+  m_failureTypeParameterBase->modify(modelBase);
   }
 }
 
@@ -49,7 +49,7 @@ const std::string stripQuotes(const std::string& string)
   std::string stripped(string);
 
   stripped.erase(remove(stripped.begin(), stripped.end(), '\"'),
-    stripped.end());
+  stripped.end());
 
   return stripped;
 }
@@ -99,15 +99,15 @@ std::istream& operator >> (std::istream& stream,
 
   if (stream && (c == '"'))
   {
-    std::string extra;
+  std::string extra;
 
-    std::getline(stream, extra, '"');
-    quotedString.string = std::string("\"").append(extra).append("\"");
+  std::getline(stream, extra, '"');
+  quotedString.string = std::string("\"").append(extra).append("\"");
   }
   else
   {
-    stream.putback(c);
-    stream >> quotedString.string;
+  stream.putback(c);
+  stream >> quotedString.string;
   }
  
   return stream;
@@ -123,17 +123,17 @@ TFailureTypeParameterBase CFailureTypeParameter::selectFailureType(
   std::vector <double> value;
 
   stream >> TQuotedStringReader(parameter) >> TQuotedStringReader(option) >>
-    TQuotedStringReader(object);
+  TQuotedStringReader(object);
 
   std::copy(std::istream_iterator <double> (stream),
-    std::istream_iterator <double> (), std::back_inserter(value));
+  std::istream_iterator <double> (), std::back_inserter(value));
 
   object = stripQuotes(object).c_str();
   option = stripQuotes(option).c_str();
   parameter = stripQuotes(parameter).c_str();
 
   return selectFailureType(summaryResultFile, object, option, parameter, value,
-    modelInfo);
+  modelInfo);
 }
 
 TFailureTypeParameterBase CFailureTypeParameter::selectFailureType(
@@ -143,55 +143,55 @@ TFailureTypeParameterBase CFailureTypeParameter::selectFailureType(
 {
   if (object.find(FAULT_SEPARATOR.toStdString().c_str()) == 0)
   {
-    return TFailureTypeParameterBase(new CFailureTypeParameterFault(
+  return TFailureTypeParameterBase(new CFailureTypeParameterFault(
       summaryResultFile, object, option, parameter, value, modelInfo));
   }
   else if (object.find(FORMATION_SEPARATOR.toStdString().c_str()) == 0)
   {
-    TObject actualObject = CFailureTypeParameterBase::findActualObject(
+  TObject actualObject = CFailureTypeParameterBase::findActualObject(
       summaryResultFile, object, modelInfo.getFormationInfo().getObjects(),
       CFailureTypeParameterFormation::FORMATION);
-    TParameter actualParameter = CFailureTypeParameterBase::findActualParameter(
+  TParameter actualParameter = CFailureTypeParameterBase::findActualParameter(
       summaryResultFile, object, parameter, actualObject->getParameters());
 
-    if (actualParameter->isParameterType <CParameterFormation4Material> ())
-    {
+  if (actualParameter->isParameterType <CParameterFormation4Material> ())
+  {
       return TFailureTypeParameterBase(
-        new CFailureTypeParameterFormation4Material(summaryResultFile, object,
+    new CFailureTypeParameterFormation4Material(summaryResultFile, object,
           option, parameter, value, modelInfo));
-    }
-    else if (actualParameter->isParameterType <CParameterFormation4Pressure> ())
-    {
+  }
+  else if (actualParameter->isParameterType <CParameterFormation4Pressure> ())
+  {
       return TFailureTypeParameterBase(
-        new CFailureTypeParameterFormation4Pressure(summaryResultFile, object,
+    new CFailureTypeParameterFormation4Pressure(summaryResultFile, object,
           option, parameter, value, modelInfo));
-    }
-    else if (actualParameter->
+  }
+  else if (actualParameter->
       isParameterType <CParameterFormation4PressureChange> ())
-    {
+  {
       return TFailureTypeParameterBase(
-        new CFailureTypeParameterFormation4PressureChange(summaryResultFile,
+    new CFailureTypeParameterFormation4PressureChange(summaryResultFile,
           object, option, parameter, value, modelInfo));
-    }
+  }
   }
   else if (object.find(SURFACE_SEPARATOR.toStdString().c_str()) == 0)
   {
-    return TFailureTypeParameterBase(new CFailureTypeParameterSurface(
+  return TFailureTypeParameterBase(new CFailureTypeParameterSurface(
       summaryResultFile, object, option, parameter, value, modelInfo));
   }
   else if (object.find(WELL_SEPARATOR.toStdString().c_str()) == 0)
   {
-    return TFailureTypeParameterBase(new CFailureTypeParameterWell(
+  return TFailureTypeParameterBase(new CFailureTypeParameterWell(
       summaryResultFile, object, option, parameter, value, modelInfo));
   }
 
   std::string::size_type offset =
-    object.find(FAILURE_TYPE_SEPARATOR.toStdString());
+  object.find(FAILURE_TYPE_SEPARATOR.toStdString());
 
   summaryResultFile.setResultValue(
-    CSummaryResultFile::RESULT_VALUE_INCONSISTENT);
+  CSummaryResultFile::RESULT_VALUE_INCONSISTENT);
   summaryResultFile.addAdditionalInformation(
-    QString(FAILURE_TYPE_DOES_NOT_EXIST).arg(parameter.c_str()).
+  QString(FAILURE_TYPE_DOES_NOT_EXIST).arg(parameter.c_str()).
       arg(object.c_str()));
 
   return TFailureTypeParameterBase();

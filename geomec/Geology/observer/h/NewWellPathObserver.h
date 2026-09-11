@@ -38,26 +38,26 @@ class CNewWellPathObserver : public COpenGLNodeObserver_Delegate<CNewWellPath, C
 {
 public:
   CNewWellPathObserver(CNewWellPath& node,
-    CTreeNode& parent,
-    const BOOL rename,
-    const enum REMOVE_TYPE remove,
-    HTREEITEM hInsertAfter = TVI_LAST,
-    BOOL bInitialUpdate = TRUE,
-    BOOL bSortAfterInsertion = FALSE)
-    : COpenGLNodeObserver_Delegate<CNewWellPath, CNewWellPath_Delegate, CWellZoomInModel, TNewZoomInObs, FALSE, FIXED_ITEM>(node, parent, rename, remove,
+  CTreeNode& parent,
+  const BOOL rename,
+  const enum REMOVE_TYPE remove,
+  HTREEITEM hInsertAfter = TVI_LAST,
+  BOOL bInitialUpdate = TRUE,
+  BOOL bSortAfterInsertion = FALSE)
+  : COpenGLNodeObserver_Delegate<CNewWellPath, CNewWellPath_Delegate, CWellZoomInModel, TNewZoomInObs, FALSE, FIXED_ITEM>(node, parent, rename, remove,
       hInsertAfter, bInitialUpdate, bSortAfterInsertion)
   {
   }
 
   CNewWellPathObserver(CNewWellPath& node,
-    CTreeCtrl& ctrl,
-    const BOOL rename,
-    const enum REMOVE_TYPE remove,
-    HTREEITEM hParent = TVI_ROOT,
-    HTREEITEM hInsertAfter = TVI_LAST,
-    BOOL bInitialUpdate = TRUE,
-    BOOL bSortAfterInsertion = FALSE)
-    : COpenGLNodeObserver_Delegate<CNewWellPath, CNewWellPath_Delegate, CWellZoomInModel, TNewZoomInObs, FALSE, FIXED_ITEM>(node, ctrl, rename, remove, hParent,
+  CTreeCtrl& ctrl,
+  const BOOL rename,
+  const enum REMOVE_TYPE remove,
+  HTREEITEM hParent = TVI_ROOT,
+  HTREEITEM hInsertAfter = TVI_LAST,
+  BOOL bInitialUpdate = TRUE,
+  BOOL bSortAfterInsertion = FALSE)
+  : COpenGLNodeObserver_Delegate<CNewWellPath, CNewWellPath_Delegate, CWellZoomInModel, TNewZoomInObs, FALSE, FIXED_ITEM>(node, ctrl, rename, remove, hParent,
       hInsertAfter, bInitialUpdate, bSortAfterInsertion)
   {
   }
@@ -66,8 +66,8 @@ public:
 
   virtual BOOL OnBeginDrag()
   {
-    CGroupNode *group = static_cast<CNewWellPath&>(ObservedItem()).GetGroup();
-    return group && group->ReadOnly() ? FALSE : TRUE;
+  CGroupNode *group = static_cast<CNewWellPath&>(ObservedItem()).GetGroup();
+  return group && group->ReadOnly() ? FALSE : TRUE;
   }
 };
 

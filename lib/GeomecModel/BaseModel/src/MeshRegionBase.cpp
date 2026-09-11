@@ -41,21 +41,21 @@ CMeshRegionBase::CMeshRegionBase(const CMeshRegionBase &rhs)
 
 CMeshRegionBase& CMeshRegionBase::operator=(const CMeshRegionBase &rhs)
 {
-	CColorNode::operator=(rhs);
-	return *this;
+  CColorNode::operator=(rhs);
+  return *this;
 }
 
 bool CMeshRegionBase::operator==(const CMeshRegionBase &rhs) const
 {
-	return CColorNode::operator==(rhs);
+  return CColorNode::operator==(rhs);
 }
 
 unsigned int CMeshRegionBase::TypeId() const
 {
-	return IDT_TREE_MESH_REGIONS;
+  return IDT_TREE_MESH_REGIONS;
 }
 
 QString CMeshRegionBase::TypeName() const
 {
-	return getStringTableEntry(IDS_TREE_MESH_REGIONS);
+  return getStringTableEntry(IDS_TREE_MESH_REGIONS);
 }

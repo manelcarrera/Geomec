@@ -65,7 +65,7 @@ public:
 private:
   CNewWellPathEntry_Delegate(const CNewWellPathEntry_Delegate& rhs);
   CNewWellPathEntry_Delegate& operator =
-    (const CNewWellPathEntry_Delegate& rhs);
+  (const CNewWellPathEntry_Delegate& rhs);
 
   CNewWellPathEntry* m_newWellPathEntry;
 

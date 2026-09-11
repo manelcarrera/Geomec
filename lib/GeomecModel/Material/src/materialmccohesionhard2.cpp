@@ -12,18 +12,18 @@ CMaterialMCCohesionHard2::CMaterialMCCohesionHard2(CMaterialEntry &entry, CLibra
 
 bool CMaterialMCCohesionHard2::Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const
 {
-	ftn_double_t kapcoh[6];
+  ftn_double_t kapcoh[6];
 
-	kapcoh[0] = 0;
-	kapcoh[1] = ffmat.ParameterValue(IDT_VALUETYPE_COHESION) * 1e6;
-	kapcoh[2] = ffmat.ParameterValue(IDT_VALUETYPE_EQUIV_PLAST_STRAIN1);
-	kapcoh[3] = ffmat.ParameterValue(IDT_VALUETYPE_HARD_COHESION1) * 1e6;
-	kapcoh[4] = ffmat.ParameterValue(IDT_VALUETYPE_EQUIV_PLAST_STRAIN2);
-	kapcoh[5] = ffmat.ParameterValue(IDT_VALUETYPE_HARD_COHESION2) * 1e6;
+  kapcoh[0] = 0;
+  kapcoh[1] = ffmat.ParameterValue(IDT_VALUETYPE_COHESION) * 1e6;
+  kapcoh[2] = ffmat.ParameterValue(IDT_VALUETYPE_EQUIV_PLAST_STRAIN1);
+  kapcoh[3] = ffmat.ParameterValue(IDT_VALUETYPE_HARD_COHESION1) * 1e6;
+  kapcoh[4] = ffmat.ParameterValue(IDT_VALUETYPE_EQUIV_PLAST_STRAIN2);
+  kapcoh[5] = ffmat.ParameterValue(IDT_VALUETYPE_HARD_COHESION2) * 1e6;
 
-	PutItemLength("KAPCOH", kapcoh, 6);
+  PutItemLength("KAPCOH", kapcoh, 6);
 
-	return CMaterialMohrCo::Write(ffmat, diarunner);
+  return CMaterialMohrCo::Write(ffmat, diarunner);
 }
 
 
@@ -40,9 +40,9 @@ bool CMaterialMCCohesionHard2::WriteFilosParamName(const CFFMaterial &ffmat, dia
 {
   if (i < 6)
   {
-    QString kapcoh = QString("KAPCOH(%1)").arg(i + 1);
-    strncpy(name, kapcoh.toStdString().c_str(), 10);
-    return true;
+  QString kapcoh = QString("KAPCOH(%1)").arg(i + 1);
+  strncpy(name, kapcoh.toStdString().c_str(), 10);
+  return true;
   }
   i -= 6;
 

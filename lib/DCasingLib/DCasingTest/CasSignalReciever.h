@@ -15,18 +15,18 @@ class CDCasing;
 class CCasingSignalReciever :public QObject 
 {
 
-	Q_OBJECT;
+  Q_OBJECT;
 public:
-	CCasingSignalReciever(CDCasing * obj = NULL);
-	~CCasingSignalReciever();
+  CCasingSignalReciever(CDCasing * obj = NULL);
+  ~CCasingSignalReciever();
 public slots:
-	void OnMessage(QString str);
-	void OnError(QString str);
-	void OnWarning(QString str);
-	void OnFinished();
+  void OnMessage(QString str);
+  void OnError(QString str);
+  void OnWarning(QString str);
+  void OnFinished();
 
 private : 
-	CDCasing * m_obj;
+  CDCasing * m_obj;
 };
 
 

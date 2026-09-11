@@ -18,10 +18,10 @@ const unsigned int THOUSAND = 1000;
 void mSleep(unsigned int milliSeconds)
 {
 #ifndef WIN32
-	assert(milliSeconds < THOUSAND);
+  assert(milliSeconds < THOUSAND);
 
-	usleep(THOUSAND * milliSeconds);
+  usleep(THOUSAND * milliSeconds);
 #else // WIN32
-	Sleep(milliSeconds);
+  Sleep(milliSeconds);
 #endif  // WIN32
 }

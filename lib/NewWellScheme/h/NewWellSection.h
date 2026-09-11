@@ -77,7 +77,7 @@ public:
 
   void SetDescription(const std::string& description);
   
-	
+  
   //IWellSection interface
   virtual const CNewWellPoint & Top() const;
   virtual const CNewWellPoint & Bottom() const;

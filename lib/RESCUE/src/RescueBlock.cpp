@@ -13,11 +13,11 @@
 #include <string.h>
 
 RescueBlock::RescueBlock(const RESCUECHAR *newBlockName,
-    RescueModel *newBlockParent)
-                        :RescueHistoryObject(newBlockParent->Context())
-                        ,blockName(0)
-                        ,parentModel(newBlockParent)
-                        ,blockUnits(0)
+  RescueModel *newBlockParent)
+            :RescueHistoryObject(newBlockParent->Context())
+            ,blockName(0)
+            ,parentModel(newBlockParent)
+            ,blockUnits(0)
 {
   blockName = new RCHString(newBlockName);
   blockUnits = new cSetRescueBlockUnit();
@@ -35,11 +35,11 @@ RescueBlock::~RescueBlock()
 {
   if (blockName != 0)
   {
-    delete blockName;
+  delete blockName;
   }
   if (blockUnits != 0)
   {
-    delete blockUnits;
+  delete blockUnits;
   }
 }
 
@@ -60,14 +60,14 @@ RescueBlock::RescueBlock(RescueContext *context, FILE *archiveFile)
   (*blockUnits).UnArchive(context, archiveFile);
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -87,7 +87,7 @@ void RescueBlock::Archive(FILE *archiveFile)
   (*blockUnits).Archive(parentModel->Context(), archiveFile);
   if (parentModel->Context()->FileVersion() >= 37)
   {
-    myfprintf(parentModel->Context(), archiveFile, "EOD");
+  myfprintf(parentModel->Context(), archiveFile, "EOD");
   }
 }
 
@@ -99,14 +99,14 @@ RescueBlockUnit *RescueBlock::BlockUnitForUnit(RescueUnit *existingUnit)
 
   while (candidate != 0 && myReturn == 0)
   {
-    if (candidate->Unit() == existingUnit)
-    {
+  if (candidate->Unit() == existingUnit)
+  {
       myReturn = candidate;
-    }
-    else
-    {
+  }
+  else
+  {
       candidate = (*blockUnits).NthObject(ndx++);
-    }
+  }
   }
   
   return myReturn;
@@ -119,11 +119,11 @@ RescueBlockUnitSide *RescueBlock::BlockUnitSideIdentifiedBy(RESCUEINT64 id)
   RescueBlockUnit *bu = (*blockUnits).NthObject(ndx++);
   while (bu != 0 && myReturn == 0)
   {
-    myReturn = bu->BlockUnitSideIdentifiedBy(id);
-    if (myReturn == 0)
-    {
+  myReturn = bu->BlockUnitSideIdentifiedBy(id);
+  if (myReturn == 0)
+  {
       bu = (*blockUnits).NthObject(ndx++);
-    }
+  }
   }
   return myReturn;
 }
@@ -135,11 +135,11 @@ RescueMacroVolume *RescueBlock::MacroVolumeIdentifiedBy(RESCUEINT64 id)
   RescueBlockUnit *bu = (*blockUnits).NthObject(ndx++);
   while (bu != 0 && myReturn == 0)
   {
-    myReturn = bu->MacroVolumeIdentifiedBy(id);
-    if (myReturn == 0)
-    {
+  myReturn = bu->MacroVolumeIdentifiedBy(id);
+  if (myReturn == 0)
+  {
       bu = (*blockUnits).NthObject(ndx++);
-    }
+  }
   }
   return myReturn;
 }
@@ -151,11 +151,11 @@ RescueProperty *RescueBlock::PropertyIdentifiedBy(RESCUEINT64 id)
   RescueBlockUnit *bu = (*blockUnits).NthObject(ndx++);
   while (bu != 0 && myReturn == 0)
   {
-    myReturn = bu->PropertyIdentifiedBy(id);
-    if (myReturn == 0)
-    {
+  myReturn = bu->PropertyIdentifiedBy(id);
+  if (myReturn == 0)
+  {
       bu = (*blockUnits).NthObject(ndx++);
-    }
+  }
   }
   return myReturn;
 }
@@ -167,8 +167,8 @@ void RescueBlock::SetOrientation(RescueOrientationLedger *ledger,
   RescueBlockUnit *bu = (*blockUnits).NthObject(ndx++);
   while (bu != 0)
   {
-    bu->SetOrientation(ledger, orientation);
-    bu = (*blockUnits).NthObject(ndx++);
+  bu->SetOrientation(ledger, orientation);
+  bu = (*blockUnits).NthObject(ndx++);
   }
 }
 
@@ -176,11 +176,11 @@ RESCUEBOOL RescueBlock::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueBlock)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueHistoryObject::IsOfType(thisType);
+  return RescueHistoryObject::IsOfType(thisType);
   }
 }
 
@@ -190,8 +190,8 @@ void RescueBlock::FindUniquePropertyNames(cSetString *container)
   RescueBlockUnit *bu = (*blockUnits).NthObject(ndx++);
   while (bu != 0)
   {
-    bu->FindUniquePropertyNames(container);
-    bu = (*blockUnits).NthObject(ndx++);
+  bu->FindUniquePropertyNames(container);
+  bu = (*blockUnits).NthObject(ndx++);
   }
 }
 
@@ -200,10 +200,10 @@ RESCUEINT32 RescueBlock::BlockUnitCount(RESCUEBOOL throwIfTooBig)
   RESCUEINT64 output = BlockUnitCount64();
   if (throwIfTooBig)
   {
-    if (output > 2147483647 || output < -2147483647)
-    {
+  if (output > 2147483647 || output < -2147483647)
+  {
       throw "Model is too large to be read in 32 bit mode.";
-    }
+  }
   }
   return (RESCUEINT32) output;
 }

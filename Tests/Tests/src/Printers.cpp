@@ -73,13 +73,13 @@ void RTXPrinter::OnTestProgramEnd(const UnitTest& unit_test)
 
   for (std::size_t i = 0; i < m_Tests.size(); ++i)
   {
-    Test &test = m_Tests[i];
+  Test &test = m_Tests[i];
 
-    output << "  <UnitTest id=\"" << test.UnitTest << "\" storage=\"geomec3\\x64\\" << TestLib::getConfiguration() << "\\Test.exe\" name=\"" << test.Method << "\">" << std::endl;
-    output << "    <Description>" << test.Class << "." << test.Method << "</Description>" << std::endl;
-    output << "    <Execution id=\"" << test.Execution << "\"/>" << std::endl;
-    output << "    <TestMethod codeBase=\"geomec3\\x64\\" << TestLib::getConfiguration() << "\\Test.exe\" className=\"" << test.Class << ", Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null\" name=\"" << test.Method << "\" />" << std::endl;
-    output << "  </UnitTest>" << std::endl;
+  output << "  <UnitTest id=\"" << test.UnitTest << "\" storage=\"geomec3\\x64\\" << TestLib::getConfiguration() << "\\Test.exe\" name=\"" << test.Method << "\">" << std::endl;
+  output << "    <Description>" << test.Class << "." << test.Method << "</Description>" << std::endl;
+  output << "    <Execution id=\"" << test.Execution << "\"/>" << std::endl;
+  output << "    <TestMethod codeBase=\"geomec3\\x64\\" << TestLib::getConfiguration() << "\\Test.exe\" className=\"" << test.Class << ", Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null\" name=\"" << test.Method << "\" />" << std::endl;
+  output << "  </UnitTest>" << std::endl;
   }
   output << "</TestDefinitions>" << std::endl;
   output << "<TestLists>" << std::endl;
@@ -90,23 +90,23 @@ void RTXPrinter::OnTestProgramEnd(const UnitTest& unit_test)
   output << "<TestEntries>" << std::endl;
   for (std::size_t i = 0; i < m_Tests.size(); ++i)
   {
-    Test &test = m_Tests[i];
+  Test &test = m_Tests[i];
 
-    output << "  <TestEntry testId=\"" << test.UnitTest << "\" executionId=\"" << test.Execution << "\" testListId=\"" << m_TestListID << "\" />" << std::endl;
+  output << "  <TestEntry testId=\"" << test.UnitTest << "\" executionId=\"" << test.Execution << "\" testListId=\"" << m_TestListID << "\" />" << std::endl;
   }
   output << "</TestEntries>" << std::endl;
   
   output << "<Results>" << std::endl;
   for (std::size_t i = 0; i < m_Tests.size(); ++i)
   {
-    Test &test = m_Tests[i];
+  Test &test = m_Tests[i];
 
-    // TODO: find out where testType comes from
-    output << "  <UnitTestResult executionId=\"" << test.Execution << "\" testId=\"" << test.UnitTest << "\" testListId=\"" << m_TestListID << "\" outcome=\"" << (test.Result ? "Passed" : "Failed") << "\" ";
-    output << "testName=\"" << test.Method << "\" testType=\"13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b\" computerName=\"" << TestLib::getHost() << "\" relativeResultsDirectory=\"";
-    output << test.Execution << "\" duration=\"" << test.Duration << "\" startTime=\"" << test.Start << "\" endTime=\"" << test.End << "\">" << std::endl;
-    if (!test.Result)
-    {
+  // TODO: find out where testType comes from
+  output << "  <UnitTestResult executionId=\"" << test.Execution << "\" testId=\"" << test.UnitTest << "\" testListId=\"" << m_TestListID << "\" outcome=\"" << (test.Result ? "Passed" : "Failed") << "\" ";
+  output << "testName=\"" << test.Method << "\" testType=\"13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b\" computerName=\"" << TestLib::getHost() << "\" relativeResultsDirectory=\"";
+  output << test.Execution << "\" duration=\"" << test.Duration << "\" startTime=\"" << test.Start << "\" endTime=\"" << test.End << "\">" << std::endl;
+  if (!test.Result)
+  {
       output << "    <Output>" << std::endl;
       output << "      <ErrorInfo>" << std::endl;
       output << "        <Message>" << std::endl;
@@ -120,8 +120,8 @@ void RTXPrinter::OnTestProgramEnd(const UnitTest& unit_test)
       output << "      </ErrorInfo>" << std::endl;
       output << "    </Output>" << std::endl;
 
-    }
-    output << "  </UnitTestResult>" << std::endl;
+  }
+  output << "  </UnitTestResult>" << std::endl;
   }
   output << "</Results>" << std::endl;
 
@@ -146,19 +146,19 @@ void RTXPrinter::OnTestStart(const TestInfo& test_info)
 
 void RTXPrinter::OnTestPartResult(const TestPartResult& test_part_result)
 {
-	//
-	// FIXME: mcr 2020-07-07
-	// crash here is the result of something wrong before
-	// so this should be only temporary 
-	//
-	std::string msg;
-	if(test_part_result.file_name())
-		msg = test_part_result.file_name();
-	//
-	// this crashes if test_part_result.file_name() return nullptr
-	//
-	//std::string msg = test_part_result.file_name();
-	//
+  //
+  // FIXME: mcr 2020-07-07
+  // crash here is the result of something wrong before
+  // so this should be only temporary 
+  //
+  std::string msg;
+  if(test_part_result.file_name())
+    msg = test_part_result.file_name();
+  //
+  // this crashes if test_part_result.file_name() return nullptr
+  //
+  //std::string msg = test_part_result.file_name();
+  //
 
   msg.append("(");
 

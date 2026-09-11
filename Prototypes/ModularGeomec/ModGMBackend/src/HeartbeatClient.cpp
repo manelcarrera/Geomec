@@ -38,18 +38,18 @@ void HeartbeatClient::heartbeat()
   qDebug() << "Client heartbeat";
   while (true)
   {
-    m_hb_message.setPayload(m_hb_id++);
+  m_hb_message.setPayload(m_hb_id++);
 
-    if (!m_shm_socket.write(m_hb_message))
-    {
+  if (!m_shm_socket.write(m_hb_message))
+  {
       ++m_dropped;
 
       if (m_dropped >= 1)
       {
-        qDebug() << m_name << " dropped " << m_dropped;
-        m_dropped = 0;
+    qDebug() << m_name << " dropped " << m_dropped;
+    m_dropped = 0;
       }
-    }
+  }
   }
 }
 

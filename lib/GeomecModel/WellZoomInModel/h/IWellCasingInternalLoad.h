@@ -26,13 +26,13 @@ class IWellCasingInternalLoad : public IValueComposite
 public:
   typedef enum
   {
-    LM_REPEATER = 0,
-    LM_GRADIENT = 1
+  LM_REPEATER = 0,
+  LM_GRADIENT = 1
   } TLoadingMode;
 
 public:
-	typedef CStorageNode::TSTREAM TSTREAM;
-	typedef CStorageNode::TPROGRESS TPROGRESS;
+  typedef CStorageNode::TSTREAM TSTREAM;
+  typedef CStorageNode::TPROGRESS TPROGRESS;
 
   IWellCasingInternalLoad(CDepletionStage& stage);
   IWellCasingInternalLoad(const IWellCasingInternalLoad& rhs);
@@ -60,8 +60,8 @@ public:
 
   virtual const IWellCasingInternalLoad<VALUETYPE>& PreviousStageLoad() const = 0;
   virtual const IWellCasingInternalLoad<VALUETYPE>& NextStageLoad() const = 0;
-	virtual geo::CPoint Min() const = 0;
-	virtual geo::CPoint Max() const = 0;
+  virtual geo::CPoint Min() const = 0;
+  virtual geo::CPoint Max() const = 0;
 
   virtual void OnNewNeighbour(const CGraphNode &node);
   virtual void OnNeighbourDeleted(const CGraphNode &node);
@@ -106,15 +106,15 @@ public:
   const IWellCasingInternalLoad<VALUETYPE>& ParentLoad() const;
   IWellCasingInternalLoad<VALUETYPE>& ParentLoad();
 
-	virtual IValueDomainScalar::TMinMax MinMax(IProgressBase& progressBase, const CQuantity::UNIT unit = CQuantity::SI_UNIT) const;
+  virtual IValueDomainScalar::TMinMax MinMax(IProgressBase& progressBase, const CQuantity::UNIT unit = CQuantity::SI_UNIT) const;
   virtual IValueDomainScalar::TValue Average(IProgressBase& progressBase, const CQuantity::UNIT unit = CQuantity::SI_UNIT) const;
   virtual IValueDomainScalar::TValueVec ValueElement(const geo::IElement& elm, const CQuantity::UNIT unit = CQuantity::SI_UNIT, geo::IParallelInitializationCallback *cb = 0) const;
   virtual IValueDomainScalar::TValue ValuePoint(const geo::IPoint& pt, const CQuantity::UNIT unit = CQuantity::SI_UNIT, geo::IParallelInitializationCallback *cb = 0) const;
   virtual bool Defined() const;
 
-	virtual bool Empty() const;
+  virtual bool Empty() const;
 
-	virtual bool CanMap(const COpenGLNode& node) const;
+  virtual bool CanMap(const COpenGLNode& node) const;
 
   virtual double UnitFactor(CQuantity::UNIT unit) const = 0;
 
@@ -131,8 +131,8 @@ public:
   IWellCasingInternalLoadComponentGradient(IWellCasingInternalLoad<VALUETYPE>& parent);
   IWellCasingInternalLoadComponentGradient(const IWellCasingInternalLoadComponentGradient& rhs);
 
-	IWellCasingInternalLoadComponentGradient& operator=(const IWellCasingInternalLoadComponentGradient &rhs);
-	bool operator==(const IWellCasingInternalLoadComponentGradient &rhs) const;
+  IWellCasingInternalLoadComponentGradient& operator=(const IWellCasingInternalLoadComponentGradient &rhs);
+  bool operator==(const IWellCasingInternalLoadComponentGradient &rhs) const;
 
   void ReferenceValue(double d);
   double ReferenceValue() const;
@@ -146,8 +146,8 @@ public:
   virtual IValueDomainScalar::TValueVec ValueElement(const geo::IElement& elm, const CQuantity::UNIT unit = CQuantity::SI_UNIT, geo::IParallelInitializationCallback *cb = 0) const;
   virtual IValueDomainScalar::TValue ValuePoint(const geo::IPoint& pt, const CQuantity::UNIT unit = CQuantity::SI_UNIT, geo::IParallelInitializationCallback *cb = 0) const;
 
-	virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-	virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
+  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
   virtual long SavedItems() const;
 
 private:
@@ -199,15 +199,15 @@ IWellCasingInternalLoad<VALUETYPE>& IWellCasingInternalLoad<VALUETYPE>::operator
 {
   if(!(*this == rhs))
   {
-    IPlatform* platform = IPlatform::instance();
+  IPlatform* platform = IPlatform::instance();
 
-    platform->trace("Start IValueComposite::operator=");
-    IValueComposite::operator=(rhs);
-    platform->trace("End IValueComposite::operator=");
+  platform->trace("Start IValueComposite::operator=");
+  IValueComposite::operator=(rhs);
+  platform->trace("End IValueComposite::operator=");
 
-    m_vcDistributed    = rhs.m_vcDistributed;
-    m_bDistributedOnly = rhs.m_bDistributedOnly;
-    m_LoadingMode      = rhs.m_LoadingMode;
+  m_vcDistributed    = rhs.m_vcDistributed;
+  m_bDistributedOnly = rhs.m_bDistributedOnly;
+  m_LoadingMode      = rhs.m_LoadingMode;
   }
 
   return *this;
@@ -217,12 +217,12 @@ template <class VALUETYPE>
 bool IWellCasingInternalLoad<VALUETYPE>::operator==(const IWellCasingInternalLoad& rhs) const
 {
   if(IValueComposite::operator==(rhs))
-    return false;
+  return false;
 
   return (
-    m_vcDistributed    == rhs.m_vcDistributed    &&
-    m_bDistributedOnly == rhs.m_bDistributedOnly &&
-    m_LoadingMode      == rhs.m_LoadingMode        );
+  m_vcDistributed    == rhs.m_vcDistributed    &&
+  m_bDistributedOnly == rhs.m_bDistributedOnly &&
+  m_LoadingMode      == rhs.m_LoadingMode        );
 }
 
 template <class VALUETYPE>
@@ -300,15 +300,15 @@ void IWellCasingInternalLoad<VALUETYPE>::OnNewNeighbour(const CGraphNode &node)
   VALUETYPE* pVT = (VALUETYPE*)dynamic_cast<const VALUETYPE*>(&node);
   if(pVT)
   {
-    m_vcDistributed.push_back(pVT);
+  m_vcDistributed.push_back(pVT);
 
-    // only for redrawing purposes
-    if(!static_cast<const CModelBase&>(Model()).Loading())
-    {
+  // only for redrawing purposes
+  if(!static_cast<const CModelBase&>(Model()).Loading())
+  {
       Modified();
       if(IValueComposite::ModeSize() > 0)
-        Component().Modified();
-    }
+    Component().Modified();
+  }
   }
 
   IValueComposite::OnNewNeighbour(node);
@@ -320,14 +320,14 @@ void IWellCasingInternalLoad<VALUETYPE>::OnNeighbourDeleted(const CGraphNode &no
   typename std::vector<VALUETYPE*>::iterator it;
   for(it = m_vcDistributed.begin(); it != m_vcDistributed.end(); ++it)
   {
-    assert(!(*it)->IsCopy());
-    if(*it == &node)
-    {
+  assert(!(*it)->IsCopy());
+  if(*it == &node)
+  {
       m_vcDistributed.erase(it);
       Modified();
       Component().Modified();
       break;
-    }
+  }
   }
 
   IValueComposite::OnNeighbourDeleted(node);
@@ -342,9 +342,9 @@ bool IWellCasingInternalLoad<VALUETYPE>::ConnectItem(const CGraphNode &item)
 
   if(pVT)
   {
-    assert(!IsLinkedTo(*pVT));
-    LinkTo(const_cast<VALUETYPE&>(*pVT));
-    return true;
+  assert(!IsLinkedTo(*pVT));
+  LinkTo(const_cast<VALUETYPE&>(*pVT));
+  return true;
   }
 
   return false;
@@ -355,7 +355,7 @@ bool IWellCasingInternalLoad<VALUETYPE>::CanConnectItem(const CGraphNode &item) 
 {
   const VALUETYPE* pVT = dynamic_cast<const VALUETYPE*>(&item);
   if(pVT)
-    return pVT->Component().Defined() && !IsLinkedTo(*pVT);
+  return pVT->Component().Defined() && !IsLinkedTo(*pVT);
 
   return false;
 }
@@ -366,8 +366,8 @@ void IWellCasingInternalLoad<VALUETYPE>::Modified(enum ModifiedHint uHint)
   // send modified for all dependent (i.e. 'same as previous') loads
   if(!m_stage.Last())
   {
-    IWellCasingInternalLoad<VALUETYPE>& NextLoad = const_cast<IWellCasingInternalLoad<VALUETYPE>&>(NextStageLoad());
-    if((!NextLoad.DistributedOnly() || NextLoad.DistributedSize() == 0) && NextLoad.LoadingMode() == LM_REPEATER)
+  IWellCasingInternalLoad<VALUETYPE>& NextLoad = const_cast<IWellCasingInternalLoad<VALUETYPE>&>(NextStageLoad());
+  if((!NextLoad.DistributedOnly() || NextLoad.DistributedSize() == 0) && NextLoad.LoadingMode() == LM_REPEATER)
       NextLoad.Modified(uHint);
   }
 
@@ -387,7 +387,7 @@ long IWellCasingInternalLoad<VALUETYPE>::SavedItems() const
 template <class VALUETYPE>
 void IWellCasingInternalLoad<VALUETYPE>::LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress)
 {
-	TValueCompositeEntry& composite_entry = (TValueCompositeEntry&)*((CModelBase&)Model()).GraphEntry(MD_BASE_VALUE_COMPOSITE);
+  TValueCompositeEntry& composite_entry = (TValueCompositeEntry&)*((CModelBase&)Model()).GraphEntry(MD_BASE_VALUE_COMPOSITE);
 
   IValueComposite::LoadStream(stream, version, progress);
 
@@ -397,13 +397,13 @@ void IWellCasingInternalLoad<VALUETYPE>::LoadStream(TSTREAM& stream, CStreamVers
   int i;
   for(i = 0; i < n; ++i)
   {
-    int nIndex;
-    stream >> nIndex;
-		assert(composite_entry.FindIndex(nIndex));
-		VALUETYPE *pValue = (VALUETYPE*)composite_entry.FindIndex(nIndex);
-		assert(pValue);
-		LinkTo(*pValue);
-    progress.Step();
+  int nIndex;
+  stream >> nIndex;
+    assert(composite_entry.FindIndex(nIndex));
+    VALUETYPE *pValue = (VALUETYPE*)composite_entry.FindIndex(nIndex);
+    assert(pValue);
+    LinkTo(*pValue);
+  progress.Step();
   }
 
   stream >> n;
@@ -425,8 +425,8 @@ void IWellCasingInternalLoad<VALUETYPE>::SaveStream(TSTREAM& stream, TPROGRESS& 
   stream << int(m_vcDistributed.size());
   for(size_t i = 0; i < m_vcDistributed.size(); ++i)
   {
-    stream << m_vcDistributed[i]->Index();
-    progress.Step();
+  stream << m_vcDistributed[i]->Index();
+  progress.Step();
   }
 
   stream << int(m_bDistributedOnly ? 1 : 0);
@@ -499,15 +499,15 @@ IWellCasingInternalLoad<VALUETYPE>& IWellCasingInternalLoadComponent<VALUETYPE>:
 template <class VALUETYPE>
 IValueDomainScalar::TMinMax IWellCasingInternalLoadComponent<VALUETYPE>::MinMax(IProgressBase& progressBase, const CQuantity::UNIT unit) const
 {
-	geo::CBox box(ParentLoad().Min(), ParentLoad().Max());
-	return ScalarData().MinMax(progressBase, box, unit);
+  geo::CBox box(ParentLoad().Min(), ParentLoad().Max());
+  return ScalarData().MinMax(progressBase, box, unit);
 }
 
 template <class VALUETYPE>
 IValueDomainScalar::TValue IWellCasingInternalLoadComponent<VALUETYPE>::Average(IProgressBase& progressBase, const CQuantity::UNIT unit) const
 {
-	geo::CBox box(ParentLoad().Min(), ParentLoad().Max());
-	return ScalarData().Average(progressBase, box, unit);
+  geo::CBox box(ParentLoad().Min(), ParentLoad().Max());
+  return ScalarData().Average(progressBase, box, unit);
 }
 
 template <class VALUETYPE>
@@ -517,25 +517,25 @@ IValueDomainScalar::TValueVec IWellCasingInternalLoadComponent<VALUETYPE>::Value
   std::vector<int> vcNrOfValue(elm.NrOfNodes(), 0);
   for(size_t i = 0; i < ParentLoad().DistributedSize(); ++i)
   {
-    const VALUETYPE& vt = ParentLoad().DistributedValue(i);
-    IValueDomainScalar::TValueVec vcValue = vt.Component().ScalarData().ValueElement(elm, unit, cb);
-    int n;
-    for(n = 0; n < elm.NrOfNodes(); ++n)
-    {
+  const VALUETYPE& vt = ParentLoad().DistributedValue(i);
+  IValueDomainScalar::TValueVec vcValue = vt.Component().ScalarData().ValueElement(elm, unit, cb);
+  int n;
+  for(n = 0; n < elm.NrOfNodes(); ++n)
+  {
       if((ParentLoad().DistributedOnly() || vt.PointSet().PointInConvexHull(elm.Node(n))) && vcValue[n].Valid())
       {
-        if(vcNrOfValue[n] == 0)
+    if(vcNrOfValue[n] == 0)
           vcRet[n] = vcValue[n];
-        else
+    else
           vcRet[n] = vcRet[n] + vcValue[n];
-        ++vcNrOfValue[n];
+    ++vcNrOfValue[n];
       }
-    }
+  }
   }
 
   for(size_t i = 0; i < elm.NrOfNodes(); ++i)
   {
-    if(vcNrOfValue[i] > 1)
+  if(vcNrOfValue[i] > 1)
       vcRet[i] = vcRet[i] / vcNrOfValue[i];
   }
 
@@ -549,21 +549,21 @@ IValueDomainScalar::TValue IWellCasingInternalLoadComponent<VALUETYPE>::ValuePoi
   int nValues = 0;
   for(size_t i = 0; i < ParentLoad().DistributedSize(); ++i)
   {
-    const VALUETYPE& vt = ParentLoad().DistributedValue(i);
-    if(ParentLoad().DistributedOnly() || vt.PointSet().PointInConvexHull(pt))
-    {
+  const VALUETYPE& vt = ParentLoad().DistributedValue(i);
+  if(ParentLoad().DistributedOnly() || vt.PointSet().PointInConvexHull(pt))
+  {
       geo::CValue val = vt.Component().ScalarData().ValuePoint(pt, unit, cb);
       if(!val.Valid())
-        return geo::CValue(); // invalid
+    return geo::CValue(); // invalid
       dResult += val.Value();
       ++nValues;
-    }
+  }
   }
 
   if(nValues > 1)
   {
-    dResult /= nValues;
-    return geo::CValue(dResult);
+  dResult /= nValues;
+  return geo::CValue(dResult);
   }
 
   return geo::CValue();
@@ -615,11 +615,11 @@ IWellCasingInternalLoadComponentGradient<VALUETYPE>& IWellCasingInternalLoadComp
 {
   if(!(*this == rhs))
   {
-    IWellCasingInternalLoadComponent<VALUETYPE>::operator=(rhs);
+  IWellCasingInternalLoadComponent<VALUETYPE>::operator=(rhs);
 
-    m_dReferenceValue = rhs.m_dReferenceValue;
-    m_dReferenceDepth = rhs.m_dReferenceDepth;
-    m_dGradient       = rhs.m_dGradient;
+  m_dReferenceValue = rhs.m_dReferenceValue;
+  m_dReferenceDepth = rhs.m_dReferenceDepth;
+  m_dGradient       = rhs.m_dGradient;
   }
 
   return *this;
@@ -629,12 +629,12 @@ template <class VALUETYPE>
 bool IWellCasingInternalLoadComponentGradient<VALUETYPE>::operator==(const IWellCasingInternalLoadComponentGradient &rhs) const
 {
   if(!IWellCasingInternalLoadComponent<VALUETYPE>::operator==(rhs))
-    return false;
+  return false;
 
   return (
-    fabs(m_dReferenceValue - rhs.m_dReferenceValue) < 1e-8 &&
-    fabs(m_dReferenceDepth - rhs.m_dReferenceDepth) < 1e-8 &&
-    fabs(m_dGradient       - rhs.m_dGradient      ) < 1e-8);
+  fabs(m_dReferenceValue - rhs.m_dReferenceValue) < 1e-8 &&
+  fabs(m_dReferenceDepth - rhs.m_dReferenceDepth) < 1e-8 &&
+  fabs(m_dGradient       - rhs.m_dGradient      ) < 1e-8);
 }
 
 template <class VALUETYPE>
@@ -681,7 +681,7 @@ IValueDomainScalar::TValueVec IWellCasingInternalLoadComponentGradient<VALUETYPE
   int i;
   for(i = 0; i < vcRet.size(); ++i)
   {
-    if(!vcRet[i].Valid())
+  if(!vcRet[i].Valid())
       vcRet[i] = this->UnitFactor(unit) * (m_dReferenceValue + m_dGradient * (elm.Node(i).Z() - m_dReferenceDepth));
   }
 
@@ -693,7 +693,7 @@ IValueDomainScalar::TValue IWellCasingInternalLoadComponentGradient<VALUETYPE>::
 {
   geo::CValue val = IWellCasingInternalLoadComponent<VALUETYPE>::ValuePoint(pt, unit, cb);
   if(!val.Valid())
-    val = geo::CValue(this->UnitFactor(unit) * (m_dReferenceValue + m_dGradient * (pt.Z() - m_dReferenceDepth)));
+  val = geo::CValue(this->UnitFactor(unit) * (m_dReferenceValue + m_dGradient * (pt.Z() - m_dReferenceDepth)));
 
   return val;
 }
@@ -737,7 +737,7 @@ template <class VALUETYPE>
 const IWellCasingInternalLoadComponent<VALUETYPE>& IWellCasingInternalLoadComponentRepeater<VALUETYPE>::PreviousStageComponent() const
 {
   const IWellCasingInternalLoad<VALUETYPE>& parent =
-    IWellCasingInternalLoadComponent <VALUETYPE> ::ParentLoad();
+  IWellCasingInternalLoadComponent <VALUETYPE> ::ParentLoad();
   assert(!parent.Stage().Initial());
   return static_cast<const IWellCasingInternalLoadComponent<VALUETYPE>&>(parent.PreviousStageLoad().Component());
 }
@@ -750,22 +750,22 @@ IValueDomainScalar::TValueVec IWellCasingInternalLoadComponentRepeater<VALUETYPE
   bool bHasInvalid = false;
   for(size_t i = 0; i < vcRet.size(); ++i)
   {
-    if(!vcRet[i].Valid())
-    {
+  if(!vcRet[i].Valid())
+  {
       bHasInvalid = true;
       break;
-    }
+  }
   }
 
   if(bHasInvalid)
   {
-    IValueDomainScalar::TValueVec vcRetPrev = PreviousStageComponent().ValueElement(elm, unit, cb);
-    for(size_t i = 0; i < vcRet.size(); ++i)
-    {
+  IValueDomainScalar::TValueVec vcRetPrev = PreviousStageComponent().ValueElement(elm, unit, cb);
+  for(size_t i = 0; i < vcRet.size(); ++i)
+  {
       assert(vcRetPrev[i].Valid());
       if(!vcRet[i].Valid())
-        vcRet[i] = vcRetPrev[i];
-    }
+    vcRet[i] = vcRetPrev[i];
+  }
   }
 
   return vcRet;
@@ -778,8 +778,8 @@ IValueDomainScalar::TValue IWellCasingInternalLoadComponentRepeater<VALUETYPE>::
 
   if(!val.Valid())
   {
-    val = PreviousStageComponent().ValuePoint(pt, unit, cb);
-    assert(val.Valid());
+  val = PreviousStageComponent().ValuePoint(pt, unit, cb);
+  assert(val.Valid());
   }
 
   return val;

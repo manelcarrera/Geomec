@@ -59,13 +59,13 @@ CWellCasingRTCI& CWellCasingRTCI::operator=(const CWellCasingRTCI& rhs)
 {
   if(!operator==(rhs))
   {
-    Name(rhs.Name());
-    m_dAngle           = rhs.m_dAngle;
-    m_dAzimuth         = rhs.m_dAzimuth;
-    m_WindingDirection = rhs.m_WindingDirection;
+  Name(rhs.Name());
+  m_dAngle           = rhs.m_dAngle;
+  m_dAzimuth         = rhs.m_dAzimuth;
+  m_WindingDirection = rhs.m_WindingDirection;
 
-    InvalidateCache();
-    Modified();
+  InvalidateCache();
+  Modified();
   }
 
   return *this;
@@ -74,10 +74,10 @@ CWellCasingRTCI& CWellCasingRTCI::operator=(const CWellCasingRTCI& rhs)
 bool CWellCasingRTCI::operator==(const CWellCasingRTCI& rhs) const
 {
   return (
-    Name() == rhs.Name()                     &&
-    fabs(m_dAngle - rhs.m_dAngle)     < 1e-6 &&
-    fabs(m_dAzimuth - rhs.m_dAzimuth) < 1e-6 &&
-    m_WindingDirection == rhs.m_WindingDirection);
+  Name() == rhs.Name()                     &&
+  fabs(m_dAngle - rhs.m_dAngle)     < 1e-6 &&
+  fabs(m_dAzimuth - rhs.m_dAzimuth) < 1e-6 &&
+  m_WindingDirection == rhs.m_WindingDirection);
 }
 
 void CWellCasingRTCI::Angle(double dAngle)
@@ -116,14 +116,14 @@ double CWellCasingRTCI::AzimuthAt(double dAHD) const
   dAHD -= CasingModel().StartPosition().AHD();
 
   if(m_WindingDirection == RD_CLOCKWISE)
-    dAzi += 2 * PI * dAHD / Rate();
+  dAzi += 2 * PI * dAHD / Rate();
   else
-    dAzi -= 2 * PI * dAHD / Rate();
+  dAzi -= 2 * PI * dAHD / Rate();
 
   if(dAzi >= 2 * PI)
-    dAzi -= int(dAzi / (2 * PI)) * 2 * PI;
+  dAzi -= int(dAzi / (2 * PI)) * 2 * PI;
   else if(dAzi < 0)
-    dAzi += (int(-dAzi / (2 * PI)) + 1) * 2 * PI;
+  dAzi += (int(-dAzi / (2 * PI)) + 1) * 2 * PI;
 
   assert(dAzi >= 0 && dAzi < 2 * PI);
 
@@ -135,13 +135,13 @@ double CWellCasingRTCI::AzimuthAt(int nStep) const
   double dFactor;
   if(m_WindingDirection == RD_CLOCKWISE)
   {
-    dFactor = double(nStep) / CasingModel().Mesh().TangentialElements();
+  dFactor = double(nStep) / CasingModel().Mesh().TangentialElements();
   }
   else
   {
-    if(nStep == 0)
+  if(nStep == 0)
       nStep = CasingModel().Mesh().TangentialElements();
-    dFactor = 1 - (double(nStep) / CasingModel().Mesh().TangentialElements());
+  dFactor = 1 - (double(nStep) / CasingModel().Mesh().TangentialElements());
   }
 
   return 2 * PI * dFactor;
@@ -161,18 +161,18 @@ geo::CPoint CWellCasingRTCI::PointAt(double dAHD) const
   geo::CMatrix matTransform;
   if ( CasingModel().WellPath() )
   {
-    well::CWellPoint ptWell=
+  well::CWellPoint ptWell=
       well::CWellPoint( *(CasingModel().WellPath()), dAHD);
 
-    matTransform =
+  matTransform =
       CasingModel().Mesh().Create3DGridTransformationMatrix(ptWell, vecNormal);
   }
   else // wjrx mantis 3401
   {
-    CNewWellPoint ptWell=
+  CNewWellPoint ptWell=
       CNewWellPoint( *(CasingModel().NewWellPath()), dAHD);
 
-    matTransform =
+  matTransform =
       CasingModel().Mesh().Create3DGridTransformationMatrix(ptWell, vecNormal);
   }
   // transform point
@@ -185,13 +185,13 @@ geo::CPoint CWellCasingRTCI::PointAt(double dAHD) const
 double CWellCasingRTCI::AHDAt(int nStep, int nAddCycles) const
 {
   double dAHD = CasingModel().StartPosition().AHD() +
-    (nAddCycles + double(nStep) / CasingModel().Mesh().TangentialElements()) * Rate();
+  (nAddCycles + double(nStep) / CasingModel().Mesh().TangentialElements()) * Rate();
 
   double dStartAHD = (DEG2RAD(m_dAzimuth) / (2 * PI)) * Rate();
   if(m_WindingDirection == RD_CLOCKWISE)
-    dAHD -= dStartAHD;
+  dAHD -= dStartAHD;
   else
-    dAHD += dStartAHD - Rate();
+  dAHD += dStartAHD - Rate();
 
   return dAHD;
 /*
@@ -200,15 +200,15 @@ double CWellCasingRTCI::AHDAt(int nStep, int nAddCycles) const
 
   if(m_WindingDirection == RD_CLOCKWISE)
   {
-    dFactor = double(nStep) / CasingModel().Mesh().TangentialElements();
+  dFactor = double(nStep) / CasingModel().Mesh().TangentialElements();
 //    while(dFactor > 1)
 //      dFactor -= 1;
   }
   else
   {
-    if(nStep == 0)
+  if(nStep == 0)
       nStep = CasingModel().Mesh().TangentialElements();
-    dFactor = 1 - (double(nStep) / CasingModel().Mesh().TangentialElements());
+  dFactor = 1 - (double(nStep) / CasingModel().Mesh().TangentialElements());
 //    while(dFactor >= 1)
 //      dFactor -= 1;
   }
@@ -227,7 +227,7 @@ geo::CPoint CWellCasingRTCI::PointAt(int nStep, int nAddCycles) const
 
   double dAHD = AHDAt(nStep, nAddCycles);
   if(dAHD < CasingModel().StartPosition().AHD())
-    return geo::CPoint();
+  return geo::CPoint();
 
 
   // point in reference plane
@@ -239,18 +239,18 @@ geo::CPoint CWellCasingRTCI::PointAt(int nStep, int nAddCycles) const
   geo::CMatrix matTransform;
   if ( CasingModel().WellPath() )
   {
-    well::CWellPoint ptWell= 
+  well::CWellPoint ptWell= 
       well::CWellPoint( *(CasingModel().WellPath()), dAHD);
 
-    matTransform =
+  matTransform =
       CasingModel().Mesh().Create3DGridTransformationMatrix(ptWell, vecNormal);
   }
   else // wjrx mantis 3401
   {
-    CNewWellPoint ptWell=
+  CNewWellPoint ptWell=
       CNewWellPoint( *(CasingModel().NewWellPath()), dAHD);
 
-    matTransform =
+  matTransform =
       CasingModel().Mesh().Create3DGridTransformationMatrix(ptWell, vecNormal);
   }
 
@@ -296,7 +296,7 @@ double CWellCasingRTCI::Length() const
 const geo::IPolyLine& CWellCasingRTCI::PolyLine() const
 {
   if(!m_pPolyLine)
-    GenerateCache();
+  GenerateCache();
 
   assert(m_pPolyLine);
   return *m_pPolyLine;
@@ -305,7 +305,7 @@ const geo::IPolyLine& CWellCasingRTCI::PolyLine() const
 size_t CWellCasingRTCI::SegmentSize() const
 {
   if(m_vcSegments.empty())
-    GenerateCache();
+  GenerateCache();
 
   return m_vcSegments.size();
 }
@@ -313,7 +313,7 @@ size_t CWellCasingRTCI::SegmentSize() const
 int CWellCasingRTCI::DisplayListSize() const
 {
   if(CasingModel().Mesh().IsMesh())
-    return 1;
+  return 1;
 
   return 0;
 }
@@ -321,7 +321,7 @@ int CWellCasingRTCI::DisplayListSize() const
 const geo::IObject& CWellCasingRTCI::DisplayList(int nIndex) const
 {
   if(nIndex == 0)
-    return LineArray();
+  return LineArray();
 
   return m_arHexas;
 }
@@ -350,8 +350,8 @@ void CWellCasingRTCI::OnNeighbourModified(const CGraphNode& node, enum ModifiedH
 {
   if(&node == &CasingModel().Mesh() && (uHint == MeshCleared || uHint == MeshCreated))
   {
-    InvalidateCache();
-    Modified();
+  InvalidateCache();
+  Modified();
   }
 }
 
@@ -424,31 +424,31 @@ void CWellCasingRTCI::GenerateCache() const
   nDefPoints1 = CasingModel().Mesh().DefinitionPointSize();
   if ( nDefPoints1 == 0 )
   {
-    bNewWellPath= true;
-    nDefPoints1 = CasingModel().Mesh().NewDefinitionPointSize();
+  bNewWellPath= true;
+  nDefPoints1 = CasingModel().Mesh().NewDefinitionPointSize();
   }
 
   int nProgressSteps = nDefPoints1 + int(CasingModel().Mesh().TangentialElements() * (CasingModel().EndPosition().AHD() - CasingModel().StartPosition().AHD()) / Rate());
 
-	std::auto_ptr <IProgressBase> pMainFrm( _g->prog()->create(eProgress::MainFrame ));
+  std::auto_ptr <IProgressBase> pMainFrm( _g->prog()->create(eProgress::MainFrame ));
 
-	pMainFrm->StatusMessage("Generating RTCI");
-	pMainFrm->AddSteps(nProgressSteps);
+  pMainFrm->StatusMessage("Generating RTCI");
+  pMainFrm->AddSteps(nProgressSteps);
 
 
   if ( bNewWellPath == false )
   {
-    // *** intersections with horizontal lines ***
+  // *** intersections with horizontal lines ***
 
-    int i;
-    const well::CWellPoint* pPrev = 0;
-    for(i = 0; i < nDefPoints1; ++i)
-    {
+  int i;
+  const well::CWellPoint* pPrev = 0;
+  for(i = 0; i < nDefPoints1; ++i)
+  {
       const well::CWellPoint& ptWell = CasingModel().Mesh().DefinitionPoint(i);
 
       const well::CWellPoint* pNext = 0;
       if(i < nDefPoints1 - 1)
-        pNext = &CasingModel().Mesh().DefinitionPoint(i + 1);
+    pNext = &CasingModel().Mesh().DefinitionPoint(i + 1);
 
       assert(pPrev || pNext);
 
@@ -456,47 +456,47 @@ void CWellCasingRTCI::GenerateCache() const
 
       if(dAHD >= CasingModel().StartPosition().AHD() && dAHD <= CasingModel().EndPosition().AHD())
       {
-        double dAzi = AzimuthAt(dAHD);
-        int iSegmentIndex = int(dAzi / alpha);
-        assert(iSegmentIndex >= 0 && iSegmentIndex < CasingModel().Mesh().TangentialElements());
+    double dAzi = AzimuthAt(dAHD);
+    int iSegmentIndex = int(dAzi / alpha);
+    assert(iSegmentIndex >= 0 && iSegmentIndex < CasingModel().Mesh().TangentialElements());
 
-        TIntersectionInfo IntInfo;
-        IntInfo.point = PointAt(dAHD);
-        IntInfo.ahd = dAHD;
-        const geo::IElement* pFirst = 0;
-        const geo::IElement* pSecond = 0;
-        if(i > 0)
+    TIntersectionInfo IntInfo;
+    IntInfo.point = PointAt(dAHD);
+    IntInfo.ahd = dAHD;
+    const geo::IElement* pFirst = 0;
+    const geo::IElement* pSecond = 0;
+    if(i > 0)
           pFirst = CasingModel().Mesh().GetElement(i - 1, iSegmentIndex, iOuterHexaIndex);
-        if(i < nDefPoints1 - 1)
+    if(i < nDefPoints1 - 1)
           pSecond = CasingModel().Mesh().GetElement(i, iSegmentIndex, iOuterHexaIndex);
 
-        assert(!pFirst  || dynamic_cast<const geo::CHexahedron*>(pFirst));
-        assert(!pSecond || dynamic_cast<const geo::CHexahedron*>(pSecond));
+    assert(!pFirst  || dynamic_cast<const geo::CHexahedron*>(pFirst));
+    assert(!pSecond || dynamic_cast<const geo::CHexahedron*>(pSecond));
 
-        IntInfo.prHexas.first  = static_cast<const geo::CHexahedron*>(pFirst);
-        IntInfo.prHexas.second = static_cast<const geo::CHexahedron*>(pSecond);
+    IntInfo.prHexas.first  = static_cast<const geo::CHexahedron*>(pFirst);
+    IntInfo.prHexas.second = static_cast<const geo::CHexahedron*>(pSecond);
 
-        mpIntersections.insert(TIntersectionsMap::value_type(dAHD, IntInfo));
+    mpIntersections.insert(TIntersectionsMap::value_type(dAHD, IntInfo));
       }
 
       pPrev = &ptWell;
 
       pMainFrm->Step();
-    }
+  }
   }
   else // bNewWellPath //wjrx mantis 3041
   {
-    // *** intersections with horizontal lines ***
+  // *** intersections with horizontal lines ***
 
-    int i;
-    const CNewWellPoint* pPrev = 0;
-    for(i = 0; i < nDefPoints1; ++i)
-    {
+  int i;
+  const CNewWellPoint* pPrev = 0;
+  for(i = 0; i < nDefPoints1; ++i)
+  {
       const CNewWellPoint& ptWell = CasingModel().Mesh().NewDefinitionPoint(i);
 
       const CNewWellPoint* pNext = 0;
       if(i < nDefPoints1 - 1)
-        pNext = &CasingModel().Mesh().NewDefinitionPoint(i + 1);
+    pNext = &CasingModel().Mesh().NewDefinitionPoint(i + 1);
 
       assert(pPrev || pNext);
 
@@ -504,33 +504,33 @@ void CWellCasingRTCI::GenerateCache() const
 
       if(dAHD >= CasingModel().StartPosition().AHD() && dAHD <= CasingModel().EndPosition().AHD())
       {
-        double dAzi = AzimuthAt(dAHD);
-        int iSegmentIndex = int(dAzi / alpha);
-        assert(iSegmentIndex >= 0 && iSegmentIndex < CasingModel().Mesh().TangentialElements());
+    double dAzi = AzimuthAt(dAHD);
+    int iSegmentIndex = int(dAzi / alpha);
+    assert(iSegmentIndex >= 0 && iSegmentIndex < CasingModel().Mesh().TangentialElements());
 
-        TIntersectionInfo IntInfo;
-        IntInfo.point = PointAt(dAHD);
-        IntInfo.ahd = dAHD;
-        const geo::IElement* pFirst = 0;
-        const geo::IElement* pSecond = 0;
-        if(i > 0)
+    TIntersectionInfo IntInfo;
+    IntInfo.point = PointAt(dAHD);
+    IntInfo.ahd = dAHD;
+    const geo::IElement* pFirst = 0;
+    const geo::IElement* pSecond = 0;
+    if(i > 0)
           pFirst = CasingModel().Mesh().GetElement(i - 1, iSegmentIndex, iOuterHexaIndex);
-        if(i < nDefPoints1 - 1)
+    if(i < nDefPoints1 - 1)
           pSecond = CasingModel().Mesh().GetElement(i, iSegmentIndex, iOuterHexaIndex);
 
-        assert(!pFirst  || dynamic_cast<const geo::CHexahedron*>(pFirst));
-        assert(!pSecond || dynamic_cast<const geo::CHexahedron*>(pSecond));
+    assert(!pFirst  || dynamic_cast<const geo::CHexahedron*>(pFirst));
+    assert(!pSecond || dynamic_cast<const geo::CHexahedron*>(pSecond));
 
-        IntInfo.prHexas.first  = static_cast<const geo::CHexahedron*>(pFirst);
-        IntInfo.prHexas.second = static_cast<const geo::CHexahedron*>(pSecond);
+    IntInfo.prHexas.first  = static_cast<const geo::CHexahedron*>(pFirst);
+    IntInfo.prHexas.second = static_cast<const geo::CHexahedron*>(pSecond);
 
-        mpIntersections.insert(TIntersectionsMap::value_type(dAHD, IntInfo));
+    mpIntersections.insert(TIntersectionsMap::value_type(dAHD, IntInfo));
       }
 
       pPrev = &ptWell;
 
       pMainFrm->Step();
-    }
+  }
   }
 
   // *** intersections with vertical lines ***
@@ -543,79 +543,79 @@ void CWellCasingRTCI::GenerateCache() const
   double dAHD = AHDAt(nStep, nCycle);
   while(dAHD < CasingModel().StartPosition().AHD())
   {
-    ++nStep;
-    if(nStep == CasingModel().Mesh().TangentialElements())
-    {
+  ++nStep;
+  if(nStep == CasingModel().Mesh().TangentialElements())
+  {
       nStep = 0;
       ++nCycle;
-    }
-    dAHD = AHDAt(nStep, nCycle);
+  }
+  dAHD = AHDAt(nStep, nCycle);
   }
 
   while(dAHD < CasingModel().EndPosition().AHD())
   {
-    int iGrid = -1;
-    int nDefPoints2 = 0;
-    nDefPoints2 = CasingModel().Mesh().DefinitionPointSize();
-    if ( nDefPoints2 > 0 ) 
-    {
+  int iGrid = -1;
+  int nDefPoints2 = 0;
+  nDefPoints2 = CasingModel().Mesh().DefinitionPointSize();
+  if ( nDefPoints2 > 0 ) 
+  {
       int i;
       for(i = 1; i < nDefPoints2; ++i)
       {
-        const well::CWellPoint& pt1 = CasingModel().Mesh().DefinitionPoint(i - 1);
-        const well::CWellPoint& pt2 = CasingModel().Mesh().DefinitionPoint(i);
-        if(dAHD >= pt1.TMD() && dAHD <= pt2.TMD())
-        {
+    const well::CWellPoint& pt1 = CasingModel().Mesh().DefinitionPoint(i - 1);
+    const well::CWellPoint& pt2 = CasingModel().Mesh().DefinitionPoint(i);
+    if(dAHD >= pt1.TMD() && dAHD <= pt2.TMD())
+    {
           iGrid = i - 1;
           break;
-        }
-      }
     }
-    else //wjrx mantis 3401
-    {
+      }
+  }
+  else //wjrx mantis 3401
+  {
       nDefPoints2 = CasingModel().Mesh().NewDefinitionPointSize();
       int i;
       for(i = 1; i < nDefPoints2; ++i)
       {
-        const CNewWellPoint& pt1 = CasingModel().Mesh().NewDefinitionPoint(i - 1);
-        const CNewWellPoint& pt2 = CasingModel().Mesh().NewDefinitionPoint(i);
-        if(dAHD >= pt1.TMD() && dAHD <= pt2.TMD())
-        {
+    const CNewWellPoint& pt1 = CasingModel().Mesh().NewDefinitionPoint(i - 1);
+    const CNewWellPoint& pt2 = CasingModel().Mesh().NewDefinitionPoint(i);
+    if(dAHD >= pt1.TMD() && dAHD <= pt2.TMD())
+    {
           iGrid = i - 1;
           break;
-        }
-      }
     }
+      }
+  }
 
-    assert(iGrid != -1);
+  assert(iGrid != -1);
 
-    int iSegmentIndex1;
-    int iSegmentIndex2;
-    int nSegments = CasingModel().Mesh().TangentialElements();
+  int iSegmentIndex1;
+  int iSegmentIndex2;
+  int nSegments = CasingModel().Mesh().TangentialElements();
 
-    if(WindingDirection() == RD_CLOCKWISE)
-    {
+  if(WindingDirection() == RD_CLOCKWISE)
+  {
       iSegmentIndex2 = nStep;
       iSegmentIndex1 = iSegmentIndex2 - 1;
       if(iSegmentIndex1 < 0)
-        iSegmentIndex1 += nSegments;
-    }
-    else
-    {
+    iSegmentIndex1 += nSegments;
+  }
+  else
+  {
       iSegmentIndex2 = nSegments - nStep - 1;
       iSegmentIndex1 = iSegmentIndex2 + 1;
       if(iSegmentIndex1 >= nSegments)
-        iSegmentIndex1 -= nSegments;
-    }
+    iSegmentIndex1 -= nSegments;
+  }
 
-    assert(iSegmentIndex1 >= 0 && iSegmentIndex1 < CasingModel().Mesh().TangentialElements());
-    assert(iSegmentIndex2 >= 0 && iSegmentIndex2 < CasingModel().Mesh().TangentialElements());
+  assert(iSegmentIndex1 >= 0 && iSegmentIndex1 < CasingModel().Mesh().TangentialElements());
+  assert(iSegmentIndex2 >= 0 && iSegmentIndex2 < CasingModel().Mesh().TangentialElements());
 
-    TIntersectionInfo IntInfo;
-    IntInfo.point = PointAt(nStep, nCycle);
-    IntInfo.ahd = AHDAt(nStep, nCycle);
-    if(!IntInfo.point.Empty())
-    {
+  TIntersectionInfo IntInfo;
+  IntInfo.point = PointAt(nStep, nCycle);
+  IntInfo.ahd = AHDAt(nStep, nCycle);
+  if(!IntInfo.point.Empty())
+  {
       const geo::IElement* pFirst = 0;
       const geo::IElement* pSecond = 0;
 
@@ -624,10 +624,10 @@ void CWellCasingRTCI::GenerateCache() const
 /*
       if(WindingDirection() == RD_ANTICLOCKWISE)
       {
-        // swap first and second
-        const geo::IElement* pSwap = pFirst;
-        pFirst = pSecond;
-        pSecond = pSwap;
+    // swap first and second
+    const geo::IElement* pSwap = pFirst;
+    pFirst = pSecond;
+    pSecond = pSwap;
       }
 */
       assert(!pFirst  || dynamic_cast<const geo::CHexahedron*>(pFirst));
@@ -637,18 +637,18 @@ void CWellCasingRTCI::GenerateCache() const
       IntInfo.prHexas.second = static_cast<const geo::CHexahedron*>(pSecond);
 
       mpIntersections.insert(TIntersectionsMap::value_type(dAHD, IntInfo));
-    }
+  }
 
-    ++nStep;
-    if(nStep == CasingModel().Mesh().TangentialElements())
-    {
+  ++nStep;
+  if(nStep == CasingModel().Mesh().TangentialElements())
+  {
       ++nCycle;
       nStep = 0;
-    }
+  }
 
-    dAHD = AHDAt(nStep, nCycle);
+  dAHD = AHDAt(nStep, nCycle);
 
-    pMainFrm->Step();
+  pMainFrm->Step();
   }
 
   pMainFrm.reset( _g->prog()->create(eProgress::MainFrame ) );
@@ -663,10 +663,10 @@ void CWellCasingRTCI::GenerateCache() const
   TIntersectionsMap::const_iterator it;
   for(it = mpIntersections.begin(); it != mpIntersections.end(); ++it)
   {
-    const TIntersectionInfo& IntInfo = it->second;
+  const TIntersectionInfo& IntInfo = it->second;
 
-    if(pPrevInfo)
-    {
+  if(pPrevInfo)
+  {
       // create a segment
       double dNextLengthPos = geo::CVector(pPrevInfo->point, IntInfo.point).Length() + dLengthPos;
  //     assert(pPrevInfo->prHexas.second == IntInfo.prHexas.first);
@@ -674,19 +674,19 @@ void CWellCasingRTCI::GenerateCache() const
 
       if(IntInfo.prHexas.first != 0)
       {
-        int nIndex = int(m_vcSegments.size());
-        m_vcSegments.push_back(new CSegmentInfo(nIndex, *IntInfo.prHexas.first, dLengthPos, dNextLengthPos, pPrevInfo->point, IntInfo.point, pPrevInfo->ahd, IntInfo.ahd));
+    int nIndex = int(m_vcSegments.size());
+    m_vcSegments.push_back(new CSegmentInfo(nIndex, *IntInfo.prHexas.first, dLengthPos, dNextLengthPos, pPrevInfo->point, IntInfo.point, pPrevInfo->ahd, IntInfo.ahd));
 #ifdef _DEBUG
-        m_arHexas.PushBack((geo::CHexahedron&)*IntInfo.prHexas.first);
+    m_arHexas.PushBack((geo::CHexahedron&)*IntInfo.prHexas.first);
 #endif
       }
 
       dLengthPos = dNextLengthPos;
-    }
+  }
 
-    pPrevInfo = &IntInfo;
+  pPrevInfo = &IntInfo;
 
-    pMainFrm->Step();
+  pMainFrm->Step();
   }
 
   assert(!m_pPolyLine);
@@ -695,7 +695,7 @@ void CWellCasingRTCI::GenerateCache() const
   assert(!m_pLines);
   m_pLines = new geo::CPtrArray<geo::ILine>(m_pPolyLine->LineSize());
   for(int i = 0; i < m_pPolyLine->LineSize(); ++i)
-    m_pLines->Object(i, const_cast<geo::ILine&>(m_pPolyLine->Line(i)));
+  m_pLines->Object(i, const_cast<geo::ILine&>(m_pPolyLine->Line(i)));
 }
 
 void CWellCasingRTCI::InvalidateCache()
@@ -703,7 +703,7 @@ void CWellCasingRTCI::InvalidateCache()
   size_t i;
   for(i = 0; i < m_vcSegments.size(); ++i)
   {
-    delete m_vcSegments[i];
+  delete m_vcSegments[i];
   }
 
   m_vcSegments.clear();
@@ -723,64 +723,64 @@ geo::CVector CWellCasingRTCI::DirectionAt(double dAHD) const
   nDefPoints = CasingModel().Mesh().DefinitionPointSize();
   if ( nDefPoints>0 )
   {
-    int i;
-    const well::CWellPoint* pPrev = 0;
-    for(i = 0; i < nDefPoints; ++i)
-    {
+  int i;
+  const well::CWellPoint* pPrev = 0;
+  for(i = 0; i < nDefPoints; ++i)
+  {
       const well::CWellPoint& ptWell = CasingModel().Mesh().DefinitionPoint(i);
 
       const well::CWellPoint* pNext = 0;
       if(i < nDefPoints - 1)
-        pNext = &CasingModel().Mesh().DefinitionPoint(i + 1);
+    pNext = &CasingModel().Mesh().DefinitionPoint(i + 1);
       assert(pPrev || pNext);
 
       if(fabs(ptWell.TMD() - dAHD) < EPS)
       {
-        // the average normal vector of the well at this point
-        geo::CVector vecNormal = geo::CVector::NullVector;
-        if(pPrev)
+    // the average normal vector of the well at this point
+    geo::CVector vecNormal = geo::CVector::NullVector;
+    if(pPrev)
           vecNormal += geo::CVector(*pPrev, ptWell).UnitVector();
-        if(pNext)
+    if(pNext)
           vecNormal += geo::CVector(ptWell, *pNext).UnitVector();
-        return vecNormal.UnitVector();
+    return vecNormal.UnitVector();
       }
 
       if(pPrev && pPrev->TMD() < dAHD && ptWell.TMD() > dAHD)
-        return geo::CVector(*pPrev, ptWell).UnitVector();
+    return geo::CVector(*pPrev, ptWell).UnitVector();
 
       pPrev = &ptWell;
-    }
+  }
   }
   else // wjrx mantis 3401
   {
-    nDefPoints = CasingModel().Mesh().NewDefinitionPointSize();
-    int i;
-    const CNewWellPoint* pPrev = 0;
-    for(i = 0; i < nDefPoints; ++i)
-    {
+  nDefPoints = CasingModel().Mesh().NewDefinitionPointSize();
+  int i;
+  const CNewWellPoint* pPrev = 0;
+  for(i = 0; i < nDefPoints; ++i)
+  {
       const CNewWellPoint& ptWell = CasingModel().Mesh().NewDefinitionPoint(i);
 
       const CNewWellPoint* pNext = 0;
       if(i < nDefPoints - 1)
-        pNext = &CasingModel().Mesh().NewDefinitionPoint(i + 1);
+    pNext = &CasingModel().Mesh().NewDefinitionPoint(i + 1);
       assert(pPrev || pNext);
 
       if(fabs(ptWell.TMD() - dAHD) < EPS)
       {
-        // the average normal vector of the well at this point
-        geo::CVector vecNormal = geo::CVector::NullVector;
-        if(pPrev)
+    // the average normal vector of the well at this point
+    geo::CVector vecNormal = geo::CVector::NullVector;
+    if(pPrev)
           vecNormal += geo::CVector(*pPrev, ptWell).UnitVector();
-        if(pNext)
+    if(pNext)
           vecNormal += geo::CVector(ptWell, *pNext).UnitVector();
-        return vecNormal.UnitVector();
+    return vecNormal.UnitVector();
       }
 
       if(pPrev && pPrev->TMD() < dAHD && ptWell.TMD() > dAHD)
-        return geo::CVector(*pPrev, ptWell).UnitVector();
+    return geo::CVector(*pPrev, ptWell).UnitVector();
 
       pPrev = &ptWell;
-    }
+  }
   }
 
   assert(false);
@@ -790,7 +790,7 @@ geo::CVector CWellCasingRTCI::DirectionAt(double dAHD) const
 const geo::IObject& CWellCasingRTCI::LineArray() const
 {
   if(!m_pLines)
-    GenerateCache();
+  GenerateCache();
 
   assert(m_pLines);
   return *m_pLines;
@@ -801,13 +801,13 @@ const geo::IObject& CWellCasingRTCI::LineArray() const
 ///// CWellCasingRTCI::CSegmentInfo
 
 CWellCasingRTCI::CSegmentInfo::CSegmentInfo(int nIndex,
-                                            const geo::CHexahedron& hexa,
-                                            double dStart,
-                                            double dEnd,
-                                            const geo::IPoint& ptStart,
-                                            const geo::IPoint& ptEnd,
-                                            double dStartAHD,
-                                            double dEndAHD)
+                      const geo::CHexahedron& hexa,
+                      double dStart,
+                      double dEnd,
+                      const geo::IPoint& ptStart,
+                      const geo::IPoint& ptEnd,
+                      double dStartAHD,
+                      double dEndAHD)
 : m_nIndex(nIndex),
   m_pHexa(&hexa),
   m_dStart(dStart),
@@ -854,7 +854,7 @@ double CWellCasingRTCI::CSegmentInfo::EndAHD() const
 const geo::IPoint& CWellCasingRTCI::CSegmentInfo::Point(int nIndex) const
 {
   if(nIndex == 0)
-    return m_ptStart;
+  return m_ptStart;
 
   return m_ptEnd;
 }
@@ -871,9 +871,9 @@ geo::CValue CWellCasingRTCI::CSegmentInfo::AxialStrain(const geo::IPoint& point,
   assert(&point == &m_ptStart || &point == &m_ptEnd);
 
   if(&point == &m_ptStart)
-    AxialStrain(strain, m_ptStart, m_vcStartShapeFunction, val);
+  AxialStrain(strain, m_ptStart, m_vcStartShapeFunction, val);
   else
-    AxialStrain(strain, m_ptStart, m_vcEndShapeFunction, val);
+  AxialStrain(strain, m_ptStart, m_vcEndShapeFunction, val);
 
   return val;
 }
@@ -884,9 +884,9 @@ size_t CWellCasingRTCI::CSegmentInfo::Order() const
 }
 
 void CWellCasingRTCI::CSegmentInfo::AxialStrain(const CStrainTensorValueSet &strain,
-                                                const geo::CPoint &/*pt*/,
-                                                const geo::IElement::TDoubleVec &vcShapeFunction,
-                                                geo::CValue &val) const
+                        const geo::CPoint &/*pt*/,
+                        const geo::IElement::TDoubleVec &vcShapeFunction,
+                        geo::CValue &val) const
 {
   // get strain values for the hexa element
   CStrainTensorValueSet::TValueVec vcValues(m_pHexa->NrOfNodes());
@@ -895,7 +895,7 @@ void CWellCasingRTCI::CSegmentInfo::AxialStrain(const CStrainTensorValueSet &str
   size_t i;
   for(i = 0; i < vcValues.size(); ++i)
   {
-    if(!strain.IsValid(vcValues[i]))
+  if(!strain.IsValid(vcValues[i]))
       return;
   }
 
@@ -903,15 +903,15 @@ void CWellCasingRTCI::CSegmentInfo::AxialStrain(const CStrainTensorValueSet &str
   assert(vcShapeFunction.size() == vcValues.size());
   CStrainTensor strain_tensor = vcValues[0] * vcShapeFunction[0];
   for(i = 1; i < vcValues.size(); i++) {
-    strain_tensor += vcValues[i] * vcShapeFunction[i];
+  strain_tensor += vcValues[i] * vcShapeFunction[i];
   }
 
   // rotate the strain
   if(!m_pVecDirection)
   {
-    assert(!m_pVecTangent);
-    m_pVecDirection = new geo::CVector(geo::CVector(m_ptStart, m_ptEnd).UnitVector());
-    m_pVecTangent = new geo::CVector(m_pVecDirection->GetNormal().UnitVector());
+  assert(!m_pVecTangent);
+  m_pVecDirection = new geo::CVector(geo::CVector(m_ptStart, m_ptEnd).UnitVector());
+  m_pVecTangent = new geo::CVector(m_pVecDirection->GetNormal().UnitVector());
   }
 
   assert(m_pVecDirection && m_pVecTangent);
@@ -955,12 +955,12 @@ std::vector<int> CWellCasingRTCI::CPolyLine::Nodes(const geo::IElement& element)
   int i;
   for(i = 0; i < ElementSize(); ++i)
   {
-    if(&Element(i) == &element)
-    {
+  if(&Element(i) == &element)
+  {
       vcRet.push_back(i);
       vcRet.push_back(i + 1);
       break;
-    }
+  }
   }
 
   assert(!vcRet.empty());

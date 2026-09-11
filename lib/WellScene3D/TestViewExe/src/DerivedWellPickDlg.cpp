@@ -18,22 +18,22 @@ static char THIS_FILE[]=__FILE__;#endif  // _MSC_VER
 CDerivedWellPoint::CDerivedWellPoint(well::CWellPathBase& WellPath, double TMD, int extra)
 :well::CWellPoint(WellPath,TMD)
 {
-	// 
+  // 
 }
 
 /*virtual*/ 
 CDerivedWellPoint::~CDerivedWellPoint()
 {
-	// Destruct
+  // Destruct
 }
 
-	
+  
 
 CDerivedWellPickDlg::CDerivedWellPickDlg(	well::CWellPointList* pList,
-						CWellSceneInterMed* pSceneInterMed,
-						QPtrVector<well::CWellSectionList> Sections,
-						CDoubleQuantity::UNIT unit,
-						CWnd* pParent)
+            CWellSceneInterMed* pSceneInterMed,
+            QPtrVector<well::CWellSectionList> Sections,
+            CDoubleQuantity::UNIT unit,
+            CWnd* pParent)
 :CWellPointPickDlg(pList,pSceneInterMed,Sections,unit,pParent)						
 {
 
@@ -42,7 +42,7 @@ CDerivedWellPickDlg::CDerivedWellPickDlg(	well::CWellPointList* pList,
 /*virtual*/
 well::CWellPoint* CDerivedWellPickDlg::OnCreateWellPoint(well::CWellPathBase& wellpath, double tmd)
 {
-	return new CDerivedWellPoint(wellpath,tmd,0);
+  return new CDerivedWellPoint(wellpath,tmd,0);
 }
 
 CDerivedWellPickDlg::~CDerivedWellPickDlg()

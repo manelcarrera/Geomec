@@ -18,11 +18,11 @@ Software Product or documentation licensed under this agreement.
 ****************************************************************************/
 /*************************************************************************
 
-        cBagRescuePolyLineStub.h
+    cBagRescuePolyLineStub.h
 
  Keeps a list of pointers to RescuePolyLineStub.
 
-        Rod Hanks               March 2001
+    Rod Hanks               March 2001
 
 ****************************************************************************/
 

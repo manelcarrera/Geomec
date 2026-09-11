@@ -21,7 +21,7 @@ CResultGroup_Delegate::CResultGroup_Delegate(CResultGroup* resultGroup)
   typedef CSingleCommandTemplate <CResultGroup_Delegate> TCommand_Delegate;
 
   invoker.AddCommand("&Export results",
-    *(new TCommand_Delegate(*this, &CResultGroup_Delegate::Export,
+  *(new TCommand_Delegate(*this, &CResultGroup_Delegate::Export,
       &CResultGroup_Delegate::CanExport)));
 
 #ifdef RESULTS_IMPORT_KEYFILE
@@ -30,18 +30,18 @@ CResultGroup_Delegate::CResultGroup_Delegate(CResultGroup* resultGroup)
   if (pApp->KeyFile().Unlocked())
   {
 #endif
-    invoker.AddCommand("&Import results",
+  invoker.AddCommand("&Import results",
       *(new TCommand_Delegate(*this, &CResultGroup_Delegate::Import,
-        &CResultGroup_Delegate::CanImport)));
+    &CResultGroup_Delegate::CanImport)));
 #ifdef RESULTS_IMPORT_KEYFILE
   }
 #endif
 
   if (dynamic_cast <const C3DModel*> (&(m_resultGroup->Model())))
   {
-    invoker.AddCommand("Export to Gocad",
+  invoker.AddCommand("Export to Gocad",
       *(new TCommand_Delegate(*this, &CResultGroup_Delegate::ExportGocad,
-        &CResultGroup_Delegate::CanExportGocad)));
+    &CResultGroup_Delegate::CanExportGocad)));
   }
 }
 
@@ -94,7 +94,7 @@ IResult_Delegate::IResult_Delegate(IResult* result)
   typedef CSingleCommandTemplate <IResult_Delegate> TCommand;
 
   invoker.AddCommand("&Export results",
-    *(new TCommand(*this, &IResult_Delegate::Export,
+  *(new TCommand(*this, &IResult_Delegate::Export,
       &IResult_Delegate::CanExport)));
 }
 
@@ -122,7 +122,7 @@ void IResultComponent_Delegate::AppendContextMenu(CContextMenuInvoker &invoker)
   typedef CSingleCommandTemplate <IResultComponent_Delegate> TCommand;
 
   invoker.AddCommand("&Export results",
-    *(new TCommand(*this, &IResultComponent_Delegate::Export,
+  *(new TCommand(*this, &IResultComponent_Delegate::Export,
       &IResultComponent_Delegate::CanExport)));
   invoker.AddSeparator();
 
@@ -137,7 +137,7 @@ bool IResultComponent_Delegate::CanExport() const
 void IResultComponent_Delegate::Export()
 {
   CResultExportDlg dlg(m_resultComponent->Parent(),
-    m_resultComponent->ComponentIndex());
+  m_resultComponent->ComponentIndex());
 
   dlg.DoModal();
 }

@@ -21,11 +21,11 @@ RESCUEBOOL RescueEdgeSetStub::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueEdgeSetStub)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueWireframeStub::IsOfType(thisType);
+  return RescueWireframeStub::IsOfType(thisType);
   }
 }
 
@@ -35,7 +35,7 @@ RESCUEBOOL RescueEdgeSetStub::Equals(RescueEdgeSetStub *other)
   if (other->WireframeId() == WireframeId()
   &&  other->ObjectId()    == ObjectId())
   {
-    myReturn = TRUE;
+  myReturn = TRUE;
   }
 /*
   Really should be sufficient just to compare the object ids.
@@ -48,7 +48,7 @@ RESCUEBOOL RescueEdgeSetStub::Equals(RescueEdgeSet *other)
   RESCUEBOOL myReturn = FALSE;
   if (other->Identifier() == ObjectId())
   {
-    myReturn = TRUE;
+  myReturn = TRUE;
   }
   return myReturn;
 }
@@ -73,7 +73,7 @@ RescueEdgeSetStub::RescueEdgeSetStub(RescueContext *context, RescueEdgeSet *edge
 {
   if (wireframeObj != 0)
   {
-    loadNo = wireframeObj->LoadNo();
+  loadNo = wireframeObj->LoadNo();
   }
 }
 
@@ -81,45 +81,45 @@ RescueEdgeSet *RescueEdgeSetStub::EdgeSet(RescueModel *model, RESCUEBOOL loadIfN
 {
   if (wireframeObj == 0 && model != 0)
   {
-    wireframeObj = model->WireframeIdentifiedBy(wireframeId);
+  wireframeObj = model->WireframeIdentifiedBy(wireframeId);
   }
   if (wireframeObj != 0)
   {
-    if (wireframeObj->IsWireframeLoaded() == FALSE)
-    {
+  if (wireframeObj->IsWireframeLoaded() == FALSE)
+  {
       actualEdgeSet = 0;
       if (loadIfNeeded)
       {
-        wireframeObj->LoadWireframe();
+    wireframeObj->LoadWireframe();
       }
-    }
+  }
 /*
   If not currently loaded, load it up if the user has given us that discretion.
 */
-    if (actualEdgeSet != 0)
-    {
+  if (actualEdgeSet != 0)
+  {
       if (loadNo != wireframeObj->LoadNo())
       {
-        actualEdgeSet = 0;
+    actualEdgeSet = 0;
       }
-    }
+  }
 /*
   If we have been asked before, we may have a pointer to the object that we want,
   but first we have to check to see if it is stale.
 */
-    if (actualEdgeSet == 0)
-    {
+  if (actualEdgeSet == 0)
+  {
       actualEdgeSet = wireframeObj->EdgeSetIdentifiedBy(objectId);
       loadNo = wireframeObj->LoadNo();
 /*
   If we do hook up to the object, remember which load.  If the reader unloads the
   RescueWireframe and then reloads it our pointer will be stale.
 */
-    }
+  }
   }
   else
   {
-    actualEdgeSet = 0;
+  actualEdgeSet = 0;
   }
   return actualEdgeSet;
 }

@@ -8,7 +8,7 @@ CParameterFormation4PressureChange::CParameterFormation4PressureChange(
   double mean, CFormationBase* formationBase, int depletionStage,
   unsigned int valueTypeID)
 : CParameterFormation(name, minimum, maximum, mean, formationBase,
-    depletionStage)
+  depletionStage)
 , m_valueTypeID(valueTypeID)
 {
 }

@@ -57,8 +57,8 @@ CModelFileObs::~CModelFileObs()
 void CModelFileObs::onStatusMessage( const TFileMessage& message )
 {
   if(!m_suppressStatus) {
-    *m_outStream << message.text << endl;
-    putLocation( *m_outStream, message );
+  *m_outStream << message.text << endl;
+  putLocation( *m_outStream, message );
   }
 }
 
@@ -93,13 +93,13 @@ void CModelFileObs::init( IModelFile& modelFile )
 {
   if ( !m_outStream )
   {
-    m_outStream = new QTextStream( stdout, QIODevice::WriteOnly );
-    m_weOwnOutStream = true;
+  m_outStream = new QTextStream( stdout, QIODevice::WriteOnly );
+  m_weOwnOutStream = true;
   }
   if ( !m_errStream )
   {
-    m_errStream = new QTextStream( stderr, QIODevice::WriteOnly );
-    m_weOwnErrStream = true;
+  m_errStream = new QTextStream( stderr, QIODevice::WriteOnly );
+  m_weOwnErrStream = true;
   }
 
   connect( &modelFile, SIGNAL( statusMessage(    const TFileMessage&   ) ),
@@ -134,14 +134,14 @@ void CModelFileObs::putMessage( QTextStream& os, const QString& severity, const 
 void CModelFileObs::putLocation( QTextStream& os, const TFilePosition& info )
 {
   if ( info.lineNr > -1 ) {
-    QString prefix( tr( "Line %1: " ).arg( info.lineNr ) );
-    os << prefix << info.line;
-    if ( !info.line.endsWith( "\n" ) ) os << endl;
+  QString prefix( tr( "Line %1: " ).arg( info.lineNr ) );
+  os << prefix << info.line;
+  if ( !info.line.endsWith( "\n" ) ) os << endl;
 
-    if ( info.pos > -1 ) {
+  if ( info.pos > -1 ) {
       QString pointer;
       pointer.fill( ' ', prefix.length() + info.pos );
       os << pointer << '^' << endl;
-    }
+  }
   }
 }

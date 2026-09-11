@@ -21,11 +21,11 @@ private:
   void onReceivedMessage(const ModGMBusMessage& message);
   
 private:
-	void get_shared_memory();
-	void get_shared_memory_01();
+  void get_shared_memory();
+  void get_shared_memory_01();
 
-	void run_diana_02();
-	void run_diana_03();
+  void run_diana_02();
+  void run_diana_03();
 
 private:
   ModGMBusMessage m_msg;

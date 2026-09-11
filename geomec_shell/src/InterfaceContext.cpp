@@ -34,16 +34,16 @@
 
 namespace
 {
-	Printer* printer = Printer::instance(Printer::Shell);
+  Printer* printer = Printer::instance(Printer::Shell);
 }
 
 namespace gm_shell
 {
 
-	//
-	// FIXME: why needs to be static in this case
-	//
-	//static Printer* printer = Printer::instance(Printer::Shell);
+  //
+  // FIXME: why needs to be static in this case
+  //
+  //static Printer* printer = Printer::instance(Printer::Shell);
 
 CInterfaceModelContext::CInterfaceModelContext(const QString& app_version)
   : m_pModel(0)
@@ -59,16 +59,16 @@ CInterfaceModelContext::CInterfaceModelContext(const QString& app_version)
   , m_bAutoExport(false)
   , m_nLicenseRetry(0)
 {
-	printer->info("context >>");
+  printer->info("context >>");
 }
 
 CInterfaceModelContext::~CInterfaceModelContext()
 {
-	printer->info("context : delete");
+  printer->info("context : delete");
 
-	// 
-	// multiple deletes
-	//
+  // 
+  // multiple deletes
+  //
   ShutdownDianaRunEnvironment();
 
   printer->info("context <<");
@@ -127,9 +127,9 @@ bool CInterfaceModelContext::Validate(bool forRockMech)
 {
   if (m_pModel)
   {
-    CValidateModel v(m_pModel);
+  CValidateModel v(m_pModel);
 
-    return v.checkModel(forRockMech);
+  return v.checkModel(forRockMech);
   }
   return false;
 }
@@ -191,8 +191,8 @@ void CInterfaceModelContext::SwitchToParent()
   CModelBase *pModel = dynamic_cast<CModelBase *>(m_pModel->parentModel());
   if (pModel)
   {
-    m_pModel = pModel;
-    m_pModel->GetConsistencyGuard()->SwitchToModel(*m_pModel);
+  m_pModel = pModel;
+  m_pModel->GetConsistencyGuard()->SwitchToModel(*m_pModel);
   }
 }
 
@@ -275,7 +275,7 @@ bool CInterfaceModelContext::GetCalculationResult() const
 
 bool CInterfaceModelContext::Run(CInterfaceLogWrapper *log)
 {
-	printer->info("conetxt : Run");
+  printer->info("conetxt : Run");
 
   SetupDianaRunEnvironment();
 
@@ -283,85 +283,85 @@ bool CInterfaceModelContext::Run(CInterfaceLogWrapper *log)
   CDepletionStage* pStage = &m_pModel->DepletionStageEntry().LastStage();
   while(pStage && !pStage->IsPhaseStartStage())
   {
-    if(pStage->Initial())
+  if(pStage->Initial())
       pStage = 0;
-    else
+  else
       pStage = &pStage->Previous();
   }
 
   assert(pStage);
   if(!pStage)
   {
-    if (log) 
-		log->AddLine("Unable to determine first depletion stage for analysis", false, true);
-    return false;
+  if (log) 
+    log->AddLine("Unable to determine first depletion stage for analysis", false, true);
+  return false;
   }
 
   if(pStage->Initial())
-    m_pModel->BranchState().ClearBranch();
+  m_pModel->BranchState().ClearBranch();
 
   if (log) 
-	  log->AddLine("Starting GEOMEC non-linear analysis");
+    log->AddLine("Starting GEOMEC non-linear analysis");
   bool bRet = false;
   try
   {
-    CAnalysisType::TAnalysisType type = CAnalysisType::AT_NONLIN;
+  CAnalysisType::TAnalysisType type = CAnalysisType::AT_NONLIN;
 
-    if (m_type == "linear")
+  if (m_type == "linear")
       type = CAnalysisType::AT_LINEAR;
-	else if (m_type == "heat")
+  else if (m_type == "heat")
       type = CAnalysisType::AT_HEAT;
-    else if (m_type == "mixture")
+  else if (m_type == "mixture")
       type = CAnalysisType::AT_MIXTURE;
-    else if (m_type == "containment")
+  else if (m_type == "containment")
       type = CAnalysisType::AT_MIXTURE_CONTAINMENT;
 
-    QString strTempPath = GetGeomecTempPathExt(CTempPath::TEMP_CALCULATION);
-    m_drc = new CDianaRunController(*m_pModel, type, false, false, false, strTempPath);
-    m_drc->SetLicenseRetry(m_nLicenseRetry);
+  QString strTempPath = GetGeomecTempPathExt(CTempPath::TEMP_CALCULATION);
+  m_drc = new CDianaRunController(*m_pModel, type, false, false, false, strTempPath);
+  m_drc->SetLicenseRetry(m_nLicenseRetry);
 
-	dia::IDianaRunner::RunParams p = { m_model_full_path, m_model_name.toStdString(), strTempPath.toStdString(), m_pDianaExecuter, m_pSaveModel, m_pRetrieveDianaFileNames, nullptr, false, _g->dsa() };
-	m_drc->params(p);
+  dia::IDianaRunner::RunParams p = { m_model_full_path, m_model_name.toStdString(), strTempPath.toStdString(), m_pDianaExecuter, m_pSaveModel, m_pRetrieveDianaFileNames, nullptr, false, _g->dsa() };
+  m_drc->params(p);
 
-	//
-	// 
-	//
-	if( p.dsa )
-	{
-		CRunAnalysis_CLI ra(m_drc, CDianaRunController::All);
-		ra.wait();
-		bRet = ra.res();
-	}
-	else
-	{
-		bRet = m_drc->run();
-	}
-	//
-	// 
-	//
+  //
+  // 
+  //
+  if( p.dsa )
+  {
+    CRunAnalysis_CLI ra(m_drc, CDianaRunController::All);
+    ra.wait();
+    bRet = ra.res();
+  }
+  else
+  {
+    bRet = m_drc->run();
+  }
+  //
+  // 
+  //
 
-    m_sLicenseError = m_drc->LicenseError();
-    m_bHaveResults = m_drc->HaveResults();
-    m_bCalculationResult = m_drc->GetCalculationResult();
+  m_sLicenseError = m_drc->LicenseError();
+  m_bHaveResults = m_drc->HaveResults();
+  m_bCalculationResult = m_drc->GetCalculationResult();
 
-    if (m_bAutoExport)
-    {
+  if (m_bAutoExport)
+  {
       CConsistencyGuard *guard = m_pModel->GetConsistencyGuard();
       guard->AutoResultExport(*m_pModel, type);
-    }
+  }
   }
   //
   // why this?
   //
   catch(CProgressCancel* p)
   {
-    delete p;
-    bRet = false;
-    if (log) 
-		log->AddLine("GEOMEC analysis cancelled", false, true);
+  delete p;
+  bRet = false;
+  if (log) 
+    log->AddLine("GEOMEC analysis cancelled", false, true);
   }
   if (log) 
-	  log->AddLine("GEOMEC non-linear analysis ended");
+    log->AddLine("GEOMEC non-linear analysis ended");
 
   m_bHasRun = true;
 
@@ -373,133 +373,133 @@ bool CInterfaceModelContext::Run(CInterfaceLogWrapper *log)
 //
 void CInterfaceModelContext::End()
 {
-	if (_g->dsa())
-		m_drc->end();
-	else
-		printer->error("context : end : no sense because no dsa");
+  if (_g->dsa())
+    m_drc->end();
+  else
+    printer->error("context : end : no sense because no dsa");
 }
 
 bool CInterfaceModelContext::RunStep(CInterfaceLogWrapper *log)
 {
-	printer->info("conetxt : RunStep");
+  printer->info("conetxt : RunStep");
 
   if (!m_pDianaExecuter)
-    SetupDianaRunEnvironment();
+  SetupDianaRunEnvironment();
 
   bool bRet = false;
 
   if (!m_bHasRun) // First
   {
-    // setup branch state
-    CDepletionStage* pStage = &m_pModel->DepletionStageEntry().LastStage();
-    while (pStage && !pStage->Initial())
-    {
+  // setup branch state
+  CDepletionStage* pStage = &m_pModel->DepletionStageEntry().LastStage();
+  while (pStage && !pStage->Initial())
+  {
       pStage->setOutputType(CDepletionStage::PHASE);
       pStage = &pStage->Previous();
-    }
+  }
   
-    pStage = &m_pModel->DepletionStageEntry().LastStage();
-    while(pStage && !pStage->IsPhaseStartStage())
-    {
+  pStage = &m_pModel->DepletionStageEntry().LastStage();
+  while(pStage && !pStage->IsPhaseStartStage())
+  {
       if(pStage->Initial())
-        pStage = 0;
+    pStage = 0;
       else
-        pStage = &pStage->Previous();
-    }
+    pStage = &pStage->Previous();
+  }
 
-    assert(pStage);
-    if(!pStage)
-    {
+  assert(pStage);
+  if(!pStage)
+  {
       if (log) 
-		  log->AddLine("Unable to determine first depletion stage for analysis", false, true);
+      log->AddLine("Unable to determine first depletion stage for analysis", false, true);
       return false;
-    }
+  }
 
-    if(pStage->Initial())
+  if(pStage->Initial())
       m_pModel->BranchState().ClearBranch();
 
-    if (log) 
-		log->AddLine("Starting GEOMEC non-linear analysis");
-    try
+  if (log) 
+    log->AddLine("Starting GEOMEC non-linear analysis");
+  try
+  {
+    m_temp_path = GetGeomecTempPathExt(CTempPath::TEMP_CALCULATION);
+    m_drc = new CDianaRunController(*m_pModel, CAnalysisType::AT_NONLIN, false, false, false, m_temp_path);
+    m_drc->SetLicenseRetry(m_nLicenseRetry);
+
+    dia::IDianaRunner::RunParams p = { m_model_full_path, m_model_name.toStdString(), m_temp_path.toStdString(), m_pDianaExecuter, m_pSaveModel, m_pRetrieveDianaFileNames, nullptr, false, _g->dsa() };
+    m_drc->params(p);
+
+    //
+    // 
+    //
+    if (p.dsa)
     {
-	    m_temp_path = GetGeomecTempPathExt(CTempPath::TEMP_CALCULATION);
-	    m_drc = new CDianaRunController(*m_pModel, CAnalysisType::AT_NONLIN, false, false, false, m_temp_path);
-		m_drc->SetLicenseRetry(m_nLicenseRetry);
-
-	  dia::IDianaRunner::RunParams p = { m_model_full_path, m_model_name.toStdString(), m_temp_path.toStdString(), m_pDianaExecuter, m_pSaveModel, m_pRetrieveDianaFileNames, nullptr, false, _g->dsa() };
-	  m_drc->params(p);
-
-	  //
-	  // 
-	  //
-	  if (p.dsa)
-	  {
-		CRunAnalysis_CLI ra(m_drc, CDianaRunController::First);
-		ra.wait();
-		bRet = ra.res();
-	  }
-	  else
-	  {
-		  bRet = m_drc->run(CDianaRunController::First);
-	  }
-	  //
-	  // 
-	  //
+    CRunAnalysis_CLI ra(m_drc, CDianaRunController::First);
+    ra.wait();
+    bRet = ra.res();
+    }
+    else
+    {
+      bRet = m_drc->run(CDianaRunController::First);
+    }
+    //
+    // 
+    //
 
       m_sLicenseError = m_drc->LicenseError();
       m_bHaveResults = m_drc->HaveResults();
       m_bCalculationResult = m_drc->GetCalculationResult();
-    }
-	//
-	// why this?
-	//
-    catch(CProgressCancel* p)
-    {
+  }
+  //
+  // why this?
+  //
+  catch(CProgressCancel* p)
+  {
       delete p;
       bRet = false;
       if (log) 
-		  log->AddLine("GEOMEC analysis cancelled", false, true);
-    }
-    if (log) 
-		log->AddLine("GEOMEC non-linear analysis ended");
+      log->AddLine("GEOMEC analysis cancelled", false, true);
+  }
+  if (log) 
+    log->AddLine("GEOMEC non-linear analysis ended");
   }
   else // Next
   {
-    if (log) 
-		log->AddLine("Starting GEOMEC non-linear analysis");
-    try
-    {
-	  //
-	  // 
-	  //
+  if (log) 
+    log->AddLine("Starting GEOMEC non-linear analysis");
+  try
+  {
+    //
+    // 
+    //
   	  if (_g->dsa())
-	  {
-		CRunAnalysis_CLI ra(m_drc, CDianaRunController::Next);
-		ra.wait();
-		bRet = ra.res();
-	  }
-	  else
-	  {
-		  bRet = m_drc->run(CDianaRunController::Next);
-	  }
-	  //
-	  // 
-	  //
+    {
+    CRunAnalysis_CLI ra(m_drc, CDianaRunController::Next);
+    ra.wait();
+    bRet = ra.res();
+    }
+    else
+    {
+      bRet = m_drc->run(CDianaRunController::Next);
+    }
+    //
+    // 
+    //
 
 
       m_sLicenseError = m_drc->LicenseError();
       m_bHaveResults = m_drc->HaveResults();
       m_bCalculationResult = m_drc->GetCalculationResult();
-    }
-    catch(CProgressCancel* p)
-    {
+  }
+  catch(CProgressCancel* p)
+  {
       delete p;
       bRet = false;
       if (log) 
-		  log->AddLine("GEOMEC analysis cancelled", false, true);
-    }
-    if (log) 
-		log->AddLine("GEOMEC non-linear analysis ended");
+      log->AddLine("GEOMEC analysis cancelled", false, true);
+  }
+  if (log) 
+    log->AddLine("GEOMEC non-linear analysis ended");
   }
 
   m_bHasRun = true;
@@ -515,7 +515,7 @@ bool CInterfaceModelContext::HasRun() const
 
 void CInterfaceModelContext::CleanUpAfterRun()
 {
-	m_drc->CleanUpAfterRun(m_output_path, m_pDianaExecuter, m_model_name.toStdString(), *m_pSaveModel, *m_pRetrieveDianaFileNames);
+  m_drc->CleanUpAfterRun(m_output_path, m_pDianaExecuter, m_model_name.toStdString(), *m_pSaveModel, *m_pRetrieveDianaFileNames);
 }
 
 void CInterfaceModelContext::Save()

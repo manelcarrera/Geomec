@@ -22,7 +22,7 @@ const geo::CPtrArray<geo::IFace> CMeshSurface::FacesAtNode(const geo::IPoint& p)
   geo::CPtrArray<geo::IFace> arRet;
 
   for(size_t i = 0; i < it->second.size(); ++i)
-    arRet.PushBack(const_cast<geo::IFace&>(*it->second[i]));
+  arRet.PushBack(const_cast<geo::IFace&>(*it->second[i]));
 
   return arRet;
 }
@@ -63,13 +63,13 @@ void CMeshSurface::AddFace(const geo::IFace& face)
   int i;
   for(i = 0; i < face.NrOfPoints(); ++i)
   {
-    std::pair<TPointMap::iterator, bool> prInsert = m_mpPoints.insert(TPointMap::value_type(&face.Point(i), std::vector<const geo::IFace*>()));
+  std::pair<TPointMap::iterator, bool> prInsert = m_mpPoints.insert(TPointMap::value_type(&face.Point(i), std::vector<const geo::IFace*>()));
 
-    // register the face with the point
-    prInsert.first->second.push_back(&face);
+  // register the face with the point
+  prInsert.first->second.push_back(&face);
 
-    // if inserted, add the point to the points vector
-    if(prInsert.second)
+  // if inserted, add the point to the points vector
+  if(prInsert.second)
       m_vcPoints.push_back(&face.Point(i));
   }
 }

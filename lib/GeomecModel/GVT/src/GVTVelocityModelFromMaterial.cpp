@@ -20,7 +20,7 @@ CGVTVelocityModelFromMaterial::~CGVTVelocityModelFromMaterial()
 {
   if (!m_velocityModelFile.isEmpty() && FileExists(m_velocityModelFile))
   {
-    remove(m_velocityModelFile.toStdString().c_str());
+  remove(m_velocityModelFile.toStdString().c_str());
   }
 }
 
@@ -28,7 +28,7 @@ CGVTVelocityModelFromMaterial::~CGVTVelocityModelFromMaterial()
 void CGVTVelocityModelFromMaterial::SetContents(const std::stringstream& buffer)
 {
   std::fstream velocityModelFile(m_velocityModelFile.toStdString().c_str(),
-    std::ios_base::out);
+  std::ios_base::out);
 
   velocityModelFile << buffer.str();
 
@@ -92,16 +92,16 @@ bool compareTopBottoms(const TTopBottom& lhs, const TTopBottom& rhs)
 CFormationBase* getTopFormation(const CModelBase& modelBase)
 {
   const TFormationBaseEntry* formationBaseEntry =
-    dynamic_cast <const TFormationBaseEntry*> (
+  dynamic_cast <const TFormationBaseEntry*> (
       modelBase.GraphEntry(MD_BASE_FORMATION));
 
   std::vector <TTopFormation> topFormations;
 
   for (TFormationBaseEntry::TNodeSet::const_iterator formation =
-    formationBaseEntry->EntryNodes().begin();
-    formation != formationBaseEntry->EntryNodes().end(); ++formation)
+  formationBaseEntry->EntryNodes().begin();
+  formation != formationBaseEntry->EntryNodes().end(); ++formation)
   {
-    topFormations.push_back(
+  topFormations.push_back(
       std::make_pair((*formation)->Min().Z(), (*formation)));
   }
 
@@ -113,33 +113,33 @@ CFormationBase* getTopFormation(const CModelBase& modelBase)
 bool areFormationsConsecutive(CModelBase& modelBase)
 {
   const TFormationBaseEntry* formationBaseEntry =
-    dynamic_cast <const TFormationBaseEntry*> (
+  dynamic_cast <const TFormationBaseEntry*> (
       modelBase.GraphEntry(MD_BASE_FORMATION));
 
   std::vector <TTopBottom> topBottoms;
 
   for (TFormationBaseEntry::TNodeSet::const_iterator formation =
-    formationBaseEntry->EntryNodes().begin();
-    formation != formationBaseEntry->EntryNodes().end(); ++formation)
+  formationBaseEntry->EntryNodes().begin();
+  formation != formationBaseEntry->EntryNodes().end(); ++formation)
   {
-    topBottoms.push_back(
+  topBottoms.push_back(
       std::make_pair((*formation)->Min().Z(), (*formation)->Max().Z()));
   }
 
   std::sort(topBottoms.begin(), topBottoms.end(), compareTopBottoms);
 
   for (std::vector <TTopBottom> ::const_iterator topBottom = topBottoms.begin();
-    topBottom != topBottoms.end(); ++topBottom)
+  topBottom != topBottoms.end(); ++topBottom)
   {
-    std::vector <TTopBottom> ::const_iterator next = (topBottom + 1);
+  std::vector <TTopBottom> ::const_iterator next = (topBottom + 1);
 
-    if (next != topBottoms.end())
-    {
+  if (next != topBottoms.end())
+  {
       if ((*topBottom).second != (*next).first)
       {
-        return false;
+    return false;
       }
-    }
+  }
   }
 
   return true;
@@ -179,10 +179,10 @@ void addInitialDistanceTimeInstances(TDistanceTimeVector& distanceTime,
 
   if (topFormation->Min().Z() > ZERO)
   {
-    // the assumption is (as stated in TFS 98644) that when the top formation
-    // has a positive depth the subsidence consists of (sea-) water
+  // the assumption is (as stated in TFS 98644) that when the top formation
+  // has a positive depth the subsidence consists of (sea-) water
 
-    addCalculatedDistanceTimeInstance(distanceTime, topFormation->Min().Z(),
+  addCalculatedDistanceTimeInstance(distanceTime, topFormation->Min().Z(),
       VELOCITY_IN_WATER);
   }
 }
@@ -191,28 +191,28 @@ void addFormationDistanceTimeInstances(TDistanceTimeVector& distanceTime,
   const CModelBase& modelBase)
 {
   const TFormationBaseEntry* formationBaseEntry =
-    dynamic_cast <const TFormationBaseEntry*> (
+  dynamic_cast <const TFormationBaseEntry*> (
       modelBase.GraphEntry(MD_BASE_FORMATION));
 
   for (TFormationBaseEntry::TNodeSet::const_iterator formation =
-    formationBaseEntry->EntryNodes().begin();
-    formation != formationBaseEntry->EntryNodes().end(); ++formation)
+  formationBaseEntry->EntryNodes().begin();
+  formation != formationBaseEntry->EntryNodes().end(); ++formation)
   {
-    // CGVTSettingsDlg::allMaterialModelsHaveVelocityP() returned true, implying
-    // ((*formation)->ConnectedMaterial(modelBase.InitialDepletionStage()) != 0)
+  // CGVTSettingsDlg::allMaterialModelsHaveVelocityP() returned true, implying
+  // ((*formation)->ConnectedMaterial(modelBase.InitialDepletionStage()) != 0)
 
-    CMaterialServer& materialServer =
+  CMaterialServer& materialServer =
       (*formation)->Material(modelBase.InitialDepletionStage());
-    IMaterialRock* materialRock = materialServer.LibraryMaterial();
+  IMaterialRock* materialRock = materialServer.LibraryMaterial();
 
-    // CGVTSettingsDlg::allMaterialModelsHaveVelocityP() returned true, implying
-    // (materialRock != 0)
+  // CGVTSettingsDlg::allMaterialModelsHaveVelocityP() returned true, implying
+  // (materialRock != 0)
 
-    CLibraryMaterial& libraryMaterial = materialRock->LibraryMaterial();
-    const CLibraryMaterialParameter* libraryMaterialParameter =
+  CLibraryMaterial& libraryMaterial = materialRock->LibraryMaterial();
+  const CLibraryMaterialParameter* libraryMaterialParameter =
       libraryMaterial.ParameterByValueTypeID(IDT_VALUETYPE_VELOCITYP);
 
-    addCalculatedDistanceTimeInstance(distanceTime,
+  addCalculatedDistanceTimeInstance(distanceTime,
       (*formation)->Max().Z() - (*formation)->Min().Z(),
       libraryMaterialParameter->Value());
   }
@@ -223,21 +223,21 @@ void convertDistanceTime2DepthTime(TDistanceTimeVector& distanceTime)
   TDistanceTimeVector depthTime;
 
   for (TDistanceTimeVector::const_iterator distanceTimePair =
-    distanceTime.begin(); distanceTimePair != distanceTime.end();
-    ++distanceTimePair)
+  distanceTime.begin(); distanceTimePair != distanceTime.end();
+  ++distanceTimePair)
   {
-    if (distanceTimePair == distanceTime.begin())
-    {
+  if (distanceTimePair == distanceTime.begin())
+  {
       depthTime.push_back(*distanceTimePair);
-    }
-    else
-    {
+  }
+  else
+  {
       TDistanceTime depthTimePair = std::make_pair(
-        depthTime.back().first + (*distanceTimePair).first,
-        depthTime.back().second + (*distanceTimePair).second);
+    depthTime.back().first + (*distanceTimePair).first,
+    depthTime.back().second + (*distanceTimePair).second);
 
       depthTime.push_back(depthTimePair);
-    }
+  }
   }
 
   depthTime.swap(distanceTime);
@@ -249,13 +249,13 @@ QString writeDistanceTime2VelocityModelFile(TDistanceTimeVector& distanceTime)
 {
   QString velocityModelFileName = GetGeomecTempPath() + tmpnam(NULL);
   std::fstream velocityModelFile(velocityModelFileName.toStdString().c_str(),
-    std::ios_base::out);
+  std::ios_base::out);
 
   for (TDistanceTimeVector::const_iterator distanceTimePair =
-    distanceTime.begin(); distanceTimePair != distanceTime.end();
-    ++distanceTimePair)
+  distanceTime.begin(); distanceTimePair != distanceTime.end();
+  ++distanceTimePair)
   {
-    velocityModelFile << (*distanceTimePair).first << TAB <<
+  velocityModelFile << (*distanceTimePair).first << TAB <<
       (*distanceTimePair).second << std::endl;
   }
 
@@ -276,9 +276,9 @@ QString CGVTVelocityModelFromMaterial::createVelocityModelFile(
 {
   if (!areFormationsConsecutive(modelBase))
   {
-    if (!modelBase.Loading())
+  if (!modelBase.Loading())
       _m()->msg("Taking initial velocities from models with vertically non-consecutive formations is not supported.");
-    throw std::runtime_error(FORMATIONS_ARE_NOT_CONSECUTIVE.toStdString());
+  throw std::runtime_error(FORMATIONS_ARE_NOT_CONSECUTIVE.toStdString());
   }
 
   std::vector <TDistanceTime> distanceTime;

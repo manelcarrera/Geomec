@@ -81,14 +81,14 @@ public:
   void Formation(CFormationBase *) const;
 
   void  AzimuthInclination
-    ( CAngleQuantity &Azimuth
-    , CAngleQuantity &Inclination
-    ) const;
+  ( CAngleQuantity &Azimuth
+  , CAngleQuantity &Inclination
+  ) const;
 
   void  AzimuthInclination
-    ( double Azimuth
-    , double Inclination
-    ) ;
+  ( double Azimuth
+  , double Inclination
+  ) ;
 
   // waij TFS 74145
   // direction vector in this point

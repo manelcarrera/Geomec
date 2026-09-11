@@ -17,15 +17,15 @@ namespace cora
 class CFailureTypeParameterWell : public CFailureTypeParameterBase
 {
   public:
-    CFailureTypeParameterWell(CSummaryResultFile& summaryResultFile,
+  CFailureTypeParameterWell(CSummaryResultFile& summaryResultFile,
       const std::string& object, const std::string& option,
       const std::string& parameter, std::vector <double>& value,
       const CGetModelInfo& modelInfo);
-    virtual ~CFailureTypeParameterWell();
+  virtual ~CFailureTypeParameterWell();
 
   private:
-    CFailureTypeParameterWell(const CFailureTypeParameterWell& rhs);
-    CFailureTypeParameterWell& operator = (CFailureTypeParameterWell rhs);
+  CFailureTypeParameterWell(const CFailureTypeParameterWell& rhs);
+  CFailureTypeParameterWell& operator = (CFailureTypeParameterWell rhs);
 };
 
 } // namespace cora

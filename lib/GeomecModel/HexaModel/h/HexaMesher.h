@@ -59,39 +59,39 @@ class CHexaMesher : public IHexaMesher
   class C2DPointMap
   {
   public:
-    typedef geo::CCoordinateMap<geo::CPoint, VALUE> TMap;
-    typedef typename TMap::iterator iterator;
-    typedef std::pair<const geo::IPoint*, VALUE> value_type;
-    typedef const geo::IPoint* key_type;
-    typedef VALUE mapped_type;
+  typedef geo::CCoordinateMap<geo::CPoint, VALUE> TMap;
+  typedef typename TMap::iterator iterator;
+  typedef std::pair<const geo::IPoint*, VALUE> value_type;
+  typedef const geo::IPoint* key_type;
+  typedef VALUE mapped_type;
 
   public:
-    C2DPointMap()
-    {
-    }
+  C2DPointMap()
+  {
+  }
 
-    std::pair<iterator, bool> insert(value_type& val)
-    {
+  std::pair<iterator, bool> insert(value_type& val)
+  {
       return m_map.insert(typename TMap::value_type(geo::CPoint(val.first->X(), val.first->Y()), val.second));
-    }
+  }
 
-    iterator find(const key_type& key)
-    {
+  iterator find(const key_type& key)
+  {
       return m_map.find(geo::CPoint(key->X(), key->Y()));
-    }
+  }
 
-    mapped_type& operator[](const key_type& key)
-    {
+  mapped_type& operator[](const key_type& key)
+  {
       return m_map[geo::CPoint(key->X(), key->Y())];
-    }
+  }
 
-    iterator end()
-    {
+  iterator end()
+  {
       return m_map.end();
-    }
+  }
 
   private:
-    TMap m_map;
+  TMap m_map;
   };
 
   void LoadPointIndices(std::vector<int>& vcIndex, CArchiveInterface& stream, IProgressBase& progress);
@@ -102,17 +102,17 @@ class CHexaMesher : public IHexaMesher
 
   typedef struct
   {
-    std::vector<int> vcPoints;
-    
-    TPointMap mpPoint;
-    TPointMap mpInternalPoint;
+  std::vector<int> vcPoints;
+  
+  TPointMap mpPoint;
+  TPointMap mpInternalPoint;
 
-    geo::CVector Xaxis;
-    geo::CVector Yaxis;
+  geo::CVector Xaxis;
+  geo::CVector Yaxis;
 
-    const geo::CArray<geo::CPoint> *basicpoints;
-    
-    TTyingMap mpCreatedTyings;
+  const geo::CArray<geo::CPoint> *basicpoints;
+  
+  TTyingMap mpCreatedTyings;
   } _TyingsInfo;
 
 

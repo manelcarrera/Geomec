@@ -58,7 +58,7 @@
     <ROW ChainedPackage="GEOMEC5_64.msi" Order="1" Options="64" InstallCondition="NOT Installed" InstallCmdLine="ARPSYSTEMCOMPONENT=1" MaintenanceCmdLine="ARPSYSTEMCOMPONENT=1" RemoveCondition="REMOVE=&quot;ALL&quot;" RemoveCmdLine="ARPSYSTEMCOMPONENT=1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.ChainedPackageFileComponent">
-    <ROW FileId="$(cora_)" ChainedPackage="$(cora_)" Options="1" TargetPath="$(cora)" Content="..\src\3rdParty\CORA\$(cora)"/>
+    <ROW FileId="$(cora_)" ChainedPackage="$(cora_)" Options="1" TargetPath="$(cora)" Content="..\src\third_party\CORA\$(cora)"/>
     <ROW FileId="GEOMEC5_64.msi" ChainedPackage="GEOMEC5_64.msi" Options="1" TargetPath="GEOMEC5_64.msi" Content="GEOMEC5_64.msi"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
@@ -185,7 +185,7 @@
     <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="2" ActionProperty="AI_NEWERPRODUCTFOUND"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.PreReqComponent">
-    <ROW PrereqKey="C673FE9433B49AFAC9592AB26B8F8E4" DisplayName=".NET Framework 4.0" SetupFileUrl="..\src\3rdParty\dotNet\dotNetFx40_Full_x86_x64.exe" Location="0" ExactSize="0" WinNTVersions="Windows 2000, Windows 2000 Service Pack 1, Windows 2000 Service Pack 2, Windows 2000 Service Pack 3, Windows 2000 Service Pack 4, Windows XP x86, Windows XP x86 Service Pack 1, Windows Server 2003 x86, Windows 8 x86, Windows 8.1 x86" WinNT64Versions="Windows XP x64, Windows Server 2003 x64, Windows 8 x64, Windows Server 2012 x64, Windows 8.1 x64, Windows Server 2012 R2 x64" Operator="1" NoUiComLine="/q /norestart" Options="x" TargetName=".NET Framework 4.0\dotNetFx40_Full_x86_x64.exe"/>
+    <ROW PrereqKey="C673FE9433B49AFAC9592AB26B8F8E4" DisplayName=".NET Framework 4.0" SetupFileUrl="..\src\third_party\dotNet\dotNetFx40_Full_x86_x64.exe" Location="0" ExactSize="0" WinNTVersions="Windows 2000, Windows 2000 Service Pack 1, Windows 2000 Service Pack 2, Windows 2000 Service Pack 3, Windows 2000 Service Pack 4, Windows XP x86, Windows XP x86 Service Pack 1, Windows Server 2003 x86, Windows 8 x86, Windows 8.1 x86" WinNT64Versions="Windows XP x64, Windows Server 2003 x64, Windows 8 x64, Windows Server 2012 x64, Windows 8.1 x64, Windows Server 2012 R2 x64" Operator="1" NoUiComLine="/q /norestart" Options="x" TargetName=".NET Framework 4.0\dotNetFx40_Full_x86_x64.exe"/>
     <ATTRIBUTE name="PrereqsOrder" value="C673FE9433B49AFAC9592AB26B8F8E4"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.PreReqSearchComponent">

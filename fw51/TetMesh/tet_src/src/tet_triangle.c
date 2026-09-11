@@ -279,7 +279,7 @@ static int LineIntersectPlane(
 {
    /* Distance of linePoints to plane */
    const double dist1 = PointDistancePlane3D( planePoint, unitNormal, linePoint1 ),
-                dist2 = PointDistancePlane3D( planePoint, unitNormal, linePoint2 );
+        dist2 = PointDistancePlane3D( planePoint, unitNormal, linePoint2 );
    int          nInPlane = 0;
 
    /* Point1 on plane ? */
@@ -547,30 +547,30 @@ extern bool_t TriangleIntersectLine(
    
          /* Orthonormal axis in the plane through triangle */
          OrthoNormalAxes( unitNormal, xAxis2D, yAxis2D );
-            
+      
          /* Reduce whole problem to 2D */
          ProjectPointOnPlane2D( pa, xAxis2D, yAxis2D, pa, pa2D );
          ProjectPointOnPlane2D( pa, xAxis2D, yAxis2D, pb, pb2D );
          ProjectPointOnPlane2D( pa, xAxis2D, yAxis2D, pc, pc2D );
 
          if ( nInPlane == 1 ) {
-            /* Single intersection point between line and plane */
-            double    point2D[2];
-            /* Test if the intersectsection point is in 2D triangle */
-            ProjectPointOnPlane2D( pa, xAxis2D, yAxis2D, pointInPlane, point2D );
-            intersect = PointInTriangle2D( pa2D, pb2D, pc2D, point2D, smallLength );
+      /* Single intersection point between line and plane */
+      double    point2D[2];
+      /* Test if the intersectsection point is in 2D triangle */
+      ProjectPointOnPlane2D( pa, xAxis2D, yAxis2D, pointInPlane, point2D );
+      intersect = PointInTriangle2D( pa2D, pb2D, pc2D, point2D, smallLength );
          } else if ( nInPlane == 2 ) {
-            double    la2D[2], lb2D[2];
-            /* Whole line  is in plane through triangle, exceptional case */
-            ProjectPointOnPlane2D( pa, xAxis2D, yAxis2D, p1, la2D );
-            ProjectPointOnPlane2D( pa, xAxis2D, yAxis2D, p2, lb2D );
-            /* Test if either of the 2 line points is inside the 2D triangle */
-            intersect = PointInTriangle2D( pa2D, pb2D, pc2D, la2D, smallLength );
-            if ( !intersect ) {
+      double    la2D[2], lb2D[2];
+      /* Whole line  is in plane through triangle, exceptional case */
+      ProjectPointOnPlane2D( pa, xAxis2D, yAxis2D, p1, la2D );
+      ProjectPointOnPlane2D( pa, xAxis2D, yAxis2D, p2, lb2D );
+      /* Test if either of the 2 line points is inside the 2D triangle */
+      intersect = PointInTriangle2D( pa2D, pb2D, pc2D, la2D, smallLength );
+      if ( !intersect ) {
                intersect = PointInTriangle2D( pa2D, pb2D, pc2D, lb2D, smallLength );
-            }
+      }
           
-            if ( !intersect ) {
+      if ( !intersect ) {
                /* Intersection only possible if 2D line intersect with any of the 3 triangle edges */
                double   dif[ 3 ], dist;
                VecOperVec( dif, EqlPos, p1, OperMinus, p2, 3 );
@@ -587,13 +587,13 @@ extern bool_t TriangleIntersectLine(
                      intersect = LineIntersectLine2D( pc2D, pa2D, la2D, lb2D, smallLength );
                   }
                }
-            }
+      }
          }
       }
    } else {
       /* Triangle is degenerate, no intersection */
    }
-    
+  
    return intersect;
 }
 
@@ -647,8 +647,8 @@ extern double TriangleSmallestAngle(
   double minAngle = M_PI;
   int    corner;
   for ( corner = 0; corner < 3; corner++ ) {
-    const double angle = TriangleAngle( triangle, pointSet, corner );
-    minAngle = MIN( angle, minAngle );
+  const double angle = TriangleAngle( triangle, pointSet, corner );
+  minAngle = MIN( angle, minAngle );
   }
   return minAngle;
 }
@@ -662,16 +662,16 @@ extern bool_t TriangleCommonEdge(
 {
   bool_t found = FALSE;
   for ( *side1 = 0; *side1 < 3; (*side1)++ ) {
-    int p1_1, p1_2;
-    TriangleSide( triangle1, *side1, &p1_1, &p1_2 );
-    for ( *side2 = 0; *side2 < 3; (*side2)++ ) {
+  int p1_1, p1_2;
+  TriangleSide( triangle1, *side1, &p1_1, &p1_2 );
+  for ( *side2 = 0; *side2 < 3; (*side2)++ ) {
       int p2_1, p2_2;
       TriangleSide( triangle2, *side2, &p2_1, &p2_2 );
       found = MIN( p1_1, p1_2 ) == MIN( p2_1, p2_2 ) &&
               MAX( p1_1, p1_2 ) == MAX( p2_1, p2_2 );
       if ( found ) break;
-    }
-    if ( found ) break;
+  }
+  if ( found ) break;
   }
   return found;
 }
@@ -687,11 +687,11 @@ extern bool_t TriangleCommonPoint(
   int               n1, n2;
 
   for ( n1 = 0; n1 < 3 && common < 0; n1++ ) {
-    for ( n2 = 0; n2 < 3 && common < 0; n2++ ) {
+  for ( n2 = 0; n2 < 3 && common < 0; n2++ ) {
       if ( points1[n1] == points2[n2] ) {
-        common = points1[n1];
+    common = points1[n1];
       }
-    }
+  }
   }
   if ( commonP ) *commonP = common;
   return ( common >= 0 );
@@ -721,7 +721,7 @@ extern double TriangleAngleBetween(
   isDegenerate = UtilNormalize( unitEdge, NULL, 3 );
   assert( !isDegenerate ); /* Triangle cannot be degenerate */
   OrthoNormalAxes( unitEdge, xAxis2D, yAxis2D );
-            
+      
   /* Reference point */
   VecOperVec( refPoint, EqlPos, point2, OperPlus, point1, 3 );
   VecOperScal( refPoint, EqlPos, refPoint, OperTimes, 0.5, 3 );
@@ -754,18 +754,18 @@ extern void TriangleLocate2(
   *other = -1;
 
   for ( n = 0; n < 3; n++ ) {
-    int   t0, t1;
-    if ( other && points[ n ] != p0 && points[ n ] != p1 ) {
+  int   t0, t1;
+  if ( other && points[ n ] != p0 && points[ n ] != p1 ) {
       *other = points[ n ];
-    }
-    if ( orient ) {
+  }
+  if ( orient ) {
       TriangleSide( triangle, n, &t0, &t1 );
       if ( t0 == p0 && t1 == p1 ) {
-        *orient = TRUE;
+    *orient = TRUE;
       } else if ( t0 == p1 && t1 == p0 ) {
-        *orient = FALSE;
+    *orient = FALSE;
       }
-    }
+  }
   }
 }
 
@@ -778,14 +778,14 @@ static bool_t TriangleIntersect12(
   bool_t intersect = FALSE;
   int side2;
   for ( side2 = 0; side2 < 3; side2++ ) {
-    int p1, p2;
-    TriangleSide( triangle2, side2, &p1, &p2 );
-    if ( TriangleIntersectLine( triangle1, pointSet, PointSetGet( pointSet, p1 ), 
+  int p1, p2;
+  TriangleSide( triangle2, side2, &p1, &p2 );
+  if ( TriangleIntersectLine( triangle1, pointSet, PointSetGet( pointSet, p1 ), 
                                                      PointSetGet( pointSet, p2 ), 
                                                      PointSetTolerance( pointSet ) / 10 ) ) {
       intersect = TRUE;
       break;
-    }
+  }
   }
   return intersect;
 }
@@ -814,7 +814,7 @@ extern bool_t TriangleDebug(
 {
   bool_t   found = FALSE;
   if ( TriangleContains( triangle, 16863 ) && TriangleContains( triangle, 25524 )  && TriangleContains( triangle, 25519 ) ) {
-    found = TRUE;
+  found = TRUE;
   }
   return found;
 }
@@ -827,7 +827,7 @@ static void IntersectAddTriangle(
                   int                         interfaceIdx )
 {
   if ( p0 != p1 && p0 != p2 && p1 != p2 ) {
-    SurfaceAdd( triangleSet, TriangleCreateFromPoints( p0, p1, p2, interfaceIdx ) );
+  SurfaceAdd( triangleSet, TriangleCreateFromPoints( p0, p1, p2, interfaceIdx ) );
   }
 }
 
@@ -848,65 +848,65 @@ extern void TriangleIntersectPlane(
 
   UTIL_SET( posCount, 0, posLast );
   for ( n = 0; n < TriangleSize( triangle ); n++ ) {
-    double   dist;
-    cor[n] = PointSetGet( pointSet, (TrianglePoints( triangle ))[n] );
-    dist = PointDistancePlane3D( planePoint, unitNormal, cor[n] );
-    pos[n] = DistToPos( dist, eps );
-    
-    switch ( pos[n] ) {
+  double   dist;
+  cor[n] = PointSetGet( pointSet, (TrianglePoints( triangle ))[n] );
+  dist = PointDistancePlane3D( planePoint, unitNormal, cor[n] );
+  pos[n] = DistToPos( dist, eps );
+  
+  switch ( pos[n] ) {
       case posMiddle:
-        pointMiddle[posCount[pos[n]]] = n;
-        break;
+    pointMiddle[posCount[pos[n]]] = n;
+    break;
       case posLeft:
-        pointLeft[posCount[pos[n]]] = n;
-        break;
+    pointLeft[posCount[pos[n]]] = n;
+    break;
       case posRight:
-        pointRight[posCount[pos[n]]] = n;
-        break;
+    pointRight[posCount[pos[n]]] = n;
+    break;
       default:
-        assert( FALSE );
-        break;
-    }
-    posCount[pos[n]] += 1;
+    assert( FALSE );
+    break;
+  }
+  posCount[pos[n]] += 1;
   }
 
   if ( posCount[posMiddle] == 3 ) {
-    /* Whole triangle in intersection */
-    SurfaceAdd( triangleSet, TriangleCopy( triangle ) );
+  /* Whole triangle in intersection */
+  SurfaceAdd( triangleSet, TriangleCopy( triangle ) );
   } else if ( posCount[posMiddle] + posCount[posRight] == 3 ) {
-    /* All on right side */
-    SurfaceAdd( triangleSet, TriangleCopy( triangle ) );
+  /* All on right side */
+  SurfaceAdd( triangleSet, TriangleCopy( triangle ) );
   } else if ( posCount[posMiddle] + posCount[posLeft] == 3 ) {
-    /* All on wrong side, ready */
+  /* All on wrong side, ready */
   } else if ( posCount[posMiddle] == 1 ) {
-    double       inter0[3];
-    int          i0;
-    assert( posCount[posLeft] == 1 && posCount[posRight] == 1 );
-    LineIntersectPlane( planePoint, unitNormal, cor[pointRight[0]], cor[pointLeft[0]], eps, inter0 );
-    i0 = PointSetAdd( pointSet, inter0[0], inter0[1], inter0[2] );
-    IntersectAddTriangle( triangleSet, points[pointRight[0]], points[pointMiddle[0]], i0, TriangleInterfaceIdx( triangle ) );
+  double       inter0[3];
+  int          i0;
+  assert( posCount[posLeft] == 1 && posCount[posRight] == 1 );
+  LineIntersectPlane( planePoint, unitNormal, cor[pointRight[0]], cor[pointLeft[0]], eps, inter0 );
+  i0 = PointSetAdd( pointSet, inter0[0], inter0[1], inter0[2] );
+  IntersectAddTriangle( triangleSet, points[pointRight[0]], points[pointMiddle[0]], i0, TriangleInterfaceIdx( triangle ) );
   } else if ( posCount[posLeft]  == 2 ) {
-    /* Single triangle on right side */
-    double       inter0[3], inter1[3];
-    int          i0, i1;
-    LineIntersectPlane( planePoint, unitNormal, cor[pointRight[0]], cor[pointLeft[0]], eps, inter0 );
-    LineIntersectPlane( planePoint, unitNormal, cor[pointRight[0]], cor[pointLeft[1]], eps, inter1 );
-    i0 = PointSetAdd( pointSet, inter0[0], inter0[1], inter0[2] );
-    i1 = PointSetAdd( pointSet, inter1[0], inter1[1], inter1[2] );
-    IntersectAddTriangle( triangleSet, points[pointRight[0]], i0, i1, TriangleInterfaceIdx( triangle )  );
+  /* Single triangle on right side */
+  double       inter0[3], inter1[3];
+  int          i0, i1;
+  LineIntersectPlane( planePoint, unitNormal, cor[pointRight[0]], cor[pointLeft[0]], eps, inter0 );
+  LineIntersectPlane( planePoint, unitNormal, cor[pointRight[0]], cor[pointLeft[1]], eps, inter1 );
+  i0 = PointSetAdd( pointSet, inter0[0], inter0[1], inter0[2] );
+  i1 = PointSetAdd( pointSet, inter1[0], inter1[1], inter1[2] );
+  IntersectAddTriangle( triangleSet, points[pointRight[0]], i0, i1, TriangleInterfaceIdx( triangle )  );
   } else if ( posCount[posRight]  == 2 ) {
-    /* Two triangle on right side */
-    double       inter0[3], inter1[3];
-    int          i0, i1;
-    LineIntersectPlane( planePoint, unitNormal, cor[pointRight[0]], cor[pointLeft[0]], eps, inter0 );
-    LineIntersectPlane( planePoint, unitNormal, cor[pointRight[1]], cor[pointLeft[0]], eps, inter1 );
-    i0 = PointSetAdd( pointSet, inter0[0], inter0[1], inter0[2] );
-    i1 = PointSetAdd( pointSet, inter1[0], inter1[1], inter1[2] );
-    IntersectAddTriangle( triangleSet, points[pointRight[0]], i1,  points[pointRight[1]], TriangleInterfaceIdx( triangle ) );
-    IntersectAddTriangle( triangleSet, points[pointRight[0]], i1,  i0, TriangleInterfaceIdx( triangle ) );
+  /* Two triangle on right side */
+  double       inter0[3], inter1[3];
+  int          i0, i1;
+  LineIntersectPlane( planePoint, unitNormal, cor[pointRight[0]], cor[pointLeft[0]], eps, inter0 );
+  LineIntersectPlane( planePoint, unitNormal, cor[pointRight[1]], cor[pointLeft[0]], eps, inter1 );
+  i0 = PointSetAdd( pointSet, inter0[0], inter0[1], inter0[2] );
+  i1 = PointSetAdd( pointSet, inter1[0], inter1[1], inter1[2] );
+  IntersectAddTriangle( triangleSet, points[pointRight[0]], i1,  points[pointRight[1]], TriangleInterfaceIdx( triangle ) );
+  IntersectAddTriangle( triangleSet, points[pointRight[0]], i1,  i0, TriangleInterfaceIdx( triangle ) );
 
   } else {
-    assert( 0 );
+  assert( 0 );
   }
 }
 

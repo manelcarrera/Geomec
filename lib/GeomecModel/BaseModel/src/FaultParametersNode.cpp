@@ -46,8 +46,8 @@ CFaultParametersNode::CFaultParametersNode(CHorizonBase& fault, CDepletionStage&
   reParent(&fault);
   if(!stage.Initial())
   {
-    m_pBranchStage = &stage.Previous();
-    LinkTo(*m_pBranchStage);
+  m_pBranchStage = &stage.Previous();
+  LinkTo(*m_pBranchStage);
   }
   LinkTo(((CModelBase&)fault.Model()).DepletionStageEntry());
 }
@@ -62,8 +62,8 @@ CFaultParametersNode::CFaultParametersNode(const CFaultParametersNode& rhs)
   m_bDStiffSameAsPrevious(rhs.m_bDStiffSameAsPrevious),
   m_bCohesionExtrapolated(rhs.m_bCohesionExtrapolated),
   m_bFrictionExtrapolated(rhs.m_bFrictionExtrapolated),
-	m_Cohesion(rhs.m_Cohesion),
-	m_FrictionAngle(rhs.m_FrictionAngle),
+  m_Cohesion(rhs.m_Cohesion),
+  m_FrictionAngle(rhs.m_FrictionAngle),
   m_dUserDStiff1(rhs.m_dUserDStiff1),
   m_dUserDStiff2(rhs.m_dUserDStiff2),
   m_dFractureDStiff1(rhs.m_dFractureDStiff1),
@@ -80,10 +80,10 @@ CFaultParametersNode& CFaultParametersNode::operator=(const CFaultParametersNode
 
   if(!(*this == rhs))
   {
-    CModelBase& model = static_cast<CModelBase&>(Model());
-    model.ResultRegister().ClearLinear();
-    model.ResultRegister().ClearNonLinear();
-    model.ResultRegister().ClearMixture();
+  CModelBase& model = static_cast<CModelBase&>(Model());
+  model.ResultRegister().ClearLinear();
+  model.ResultRegister().ClearNonLinear();
+  model.ResultRegister().ClearMixture();
   }
 
   CStorageNode::operator=(rhs);
@@ -112,114 +112,114 @@ CFaultParametersNode& CFaultParametersNode::operator=(const CFaultParametersNode
 bool CFaultParametersNode::operator==(const CFaultParametersNode& rhs) const
 {
   return (
-    &m_fault                  == &rhs.m_fault                  &&
-    &m_stage                  == &rhs.m_stage                  &&
-    m_pBranchStage            == rhs.m_pBranchStage            &&
-    m_bCohesionSameAsPrevious == rhs.m_bCohesionSameAsPrevious &&
-    m_bFrictionSameAsPrevious == rhs.m_bFrictionSameAsPrevious &&
-    m_bDStiffSameAsPrevious   == rhs.m_bDStiffSameAsPrevious   &&
-    m_bCohesionExtrapolated   == rhs.m_bCohesionExtrapolated   &&
-    m_bFrictionExtrapolated   == rhs.m_bFrictionExtrapolated   &&
-    m_Cohesion                == rhs.m_Cohesion                &&
-    m_FrictionAngle           == rhs.m_FrictionAngle           &&
-    m_dUserDStiff1            == rhs.m_dUserDStiff1            &&
-    m_dUserDStiff2            == rhs.m_dUserDStiff2            &&
-    m_dFractureDStiff1        == rhs.m_dFractureDStiff1        &&
-    m_dFractureDStiff2        == rhs.m_dFractureDStiff2        &&
-    m_pValueTypeCohesion      == rhs.m_pValueTypeCohesion      &&
-    m_pValueTypeFriction      == rhs.m_pValueTypeFriction);
+  &m_fault                  == &rhs.m_fault                  &&
+  &m_stage                  == &rhs.m_stage                  &&
+  m_pBranchStage            == rhs.m_pBranchStage            &&
+  m_bCohesionSameAsPrevious == rhs.m_bCohesionSameAsPrevious &&
+  m_bFrictionSameAsPrevious == rhs.m_bFrictionSameAsPrevious &&
+  m_bDStiffSameAsPrevious   == rhs.m_bDStiffSameAsPrevious   &&
+  m_bCohesionExtrapolated   == rhs.m_bCohesionExtrapolated   &&
+  m_bFrictionExtrapolated   == rhs.m_bFrictionExtrapolated   &&
+  m_Cohesion                == rhs.m_Cohesion                &&
+  m_FrictionAngle           == rhs.m_FrictionAngle           &&
+  m_dUserDStiff1            == rhs.m_dUserDStiff1            &&
+  m_dUserDStiff2            == rhs.m_dUserDStiff2            &&
+  m_dFractureDStiff1        == rhs.m_dFractureDStiff1        &&
+  m_dFractureDStiff2        == rhs.m_dFractureDStiff2        &&
+  m_pValueTypeCohesion      == rhs.m_pValueTypeCohesion      &&
+  m_pValueTypeFriction      == rhs.m_pValueTypeFriction);
 }
 
 void CFaultParametersNode::OnNewNeighbour(const CGraphNode& node)
 {
-	const CValueType* pValueType = dynamic_cast<const CValueType*>(&node);
-	if(pValueType)
-	{
-		assert((pValueType->TypeId() == IDT_VALUETYPE_COHESION)         ||
+  const CValueType* pValueType = dynamic_cast<const CValueType*>(&node);
+  if(pValueType)
+  {
+    assert((pValueType->TypeId() == IDT_VALUETYPE_COHESION)         ||
            (pValueType->TypeId() == IDT_VALUETYPE_FRICTION_ANGLE));
-		
-		// Invalidate results
-		CModelBase& model = dynamic_cast<CModelBase&>(Model());
-    model.ResultRegister().ClearLinear(false);
-    model.ResultRegister().ClearNonLinear(false);
-    model.ResultRegister().ClearMixture();
+    
+    // Invalidate results
+    CModelBase& model = dynamic_cast<CModelBase&>(Model());
+  model.ResultRegister().ClearLinear(false);
+  model.ResultRegister().ClearNonLinear(false);
+  model.ResultRegister().ClearMixture();
 
-		if(pValueType->TypeId() == IDT_VALUETYPE_COHESION)
-		{
-			assert(m_pValueTypeCohesion == 0);
-			m_pValueTypeCohesion = pValueType;
-		}
-		else if(pValueType->TypeId() == IDT_VALUETYPE_FRICTION_ANGLE)
-		{
-			assert(m_pValueTypeFriction == 0);
-			m_pValueTypeFriction = pValueType;
-		}
+    if(pValueType->TypeId() == IDT_VALUETYPE_COHESION)
+    {
+      assert(m_pValueTypeCohesion == 0);
+      m_pValueTypeCohesion = pValueType;
+    }
+    else if(pValueType->TypeId() == IDT_VALUETYPE_FRICTION_ANGLE)
+    {
+      assert(m_pValueTypeFriction == 0);
+      m_pValueTypeFriction = pValueType;
+    }
 
-		Modified();
-	}
+    Modified();
+  }
 
   CStorageNode::OnNewNeighbour(node);
 }
 
 void CFaultParametersNode::OnNeighbourDeleted(const CGraphNode& node)
 {
-	if(m_pValueTypeCohesion == &node)
-	{
-		m_pValueTypeCohesion = 0;
-		Modified();
-	}
-	else if(m_pValueTypeFriction == &node)
-	{
-		m_pValueTypeFriction = 0;
-		Modified();
-	}
+  if(m_pValueTypeCohesion == &node)
+  {
+    m_pValueTypeCohesion = 0;
+    Modified();
+  }
+  else if(m_pValueTypeFriction == &node)
+  {
+    m_pValueTypeFriction = 0;
+    Modified();
+  }
 
-	bool bDelete = false;
+  bool bDelete = false;
 
-	if(&node == m_pBranchStage || &node == &m_stage)
-		bDelete = true;
+  if(&node == m_pBranchStage || &node == &m_stage)
+    bDelete = true;
 
   CStorageNode::OnNeighbourDeleted(node);
 
-	if(bDelete)
-		delete this;
+  if(bDelete)
+    delete this;
 }
 
 void CFaultParametersNode::OnNeighbourModified(const CGraphNode& node, enum ModifiedHint /*uHint*/)
 {
-	if(m_pValueTypeCohesion == &node || m_pValueTypeFriction == &node)
-		Modified();
+  if(m_pValueTypeCohesion == &node || m_pValueTypeFriction == &node)
+    Modified();
 
   // for now use 'canHaveFaultParameters' (the original 'HasFaultParameters'),
   // perhaps the new 'hasFaultParameters' is more appropriate
 
   if(m_pBranchStage && &node == &((CModelBase&)Model()).DepletionStageEntry() && !m_fault.canHaveFaultParameters(m_stage))
-    delete this;
+  delete this;
 }
 
 bool CFaultParametersNode::CanConnectItem(const CGraphNode& item) const
 {
-	if(IsLinkedTo(item))
-		return false;
+  if(IsLinkedTo(item))
+    return false;
 
-	const CValueType* pValueType = dynamic_cast<const CValueType*>(&item);
-	if(pValueType)
-	{
-		return ((pValueType->TypeId() == IDT_VALUETYPE_COHESION       && !m_pValueTypeCohesion) || 
-            (pValueType->TypeId() == IDT_VALUETYPE_FRICTION_ANGLE && !m_pValueTypeFriction))  &&
-				    !(static_cast<const CModelBase&>(Model())).BranchState().IsFixedStage(m_stage);
-	}
+  const CValueType* pValueType = dynamic_cast<const CValueType*>(&item);
+  if(pValueType)
+  {
+    return ((pValueType->TypeId() == IDT_VALUETYPE_COHESION       && !m_pValueTypeCohesion) || 
+      (pValueType->TypeId() == IDT_VALUETYPE_FRICTION_ANGLE && !m_pValueTypeFriction))  &&
+          !(static_cast<const CModelBase&>(Model())).BranchState().IsFixedStage(m_stage);
+  }
 
-	return CStorageNode::CanConnectItem(item);
+  return CStorageNode::CanConnectItem(item);
 }
 
 bool CFaultParametersNode::CanDisconnectItem(const CGraphNode& item) const
 {
-	const CValueType* pValueType = dynamic_cast<const CValueType*>(&item);
-	if(pValueType)
-		return !(static_cast<const CModelBase&>(Model())).BranchState().IsFixedStage(m_stage);
+  const CValueType* pValueType = dynamic_cast<const CValueType*>(&item);
+  if(pValueType)
+    return !(static_cast<const CModelBase&>(Model())).BranchState().IsFixedStage(m_stage);
 
-	return CStorageNode::CanDisconnectItem(item);
+  return CStorageNode::CanDisconnectItem(item);
 }
 
 unsigned int CFaultParametersNode::IconId() const
@@ -229,7 +229,7 @@ unsigned int CFaultParametersNode::IconId() const
      DStiffSameAsPrevious()   &&
      !DistributedCohesion()   &&
      !DistributedFriction())
-    return IDI_FAULTPARAMETERS_REPEAT;
+  return IDI_FAULTPARAMETERS_REPEAT;
 
   return IDI_FAULTPARAMETERS;
 }
@@ -261,8 +261,8 @@ void CFaultParametersNode::LoadStream(TSTREAM& stream, CStreamVersion& version, 
 
   if(CStreamVersion(3, 0, 118) < version)
   {
-    stream >> n;
-    m_bDStiffSameAsPrevious = (n != 0);
+  stream >> n;
+  m_bDStiffSameAsPrevious = (n != 0);
   }
 
   stream >> n;
@@ -281,25 +281,25 @@ void CFaultParametersNode::LoadStream(TSTREAM& stream, CStreamVersion& version, 
 
   if(CStreamVersion(3, 0, 118) < version)
   {
-    stream >> m_dUserDStiff1;
-    stream >> m_dUserDStiff2;
+  stream >> m_dUserDStiff1;
+  stream >> m_dUserDStiff2;
   }
 
   if(version >= CStreamVersion(3, 7, 28))
   {
-    stream >> m_dFractureDStiff1;
-    stream >> m_dFractureDStiff2;
+  stream >> m_dFractureDStiff1;
+  stream >> m_dFractureDStiff2;
   }
 
   int i;
   for(i = 0; i < 2; ++i)
   {
-    TValueCompositeEntry& composite_entry = (TValueCompositeEntry&)*Model().GraphEntry(MD_BASE_VALUE_COMPOSITE);
-    stream >> n;
-    if(n >= 0)
-    {
+  TValueCompositeEntry& composite_entry = (TValueCompositeEntry&)*Model().GraphEntry(MD_BASE_VALUE_COMPOSITE);
+  stream >> n;
+  if(n >= 0)
+  {
       composite_entry.LinkNodeToIndex(*this, n);
-    }
+  }
   }
 
   progress.Step();
@@ -336,14 +336,14 @@ void CFaultParametersNode::SaveStream(TSTREAM& stream, TPROGRESS& progress)
   stream << m_dFractureDStiff2;
 
   if(m_pValueTypeCohesion)
-    stream << m_pValueTypeCohesion->Index();
+  stream << m_pValueTypeCohesion->Index();
   else
-    stream << -1;
+  stream << -1;
 
   if(m_pValueTypeFriction)
-    stream << m_pValueTypeFriction->Index();
+  stream << m_pValueTypeFriction->Index();
   else
-    stream << -1;
+  stream << -1;
 
   progress.Step();
 }
@@ -391,7 +391,7 @@ const CAngleQuantity& CFaultParametersNode::FrictionAngle() const
 double CFaultParametersNode::UserDStiff1() const
 {
   if(m_fault.SlipType() == CHorizonBase::FRACTURE)
-    return m_dFractureDStiff1;
+  return m_dFractureDStiff1;
 
   return m_dUserDStiff1;
 }
@@ -399,7 +399,7 @@ double CFaultParametersNode::UserDStiff1() const
 double CFaultParametersNode::UserDStiff2() const
 {
   if(m_fault.SlipType() == CHorizonBase::FRACTURE)
-    return m_dFractureDStiff2;
+  return m_dFractureDStiff2;
 
   return m_dUserDStiff2;
 }
@@ -417,17 +417,17 @@ void CFaultParametersNode::FrictionAngle(double dFrictionAngle)
 void CFaultParametersNode::UserDStiff1(double dDStiff1)
 {
   if(m_fault.SlipType() == CHorizonBase::FRACTURE)
-    m_dFractureDStiff1 = dDStiff1;
+  m_dFractureDStiff1 = dDStiff1;
   else
-    m_dUserDStiff1 = dDStiff1;
+  m_dUserDStiff1 = dDStiff1;
 }
 
 void CFaultParametersNode::UserDStiff2(double dDStiff2)
 {
   if(m_fault.SlipType() == CHorizonBase::FRACTURE)
-    m_dFractureDStiff2 = dDStiff2;
+  m_dFractureDStiff2 = dDStiff2;
   else
-    m_dUserDStiff2 = dDStiff2;
+  m_dUserDStiff2 = dDStiff2;
 }
 
 bool CFaultParametersNode::DistributedCohesion() const
@@ -462,106 +462,106 @@ void CFaultParametersNode::FrictionExtrapolated(bool b)
 
 double CFaultParametersNode::Cohesion(const geo::IPoint& point, const CQuantity::UNIT unit) const
 {
-	if(m_pValueTypeCohesion)
-	{
-		if(m_bCohesionExtrapolated || m_pValueTypeCohesion->PointSet().PointInConvexHull(point))
-		{
-			geo::CValue value = m_pValueTypeCohesion->Component().ScalarData().ValuePoint(point, unit);
-			if(value.Valid()) return value.Value();
+  if(m_pValueTypeCohesion)
+  {
+    if(m_bCohesionExtrapolated || m_pValueTypeCohesion->PointSet().PointInConvexHull(point))
+    {
+      geo::CValue value = m_pValueTypeCohesion->Component().ScalarData().ValuePoint(point, unit);
+      if(value.Valid()) return value.Value();
       return Cohesion().Value(unit);
-		}
-	}
+    }
+  }
 
   if(m_bCohesionSameAsPrevious && !m_stage.Initial())
-    return Previous()->Cohesion(point, unit);
+  return Previous()->Cohesion(point, unit);
 
-	return Cohesion().Value(unit);
+  return Cohesion().Value(unit);
 }
 
 std::vector<double> CFaultParametersNode::Cohesion(const geo::IElement& element, const CQuantity::UNIT unit) const
 {
-	std::vector<double> vcResult(element.NrOfPoints());
+  std::vector<double> vcResult(element.NrOfPoints());
 
-	if(m_pValueTypeCohesion)
-	{
-		if(m_bCohesionExtrapolated || m_pValueTypeCohesion->PointSet().ElementInConvexHull(element))
-		{
-			IValueDomainScalar::TValueVec vcValue = m_pValueTypeCohesion->Component().ScalarData().ValueElement(element, unit);
-			assert(vcValue.size() == vcResult.size());
-			for(size_t j = 0; j < vcResult.size(); ++j)
-			{
-				if(vcValue[j].Valid())
-					vcResult[j] = vcValue[j].Value();
-				else
-					vcResult[j] = Cohesion().Value(unit);
-			}
+  if(m_pValueTypeCohesion)
+  {
+    if(m_bCohesionExtrapolated || m_pValueTypeCohesion->PointSet().ElementInConvexHull(element))
+    {
+      IValueDomainScalar::TValueVec vcValue = m_pValueTypeCohesion->Component().ScalarData().ValueElement(element, unit);
+      assert(vcValue.size() == vcResult.size());
+      for(size_t j = 0; j < vcResult.size(); ++j)
+      {
+        if(vcValue[j].Valid())
+          vcResult[j] = vcValue[j].Value();
+        else
+          vcResult[j] = Cohesion().Value(unit);
+      }
 
-			return vcResult;
-		}
-	}
+      return vcResult;
+    }
+  }
 
   if(m_bCohesionSameAsPrevious && !m_stage.Initial())
-    return Previous()->Cohesion(element, unit);
+  return Previous()->Cohesion(element, unit);
 
-	for(size_t i = 0; i < vcResult.size(); ++i)
-    vcResult[i] = Cohesion().Value(unit);
+  for(size_t i = 0; i < vcResult.size(); ++i)
+  vcResult[i] = Cohesion().Value(unit);
 
-	return vcResult;
+  return vcResult;
 }
 
 double CFaultParametersNode::FrictionAngle(const geo::IPoint& point, const CQuantity::UNIT unit) const
 {
-	if(m_pValueTypeFriction)
-	{
-		if(m_bFrictionExtrapolated || m_pValueTypeFriction->PointSet().PointInConvexHull(point))
-		{
-			geo::CValue value = m_pValueTypeFriction->Component().ScalarData().ValuePoint(point, unit);
-			if(value.Valid()) return value.Value();
+  if(m_pValueTypeFriction)
+  {
+    if(m_bFrictionExtrapolated || m_pValueTypeFriction->PointSet().PointInConvexHull(point))
+    {
+      geo::CValue value = m_pValueTypeFriction->Component().ScalarData().ValuePoint(point, unit);
+      if(value.Valid()) return value.Value();
       return FrictionAngle().Value(unit);
-		}
-	}
+    }
+  }
 
   if(m_bFrictionSameAsPrevious && !m_stage.Initial())
-    return Previous()->FrictionAngle(point, unit);
+  return Previous()->FrictionAngle(point, unit);
 
-	return FrictionAngle().Value(unit);
+  return FrictionAngle().Value(unit);
 }
 
 std::vector<double> CFaultParametersNode::FrictionAngle(const geo::IElement& element, const CQuantity::UNIT unit) const
 {
-	std::vector<double> vcResult(element.NrOfPoints());
+  std::vector<double> vcResult(element.NrOfPoints());
 
-	if(m_pValueTypeFriction)
-	{
-		if(m_bFrictionExtrapolated || m_pValueTypeFriction->PointSet().ElementInConvexHull(element))
-		{
-			IValueDomainScalar::TValueVec vcValue = m_pValueTypeFriction->Component().ScalarData().ValueElement(element, unit);
-			assert(vcValue.size() == vcResult.size());
-			for(size_t j = 0; j < vcResult.size(); j++)
-			{
-				if(vcValue[j].Valid())
-					vcResult[j] = vcValue[j].Value();
-				else
-					vcResult[j] = FrictionAngle().Value(unit);
-			}
+  if(m_pValueTypeFriction)
+  {
+    if(m_bFrictionExtrapolated || m_pValueTypeFriction->PointSet().ElementInConvexHull(element))
+    {
+      IValueDomainScalar::TValueVec vcValue = m_pValueTypeFriction->Component().ScalarData().ValueElement(element, unit);
+      assert(vcValue.size() == vcResult.size());
+      for(size_t j = 0; j < vcResult.size(); j++)
+      {
+        if(vcValue[j].Valid())
+          vcResult[j] = vcValue[j].Value();
+        else
+          vcResult[j] = FrictionAngle().Value(unit);
+      }
 
-			return vcResult;
-		}
-	}
+      return vcResult;
+    }
+  }
 
   if(m_bFrictionSameAsPrevious && !m_stage.Initial())
-    return Previous()->FrictionAngle(element, unit);
+  return Previous()->FrictionAngle(element, unit);
 
-	for(size_t i = 0; i < vcResult.size(); i++)
-    vcResult[i] = FrictionAngle().Value(unit);
+  for(size_t i = 0; i < vcResult.size(); i++)
+  vcResult[i] = FrictionAngle().Value(unit);
 
-	return vcResult;
+  return vcResult;
 }
 
 double CFaultParametersNode::DStiffNormal() const
 {
   if(m_bDStiffSameAsPrevious && !m_stage.Initial())
-    return Previous()->DStiffNormal();
+  return Previous()->DStiffNormal();
 
   return UserDStiff1();
 }
@@ -569,7 +569,7 @@ double CFaultParametersNode::DStiffNormal() const
 double CFaultParametersNode::DStiffShear() const
 {
   if(m_bDStiffSameAsPrevious && !m_stage.Initial())
-    return Previous()->DStiffShear();
+  return Previous()->DStiffShear();
 
   return UserDStiff2();
 }
@@ -582,7 +582,7 @@ const CFaultParametersNode* CFaultParametersNode::Previous() const
 CFaultParametersNode* CFaultParametersNode::Previous()
 {
   if(m_stage.Initial())
-    return 0;
+  return 0;
 
   return &m_fault.FaultParameters(m_stage.Previous());
 }
@@ -601,7 +601,7 @@ bool CFaultParametersNode::Less(const CGraphNode& node) const
 {
   const CFaultParametersNode* pNode = dynamic_cast<const CFaultParametersNode*>(&node);
   if(pNode)
-    return m_stage.Less(pNode->m_stage);
+  return m_stage.Less(pNode->m_stage);
 
   return CStorageNode::Less(node);
 }

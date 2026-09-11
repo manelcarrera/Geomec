@@ -13,7 +13,7 @@ public:
 private:
   IMaterialServerBase_Delegate(const IMaterialServerBase_Delegate& rhs);
   IMaterialServerBase_Delegate& operator = (
-    const IMaterialServerBase_Delegate& rhs);
+  const IMaterialServerBase_Delegate& rhs);
 
   IMaterialServerBase* m_materialServerBase;
 

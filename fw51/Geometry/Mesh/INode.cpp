@@ -16,7 +16,7 @@ INode::~INode()
 
 const IElementSet* INode::IndexingElementSet() const
 {
-	return &Mesh();
+  return &Mesh();
 }
 
 } // namespace geo

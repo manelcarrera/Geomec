@@ -26,14 +26,14 @@ RescuePolyLineNodeBUG::RescuePolyLineNodeBUG(RescueContext *context, FILE *archi
   myfscanf(context, archiveFile, &geometryID);
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -45,7 +45,7 @@ void RescuePolyLineNodeBUG::Archive(RescueContext *context, FILE *archiveFile)
   myfprintf(context, archiveFile, geometry->Identifier());
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -62,11 +62,11 @@ void RescuePolyLineNodeBUG::SetOrientation(RescueOrientationLedger *ledger)
 
   if (ledger->GetKFor(geometry, kLowBound, kCount, swapK))
   {
-    if (swapK)
-    {
+  if (swapK)
+  {
       float highBound = (float) ((kLowBound + kCount) - 1);
       layerNdxParam = (float) kLowBound + (highBound - layerNdxParam);
-    }
+  }
   }
 }
 
@@ -74,11 +74,11 @@ RESCUEBOOL RescuePolyLineNodeBUG::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescuePolyLineNodeBUG)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueObject::IsOfType(thisType);
+  return RescueObject::IsOfType(thisType);
   }
 }
 

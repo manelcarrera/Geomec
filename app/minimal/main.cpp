@@ -7,9 +7,9 @@
 
 int main(int argc, char *argv[])
 {
-	NumRangeValidator nrv;
+  NumRangeValidator nrv;
 
-	qDebug() << "qDebug";
+  qDebug() << "qDebug";
 
   QCoreApplication a(argc, argv);
   return a.exec();

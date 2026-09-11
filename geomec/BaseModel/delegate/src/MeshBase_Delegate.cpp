@@ -32,7 +32,7 @@ void CMeshBase_Delegate::AppendContextMenu(CContextMenuInvoker &invoker)
   typedef CSingleCommandTemplate <CMeshBase_Delegate> TCommand;
 
   invoker.AddCommand(_T("Create pointset"),
-    *(new TCommand(*this, &CMeshBase_Delegate::CreatePointSet,
+  *(new TCommand(*this, &CMeshBase_Delegate::CreatePointSet,
       &CMeshBase_Delegate::IsMesh)));
 
   IElementSet_Delegate::AppendContextMenu(invoker);
@@ -45,7 +45,7 @@ void CMeshBase_Delegate::CreatePointSet()
   CMainFrame* pMainFrame = (CMainFrame*) FemAppGetMainWnd();
 
   pMainFrame->StartProgress("Creating pointset",
-    m_meshBase->Mesh().PointSize());
+  m_meshBase->Mesh().PointSize());
 
   // Create a new pointset and add the points
 
@@ -53,16 +53,16 @@ void CMeshBase_Delegate::CreatePointSet()
 
   if (((CModelBase&) m_meshBase->Model()).Dimension() == 2)
   {
-    dim = IPointSet::DIM_2D;
+  dim = IPointSet::DIM_2D;
   }
 
   CPointSet* pPointSet = new CPointSet(m_meshBase->Name().toStdString().c_str(),
-    m_meshBase->Model(), 0, dim);
+  m_meshBase->Model(), 0, dim);
 
   for (int i = 0; i < m_meshBase->Mesh().PointSize(); i++)
   {
-    pPointSet->PushBack(m_meshBase->Mesh().Point(i), std::vector <double> ());
-    pMainFrame->ProgressStep();
+  pPointSet->PushBack(m_meshBase->Mesh().Point(i), std::vector <double> ());
+  pMainFrame->ProgressStep();
   }
 
   pMainFrame->EndProgress();

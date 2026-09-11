@@ -1,10 +1,10 @@
 /*************************************************************************
 
-        cSetRescueHistory.h
+    cSetRescueHistory.h
 
  Keeps a list of pointers to some RescueHistory.
 
-        Rod Hanks               May, 1999
+    Rod Hanks               May, 1999
 
 ****************************************************************************/
 

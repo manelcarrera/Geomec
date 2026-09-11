@@ -20,27 +20,27 @@ class CFormationVolume;
 class C3DFormation : public CFormationBase
 {
 protected:
-	C3DFormation(const C3DFormation& rhs);
-	C3DFormation(CFemAppModel &model);
-	C3DFormation(const QString &strName, CModelBase &model);
+  C3DFormation(const C3DFormation& rhs);
+  C3DFormation(CFemAppModel &model);
+  C3DFormation(const QString &strName, CModelBase &model);
 public:
-	// Volume access
-	virtual int VolumeSize() const; 
-	virtual const CFormationVolume& Volume(int nIndex) const;
-	virtual CFormationVolume& Volume(int nIndex);
-	virtual bool Less(const CGraphNode &node) const;
+  // Volume access
+  virtual int VolumeSize() const; 
+  virtual const CFormationVolume& Volume(int nIndex) const;
+  virtual CFormationVolume& Volume(int nIndex);
+  virtual bool Less(const CGraphNode &node) const;
 
   ACCEPT_GEOMECMODELVISITORS(Visit3DFormation);
 };
 
 class Casing3DFormation : public C3DFormation
 {
-	CFormationVolume m_volume;
+  CFormationVolume m_volume;
 
 public:
   Casing3DFormation(CFemAppModel &model, const geo::CBodyGroup& bodys);
-	virtual const IFormationElementSet& ElementSet( int nIndex ) const;
-	virtual int ElementSetSize() const;
+  virtual const IFormationElementSet& ElementSet( int nIndex ) const;
+  virtual int ElementSetSize() const;
 
   ACCEPT_GEOMECMODELVISITORS(Visit3DFormation);
 };

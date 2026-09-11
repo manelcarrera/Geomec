@@ -22,7 +22,7 @@ bool IWellModelDianaRunner::CreateTopLoad(const CHorizonBase &/*top*/, dia::CLoa
 
 void IWellModelDianaRunner::CreateWeightLoad(dia::CLoadCase &lcase, const double &gravity)
 {
-	new dia::CWeightLoad(lcase, gravity, geo::CVector::Zaxis);
+  new dia::CWeightLoad(lcase, gravity, geo::CVector::Zaxis);
 }
 
 bool IWellModelDianaRunner::ParentLinearResults() const

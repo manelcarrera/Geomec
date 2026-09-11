@@ -143,54 +143,54 @@ public:
   RGInterfaceImpl(const std::string& fileName)
   : m_fileName(fileName)
   {
-    // initialize from the file
-    std::ifstream s(fileName.c_str());
-    if(s)
-    {
+  // initialize from the file
+  std::ifstream s(fileName.c_str());
+  if(s)
+  {
       s >> m_currentStage;
       s >> m_year;
       s >> m_numElements;
 
       if(!m_currentStage)
       {
-        // commands for the initial stage
-        m_vcCommands.push_back(GMCommand(typeCommandSaveGrid));
-        m_vcCommands.push_back(GMCommand(typeCommandLoadProperty, RGProperty(propElementFluidPressure)));
-        m_vcCommands.push_back(GMCommand(typeCommandLoadProperty, RGProperty(propElementTemperature)));
-        m_vcCommands.push_back(GMCommand(typeCommandQuit));
+    // commands for the initial stage
+    m_vcCommands.push_back(GMCommand(typeCommandSaveGrid));
+    m_vcCommands.push_back(GMCommand(typeCommandLoadProperty, RGProperty(propElementFluidPressure)));
+    m_vcCommands.push_back(GMCommand(typeCommandLoadProperty, RGProperty(propElementTemperature)));
+    m_vcCommands.push_back(GMCommand(typeCommandQuit));
       }
       else
       {
-        // subsequent stages
-        m_vcCommands.push_back(GMCommand(typeCommandLoadProperty, RGProperty(propElementFluidPressure)));
-        m_vcCommands.push_back(GMCommand(typeCommandLoadProperty, RGProperty(propElementTemperature)));
-        m_vcCommands.push_back(GMCommand(typeCommandCalculate));
-        m_vcCommands.push_back(GMCommand(typeCommandQuit));
+    // subsequent stages
+    m_vcCommands.push_back(GMCommand(typeCommandLoadProperty, RGProperty(propElementFluidPressure)));
+    m_vcCommands.push_back(GMCommand(typeCommandLoadProperty, RGProperty(propElementTemperature)));
+    m_vcCommands.push_back(GMCommand(typeCommandCalculate));
+    m_vcCommands.push_back(GMCommand(typeCommandQuit));
       }
-    }
+  }
   }
 
   RGDepletionStage getCurrentDepletionStage() const
   {
-    return RGDepletionStage(m_currentStage, m_year, 5);
+  return RGDepletionStage(m_currentStage, m_year, 5);
   }
 
   void loadProperty(const RGProperty& property, std::vector<double>& values)
   {
-    values.resize(m_numElements);
-    int i;
-    for(i = 0; i < m_numElements; ++i)
+  values.resize(m_numElements);
+  int i;
+  for(i = 0; i < m_numElements; ++i)
       values[i] = 10 * m_currentStage + 2;
   }
 
   size_t getNumCommands() const
   {
-    return m_vcCommands.size();
+  return m_vcCommands.size();
   }
 
   GMCommand getCommandN(const size_t& n) const
   {
-    return m_vcCommands[n];
+  return m_vcCommands[n];
   }
 
 private:

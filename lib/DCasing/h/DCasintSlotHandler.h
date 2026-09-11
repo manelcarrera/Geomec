@@ -17,55 +17,55 @@ class CSlotHandlerDianaSignals;
 
 class CSlotHandler : public QObject
 {
-	Q_OBJECT;
-	
-	private :
-	
-		CDCasintSlotHandler & m_Parent;
-		CSlotHandlerDianaSignals* m_slotHandlerDianaSignals;
-	
-	public :
+  Q_OBJECT;
+  
+  private :
+  
+    CDCasintSlotHandler & m_Parent;
+    CSlotHandlerDianaSignals* m_slotHandlerDianaSignals;
+  
+  public :
 
-		CSlotHandler(CDCasintSlotHandler & Handler);
-		~CSlotHandler();
-	
-		void Connect(const CDCasing & Casing);
-		void Disconnect();
+    CSlotHandler(CDCasintSlotHandler & Handler);
+    ~CSlotHandler();
+  
+    void Connect(const CDCasing & Casing);
+    void Disconnect();
 
-	public: 
+  public: 
 
-		void slotOnMessage(QString str);
-		void slotOnError(QString str);
-		void slotOnWarning(QString str);
-		void slotOnFinished();
+    void slotOnMessage(QString str);
+    void slotOnError(QString str);
+    void slotOnWarning(QString str);
+    void slotOnFinished();
 };
 
 class CDCasintSlotHandler
 {
 
-	//object handler
-	
-	friend  class CSlotHandler;
+  //object handler
+  
+  friend  class CSlotHandler;
 
 private :
-		CSlotHandler m_SlotHandler;
+    CSlotHandler m_SlotHandler;
 
 protected :
 
-	virtual void OnMessage(QString str);
-	virtual void OnError(QString str);
-	virtual void OnWarning(QString str);
-	virtual void OnFinished();
+  virtual void OnMessage(QString str);
+  virtual void OnError(QString str);
+  virtual void OnWarning(QString str);
+  virtual void OnFinished();
 
 
 public :
 
-	CDCasintSlotHandler();
-	~CDCasintSlotHandler();
+  CDCasintSlotHandler();
+  ~CDCasintSlotHandler();
 
-	//members
-	void Connect(const CDCasing & Casing);
-	void Disconnect();
+  //members
+  void Connect(const CDCasing & Casing);
+  void Disconnect();
 
 };
 

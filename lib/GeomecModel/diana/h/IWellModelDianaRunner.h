@@ -11,8 +11,8 @@ public:
   IWellModelDianaRunner(IWellModel& model, CDianaRunController& controller);
   virtual ~IWellModelDianaRunner();
 
-	virtual bool CreateTopLoad(const CHorizonBase &top, dia::CLoadCase &lcase);
-	virtual void CreateWeightLoad(dia::CLoadCase &lcase, const double &gravity);
+  virtual bool CreateTopLoad(const CHorizonBase &top, dia::CLoadCase &lcase);
+  virtual void CreateWeightLoad(dia::CLoadCase &lcase, const double &gravity);
 
   virtual bool TranslateElementsToXYOrigin() const { return true; }
 

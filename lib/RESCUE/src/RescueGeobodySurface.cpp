@@ -32,15 +32,15 @@ RescueEdgeSetStub *RescueGeobodySurface::EdgesObj()
 {
   if (Surface()->ParentModel()->IsWireframeLoaded() == FALSE)
   {
-    return 0;
+  return 0;
   }
   else
   {
-    if (edges == 0)
-    {
+  if (edges == 0)
+  {
       AutoEdgeSet();
-    }
-    return edges;
+  }
+  return edges;
   }
 }
 
@@ -49,22 +49,22 @@ RescueEdgeSet *RescueGeobodySurface::Edges()
   RescueModel *model = Surface()->ParentModel();
   if (model->IsWireframeLoaded() == FALSE)
   {
-    return 0;
+  return 0;
   }
   else
   {
-    if (edges == 0)
-    {
+  if (edges == 0)
+  {
       AutoEdgeSet();
-    }
-    RescueEdgeSet *myReturn = edges->EdgeSet(model);
-    if (myReturn == 0)
-    {
+  }
+  RescueEdgeSet *myReturn = edges->EdgeSet(model);
+  if (myReturn == 0)
+  {
       delete edges;
       AutoEdgeSet();
       myReturn = edges->EdgeSet(model);
-    }
-    return myReturn;
+  }
+  return myReturn;
   }
 }
 
@@ -103,14 +103,14 @@ RescueGeobodySurface::RescueGeobodySurface(RescueContext *context, FILE *archive
   edges = 0;
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -125,7 +125,7 @@ void RescueGeobodySurface::Archive(FILE *archiveFile)
   myfprintf(context, archiveFile, roleInt);
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -142,8 +142,8 @@ void RescueGeobodySurface::DropWireframeMemory()
 {
   if (edges != 0)
   {
-    delete edges;
-    edges = 0;
+  delete edges;
+  edges = 0;
   }
 }
 
@@ -152,23 +152,23 @@ void RescueGeobodySurface::UnArchiveWireframeData(RescueModel *model, FILE *arch
   RescueContext *context = model->Context();
   if (edges != 0)
   {
-    delete edges;
-    edges = 0;
+  delete edges;
+  edges = 0;
   }
   if (context->ReadFileVersion() >= 28)
   {
-    RESCUEINT64 flag;
-    myfscanf(context, archiveFile, &flag);
-    if (flag > 0)
-    {
+  RESCUEINT64 flag;
+  myfscanf(context, archiveFile, &flag);
+  if (flag > 0)
+  {
       edges = new RescueEdgeSetStub(context, archiveFile);
-    }
+  }
   }
   else
   {
-    RescueEdgeSet *edgesObj = new RescueEdgeSet(context, archiveFile);
-    edges = new RescueEdgeSetStub(context, edgesObj);
-    model->wireframes->SaveCompatibleEdgeSet(edgesObj, this, edges);
+  RescueEdgeSet *edgesObj = new RescueEdgeSet(context, archiveFile);
+  edges = new RescueEdgeSetStub(context, edgesObj);
+  model->wireframes->SaveCompatibleEdgeSet(edgesObj, this, edges);
   }
 }
 
@@ -181,33 +181,33 @@ void RescueGeobodySurface::ArchiveWireframeData(FILE *archiveFile)
   RescueContext *context = parentVolume->ParentPart()->Body()->ParentModel()->Context();
   if (context->FileVersion() >= 28)
   {
-    if (edges == 0)
-    {
+  if (edges == 0)
+  {
       myfprintf(context, archiveFile, (RESCUEINT64) 0);
-    }
-    else
-    {
-      myfprintf(context, archiveFile, (RESCUEINT64) 1);
-      edges->ArchiveStub(context, archiveFile);
-    }
   }
   else
   {
-    RescueEdgeSet *edgesObj = 0;
-    if (edges != 0)
-    {
+      myfprintf(context, archiveFile, (RESCUEINT64) 1);
+      edges->ArchiveStub(context, archiveFile);
+  }
+  }
+  else
+  {
+  RescueEdgeSet *edgesObj = 0;
+  if (edges != 0)
+  {
       edgesObj = edges->EdgeSet(Surface()->ParentModel());
-    }
-    if (edgesObj == 0)
-    {
+  }
+  if (edgesObj == 0)
+  {
       edgesObj = new RescueEdgeSet(parentVolume->ParentPart()->Body());
       if (edges != 0)
       {
-        delete edges;
+    delete edges;
       }
       edges = new RescueEdgeSetStub(context, edgesObj);
-    }
-    edgesObj->Archive(archiveFile);
+  }
+  edgesObj->Archive(archiveFile);
   }
 }
 

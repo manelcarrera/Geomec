@@ -19,23 +19,23 @@ RescueHistoryObject::~RescueHistoryObject()
 {
   if (objectChanges != 0)
   {
-    RescueHistory *history = objectChanges->NthObject(0);
-    while (history != 0)
-    {
+  RescueHistory *history = objectChanges->NthObject(0);
+  while (history != 0)
+  {
       history->RemoveObjectChanged(this);
       history = objectChanges->NthObject(0);
-    }
-    delete objectChanges;
+  }
+  delete objectChanges;
   }
   if (objectRelated != 0)
   {
-    RescueHistory *history = objectRelated->NthObject(0);
-    while (history != 0)
-    {
+  RescueHistory *history = objectRelated->NthObject(0);
+  while (history != 0)
+  {
       history->RemoveRelatedObject(this);
       history = objectRelated->NthObject(0);
-    }
-    delete objectRelated;
+  }
+  delete objectRelated;
   }
 }
 
@@ -43,11 +43,11 @@ RescueHistory *RescueHistoryObject::NthObjectChanges(RESCUEINT64 zeroBasedOrdina
 {
   if (objectChanges == 0)
   {
-    return 0;
+  return 0;
   }
   else
   {
-    return objectChanges->NthObject(zeroBasedOrdinal);
+  return objectChanges->NthObject(zeroBasedOrdinal);
   }
 }
 
@@ -55,11 +55,11 @@ RescueHistory *RescueHistoryObject::NthRelatedChanges(RESCUEINT64 zeroBasedOrdin
 {
   if (objectRelated == 0)
   {
-    return 0;
+  return 0;
   }
   else
   {
-    return objectRelated->NthObject(zeroBasedOrdinal);
+  return objectRelated->NthObject(zeroBasedOrdinal);
   }
 }
 
@@ -67,7 +67,7 @@ void RescueHistoryObject::AddObjectChanged(RescueHistory *history)
 {
   if (objectChanges == 0)
   {
-    objectChanges = new cBagRescueHistory();
+  objectChanges = new cBagRescueHistory();
   }
   (*objectChanges) += history;
 }
@@ -76,7 +76,7 @@ void RescueHistoryObject::AddRelatedChange(RescueHistory *history)
 {
   if (objectRelated == 0)
   {
-    objectRelated = new cBagRescueHistory();
+  objectRelated = new cBagRescueHistory();
   }
   (*objectRelated) += history;
 }
@@ -85,7 +85,7 @@ void RescueHistoryObject::RemoveObjectChanged(RescueHistory *history)
 {
   if (objectChanges != 0)
   {
-    (*objectChanges) -= history;
+  (*objectChanges) -= history;
   }
 }
 
@@ -93,7 +93,7 @@ void RescueHistoryObject::RemoveRelatedChange(RescueHistory *history)
 {
   if (objectRelated != 0)
   {
-    (*objectRelated) -= history;
+  (*objectRelated) -= history;
   }
 }
 
@@ -101,11 +101,11 @@ RESCUEBOOL RescueHistoryObject::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueHistoryObject)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueObject::IsOfType(thisType);
+  return RescueObject::IsOfType(thisType);
   }
 }
 

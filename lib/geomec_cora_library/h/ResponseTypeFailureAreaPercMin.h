@@ -9,16 +9,16 @@ namespace cora
 class CResponseTypeFailureAreaPercMin : public CResponseTypeBaseWithValue
 {
   public:
-    CResponseTypeFailureAreaPercMin(CSummaryResultFile& summaryResultFile,
+  CResponseTypeFailureAreaPercMin(CSummaryResultFile& summaryResultFile,
       const std::vector <QString>& function);
-    virtual ~CResponseTypeFailureAreaPercMin();
+  virtual ~CResponseTypeFailureAreaPercMin();
 
-    virtual double calculate(const TObject& object,
+  virtual double calculate(const TObject& object,
       const TFailureMode& failureMode);
 
   private:
-    CResponseTypeFailureAreaPercMin(const CResponseTypeFailureAreaPercMin& rhs);
-    CResponseTypeFailureAreaPercMin& operator = (
+  CResponseTypeFailureAreaPercMin(const CResponseTypeFailureAreaPercMin& rhs);
+  CResponseTypeFailureAreaPercMin& operator = (
       CResponseTypeFailureAreaPercMin rhs);
 };
 

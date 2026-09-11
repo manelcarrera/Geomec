@@ -10,8 +10,8 @@ const long VALUESIZE = 15;
 #include <sstream>
 
 const QString DCASING_INPUT_HEADER = QString("#######################################################################################\n") + 
-									 QString("########################### ANALYSIS OF THE COMPACTION SAMPLE #########################\n") +
-									 QString("#######################################################################################");
+                   QString("########################### ANALYSIS OF THE COMPACTION SAMPLE #########################\n") +
+                   QString("#######################################################################################");
 
 const QString DCASING_INPUT_VERSION_HEADER =			"VERSION INFO";
 const QString DCASING_INPUT_VERSION_VERSION =			"Version";
@@ -33,7 +33,7 @@ const QString DCASING_INPUT_MATERIAL_HEADING =			"MATERIAL";
 const QString DCASING_INPUT_YIELD_STRAIN_PIPE_STEEL =	"Yield strain of the pipe steel";
 const QString DCASING_INPUT_POISSON_RATIO=				"Poisson's ratio of the pipe steel";
                
-    
+  
 const QString DCASING_INPUT_LINEAR_COEFF_OF_PIPE =		"Linear coeff. of the pipe S-E curve";
 const QString DCASING_INPUT_POWER_COEFF_OF_PIPE =		"Power coeff.  of the pipe S-E curve";
 const QString DCASING_INPUT_HARDENING_COEFF_OF_PIPE =	"Hardening coeff.  of the pipe S-E curve";
@@ -90,7 +90,7 @@ const QString UNSUPPORTEDHEADERTITLE = "UNSUPPORTED CASING";
 template< typename T>
 QString ConstructItem(const QString & Description, const T & Value, const QString & Units = "")
 {
-	return QString("%1").arg(Description,-LEFTALIGN) + QString("%1").arg(QString("%1").arg(Value),VALUESIZE) + QString(" %1").arg(Units);
+  return QString("%1").arg(Description,-LEFTALIGN) + QString("%1").arg(QString("%1").arg(Value),VALUESIZE) + QString(" %1").arg(Units);
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -105,8 +105,8 @@ QString ConstructItem(const QString & Description, const T & Value, const QStrin
 template< typename T>
 QString ConstructItem(const QString & Description, const T & Value, const std::string & Units)
 {
-	QString QUnits(Units.c_str());
-	return ConstructItem(Description,Value,QUnits);
+  QString QUnits(Units.c_str());
+  return ConstructItem(Description,Value,QUnits);
 }
 
 QString ConstructItem(const QString & Description, bool Value);
@@ -127,20 +127,20 @@ class EBad_Cast
 
 public :
 
-	EBad_Cast(){};
-	~EBad_Cast(){};
+  EBad_Cast(){};
+  ~EBad_Cast(){};
 };
 
 template <typename Target, typename Source>
 Target lexical_cast(Source arg)
 {
   std::stringstream helper_stream;
-	Target result = Target();
+  Target result = Target();
 
-	if (!(helper_stream << arg && helper_stream >> result))
-		throw EBad_Cast();
+  if (!(helper_stream << arg && helper_stream >> result))
+    throw EBad_Cast();
 
-	return result;
+  return result;
 }
 
 template <>
@@ -149,27 +149,27 @@ double lexical_cast<double, QString>(QString arg);
 template <typename Target, typename Source>
 Target qtlexical_cast(Source arg)
 {
-    QTextStream helper_stream;
-	Target result;
+  QTextStream helper_stream;
+  Target result;
 
-	if (!(helper_stream << arg && helper_stream >> result))
-		throw EBad_Cast();
+  if (!(helper_stream << arg && helper_stream >> result))
+    throw EBad_Cast();
 
-	return result;
+  return result;
 }
 
 template <typename Target, typename Source>
 bool CastValue(Target & target,Source source)
 {
-	try
-	{
-		target = lexical_cast<Target>(source);
-		return true;
-	}
-	catch(EBad_Cast &)
-	{
-		return false;
-	}
+  try
+  {
+    target = lexical_cast<Target>(source);
+    return true;
+  }
+  catch(EBad_Cast &)
+  {
+    return false;
+  }
 }
 
 #endif

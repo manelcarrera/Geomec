@@ -8,10 +8,10 @@
 #include "clSilentProgress.h"
 
 IProgressBase* CProgressFactory_CLI::create(
-	eProgress type_,
-	const QString& title, 
-	bool cancel,
-	int jobs)
+  eProgress type_,
+  const QString& title, 
+  bool cancel,
+  int jobs)
 {
   return create_imp(type_, title, cancel, jobs);
 }
@@ -28,15 +28,15 @@ IProgressBase* CProgressFactory_CLI::create_imp(
   switch (type_)
   {
   case Geo:			return new CGeoProgress(0, title, cancel);
-    //
-    // FIXME
-    //
+  //
+  // FIXME
+  //
   case Wait:			return new CWaitProgress();
-    //
-    // FIXME
-    //
+  //
+  // FIXME
+  //
   case MainFrame:		return new CGraphMainFrameProgress();
-    //
+  //
   case Dual:			return new CDualProgress(jobs, title, cancel);
   case DualSilent:	return new CDualSilentProgress;
   case Silent:		return new CSilentProgress;

@@ -12,7 +12,7 @@ CGetFaultInfo& CGetFaultInfo::instance(CModelBase* modelBase)
 {
   if (m_getFaultInfo == 0)
   {
-    m_getFaultInfo = new CGetFaultInfo(modelBase);
+  m_getFaultInfo = new CGetFaultInfo(modelBase);
   }
 
   return *m_getFaultInfo;
@@ -51,21 +51,21 @@ TObjects CGetFaultInfo::getObjects(CModelBase* modelBase)
 
   if (modelBase != 0)
   {
-    const THorizonBaseEntry* horizonBaseEntry =
+  const THorizonBaseEntry* horizonBaseEntry =
       dynamic_cast <const THorizonBaseEntry*> (
-        modelBase->GraphEntry(MD_BASE_HORIZON));
-    const THorizonBaseEntry::TEntryNodeSet horizons =
+    modelBase->GraphEntry(MD_BASE_HORIZON));
+  const THorizonBaseEntry::TEntryNodeSet horizons =
       horizonBaseEntry->GraphEntryNodes();
 
-    for (THorizonBaseEntry::TEntryNodeSet::const_iterator
+  for (THorizonBaseEntry::TEntryNodeSet::const_iterator
       horizon = horizons.begin(); horizon != horizons.end(); ++horizon)
-    {
+  {
       if (dynamic_cast <CHorizonBase*> (*horizon)->Slip())
       {
-        objects.push_back(TObject(new CObject(CObject::faultObject, modelBase,
+    objects.push_back(TObject(new CObject(CObject::faultObject, modelBase,
           dynamic_cast <CHorizonBase*> (*horizon))));
       }
-    }
+  }
   }
 
   return objects;

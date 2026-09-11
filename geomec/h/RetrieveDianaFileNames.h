@@ -10,7 +10,7 @@ public:
   virtual ~CRetrieveDianaFileNames();
 
   virtual bool retrieveDianaFileNames(QString& newTitle,
-    const std::string& title) const;
+  const std::string& title) const;
 
 private:
   CRetrieveDianaFileNames(const CRetrieveDianaFileNames& rhs);

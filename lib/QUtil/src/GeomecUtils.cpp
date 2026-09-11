@@ -72,25 +72,25 @@ static QString g_temp_path[CTempPath::_TEMP_NR_OF_CATEGORIES];
 
 void SplitPathAndFileName(const QString& sPathAndFileName,QString& sPath,QString& sFileName)
 {
-	char BSLASH='\\'; 
+  char BSLASH='\\'; 
   char SLASH = '/';
-	int pos=0; 
+  int pos=0; 
 
-	// Check for trailing slash: 
-	pos = sPathAndFileName.lastIndexOf(BSLASH);
+  // Check for trailing slash: 
+  pos = sPathAndFileName.lastIndexOf(BSLASH);
   if(pos < 0)
-    pos = sPathAndFileName.lastIndexOf(SLASH);
+  pos = sPathAndFileName.lastIndexOf(SLASH);
 
-	if(pos<0)
+  if(pos<0)
   {
-    // no path, just a filename
-		sFileName = sPathAndFileName;
-    sPath = "";
+  // no path, just a filename
+    sFileName = sPathAndFileName;
+  sPath = "";
   }
   else
   {
-    sPath=sPathAndFileName.left(pos);
-    sFileName=sPathAndFileName.right(sPathAndFileName.length() - pos - 1);
+  sPath=sPathAndFileName.left(pos);
+  sFileName=sPathAndFileName.right(sPathAndFileName.length() - pos - 1);
   }
 }
 
@@ -106,7 +106,7 @@ bool FileExists(QString strPath)
   if (_stat(strPath.toStdString().c_str(), &buffer) != 0)
 #endif
   {
-    return false;
+  return false;
   }
 
   return true;
@@ -129,7 +129,7 @@ QString GetAppPath()
 
   if (bytes >= 0)
   {
-    app_path[bytes] = '\0';
+  app_path[bytes] = '\0';
   }
 #endif  // WIN32
 
@@ -148,50 +148,50 @@ QString GetAppPath()
 /*
 CString EnsureBackslash(const CString& path)
 {
-	if(path.Right(1) != "\\")
-		return path + "\\";
-	else
-		return path;
+  if(path.Right(1) != "\\")
+    return path + "\\";
+  else
+    return path;
 }
 
 
 CString EnsureNoBackslash(const CString& path)
 {
-	if(path.Right(1) == "\\")
-		return path.Left(path.GetLength()-1);
-	else
-		return path;
+  if(path.Right(1) == "\\")
+    return path.Left(path.GetLength()-1);
+  else
+    return path;
 }
 */
 
 QString RemoveExtension(const QString &sFilename, bool bCheckForGM)
 {
-	int pos = sFilename.lastIndexOf('.'); 
+  int pos = sFilename.lastIndexOf('.'); 
 
-	if(pos < 0)
-		return sFilename; // has no extension
+  if(pos < 0)
+    return sFilename; // has no extension
 
   if (bCheckForGM)
   {
-    int len = sFilename.length();
-    if (sFilename.right(len - pos) == ".gm4" || sFilename.right(len - pos) == ".gm5")
+  int len = sFilename.length();
+  if (sFilename.right(len - pos) == ".gm4" || sFilename.right(len - pos) == ".gm5")
       return sFilename.left(pos);
-    else
+  else
       return sFilename;
   }
-	return sFilename.left(pos);
+  return sFilename.left(pos);
 
 }
 
 
 QString ChangeDirectory(const QString &dir)
 {
-	char curdir[_MAX_PATH];
-	_getcwd(curdir, _MAX_PATH);
-	QString strCurDir = curdir;
+  char curdir[_MAX_PATH];
+  _getcwd(curdir, _MAX_PATH);
+  QString strCurDir = curdir;
 
-	_chdir(dir.toStdString().c_str());
-	return strCurDir;
+  _chdir(dir.toStdString().c_str());
+  return strCurDir;
 }
 
 void ForceGeomecTempPathExt(CTempPath::Category category, const QString& strPath)
@@ -206,16 +206,16 @@ QString GetGeomecTempPathExt_GLOBAL_VAR(CTempPath::Category category)
 {
   // forced temp path?
   if(	!g_temp_path[category].isEmpty() && 
-		DirExists(g_temp_path[category]))
+    DirExists(g_temp_path[category]))
   {
-    return g_temp_path[category];
+  return g_temp_path[category];
   }
 
   if(	category == CTempPath::TEMP_CALCULATION && 
-		!g_temp_path[CTempPath::TEMP_GENERAL].isEmpty() && 
-		DirExists(g_temp_path[CTempPath::TEMP_GENERAL]))
+    !g_temp_path[CTempPath::TEMP_GENERAL].isEmpty() && 
+    DirExists(g_temp_path[CTempPath::TEMP_GENERAL]))
   {
-    return g_temp_path[CTempPath::TEMP_GENERAL];
+  return g_temp_path[CTempPath::TEMP_GENERAL];
   }
   return QString();
 }
@@ -231,35 +231,35 @@ QString GetGeomecTempPathExt_GLOBAL_VAR(CTempPath::Category category)
 #ifdef KK
 QString GetGeomecTempPathExt_ENV_THEN_REG( CTempPath::Category category )
 {
-	CTempPath tempPath;
+  CTempPath tempPath;
   tempPath.ReadConfig();
 
   CEnvironment* env = CEnvironment::instance();
 
-	QString strTempDir = tempPath.Path(category);
+  QString strTempDir = tempPath.Path(category);
 
    // try some alternatives
   if(!DirExists(strTempDir.toStdString().c_str()))
-    strTempDir = DiGetenv("TEMP");
+  strTempDir = DiGetenv("TEMP");
 
   if(!DirExists(strTempDir.toStdString().c_str()))
-    strTempDir = DiGetenv("TMP");
+  strTempDir = DiGetenv("TMP");
 
   if(!DirExists(strTempDir.toStdString().c_str()))
-    strTempDir = DiGetenv("HOME");
+  strTempDir = DiGetenv("HOME");
 
 #ifdef WIN32
   if(!DirExists(strTempDir.toStdString().c_str()))
-    strTempDir = QString(DiGetenv("HOMEDRIVE")) + DiGetenv("HOMEPATH");
+  strTempDir = QString(DiGetenv("HOMEDRIVE")) + DiGetenv("HOMEPATH");
 #else
   if(!DirExists(strTempDir.toStdString().c_str()))
-    strTempDir = "/tmp";
+  strTempDir = "/tmp";
 #endif
 
   if(!DirExists(strTempDir.toStdString().c_str()))
-    strTempDir = QString();
+  strTempDir = QString();
 
-	return strTempDir;
+  return strTempDir;
 }
 #endif
 
@@ -268,11 +268,11 @@ QString GetGeomecTempPathExt_ENV_THEN_REG( CTempPath::Category category )
 //
 QString GetGeomecTempPathExt_INTERMEDIATE( CTempPath::Category category )
 {
-	  // 1) Regsitry -> Now config file
+    // 1) Regsitry -> Now config file
   CTempPath tempPath;
   tempPath.ReadConfig(); // destructor: writes to the file values read from the file
 
-	QString strTempDir = tempPath.Path(category);
+  QString strTempDir = tempPath.Path(category);
 
   // 2) Priority : 1. ENVVAR | 2. Config file | 3. Dafault
   //
@@ -282,26 +282,26 @@ QString GetGeomecTempPathExt_INTERMEDIATE( CTempPath::Category category )
 
    // try some alternatives
   if(!DirExists(strTempDir.toStdString().c_str()))
-	strTempDir = env->get("TEMP");
+  strTempDir = env->get("TEMP");
 
   if(!DirExists(strTempDir.toStdString().c_str()))
-	strTempDir = env->get("TMP");
+  strTempDir = env->get("TMP");
 
   if(!DirExists(strTempDir.toStdString().c_str()))
-	strTempDir = env->get("HOME");
+  strTempDir = env->get("HOME");
 
 #ifdef WIN32
   if(!DirExists(strTempDir.toStdString().c_str()))
-	strTempDir = env->get("HOMEDRIVE") + env->get("HOMEPATH");
+  strTempDir = env->get("HOMEDRIVE") + env->get("HOMEPATH");
 #else
   if(!DirExists(strTempDir.toStdString().c_str()))
-    strTempDir = "/tmp";
+  strTempDir = "/tmp";
 #endif
 
   if(!DirExists(strTempDir.toStdString().c_str()))
-    strTempDir = QString();
+  strTempDir = QString();
 
-	return strTempDir;
+  return strTempDir;
 }
 
 #ifdef KK
@@ -313,9 +313,9 @@ QString GetGeomecTempPathExt_INTERMEDIATE( CTempPath::Category category )
 //
 QString GetGeomecTempPathExt(CTempPath::Category category)
 {
-	QString dir = GetGeomecTempPathExt_GLOBAL_VAR( category );
-	if( !dir.isEmpty() )
-		return dir;
+  QString dir = GetGeomecTempPathExt_GLOBAL_VAR( category );
+  if( !dir.isEmpty() )
+    return dir;
   
   //
   // Continue if GEN and CALC both not in global var: 'g_temp_path'
@@ -349,121 +349,121 @@ QString GetGeomecTempPathExt(CTempPath::Category category)
   // mcr 2020-02-26
   // Environment looks at ENVAR, file and proiritizes... and if no value it takes a default one (nothing defined for TMP)
 
-	//
-	// vars:
-	// if user defined:
-	// -'UserTempPath'
-	// -'CalcTempPath'
-	// else
-	// -'TEMP' ENVVAR
-	//
-	CTempPath path;
-	path.ReadConfig(); // destructor: writes to the file values read from the file
-	dir = path.Path( category );
-	if( DirExists( dir ) )
-		return dir;
+  //
+  // vars:
+  // if user defined:
+  // -'UserTempPath'
+  // -'CalcTempPath'
+  // else
+  // -'TEMP' ENVVAR
+  //
+  CTempPath path;
+  path.ReadConfig(); // destructor: writes to the file values read from the file
+  dir = path.Path( category );
+  if( DirExists( dir ) )
+    return dir;
 
-	CEnvironment* env = CEnvironment::instance();
-	for( const auto& key : {"TEMP","TMP","TMPDIR",	// TMPDIR sometimes defined in Linux but not always
-							"APPDATA","HOME"} )		// These two are always derfined, so in the worse case it will take these ones 
-													// -'APPDATA': win 
-													// -'HOME': Linux
-	{
-		dir = env->get( key );
-		if( DirExists( dir ) )
-			return dir;
-	}
+  CEnvironment* env = CEnvironment::instance();
+  for( const auto& key : {"TEMP","TMP","TMPDIR",	// TMPDIR sometimes defined in Linux but not always
+              "APPDATA","HOME"} )		// These two are always derfined, so in the worse case it will take these ones 
+                          // -'APPDATA': win 
+                          // -'HOME': Linux
+  {
+    dir = env->get( key );
+    if( DirExists( dir ) )
+      return dir;
+  }
 #ifndef WIN32
-    return "/tmp";
+  return "/tmp";
 #endif
 
-	return QString();
+  return QString();
 }
 #endif
 
 QString GetGeomecTempPathExt(CTempPath::Category category)
 {
-	enum eOrigin{ Global, TempPath, Environment, NotFound } origin;
-	char* origin_cp[]={ "Global", "TempPath", "Environment", "NotFound" };
+  enum eOrigin{ Global, TempPath, Environment, NotFound } origin;
+  char* origin_cp[]={ "Global", "TempPath", "Environment", "NotFound" };
 
-	//
-	//
-	//
-	origin=Global;
-	QString dir = GetGeomecTempPathExt_GLOBAL_VAR( category );
-	if( dir.isEmpty() || !DirExists( dir ) )
-	{
-		//
-		//
-		//
-		origin=TempPath;
-		CTempPath path;
-		path.ReadConfig(); // destructor: writes to the file values read from the file
-		dir = path.Path( category );
-		if( dir.isEmpty() || !DirExists( dir ) )
-		{
-			//
-			//
-			//
-			origin=Environment;
-			CEnvironment* env = CEnvironment::instance();
-			for( const auto& key : {"TEMP","TMP","TMPDIR",	// TMPDIR sometimes defined in Linux but not always
-									"APPDATA","HOME"} )		// These two are always derfined, so in the worse case it will take these ones 
-															// -'APPDATA': win 
-															// -'HOME': Linux
-			{
-				dir = env->get( key );
-				if( !dir.isEmpty() && DirExists( dir ) )
-					break;
-			}
-			if( dir.isEmpty() || !DirExists( dir ) )
-			{
-				origin=NotFound;
+  //
+  //
+  //
+  origin=Global;
+  QString dir = GetGeomecTempPathExt_GLOBAL_VAR( category );
+  if( dir.isEmpty() || !DirExists( dir ) )
+  {
+    //
+    //
+    //
+    origin=TempPath;
+    CTempPath path;
+    path.ReadConfig(); // destructor: writes to the file values read from the file
+    dir = path.Path( category );
+    if( dir.isEmpty() || !DirExists( dir ) )
+    {
+      //
+      //
+      //
+      origin=Environment;
+      CEnvironment* env = CEnvironment::instance();
+      for( const auto& key : {"TEMP","TMP","TMPDIR",	// TMPDIR sometimes defined in Linux but not always
+                  "APPDATA","HOME"} )		// These two are always derfined, so in the worse case it will take these ones 
+                              // -'APPDATA': win 
+                              // -'HOME': Linux
+      {
+        dir = env->get( key );
+        if( !dir.isEmpty() && DirExists( dir ) )
+          break;
+      }
+      if( dir.isEmpty() || !DirExists( dir ) )
+      {
+        origin=NotFound;
 #ifndef WIN32
-				dir = "/tmp";
+        dir = "/tmp";
 #else
-				dir = QString();
+        dir = QString();
 #endif
-			}
-		}
-	}
-	Printer::instance(Printer::Gen)->debug( "get_gm_tmp_path_ext : %s -> %s", origin_cp[origin], dir.toStdString().c_str());
-	return dir;
+      }
+    }
+  }
+  Printer::instance(Printer::Gen)->debug( "get_gm_tmp_path_ext : %s -> %s", origin_cp[origin], dir.toStdString().c_str());
+  return dir;
 }
 
 
 QString CreateTempDirExt(CTempPath::Category category)
 {
-	QString strDirName;
+  QString strDirName;
 
-	char lpszTempPath[_MAX_PATH];
-	QString strTempDir = GetGeomecTempPathExt(category);
+  char lpszTempPath[_MAX_PATH];
+  QString strTempDir = GetGeomecTempPathExt(category);
 #ifdef _WIN32
   FILETIME ft;
   GetSystemTimeAsFileTime(&ft);
   QString strTempPath = 
-	  strTempDir + 
-	  QString("\\geomec%1XXXXXX").arg((long long)ft.dwLowDateTime + 
-	  ((long long)ft.dwHighDateTime << 32LL));
+    strTempDir + 
+    QString("\\geomec%1XXXXXX").arg((long long)ft.dwLowDateTime + 
+    ((long long)ft.dwHighDateTime << 32LL));
 #else
-	QString strTempPath = strTempDir + "/geomecXXXXXX";
+  QString strTempPath = strTempDir + "/geomecXXXXXX";
 #endif
-	strcpy(lpszTempPath, strTempPath.toStdString().c_str());
-	_mktemp(lpszTempPath);
+  strcpy(lpszTempPath, strTempPath.toStdString().c_str());
+  _mktemp(lpszTempPath);
 #ifdef WIN32
-	_mkdir(lpszTempPath);
+  _mkdir(lpszTempPath);
 #else // !WIN32
-	mkdir(lpszTempPath, S_IFDIR | S_IRWXU);
+  mkdir(lpszTempPath, S_IFDIR | S_IRWXU);
 #endif  // WIN32
 
-	IPlatform* platform = IPlatform::instance();
-	QString traceString =
-		QString("Created temp directory %1\n").arg(lpszTempPath);
+  IPlatform* platform = IPlatform::instance();
+  QString traceString =
+    QString("Created temp directory %1\n").arg(lpszTempPath);
 
-	platform->trace(traceString);
-	strDirName = lpszTempPath;
+  platform->trace(traceString);
+  strDirName = lpszTempPath;
 
-	return strDirName;
+  return strDirName;
 }
 
 
@@ -474,34 +474,34 @@ QString CreateTempDirExt(CTempPath::Category category)
 // Return value is false if one or more files/directories could not be deleted
 bool RemoveDir(QString strPath)
 {
-	assert(!strPath.isEmpty());
-	if(strPath.isEmpty()) return false; // never remove from the root dir !!
+  assert(!strPath.isEmpty());
+  if(strPath.isEmpty()) return false; // never remove from the root dir !!
 
   bool result = true;
   QDir dir(strPath);
 
   if (dir.exists(strPath))
   {
-    Q_FOREACH(QFileInfo info, dir.entryInfoList(QDir::NoDotAndDotDot |
+  Q_FOREACH(QFileInfo info, dir.entryInfoList(QDir::NoDotAndDotDot |
       QDir::System | QDir::Hidden  | QDir::AllDirs | QDir::Files,
       QDir::DirsFirst))
-    {
+  {
       if (info.isDir())
       {
-        result = RemoveDir(info.absoluteFilePath());
+    result = RemoveDir(info.absoluteFilePath());
       }
       else
       {
-        result = QFile::remove(info.absoluteFilePath());
+    result = QFile::remove(info.absoluteFilePath());
       }
 
       if (!result)
       {
-        return result;
+    return result;
       }
-    }
+  }
 
-    result = dir.rmdir(strPath);
+  result = dir.rmdir(strPath);
   }
 
   return result;
@@ -527,18 +527,18 @@ bool DirExists(const QString& strPath)
 
   if (iRetTemp == 0)
   {
-    if (buffer.st_mode & _S_IFDIR)
-    {
+  if (buffer.st_mode & _S_IFDIR)
+  {
       return true;
-    }
-    else
-    {
-      return false;
-    }
   }
   else
   {
-    return false;
+      return false;
+  }
+  }
+  else
+  {
+  return false;
   }
 }
 
@@ -549,22 +549,22 @@ void Glob(const QString& path, const std::vector<QRegExp>& filter, std::vector<Q
 
   if (dir.exists())
   {
-    Q_FOREACH(QFileInfo info, dir.entryInfoList(QDir::NoDotAndDotDot | QDir::AllDirs | QDir::Files, QDir::DirsFirst))
-    {
+  Q_FOREACH(QFileInfo info, dir.entryInfoList(QDir::NoDotAndDotDot | QDir::AllDirs | QDir::Files, QDir::DirsFirst))
+  {
       if (info.isDir())
-        Glob(info.absoluteFilePath(), filter, files);
+    Glob(info.absoluteFilePath(), filter, files);
       else
       {
-        for (std::vector<QRegExp>::const_iterator it = filter.begin(); it != filter.end(); ++it)
-        {
+    for (std::vector<QRegExp>::const_iterator it = filter.begin(); it != filter.end(); ++it)
+    {
           if (it->indexIn(info.absoluteFilePath()) >= 0)
           {
-            files.push_back(info.absoluteFilePath());
-            break;
+      files.push_back(info.absoluteFilePath());
+      break;
           }
-        }
-      }
     }
+      }
+  }
   }
 }
 
@@ -575,7 +575,7 @@ void Glob(const QString& path, const QString& filter, std::vector<QString>& file
   reList.reserve(l.length());
 
   for (QStringList::const_iterator it = l.begin(); it != l.end(); ++it)
-    reList.push_back(QRegExp(*it));
+  reList.push_back(QRegExp(*it));
 
   Glob(path, reList, files);
 }
@@ -585,130 +585,130 @@ void Glob(const QString& path, const QString& filter, std::vector<QString>& file
 bool CreateDirectory(QString wsPath)
 { 
 
-	char SLASH='\\'; 
-	DWORD attr; 
-	int pos; 
-	bool result = true; 
+  char SLASH='\\'; 
+  DWORD attr; 
+  int pos; 
+  bool result = true; 
 
-	// Check for trailing slash: 
-	pos = wsPath.lastIndexOf(SLASH); 
+  // Check for trailing slash: 
+  pos = wsPath.lastIndexOf(SLASH); 
 
-	if (wsPath.length() == pos + 1) // last character is "\" 
-	{ 
-		wsPath = wsPath.left(pos); 
-	} 
+  if (wsPath.length() == pos + 1) // last character is "\" 
+  { 
+    wsPath = wsPath.left(pos); 
+  } 
 
-	// Look for existing object: 
-	attr = GetFileAttributes(wsPath.toStdString().c_str()); 
+  // Look for existing object: 
+  attr = GetFileAttributes(wsPath.toStdString().c_str()); 
 
-	if (0xFFFFFFFF == attr) // doesn't exist yet - create it! 
-	{	
-		pos = wsPath.lastIndexOf(SLASH); 
-		if (0 < pos) 
-		{ 
-			// Create parent dirs: 
-			result = CreateDirectory(wsPath.left(pos)); 
-		} 
-		// Create node: 
-		result = result && ::CreateDirectory(wsPath.toStdString().c_str(), NULL); 
-	} 
-	else if (!(attr & FILE_ATTRIBUTE_DIRECTORY))
-	{ // object already exists, but is not a dir 
-		SetLastError(ERROR_FILE_EXISTS); 
-		result = false; 
-	} 
-	return result; 
+  if (0xFFFFFFFF == attr) // doesn't exist yet - create it! 
+  {	
+    pos = wsPath.lastIndexOf(SLASH); 
+    if (0 < pos) 
+    { 
+      // Create parent dirs: 
+      result = CreateDirectory(wsPath.left(pos)); 
+    } 
+    // Create node: 
+    result = result && ::CreateDirectory(wsPath.toStdString().c_str(), NULL); 
+  } 
+  else if (!(attr & FILE_ATTRIBUTE_DIRECTORY))
+  { // object already exists, but is not a dir 
+    SetLastError(ERROR_FILE_EXISTS); 
+    result = false; 
+  } 
+  return result; 
 } 
 
 
 bool DeleteFilesInDir(const QString& sDir,const QString& sFile)
 {
-	CString sFileName=(EnsureBackslash(sDir) + sFile).toStdString().c_str();
+  CString sFileName=(EnsureBackslash(sDir) + sFile).toStdString().c_str();
 
-	CFileFind ff;
+  CFileFind ff;
 
-	bool bWorking=ff.FindFile(sFileName);
-	std::vector<CString> vec;
+  bool bWorking=ff.FindFile(sFileName);
+  std::vector<CString> vec;
 
-	while(bWorking)
-	{
-		bWorking=ff.FindNextFile();
-		CString sFile=(EnsureBackslash(sDir) + ff.GetFileName()).toStdString().c_str();
-		vec.push_back(sFile);
-		//DeleteFile(sFile);
-	}
+  while(bWorking)
+  {
+    bWorking=ff.FindNextFile();
+    CString sFile=(EnsureBackslash(sDir) + ff.GetFileName()).toStdString().c_str();
+    vec.push_back(sFile);
+    //DeleteFile(sFile);
+  }
 
-	for(size_t i=0;i<vec.size();i++)
-		DeleteFile(vec[i]);
+  for(size_t i=0;i<vec.size();i++)
+    DeleteFile(vec[i]);
 
-	return true;
+  return true;
 }
 
 //taken from KB article Q179378
 static int CALLBACK BrowseCallbackProc(HWND hwnd,unsigned int uMsg,LPARAM lp, LPARAM pData)
 {
-	TCHAR szDir[MAX_PATH];
-	switch(uMsg)
-	{
-		case BFFM_INITIALIZED:
-			{
-				if (GetCurrentDirectory(sizeof(szDir)/sizeof(TCHAR), szDir))
-				{
-					// WParam is true since you are passing a path.
-					// It would be false if you were passing a pidl.
-					SendMessage(hwnd,BFFM_SETSELECTION,true,(LPARAM)szDir);
-				}
-				break;
-            }
-		case BFFM_SELCHANGED:
-			{
-				// Set the status window to the currently selected path.
-				if (SHGetPathFromIDList((LPITEMIDLIST) lp ,szDir))
-				{
-					SendMessage(hwnd,BFFM_SETSTATUSTEXT,0,(LPARAM)szDir);
-				}
-				break;
-            }
-		default:
-			break;
-	}
-	return 0;
+  TCHAR szDir[MAX_PATH];
+  switch(uMsg)
+  {
+    case BFFM_INITIALIZED:
+      {
+        if (GetCurrentDirectory(sizeof(szDir)/sizeof(TCHAR), szDir))
+        {
+          // WParam is true since you are passing a path.
+          // It would be false if you were passing a pidl.
+          SendMessage(hwnd,BFFM_SETSELECTION,true,(LPARAM)szDir);
+        }
+        break;
+      }
+    case BFFM_SELCHANGED:
+      {
+        // Set the status window to the currently selected path.
+        if (SHGetPathFromIDList((LPITEMIDLIST) lp ,szDir))
+        {
+          SendMessage(hwnd,BFFM_SETSTATUSTEXT,0,(LPARAM)szDir);
+        }
+        break;
+      }
+    default:
+      break;
+  }
+  return 0;
 }
 
 QString BrowseFolder(HWND hWndOwner, QString sTitle, QString sStartFolder)
 {
-	BROWSEINFO bi;
-	TCHAR szDir[MAX_PATH];
-	LPITEMIDLIST pidl;
-	LPMALLOC pMalloc;
-	
-	if (SUCCEEDED(SHGetMalloc(&pMalloc)))
-	{
-		//Set initial folder if requested
-		if (sStartFolder!="")
-			bool bSucces=SetCurrentDirectory(sStartFolder.toStdString().c_str());
+  BROWSEINFO bi;
+  TCHAR szDir[MAX_PATH];
+  LPITEMIDLIST pidl;
+  LPMALLOC pMalloc;
+  
+  if (SUCCEEDED(SHGetMalloc(&pMalloc)))
+  {
+    //Set initial folder if requested
+    if (sStartFolder!="")
+      bool bSucces=SetCurrentDirectory(sStartFolder.toStdString().c_str());
 
-		ZeroMemory(&bi,sizeof(bi));
-		bi.hwndOwner = hWndOwner; //NULL;
-		bi.lpszTitle=sTitle.toStdString().c_str();
-		bi.pszDisplayName = 0;
-		bi.pidlRoot = 0;
-		bi.ulFlags = BIF_RETURNONLYFSDIRS | BIF_STATUSTEXT;
-		bi.lpfn = BrowseCallbackProc;
-		pidl = SHBrowseForFolder(&bi);
-		if (pidl)
-		{
-			bool bSucces=SHGetPathFromIDList(pidl,szDir);
+    ZeroMemory(&bi,sizeof(bi));
+    bi.hwndOwner = hWndOwner; //NULL;
+    bi.lpszTitle=sTitle.toStdString().c_str();
+    bi.pszDisplayName = 0;
+    bi.pidlRoot = 0;
+    bi.ulFlags = BIF_RETURNONLYFSDIRS | BIF_STATUSTEXT;
+    bi.lpfn = BrowseCallbackProc;
+    pidl = SHBrowseForFolder(&bi);
+    if (pidl)
+    {
+      bool bSucces=SHGetPathFromIDList(pidl,szDir);
 
-			pMalloc->Free(pidl);
-			pMalloc->Release();
-			// In C: pMalloc->lpVtbl->Free(pMalloc,pidl);
-			//       pMalloc->lpVtbl->Release(pMalloc);
-		}
-		else
-			return "";
-	}
-	return szDir;
+      pMalloc->Free(pidl);
+      pMalloc->Release();
+      // In C: pMalloc->lpVtbl->Free(pMalloc,pidl);
+      //       pMalloc->lpVtbl->Release(pMalloc);
+    }
+    else
+      return "";
+  }
+  return szDir;
 }
 
 std::vector<CString> TokenizeString(const CString& str, const CString& delim)
@@ -718,8 +718,8 @@ std::vector<CString> TokenizeString(const CString& str, const CString& delim)
   CString res = str.Tokenize(delim, curPos);
   while(!res.IsEmpty())
   {
-    vcRet.push_back(res);
-    res = str.Tokenize(delim, curPos);
+  vcRet.push_back(res);
+  res = str.Tokenize(delim, curPos);
   }
 
   return vcRet;

@@ -24,42 +24,42 @@ namespace geo {
 class GEOMETRY_EXPORT  ICoordinate : public IObject
 {
 protected:
-	//##ModelId=3BC2A45E02A4
-	ICoordinate(){};
+  //##ModelId=3BC2A45E02A4
+  ICoordinate(){};
 public:
-	class GEOMETRY_EXPORT CCoordinateLess
-	{
-		double m_dEps;
-	public:
-		CCoordinateLess();
-		CCoordinateLess(const double& dEps);
-		bool operator()(const geo::ICoordinate *p1, const geo::ICoordinate *p2) const;
-	};
+  class GEOMETRY_EXPORT CCoordinateLess
+  {
+    double m_dEps;
+  public:
+    CCoordinateLess();
+    CCoordinateLess(const double& dEps);
+    bool operator()(const geo::ICoordinate *p1, const geo::ICoordinate *p2) const;
+  };
 
-	class GEOMETRY_EXPORT CCoordinateXYLess
-	{
-		double m_dEps;
-	public:
-		CCoordinateXYLess();
-		CCoordinateXYLess(const double& dEps);
-		bool operator()(const geo::ICoordinate *p1, const geo::ICoordinate *p2) const;
-	};
+  class GEOMETRY_EXPORT CCoordinateXYLess
+  {
+    double m_dEps;
+  public:
+    CCoordinateXYLess();
+    CCoordinateXYLess(const double& dEps);
+    bool operator()(const geo::ICoordinate *p1, const geo::ICoordinate *p2) const;
+  };
 
-	//##ModelId=3BC2A45E02B2
-	virtual const double &X() const = 0;
-	//##ModelId=3BC2A45E02B4
-	virtual const double &Y() const = 0;
-	//##ModelId=3BC2A45E02B6
-	virtual const double &Z() const = 0;
+  //##ModelId=3BC2A45E02B2
+  virtual const double &X() const = 0;
+  //##ModelId=3BC2A45E02B4
+  virtual const double &Y() const = 0;
+  //##ModelId=3BC2A45E02B6
+  virtual const double &Z() const = 0;
 
-	//##ModelId=3BC2A45E02B8
-	virtual void X(const double &dX) = 0;
-	//##ModelId=3BC2A45E02BB
-	virtual void Y(const double &dY) = 0;
-	//##ModelId=3BC2A45E02C3
-	virtual void Z(const double &dZ) = 0;
+  //##ModelId=3BC2A45E02B8
+  virtual void X(const double &dX) = 0;
+  //##ModelId=3BC2A45E02BB
+  virtual void Y(const double &dY) = 0;
+  //##ModelId=3BC2A45E02C3
+  virtual void Z(const double &dZ) = 0;
 
-	virtual void Set(const double &dX, const double &dY, const double &dZ);
+  virtual void Set(const double &dX, const double &dY, const double &dZ);
 
   // Aliases to accommodate divergence in our and Diana's code (CM2-related)
   double getX() const { return X(); }
@@ -71,32 +71,32 @@ public:
   //##ModelId=3BC2A45E02C6
 
 
-	//##ModelId=3BC2A45E02C9
-	void Rotate(const IVector &vec, const double &dSinAngle, const double &dCosAngle);
-	virtual void Rotate(const IVector &vec, const double &dAngleDeg);
-	//##ModelId=3BC2A45E02D1
-	virtual void Move(const IVector &vec);
-	//##ModelId=3BC2A45E02D4
-	virtual void Transform(const IMatrix &matrix);
-	//##ModelId=3BC2A45E02D7
-	virtual CPoint Min() const;
-	//##ModelId=3BC2A45E02D9
-	virtual CPoint Max() const;
+  //##ModelId=3BC2A45E02C9
+  void Rotate(const IVector &vec, const double &dSinAngle, const double &dCosAngle);
+  virtual void Rotate(const IVector &vec, const double &dAngleDeg);
+  //##ModelId=3BC2A45E02D1
+  virtual void Move(const IVector &vec);
+  //##ModelId=3BC2A45E02D4
+  virtual void Transform(const IMatrix &matrix);
+  //##ModelId=3BC2A45E02D7
+  virtual CPoint Min() const;
+  //##ModelId=3BC2A45E02D9
+  virtual CPoint Max() const;
 
-	ICoordinate& operator=(const ICoordinate& rhs);
+  ICoordinate& operator=(const ICoordinate& rhs);
 
-	bool operator==(const ICoordinate &rhs) const;
-	bool operator!=(const ICoordinate &rhs) const;
+  bool operator==(const ICoordinate &rhs) const;
+  bool operator!=(const ICoordinate &rhs) const;
 
-	//a lexicographic ordening for coordinates
-	bool operator <(const ICoordinate &rhs) const;
-	bool operator >(const ICoordinate &rhs) const;
+  //a lexicographic ordening for coordinates
+  bool operator <(const ICoordinate &rhs) const;
+  bool operator >(const ICoordinate &rhs) const;
 
-	//handy manipulations on coords
-	void Multiply(const ICoordinate &coor);
-	void Divide(const ICoordinate &coor);
+  //handy manipulations on coords
+  void Multiply(const ICoordinate &coor);
+  void Divide(const ICoordinate &coor);
 
-	virtual bool Visit(IVisitor &visitor) { return visitor.HandleCoordinate(*this); }
+  virtual bool Visit(IVisitor &visitor) { return visitor.HandleCoordinate(*this); }
 };
 
 }

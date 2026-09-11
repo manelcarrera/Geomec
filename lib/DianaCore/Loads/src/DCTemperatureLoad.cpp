@@ -34,32 +34,32 @@ CTemperatureLoad::~CTemperatureLoad()
 
 const geo::IElement &CTemperatureLoad::Element() const
 {
-	return m_Element;
+  return m_Element;
 }
 
 bool CTemperatureLoad::WriteFilos() const
 {
-	ftn_int_t idx = Inquire("ELEMEN", "DIM");
-	if(idx < 0) idx = 0;
-	++idx;
+  ftn_int_t idx = Inquire("ELEMEN", "DIM");
+  if(idx < 0) idx = 0;
+  ++idx;
 
-	assert(!XistIndexed("ELEMEN/", &idx));
+  assert(!XistIndexed("ELEMEN/", &idx));
 
-	PushDir();
+  PushDir();
 
-	ChangeIndexedDir("ELEMEN/", &idx);
+  ChangeIndexedDir("ELEMEN/", &idx);
 
-	ftn_int_t idxelm = (ftn_int_t) (Element().Index() + 1);
-	PutItemLength("ELEMEN", &idxelm, 1);
+  ftn_int_t idxelm = (ftn_int_t) (Element().Index() + 1);
+  PutItemLength("ELEMEN", &idxelm, 1);
 
-	ftn_int_t idxcase = (ftn_int_t) (LoadCase().Index() + 1);
-	PutItem("CASE", &idxcase);
+  ftn_int_t idxcase = (ftn_int_t) (LoadCase().Index() + 1);
+  PutItem("CASE", &idxcase);
 
-	PutItemLength("TEMPER", Values(), ValueSize());
+  PutItemLength("TEMPER", Values(), ValueSize());
 
-	PopDir();
+  PopDir();
 
-	return true;
+  return true;
 }
 
 } // namespace dia

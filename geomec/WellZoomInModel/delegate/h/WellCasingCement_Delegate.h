@@ -15,7 +15,7 @@ public:
 private:
   CWellCasingCement_Delegate(const CWellCasingCement_Delegate& rhs);
   CWellCasingCement_Delegate& operator = (
-    const CWellCasingCement_Delegate& rhs);
+  const CWellCasingCement_Delegate& rhs);
 
   CWellCasingCement* m_wellCasingCement;
 

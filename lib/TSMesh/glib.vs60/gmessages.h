@@ -35,7 +35,7 @@ G_BEGIN_DECLS
 /* calculate a string size, guarranteed to fit format + args.
  */
 guint	g_printf_string_upper_bound (const gchar* format,
-				     va_list	  args);
+             va_list	  args);
 
 /* Log level shift offset for user defined
  * log levels (0-7 are used by GLib).
@@ -144,7 +144,7 @@ g_message (const gchar *format,
 }
 static void
 g_critical (const gchar *format,
-            ...)
+      ...)
 {
   va_list args;
   va_start (args, format);
@@ -196,38 +196,38 @@ GPrintFunc   g_set_message_handler (GPrintFunc func);
 #define g_assert(expr)			G_STMT_START{		\
      if (!(expr))						\
        g_log (G_LOG_DOMAIN,					\
-	      G_LOG_LEVEL_ERROR,				\
-	      "file %s: line %d (%s): assertion failed: (%s)",	\
-	      __FILE__,						\
-	      __LINE__,						\
-	      __PRETTY_FUNCTION__,				\
-	      #expr);			}G_STMT_END
+        G_LOG_LEVEL_ERROR,				\
+        "file %s: line %d (%s): assertion failed: (%s)",	\
+        __FILE__,						\
+        __LINE__,						\
+        __PRETTY_FUNCTION__,				\
+        #expr);			}G_STMT_END
 
 #define g_assert_not_reached()		G_STMT_START{		\
      g_log (G_LOG_DOMAIN,					\
-	    G_LOG_LEVEL_ERROR,					\
-	    "file %s: line %d (%s): should not be reached",	\
-	    __FILE__,						\
-	    __LINE__,						\
-	    __PRETTY_FUNCTION__);	}G_STMT_END
+    G_LOG_LEVEL_ERROR,					\
+    "file %s: line %d (%s): should not be reached",	\
+    __FILE__,						\
+    __LINE__,						\
+    __PRETTY_FUNCTION__);	}G_STMT_END
 
 #else /* !__GNUC__ */
 
 #define g_assert(expr)			G_STMT_START{		\
      if (!(expr))						\
        g_log (G_LOG_DOMAIN,					\
-	      G_LOG_LEVEL_ERROR,				\
-	      "file %s: line %d: assertion failed: (%s)",	\
-	      __FILE__,						\
-	      __LINE__,						\
-	      #expr);			}G_STMT_END
+        G_LOG_LEVEL_ERROR,				\
+        "file %s: line %d: assertion failed: (%s)",	\
+        __FILE__,						\
+        __LINE__,						\
+        #expr);			}G_STMT_END
 
 #define g_assert_not_reached()		G_STMT_START{	\
      g_log (G_LOG_DOMAIN,				\
-	    G_LOG_LEVEL_ERROR,				\
-	    "file %s: line %d: should not be reached",	\
-	    __FILE__,					\
-	    __LINE__);		}G_STMT_END
+    G_LOG_LEVEL_ERROR,				\
+    "file %s: line %d: should not be reached",	\
+    __FILE__,					\
+    __LINE__);		}G_STMT_END
 
 #endif /* __GNUC__ */
 
@@ -248,45 +248,45 @@ GPrintFunc   g_set_message_handler (GPrintFunc func);
 #define g_return_if_fail(expr)		G_STMT_START{			\
      if (!(expr))							\
        {								\
-	 g_log (G_LOG_DOMAIN,						\
-		G_LOG_LEVEL_CRITICAL,					\
-		"file %s: line %d (%s): assertion `%s' failed",		\
-		__FILE__,						\
-		__LINE__,						\
-		__PRETTY_FUNCTION__,					\
-		#expr);							\
-	 return;							\
+   g_log (G_LOG_DOMAIN,						\
+    G_LOG_LEVEL_CRITICAL,					\
+    "file %s: line %d (%s): assertion `%s' failed",		\
+    __FILE__,						\
+    __LINE__,						\
+    __PRETTY_FUNCTION__,					\
+    #expr);							\
+   return;							\
        };				}G_STMT_END
 
 #define g_return_val_if_fail(expr,val)	G_STMT_START{			\
      if (!(expr))							\
        {								\
-	 g_log (G_LOG_DOMAIN,						\
-		G_LOG_LEVEL_CRITICAL,					\
-		"file %s: line %d (%s): assertion `%s' failed",		\
-		__FILE__,						\
-		__LINE__,						\
-		__PRETTY_FUNCTION__,					\
-		#expr);							\
-	 return (val);							\
+   g_log (G_LOG_DOMAIN,						\
+    G_LOG_LEVEL_CRITICAL,					\
+    "file %s: line %d (%s): assertion `%s' failed",		\
+    __FILE__,						\
+    __LINE__,						\
+    __PRETTY_FUNCTION__,					\
+    #expr);							\
+   return (val);							\
        };				}G_STMT_END
 
 #define g_return_if_reached()		G_STMT_START{			\
      g_log (G_LOG_DOMAIN,						\
-	    G_LOG_LEVEL_CRITICAL,					\
-	    "file %s: line %d (%s): should not be reached",		\
-	    __FILE__,							\
-	    __LINE__,							\
-	    __PRETTY_FUNCTION__);					\
+    G_LOG_LEVEL_CRITICAL,					\
+    "file %s: line %d (%s): should not be reached",		\
+    __FILE__,							\
+    __LINE__,							\
+    __PRETTY_FUNCTION__);					\
      return;				}G_STMT_END
 
 #define g_return_val_if_reached(val)	G_STMT_START{			\
      g_log (G_LOG_DOMAIN,						\
-	    G_LOG_LEVEL_CRITICAL,					\
-	    "file %s: line %d (%s): should not be reached",		\
-	    __FILE__,							\
-	    __LINE__,							\
-	    __PRETTY_FUNCTION__);					\
+    G_LOG_LEVEL_CRITICAL,					\
+    "file %s: line %d (%s): should not be reached",		\
+    __FILE__,							\
+    __LINE__,							\
+    __PRETTY_FUNCTION__);					\
      return (val);			}G_STMT_END
 
 #else /* !__GNUC__ */
@@ -294,41 +294,41 @@ GPrintFunc   g_set_message_handler (GPrintFunc func);
 #define g_return_if_fail(expr)		G_STMT_START{		\
      if (!(expr))						\
        {							\
-	 g_log (G_LOG_DOMAIN,					\
-		G_LOG_LEVEL_CRITICAL,				\
-		"file %s: line %d: assertion `%s' failed",	\
-		__FILE__,					\
-		__LINE__,					\
-		#expr);						\
-	 return;						\
+   g_log (G_LOG_DOMAIN,					\
+    G_LOG_LEVEL_CRITICAL,				\
+    "file %s: line %d: assertion `%s' failed",	\
+    __FILE__,					\
+    __LINE__,					\
+    #expr);						\
+   return;						\
        };				}G_STMT_END
 
 #define g_return_val_if_fail(expr, val)	G_STMT_START{		\
      if (!(expr))						\
        {							\
-	 g_log (G_LOG_DOMAIN,					\
-		G_LOG_LEVEL_CRITICAL,				\
-		"file %s: line %d: assertion `%s' failed",	\
-		__FILE__,					\
-		__LINE__,					\
-		#expr);						\
-	 return (val);						\
+   g_log (G_LOG_DOMAIN,					\
+    G_LOG_LEVEL_CRITICAL,				\
+    "file %s: line %d: assertion `%s' failed",	\
+    __FILE__,					\
+    __LINE__,					\
+    #expr);						\
+   return (val);						\
        };				}G_STMT_END
 
 #define g_return_if_reached()		G_STMT_START{		\
      g_log (G_LOG_DOMAIN,					\
-	    G_LOG_LEVEL_CRITICAL,				\
-	    "file %s: line %d: should not be reached",		\
-	    __FILE__,						\
-	    __LINE__);						\
+    G_LOG_LEVEL_CRITICAL,				\
+    "file %s: line %d: should not be reached",		\
+    __FILE__,						\
+    __LINE__);						\
      return;				}G_STMT_END
 
 #define g_return_val_if_reached(val)	G_STMT_START{		\
      g_log (G_LOG_DOMAIN,					\
-	    G_LOG_LEVEL_CRITICAL,				\
-	    "file %s: line %d: should not be reached",		\
-	    __FILE__,						\
-	    __LINE__);						\
+    G_LOG_LEVEL_CRITICAL,				\
+    "file %s: line %d: should not be reached",		\
+    __FILE__,						\
+    __LINE__);						\
      return (val);			}G_STMT_END
 
 #endif /* !__GNUC__ */

@@ -50,23 +50,23 @@
 
 int main()
 {
-    const QByteArray sourceText = "This example demonstrates how to compress and \
+  const QByteArray sourceText = "This example demonstrates how to compress and \
 write the contents of a QByteArray to a file using QtIOCompressor";
+  
+  // Write to file.
+  {
+    QFile file("test");
+    QtIOCompressor compressor(&file);
+    compressor.open(QIODevice::WriteOnly);
+    compressor.write(sourceText);
+  }
     
-    // Write to file.
-    {
-        QFile file("test");
-        QtIOCompressor compressor(&file);
-        compressor.open(QIODevice::WriteOnly);
-        compressor.write(sourceText);
-    }
-        
-    // Read all from file and print.
-    {
-        QFile file("test");
-        QtIOCompressor compressor(&file);
-        compressor.open(QIODevice::ReadOnly);
-        const QByteArray readText = compressor.readAll();
-        qDebug() << readText;
-    }
+  // Read all from file and print.
+  {
+    QFile file("test");
+    QtIOCompressor compressor(&file);
+    compressor.open(QIODevice::ReadOnly);
+    const QByteArray readText = compressor.readAll();
+    qDebug() << readText;
+  }
 }

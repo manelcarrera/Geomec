@@ -45,45 +45,45 @@ class CCrossSection;
 
 class OIDIVolumeMeshNode : public OIDIMeshNode
 {
-    // Skin members
-    SoSwitch*     m_skinSwitch;
-    SoSeparator*  m_skinSeparator;
-    SoGroup*      m_skinAppearance;
-    MoDrawStyle*  m_skinDrawStyle;
-    MoMaterial*   m_skinMaterial;
-    MoMeshSkin*   m_skin;
+  // Skin members
+  SoSwitch*     m_skinSwitch;
+  SoSeparator*  m_skinSeparator;
+  SoGroup*      m_skinAppearance;
+  MoDrawStyle*  m_skinDrawStyle;
+  MoMaterial*   m_skinMaterial;
+  MoMeshSkin*   m_skin;
 
-    // Cell shape members
-    SoSwitch*    m_cellShapeSwitch;
-    SoSeparator* m_cellShapeSeparator;
-    SoGroup*     m_cellShapeAppearance;
-    MoDrawStyle* m_cellShapeDrawStyle;
-    MoMaterial*  m_cellShapeMaterial;
-    MoMeshCellShape * m_cellShape;
+  // Cell shape members
+  SoSwitch*    m_cellShapeSwitch;
+  SoSeparator* m_cellShapeSeparator;
+  SoGroup*     m_cellShapeAppearance;
+  MoDrawStyle* m_cellShapeDrawStyle;
+  MoMaterial*  m_cellShapeMaterial;
+  MoMeshCellShape * m_cellShape;
 
-    MoMeshAnnotatedIsoline *m_skinIsoline;
-    SoSwitch               * m_skinIsolineSwitch;
+  MoMeshAnnotatedIsoline *m_skinIsoline;
+  SoSwitch               * m_skinIsolineSwitch;
 
-    void buildSkinAppearanceNode();
-    void buildCellShapeAppearanceNode();
-    void buildSkinNode();
-    void BuildSkinIsolineNode();
-    void buildCellShapeNode();
-    void buildVolumeMeshNode();
-    void buildNodes();
+  void buildSkinAppearanceNode();
+  void buildCellShapeAppearanceNode();
+  void buildSkinNode();
+  void BuildSkinIsolineNode();
+  void buildCellShapeNode();
+  void buildVolumeMeshNode();
+  void buildNodes();
 
 public:
 
-    OIDIVolumeMeshNode(const OIDIMesh* meshData, OIDIMeshNodeManager * meshNodeManager);
+  OIDIVolumeMeshNode(const OIDIMesh* meshData, OIDIMeshNodeManager * meshNodeManager);
 
-    virtual void setIsoValues(int isoCount, double min, double max);
-    virtual void setIsoGap(double gap);
+  virtual void setIsoValues(int isoCount, double min, double max);
+  virtual void setIsoGap(double gap);
 
-    virtual void UpdateDisplaySettings(const MeshNodeSettings & meshNodeSettings, bool showColor);
-    virtual void updateGeologyColors();
+  virtual void UpdateDisplaySettings(const MeshNodeSettings & meshNodeSettings, bool showColor);
+  virtual void updateGeologyColors();
 
-    virtual void updateColorScalarSet();
-    virtual void updateIsoScalarSet();
+  virtual void updateColorScalarSet();
+  virtual void updateIsoScalarSet();
 };
 
 #endif

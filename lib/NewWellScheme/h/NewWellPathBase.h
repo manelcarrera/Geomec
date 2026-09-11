@@ -35,33 +35,33 @@ public:
   virtual size_t AngleIndex(const CNewWellPoint &pt) const= 0;
   virtual double MudGradRefDepth() const= 0;
   
-	static void GetBetweenPosition( const CNewWellPoint& p1,
-									const CNewWellPoint& p2,
-									const double& tmd,
-									double& eas,
-									double& nor,
-									double& tvd,
-									double& azi,
-									double& inc);
+  static void GetBetweenPosition( const CNewWellPoint& p1,
+                  const CNewWellPoint& p2,
+                  const double& tmd,
+                  double& eas,
+                  double& nor,
+                  double& tvd,
+                  double& azi,
+                  double& inc);
   
-	//initialization of the definition points with arrays (SI_UNIT)
-	bool InitFromArray_tmd_azi_inc(
-											double global_northing,
-											double global_easting,
-											double global_depth,
-											double start_northing,
-											double start_easting,
-											double start_depth,
-											QVector<double>& tmd,
-											QVector<double>& azi,
-											QVector<double>& inc);
+  //initialization of the definition points with arrays (SI_UNIT)
+  bool InitFromArray_tmd_azi_inc(
+                      double global_northing,
+                      double global_easting,
+                      double global_depth,
+                      double start_northing,
+                      double start_easting,
+                      double start_depth,
+                      QVector<double>& tmd,
+                      QVector<double>& azi,
+                      QVector<double>& inc);
 protected:
-	CNewWellDefinitionPointList* m_pDefPointList;
+  CNewWellDefinitionPointList* m_pDefPointList;
 
-	//global position
-	CLengthQuantity m_GlobalNorthing;
-	CLengthQuantity m_GlobalEasting;
-	CLengthQuantity m_GlobalTVD;
+  //global position
+  CLengthQuantity m_GlobalNorthing;
+  CLengthQuantity m_GlobalEasting;
+  CLengthQuantity m_GlobalTVD;
 
 private:
   CNewWellPathBase(const CNewWellPathBase& rhs);

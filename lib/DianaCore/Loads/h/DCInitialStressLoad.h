@@ -16,27 +16,27 @@ namespace dia {
 
 class CInitialStressLoad : public IStructuralLoad  
 {
-	const geo::IElement &m_element;
-	std::vector<CTensor> *m_pvcTensors;
-	std::vector<geo::CVector> *m_pvcVectors;
+  const geo::IElement &m_element;
+  std::vector<CTensor> *m_pvcTensors;
+  std::vector<geo::CVector> *m_pvcVectors;
 public:
-	// same value in all nodes (tensor)
-	CInitialStressLoad(CLoadCase &loadcase, const ITensor &values, const geo::IElement &element);
-	// same value in all nodes (vector)
-	CInitialStressLoad(CLoadCase &loadcase, const geo::IVector &values, const geo::IElement &element);
+  // same value in all nodes (tensor)
+  CInitialStressLoad(CLoadCase &loadcase, const ITensor &values, const geo::IElement &element);
+  // same value in all nodes (vector)
+  CInitialStressLoad(CLoadCase &loadcase, const geo::IVector &values, const geo::IElement &element);
 
-	// vector of tensor values for each node (vcValues.size() must equal to body.NrOfPoints())
-	CInitialStressLoad(CLoadCase &loadcase, const std::vector<CTensor> &vcValues, const geo::IElement &element);
-	// vector of vector values for each node (vcValues.size() must equal to body.NrOfPoints())
-	CInitialStressLoad(CLoadCase &loadcase, const std::vector<geo::CVector> &vcValues, const geo::IElement &element);
-	virtual ~CInitialStressLoad();
+  // vector of tensor values for each node (vcValues.size() must equal to body.NrOfPoints())
+  CInitialStressLoad(CLoadCase &loadcase, const std::vector<CTensor> &vcValues, const geo::IElement &element);
+  // vector of vector values for each node (vcValues.size() must equal to body.NrOfPoints())
+  CInitialStressLoad(CLoadCase &loadcase, const std::vector<geo::CVector> &vcValues, const geo::IElement &element);
+  virtual ~CInitialStressLoad();
 
-	int ValueSize() const;
-	const ITensor &ValueTensor(int nIndex) const;
-	const geo::IVector &ValueVector(int nIndex) const;
+  int ValueSize() const;
+  const ITensor &ValueTensor(int nIndex) const;
+  const geo::IVector &ValueVector(int nIndex) const;
 
-	virtual bool WriteFilos() const;
-	const geo::IElement &Element() const;
+  virtual bool WriteFilos() const;
+  const geo::IElement &Element() const;
 };
 
 }

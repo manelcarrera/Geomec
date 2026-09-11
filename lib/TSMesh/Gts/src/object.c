@@ -24,11 +24,11 @@
 static GHashTable * class_table = NULL;
 
 static void gts_object_class_init (GtsObjectClass * klass,
-				   GtsObjectClass * parent_class)
+           GtsObjectClass * parent_class)
 {
   if (parent_class) {
-    gts_object_class_init (klass, parent_class->parent_class);
-    if (parent_class->info.class_init_func)
+  gts_object_class_init (klass, parent_class->parent_class);
+  if (parent_class->info.class_init_func)
       (*parent_class->info.class_init_func) (klass);
   }
 }
@@ -42,7 +42,7 @@ static void gts_object_class_init (GtsObjectClass * klass,
  * @info.
  */
 gpointer gts_object_class_new (GtsObjectClass * parent_class,
-			       GtsObjectClassInfo * info)
+             GtsObjectClassInfo * info)
 {
   GtsObjectClass * klass;
 
@@ -54,7 +54,7 @@ gpointer gts_object_class_new (GtsObjectClass * parent_class,
   gts_object_class_init (klass, klass);
 
   if (!class_table)
-    class_table = g_hash_table_new (g_str_hash, g_str_equal);
+  class_table = g_hash_table_new (g_str_hash, g_str_equal);
   g_hash_table_insert (class_table, klass->info.name, klass);
 
   return klass;
@@ -72,7 +72,7 @@ GtsObjectClass * gts_object_class_from_name (gchar * name)
   g_return_val_if_fail (name != NULL, NULL);
 
   if (!class_table)
-    return NULL;
+  return NULL;
   return g_hash_table_lookup (class_table, name);
 }
 
@@ -81,9 +81,9 @@ static void object_destroy (GtsObject * object)
 #ifdef DEBUG_IDENTITY
 #ifdef DEBUG_LEAKS
   fprintf (stderr, "destroy %s %p->%d\n", 
-	   object->klass->name,
-	   object, 
-	   id (object));
+     object->klass->name,
+     object, 
+     id (object));
 #endif
   id_remove (object);
 #endif
@@ -121,7 +121,7 @@ GtsObjectClass * gts_object_class (void)
   static GtsObjectClass * klass = NULL;
 
   if (klass == NULL) {
-    GtsObjectClassInfo object_info = {
+  GtsObjectClassInfo object_info = {
       "GtsObject",
       sizeof (GtsObject),
       sizeof (GtsObjectClass),
@@ -129,8 +129,8 @@ GtsObjectClass * gts_object_class (void)
       (GtsObjectInitFunc) object_init,
       (GtsArgSetFunc) NULL,
       (GtsArgGetFunc) NULL
-    };
-    klass = gts_object_class_new (NULL, &object_info);
+  };
+  klass = gts_object_class_new (NULL, &object_info);
   }
 
   return klass;
@@ -146,23 +146,23 @@ GtsObjectClass * gts_object_class (void)
  * @klass, %NULL otherwise.
  */
 gpointer gts_object_is_from_class (gpointer object,
-				   gpointer klass)
+           gpointer klass)
 {
   GtsObjectClass * c;
 
   g_return_val_if_fail (klass != NULL, NULL);
 
   if (object == NULL)
-    return NULL;
+  return NULL;
 
   c = ((GtsObject *) object)->klass;
 
   g_return_val_if_fail (c != NULL, NULL);
 
   while (c) {
-    if (c == klass)
+  if (c == klass)
       return object;
-    c = c->parent_class;
+  c = c->parent_class;
   }
 
   return NULL;
@@ -177,7 +177,7 @@ gpointer gts_object_is_from_class (gpointer object,
  * from @from, %NULL otherwise.
  */
 gpointer gts_object_class_is_from_class (gpointer klass,
-					 gpointer from)
+           gpointer from)
 {
   GtsObjectClass * c;
 
@@ -186,9 +186,9 @@ gpointer gts_object_class_is_from_class (gpointer klass,
 
   c = (GtsObjectClass *) klass;
   while (c) {
-    if (c == from)
+  if (c == from)
       return klass;
-    c = c->parent_class;
+  c = c->parent_class;
   }
 
   return NULL;
@@ -203,23 +203,23 @@ gpointer gts_object_class_is_from_class (gpointer klass,
  * Returns: @object while emitting warnings if @object is not of class @klass.
  */
 gpointer gts_object_check_cast (gpointer object, 
-				gpointer klass)
+        gpointer klass)
 {
   if (!object) {
-    g_warning ("invalid cast from (NULL) pointer to `%s'",
-	       GTS_OBJECT_CLASS (klass)->info.name);
-    return object;
+  g_warning ("invalid cast from (NULL) pointer to `%s'",
+         GTS_OBJECT_CLASS (klass)->info.name);
+  return object;
   }
   if (!((GtsObject *) object)->klass) {
-    g_warning ("invalid unclassed pointer in cast to `%s'",
-	       GTS_OBJECT_CLASS (klass)->info.name);
-    return object;
+  g_warning ("invalid unclassed pointer in cast to `%s'",
+         GTS_OBJECT_CLASS (klass)->info.name);
+  return object;
   }
   if (!gts_object_is_from_class (object, klass)) {
-    g_warning ("invalid cast from `%s' to `%s'",
-	       ((GtsObject *) object)->klass->info.name,
-	       GTS_OBJECT_CLASS (klass)->info.name);
-    return object;
+  g_warning ("invalid cast from `%s' to `%s'",
+         ((GtsObject *) object)->klass->info.name,
+         GTS_OBJECT_CLASS (klass)->info.name);
+  return object;
   }
   return object;
 }
@@ -233,18 +233,18 @@ gpointer gts_object_check_cast (gpointer object,
  * @from.
  */
 gpointer gts_object_class_check_cast (gpointer klass, 
-				      gpointer from)
+              gpointer from)
 {
   if (!klass) {
-    g_warning ("invalid cast from (NULL) pointer to `%s'",
-	       GTS_OBJECT_CLASS (from)->info.name);
-    return klass;
+  g_warning ("invalid cast from (NULL) pointer to `%s'",
+         GTS_OBJECT_CLASS (from)->info.name);
+  return klass;
   }
   if (!gts_object_class_is_from_class (klass, from)) {
-    g_warning ("invalid cast from `%s' to `%s'",
-	       GTS_OBJECT_CLASS (klass)->info.name,
-	       GTS_OBJECT_CLASS (from)->info.name);
-    return klass;
+  g_warning ("invalid cast from `%s' to `%s'",
+         GTS_OBJECT_CLASS (klass)->info.name,
+         GTS_OBJECT_CLASS (from)->info.name);
+  return klass;
   }
   return klass;
 }
@@ -268,9 +268,9 @@ void gts_object_init (GtsObject * object, GtsObjectClass * klass)
 
   parent_class = klass->parent_class;
   if (parent_class)
-    gts_object_init (object, parent_class);
+  gts_object_init (object, parent_class);
   if (klass->info.object_init_func)
-    (*klass->info.object_init_func) (object);
+  (*klass->info.object_init_func) (object);
 }
 
 /**
@@ -293,8 +293,8 @@ GtsObject * gts_object_new (GtsObjectClass * klass)
   id_insert (object);
 #ifdef DEBUG_LEAKS
   fprintf (stderr, "new %s %p->%d\n", objclass->info.name, 
-	   object, 
-	   id (object));
+     object, 
+     id (object));
 #endif
 #endif
 
@@ -326,8 +326,8 @@ GtsObject * gts_object_clone (GtsObject * object)
   id_insert (clone);
 #ifdef DEBUG_LEAKS
   fprintf (stderr, "clone %s %p->%d\n", clone->klass->info.name, 
-	   clone, 
-	   id (clone));
+     clone, 
+     id (clone));
 #endif
 #endif
 

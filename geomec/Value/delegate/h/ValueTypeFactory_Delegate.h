@@ -27,7 +27,7 @@ private:
 
 class CSurfaceValueType_Delegate :
   public CValueTypeTemp_Delegate <IDT_VALUETYPE_SURFACE, IDI_VALUETYPE_SURFACE,
-    IDS_VALUENAME_SURFACE, IDS_ET_SURFACE>
+  IDS_VALUENAME_SURFACE, IDS_ET_SURFACE>
 {
 public:
   CSurfaceValueType_Delegate(CSurfaceValueType* surfaceValueType);
@@ -37,7 +37,7 @@ public:
 private:
   CSurfaceValueType_Delegate(const CSurfaceValueType_Delegate& rhs);
   CSurfaceValueType_Delegate& operator = (
-    const CSurfaceValueType_Delegate& rhs);
+  const CSurfaceValueType_Delegate& rhs);
 
   CSurfaceValueType* m_surfaceValueType;
 
@@ -46,78 +46,78 @@ private:
 
 template <unsigned int uTypeId, unsigned int uIconId, unsigned int uExportTagId, unsigned int uValueNameId>
   class CSingleComponentTemp_Delegate :
-    public CValueTypeTemp_Delegate <uTypeId, uIconId, uValueNameId,
+  public CValueTypeTemp_Delegate <uTypeId, uIconId, uValueNameId,
       uExportTagId>
 {
 public:
   CSingleComponentTemp_Delegate(CSingleComponentTemp <uTypeId, uIconId,
-    uExportTagId, uValueNameId> * singleComponentTemp);
+  uExportTagId, uValueNameId> * singleComponentTemp);
 
 private:
   CSingleComponentTemp_Delegate(const CSingleComponentTemp_Delegate& rhs);
   CSingleComponentTemp_Delegate& operator = (
-    const CSingleComponentTemp_Delegate& rhs);
+  const CSingleComponentTemp_Delegate& rhs);
 
   CSingleComponentTemp <uTypeId, uIconId, uExportTagId, uValueNameId> *
-    m_singleComponentTemp;
+  m_singleComponentTemp;
 
   typedef CSingleComponentTemp <uTypeId, uIconId, uExportTagId, uValueNameId>
-    CSingleComponentTempTemplate;
+  CSingleComponentTempTemplate;
   typedef CSingleComponentTemp_Delegate <uTypeId, uIconId, uExportTagId,
-    uValueNameId> CSingleComponentTemp_DelegateTemplate;
+  uValueNameId> CSingleComponentTemp_DelegateTemplate;
 
   REGISTER_DELEGATE(CSingleComponentTempTemplate,
-    CSingleComponentTemp_DelegateTemplate);
+  CSingleComponentTemp_DelegateTemplate);
 };
 
 template <unsigned int uTypeId, unsigned int uIconId, unsigned int uExportTagId, unsigned int uValueNameId>
   CSingleComponentTemp_Delegate <uTypeId, uIconId, uExportTagId,
-    uValueNameId> ::CSingleComponentTemp_Delegate(CSingleComponentTemp <
+  uValueNameId> ::CSingleComponentTemp_Delegate(CSingleComponentTemp <
       uTypeId, uIconId, uExportTagId, uValueNameId> * singleComponentTemp)
 : CValueTypeTemp_Delegate <uTypeId, uIconId, uValueNameId, uExportTagId> (
-    singleComponentTemp)
+  singleComponentTemp)
 , m_singleComponentTemp(singleComponentTemp)
 {
   ACTIVATE_TEMPLATE_DELEGATE(CSingleComponentTempTemplate,
-    CSingleComponentTemp_DelegateTemplate);
+  CSingleComponentTemp_DelegateTemplate);
 }
 
 template <unsigned int uTypeId, unsigned int uIconId, unsigned int uExportTagId, unsigned int uValueNameId>
   class CMaterialComponentTemp_Delegate :
-    public CSingleComponentTemp_Delegate <uTypeId, uIconId, uExportTagId,
+  public CSingleComponentTemp_Delegate <uTypeId, uIconId, uExportTagId,
       uValueNameId>
 {
 public:
   CMaterialComponentTemp_Delegate(CMaterialComponentTemp <uTypeId, uIconId,
-    uExportTagId, uValueNameId> * materialComponentTemp);
+  uExportTagId, uValueNameId> * materialComponentTemp);
 
 private:
   CMaterialComponentTemp_Delegate(const CMaterialComponentTemp_Delegate& rhs);
   CMaterialComponentTemp_Delegate& operator = (
-    const CMaterialComponentTemp_Delegate& rhs);
+  const CMaterialComponentTemp_Delegate& rhs);
 
   CMaterialComponentTemp <uTypeId, uIconId, uExportTagId, uValueNameId> *
-    m_materialComponentTemp;
+  m_materialComponentTemp;
 
   typedef CMaterialComponentTemp <uTypeId, uIconId, uExportTagId, uValueNameId>
-    CMaterialComponentTempTemplate;
+  CMaterialComponentTempTemplate;
   typedef CMaterialComponentTemp_Delegate <uTypeId, uIconId, uExportTagId,
-    uValueNameId> CMaterialComponentTemp_DelegateTemplate;
+  uValueNameId> CMaterialComponentTemp_DelegateTemplate;
 
   REGISTER_DELEGATE(CMaterialComponentTempTemplate,
-    CMaterialComponentTemp_DelegateTemplate);
+  CMaterialComponentTemp_DelegateTemplate);
 };
 
 template <unsigned int uTypeId, unsigned int uIconId, unsigned int uExportTagId, unsigned int uValueNameId>
   CMaterialComponentTemp_Delegate <uTypeId, uIconId, uExportTagId,
-    uValueNameId> ::CMaterialComponentTemp_Delegate(CMaterialComponentTemp <
+  uValueNameId> ::CMaterialComponentTemp_Delegate(CMaterialComponentTemp <
       uTypeId, uIconId, uExportTagId, uValueNameId> * materialComponentTemp)
 : CSingleComponentTemp_Delegate <uTypeId, uIconId, uExportTagId,
-    uValueNameId> (materialComponentTemp)
+  uValueNameId> (materialComponentTemp)
 , m_materialComponentTemp(materialComponentTemp)
 {
   ACTIVATE_TEMPLATE_DELEGATE(CMaterialComponentTempTemplate,
-    CMaterialComponentTemp_DelegateTemplate);
+  CMaterialComponentTemp_DelegateTemplate);
 }
 
 class TPressure_Delegate : public CSingleComponentTemp_Delegate <
@@ -143,12 +143,12 @@ class TFractureMatrixPressure_Delegate : public CSingleComponentTemp_Delegate <
 {
 public:
   TFractureMatrixPressure_Delegate(
-    TFractureMatrixPressure* fractureMatrixPressure);
+  TFractureMatrixPressure* fractureMatrixPressure);
 
 private:
   TFractureMatrixPressure_Delegate(const TFractureMatrixPressure_Delegate& rhs);
   TFractureMatrixPressure_Delegate& operator = (
-    const TFractureMatrixPressure_Delegate& rhs);
+  const TFractureMatrixPressure_Delegate& rhs);
 
   TFractureMatrixPressure* m_fractureMatrixPressure;
 
@@ -181,7 +181,7 @@ public:
 private:
   TVolumetricStrain_Delegate(const TVolumetricStrain_Delegate& rhs);
   TVolumetricStrain_Delegate& operator = (
-    const TVolumetricStrain_Delegate& rhs);
+  const TVolumetricStrain_Delegate& rhs);
 
   TVolumetricStrain* m_volumetricStrain;
 
@@ -198,7 +198,7 @@ public:
 private:
   TNormalStrain_Delegate(const TNormalStrain_Delegate& rhs);
   TNormalStrain_Delegate& operator = (
-    const TNormalStrain_Delegate& rhs);
+  const TNormalStrain_Delegate& rhs);
 
   TNormalStrain* m_normalStrain;
 
@@ -215,7 +215,7 @@ public:
 private:
   TLateralStrain_Delegate(const TLateralStrain_Delegate& rhs);
   TLateralStrain_Delegate& operator = (
-    const TLateralStrain_Delegate& rhs);
+  const TLateralStrain_Delegate& rhs);
 
   TLateralStrain* m_lateralStrain;
 
@@ -423,7 +423,7 @@ public:
 private:
   TPreConsolidation_Delegate(const TPreConsolidation_Delegate& rhs);
   TPreConsolidation_Delegate& operator = (
-    const TPreConsolidation_Delegate& rhs);
+  const TPreConsolidation_Delegate& rhs);
 
   TPreConsolidation* m_preConsolidation;
 
@@ -584,7 +584,7 @@ public:
 private:
   TFluidBulkModulus_Delegate(const TFluidBulkModulus_Delegate& rhs);
   TFluidBulkModulus_Delegate& operator = (
-    const TFluidBulkModulus_Delegate& rhs);
+  const TFluidBulkModulus_Delegate& rhs);
 
   TFluidBulkModulus* m_fluidBulkModulus;
 
@@ -689,65 +689,65 @@ private:
 
 class TEquivalentPlasticStrain1_Delegate :
   public CMaterialComponentTemp_Delegate <IDT_VALUETYPE_EQUIV_PLAST_STRAIN1,
-    IDI_VALUETYPE_EQUIV_PLAST_STRAIN1, IDS_ET_EQUIV_PLAST_STRAIN1,
-    IDS_VALUENAME_EQUIV_PLAST_STRAIN1>
+  IDI_VALUETYPE_EQUIV_PLAST_STRAIN1, IDS_ET_EQUIV_PLAST_STRAIN1,
+  IDS_VALUENAME_EQUIV_PLAST_STRAIN1>
 {
 public:
   TEquivalentPlasticStrain1_Delegate(
-    TEquivalentPlasticStrain1* equivalentPlasticStrain1);
+  TEquivalentPlasticStrain1* equivalentPlasticStrain1);
 
 private:
   TEquivalentPlasticStrain1_Delegate(
-    const TEquivalentPlasticStrain1_Delegate& rhs);
+  const TEquivalentPlasticStrain1_Delegate& rhs);
   TEquivalentPlasticStrain1_Delegate& operator = (
-    const TEquivalentPlasticStrain1_Delegate& rhs);
+  const TEquivalentPlasticStrain1_Delegate& rhs);
 
   TEquivalentPlasticStrain1* m_equivalentPlasticStrain1;
 
   REGISTER_DELEGATE(TEquivalentPlasticStrain1,
-    TEquivalentPlasticStrain1_Delegate);
+  TEquivalentPlasticStrain1_Delegate);
 };
 
 class TEquivalentPlasticStrain2_Delegate :
   public CMaterialComponentTemp_Delegate <IDT_VALUETYPE_EQUIV_PLAST_STRAIN2,
-    IDI_VALUETYPE_EQUIV_PLAST_STRAIN2, IDS_ET_EQUIV_PLAST_STRAIN2,
-    IDS_VALUENAME_EQUIV_PLAST_STRAIN2>
+  IDI_VALUETYPE_EQUIV_PLAST_STRAIN2, IDS_ET_EQUIV_PLAST_STRAIN2,
+  IDS_VALUENAME_EQUIV_PLAST_STRAIN2>
 {
 public:
   TEquivalentPlasticStrain2_Delegate(
-    TEquivalentPlasticStrain2* equivalentPlasticStrain2);
+  TEquivalentPlasticStrain2* equivalentPlasticStrain2);
 
 private:
   TEquivalentPlasticStrain2_Delegate(
-    const TEquivalentPlasticStrain2_Delegate& rhs);
+  const TEquivalentPlasticStrain2_Delegate& rhs);
   TEquivalentPlasticStrain2_Delegate& operator = (
-    const TEquivalentPlasticStrain2_Delegate& rhs);
+  const TEquivalentPlasticStrain2_Delegate& rhs);
 
   TEquivalentPlasticStrain2* m_equivalentPlasticStrain2;
 
   REGISTER_DELEGATE(TEquivalentPlasticStrain2,
-    TEquivalentPlasticStrain2_Delegate);
+  TEquivalentPlasticStrain2_Delegate);
 };
 
 class TEquivalentPlasticStrain3_Delegate :
   public CMaterialComponentTemp_Delegate <IDT_VALUETYPE_EQUIV_PLAST_STRAIN3,
-    IDI_VALUETYPE_EQUIV_PLAST_STRAIN3, IDS_ET_EQUIV_PLAST_STRAIN3,
-    IDS_VALUENAME_EQUIV_PLAST_STRAIN3>
+  IDI_VALUETYPE_EQUIV_PLAST_STRAIN3, IDS_ET_EQUIV_PLAST_STRAIN3,
+  IDS_VALUENAME_EQUIV_PLAST_STRAIN3>
 {
 public:
   TEquivalentPlasticStrain3_Delegate(
-    TEquivalentPlasticStrain3* equivalentPlasticStrain3);
+  TEquivalentPlasticStrain3* equivalentPlasticStrain3);
 
 private:
   TEquivalentPlasticStrain3_Delegate(
-    const TEquivalentPlasticStrain3_Delegate& rhs);
+  const TEquivalentPlasticStrain3_Delegate& rhs);
   TEquivalentPlasticStrain3_Delegate& operator = (
-    const TEquivalentPlasticStrain3_Delegate& rhs);
+  const TEquivalentPlasticStrain3_Delegate& rhs);
 
   TEquivalentPlasticStrain3* m_equivalentPlasticStrain3;
 
   REGISTER_DELEGATE(TEquivalentPlasticStrain3,
-    TEquivalentPlasticStrain3_Delegate);
+  TEquivalentPlasticStrain3_Delegate);
 };
 
 class TCreepQR1_Delegate : public CMaterialComponentTemp_Delegate <
@@ -1160,7 +1160,7 @@ public:
 private:
   TElasticHardening_Delegate(const TElasticHardening_Delegate& rhs);
   TElasticHardening_Delegate& operator = (
-    const TElasticHardening_Delegate& rhs);
+  const TElasticHardening_Delegate& rhs);
 
   TElasticHardening* m_elasticHardening;
 
@@ -1169,22 +1169,22 @@ private:
 
 class TSecondaryPreconsolidation_Delegate :
   public CMaterialComponentTemp_Delegate <IDT_VALUETYPE_SEC_PRECON,
-    IDI_VALUETYPE_SEC_PRECON, IDS_ET_SEC_PRECON, IDS_VALUENAME_SEC_PRECON>
+  IDI_VALUETYPE_SEC_PRECON, IDS_ET_SEC_PRECON, IDS_VALUENAME_SEC_PRECON>
 {
 public:
   TSecondaryPreconsolidation_Delegate(
-    TSecondaryPreconsolidation* secondaryPreconsolidation);
+  TSecondaryPreconsolidation* secondaryPreconsolidation);
 
 private:
   TSecondaryPreconsolidation_Delegate(
-    const TSecondaryPreconsolidation_Delegate& rhs);
+  const TSecondaryPreconsolidation_Delegate& rhs);
   TSecondaryPreconsolidation_Delegate& operator = (
-    const TSecondaryPreconsolidation_Delegate& rhs);
+  const TSecondaryPreconsolidation_Delegate& rhs);
 
   TSecondaryPreconsolidation* m_secondaryPreconsolidation;
 
   REGISTER_DELEGATE(TSecondaryPreconsolidation,
-    TSecondaryPreconsolidation_Delegate);
+  TSecondaryPreconsolidation_Delegate);
 };
 
 class TSecondaryHardening_Delegate : public CMaterialComponentTemp_Delegate <
@@ -1197,7 +1197,7 @@ public:
 private:
   TSecondaryHardening_Delegate(const TSecondaryHardening_Delegate& rhs);
   TSecondaryHardening_Delegate& operator = (
-    const TSecondaryHardening_Delegate& rhs);
+  const TSecondaryHardening_Delegate& rhs);
 
   TSecondaryHardening* m_secondaryHardening;
 
@@ -1206,48 +1206,48 @@ private:
 
 class TUniaxialElasticCompressibility_Delegate :
   public CMaterialComponentTemp_Delegate <IDT_VALUETYPE_ELASCOMPRES,
-    IDI_VALUETYPE_ELASCOMPRES, IDS_ET_ELASCOMPRES, IDS_VALUENAME_ELASCOMPRES>
+  IDI_VALUETYPE_ELASCOMPRES, IDS_ET_ELASCOMPRES, IDS_VALUENAME_ELASCOMPRES>
 {
 public:
   TUniaxialElasticCompressibility_Delegate(
-    TUniaxialElasticCompressibility* uniaxialElasticCompressibility);
+  TUniaxialElasticCompressibility* uniaxialElasticCompressibility);
 
 private:
   TUniaxialElasticCompressibility_Delegate(
-    const TUniaxialElasticCompressibility_Delegate& rhs);
+  const TUniaxialElasticCompressibility_Delegate& rhs);
   TUniaxialElasticCompressibility_Delegate& operator = (
-    const TUniaxialElasticCompressibility_Delegate& rhs);
+  const TUniaxialElasticCompressibility_Delegate& rhs);
 
   TUniaxialElasticCompressibility* m_uniaxialElasticCompressibility;
 
   REGISTER_DELEGATE(TUniaxialElasticCompressibility,
-    TUniaxialElasticCompressibility_Delegate);
+  TUniaxialElasticCompressibility_Delegate);
 };
 
 class TUniaxialPlasticCompressibility_Delegate :
   public CMaterialComponentTemp_Delegate <IDT_VALUETYPE_PLASCOMPRES,
-    IDI_VALUETYPE_PLASCOMPRES, IDS_ET_PLASCOMPRES, IDS_VALUENAME_PLASCOMPRES>
+  IDI_VALUETYPE_PLASCOMPRES, IDS_ET_PLASCOMPRES, IDS_VALUENAME_PLASCOMPRES>
 {
 public:
   TUniaxialPlasticCompressibility_Delegate(
-    TUniaxialPlasticCompressibility* uniaxialPlasticCompressibility);
+  TUniaxialPlasticCompressibility* uniaxialPlasticCompressibility);
 
 private:
   TUniaxialPlasticCompressibility_Delegate(
-    const TUniaxialPlasticCompressibility_Delegate& rhs);
+  const TUniaxialPlasticCompressibility_Delegate& rhs);
   TUniaxialPlasticCompressibility_Delegate& operator = (
-    const TUniaxialPlasticCompressibility_Delegate& rhs);
+  const TUniaxialPlasticCompressibility_Delegate& rhs);
 
   TUniaxialPlasticCompressibility* m_uniaxialPlasticCompressibility;
 
   REGISTER_DELEGATE(TUniaxialPlasticCompressibility,
-    TUniaxialPlasticCompressibility_Delegate);
+  TUniaxialPlasticCompressibility_Delegate);
 };
 
 class TYoungModulusNormal_Delegate :
   public CMaterialComponentTemp_Delegate <IDT_VALUETYPE_YOUNGMODULUS_NORM,
-    IDI_VALUETYPE_YOUNGMODULUS_NORM, IDS_ET_YOUNGMODULUS_NORM,
-    IDS_VALUENAME_YOUNGMODULUS_NORM>
+  IDI_VALUETYPE_YOUNGMODULUS_NORM, IDS_ET_YOUNGMODULUS_NORM,
+  IDS_VALUENAME_YOUNGMODULUS_NORM>
 {
 public:
   TYoungModulusNormal_Delegate(TYoungModulusNormal* youngModulusNormal);
@@ -1255,7 +1255,7 @@ public:
 private:
   TYoungModulusNormal_Delegate(const TYoungModulusNormal_Delegate& rhs);
   TYoungModulusNormal_Delegate& operator = (
-    const TYoungModulusNormal_Delegate& rhs);
+  const TYoungModulusNormal_Delegate& rhs);
 
   TYoungModulusNormal* m_youngModulusNormal;
 
@@ -1264,18 +1264,18 @@ private:
 
 class TYoungModulusTransverse_Delegate :
   public CMaterialComponentTemp_Delegate <IDT_VALUETYPE_YOUNGMODULUS_TRANS,
-    IDI_VALUETYPE_YOUNGMODULUS_TRANS, IDS_ET_YOUNGMODULUS_TRANS,
-    IDS_VALUENAME_YOUNGMODULUS_TRANS>
+  IDI_VALUETYPE_YOUNGMODULUS_TRANS, IDS_ET_YOUNGMODULUS_TRANS,
+  IDS_VALUENAME_YOUNGMODULUS_TRANS>
 {
 public:
   TYoungModulusTransverse_Delegate(
-    TYoungModulusTransverse* youngModulusTransverse);
+  TYoungModulusTransverse* youngModulusTransverse);
 
 private:
   TYoungModulusTransverse_Delegate(
-    const TYoungModulusTransverse_Delegate& rhs);
+  const TYoungModulusTransverse_Delegate& rhs);
   TYoungModulusTransverse_Delegate& operator = (
-    const TYoungModulusTransverse_Delegate& rhs);
+  const TYoungModulusTransverse_Delegate& rhs);
 
   TYoungModulusTransverse* m_youngModulusTransverse;
 
@@ -1284,8 +1284,8 @@ private:
 
 class TPoissonRatioNormal_Delegate :
   public CMaterialComponentTemp_Delegate <IDT_VALUETYPE_POISSONRATIO_NORM,
-    IDI_VALUETYPE_POISSONRATIO_NORM, IDS_ET_POISSONRATIO_NORM,
-    IDS_VALUENAME_POISSONRATIO_NORM>
+  IDI_VALUETYPE_POISSONRATIO_NORM, IDS_ET_POISSONRATIO_NORM,
+  IDS_VALUENAME_POISSONRATIO_NORM>
 {
 public:
   TPoissonRatioNormal_Delegate(TPoissonRatioNormal* poissonRatioNormal);
@@ -1293,7 +1293,7 @@ public:
 private:
   TPoissonRatioNormal_Delegate(const TPoissonRatioNormal_Delegate& rhs);
   TPoissonRatioNormal_Delegate& operator = (
-    const TPoissonRatioNormal_Delegate& rhs);
+  const TPoissonRatioNormal_Delegate& rhs);
 
   TPoissonRatioNormal* m_poissonRatioNormal;
 
@@ -1302,18 +1302,18 @@ private:
 
 class TPoissonRatioTransverse_Delegate :
   public CMaterialComponentTemp_Delegate <IDT_VALUETYPE_POISSONRATIO_TRANS,
-    IDI_VALUETYPE_POISSONRATIO_TRANS, IDS_ET_POISSONRATIO_TRANS,
-    IDS_VALUENAME_POISSONRATIO_TRANS>
+  IDI_VALUETYPE_POISSONRATIO_TRANS, IDS_ET_POISSONRATIO_TRANS,
+  IDS_VALUENAME_POISSONRATIO_TRANS>
 {
 public:
   TPoissonRatioTransverse_Delegate(
-    TPoissonRatioTransverse* poissonRatioTransverse);
+  TPoissonRatioTransverse* poissonRatioTransverse);
 
 private:
   TPoissonRatioTransverse_Delegate(
-    const TPoissonRatioTransverse_Delegate& rhs);
+  const TPoissonRatioTransverse_Delegate& rhs);
   TPoissonRatioTransverse_Delegate& operator = (
-    const TPoissonRatioTransverse_Delegate& rhs);
+  const TPoissonRatioTransverse_Delegate& rhs);
 
   TPoissonRatioTransverse* m_poissonRatioTransverse;
 
@@ -1362,7 +1362,7 @@ public:
 private:
   TFractStiffNormal_Delegate(const TFractStiffNormal_Delegate& rhs);
   TFractStiffNormal_Delegate& operator = (
-    const TFractStiffNormal_Delegate& rhs);
+  const TFractStiffNormal_Delegate& rhs);
 
   TFractStiffNormal* m_fractStiffNormal;
 
@@ -1395,7 +1395,7 @@ public:
 private:
   TThermLinExpNormal_Delegate(const TThermLinExpNormal_Delegate& rhs);
   TThermLinExpNormal_Delegate& operator = (
-    const TThermLinExpNormal_Delegate& rhs);
+  const TThermLinExpNormal_Delegate& rhs);
 
   TThermLinExpNormal* m_thermLinExpNormal;
 
@@ -1412,7 +1412,7 @@ public:
 private:
   TThermLinExpLateral_Delegate(const TThermLinExpLateral_Delegate& rhs);
   TThermLinExpLateral_Delegate& operator = (
-    const TThermLinExpLateral_Delegate& rhs);
+  const TThermLinExpLateral_Delegate& rhs);
 
   TThermLinExpLateral* m_thermLinExpLateral;
 
@@ -1429,7 +1429,7 @@ public:
 private:
   TThermalConductivity_Delegate(const TThermalConductivity_Delegate& rhs);
   TThermalConductivity_Delegate& operator = (
-    const TThermalConductivity_Delegate& rhs);
+  const TThermalConductivity_Delegate& rhs);
 
   TThermalConductivity* m_thermalConductivity;
 
@@ -1478,7 +1478,7 @@ public:
 private:
   THighFractDensIncl_Delegate(const THighFractDensIncl_Delegate& rhs);
   THighFractDensIncl_Delegate& operator = (
-    const THighFractDensIncl_Delegate& rhs);
+  const THighFractDensIncl_Delegate& rhs);
 
   THighFractDensIncl* m_highFractDensIncl;
 
@@ -1495,7 +1495,7 @@ public:
 private:
   THighFractDensAzi_Delegate(const THighFractDensAzi_Delegate& rhs);
   THighFractDensAzi_Delegate& operator = (
-    const THighFractDensAzi_Delegate& rhs);
+  const THighFractDensAzi_Delegate& rhs);
 
   THighFractDensAzi* m_highFractDensAzi;
 
@@ -1528,7 +1528,7 @@ public:
 private:
   TLowFractDensIncl_Delegate(const TLowFractDensIncl_Delegate& rhs);
   TLowFractDensIncl_Delegate& operator = (
-    const TLowFractDensIncl_Delegate& rhs);
+  const TLowFractDensIncl_Delegate& rhs);
 
   TLowFractDensIncl* m_lowFractDensIncl;
 
@@ -1601,64 +1601,64 @@ private:
 
 class TYoungsModulusDecompaction_Delegate :
   public CMaterialComponentTemp_Delegate <IDT_VALUETYPE_YOUNG_DECOMP,
-    IDI_VALUETYPE_YOUNG_DECOMP, IDS_ET_YOUNG_DECOMP,
-    IDS_VALUENAME_YOUNG_DECOMP>
+  IDI_VALUETYPE_YOUNG_DECOMP, IDS_ET_YOUNG_DECOMP,
+  IDS_VALUENAME_YOUNG_DECOMP>
 {
 public:
   TYoungsModulusDecompaction_Delegate(
-    TYoungsModulusDecompaction* youngsModulusDecompaction);
+  TYoungsModulusDecompaction* youngsModulusDecompaction);
 
 private:
   TYoungsModulusDecompaction_Delegate(
-    const TYoungsModulusDecompaction_Delegate& rhs);
+  const TYoungsModulusDecompaction_Delegate& rhs);
   TYoungsModulusDecompaction_Delegate& operator = (
-    const TYoungsModulusDecompaction_Delegate& rhs);
+  const TYoungsModulusDecompaction_Delegate& rhs);
 
   TYoungsModulusDecompaction* m_youngsModulusDecompaction;
 
   REGISTER_DELEGATE(TYoungsModulusDecompaction,
-    TYoungsModulusDecompaction_Delegate);
+  TYoungsModulusDecompaction_Delegate);
 };
 
 class TPoissonsRatioDecompaction_Delegate :
   public CMaterialComponentTemp_Delegate <IDT_VALUETYPE_POISSON_DECOMP,
-    IDI_VALUETYPE_POISSON_DECOMP, IDS_ET_POISSON_DECOMP,
-    IDS_VALUENAME_POISSON_DECOMP>
+  IDI_VALUETYPE_POISSON_DECOMP, IDS_ET_POISSON_DECOMP,
+  IDS_VALUENAME_POISSON_DECOMP>
 {
 public:
   TPoissonsRatioDecompaction_Delegate(
-    TPoissonsRatioDecompaction* poissonsRatioDecompaction);
+  TPoissonsRatioDecompaction* poissonsRatioDecompaction);
 
 private:
   TPoissonsRatioDecompaction_Delegate(
-    const TPoissonsRatioDecompaction_Delegate& rhs);
+  const TPoissonsRatioDecompaction_Delegate& rhs);
   TPoissonsRatioDecompaction_Delegate& operator = (
-    const TPoissonsRatioDecompaction_Delegate& rhs);
+  const TPoissonsRatioDecompaction_Delegate& rhs);
 
   TPoissonsRatioDecompaction* m_poissonsRatioDecompaction;
 
   REGISTER_DELEGATE(TPoissonsRatioDecompaction,
-    TPoissonsRatioDecompaction_Delegate);
+  TPoissonsRatioDecompaction_Delegate);
 };
 
 class TFluidThermalExpansionCoefficient_Delegate :
   public CMaterialComponentTemp_Delegate <IDT_VALUETYPE_FLUIDX,
-    IDI_VALUETYPE_CAPSHAPE, IDS_ET_VALUETYPE_FLUIDX, IDS_VALUENAME_FLUIDX>
+  IDI_VALUETYPE_CAPSHAPE, IDS_ET_VALUETYPE_FLUIDX, IDS_VALUENAME_FLUIDX>
 {
 public:
   TFluidThermalExpansionCoefficient_Delegate(
-    TFluidThermalExpansionCoefficient* fluidThermalExpansionCoefficient);
+  TFluidThermalExpansionCoefficient* fluidThermalExpansionCoefficient);
 
 private:
   TFluidThermalExpansionCoefficient_Delegate(
-    const TFluidThermalExpansionCoefficient_Delegate& rhs);
+  const TFluidThermalExpansionCoefficient_Delegate& rhs);
   TFluidThermalExpansionCoefficient_Delegate& operator = (
-    const TFluidThermalExpansionCoefficient_Delegate& rhs);
+  const TFluidThermalExpansionCoefficient_Delegate& rhs);
 
   TFluidThermalExpansionCoefficient* m_fluidThermalExpansionCoefficient;
 
   REGISTER_DELEGATE(TFluidThermalExpansionCoefficient,
-    TFluidThermalExpansionCoefficient_Delegate);
+  TFluidThermalExpansionCoefficient_Delegate);
 };
 
 class TFluidDensity_Delegate : public CMaterialComponentTemp_Delegate <
@@ -1703,7 +1703,7 @@ public:
 private:
   TApertureParameter_Delegate(const TApertureParameter_Delegate& rhs);
   TApertureParameter_Delegate& operator = (
-    const TApertureParameter_Delegate& rhs);
+  const TApertureParameter_Delegate& rhs);
 
   TApertureParameter* m_apertureParameter;
 
@@ -1712,296 +1712,296 @@ private:
 
 class TGrainStiffnessParameter_Delegate :
   public CMaterialComponentTemp_Delegate <IDT_VALUETYPE_GRAINSTIFFNESS,
-    IDI_VALUETYPE_GRAINSTIFFNESS, IDS_ET_VALUETYPE_GRAINSTIFFNESS,
-    IDS_VALUENAME_GRAINSTIFFNESS>
+  IDI_VALUETYPE_GRAINSTIFFNESS, IDS_ET_VALUETYPE_GRAINSTIFFNESS,
+  IDS_VALUENAME_GRAINSTIFFNESS>
 {
 public:
   TGrainStiffnessParameter_Delegate(
-    TGrainStiffnessParameter* grainStiffnessParameter);
+  TGrainStiffnessParameter* grainStiffnessParameter);
 
 private:
   TGrainStiffnessParameter_Delegate(
-    const TGrainStiffnessParameter_Delegate& rhs);
+  const TGrainStiffnessParameter_Delegate& rhs);
   TGrainStiffnessParameter_Delegate& operator = (
-    const TGrainStiffnessParameter_Delegate& rhs);
+  const TGrainStiffnessParameter_Delegate& rhs);
 
   TGrainStiffnessParameter* m_grainStiffnessParameter;
 
   REGISTER_DELEGATE(TGrainStiffnessParameter,
-    TGrainStiffnessParameter_Delegate);
+  TGrainStiffnessParameter_Delegate);
 };
 
 class TYoungsModulusNormalDecomp_Delegate :
   public CMaterialComponentTemp_Delegate <
-    IDT_VALUETYPE_YOUNGMODULUS_NORM_DECOMP,
-    IDI_VALUETYPE_YOUNGMODULUS_NORM_DECOMP,
-    IDS_ET_VALUETYPE_YOUNGMODULUS_NORM_DECOMP,
-    IDS_VALUENAME_YOUNGMODULUS_NORM_DECOMP>
+  IDT_VALUETYPE_YOUNGMODULUS_NORM_DECOMP,
+  IDI_VALUETYPE_YOUNGMODULUS_NORM_DECOMP,
+  IDS_ET_VALUETYPE_YOUNGMODULUS_NORM_DECOMP,
+  IDS_VALUENAME_YOUNGMODULUS_NORM_DECOMP>
 {
 public:
   TYoungsModulusNormalDecomp_Delegate(
-    TYoungsModulusNormalDecomp* youngsModulusNormalDecomp);
+  TYoungsModulusNormalDecomp* youngsModulusNormalDecomp);
 
 private:
   TYoungsModulusNormalDecomp_Delegate(
-    const TYoungsModulusNormalDecomp_Delegate& rhs);
+  const TYoungsModulusNormalDecomp_Delegate& rhs);
   TYoungsModulusNormalDecomp_Delegate& operator = (
-    const TYoungsModulusNormalDecomp_Delegate& rhs);
+  const TYoungsModulusNormalDecomp_Delegate& rhs);
 
   TYoungsModulusNormalDecomp* m_youngsModulusNormalDecomp;
 
   REGISTER_DELEGATE(TYoungsModulusNormalDecomp,
-    TYoungsModulusNormalDecomp_Delegate);
+  TYoungsModulusNormalDecomp_Delegate);
 };
 
 class TYoungModulusTransDecomp_Delegate :
   public CMaterialComponentTemp_Delegate <
-    IDT_VALUETYPE_YOUNGMODULUS_TRANS_DECOMP,
-    IDI_VALUETYPE_YOUNGMODULUS_TRANS_DECOMP,
-    IDS_ET_VALUETYPE_YOUNGMODULUS_TRANS_DECOMP,
-    IDS_VALUENAME_YOUNGMODULUS_TRANS_DECOMP>
+  IDT_VALUETYPE_YOUNGMODULUS_TRANS_DECOMP,
+  IDI_VALUETYPE_YOUNGMODULUS_TRANS_DECOMP,
+  IDS_ET_VALUETYPE_YOUNGMODULUS_TRANS_DECOMP,
+  IDS_VALUENAME_YOUNGMODULUS_TRANS_DECOMP>
 {
 public:
   TYoungModulusTransDecomp_Delegate(
-    TYoungModulusTransDecomp* youngModulusTransDecomp);
+  TYoungModulusTransDecomp* youngModulusTransDecomp);
 
 private:
   TYoungModulusTransDecomp_Delegate(
-    const TYoungModulusTransDecomp_Delegate& rhs);
+  const TYoungModulusTransDecomp_Delegate& rhs);
   TYoungModulusTransDecomp_Delegate& operator = (
-    const TYoungModulusTransDecomp_Delegate& rhs);
+  const TYoungModulusTransDecomp_Delegate& rhs);
 
   TYoungModulusTransDecomp* m_youngModulusTransDecomp;
 
   REGISTER_DELEGATE(TYoungModulusTransDecomp,
-    TYoungModulusTransDecomp_Delegate);
+  TYoungModulusTransDecomp_Delegate);
 };
 
 class TPoissonRatioNormalDecomp_Delegate :
   public CMaterialComponentTemp_Delegate <
-    IDT_VALUETYPE_POISSONRATIO_NORM_DECOMP,
-    IDI_VALUETYPE_POISSONRATIO_NORM_DECOMP,
-    IDS_ET_VALUETYPE_POISSONRATIO_NORM_DECOMP,
-    IDS_VALUENAME_POISSONRATIO_NORM_DECOMP>
+  IDT_VALUETYPE_POISSONRATIO_NORM_DECOMP,
+  IDI_VALUETYPE_POISSONRATIO_NORM_DECOMP,
+  IDS_ET_VALUETYPE_POISSONRATIO_NORM_DECOMP,
+  IDS_VALUENAME_POISSONRATIO_NORM_DECOMP>
 {
 public:
   TPoissonRatioNormalDecomp_Delegate(
-    TPoissonRatioNormalDecomp* poissonRatioNormalDecomp);
+  TPoissonRatioNormalDecomp* poissonRatioNormalDecomp);
 
 private:
   TPoissonRatioNormalDecomp_Delegate(
-    const TPoissonRatioNormalDecomp_Delegate& rhs);
+  const TPoissonRatioNormalDecomp_Delegate& rhs);
   TPoissonRatioNormalDecomp_Delegate& operator = (
-    const TPoissonRatioNormalDecomp_Delegate& rhs);
+  const TPoissonRatioNormalDecomp_Delegate& rhs);
 
   TPoissonRatioNormalDecomp* m_poissonRatioNormalDecomp;
 
   REGISTER_DELEGATE(TPoissonRatioNormalDecomp,
-    TPoissonRatioNormalDecomp_Delegate);
+  TPoissonRatioNormalDecomp_Delegate);
 };
 
 class TPoissonRatioTransDecomp_Delegate :
   public CMaterialComponentTemp_Delegate <
-    IDT_VALUETYPE_POISSONRATIO_TRANS_DECOMP,
-    IDI_VALUETYPE_POISSONRATIO_TRANS_DECOMP,
-    IDS_ET_VALUETYPE_POISSONRATIO_TRANS_DECOMP,
-    IDS_VALUENAME_POISSONRATIO_TRANS_DECOMP>
+  IDT_VALUETYPE_POISSONRATIO_TRANS_DECOMP,
+  IDI_VALUETYPE_POISSONRATIO_TRANS_DECOMP,
+  IDS_ET_VALUETYPE_POISSONRATIO_TRANS_DECOMP,
+  IDS_VALUENAME_POISSONRATIO_TRANS_DECOMP>
 {
 public:
   TPoissonRatioTransDecomp_Delegate(
-    TPoissonRatioTransDecomp* poissonRatioTransDecomp);
+  TPoissonRatioTransDecomp* poissonRatioTransDecomp);
 
 private:
   TPoissonRatioTransDecomp_Delegate(
-    const TPoissonRatioTransDecomp_Delegate& rhs);
+  const TPoissonRatioTransDecomp_Delegate& rhs);
   TPoissonRatioTransDecomp_Delegate& operator = (
-    const TPoissonRatioTransDecomp_Delegate& rhs);
+  const TPoissonRatioTransDecomp_Delegate& rhs);
 
   TPoissonRatioTransDecomp* m_poissonRatioTransDecomp;
 
   REGISTER_DELEGATE(TPoissonRatioTransDecomp,
-    TPoissonRatioTransDecomp_Delegate);
+  TPoissonRatioTransDecomp_Delegate);
 };
 
 class TAnisotropicShearModulus_Delegate :
   public CMaterialComponentTemp_Delegate <
-    IDT_VALUETYPE_ANISOTROPIC_SHEARMODULUS,
-    IDI_VALUETYPE_ANISOTROPIC_SHEARMODULUS,
-    IDS_ET_VALUETYPE_ANISOTROPIC_SHEARMODULUS,
-    IDS_VALUENAME_ANISOTROPIC_SHEARMODULUS>
+  IDT_VALUETYPE_ANISOTROPIC_SHEARMODULUS,
+  IDI_VALUETYPE_ANISOTROPIC_SHEARMODULUS,
+  IDS_ET_VALUETYPE_ANISOTROPIC_SHEARMODULUS,
+  IDS_VALUENAME_ANISOTROPIC_SHEARMODULUS>
 {
 public:
   TAnisotropicShearModulus_Delegate(
-    TAnisotropicShearModulus* anisotropicShearModulus);
+  TAnisotropicShearModulus* anisotropicShearModulus);
 
 private:
   TAnisotropicShearModulus_Delegate(
-    const TAnisotropicShearModulus_Delegate& rhs);
+  const TAnisotropicShearModulus_Delegate& rhs);
   TAnisotropicShearModulus_Delegate& operator = (
-    const TAnisotropicShearModulus_Delegate& rhs);
+  const TAnisotropicShearModulus_Delegate& rhs);
 
   TAnisotropicShearModulus* m_anisotropicShearModulus;
 
   REGISTER_DELEGATE(TAnisotropicShearModulus,
-    TAnisotropicShearModulus_Delegate);
+  TAnisotropicShearModulus_Delegate);
 };
 
 class TAnisotropicShearModulusDecomp_Delegate :
   public CMaterialComponentTemp_Delegate <
-    IDT_VALUETYPE_ANISOTROPIC_SHEARMODULUS_DECOMP,
-    IDI_VALUETYPE_ANISOTROPIC_SHEARMODULUS_DECOMP,
-    IDS_ET_VALUETYPE_ANISOTROPIC_SHEARMODULUS_DECOMP,
-    IDS_VALUENAME_ANISOTROPIC_SHEARMODULUS_DECOMP>
+  IDT_VALUETYPE_ANISOTROPIC_SHEARMODULUS_DECOMP,
+  IDI_VALUETYPE_ANISOTROPIC_SHEARMODULUS_DECOMP,
+  IDS_ET_VALUETYPE_ANISOTROPIC_SHEARMODULUS_DECOMP,
+  IDS_VALUENAME_ANISOTROPIC_SHEARMODULUS_DECOMP>
 {
 public:
   TAnisotropicShearModulusDecomp_Delegate(
-    TAnisotropicShearModulusDecomp* anisotropicShearModulusDecomp);
+  TAnisotropicShearModulusDecomp* anisotropicShearModulusDecomp);
 
 private:
   TAnisotropicShearModulusDecomp_Delegate(
-    const TAnisotropicShearModulusDecomp_Delegate& rhs);
+  const TAnisotropicShearModulusDecomp_Delegate& rhs);
   TAnisotropicShearModulusDecomp_Delegate& operator = (
-    const TAnisotropicShearModulusDecomp_Delegate& rhs);
+  const TAnisotropicShearModulusDecomp_Delegate& rhs);
 
   TAnisotropicShearModulusDecomp* m_anisotropicShearModulusDecomp;
 
   REGISTER_DELEGATE(TAnisotropicShearModulusDecomp,
-    TAnisotropicShearModulusDecomp_Delegate);
+  TAnisotropicShearModulusDecomp_Delegate);
 };
 
 class TThomsenEpsilon_Delegate :
   public CMaterialComponentTemp_Delegate <
-    IDT_VALUETYPE_THOMSEN_EPSILON,
-    IDI_VALUETYPE_THOMSEN_EPSILON,
-    IDS_ET_VALUETYPE_THOMSEN_EPSILON,
-    IDS_VALUENAME_THOMSEN_EPSILON>
+  IDT_VALUETYPE_THOMSEN_EPSILON,
+  IDI_VALUETYPE_THOMSEN_EPSILON,
+  IDS_ET_VALUETYPE_THOMSEN_EPSILON,
+  IDS_VALUENAME_THOMSEN_EPSILON>
 {
 public:
   TThomsenEpsilon_Delegate(
-    TThomsenEpsilon* thomsenEpsilon);
+  TThomsenEpsilon* thomsenEpsilon);
 
 private:
   TThomsenEpsilon_Delegate(
-    const TThomsenEpsilon_Delegate&);
+  const TThomsenEpsilon_Delegate&);
   TThomsenEpsilon_Delegate& operator=(
-    const TThomsenEpsilon_Delegate&);
+  const TThomsenEpsilon_Delegate&);
 
   TThomsenEpsilon* m_thomsenEpsilon;
 
   REGISTER_DELEGATE(TThomsenEpsilon,
-    TThomsenEpsilon_Delegate);
+  TThomsenEpsilon_Delegate);
 };
 
 class TThomsenGamma_Delegate :
   public CMaterialComponentTemp_Delegate <
-    IDT_VALUETYPE_THOMSEN_GAMMA,
-    IDI_VALUETYPE_THOMSEN_GAMMA,
-    IDS_ET_VALUETYPE_THOMSEN_GAMMA,
-    IDS_VALUENAME_THOMSEN_GAMMA>
+  IDT_VALUETYPE_THOMSEN_GAMMA,
+  IDI_VALUETYPE_THOMSEN_GAMMA,
+  IDS_ET_VALUETYPE_THOMSEN_GAMMA,
+  IDS_VALUENAME_THOMSEN_GAMMA>
 {
 public:
   TThomsenGamma_Delegate(
-    TThomsenGamma* thomsenGamma);
+  TThomsenGamma* thomsenGamma);
 
 private:
   TThomsenGamma_Delegate(
-    const TThomsenGamma_Delegate&);
+  const TThomsenGamma_Delegate&);
   TThomsenGamma_Delegate& operator=(
-    const TThomsenGamma_Delegate&);
+  const TThomsenGamma_Delegate&);
 
   TThomsenGamma* m_thomsenGamma;
 
   REGISTER_DELEGATE(TThomsenGamma,
-    TThomsenGamma_Delegate);
+  TThomsenGamma_Delegate);
 };
 
 class TThomsenDelta_Delegate :
   public CMaterialComponentTemp_Delegate <
-    IDT_VALUETYPE_THOMSEN_DELTA,
-    IDI_VALUETYPE_THOMSEN_DELTA,
-    IDS_ET_VALUETYPE_THOMSEN_DELTA,
-    IDS_VALUENAME_THOMSEN_DELTA>
+  IDT_VALUETYPE_THOMSEN_DELTA,
+  IDI_VALUETYPE_THOMSEN_DELTA,
+  IDS_ET_VALUETYPE_THOMSEN_DELTA,
+  IDS_VALUENAME_THOMSEN_DELTA>
 {
 public:
   TThomsenDelta_Delegate(
-    TThomsenDelta* thomsenDelta);
+  TThomsenDelta* thomsenDelta);
 
 private:
   TThomsenDelta_Delegate(
-    const TThomsenDelta_Delegate&);
+  const TThomsenDelta_Delegate&);
   TThomsenDelta_Delegate& operator=(
-    const TThomsenDelta_Delegate&);
+  const TThomsenDelta_Delegate&);
 
   TThomsenDelta* m_thomsenDelta;
 
   REGISTER_DELEGATE(TThomsenDelta,
-    TThomsenDelta_Delegate);
+  TThomsenDelta_Delegate);
 };
 
 class TInitialFractureApertureHigh_Delegate :
   public CMaterialComponentTemp_Delegate <IDT_VALUETYPE_V0_HI,
-    IDI_VALUETYPE_V0_HI, IDS_ET_VALUETYPE_V0_HI, IDS_VALUENAME_V0_HI>
+  IDI_VALUETYPE_V0_HI, IDS_ET_VALUETYPE_V0_HI, IDS_VALUENAME_V0_HI>
 {
 public:
   TInitialFractureApertureHigh_Delegate(
-    TInitialFractureApertureHigh* initialFractureApertureHigh);
+  TInitialFractureApertureHigh* initialFractureApertureHigh);
 
 private:
   TInitialFractureApertureHigh_Delegate(
-    const TInitialFractureApertureHigh_Delegate&);
+  const TInitialFractureApertureHigh_Delegate&);
   TInitialFractureApertureHigh_Delegate& operator = (
-    const TInitialFractureApertureHigh_Delegate&);
+  const TInitialFractureApertureHigh_Delegate&);
 
   TInitialFractureApertureHigh* m_initialFractureApertureHigh;
 
   REGISTER_DELEGATE(TInitialFractureApertureHigh,
-    TInitialFractureApertureHigh_Delegate);
+  TInitialFractureApertureHigh_Delegate);
 };
 
 class TInitialFractureApertureInter_Delegate :
   public CMaterialComponentTemp_Delegate <IDT_VALUETYPE_V0_ME,
-    IDI_VALUETYPE_V0_ME, IDS_ET_VALUETYPE_V0_ME, IDS_VALUENAME_V0_ME>
+  IDI_VALUETYPE_V0_ME, IDS_ET_VALUETYPE_V0_ME, IDS_VALUENAME_V0_ME>
 {
 public:
   TInitialFractureApertureInter_Delegate(
-    TInitialFractureApertureInter* initialFractureApertureInter);
+  TInitialFractureApertureInter* initialFractureApertureInter);
 
 private:
   TInitialFractureApertureInter_Delegate(
-    const TInitialFractureApertureInter_Delegate&);
+  const TInitialFractureApertureInter_Delegate&);
   TInitialFractureApertureInter_Delegate& operator = (
-    const TInitialFractureApertureInter_Delegate&);
+  const TInitialFractureApertureInter_Delegate&);
 
   TInitialFractureApertureInter* m_initialFractureApertureInter;
 
   REGISTER_DELEGATE(TInitialFractureApertureInter,
-    TInitialFractureApertureInter_Delegate);
+  TInitialFractureApertureInter_Delegate);
 };
 
 class TInitialFractureApertureLow_Delegate :
   public CMaterialComponentTemp_Delegate <IDT_VALUETYPE_V0_LO,
-    IDI_VALUETYPE_V0_LO, IDS_ET_VALUETYPE_V0_LO, IDS_VALUENAME_V0_LO>
+  IDI_VALUETYPE_V0_LO, IDS_ET_VALUETYPE_V0_LO, IDS_VALUENAME_V0_LO>
 {
 public:
   TInitialFractureApertureLow_Delegate(
-    TInitialFractureApertureLow* initialFractureApertureLow);
+  TInitialFractureApertureLow* initialFractureApertureLow);
 
 private:
   TInitialFractureApertureLow_Delegate(
-    const TInitialFractureApertureLow_Delegate&);
+  const TInitialFractureApertureLow_Delegate&);
   TInitialFractureApertureLow_Delegate& operator = (
-    const TInitialFractureApertureLow_Delegate&);
+  const TInitialFractureApertureLow_Delegate&);
 
   TInitialFractureApertureLow* m_initialFractureApertureLow;
 
   REGISTER_DELEGATE(TInitialFractureApertureLow,
-    TInitialFractureApertureLow_Delegate);
+  TInitialFractureApertureLow_Delegate);
 };
 
 class TReferenceAperture_Delegate :
   public CMaterialComponentTemp_Delegate <IDT_VALUETYPE_REFERENCE_APERTURE,
-    IDI_VALUETYPE_REFERENCE_APERTURE, IDS_ET_VALUETYPE_REFERENCE_APERTURE,
-    IDS_VALUENAME_REFERENCE_APERTURE>
+  IDI_VALUETYPE_REFERENCE_APERTURE, IDS_ET_VALUETYPE_REFERENCE_APERTURE,
+  IDS_VALUENAME_REFERENCE_APERTURE>
 {
 public:
   TReferenceAperture_Delegate(TReferenceAperture* referenceAperture);
@@ -2017,28 +2017,28 @@ private:
 
 class TDynamicUniaxialStiffness_Delegate :
   public CMaterialComponentTemp_Delegate <IDT_VALUETYPE_DYNUNISTIFFNESS,
-    IDI_VALUETYPE_DYNUNISTIFFNESS, IDS_ET_DYNUNISTIFFNESS,
-    IDS_VALUENAME_DYNUNISTIFFNESS>
+  IDI_VALUETYPE_DYNUNISTIFFNESS, IDS_ET_DYNUNISTIFFNESS,
+  IDS_VALUENAME_DYNUNISTIFFNESS>
 {
 public:
   TDynamicUniaxialStiffness_Delegate(
-    TDynamicUniaxialStiffness* dynamicUniaxialStiffness);
+  TDynamicUniaxialStiffness* dynamicUniaxialStiffness);
 
 private:
   TDynamicUniaxialStiffness_Delegate(const TDynamicUniaxialStiffness_Delegate&);
   TDynamicUniaxialStiffness_Delegate& operator = (
-    const TDynamicUniaxialStiffness_Delegate&);
+  const TDynamicUniaxialStiffness_Delegate&);
 
   TDynamicUniaxialStiffness* m_dynamicUniaxialStiffness;
 
   REGISTER_DELEGATE(TDynamicUniaxialStiffness,
-    TDynamicUniaxialStiffness_Delegate);
+  TDynamicUniaxialStiffness_Delegate);
 };
 
 class TDynamicShearStiffness_Delegate :
   public CMaterialComponentTemp_Delegate <IDT_VALUETYPE_DYNSHEARSTIFFNESS,
-    IDI_VALUETYPE_DYNSHEARSTIFFNESS, IDS_ET_DYNSHEARSTIFFNESS,
-    IDS_VALUENAME_DYNSHEARSTIFFNESS>
+  IDI_VALUETYPE_DYNSHEARSTIFFNESS, IDS_ET_DYNSHEARSTIFFNESS,
+  IDS_VALUENAME_DYNSHEARSTIFFNESS>
 {
 public:
   TDynamicShearStiffness_Delegate(TDynamicShearStiffness* dynamicShearStiffness);
@@ -2046,7 +2046,7 @@ public:
 private:
   TDynamicShearStiffness_Delegate(const TDynamicShearStiffness_Delegate&);
   TDynamicShearStiffness_Delegate& operator = (
-    const TDynamicShearStiffness_Delegate&);
+  const TDynamicShearStiffness_Delegate&);
 
   TDynamicShearStiffness* m_dynamicShearStiffness;
 

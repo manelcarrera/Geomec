@@ -16,9 +16,9 @@ const char *CUnitType::UnitName(int nUnitDef) const
   switch(nUnitDef)
   {
   case MLUD_SI:
-    return UnitNameSI();
+  return UnitNameSI();
   case MLUD_FIELD:
-    return UnitNameField();
+  return UnitNameField();
   }
 
   assert(false);
@@ -28,7 +28,7 @@ const char *CUnitType::UnitName(int nUnitDef) const
 double CUnitType::ToUserUnit(double dValue, int nUnitDef) const
 {
   if(nUnitDef == MLUD_FIELD)
-    return ToFieldUnit(dValue);
+  return ToFieldUnit(dValue);
 
   assert(nUnitDef == MLUD_SI);
   return dValue;
@@ -37,7 +37,7 @@ double CUnitType::ToUserUnit(double dValue, int nUnitDef) const
 double CUnitType::FromUserUnit(double dValue, int nUnitDef) const
 {
   if(nUnitDef == MLUD_FIELD)
-    return FromFieldUnit(dValue);
+  return FromFieldUnit(dValue);
 
   assert(nUnitDef == MLUD_SI);
   return dValue;
@@ -101,22 +101,22 @@ CUnitTypeStress* CUnitTypeStress::Clone() const
 
 const char *CUnitTypeStress::UnitNameSI() const
 {
-    return "MPa";
+  return "MPa";
 }
 
 const char *CUnitTypeStress::UnitNameField() const
 {
-    return "psi";
+  return "psi";
 }
 
 double CUnitTypeStress::ToFieldUnit(double dValue) const
 {
-	return dValue / 0.006894757;
+  return dValue / 0.006894757;
 }
 
 double CUnitTypeStress::FromFieldUnit(double dValue) const
 {
-	return dValue * 0.006894757;
+  return dValue * 0.006894757;
 }
 
 

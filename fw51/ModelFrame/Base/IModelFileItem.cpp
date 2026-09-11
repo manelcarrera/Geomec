@@ -23,9 +23,9 @@ void IModelFileItem::putStatusMessage( const QString&       message,
                                        const TFilePosition& info )
 {
   if ( info.isNull() )
-    modelFile().putStatusMessage( TFileMessage( message, *this ) );
+  modelFile().putStatusMessage( TFileMessage( message, *this ) );
   else
-    modelFile().putStatusMessage( TFileMessage( message, info  ) );
+  modelFile().putStatusMessage( TFileMessage( message, info  ) );
 }
 
 /*!
@@ -34,14 +34,14 @@ void IModelFileItem::putStatusMessage( const QString&       message,
   needed.
 */
 void IModelFileItem::putWarningMessage( int                  errorNo,
-                                        const QString&       message,
-                                        const TFilePosition& info )
+                    const QString&       message,
+                    const TFilePosition& info )
 {
   TModelError modelError( message, errorNo );
   if ( info.isNull() )
-    modelFile().putWarningMessage( TFileError( modelError, *this ) );
+  modelFile().putWarningMessage( TFileError( modelError, *this ) );
   else
-    modelFile().putWarningMessage( TFileError( modelError, info  ) );
+  modelFile().putWarningMessage( TFileError( modelError, info  ) );
 }
 
 /*!
@@ -57,9 +57,9 @@ void IModelFileItem::putFatalMessage( int                  errorNo,
 {
   TModelError modelError( message, errorNo );
   if ( info.isNull() )
-    modelFile().putFatalMessage( TFileError( modelError, *this ) );
+  modelFile().putFatalMessage( TFileError( modelError, *this ) );
   else
-    modelFile().putFatalMessage( TFileError( modelError, info  ) );
+  modelFile().putFatalMessage( TFileError( modelError, info  ) );
 }
 
 /*!
@@ -74,9 +74,9 @@ void IModelFileItem::putAbortMessage( int                  errorNo,
 {
   TModelError modelError( message, errorNo );
   if ( info.isNull() )
-    modelFile().putAbortMessage( TFileError( modelError, *this ) );
+  modelFile().putAbortMessage( TFileError( modelError, *this ) );
   else
-    modelFile().putAbortMessage( TFileError( modelError, info  ) );
+  modelFile().putAbortMessage( TFileError( modelError, info  ) );
 }
 
 /*!

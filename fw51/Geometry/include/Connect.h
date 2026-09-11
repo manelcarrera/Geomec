@@ -17,23 +17,23 @@
 class GEOMETRY_EXPORT  IElementConnect  
 {
 protected:
-	IElementConnect();
+  IElementConnect();
 
-        virtual ~IElementConnect() {}
+    virtual ~IElementConnect() {}
 public:
-	virtual int NodeIndex(int nIndex) const = 0;
-	virtual int NodeSize() const = 0;
+  virtual int NodeIndex(int nIndex) const = 0;
+  virtual int NodeSize() const = 0;
 };
 
 class GEOMETRY_EXPORT  INodeConnect
 {
 protected:
-	INodeConnect();
+  INodeConnect();
 
-        virtual ~INodeConnect() {}
+    virtual ~INodeConnect() {}
 public:
-	virtual int ElementIndex(int nIndex) const = 0;
-	virtual int ElementSize() const = 0;
+  virtual int ElementIndex(int nIndex) const = 0;
+  virtual int ElementSize() const = 0;
 };
 
 #endif // !defined(AFX_CONNECT_H__67FDB12B_7525_48CF_8AAF_6496C8B362D3__INCLUDED_)

@@ -11,22 +11,22 @@ namespace GeomecRGI
 class CLoadPropertyResidualStrainLoading : public CLoadPropertyBase
 {
   public:
-    CLoadPropertyResidualStrainLoading(const RGProperty& rgProperty,
+  CLoadPropertyResidualStrainLoading(const RGProperty& rgProperty,
       RGInterface& rgi, CModelBase& modelBase, CRockMechProcessor& rmp,
       const ITensorGroup::CComponentComposite::TENSOR_COMPONENT&
-        tensorComponent);
-    virtual ~CLoadPropertyResidualStrainLoading();
+    tensorComponent);
+  virtual ~CLoadPropertyResidualStrainLoading();
 
-    virtual bool loadProperty();
+  virtual bool loadProperty();
 
   private:
-    CLoadPropertyResidualStrainLoading(
+  CLoadPropertyResidualStrainLoading(
       const CLoadPropertyResidualStrainLoading& rhs);
-    CLoadPropertyResidualStrainLoading& operator = (
+  CLoadPropertyResidualStrainLoading& operator = (
       const CLoadPropertyResidualStrainLoading& rhs);
 
-    CBuildTensor m_buildTensor;
-    const ITensorGroup::CComponentComposite::TENSOR_COMPONENT m_tensorComponent;
+  CBuildTensor m_buildTensor;
+  const ITensorGroup::CComponentComposite::TENSOR_COMPONENT m_tensorComponent;
 };
 
 } // namespace GeomecRGI

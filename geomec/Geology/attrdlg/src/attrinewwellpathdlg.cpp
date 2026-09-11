@@ -56,9 +56,9 @@ void CAttriNewWellPathDlg::DoDataExchange(CDataExchange* pDX)
 {
   if(!pDX->m_bSaveAndValidate)
   {
-    ((CEdit*)GetDlgItem(IDC_ED_NEWWELLPATH_WH_NORTHING))->
+  ((CEdit*)GetDlgItem(IDC_ED_NEWWELLPATH_WH_NORTHING))->
       SetReadOnly(!m_well.IsVertical());
-    ((CEdit*)GetDlgItem(IDC_ED_NEWWELLPATH_WH_EASTING))->
+  ((CEdit*)GetDlgItem(IDC_ED_NEWWELLPATH_WH_EASTING))->
       SetReadOnly(!m_well.IsVertical());
   }
 
@@ -111,9 +111,9 @@ LRESULT CAttriNewWellPathDlg::OnValidateEdit(WPARAM wparam,LPARAM lparam)
 {
   if ( wparam == IDC_ED_NEWWELLPATH_DER_ELEV )
   {
-    // mantis 2536 wjrx
-    CString text;
-    ((CEdit*)GetDlgItem(IDC_ED_NEWWELLPATH_DER_ELEV))->GetWindowText(text);
+  // mantis 2536 wjrx
+  CString text;
+  ((CEdit*)GetDlgItem(IDC_ED_NEWWELLPATH_DER_ELEV))->GetWindowText(text);
   }
   UpdateData(TRUE);
   return 0;
@@ -130,21 +130,21 @@ void CAttriNewWellPathDlg::OnOK()
   UpdateData();
   if(m_well.IsVertical())
   {
-    if (  m_dNorthing  != m_well.GlobalNorthing()
+  if (  m_dNorthing  != m_well.GlobalNorthing()
        || m_dEasting  != m_well.GlobalEasting() 
        || m_dDerElev != m_well.GlobalTVD() 
        )
-    {
+  {
       m_well.Recalculate(m_dNorthing, m_dEasting, m_dDerElev);
-    }
+  }
   }
   else
   {
-    if(m_dDerElev != m_well.DerElev())
-    {
+  if(m_dDerElev != m_well.DerElev())
+  {
       // inclined wells can not change horizontal coordinates
       m_well.Recalculate(m_dDerElev - m_well.DerElev());
-    }
+  }
   }
 
   m_well.Name((LPCSTR) m_strName);
@@ -180,14 +180,14 @@ void CAttriNewWellPathDlg::OnButtonChangeDate()
 
   if(dlg.DoModal() == IDOK)
   {
-    //mantis 2548 wjrx
-    m_birth_date.setDate( dlg.DateTime().GetYear()
-    , dlg.DateTime().GetMonth()
-    , dlg.DateTime().GetDay()
-    );
-    CString strBirthDate(m_birth_date.toString("dd MM yyyy").toStdString().c_str());
+  //mantis 2548 wjrx
+  m_birth_date.setDate( dlg.DateTime().GetYear()
+  , dlg.DateTime().GetMonth()
+  , dlg.DateTime().GetDay()
+  );
+  CString strBirthDate(m_birth_date.toString("dd MM yyyy").toStdString().c_str());
 
-    ((CEdit*)GetDlgItem(IDC_ED_NEWWELLPATH_BIRTH_DATE))->SetWindowText(strBirthDate);
+  ((CEdit*)GetDlgItem(IDC_ED_NEWWELLPATH_BIRTH_DATE))->SetWindowText(strBirthDate);
   }
 }
 

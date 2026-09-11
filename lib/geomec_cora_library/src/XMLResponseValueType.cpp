@@ -36,7 +36,7 @@ const QString RESPONSE_VALUE_TYPE = "<ResponseValueType Name=\"%1\" %2";
 std::ostream& CXMLResponseValueType::operator () (std::ostream& stream) const
 {
   stream << RESPONSE_VALUE_TYPE.arg(m_responseValueTypeName).
-    arg(m_responseValueTypePostFix).toStdString() << std::endl;
+  arg(m_responseValueTypePostFix).toStdString() << std::endl;
 
   return stream;
 }
@@ -70,9 +70,9 @@ std::ostream& operator << (std::ostream& stream,
   const cora::TXMLResponseValueTypes& rhs)
 {
   for (cora::TXMLResponseValueTypes::const_iterator responseValueType =
-    rhs.begin(); responseValueType != rhs.end(); ++responseValueType)
+  rhs.begin(); responseValueType != rhs.end(); ++responseValueType)
   {
-    stream << *responseValueType;
+  stream << *responseValueType;
   }
 
   return stream;

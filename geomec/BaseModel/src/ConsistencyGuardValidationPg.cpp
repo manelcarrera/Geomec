@@ -54,15 +54,15 @@ void CConsistencyGuardValidationPg::DoDataExchange(CDataExchange* pDX)
 
   if (!pDX->m_bSaveAndValidate)
   {
-    m_bMesh = m_ValidateModel.checkMesh();
-    m_bReservoir = m_ValidateModel.checkReservoir();
-    m_bDepletion = m_ValidateModel.checkExistenceDepletionStage();
-    m_bMaterial = m_ValidateModel.checkMaterial();
-    m_bValues = m_ValidateModel.checkValues();
+  m_bMesh = m_ValidateModel.checkMesh();
+  m_bReservoir = m_ValidateModel.checkReservoir();
+  m_bDepletion = m_ValidateModel.checkExistenceDepletionStage();
+  m_bMaterial = m_ValidateModel.checkMaterial();
+  m_bValues = m_ValidateModel.checkValues();
 
-    CTetraModel *pModel = dynamic_cast<CTetraModel*>(m_pModel);
-    if (!pModel)
-    {
+  CTetraModel *pModel = dynamic_cast<CTetraModel*>(m_pModel);
+  if (!pModel)
+  {
       CWnd *pWnd = GetDlgItem(IDC_TETRA_GROUP);
       pWnd->EnableWindow(FALSE);
       pWnd = GetDlgItem(IDC_INPUTSTAT_BOUND);
@@ -71,17 +71,17 @@ void CConsistencyGuardValidationPg::DoDataExchange(CDataExchange* pDX)
       pWnd->EnableWindow(FALSE);
       pWnd = GetDlgItem(IDC_INPUTSTAT_EMPT_FAULT);
       pWnd->EnableWindow(FALSE);
-    }
-    else
-    {
+  }
+  else
+  {
 
       if (m_bMesh)
-        m_bBoundCond = m_ValidateModel.checkBoundaryConditions();
+    m_bBoundCond = m_ValidateModel.checkBoundaryConditions();
       else
-        m_bBoundCond = false;
+    m_bBoundCond = false;
       m_bEmptForm = m_ValidateModel.checkNoEmptyFormations();
       m_bEmptFault = m_ValidateModel.checkNoEmptyFaults();
-    }
+  }
   }
 }
 
@@ -108,9 +108,9 @@ void CConsistencyGuardValidationPg::OnPaint()
   CTetraModel *pMod = dynamic_cast<CTetraModel*>(m_pModel);
   if (pMod)
   {
-    DrawCheck(dc, m_BoundConditionsCheck, m_bBoundCond);
-    DrawCheck(dc, m_EmptyFormationsCheck, m_bEmptForm);
-    DrawCheck(dc, m_EmptyFaultsCheck, m_bEmptFault);
+  DrawCheck(dc, m_BoundConditionsCheck, m_bBoundCond);
+  DrawCheck(dc, m_EmptyFormationsCheck, m_bEmptForm);
+  DrawCheck(dc, m_EmptyFaultsCheck, m_bEmptFault);
   }
 
   // Do not call CDialog::OnPaint() for painting messages
@@ -124,9 +124,9 @@ void CConsistencyGuardValidationPg::DrawCheck(CPaintDC &dc, CStatic &IconCheck, 
 
   unsigned int CheckID;
   if (bCheck)
-    CheckID = IDI_CHECK_RED;
+  CheckID = IDI_CHECK_RED;
   else
-    CheckID = IDI_CROSS_RED;
+  CheckID = IDI_CROSS_RED;
 
   DrawIconEx(dc, rect.left, rect.top, LoadIcon(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(CheckID)), 16, 16, 0, 0, DI_NORMAL);
 }

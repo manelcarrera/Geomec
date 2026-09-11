@@ -12,30 +12,30 @@
 class IVectorComposite// : public IValueComposite
 {
 public:
-	class IVectorComponent// : public IValueComponentBase
-	{
-	public:
-		enum COMPONENT { X_COMPONENT = 0, Y_COMPONENT, Z_COMPONENT, LENGTH_COMPONENT };
-	private:
-		COMPONENT m_component;
-	public:
-		// Construction
-		IVectorComponent(IVectorComposite& parent, enum COMPONENT component, int nMode = 0);
+  class IVectorComponent// : public IValueComponentBase
+  {
+  public:
+    enum COMPONENT { X_COMPONENT = 0, Y_COMPONENT, Z_COMPONENT, LENGTH_COMPONENT };
+  private:
+    COMPONENT m_component;
+  public:
+    // Construction
+    IVectorComponent(IVectorComposite& parent, enum COMPONENT component, int nMode = 0);
 
-		
-	
-	};
+    
+  
+  };
 public:
 
 private:
 
-	// Access to the vector ...
+  // Access to the vector ...
 //	virtual geo::CVector ValuePoint(const geo::IPoint& pt, const CQuantity::UNIT unit) const = 0;
 //	virtual std::vector<geo::CVector> ValueVector(const geo::IElement& element, const CQuantity::UNIT unit) const = 0;
 
 
-	IVectorComposite();
-	virtual ~IVectorComposite();
+  IVectorComposite();
+  virtual ~IVectorComposite();
 
 };
 

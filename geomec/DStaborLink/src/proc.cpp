@@ -13,50 +13,50 @@
 
 long CProc::GetMaxIter()
 {
-	long result;
-	GetProperty(0x1, VT_I4, (void*)&result);
-	return result;
+  long result;
+  GetProperty(0x1, VT_I4, (void*)&result);
+  return result;
 }
 
 void CProc::SetMaxIter(long propVal)
 {
-	SetProperty(0x1, VT_I4, propVal);
+  SetProperty(0x1, VT_I4, propVal);
 }
 
 double CProc::GetCriterium()
 {
-	double result;
-	GetProperty(0x2, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x2, VT_R8, (void*)&result);
+  return result;
 }
 
 void CProc::SetCriterium(double propVal)
 {
-	SetProperty(0x2, VT_R8, propVal);
+  SetProperty(0x2, VT_R8, propVal);
 }
 
 long CProc::GetScheme()
 {
-	long result;
-	GetProperty(0x3, VT_I4, (void*)&result);
-	return result;
+  long result;
+  GetProperty(0x3, VT_I4, (void*)&result);
+  return result;
 }
 
 void CProc::SetScheme(long propVal)
 {
-	SetProperty(0x3, VT_I4, propVal);
+  SetProperty(0x3, VT_I4, propVal);
 }
 
 long CProc::GetTypeCrit()
 {
-	long result;
-	GetProperty(0x4, VT_I4, (void*)&result);
-	return result;
+  long result;
+  GetProperty(0x4, VT_I4, (void*)&result);
+  return result;
 }
 
 void CProc::SetTypeCrit(long propVal)
 {
-	SetProperty(0x4, VT_I4, propVal);
+  SetProperty(0x4, VT_I4, propVal);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -64,7 +64,7 @@ void CProc::SetTypeCrit(long propVal)
 
 BOOL CProc::SetDefault()
 {
-	BOOL result;
-	InvokeHelper(0x5, DISPATCH_METHOD, VT_BOOL, (void*)&result, NULL);
-	return result;
+  BOOL result;
+  InvokeHelper(0x5, DISPATCH_METHOD, VT_BOOL, (void*)&result, NULL);
+  return result;
 }

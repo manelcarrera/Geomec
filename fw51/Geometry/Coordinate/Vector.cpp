@@ -43,8 +43,8 @@ CVector GetSolution(const CVector &v1, const CVector &v2, const CVector &v3, con
   dD = Determinant(v1, v2, v3);
 
   if(dD == 0.0)	{
-    //No solution
-    return CVector();
+  //No solution
+  return CVector();
   }
 
   dP = Determinant(v4, v2, v3);
@@ -84,9 +84,9 @@ CVector::CVector(const IVector &rhs)
 : m_empty( rhs.Empty() )
 {
   if(!rhs.Empty()) {
-    m_coor[0] = rhs.X();
-    m_coor[1] = rhs.Y();
-    m_coor[2] = rhs.Z();
+  m_coor[0] = rhs.X();
+  m_coor[1] = rhs.Y();
+  m_coor[2] = rhs.Z();
   }
 }
 
@@ -94,9 +94,9 @@ CVector::CVector(const CVector &rhs)
 : m_empty( rhs.Empty() )
 {
   if(!rhs.Empty()) {
-    m_coor[0] = rhs.X();
-    m_coor[1] = rhs.Y();
-    m_coor[2] = rhs.Z();
+  m_coor[0] = rhs.X();
+  m_coor[1] = rhs.Y();
+  m_coor[2] = rhs.Z();
   }
 }
 
@@ -104,11 +104,11 @@ CVector::CVector(const IPoint &pt)
 : m_empty( pt.Empty() )
 {
   if(!pt.Empty()) {
-    pt.AssertValid();
-    m_coor[0] = pt.X();
-    m_coor[1] = pt.Y();
-    m_coor[2] = pt.Z();
-    assert(!Empty());
+  pt.AssertValid();
+  m_coor[0] = pt.X();
+  m_coor[1] = pt.Y();
+  m_coor[2] = pt.Z();
+  assert(!Empty());
   }
 }
 
@@ -116,11 +116,11 @@ CVector::CVector(const ILine &line)
 : m_empty( line.Empty() )
 {
   if(!line.Empty()) {
-    line.AssertValid();
-    m_coor[0] = line.Second().X() - line.First().X();
-    m_coor[1] = line.Second().Y() - line.First().Y();
-    m_coor[2] = line.Second().Z() - line.First().Z();
-    assert(!Empty());
+  line.AssertValid();
+  m_coor[0] = line.Second().X() - line.First().X();
+  m_coor[1] = line.Second().Y() - line.First().Y();
+  m_coor[2] = line.Second().Z() - line.First().Z();
+  assert(!Empty());
   }
 }
 
@@ -157,9 +157,9 @@ const double& CVector::Z() const
 void CVector::X(const double &dX)
 {
   if(Empty()) {
-    m_coor[1] = 0.0;
-    m_coor[2] = 0.0;
-    m_empty = false;
+  m_coor[1] = 0.0;
+  m_coor[2] = 0.0;
+  m_empty = false;
   }
 
   m_coor[0] = dX;
@@ -169,9 +169,9 @@ void CVector::X(const double &dX)
 void CVector::Y(const double &dY)
 {
   if(Empty()) {
-    m_coor[0] = 0.0;
-    m_coor[2] = 0.0;
-    m_empty = false;
+  m_coor[0] = 0.0;
+  m_coor[2] = 0.0;
+  m_empty = false;
   }
   m_coor[1] = dY;
 }
@@ -180,9 +180,9 @@ void CVector::Y(const double &dY)
 void CVector::Z(const double &dZ)
 {
   if(Empty()) {
-    m_coor[0] = 0.0;
-    m_coor[1] = 0.0;
-    m_empty = false;
+  m_coor[0] = 0.0;
+  m_coor[1] = 0.0;
+  m_empty = false;
   }
   m_coor[2] = dZ;
 }
@@ -198,9 +198,9 @@ CVector& CVector::operator=(const CVector& rhs)
   m_empty = rhs.Empty();
 
   if(!rhs.Empty()) {
-    m_coor[0] = rhs.X();
-    m_coor[1] = rhs.Y();
-    m_coor[2] = rhs.Z();
+  m_coor[0] = rhs.X();
+  m_coor[1] = rhs.Y();
+  m_coor[2] = rhs.Z();
   }
 
   return *this;

@@ -23,7 +23,7 @@
 
 #define HEAP_INSERT_HSPLIT(h, e) ((e)->index = gts_eheap_insert (h, e))
 #define HEAP_REMOVE_HSPLIT(h, e) (gts_eheap_remove (h, (e)->index),\
-				  (e)->index = NULL)
+          (e)->index = NULL)
 
 static void hsplit_init (GtsHSplit * hsplit)
 {
@@ -42,7 +42,7 @@ GtsHSplitClass * gts_hsplit_class (void)
   static GtsHSplitClass * klass = NULL;
 
   if (klass == NULL) {
-    GtsObjectClassInfo hsplit_info = {
+  GtsObjectClassInfo hsplit_info = {
       "GtsHSplit",
       sizeof (GtsHSplit),
       sizeof (GtsHSplitClass),
@@ -50,9 +50,9 @@ GtsHSplitClass * gts_hsplit_class (void)
       (GtsObjectInitFunc) hsplit_init,
       (GtsArgSetFunc) NULL,
       (GtsArgGetFunc) NULL
-    };
-    klass = gts_object_class_new (GTS_OBJECT_CLASS (gts_split_class ()), 
-				  &hsplit_info);
+  };
+  klass = gts_object_class_new (GTS_OBJECT_CLASS (gts_split_class ()), 
+          &hsplit_info);
   }
 
   return klass;
@@ -87,7 +87,7 @@ GtsHSplit * gts_hsplit_new (GtsHSplitClass * klass, GtsSplit * vs)
  * collapsable priority heaps of @hsurface.  
  */
 void gts_hsplit_collapse (GtsHSplit * hs,
-			  GtsHSurface * hsurface)
+        GtsHSurface * hsurface)
 {
   GtsHSplit * parent;
   GtsSplit * vs;
@@ -105,13 +105,13 @@ void gts_hsplit_collapse (GtsHSplit * hs,
 
   vs = GTS_SPLIT (hs);
   if (GTS_IS_HSPLIT (vs->v1))
-    HEAP_REMOVE_HSPLIT (hsurface->expandable, GTS_HSPLIT (vs->v1));
+  HEAP_REMOVE_HSPLIT (hsurface->expandable, GTS_HSPLIT (vs->v1));
   if (GTS_IS_HSPLIT (vs->v2))
-    HEAP_REMOVE_HSPLIT (hsurface->expandable, GTS_HSPLIT (vs->v2));
+  HEAP_REMOVE_HSPLIT (hsurface->expandable, GTS_HSPLIT (vs->v2));
 
   parent = hs->parent;
   if (parent && ++parent->nchild == 2)
-    HEAP_INSERT_HSPLIT (hsurface->collapsable, parent);
+  HEAP_INSERT_HSPLIT (hsurface->collapsable, parent);
 }
 
 /**
@@ -123,7 +123,7 @@ void gts_hsplit_collapse (GtsHSplit * hs,
  * and updates the priority heaps of @hsurface.
  */
 void gts_hsplit_expand (GtsHSplit * hs,
-			GtsHSurface * hsurface)
+      GtsHSurface * hsurface)
 {
   GtsHSplit * parent;
   GtsSplit * vs;
@@ -140,13 +140,13 @@ void gts_hsplit_expand (GtsHSplit * hs,
 
   vs = GTS_SPLIT (hs);
   if (GTS_IS_HSPLIT (vs->v1))
-    HEAP_INSERT_HSPLIT (hsurface->expandable, GTS_HSPLIT (vs->v1));
+  HEAP_INSERT_HSPLIT (hsurface->expandable, GTS_HSPLIT (vs->v1));
   if (GTS_IS_HSPLIT (vs->v2))
-    HEAP_INSERT_HSPLIT (hsurface->expandable, GTS_HSPLIT (vs->v2));
+  HEAP_INSERT_HSPLIT (hsurface->expandable, GTS_HSPLIT (vs->v2));
 
   parent = hs->parent;
   if (parent && parent->nchild-- == 2)
-    HEAP_REMOVE_HSPLIT (hsurface->collapsable, parent);
+  HEAP_REMOVE_HSPLIT (hsurface->collapsable, parent);
 }
 
 static void hsurface_destroy (GtsObject * object)
@@ -154,13 +154,13 @@ static void hsurface_destroy (GtsObject * object)
   GtsHSurface * hs = GTS_HSURFACE (object);
 
   gts_hsurface_traverse (hs, G_POST_ORDER, -1,
-			 (GtsSplitTraverseFunc) gts_object_destroy, 
-			 NULL);
+       (GtsSplitTraverseFunc) gts_object_destroy, 
+       NULL);
   g_slist_free (hs->roots);
   if (hs->expandable)
-    gts_eheap_destroy (hs->expandable);
+  gts_eheap_destroy (hs->expandable);
   if (hs->collapsable)
-    gts_eheap_destroy (hs->collapsable);
+  gts_eheap_destroy (hs->collapsable);
   g_ptr_array_free (hs->split, TRUE);
 
   (* GTS_OBJECT_CLASS (gts_hsurface_class ())->parent_class->destroy) (object);
@@ -190,7 +190,7 @@ GtsHSurfaceClass * gts_hsurface_class (void)
   static GtsHSurfaceClass * klass = NULL;
 
   if (klass == NULL) {
-    GtsObjectClassInfo hsurface_info = {
+  GtsObjectClassInfo hsurface_info = {
       "GtsHSurface",
       sizeof (GtsHSurface),
       sizeof (GtsHSurfaceClass),
@@ -198,9 +198,9 @@ GtsHSurfaceClass * gts_hsurface_class (void)
       (GtsObjectInitFunc) hsurface_init,
       (GtsArgSetFunc) NULL,
       (GtsArgGetFunc) NULL
-    };
-    klass = gts_object_class_new (gts_object_class (), 
-				  &hsurface_info);
+  };
+  klass = gts_object_class_new (gts_object_class (), 
+          &hsurface_info);
   }
 
   return klass;
@@ -223,12 +223,12 @@ GtsHSurfaceClass * gts_hsurface_class (void)
  * destroyed in the process.
  */
 GtsHSurface * gts_hsurface_new (GtsHSurfaceClass * klass,
-				GtsHSplitClass * hsplit_class,
-				GtsPSurface * psurface,
-				GtsKeyFunc expand_key,
-				gpointer expand_data,
-				GtsKeyFunc collapse_key,
-				gpointer collapse_data)
+        GtsHSplitClass * hsplit_class,
+        GtsPSurface * psurface,
+        GtsKeyFunc expand_key,
+        gpointer expand_data,
+        GtsKeyFunc collapse_key,
+        gpointer collapse_data)
 {
   GtsHSurface * hsurface;
 
@@ -245,43 +245,43 @@ GtsHSurface * gts_hsurface_new (GtsHSurfaceClass * klass,
   g_ptr_array_set_size (hsurface->split, psurface->split->len);
 
   while (gts_psurface_remove_vertex (psurface))
-    ;
+  ;
   while (psurface->pos) {
-    GtsSplit * vs = g_ptr_array_index (psurface->split, psurface->pos - 1);
-    GtsHSplit * hs = gts_hsplit_new (hsplit_class, vs);
+  GtsSplit * vs = g_ptr_array_index (psurface->split, psurface->pos - 1);
+  GtsHSplit * hs = gts_hsplit_new (hsplit_class, vs);
 
-    g_ptr_array_index (hsurface->split, psurface->pos - 1) = hs;
-    psurface->pos--;
+  g_ptr_array_index (hsurface->split, psurface->pos - 1) = hs;
+  psurface->pos--;
 
-    hs->parent = GTS_OBJECT (vs)->reserved;
-    if (hs->parent) {
+  hs->parent = GTS_OBJECT (vs)->reserved;
+  if (hs->parent) {
       GtsSplit * vsp = GTS_SPLIT (hs->parent);
 
       if (vsp->v1 == GTS_OBJECT (vs)) {
-	g_assert (vsp->v2 != GTS_OBJECT (vs));
-	vsp->v1 = GTS_OBJECT (hs);
+  g_assert (vsp->v2 != GTS_OBJECT (vs));
+  vsp->v1 = GTS_OBJECT (hs);
       }
       else {
-	g_assert (vsp->v2 == GTS_OBJECT (vs));
-	vsp->v2 = GTS_OBJECT (hs);
+  g_assert (vsp->v2 == GTS_OBJECT (vs));
+  vsp->v2 = GTS_OBJECT (hs);
       }
-    }
-    else
+  }
+  else
       hsurface->roots = g_slist_prepend (hsurface->roots, hs);
 
-    hs->nchild = 0;
-    if (GTS_IS_SPLIT (vs->v1))
+  hs->nchild = 0;
+  if (GTS_IS_SPLIT (vs->v1))
       GTS_OBJECT (vs->v1)->reserved = hs;
-    else
+  else
       hs->nchild++;
-    if (GTS_IS_SPLIT (vs->v2))
+  if (GTS_IS_SPLIT (vs->v2))
       GTS_OBJECT (vs->v2)->reserved = hs;
-    else
+  else
       hs->nchild++;
-    
-    gts_split_expand (vs, psurface->s, psurface->s->edge_class);
+  
+  gts_split_expand (vs, psurface->s, psurface->s->edge_class);
 
-    if (hs->nchild == 2)
+  if (hs->nchild == 2)
       HEAP_INSERT_HSPLIT (hsurface->collapsable, hs);
   }
 
@@ -307,10 +307,10 @@ GtsHSurface * gts_hsurface_new (GtsHSurfaceClass * klass,
  * See also gts_split_traverse().
  */
 void gts_hsurface_traverse (GtsHSurface *    hsurface,
-			    GTraverseType    order,
-			    gint             depth,
-			    GtsSplitTraverseFunc func,
-			    gpointer         data)
+        GTraverseType    order,
+        gint             depth,
+        GtsSplitTraverseFunc func,
+        gpointer         data)
 {
   GSList * i;
 
@@ -321,8 +321,8 @@ void gts_hsurface_traverse (GtsHSurface *    hsurface,
 
   i = hsurface->roots;
   while (i) {
-    gts_split_traverse (i->data, order, depth, func, data);
-    i = i->next;
+  gts_split_traverse (i->data, order, depth, func, data);
+  i = i->next;
   }
 }
 
@@ -341,9 +341,9 @@ void gts_hsurface_traverse (GtsHSurface *    hsurface,
  * TRUE from func.  
  */
 void gts_hsurface_foreach (GtsHSurface * hsurface,
-			   GTraverseType order,
-			   GtsFunc       func,
-			   gpointer      data)
+         GTraverseType order,
+         GtsFunc       func,
+         gpointer      data)
 {
   GtsHSplit * hs;
   guint i = 0, len;
@@ -354,29 +354,29 @@ void gts_hsurface_foreach (GtsHSurface * hsurface,
   g_return_if_fail (order == G_PRE_ORDER || order == G_POST_ORDER);
 
   while ((hs = gts_eheap_top (hsurface->expandable, NULL))) 
-    gts_hsplit_expand (hs, hsurface);
+  gts_hsplit_expand (hs, hsurface);
 
   len = hsurface->split->len;
   switch (order) {
   case G_PRE_ORDER:
-    while (i < len && !stop) {
+  while (i < len && !stop) {
       GtsHSplit * hs = g_ptr_array_index (hsurface->split, i);
       stop = (*func) (hs, data);
       if (!stop)
-	gts_hsplit_collapse (hs, hsurface);
+  gts_hsplit_collapse (hs, hsurface);
       i++;
-    }
-    break;
+  }
+  break;
   case G_POST_ORDER:
-    while (i < len && !stop) {
+  while (i < len && !stop) {
       GtsHSplit * hs = g_ptr_array_index (hsurface->split, i);
       gts_hsplit_collapse (hs, hsurface);
       stop = (*func) (hs, data);
       i++;
-    }
-    break;
+  }
+  break;
   default:
-    g_assert_not_reached ();
+  g_assert_not_reached ();
   }
 }
 
@@ -395,10 +395,10 @@ guint gts_hsurface_height (GtsHSurface * hsurface)
 
   i = hsurface->roots;
   while (i) {
-    guint tmp_height = gts_split_height (i->data);
-    if (tmp_height > height)
+  guint tmp_height = gts_split_height (i->data);
+  if (tmp_height > height)
       height = tmp_height;
-    i = i->next;
+  i = i->next;
   }
 
   return height;

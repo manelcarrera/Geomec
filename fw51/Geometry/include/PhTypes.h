@@ -95,9 +95,9 @@ typedef struct interval {
 
 typedef struct _Param_Vertex {  	
   Matrix *Vertex; /* Each row is a coordinate of the vertex. The first  */
-	          /* "m" values of each row are the coefficients of the */
-	          /* parameters. The (m+1)th value is the constant, the */
-	          /* The (m+2)th value is the common denominator.       */
+            /* "m" values of each row are the coefficients of the */
+            /* parameters. The (m+1)th value is the constant, the */
+            /* The (m+2)th value is the common denominator.       */
   Matrix *Domain; /* Constraints on parameters (in Polyhedral format)   */
   struct _Param_Vertex *next;          /* Pointer to the next structure */
 } Param_Vertices;
@@ -109,9 +109,9 @@ typedef struct _Param_Domain {
 } Param_Domain;
 
 typedef struct _Param_Polyhedron {
-	int nbV;	    /* Number of parameterized vertices            */
-	Param_Vertices *V;  /* Pointer to the list of parameteric vertices */
-	Param_Domain *D;    /* Pointer to the list of validity domains     */
+  int nbV;	    /* Number of parameterized vertices            */
+  Param_Vertices *V;  /* Pointer to the list of parameteric vertices */
+  Param_Domain *D;    /* Pointer to the list of validity domains     */
 } Param_Polyhedron;
 
 #define FORALL_PVertex_in_ParamPolyhedron(_V, _D, _P)   \
@@ -135,8 +135,8 @@ typedef enum { polynomial, periodic, evector } enode_type;
 typedef struct _evalue {
   Value d;              /* denominator */
   union {
-    Value n;            /* numerator (if denominator != 0) */
-    struct _enode *p;	/* pointer   (if denominator == 0) */
+  Value n;            /* numerator (if denominator != 0) */
+  struct _enode *p;	/* pointer   (if denominator == 0) */
   } x;
 } evalue;
 
@@ -152,8 +152,8 @@ typedef struct _enumeration {
   Polyhedron *ValidityDomain;    /* contraints on the parameters     */
   evalue EP;                     /* dimension = combined space       */
   struct _enumeration *next;     /* Ehrhart Polynomial, corresponding
-	                            to parameter values inside the
-                                    domain ValidityDomain below      */
+                to parameter values inside the
+                  domain ValidityDomain below      */
 } Enumeration;
 
 /*-----------------------------Example Usage------------------------------*/

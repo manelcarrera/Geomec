@@ -12,9 +12,9 @@ class CMaterialImportDialog : public CMatLibDlg
 {
 public:
   CMaterialImportDialog(CMaterialEntry_Delegate* materialEntry_Delegate,
-    CMaterialEntry* materialEntry, ml::CMaterialLibrary& matlib,
-    int modelfilter, CAnalysisLogger& logger, bool bImportMode = false,
-    UINT nIDTemplate = IDD_MATERIAL_IMPORT_EXPORT_DIALOG, CWnd* pParent = 0);
+  CMaterialEntry* materialEntry, ml::CMaterialLibrary& matlib,
+  int modelfilter, CAnalysisLogger& logger, bool bImportMode = false,
+  UINT nIDTemplate = IDD_MATERIAL_IMPORT_EXPORT_DIALOG, CWnd* pParent = 0);
 
 protected:
   virtual BOOL OnInitDialog();

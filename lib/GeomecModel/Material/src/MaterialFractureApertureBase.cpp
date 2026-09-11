@@ -21,34 +21,34 @@ bool CMaterialFractureApertureBase::Write(const CFFMaterial& ffmat, dia::IDianaR
 
   if(ffmat.IsParameter(IDT_VALUETYPE_FRACT_STIFF_NORMAL))
   {
-    dStiffNormal = ffmat.ParameterValue(IDT_VALUETYPE_FRACT_STIFF_NORMAL);
+  dStiffNormal = ffmat.ParameterValue(IDT_VALUETYPE_FRACT_STIFF_NORMAL);
   }
   else
   {
-    assert(ffmat.IsParameter(IDT_VALUETYPE_REFERENCE_APERTURE));
-    double a = ffmat.ParameterValue(IDT_VALUETYPE_APERTUREPARAM);
-    double wref = ffmat.ParameterValue(IDT_VALUETYPE_REFERENCE_APERTURE);
+  assert(ffmat.IsParameter(IDT_VALUETYPE_REFERENCE_APERTURE));
+  double a = ffmat.ParameterValue(IDT_VALUETYPE_APERTUREPARAM);
+  double wref = ffmat.ParameterValue(IDT_VALUETYPE_REFERENCE_APERTURE);
 
-    if (a == 0.0)
-    {
+  if (a == 0.0)
+  {
       a = 1e-7;
-    }
+  }
 
-    if (wref < 1e-6)
-    {
+  if (wref < 1e-6)
+  {
       wref = 1e-6;
-    }
+  }
 
-    dStiffNormal = 1 / (a * wref);
+  dStiffNormal = 1 / (a * wref);
   }
 
   if(ffmat.IsParameter(IDT_VALUETYPE_FRACT_STIFF_SHEAR))
   {
-    dStiffShear = ffmat.ParameterValue(IDT_VALUETYPE_FRACT_STIFF_SHEAR);
+  dStiffShear = ffmat.ParameterValue(IDT_VALUETYPE_FRACT_STIFF_SHEAR);
   }
   else
   {
-    dStiffShear = 0.5 * dStiffNormal;
+  dStiffShear = 0.5 * dStiffNormal;
   }
 
   ftn_double_t Elaval[12];
@@ -91,18 +91,18 @@ bool CMaterialFractureApertureBase::Write(const CFFMaterial& ffmat, dia::IDianaR
   CGeomecDianaRunnerBase& runner = static_cast<CGeomecDianaRunnerBase&>(diarunner);
   if(runner.Model().UseDecompactionParameters())
   {
-    ftn_double_t deco5[10];
-    deco5[0] = ffmat.ParameterValue(IDT_VALUETYPE_YOUNGMODULUS_TRANS) * 1e6;
-    deco5[1] = ffmat.ParameterValue(IDT_VALUETYPE_YOUNGMODULUS_NORM) * 1e6;
-    deco5[2] = ffmat.ParameterValue(IDT_VALUETYPE_POISSONRATIO_TRANS);
-    deco5[3] = ffmat.ParameterValue(IDT_VALUETYPE_POISSONRATIO_NORM);
-    deco5[4] = ffmat.ParameterValue(IDT_VALUETYPE_ANISOTROPIC_SHEARMODULUS) * 1e6;
-    deco5[5] = ffmat.ParameterValue(IDT_VALUETYPE_YOUNGMODULUS_TRANS_DECOMP) * 1e6;
-    deco5[6] = ffmat.ParameterValue(IDT_VALUETYPE_YOUNGMODULUS_NORM_DECOMP) * 1e6;
-    deco5[7] = ffmat.ParameterValue(IDT_VALUETYPE_POISSONRATIO_TRANS_DECOMP);
-    deco5[8] = ffmat.ParameterValue(IDT_VALUETYPE_POISSONRATIO_NORM_DECOMP);
-    deco5[9] = ffmat.ParameterValue(IDT_VALUETYPE_ANISOTROPIC_SHEARMODULUS_DECOMP) * 1e6;
-    PutItemLength("DECO5", deco5, 10);
+  ftn_double_t deco5[10];
+  deco5[0] = ffmat.ParameterValue(IDT_VALUETYPE_YOUNGMODULUS_TRANS) * 1e6;
+  deco5[1] = ffmat.ParameterValue(IDT_VALUETYPE_YOUNGMODULUS_NORM) * 1e6;
+  deco5[2] = ffmat.ParameterValue(IDT_VALUETYPE_POISSONRATIO_TRANS);
+  deco5[3] = ffmat.ParameterValue(IDT_VALUETYPE_POISSONRATIO_NORM);
+  deco5[4] = ffmat.ParameterValue(IDT_VALUETYPE_ANISOTROPIC_SHEARMODULUS) * 1e6;
+  deco5[5] = ffmat.ParameterValue(IDT_VALUETYPE_YOUNGMODULUS_TRANS_DECOMP) * 1e6;
+  deco5[6] = ffmat.ParameterValue(IDT_VALUETYPE_YOUNGMODULUS_NORM_DECOMP) * 1e6;
+  deco5[7] = ffmat.ParameterValue(IDT_VALUETYPE_POISSONRATIO_TRANS_DECOMP);
+  deco5[8] = ffmat.ParameterValue(IDT_VALUETYPE_POISSONRATIO_NORM_DECOMP);
+  deco5[9] = ffmat.ParameterValue(IDT_VALUETYPE_ANISOTROPIC_SHEARMODULUS_DECOMP) * 1e6;
+  PutItemLength("DECO5", deco5, 10);
   }
 
   return IMaterialRock::Write(ffmat, diarunner);
@@ -151,7 +151,7 @@ int CMaterialFractureApertureBase::WriteFilosParamSize(const CFFMaterial &ffmat,
   CGeomecDianaRunnerBase& runner = static_cast<CGeomecDianaRunnerBase&>(diarunner);
   if (runner.Model().UseDecompactionParameters())
   {
-    size += 10; // DECO5(10)
+  size += 10; // DECO5(10)
   }
 
   size += IMaterialRock::WriteFilosParamSize(ffmat, diarunner);
@@ -162,25 +162,25 @@ bool CMaterialFractureApertureBase::WriteFilosParamName(const CFFMaterial &ffmat
 {
   if (i < 12)
   {
-    QString elaval = QString("ELAVAL(%1)").arg(i + 1);
-    strncpy(name, elaval.toStdString().c_str(), 10);
-    return true;
+  QString elaval = QString("ELAVAL(%1)").arg(i + 1);
+  strncpy(name, elaval.toStdString().c_str(), 10);
+  return true;
   }
   i -= 12;
 
   if (i < 3)
   {
-    QString fraxhi = QString("FRAXHI(%1)").arg(i + 1);
-    strncpy(name, fraxhi.toStdString().c_str(), 10);
-    return true;
+  QString fraxhi = QString("FRAXHI(%1)").arg(i + 1);
+  strncpy(name, fraxhi.toStdString().c_str(), 10);
+  return true;
   }
   i -= 3;
 
   if (i < 3)
   {
-    QString fraxlo = QString("FRAXLO(%1)").arg(i + 1);
-    strncpy(name, fraxlo.toStdString().c_str(), 10);
-    return true;
+  QString fraxlo = QString("FRAXLO(%1)").arg(i + 1);
+  strncpy(name, fraxlo.toStdString().c_str(), 10);
+  return true;
   }
   i -= 3;
 
@@ -188,13 +188,13 @@ bool CMaterialFractureApertureBase::WriteFilosParamName(const CFFMaterial &ffmat
   CGeomecDianaRunnerBase& runner = static_cast<CGeomecDianaRunnerBase&>(diarunner);
   if (runner.Model().UseDecompactionParameters())
   {
-    if (i < 10)
-    {
+  if (i < 10)
+  {
       QString deco5 = QString("DECO5(%1)").arg(i + 1);
       strncpy(name, deco5.toStdString().c_str(), 10);
       return true;
-    }
-    i -= 10;
+  }
+  i -= 10;
   }
 
   return IMaterialRock::WriteFilosParamName(ffmat, diarunner, i, name);
@@ -207,34 +207,34 @@ void CMaterialFractureApertureBase::WriteFilosParamValues(const CFFMaterial &ffm
 
   if (ffmat.IsParameter(IDT_VALUETYPE_FRACT_STIFF_NORMAL))
   {
-    dStiffNormal = ffmat.ParameterValue(IDT_VALUETYPE_FRACT_STIFF_NORMAL);
+  dStiffNormal = ffmat.ParameterValue(IDT_VALUETYPE_FRACT_STIFF_NORMAL);
   }
   else
   {
-    assert(ffmat.IsParameter(IDT_VALUETYPE_REFERENCE_APERTURE));
-    double a = ffmat.ParameterValue(IDT_VALUETYPE_APERTUREPARAM);
-    double wref = ffmat.ParameterValue(IDT_VALUETYPE_REFERENCE_APERTURE);
+  assert(ffmat.IsParameter(IDT_VALUETYPE_REFERENCE_APERTURE));
+  double a = ffmat.ParameterValue(IDT_VALUETYPE_APERTUREPARAM);
+  double wref = ffmat.ParameterValue(IDT_VALUETYPE_REFERENCE_APERTURE);
 
-    if (a == 0.0)
-    {
+  if (a == 0.0)
+  {
       a = 1e-7;
-    }
+  }
 
-    if (wref < 1e-6)
-    {
+  if (wref < 1e-6)
+  {
       wref = 1e-6;
-    }
+  }
 
-    dStiffNormal = 1 / (a * wref);
+  dStiffNormal = 1 / (a * wref);
   }
 
   if (ffmat.IsParameter(IDT_VALUETYPE_FRACT_STIFF_SHEAR))
   {
-    dStiffShear = ffmat.ParameterValue(IDT_VALUETYPE_FRACT_STIFF_SHEAR);
+  dStiffShear = ffmat.ParameterValue(IDT_VALUETYPE_FRACT_STIFF_SHEAR);
   }
   else
   {
-    dStiffShear = 0.5 * dStiffNormal;
+  dStiffShear = 0.5 * dStiffNormal;
   }
 
   *values = ffmat.ParameterValue(IDT_VALUETYPE_YOUNGMODULUS_NORM) * 1e6; // ELAVAL(1)
@@ -306,35 +306,35 @@ void CMaterialFractureApertureBase::WriteFilosParamValues(const CFFMaterial &ffm
   CGeomecDianaRunnerBase& runner = static_cast<CGeomecDianaRunnerBase&>(diarunner);
   if (runner.Model().UseDecompactionParameters())
   {
-    *values = ffmat.ParameterValue(IDT_VALUETYPE_YOUNGMODULUS_TRANS) * 1e6; // DECO5(1)
-    values += stride;
+  *values = ffmat.ParameterValue(IDT_VALUETYPE_YOUNGMODULUS_TRANS) * 1e6; // DECO5(1)
+  values += stride;
 
-    *values = ffmat.ParameterValue(IDT_VALUETYPE_YOUNGMODULUS_NORM) * 1e6; // DECO5(2)
-    values += stride;
+  *values = ffmat.ParameterValue(IDT_VALUETYPE_YOUNGMODULUS_NORM) * 1e6; // DECO5(2)
+  values += stride;
 
-    *values = ffmat.ParameterValue(IDT_VALUETYPE_POISSONRATIO_TRANS); // DECO5(3)
-    values += stride;
+  *values = ffmat.ParameterValue(IDT_VALUETYPE_POISSONRATIO_TRANS); // DECO5(3)
+  values += stride;
 
-    *values = ffmat.ParameterValue(IDT_VALUETYPE_POISSONRATIO_NORM); // DECO5(4)
-    values += stride;
+  *values = ffmat.ParameterValue(IDT_VALUETYPE_POISSONRATIO_NORM); // DECO5(4)
+  values += stride;
 
-    *values = ffmat.ParameterValue(IDT_VALUETYPE_ANISOTROPIC_SHEARMODULUS) * 1e6; // DECO5(5)
-    values += stride;
+  *values = ffmat.ParameterValue(IDT_VALUETYPE_ANISOTROPIC_SHEARMODULUS) * 1e6; // DECO5(5)
+  values += stride;
 
-    *values = ffmat.ParameterValue(IDT_VALUETYPE_YOUNGMODULUS_TRANS_DECOMP) * 1e6; // DECO5(6)
-    values += stride;
+  *values = ffmat.ParameterValue(IDT_VALUETYPE_YOUNGMODULUS_TRANS_DECOMP) * 1e6; // DECO5(6)
+  values += stride;
 
-    *values = ffmat.ParameterValue(IDT_VALUETYPE_YOUNGMODULUS_NORM_DECOMP) * 1e6; // DECO5(7)
-    values += stride;
+  *values = ffmat.ParameterValue(IDT_VALUETYPE_YOUNGMODULUS_NORM_DECOMP) * 1e6; // DECO5(7)
+  values += stride;
 
-    *values = ffmat.ParameterValue(IDT_VALUETYPE_POISSONRATIO_TRANS_DECOMP); // DECO5(8)
-    values += stride;
+  *values = ffmat.ParameterValue(IDT_VALUETYPE_POISSONRATIO_TRANS_DECOMP); // DECO5(8)
+  values += stride;
 
-    *values = ffmat.ParameterValue(IDT_VALUETYPE_POISSONRATIO_NORM_DECOMP); // DECO5(9)
-    values += stride;
+  *values = ffmat.ParameterValue(IDT_VALUETYPE_POISSONRATIO_NORM_DECOMP); // DECO5(9)
+  values += stride;
 
-    *values = ffmat.ParameterValue(IDT_VALUETYPE_ANISOTROPIC_SHEARMODULUS_DECOMP) * 1e6; // DECO5(10)
-    values += stride;
+  *values = ffmat.ParameterValue(IDT_VALUETYPE_ANISOTROPIC_SHEARMODULUS_DECOMP) * 1e6; // DECO5(10)
+  values += stride;
   }
 
   IMaterialRock::WriteFilosParamValues(ffmat, diarunner, values, stride);

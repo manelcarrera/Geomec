@@ -22,9 +22,9 @@ RescueSplitPoint::RescueSplitPoint(RESCUEFLOAT x, RESCUEFLOAT y, RESCUEFLOAT z)
   RESCUEINT64 loop;
   for (loop = 0; loop < 4; loop++)
   {
-    *pos++ = x;
-    *pos++ = y;
-    *pos++ = z;
+  *pos++ = x;
+  *pos++ = y;
+  *pos++ = z;
   }
 }
 
@@ -32,10 +32,10 @@ void RescueSplitPoint::SetCornerNode(RESCUEINT64 corner, RESCUEFLOAT x, RESCUEFL
 {
   if (corner >= 0 && corner < 4)
   {
-    RESCUEINT64 ndx = corner * 3;
-    addresses[ndx++] = x;
-    addresses[ndx++] = y;
-    addresses[ndx++] = z;
+  RESCUEINT64 ndx = corner * 3;
+  addresses[ndx++] = x;
+  addresses[ndx++] = y;
+  addresses[ndx++] = z;
   }
 }
 
@@ -43,16 +43,16 @@ void RescueSplitPoint::Values(RESCUEINT64 corner, RESCUEFLOAT &x, RESCUEFLOAT &y
 {
   if (corner >= 0 && corner < 4)
   {
-    RESCUEINT64 ndx = corner * 3;
-    x = addresses[ndx++];
-    y = addresses[ndx++];
-    z = addresses[ndx++];
+  RESCUEINT64 ndx = corner * 3;
+  x = addresses[ndx++];
+  y = addresses[ndx++];
+  z = addresses[ndx++];
   }
   else
   {
-    x = FLT_MIN;
-    y = FLT_MIN;
-    z = FLT_MIN;
+  x = FLT_MIN;
+  y = FLT_MIN;
+  z = FLT_MIN;
   }
 }
 
@@ -61,7 +61,7 @@ void RescueSplitPoint::Archive(RescueContext *context, FILE *archiveFile, RESCUE
   myfprintf(context, archiveFile, addresses, 12, compress);
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -71,14 +71,14 @@ RescueSplitPoint::RescueSplitPoint(RescueContext *context, FILE *archiveFile, RE
   myfscanf(context, archiveFile, addresses, 12, compress);
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 

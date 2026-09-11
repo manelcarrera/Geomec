@@ -63,8 +63,8 @@ CMatParam& CMatParam::operator=(const CMatParam& rhs)
 bool CMatParam::operator==(const CMatParam& rhs) const
 {
   return (
-    m_strName == rhs.m_strName &&
-    fabs(m_dValue - rhs.m_dValue) < std::max(1e-20, fabs(m_dValue * 1e-4)));
+  m_strName == rhs.m_strName &&
+  fabs(m_dValue - rhs.m_dValue) < std::max(1e-20, fabs(m_dValue * 1e-4)));
 }
 
 bool CMatParam::operator!=(const CMatParam& rhs) const
@@ -103,15 +103,15 @@ bool CMatParam::Value(double dValue)
 bool CMatParam::Value(double dValue, QString& strErrorMsg)
 {
   if(!CheckValue(dValue, strErrorMsg))
-    return false;
+  return false;
 
   bool bRet = false;
 
   double dEps = std::max(1e-20, fabs(m_dValue * 1e-4));
   if(fabs(m_dValue - dValue) > dEps)
   {
-    ForceValue(dValue, strErrorMsg);
-    bRet = true;
+  ForceValue(dValue, strErrorMsg);
+  bRet = true;
   }
 
   return bRet;
@@ -129,7 +129,7 @@ bool CMatParam::ValueFromUserUnit(double dValue, int nUnitDef, QString& strError
   dValue = m_pUnitType->FromUserUnit(dValue, nUnitDef);
 
   if (!CheckValue(dValue, strErrorMsg))
-    return false;
+  return false;
 
   bool bRet = Value(dValue, strErrorMsg);
 
@@ -139,9 +139,9 @@ bool CMatParam::ValueFromUserUnit(double dValue, int nUnitDef, QString& strError
 bool CMatParam::ForceValue(double dValue, QString& /*strErrorMsg*/)
 {
   if(m_pSetStrategy)
-    (*m_pSetStrategy)(dValue, *this);
+  (*m_pSetStrategy)(dValue, *this);
   else
-    InternalSetValue(dValue);
+  InternalSetValue(dValue);
 
   ParentMaterial().Finalize();
 
@@ -156,7 +156,7 @@ double CMatParam::PreviousValue() const
 bool CMatParam::CheckDomainValue(double dValue, QString& strErrorMsg) const
 {
   if (m_pCheckStrategy && m_pCheckStrategy->IsDomainCheck())
-    return CheckValue(dValue, strErrorMsg);
+  return CheckValue(dValue, strErrorMsg);
   return true;
 }
 
@@ -170,7 +170,7 @@ bool CMatParam::CheckValue(double dValue) const
 bool CMatParam::CheckValue(double dValue, QString& strErrorMsg) const
 {
   if(m_pCheckStrategy && !(*m_pCheckStrategy)(dValue, *this, strErrorMsg))
-    return false;
+  return false;
 
   return true;
 }
@@ -187,7 +187,7 @@ bool CMatParam::CheckValueFromUserUnit(double dValue, int nUnitDef, QString& str
   dValue = m_pUnitType->FromUserUnit(dValue, nUnitDef);
 
   if (m_pCheckStrategy && !(*m_pCheckStrategy)(dValue, *this, strErrorMsg, 0))
-    return false;
+  return false;
 
   return true;
 }

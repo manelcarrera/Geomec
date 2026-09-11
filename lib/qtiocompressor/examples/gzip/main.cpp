@@ -51,12 +51,12 @@
 // This examples demonstrates how to decompress a file created with the gzip utility.
 int main()
 {
-    QFile file("compressed.gz");
-    QtIOCompressor compressor(&file);
-    compressor.setStreamFormat(QtIOCompressor::GzipFormat);
+  QFile file("compressed.gz");
+  QtIOCompressor compressor(&file);
+  compressor.setStreamFormat(QtIOCompressor::GzipFormat);
 
-    if (compressor.open(QIODevice::ReadOnly))
-        qDebug() << compressor.readAll();
-    else
-        qDebug() << "Error:" << compressor.errorString();
+  if (compressor.open(QIODevice::ReadOnly))
+    qDebug() << compressor.readAll();
+  else
+    qDebug() << "Error:" << compressor.errorString();
 }

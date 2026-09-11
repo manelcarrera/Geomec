@@ -39,37 +39,37 @@ CTreeNode* CUpscalingObserver::InsertChild(CGraphNode& t)
   CUpscalingFormationsBranch* pFormationsBranch = dynamic_cast<CUpscalingFormationsBranch*>(&t);
   if(pFormationsBranch)
   {
-    typedef CNodeObserver_Delegate<CFormationBase, CFormationBase_Delegate, CDummyNode, CDummyObserver, FALSE, UNLINK_ITEM> TFormationObserver;
-    typedef CNodeObserver_Delegate<CUpscalingFormationsBranch, CUpscalingFormationsBranch_Delegate, CFormationBase, TFormationObserver, FALSE, UNLINK_ITEM> TFormationBranchObserver;
-    return new TFormationBranchObserver(*pFormationsBranch,
-                                        *this,
-                                        FALSE,
-                                        FIXED_ITEM,
-                                        (HTREEITEM)-1,
-                                        true,
-                                        false);
+  typedef CNodeObserver_Delegate<CFormationBase, CFormationBase_Delegate, CDummyNode, CDummyObserver, FALSE, UNLINK_ITEM> TFormationObserver;
+  typedef CNodeObserver_Delegate<CUpscalingFormationsBranch, CUpscalingFormationsBranch_Delegate, CFormationBase, TFormationObserver, FALSE, UNLINK_ITEM> TFormationBranchObserver;
+  return new TFormationBranchObserver(*pFormationsBranch,
+                    *this,
+                    FALSE,
+                    FIXED_ITEM,
+                    (HTREEITEM)-1,
+                    true,
+                    false);
   }
 
   CUpscalingPointsetRangesBranch* pPointsetRangesBranch = dynamic_cast<CUpscalingPointsetRangesBranch*>(&t);
   if(pPointsetRangesBranch)
   {
-    typedef CNodeObserver_Delegate<CPointSet, CPointSet_Delegate, CDummyNode, CDummyObserver, FALSE, UNLINK_ITEM> TPointsetObserver;
-    typedef CNodeObserver_Delegate<CUpscalingPointsetRangesBranch, CUpscalingPointsetRangesBranch_Delegate, CPointSet, TPointsetObserver, FALSE, UNLINK_ITEM> TUpscalingPointsetBranchObs;
-    return new TUpscalingPointsetBranchObs(*pPointsetRangesBranch,
-                                                    *this,
-                                                    FALSE,
-                                                    FIXED_ITEM,
-                                                    (HTREEITEM)-1,
-                                                    true,
-                                                    false);
+  typedef CNodeObserver_Delegate<CPointSet, CPointSet_Delegate, CDummyNode, CDummyObserver, FALSE, UNLINK_ITEM> TPointsetObserver;
+  typedef CNodeObserver_Delegate<CUpscalingPointsetRangesBranch, CUpscalingPointsetRangesBranch_Delegate, CPointSet, TPointsetObserver, FALSE, UNLINK_ITEM> TUpscalingPointsetBranchObs;
+  return new TUpscalingPointsetBranchObs(*pPointsetRangesBranch,
+                          *this,
+                          FALSE,
+                          FIXED_ITEM,
+                          (HTREEITEM)-1,
+                          true,
+                          false);
   }
 
   CUpscalingTargetPointsetBranch* pTargetPointsetBranch = dynamic_cast<CUpscalingTargetPointsetBranch*>(&t);
   if(pTargetPointsetBranch)
   {
-    typedef CNodeObserver_Delegate<CPillarMap, CPillarMap_Delegate, CDummyNode, CDummyObserver, FALSE, UNLINK_ITEM> TPillarMapObserver;
-    typedef CNodeObserver_Delegate<CUpscalingTargetPointsetBranch, CUpscalingTargetPointsetBranch_Delegate, CPillarMap, TPillarMapObserver, FALSE, DELETE_ITEM> TUpscalingTargetPointsetBranchObs;
-    return new TUpscalingTargetPointsetBranchObs(*pTargetPointsetBranch,
+  typedef CNodeObserver_Delegate<CPillarMap, CPillarMap_Delegate, CDummyNode, CDummyObserver, FALSE, UNLINK_ITEM> TPillarMapObserver;
+  typedef CNodeObserver_Delegate<CUpscalingTargetPointsetBranch, CUpscalingTargetPointsetBranch_Delegate, CPillarMap, TPillarMapObserver, FALSE, DELETE_ITEM> TUpscalingTargetPointsetBranchObs;
+  return new TUpscalingTargetPointsetBranchObs(*pTargetPointsetBranch,
                                                           *this,
                                                           FALSE,
                                                           FIXED_ITEM,
@@ -100,9 +100,9 @@ CTreeNode* CUpscalingBranch::InsertChild(CGraphNode& t)
   CCamClayUpscalingNode* pCamClayUpscalingNode = dynamic_cast<CCamClayUpscalingNode*>(&t);
   if(pThinLayerUpscalingNode || pCamClayUpscalingNode)
   {
-    IUpscalingNodeBase *node = (pThinLayerUpscalingNode) ? (IUpscalingNodeBase*)pThinLayerUpscalingNode : 
-                                                            (IUpscalingNodeBase*)pCamClayUpscalingNode;
-    return new CUpscalingObserver(*node,
+  IUpscalingNodeBase *node = (pThinLayerUpscalingNode) ? (IUpscalingNodeBase*)pThinLayerUpscalingNode : 
+                              (IUpscalingNodeBase*)pCamClayUpscalingNode;
+  return new CUpscalingObserver(*node,
                                            *this,
                                            FALSE,
                                            DELETE_ITEM,

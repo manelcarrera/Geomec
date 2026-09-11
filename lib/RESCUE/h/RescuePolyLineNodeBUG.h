@@ -30,17 +30,17 @@ public:
      // member of the specified class.
 protected:
   RescuePolyLineNodeBUG(RescueContext *context, 
-                        RescueGeometry *geometryIn, 
-                        RescuePolyLineNode::RescueLayerType typeIn,
-                        RESCUEFLOAT ndxParamIn)
-                            :RescueObject(context)
-                            ,layerType(typeIn)
-                            ,layerNdxParam(ndxParamIn)
-                            ,geometry(geometryIn) {isA = R_RescuePolyLineNodeBUG;}
+            RescueGeometry *geometryIn, 
+            RescuePolyLineNode::RescueLayerType typeIn,
+            RESCUEFLOAT ndxParamIn)
+              :RescueObject(context)
+              ,layerType(typeIn)
+              ,layerNdxParam(ndxParamIn)
+              ,geometry(geometryIn) {isA = R_RescuePolyLineNodeBUG;}
   virtual void Archive(RescueContext *context, 
-                        FILE *archiveFile);
+            FILE *archiveFile);
   RescuePolyLineNodeBUG(RescueContext *context, 
-                        FILE *archiveFile);
+            FILE *archiveFile);
 
 private:
   virtual void Relink(RescueObject *object);

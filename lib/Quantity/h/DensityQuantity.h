@@ -14,25 +14,25 @@
 class CDensityQuantity : public CDoubleQuantity
 {
 public:
-	CDensityQuantity();
+  CDensityQuantity();
 
-	CDensityQuantity(const double &value , const UNIT unit = SI_UNIT);
-	
-    CDensityQuantity(const double& value,const double &min ,const double &max, const UNIT unit = SI_UNIT);
+  CDensityQuantity(const double &value , const UNIT unit = SI_UNIT);
+  
+  CDensityQuantity(const double& value,const double &min ,const double &max, const UNIT unit = SI_UNIT);
 
-	CDensityQuantity(const double& value,
-					 const double &min ,
-					 const double &max,
-					 bool bIncludeMin=true,
-					 bool bIncludeMax=true,
-					 const UNIT unit= SI_UNIT);
+  CDensityQuantity(const double& value,
+           const double &min ,
+           const double &max,
+           bool bIncludeMin=true,
+           bool bIncludeMax=true,
+           const UNIT unit= SI_UNIT);
 
-	CDensityQuantity(const CDensityQuantity& rhs);
-	
-	
-	virtual double Convert(const double &value, const UNIT out, const UNIT in) const;
-	virtual std::string	QuantityName() const;
-	virtual	std::string UnitName(const UNIT unit = SI_UNIT) const;	
+  CDensityQuantity(const CDensityQuantity& rhs);
+  
+  
+  virtual double Convert(const double &value, const UNIT out, const UNIT in) const;
+  virtual std::string	QuantityName() const;
+  virtual	std::string UnitName(const UNIT unit = SI_UNIT) const;	
 };
 
 

@@ -23,18 +23,18 @@ CModelBase *IModelLifetimeFacade::NewMain(int type, CAnalysisLogger& logger, con
   switch (type)
   {
   case HEXA_MODEL:
-    pModel = new CHexaModel(logger, versionManager);
-    break;
+  pModel = new CHexaModel(logger, versionManager);
+  break;
   case GOCAD_MODEL:
-    pModel = new CGoCadModel(logger, versionManager);
-    break;
+  pModel = new CGoCadModel(logger, versionManager);
+  break;
   case ECLIPSE_MODEL:
-    pModel = new CEclipseModel(logger, versionManager);
-    break;
+  pModel = new CEclipseModel(logger, versionManager);
+  break;
   }
 
   if (pModel)
-    NewMainDecorators();
+  NewMainDecorators();
 
   return pModel;
 }
@@ -44,11 +44,11 @@ CModelBase *IModelLifetimeFacade::NewChild(int type, CAnalysisLogger& logger, co
   switch (type)
   {
   case HEXA_MODEL:
-    return new CHexaModel(logger, versionManager);
+  return new CHexaModel(logger, versionManager);
   case GOCAD_MODEL:
-    return new CGoCadModel(logger, versionManager);
+  return new CGoCadModel(logger, versionManager);
   case ECLIPSE_MODEL:
-    return new CEclipseModel(logger, versionManager);
+  return new CEclipseModel(logger, versionManager);
   }
 
   return 0;
@@ -57,7 +57,7 @@ CModelBase *IModelLifetimeFacade::NewChild(int type, CAnalysisLogger& logger, co
 CModelBase *IModelLifetimeFacade::NewChild(int type, CWellZoomInModel& parent, CAnalysisLogger& logger, const CVersionManager& versionManager)
 {
   if (type == WELL_CASING_MODEL)
-    return new CWellCasingModel(parent, logger, versionManager);
+  return new CWellCasingModel(parent, logger, versionManager);
 
   return 0;
 }
@@ -65,7 +65,7 @@ CModelBase *IModelLifetimeFacade::NewChild(int type, CWellZoomInModel& parent, C
 CModelBase *IModelLifetimeFacade::NewChild(int type, CModelBase& parent, CNewWellPath& wp, CAnalysisLogger& logger, const CVersionManager& versionManager)
 {
   if (type == WELL_ZOOMIN_MODEL)
-    return new CWellZoomInModel(parent, wp, logger, versionManager);
+  return new CWellZoomInModel(parent, wp, logger, versionManager);
 
   return 0;
 }
@@ -73,7 +73,7 @@ CModelBase *IModelLifetimeFacade::NewChild(int type, CModelBase& parent, CNewWel
 CModelBase *IModelLifetimeFacade::NewChild(int type, CModelBase& parent, CWellPath& wp, CAnalysisLogger& logger, const CVersionManager& versionManager)
 {
   if (type == WELL_ZOOMIN_MODEL)
-    return new CWellZoomInModel(parent, wp, logger, versionManager);
+  return new CWellZoomInModel(parent, wp, logger, versionManager);
 
   return 0;
 }

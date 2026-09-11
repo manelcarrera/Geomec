@@ -22,7 +22,7 @@ public:
 private:
   CStrainLoad_Delegate(const CStrainLoad_Delegate& rhs);
   CStrainLoad_Delegate& operator = (
-    const CStrainLoad_Delegate& rhs);
+  const CStrainLoad_Delegate& rhs);
 
   CStrainLoad* m_StrainLoad;
 

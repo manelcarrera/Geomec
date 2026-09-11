@@ -68,24 +68,24 @@ struct _GIOChannel
 };
 
 typedef gboolean (*GIOFunc) (GIOChannel   *source,
-			     GIOCondition  condition,
-			     gpointer      data);
+           GIOCondition  condition,
+           gpointer      data);
 struct _GIOFuncs
 {
   GIOError  (*io_read)         (GIOChannel   *channel, 
-				gchar        *buf, 
-				guint         count,
-				guint        *bytes_read);
+        gchar        *buf, 
+        guint         count,
+        guint        *bytes_read);
   GIOError  (*io_write)        (GIOChannel   *channel, 
-				gchar        *buf, 
-				guint         count,
-				guint        *bytes_written);
+        gchar        *buf, 
+        guint         count,
+        guint        *bytes_written);
   GIOError  (*io_seek)         (GIOChannel   *channel, 
-				gint          offset, 
-				GSeekType     type);
+        gint          offset, 
+        GSeekType     type);
   void      (*io_close)        (GIOChannel   *channel);
   GSource * (*io_create_watch) (GIOChannel   *channel,
-				GIOCondition  condition);
+        GIOCondition  condition);
   void      (*io_free)         (GIOChannel   *channel);
 };
 
@@ -93,29 +93,29 @@ void        g_io_channel_init   (GIOChannel    *channel);
 void        g_io_channel_ref    (GIOChannel    *channel);
 void        g_io_channel_unref  (GIOChannel    *channel);
 GIOError    g_io_channel_read   (GIOChannel    *channel, 
-			         gchar         *buf, 
-			         guint          count,
-			         guint         *bytes_read);
+               gchar         *buf, 
+               guint          count,
+               guint         *bytes_read);
 GIOError  g_io_channel_write    (GIOChannel    *channel, 
-			         gchar         *buf, 
-			         guint          count,
-			         guint         *bytes_written);
+               gchar         *buf, 
+               guint          count,
+               guint         *bytes_written);
 GIOError  g_io_channel_seek     (GIOChannel    *channel,
-			         gint           offset, 
-			         GSeekType      type);
+               gint           offset, 
+               GSeekType      type);
 void      g_io_channel_close    (GIOChannel    *channel);
 guint     g_io_add_watch_full   (GIOChannel    *channel,
-			         gint           priority,
-			         GIOCondition   condition,
-			         GIOFunc        func,
-			         gpointer       user_data,
-			         GDestroyNotify notify);
+               gint           priority,
+               GIOCondition   condition,
+               GIOFunc        func,
+               gpointer       user_data,
+               GDestroyNotify notify);
 GSource *g_io_create_watch      (GIOChannel   *channel,
-			         GIOCondition  condition);
+               GIOCondition  condition);
 guint    g_io_add_watch         (GIOChannel    *channel,
-			         GIOCondition   condition,
-			         GIOFunc        func,
-			         gpointer       user_data);
+               GIOCondition   condition,
+               GIOFunc        func,
+               gpointer       user_data);
 
 /* On Unix, IO channels created with this function for any file
  * descriptor or socket.
@@ -142,23 +142,23 @@ gint        g_io_channel_unix_get_fd (GIOChannel *channel);
  * or recv() from the underlying file descriptor or SOCKET.
  */
 void        g_io_channel_win32_make_pollfd (GIOChannel   *channel,
-					    GIOCondition  condition,
-					    GPollFD      *fd);
+            GIOCondition  condition,
+            GPollFD      *fd);
 
 /* This can be used to wait a until at least one of the channels is readable.
  * On Unix you would do a select() on the file descriptors of the channels.
  * This should probably be available for all platforms?
  */
 gint        g_io_channel_win32_poll   (GPollFD    *fds,
-				       gint        n_fds,
-				       gint        timeout);
+               gint        n_fds,
+               gint        timeout);
 
 /* This is used to add polling for Windows messages. GDK (GTk+) programs
  * should *not* use this.
  */
 void        g_main_poll_win32_msg_add (gint        priority,
-				       GPollFD    *fd,
-				       guint       hwnd);
+               GPollFD    *fd,
+               guint       hwnd);
 
 /* An IO channel for Windows messages for window handle hwnd. */
 GIOChannel *g_io_channel_win32_new_messages (guint hwnd);

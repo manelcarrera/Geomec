@@ -9,13 +9,13 @@ namespace GeomecRGI
 class CLoadPropertyFluidPressure : public CLoadPropertyPressureBase
 {
   public:
-    CLoadPropertyFluidPressure(const RGProperty& rgProperty,
+  CLoadPropertyFluidPressure(const RGProperty& rgProperty,
       RGInterface& rgi, CModelBase& modelBase, CRockMechProcessor& rmp);
-    virtual ~CLoadPropertyFluidPressure();
+  virtual ~CLoadPropertyFluidPressure();
 
   private:
-    CLoadPropertyFluidPressure(const CLoadPropertyFluidPressure& rhs);
-    CLoadPropertyFluidPressure& operator = (
+  CLoadPropertyFluidPressure(const CLoadPropertyFluidPressure& rhs);
+  CLoadPropertyFluidPressure& operator = (
       const CLoadPropertyFluidPressure& rhs);
 };
 

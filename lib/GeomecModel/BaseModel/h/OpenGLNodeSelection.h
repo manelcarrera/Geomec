@@ -13,7 +13,7 @@ class COpenGLNodeSelection
   class Less
   {
   public:
-    bool operator()(const COpenGLNode *lhs, const COpenGLNode *rhs) const;
+  bool operator()(const COpenGLNode *lhs, const COpenGLNode *rhs) const;
   };
 
 public:
@@ -25,10 +25,10 @@ public:
   class CObserver
   {
   public:
-    CObserver();
-    virtual ~CObserver();
-    virtual void OnNodeErased(const COpenGLNode& node);
-    virtual void OnNodeInserted(const COpenGLNode& node);
+  CObserver();
+  virtual ~CObserver();
+  virtual void OnNodeErased(const COpenGLNode& node);
+  virtual void OnNodeInserted(const COpenGLNode& node);
   };
 
 public:
@@ -60,9 +60,9 @@ public:
   void UnregisterObserver(CObserver& observer); // returns ownership (will not be deleted in destructor)
 
   void LoadStream(CStorageNode::TSTREAM& stream, CStreamVersion& version,
-    CStorageNode::TPROGRESS& progress, CFemAppModel& model);
+  CStorageNode::TPROGRESS& progress, CFemAppModel& model);
   void SaveStream(CStorageNode::TSTREAM& stream,
-    CStorageNode::TPROGRESS& progress);
+  CStorageNode::TPROGRESS& progress);
 
   const TSelectionSet& getSelection() const {return m_stSelection;}
 
@@ -90,61 +90,61 @@ public:
   class Less
   {
   public:
-    bool operator()(const TT* lhs, const TT* rhs) const
-    {
+  bool operator()(const TT* lhs, const TT* rhs) const
+  {
       if(lhs && rhs)
       {
-        if(lhs->Less(*rhs))
+    if(lhs->Less(*rhs))
           return true;
-        if(rhs->Less(*lhs))
+    if(rhs->Less(*lhs))
           return false;
       }
 
       return lhs < rhs;
-    }
+  }
   };
 
   class CConstIterator
   {
   private:
-    typedef COpenGLNodeSelection TContainer;
+  typedef COpenGLNodeSelection TContainer;
 
   public:
-    CConstIterator();
-    CConstIterator(const IOpenGLNodeSubSelection& selection, const TContainer& container, typename TContainer::const_iterator pos);
-    CConstIterator(const CConstIterator& rhs);
-    CConstIterator& operator=(const CConstIterator& rhs);
-    bool operator==(const CConstIterator& rhs) const;
-    bool operator!=(const CConstIterator& rhs) const;
-    CConstIterator& operator++(); // pre-increment
-    CConstIterator& operator++(int); // post-increment
-    CConstIterator& operator--(); // pre-decrement
-    CConstIterator& operator--(int); // post-decrement
-    const T& operator*();
-    const T* operator->();
+  CConstIterator();
+  CConstIterator(const IOpenGLNodeSubSelection& selection, const TContainer& container, typename TContainer::const_iterator pos);
+  CConstIterator(const CConstIterator& rhs);
+  CConstIterator& operator=(const CConstIterator& rhs);
+  bool operator==(const CConstIterator& rhs) const;
+  bool operator!=(const CConstIterator& rhs) const;
+  CConstIterator& operator++(); // pre-increment
+  CConstIterator& operator++(int); // post-increment
+  CConstIterator& operator--(); // pre-decrement
+  CConstIterator& operator--(int); // post-decrement
+  const T& operator*();
+  const T* operator->();
 
   private:
-    const IOpenGLNodeSubSelection* m_pSelection;
-    const TContainer* m_pContainer;
-    typename TContainer::const_iterator m_pos;
+  const IOpenGLNodeSubSelection* m_pSelection;
+  const TContainer* m_pContainer;
+  typename TContainer::const_iterator m_pos;
   };
 
   class CIterator : public CConstIterator
   {
   private:
-    typedef COpenGLNodeSelection TContainer;
+  typedef COpenGLNodeSelection TContainer;
 
   public:
-    CIterator();
-    CIterator(const IOpenGLNodeSubSelection& selection, const TContainer& container, typename TContainer::const_iterator pos);
-    CIterator(const CIterator& rhs);
-    CIterator& operator=(const CIterator& rhs);
-    using CConstIterator::operator==;
-    using CConstIterator::operator!=;
-    CIterator& operator++(); // pre-increment
-    CIterator& operator++(int); // post-increment
-    CIterator& operator--(); // pre-decrement
-    CIterator& operator--(int); // post-decrement
+  CIterator();
+  CIterator(const IOpenGLNodeSubSelection& selection, const TContainer& container, typename TContainer::const_iterator pos);
+  CIterator(const CIterator& rhs);
+  CIterator& operator=(const CIterator& rhs);
+  using CConstIterator::operator==;
+  using CConstIterator::operator!=;
+  CIterator& operator++(); // pre-increment
+  CIterator& operator++(int); // post-increment
+  CIterator& operator--(); // pre-decrement
+  CIterator& operator--(int); // post-decrement
   };
 
   typedef CIterator iterator;
@@ -154,8 +154,8 @@ public:
   class CFilter
   {
   public:
-    virtual ~CFilter() {};
-    virtual bool operator()(const TT& /*object*/) const { return true; }
+  virtual ~CFilter() {};
+  virtual bool operator()(const TT& /*object*/) const { return true; }
   };
 
 public:
@@ -194,7 +194,7 @@ public:
   bool empty() const;
 
   const COpenGLNodeSelection& getSelectionSource() const
-    {return m_selectionSource;}
+  {return m_selectionSource;}
 
 private:
   COpenGLNodeSelection& m_selectionSource;
@@ -210,7 +210,7 @@ CTypedSelection<T>::CTypedSelection(COpenGLNodeSelection& selection, const CFilt
   m_pFilter(pFilter)
 {
   if(!m_pFilter)
-    m_pFilter = new CFilter<T>;
+  m_pFilter = new CFilter<T>;
 }
 
 template <class T>
@@ -229,9 +229,9 @@ template <class T>
 void CTypedSelection<T>::SetSelected(const T& object, bool bSelected)
 {
   if(bSelected)
-    insert(object);
+  insert(object);
   else
-    erase(object);
+  erase(object);
 }
 
 template <class T>
@@ -258,7 +258,7 @@ typename CTypedSelection<T>::const_iterator CTypedSelection<T>::begin() const
 {
   for(COpenGLNodeSelection::const_iterator it = m_selectionSource.begin(); it != m_selectionSource.end(); ++it)
   {
-    if(CanSelect(**it))
+  if(CanSelect(**it))
       return CConstIterator(*this, m_selectionSource, it);
   }
 
@@ -276,7 +276,7 @@ typename CTypedSelection<T>::iterator CTypedSelection<T>::begin()
 {
   for(COpenGLNodeSelection::const_iterator it = m_selectionSource.begin(); it != m_selectionSource.end(); ++it)
   {
-    if(CanSelect(**it))
+  if(CanSelect(**it))
       return CIterator(*this, m_selectionSource, it);
   }
 
@@ -329,7 +329,7 @@ template <class T>
 void CTypedSelection<T>::clear()
 {
   while(!empty())
-    erase(begin());
+  erase(begin());
 }
 
 template <class T>
@@ -379,15 +379,15 @@ template <class T>
 bool CTypedSelection<T>::CConstIterator::operator==(const CConstIterator& rhs) const
 {
   if(!m_pContainer && !rhs.m_pContainer)
-    return true;
+  return true;
 
   if(!m_pSelection && !rhs.m_pSelection)
-    return true;
+  return true;
 
   return (
-    m_pSelection == rhs.m_pSelection &&
-    m_pContainer == rhs.m_pContainer &&
-    m_pos        == rhs.m_pos);
+  m_pSelection == rhs.m_pSelection &&
+  m_pContainer == rhs.m_pContainer &&
+  m_pos        == rhs.m_pos);
 }
 
 template <class T>
@@ -403,8 +403,8 @@ typename CTypedSelection<T>::CConstIterator& CTypedSelection<T>::CConstIterator:
   assert(m_pSelection);
   while(1)
   {
-    ++m_pos;
-    if(m_pos == m_pContainer->end() || m_pSelection->CanSelect(**m_pos))
+  ++m_pos;
+  if(m_pos == m_pContainer->end() || m_pSelection->CanSelect(**m_pos))
       break;
   }
 
@@ -426,8 +426,8 @@ typename CTypedSelection<T>::CConstIterator& CTypedSelection<T>::CConstIterator:
   assert(m_pSelection);
   while(1)
   {
-    --m_pos;
-    if(m_pSelection->CanSelect(*(*m_pos)))
+  --m_pos;
+  if(m_pSelection->CanSelect(*(*m_pos)))
       break;
   }
 

@@ -24,27 +24,27 @@ CAttriHexaFormation::CAttriHexaFormation(CHexaFormation& formation, CWnd* pParen
 : CAttriFormationTemplate<CHexaFormation>(CAttriHexaFormation::IDD, formation, pParent)
 , m_elementOrderSubDialog(this, Source())
 {
-	//{{AFX_DATA_INIT(CAttriHexaFormation)
-	m_bApplyToAll = FALSE;
-	//}}AFX_DATA_INIT
+  //{{AFX_DATA_INIT(CAttriHexaFormation)
+  m_bApplyToAll = FALSE;
+  //}}AFX_DATA_INIT
 }
 
 BOOL CAttriHexaFormation::OnInitDialog() 
 {
-	CAttriFormationTemplate<CHexaFormation>::OnInitDialog();
+  CAttriFormationTemplate<CHexaFormation>::OnInitDialog();
 
-	// Set the buddycontrol of the spincontrol so we can use the up and down key at the keyboard.
-	((CSpinButtonCtrl*)GetDlgItem(IDC_SPIN_LAYER))->SetBuddy(GetDlgItem(IDC_ED_LAYER_THICKNESS));
-	((CSpinButtonCtrl*)GetDlgItem(IDC_SPIN_ELEMENT))->SetBuddy(GetDlgItem(IDC_ED_NR_OF_ELEMENTS));
+  // Set the buddycontrol of the spincontrol so we can use the up and down key at the keyboard.
+  ((CSpinButtonCtrl*)GetDlgItem(IDC_SPIN_LAYER))->SetBuddy(GetDlgItem(IDC_ED_LAYER_THICKNESS));
+  ((CSpinButtonCtrl*)GetDlgItem(IDC_SPIN_ELEMENT))->SetBuddy(GetDlgItem(IDC_ED_NR_OF_ELEMENTS));
 
-	if((static_cast<const CModelBase&>(Copy().Model())).BranchState().IsBranch())
-	{
-		GetDlgItem(IDC_ED_LAYER_THICKNESS)->EnableWindow(FALSE);
-		GetDlgItem(IDC_SPIN_LAYER)->EnableWindow(FALSE);
-		GetDlgItem(IDC_ED_NR_OF_ELEMENTS)->EnableWindow(FALSE);
-		GetDlgItem(IDC_SPIN_ELEMENT)->EnableWindow(FALSE);
-		GetDlgItem(IDC_CK_APPLY_TO_ALL)->EnableWindow(FALSE);
-	}
+  if((static_cast<const CModelBase&>(Copy().Model())).BranchState().IsBranch())
+  {
+    GetDlgItem(IDC_ED_LAYER_THICKNESS)->EnableWindow(FALSE);
+    GetDlgItem(IDC_SPIN_LAYER)->EnableWindow(FALSE);
+    GetDlgItem(IDC_ED_NR_OF_ELEMENTS)->EnableWindow(FALSE);
+    GetDlgItem(IDC_SPIN_ELEMENT)->EnableWindow(FALSE);
+    GetDlgItem(IDC_CK_APPLY_TO_ALL)->EnableWindow(FALSE);
+  }
 
   m_elementOrderSubDialog.onInitDialog();
 
@@ -64,11 +64,11 @@ void CAttriHexaFormation::DoDataExchange(CDataExchange* pDX)
 
   if(!pDX->m_bSaveAndValidate)
   {
-    strUnit = CString(Copy().MinThickness().UnitName(UnitNode().Unit()).c_str());
-    dMinThickness = Copy().MinThickness().Value(UnitNode().Unit());
-    nElements = Copy().Elements();
-    strBottomName = Copy().LowerHorizon().Name().toStdString().c_str();
-    strTopName = Copy().UpperHorizon().Name().toStdString().c_str();
+  strUnit = CString(Copy().MinThickness().UnitName(UnitNode().Unit()).c_str());
+  dMinThickness = Copy().MinThickness().Value(UnitNode().Unit());
+  nElements = Copy().Elements();
+  strBottomName = Copy().LowerHorizon().Name().toStdString().c_str();
+  strTopName = Copy().UpperHorizon().Name().toStdString().c_str();
   }
 
   //{{AFX_DATA_MAP(CAttriHexaFormation)
@@ -85,26 +85,26 @@ void CAttriHexaFormation::DoDataExchange(CDataExchange* pDX)
 
   if(pDX->m_bSaveAndValidate)
   {
-    Copy().Elements(nElements);
-    Copy().MinThickness(dMinThickness, UnitNode().Unit());
+  Copy().Elements(nElements);
+  Copy().MinThickness(dMinThickness, UnitNode().Unit());
 
-    // Apply to all 
-    if(m_bApplyToAll)
-    {
+  // Apply to all 
+  if(m_bApplyToAll)
+  {
       // Loop through all the formations to set the data.
       CHexaFormationEntry *pEntry = (CHexaFormationEntry*)(Copy().Model().GraphEntry(MD_HEXA_FORMATION));
       assert(pEntry);
       CHexaFormationEntry::TNodeSet stFormation = pEntry->EntryNodes();
       for(CHexaFormationEntry::TNodeSet::iterator it = stFormation.begin(); it != stFormation.end(); it++)
       {
-        if (!(&Copy().Source() == (*it)))
-        {
+    if (!(&Copy().Source() == (*it)))
+    {
           // Set the formation
           (*it)->Elements(nElements);
           (*it)->MinThickness(dMinThickness, UnitNode().Unit());
-        }
-      }
     }
+      }
+  }
   }
 
   m_elementOrderSubDialog.doDataExchange(pDX);
@@ -112,12 +112,12 @@ void CAttriHexaFormation::DoDataExchange(CDataExchange* pDX)
 
 
 BEGIN_MESSAGE_MAP(CAttriHexaFormation, CDialog)
-	//{{AFX_MSG_MAP(CAttriHexaFormation)
-	ON_BN_CLICKED(IDC_ST_COLOR, OnColor)
-	ON_WM_PAINT()
-	ON_NOTIFY(UDN_DELTAPOS, IDC_SPIN_LAYER, OnDeltaposSpinLayer)
-	ON_NOTIFY(UDN_DELTAPOS, IDC_SPIN_ELEMENT, OnDeltaposSpinElement)
-	//}}AFX_MSG_MAP
+  //{{AFX_MSG_MAP(CAttriHexaFormation)
+  ON_BN_CLICKED(IDC_ST_COLOR, OnColor)
+  ON_WM_PAINT()
+  ON_NOTIFY(UDN_DELTAPOS, IDC_SPIN_LAYER, OnDeltaposSpinLayer)
+  ON_NOTIFY(UDN_DELTAPOS, IDC_SPIN_ELEMENT, OnDeltaposSpinElement)
+  //}}AFX_MSG_MAP
   ON_BN_CLICKED(IDC_INHERITFROMMODEL, OnBnClickedInheritFromModel)
 END_MESSAGE_MAP()
 
@@ -127,49 +127,49 @@ END_MESSAGE_MAP()
 //##ModelId=3BE7AEC90191
 void CAttriHexaFormation::OnColor() 
 {
-	Copy().Color(SelectColor(Copy().Color()));
-	Invalidate();
+  Copy().Color(SelectColor(Copy().Color()));
+  Invalidate();
 }
 
 //##ModelId=3BE7AEC9019B
 void CAttriHexaFormation::OnPaint() 
 {
-	CPaintDC dc(this); // device context for painting
-	FillFrame(IDC_ST_COLOR, Copy().Color(), dc);
+  CPaintDC dc(this); // device context for painting
+  FillFrame(IDC_ST_COLOR, Copy().Color(), dc);
 }
 
 // The spincontrol code for the number of layers.
 void CAttriHexaFormation::OnDeltaposSpinLayer(NMHDR* pNMHDR, LRESULT* pResult) 
 {
-	NM_UPDOWN* pNMUpDown = (NM_UPDOWN*)pNMHDR;
+  NM_UPDOWN* pNMUpDown = (NM_UPDOWN*)pNMHDR;
 
-	CString str;
-	((CEdit*)GetDlgItem(IDC_ED_LAYER_THICKNESS))->GetWindowText(str);
-	double dMinThickness = atof(str);
-	if (pNMUpDown->iDelta > 0) dMinThickness--;
-	if (pNMUpDown->iDelta < 0) dMinThickness++;
-	if (dMinThickness < 1) dMinThickness = 1;
-	str.Format("%.f",dMinThickness);
-	((CEdit*)GetDlgItem(IDC_ED_LAYER_THICKNESS))->SetWindowText(str);
+  CString str;
+  ((CEdit*)GetDlgItem(IDC_ED_LAYER_THICKNESS))->GetWindowText(str);
+  double dMinThickness = atof(str);
+  if (pNMUpDown->iDelta > 0) dMinThickness--;
+  if (pNMUpDown->iDelta < 0) dMinThickness++;
+  if (dMinThickness < 1) dMinThickness = 1;
+  str.Format("%.f",dMinThickness);
+  ((CEdit*)GetDlgItem(IDC_ED_LAYER_THICKNESS))->SetWindowText(str);
 
-	*pResult = 0;
+  *pResult = 0;
 }
 
 // The spincontrol code for the number of elements.
 void CAttriHexaFormation::OnDeltaposSpinElement(NMHDR* pNMHDR, LRESULT* pResult) 
 {
-	NM_UPDOWN* pNMUpDown = (NM_UPDOWN*)pNMHDR;
+  NM_UPDOWN* pNMUpDown = (NM_UPDOWN*)pNMHDR;
 
-	CString str;
-	((CEdit*)GetDlgItem(IDC_ED_NR_OF_ELEMENTS))->GetWindowText(str);
-	int nElements = atoi(str);
-	if (pNMUpDown->iDelta > 0) nElements--;
-	if (pNMUpDown->iDelta < 0) nElements++;
-	if (nElements < 1) nElements = 1;
-	str.Format("%d",nElements);
-	((CEdit*)GetDlgItem(IDC_ED_NR_OF_ELEMENTS))->SetWindowText(str);
+  CString str;
+  ((CEdit*)GetDlgItem(IDC_ED_NR_OF_ELEMENTS))->GetWindowText(str);
+  int nElements = atoi(str);
+  if (pNMUpDown->iDelta > 0) nElements--;
+  if (pNMUpDown->iDelta < 0) nElements++;
+  if (nElements < 1) nElements = 1;
+  str.Format("%d",nElements);
+  ((CEdit*)GetDlgItem(IDC_ED_NR_OF_ELEMENTS))->SetWindowText(str);
 
-	*pResult = 0;
+  *pResult = 0;
 }
 
 void CAttriHexaFormation::OnBnClickedInheritFromModel()
@@ -188,8 +188,8 @@ void CAttriHexaFormation::OnOK()
 
   if (std::abs(original - modified) > 1E-8)
   {
-    dynamic_cast <CModelBase&> (Source().Model()).InvalidateMesh();
-    Source().clearThicknessCache();
+  dynamic_cast <CModelBase&> (Source().Model()).InvalidateMesh();
+  Source().clearThicknessCache();
   }
 
   m_elementOrderSubDialog.onOK();

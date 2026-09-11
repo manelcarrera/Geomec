@@ -5,7 +5,7 @@
 
 ITensorGroup_Delegate::CComponentComposite_Delegate::
   CComponentComposite_Delegate(
-    ITensorGroup::CComponentComposite* componentComposite)
+  ITensorGroup::CComponentComposite* componentComposite)
 : IResult_Delegate(componentComposite)
 , m_componentComposite(componentComposite)
 {

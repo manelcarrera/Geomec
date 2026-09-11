@@ -23,7 +23,7 @@ bool CWellCasingSteelMaterial_Delegate::Attributes()
 CWellCasingSteelMaterialEntry_Delegate::CWellCasingSteelMaterialEntry_Delegate(
   CWellCasingSteelMaterialEntry* wellCasingSteelMaterialEntry)
 : CGraphEntryTemp_Delegate <CWellCasingSteelMaterial> (
-    wellCasingSteelMaterialEntry)
+  wellCasingSteelMaterialEntry)
 , m_wellCasingSteelMaterialEntry(wellCasingSteelMaterialEntry)
 {
 }
@@ -37,20 +37,20 @@ void CWellCasingSteelMaterialEntry_Delegate::AppendContextMenu(
   CContextMenuInvoker& invoker)
 {
   invoker.AddCommand("Insert New",
-    *new CSingleCommandTemplate <CWellCasingSteelMaterialEntry_Delegate> (
+  *new CSingleCommandTemplate <CWellCasingSteelMaterialEntry_Delegate> (
       *this, &CWellCasingSteelMaterialEntry_Delegate::InsertNewAndProperties));
 }
 
 void CWellCasingSteelMaterialEntry_Delegate::InsertNewAndProperties()
 {
   CWellCasingSteelMaterial* pMat =
-    &m_wellCasingSteelMaterialEntry->InsertNew();
+  &m_wellCasingSteelMaterialEntry->InsertNew();
   CWellCasingSteelMaterial_Delegate* pMat_Delegate =
-    new CWellCasingSteelMaterial_Delegate(pMat);
+  new CWellCasingSteelMaterial_Delegate(pMat);
 
   if (!pMat_Delegate->Attributes())
   {
-    delete pMat_Delegate;
-    delete pMat;
+  delete pMat_Delegate;
+  delete pMat;
   }
 }

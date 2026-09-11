@@ -9,10 +9,10 @@ class CSettingsFile : public ISettings
 {
 public:
   CSettingsFile(	const QString& usr_filename, 
-					const QString& sys_filename);
+          const QString& sys_filename);
 
   static void init( const QString& usr_filename, 
-					const QString& sys_filename);
+          const QString& sys_filename);
 
   virtual void setProfileName(const QString& profileName);
   virtual void setRegistryKey(const QString& registryKey);
@@ -20,36 +20,36 @@ public:
   ////////////// [1] user
 
   virtual bool writeProfileString(
-	  const QString& section, 
-	  const QString& entry,
-	  const QString& value);
+    const QString& section, 
+    const QString& entry,
+    const QString& value);
 
   virtual QString getProfileString(
-	  const QString& section, 
-	  const QString& entry,
+    const QString& section, 
+    const QString& entry,
       const QString& aDefault = QString()) const;
 
   virtual bool writeProfileInt(
-	  const QString& section, 
-	  const QString& entry,
-	  int value);
+    const QString& section, 
+    const QString& entry,
+    int value);
 
   virtual unsigned int getProfileInt(
-	const QString& section,
-	const QString& entry, 
-	int aDefault = 0) const;
+  const QString& section,
+  const QString& entry, 
+  int aDefault = 0) const;
 
   ////////////// [2] system
 
   virtual QString getSystemString(
-	const QString& section, 
-	const QString& entry,
-    const QString& aDefault = QString()) const;
+  const QString& section, 
+  const QString& entry,
+  const QString& aDefault = QString()) const;
 
   virtual unsigned int getSystemInt(
-	const QString& section,
-	const QString& entry, 
-	int aDefault) const;
+  const QString& section,
+  const QString& entry, 
+  int aDefault) const;
 
 
 private:

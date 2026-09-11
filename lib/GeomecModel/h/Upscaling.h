@@ -17,17 +17,17 @@ class CUpscalingTargetPointsetBranch;
 class IUpscalingNodeBase : public CStorageNode
 {
 public:
-	IUpscalingNodeBase(CFemAppModel& model);
-	IUpscalingNodeBase(const QString& strName, C3DModel& model);
-	IUpscalingNodeBase(const unsigned int uName, C3DModel& model);
-	IUpscalingNodeBase(const IUpscalingNodeBase &rhs);
+  IUpscalingNodeBase(CFemAppModel& model);
+  IUpscalingNodeBase(const QString& strName, C3DModel& model);
+  IUpscalingNodeBase(const unsigned int uName, C3DModel& model);
+  IUpscalingNodeBase(const IUpscalingNodeBase &rhs);
 
   virtual bool Empty() const;
-	virtual long SavedItems() const;
+  virtual long SavedItems() const;
   virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
   virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-	virtual unsigned int IconId() const;
-	virtual unsigned int TypeId() const;
+  virtual unsigned int IconId() const;
+  virtual unsigned int TypeId() const;
   const CUpscalingFormationsBranch& FormationsBranch() const;
   CUpscalingFormationsBranch &FormationsBranch();
   const CUpscalingPointsetRangesBranch &PointsetRangesBranch() const;
@@ -86,25 +86,25 @@ class CUpscalingFormationsBranch : public COpenGLNode
 {
 public:
   CUpscalingFormationsBranch(CFemAppModel& model);
-	CUpscalingFormationsBranch(IUpscalingNodeBase& parent);
-	CUpscalingFormationsBranch(const CUpscalingFormationsBranch &rhs);
+  CUpscalingFormationsBranch(IUpscalingNodeBase& parent);
+  CUpscalingFormationsBranch(const CUpscalingFormationsBranch &rhs);
 
   bool HasFormations() const;
 
-	virtual	bool ConnectItem(const CGraphNode &item);
-	virtual bool CanConnectItem(const CGraphNode &item) const;
+  virtual	bool ConnectItem(const CGraphNode &item);
+  virtual bool CanConnectItem(const CGraphNode &item) const;
 
-	virtual bool Empty() const;
-	virtual long SavedItems() const;
+  virtual bool Empty() const;
+  virtual long SavedItems() const;
   virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
   virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-	virtual unsigned int IconId() const;
-	virtual unsigned int TypeId() const;
+  virtual unsigned int IconId() const;
+  virtual unsigned int TypeId() const;
 
-	virtual int DisplayListSize() const;
-	virtual const geo::IObject& DisplayList(int nIndex) const;
-	virtual CDrawDef* OnCreateDrawDef(const geo::IObject& object) const;
-	virtual TColor Color() const;
+  virtual int DisplayListSize() const;
+  virtual const geo::IObject& DisplayList(int nIndex) const;
+  virtual CDrawDef* OnCreateDrawDef(const geo::IObject& object) const;
+  virtual TColor Color() const;
 
   bool IsInRange(const geo::IBody& body) const;
   void FormationFilter(const IFormationFilter *formationFilter){ m_formationFilter = formationFilter; }
@@ -114,15 +114,15 @@ public:
 
 protected:
  	virtual void OnNewNeighbour(const CGraphNode &node);
-	virtual void OnNeighbourDeleted(const CGraphNode &node);
+  virtual void OnNeighbourDeleted(const CGraphNode &node);
   virtual void OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint);
 
 private:
   class CFormationDrawDef : public COpenGLNode::CDrawDef
   {
   public:
-    CFormationDrawDef(const CFormationBase& formation);
-		virtual DrawDecisionVector Color(const geo::IObject &object) const;
+  CFormationDrawDef(const CFormationBase& formation);
+    virtual DrawDecisionVector Color(const geo::IObject &object) const;
   };
 
 private:
@@ -138,11 +138,11 @@ public:
   IUpscalingPointsetBranchBase(const QString& strName, IUpscalingNodeBase& parent);
   IUpscalingPointsetBranchBase(const IUpscalingPointsetBranchBase& rhs);
 
-	virtual unsigned int TypeId() const;
+  virtual unsigned int TypeId() const;
 
-	virtual int DisplayListSize() const;
-	virtual const geo::IObject& DisplayList(int nIndex) const;
-	virtual TColor Color() const;
+  virtual int DisplayListSize() const;
+  virtual const geo::IObject& DisplayList(int nIndex) const;
+  virtual TColor Color() const;
 
   ACCEPT_GEOMECMODELVISITORS(VisitIUpscalingPointsetBranchBase);
 };
@@ -154,17 +154,17 @@ public:
   CUpscalingPointsetRangesBranch(IUpscalingNodeBase& parent);
   CUpscalingPointsetRangesBranch(const CUpscalingPointsetRangesBranch& rhs);
 
-	virtual bool Empty() const;
-	virtual long SavedItems() const;
+  virtual bool Empty() const;
+  virtual long SavedItems() const;
   virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
   virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-	virtual unsigned int IconId() const;
+  virtual unsigned int IconId() const;
 
   virtual bool CanConnectItem(const CGraphNode& node) const;
 
-	virtual int DisplayListSize() const;
-	virtual const geo::IObject& DisplayList(int nIndex) const;
-	virtual CDrawDef* OnCreateDrawDef(const geo::IObject& object) const;
+  virtual int DisplayListSize() const;
+  virtual const geo::IObject& DisplayList(int nIndex) const;
+  virtual CDrawDef* OnCreateDrawDef(const geo::IObject& object) const;
 
   bool UseAllPointsets() const;
   void UseAllPointsets(bool b);
@@ -175,15 +175,15 @@ public:
 
 protected:
  	virtual void OnNewNeighbour(const CGraphNode &node);
-	virtual void OnNeighbourDeleted(const CGraphNode &node);
+  virtual void OnNeighbourDeleted(const CGraphNode &node);
   virtual void OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint);
 
 private:
   class CPointsetDrawDef : public COpenGLNode::CDrawDef
   {
   public:
-    CPointsetDrawDef(const CPointSet& pointset);
-		virtual DrawDecisionVector Color(const geo::IObject &object) const;
+  CPointsetDrawDef(const CPointSet& pointset);
+    virtual DrawDecisionVector Color(const geo::IObject &object) const;
   };
 
 private:
@@ -201,11 +201,11 @@ public:
   CUpscalingTargetPointsetBranch(const CUpscalingTargetPointsetBranch& rhs);
   ~CUpscalingTargetPointsetBranch();
 
-	virtual bool Empty() const;
-	virtual long SavedItems() const;
+  virtual bool Empty() const;
+  virtual long SavedItems() const;
   virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
   virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-	virtual unsigned int IconId() const;
+  virtual unsigned int IconId() const;
 
   virtual bool CanConnectItem(const CGraphNode& item) const;
   virtual bool ConnectItem(const CGraphNode& item);
@@ -219,14 +219,14 @@ public:
   CPillarMap::const_iterator begin() const;
   CPillarMap::const_iterator end() const;
 
-	virtual int DisplayListSize() const;
-	virtual const geo::IObject& DisplayList(int nIndex) const;
-	virtual TColor Color() const;
+  virtual int DisplayListSize() const;
+  virtual const geo::IObject& DisplayList(int nIndex) const;
+  virtual TColor Color() const;
 
   void CopyPillarMapAsPointset(const CPointSet& set2d, const QString& sName);
 
   void CreateFromRegular2DGrid(const geo::IPoint& corner1,
-    const geo::IPoint& corner2, int pointsNorthing, int pointsEasting);
+  const geo::IPoint& corner2, int pointsNorthing, int pointsEasting);
   bool CanCreateFromRegular2DGrid() const;
   void CreateFromExisting2D(const IPointSet& pointSet);
   bool CanCreateFromExisting2D() const;

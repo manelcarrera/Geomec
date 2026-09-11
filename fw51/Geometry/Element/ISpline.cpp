@@ -232,7 +232,7 @@ std::vector<int> ISpline::FaceNodeIndices(int nIndex) const
   int i;
   for(i = 0; i < 4; i++)
   {
-    ret.push_back(face.ParentNodeIndex(i));
+  ret.push_back(face.ParentNodeIndex(i));
   }
 
   return ret;
@@ -258,15 +258,15 @@ void ISpline::BuildLineCache() const
 
   // bottom (left to right)
   for(i = 0; i < nf; i++)
-    m_vcLines.push_back(new CSplineLine(*this, i, i+1));
+  m_vcLines.push_back(new CSplineLine(*this, i, i+1));
 
   // top (right to left)
   for(i = 0; i < nf; i++)
-    m_vcLines.push_back(new CSplineLine(*this, nf+i+1, nf+i+2));
+  m_vcLines.push_back(new CSplineLine(*this, nf+i+1, nf+i+2));
 
   // vertical lines
   for(i = 0; i < nf + 1; i++)
-    m_vcLines.push_back(new CSplineLine(*this, i, 2*nf+1-i));
+  m_vcLines.push_back(new CSplineLine(*this, i, 2*nf+1-i));
 }
 
 const ILine &ISpline::Line(int nIndex) const
@@ -287,7 +287,7 @@ std::vector<int> ISpline::LinePointIndices(int nIndex) const
   int i;
   for(i = 0; i < 2; i++)
   {
-    ret.push_back(line.ParentNodeIndex(i));
+  ret.push_back(line.ParentNodeIndex(i));
   }
 
   return ret;
@@ -363,7 +363,7 @@ double ISpline::Size() const
   int i;
   for(i = 1; i < NrOfNodes() / 2; i++)
   {
-    length += Node(i-1).Distance(Node(i));
+  length += Node(i-1).Distance(Node(i));
   }
 
   double width = Node(0).Distance(Node(NrOfNodes() - 1));
@@ -393,16 +393,16 @@ CValue ISpline::InterpolateValue(const IPoint& point, const std::vector<CValue>&
   int i;
   for(i = 0; i < NrOfNodes(); i++)
   {
-    if(!values[i].Valid()) return CValue();
+  if(!values[i].Valid()) return CValue();
   }
 
   int nf = NrOfFaces();
   for(i = 0; i < nf; i++)
   {
-    if(Face(i).Contains(point, true))
-    {
+  if(Face(i).Contains(point, true))
+  {
       return InterpolateValue(point, values, i);
-    }
+  }
   }
 
   return CValue();

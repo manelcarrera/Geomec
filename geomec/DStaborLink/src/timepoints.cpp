@@ -13,50 +13,50 @@
 
 long CTimePoints::GetCount()
 {
-	long result;
-	GetProperty(0x1, VT_I4, (void*)&result);
-	return result;
+  long result;
+  GetProperty(0x1, VT_I4, (void*)&result);
+  return result;
 }
 
 void CTimePoints::SetCount(long propVal)
 {
-	SetProperty(0x1, VT_I4, propVal);
+  SetProperty(0x1, VT_I4, propVal);
 }
 
 double CTimePoints::GetMudPressure()
 {
-	double result;
-	GetProperty(0x2, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x2, VT_R8, (void*)&result);
+  return result;
 }
 
 void CTimePoints::SetMudPressure(double propVal)
 {
-	SetProperty(0x2, VT_R8, propVal);
+  SetProperty(0x2, VT_R8, propVal);
 }
 
 double CTimePoints::GetInstallTime()
 {
-	double result;
-	GetProperty(0x3, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x3, VT_R8, (void*)&result);
+  return result;
 }
 
 void CTimePoints::SetInstallTime(double propVal)
 {
-	SetProperty(0x3, VT_R8, propVal);
+  SetProperty(0x3, VT_R8, propVal);
 }
 
 BOOL CTimePoints::GetPressureCom()
 {
-	BOOL result;
-	GetProperty(0x4, VT_BOOL, (void*)&result);
-	return result;
+  BOOL result;
+  GetProperty(0x4, VT_BOOL, (void*)&result);
+  return result;
 }
 
 void CTimePoints::SetPressureCom(BOOL propVal)
 {
-	SetProperty(0x4, VT_BOOL, propVal);
+  SetProperty(0x4, VT_BOOL, propVal);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -64,55 +64,55 @@ void CTimePoints::SetPressureCom(BOOL propVal)
 
 long CTimePoints::Add(double NewValue)
 {
-	long result;
-	static BYTE parms[] =
-		VTS_R8;
-	InvokeHelper(0x5, DISPATCH_METHOD, VT_I4, (void*)&result, parms,
-		NewValue);
-	return result;
+  long result;
+  static BYTE parms[] =
+    VTS_R8;
+  InvokeHelper(0x5, DISPATCH_METHOD, VT_I4, (void*)&result, parms,
+    NewValue);
+  return result;
 }
 
 double CTimePoints::Item(long Index)
 {
-	double result;
-	static BYTE parms[] =
-		VTS_I4;
-	InvokeHelper(0x6, DISPATCH_METHOD, VT_R8, (void*)&result, parms,
-		Index);
-	return result;
+  double result;
+  static BYTE parms[] =
+    VTS_I4;
+  InvokeHelper(0x6, DISPATCH_METHOD, VT_R8, (void*)&result, parms,
+    Index);
+  return result;
 }
 
 void CTimePoints::Remove(long Index)
 {
-	static BYTE parms[] =
-		VTS_I4;
-	InvokeHelper(0x7, DISPATCH_METHOD, VT_EMPTY, NULL, parms,
-		 Index);
+  static BYTE parms[] =
+    VTS_I4;
+  InvokeHelper(0x7, DISPATCH_METHOD, VT_EMPTY, NULL, parms,
+     Index);
 }
 
 void CTimePoints::Clear()
 {
-	InvokeHelper(0x8, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
+  InvokeHelper(0x8, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
 }
 
 void CTimePoints::Sort()
 {
-	InvokeHelper(0x9, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
+  InvokeHelper(0x9, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
 }
 
 BOOL CTimePoints::SetDefault()
 {
-	BOOL result;
-	InvokeHelper(0xa, DISPATCH_METHOD, VT_BOOL, (void*)&result, NULL);
-	return result;
+  BOOL result;
+  InvokeHelper(0xa, DISPATCH_METHOD, VT_BOOL, (void*)&result, NULL);
+  return result;
 }
 
 BOOL CTimePoints::GetOpenHoleTime(double CriticalPlasticStrain, VARIANT* EpeqResults, double* OpenHoleTime)
 {
-	BOOL result;
-	static BYTE parms[] =
-		VTS_R8 VTS_PVARIANT VTS_PR8;
-	InvokeHelper(0xb, DISPATCH_METHOD, VT_BOOL, (void*)&result, parms,
-		CriticalPlasticStrain, EpeqResults, OpenHoleTime);
-	return result;
+  BOOL result;
+  static BYTE parms[] =
+    VTS_R8 VTS_PVARIANT VTS_PR8;
+  InvokeHelper(0xb, DISPATCH_METHOD, VT_BOOL, (void*)&result, parms,
+    CriticalPlasticStrain, EpeqResults, OpenHoleTime);
+  return result;
 }

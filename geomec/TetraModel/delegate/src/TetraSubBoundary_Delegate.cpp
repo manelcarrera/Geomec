@@ -16,7 +16,7 @@ void CTetraSubBoundary_Delegate::AppendContextMenu(
 
 CTetraSubBoundary_Delegate::CHorizonPlaceHolder_Delegate::
   CHorizonPlaceHolder_Delegate(
-    CTetraSubBoundary::CHorizonPlaceHolder* horizonPlaceHolder)
+  CTetraSubBoundary::CHorizonPlaceHolder* horizonPlaceHolder)
 : COpenGLNode_Delegate(horizonPlaceHolder)
 , m_horizonPlaceHolder(horizonPlaceHolder)
 {

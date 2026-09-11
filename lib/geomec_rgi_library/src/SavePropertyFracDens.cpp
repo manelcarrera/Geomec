@@ -27,45 +27,45 @@ bool CSavePropertyFracDens::saveProperty(RGInterface& rgi,
   CModelBase& modelBase, const CRockMechProcessor& rmp)
 {
   std::vector <double>
-    values(modelBase.Mesh().Mesh().ElementSize(), RGUtils::nullReal());
+  values(modelBase.Mesh().Mesh().ElementSize(), RGUtils::nullReal());
   CDepletionStage& depletionStage =
-    modelBase.DepletionStageEntry().StageByIndex(
+  modelBase.DepletionStageEntry().StageByIndex(
       rgi.getCurrentDepletionStage().getDepletionStage());
   bool valuesSeen = false;
 
   for (int i = 0; i < modelBase.Mesh().Mesh().ElementSize(); ++i)
   {
-    const geo::IElement& element = modelBase.Mesh().Mesh().Element(i);
-    const CFormationBase* formationBase = modelBase.Mesh().Formation(element);
+  const geo::IElement& element = modelBase.Mesh().Mesh().Element(i);
+  const CFormationBase* formationBase = modelBase.Mesh().Formation(element);
 
-    if (formationBase)
-    {
+  if (formationBase)
+  {
       try
       {
-        const CFFMaterial& cffMaterial =
+    const CFFMaterial& cffMaterial =
           formationBase->Material(depletionStage).Material(element);
-        const CMaterialFractureApertureBase& materialFractureApertureBase =
+    const CMaterialFractureApertureBase& materialFractureApertureBase =
           dynamic_cast <const CMaterialFractureApertureBase&> (
-            cffMaterial.Material());
-        geo::CVector vector =
+      cffMaterial.Material());
+    geo::CVector vector =
           getVector(cffMaterial, materialFractureApertureBase);
-        double length = getLength(cffMaterial);
+    double length = getLength(cffMaterial);
 
-        values[i] = getVectorComponent(vector, length);
-        valuesSeen = true;
+    values[i] = getVectorComponent(vector, length);
+    valuesSeen = true;
       }
 
       catch (const std::bad_cast&)
       {
       }
-    }
+  }
   }
 
   rgi.saveProperty(m_RGProperty, values);
 
   if (!valuesSeen)
   {
-    rmp.AddLogLine("No fracture aperture material has been found.");
+  rmp.AddLogLine("No fracture aperture material has been found.");
   }
 
   return true;
@@ -77,13 +77,13 @@ double CSavePropertyFracDens::getLength(const CFFMaterial& cffMaterial) const
 {
   switch (m_DensityDirection)
   {
-    case HIGH:
+  case HIGH:
       return cffMaterial.ParameterValue(IDT_VALUETYPE_HIGH_FRACT_DENS);
-    case INTERMEDIATE:
+  case INTERMEDIATE:
       return cffMaterial.ParameterValue(IDT_VALUETYPE_INTER_FRACT_DENS);
-    case LOW:
+  case LOW:
       return cffMaterial.ParameterValue(IDT_VALUETYPE_LOW_FRACT_DENS);
-    default:
+  default:
       assert(false);
   }
 
@@ -95,14 +95,14 @@ geo::CVector CSavePropertyFracDens::getVector(const CFFMaterial& cffMaterial,
 {
   switch (m_DensityDirection)
   {
-    case HIGH:
+  case HIGH:
       return materialFractureApertureBase.HighDensityDirection(cffMaterial);
-    case INTERMEDIATE:
+  case INTERMEDIATE:
       return materialFractureApertureBase.
-        IntermediateDensityDirection(cffMaterial);
-    case LOW:
+    IntermediateDensityDirection(cffMaterial);
+  case LOW:
       return materialFractureApertureBase.LowDensityDirection(cffMaterial);
-    default:
+  default:
       assert(false);
   }
 
@@ -114,13 +114,13 @@ double CSavePropertyFracDens::getVectorComponent(const geo::CVector& vector,
 {
   switch (m_VectorDirection)
   {
-    case X:
+  case X:
       return vector.X() * length;
-    case Y:
+  case Y:
       return vector.Y() * length;
-    case Z:
+  case Z:
       return vector.Z() * length;
-    default:
+  default:
       assert(false);
   }
 

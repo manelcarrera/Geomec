@@ -14,33 +14,33 @@
 #include "IValueComponent_Delegate.h"
 
 typedef CNodeObserver_Delegate<IValueComponentBase, IValueComponent_Delegate, CDummyNode, CDummyObserver, FALSE, FIXED_ITEM> TValueComponentObserver;
-	
+  
 typedef CDeletableNodeObserver_Delegate<IValueComposite, IValueComposite_Delegate, CStorageNode, CDummyObserver, FALSE, FIXED_ITEM> TValueBaseObserver;
 
 class CValueCompositeObserver : public TValueBaseObserver
 {
-	unsigned int m_uMode;
+  unsigned int m_uMode;
 public:
-	CValueCompositeObserver(IValueComposite& node,
-							CTreeNode &parent,
-							const BOOL rename,
-							const enum REMOVE_TYPE remove,
-							HTREEITEM hInsertAfter = TVI_LAST,
-							BOOL bInitialUpdate = FALSE,
-							BOOL bSortAfterInsertion = TRUE );
+  CValueCompositeObserver(IValueComposite& node,
+              CTreeNode &parent,
+              const BOOL rename,
+              const enum REMOVE_TYPE remove,
+              HTREEITEM hInsertAfter = TVI_LAST,
+              BOOL bInitialUpdate = FALSE,
+              BOOL bSortAfterInsertion = TRUE );
 
-	CValueCompositeObserver(IValueComposite& node,
-							CTreeCtrl &ctrl,
-							const BOOL rename,
-							const enum REMOVE_TYPE remove,
-							HTREEITEM hParent = TVI_ROOT,
-							HTREEITEM hInsertAfter = TVI_LAST,
-							BOOL bInitialUpdate = FALSE,
-							BOOL bSortAfterInsertion = TRUE);
+  CValueCompositeObserver(IValueComposite& node,
+              CTreeCtrl &ctrl,
+              const BOOL rename,
+              const enum REMOVE_TYPE remove,
+              HTREEITEM hParent = TVI_ROOT,
+              HTREEITEM hInsertAfter = TVI_LAST,
+              BOOL bInitialUpdate = FALSE,
+              BOOL bSortAfterInsertion = TRUE);
 
 // The filter
-	virtual CTreeNode* InsertChild(CStorageNode& t);
-	virtual BOOL OnFilter(const CStorageNode& t) const;
+  virtual CTreeNode* InsertChild(CStorageNode& t);
+  virtual BOOL OnFilter(const CStorageNode& t) const;
 };
 
 class CValueReferenceObserver : public CValueCompositeObserver

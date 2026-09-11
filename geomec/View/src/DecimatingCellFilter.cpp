@@ -15,17 +15,17 @@ void DecimatingCellFilterI::init(size_t cellCount)
   // Only update when we need more elements
   if(cellCount > m_permutation.size())
   {
-    std::vector<size_t> permutation;
-    permutation.reserve(cellCount);
+  std::vector<size_t> permutation;
+  permutation.reserve(cellCount);
 
-    for(size_t i=0; i < cellCount; ++i)
+  for(size_t i=0; i < cellCount; ++i)
       permutation.push_back(i);
 
-    std::random_shuffle(permutation.begin(), permutation.end());
+  std::random_shuffle(permutation.begin(), permutation.end());
 
-    m_permutation.swap(permutation);
+  m_permutation.swap(permutation);
 
-    m_maxVisibleIndex = (size_t)(m_fraction * m_permutation.size());
+  m_maxVisibleIndex = (size_t)(m_fraction * m_permutation.size());
   }
 }
 

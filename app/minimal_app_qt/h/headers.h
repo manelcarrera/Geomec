@@ -3,7 +3,7 @@
 class IClass
 {
 public:
-	virtual void start()=0;
+  virtual void start()=0;
 };
 
 //
@@ -12,8 +12,8 @@ public:
 class Class_01 : public IClass
 {
 public:
-	Class_01(){};
-	void start();
+  Class_01(){};
+  void start();
 };
 
 
@@ -23,8 +23,8 @@ public:
 class Class_02 : public IClass
 {
 public:
-	Class_02(){};
-	void start();
+  Class_02(){};
+  void start();
 };
 
 
@@ -35,17 +35,17 @@ class Class_03 : public IClass
 {
 public:
 
-	bool m_quit;
+  bool m_quit;
 
-	enum eType
-	{
-		Producer,
-		Consumer
-	};
+  enum eType
+  {
+    Producer,
+    Consumer
+  };
 
-	Class_03() : m_quit(false) {};
-	void start(){};
-	void start( eType type_ );
+  Class_03() : m_quit(false) {};
+  void start(){};
+  void start( eType type_ );
 };
 
 
@@ -57,6 +57,6 @@ class Class_04 : public IClass
 {
 public:
 
-	Class_04(){};
-	void start();
+  Class_04(){};
+  void start();
 };

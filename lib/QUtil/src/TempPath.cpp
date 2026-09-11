@@ -21,98 +21,98 @@ static char THIS_FILE[]=__FILE__;
 //
 CTempPath::CTempPath()
 {
-	GetEnvPath();
+  GetEnvPath();
 }
 
 CTempPath::CTempPath(const CTempPath &rhs)
 {
   for (int c = TEMP_GENERAL; c < _TEMP_NR_OF_CATEGORIES; ++c)
-	  m_usr_path_v[ c ] = rhs.m_usr_path_v[ c ];
+    m_usr_path_v[ c ] = rhs.m_usr_path_v[ c ];
 
-	m_b_usr_path = rhs.m_b_usr_path;
-	m_env_path = rhs.m_env_path;
+  m_b_usr_path = rhs.m_b_usr_path;
+  m_env_path = rhs.m_env_path;
 }
 
 CTempPath CTempPath::operator=(const CTempPath &rhs)
 {
   for (int c = TEMP_GENERAL; c < _TEMP_NR_OF_CATEGORIES; ++c)
-	  m_usr_path_v[c] = rhs.m_usr_path_v[c];
+    m_usr_path_v[c] = rhs.m_usr_path_v[c];
 
-	m_b_usr_path = rhs.m_b_usr_path;
-	m_env_path = rhs.m_env_path;
+  m_b_usr_path = rhs.m_b_usr_path;
+  m_env_path = rhs.m_env_path;
 
-	return *this;
+  return *this;
 }
 
 CTempPath::~CTempPath()
 {
-	WriteConfig();
+  WriteConfig();
 }
 
 void CTempPath::Path(Category category, QString strPath)
 {
-	m_usr_path_v[ category ] = strPath;
+  m_usr_path_v[ category ] = strPath;
 }
 
 QString CTempPath::Path(Category category)
 {
-	if( m_b_usr_path )
-	{
-		switch (category)
-		{
-			case TEMP_CALCULATION:
-			{
-				bool defined = !m_usr_path_v[TEMP_CALCULATION].isEmpty();
+  if( m_b_usr_path )
+  {
+    switch (category)
+    {
+      case TEMP_CALCULATION:
+      {
+        bool defined = !m_usr_path_v[TEMP_CALCULATION].isEmpty();
 
-				return m_usr_path_v[ 
-					defined ? 
-						TEMP_CALCULATION : 
-						TEMP_GENERAL ];
-			}
-			case TEMP_GENERAL:
-			default:
-				return m_usr_path_v[TEMP_GENERAL];
-		}
-	}
-	else
-	{
-		return m_env_path;
-	}
+        return m_usr_path_v[ 
+          defined ? 
+            TEMP_CALCULATION : 
+            TEMP_GENERAL ];
+      }
+      case TEMP_GENERAL:
+      default:
+        return m_usr_path_v[TEMP_GENERAL];
+    }
+  }
+  else
+  {
+    return m_env_path;
+  }
 }
 
 void CTempPath::UserPath(bool bUserPath)
 {
-	m_b_usr_path = bUserPath;
+  m_b_usr_path = bUserPath;
 }
 
 bool CTempPath::UserPath()
 {
-	return m_b_usr_path;
+  return m_b_usr_path;
 }
 
 void CTempPath::GetEnvPath()
 {
-	for( const auto key : {"TEMP", "TMP"} )
-	{
-		m_env_path = CEnvironment::instance()->get( key );
-		if( !m_env_path.isEmpty() )
-			break;
-	}
+  for( const auto key : {"TEMP", "TMP"} )
+  {
+    m_env_path = CEnvironment::instance()->get( key );
+    if( !m_env_path.isEmpty() )
+      break;
+  }
 }
 
 bool CTempPath::PathValid(QString &strPath)
 {
-	if(strPath.isEmpty()) 
-		return false;//FALSE;
+  if(strPath.isEmpty()) 
+    return false;//FALSE;
 
-	return DirExists(strPath);
+  return DirExists(strPath);
 }
 
 bool CTempPath::UserPathsValid()
 {
   for (int c = TEMP_GENERAL; c < _TEMP_NR_OF_CATEGORIES; ++c)
   {
-    if (!PathValid(m_usr_path_v[c]))
+  if (!PathValid(m_usr_path_v[c]))
       return false;
   }
   return true;
@@ -120,7 +120,7 @@ bool CTempPath::UserPathsValid()
 
 bool CTempPath::EnvPathValid()
 {
-	return PathValid(m_env_path);
+  return PathValid(m_env_path);
 }
 
 //
@@ -129,25 +129,25 @@ bool CTempPath::EnvPathValid()
 //
 void CTempPath::ReadConfig()
 {
-	ISettings* config = ISettings::instance();
+  ISettings* config = ISettings::instance();
 
-	QString section = "Settings";
+  QString section = "Settings";
 
-	m_b_usr_path = config->getProfileInt( section, "UserTemp", 0) != 0;
+  m_b_usr_path = config->getProfileInt( section, "UserTemp", 0) != 0;
 
-	m_usr_path_v[ TEMP_GENERAL ] = config->getProfileString( section, "UserTempPath");
-	m_usr_path_v[ TEMP_CALCULATION ] = config->getProfileString( section, "CalcTempPath");
+  m_usr_path_v[ TEMP_GENERAL ] = config->getProfileString( section, "UserTempPath");
+  m_usr_path_v[ TEMP_CALCULATION ] = config->getProfileString( section, "CalcTempPath");
 
 }
 
 // from members to config 
 void CTempPath::WriteConfig()
 {
-	ISettings* config = ISettings::instance();
+  ISettings* config = ISettings::instance();
 
-	QString section = "Settings";
+  QString section = "Settings";
 
-	config->writeProfileInt(	section, "UserTemp",	m_b_usr_path ? 1 : 0 );
-	config->writeProfileString( section, "UserTempPath",m_usr_path_v[ TEMP_GENERAL ] );
-	config->writeProfileString( section, "CalcTempPath",m_usr_path_v[ TEMP_CALCULATION ] );
+  config->writeProfileInt(	section, "UserTemp",	m_b_usr_path ? 1 : 0 );
+  config->writeProfileString( section, "UserTempPath",m_usr_path_v[ TEMP_GENERAL ] );
+  config->writeProfileString( section, "CalcTempPath",m_usr_path_v[ TEMP_CALCULATION ] );
 }

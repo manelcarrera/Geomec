@@ -1,36 +1,36 @@
 #pragma once
 
 namespace  gm{
-	namespace  send{
+  namespace  send{
 
-		struct TMsg
-		{
-			HWND hWnd;
-			UINT Msg;
-			WPARAM wParam;
-			LPARAM lParam;
-		};
+    struct TMsg
+    {
+      HWND hWnd;
+      UINT Msg;
+      WPARAM wParam;
+      LPARAM lParam;
+    };
 
-		void gen( const TMsg& d );
-		void command( WPARAM wParam, LPARAM lParam=0 );
-		void msg( UINT Msg, WPARAM wParam, LPARAM lParam=0 );
-		void quit();
-		void minimize();
+    void gen( const TMsg& d );
+    void command( WPARAM wParam, LPARAM lParam=0 );
+    void msg( UINT Msg, WPARAM wParam, LPARAM lParam=0 );
+    void quit();
+    void minimize();
 
 
-		enum eStatusType{Text,ElapsedTime};
-		void status( const QString& message, eStatusType type=Text );
+    enum eStatusType{Text,ElapsedTime};
+    void status( const QString& message, eStatusType type=Text );
 
-		struct key_ext{ WORD key; int times; };
-		void key_stroke(const std::vector<key_ext>& key_v);
+    struct key_ext{ WORD key; int times; };
+    void key_stroke(const std::vector<key_ext>& key_v);
 
-		void key_stroke(const std::vector<WORD>& key_v);
-		void key_stroke(WORD key);
-		void key_stroke_ctrl(WORD key);
+    void key_stroke(const std::vector<WORD>& key_v);
+    void key_stroke(WORD key);
+    void key_stroke_ctrl(WORD key);
 
-	} // namespace  send
+  } // namespace  send
 
-	UINT cmd( const QString& key );
+  UINT cmd( const QString& key );
 
 } // namespace  gm
 

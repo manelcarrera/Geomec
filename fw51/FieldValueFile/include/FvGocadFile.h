@@ -22,9 +22,9 @@ class FIELDVALUEFILE_EXPORT CGoCadFile : public CTextFile
                    GOCAD_VOLUME };
 
   enum GoCadState { GOCAD_CLOSED,
-                    PARSE_TYPE,
-                    PARSE_HEADER,
-                    PARSE_SURFACE };
+          PARSE_TYPE,
+          PARSE_HEADER,
+          PARSE_SURFACE };
 
   GoCadType  m_type;
   GoCadState  m_state;

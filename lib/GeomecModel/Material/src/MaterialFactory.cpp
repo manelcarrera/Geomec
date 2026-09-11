@@ -46,8 +46,8 @@ IMaterial* CMaterialFactory::Create(CMaterialEntry& entry, CLibraryMaterial& lib
   TFactoryMap::iterator it = m_mpFactory.find(libmat.MaterialModel());
   if(it == m_mpFactory.end())
   {
-    assert(false); // not registered
-    return 0;
+  assert(false); // not registered
+  return 0;
   }
 
   // call creation method
@@ -60,8 +60,8 @@ ml::CMaterial::CCreator* CMaterialFactory::GetLibraryMaterialCreator(int iMateri
 
   if(it == m_mpFactory.end())
   {
-    assert(false); // not registered
-    return 0;
+  assert(false); // not registered
+  return 0;
   }
 
   return it->second.second();

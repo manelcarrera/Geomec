@@ -1,10 +1,10 @@
 /*************************************************************************
 
-        RescueTreeNode.h
+    RescueTreeNode.h
 
  Node of an index in Rescue
 
-        Rod Hanks               May, 1999
+    Rod Hanks               May, 1999
 
 ****************************************************************************/
 #include "myHeaders.h"
@@ -20,21 +20,21 @@ RescueTreeNode::~RescueTreeNode()
 {
   if (objectCount > 0)
   {
-    RESCUEINT64 loop;
-    for (loop = 0; loop < objectCount; loop++)
-    {
+  RESCUEINT64 loop;
+  for (loop = 0; loop < objectCount; loop++)
+  {
       delete objects[loop];
-    }
+  }
   }
   free(objects);
   if (branches != 0)
   {
-    RESCUEINT64 loop;
-    for (loop = 0; loop < branchCount; loop++)
-    {
+  RESCUEINT64 loop;
+  for (loop = 0; loop < branchCount; loop++)
+  {
       delete branches[loop];
-    }
-    free(branches);
+  }
+  free(branches);
   }
 }
 
@@ -72,44 +72,44 @@ RESCUEBOOL RescueTreeNode::Delete(void *objectToDelete, RescueTree *tree, RESCUE
   RESCUEINT64 ndx;
   if (Find(objectToDelete, ndx))
   {
-    myReturn = TRUE;
-    if (tree != 0)
-    {
+  myReturn = TRUE;
+  if (tree != 0)
+  {
       objects[ndx]->listNode->Delete(objectToDelete, tree);
       delete objects[ndx];
-    }
-    if (branches != 0)
-    {
+  }
+  if (branches != 0)
+  {
       if (ndx >= branchCount)
       {
-        Leaf *lowerKey = branches[branchCount - 1]->objects[branches[branchCount - 1]->objectCount - 1];
-        objects[ndx] = lowerKey;
-        branches[branchCount - 1]->Delete(lowerKey->object, 0, branchCount - 1);
+    Leaf *lowerKey = branches[branchCount - 1]->objects[branches[branchCount - 1]->objectCount - 1];
+    objects[ndx] = lowerKey;
+    branches[branchCount - 1]->Delete(lowerKey->object, 0, branchCount - 1);
       }
       else
       {
-        Leaf *lowerKey = branches[ndx]->objects[0];
-        objects[ndx] = lowerKey;
-        branches[ndx]->Delete(lowerKey->object, 0, ndx);
+    Leaf *lowerKey = branches[ndx]->objects[0];
+    objects[ndx] = lowerKey;
+    branches[ndx]->Delete(lowerKey->object, 0, ndx);
       }
-    }
-    else if (objectCount == 1 && parentNode != 0)
-    {
+  }
+  else if (objectCount == 1 && parentNode != 0)
+  {
       parentNode->DeleteLeaf(memo);
       objectCount = 0;
       delete this;
-    }
-    else
-    {
+  }
+  else
+  {
       RESCUEINT64 numberToMove = objectCount - (ndx + 1);
       size_t bytesToMove = (size_t) numberToMove * sizeof(void *);
       memmove(&objects[ndx], &objects[ndx + 1], bytesToMove);
       objectCount--;
-    }
+  }
   }
   else if (branches != 0 && ndx > 0)
   {
-    myReturn = branches[ndx - 1]->Delete(objectToDelete, tree, ndx - 1);
+  myReturn = branches[ndx - 1]->Delete(objectToDelete, tree, ndx - 1);
   }
   return myReturn;
 }
@@ -127,9 +127,9 @@ void RescueTreeNode::DeleteLeaf(RESCUEINT64 memo)
 
   if (branchCount == 0)
   {
-    free(branches);
-    branchAllocated = 0;
-    branches = 0;
+  free(branches);
+  branchAllocated = 0;
+  branches = 0;
   }
   Add(displacedKey, objectAllocated);
 }
@@ -139,24 +139,24 @@ void RescueTreeNode::Add(Leaf *newObject, RESCUEINT64 numberToFill, RESCUEINT64 
   RESCUEINT64 ndx;
   if (objectCount == 0)
   {
-    objects[0] = newObject;
-    objectCount++;
+  objects[0] = newObject;
+  objectCount++;
   }
   else if (Find(newObject->object, ndx) == FALSE)
   {
-    if (branches != 0)
-    {
+  if (branches != 0)
+  {
       if (ndx >= objectCount)
       {
-        Leaf *displacedObject = objects[objectCount - 1];
-        objects[objectCount - 1] = newObject;
-        branches[branchCount - 1]->Add(displacedObject, numberToFill, branchCount - 1);
+    Leaf *displacedObject = objects[objectCount - 1];
+    objects[objectCount - 1] = newObject;
+    branches[branchCount - 1]->Add(displacedObject, numberToFill, branchCount - 1);
       }
       else if (ndx == 0)
       {
-        Leaf *displacedObject = objects[0];
-        objects[0] = newObject;
-        branches[0]->Add(displacedObject, numberToFill, 0);
+    Leaf *displacedObject = objects[0];
+    objects[0] = newObject;
+    branches[0]->Add(displacedObject, numberToFill, 0);
       }
 /*
   This object is smaller than any I have.  I will
@@ -165,96 +165,96 @@ void RescueTreeNode::Add(Leaf *newObject, RESCUEINT64 numberToFill, RESCUEINT64 
 */
       else
       {
-        branches[ndx - 1]->Add(newObject, numberToFill, ndx - 1);
+    branches[ndx - 1]->Add(newObject, numberToFill, ndx - 1);
       }
-    }
+  }
 /*
   Above, handle being a branch node.
 */
-    else
-    {
+  else
+  {
       if (objectCount >= numberToFill)
       {
-        RESCUEBOOL handled = FALSE;
-        if (parentNode != 0)
-        {
+    RESCUEBOOL handled = FALSE;
+    if (parentNode != 0)
+    {
           if (ndx == 0)
           {
-            handled = parentNode->LayOffToLeft(newObject, numberToFill, memo);
+      handled = parentNode->LayOffToLeft(newObject, numberToFill, memo);
           }
           else
           {
-            handled = parentNode->LayOffToLeft(objects[0], numberToFill, memo);
-            if (handled == TRUE)
-            {
+      handled = parentNode->LayOffToLeft(objects[0], numberToFill, memo);
+      if (handled == TRUE)
+      {
               RESCUEINT64 numberToMove = ndx - 1;
               size_t bytesToMove = (size_t) numberToMove * sizeof(Leaf *);
               memmove(objects, &objects[1], bytesToMove);
               objects[ndx - 1] = newObject;
-            }
+      }
           }
           if (handled == FALSE)
           {
-            if (ndx >= objectCount)
-            {
+      if (ndx >= objectCount)
+      {
               handled = parentNode->LayOffToRight(newObject, numberToFill, memo);
-            }
-            else
-            {
+      }
+      else
+      {
               handled = parentNode->LayOffToRight(objects[objectCount - 1], numberToFill, memo);
               if (handled == TRUE)
               {
-                RESCUEINT64 numberToMove = objectCount - (ndx + 1);
-                size_t bytesToMove = (size_t) numberToMove * sizeof(Leaf *);
-                memmove(&objects[ndx + 1], &objects[ndx], bytesToMove);
-                objects[ndx] = newObject;
+        RESCUEINT64 numberToMove = objectCount - (ndx + 1);
+        size_t bytesToMove = (size_t) numberToMove * sizeof(Leaf *);
+        memmove(&objects[ndx + 1], &objects[ndx], bytesToMove);
+        objects[ndx] = newObject;
               }
-            }
+      }
           }
-        }
+    }
   /*
-    Try to balance the tree by laying off to the left or right before we split.
+  Try to balance the tree by laying off to the left or right before we split.
   */
-        if (handled == FALSE)
-        {
+    if (handled == FALSE)
+    {
           if ((parentNode == 0) ? TRUE : (parentNode->objectCount >= objectAllocated
                                       ||  parentNode->objectCount >= numberToFill))
           {
-            RESCUEINT64 midNdx = objectCount / 2;
-            branchAllocated = objectAllocated - 1;
-            branches = (RescueTreeNode **) malloc(sizeof(RescueTreeNode *) * (size_t) branchAllocated);
-            branches[0] = new RescueTreeNode(this, &objects[1], objectAllocated, midNdx - 1);
-            objects[1] = objects[midNdx];
-            branches[1] = new RescueTreeNode(this, &objects[midNdx + 1], objectAllocated, 
+      RESCUEINT64 midNdx = objectCount / 2;
+      branchAllocated = objectAllocated - 1;
+      branches = (RescueTreeNode **) malloc(sizeof(RescueTreeNode *) * (size_t) branchAllocated);
+      branches[0] = new RescueTreeNode(this, &objects[1], objectAllocated, midNdx - 1);
+      objects[1] = objects[midNdx];
+      branches[1] = new RescueTreeNode(this, &objects[midNdx + 1], objectAllocated, 
                                              objectCount - (midNdx + 2));
-            objects[2] = objects[objectCount - 1];
-            objectCount = 3;
-            branchCount = 2;
-            Add(newObject, numberToFill);
+      objects[2] = objects[objectCount - 1];
+      objectCount = 3;
+      branchCount = 2;
+      Add(newObject, numberToFill);
           }
 /*
   Parent is full or we are root. We become a branch node.
 */
           else
           {
-            RESCUEINT64 midNdx = objectCount / 2;
-            Leaf *firstKey = objects[midNdx];
-            Leaf **objectList = &objects[midNdx + 1];
-            RESCUEINT64 objectsSent = objectCount - (midNdx + 1);
-            RescueTreeNode *newNode = new RescueTreeNode(parentNode, objectList, 
+      RESCUEINT64 midNdx = objectCount / 2;
+      Leaf *firstKey = objects[midNdx];
+      Leaf **objectList = &objects[midNdx + 1];
+      RESCUEINT64 objectsSent = objectCount - (midNdx + 1);
+      RescueTreeNode *newNode = new RescueTreeNode(parentNode, objectList, 
                                                          objectAllocated, objectsSent);
-            objectCount = midNdx;
-            parentNode->ChildSplit(newNode, firstKey, memo);
-            if (newObject->object < firstKey->object)
-            {
+      objectCount = midNdx;
+      parentNode->ChildSplit(newNode, firstKey, memo);
+      if (newObject->object < firstKey->object)
+      {
               Add(newObject, numberToFill);
-            }
-            else
-            {
+      }
+      else
+      {
               newNode->Add(newObject, numberToFill);
-            }
+      }
           }
-        }
+    }
 /*
   Parent has room.
 */
@@ -264,23 +264,23 @@ void RescueTreeNode::Add(Leaf *newObject, RESCUEINT64 numberToFill, RESCUEINT64 
 */
       else
       {
-        RESCUEINT64 numberToPush = objectCount - ndx;
-        size_t sizeToMove = (size_t) numberToPush * sizeof(Leaf *);
-        memmove(&objects[ndx + 1], &objects[ndx], sizeToMove);
-        objects[ndx] = newObject;
-        objectCount++;
+    RESCUEINT64 numberToPush = objectCount - ndx;
+    size_t sizeToMove = (size_t) numberToPush * sizeof(Leaf *);
+    memmove(&objects[ndx + 1], &objects[ndx], sizeToMove);
+    objects[ndx] = newObject;
+    objectCount++;
       }
 /*
   Simple insert.
 */
-    }
+  }
 /*
   Above, we are a leaf node.
 */
   }
   else
   {
-    delete newObject;
+  delete newObject;
   }
 /*
   If the object already exists, then we delete the Leaf structure
@@ -294,15 +294,15 @@ RESCUEBOOL RescueTreeNode::LayOffToLeft(Leaf *keyToMove, RESCUEINT64 numberToFil
   RESCUEBOOL myReturn = FALSE;
   if (ndx > 0)
   {
-    ndx--;
-    if (branches[ndx]->objectCount < numberToFill
-    &&  branches[ndx]->branches == 0)
-    {
+  ndx--;
+  if (branches[ndx]->objectCount < numberToFill
+  &&  branches[ndx]->branches == 0)
+  {
       Leaf *displacedKey = objects[ndx + 1];
       objects[ndx + 1] = keyToMove;
       branches[ndx]->Add(displacedKey, numberToFill, ndx);
       myReturn = TRUE;
-    }
+  }
   }
   return myReturn;
 }
@@ -312,15 +312,15 @@ RESCUEBOOL RescueTreeNode::LayOffToRight(Leaf *keyToMove, RESCUEINT64 numberToFi
   RESCUEBOOL myReturn = FALSE;
   if (ndx < branchCount - 1)
   {
-    ndx++;
-    if (branches[ndx]->objectCount < numberToFill
-    &&  branches[ndx]->branches == 0)
-    {
+  ndx++;
+  if (branches[ndx]->objectCount < numberToFill
+  &&  branches[ndx]->branches == 0)
+  {
       Leaf *displacedKey = objects[ndx];
       objects[ndx] = keyToMove;
       branches[ndx]->Add(displacedKey, numberToFill, ndx);
       myReturn = TRUE;
-    }
+  }
   }
   return myReturn;
 }
@@ -353,47 +353,47 @@ RESCUEBOOL RescueTreeNode::Find(void *objectToFind, RESCUEINT64 &ndx)
  
   while ((upperLimit - lowerLimit) > 1 && result != 0)
   {
-    ndx = (lowerLimit + upperLimit) >> 1;
+  ndx = (lowerLimit + upperLimit) >> 1;
 /*
-        Calculate middle position.
+    Calculate middle position.
 */
-    if (objectToFind == objects[ndx]->object)
-    {
+  if (objectToFind == objects[ndx]->object)
+  {
       result = 0;
-    }
-    else if (objectToFind < objects[ndx]->object)
-    {
+  }
+  else if (objectToFind < objects[ndx]->object)
+  {
       result = -1;
-    }
-    else
-    {
+  }
+  else
+  {
       result = 1;
-    }
-/*
-        Result of comparision at this point.
-*/
-    if (result < 0)
-    {
-      upperLimit = ndx;
-    }
-    else if (result > 0)
-    {
-      lowerLimit = ndx;
-    }
   }
 /*
-        Binary search for the named entity.
+    Result of comparision at this point.
+*/
+  if (result < 0)
+  {
+      upperLimit = ndx;
+  }
+  else if (result > 0)
+  {
+      lowerLimit = ndx;
+  }
+  }
+/*
+    Binary search for the named entity.
 */
   if (result == 0)
   {
-    myReturn = TRUE;
+  myReturn = TRUE;
   }
 /*
-        If we found it, return it.
+    If we found it, return it.
 */
   else if (result > 0)
   {
-    ndx++;
+  ndx++;
   }
 /*
   Position to insert it.

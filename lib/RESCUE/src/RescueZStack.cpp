@@ -22,7 +22,7 @@ RescueZStack::RescueZStack(RescueGeometry *geometry)
   RESCUEINT64 loop;
   for (loop = 0; loop < howMany; loop++)
   {
-    value[loop] = axis->ValueAt(loop);
+  value[loop] = axis->ValueAt(loop);
   }
 }
 
@@ -37,7 +37,7 @@ void RescueZStack::ZStack(RescueGeometry *geometry, RESCUEFLOAT *newZValues)
   RESCUEINT64 loop;
   for (loop = 0; loop < howMany; loop++)
   {
-    value[loop] = newZValues[loop];
+  value[loop] = newZValues[loop];
   }
 }
 
@@ -66,7 +66,7 @@ void RescueZStack::Archive(RescueContext *context, RESCUEINT64 kLayers, FILE *ar
   myfprintf(context, archiveFile, value, kLayers, compress);
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -76,14 +76,14 @@ RescueZStack::RescueZStack(RescueContext *context, RESCUEINT64 kLayers, FILE *ar
   myfscanf(context, archiveFile, value, kLayers, compress);
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -91,7 +91,7 @@ void RescueZStack::SwapKAxis(RESCUEINT64 kNodes)
 {
   if (value != 0)
   {
-    RescueContext::SwapArray(value, kNodes);
+  RescueContext::SwapArray(value, kNodes);
   }
 }
 
@@ -99,7 +99,7 @@ RescueZStack::~RescueZStack()
 {
   if (value != 0)
   {
-    delete [] value;
+  delete [] value;
   }
 }
 

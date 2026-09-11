@@ -8,14 +8,14 @@
 
 class GUIFRAME_EXPORT ISelectionContext : public QObject
 {
-	Q_OBJECT
+  Q_OBJECT
 
 signals:
-	void selectionChanged();
+  void selectionChanged();
 
 public:
   ISelectionContext( QObject* owner );
-	virtual ~ISelectionContext();
+  virtual ~ISelectionContext();
 
   virtual void deleteSelection();
   virtual bool canDeleteSelection() const;

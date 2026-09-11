@@ -21,22 +21,22 @@ bool CFilterValueTypes::isValueTypeAllowed(size_t valueType) const
 {
   if (isValueTypeLinear(valueType))
   {
-    return isValueTypeExcluded(valueType) ? false : true;
+  return isValueTypeExcluded(valueType) ? false : true;
   }
   else
   {
-    if (m_materialModel == MM_CAMCLAY)
-    {
+  if (m_materialModel == MM_CAMCLAY)
+  {
       return isValueTypeExcluded(valueType) ? false : true;
-    }
-    else if (m_materialModel == MM_MOHRCOULOMB)
-    {
+  }
+  else if (m_materialModel == MM_MOHRCOULOMB)
+  {
       return true;
-    }
-    else
-    {
+  }
+  else
+  {
       return false;
-    }
+  }
   }
 }
 
@@ -102,14 +102,14 @@ CFilterValueTypes::TFilterSet CFilterValueTypes::fillExcludedValueTypes(
 
   // non-linear
 
-	if (materialModel == MM_CAMCLAY)
+  if (materialModel == MM_CAMCLAY)
   {
-    insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_CAPSHAPE);  // "Cap Shape Factor"
-    assert(insertedExcludedValueType.second);
-    insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_TENSILE_STRETCH); // "Tensile stretch"
-    assert(insertedExcludedValueType.second);
+  insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_CAPSHAPE);  // "Cap Shape Factor"
+  assert(insertedExcludedValueType.second);
+  insertedExcludedValueType = excludedValueTypes.insert(IDT_VALUETYPE_TENSILE_STRETCH); // "Tensile stretch"
+  assert(insertedExcludedValueType.second);
   }
-	else if (materialModel == MM_MOHRCOULOMB)
+  else if (materialModel == MM_MOHRCOULOMB)
   {
   }
   else
@@ -250,20 +250,20 @@ void CFilterValueTypes::addLinearModelValueTypes(
   ml::TMaterialCreatorRefPtr materialCreator = f->getMatCreator(MM_LINEAR);
   assert(materialCreator);
 
-    ml::TMaterialPtr material = materialCreator->OnCreateMaterial();
+  ml::TMaterialPtr material = materialCreator->OnCreateMaterial();
 
-    materialCreator->Create(MATERIAL, *material);
+  materialCreator->Create(MATERIAL, *material);
 
-    CLibraryMaterial* libraryMaterial =
+  CLibraryMaterial* libraryMaterial =
       dynamic_cast <CLibraryMaterial*> (material);
 
-    for (size_t p = 0; (libraryMaterial != 0) &&
+  for (size_t p = 0; (libraryMaterial != 0) &&
       (p < libraryMaterial->ParameterSize()); ++p)
-    {
+  {
       allLinearValueTypes.insert(libraryMaterial->Parameter(p).ValueTypeID());
-    }
+  }
 
-    materialCreator->Destroy(material);
+  materialCreator->Destroy(material);
 }
 
 } // namespace cora

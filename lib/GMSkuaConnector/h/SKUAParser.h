@@ -45,22 +45,22 @@ class SymbolTable
   // but... it suffices; more complex ones need length, which means either walking over the string again, or keeping track of the string size (a la Pascal)
   struct HashKey
   {
-    int operator()(const char *str) const
-    {
+  int operator()(const char *str) const
+  {
       int hash = 5381;
       for (int i = 0; *str; ++str, ++i)
-        hash = ((hash << 5) + hash) + *str;
+    hash = ((hash << 5) + hash) + *str;
       return hash;
-    }
+  }
   };
 
   // Assume case sensitive checking
   struct HashEqual
   {
-    bool operator()(const char *lhs, const char *rhs) const
-    {
+  bool operator()(const char *lhs, const char *rhs) const
+  {
       return strncmp(lhs, rhs, MAX_IDENTIFIER_SIZE) == 0;
-    }
+  }
   };
 
   // we use an array of identifiers, and a hash to look them up (the int is an index into SymbolStorage, as is the key)

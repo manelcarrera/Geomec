@@ -4,8 +4,8 @@
 #include <QTextStream>
 
 /*!
-	\class IModelFile
-	\brief baseclass for read/write functionality.
+  \class IModelFile
+  \brief baseclass for read/write functionality.
 */
 
 /*!
@@ -57,7 +57,7 @@ ModelFileAssertFunction( const char* expr, const char* file, unsigned int line )
 void IModelFile::assertHandler( const DianaAssertMessage& msg )
 {
   QString messageText =
-    tr( "Diana assertion '%1' failed" ).arg( msg.assertion );
+  tr( "Diana assertion '%1' failed" ).arg( msg.assertion );
   if ( !msg.file.isEmpty() ) messageText += tr( ", file %1" ).arg( msg.file );
   if ( msg.line > 0        ) messageText += tr( ", line %1" ).arg( msg.line );
   messageText += ".\n";
@@ -81,11 +81,11 @@ bool IModelFile::readModel( IModelObject& root, const QString& fileName )
   DianaAssertFunction_t daf = SetDianaAssertFunction( ModelFileAssertFunction );
   bool result = false;
   try {
-    init();
-    result = read( fileName );
-    clear();
+  init();
+  result = read( fileName );
+  clear();
   } catch( DianaAssertMessage msg ) {
-    assertHandler( msg );
+  assertHandler( msg );
   }
   SetDianaAssertFunction( daf );
   emit done();
@@ -104,11 +104,11 @@ bool IModelFile::readModel( IModelObject& root, FILE* file )
   DianaAssertFunction_t daf = SetDianaAssertFunction( ModelFileAssertFunction );
   bool result = false;
   try {
-    init();
-    result = read( file );
-    clear();
+  init();
+  result = read( file );
+  clear();
   } catch( DianaAssertMessage msg ) {
-    assertHandler( msg );
+  assertHandler( msg );
   }
   SetDianaAssertFunction( daf );
   emit done();
@@ -127,11 +127,11 @@ bool IModelFile::writeModel( IModelObject& root, const QString& fileName )
   DianaAssertFunction_t daf = SetDianaAssertFunction( ModelFileAssertFunction );
   bool result = false;
   try {
-    init();
-    result = write( fileName );
-    clear();
+  init();
+  result = write( fileName );
+  clear();
   } catch( DianaAssertMessage msg ) {
-    assertHandler( msg );
+  assertHandler( msg );
   }
   SetDianaAssertFunction( daf );
   emit done();
@@ -149,11 +149,11 @@ bool IModelFile::writeModel( IModelObject& root, FILE* file )
   DianaAssertFunction_t daf = SetDianaAssertFunction( ModelFileAssertFunction );
   bool result = false;
   try {
-    init();
-    result = write( file );
-    clear();
+  init();
+  result = write( file );
+  clear();
   } catch( DianaAssertMessage msg ) {
-    assertHandler( msg );
+  assertHandler( msg );
   }
   SetDianaAssertFunction( daf );
   emit done();
@@ -171,11 +171,11 @@ bool IModelFile::writeModel( IModelObject& root, QTextStream& stream )
   DianaAssertFunction_t daf = SetDianaAssertFunction( ModelFileAssertFunction );
   bool result = false;
   try {
-    init();
-    result = write( stream );
-    clear();
+  init();
+  result = write( stream );
+  clear();
   } catch( DianaAssertMessage msg ) {
-    assertHandler( msg );
+  assertHandler( msg );
   }
   SetDianaAssertFunction( daf );
   emit done();
@@ -314,8 +314,8 @@ void IModelFile::putFatalMessage( const TFileError& message )
   emit fatalMessage( message );
   checkCancel();
   if ( m_nFatal == m_maxFatal ) {  /* set <= 0 to show all */
-    TFileError err( tr( "%1 fatal errors seen" ).arg( m_nFatal ), 1000 );
-    putAbortMessage( err );
+  TFileError err( tr( "%1 fatal errors seen" ).arg( m_nFatal ), 1000 );
+  putAbortMessage( err );
   }
   m_succes = false;
   throw TFatalException( message );
@@ -338,7 +338,7 @@ void IModelFile::putAbortMessage( const TFileError& message )
   \param step  The number of steps taken since the operation started.
   \param total The total number of steps needed to finish the operation.
                Passing a zero means the number of steps is unknown in advance;
-	       this facilitates a busy indicator.
+         this facilitates a busy indicator.
   
   Call this member repeatedly to keep a client user interface 'alive' and
   facilitate the use of a progress bar.
@@ -359,9 +359,9 @@ void IModelFile::putProgress( int step, int total )
 void IModelFile::checkCancel()
 {
   if ( m_cancel ) {
-    m_cancel = false;
-    TFileError cancelMsg( tr( "Operation cancelled" ), TFilePosition() );
-    putAbortMessage( cancelMsg );
+  m_cancel = false;
+  TFileError cancelMsg( tr( "Operation cancelled" ), TFilePosition() );
+  putAbortMessage( cancelMsg );
   }
 }
 
@@ -406,7 +406,7 @@ int IModelFile::setMaxFatal( int nFatal )
   \param step  The number of steps taken since the operation started.
   \param total The total number of steps needed to finish the operation.
                A zero means the number of steps is unknown; use a busy
-	       indicator only.
+         indicator only.
 
   Connect to this signal to provide progress information to the user.
 */

@@ -26,17 +26,17 @@ namespace GeomecRGI
 class CSavePropertyBridge
 {
   public:
-    CSavePropertyBridge(const RGProperty& rgProperty);
-    ~CSavePropertyBridge();
+  CSavePropertyBridge(const RGProperty& rgProperty);
+  ~CSavePropertyBridge();
 
-    bool saveProperty(RGInterface& rgi, CModelBase& modelBase,
+  bool saveProperty(RGInterface& rgi, CModelBase& modelBase,
       const CRockMechProcessor& rmp);
 
   private:
-    CSavePropertyBridge(const CSavePropertyBridge& rhs);
-    CSavePropertyBridge& operator = (const CSavePropertyBridge& rhs);
+  CSavePropertyBridge(const CSavePropertyBridge& rhs);
+  CSavePropertyBridge& operator = (const CSavePropertyBridge& rhs);
 
-    QSharedPointer <CSavePropertyBase> m_SavePropertyBase;
+  QSharedPointer <CSavePropertyBase> m_SavePropertyBase;
 };
 
 } // namespace GeomecRGI

@@ -9,7 +9,7 @@ class CElementSetExcelFileImpl
 {
 public:
   CElementSetExcelFileImpl(CModelBase& model,
-    bool newWellPath = false);
+  bool newWellPath = false);
   CElementSetExcelFileImpl(const CNodalExportFormat& export_format);
   CElementSetExcelFileImpl(const IElementSetExportFormat& export_format);
   ~CElementSetExcelFileImpl();
@@ -56,7 +56,7 @@ CElementSetExcelFileImpl::CElementSetExcelFileImpl(const IElementSetExportFormat
   m_pNewWellPathInput(0)
 {
 }
-						 
+             
 CElementSetExcelFileImpl::CElementSetExcelFileImpl(const CNodalExportFormat& format)
 : m_pNodalExportFormat(&format),
   m_pElementSetExportFormat(0),
@@ -72,22 +72,22 @@ CElementSetExcelFileImpl::~CElementSetExcelFileImpl()
 
 bool CElementSetExcelFileImpl::ReadSheets(const QString &/*sFileName*/, IProgressBase &/*dlg*/, CGraphNode::TNodeVec &/*created_objects*/)
 {
-	return false;
+  return false;
 }
 
 bool CElementSetExcelFileImpl::Write(const QString& /*sFileName*/, IProgressBase &/*callback*/, bool /*append*/)
 {
-	return false;
+  return false;
 }
 
 const CModelBase& CElementSetExcelFileImpl::Model() const
 {
-	return m_model;
+  return m_model;
 }
 
 CModelBase& CElementSetExcelFileImpl::Model()
 {
-	return m_model;
+  return m_model;
 }
 
 // CElementSetExcelFile
@@ -95,7 +95,7 @@ CModelBase& CElementSetExcelFileImpl::Model()
 CElementSetExcelFile::CElementSetExcelFile(CModelBase& model,
   bool bNewWellPath)
 : m_elementSetExcelFileImpl(new CElementSetExcelFileImpl(model,
-    bNewWellPath))
+  bNewWellPath))
 {
 }
 

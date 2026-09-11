@@ -15,51 +15,51 @@ CBodyTriangle::~CBodyTriangle()
 
 const IBody* CBodyTriangle::Parent() const
 {
-	return &m_parent;
+  return &m_parent;
 }
 
 int CBodyTriangle::PointIndex(int nIndex) const
 {
-	return Parent()->PointIndex(BodyNode(nIndex));
+  return Parent()->PointIndex(BodyNode(nIndex));
 }
 
 size_t CBodyTriangle::NrOfNodes() const
 {
-	return Order() * 3;
+  return Order() * 3;
 }
 
 const INode& CBodyTriangle::Node(int nIndex) const
 {
-	assert(nIndex >= 0 && nIndex < NrOfNodes());
-	return Parent()->Node(BodyNode(nIndex));
+  assert(nIndex >= 0 && nIndex < NrOfNodes());
+  return Parent()->Node(BodyNode(nIndex));
 }
 
 void CBodyTriangle::Node(int nIndex, const IPoint& node)
 {
-	assert(nIndex >= 0 && nIndex < NrOfNodes());
-	m_parent.Node(BodyNode(nIndex), node);
+  assert(nIndex >= 0 && nIndex < NrOfNodes());
+  m_parent.Node(BodyNode(nIndex), node);
 }
 
 size_t CBodyTriangle::Order() const
 {
-	return Parent()->Order();
+  return Parent()->Order();
 }
 
 int CBodyTriangle::BodyPoint(int nIndex) const
 {
-	assert(nIndex >= 0 && nIndex < NrOfPoints());
-	return Parent()->FacePointIndices(m_nIndex)[nIndex];
+  assert(nIndex >= 0 && nIndex < NrOfPoints());
+  return Parent()->FacePointIndices(m_nIndex)[nIndex];
 }
 
 int CBodyTriangle::BodyNode(int nIndex) const
 {
-	assert(nIndex >= 0 && nIndex < NrOfNodes());
-	return Parent()->FaceNodeIndices(m_nIndex)[nIndex];
+  assert(nIndex >= 0 && nIndex < NrOfNodes());
+  return Parent()->FaceNodeIndices(m_nIndex)[nIndex];
 }
 
 int CBodyTriangle::Index() const
 {
-	return m_nIndex;
+  return m_nIndex;
 }
 
 } // namespace geo

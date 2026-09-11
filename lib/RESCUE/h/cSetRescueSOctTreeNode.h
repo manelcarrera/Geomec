@@ -1,10 +1,10 @@
 /*************************************************************************
 
-        cSetRescueSOctTreeNode.h
+    cSetRescueSOctTreeNode.h
 
  Keeps a list of pointers to some RescueSOctTreeNode.
 
-        Rod Hanks               January, 2000
+    Rod Hanks               January, 2000
 
 ****************************************************************************/
 

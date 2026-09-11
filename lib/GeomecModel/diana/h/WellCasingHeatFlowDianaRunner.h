@@ -11,7 +11,7 @@ public:
   CWellCasingHeatFlowDianaRunner(CWellCasingModel& model, CDianaRunController& controller);
 
   const dia::IMaterial& Material(const geo::IElement &element) const;
-	virtual const dia::IMaterial* InterfaceMaterial(const geo::IElement &element) const;
+  virtual const dia::IMaterial* InterfaceMaterial(const geo::IElement &element) const;
 
   const CWellCasingModel& CasingModel() const;
   CWellCasingModel& CasingModel();

@@ -9,16 +9,16 @@ namespace cora
 class CResponseTypeMax : public CResponseTypeBase
 {
   public:
-    CResponseTypeMax(CSummaryResultFile& summaryResultFile,
+  CResponseTypeMax(CSummaryResultFile& summaryResultFile,
       const std::vector <QString>& function);
-    virtual ~CResponseTypeMax();
+  virtual ~CResponseTypeMax();
 
-    virtual double calculate(const TObject& object,
+  virtual double calculate(const TObject& object,
       const TFailureMode& failureMode);
 
   private:
-    CResponseTypeMax(const CResponseTypeMax& rhs);
-    CResponseTypeMax& operator = (CResponseTypeMax rhs);
+  CResponseTypeMax(const CResponseTypeMax& rhs);
+  CResponseTypeMax& operator = (CResponseTypeMax rhs);
 };
 
 } // namespace cora

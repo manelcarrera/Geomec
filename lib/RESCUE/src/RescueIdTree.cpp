@@ -1,10 +1,10 @@
 /*************************************************************************
 
-        RescueIdTree.h
+    RescueIdTree.h
 
  Head of a tree of RescueIdTreeNodes.
 
-        Rod Hanks               May, 1999
+    Rod Hanks               May, 1999
 
 ****************************************************************************/
 #include "myHeaders.h"
@@ -43,8 +43,8 @@ RESCUEBOOL RescueIdTree::Delete(RescueObject *existingObject)
   RESCUEBOOL found = FALSE;
   if (rootNode->Delete(existingObject))
   {
-    count--;
-    found = TRUE;
+  count--;
+  found = TRUE;
   }
   return found;
 }

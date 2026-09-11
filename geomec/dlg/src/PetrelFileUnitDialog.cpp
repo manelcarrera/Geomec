@@ -11,7 +11,7 @@
 CPetrelFileUnitDialog::CPetrelFileUnitDialog(const CString& petrelFile,
   CQuantity::UNIT lateralUnit, CQuantity::UNIT depthUnit,
   CWnd* pParent /*=NULL*/)
-	: CDialog(CPetrelFileUnitDialog::IDD, pParent)
+  : CDialog(CPetrelFileUnitDialog::IDD, pParent)
   , m_LateralUnit(lateralUnit == CQuantity::SI_UNIT ? 0 : 1)
   , m_DepthUnit(depthUnit == CQuantity::SI_UNIT ? 0 : 1)
   , m_PetrelFile(petrelFile)

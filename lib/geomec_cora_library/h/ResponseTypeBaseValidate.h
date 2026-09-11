@@ -9,21 +9,21 @@ namespace cora
 class CResponseTypeBaseValidate : public CResponseTypeBase
 {
   public:
-    static bool validateFunctionSize(CSummaryResultFile& summaryResultFile,
+  static bool validateFunctionSize(CSummaryResultFile& summaryResultFile,
       const std::vector <QString>& function, size_t validFunctionSize);
 
   protected:
-    CResponseTypeBaseValidate(CSummaryResultFile& summaryResultFile,
+  CResponseTypeBaseValidate(CSummaryResultFile& summaryResultFile,
       const std::vector <QString>& function);
 
-    static QString concatenateFunction(const std::vector <QString>& function);
-    static double extractValue(CSummaryResultFile& summaryResultFile,
+  static QString concatenateFunction(const std::vector <QString>& function);
+  static double extractValue(CSummaryResultFile& summaryResultFile,
       const std::vector <QString>& function, size_t validFunctionSize,
       size_t valuePosition);
 
   private:
-    CResponseTypeBaseValidate(const CResponseTypeBaseValidate& rhs);
-    CResponseTypeBaseValidate& operator = (const CResponseTypeBaseValidate& rhs);
+  CResponseTypeBaseValidate(const CResponseTypeBaseValidate& rhs);
+  CResponseTypeBaseValidate& operator = (const CResponseTypeBaseValidate& rhs);
 };
 
 } // namespace cora

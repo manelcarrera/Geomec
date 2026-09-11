@@ -17,43 +17,43 @@ class CDependenciesManager
 {
 private:
 
-	//##ModelId=3CAAA65B00FE
-	std::vector<const CDependency*> m_DependencyVec;
+  //##ModelId=3CAAA65B00FE
+  std::vector<const CDependency*> m_DependencyVec;
 
 public:
 
-	//##ModelId=3DDA0C4602E3
-	QU::UNIT m_UnitSystem;
+  //##ModelId=3DDA0C4602E3
+  QU::UNIT m_UnitSystem;
 
-	
-	//##ModelId=3DDA0C4602F1
-	QU::UNIT GetUnit();
-	//##ModelId=3DDA0C4602F2
-	void SetUnit(QU::UNIT us);
+  
+  //##ModelId=3DDA0C4602F1
+  QU::UNIT GetUnit();
+  //##ModelId=3DDA0C4602F2
+  void SetUnit(QU::UNIT us);
 
-	//##ModelId=3C0DDDAE0100
-	CDependenciesManager();
+  //##ModelId=3C0DDDAE0100
+  CDependenciesManager();
 
-	//##ModelId=3C0DDDAE010A
-	~CDependenciesManager();
-	
+  //##ModelId=3C0DDDAE010A
+  ~CDependenciesManager();
+  
 
-	//##ModelId=3C0DDDAE010B
-	void AddDependency(const CDependency* pDependency);
+  //##ModelId=3C0DDDAE010B
+  void AddDependency(const CDependency* pDependency);
 
-	//##ModelId=3C0DDDAE010D
-	void RemoveDependency(const CDependency* pDependency);
+  //##ModelId=3C0DDDAE010D
+  void RemoveDependency(const CDependency* pDependency);
 
-	//##ModelId=3C0DDDAE010F
-	void RemoveDependency(int Index);
-
-
-	//##ModelId=3C0DDDAE011A
-	bool CheckQuantity(const CDoubleQuantity* pQuantity, std::string &strDependency) const;
+  //##ModelId=3C0DDDAE010F
+  void RemoveDependency(int Index);
 
 
-	//##ModelId=3C60D56900EB
-	std::vector<std::string> CheckAllDependencies();
+  //##ModelId=3C0DDDAE011A
+  bool CheckQuantity(const CDoubleQuantity* pQuantity, std::string &strDependency) const;
+
+
+  //##ModelId=3C60D56900EB
+  std::vector<std::string> CheckAllDependencies();
 };
 
 #endif /* _INC_CDEPENDENCIESMANAGER_3B67C3D90264_INCLUDED */

@@ -15,7 +15,7 @@ CWellCasingInternalPressure::CWellCasingInternalPressure(CDepletionStage& stage)
   m_pGradient = new CWellCasingInternalPressureComponentGradient(*this);
 
   if(stage.Initial())
-    LoadingMode(LM_GRADIENT);
+  LoadingMode(LM_GRADIENT);
 }
 
 CWellCasingInternalPressure::CWellCasingInternalPressure(const CWellCasingInternalPressure& rhs)
@@ -29,10 +29,10 @@ CWellCasingInternalPressure& CWellCasingInternalPressure::operator=(const CWellC
 {
   if(!operator==(rhs))
   {
-    IWellCasingInternalLoad<TPressure>::operator=(rhs);
+  IWellCasingInternalLoad<TPressure>::operator=(rhs);
 
-    *m_pRepeater = *rhs.m_pRepeater;
-    *m_pGradient = *rhs.m_pGradient;
+  *m_pRepeater = *rhs.m_pRepeater;
+  *m_pGradient = *rhs.m_pGradient;
   }
 
   return *this;
@@ -41,11 +41,11 @@ CWellCasingInternalPressure& CWellCasingInternalPressure::operator=(const CWellC
 bool CWellCasingInternalPressure::operator==(const CWellCasingInternalPressure& rhs) const
 {
   if(!IWellCasingInternalLoad<TPressure>::operator==(rhs))
-    return false;
+  return false;
 
   return (
-    *m_pRepeater == *rhs.m_pRepeater &&
-    *m_pGradient == *rhs.m_pGradient);
+  *m_pRepeater == *rhs.m_pRepeater &&
+  *m_pGradient == *rhs.m_pGradient);
 }
 
 unsigned int CWellCasingInternalPressure::IconId() const
@@ -62,10 +62,10 @@ bool CWellCasingInternalPressure::Less(const CGraphNode& node) const
 {
   const CWellCasingInternalPressure* pPressure = dynamic_cast<const CWellCasingInternalPressure*>(&node);
   if(pPressure)
-    return Stage().Less(pPressure->Stage());
+  return Stage().Less(pPressure->Stage());
 
   if(dynamic_cast<const CWellCasingInternalTemperature*>(&node))
-    return true;
+  return true;
 
   return false;
 }
@@ -165,7 +165,7 @@ CWellCasingInternalPressure::CWellCasingInternalPressureComponentRepeater::CWell
 unsigned int CWellCasingInternalPressure::CWellCasingInternalPressureComponentRepeater::IconId() const
 {
   if(ParentLoad().DistributedSize() > 0)
-    return IDI_COMPONENT_PRESSURE_REPEAT_CHANGE;
+  return IDI_COMPONENT_PRESSURE_REPEAT_CHANGE;
 
   return IDI_COMPONENT_PRESSURE_REPEAT;
 }
@@ -173,20 +173,20 @@ unsigned int CWellCasingInternalPressure::CWellCasingInternalPressureComponentRe
 double CWellCasingInternalPressure::CWellCasingInternalPressureComponentRepeater::UnitFactor(CQuantity::UNIT unit) const
 {
   if(unit == CDoubleQuantity::FIELD_UNIT)
-    return FF_FACTOR_PRESSURE;
+  return FF_FACTOR_PRESSURE;
 
   return 1;
 }
 
 QString CWellCasingInternalPressure::CWellCasingInternalPressureComponentRepeater::UnitName(const CQuantity::UNIT unit) const
 {
-	QString sRet;
-	if(unit == CQuantity::SI_UNIT)
-		sRet = getStringTableEntry(IDS_UNIT_SI_PRESSURE);
-	else
-		sRet = getStringTableEntry(IDS_UNIT_FIELD_PRESSURE);
+  QString sRet;
+  if(unit == CQuantity::SI_UNIT)
+    sRet = getStringTableEntry(IDS_UNIT_SI_PRESSURE);
+  else
+    sRet = getStringTableEntry(IDS_UNIT_FIELD_PRESSURE);
 
-	return sRet;
+  return sRet;
 }
 
 QString CWellCasingInternalPressure::CWellCasingInternalPressureComponentRepeater::ExportLabel() const
@@ -215,20 +215,20 @@ unsigned int CWellCasingInternalPressure::CWellCasingInternalPressureComponentGr
 double CWellCasingInternalPressure::CWellCasingInternalPressureComponentGradient::UnitFactor(CQuantity::UNIT unit) const
 {
   if(unit == CDoubleQuantity::FIELD_UNIT)
-    return FF_FACTOR_PRESSURE;
+  return FF_FACTOR_PRESSURE;
 
   return 1;
 }
 
 QString CWellCasingInternalPressure::CWellCasingInternalPressureComponentGradient::UnitName(const CQuantity::UNIT unit) const
 {
-	QString sRet;
-	if(unit == CQuantity::SI_UNIT)
-		sRet = getStringTableEntry(IDS_UNIT_SI_PRESSURE);
-	else
-		sRet = getStringTableEntry(IDS_UNIT_FIELD_PRESSURE);
+  QString sRet;
+  if(unit == CQuantity::SI_UNIT)
+    sRet = getStringTableEntry(IDS_UNIT_SI_PRESSURE);
+  else
+    sRet = getStringTableEntry(IDS_UNIT_FIELD_PRESSURE);
 
-	return sRet;
+  return sRet;
 }
 
 QString CWellCasingInternalPressure::CWellCasingInternalPressureComponentGradient::ExportLabel() const

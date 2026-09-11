@@ -18,11 +18,11 @@ Software Product or documentation licensed under this agreement.
 ****************************************************************************/
 /*************************************************************************
 
-        cBagRescueProperty.h
+    cBagRescueProperty.h
 
  Keeps a list of pointers to RescueProperty.
 
-        Rod Hanks               December 15th, 1995  / August 1996
+    Rod Hanks               December 15th, 1995  / August 1996
 
 ****************************************************************************/
 

@@ -15,28 +15,28 @@ namespace cora
 class CFailureMode
 {
   public:
-    CFailureMode(const QString& resultExportLabel,
+  CFailureMode(const QString& resultExportLabel,
       const IResultComponent* resultComponent);
 
-    const QString& getResultExportLabel() const;
-    const IResultComponent* getResultComponent() const;
+  const QString& getResultExportLabel() const;
+  const IResultComponent* getResultComponent() const;
 
-    void setObject(const TObject& object);
-    void setFailureModeLabel(const QString& failureModeLabel);
+  void setObject(const TObject& object);
+  void setFailureModeLabel(const QString& failureModeLabel);
 
-    const TObject& getObject() const;
-    const QString& getFailureModeLabel() const;
+  const TObject& getObject() const;
+  const QString& getFailureModeLabel() const;
 
-    int getFailureModeType() const;
+  int getFailureModeType() const;
 
   private:
-    CFailureMode(const CFailureMode& rhs);
-    CFailureMode& operator = (CFailureMode rhs);
+  CFailureMode(const CFailureMode& rhs);
+  CFailureMode& operator = (CFailureMode rhs);
 
-    const QString m_resultExportLabel;
-    const IResultComponent* m_resultComponent;
-    TObject m_object;
-    QString m_failureModeLabel;
+  const QString m_resultExportLabel;
+  const IResultComponent* m_resultComponent;
+  TObject m_object;
+  QString m_failureModeLabel;
 };
 
 typedef QSharedPointer <CFailureMode> TFailureMode;

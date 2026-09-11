@@ -50,20 +50,20 @@ void CMaterialXML::Load(QDomElement& domElement)
   QDomElement child = domElement.firstChildElement("MaterialParameter");
   while(!child.isNull())
   {
-    QString sName = AttributeStringValue(child, "Name");
-    size_t i;
-    for(i = 0; i < Material().ParameterSize(); ++i)
-    {
+  QString sName = AttributeStringValue(child, "Name");
+  size_t i;
+  for(i = 0; i < Material().ParameterSize(); ++i)
+  {
       ml::CMatParam& matparam = Material().MatParameter(i);
       if(matparam.Name() == sName)
       {
-        CMaterialParameterXML* pMatParamxml = OnCreateMaterialParameterXML(matparam);
-        pMatParamxml->Load(child);
-        delete pMatParamxml;
+    CMaterialParameterXML* pMatParamxml = OnCreateMaterialParameterXML(matparam);
+    pMatParamxml->Load(child);
+    delete pMatParamxml;
       }
-    }
+  }
 
-    child = child.nextSiblingElement("MaterialParameter");
+  child = child.nextSiblingElement("MaterialParameter");
   }
 }
 
@@ -81,11 +81,11 @@ void CMaterialXML::Save(QDomElement& domElement)
   size_t i;
   for(i = 0; i < Material().ParameterSize(); ++i)
   {
-    QDomElement child = domElement.ownerDocument().createElement("MaterialParameter");
-    domElement.appendChild(child);
-    CMaterialParameterXML* pMatParamxml = OnCreateMaterialParameterXML(Material().MatParameter(i));
-    pMatParamxml->Save(child);
-    delete pMatParamxml;
+  QDomElement child = domElement.ownerDocument().createElement("MaterialParameter");
+  domElement.appendChild(child);
+  CMaterialParameterXML* pMatParamxml = OnCreateMaterialParameterXML(Material().MatParameter(i));
+  pMatParamxml->Save(child);
+  delete pMatParamxml;
   }
 }
 

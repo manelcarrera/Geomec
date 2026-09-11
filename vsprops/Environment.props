@@ -6,8 +6,11 @@
     <APP>$(DEVELOP)/app</APP>
     <GMROOT>$(DEVELOP)/geomec</GMROOT>
     <LBROOT>$(DEVELOP)/lib</LBROOT>
+    <THIRDPARTYROOT>$(DEVELOP)/third_party</THIRDPARTYROOT>
+    <PLATFORMROOT>$(DEVELOP)/platform</PLATFORMROOT>
     <FWROOT>$(DEVELOP)/Fw51</FWROOT>
     <TESTSROOT>$(DEVELOP)/Tests</TESTSROOT>
+    <TESTDATAROOT>$(DEVELOP)/TestData</TESTDATAROOT>
     <FLEXLM>$(GMROOT)/FlexLM/$(Platform)</FLEXLM>
     <FLEXLIB>EPTFlexLm_MD.lib</FLEXLIB>
     <LICENSERESOURCELIB>LicenseResource.lib</LICENSERESOURCELIB>
@@ -32,11 +35,20 @@
     <BuildMacro Include="LBROOT">
       <Value>$(LBROOT)</Value>
     </BuildMacro>
+    <BuildMacro Include="THIRDPARTYROOT">
+      <Value>$(THIRDPARTYROOT)</Value>
+    </BuildMacro>
+    <BuildMacro Include="PLATFORMROOT">
+      <Value>$(PLATFORMROOT)</Value>
+    </BuildMacro>
     <BuildMacro Include="FWROOT">
       <Value>$(FWROOT)</Value>
     </BuildMacro>
     <BuildMacro Include="TESTSROOT">
       <Value>$(TESTSROOT)</Value>
+    </BuildMacro>
+    <BuildMacro Include="TESTDATAROOT">
+      <Value>$(TESTDATAROOT)</Value>
     </BuildMacro>
     <BuildMacro Include="FLEXLM">
       <Value>$(FLEXLM)</Value>

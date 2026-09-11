@@ -37,7 +37,7 @@ COpenGLScene::COpenGLScene(bool bDisplayAxis)
   m_bDuringDynamicPan(false)
 {
   if(bDisplayAxis)
-    DisplayAxis(bDisplayAxis);
+  DisplayAxis(bDisplayAxis);
 }
 
 
@@ -81,27 +81,27 @@ void COpenGLScene::CalcMaxMin() const
 
   for(const_iterator i = begin() ; i != end() ; i++)
   {
-    m_ptMax=m_ptMax.Max(i->first->Max());
-    m_ptMin=m_ptMin.Min(i->first->Min());
+  m_ptMax=m_ptMax.Max(i->first->Max());
+  m_ptMin=m_ptMin.Min(i->first->Min());
   }
 
   if ( m_ptMax.Empty() || m_ptMin.Empty() )
   {
-    m_ptMin = geo::CPoint(0.5,0.5,0.5);
-    m_ptMax = geo::CPoint(-0.5,-0.5,-0.5);
+  m_ptMin = geo::CPoint(0.5,0.5,0.5);
+  m_ptMax = geo::CPoint(-0.5,-0.5,-0.5);
   }
 
   if (m_ptMax == m_ptMin)
   {
-    // When the view contains a single point, the min and max are equal. This causes trouble later on so adjust them.
-    m_ptMax = m_ptMin + geo::CPoint(0.5,0.5,0.5);
-    m_ptMin = m_ptMax - geo::CPoint(1,1,1);
+  // When the view contains a single point, the min and max are equal. This causes trouble later on so adjust them.
+  m_ptMax = m_ptMin + geo::CPoint(0.5,0.5,0.5);
+  m_ptMin = m_ptMax - geo::CPoint(1,1,1);
   }
 
   if(UseFixedBoundingBox())
   {
-    m_ptMax = GetFixedBoundingBox().Max();
-    m_ptMin = GetFixedBoundingBox().Min();
+  m_ptMax = GetFixedBoundingBox().Max();
+  m_ptMin = GetFixedBoundingBox().Min();
   }
 
   m_ptMid = (m_ptMax + m_ptMin)*0.5;
@@ -111,7 +111,7 @@ void COpenGLScene::CalcMaxMin() const
 const geo::IPoint& COpenGLScene::Mid() const
 {
   if(m_bRecalcMaxMin)
-    CalcMaxMin();
+  CalcMaxMin();
 
   return m_ptMid;
 }
@@ -119,7 +119,7 @@ const geo::IPoint& COpenGLScene::Mid() const
 const geo::IPoint& COpenGLScene::Max() const
 {
   if(m_bRecalcMaxMin)
-    CalcMaxMin();
+  CalcMaxMin();
 
   return m_ptMax;
 }
@@ -128,7 +128,7 @@ const geo::IPoint& COpenGLScene::Max() const
 const geo::IPoint& COpenGLScene::Min() const
 {
   if(m_bRecalcMaxMin)
-    CalcMaxMin();
+  CalcMaxMin();
 
   return m_ptMin;
 
@@ -185,9 +185,9 @@ COpenGLAxis& COpenGLScene::Axis()
 {
   if(!m_pAxis)
   {
-    m_pAxis = new COpenGLAxis(qRgb(255, 0, 0));
-    m_pAxis->SetViewPort(0, 0, 100, 100);
-    m_pAxis->ReParent(this);
+  m_pAxis = new COpenGLAxis(qRgb(255, 0, 0));
+  m_pAxis->SetViewPort(0, 0, 100, 100);
+  m_pAxis->ReParent(this);
   }
   return *m_pAxis;
 }
@@ -219,10 +219,10 @@ void COpenGLScene::Dimension(DIMENSION dim)
   m_dimension = dim;
   if(dim == DIM_2D)
   {
-    RotateLockVector(geo::CVector::Zaxis);
-    m_bUseFixedBoundingBox = false;
+  RotateLockVector(geo::CVector::Zaxis);
+  m_bUseFixedBoundingBox = false;
   } else {
-    RotateLockVector(geo::CVector::NullVector);
+  RotateLockVector(geo::CVector::NullVector);
   }
 }
 
@@ -251,7 +251,7 @@ void COpenGLScene::ModelScaleVector(const geo::CVector &newval)
   DIA_ASSERT(!(newval.X() ==0 ));
   DIA_ASSERT(!(newval.Y() ==0 ));
   DIA_ASSERT(!(newval.Z() ==0 ));
-    
+  
   m_ModelScaleVector=newval;
 
 }
@@ -332,9 +332,9 @@ void COpenGLScene::EraseAllDisplayLists()
 {
   while(m_mpDisplay.size() )
   {
-    COpenGLScene::iterator it = m_mpDisplay.begin();
-    invalidate(*it->first); 
-    m_mpDisplay.erase(it);
+  COpenGLScene::iterator it = m_mpDisplay.begin();
+  invalidate(*it->first); 
+  m_mpDisplay.erase(it);
   }
 }
 
@@ -351,9 +351,9 @@ bool COpenGLScene::erase(const geo::IObject &object, bool bUpdate)
 
   if(it != COpenGLScene::end())
   {
-    invalidate(object, bUpdate);
-    m_mpDisplay.erase(it);
-    return true;
+  invalidate(object, bUpdate);
+  m_mpDisplay.erase(it);
+  return true;
   }
 
   return false;
@@ -371,13 +371,13 @@ void COpenGLScene::InvalidateAllDisplayLists(bool bUpdate)
 
   // Kill the displaylists in memory ...
   for(TDisplayListMap::iterator it = m_mpDisplayList.begin(); it != m_mpDisplayList.end(); it++)
-    DeleteList(it->second);
+  DeleteList(it->second);
 
   m_mpDisplayListRev.clear();
   m_mpDisplayList.clear();
 
   if(bUpdate)
-    UpdateFrame();
+  UpdateFrame();
 }
 
 
@@ -388,18 +388,18 @@ void COpenGLScene::invalidate(const geo::IObject &object, bool bUpdate)
   TDisplayListMap::iterator it = m_mpDisplayList.find(&object);
   if(it != m_mpDisplayList.end())
   {
-    // explicit use of iterator after delete is not specified so first get the value from the iterator and use
-    // it afterwards.
-    int nIndex = it->second;
-    DeleteList(nIndex);
-    m_mpDisplayListRev.erase(nIndex);
-    m_mpDisplayList.erase(&object);
-    DIA_ASSERT(m_mpDisplayList.find(&object) == m_mpDisplayList.end());
-    DIA_ASSERT(m_mpDisplayListRev.find(nIndex) == m_mpDisplayListRev.end());
+  // explicit use of iterator after delete is not specified so first get the value from the iterator and use
+  // it afterwards.
+  int nIndex = it->second;
+  DeleteList(nIndex);
+  m_mpDisplayListRev.erase(nIndex);
+  m_mpDisplayList.erase(&object);
+  DIA_ASSERT(m_mpDisplayList.find(&object) == m_mpDisplayList.end());
+  DIA_ASSERT(m_mpDisplayListRev.find(nIndex) == m_mpDisplayListRev.end());
   }
 
   if(bUpdate)
-    UpdateFrame();
+  UpdateFrame();
 }
 
 const IDrawDef& COpenGLScene::DrawDef(const geo::IObject &object) const
@@ -517,17 +517,17 @@ void COpenGLScene::SceneToClipboard()
 {
 /*  if(Parent())
   {
-    // Invalidate the attached view ...
-    COpenGLView* pView = (COpenGLView*)(Parent());
-    DIA_ASSERT(pView);
-    pView->ClientToClipBoard();
+  // Invalidate the attached view ...
+  COpenGLView* pView = (COpenGLView*)(Parent());
+  DIA_ASSERT(pView);
+  pView->ClientToClipBoard();
   }*/
 }
 
 void COpenGLScene::GeometryObjectUpdated(const geo::IObject * pObject, IDrawDef *pDrawDef)
 {
   if(!IsDisplayList(*pObject))
-    insert(*pObject,*pDrawDef);
+  insert(*pObject,*pDrawDef);
 
   invalidate(*pObject);
 }
@@ -543,9 +543,9 @@ int COpenGLScene::OnCountDrawSteps() const
   int lCount = IOpenGLFrame::OnCountDrawSteps();
   for(TDisplayMap::const_iterator it = m_mpDisplay.begin(); it != m_mpDisplay.end(); it++)
   {
-    const geo::IObject& object = *it->first;
-    const IDrawDef& draw_def = *it->second;
-    if(draw_def.RequireCompile() && m_mpDisplayList.find(&object) == m_mpDisplayList.end())
+  const geo::IObject& object = *it->first;
+  const IDrawDef& draw_def = *it->second;
+  if(draw_def.RequireCompile() && m_mpDisplayList.find(&object) == m_mpDisplayList.end())
       lCount += CountObject(object, draw_def);
   }
 
@@ -561,41 +561,41 @@ void COpenGLScene::DrawScene()
 
   for(TDisplayMap::iterator it = m_mpDisplay.begin(); it != m_mpDisplay.end(); it++)
   {
-    const geo::IObject& object = *it->first;
-    const IDrawDef& draw_def = *it->second;
+  const geo::IObject& object = *it->first;
+  const IDrawDef& draw_def = *it->second;
 
 
-    // Is the displaylist valid or are there changes ...
-    if(draw_def.RequireCompile())
-    {
+  // Is the displaylist valid or are there changes ...
+  if(draw_def.RequireCompile())
+  {
       TDisplayListMap::iterator mapIt = m_mpDisplayList.find( &object );
       int nIndex = -1;
       if( mapIt == m_mpDisplayList.end())
       { 
-        nIndex = CompileList(object, draw_def, true);
-        VERIFY(m_mpDisplayList.insert(TDisplayListMap::value_type(&object, nIndex)).second);
-        VERIFY(m_mpDisplayListRev.insert(TDisplayListMapRev::value_type(nIndex ,&object)).second);
+    nIndex = CompileList(object, draw_def, true);
+    VERIFY(m_mpDisplayList.insert(TDisplayListMap::value_type(&object, nIndex)).second);
+    VERIFY(m_mpDisplayListRev.insert(TDisplayListMapRev::value_type(nIndex ,&object)).second);
       } else {
-        nIndex = mapIt->second;
+    nIndex = mapIt->second;
       }
       
       // wjrx mantis 2533; moved RegisterSelectableObject below CompileList
       //see if we are in render mode and if object is selectable
       bool bRegistered = false;
       if(draw_def.IsSelectable(object))
-        bRegistered = RegisterSelectableObject(object);
+    bRegistered = RegisterSelectableObject(object);
 
       //call the display list
       DrawList( nIndex, draw_def);
 
       if(bRegistered) glPopName();
-    }
-    else
-    {
+  }
+  else
+  {
       // We don't render during rotate, zoom or panning
       if(!m_bDuringDynamicRotate && !m_bDuringDynamicZoom && !m_bDuringDynamicPan)
-        DrawObject(object, draw_def, false);
-    }
+    DrawObject(object, draw_def, false);
+  }
   }
   
   DrawBoundingBox();
@@ -609,59 +609,59 @@ void COpenGLScene::DrawBoundingBox()
   glGetIntegerv(GL_RENDER_MODE,&iRenderMode);
   if((iRenderMode == GL_RENDER) && DisplayBoundingBox())
   {
-    glDisable(GL_LIGHTING);
-    // Determ bounding box
-    geo::CPoint ptMin, ptMax;
-    if(UseFixedBoundingBox())
-    {
+  glDisable(GL_LIGHTING);
+  // Determ bounding box
+  geo::CPoint ptMin, ptMax;
+  if(UseFixedBoundingBox())
+  {
       ptMin = GetFixedBoundingBox().Min();
       ptMax = GetFixedBoundingBox().Max();
-    }
-    else
-    {
+  }
+  else
+  {
       ptMin = Min();
       ptMax = Max();
-    }
+  }
 
-    if(ptMax.Empty())
+  if(ptMax.Empty())
       ptMax=geo::CPoint(0.5,0.5,0.5);
 
-    if(ptMin.Empty())
+  if(ptMin.Empty())
       ptMin=geo::CPoint(-0.5,-0.5,-0.5);
 
-    if (ptMax == ptMin)
-    {
+  if (ptMax == ptMin)
+  {
       // When the view contains a single point, the min and max are equal. This causes trouble later on so adjust them.
       ptMax = ptMin +geo::CPoint(0.5,0.5,0.5);
       ptMin = ptMax - geo::CPoint(1,1,1);
-    }
+  }
 
-    geo::CBox box(ptMin, ptMax);
+  geo::CBox box(ptMin, ptMax);
   
-    if((box.Depth()==0.0) || (box.Height()==0.0) || (box.Width()==0.0))
+  if((box.Depth()==0.0) || (box.Height()==0.0) || (box.Width()==0.0))
       return;
 
-    CDrawDef dd(qRgb(140,140,140));
+  CDrawDef dd(qRgb(140,140,140));
 
-    dd.DepthFunc(GL_ALWAYS);//dont use depth_buffer for drawing
-    dd.LineWidth(1);
-    dd.PolyFillFront(FALSE);
-    dd.PolyFillBack(FALSE);
-    
-    dd.LineStipple(TRUE);
-    dd.PolyDrawFront(TRUE);
-    dd.PolyDrawBack(FALSE);
+  dd.DepthFunc(GL_ALWAYS);//dont use depth_buffer for drawing
+  dd.LineWidth(1);
+  dd.PolyFillFront(FALSE);
+  dd.PolyFillBack(FALSE);
+  
+  dd.LineStipple(TRUE);
+  dd.PolyDrawFront(TRUE);
+  dd.PolyDrawBack(FALSE);
 
-    DrawObject(box,dd);//draw a stipeled box (only back faces are drawn!!)
+  DrawObject(box,dd);//draw a stipeled box (only back faces are drawn!!)
 
-    dd.LineWidth(2);
-    dd.LineStipple(FALSE);
-    dd.PolyDrawFront(FALSE);
-    dd.PolyDrawBack(TRUE);
-    
-    DrawObject(box,dd);//draw a solid box (only front faces are drawn!!)
+  dd.LineWidth(2);
+  dd.LineStipple(FALSE);
+  dd.PolyDrawFront(FALSE);
+  dd.PolyDrawBack(TRUE);
+  
+  DrawObject(box,dd);//draw a solid box (only front faces are drawn!!)
 
-    if(LightingEnabled())
+  if(LightingEnabled())
       glEnable(GL_LIGHTING);
   }
 
@@ -671,89 +671,89 @@ bool COpenGLScene::DynamicZoomMouseState( TKeyboardModifiers  modifiers,
                                           TMouseButton        button,
                                           const TScreenPoint& /*point*/   ) const
 {
-    return ( (modifiers & Qt::ShiftModifier) && (button == Qt::LeftButton) );
+  return ( (modifiers & Qt::ShiftModifier) && (button == Qt::LeftButton) );
 }
 
 bool COpenGLScene::DynamicPanMouseState( TKeyboardModifiers  modifiers,
                                          TMouseButton        button,
                                          const TScreenPoint& /*point*/   ) const
 {
-    return ( (modifiers & Qt::ControlModifier) && (button == Qt::LeftButton) );
+  return ( (modifiers & Qt::ControlModifier) && (button == Qt::LeftButton) );
 }
 
 bool COpenGLScene::DynamicRotateMouseState( TKeyboardModifiers  /*modifiers*/,
-                                            TMouseButton        button,
-                                            const TScreenPoint& /*point*/   ) const
+                      TMouseButton        button,
+                      const TScreenPoint& /*point*/   ) const
 {
-    return (button == Qt::LeftButton);
+  return (button == Qt::LeftButton);
 }
 
 bool COpenGLScene::MouseMove(TKeyboardModifiers modifiers, TMouseButton button, const TScreenPoint& point)
 {
   if(!IOpenGLFrame::MouseMove(modifiers, button, point))
   {
-    // Handler for dynamic zoom
-    if(DynamicZoomMouseState(modifiers, button, point))
-    {
+  // Handler for dynamic zoom
+  if(DynamicZoomMouseState(modifiers, button, point))
+  {
       if(AllowDynamicZoom())
       {
-        if(m_bDuringDynamicZoom)
+    if(m_bDuringDynamicZoom)
           DoDuringDynamicZoom(point);       
-        else
-          DoStartDynamicZoom(point);
-        return true;
-      }
-    }
     else
-    {
+          DoStartDynamicZoom(point);
+    return true;
+      }
+  }
+  else
+  {
       if(m_bDuringDynamicZoom)
       {
-        DoEndDynamicZoom();
-        return true;
+    DoEndDynamicZoom();
+    return true;
       }
-    }
+  }
 
-    //DYNAMIC PAN
-    if(DynamicPanMouseState(modifiers, button, point))
-    {
+  //DYNAMIC PAN
+  if(DynamicPanMouseState(modifiers, button, point))
+  {
       if(AllowDynamicPan())
       {
-        if(m_bDuringDynamicPan)
+    if(m_bDuringDynamicPan)
           DoDuringDynamicPan(point);        
-        else
-          DoStartDynamicPan(point);
-        return true;
-      }
-    }
     else
-    {
+          DoStartDynamicPan(point);
+    return true;
+      }
+  }
+  else
+  {
       if(m_bDuringDynamicPan)
       {
-        DoEndDynamicPan();
-        return true;
+    DoEndDynamicPan();
+    return true;
       }
-    }
+  }
 
-    // Handler for dynamic rotate
-    if(DynamicRotateMouseState(modifiers, button, point))
-    {
+  // Handler for dynamic rotate
+  if(DynamicRotateMouseState(modifiers, button, point))
+  {
       if(AllowDynamicRotate())
       {
-        if(m_bDuringDynamicRotate)
+    if(m_bDuringDynamicRotate)
           DoDuringDynamicRotate(point);       
-        else
-          DoStartDynamicRotate(point);
-        return true;
-      }
-    }
     else
-    {
+          DoStartDynamicRotate(point);
+    return true;
+      }
+  }
+  else
+  {
       if(m_bDuringDynamicRotate)
       {
-        DoEndDynamicRotate();
-        return true;
+    DoEndDynamicRotate();
+    return true;
       }
-    }
+  }
   }
 
   return false;
@@ -762,13 +762,13 @@ bool COpenGLScene::MouseMove(TKeyboardModifiers modifiers, TMouseButton button, 
 bool COpenGLScene::MouseRelease(TKeyboardModifiers modifiers, TMouseButton button, const TScreenPoint& point)
 {
   if(m_bDuringDynamicZoom)
-    DoEndDynamicZoom();
+  DoEndDynamicZoom();
 
   if(m_bDuringDynamicPan)
-    DoEndDynamicPan();
+  DoEndDynamicPan();
 
   if(m_bDuringDynamicRotate)
-    DoEndDynamicRotate();
+  DoEndDynamicRotate();
 
   return IOpenGLFrame::MouseRelease(modifiers, button, point);
 }
@@ -812,19 +812,19 @@ void COpenGLScene::DoDuringDynamicRotate(const TScreenPoint& point)
 
   if(ModelScaleVector().UnitVector() == geo::CVector(1,1,1).UnitVector())
   {
-    //isotrophic scaling
-    m_ptSecondSelectedWorldPoint = GetSelectedModelSpherePoint(m_ptSecondSelectedScreenPoint);
-    m_ptFirstSelectedWorldPoint  = GetSelectedModelSpherePoint(m_ptFirstSelectedScreenPoint);
+  //isotrophic scaling
+  m_ptSecondSelectedWorldPoint = GetSelectedModelSpherePoint(m_ptSecondSelectedScreenPoint);
+  m_ptFirstSelectedWorldPoint  = GetSelectedModelSpherePoint(m_ptFirstSelectedScreenPoint);
   }
   else
   {
-    //anisotrophic scaling
-    m_ptSecondSelectedWorldPoint = UnProject(m_ptSecondSelectedScreenPoint);
-    m_ptFirstSelectedWorldPoint  = UnProject(m_ptFirstSelectedScreenPoint);
+  //anisotrophic scaling
+  m_ptSecondSelectedWorldPoint = UnProject(m_ptSecondSelectedScreenPoint);
+  m_ptFirstSelectedWorldPoint  = UnProject(m_ptFirstSelectedScreenPoint);
 
-    m_ptSecondSelectedWorldPoint.Multiply(ModelScaleVector());
-    m_ptFirstSelectedWorldPoint.Multiply(ModelScaleVector());
-    RefPoint.Multiply(ModelScaleVector());
+  m_ptSecondSelectedWorldPoint.Multiply(ModelScaleVector());
+  m_ptFirstSelectedWorldPoint.Multiply(ModelScaleVector());
+  RefPoint.Multiply(ModelScaleVector());
   }
   
 
@@ -835,18 +835,18 @@ void COpenGLScene::DoDuringDynamicRotate(const TScreenPoint& point)
 
   if(RotateLockVector() == geo::CVector::NullVector)
   {
-    //free rotate arround midpoint
-    First  = geo::CVector(RefPoint - m_ptFirstSelectedWorldPoint).UnitVector();
-    Second = geo::CVector(RefPoint - m_ptSecondSelectedWorldPoint).UnitVector();
+  //free rotate arround midpoint
+  First  = geo::CVector(RefPoint - m_ptFirstSelectedWorldPoint).UnitVector();
+  Second = geo::CVector(RefPoint - m_ptSecondSelectedWorldPoint).UnitVector();
   }
   else
   {
-    //restrict rotation arround a lockvector 
-    geo::CLine l   = geo::CLine(RefPoint, RotateLockVector());
-    geo::CPoint p = l.Project(m_ptFirstSelectedWorldPoint);
-    First     = geo::CVector(m_ptFirstSelectedWorldPoint - p).UnitVector();
-    p         = l.Project(m_ptSecondSelectedWorldPoint);
-    Second    = geo::CVector(m_ptSecondSelectedWorldPoint - p).UnitVector();
+  //restrict rotation arround a lockvector 
+  geo::CLine l   = geo::CLine(RefPoint, RotateLockVector());
+  geo::CPoint p = l.Project(m_ptFirstSelectedWorldPoint);
+  First     = geo::CVector(m_ptFirstSelectedWorldPoint - p).UnitVector();
+  p         = l.Project(m_ptSecondSelectedWorldPoint);
+  Second    = geo::CVector(m_ptSecondSelectedWorldPoint - p).UnitVector();
   }
 
   geo::CVector RotVec = First.CrossProduct(Second);
@@ -854,24 +854,24 @@ void COpenGLScene::DoDuringDynamicRotate(const TScreenPoint& point)
 
   if(!(RotVec == geo::CVector::NullVector))
   {
-    //rotate the viewingvector/upvector
-    RotAngle = First.AngleDeg(Second)*m_RotateSmoothFactor;
-    geo::CVector NewVec;
-    
-    NewVec = ViewVector();
-    NewVec.Rotate(RotVec,-RotAngle);
-    ViewVector(NewVec);
-
-    NewVec = UpVector();
-    NewVec.Rotate(RotVec,-RotAngle);
-    UpVector(NewVec);
-
-    NewVec = DisplacementVector();
-    NewVec.Rotate(RotVec, -RotAngle);
-    DisplacementVector(NewVec);
+  //rotate the viewingvector/upvector
+  RotAngle = First.AngleDeg(Second)*m_RotateSmoothFactor;
+  geo::CVector NewVec;
   
-    //update the scene
-    UpdateFrame();
+  NewVec = ViewVector();
+  NewVec.Rotate(RotVec,-RotAngle);
+  ViewVector(NewVec);
+
+  NewVec = UpVector();
+  NewVec.Rotate(RotVec,-RotAngle);
+  UpVector(NewVec);
+
+  NewVec = DisplacementVector();
+  NewVec.Rotate(RotVec, -RotAngle);
+  DisplacementVector(NewVec);
+  
+  //update the scene
+  UpdateFrame();
   }
   m_ptFirstSelectedScreenPoint = m_ptSecondSelectedScreenPoint; 
 }
@@ -937,51 +937,51 @@ geo::CPoint COpenGLScene::GetSelectedPointOnModelSphere(const geo::CLine &line)
   geo::CArray<geo::CPoint> intersec = sphere.Intersection(line);
 
   if(intersec.Size() == 0)
-    {
-        //no intersection
-        //project the center of the sphere on the line.
-        //and calculate the intersection of a line( given by the center of the sphere
-        //and the projection point) and the sphere.
-        geo::CPoint project = line.Project(RefPoint);
-        geo::CLine l(project,RefPoint);
-        intersec = sphere.Intersection(l);
-        assert(intersec.Size() != 0);
-        if (intersec.Size() == 1)
-        {
-            return intersec.Object(0);
-        }
-        else
-        {
-            if(project.SquareDistance(intersec.Object(0)) < project.SquareDistance(intersec.Object(1)))
-            {
-                return intersec.Object(0);
-            }
-            else
-            {
-                return intersec.Object(1);
-            }
-        }
-    }
-  else if(intersec.Size() == 1)
   {
-    //line touches the sphere
-    return intersec.Object(0);
-  }
-  else if(intersec.Size() == 2)
-  {
-    //two intersections,take the closest to the first point of the line
-    if(line.First().SquareDistance(intersec.Object(0)) < line.First().SquareDistance(intersec.Object(1)))
+    //no intersection
+    //project the center of the sphere on the line.
+    //and calculate the intersection of a line( given by the center of the sphere
+    //and the projection point) and the sphere.
+    geo::CPoint project = line.Project(RefPoint);
+    geo::CLine l(project,RefPoint);
+    intersec = sphere.Intersection(l);
+    assert(intersec.Size() != 0);
+    if (intersec.Size() == 1)
     {
       return intersec.Object(0);
     }
     else
     {
-      return intersec.Object(1);
+      if(project.SquareDistance(intersec.Object(0)) < project.SquareDistance(intersec.Object(1)))
+      {
+        return intersec.Object(0);
+      }
+      else
+      {
+        return intersec.Object(1);
+      }
     }
+  }
+  else if(intersec.Size() == 1)
+  {
+  //line touches the sphere
+  return intersec.Object(0);
+  }
+  else if(intersec.Size() == 2)
+  {
+  //two intersections,take the closest to the first point of the line
+  if(line.First().SquareDistance(intersec.Object(0)) < line.First().SquareDistance(intersec.Object(1)))
+  {
+      return intersec.Object(0);
   }
   else
   {
-    DIA_ASSERT(FALSE);
+      return intersec.Object(1);
+  }
+  }
+  else
+  {
+  DIA_ASSERT(FALSE);
   }
   return geo::CPoint();
 }
@@ -1046,22 +1046,22 @@ void COpenGLScene::SetupProjectionMatrix() const
   if(DisplayPerspective())
   {
       //set up a perspective frustum
-    m_dNear= 0.99*RangeMax; //near clipping plane
-    m_dFar = 3.01*RangeMax; //far  clipping plane
-    if (w <= h) 
+  m_dNear= 0.99*RangeMax; //near clipping plane
+  m_dFar = 3.01*RangeMax; //far  clipping plane
+  if (w <= h) 
       glFrustum(-RangeMax*sfx, RangeMax*sfx, -RangeMax/whRatio*sfy, RangeMax/whRatio*sfy, m_dNear,m_dFar);
-    else 
+  else 
       glFrustum(-RangeMax*whRatio*sfx, RangeMax*whRatio*sfx, -RangeMax*sfy, RangeMax*sfy, m_dNear,m_dFar);
       //gluPerspective(35.0,whRatio,m_dNear,m_dFar);
   }
   else
   {
-    //set up a orthographic view
-    m_dNear= 0.99*RangeMax; //near clipping plane
-    m_dFar = 3.01*RangeMax; //far  clipping plane
-    if (w <= h) 
+  //set up a orthographic view
+  m_dNear= 0.99*RangeMax; //near clipping plane
+  m_dFar = 3.01*RangeMax; //far  clipping plane
+  if (w <= h) 
       glOrtho(-RangeMax*sfx, RangeMax*sfx, -RangeMax/whRatio*sfy, RangeMax/whRatio*sfy, m_dNear,m_dFar);
-    else 
+  else 
       glOrtho(-RangeMax*whRatio*sfx, RangeMax*whRatio*sfx, -RangeMax*sfy, RangeMax*sfy, m_dNear,m_dFar);
 
   }
@@ -1083,24 +1083,24 @@ void COpenGLScene::SetupModelMatrix() const
 
   if(Dimension() == IOpenGLFrame::DIM_3D)
   {
-    EyePoint = EyePoint + geo::CPoint(ViewVector().UnitVector() * (m_dNear + m_dFar) / 2.0);    //make the matrix, regular 3D viewing matrix..... 
+  EyePoint = EyePoint + geo::CPoint(ViewVector().UnitVector() * (m_dNear + m_dFar) / 2.0);    //make the matrix, regular 3D viewing matrix..... 
   }
   else
   {
-    RefPoint.Z(0);
-    EyePoint.Z((m_dNear + m_dFar) / 2.0);
+  RefPoint.Z(0);
+  EyePoint.Z((m_dNear + m_dFar) / 2.0);
   }
 
   //make the matrix, regular 3D viewing matrix..... 
   gluLookAt(EyePoint.X(),
-        EyePoint.Y(),
-        EyePoint.Z(),
-        RefPoint.X(),
-        RefPoint.Y(),
-        RefPoint.Z(),
-        UpVector().X(),
-        UpVector().Y(),
-        UpVector().Z());
+    EyePoint.Y(),
+    EyePoint.Z(),
+    RefPoint.X(),
+    RefPoint.Y(),
+    RefPoint.Z(),
+    UpVector().X(),
+    UpVector().Y(),
+    UpVector().Z());
 
   glTranslated(DisplacementVector().X(),
          DisplacementVector().Y(),
@@ -1115,55 +1115,55 @@ void COpenGLScene::SetupModelMatrix() const
 
   if(LightingEnabled())
   {
-    if(bUseFixedLightPos)
-    {
+  if(bUseFixedLightPos)
+  {
       glMatrixMode(GL_MODELVIEW);
       glPushMatrix();
       glLoadIdentity();
       glMatrixMode(GL_PROJECTION);
       glPushMatrix();
       glLoadIdentity();
-    }
+  }
 
-    glEnable(GL_LIGHTING);
-    glShadeModel(GL_SMOOTH);
+  glEnable(GL_LIGHTING);
+  glShadeModel(GL_SMOOTH);
 
-    // http://www.sjbaker.org/steve/omniv/opengl_lighting.html
-    //
-    GLfloat ambientLight[] = {0.2f, 0.2f, 0.2f, 1.0f};
-    glLightModelfv( GL_LIGHT_MODEL_AMBIENT, ambientLight);
+  // http://www.sjbaker.org/steve/omniv/opengl_lighting.html
+  //
+  GLfloat ambientLight[] = {0.2f, 0.2f, 0.2f, 1.0f};
+  glLightModelfv( GL_LIGHT_MODEL_AMBIENT, ambientLight);
 
-    // reverse normal of back facing polygons
-    // wjrx mantis 2384
-    glLightModeli( GL_LIGHT_MODEL_TWO_SIDE, 1);
+  // reverse normal of back facing polygons
+  // wjrx mantis 2384
+  glLightModeli( GL_LIGHT_MODEL_TWO_SIDE, 1);
 
-    GLfloat ambientLight0[] = {0.0f, 0.0f, 0.0f, 1.0f};
-    glLightfv(GL_LIGHT0, GL_AMBIENT, ambientLight0);
+  GLfloat ambientLight0[] = {0.0f, 0.0f, 0.0f, 1.0f};
+  glLightfv(GL_LIGHT0, GL_AMBIENT, ambientLight0);
 
-    GLfloat diffuseLight0[] = {1.0f, 1.0f, 1.0f, 1.0f};
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuseLight0);
+  GLfloat diffuseLight0[] = {1.0f, 1.0f, 1.0f, 1.0f};
+  glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuseLight0);
 
 
-    GLfloat LightPos0[]= {0.0f, 0.0f, 1.0f, 0.0f};//mantis0400
-    glLightfv(GL_LIGHT0, GL_POSITION, LightPos0);
+  GLfloat LightPos0[]= {0.0f, 0.0f, 1.0f, 0.0f};//mantis0400
+  glLightfv(GL_LIGHT0, GL_POSITION, LightPos0);
 
-    glEnable(GL_LIGHT0);
+  glEnable(GL_LIGHT0);
 
-    glEnable(GL_AUTO_NORMAL); // new
-    glEnable(GL_COLOR_MATERIAL);
-    glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+  glEnable(GL_AUTO_NORMAL); // new
+  glEnable(GL_COLOR_MATERIAL);
+  glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
 
-    if(bUseFixedLightPos)
-    {
+  if(bUseFixedLightPos)
+  {
       glPopMatrix();
       glMatrixMode(GL_MODELVIEW);
       glPopMatrix();
-    }
+  }
   }
 
   if(!(LightingEnabled()))
   {
-    glDisable(GL_LIGHTING);
+  glDisable(GL_LIGHTING);
   }
 }
 

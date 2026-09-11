@@ -17,10 +17,10 @@ bool CExportResultData_Delegate::Attributes()
   TResultExportConfiguration resultExportConfiguration(!m_exportResultData->ReservoirMacro());
 
   if (m_exportResultData->ReservoirMacro())
-    resultExportConfiguration.enableFormationSelection = true;
+  resultExportConfiguration.enableFormationSelection = true;
 
   CResultExportDlg resultExportDlg((CModelBase&) m_exportResultData->Model(),
-    resultExportConfiguration, "Cancel", true);
+  resultExportConfiguration, "Cancel", true);
 
   resultExportDlg.setExportResultData(m_exportResultData, true);
 
@@ -30,8 +30,8 @@ bool CExportResultData_Delegate::Attributes()
 void CExportResultData_Delegate::AppendContextMenu(CContextMenuInvoker& invoker)
 {
   typedef CSingleCommandTemplate <CExportResultData_Delegate>
-    CExportResultData_DelegateCommand;
+  CExportResultData_DelegateCommand;
 
   invoker.AddCommand(_T("&Attributes"), *(new CExportResultData_DelegateCommand(
-    *this, &CExportResultData_Delegate::Attributes)));
+  *this, &CExportResultData_Delegate::Attributes)));
 }

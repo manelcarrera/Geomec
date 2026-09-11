@@ -1027,7 +1027,7 @@ const char *getStringTableEntry(unsigned int stringTableEntry)
   GeomecStringTable::const_iterator iterator = geomecStringTable.find(stringTableEntry);
 
   if (iterator != geomecStringTable.end())
-    return iterator->second;
+  return iterator->second;
 
   assert(false);
   return 0;

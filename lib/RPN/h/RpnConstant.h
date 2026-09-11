@@ -16,24 +16,24 @@ namespace rpn {
 class CRpnConstant : public CRpnObject  
 {
 public:
-	enum RPN_CONSTANT { CON_PI, CON_E };
+  enum RPN_CONSTANT { CON_PI, CON_E };
 private:
-	RPN_CONSTANT m_constant;
+  RPN_CONSTANT m_constant;
 public:
-	CRpnConstant();
-	CRpnConstant(CRpnStack &stack, RPN_CONSTANT constant);
-	virtual ~CRpnConstant();
+  CRpnConstant();
+  CRpnConstant(CRpnStack &stack, RPN_CONSTANT constant);
+  virtual ~CRpnConstant();
 
-	virtual TValue Value(const geo::IPoint &pt, UNIT unit) const;
-	virtual TValueVec Value(const geo::IElement &el, UNIT unit) const;
-	virtual QString Formula() const;
-	virtual void Clear(CRpnStack &stack);
+  virtual TValue Value(const geo::IPoint &pt, UNIT unit) const;
+  virtual TValueVec Value(const geo::IElement &el, UNIT unit) const;
+  virtual QString Formula() const;
+  virtual void Clear(CRpnStack &stack);
 
-	virtual void SaveStream(std::stringstream& stream);
-	virtual void LoadStream(std::stringstream& stream, CStreamVersion& version, CRpnStack& stack);
-	virtual eObjectType ObjectType() const;
-	virtual CRpnObject* Clone(CRpnStack& NewStack) const;
-	virtual bool Recursive(TParentSet stParent = TParentSet()) const;
+  virtual void SaveStream(std::stringstream& stream);
+  virtual void LoadStream(std::stringstream& stream, CStreamVersion& version, CRpnStack& stack);
+  virtual eObjectType ObjectType() const;
+  virtual CRpnObject* Clone(CRpnStack& NewStack) const;
+  virtual bool Recursive(TParentSet stParent = TParentSet()) const;
 
   virtual bool Defined() const { return true; }
   virtual bool exists() const;

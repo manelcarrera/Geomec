@@ -34,9 +34,9 @@
 #include "resource.h"
 
 #ifdef _LICENSERESOURCEDLL
-    #define AFX_EXT_CLASS_LICENSERESOURCE     __declspec(dllexport)
+  #define AFX_EXT_CLASS_LICENSERESOURCE     __declspec(dllexport)
 #else
-    #define AFX_EXT_CLASS_LICENSERESOURCE     __declspec(dllimport)
+  #define AFX_EXT_CLASS_LICENSERESOURCE     __declspec(dllimport)
 #endif 
 
 #ifdef _DEBUG

@@ -8,5 +8,5 @@ OIV2DWellPathGraphSceneWrapper::OIV2DWellPathGraphSceneWrapper( OIV2DScene& scen
 
 bool OIV2DWellPathGraphSceneWrapper::IsOIV2DWellPathGraphScene() const
 {
-    return true;
+  return true;
 }

@@ -32,25 +32,25 @@ public:
   // Convexhull faces
   class GEOMETRY_EXPORT CConvexHullFace : public IFace
   {
-    IBody::TIndexVec   m_vcPoint;
-    CVector            m_normal;
-    const CConvexHull *m_parent;
+  IBody::TIndexVec   m_vcPoint;
+  CVector            m_normal;
+  const CConvexHull *m_parent;
   public:
-    CConvexHullFace();
-    CConvexHullFace& operator=(const CConvexHullFace& rhs);
+  CConvexHullFace();
+  CConvexHullFace& operator=(const CConvexHullFace& rhs);
 
-    void Set(const CConvexHull &Parent, int n1, int n2, int n3, double x, double y, double z);
+  void Set(const CConvexHull &Parent, int n1, int n2, int n3, double x, double y, double z);
 
-    virtual CVector Normal() const;
+  virtual CVector Normal() const;
 
-    const IBody::TIndexVec& PointIndices() const;
-    virtual const IPoint &Point(int nIndex) const throw (const char *);
-    virtual void Point(int nIndex, const IPoint &pt);
-    virtual int NrOfPoints() const;
+  const IBody::TIndexVec& PointIndices() const;
+  virtual const IPoint &Point(int nIndex) const throw (const char *);
+  virtual void Point(int nIndex, const IPoint &pt);
+  virtual int NrOfPoints() const;
 
-    int PointIndex(int nLocalIndex) const throw (const char *);
+  int PointIndex(int nLocalIndex) const throw (const char *);
 
-    virtual size_t Order() const;
+  virtual size_t Order() const;
   };
 
   friend class CConvexHullFace;
@@ -162,26 +162,26 @@ void CConvexHull::Save(STREAM& stream, IProgressBase& progress)
   stream << int(m_vcHullPoints.size());
   for(size_t i = 0; i < m_vcHullPoints.size(); ++i)
   {
-    stream << m_vcHullPoints[i].X() << m_vcHullPoints[i].Y() << m_vcHullPoints[i].Z();
+  stream << m_vcHullPoints[i].X() << m_vcHullPoints[i].Y() << m_vcHullPoints[i].Z();
 
-    progress.Step();
+  progress.Step();
   }
 
   // stream faces
   stream << int(m_vcHullFaces.size());
   for(size_t i = 0; i < m_vcHullFaces.size(); ++i)
   {
-    const IBody::TIndexVec& indices = m_vcHullFaces[i].PointIndices();
+  const IBody::TIndexVec& indices = m_vcHullFaces[i].PointIndices();
 
-    for (size_t j = 0; j < indices.size(); ++j)
-    {
+  for (size_t j = 0; j < indices.size(); ++j)
+  {
       stream << indices[j];
-    }
+  }
 
-    const CVector& normal = m_vcHullFaces[i].Normal();
-    stream << normal.X() << normal.Y() << normal.Z();
+  const CVector& normal = m_vcHullFaces[i].Normal();
+  stream << normal.X() << normal.Y() << normal.Z();
 
-    progress.Step();
+  progress.Step();
   }
 
 }
@@ -198,7 +198,7 @@ void CConvexHull::Load(STREAM& stream, IProgressBase& progress)
 
   if (nVersion < 2)
   {
-    stream >> dDummy;
+  stream >> dDummy;
   }
 
   stream >> m_dHullIncrement;
@@ -214,8 +214,8 @@ void CConvexHull::Load(STREAM& stream, IProgressBase& progress)
 
   if (nVersion < 2) // we have some duplicate code below, but eventually we want all the if's outside the read loops, so we split it up like this
   {
-    for(int i = 0; i < nVertices; ++i)
-    {
+  for(int i = 0; i < nVertices; ++i)
+  {
       stream >> x >> y >> z;
       m_vcHullPoints[i].Set(x, y, z);
 
@@ -223,61 +223,17 @@ void CConvexHull::Load(STREAM& stream, IProgressBase& progress)
       stream >> iDummy;
 
       progress.Step();
-    }
-
-    int nEdges;
-    stream >> nEdges;
-
-    for(int i = 0; i < nEdges; ++i)
-    {
-      for (int j = 0; j < 8; ++j)
-      {
-        stream >> iDummy;
-      }
-    }
-
-    int nFaces;
-    stream >> nFaces;
-
-    m_vcHullFaces.resize(nFaces);
-
-    for(int i = 0; i < nFaces; ++i)
-    {
-      int nVertex[3];
-
-      for(int j = 0; j < 3; ++j)
-      {
-        stream >> iDummy;
-      }
-
-      for(int j = 0; j < 3; ++j)
-      {
-        stream >> nVertex[j];
-      }
-
-      stream >> x >> y >> z;
-
-      for(int j = 0; j < 3; ++j)
-      {
-        stream >> iDummy;
-      }
-
-      m_vcHullFaces[i].Set(*this, nVertex[0], nVertex[1], nVertex[2], x, y, z);
-
-      progress.Step();
-    }
-
-    return;
   }
 
-  // nVersion > 1
+  int nEdges;
+  stream >> nEdges;
 
-  for(int i = 0; i < nVertices; ++i)
+  for(int i = 0; i < nEdges; ++i)
   {
-    stream >> x >> y >> z;
-    m_vcHullPoints[i].Set(x, y, z);
-
-    progress.Step();
+      for (int j = 0; j < 8; ++j)
+      {
+    stream >> iDummy;
+      }
   }
 
   int nFaces;
@@ -287,18 +243,62 @@ void CConvexHull::Load(STREAM& stream, IProgressBase& progress)
 
   for(int i = 0; i < nFaces; ++i)
   {
-    int nVertex[3];
+      int nVertex[3];
 
-    for(int j = 0; j < 3; ++j)
-    {
+      for(int j = 0; j < 3; ++j)
+      {
+    stream >> iDummy;
+      }
+
+      for(int j = 0; j < 3; ++j)
+      {
+    stream >> nVertex[j];
+      }
+
+      stream >> x >> y >> z;
+
+      for(int j = 0; j < 3; ++j)
+      {
+    stream >> iDummy;
+      }
+
+      m_vcHullFaces[i].Set(*this, nVertex[0], nVertex[1], nVertex[2], x, y, z);
+
+      progress.Step();
+  }
+
+  return;
+  }
+
+  // nVersion > 1
+
+  for(int i = 0; i < nVertices; ++i)
+  {
+  stream >> x >> y >> z;
+  m_vcHullPoints[i].Set(x, y, z);
+
+  progress.Step();
+  }
+
+  int nFaces;
+  stream >> nFaces;
+
+  m_vcHullFaces.resize(nFaces);
+
+  for(int i = 0; i < nFaces; ++i)
+  {
+  int nVertex[3];
+
+  for(int j = 0; j < 3; ++j)
+  {
       stream >> nVertex[j];
-    }
+  }
 
-    stream >> x >> y >> z;
+  stream >> x >> y >> z;
 
-    m_vcHullFaces[i].Set(*this, nVertex[0], nVertex[1], nVertex[2], x, y, z);
+  m_vcHullFaces[i].Set(*this, nVertex[0], nVertex[1], nVertex[2], x, y, z);
 
-    progress.Step();
+  progress.Step();
   }
 
 }

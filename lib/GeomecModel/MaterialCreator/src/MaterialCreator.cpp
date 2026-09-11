@@ -11,7 +11,7 @@
 ml::CMaterial* CMaterialCreator::OnCreateMaterial()
 {
   CLibraryMaterial* pLibMat =
-    new CLibraryMaterial(CalibrationPath(), PQPlotter(), CanCalibrateElastic(), CanCalibratePlastic());
+  new CLibraryMaterial(CalibrationPath(), PQPlotter(), CanCalibrateElastic(), CanCalibratePlastic());
 
   OnCreateLibrary(*pLibMat);
 
@@ -23,7 +23,7 @@ void CMaterialCreator::OnCreateParameters(ml::CMaterial& mat)
   CLibraryMaterial* pLibMat = dynamic_cast<CLibraryMaterial*>(&mat);
   assert(pLibMat);
   if(!pLibMat)
-    return;
+  return;
 
   OnCreateLibraryParameters(*pLibMat);
 
@@ -59,5 +59,5 @@ void CMaterialCreator::AddLibParam(const QString& strName,
                    const QString& strGroupName)
 {
   Add(new CLibraryMaterialParameter(strName, dValue, parentMat, unitConversion, uiValueTypeID, pCheckStrategy, pSetStrategy, strCalibrationPath, bFixedCalibrationParam),
-    strGroupName);
+  strGroupName);
 }

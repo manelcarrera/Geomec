@@ -10,17 +10,17 @@ CDianaSignals::CDianaSignals(const QObject* sender)
   assert(m_sender != 0);
 
   connect(m_sender, SIGNAL(OnMessage(QString)),
-    this, SLOT(slotMessage(QString)));
+  this, SLOT(slotMessage(QString)));
   connect(m_sender, SIGNAL(OnAppSpcMessage(QString)),
-    this, SLOT(slotAppSpcMessage(QString)));
+  this, SLOT(slotAppSpcMessage(QString)));
   connect(m_sender, SIGNAL(OnError(QString)),
-    this, SLOT(slotError(QString)));
+  this, SLOT(slotError(QString)));
   connect(m_sender, SIGNAL(OnWarning(QString)),
-    this, SLOT(slotWarning(QString)));
+  this, SLOT(slotWarning(QString)));
   connect(m_sender, SIGNAL(OnStopExecuting(bool&)),
-    this, SLOT(slotStopExecuting(bool&)));
+  this, SLOT(slotStopExecuting(bool&)));
   connect(m_sender, SIGNAL(OnFinished()),
-    this, SLOT(slotFinished()));
+  this, SLOT(slotFinished()));
 }
 
 CDianaSignals::~CDianaSignals()
@@ -28,17 +28,17 @@ CDianaSignals::~CDianaSignals()
   assert(m_sender != 0);
 
   disconnect(m_sender, SIGNAL(OnFinished()),
-    this, SLOT(slotFinished()));
+  this, SLOT(slotFinished()));
   disconnect(m_sender, SIGNAL(OnStopExecuting(bool&)),
-    this, SLOT(slotStopExecuting(bool&)));
+  this, SLOT(slotStopExecuting(bool&)));
   disconnect(m_sender, SIGNAL(OnWarning(QString)),
-    this, SLOT(slotWarning(QString)));
+  this, SLOT(slotWarning(QString)));
   disconnect(m_sender, SIGNAL(OnError(QString)),
-    this, SLOT(slotError(QString)));
+  this, SLOT(slotError(QString)));
   disconnect(m_sender, SIGNAL(OnAppSpcMessage(QString)),
-    this, SLOT(slotAppSpcMessage(QString)));
+  this, SLOT(slotAppSpcMessage(QString)));
   disconnect(m_sender, SIGNAL(OnMessage(QString)),
-    this, SLOT(slotMessage(QString)));
+  this, SLOT(slotMessage(QString)));
 }
 
 void CDianaSignals::slotMessage(QString message)

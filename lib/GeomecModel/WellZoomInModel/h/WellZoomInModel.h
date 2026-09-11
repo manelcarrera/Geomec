@@ -55,11 +55,11 @@ public:
 
   virtual void OnCloseModel();
 
-	virtual long SavedItems() const;
-	bool LoadWellZoomIn1(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &prog);
-	virtual bool OnLoad(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &prog);
-	bool LoadWellZoomIn2(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &prog);
-	virtual bool OnSave(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &progress);
+  virtual long SavedItems() const;
+  bool LoadWellZoomIn1(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &prog);
+  virtual bool OnLoad(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &prog);
+  bool LoadWellZoomIn2(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &prog);
+  virtual bool OnSave(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &progress);
 
   CWellCasingModel& CasingModel();
   const CWellCasingModel& CasingModel() const;

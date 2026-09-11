@@ -29,7 +29,7 @@ void CInitialNodalPotential::Remove(int nNode)
 {
   TNodalPotentialMap::iterator it = m_mpNodalValues.find(nNode);
   if(it != m_mpNodalValues.end())
-    m_mpNodalValues.erase(it);
+  m_mpNodalValues.erase(it);
 }
 
 int CInitialNodalPotential::Index() const
@@ -55,8 +55,8 @@ bool CInitialNodalPotential::WriteFilos() const
   int i;
   for(it = m_mpNodalValues.begin(), i = 0; it != m_mpNodalValues.end(); ++it, ++i)
   {
-    pNodes[i] = it->first;
-    pValues[i] = it->second;
+  pNodes[i] = it->first;
+  pValues[i] = it->second;
   }
 
   PutItemLength("NODES", pNodes, sz);

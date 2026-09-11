@@ -30,11 +30,11 @@ COpenGLComposite::COpenGLComposite(const COpenGLNodeBase &rhs)
 
 COpenGLComposite& 	COpenGLComposite::operator=(const COpenGLComposite &rhs)
 {
-	COpenGLNodeBase::operator =(rhs);
-	return *this;
+  COpenGLNodeBase::operator =(rhs);
+  return *this;
 }
 
 bool COpenGLComposite::operator==(const COpenGLComposite &rhs) const
 {
-	return COpenGLNodeBase::operator ==(rhs);
+  return COpenGLNodeBase::operator ==(rhs);
 }

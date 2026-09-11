@@ -21,23 +21,23 @@ CElementGroup::CElementGroup(IMesh &mesh, bool bVisible)
 : m_mesh(mesh),
   m_bVisible(bVisible)
 {
-	m_mesh.AddElementGroup(*this);
+  m_mesh.AddElementGroup(*this);
 }
 
 CElementGroup::~CElementGroup()
 {
-	m_mesh.RemoveElementGroup(*this);
+  m_mesh.RemoveElementGroup(*this);
 }
 
 //Construction
 bool CElementGroup::AddMeshElement(IElement& elem)
 {
-	assert(elem.IndexingElementSet() == &m_mesh);
+  assert(elem.IndexingElementSet() == &m_mesh);
 
-	m_vcElement.push_back(&elem);
-	m_vcNode.clear();
+  m_vcElement.push_back(&elem);
+  m_vcNode.clear();
 
-	return true;
+  return true;
 }
 
 void CElementGroup::createPointBuffer() const
@@ -48,24 +48,24 @@ void CElementGroup::createPointBuffer() const
 
   if( m_vcNode.size() == 0 ) {
 
-    lock.upgrade_to_writer();
+  lock.upgrade_to_writer();
 
-    if (m_vcNode.size() != 0)
+  if (m_vcNode.size() != 0)
       return;
 
-    std::set<int> stNode;
-    int i;
-    for(i = 0; i < ElementSize(); i++) {
+  std::set<int> stNode;
+  int i;
+  for(i = 0; i < ElementSize(); i++) {
       for(int j = 0; j < Element(i).NrOfNodes(); j++) {
-        stNode.insert( Element(i).Node(j).Index() );
+    stNode.insert( Element(i).Node(j).Index() );
       }
-    }
-    i = 0;
-    m_vcNode.resize( stNode.size(), 0 );
-    for( std::set<int>::iterator it = stNode.begin(); it != stNode.end(); it++) {
+  }
+  i = 0;
+  m_vcNode.resize( stNode.size(), 0 );
+  for( std::set<int>::iterator it = stNode.begin(); it != stNode.end(); it++) {
       m_vcNode[i] = *it;
       i++;
-    }
+  }
   }
 }
 
@@ -94,34 +94,34 @@ int CElementGroup::PointSize() const
 
 const IElement& CElementGroup::Element(int nIndex) const
 {
-	assert(nIndex>=0);
-	assert(nIndex<m_vcElement.size());
-	return *m_vcElement[nIndex];
+  assert(nIndex>=0);
+  assert(nIndex<m_vcElement.size());
+  return *m_vcElement[nIndex];
 }
 
 IElement& CElementGroup::Element(int nIndex)
 {
-	assert(nIndex>=0);
-	assert(nIndex<m_vcElement.size());
-	return *m_vcElement[nIndex];
+  assert(nIndex>=0);
+  assert(nIndex<m_vcElement.size());
+  return *m_vcElement[nIndex];
 }
 
 int CElementGroup::ElementSize() const
 {
-	return (int)m_vcElement.size();
+  return (int)m_vcElement.size();
 }
 
 std::vector<int> CElementGroup::ElementsAt(const IPoint &/*point*/) const
 {
-	assert(false);
-	return std::vector<int>();
+  assert(false);
+  return std::vector<int>();
 }
 
 // get the node indices connected to the given element
 std::vector<int> CElementGroup::Nodes(const IElement &/*element*/) const
 {
-	assert(false);
-	return std::vector<int>();
+  assert(false);
+  return std::vector<int>();
 }
 
 void CElementGroup::AssertValid() const

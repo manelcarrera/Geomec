@@ -11,7 +11,7 @@ namespace cora
 class CUndefinedOrInvalidValueVector : public std::runtime_error
 {
   public:
-    CUndefinedOrInvalidValueVector(const QString& prefix);
+  CUndefinedOrInvalidValueVector(const QString& prefix);
 };
 
 } // namespace cora

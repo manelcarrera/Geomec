@@ -9,7 +9,7 @@ class CGlobalTemperature;
 
 class CGlobalTemperature_Delegate :
   public CGlobalFormationLoad_Delegate <TTemperature,
-    CTemperatureGradientComponent>
+  CTemperatureGradientComponent>
 {
 public:
   CGlobalTemperature_Delegate(CGlobalTemperature* globalTemperature);
@@ -19,7 +19,7 @@ public:
 private:
   CGlobalTemperature_Delegate(const CGlobalTemperature_Delegate& rhs);
   CGlobalTemperature_Delegate& operator = (
-    const CGlobalTemperature_Delegate& rhs);
+  const CGlobalTemperature_Delegate& rhs);
 
   CGlobalTemperature* m_globalTemperature;
 

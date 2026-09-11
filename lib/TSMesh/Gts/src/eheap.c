@@ -40,7 +40,7 @@ struct _GtsEHeap {
  * Returns: a new #GtsEHeap using @key_func as key.
  */
 GtsEHeap * gts_eheap_new (GtsKeyFunc key_func,
-			  gpointer data)
+        gpointer data)
 {
   GtsEHeap * heap;
 
@@ -64,16 +64,16 @@ static void sift_up (GtsEHeap * heap, guint i)
   child = pdata[i - 1];
   key = child->key;
   while ((p = PARENT (i))) {
-    parent = pdata[p - 1];
-    if (parent->key > key ||
-	(heap->randomized && parent->key == key && rand () < RAND_MAX/2)) {
+  parent = pdata[p - 1];
+  if (parent->key > key ||
+  (heap->randomized && parent->key == key && rand () < RAND_MAX/2)) {
       pdata[p - 1] = child;
       pdata[i - 1] = parent;
       child->pos = p;
       parent->pos = i;
       i = p;
-    }
-    else
+  }
+  else
       i = 0;
   }
 }
@@ -104,7 +104,7 @@ GtsEHeapPair * gts_eheap_insert (GtsEHeap * heap, gpointer p)
   pair->pos = elts->len;
   pair->key = (*heap->func) (p, heap->data);
   if (!heap->frozen)
-    sift_up (heap, elts->len);
+  sift_up (heap, elts->len);
   return pair;
 }
 
@@ -121,8 +121,8 @@ GtsEHeapPair * gts_eheap_insert (GtsEHeap * heap, gpointer p)
  * gts_eheap_decrease_key().
  */
 GtsEHeapPair * gts_eheap_insert_with_key (GtsEHeap * heap, 
-					  gpointer p, 
-					  gdouble key)
+            gpointer p, 
+            gdouble key)
 {
   GtsEHeapPair * pair;
   GPtrArray * elts;
@@ -136,7 +136,7 @@ GtsEHeapPair * gts_eheap_insert_with_key (GtsEHeap * heap,
   pair->pos = elts->len;
   pair->key = key;
   if (!heap->frozen)
-    sift_up (heap, elts->len);
+  sift_up (heap, elts->len);
   return pair;
 }
 
@@ -156,15 +156,15 @@ static void sift_down (GtsEHeap * heap, guint i)
   parent = pdata[i - 1];
   key = parent->key;
   while (left_child != NULL) {
-    if (right_child == NULL || left_child->key  < right_child->key) {
+  if (right_child == NULL || left_child->key  < right_child->key) {
       child = left_child;
       c = lc;
-    }
-    else {
+  }
+  else {
       child = right_child;
       c = rc;
-    }
-    if (key > child->key) {
+  }
+  if (key > child->key) {
       pdata[i - 1] = child;
       child->pos = i;
       pdata[c - 1] = parent;
@@ -174,8 +174,8 @@ static void sift_down (GtsEHeap * heap, guint i)
       rc = RIGHT_CHILD (i);
       left_child = lc <= len ? pdata[lc - 1] : NULL;
       right_child = rc <= len ? pdata[rc - 1] : NULL;      
-    }
-    else
+  }
+  else
       left_child = NULL;
   }
 }
@@ -203,20 +203,20 @@ gpointer gts_eheap_remove_top (GtsEHeap * heap, gdouble * key)
   len = elts->len;
 
   if (len == 0)
-    return NULL;
+  return NULL;
   if (len == 1) {
-    pair = g_ptr_array_remove_index (elts, 0);
-    root = pair->data;
-    if (key) 
+  pair = g_ptr_array_remove_index (elts, 0);
+  root = pair->data;
+  if (key) 
       *key = pair->key;
-    g_mem_chunk_free (heap->mem_chunk, pair);
-    return root;
+  g_mem_chunk_free (heap->mem_chunk, pair);
+  return root;
   }
 
   pair = elts->pdata[0];
   root = pair->data;
   if (key) 
-    *key = pair->key;
+  *key = pair->key;
   g_mem_chunk_free (heap->mem_chunk, pair);
   pair = g_ptr_array_remove_index (elts, len - 1);
   elts->pdata[0] = pair;
@@ -243,11 +243,11 @@ gpointer gts_eheap_top (GtsEHeap * heap, gdouble * key)
   elts = heap->elts;
 
   if (elts->len == 0)
-    return NULL;
+  return NULL;
 
   pair = elts->pdata[0];
   if (key)
-    *key = pair->key;
+  *key = pair->key;
   return pair->data;
 }
 
@@ -280,10 +280,10 @@ void gts_eheap_thaw (GtsEHeap * heap)
   g_return_if_fail (heap != NULL);
 
   if (!heap->frozen)
-    return;
+  return;
 
   for (i = heap->elts->len/2; i > 0; i--)
-    sift_down (heap, i);
+  sift_down (heap, i);
 
   heap->frozen = FALSE;
 }
@@ -295,8 +295,8 @@ void gts_eheap_thaw (GtsEHeap * heap)
  * @data: to pass to @func.
  */
 void gts_eheap_foreach (GtsEHeap * heap, 
-			GFunc func,
-			gpointer data)
+      GFunc func,
+      gpointer data)
 {
   guint i;
   GPtrArray * elts;
@@ -306,7 +306,7 @@ void gts_eheap_foreach (GtsEHeap * heap,
 
   elts = heap->elts;
   for (i = 0; i < elts->len; i++)
-    (*func) (((GtsEHeapPair *) elts->pdata[i])->data, data);
+  (*func) (((GtsEHeapPair *) elts->pdata[i])->data, data);
 }
 
 /**
@@ -337,12 +337,12 @@ gpointer gts_eheap_remove (GtsEHeap * heap, GtsEHeapPair * p)
 
   /* move element to the top */
   while ((par = PARENT (i))) {
-    parent = pdata[par - 1];
-    pdata[par - 1] = p;
-    pdata[i - 1] = parent;
-    p->pos = par;
-    parent->pos = i;
-    i = par;
+  parent = pdata[par - 1];
+  pdata[par - 1] = p;
+  pdata[i - 1] = parent;
+  p->pos = par;
+  parent->pos = i;
+  i = par;
   }
 
   gts_eheap_remove_top (heap, NULL);
@@ -360,8 +360,8 @@ gpointer gts_eheap_remove (GtsEHeap * heap, GtsEHeapPair * p)
  * Decreases the value of the key of the element at position @p.
  */
 void gts_eheap_decrease_key (GtsEHeap * heap, 
-			     GtsEHeapPair * p,
-			     gdouble new_key)
+           GtsEHeapPair * p,
+           gdouble new_key)
 {
   guint i;
 
@@ -376,7 +376,7 @@ void gts_eheap_decrease_key (GtsEHeap * heap,
 
   p->key = new_key;
   if (!heap->frozen)
-    sift_up (heap, i);
+  sift_up (heap, i);
 }
 
 /**
@@ -431,8 +431,8 @@ void gts_eheap_update (GtsEHeap * heap)
   func = heap->func;
 
   for (i = 0; i < len; i++) {
-    GtsEHeapPair * pair = pairs[i];
-    pair->key = (*func) (pair->data, data);
+  GtsEHeapPair * pair = pairs[i];
+  pair->key = (*func) (pair->data, data);
   }
   
   gts_eheap_thaw (heap);

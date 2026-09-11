@@ -29,35 +29,35 @@ IColorScaleNode::IColorScaleNode(const IColorScaleNode &rhs)
 
 bool IColorScaleNode::operator==(const IColorScaleNode& rhs) const
 {
-	return CStorageNode::operator ==(rhs);
+  return CStorageNode::operator ==(rhs);
 }
-	
+  
 IColorScaleNode& IColorScaleNode::operator=(const IColorScaleNode& rhs)
 {
-	CStorageNode::operator =(rhs);
-	return *this;
+  CStorageNode::operator =(rhs);
+  return *this;
 }
 
 IColorScaleNode::TColor IColorScaleNode::LoadColor(TSTREAM& stream)
 {
-	int nRed, nGreen, nBlue;
-	stream >> nRed;
-	stream >> nGreen;
-	stream >> nBlue;
-	return qRgb(nRed, nGreen, nBlue);
+  int nRed, nGreen, nBlue;
+  stream >> nRed;
+  stream >> nGreen;
+  stream >> nBlue;
+  return qRgb(nRed, nGreen, nBlue);
 }
 
 void IColorScaleNode::SaveColor(TSTREAM& stream, TColor color)
 {
-	int nRed = qRed(color);
-	int nGreen = qGreen(color);
-	int nBlue = qBlue(color);
-	stream << nRed;
-	stream << nGreen;
-	stream << nBlue;
+  int nRed = qRed(color);
+  int nGreen = qGreen(color);
+  int nBlue = qBlue(color);
+  stream << nRed;
+  stream << nGreen;
+  stream << nBlue;
 }
 
 void IColorScaleNode::SetIndex(int nIndex)
 {
-	Index(nIndex);
+  Index(nIndex);
 }

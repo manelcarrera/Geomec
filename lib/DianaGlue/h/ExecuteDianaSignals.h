@@ -11,7 +11,7 @@ class CExecuteDianaSignals : public CDianaSignals
 
 public:
   CExecuteDianaSignals(	const QObject* sender,
-						IExecuteDianaDialog* exe_diana_dlg );
+            IExecuteDianaDialog* exe_diana_dlg );
 
   ~CExecuteDianaSignals();
 

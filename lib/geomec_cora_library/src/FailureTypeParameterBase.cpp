@@ -17,11 +17,11 @@ CFailureTypeParameterBase::CFailureTypeParameterBase(
   const QString& objectType)
 : m_actualObject(findActualObject(summaryResultFile,object, objects,objectType))
 , m_actualParameter(findActualParameter(summaryResultFile, object, parameter,
-    m_actualObject->getParameters()))
+  m_actualObject->getParameters()))
 , m_object(object.c_str())
 , m_parameter(parameter.c_str())
 , m_parameterModifier(TParameterModifier(new CParameterModifier(
-    summaryResultFile, option.c_str(), value)))
+  summaryResultFile, option.c_str(), value)))
 , m_summaryResultFile(summaryResultFile)
 , m_objectType(objectType)
 {
@@ -43,7 +43,7 @@ void CFailureTypeParameterBase::modify(CModelBase* /*modelBase*/)
 {
   if (m_actualParameter)
   {
-    m_summaryResultFile.addAdditionalInformation(
+  m_summaryResultFile.addAdditionalInformation(
       QString(PARAMETER_FILE_PROCESSING).arg(m_objectType));
   }
 }
@@ -67,15 +67,15 @@ TObject CFailureTypeParameterBase::findActualObject(
 {
   for (TObjects::const_iterator o = objects.begin(); o != objects.end(); ++o)
   {
-    if (((*o)->name() == object.c_str()) ||
+  if (((*o)->name() == object.c_str()) ||
       ((objectType + SEPARATOR + (*o)->name()) == object.c_str()))
-    {
+  {
       return *o;
-    }
+  }
   }
 
   const QString message = QString(OBJECT_DOES_NOT_EXIST).
-    arg(objectType).arg(object.c_str());
+  arg(objectType).arg(object.c_str());
 
   throw std::runtime_error(message.toStdString());
 }
@@ -93,17 +93,17 @@ TParameter CFailureTypeParameterBase::findActualParameter(
   const std::string& parameter, const TParameters& parameters)
 {
   for (TParameters::const_iterator p = parameters.begin();
-    p != parameters.end(); ++p)
+  p != parameters.end(); ++p)
   {
-    if (((*p)->name() == parameter.c_str()) ||
+  if (((*p)->name() == parameter.c_str()) ||
       ((PARAMETER + SEPARATOR + (*p)->name()) == parameter.c_str()))
-    {
+  {
       return *p;
-    }
+  }
   }
 
   const QString message = QString(PARAMETER_DOES_NOT_EXIST).
-    arg(PARAMETER).arg(parameter.c_str()).arg(object.c_str());
+  arg(PARAMETER).arg(parameter.c_str()).arg(object.c_str());
 
   throw std::runtime_error(message.toStdString());
 }

@@ -9,15 +9,15 @@ namespace GeomecRGI
 class CSavePropertyFormation : public CSavePropertyBase
 {
   public:
-    CSavePropertyFormation(const RGProperty& rgProperty);
-    virtual ~CSavePropertyFormation();
+  CSavePropertyFormation(const RGProperty& rgProperty);
+  virtual ~CSavePropertyFormation();
 
-    virtual bool saveProperty(RGInterface& rgi, CModelBase& modelBase,
+  virtual bool saveProperty(RGInterface& rgi, CModelBase& modelBase,
       const CRockMechProcessor& rmp);
 
   private:
-    CSavePropertyFormation(const CSavePropertyFormation& rhs);
-    CSavePropertyFormation& operator = (
+  CSavePropertyFormation(const CSavePropertyFormation& rhs);
+  CSavePropertyFormation& operator = (
       const CSavePropertyFormation& rhs);
 };
 

@@ -12,52 +12,52 @@
 IMPLEMENT_DYNAMIC(CGVTAnalysisDlg, CDialog)
 
 CGVTAnalysisDlg::CGVTAnalysisDlg(CGVTSettings &settings, CWnd* pParent /*=NULL*/)
-	: CDialog(CGVTAnalysisDlg::IDD, pParent),
+  : CDialog(CGVTAnalysisDlg::IDD, pParent),
   m_GVTSettings(settings),
   m_CheckForcePointSets(settings.ForceNewPointSets()==true?1:0)
 {
   //{{AFX_DATA_INIT(CGVTAnalysisDlg)
-	//}}AFX_DATA_INIT
+  //}}AFX_DATA_INIT
 }
 
 void CGVTAnalysisDlg::OnPaint() 
 {
-	CPaintDC dc(this); // device context for painting
+  CPaintDC dc(this); // device context for painting
 
-	DrawCheck(dc, m_GridCheck, m_GVTSettings.GridReady());
-	DrawCheck(dc, m_VelModFileCheck, m_GVTSettings.VelocityModelFileReady());
-	DrawCheck(dc, m_TimeLapseCheck, m_GVTSettings.TimeLapseReady());
+  DrawCheck(dc, m_GridCheck, m_GVTSettings.GridReady());
+  DrawCheck(dc, m_VelModFileCheck, m_GVTSettings.VelocityModelFileReady());
+  DrawCheck(dc, m_TimeLapseCheck, m_GVTSettings.TimeLapseReady());
 
-	
-	// Do not call CDialog::OnPaint() for painting messages
+  
+  // Do not call CDialog::OnPaint() for painting messages
 }
 
 void CGVTAnalysisDlg::DrawCheck(CPaintDC &dc, CStatic &IconCheck, bool bCheck)
 {
-	RECT rect;
-	IconCheck.GetWindowRect(&rect);
-	ScreenToClient(&rect);
+  RECT rect;
+  IconCheck.GetWindowRect(&rect);
+  ScreenToClient(&rect);
 
-	unsigned int CheckID;
-	if(bCheck)
-		CheckID = IDI_CHECK_RED;
-	else
-		CheckID = IDI_CROSS_RED;
+  unsigned int CheckID;
+  if(bCheck)
+    CheckID = IDI_CHECK_RED;
+  else
+    CheckID = IDI_CROSS_RED;
 
-	DrawIconEx(dc, rect.left, rect.top, LoadIcon(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(CheckID)), 16, 16, 0, 0, DI_NORMAL);	
+  DrawIconEx(dc, rect.left, rect.top, LoadIcon(AfxGetApp()->m_hInstance, MAKEINTRESOURCE(CheckID)), 16, 16, 0, 0, DI_NORMAL);	
 }
 
 void CGVTAnalysisDlg::SetStartState()
 {
   if(!m_GVTSettings.AnalysisIsGo())
   {
-    GetDlgItem(IDC_GVTSART_STATIC)->SetWindowTextA("Unable to start the GVT analysis, make sure the settings are set up correctly. ");
-    GetDlgItem(IDC_GVT_START_BUTTON)->EnableWindow(FALSE);
+  GetDlgItem(IDC_GVTSART_STATIC)->SetWindowTextA("Unable to start the GVT analysis, make sure the settings are set up correctly. ");
+  GetDlgItem(IDC_GVT_START_BUTTON)->EnableWindow(FALSE);
   }
   else
   {
-    GetDlgItem(IDC_GVTSART_STATIC)->SetWindowTextA("Start the GVT analysis.");
-    GetDlgItem(IDC_GVT_START_BUTTON)->EnableWindow(TRUE);
+  GetDlgItem(IDC_GVTSART_STATIC)->SetWindowTextA("Start the GVT analysis.");
+  GetDlgItem(IDC_GVT_START_BUTTON)->EnableWindow(TRUE);
   }
 }
 
@@ -93,8 +93,8 @@ void CGVTAnalysisDlg::OnBnClickedGvtSettButton()
   CGVTSettingsDlg settings(m_GVTSettings);
   if(settings.DoModal() == IDOK)
   {
-    Invalidate();
-    UpdateData(FALSE);
+  Invalidate();
+  UpdateData(FALSE);
   }
 }
 
@@ -120,8 +120,8 @@ HBRUSH CGVTAnalysisDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, unsigned int nCtlColor)
   HBRUSH hbr = CDialog::OnCtlColor(pDC, pWnd, nCtlColor);
   if(pWnd->GetDlgCtrlID() == IDC_WARNING)
   {
-    pDC->SetTextColor(RGB(255, 0, 0));
-    pDC->SetBkMode(TRANSPARENT);
+  pDC->SetTextColor(RGB(255, 0, 0));
+  pDC->SetBkMode(TRANSPARENT);
   }
 
   return hbr;

@@ -7,25 +7,25 @@ class IListenerIpc;
 
 class DR : public IListener
 {
-	IListenerIpc* m_gi;
+  IListenerIpc* m_gi;
 
-	bool m_done;
-	void done(bool val){m_done=val;}
+  bool m_done;
+  void done(bool val){m_done=val;}
 
 protected:
-	void handle(Cmd cmd);
+  void handle(Cmd cmd);
 
 public:
-	std::thread* m_th; // run diana takes time
+  std::thread* m_th; // run diana takes time
 
 public:
 
-	DR( IListenerIpc* gi );
-	~DR();
-	
-	void on_run_diana(Cmd& cmd);
+  DR( IListenerIpc* gi );
+  ~DR();
+  
+  void on_run_diana(Cmd& cmd);
 
-	void run_( const QStringList& params ); // thread funtion
+  void run_( const QStringList& params ); // thread funtion
 
-	bool done(){return m_done;}
+  bool done(){return m_done;}
 };

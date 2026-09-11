@@ -18,27 +18,27 @@ CVolumetricStrainLoadGradientComponent::CVolumetricStrainLoadGradientComponent(c
 
 unsigned int CVolumetricStrainLoadGradientComponent::TypeId() const
 {
-	return IDT_COMPONENT_VOLSTRAIN_GRADIENT;
+  return IDT_COMPONENT_VOLSTRAIN_GRADIENT;
 }
 
 unsigned int CVolumetricStrainLoadGradientComponent::IconId() const
 {
-	return IDI_COMPONENT_VOLSTRAIN_GRADIENT;
+  return IDI_COMPONENT_VOLSTRAIN_GRADIENT;
 }
 
 QString CVolumetricStrainLoadGradientComponent::TypeName() const
 {
-	return getStringTableEntry(IDS_COMPONENT_VOLSTRAIN_GRADIENT);
+  return getStringTableEntry(IDS_COMPONENT_VOLSTRAIN_GRADIENT);
 }
 
 QString CVolumetricStrainLoadGradientComponent::UnitName(const CQuantity::UNIT /*unit*/) const
 {
-	return QString("-");
+  return QString("-");
 }
 
 QString CVolumetricStrainLoadGradientComponent::ExportLabel() const
 {
-	 return getStringTableEntry(IDS_ET_VOLUMETRICSTRAIN);
+   return getStringTableEntry(IDS_ET_VOLUMETRICSTRAIN);
 }
 
 
@@ -47,73 +47,73 @@ QString CVolumetricStrainLoadGradientComponent::ExportLabel() const
 CVolumetricStrainLoadGWCDummyComponent::CVolumetricStrainLoadGWCDummyComponent()
 : IValueComponentBase(*this)
 {
-	assert(false);
+  assert(false);
 }
 
 CVolumetricStrainLoadGWCDummyComponent::CVolumetricStrainLoadGWCDummyComponent(CVolumetricStrainLoadGWCDummyComponent& rhs)
 : IValueComponentBase(rhs)
 {
-	assert(false);
+  assert(false);
 }
 
 const CStrainQuantity &CVolumetricStrainLoadGWCDummyComponent::ContactPressure() const
 {
-	assert(false);
-	CStrainQuantity* p = 0;
-	return *p;
+  assert(false);
+  CStrainQuantity* p = 0;
+  return *p;
 }
 
 const CStrainQuantity &CVolumetricStrainLoadGWCDummyComponent::TransitionPressure() const
 {
-	assert(false);
-	CStrainQuantity* p = 0;
-	return *p;
+  assert(false);
+  CStrainQuantity* p = 0;
+  return *p;
 }
 
 const CLengthQuantity &CVolumetricStrainLoadGWCDummyComponent::ContactDepth() const
 {
-	assert(false);
-	CLengthQuantity* p = 0;
-	return *p;
+  assert(false);
+  CLengthQuantity* p = 0;
+  return *p;
 }
 
 const CLengthQuantity &CVolumetricStrainLoadGWCDummyComponent::TransitionDepth() const
 {
-	assert(false);
-	CLengthQuantity* p = 0;
-	return *p;
+  assert(false);
+  CLengthQuantity* p = 0;
+  return *p;
 }
 
 const CStrainQuantity &CVolumetricStrainLoadGWCDummyComponent::UpperGradient() const
 {
-	assert(false);
-	CStrainQuantity* p = 0;
-	return *p;
+  assert(false);
+  CStrainQuantity* p = 0;
+  return *p;
 }
 
 const CStrainQuantity &CVolumetricStrainLoadGWCDummyComponent::LowerGradient() const
 {
-	assert(false);
-	CStrainQuantity* p = 0;
-	return *p;
+  assert(false);
+  CStrainQuantity* p = 0;
+  return *p;
 }
 
 bool CVolumetricStrainLoadGWCDummyComponent::TransitionFromPrevious() const
 {
-	assert(false);
-	return false;
+  assert(false);
+  return false;
 }
 
 void CVolumetricStrainLoadGWCDummyComponent::Set(const double &/*dContactPressure*/,
-										const double &/*dTransitionPressure*/,
-										const double &/*dContactDepth*/,
-		 								const double &/*dTransitionDepth*/,
-		 								const double &/*dUpperGradient*/,
-		 								const double &/*dLowerGradient*/,
-		 								bool /*bTransitionFromPrevious*/,
-		 								const CQuantity::UNIT /*unit*/)
+                    const double &/*dTransitionPressure*/,
+                    const double &/*dContactDepth*/,
+     								const double &/*dTransitionDepth*/,
+     								const double &/*dUpperGradient*/,
+     								const double &/*dLowerGradient*/,
+     								bool /*bTransitionFromPrevious*/,
+     								const CQuantity::UNIT /*unit*/)
 {
-	assert(false);
+  assert(false);
 }
 
 
@@ -133,29 +133,29 @@ CVolumetricStrainLoadRepeaterComponent::CVolumetricStrainLoadRepeaterComponent(c
 
 unsigned int CVolumetricStrainLoadRepeaterComponent::TypeId() const
 {
-	const CVolumetricStrainLoad *pVolStrain = dynamic_cast<const CVolumetricStrainLoad*> (&FormationLoadBase());
-	assert(pVolStrain);
-	switch(pVolStrain->Type())
-	{
-	case CVolumetricStrainLoad::CONSTANT_MODE:
-		return pVolStrain->Constant().TypeId();
-	case CVolumetricStrainLoad::REPEAT_MODE:
-		return IDT_COMPONENT_VOLSTRAIN_REPEATER;
-	default:
-		assert(false); // Bogus
-	};
+  const CVolumetricStrainLoad *pVolStrain = dynamic_cast<const CVolumetricStrainLoad*> (&FormationLoadBase());
+  assert(pVolStrain);
+  switch(pVolStrain->Type())
+  {
+  case CVolumetricStrainLoad::CONSTANT_MODE:
+    return pVolStrain->Constant().TypeId();
+  case CVolumetricStrainLoad::REPEAT_MODE:
+    return IDT_COMPONENT_VOLSTRAIN_REPEATER;
+  default:
+    assert(false); // Bogus
+  };
 
-	return 0;
+  return 0;
 }
 
 unsigned int CVolumetricStrainLoadRepeaterComponent::IconId() const
 {
-	return 0;
+  return 0;
 }
 
 QString CVolumetricStrainLoadRepeaterComponent::TypeName() const
 {
-	return QString();
+  return QString();
 }
 
 QString CVolumetricStrainLoadRepeaterComponent::UnitName(const CQuantity::UNIT /*unit*/) const
@@ -165,7 +165,7 @@ QString CVolumetricStrainLoadRepeaterComponent::UnitName(const CQuantity::UNIT /
 
 QString CVolumetricStrainLoadRepeaterComponent::ExportLabel() const
 {
-	 return getStringTableEntry(IDS_ET_VOLUMETRICSTRAIN);
+   return getStringTableEntry(IDS_ET_VOLUMETRICSTRAIN);
 }
 
 const CVolumetricStrainLoadRepeaterComponent::TFormationLoad& CVolumetricStrainLoadRepeaterComponent::PreviousFormationLoad() const
@@ -270,8 +270,8 @@ CVolumetricStrainLoad::CVolumetricStrainLoad(CFormationBase& f, CDepletionStage&
 
   if(!bEmpty)
   {
-    new CVolumetricStrainLoadRepeaterComponent(*this);
-    new CVolumetricStrainLoadGradientComponent(*this);
+  new CVolumetricStrainLoadRepeaterComponent(*this);
+  new CVolumetricStrainLoadGradientComponent(*this);
   }
 }
 
@@ -284,12 +284,12 @@ CVolumetricStrainLoad::CVolumetricStrainLoad(CFormationBase &f, CDepletionStage 
   new CVolumetricStrainLoadRepeaterComponent(*this);
   new CVolumetricStrainLoadGradientComponent(*this);
 
-	Constant().Set(dVolStrain,
-				   0,
-				   0,
-				   unit);
+  Constant().Set(dVolStrain,
+           0,
+           0,
+           unit);
 
-	assert(Type() == CONSTANT_MODE);
+  assert(Type() == CONSTANT_MODE);
 }
 
 CVolumetricStrainLoad::CVolumetricStrainLoad(const CVolumetricStrainLoad& rhs)
@@ -311,16 +311,16 @@ void CVolumetricStrainLoad::LoadStream(TSTREAM& stream, CStreamVersion& version,
 {
   if(version < CStreamVersion(3, 7, 3))
   {
-    // for backward compatibility
-    CFormationLoadBase<TVolumetricStrain>::LoadStream(stream, version, progress);
-    CVolumetricStrainLoadComponent comp(*this);
-    comp.LoadStream(stream, version, progress);
-    new CVolumetricStrainLoadRepeaterComponent(*this);
-    new CVolumetricStrainLoadGradientComponent(*this);
+  // for backward compatibility
+  CFormationLoadBase<TVolumetricStrain>::LoadStream(stream, version, progress);
+  CVolumetricStrainLoadComponent comp(*this);
+  comp.LoadStream(stream, version, progress);
+  new CVolumetricStrainLoadRepeaterComponent(*this);
+  new CVolumetricStrainLoadGradientComponent(*this);
   }
   else
   {
-    TBase::LoadStream(stream, version, progress);
+  TBase::LoadStream(stream, version, progress);
   }
 }
 
@@ -345,10 +345,10 @@ void CVolumetricStrainLoad::OnNewNeighbour(const CGraphNode& node)
   const TVolumetricStrain* pVolStrain = dynamic_cast<const TVolumetricStrain*>(&node);
   if(pVolStrain)
   {
-    CModelBase& model = static_cast<CModelBase&>(Model());
-    model.ResultRegister().ClearLinear(false);
-    model.ResultRegister().ClearNonLinear(false);
-    model.ResultRegister().ClearMixture();
+  CModelBase& model = static_cast<CModelBase&>(Model());
+  model.ResultRegister().ClearLinear(false);
+  model.ResultRegister().ClearNonLinear(false);
+  model.ResultRegister().ClearMixture();
   }
 
   TBase::OnNewNeighbour(node);
@@ -359,13 +359,13 @@ void CVolumetricStrainLoad::OnNeighbourDeleted(const CGraphNode& node)
   const TVolumetricStrain* pVolStrain = dynamic_cast<const TVolumetricStrain*>(&node);
   if(pVolStrain)
   {
-    CModelBase& model = static_cast<CModelBase&>(Model());
-    if(!model.getDeleting())
-    {
+  CModelBase& model = static_cast<CModelBase&>(Model());
+  if(!model.getDeleting())
+  {
       model.ResultRegister().ClearLinear(false);
       model.ResultRegister().ClearNonLinear(false);
       model.ResultRegister().ClearMixture();
-    }
+  }
   }
 
   TBase::OnNeighbourDeleted(node);
@@ -375,27 +375,27 @@ void CVolumetricStrainLoad::LoadComponents(TSTREAM& stream, CStreamVersion& vers
 {
   new CVolumetricStrainLoadRepeaterComponent(*this);
 
-	switch(Type())
-	{
-	case REPEAT_MODE:
-		new CVolumetricStrainLoadGradientComponent(*this);
-		break;
-	case CONSTANT_MODE:
-		{
-			CVolumetricStrainLoadGradientComponent* pConstant = new CVolumetricStrainLoadGradientComponent(*this, true);
-			pConstant->LoadStream(stream, version, progress);
-		}
-		break;
-	default:
-		assert(false);
-		break;
-	};
+  switch(Type())
+  {
+  case REPEAT_MODE:
+    new CVolumetricStrainLoadGradientComponent(*this);
+    break;
+  case CONSTANT_MODE:
+    {
+      CVolumetricStrainLoadGradientComponent* pConstant = new CVolumetricStrainLoadGradientComponent(*this, true);
+      pConstant->LoadStream(stream, version, progress);
+    }
+    break;
+  default:
+    assert(false);
+    break;
+  };
 }
 
 void CVolumetricStrainLoad::SaveComponents(TSTREAM& stream, TPROGRESS& progress)
 {
-	if(Type() == CONSTANT_MODE)
-		Constant().SaveStream(stream, progress);
+  if(Type() == CONSTANT_MODE)
+    Constant().SaveStream(stream, progress);
 }
 
 TVolumetricStrainLoadBase& CVolumetricStrainLoad::FormationStageLoad(CFormationBase& /*formation*/, CDepletionStage& /*stage*/)

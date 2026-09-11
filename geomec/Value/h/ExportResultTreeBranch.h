@@ -30,16 +30,16 @@ typedef CSelectionBranchObserver_Delegate<THorizonBaseEntry, THorizonBaseEntry_D
 class CSlipHorizonEntryObserver : public THorizonBranchObs
 {
 public:
-	CSlipHorizonEntryObserver(THorizonBaseEntry& entry,
-						                THorizonBaseSelection& selection,
-                            CTreeCtrlBase &tcObject)
+  CSlipHorizonEntryObserver(THorizonBaseEntry& entry,
+                    THorizonBaseSelection& selection,
+              CTreeCtrlBase &tcObject)
   : THorizonBranchObs(entry, tcObject, selection, &THorizonBaseSelection::IsSelected, &THorizonBaseSelection::SetSelected )
-	{
-		Update();
-	}
+  {
+    Update();
+  }
 
-	virtual QString Text() const {	return "Faults";	}
-	virtual BOOL OnFilter( const CHorizonBase& horizon ) const { return horizon.Slip(); }
+  virtual QString Text() const {	return "Faults";	}
+  virtual BOOL OnFilter( const CHorizonBase& horizon ) const { return horizon.Slip(); }
 };
 
 // Non-slipping Horzion entry observer class
@@ -50,11 +50,11 @@ class CHorizonEntryObserver : public THorizonBranchObs
 {
 public:
   CHorizonEntryObserver(THorizonBaseEntry& entry,
-                        THorizonBaseSelection& selection,
-                        CTreeCtrlBase &tcObject)
+            THorizonBaseSelection& selection,
+            CTreeCtrlBase &tcObject)
   : THorizonBranchObs(entry, tcObject, selection, &THorizonBaseSelection::IsSelected, &THorizonBaseSelection::SetSelected )
   {
-    Update();
+  Update();
   }
 
   virtual QString Text() const {	return "Horizons";	}
@@ -69,16 +69,16 @@ typedef CSelectionBranchObserver_Delegate<CHexaFormationEntry, CHexaFormationEnt
 class CFormationPlaneEntryObserver : public THexaFormationEntryObs
 {	
 public:
-	CFormationPlaneEntryObserver(CHexaFormationEntry& entry,
+  CFormationPlaneEntryObserver(CHexaFormationEntry& entry,
                                TFormationPlaneSelection& selection,
                                CTreeCtrlBase &tcObject)
-	: THexaFormationEntryObs(entry, tcObject, selection, &TFormationPlaneSelection::IsSelected, &TFormationPlaneSelection::SetSelected )
+  : THexaFormationEntryObs(entry, tcObject, selection, &TFormationPlaneSelection::IsSelected, &TFormationPlaneSelection::SetSelected )
   {
-    Update();
+  Update();
   }
 
-	virtual unsigned int Icon() const { return IDI_FORMATIONPLANES; }
-	virtual QString Text() const {	return "Formation Planes"; }
+  virtual unsigned int Icon() const { return IDI_FORMATIONPLANES; }
+  virtual QString Text() const {	return "Formation Planes"; }
 };
 
 // RTCI entry observer class
@@ -93,7 +93,7 @@ public:
                      CTreeCtrlBase& tcObject)
   : TRTCIBranchObs(entry, tcObject, selection, &TRTCISelection::IsSelected, &TRTCISelection::SetSelected)
   {
-    Update();
+  Update();
   }
 
   virtual QString Text() const { return "RTCI"; }
@@ -106,20 +106,20 @@ typedef CSelectionBranchObserver_Delegate<TPointSetEntry, TPointSetEntry_Delegat
 class CPointSetEntryObserver : public TPointSetBranchObs
 {	
 public:
-	CPointSetEntryObserver(TPointSetEntry& entry,
+  CPointSetEntryObserver(TPointSetEntry& entry,
                          TPointSetSelection& selection,
                          CTreeCtrlBase &tcObject)
-	: TPointSetBranchObs(entry, tcObject, selection, &TPointSetSelection::IsSelected, &TPointSetSelection::SetSelected )
+  : TPointSetBranchObs(entry, tcObject, selection, &TPointSetSelection::IsSelected, &TPointSetSelection::SetSelected )
   {
-    Update();
+  Update();
   }
 
-	virtual QString Text() const { return "Point sets"; }
+  virtual QString Text() const { return "Point sets"; }
 
-	virtual BOOL OnFilter(const CPointSet& point_set) const
+  virtual BOOL OnFilter(const CPointSet& point_set) const
   { 
-		return point_set.Dimension() == CPointSet::DIM_3D; 
-	}
+    return point_set.Dimension() == CPointSet::DIM_3D; 
+  }
 };
 
 // ElementSet entry observer class
@@ -129,20 +129,20 @@ typedef CSelectionBranchObserver_Delegate<TPointSetEntry, TPointSetEntry_Delegat
 class CElementSetEntryObserver : public TElementSetBranchObs
 {	
 public:
-	CElementSetEntryObserver(TPointSetEntry& entry,
+  CElementSetEntryObserver(TPointSetEntry& entry,
                            TElementSetSelection& selection,
                            CTreeCtrlBase &tcObject)
-	: TElementSetBranchObs(entry, tcObject, selection, &TElementSetSelection::IsSelected, &TElementSetSelection::SetSelected )
+  : TElementSetBranchObs(entry, tcObject, selection, &TElementSetSelection::IsSelected, &TElementSetSelection::SetSelected )
   {
-    Update();
+  Update();
   }
 
-	virtual unsigned int Icon() const { return IDI_ELEMENT_SET; }
-	virtual QString Text() const {	return "Element sets"; }
+  virtual unsigned int Icon() const { return IDI_ELEMENT_SET; }
+  virtual QString Text() const {	return "Element sets"; }
   virtual BOOL OnFilter(const IElementSet& elementset) const
   {
-    const CModelBase& model = static_cast<const CModelBase&>(elementset.Model());
-    return (&elementset.ElementSet() != &model.Mesh().Mesh());
+  const CModelBase& model = static_cast<const CModelBase&>(elementset.Model());
+  return (&elementset.ElementSet() != &model.Mesh().Mesh());
   }
 };
 
@@ -157,7 +157,7 @@ public:
                               CTreeCtrlBase& tcObject)
   : TFormationBranchObs(entry, tcObject, selection, &TFormationSelection::IsSelected, &TFormationSelection::SetSelected)
   {
-    Update();
+  Update();
   }
 };
 
@@ -168,11 +168,11 @@ class CNewWellPathEntryObserver : public TNewWellPathBranchObs
 {
 public:
   CNewWellPathEntryObserver(CNewWellPathEntry& entry,
-                            TNewWellPathSelection& selection,
-                            CTreeCtrlBase& tcObject)
+              TNewWellPathSelection& selection,
+              CTreeCtrlBase& tcObject)
   : TNewWellPathBranchObs(entry, tcObject, selection, &TNewWellPathSelection::IsSelected, &TNewWellPathSelection::SetSelected)
   {
-    Update();
+  Update();
   }
 };
 
@@ -188,7 +188,7 @@ public:
                                  CTreeCtrlBase& tcObject)
   : TNonMeshedSurfaceBranchObs(entry, tcObject, selection, &TNonMeshedSurfaceSelection::IsSelected, &TNonMeshedSurfaceSelection::SetSelected)
   {
-    Update();
+  Update();
   }
 };
 
@@ -199,7 +199,7 @@ ENTRY_OBSERVER* CreateExportResultTreeBranch(CModelBase& model, EXPORT_SELECTION
   ENTRY_OBSERVER* entryObserver = 0;
 
   if(pEntry)
-    entryObserver = new ENTRY_OBSERVER(*pEntry, selection, tree);
+  entryObserver = new ENTRY_OBSERVER(*pEntry, selection, tree);
 
   return entryObserver;
 }

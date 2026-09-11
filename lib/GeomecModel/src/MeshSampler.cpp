@@ -37,11 +37,11 @@ CGridPointsetSource::CGridPointsetSource(const geo::IPoint& ptCorner1, const geo
   if(nDivE < 1) nDivE = 1;
   for(i = 0; i < nPointsNorthing; ++i)
   {
-    for(j = 0; j < nPointsEasting; ++j)
-    {
+  for(j = 0; j < nPointsEasting; ++j)
+  {
       m_vcPoints[j * nPointsNorthing + i] = geo::CPoint(ptCorner1.X() + i * (ptCorner2.X() - ptCorner1.X()) / nDivN,
-                                                        ptCorner1.Y() + j * (ptCorner2.Y() - ptCorner1.Y()) / nDivE);
-    }
+                            ptCorner1.Y() + j * (ptCorner2.Y() - ptCorner1.Y()) / nDivE);
+  }
   }
 }
 
@@ -53,9 +53,9 @@ CGridPointsetSource::CGridPointsetSource(const CHexaMesh& hexamesh)
   int i;
   for(i = 0; i < hexamesh.Mesh().ElementSize(); ++i)
   {
-    geo::CPoint pt = hexamesh.Mesh().Element(i).MidPoint();
-    pt.Z(0);
-    if(stPoints.insert(pt).second)
+  geo::CPoint pt = hexamesh.Mesh().Element(i).MidPoint();
+  pt.Z(0);
+  if(stPoints.insert(pt).second)
       m_vcPoints.push_back(pt);
   }
 }
@@ -321,42 +321,42 @@ void CPillar::DetectElements(const geo::IMesh& mesh, bool bInclude)
   geo::CPoint ptPrev;
   for(it = m_mpInterval.begin(); it != m_mpInterval.end(); ++it)
   {
-    geo::CPoint pt(m_dX, m_dY, it->first);
-    if(!ptPrev.Empty())
-    {
+  geo::CPoint pt(m_dX, m_dY, it->first);
+  if(!ptPrev.Empty())
+  {
       geo::CPoint ptMid(pt.X(), pt.Y(), (pt.Z() + ptPrev.Z()) / 2);
       std::set<int> stCandidates = mesh.Candidates(ptMid);
       std::set<int>::iterator its;
       for(its = stCandidates.begin(); its != stCandidates.end(); ++its)
       {
-        const geo::IBody* pBody = dynamic_cast<const geo::IBody*>(&mesh.Element(*its));
-        if(pBody && pBody->Contains(ptMid, true))
-        {
+    const geo::IBody* pBody = dynamic_cast<const geo::IBody*>(&mesh.Element(*its));
+    if(pBody && pBody->Contains(ptMid, true))
+    {
           it->second = pBody;
           break;
-        }
+    }
       }
 
       assert(it->second != 0);
-    }
-    else if (bInclude)
-    {
+  }
+  else if (bInclude)
+  {
       std::set<int> stCandidates = mesh.Candidates(pt);
       std::set<int>::iterator its;
       for (its = stCandidates.begin(); its != stCandidates.end(); ++its)
       {
-        const geo::IBody* pBody = dynamic_cast<const geo::IBody*>(&mesh.Element(*its));
-        if (pBody && pBody->Contains(pt, true))
-        {
+    const geo::IBody* pBody = dynamic_cast<const geo::IBody*>(&mesh.Element(*its));
+    if (pBody && pBody->Contains(pt, true))
+    {
           it->second = pBody;
           break;
-        }
+    }
       }
 
       assert(it->second != 0);
-    }
+  }
 
-    ptPrev = pt;
+  ptPrev = pt;
   }
 }
 
@@ -373,9 +373,9 @@ void CPillar::SaveStream(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS&
   stream << int(m_mpInterval.size());
   for(TIntervalMap::iterator it = m_mpInterval.begin(); it != m_mpInterval.end(); ++it)
   {
-    stream << it->first;
-    stream << int(it->second ? it->second->Index() : -1);
-    progress.Step();
+  stream << it->first;
+  stream << int(it->second ? it->second->Index() : -1);
+  progress.Step();
   }
 }
 
@@ -388,13 +388,13 @@ void CPillar::LoadStream(CStorageNode::TSTREAM& stream, CStorageNode::TSTREAMVER
   stream >> nIntervals;
   for(int i = 0; i < nIntervals; ++i)
   {
-    double dInterval;
-    stream >> dInterval;
-    int nIndex;
-    stream >> nIndex;
-    const geo::IBody* pBody = (nIndex >= 0 ? static_cast<const geo::IBody*>(&mesh.Element(nIndex)) : 0);
-    m_mpInterval.insert(TIntervalMap::value_type(dInterval, pBody));
-    progress.Step();
+  double dInterval;
+  stream >> dInterval;
+  int nIndex;
+  stream >> nIndex;
+  const geo::IBody* pBody = (nIndex >= 0 ? static_cast<const geo::IBody*>(&mesh.Element(nIndex)) : 0);
+  m_mpInterval.insert(TIntervalMap::value_type(dInterval, pBody));
+  progress.Step();
   }
 }
 
@@ -441,7 +441,7 @@ const geo::IObject& CPillarMap::DisplayList(int nIndex) const
   BuildDrawCache();
 
   if(nIndex == 0)
-    return m_arDrawPoints;
+  return m_arDrawPoints;
   return m_arDrawLines;
 }
 
@@ -454,7 +454,7 @@ long CPillarMap::SavedItems() const
 {
   long lRet = CColorNode::SavedItems();
   for(TPillarMap::const_iterator it = m_mpPillars.begin(); it != m_mpPillars.end(); ++it)
-    lRet += it->second.SavedItems();
+  lRet += it->second.SavedItems();
 
   return lRet;
 }
@@ -465,8 +465,8 @@ void CPillarMap::SaveStream(TSTREAM& stream, TPROGRESS& progress)
   stream << int(m_mpPillars.size());
   for(TPillarMap::iterator it = m_mpPillars.begin(); it != m_mpPillars.end(); ++it)
   {
-    // save the pillar (contains the position)
-    it->second.SaveStream(stream, progress);
+  // save the pillar (contains the position)
+  it->second.SaveStream(stream, progress);
   }
 
   CColorNode::SaveStream(stream, progress);
@@ -482,9 +482,9 @@ void CPillarMap::LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS&
   stream >> nPillars;
   for(int i = 0; i < nPillars; ++i)
   {
-    CPillar pillar;
-    pillar.LoadStream(stream, version, progress, mesh);
-    m_mpPillars.insert(TPillarMap::value_type(pillar.Position(), pillar));
+  CPillar pillar;
+  pillar.LoadStream(stream, version, progress, mesh);
+  m_mpPillars.insert(TPillarMap::value_type(pillar.Position(), pillar));
   }
 
   CColorNode::LoadStream(stream, version, progress);
@@ -504,7 +504,7 @@ void CPillarMap::DetectElements(const geo::IMesh& mesh, bool bInclude)
 {
   TPillarMap::iterator it;
   for(it = m_mpPillars.begin(); it != m_mpPillars.end(); ++it)
-    it->second.DetectElements(mesh, bInclude);
+  it->second.DetectElements(mesh, bInclude);
 }
 
 CPillarMap::const_iterator CPillarMap::begin() const
@@ -525,10 +525,10 @@ size_t CPillarMap::size() const
 void CPillarMap::InvalidateDrawCache() const
 {
   for(size_t i = 0; i < m_arDrawLines.Size(); ++i)
-    delete &m_arDrawLines.Object(i);
+  delete &m_arDrawLines.Object(i);
   m_arDrawLines.Clear();
   for(size_t i = 0; i < m_arDrawPoints.Size(); ++i)
-    delete &m_arDrawPoints.Object(i);
+  delete &m_arDrawPoints.Object(i);
   m_arDrawPoints.Clear();
 }
 
@@ -536,18 +536,18 @@ void CPillarMap::BuildDrawCache() const
 {
   if(m_arDrawPoints.Empty() && m_arDrawLines.Empty())
   {
-    TPillarMap::const_iterator it;
-    size_t startidx = 0;
-    for(it = m_mpPillars.begin(); it != m_mpPillars.end(); ++it)
-    {
+  TPillarMap::const_iterator it;
+  size_t startidx = 0;
+  for(it = m_mpPillars.begin(); it != m_mpPillars.end(); ++it)
+  {
       const CPillar& pillar = it->second;
       CPillar::const_iterator itp;
       for(itp = pillar.begin(); itp != pillar.end(); ++itp)
-        m_arDrawPoints.PushBack(*new geo::CPoint((*itp).first));
+    m_arDrawPoints.PushBack(*new geo::CPoint((*itp).first));
       if(m_arDrawPoints.Size() > 1)
-        m_arDrawLines.PushBack(*new geo::CLine(m_arDrawPoints.Object(startidx), m_arDrawPoints.Object(m_arDrawPoints.Size() - 1)));
+    m_arDrawLines.PushBack(*new geo::CLine(m_arDrawPoints.Object(startidx), m_arDrawPoints.Object(m_arDrawPoints.Size() - 1)));
       startidx = m_arDrawPoints.Size();
-    }
+  }
   }
 }
 
@@ -578,9 +578,9 @@ CPillarMap* CMeshSampler::GeneratePillarMap(const QString& name, CModelBase& mod
 static int sign(double dVal)
 {
   if(dVal > 0)
-    return 1;
+  return 1;
   else if(dVal < 0)
-    return -1;
+  return -1;
 
   return 0;
 }
@@ -593,7 +593,7 @@ class CEps
 public:
   double operator()()
   {
-    return 1e-8;
+  return 1e-8;
   }
 };
 
@@ -602,27 +602,27 @@ public:
 void CMeshSampler::Generate(IGenerator& generator, IProgressBase* pProgress)
 {
   if(pProgress)
-    pProgress->AddSteps(m_source.PointSize());
+  pProgress->AddSteps(m_source.PointSize());
   geo::CPoint max = m_mesh.Max();
   geo::CPoint min = m_mesh.Min();
   
   const double* pMaxDepth = m_source.MaximumDepth();
   if(pMaxDepth && *pMaxDepth < max.Z())
-    max.Z(*pMaxDepth);
+  max.Z(*pMaxDepth);
   for(int i = 0; i < m_source.PointSize(); ++i)
   {
-    geo::CCoordinateSet<geo::CElementPoint, CEps> intersects;
-    const geo::IPoint &samplePoint = m_source.Point(i);
-    if(samplePoint.X() > m_mesh.Max().X() ||
+  geo::CCoordinateSet<geo::CElementPoint, CEps> intersects;
+  const geo::IPoint &samplePoint = m_source.Point(i);
+  if(samplePoint.X() > m_mesh.Max().X() ||
        samplePoint.Y() > m_mesh.Max().Y() ||
        samplePoint.X() < m_mesh.Min().X() ||
        samplePoint.Y() < m_mesh.Min().Y())
-    {
+  {
       if(generator.AddPointsOutsideMesh())
-        intersects.insert(geo::CElementPoint(samplePoint));
-    }
-    else
-    {
+    intersects.insert(geo::CElementPoint(samplePoint));
+  }
+  else
+  {
       min.X(samplePoint.X());
       min.Y(samplePoint.Y());
       max.X(samplePoint.X());
@@ -635,46 +635,46 @@ void CMeshSampler::Generate(IGenerator& generator, IProgressBase* pProgress)
       for(it = elements.begin(); it != elements.end(); ++it)
       {
      
-        const geo::IBody *el = dynamic_cast<const geo::IBody*>(&m_mesh.ElementSet().Element(*it));
-        if(el)
-        {
+    const geo::IBody *el = dynamic_cast<const geo::IBody*>(&m_mesh.ElementSet().Element(*it));
+    if(el)
+    {
           geo::CPoint ptMin(el->Min());
           geo::CPoint ptMax(el->Max());
           if(ptMin.X() <= samplePoint.X() && ptMax.X() >= samplePoint.X() &&
              ptMin.Y() <= samplePoint.Y() && ptMax.Y() >= samplePoint.Y())
           {
-            int j;
-            for(j = 0; j < el->NrOfFaces(); ++j)
-            {
+      int j;
+      for(j = 0; j < el->NrOfFaces(); ++j)
+      {
               const geo::IFace& face = el->Face(j);
               if(face.NrOfPoints() == 3)
               {
-                // intersection
-                const geo::IPoint& pt1 = face.Point(0);
-                const geo::IPoint& pt2 = face.Point(1);
-                const geo::IPoint& pt3 = face.Point(2);
-                double x = samplePoint.X();
-                double y = samplePoint.Y();
-                double x1 = pt1.X();
-                double y1 = pt1.Y();
-                double z1 = pt1.Z();
-                double x2 = pt2.X();
-                double y2 = pt2.Y();
-                double z2 = pt2.Z();
-                double x3 = pt3.X();
-                double y3 = pt3.Y();
-                double z3 = pt3.Z();
-                double rpx = x2 - x1;
-                double rpy = y2 - y1;
-                double rpz = z2 - z1;
-                double qpx = x3 - x1;
-                double qpy = y3 - y1;
-                double qpz = z3 - z1;
+        // intersection
+        const geo::IPoint& pt1 = face.Point(0);
+        const geo::IPoint& pt2 = face.Point(1);
+        const geo::IPoint& pt3 = face.Point(2);
+        double x = samplePoint.X();
+        double y = samplePoint.Y();
+        double x1 = pt1.X();
+        double y1 = pt1.Y();
+        double z1 = pt1.Z();
+        double x2 = pt2.X();
+        double y2 = pt2.Y();
+        double z2 = pt2.Z();
+        double x3 = pt3.X();
+        double y3 = pt3.Y();
+        double z3 = pt3.Z();
+        double rpx = x2 - x1;
+        double rpy = y2 - y1;
+        double rpz = z2 - z1;
+        double qpx = x3 - x1;
+        double qpy = y3 - y1;
+        double qpz = z3 - z1;
 
-                // get normal z, if that's zero there is no intersection
-                double nz = rpx*qpy - rpy*qpx;
-                if(fabs(nz) > EPS)
-                {
+        // get normal z, if that's zero there is no intersection
+        double nz = rpx*qpy - rpy*qpx;
+        if(fabs(nz) > EPS)
+        {
                   // check whether x,y is inside triangle pt1, pt2, pt3
                   double A12 = x*y1 + x1*y2 + x2*y - x*y2 - x2*y1 - x1*y;
                   double A23 = x*y2 + x2*y3 + x3*y - x*y3 - x3*y2 - x2*y;
@@ -691,70 +691,70 @@ void CMeshSampler::Generate(IGenerator& generator, IProgressBase* pProgress)
                      (bOn23 && (bOn12 || bOn31 || sign(A12) == sign(A31))) ||
                      (bOn31 && (bOn12 || bOn23 || sign(A12) == sign(A23))) ||
                      (sign(A12) == sign(A23) && sign(A12) == sign(A31))
-                    )
+          )
                   {
-                    // get normal coordinates
-                    double nx = rpy*qpz - rpz*qpy;
-                    double ny = rpz*qpx - rpx*qpz;
+          // get normal coordinates
+          double nx = rpy*qpz - rpz*qpy;
+          double ny = rpz*qpx - rpx*qpz;
 
-                    // normalize normal
-                    double l = sqrt(nx*nx + ny*ny + nz*nz);
-                    nx /= l;
-                    ny /= l;
-                    nz /= l;
+          // normalize normal
+          double l = sqrt(nx*nx + ny*ny + nz*nz);
+          nx /= l;
+          ny /= l;
+          nz /= l;
 
-                    // get z value
-                    double z = (nx*(x - x1) + ny*(y - y1)) / -nz + z1;
-                    // cap z value
-                    if(z >= min.Z() - EPS && z <= max.Z() + EPS)
-                    {
+          // get z value
+          double z = (nx*(x - x1) + ny*(y - y1)) / -nz + z1;
+          // cap z value
+          if(z >= min.Z() - EPS && z <= max.Z() + EPS)
+          {
                       z = std::max(z, min.Z());
                       z = std::min(z, max.Z());
 
                       geo::CCoordinateSet<geo::CElementPoint, CEps>::iterator its =
-                        intersects.insert(geo::CElementPoint(std::set<const geo::IElement*>(), x, y, z)).first;
+            intersects.insert(geo::CElementPoint(std::set<const geo::IElement*>(), x, y, z)).first;
                       its->AddElement(*el);
-                    }
+          }
                   }
-                }
+        }
               }
               else
               {
-                geo::CPoint pt = face.Intersection(line);
-                if(!pt.Empty())
-                {
+        geo::CPoint pt = face.Intersection(line);
+        if(!pt.Empty())
+        {
                   geo::CCoordinateSet<geo::CElementPoint, CEps>::iterator its = intersects.insert(geo::CElementPoint(pt)).first;
                   its->AddElement(*el);
-                }
-              }
-            }
-          }
         }
+              }
       }
+          }
     }
+      }
+  }
 
-    if(pProgress)
-    {
+  if(pProgress)
+  {
       try
       {
-        pProgress->Step();
+    pProgress->Step();
       }
       catch(CProgressCancel* p)
       {
-        delete p;
-        throw;
+    delete p;
+    throw;
       }
-    }
+  }
 
-    if(!intersects.empty())
-    {
+  if(!intersects.empty())
+  {
       generator.OnNewSourcePoint(samplePoint);
       geo::CCoordinateSet<geo::CElementPoint, CEps>::iterator pointIt;
       for(pointIt = intersects.begin(); pointIt != intersects.end(); ++pointIt)
       {
-        generator.AddPoint(pointIt->Z(), pointIt->Elements());
+    generator.AddPoint(pointIt->Z(), pointIt->Elements());
       }
-    }
+  }
   }
 }
 

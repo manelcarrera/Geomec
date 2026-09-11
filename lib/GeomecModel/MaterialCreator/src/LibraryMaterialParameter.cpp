@@ -53,10 +53,10 @@ CLibraryMaterialParameter& CLibraryMaterialParameter::operator=(const CLibraryMa
 bool CLibraryMaterialParameter::operator==(const CLibraryMaterialParameter& rhs) const
 {
   return (
-    m_strCalibrationPath     == rhs.m_strCalibrationPath     &&
-    m_bFixedCalibrationParam == rhs.m_bFixedCalibrationParam &&
-    m_bCurrentlyFixed        == rhs.m_bCurrentlyFixed        &&
-    m_uiValueTypeID          == rhs.m_uiValueTypeID);
+  m_strCalibrationPath     == rhs.m_strCalibrationPath     &&
+  m_bFixedCalibrationParam == rhs.m_bFixedCalibrationParam &&
+  m_bCurrentlyFixed        == rhs.m_bCurrentlyFixed        &&
+  m_uiValueTypeID          == rhs.m_uiValueTypeID);
 }
 
 bool CLibraryMaterialParameter::operator!=(const CLibraryMaterialParameter& rhs) const

@@ -4,7 +4,7 @@
 
 namespace CTempPath
 {
-	QString TEMP_CALCULATION;
+  QString TEMP_CALCULATION;
 }
 
 QString GetGeomecTempPathExt( QString param ){ return ""; }

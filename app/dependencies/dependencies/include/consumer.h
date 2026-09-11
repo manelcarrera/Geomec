@@ -9,15 +9,15 @@
 
 class CConsumer : public QThread
 {
-	CThread& m_thread;
-	CDependencies& m_dependencies;
+  CThread& m_thread;
+  CDependencies& m_dependencies;
 
 public:
-    CConsumer( CThread& _thread, CDependencies& d, QObject *parent = NULL );
-    void run() override;
+  CConsumer( CThread& _thread, CDependencies& d, QObject *parent = NULL );
+  void run() override;
 
 private:
-	void print();
+  void print();
 
 };
 

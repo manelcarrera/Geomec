@@ -77,8 +77,8 @@ public:
   virtual void Y(const double& dY);
   virtual void Z(const double& dZ);
 
-	virtual void AssertValid() const;
-	virtual bool Empty() const;
+  virtual void AssertValid() const;
+  virtual bool Empty() const;
 
 private:
   double m_dX;
@@ -92,48 +92,48 @@ public:
   class CPillarPoint;
   class CConstIterator
   {
-    friend class CPillarPoint;
+  friend class CPillarPoint;
 
   public:
-    CConstIterator();
-    CConstIterator(const CPillar& pillar, std::map<double, const geo::IBody*>::const_iterator it);
-    CConstIterator(const CConstIterator& rhs);
-    CConstIterator& operator=(const CConstIterator& rhs);
-    bool operator==(const CConstIterator& rhs);
-    bool operator!=(const CConstIterator& rhs);
-    CConstIterator& operator++(); // pre-increment
-    CConstIterator operator++(int); // post-increment
-    CConstIterator& operator--(); // pre-decrement
-    CConstIterator operator--(int); // post-decrement
+  CConstIterator();
+  CConstIterator(const CPillar& pillar, std::map<double, const geo::IBody*>::const_iterator it);
+  CConstIterator(const CConstIterator& rhs);
+  CConstIterator& operator=(const CConstIterator& rhs);
+  bool operator==(const CConstIterator& rhs);
+  bool operator!=(const CConstIterator& rhs);
+  CConstIterator& operator++(); // pre-increment
+  CConstIterator operator++(int); // post-increment
+  CConstIterator& operator--(); // pre-decrement
+  CConstIterator operator--(int); // post-decrement
 
-    std::pair<CPillarPoint, const geo::IBody*> operator*();
+  std::pair<CPillarPoint, const geo::IBody*> operator*();
 
   private:
-    const CPillar* m_pPillar;
-    std::map<double, const geo::IBody*>::const_iterator m_it;
+  const CPillar* m_pPillar;
+  std::map<double, const geo::IBody*>::const_iterator m_it;
   };
 
   class CPillarPoint : public geo::IPoint
   {
   public:
-    CPillarPoint(const CConstIterator& iter);
+  CPillarPoint(const CConstIterator& iter);
 
-    virtual const double& X() const;
-    virtual const double& Y() const;
-    virtual const double& Z() const;
+  virtual const double& X() const;
+  virtual const double& Y() const;
+  virtual const double& Z() const;
 
-    // not allowed
-    virtual void X(const double& dX);
-    virtual void Y(const double& dY);
-    virtual void Z(const double& dZ);
+  // not allowed
+  virtual void X(const double& dX);
+  virtual void Y(const double& dY);
+  virtual void Z(const double& dZ);
 
-	  virtual void AssertValid() const;
-	  virtual bool Empty() const;
+    virtual void AssertValid() const;
+    virtual bool Empty() const;
 
   private:
-    double m_dX;
-    double m_dY;
-    double m_dZ;
+  double m_dX;
+  double m_dY;
+  double m_dZ;
   };
 
   friend class CConstIterator;
@@ -177,16 +177,16 @@ public:
   const CPillarPos& AddPillar(const geo::IPoint& position);
   void AddPoint(const CPillarPos& pos, double dZ);
 
-	virtual int DisplayListSize() const;
-	virtual const geo::IObject& DisplayList(int nIndex) const;
+  virtual int DisplayListSize() const;
+  virtual const geo::IObject& DisplayList(int nIndex) const;
 
-	virtual bool Empty() const;
-	virtual long SavedItems() const;
+  virtual bool Empty() const;
+  virtual long SavedItems() const;
   virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
   virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
 
-	virtual unsigned int IconId() const;
-	virtual unsigned int TypeId() const;
+  virtual unsigned int IconId() const;
+  virtual unsigned int TypeId() const;
 
   void DetectElements(const geo::IMesh& mesh, bool bInclude);
 
@@ -222,38 +222,38 @@ private:
   class IGenerator
   {
   public:
-    IGenerator();
-    virtual ~IGenerator();
+  IGenerator();
+  virtual ~IGenerator();
 
-    virtual void OnNewSourcePoint(const geo::IPoint& point) = 0;
-    virtual void AddPoint(double dZ, const std::set<const geo::IElement*>& stElements) = 0;
-    virtual bool AddPointsOutsideMesh() const;
+  virtual void OnNewSourcePoint(const geo::IPoint& point) = 0;
+  virtual void AddPoint(double dZ, const std::set<const geo::IElement*>& stElements) = 0;
+  virtual bool AddPointsOutsideMesh() const;
   };
 
   class CPointsetGenerator : public IGenerator
   {
   public:
-    CPointsetGenerator(CPointSet& pointset, bool bStorePointsOutsideMesh);
-    virtual void OnNewSourcePoint(const geo::IPoint& point);
-    virtual void AddPoint(double dZ, const std::set<const geo::IElement*>& stElements);
-    virtual bool AddPointsOutsideMesh() const;
+  CPointsetGenerator(CPointSet& pointset, bool bStorePointsOutsideMesh);
+  virtual void OnNewSourcePoint(const geo::IPoint& point);
+  virtual void AddPoint(double dZ, const std::set<const geo::IElement*>& stElements);
+  virtual bool AddPointsOutsideMesh() const;
 
   private:
-    CPointSet& m_pointset;
-    bool m_bStorePointsOutsideMesh;
-    const geo::IPoint* m_pCurrentPosition;
+  CPointSet& m_pointset;
+  bool m_bStorePointsOutsideMesh;
+  const geo::IPoint* m_pCurrentPosition;
   };
 
   class CPillarMapGenerator : public IGenerator
   {
   public:
-    CPillarMapGenerator(CPillarMap& pillarmap);
-    virtual void OnNewSourcePoint(const geo::IPoint& point);
-    virtual void AddPoint(double dZ, const std::set<const geo::IElement*>& stElements);
+  CPillarMapGenerator(CPillarMap& pillarmap);
+  virtual void OnNewSourcePoint(const geo::IPoint& point);
+  virtual void AddPoint(double dZ, const std::set<const geo::IElement*>& stElements);
 
   private:
-    CPillarMap& m_pillarmap;
-    const CPillarPos* m_pCurrentPosition;
+  CPillarMap& m_pillarmap;
+  const CPillarPos* m_pCurrentPosition;
   };
 
 private:

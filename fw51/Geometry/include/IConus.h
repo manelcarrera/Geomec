@@ -32,18 +32,18 @@ class IVector;
 class GEOMETRY_EXPORT  IConus : public IObject  
 {
 public:
-	virtual ~IConus();
-	
-	virtual const IPoint&  BasePoint() const =0;
-	virtual const IVector& Direction() const =0;
-	virtual const double& Radius() const =0;
-	virtual const double& Height() const=0;
-	virtual const double& Ratio() const=0;
+  virtual ~IConus();
+  
+  virtual const IPoint&  BasePoint() const =0;
+  virtual const IVector& Direction() const =0;
+  virtual const double& Radius() const =0;
+  virtual const double& Height() const=0;
+  virtual const double& Ratio() const=0;
 
-	virtual bool Visit(IVisitor &visitor) { return visitor.HandleConus(*this); }
+  virtual bool Visit(IVisitor &visitor) { return visitor.HandleConus(*this); }
 
 protected:
-	IConus();
+  IConus();
 
 };
 

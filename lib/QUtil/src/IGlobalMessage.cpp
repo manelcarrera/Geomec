@@ -21,13 +21,13 @@ void IGlobalMessage::IGlobalMessageObserver::notifyError(const std::string& mess
 void IGlobalMessage::notifyWarning(const std::string& message)
 {
   for (std::vector<IGlobalMessageObserver *>::iterator it = m_observers.begin(); it != m_observers.end(); ++it)
-    (*it)->notifyWarning(message);
+  (*it)->notifyWarning(message);
 }
 
 void IGlobalMessage::notifyError(const std::string& message)
 {
   for (std::vector<IGlobalMessageObserver *>::iterator it = m_observers.begin(); it != m_observers.end(); ++it)
-    (*it)->notifyError(message);
+  (*it)->notifyError(message);
 }
 
 void IGlobalMessage::AttachObserver(IGlobalMessageObserver *observer)
@@ -39,7 +39,7 @@ void IGlobalMessage::DetachObserver(IGlobalMessageObserver *observer)
 {
   std::vector<IGlobalMessageObserver *>::iterator it = std::find(m_observers.begin(), m_observers.end(), observer);
   if (it != m_observers.end())
-    m_observers.erase(it);
+  m_observers.erase(it);
 }
 
 
@@ -120,13 +120,13 @@ std::string IGlobalMessage::constructMessage(
   std::string newMessage;
 
   for (std::vector <std::string>::const_iterator begin = message.begin(),
-    end = message.end();
-    begin != end;)
+  end = message.end();
+  begin != end;)
   {
-    newMessage += *begin;
-    ++begin;
+  newMessage += *begin;
+  ++begin;
 
-    if (begin != end)
+  if (begin != end)
       newMessage += '\n';
   }
 

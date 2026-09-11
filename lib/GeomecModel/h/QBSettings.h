@@ -26,8 +26,8 @@ class CQBFormationIntersection
   geo::CPoint m_BotIntersect;
 public:
   CQBFormationIntersection(const CFormationBase *formation,
-    const geo::CPoint &ptTop, const geo::CPoint &ptBot)
-    : m_pFormation(formation), m_TopIntersect(ptTop), m_BotIntersect(ptBot){}
+  const geo::CPoint &ptTop, const geo::CPoint &ptBot)
+  : m_pFormation(formation), m_TopIntersect(ptTop), m_BotIntersect(ptBot){}
 
   const CFormationBase *Formation() { return m_pFormation; }
   const geo::CPoint &TopIntersect() { return m_TopIntersect; }
@@ -79,7 +79,7 @@ public:
   virtual void OnNeighbourDeleted(const CGraphNode& node);
 
   virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-	virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
   virtual long SavedItems() const { return 0; }
   virtual unsigned int TypeId() const { return 0; }
   virtual unsigned int IconId() const { return 0; }

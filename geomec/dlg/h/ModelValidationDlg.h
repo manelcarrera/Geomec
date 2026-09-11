@@ -16,51 +16,51 @@ class CModelBase;
 
 class CModelValidationDlg : public CDialog
 {
-	CModelBase *m_pModel;
-	CValidateModel m_ValidateModel;
+  CModelBase *m_pModel;
+  CValidateModel m_ValidateModel;
 
-	bool m_bMesh;
-	bool m_bReservoir;
-	bool m_bDepletion;
-	bool m_bMaterial;
-	bool m_bBoundCond;
-	bool m_bEmptForm;
+  bool m_bMesh;
+  bool m_bReservoir;
+  bool m_bDepletion;
+  bool m_bMaterial;
+  bool m_bBoundCond;
+  bool m_bEmptForm;
   bool m_bEmptFault;
 
-	void DrawCheck(CPaintDC &dc, CStatic &IconCheck, bool bCheck);
-	
+  void DrawCheck(CPaintDC &dc, CStatic &IconCheck, bool bCheck);
+  
 
 public:
-	CModelValidationDlg(CModelBase *pModel, CWnd* pParent = NULL);   // standard constructor
+  CModelValidationDlg(CModelBase *pModel, CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
-	//{{AFX_DATA(CModelValidationDlg)
-	enum { IDD = IDD_MODEL_VALID_DLG };
+  //{{AFX_DATA(CModelValidationDlg)
+  enum { IDD = IDD_MODEL_VALID_DLG };
   CStatic m_EmptyFaultsCheck;
-	CStatic	m_EmptyFormationsCheck;
-	CStatic	m_BoundConditionsCheck;
-	CStatic	m_MaterialCheckIcon;
-	CStatic	m_DepletionCheckIcon;
-	CStatic	m_ResCheckIcon;
-	CStatic	m_MeshCheckIcon;
-	//}}AFX_DATA
+  CStatic	m_EmptyFormationsCheck;
+  CStatic	m_BoundConditionsCheck;
+  CStatic	m_MaterialCheckIcon;
+  CStatic	m_DepletionCheckIcon;
+  CStatic	m_ResCheckIcon;
+  CStatic	m_MeshCheckIcon;
+  //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CModelValidationDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+  // ClassWizard generated virtual function overrides
+  //{{AFX_VIRTUAL(CModelValidationDlg)
+  protected:
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CModelValidationDlg)
-	afx_msg void OnPaint();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+  // Generated message map functions
+  //{{AFX_MSG(CModelValidationDlg)
+  afx_msg void OnPaint();
+  //}}AFX_MSG
+  DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}

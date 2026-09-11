@@ -20,31 +20,31 @@ class IValueTable
 public:
   class CTimePoint
   {
-	  double m_time;
+    double m_time;
 
   public:
-	  CTimePoint(double time);
+    CTimePoint(double time);
 
-	  const double& Time() const;
+    const double& Time() const;
   };
 
 public:
-	IValueTable(const IDianaRunner &runner);
-	virtual ~IValueTable();
+  IValueTable(const IDianaRunner &runner);
+  virtual ~IValueTable();
 
   const CTimePoint& AddTime(double dTime);
 
   int Size() const;
   const CTimePoint& Time(int nIndex) const;
 
-	void Write(IProgressBase &progress);
+  void Write(IProgressBase &progress);
 
   void CleanUp(bool cleanup);
   virtual void SetRunner(IDianaRunner *runner);
 
 protected:
-	virtual bool HasValue(const geo::IElement &element) const = 0;
-	virtual void ValueAt(const geo::IElement &element, const CTimePoint& tpoint, std::vector<double>& vcValues) const = 0;
+  virtual bool HasValue(const geo::IElement &element) const = 0;
+  virtual void ValueAt(const geo::IElement &element, const CTimePoint& tpoint, std::vector<double>& vcValues) const = 0;
   virtual std::string TableName() const = 0;
   virtual std::string TimeTableName() const = 0;
   virtual bool CompressTable() const;
@@ -54,7 +54,7 @@ private:
   void DoCleanUp();
 
 private:
-	const geo::IMesh &m_mesh;
+  const geo::IMesh &m_mesh;
   std::vector<const CTimePoint*> m_vcTimes;
 
   std::vector<std::vector<std::vector<double> > > m_vcElementNodeBasedValues;

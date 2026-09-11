@@ -14,42 +14,42 @@ class CAnalysisLogger;
 
 class CAnalysisLogDlg : public CDialog
 {
-	void UpdateControls();
+  void UpdateControls();
 
 // Construction
 public:
-	CAnalysisLogDlg(CAnalysisLogger &logger, CWnd* pParent = NULL);   // standard constructor
+  CAnalysisLogDlg(CAnalysisLogger &logger, CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
-	//{{AFX_DATA(CAnalysisLogDlg)
-	enum { IDD = IDD_ANALYSISLOG };
+  //{{AFX_DATA(CAnalysisLogDlg)
+  enum { IDD = IDD_ANALYSISLOG };
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CAnalysisLogDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+  // ClassWizard generated virtual function overrides
+  //{{AFX_VIRTUAL(CAnalysisLogDlg)
+  protected:
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CAnalysisLogDlg)
-	virtual BOOL OnInitDialog();
-	afx_msg void OnExport();
-	afx_msg void OnClear();
+  // Generated message map functions
+  //{{AFX_MSG(CAnalysisLogDlg)
+  virtual BOOL OnInitDialog();
+  afx_msg void OnExport();
+  afx_msg void OnClear();
   afx_msg void OnVerbose();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+  //}}AFX_MSG
+  DECLARE_MESSAGE_MAP()
 
 private:
   void FillControl(bool bFilterBadShapeWarnings = false, bool bVerbose = false);
 
-	CListBox	m_List;
+  CListBox	m_List;
   int m_nVerbose;
-	//}}AFX_DATA
-	CAnalysisLogger &m_logger;
+  //}}AFX_DATA
+  CAnalysisLogger &m_logger;
 };
 
 //{{AFX_INSERT_LOCATION}}

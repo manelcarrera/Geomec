@@ -10,19 +10,19 @@ namespace cora
 class CRunModelEngine
 {
   public:
-    CRunModelEngine(CAnalysisType::TAnalysisType analysisType);
+  CRunModelEngine(CAnalysisType::TAnalysisType analysisType);
 
-    bool run(CRunModelData& runModelData, const QString& modelName,
+  bool run(CRunModelData& runModelData, const QString& modelName,
       const QString& applicationVersion) const;
 
   private:
-    CRunModelEngine(const CRunModelEngine& rhs);
-    CRunModelEngine& operator = (CRunModelEngine rhs);
+  CRunModelEngine(const CRunModelEngine& rhs);
+  CRunModelEngine& operator = (CRunModelEngine rhs);
 
-    static TRunModelEngineBase selectEngine(
+  static TRunModelEngineBase selectEngine(
       CAnalysisType::TAnalysisType analysisType);
 
-    TRunModelEngineBase m_runModelEngineBase;
+  TRunModelEngineBase m_runModelEngineBase;
 };
 
 } // namespace cora

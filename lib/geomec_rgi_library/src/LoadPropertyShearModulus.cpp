@@ -15,7 +15,7 @@ CLoadPropertyShearModulus::CLoadPropertyShearModulus(
 , m_TransversePoissonsRatio(0)
 {
   retrieveValueTypes(&m_NormalYoungsModulus, &m_TransverseYoungsModulus,
-    &m_NormalPoissonsRatio, &m_TransversePoissonsRatio);
+  &m_NormalPoissonsRatio, &m_TransversePoissonsRatio);
 }
 
 CLoadPropertyShearModulus::~CLoadPropertyShearModulus()
@@ -25,7 +25,7 @@ CLoadPropertyShearModulus::~CLoadPropertyShearModulus()
 bool CLoadPropertyShearModulus::canCalculatePropertyValues() const
 {
   return (m_NormalYoungsModulus != 0) && (m_TransverseYoungsModulus != 0) &&
-    (m_NormalPoissonsRatio != 0) && (m_TransversePoissonsRatio != 0);
+  (m_NormalPoissonsRatio != 0) && (m_TransversePoissonsRatio != 0);
 }
 
 std::vector <std::vector <geo::CValue> >
@@ -35,36 +35,36 @@ std::vector <std::vector <geo::CValue> >
 
   for (int e = 0; e < m_ModelBase.Mesh().ElementSet().ElementSize(); ++e)
   {
-    const geo::IElement& element =
+  const geo::IElement& element =
       m_ModelBase.Mesh().ElementSet().Element(e);
-    const IValueDomainScalar::TValueVec normalYoungsModulusValueVector =
+  const IValueDomainScalar::TValueVec normalYoungsModulusValueVector =
       m_NormalYoungsModulus->Component().ScalarData().ValueElement(element);
-    const IValueDomainScalar::TValueVec transverseYoungsModulusValueVector =
+  const IValueDomainScalar::TValueVec transverseYoungsModulusValueVector =
       m_TransverseYoungsModulus->Component().ScalarData().ValueElement(element);
-    const IValueDomainScalar::TValueVec normalPoissonsRatioValueVector =
+  const IValueDomainScalar::TValueVec normalPoissonsRatioValueVector =
       m_NormalPoissonsRatio->Component().ScalarData().ValueElement(element);
-    const IValueDomainScalar::TValueVec transversePoissonsRatioValueVector =
+  const IValueDomainScalar::TValueVec transversePoissonsRatioValueVector =
       m_TransversePoissonsRatio->Component().ScalarData().ValueElement(element);
 
-    assert(normalYoungsModulusValueVector.size() ==
+  assert(normalYoungsModulusValueVector.size() ==
       transverseYoungsModulusValueVector.size());
-    assert(transverseYoungsModulusValueVector.size() ==
+  assert(transverseYoungsModulusValueVector.size() ==
       normalPoissonsRatioValueVector.size());
-    assert(normalPoissonsRatioValueVector.size() ==
+  assert(normalPoissonsRatioValueVector.size() ==
       transversePoissonsRatioValueVector.size());
 
-    std::vector <geo::CValue>
+  std::vector <geo::CValue>
       shearModulusValueVector(normalYoungsModulusValueVector.size());
 
-    for (std::vector <geo::CValue> ::size_type s = 0;
+  for (std::vector <geo::CValue> ::size_type s = 0;
       s < shearModulusValueVector.size(); ++s)
-    {
+  {
       shearModulusValueVector[s] =
-        (normalYoungsModulusValueVector[s].Value() /
+    (normalYoungsModulusValueVector[s].Value() /
           (2 * (1 + normalPoissonsRatioValueVector[s].Value())));
-    }
+  }
 
-    vcValues.push_back(shearModulusValueVector);
+  vcValues.push_back(shearModulusValueVector);
   }
 
   return vcValues;
@@ -81,7 +81,7 @@ void CLoadPropertyShearModulus::convertValue(geo::CValue& dValue) const
 {
   if (dValue.Valid())
   {
-    dValue.Value(dValue.Value() * 1e-6);  // from Pa to MPa
+  dValue.Value(dValue.Value() * 1e-6);  // from Pa to MPa
   }
 }
 
@@ -94,21 +94,21 @@ void CLoadPropertyShearModulus::retrieveValueTypes(
 
   for (iterator = links.begin(); iterator != links.end(); ++iterator)
   {
-    switch ((*iterator)->TypeId())
-    {
+  switch ((*iterator)->TypeId())
+  {
       case IDT_VALUETYPE_YOUNGMODULUS_NORM:
-        *normalYoungsModulus = *iterator;
-        break;
+    *normalYoungsModulus = *iterator;
+    break;
       case IDT_VALUETYPE_YOUNGMODULUS_TRANS:
-        *transverseYoungsModulus = *iterator;
-        break;
+    *transverseYoungsModulus = *iterator;
+    break;
       case IDT_VALUETYPE_POISSONRATIO_NORM:
-        *normalPoissonsRatio = *iterator;
-        break;
+    *normalPoissonsRatio = *iterator;
+    break;
       case IDT_VALUETYPE_POISSONRATIO_TRANS:
-        *transversePoissonsRatio = *iterator;
-        break;
-    }
+    *transversePoissonsRatio = *iterator;
+    break;
+  }
   }
 }
 

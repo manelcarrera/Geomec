@@ -15,14 +15,14 @@ public:
   CWellZoomInMesh& operator=(const CWellZoomInMesh& rhs);
   bool operator==(const CWellZoomInMesh& rhs) const;
 
-	// Rendering and default color
-	virtual int DisplayListSize() const;
-	virtual const geo::IObject& DisplayList(int nIndex) const;
-	virtual TColor Color() const;
+  // Rendering and default color
+  virtual int DisplayListSize() const;
+  virtual const geo::IObject& DisplayList(int nIndex) const;
+  virtual TColor Color() const;
 
   bool CanCreateMesh() const;
-	bool IsMesh() const;
-	void CreateMesh();
+  bool IsMesh() const;
+  void CreateMesh();
   void InvalidateMesh();
 
   const CWellZoomInModel& ZoomInModel() const;
@@ -47,7 +47,7 @@ public:
   int MeshNodeToBoundaryNode(int nGridNodeIndex) const;     // returns -1 if no boundary node is associated
   int BoundaryNodeToMeshNode(int nBoundaryNodeIndex) const; // returns -1 if no mesh node is associated
 
-	virtual bool Empty() const;
+  virtual bool Empty() const;
   virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
   virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
   virtual long SavedItems() const;

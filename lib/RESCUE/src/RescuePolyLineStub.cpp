@@ -21,11 +21,11 @@ RESCUEBOOL RescuePolyLineStub::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescuePolyLineStub)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueWireframeStub::IsOfType(thisType);
+  return RescueWireframeStub::IsOfType(thisType);
   }
 }
 
@@ -35,7 +35,7 @@ RESCUEBOOL RescuePolyLineStub::Equals(RescuePolyLineStub *other)
   if (other->WireframeId() == WireframeId()
   &&  other->ObjectId()    == ObjectId())
   {
-    myReturn = TRUE;
+  myReturn = TRUE;
   }
 /*
   Really should be sufficient just to compare the object ids.
@@ -48,7 +48,7 @@ RESCUEBOOL RescuePolyLineStub::Equals(RescuePolyLine *other)
   RESCUEBOOL myReturn = FALSE;
   if (other->Identifier() == ObjectId())
   {
-    myReturn = TRUE;
+  myReturn = TRUE;
   }
   return myReturn;
 }
@@ -79,45 +79,45 @@ RescuePolyLine *RescuePolyLineStub::PolyLine(RescueModel *model, RESCUEBOOL load
 {
   if (wireframeObj == 0 && model != 0)
   {
-    wireframeObj = model->WireframeIdentifiedBy(wireframeId);
+  wireframeObj = model->WireframeIdentifiedBy(wireframeId);
   }
   if (wireframeObj != 0)
   {
-    if (wireframeObj->IsWireframeLoaded() == FALSE)
-    {
+  if (wireframeObj->IsWireframeLoaded() == FALSE)
+  {
       actualLine = 0;
       if (loadIfNeeded)
       {
-        wireframeObj->LoadWireframe();
+    wireframeObj->LoadWireframe();
       }
-    }
+  }
 /*
   If not currently loaded, load it up if the user has given us that discretion.
 */
-    if (actualLine != 0)
-    {
+  if (actualLine != 0)
+  {
       if (loadNo != wireframeObj->LoadNo())
       {
-        actualLine = 0;
+    actualLine = 0;
       }
-    }
+  }
 /*
   If we have been asked before, we may have a pointer to the object that we want,
   but first we have to check to see if it is stale.
 */
-    if (actualLine == 0)
-    {
+  if (actualLine == 0)
+  {
       actualLine = wireframeObj->PolyLineIdentifiedBy(objectId);
       loadNo = wireframeObj->LoadNo();
 /*
   If we do hook up to the object, remember which load.  If the reader unloads the
   RescueWireframe and then reloads it our pointer will be stale.
 */
-    }
+  }
   }
   else
   {
-    actualLine = 0;
+  actualLine = 0;
   }
   return actualLine;;
 }

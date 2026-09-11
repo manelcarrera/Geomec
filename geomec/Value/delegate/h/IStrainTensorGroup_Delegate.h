@@ -11,36 +11,36 @@ public:
   class CInvariantComposite_Delegate : public IResult_Delegate
   {
   public:
-    CInvariantComposite_Delegate(
+  CInvariantComposite_Delegate(
       IStrainTensorGroup::CInvariantComposite* invariantComposite);
 
   private:
-    CInvariantComposite_Delegate(const CInvariantComposite_Delegate& rhs);
-    CInvariantComposite_Delegate& operator = (
+  CInvariantComposite_Delegate(const CInvariantComposite_Delegate& rhs);
+  CInvariantComposite_Delegate& operator = (
       const CInvariantComposite_Delegate& rhs);
 
-    IStrainTensorGroup::CInvariantComposite* m_invariantComposite;
+  IStrainTensorGroup::CInvariantComposite* m_invariantComposite;
 
-    REGISTER_DELEGATE(IStrainTensorGroup::CInvariantComposite,
+  REGISTER_DELEGATE(IStrainTensorGroup::CInvariantComposite,
       CInvariantComposite_Delegate);
   };
 
   class CWellPathAxialStrainComposite_Delegate : public IResult_Delegate
   {
   public:
-    CWellPathAxialStrainComposite_Delegate(
+  CWellPathAxialStrainComposite_Delegate(
       IStrainTensorGroup::CWellPathAxialStrainComposite*
-        wellPathAxialStrainComposite);
+    wellPathAxialStrainComposite);
 
   private:
-    CWellPathAxialStrainComposite_Delegate(
+  CWellPathAxialStrainComposite_Delegate(
       const CWellPathAxialStrainComposite_Delegate& rhs);
-    CWellPathAxialStrainComposite_Delegate& operator = (
+  CWellPathAxialStrainComposite_Delegate& operator = (
       const CWellPathAxialStrainComposite_Delegate& rhs);
 
-    IStrainTensorGroup::CWellPathAxialStrainComposite* m_wellPathAxialStrainComposite;
+  IStrainTensorGroup::CWellPathAxialStrainComposite* m_wellPathAxialStrainComposite;
 
-    REGISTER_DELEGATE(IStrainTensorGroup::CWellPathAxialStrainComposite,
+  REGISTER_DELEGATE(IStrainTensorGroup::CWellPathAxialStrainComposite,
       CWellPathAxialStrainComposite_Delegate);
   };
 
@@ -49,7 +49,7 @@ public:
 private:
   IStrainTensorGroup_Delegate(const IStrainTensorGroup_Delegate& rhs);
   IStrainTensorGroup_Delegate& operator = (
-    const IStrainTensorGroup_Delegate& rhs);
+  const IStrainTensorGroup_Delegate& rhs);
 
   IStrainTensorGroup* m_strainTensorGroup;
 

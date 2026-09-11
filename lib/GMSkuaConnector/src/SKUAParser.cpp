@@ -197,7 +197,7 @@ Symbol::Symbol(int token, int attribute, char *token_data)
 {
   size_t len = strlen(token_data) + 1;
   if (len >= MAX_IDENTIFIER_SIZE)
-    len = MAX_IDENTIFIER_SIZE;
+  len = MAX_IDENTIFIER_SIZE;
   std::memcpy( data, token_data, len);
 }
 
@@ -234,7 +234,7 @@ void SymbolTable::resize()
   m_symbolStorage.resize(old_size + DEFAULT_SYMBOLTABLE_SIZE);
 
   for (m_size = 1; m_size <= old_size; ++m_size)
-    insert();
+  insert();
 }
 
 void SymbolTable::start_identifiers_at(int size)
@@ -252,7 +252,7 @@ int SymbolTable::insert()
 {
   std::pair<SymbolLookup::iterator, bool> retval = m_symbolLookup.insert(SymbolLookup::value_type((char *)m_symbolStorage[m_size - 1].data, m_size - 1));
   if (retval.second)
-    m_have_reserve = false;
+  m_have_reserve = false;
 
   return retval.first->second;
 }
@@ -261,11 +261,11 @@ int SymbolTable::reserve(int token)
 {
   if (!m_have_reserve)
   {
-    if (m_size == m_symbolStorage.size())
+  if (m_size == m_symbolStorage.size())
       resize();
-    m_symbolStorage[m_size].attribute = m_size - m_identifiers;
-    ++m_size;
-    m_have_reserve = true;
+  m_symbolStorage[m_size].attribute = m_size - m_identifiers;
+  ++m_size;
+  m_have_reserve = true;
   }
   return m_size - 1;
 }
@@ -274,13 +274,13 @@ void SymbolTable::reserve(bool toggle)
 {
   if (toggle != m_have_reserve)
   {
-    if (toggle)
+  if (toggle)
       reserve(TOK_IDENTIFIER);
-    else
-    {
+  else
+  {
       m_have_reserve = false;
       --m_size;
-    }
+  }
   }
 }
 
@@ -293,7 +293,7 @@ void SymbolTable::invalidate_reserve()
 {
   if (m_have_reserve)
   {
-    m_symbolStorage[m_size - 1].data[0] = 0;
+  m_symbolStorage[m_size - 1].data[0] = 0;
   }
 }
 
@@ -403,10 +403,10 @@ SKUAParser::~SKUAParser()
   delete m_data;
 
   for (std::vector<const char *>::iterator it = m_errors.begin(); it != m_errors.end(); ++it)
-    delete *it;
+  delete *it;
 
   for (std::vector<const SKUAParseData *>::iterator it = m_objects.begin(); it != m_objects.end(); ++it)
-    delete *it;
+  delete *it;
 }
 
 
@@ -438,33 +438,33 @@ const SKUAParseData *SKUAParser::Object(int index) const
 bool SKUAParser::Parse()
 {
   if (!scan_init())
-    return ParseError("Failed to load file");
+  return ParseError("Failed to load file");
 
   do
   {
-    scan();
+  scan();
 
-    switch (TOKEN)
-    {
-    case TOK_GOCAD:
+  switch (TOKEN)
+  {
+  case TOK_GOCAD:
       if (!ParseGOCAD())
-        return false;
+    return false;
 
       if (m_data)
       {
-        m_objects.emplace_back(m_data);
-        m_data = nullptr;
+    m_objects.emplace_back(m_data);
+    m_data = nullptr;
       }
       break;
-    case TOK_CHAR:
+  case TOK_CHAR:
       if (CVAL == '#')
-        scan_skip_to_eol();
+    scan_skip_to_eol();
       break;
-    case TOK_EOF:
+  case TOK_EOF:
       break;
-    default:
+  default:
       return ParseError("Unknown or unexpected token");
-    }
+  }
   } while (TOKEN != TOK_EOF);
 
   return true;
@@ -499,8 +499,8 @@ void ParseOutput(const SKUAParseData& data, char *filename)
 
   for (int i = 0; i < data.vertices.size(); ++i)
   {
-    int t = data.vertices[i].link;
-    if (t >= 0) has_shared.push_back(t);
+  int t = data.vertices[i].link;
+  if (t >= 0) has_shared.push_back(t);
   }
 
   FILE *fp = fopen(filename, "w");
@@ -520,9 +520,9 @@ void ParseOutput(const SKUAParseData& data, char *filename)
 
   for (int i = 0; i < has_shared.size(); ++i)
   {
-    const SKUAParseData::Vertex& v = data.vertices[has_shared[i]];
+  const SKUAParseData::Vertex& v = data.vertices[has_shared[i]];
 
-    fprintf(fp, "VRTX %d %0.06f %0.06f %0.06f\n", i + 1, v.coordinate[0], v.coordinate[1], v.coordinate[2]);
+  fprintf(fp, "VRTX %d %0.06f %0.06f %0.06f\n", i + 1, v.coordinate[0], v.coordinate[1], v.coordinate[2]);
   }
 
   fprintf(fp, "END\n");
@@ -536,7 +536,7 @@ bool SKUAParser::ParseGOCAD()
 {
   scan();
   if (TOKEN != TOK_OBJECT)
-    return ParseError("Expected object type");
+  return ParseError("Expected object type");
 
   int object = ATTRIB;
 
@@ -548,40 +548,40 @@ bool SKUAParser::ParseGOCAD()
   switch (object)
   {
   case TOK_OBJECT_LIGTHTSOLID:
-    retval = ParseLightTSolid();
-    break;
+  retval = ParseLightTSolid();
+  break;
   case TOK_OBJECT_TSOLID:
-    retval = ParseTSolid();
-    break;
+  retval = ParseTSolid();
+  break;
   case TOK_OBJECT_TSURF:
-    retval = ParseTSurf();
-    break;
+  retval = ParseTSurf();
+  break;
   case TOK_OBJECT_VSET:
-    retval = ParseVSet();
-    break;
+  retval = ParseVSet();
+  break;
   }
 
   if (retval)
   {
-    if (m_postProcessor)
+  if (m_postProcessor)
       (*m_postProcessor)(m_data)->PostProcess();
-    else
-    {
+  else
+  {
       SKUACoordinatePostProcessor postProcessor(m_data);
 
       SKUASolidPostProcessor solidPostProcessor;
 
       if (m_data->skua_type == SKUAParseData::LightTSolid || m_data->skua_type == SKUAParseData::TSolid)
       {
-        postProcessor.SetNextPostProcessor(&solidPostProcessor);
+    postProcessor.SetNextPostProcessor(&solidPostProcessor);
       }
 
       postProcessor.PostProcess();
-    }
+  }
   }
 
-    // Shows split nodes; this would be a nice feature to have as a generated pointset (without saving to file and then import)
-    //debug::ParseOutput(*m_data, "C:\\Local\\vset.so");
+  // Shows split nodes; this would be a nice feature to have as a generated pointset (without saving to file and then import)
+  //debug::ParseOutput(*m_data, "C:\\Local\\vset.so");
  
   return retval;
 }
@@ -594,47 +594,47 @@ bool SKUAParser::ParseLightTSolid()
 
   while (TOKEN != TOK_EOF)
   {
-    bool retval = true;
+  bool retval = true;
 
-    switch (TOKEN)
-    {
-    case TOK_HEADER:
+  switch (TOKEN)
+  {
+  case TOK_HEADER:
       retval = ParseHeader();
       break;
-    case TOK_OCS_OPEN:
+  case TOK_OCS_OPEN:
       retval = ParseOriginalCoordinateSystem();
       break;
-    case TOK_PROPERTIES:
+  case TOK_PROPERTIES:
       retval = ParseProps();
       break;
-    case TOK_TETRA_REGION:
+  case TOK_TETRA_REGION:
       retval = ParseTetraRegions();
       break;
-    case TOK_VRTX:
+  case TOK_VRTX:
       retval = ParseVertices();
       break;
-    case TOK_SHAREDVRTX:
+  case TOK_SHAREDVRTX:
       retval = ParseSharedVertices();
       break;
-    case TOK_TETRA:
+  case TOK_TETRA:
       retval = ParseTetras();
       break;
-    case TOK_TRI_OPEN:
+  case TOK_TRI_OPEN:
       retval = ParseTetraRegionIndicators();
       break;
-    case TOK_MODEL:
+  case TOK_MODEL:
       retval = ParseSurfaces();
       break;
-    case TOK_MODEL_REGION:
+  case TOK_MODEL_REGION:
       retval = ParseModelRegions();
       break;
-    case TOK_END:
+  case TOK_END:
       return true;
-    default:
+  default:
       scan();
-    }
+  }
 
-    if (!retval)
+  if (!retval)
       return false;
   }
 
@@ -649,50 +649,50 @@ bool SKUAParser::ParseTSolid()
 
   while (TOKEN != TOK_EOF)
   {
-    bool retval = true;
+  bool retval = true;
 
-    switch (TOKEN)
-    {
-    case TOK_HEADER:
+  switch (TOKEN)
+  {
+  case TOK_HEADER:
       retval = ParseHeader();
       break;
-    case TOK_OCS_OPEN:
+  case TOK_OCS_OPEN:
       retval = ParseOriginalCoordinateSystem();
       break;
-    case TOK_PROPERTIES:
+  case TOK_PROPERTIES:
       retval = ParseProps();
       break;
-    case TOK_TETRA_REGION:
+  case TOK_TETRA_REGION:
       retval = ParseTetraRegions();
       break;
-    case TOK_TVOLUME:
+  case TOK_TVOLUME:
       retval = ParseTVolume();
       break;
-    case TOK_VRTX:
+  case TOK_VRTX:
       retval = ParseVertices();
       break;
-    case TOK_SHAREDVRTX:
+  case TOK_SHAREDVRTX:
       retval = ParseSharedVertices();
       break;
-    case TOK_TETRA:
+  case TOK_TETRA:
       retval = ParseTetras();
       break;
-    case TOK_TRI_OPEN:
+  case TOK_TRI_OPEN:
       retval = ParseTetraRegionIndicators();
       break;
-    case TOK_MODEL:
+  case TOK_MODEL:
       retval = ParseSurfaces();
       break;
-    case TOK_MODEL_REGION:
+  case TOK_MODEL_REGION:
       retval = ParseModelRegions();
       break;
-    case TOK_END:
+  case TOK_END:
       return true;
-    default:
+  default:
       scan();
-    }
+  }
 
-    if (!retval)
+  if (!retval)
       return false;
   }
 
@@ -707,35 +707,35 @@ bool SKUAParser::ParseTSurf()
 
   while (TOKEN != TOK_EOF)
   {
-    bool retval = true;
+  bool retval = true;
 
-    switch (TOKEN)
-    {
-    case TOK_HEADER:
+  switch (TOKEN)
+  {
+  case TOK_HEADER:
       retval = ParseHeader();
       break;
-    case TOK_OCS_OPEN:
+  case TOK_OCS_OPEN:
       retval = ParseOriginalCoordinateSystem();
       break;
-    case TOK_AXIS_UNIT:
+  case TOK_AXIS_UNIT:
       retval = ParseAxisUnit();
       break;
-    case TOK_VRTX:
+  case TOK_VRTX:
       retval = ParseVertices();
       break;
-    case TOK_TRGL:
+  case TOK_TRGL:
       retval = ParseTriangles();
       break;
-    case TOK_TFACE:
+  case TOK_TFACE:
       retval = ParseTFace();
       break;
-    case TOK_END:
+  case TOK_END:
       return true;
-    default:
+  default:
       scan();
-    }
+  }
 
-    if (!retval)
+  if (!retval)
       return false;
   }
 
@@ -750,28 +750,28 @@ bool SKUAParser::ParseVSet()
 
   while (TOKEN != TOK_EOF)
   {
-    bool retval = true;
+  bool retval = true;
 
-    switch (TOKEN)
-    {
-    case TOK_HEADER:
+  switch (TOKEN)
+  {
+  case TOK_HEADER:
       retval = ParseHeader();
       break;
-    case TOK_OCS_OPEN:
+  case TOK_OCS_OPEN:
       retval = ParseOriginalCoordinateSystem();
-    case TOK_VRTX:
+  case TOK_VRTX:
       retval = ParseVertices();
       break;
-    case TOK_SHAREDVRTX:
+  case TOK_SHAREDVRTX:
       retval = ParseSharedVertices();
       break;
-    case TOK_END:
+  case TOK_END:
       return true;
-    default:
+  default:
       scan();
-    }
+  }
 
-    if (!retval)
+  if (!retval)
       return false;
   }
 
@@ -782,18 +782,18 @@ bool SKUAParser::ParseHeader()
 {
   scan();
   if (TOKEN != TOK_CHAR && CVAL != '{')
-    return ParseError("Expected '{'");
+  return ParseError("Expected '{'");
 
   scan();
   while (TOKEN != TOK_CHAR && CVAL != '}')
   {
-    if (TOKEN == TOK_ATTRIB)
-    {
+  if (TOKEN == TOK_ATTRIB)
+  {
       int attrib = ATTRIB;
 
       scan();
       if (TOKEN != TOK_CHAR && CVAL != ':')
-        return ParseError("Expected ':'");
+    return ParseError("Expected ':'");
 
       scan_skip_whitespace();
 
@@ -801,10 +801,10 @@ bool SKUAParser::ParseHeader()
 
       if (attrib == TOK_ATTR_NAME)
       {
-        m_data->name = Symbol2String(m_symbols[m_identifier_start + ATTRIB]);
+    m_data->name = Symbol2String(m_symbols[m_identifier_start + ATTRIB]);
       }
-    }
-    scan();
+  }
+  scan();
   }
 
   return true;
@@ -814,35 +814,35 @@ bool SKUAParser::ParseOriginalCoordinateSystem()
 {
   do
   {
-    scan();
+  scan();
 
-    switch (TOKEN)
-    {
-    case TOK_DATUM:
-    case TOK_PROJECTION:
+  switch (TOKEN)
+  {
+  case TOK_DATUM:
+  case TOK_PROJECTION:
       scan_skip_to_eol();
       break;
-    case TOK_AXIS_NAME:
+  case TOK_AXIS_NAME:
       scan_skip_to_eol();
       break;
-    case TOK_AXIS_UNIT:
+  case TOK_AXIS_UNIT:
       if (!ParseAxisUnit())
-        return false;
+    return false;
       break;
-    case TOK_ZPOSITIVE:
+  case TOK_ZPOSITIVE:
       scan();
 
       if (TOKEN != TOK_ATTRIB_VALUE)
-        return ParseError("Expected 'Depth' or 'Elevation'");
+    return ParseError("Expected 'Depth' or 'Elevation'");
 
       if (ATTRIB != TOK_AV_DEPTH)
       {
-        m_data->coord_unit[2] = std::abs(m_data->coord_unit[2] - 1) < 1E-12 ? -1 : -FIELD_LENGTH;
+    m_data->coord_unit[2] = std::abs(m_data->coord_unit[2] - 1) < 1E-12 ? -1 : -FIELD_LENGTH;
       }
       break;
-    case TOK_EOF:
+  case TOK_EOF:
       return ParseError("Unexpected end of file");
-    }
+  }
 
   } while (TOKEN != TOK_OCS_CLOSE);
   scan();
@@ -856,26 +856,26 @@ bool SKUAParser::ParseAxisUnit()
   scan();
 
   if (TOKEN != TOK_ATTRIB_VALUE)
-    return ParseError("Expected 'X' or 'U'");
+  return ParseError("Expected 'X' or 'U'");
 
   if (ATTRIB == TOK_AV_FT)
-    m_data->coord_unit[0] = FIELD_LENGTH;
+  m_data->coord_unit[0] = FIELD_LENGTH;
 
   scan();
 
   if (TOKEN != TOK_ATTRIB_VALUE)
-    return ParseError("Expected 'Y' or 'V'");
+  return ParseError("Expected 'Y' or 'V'");
 
   if (ATTRIB == TOK_AV_FT)
-    m_data->coord_unit[1] = FIELD_LENGTH;
+  m_data->coord_unit[1] = FIELD_LENGTH;
 
   scan();
 
   if (TOKEN != TOK_ATTRIB_VALUE)
-    return ParseError("Expected 'Z' or 'W'");
+  return ParseError("Expected 'Z' or 'W'");
 
   if (ATTRIB == TOK_AV_FT)
-    m_data->coord_unit[2] = FIELD_LENGTH;
+  m_data->coord_unit[2] = FIELD_LENGTH;
 
   return true;
 }
@@ -895,23 +895,23 @@ bool SKUAParser::ParseProps()
 
   if (nodal)
   {
-    cap = &m_data->vertex_props.capacity;
-    size = &m_data->vertex_props.size;
-    names = &m_data->vertex_props.names;
-    esizes = &m_data->vertex_props.esizes;
-    no_data = &m_data->vertex_props.no_data_values;
-    units = &m_data->vertex_props.units;
-    props = &m_data->vertex_props.values;
+  cap = &m_data->vertex_props.capacity;
+  size = &m_data->vertex_props.size;
+  names = &m_data->vertex_props.names;
+  esizes = &m_data->vertex_props.esizes;
+  no_data = &m_data->vertex_props.no_data_values;
+  units = &m_data->vertex_props.units;
+  props = &m_data->vertex_props.values;
   }
   else
   {
-    cap = &m_data->tetra_props.capacity;
-    size = &m_data->tetra_props.size;
-    names = &m_data->tetra_props.names;
-    esizes = &m_data->tetra_props.esizes;
-    no_data = &m_data->tetra_props.no_data_values;
-    units = &m_data->tetra_props.units;
-    props = &m_data->tetra_props.values;
+  cap = &m_data->tetra_props.capacity;
+  size = &m_data->tetra_props.size;
+  names = &m_data->tetra_props.names;
+  esizes = &m_data->tetra_props.esizes;
+  no_data = &m_data->tetra_props.no_data_values;
+  units = &m_data->tetra_props.units;
+  props = &m_data->tetra_props.values;
   }
 
   int props_size = 0;
@@ -919,129 +919,129 @@ bool SKUAParser::ParseProps()
   scan();
   while (TOKEN == TOK_IDENTIFIER)
   {
-    names->emplace_back(Symbol2String(m_symbols[m_identifier_start + ATTRIB]));
+  names->emplace_back(Symbol2String(m_symbols[m_identifier_start + ATTRIB]));
 
-    ++props_size;
+  ++props_size;
 
-    scan();
+  scan();
   }
 
   bool parseMeta = true;
 
   while (parseMeta)
   {
-    switch (TOKEN)
-    {
-    case TOK_LEGAL_RANGES:
+  switch (TOKEN)
+  {
+  case TOK_LEGAL_RANGES:
       scan(LEX_STATE_IDENTIFIER_TO_EOL_START);
       break;
-    case TOK_NO_DATA_VALUES:
+  case TOK_NO_DATA_VALUES:
       scan(LEX_STATE_IDENTIFIER_TO_EOL_START);
       break;
-    case TOK_PROP_CLASSES:
+  case TOK_PROP_CLASSES:
       scan(LEX_STATE_IDENTIFIER_TO_EOL_START);
       break;
-    case TOK_PROP_KINDS:
+  case TOK_PROP_KINDS:
       scan(LEX_STATE_IDENTIFIER_TO_EOL_START);
       break;
-    case TOK_PROP_SUBCLASSES:
+  case TOK_PROP_SUBCLASSES:
       scan(LEX_STATE_IDENTIFIER_TO_EOL_START);
       break;
-    case TOK_PROP_ESIZES:
+  case TOK_PROP_ESIZES:
       for (int i = 0; i < props_size; ++i)
       {
-        scan();
-        if (TOKEN != TOK_INTEGER)
+    scan();
+    if (TOKEN != TOK_INTEGER)
           return ParseError("Expected integer");
 
-        *size += IVAL;
+    *size += IVAL;
 
-        esizes->emplace_back(IVAL);
+    esizes->emplace_back(IVAL);
       }
       break;
-    case TOK_UNITS:
+  case TOK_UNITS:
       scan(LEX_STATE_IDENTIFIER_TO_EOL_START);
       break;
-    default:
+  default:
       parseMeta = false;
       break;
-    }
-    if (parseMeta)
+  }
+  if (parseMeta)
       scan();
   }
 
   while (TOKEN == TOK_PROP_HEADER)
   {
-    bool adjust_cap = false;
+  bool adjust_cap = false;
 
-    scan();
-    if (TOKEN != TOK_IDENTIFIER)
+  scan();
+  if (TOKEN != TOK_IDENTIFIER)
       return ParseError("Expected the name of a property");
 
-    const char *identifier = m_symbols[m_identifier_start + ATTRIB].data;
+  const char *identifier = m_symbols[m_identifier_start + ATTRIB].data;
 
-    if (!strcmp(identifier, "NodeId") || !strcmp(identifier, "ElementId"))
+  if (!strcmp(identifier, "NodeId") || !strcmp(identifier, "ElementId"))
       adjust_cap = true;
 
-    scan();
-    if (TOKEN != TOK_CHAR && CVAL != '{')
+  scan();
+  if (TOKEN != TOK_CHAR && CVAL != '{')
       return ParseError("Expected '{'");
 
-    scan();
+  scan();
 
-    int low = 0;
-    int hig = 0;
+  int low = 0;
+  int hig = 0;
 
-    while (TOKEN != TOK_CHAR && CVAL != '}')
-    {
+  while (TOKEN != TOK_CHAR && CVAL != '}')
+  {
       if (TOKEN == TOK_ATTRIB)
       {
-        int attrib = ATTRIB;
+    int attrib = ATTRIB;
 
-        scan();
-        if (TOKEN != TOK_CHAR && CVAL != ':')
+    scan();
+    if (TOKEN != TOK_CHAR && CVAL != ':')
           return ParseError("Expected ':'");
 
-        if (attrib == TOK_ATTR_LOW_CLIP)
-        {
+    if (attrib == TOK_ATTR_LOW_CLIP)
+    {
           scan();
           if (TOKEN == TOK_INTEGER)
-            low = IVAL;
-        }
-        else if (attrib == TOK_ATTR_HIGH_CLIP)
-        {
+      low = IVAL;
+    }
+    else if (attrib == TOK_ATTR_HIGH_CLIP)
+    {
           scan();
           if (TOKEN == TOK_INTEGER)
-            hig = IVAL;
-        }
-        else
-        {
+      hig = IVAL;
+    }
+    else
+    {
           scan_skip_whitespace();
 
           scan(LEX_STATE_IDENTIFIER_TO_EOL_START);
-        }
+    }
       }
       scan();
-    }
+  }
 
-    if (adjust_cap && hig != 0)
-    {
+  if (adjust_cap && hig != 0)
+  {
       *cap = hig - low;
       if (*cap < 0)
-        *cap = 10000;
+    *cap = 10000;
 
       if (nodal)
-        m_data->vertices.reserve(*cap);
+    m_data->vertices.reserve(*cap);
       else
-        m_data->tetras.reserve(*cap);
-    }
+    m_data->tetras.reserve(*cap);
+  }
 
-    scan();
+  scan();
   }
 
   props->resize(*size);
   for (size_t i = 0; i < *size; ++i)
-    (*props)[i].reserve(*cap);
+  (*props)[i].reserve(*cap);
 
   return true;
 }
@@ -1050,19 +1050,19 @@ bool SKUAParser::ParseTetraRegions()
 {
   do
   {
-    scan();
-    if (TOKEN != TOK_IDENTIFIER)
+  scan();
+  if (TOKEN != TOK_IDENTIFIER)
       return ParseError("Expected the name of a tetra region");
 
-    m_data->tetra_region_names.emplace_back(Symbol2String(m_symbols[m_identifier_start + ATTRIB]));
+  m_data->tetra_region_names.emplace_back(Symbol2String(m_symbols[m_identifier_start + ATTRIB]));
 
-    scan();
-    if (TOKEN != TOK_INTEGER)
+  scan();
+  if (TOKEN != TOK_INTEGER)
       return ParseError("Expected an integer");
 
-    m_data->tetra_region_names.back().id = IVAL;
+  m_data->tetra_region_names.back().id = IVAL;
 
-    scan();
+  scan();
   } while (TOKEN == TOK_TETRA_REGION);
 
   return true;
@@ -1074,8 +1074,8 @@ bool SKUAParser::ParseTVolume()
   scan();
   if (TOKEN == TOK_IDENTIFIER)
   {
-    // We don't add the volume name here; expect MODEL_REGIONs to be defined
-    scan();
+  // We don't add the volume name here; expect MODEL_REGIONs to be defined
+  scan();
   }
 
   return true;
@@ -1087,58 +1087,58 @@ bool SKUAParser::ParseVertices()
 
   do
   {
-    scan();
+  scan();
 
-    if (TOKEN != TOK_INTEGER)
+  if (TOKEN != TOK_INTEGER)
       return ParseError("Expected an integer");
 
-    if (m_data->vertex_range.empty() || IVAL - m_data->vertex_range.back().offset > m_data->vertex_range.back().size)
-    {
+  if (m_data->vertex_range.empty() || IVAL - m_data->vertex_range.back().offset > m_data->vertex_range.back().size)
+  {
       int start = static_cast<int>(m_data->vertices.size());
       m_data->vertex_range.emplace_back(SKUAParseData::VertexRange(start, 1, IVAL - start));
       m_data->last_range = m_data->vertex_range.rbegin();
-    }
-    else
-    {
+  }
+  else
+  {
       ++m_data->vertex_range.back().size;
-    }
+  }
 
-    m_data->vertices.emplace_back(SKUAParseData::Vertex(IVAL));
+  m_data->vertices.emplace_back(SKUAParseData::Vertex(IVAL));
 
-    for (int i = 0; i < 3; ++i)
-    {
+  for (int i = 0; i < 3; ++i)
+  {
       scan();
 
       switch (TOKEN)
       {
       case TOK_INTEGER:
-        m_data->vertices.back().coordinate[i] = IVAL;
-        break;
+    m_data->vertices.back().coordinate[i] = IVAL;
+    break;
       case TOK_DOUBLE:
-        m_data->vertices.back().coordinate[i] = DVAL;
-        break;
+    m_data->vertices.back().coordinate[i] = DVAL;
+    break;
       default:
-        return ParseError("Expected a number");
+    return ParseError("Expected a number");
       }
-    }
+  }
 
-    for (int i = 0; i < prop_size; ++i)
-    {
+  for (int i = 0; i < prop_size; ++i)
+  {
       scan();
       switch (TOKEN)
       {
       case TOK_INTEGER:
-        m_data->vertex_props.values[i].emplace_back(IVAL);
-        break;
+    m_data->vertex_props.values[i].emplace_back(IVAL);
+    break;
       case TOK_DOUBLE:
-        m_data->vertex_props.values[i].emplace_back(DVAL);
-        break;
+    m_data->vertex_props.values[i].emplace_back(DVAL);
+    break;
       default:
-        return ParseError("Expected a number");
+    return ParseError("Expected a number");
       }
-    }
+  }
 
-    scan();
+  scan();
 
   } while (TOKEN == TOK_VRTX);
 
@@ -1151,48 +1151,48 @@ bool SKUAParser::ParseSharedVertices()
 
   do
   {
-    scan();
+  scan();
 
-    if (TOKEN != TOK_INTEGER)
+  if (TOKEN != TOK_INTEGER)
       return ParseError("Expected an integer");
 
-    if (m_data->vertex_range.empty() || IVAL - m_data->vertex_range.back().offset > m_data->vertex_range.back().size)
-    {
+  if (m_data->vertex_range.empty() || IVAL - m_data->vertex_range.back().offset > m_data->vertex_range.back().size)
+  {
       int start = static_cast<int>(m_data->vertices.size());
       m_data->vertex_range.emplace_back(SKUAParseData::VertexRange(start, 1, IVAL - start));
       m_data->last_range = m_data->vertex_range.rbegin();
-    }
-    else
-    {
+  }
+  else
+  {
       ++m_data->vertex_range.back().size;
-    }
+  }
 
-    m_data->vertices.emplace_back(SKUAParseData::Vertex(IVAL));
+  m_data->vertices.emplace_back(SKUAParseData::Vertex(IVAL));
 
-    scan();
+  scan();
 
-    if (TOKEN != TOK_INTEGER)
+  if (TOKEN != TOK_INTEGER)
       return ParseError("Expected an integer");
 
-    m_data->vertices.back().link = m_data->find_node(IVAL);
-    
-    for (int i = 0; i < prop_size; ++i)
-    {
+  m_data->vertices.back().link = m_data->find_node(IVAL);
+  
+  for (int i = 0; i < prop_size; ++i)
+  {
       scan();
       switch (TOKEN)
       {
       case TOK_INTEGER:
-        m_data->vertex_props.values[i].emplace_back(IVAL);
-        break;
+    m_data->vertex_props.values[i].emplace_back(IVAL);
+    break;
       case TOK_DOUBLE:
-        m_data->vertex_props.values[i].emplace_back(DVAL);
-        break;
+    m_data->vertex_props.values[i].emplace_back(DVAL);
+    break;
       default:
-        return ParseError("Expected a number");
+    return ParseError("Expected a number");
       }
-    }
+  }
 
-    scan();
+  scan();
 
   } while (TOKEN == TOK_SHAREDVRTX);
 
@@ -1204,85 +1204,85 @@ bool SKUAParser::ParseTetras()
   size_t prop_size = m_data->tetra_props.size;
   do
   {
-    m_data->tetras.emplace_back(SKUAParseData::Tetra(m_data->volume));
+  m_data->tetras.emplace_back(SKUAParseData::Tetra(m_data->volume));
 
-    int node = 0;
+  int node = 0;
 
-    for (int i = 0; i < 4; ++i)
-    {
+  for (int i = 0; i < 4; ++i)
+  {
       scan();
       if (TOKEN != TOK_INTEGER)
-        return ParseError("Expected an integer");
+    return ParseError("Expected an integer");
       m_data->tetras.back().node[i] = node = m_data->find_node(IVAL);
       m_data->tetras.back().opposite_signs[i] = 1;
       m_data->tetras.back().opposite_types[i] = 0;
       m_data->tetras.back().opposite_faces[i] = -1;
       ++m_data->vertices[node].elements;
-    }
+  }
 
-    bool flip = !m_data->check_orientation(m_data->tetras.back());
+  bool flip = !m_data->check_orientation(m_data->tetras.back());
 
-    if (flip)
-    {
+  if (flip)
+  {
       std::swap(m_data->tetras.back().node[2], m_data->tetras.back().node[3]);
-    }
+  }
 
-    for (int i = 0; i < prop_size; ++i)
-    {
+  for (int i = 0; i < prop_size; ++i)
+  {
       scan();
       switch (TOKEN)
       {
       case TOK_INTEGER:
-        m_data->tetra_props.values[i].emplace_back(IVAL);
-        break;
+    m_data->tetra_props.values[i].emplace_back(IVAL);
+    break;
       case TOK_DOUBLE:
-        m_data->tetra_props.values[i].emplace_back(DVAL);
-        break;
+    m_data->tetra_props.values[i].emplace_back(DVAL);
+    break;
       default:
-        return ParseError("Expected a number");
+    return ParseError("Expected a number");
       }
-    }
+  }
 
-    scan();
+  scan();
 
-    if (TOKEN == TOK_CHAR && CVAL == '#')
-    {
+  if (TOKEN == TOK_CHAR && CVAL == '#')
+  {
       scan();
       if (TOKEN == TOK_CTETRA)
       {
-        scan(LEX_STATE_NOINT);
-        m_data->tetras.back().model_region = ATTRIB;
+    scan(LEX_STATE_NOINT);
+    m_data->tetras.back().model_region = ATTRIB;
 
-        for (int i = 0; i < 4; ++i)
-        {
+    for (int i = 0; i < 4; ++i)
+    {
           scan(LEX_STATE_NOINT);
           if (TOKEN == TOK_GEO_TYPE_VALUE)
           {
-            m_data->tetras.back().opposite_signs[i] = SIGN;
-            m_data->tetras.back().opposite_types[i] = ATTRIB;
-            scan(LEX_STATE_NOINT);
-            if (TOKEN == TOK_IDENTIFIER)
+      m_data->tetras.back().opposite_signs[i] = SIGN;
+      m_data->tetras.back().opposite_types[i] = ATTRIB;
+      scan(LEX_STATE_NOINT);
+      if (TOKEN == TOK_IDENTIFIER)
               m_data->tetras.back().opposite_faces[i] = ATTRIB;
           }
           else if (TOKEN == TOK_IDENTIFIER)
           {
-            m_data->tetras.back().opposite_signs[i] = SIGN;
-            m_data->tetras.back().opposite_faces[i] = ATTRIB;
+      m_data->tetras.back().opposite_signs[i] = SIGN;
+      m_data->tetras.back().opposite_faces[i] = ATTRIB;
           }
-        }
+    }
 
-        if (flip)
-        {
+    if (flip)
+    {
           std::swap(m_data->tetras.back().opposite_signs[2], m_data->tetras.back().opposite_signs[3]);
           std::swap(m_data->tetras.back().opposite_faces[2], m_data->tetras.back().opposite_faces[3]);
-        }
+    }
       }
       else
       {
-        scan(LEX_STATE_IDENTIFIER_TO_EOL_START);
+    scan(LEX_STATE_IDENTIFIER_TO_EOL_START);
       }
       scan();
-    }
+  }
   } while (TOKEN == TOK_TETRA);
 
   return true;
@@ -1296,21 +1296,21 @@ bool SKUAParser::ParseTetraRegionIndicators()
 
   while (TOKEN == TOK_TRI)
   {
-    int tetra_region = 0;
+  int tetra_region = 0;
 
-    scan();
-    while (TOKEN == TOK_INTEGER)
-    {
+  scan();
+  while (TOKEN == TOK_INTEGER)
+  {
       if (IVAL == 1)
-        m_data->tetras[tetra].tetra_region = tetra_region;
+    m_data->tetras[tetra].tetra_region = tetra_region;
       scan();
 
       ++tetra_region;
-    }
-    ++tetra;
+  }
+  ++tetra;
   }
   if (TOKEN != TOK_TRI_CLOSE)
-    return ParseError("Expected END_TETRA_REGION_INDICATORS");
+  return ParseError("Expected END_TETRA_REGION_INDICATORS");
 
   scan();
 
@@ -1323,58 +1323,58 @@ bool SKUAParser::ParseTriangles()
 
   while (parseTriangles)
   {
-    switch (TOKEN)
-    {
-    case TOK_TFACE:
+  switch (TOKEN)
+  {
+  case TOK_TFACE:
       if (!m_data->surface_faces.back().empty())
-        m_data->surface_faces.back().back().size = (int)m_data->surfaces.back().size() - m_data->surface_faces.back().back().triangle;
+    m_data->surface_faces.back().back().size = (int)m_data->surfaces.back().size() - m_data->surface_faces.back().back().triangle;
 
       m_data->surface_faces.back().emplace_back(SKUAParseData::Face());
 
       scan_skip_whitespace();
       if (m_char_class[*m_forward] == CC_QUOTE)
-        scan();
+    scan();
       else
-        scan(LEX_STATE_IDENTIFIER_TO_EOL_START);
+    scan(LEX_STATE_IDENTIFIER_TO_EOL_START);
 
       m_data->surface_faces.back().back().id = (int)m_data->face_names.size();
       m_data->surface_faces.back().back().triangle = (int)m_data->surfaces.back().size();
 
       if (TOKEN == TOK_IDENTIFIER)
-        m_data->face_names.emplace_back(SKUAParseData::String(m_data->surface_faces.back().back().id, m_symbols[m_identifier_start + ATTRIB].data));
+    m_data->face_names.emplace_back(SKUAParseData::String(m_data->surface_faces.back().back().id, m_symbols[m_identifier_start + ATTRIB].data));
       else
-        m_data->face_names.emplace_back(SKUAParseData::String(m_data->surface_faces.back().back().id, ""));
+    m_data->face_names.emplace_back(SKUAParseData::String(m_data->surface_faces.back().back().id, ""));
       break;
-    case TOK_KEYVERTICES:
+  case TOK_KEYVERTICES:
       if (m_data->surface_faces.empty())
-        scan_skip_to_eol();
+    scan_skip_to_eol();
       else
       {
-        for (int i = 0; i < 3; ++i)
-        {
+    for (int i = 0; i < 3; ++i)
+    {
           scan();
           if (TOKEN != TOK_INTEGER)
-            return ParseError("Expected an integer");
+      return ParseError("Expected an integer");
           m_data->surface_faces.back().back().key_vertices[i] = m_data->find_node(IVAL);
-        }
+    }
       }
       break;
-    case TOK_TRGL:
+  case TOK_TRGL:
       m_data->surfaces.back().emplace_back(SKUAParseData::Triangle());
       for (int i = 0; i < 3; ++i)
       {
-        scan();
-        if (TOKEN != TOK_INTEGER)
+    scan();
+    if (TOKEN != TOK_INTEGER)
           return ParseError("Expected an integer");
-        m_data->surfaces.back().back().node[i] = m_data->find_node(IVAL);
+    m_data->surfaces.back().back().node[i] = m_data->find_node(IVAL);
       }
       break;
-    default:
+  default:
       parseTriangles = false;
       if (!m_data->surface_faces.back().empty())
-        m_data->surface_faces.back().back().size = (int)m_data->surfaces.back().size() - m_data->surface_faces.back().back().triangle;
-    }
-    if (parseTriangles)
+    m_data->surface_faces.back().back().size = (int)m_data->surfaces.back().size() - m_data->surface_faces.back().back().triangle;
+  }
+  if (parseTriangles)
       scan();
   }
 
@@ -1386,27 +1386,27 @@ bool SKUAParser::ParseSurfaces()
   scan();
   while (TOKEN == TOK_SURFACE)
   {
-    scan_skip_whitespace();
+  scan_skip_whitespace();
 
-    if (m_char_class[*m_forward] == CC_QUOTE)
+  if (m_char_class[*m_forward] == CC_QUOTE)
       scan();
-    else
+  else
       scan(LEX_STATE_IDENTIFIER_TO_EOL_START);
-    if (TOKEN != TOK_IDENTIFIER)
+  if (TOKEN != TOK_IDENTIFIER)
       return ParseError("Expected a surface name");
 
-    m_data->surface_names.emplace_back(Symbol2String(m_symbols[m_identifier_start + ATTRIB]));
+  m_data->surface_names.emplace_back(Symbol2String(m_symbols[m_identifier_start + ATTRIB]));
 
-    m_data->surfaces.emplace_back(std::vector<SKUAParseData::Triangle>());
-    m_data->surfaces.back().reserve(1024);
+  m_data->surfaces.emplace_back(std::vector<SKUAParseData::Triangle>());
+  m_data->surfaces.back().reserve(1024);
 
-    m_data->surface_types.emplace_back(SKUAParseData::SurfaceType::SurfUnknown);
+  m_data->surface_types.emplace_back(SKUAParseData::SurfaceType::SurfUnknown);
 
-    m_data->surface_faces.emplace_back(std::vector<SKUAParseData::Face>());
-    m_data->surface_faces.back().reserve(10);
+  m_data->surface_faces.emplace_back(std::vector<SKUAParseData::Face>());
+  m_data->surface_faces.back().reserve(10);
 
-    scan();
-    if (!ParseTriangles())
+  scan();
+  if (!ParseTriangles())
       return false;
   }
 
@@ -1426,12 +1426,12 @@ bool SKUAParser::ParseTFace()
 
   scan_skip_whitespace();
   if (m_char_class[*m_forward] == CC_QUOTE)
-    scan();
+  scan();
   else
-    scan(LEX_STATE_IDENTIFIER_TO_EOL_START);
+  scan(LEX_STATE_IDENTIFIER_TO_EOL_START);
 
   if (TOKEN == TOK_IDENTIFIER)
-    m_data->surface_faces.back().back().id = ATTRIB;
+  m_data->surface_faces.back().back().id = ATTRIB;
 
   scan();
   return ParseTriangles();
@@ -1441,17 +1441,17 @@ bool SKUAParser::ParseModelRegions()
 {
   do
   {
-    scan(LEX_STATE_NOINT);
-    if (TOKEN != TOK_IDENTIFIER)
+  scan(LEX_STATE_NOINT);
+  if (TOKEN != TOK_IDENTIFIER)
       return ParseError("Expected a model region name");
 
-    m_data->model_region_names.emplace_back(Symbol2String(m_symbols[m_identifier_start + ATTRIB]));
+  m_data->model_region_names.emplace_back(Symbol2String(m_symbols[m_identifier_start + ATTRIB]));
 
-    scan();
-    if (TOKEN != TOK_INTEGER)
+  scan();
+  if (TOKEN != TOK_INTEGER)
       return ParseError("Expected an integer");
 
-    //m_data->model_region_names.back().id = IVAL;
+  //m_data->model_region_names.back().id = IVAL;
 
   } while (TOKEN == TOK_MODEL_REGION);
 
@@ -1473,11 +1473,11 @@ bool SKUAParser::load()
 bool SKUAParser::handle_forward_is_null()
 {
   if (m_forward == m_buffer_0_end)
-    m_forward += m_sentinel_size;
+  m_forward += m_sentinel_size;
   else if (m_forward == m_buffer_1_end)
-    m_forward = m_buffer;
+  m_forward = m_buffer;
   else
-    return false;
+  return false;
 
   return load();
 }
@@ -1488,7 +1488,7 @@ bool SKUAParser::handle_forward_is_null()
 bool SKUAParser::scan_init()
 {
   if (!load())
-    return false;
+  return false;
 
   ++m_lineNr;
 
@@ -1586,72 +1586,72 @@ void SKUAParser::scan(int next_lexstate)
 
   do
   {
-    while ((m_char_read = *m_forward) != m_sentinel)
-    {
+  while ((m_char_read = *m_forward) != m_sentinel)
+  {
       m_char_class_read = m_char_class[m_char_read];
 
       switch (m_lexstate)
       {
       case LEX_STATE_NEW:
-        handle_lexstate_new();
-        break;
+    handle_lexstate_new();
+    break;
       case LEX_STATE_PM:
-        handle_lexstate_pm();
-        break;
+    handle_lexstate_pm();
+    break;
       case LEX_STATE_NOINT:
-        handle_lexstate_noint();
-        break;
+    handle_lexstate_noint();
+    break;
       case LEX_STATE_INTEGER:
-        handle_lexstate_integer();
-        break;
+    handle_lexstate_integer();
+    break;
       case LEX_STATE_DOUBLE:
-        handle_lexstate_double();
-        break;
+    handle_lexstate_double();
+    break;
       case LEX_STATE_IDENTIFIER:
-        handle_lexstate_identifier();
-        break;
+    handle_lexstate_identifier();
+    break;
       case LEX_STATE_IDENTIFIER_PLUS_NUMBER:
-        handle_lexstate_identifier_plus_number();
-        break;
+    handle_lexstate_identifier_plus_number();
+    break;
       case LEX_STATE_QUOTED_IDENTIFIER_START:
-        handle_lexstate_quoted_identifier_start();
-        break;
+    handle_lexstate_quoted_identifier_start();
+    break;
       case LEX_STATE_QUOTED_IDENTIFIER_CONTINUE:
-        handle_lexstate_quoted_identifier();
-        break;
+    handle_lexstate_quoted_identifier();
+    break;
       case LEX_STATE_PARENTHESIS_IDENTIFIER_START:
-        handle_lexstate_parenthesis_identifier_start();
-        break;
+    handle_lexstate_parenthesis_identifier_start();
+    break;
       case LEX_STATE_PARENTHESIS_IDENTIFIER_CONTINUE:
-        handle_lexstate_parenthesis_identifier();
-        break;
+    handle_lexstate_parenthesis_identifier();
+    break;
       case LEX_STATE_IDENTIFIER_TO_EOL_START:
-        handle_lexstate_identifier_to_eol_start();
-        break;
+    handle_lexstate_identifier_to_eol_start();
+    break;
       case LEX_STATE_IDENTIFIER_TO_EOL_CONTINUE:
-        handle_lexstate_identifier_to_eol();
-        break;
+    handle_lexstate_identifier_to_eol();
+    break;
       case LEX_STATE_ERROR:
-        return;
+    return;
       }
 
       if (m_lexstate == LEX_STATE_TOKEN)
       {
-        m_symbols.invalidate_reserve();
-        return;
+    m_symbols.invalidate_reserve();
+    return;
       }
-    }
+  }
   } while (handle_forward_is_null());
 
   if (m_symbols.have_reserve())
   {
-    if (strncmp(m_symbols[m_symbols.size()].data, "END", 3) == 0)
-    {
+  if (strncmp(m_symbols[m_symbols.size()].data, "END", 3) == 0)
+  {
       end_identifier();
       m_symbols.reserve(false);
       if (m_lexstate == LEX_STATE_TOKEN)
-        return;
-    }
+    return;
+  }
   }
 
   m_lexstate = LEX_STATE_DONE;
@@ -1662,16 +1662,16 @@ void SKUAParser::scan_skip_whitespace()
 {
   do
   {
-    while ((m_char_read = *m_forward) != m_sentinel)
-    {
+  while ((m_char_read = *m_forward) != m_sentinel)
+  {
       m_char_class_read = m_char_class[m_char_read];
       if (m_char_class_read != CC_WS)
       {
-        m_lexeme = m_forward;
-        return;
+    m_lexeme = m_forward;
+    return;
       }
       ++m_forward;
-    }
+  }
   } while (handle_forward_is_null());
 }
 
@@ -1679,16 +1679,16 @@ void SKUAParser::scan_skip_to_eol()
 {
   do
   {
-    while ((m_char_read = *m_forward) != m_sentinel)
-    {
+  while ((m_char_read = *m_forward) != m_sentinel)
+  {
       ++m_forward;
       if (m_char_read == '\n')
       {
-        m_lexeme = m_forward;
-        ++m_lineNr;
-        return;
+    m_lexeme = m_forward;
+    ++m_lineNr;
+    return;
       }
-    }
+  }
   } while (handle_forward_is_null());
 }
 
@@ -1718,13 +1718,13 @@ void SKUAParser::end_identifier_forced()
 
   if (id < m_identifier_start)
   {
-    TOKEN = TToken::TOK_IDENTIFIER;
-    ATTRIB = id - m_identifier_start;
+  TOKEN = TToken::TOK_IDENTIFIER;
+  ATTRIB = id - m_identifier_start;
   }
   else
   {
-    TOKEN = m_symbols[id].token;
-    ATTRIB = m_symbols[id].attribute;
+  TOKEN = m_symbols[id].token;
+  ATTRIB = m_symbols[id].attribute;
   }
   m_lexstate = LEX_STATE_TOKEN;
 }
@@ -1741,59 +1741,59 @@ void SKUAParser::handle_lexstate_new()
   switch (m_char_class_read)
   {
   case CC_NEWLINE:
-    ++m_lineNr;
-    /* Fall through */
+  ++m_lineNr;
+  /* Fall through */
   case CC_WS:
-    ++m_forward;
-    m_lexeme = m_forward;
-    break;
+  ++m_forward;
+  m_lexeme = m_forward;
+  break;
   case CC_DIGIT:
-    ++m_forward;
-    IVAL = m_char_read - '0';
-    SIGN = 1;
-    m_lexstate = LEX_STATE_INTEGER;
-    break;
+  ++m_forward;
+  IVAL = m_char_read - '0';
+  SIGN = 1;
+  m_lexstate = LEX_STATE_INTEGER;
+  break;
   case CC_LETTER:
-    ++m_forward;
-    m_lexstate = LEX_STATE_IDENTIFIER;
-    start_identifier();
-    break;
+  ++m_forward;
+  m_lexstate = LEX_STATE_IDENTIFIER;
+  start_identifier();
+  break;
   case CC_OTHER:
-    switch (m_char_read)
-    {
-    case '+':
+  switch (m_char_read)
+  {
+  case '+':
       ++m_forward;
       SIGN = 1;
       m_lexstate = LEX_STATE_PM;
       break;
-    case '-':
+  case '-':
       ++m_forward;
       SIGN = -1;
       m_lexstate = LEX_STATE_PM;
       break;
-    case '{':
-    case '}':
-    case ':':
-    case '#':
+  case '{':
+  case '}':
+  case ':':
+  case '#':
       ++m_forward;
       TOKEN = TOK_CHAR;
       CVAL = m_char_read;
       m_lexstate = LEX_STATE_TOKEN;
       break;
-    default:
-      ++m_forward;
-    }
-    break;
-  case CC_QUOTE:
-    ++m_forward;
-    m_scan_quote_char = m_char_read;
-    m_lexstate = LEX_STATE_QUOTED_IDENTIFIER_START;
-    break;
-  case CC_ILLEGAL:
-    m_lexstate = LEX_STATE_ERROR;
-    break;
   default:
-    break;
+      ++m_forward;
+  }
+  break;
+  case CC_QUOTE:
+  ++m_forward;
+  m_scan_quote_char = m_char_read;
+  m_lexstate = LEX_STATE_QUOTED_IDENTIFIER_START;
+  break;
+  case CC_ILLEGAL:
+  m_lexstate = LEX_STATE_ERROR;
+  break;
+  default:
+  break;
   }
 }
 
@@ -1802,29 +1802,29 @@ void SKUAParser::handle_lexstate_pm()
   switch (m_char_class_read)
   {
   case CC_DIGIT:
-    IVAL = m_char_read - '0';
-    m_lexstate = LEX_STATE_INTEGER;
-    break;
+  IVAL = m_char_read - '0';
+  m_lexstate = LEX_STATE_INTEGER;
+  break;
   case CC_NEWLINE:
-    ++m_lineNr;
-    m_lexstate = LEX_STATE_ERROR;
-    break;
+  ++m_lineNr;
+  m_lexstate = LEX_STATE_ERROR;
+  break;
   default:
-    switch (m_char_read)
-    {
-    case '(':
+  switch (m_char_read)
+  {
+  case '(':
       m_lexstate = LEX_STATE_PARENTHESIS_IDENTIFIER_START;
       break;
-    case '"':
+  case '"':
       /* Fall-through */
-    case '\'':
+  case '\'':
       m_scan_quote_char = m_char_read;
       m_lexstate = LEX_STATE_QUOTED_IDENTIFIER_START;
       break;
-    default:
+  default:
       m_lexstate = LEX_STATE_IDENTIFIER;
       start_identifier();
-    }
+  }
   }
   ++m_forward;
 }
@@ -1834,43 +1834,43 @@ void SKUAParser::handle_lexstate_noint()
   switch (m_char_class_read)
   {
   case CC_NEWLINE:
-    ++m_forward;
-    ++m_lineNr;
-    m_lexstate = LEX_STATE_ERROR;
-    break;
+  ++m_forward;
+  ++m_lineNr;
+  m_lexstate = LEX_STATE_ERROR;
+  break;
   case CC_WS:
-    ++m_forward;
-    m_lexeme = m_forward;
-    break;
+  ++m_forward;
+  m_lexeme = m_forward;
+  break;
   default:
-    switch (m_char_read)
-    {
-    case '-':
+  switch (m_char_read)
+  {
+  case '-':
       ++m_forward;
       m_lexeme = m_forward;
       SIGN = -1;
       break;
-    case '+':
+  case '+':
       ++m_forward;
       m_lexeme = m_forward;
       SIGN = 1;
       break;
-    case '(':
+  case '(':
       ++m_forward;
       m_lexstate = LEX_STATE_PARENTHESIS_IDENTIFIER_START;
       break;
-    case '"':
+  case '"':
       /* Fall-through */
-    case '\'':
+  case '\'':
       m_scan_quote_char = m_char_read;
       ++m_forward;
       m_lexstate = LEX_STATE_QUOTED_IDENTIFIER_START;
       break;
-    default:
+  default:
       m_lexstate = LEX_STATE_IDENTIFIER_PLUS_NUMBER;
       start_identifier();
       ++m_forward;
-    }
+  }
   }
 }
 
@@ -1880,19 +1880,19 @@ void SKUAParser::handle_lexstate_integer()
   switch (m_char_class_read)
   {
   case CC_DIGIT:
-    IVAL = 10 * IVAL + m_char_read - '0';
-    break;
+  IVAL = 10 * IVAL + m_char_read - '0';
+  break;
   case CC_DOT:
-    m_lexstate = LEX_STATE_DOUBLE;
-    break;
+  m_lexstate = LEX_STATE_DOUBLE;
+  break;
   case CC_NEWLINE:
-    ++m_lineNr;
-    /* Fall through */
+  ++m_lineNr;
+  /* Fall through */
   default:
-    TOKEN = TOK_INTEGER;
-    IVAL = SIGN * IVAL;
-    SIGN = 1;
-    m_lexstate = LEX_STATE_TOKEN;
+  TOKEN = TOK_INTEGER;
+  IVAL = SIGN * IVAL;
+  SIGN = 1;
+  m_lexstate = LEX_STATE_TOKEN;
   }
 }
 
@@ -1902,40 +1902,40 @@ void SKUAParser::handle_lexstate_double()
   switch (m_char_class_read)
   {
   case CC_NEWLINE:
-    ++m_lineNr;
-    /* Fall through */
+  ++m_lineNr;
+  /* Fall through */
   case CC_WS:
-    buf = m_tmp_buffer_for_double;
-    while (m_lexeme != m_forward)
-    {
+  buf = m_tmp_buffer_for_double;
+  while (m_lexeme != m_forward)
+  {
       if (!*m_lexeme)
       {
-        if (m_lexeme == m_buffer_0_end)
+    if (m_lexeme == m_buffer_0_end)
           m_lexeme += m_sentinel_size;
-        else if (m_lexeme == m_buffer_1_end)
+    else if (m_lexeme == m_buffer_1_end)
           m_lexeme = m_buffer;
-        else
+    else
           m_lexstate = LEX_STATE_ERROR;
       }
       else
-        *buf++ = *m_lexeme++;
-    }
-    *buf = 0;
+    *buf++ = *m_lexeme++;
+  }
+  *buf = 0;
 
-    DVAL = std::strtod(m_tmp_buffer_for_double, &buf);
-    if (*buf == 0)
-    {
+  DVAL = std::strtod(m_tmp_buffer_for_double, &buf);
+  if (*buf == 0)
+  {
       TOKEN = TOK_DOUBLE;
       SIGN = 1;
       m_lexstate = LEX_STATE_TOKEN;
-    }
-    else
-    {
+  }
+  else
+  {
       m_lexstate = LEX_STATE_ERROR;
-    }
-    break;
+  }
+  break;
   default:
-    break;
+  break;
   }
   ++m_forward;
 }
@@ -1946,23 +1946,23 @@ void SKUAParser::handle_lexstate_identifier()
   switch (m_char_class_read)
   {
   case CC_NEWLINE:
-    ++m_lineNr;
-    /* Fall through */
+  ++m_lineNr;
+  /* Fall through */
   case CC_OTHER:
-    if (m_char_read != '{' && m_char_read != ':')
-    {
+  if (m_char_read != '{' && m_char_read != ':')
+  {
       *m_identifier_data++ = m_char_read;
       break;
-    }
-    else
-    {
+  }
+  else
+  {
       --m_forward;
-    }
+  }
   case CC_WS:
-    end_identifier();
-    break;
+  end_identifier();
+  break;
   default:
-    *m_identifier_data++ = m_char_read;
+  *m_identifier_data++ = m_char_read;
   }
 }
 
@@ -1972,30 +1972,30 @@ void SKUAParser::handle_lexstate_identifier_plus_number()
   switch (m_char_class_read)
   {
   case CC_NEWLINE:
-    ++m_lineNr;
-    /* Fall through */
+  ++m_lineNr;
+  /* Fall through */
   case CC_OTHER:
-    if (m_char_read != '{' && m_char_read != ':')
-    {
+  if (m_char_read != '{' && m_char_read != ':')
+  {
       *m_identifier_data++ = m_char_read;
       break;
-    }
-    else
-    {
+  }
+  else
+  {
       --m_forward;
-    }
-    end_identifier();
-    break;
+  }
+  end_identifier();
+  break;
   case CC_WS:
-    if (!*m_forward)
+  if (!*m_forward)
       handle_forward_is_null();
-    if (m_char_class[*m_forward] == CC_DIGIT)
+  if (m_char_class[*m_forward] == CC_DIGIT)
       *m_identifier_data++ = m_char_read;
-    else
+  else
       end_identifier();
-    break;
+  break;
   default:
-    *m_identifier_data++ = m_char_read;
+  *m_identifier_data++ = m_char_read;
   }
 }
 
@@ -2004,12 +2004,12 @@ void SKUAParser::handle_lexstate_quoted_identifier_start()
   ++m_forward;
   if (m_char_read == '\n')
   {
-    m_lexstate = LEX_STATE_ERROR;
+  m_lexstate = LEX_STATE_ERROR;
   }
   else
   {
-    m_lexstate = LEX_STATE_QUOTED_IDENTIFIER_CONTINUE;
-    start_identifier();
+  m_lexstate = LEX_STATE_QUOTED_IDENTIFIER_CONTINUE;
+  start_identifier();
   }
 }
 
@@ -2019,17 +2019,17 @@ void SKUAParser::handle_lexstate_quoted_identifier()
   switch (m_char_class_read)
   {
   case CC_NEWLINE:
-    ++m_lineNr;
-    m_lexstate = LEX_STATE_ERROR;
-    break;
+  ++m_lineNr;
+  m_lexstate = LEX_STATE_ERROR;
+  break;
   case CC_QUOTE:
-    if (m_char_read == m_scan_quote_char)
-    {
+  if (m_char_read == m_scan_quote_char)
+  {
       end_identifier();
       break;
-    }
+  }
   default:
-    *m_identifier_data++ = m_char_read;
+  *m_identifier_data++ = m_char_read;
   }
 }
 
@@ -2038,12 +2038,12 @@ void SKUAParser::handle_lexstate_parenthesis_identifier_start()
   ++m_forward;
   if (m_char_read == '\n')
   {
-    m_lexstate = LEX_STATE_ERROR;
+  m_lexstate = LEX_STATE_ERROR;
   }
   else
   {
-    m_lexstate = LEX_STATE_PARENTHESIS_IDENTIFIER_CONTINUE;
-    start_identifier();
+  m_lexstate = LEX_STATE_PARENTHESIS_IDENTIFIER_CONTINUE;
+  start_identifier();
   }
 }
 
@@ -2053,14 +2053,14 @@ void SKUAParser::handle_lexstate_parenthesis_identifier()
   switch (m_char_read)
   {
   case '\n':
-    ++m_lineNr;
-    m_lexstate = LEX_STATE_ERROR;
-    break;
+  ++m_lineNr;
+  m_lexstate = LEX_STATE_ERROR;
+  break;
   case ')':
-    end_identifier();
-    break;
+  end_identifier();
+  break;
   default:
-    *m_identifier_data++ = m_char_read;
+  *m_identifier_data++ = m_char_read;
   }
 }
 
@@ -2070,12 +2070,12 @@ void SKUAParser::handle_lexstate_identifier_to_eol_start()
   ++m_forward;
   if (m_char_read == '\n')
   {
-    m_lexstate = LEX_STATE_TOKEN;
+  m_lexstate = LEX_STATE_TOKEN;
   }
   else
   {
-    m_lexstate = LEX_STATE_IDENTIFIER_TO_EOL_CONTINUE;
-    start_identifier();
+  m_lexstate = LEX_STATE_IDENTIFIER_TO_EOL_CONTINUE;
+  start_identifier();
   }
 }
 
@@ -2085,11 +2085,11 @@ void SKUAParser::handle_lexstate_identifier_to_eol()
   switch (m_char_class_read)
   {
   case CC_NEWLINE:
-    ++m_lineNr;
-    end_identifier_forced();
-    break;
+  ++m_lineNr;
+  end_identifier_forced();
+  break;
   default:
-    if (m_char_read != '\r')
+  if (m_char_read != '\r')
       *m_identifier_data++ = m_char_read;
   }
 }
@@ -2102,19 +2102,19 @@ void SKUAParser::debug_print_token(const char *filename) const
   switch (TOKEN)
   {
   case TOK_CHAR:
-    fprintf(fp, "TOKEN: CHAR '%c'\n", CVAL);
-    break;
+  fprintf(fp, "TOKEN: CHAR '%c'\n", CVAL);
+  break;
   case TOK_INTEGER:
-    fprintf(fp, "TOKEN: INTEGER %d\n", IVAL);
-    break;
+  fprintf(fp, "TOKEN: INTEGER %d\n", IVAL);
+  break;
   case TOK_DOUBLE:
-    fprintf(fp, "TOKEN: DOUBLE %f\n", DVAL);
-    break;
+  fprintf(fp, "TOKEN: DOUBLE %f\n", DVAL);
+  break;
   case TOK_IDENTIFIER:
-    fprintf(fp, "TOKEN: IDENTIFIER %d --%s--\n", ATTRIB, ATTRIB >= 0 && ATTRIB < m_symbols.size() ? m_symbols[ATTRIB + m_identifier_start].data : "");
-    break;
+  fprintf(fp, "TOKEN: IDENTIFIER %d --%s--\n", ATTRIB, ATTRIB >= 0 && ATTRIB < m_symbols.size() ? m_symbols[ATTRIB + m_identifier_start].data : "");
+  break;
   default:
-    fprintf(fp, "TOKEN: %d %d\n", TOKEN, ATTRIB);
+  fprintf(fp, "TOKEN: %d %d\n", TOKEN, ATTRIB);
   }
   fclose(fp);
 #endif

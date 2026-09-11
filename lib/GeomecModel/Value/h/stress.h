@@ -15,15 +15,15 @@
 class CStressGradient : public CPressureGradientQuantity
 {
 public:
-	CStressGradient(const double &value, const UNIT unit = SI_UNIT);
-	unsigned int QuantityNameId() const;
+  CStressGradient(const double &value, const UNIT unit = SI_UNIT);
+  unsigned int QuantityNameId() const;
 };
 
 class CSingleStress : public CSinglePressure
 {
 public:
-	CSingleStress(const double &value, const UNIT unit = SI_UNIT);
-	unsigned int QuantityNameId() const;
+  CSingleStress(const double &value, const UNIT unit = SI_UNIT);
+  unsigned int QuantityNameId() const;
 };
 
 

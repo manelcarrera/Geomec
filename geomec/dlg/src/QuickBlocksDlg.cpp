@@ -19,7 +19,7 @@
 IMPLEMENT_DYNAMIC(CQuickBlocksDlg, CDialog)
 
 CQuickBlocksDlg::CQuickBlocksDlg(CQBSettings &settings, CWnd* pParent /*=NULL*/)
-	: CDialog(CQuickBlocksDlg::IDD, pParent)
+  : CDialog(CQuickBlocksDlg::IDD, pParent)
   , m_dNorth(0)
   , m_dEast(0)
   , m_dLength(0)
@@ -38,21 +38,21 @@ BOOL CQuickBlocksDlg::OnInitDialog()
   CDialog::OnInitDialog();
   CRect rect;
   m_lbPressures.GetWindowRect(&rect);
-	m_lbPressures.InsertColumn(0, _T("Pointset Name"), LVCFMT_LEFT,(rect.Width() - 3) * 0.30, 0);
-	m_lbPressures.InsertColumn(1, _T("Initial Pressure"), LVCFMT_LEFT,(rect.Width() - 3) * 0.35, 1);
+  m_lbPressures.InsertColumn(0, _T("Pointset Name"), LVCFMT_LEFT,(rect.Width() - 3) * 0.30, 0);
+  m_lbPressures.InsertColumn(1, _T("Initial Pressure"), LVCFMT_LEFT,(rect.Width() - 3) * 0.35, 1);
   m_lbPressures.InsertColumn(2, _T("Final Pressure"), LVCFMT_LEFT,(rect.Width() - 3) * 0.35, 1);
   m_lbPressures.SetComboColumns(1);
   m_lbPressures.SetComboColumns(2);
 
   for(size_t i = 0; i < m_Source.DeltaPressures().size(); ++i)
   {
-    new CTimeLapseListObject<CQBSettings>(m_Source.Model(), m_lbPressures, 
+  new CTimeLapseListObject<CQBSettings>(m_Source.Model(), m_lbPressures, 
       m_Source.DeltaPressures()[i].first, m_Source.DeltaPressures()[i].second,
       &m_Source);
   }
   if(m_lbPressures.GetItemCount() == 0)
   {
-    GetDlgItem(IDC_QB_REMOVE_DEPLSTAGE)->EnableWindow(FALSE);
+  GetDlgItem(IDC_QB_REMOVE_DEPLSTAGE)->EnableWindow(FALSE);
   }
 
   m_lbTemperatures.GetWindowRect(&rect);
@@ -64,14 +64,14 @@ BOOL CQuickBlocksDlg::OnInitDialog()
 
   for(size_t i = 0; i < m_Source.DeltaTemperatures().size(); ++i)
   {
-    new CTimeLapseListObject<CQBSettings, Temperature>(m_Source.Model(), m_lbTemperatures, 
+  new CTimeLapseListObject<CQBSettings, Temperature>(m_Source.Model(), m_lbTemperatures, 
       m_Source.DeltaTemperatures()[i].first, m_Source.DeltaTemperatures()[i].second,
       &m_Source);
   }
 
   if(m_lbTemperatures.GetItemCount() == 0)
   {
-    GetDlgItem(IDC_QB_REMOVE_DEPLSTAGE2)->EnableWindow(FALSE);
+  GetDlgItem(IDC_QB_REMOVE_DEPLSTAGE2)->EnableWindow(FALSE);
   }
 
   CLengthQuantity lq;
@@ -114,14 +114,14 @@ void CQuickBlocksDlg::DoDataExchange(CDataExchange* pDX)
 
   if(pDX->m_bSaveAndValidate)
   {
-    m_Source.Grid().CornerNorthing(m_dNorth);
-    m_Source.Grid().CornerEasting(m_dEast);
-    m_Source.Grid().SetLength(m_dLength);
-    m_Source.Grid().SetWidth(m_dWidth);
-    m_Source.Grid().TrackSpacing(m_dTrack);
-    m_Source.Grid().BinSpacing(m_dBin);
-    m_Source.Grid().NumBin(m_dLength / m_dBin);
-    m_Source.Grid().NumTrack(m_dWidth / m_dTrack);
+  m_Source.Grid().CornerNorthing(m_dNorth);
+  m_Source.Grid().CornerEasting(m_dEast);
+  m_Source.Grid().SetLength(m_dLength);
+  m_Source.Grid().SetWidth(m_dWidth);
+  m_Source.Grid().TrackSpacing(m_dTrack);
+  m_Source.Grid().BinSpacing(m_dBin);
+  m_Source.Grid().NumBin(m_dLength / m_dBin);
+  m_Source.Grid().NumTrack(m_dWidth / m_dTrack);
   }
   DDX_Control(pDX, IDC_QB_DEPLSTAGE_LIST, m_lbPressures);
   DDX_Control(pDX, IDC_QB_DEPLSTAGE_LIST2, m_lbTemperatures);
@@ -149,7 +149,7 @@ void CQuickBlocksDlg::OnBnClickedButtonQbStart()
 void CQuickBlocksDlg::OnBnClickedQbAddDeplstage()
 {
   TDepletionStageEntry* pEntry = (TDepletionStageEntry*)(m_Source.Model().GraphEntry(MD_BASE_DEPLETION_STAGE));
-	TDepletionStageEntry::TNodeSet stDepletionStage = pEntry->EntryNodes();
+  TDepletionStageEntry::TNodeSet stDepletionStage = pEntry->EntryNodes();
   TDepletionStageEntry::TNodeSet::const_iterator it;
   it = stDepletionStage.begin();
   CDepletionStage *depl1 = (*it);
@@ -165,7 +165,7 @@ void CQuickBlocksDlg::OnBnClickedQbRemoveDeplstage()
   m_lbPressures.DeleteItem(m_lbPressures.GetItemCount()-1);
   if(m_lbPressures.GetItemCount() == 0)
   {
-    GetDlgItem(IDC_QB_REMOVE_DEPLSTAGE)->EnableWindow(FALSE);
+  GetDlgItem(IDC_QB_REMOVE_DEPLSTAGE)->EnableWindow(FALSE);
   }
 }
 
@@ -188,7 +188,7 @@ void CQuickBlocksDlg::OnBnClickedQbRemoveDeplstage2()
   m_lbTemperatures.DeleteItem(m_lbTemperatures.GetItemCount()-1);
   if(m_lbTemperatures.GetItemCount() == 0)
   {
-    GetDlgItem(IDC_QB_REMOVE_DEPLSTAGE2)->EnableWindow(FALSE);
+  GetDlgItem(IDC_QB_REMOVE_DEPLSTAGE2)->EnableWindow(FALSE);
   }
 }
 
@@ -198,14 +198,14 @@ void CQuickBlocksDlg::OnBnClickedButtonQbWriteDat()
   
   if(m_Source.SelectedFormations().size() == 0)
   {
-    _m()->msg("Please select at least one formation", MB_OK|MB_ICONWARNING);
-    return;
+  _m()->msg("Please select at least one formation", MB_OK|MB_ICONWARNING);
+  return;
   }
 
   CTnoFileDialog dlg(FALSE, "dat", NULL, OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, "QB dat file (*dat)|*.dat|All Files (*.*)|*.*||");
 
   if(dlg.DoModal() == IDCANCEL)
-    return;
+  return;
 
   m_Source.WriteDat((LPCSTR) dlg.GetPathName());
 }

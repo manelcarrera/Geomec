@@ -28,36 +28,36 @@ namespace RGSupport
 
    inline std::string toString(Support support)
    {
-	   std::string retValue;
-	   switch (support)
-	   {
-	   case RGSupport::Element:
-		   retValue = "Element";
-		   break;
-	   case RGSupport::Node:
-		   retValue = "Node";
-		   break;
-	   case RGSupport::IntegrationPoint:
-		   retValue = "IntegrationPoint";
-		   break;
-	   default:
-		   retValue = "";
-		   break;
-	   }
+     std::string retValue;
+     switch (support)
+     {
+     case RGSupport::Element:
+       retValue = "Element";
+       break;
+     case RGSupport::Node:
+       retValue = "Node";
+       break;
+     case RGSupport::IntegrationPoint:
+       retValue = "IntegrationPoint";
+       break;
+     default:
+       retValue = "";
+       break;
+     }
 
-	   return retValue;
+     return retValue;
    }
 
    inline Support toEnum(std::string support)
    {
-	   if (support == "Element")
-		   return Element;
-	   else if (support == "Node")
-		   return Node;
-	   else if (support == "IntegrationPoint")
-		   return IntegrationPoint;
-	   else
-		   return InvalidSupport;
+     if (support == "Element")
+       return Element;
+     else if (support == "Node")
+       return Node;
+     else if (support == "IntegrationPoint")
+       return IntegrationPoint;
+     else
+       return InvalidSupport;
    }
 }
 
@@ -69,16 +69,16 @@ class INTERFACE_RGINTERFACE RGGeneralProperty
 {
 public:
 
-	RGGeneralProperty(const std::string &propName, const std::string &quant, const RGSupport::Support &support);
+  RGGeneralProperty(const std::string &propName, const std::string &quant, const RGSupport::Support &support);
 
-	std::string GetProperty() const;
-	std::string GetQuantity() const;
-	RGSupport::Support GetSupport() const;
+  std::string GetProperty() const;
+  std::string GetQuantity() const;
+  RGSupport::Support GetSupport() const;
 
 private:
-	std::string m_propName;
-	std::string m_quantity;
-	RGSupport::Support m_support;
+  std::string m_propName;
+  std::string m_quantity;
+  RGSupport::Support m_support;
 
 };
 

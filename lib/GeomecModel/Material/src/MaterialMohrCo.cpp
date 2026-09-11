@@ -11,24 +11,24 @@ CMaterialMohrCo::CMaterialMohrCo(CMaterialEntry &entry, CLibraryMaterial& libmat
 
 bool CMaterialMohrCo::Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const
 {
-	ftn_double_t ddum;
+  ftn_double_t ddum;
 
-	double dCohesi = ffmat.ParameterValue(IDT_VALUETYPE_COHESION) * 1e6;
-	double dFricti = ffmat.ParameterValue(IDT_VALUETYPE_FRICTION_ANGLE) * PI / 180;
-	double dDilatation = ffmat.ParameterValue(IDT_VALUETYPE_DILATATION) * PI / 180;
+  double dCohesi = ffmat.ParameterValue(IDT_VALUETYPE_COHESION) * 1e6;
+  double dFricti = ffmat.ParameterValue(IDT_VALUETYPE_FRICTION_ANGLE) * PI / 180;
+  double dDilatation = ffmat.ParameterValue(IDT_VALUETYPE_DILATATION) * PI / 180;
 
-	PutCharItem("YIELD", "MOHRCO");
+  PutCharItem("YIELD", "MOHRCO");
 
   ftn_double_t cohesi = (ftn_double_t)dCohesi;
   PutItemLength("COHESI", &cohesi, 1);
 
-	ftn_double_t psi = (ftn_double_t) (dDilatation);
+  ftn_double_t psi = (ftn_double_t) (dDilatation);
   PutItem("PSI", &psi);
 
-	ddum = (ftn_double_t) (dFricti);
-	PutItemLength("PHI", &ddum, 1);
+  ddum = (ftn_double_t) (dFricti);
+  PutItemLength("PHI", &ddum, 1);
 
-	return IMaterial::Write(ffmat, diarunner);
+  return IMaterial::Write(ffmat, diarunner);
 }
 
 
@@ -45,22 +45,22 @@ bool CMaterialMohrCo::WriteFilosParamName(const CFFMaterial &ffmat, dia::IDianaR
 {
   if (i == 0)
   {
-    strncpy(name, "COHESI", 10);
-    return true;
+  strncpy(name, "COHESI", 10);
+  return true;
   }
   --i;
 
   if (i == 0)
   {
-    strncpy(name, "PSI", 10);
-    return true;
+  strncpy(name, "PSI", 10);
+  return true;
   }
   --i;
 
   if (i == 0)
   {
-    strncpy(name, "PHI", 10);
-    return true;
+  strncpy(name, "PHI", 10);
+  return true;
   }
   --i;
 

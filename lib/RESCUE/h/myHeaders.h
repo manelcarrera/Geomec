@@ -1,12 +1,12 @@
 /*****************************************************************************
  
-        myHeaders.h
+    myHeaders.h
  
    Unlike some previous versions, beginning with v37.4 you should
    only have to change this if your compiler uses a different name
    for these data types.
 
-        Rod Hanks       February 2007
+    Rod Hanks       February 2007
  
 *****************************************************************************/
 #ifndef RESCUE_H

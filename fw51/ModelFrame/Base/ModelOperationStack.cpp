@@ -45,8 +45,8 @@ CModelOperationStack::~CModelOperationStack()
 {
   CModelOperation* pending = m_pending;
   while ( pending ) {
-    pending->m_stack = 0;
-    pending = pending->m_pending;
+  pending->m_stack = 0;
+  pending = pending->m_pending;
   }
   while ( m_undoStack.size() ) delete m_undoStack.pop();
   while ( m_redoStack.size() ) delete m_redoStack.pop();
@@ -118,11 +118,11 @@ void CModelOperationStack::undo()
   DIA_ASSERT( canUndo() );
   m_state = STACK_UNDO;
   {
-    CUndoOperation* undoOperation = m_undoStack.pop();
-    // Block the gui and collect redo operation(s).
-    CModelOperation block( m_document, undoOperation->text() );
-    undoOperation->undo( m_document );
-    delete undoOperation;
+  CUndoOperation* undoOperation = m_undoStack.pop();
+  // Block the gui and collect redo operation(s).
+  CModelOperation block( m_document, undoOperation->text() );
+  undoOperation->undo( m_document );
+  delete undoOperation;
   }
   m_state = STACK_WAIT;
   emit changed();
@@ -138,12 +138,12 @@ void CModelOperationStack::redo()
   DIA_ASSERT( canRedo() );
   m_state = STACK_REDO;
   {
-    CUndoOperation* redoOperation = m_redoStack.pop();
-    // Block the gui and collect undo operation(s).
-    CModelOperation block( m_document, redoOperation->text() );
+  CUndoOperation* redoOperation = m_redoStack.pop();
+  // Block the gui and collect undo operation(s).
+  CModelOperation block( m_document, redoOperation->text() );
   
-    redoOperation->undo( m_document );
-    delete redoOperation;
+  redoOperation->undo( m_document );
+  delete redoOperation;
   }
   m_state = STACK_WAIT;
   emit changed();
@@ -191,10 +191,10 @@ void CModelOperationStack::clear()
 void CModelOperationStack::beginOperation( CModelOperation& operation )
 {
   if ( m_pending ) {
-    m_pending->beginOperation( operation );
+  m_pending->beginOperation( operation );
   } else {
-    m_pending = &operation;
-    emit operationStarted();
+  m_pending = &operation;
+  emit operationStarted();
   }
 }
 
@@ -206,11 +206,11 @@ void CModelOperationStack::endOperation( CModelOperation& operation )
 {
   DIA_ASSERT( m_pending );
   if ( m_pending != &operation ) {
-    m_pending->endOperation( operation );
+  m_pending->endOperation( operation );
   } else {
-    m_pending = 0;
-    push( operation );
-    emit operationFinished();
+  m_pending = 0;
+  push( operation );
+  emit operationFinished();
   }
 }
 
@@ -230,18 +230,18 @@ void CModelOperationStack::push( CUndoOperation* undo )
 {
   bool wasClean = isClean();
   switch ( m_state ) {
-    case STACK_WAIT:
+  case STACK_WAIT:
       if ( m_hasCleanState && m_cleanState > 0 ) {
-        // clean state in redo stack, not reachable anymore
-        m_hasCleanState = false;
+    // clean state in redo stack, not reachable anymore
+    m_hasCleanState = false;
       }
       // New state, redoes invalid
       while ( m_redoStack.size() ) delete m_redoStack.pop();
-    case STACK_REDO:
+  case STACK_REDO:
       if ( m_hasCleanState ) m_cleanState--;
       m_undoStack.push( undo );
       break;
-    case STACK_UNDO:
+  case STACK_UNDO:
       if ( m_hasCleanState ) m_cleanState++;
       m_redoStack.push( undo );
   }
@@ -254,8 +254,8 @@ void CModelOperationStack::push( CUndoOperation* undo )
 void CModelOperationStack::push( CModelOperation& operation )
 {
   if ( !operation.isEmpty() ) {
-    push( new CCompositeUndo( operation.m_localStack, operation.text() ) );
-    emit changed();
+  push( new CCompositeUndo( operation.m_localStack, operation.text() ) );
+  emit changed();
   }
 }
 
@@ -268,7 +268,7 @@ QStringList CModelOperationStack::undoNames()
   QStringList undoList;
   for (int i = m_undoStack.size(); i > 0; --i)
   {
-    undoList << m_undoStack.at(i-1)->text();
+  undoList << m_undoStack.at(i-1)->text();
   }
   return undoList;
 }
@@ -282,7 +282,7 @@ QStringList CModelOperationStack::redoNames()
   QStringList redoList;
   for (int i = m_redoStack.size(); i > 0; --i)
   {
-    redoList << m_redoStack.at(i-1)->text();
+  redoList << m_redoStack.at(i-1)->text();
   }
   return redoList;
 }

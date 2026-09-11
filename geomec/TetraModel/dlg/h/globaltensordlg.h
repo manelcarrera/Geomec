@@ -16,49 +16,49 @@ class CGlobalTensorDlg : public CAttributesTemplate<C3DSupportNode>
 {
 // Construction
 public:
-	CGlobalTensorDlg(C3DSupportNode &supnode, CWnd* pParent = NULL);
+  CGlobalTensorDlg(C3DSupportNode &supnode, CWnd* pParent = NULL);
 
-	void SetInitialDepletionStage(int nStage);
+  void SetInitialDepletionStage(int nStage);
 
 // Dialog Data
-	//{{AFX_DATA(CGlobalTensorDlg)
-		// NOTE: the ClassWizard will add data members here
-	//}}AFX_DATA
+  //{{AFX_DATA(CGlobalTensorDlg)
+    // NOTE: the ClassWizard will add data members here
+  //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CGlobalTensorDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+  // ClassWizard generated virtual function overrides
+  //{{AFX_VIRTUAL(CGlobalTensorDlg)
+  protected:
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  //}}AFX_VIRTUAL
 
 // Implementation
 protected:
-	// Generated message map functions
-	//{{AFX_MSG(CGlobalTensorDlg)
-	virtual BOOL OnInitDialog();
-	afx_msg void OnGeneral();
-	afx_msg void OnUndefined();
-	afx_msg void OnVertical();
-	afx_msg void OnSelchangeStage();
-	virtual void OnOK();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+  // Generated message map functions
+  //{{AFX_MSG(CGlobalTensorDlg)
+  virtual BOOL OnInitDialog();
+  afx_msg void OnGeneral();
+  afx_msg void OnUndefined();
+  afx_msg void OnVertical();
+  afx_msg void OnSelchangeStage();
+  virtual void OnOK();
+  //}}AFX_MSG
+  DECLARE_MESSAGE_MAP()
 
 private:
-	int m_nDeplStage;
-	bool m_bInitialized;
-	C3DSupportNode &m_SourceNode;
-	std::vector<const CDepletionStage*> m_vcDepletionStages;
+  int m_nDeplStage;
+  bool m_bInitialized;
+  C3DSupportNode &m_SourceNode;
+  std::vector<const CDepletionStage*> m_vcDepletionStages;
 
-	void UpdateControls();
-	void EmptyEditBoxes();
-	BOOL CheckInput();
-	void FillDepletionStageVector();
-	void FillDepletionStageCombo();
-	void SetRadioButton();
-	void GetRadioButton();
+  void UpdateControls();
+  void EmptyEditBoxes();
+  BOOL CheckInput();
+  void FillDepletionStageVector();
+  void FillDepletionStageCombo();
+  void SetRadioButton();
+  void GetRadioButton();
 };
 
 //{{AFX_INSERT_LOCATION}}

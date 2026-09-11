@@ -31,7 +31,7 @@ static void WriteFixPot(ftn_int_t nodeidx)
 {
   ftn_int_t idx = Inquire("/FIXPOT", "DIM");
   if(idx < 0)
-    idx = 0;
+  idx = 0;
   ++idx;
 
   PushDir();
@@ -41,7 +41,7 @@ static void WriteFixPot(ftn_int_t nodeidx)
 
   idx = Inquire("/INPUT/FIXPOT", "DIM");
   if(idx < 0)
-    idx = 0;
+  idx = 0;
   ++idx;
 
   PushDir();
@@ -56,8 +56,8 @@ bool CFixedPotential::WriteFilos(IProgressBase& progress) const
   TNodeIndexSet::const_iterator it;
   for(it = m_stNodeIndices.begin(); it != m_stNodeIndices.end(); ++it)
   {
-    WriteFixPot(*it + 1);
-    progress.Step();
+  WriteFixPot(*it + 1);
+  progress.Step();
   }
 
   return true;

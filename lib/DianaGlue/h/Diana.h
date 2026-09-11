@@ -15,31 +15,31 @@ class IDianaX;
 class CDiana  
 {
 public:
-	CDiana( IDianaX* diana_x );
-	virtual ~CDiana();
+  CDiana( IDianaX* diana_x );
+  virtual ~CDiana();
 
-	BOOL Calculate();
-	bool GetCalculationResult();
-	BOOL SetEnv();
+  BOOL Calculate();
+  bool GetCalculationResult();
+  BOOL SetEnv();
 
 protected:
-	BOOL InitializeControl();
-	void UnInitializeControl();
-	BOOL SetEnvironment();
-	BOOL StartDiana();
+  BOOL InitializeControl();
+  void UnInitializeControl();
+  BOOL SetEnvironment();
+  BOOL StartDiana();
 
 public:
-	QString m_strDiaPath;
-	QString m_strTempPath;
-	QString m_strDiaExeName;
-	QString m_strDataFile;
-	QString m_strBaseName;
-	//FIXEM: MCR
-	QWidget* m_pParentWnd;
-	//CWnd *m_pParentWnd;
-	QString m_strDiaShare;
+  QString m_strDiaPath;
+  QString m_strTempPath;
+  QString m_strDiaExeName;
+  QString m_strDataFile;
+  QString m_strBaseName;
+  //FIXEM: MCR
+  QWidget* m_pParentWnd;
+  //CWnd *m_pParentWnd;
+  QString m_strDiaShare;
 
 protected:
-	IDianaX *m_pDianaX;
-	BOOL m_bCalcResult;
+  IDianaX *m_pDianaX;
+  BOOL m_bCalcResult;
 };

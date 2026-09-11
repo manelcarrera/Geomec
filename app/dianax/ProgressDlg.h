@@ -16,43 +16,43 @@ class CProgressDlg : public CDialog
 {
 // Construction
 public:
-	CProgressDlg(CWnd* pParent = NULL);   // standard constructor
-	static CProgressDlg *m_pDlg;
-	BOOL m_bStop;
-	BOOL m_bStopIsOk;
-	BOOL m_bAutoCloseDialog; //only close if not succeded 
-	BOOL m_bAlwaysAutoCloseDialog; //alway close dialog
+  CProgressDlg(CWnd* pParent = NULL);   // standard constructor
+  static CProgressDlg *m_pDlg;
+  BOOL m_bStop;
+  BOOL m_bStopIsOk;
+  BOOL m_bAutoCloseDialog; //only close if not succeded 
+  BOOL m_bAlwaysAutoCloseDialog; //alway close dialog
 
-	void AddMessage( CString Message );
-	void AddWarning( CString Warning );
-	void DisplayError( CString Error );
-	int CallBack();
-	void Finish();
+  void AddMessage( CString Message );
+  void AddWarning( CString Warning );
+  void DisplayError( CString Error );
+  int CallBack();
+  void Finish();
 
 // Dialog Data
-	//{{AFX_DATA(CProgressDlg)
-	enum { IDD = IDD_DIANAX };
-		// NOTE: the ClassWizard will add data members here
-	//}}AFX_DATA
+  //{{AFX_DATA(CProgressDlg)
+  enum { IDD = IDD_DIANAX };
+    // NOTE: the ClassWizard will add data members here
+  //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CProgressDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+  // ClassWizard generated virtual function overrides
+  //{{AFX_VIRTUAL(CProgressDlg)
+  protected:
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  //}}AFX_VIRTUAL
 
 // Implementation
 protected:
-	void DisplayLastItem( CListBox *ListBox );
-	CDianaXCtrl *GetControl();
+  void DisplayLastItem( CListBox *ListBox );
+  CDianaXCtrl *GetControl();
 
-	// Generated message map functions
-	//{{AFX_MSG(CProgressDlg)
-	afx_msg void OnButStop();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+  // Generated message map functions
+  //{{AFX_MSG(CProgressDlg)
+  afx_msg void OnButStop();
+  //}}AFX_MSG
+  DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}

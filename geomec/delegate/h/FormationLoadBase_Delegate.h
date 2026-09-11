@@ -9,28 +9,28 @@ template <class VALUE_TYPE>
 {
 public:
   CFormationLoadBase_Delegate(
-    CFormationLoadBase <VALUE_TYPE> * formationLoadBase);
+  CFormationLoadBase <VALUE_TYPE> * formationLoadBase);
 
 private:
   CFormationLoadBase_Delegate(const CFormationLoadBase_Delegate& rhs);
   CFormationLoadBase_Delegate& operator = (
-    const CFormationLoadBase_Delegate& rhs);
+  const CFormationLoadBase_Delegate& rhs);
 
   CFormationLoadBase <VALUE_TYPE> * m_formationLoadBase;
 
   REGISTER_DELEGATE(CFormationLoadBase <VALUE_TYPE>,
-    CFormationLoadBase_Delegate <VALUE_TYPE>);
+  CFormationLoadBase_Delegate <VALUE_TYPE>);
 };
 
 template <class VALUE_TYPE>
   CFormationLoadBase_Delegate <VALUE_TYPE> ::
-    CFormationLoadBase_Delegate(
+  CFormationLoadBase_Delegate(
       CFormationLoadBase <VALUE_TYPE> * formationLoadBase)
 : IValueComposite_Delegate(formationLoadBase)
 , m_formationLoadBase(formationLoadBase)
 {
   ACTIVATE_TEMPLATE_DELEGATE(CFormationLoadBase <VALUE_TYPE>,
-    CFormationLoadBase_Delegate <VALUE_TYPE>);
+  CFormationLoadBase_Delegate <VALUE_TYPE>);
 }
 
 #endif  // _FormationLoadBase_Delegate_h_

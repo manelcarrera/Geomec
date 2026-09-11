@@ -18,19 +18,19 @@ class CPoint;
 class CCreatePointSet
 {
   public:
-    CCreatePointSet(CPointSetCoordinates& pointSetCoordinates);
+  CCreatePointSet(CPointSetCoordinates& pointSetCoordinates);
 
-    CPointSet* create(CModelBase& modelBase, const CUnitNode& unitNode,
+  CPointSet* create(CModelBase& modelBase, const CUnitNode& unitNode,
       const QString& name) const;
 
   private:
-    CCreatePointSet(const CCreatePointSet& rhs);
-    CCreatePointSet& operator = (CCreatePointSet rhs);
+  CCreatePointSet(const CCreatePointSet& rhs);
+  CCreatePointSet& operator = (CCreatePointSet rhs);
 
-    void createPointSetRecursive(size_t index, geo::CPoint& point,
+  void createPointSetRecursive(size_t index, geo::CPoint& point,
       CPointSet* pointSet) const;
 
-    CPointSetCoordinates& m_pointSetCoordinates;
+  CPointSetCoordinates& m_pointSetCoordinates;
 };
 
 #endif  // _CreatePointSet_h_

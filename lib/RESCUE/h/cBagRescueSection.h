@@ -18,11 +18,11 @@ Software Product or documentation licensed under this agreement.
 ****************************************************************************/
 /*************************************************************************
 
-        cBagRescueSection.h
+    cBagRescueSection.h
 
  Keeps a list of pointers to RescueSection.
 
-        Rod Hanks               December 15th, 1995  / August 1996
+    Rod Hanks               December 15th, 1995  / August 1996
 
 ****************************************************************************/
 

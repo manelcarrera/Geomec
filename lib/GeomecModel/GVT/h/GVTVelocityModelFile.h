@@ -13,38 +13,38 @@ namespace GVT
 class CGVTVelocityModelFile
 {
   public:
-    static struct TVelocityFromFile {} velocityFromFile;
-    static struct TVelocityFromMaterial {} velocityFromMaterial;
+  static struct TVelocityFromFile {} velocityFromFile;
+  static struct TVelocityFromMaterial {} velocityFromMaterial;
 
-    CGVTVelocityModelFile(const TVelocityFromFile&, CModelBase &modelBase,
+  CGVTVelocityModelFile(const TVelocityFromFile&, CModelBase &modelBase,
       const QString& velocityModelFile = QString());
-    CGVTVelocityModelFile(const TVelocityFromMaterial&, CModelBase &modelBase);
-    ~CGVTVelocityModelFile();
+  CGVTVelocityModelFile(const TVelocityFromMaterial&, CModelBase &modelBase);
+  ~CGVTVelocityModelFile();
 
-    CGVTVelocityModelFile(const CGVTVelocityModelFile& rhs);
-    CGVTVelocityModelFile& operator = (const CGVTVelocityModelFile& rhs);
+  CGVTVelocityModelFile(const CGVTVelocityModelFile& rhs);
+  CGVTVelocityModelFile& operator = (const CGVTVelocityModelFile& rhs);
 
-    void SetContents(const std::stringstream& buffer);
+  void SetContents(const std::stringstream& buffer);
 
-    const QString& velocityModelFile() const;
-    void velocityModelFile(const QString& velocityModelFile);
+  const QString& velocityModelFile() const;
+  void velocityModelFile(const QString& velocityModelFile);
 
-    bool isVelocityModelFileReady() const;
+  bool isVelocityModelFileReady() const;
 
-    int velocityModelSourceNumerator() const;
-    void velocityModelSourceNumerator(int velocityModelSourceNumerator);
+  int velocityModelSourceNumerator() const;
+  void velocityModelSourceNumerator(int velocityModelSourceNumerator);
 
-    void LoadStream(TSTREAM& stream, CStreamVersion& version,
+  void LoadStream(TSTREAM& stream, CStreamVersion& version,
       TPROGRESS& progress);
-    void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  void SaveStream(TSTREAM& stream, TPROGRESS& progress);
 
   private:
-    void swap(CGVTVelocityModelFile& gvtVelocityModelFile);
+  void swap(CGVTVelocityModelFile& gvtVelocityModelFile);
 
-    void tryVelocityFromMaterial();
+  void tryVelocityFromMaterial();
 
-    QSharedPointer <CGVTVelocityModelSource> m_GVTVelocityModelSource;
-    CModelBase& m_modelBase;
+  QSharedPointer <CGVTVelocityModelSource> m_GVTVelocityModelSource;
+  CModelBase& m_modelBase;
 };
 
 } // namespace GVT

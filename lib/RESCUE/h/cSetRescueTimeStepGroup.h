@@ -18,11 +18,11 @@ Software Product or documentation licensed under this agreement.
 ****************************************************************************/
 /*************************************************************************
 
-        cSetRescueTimeStepGroup.h
+    cSetRescueTimeStepGroup.h
 
  Keeps a list of pointers to some RescueTimeStepGroup.
 
-        Rod Hanks               January 18th, 1995  /  August 1996
+    Rod Hanks               January 18th, 1995  /  August 1996
 
 ****************************************************************************/
 

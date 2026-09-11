@@ -9,20 +9,20 @@ namespace GeomecRGI
 class CLoadPropertyYoung : public CCalculateShearModulus
 {
   public:
-    using CLoadPropertyBase::loadProperty;
+  using CLoadPropertyBase::loadProperty;
 
-    CLoadPropertyYoung(const RGProperty& rgProperty, RGInterface& rgi,
+  CLoadPropertyYoung(const RGProperty& rgProperty, RGInterface& rgi,
       CModelBase& modelBase, CRockMechProcessor& rmp);
-    virtual ~CLoadPropertyYoung();
+  virtual ~CLoadPropertyYoung();
 
-    virtual bool loadProperty();
+  virtual bool loadProperty();
 
   protected:
-    virtual void convertValue(geo::CValue& dValue) const;
+  virtual void convertValue(geo::CValue& dValue) const;
 
   private:
-    CLoadPropertyYoung(const CLoadPropertyYoung& rhs);
-    CLoadPropertyYoung& operator = (const CLoadPropertyYoung& rhs);
+  CLoadPropertyYoung(const CLoadPropertyYoung& rhs);
+  CLoadPropertyYoung& operator = (const CLoadPropertyYoung& rhs);
 };
 
 } // namespace GeomecRGI

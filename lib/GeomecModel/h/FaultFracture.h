@@ -12,48 +12,48 @@ class CFaultParametersNode;
 class CFaultFracture
 {
   public:
-    CFaultFracture(CHorizonBase* horizonBase, CDoubleQuantity::UNIT unit);
-    CFaultFracture(const CFaultFracture& rhs);
+  CFaultFracture(CHorizonBase* horizonBase, CDoubleQuantity::UNIT unit);
+  CFaultFracture(const CFaultFracture& rhs);
 
-    CFaultFracture& operator=(CFaultFracture& rhs);
+  CFaultFracture& operator=(CFaultFracture& rhs);
 
-    const QString& name() const;
+  const QString& name() const;
 
-    bool HasHorizon(const CHorizonBase *horizonBase) const;
+  bool HasHorizon(const CHorizonBase *horizonBase) const;
 
-    bool Slip() const;
-    bool IsBranch() const;
+  bool Slip() const;
+  bool IsBranch() const;
 
-    bool hasFaultParametersForInitialDepletionStage() const;
+  bool hasFaultParametersForInitialDepletionStage() const;
 
-    QString CohesionUnitName() const;
-    double Cohesion() const;
-    void Cohesion(double value);
+  QString CohesionUnitName() const;
+  double Cohesion() const;
+  void Cohesion(double value);
 
-    QString FrictionAngleUnitName() const;
-    double FrictionAngle() const;
-    void FrictionAngle(double value);
+  QString FrictionAngleUnitName() const;
+  double FrictionAngle() const;
+  void FrictionAngle(double value);
 
-    int SlipType() const;
-    void SlipType(int slip);
+  int SlipType() const;
+  void SlipType(int slip);
 
-    void FinalizeBehaviour();
-    void FinalizeInitD0();
+  void FinalizeBehaviour();
+  void FinalizeInitD0();
 
   private:
 
-    CHorizonBase* m_horizonBase;
-    int    m_slipType;
+  CHorizonBase* m_horizonBase;
+  int    m_slipType;
 
-    CFaultParametersNode *m_faultParametersNode;
+  CFaultParametersNode *m_faultParametersNode;
 
-    QString m_cohesionUnitName;
-    QString m_frictionAngleUnitName;
+  QString m_cohesionUnitName;
+  QString m_frictionAngleUnitName;
 
-    double m_cohesion;
-    double m_frictionAngle;
+  double m_cohesion;
+  double m_frictionAngle;
 
-    CDoubleQuantity::UNIT m_unit;
+  CDoubleQuantity::UNIT m_unit;
 };
 
 #endif  // _FaultFracture_h_

@@ -32,17 +32,17 @@ private:
 
   struct PlaneInfo
   {
-    geo::CPoint mid_point;
-    geo::CVector avg_normal;
-    double avg_area;
-    double min_area;
-    double max_area;
+  geo::CPoint mid_point;
+  geo::CVector avg_normal;
+  double avg_area;
+  double min_area;
+  double max_area;
 
-    geo::CPoint rot_mid_point;
-    geo::CVector rot_axis;
-    geo::CVector rot_translation;
-    double rot_angle;
-    geo::CVector rot_avg_normal;
+  geo::CPoint rot_mid_point;
+  geo::CVector rot_axis;
+  geo::CVector rot_translation;
+  double rot_angle;
+  geo::CVector rot_avg_normal;
   };
   
   void createRotatedCopy(const IntermediateSurfaceInfo& surf, const geo::CPoint& plane_mid, const geo::CVector& plane_normal, IntermediateSurfaceInfo& surf_cpy, PlaneInfo& plane_info) const;
@@ -50,30 +50,30 @@ private:
 
   void getRotationInfo(const IntermediateSurfaceInfo& surf_0, const IntermediateSurfaceInfo& surf_1, geo::CPoint& rotation_mid, geo::CVector& rotation_normal) const;
   void getCorrectionSurface(const IntermediateSurfaceInfo& surf_rot_0, const IntermediateSurfaceInfo& surf_flat_0,
-    const IntermediateSurfaceInfo& surf_rot_1, const IntermediateSurfaceInfo& surf_flat_1,
-    IntermediateSurfaceInfo& surf_correction_0, bool direction) const;
+  const IntermediateSurfaceInfo& surf_rot_1, const IntermediateSurfaceInfo& surf_flat_1,
+  IntermediateSurfaceInfo& surf_correction_0, bool direction) const;
 
   struct TriangleInfo
   {
-    double x, y, z;
-    double r2;
+  double x, y, z;
+  double r2;
 
-    const IntermediateSurfaceInfo& surf;
-    int triangle;
+  const IntermediateSurfaceInfo& surf;
+  int triangle;
 
-    double SquaredDistance(const geo::IPoint& p) const;
-    double Contains(const geo::IPoint& p) const;
+  double SquaredDistance(const geo::IPoint& p) const;
+  double Contains(const geo::IPoint& p) const;
 
-    TriangleInfo(const IntermediateSurfaceInfo& surf, int triangle);
+  TriangleInfo(const IntermediateSurfaceInfo& surf, int triangle);
   };
 
   struct TyingInfo
   {
-    int triangle;
-    geo::CPoint point;
+  int triangle;
+  geo::CPoint point;
 
-    TyingInfo() : triangle(-1) {}
-    TyingInfo(int triangle, const geo::IPoint& p) : triangle(triangle) { point.Set(p.X(), p.Y(), p.Z()); }
+  TyingInfo() : triangle(-1) {}
+  TyingInfo(int triangle, const geo::IPoint& p) : triangle(triangle) { point.Set(p.X(), p.Y(), p.Z()); }
   };
 
   typedef std::map<int, TyingInfo> TyingInfoMap;

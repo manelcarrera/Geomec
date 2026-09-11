@@ -71,13 +71,13 @@ typedef enum
 GQuark g_spawn_error_quark (void);
 
 gboolean g_spawn_async (const gchar           *working_directory,
-                        gchar                **argv,
-                        gchar                **envp,
-                        GSpawnFlags            flags,
-                        GSpawnChildSetupFunc   child_setup,
-                        gpointer               user_data,
-                        gint                  *child_pid,
-                        GError               **error);
+            gchar                **argv,
+            gchar                **envp,
+            GSpawnFlags            flags,
+            GSpawnChildSetupFunc   child_setup,
+            gpointer               user_data,
+            gint                  *child_pid,
+            GError               **error);
 
 
 /* Opens pipes for non-NULL standard_output, standard_input, standard_error,

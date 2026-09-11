@@ -33,12 +33,12 @@ void CGoCadSubModelEntry_Delegate::AppendContextMenu(
   CContextMenuInvoker &invoker)
 {
   invoker.AddCommand(_T("Import &Mesh"),
-    *(new CGoCadSubModelEntry_Delegate::TEntryCommand(*this,
+  *(new CGoCadSubModelEntry_Delegate::TEntryCommand(*this,
       &CGoCadSubModelEntry_Delegate::ImportMesh,
       &CGoCadSubModelEntry_Delegate::CanImportMesh)));
   invoker.AddSeparator();
   invoker.AddCommand(_T("Insert &Horizon"),
-    *(new CGoCadSubModelEntry_Delegate::TEntryCommand(*this,
+  *(new CGoCadSubModelEntry_Delegate::TEntryCommand(*this,
       &CGoCadSubModelEntry_Delegate::InsertHorizon,
       &CGoCadSubModelEntry_Delegate::CanInsertSurfaceContainer)));
 
@@ -48,10 +48,10 @@ void CGoCadSubModelEntry_Delegate::AppendContextMenu(
   if (keyfile.Unlocked())
   {
 #endif
-    invoker.AddCommand(_T("Insert &Fault"),
+  invoker.AddCommand(_T("Insert &Fault"),
       *(new CGoCadSubModelEntry_Delegate::TEntryCommand(*this,
-        &CGoCadSubModelEntry_Delegate::InsertFault,
-        &CGoCadSubModelEntry_Delegate::CanInsertSurfaceContainer)));
+    &CGoCadSubModelEntry_Delegate::InsertFault,
+    &CGoCadSubModelEntry_Delegate::CanInsertSurfaceContainer)));
 #ifdef TETRA_FAULTS_KEYFILE
   }
 #endif
@@ -60,7 +60,7 @@ void CGoCadSubModelEntry_Delegate::AppendContextMenu(
 bool CGoCadSubModelEntry_Delegate::CanImportMesh() const
 {
   return dynamic_cast <const CGoCadModel*> (
-    &m_goCadSubModelEntry->Model())->CanImportMesh();
+  &m_goCadSubModelEntry->Model())->CanImportMesh();
 }
 
 namespace
@@ -72,15 +72,15 @@ bool selectGocadSolidDlg(
   std::vector<int>& vcSolids)
 #else
   bool selectGocadSolidDlg(
-    const std::vector <QSharedPointer <CGocadData::CTSolid> >& solids,
-    std::vector<int>& vcSolids)
+  const std::vector <QSharedPointer <CGocadData::CTSolid> >& solids,
+  std::vector<int>& vcSolids)
 #endif
 {
   CSelectGocadSolidDlg dlg(solids);
 
   if (dlg.DoModal() != IDOK)
   {
-    return false;
+  return false;
   }
 
   vcSolids.clear();
@@ -99,13 +99,13 @@ void CGoCadSubModelEntry_Delegate::ImportMesh()
   sFilter = getStringTableEntry(IDS_MESH_IMPORT_FILTER);
 
   CTnoFileDialog dlg(TRUE, NULL, NULL, OFN_ALLOWMULTISELECT,
-    sFilter.toStdString().c_str());
+  sFilter.toStdString().c_str());
 
   if (dlg.DoModal() == IDOK)
   {
-    static_cast <CGoCadModel*> (
+  static_cast <CGoCadModel*> (
       &m_goCadSubModelEntry->Model())->ImportMesh((LPCSTR) dlg.GetPathName(),
-        selectGocadSolidDlg);
+    selectGocadSolidDlg);
   }
 }
 
@@ -122,7 +122,7 @@ bool CGoCadSubModelEntry_Delegate::CanInsertSurfaceContainer() const
 void InsertHorizon_Generic( CFemAppModel& model, bool bSlip )
 {
   CTetraSubHorizon* pHorizon =
-    new CTetraSubHorizon( bSlip ? "New Fault " : "New Horizon", bSlip, model, FALSE /*attach to entry*/);
+  new CTetraSubHorizon( bSlip ? "New Fault " : "New Horizon", bSlip, model, FALSE /*attach to entry*/);
 
   typedef CAttriHorizon <CTetraSubHorizon> THorizonDlg;
 
@@ -130,21 +130,21 @@ void InsertHorizon_Generic( CFemAppModel& model, bool bSlip )
 
   if (dlg.DoModal() == IDCANCEL)
   {
-    delete pHorizon;
+  delete pHorizon;
   }
   else
   {
-	  pHorizon->LinkToEntry();
-	  pHorizon->AttachToEntry();
+    pHorizon->LinkToEntry();
+    pHorizon->AttachToEntry();
   }
 }
 
 void CGoCadSubModelEntry_Delegate::InsertFault()
 { 
-	InsertHorizon_Generic( m_goCadSubModelEntry->Model(), TRUE );
+  InsertHorizon_Generic( m_goCadSubModelEntry->Model(), TRUE );
 }
 
 void CGoCadSubModelEntry_Delegate::InsertHorizon()
 {
-	InsertHorizon_Generic( m_goCadSubModelEntry->Model(), FALSE );
+  InsertHorizon_Generic( m_goCadSubModelEntry->Model(), FALSE );
 }

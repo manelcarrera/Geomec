@@ -25,32 +25,32 @@ Mesh generateBeachBall(float radius)
   // gets colorIndex 1, and the z-axis goes through the top.
   for(int i=0; i < nparts; ++i)
   {
-    for(int j=0; j <= m; ++j)
-    {
+  for(int j=0; j <= m; ++j)
+  {
       float angle1 = (i * m + j) * 2 * (float)M_PI / (nparts * m) - (float)M_PI / 4;
       float x = cosf(angle1);
       float y = sinf(angle1);
 
       for(int k=0; k <= n; ++k)
       {
-        float angle2 = k * (float)M_PI / n;
+    float angle2 = k * (float)M_PI / n;
 
-        float z = -cosf(angle2);
-        float r =  sinf(angle2);
+    float z = -cosf(angle2);
+    float r =  sinf(angle2);
 
-        // Components of the normal vector
-        float nx = r * x;
-        float ny = r * y;
-        float nz = z;
+    // Components of the normal vector
+    float nx = r * x;
+    float ny = r * y;
+    float nz = z;
 
-        Vertex v;
-        v.position   = MbVec3f(nx, ny, nz) * radius;
-        v.normal     = MbVec3f(nx, ny, nz);
-        v.colorIndex = (float)(i % 2);
+    Vertex v;
+    v.position   = MbVec3f(nx, ny, nz) * radius;
+    v.normal     = MbVec3f(nx, ny, nz);
+    v.colorIndex = (float)(i % 2);
 
-        result.vertices.push_back(v);
+    result.vertices.push_back(v);
       }
-    }
+  }
   }
 
   // Set up the index buffer
@@ -63,15 +63,15 @@ Mesh generateBeachBall(float radius)
   int vertsPerPart = (n+1) * (m+1);
   for(int i=0; i < nparts; ++i)
   {
-    for(int j=0; j < m; ++j)
-    {
+  for(int j=0; j < m; ++j)
+  {
       for(int k=0; k < n; ++k)
       {
-        int base = i * vertsPerPart + j * (n+1) + k;
-        for(int q=0; q < 6; ++q)
+    int base = i * vertsPerPart + j * (n+1) + k;
+    for(int q=0; q < 6; ++q)
           result.indices.push_back((unsigned short)(base + templ[q]));
       }
-    }
+  }
   }
 
   return result;

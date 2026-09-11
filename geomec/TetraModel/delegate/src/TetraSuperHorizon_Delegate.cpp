@@ -19,14 +19,14 @@ bool CTetraSuperHorizon_Delegate::Attributes()
 {
   if (C3DHorizon_Delegate::Attributes())
   {
-    if (!m_tetraSuperHorizon->IsLinkedTo(
+  if (!m_tetraSuperHorizon->IsLinkedTo(
       *m_tetraSuperHorizon->Model().GraphEntry(MD_TETRA_SUPER_HORIZON)))
-    {
+  {
       m_tetraSuperHorizon->LinkTo(
-        *m_tetraSuperHorizon->Model().GraphEntry(MD_TETRA_SUPER_HORIZON));
-    }
+    *m_tetraSuperHorizon->Model().GraphEntry(MD_TETRA_SUPER_HORIZON));
+  }
 
-    return true;
+  return true;
   }
 
   return false;
@@ -45,10 +45,10 @@ void CTetraSuperHorizonEntry_Delegate::AppendContextMenu(
   // Export all ...
 
   typedef CSingleCommandTemplate <CTetraSuperHorizonEntry_Delegate>
-    TTetraSuperHorizonEntryCommand_Delegate;
+  TTetraSuperHorizonEntryCommand_Delegate;
 
   invoker.AddCommand(_T("Create horizon"),
-    *(new TTetraSuperHorizonEntryCommand_Delegate(*this,
+  *(new TTetraSuperHorizonEntryCommand_Delegate(*this,
       &CTetraSuperHorizonEntry_Delegate::CreateHorizon,
       &CTetraSuperHorizonEntry_Delegate::CanCreateHorizon)));
 }
@@ -66,22 +66,22 @@ void CTetraSuperHorizonEntry_Delegate::CreateHorizon()
   QString name;
 
   name = QString("New Horizon %1").arg(
-    m_tetraSuperHorizonEntry->GraphEntryNodes().size() + 1);
+  m_tetraSuperHorizonEntry->GraphEntryNodes().size() + 1);
 
   CTetraSuperHorizon* pHorizon =
-    new CTetraSuperHorizon(name, 0, m_tetraSuperHorizonEntry->Model(), FALSE);
+  new CTetraSuperHorizon(name, 0, m_tetraSuperHorizonEntry->Model(), FALSE);
   CTetraSuperHorizon_Delegate* pHorizon_Delegate =
-    new CTetraSuperHorizon_Delegate(pHorizon);
+  new CTetraSuperHorizon_Delegate(pHorizon);
 
   if (!pHorizon_Delegate->Attributes())
   {
-    delete pHorizon_Delegate;
-    delete pHorizon;
+  delete pHorizon_Delegate;
+  delete pHorizon;
   }
   else if (pHorizon->SurfaceSize() == 1 && pHorizon->Name() == name)
   {
-    // Take over more meaningfull name than default name
+  // Take over more meaningfull name than default name
 
-    pHorizon->Name(pHorizon->Surface(0).Name());
+  pHorizon->Name(pHorizon->Surface(0).Name());
   }
 }

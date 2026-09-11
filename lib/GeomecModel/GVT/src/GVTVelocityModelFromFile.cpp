@@ -29,9 +29,9 @@ void CGVTVelocityModelFromFile::velocityModelFile(
 bool CGVTVelocityModelFromFile::isVelocityModelFileReady() const
 {
   if (velocityModelFile().isEmpty() ||
-    !FileExists(velocityModelFile().toStdString().c_str()))
+  !FileExists(velocityModelFile().toStdString().c_str()))
   {
-    return false;
+  return false;
   }
 
   return true;

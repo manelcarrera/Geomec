@@ -26,7 +26,7 @@ IDirectedLoad::~IDirectedLoad()
 
 const geo::IVector &IDirectedLoad::Direction() const
 {
-	return m_vecDirection;
+  return m_vecDirection;
 }
 
 } // namespace dia

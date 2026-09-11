@@ -69,21 +69,21 @@ void CGeneralDataBlock::Type(int type)
   switch (m_type)
   {
   case 0:
-    m_dblValues.clear();
-    m_strValues.clear();
-    break;
+  m_dblValues.clear();
+  m_strValues.clear();
+  break;
   case 1:
-    m_intValues.clear();
-    m_strValues.clear();
-    break;
+  m_intValues.clear();
+  m_strValues.clear();
+  break;
   case 2:
-    m_intValues.clear();
-    m_dblValues.clear();
-    break;
+  m_intValues.clear();
+  m_dblValues.clear();
+  break;
   default:
-    m_intValues.clear();
-    m_dblValues.clear();
-    m_strValues.clear();
+  m_intValues.clear();
+  m_dblValues.clear();
+  m_strValues.clear();
   }
 }
 

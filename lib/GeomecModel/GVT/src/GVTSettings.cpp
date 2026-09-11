@@ -54,12 +54,12 @@ CGVTSettings::CGVTSettings(const CGVTSettings &rhs)
   // make deep copies of the containers
   for(size_t i = 0; i < rhs.m_SeismicGrids.size(); ++i)
   {
-    m_SeismicGrids.push_back(new CGVTSeismicGridDefinition(*rhs.m_SeismicGrids[i]));
+  m_SeismicGrids.push_back(new CGVTSeismicGridDefinition(*rhs.m_SeismicGrids[i]));
   }
   std::map<CFormationBase*, CGVTVelocityModel*>::const_iterator it;
   for(it = rhs.m_mpFormation2Model.begin(); it != rhs.m_mpFormation2Model.end(); ++it)
   {
-    m_mpFormation2Model.insert(std::map<CFormationBase*, CGVTVelocityModel*>::value_type(it->first, new CGVTVelocityModel(*it->second)));
+  m_mpFormation2Model.insert(std::map<CFormationBase*, CGVTVelocityModel*>::value_type(it->first, new CGVTVelocityModel(*it->second)));
   }
 
   m_vcTimeLapses = rhs.m_vcTimeLapses;
@@ -96,7 +96,7 @@ CGVTSettings &CGVTSettings::operator=(const CGVTSettings &rhs)
   m_data = rhs.m_data;
  
   // NOTE: don't set m_bResultsChanged
-    
+  
   // Clear the memory, we're going to make new copies
   ClearMemory();
   m_SeismicGrids.clear();
@@ -104,12 +104,12 @@ CGVTSettings &CGVTSettings::operator=(const CGVTSettings &rhs)
   // make deep copies of the containers
   for(size_t i = 0; i < rhs.m_SeismicGrids.size(); ++i)
   {
-    m_SeismicGrids.push_back(new CGVTSeismicGridDefinition(*rhs.m_SeismicGrids[i]));
+  m_SeismicGrids.push_back(new CGVTSeismicGridDefinition(*rhs.m_SeismicGrids[i]));
   }
   std::map<CFormationBase*, CGVTVelocityModel*>::const_iterator it;
   for(it = rhs.m_mpFormation2Model.begin(); it != rhs.m_mpFormation2Model.end(); ++it)
   {
-    m_mpFormation2Model.insert(std::map<CFormationBase*, CGVTVelocityModel*>::value_type(it->first, new CGVTVelocityModel(*it->second)));
+  m_mpFormation2Model.insert(std::map<CFormationBase*, CGVTVelocityModel*>::value_type(it->first, new CGVTVelocityModel(*it->second)));
   }
   m_vcTimeLapses = rhs.m_vcTimeLapses;
   m_GVTVelocityModelFile = rhs.m_GVTVelocityModelFile;
@@ -130,30 +130,30 @@ void CGVTSettings::OnNeighbourModified(const CGraphNode &node, enum ModifiedHint
   const TFormationBaseEntry *fbe = dynamic_cast<const TFormationBaseEntry*>(&node);
   
   if(rg)
-	  m_bResultsChanged = true;
+    m_bResultsChanged = true;
   else if(fbe)
   {
-    // any formations deleted?
-    std::map<CFormationBase*, CGVTVelocityModel*>::iterator it;
-    for(it = m_mpFormation2Model.begin(); it != m_mpFormation2Model.end(); ++it)
-    {
+  // any formations deleted?
+  std::map<CFormationBase*, CGVTVelocityModel*>::iterator it;
+  for(it = m_mpFormation2Model.begin(); it != m_mpFormation2Model.end(); ++it)
+  {
       if(fbe->EntryNodes().find(it->first) == fbe->EntryNodes().end())
       {
-        delete it->second;
-        m_mpFormation2Model.erase(it);
-        break;
+    delete it->second;
+    m_mpFormation2Model.erase(it);
+    break;
       }
-    }
-    // any new formations?
-    TFormationBaseEntry::TNodeSet stNode = fbe->EntryNodes();
-    TFormationBaseEntry::TNodeSet::const_iterator it_form;
-    for(it_form = stNode.begin(); it_form != stNode.end(); ++it_form)
-    {
+  }
+  // any new formations?
+  TFormationBaseEntry::TNodeSet stNode = fbe->EntryNodes();
+  TFormationBaseEntry::TNodeSet::const_iterator it_form;
+  for(it_form = stNode.begin(); it_form != stNode.end(); ++it_form)
+  {
       if(m_mpFormation2Model.find(*it_form) == m_mpFormation2Model.end())
       {
-        m_mpFormation2Model.insert(std::map<CFormationBase*, CGVTVelocityModel*>::value_type(*it_form, new CGVTVelocityModel(RFactor)));
+    m_mpFormation2Model.insert(std::map<CFormationBase*, CGVTVelocityModel*>::value_type(*it_form, new CGVTVelocityModel(RFactor)));
       }
-    }
+  }
   }
 }
 
@@ -161,13 +161,13 @@ void CGVTSettings::ClearMemory()
 {
   for(size_t i = 0; i < m_SeismicGrids.size(); ++i)
   {
-    delete m_SeismicGrids[i];
+  delete m_SeismicGrids[i];
   }
 
   std::map<CFormationBase*, CGVTVelocityModel*>::iterator it;
   for(it = m_mpFormation2Model.begin(); it != m_mpFormation2Model.end(); ++it)
   {
-    delete it->second;
+  delete it->second;
   }
 }
 
@@ -191,12 +191,12 @@ void CGVTSettings::RemoveGrid(CGVTSeismicGridDefinition *grid)
   
   for(it = m_SeismicGrids.begin(); it != m_SeismicGrids.end(); ++it)
   {
-    if(*it == grid)
-    {
+  if(*it == grid)
+  {
       m_SeismicGrids.erase(it);
       delete grid;
       break;
-    }
+  }
   }
 }
 
@@ -262,26 +262,26 @@ void CGVTSettings::RemoveGrid(int nIndex)
   assert(nIndex >= 0);
   assert(nIndex < m_SeismicGrids.size());
   if(m_SeismicGrids.size() == 0)
-    return;
+  return;
   delete m_SeismicGrids[nIndex];
   m_SeismicGrids.erase(m_SeismicGrids.begin() + nIndex);
   if(m_SeismicGrids.size() == 0)
-    CurrentGrid(-1);
+  CurrentGrid(-1);
   else
-    CurrentGrid(m_SeismicGrids.size() - 1);
+  CurrentGrid(m_SeismicGrids.size() - 1);
 }
 
 std::map<CFormationBase*, CGVTVelocityModel*> &CGVTSettings::FormationToVelModelMp()  
 { 
   if(m_mpFormation2Model.size() == 0)
   {
-    TFormationBaseEntry& entry = (TFormationBaseEntry&)*m_Model.GraphEntry(MD_BASE_FORMATION);
-	  TFormationBaseEntry::TNodeSet stNode = entry.EntryNodes();
-    for(TFormationBaseEntry::TNodeSet::const_iterator it = stNode.begin(); it != stNode.end(); it++)
-    {
+  TFormationBaseEntry& entry = (TFormationBaseEntry&)*m_Model.GraphEntry(MD_BASE_FORMATION);
+    TFormationBaseEntry::TNodeSet stNode = entry.EntryNodes();
+  for(TFormationBaseEntry::TNodeSet::const_iterator it = stNode.begin(); it != stNode.end(); it++)
+  {
       // default set velocity model to R factor
       m_mpFormation2Model.insert(std::map<CFormationBase*, CGVTVelocityModel*>::value_type(*it, new CGVTVelocityModel(RFactor)));
-    }
+  }
   }
   assert(m_mpFormation2Model.size() > 0);
   return m_mpFormation2Model;
@@ -290,7 +290,7 @@ std::map<CFormationBase*, CGVTVelocityModel*> &CGVTSettings::FormationToVelModel
 bool CGVTSettings::GridReady() const
 {
   if(m_nCurrentGrid == -1)
-    return false;
+  return false;
 
   CGVTSeismicGridDefinition *gridDef = m_SeismicGrids[m_nCurrentGrid];
   return gridDef->GridIsValid();
@@ -309,7 +309,7 @@ bool CGVTSettings::VelocityModelFileReady() const
 bool CGVTSettings::AnalysisIsGo() const
 {
   if(!GridReady() || !TimeLapseReady() || !VelocityModelFileReady())
-    return false;
+  return false;
   return true;
 }
 
@@ -328,11 +328,11 @@ bool CGVTSettings::PrepareCalculation(IProgressBase &progress)
 {
   for (CGVTDataTypes::TTimeLapses::iterator it = m_vcTimeLapses.begin(); it != m_vcTimeLapses.end(); ++it)
   {
-    if (it->second->Initial())
-    {
+  if (it->second->Initial())
+  {
       _m()->msg("Timelapses can't end with the initial stage. Please correct your settings.");
       return false;
-    }
+  }
   }
 
   m_data.Build(progress, *m_SeismicGrids[m_nCurrentGrid], m_mpFormation2Model, m_vcTimeLapses, DeltaVp(), Deltat(), m_bForceNewPointSets, m_bResultsChanged);
@@ -350,9 +350,9 @@ CGVTSettings::eCalculatorType CGVTSettings::CalculatorType()
 #if 0
   ISettings* registry = ISettings::instance();
   if (registry->getProfileInt("Settings", "UnlockGVT"))
-    return INTERNAL;
+  return INTERNAL;
   else
-    return EXTERNAL;
+  return EXTERNAL;
 #else
   return INTERNAL;
 #endif
@@ -364,13 +364,13 @@ bool CGVTSettings::CanCalculate()
   if (CalculatorType() == EXTERNAL)
   {
 #ifdef _WIN32
-    QString appPath = GetAppPath();
-    //appPath = appPath.left(appPath.indexOf("\\Geomec.exe"));
-    appPath = appPath + "\\GVT\\GVT.exe";
+  QString appPath = GetAppPath();
+  //appPath = appPath.left(appPath.indexOf("\\Geomec.exe"));
+  appPath = appPath + "\\GVT\\GVT.exe";
 
-    return FileExists(appPath);
+  return FileExists(appPath);
 #else
-    return false;
+  return false;
 #endif
   }
 
@@ -385,20 +385,20 @@ void CGVTSettings::Calculate()
   progress->StatusMessage("Setting Up Analysis");
 
   if (!PrepareCalculation(*progress))
-    return;
+  return;
 
   progress->StatusMessage("Starting Analysis...");
 
   switch (CalculatorType())
   {
   case INTERNAL:
-    InternalCalculation(*progress);
-    break;
+  InternalCalculation(*progress);
+  break;
   case EXTERNAL:
-    ExternalCalculation(*progress);
-    break;
+  ExternalCalculation(*progress);
+  break;
   default:
-    assert(false);
+  assert(false);
   }
 }
 
@@ -420,7 +420,7 @@ void CGVTSettings::ExternalCalculation(IProgressBase & /* progress */)
   gvtInputPath = QString("%1\\gvtinput.gvt").arg(GetGeomecTempPathExt(CTempPath::TEMP_GENERAL));
   if(!gvtInput.WriteInput(gvtInputPath.toStdString().c_str()))
   {
-    _m()->msg(gvtInput.Error());
+  _m()->msg(gvtInput.Error());
   }
 
   // start the GVT job
@@ -428,9 +428,9 @@ void CGVTSettings::ExternalCalculation(IProgressBase & /* progress */)
   commandline = QString("-p \"%1\" -v \"%2\"").arg(gvtInputPath).arg(VelocityModelFile());
   if(!OutputDirectory().length() == 0)
   {
-    commandline.append(" -o \"");
-    commandline.append(OutputDirectory());
-    commandline.append("\"");
+  commandline.append(" -o \"");
+  commandline.append(OutputDirectory());
+  commandline.append("\"");
   }
   
   QString appPath = GetAppPath();
@@ -439,14 +439,14 @@ void CGVTSettings::ExternalCalculation(IProgressBase & /* progress */)
  
 #ifdef WIN32
   int returnValue = _spawnl(_P_WAIT, appPath.toStdString().c_str(),
-    commandline.toStdString().c_str(), NULL);
+  commandline.toStdString().c_str(), NULL);
 
   if (returnValue != 0)
   {
-    QString message = QString(FAILURE_MESSAGE).arg(appPath);
+  QString message = QString(FAILURE_MESSAGE).arg(appPath);
 
-    if (_m()->msg(message, MB_YESNO) == IDYES)
-    {
+  if (_m()->msg(message, MB_YESNO) == IDYES)
+  {
       QString path, fileName;
 
       SplitPathAndFileName(gvtInputPath, path, fileName);
@@ -454,8 +454,8 @@ void CGVTSettings::ExternalCalculation(IProgressBase & /* progress */)
       QString logFile = path + SEPARATOR + GVT_LOG_FILE;
 
       _spawnlp(_P_NOWAIT, NOTEPAD.toStdString().c_str(),
-        NOTEPAD.toStdString().c_str(), logFile.toStdString().c_str(), NULL);
-    }
+    NOTEPAD.toStdString().c_str(), logFile.toStdString().c_str(), NULL);
+  }
   }
 #else // !WIN32
   pid_t pid;
@@ -489,58 +489,58 @@ void CGVTSettings::LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRES
   stream >> temp;
   for(int i = 0; i < temp; ++i)
   {
-    CGVTSeismicGridDefinition  *gridDef = new CGVTSeismicGridDefinition();
-    gridDef->LoadStream(stream, version, progress);
-    m_SeismicGrids.push_back(gridDef);
+  CGVTSeismicGridDefinition  *gridDef = new CGVTSeismicGridDefinition();
+  gridDef->LoadStream(stream, version, progress);
+  m_SeismicGrids.push_back(gridDef);
   }
   
   stream >> temp;
   for(int i = 0; i < temp; ++i)
   {
-    int index;
-    stream >> index;
-    TFormationBaseEntry& form_entry = (TFormationBaseEntry&)(*m_Model.GraphEntry(MD_BASE_FORMATION));
-    CFormationBase *fb = form_entry.FindIndex(index);
-    
-    int velModel;
-    stream >> velModel;
-    CGVTVelocityModel *vm = new CGVTVelocityModel((eVelocityModel)velModel);
-    int paramSize;
-    stream >> paramSize;
-    for(int j = 0; j < paramSize; ++j)
-    {
+  int index;
+  stream >> index;
+  TFormationBaseEntry& form_entry = (TFormationBaseEntry&)(*m_Model.GraphEntry(MD_BASE_FORMATION));
+  CFormationBase *fb = form_entry.FindIndex(index);
+  
+  int velModel;
+  stream >> velModel;
+  CGVTVelocityModel *vm = new CGVTVelocityModel((eVelocityModel)velModel);
+  int paramSize;
+  stream >> paramSize;
+  for(int j = 0; j < paramSize; ++j)
+  {
       QString name;
       double value;
       stream >> name;
       stream >> value;
       vm->SetParameter(name.toStdString().c_str(), value);
-    }
-    if (fb) // fix issue with older models where this map was not saved properly and formations might be missing (mantis #3048)
-    {
+  }
+  if (fb) // fix issue with older models where this map was not saved properly and formations might be missing (mantis #3048)
+  {
       std::pair<CGVTDataTypes::TFormationVelocityModels::iterator, bool> retval = m_mpFormation2Model.insert(std::map<CFormationBase*, CGVTVelocityModel*>::value_type(fb, vm));
       if (!retval.second)
       {
-        *retval.first->second = *vm;
-        delete vm;
+    *retval.first->second = *vm;
+    delete vm;
       }
-    }
+  }
   }
 
   stream >> temp;
   for(int i = 0; i < temp; ++i)
   {
-    int idx1, idx2;
-    stream >> idx1;
-    stream >> idx2;
-    TDepletionStageEntry& form_entry = (TDepletionStageEntry&)(*m_Model.GraphEntry(MD_BASE_DEPLETION_STAGE));
-    CDepletionStage *ds1 = form_entry.FindIndex(idx1);
-    CDepletionStage *ds2 = form_entry.FindIndex(idx2);
-    AddTimeLapse(ds1, ds2);
+  int idx1, idx2;
+  stream >> idx1;
+  stream >> idx2;
+  TDepletionStageEntry& form_entry = (TDepletionStageEntry&)(*m_Model.GraphEntry(MD_BASE_DEPLETION_STAGE));
+  CDepletionStage *ds1 = form_entry.FindIndex(idx1);
+  CDepletionStage *ds2 = form_entry.FindIndex(idx2);
+  AddTimeLapse(ds1, ds2);
   }
   if(version > CStreamVersion(3, 0, 121))
   {
-    stream >> temp;
-    m_bResultsChanged = (temp == 1) ? true : false;
+  stream >> temp;
+  m_bResultsChanged = (temp == 1) ? true : false;
   }
 }
 
@@ -566,31 +566,31 @@ void CGVTSettings::SaveStream(TSTREAM& stream, TPROGRESS& progress)
   stream << (int)m_SeismicGrids.size();
   for(size_t i = 0; i < m_SeismicGrids.size(); ++i)
   {
-    m_SeismicGrids[i]->SaveStream(stream, progress);
+  m_SeismicGrids[i]->SaveStream(stream, progress);
   }
 
   stream << (int)m_mpFormation2Model.size();
   std::map<CFormationBase*, CGVTVelocityModel*>::iterator it;
   for(it = m_mpFormation2Model.begin(); it != m_mpFormation2Model.end(); ++it)
   {
-    stream << it->first->Index();
-    stream << it->second->ModelType();
+  stream << it->first->Index();
+  stream << it->second->ModelType();
 
-    std::map<QString, double> &params = it->second->Parameters();
-    stream << (int)params.size();
-    std::map<QString, double>::const_iterator paramIt;
-    for(paramIt = params.begin(); paramIt != params.end(); ++paramIt)
-    {
+  std::map<QString, double> &params = it->second->Parameters();
+  stream << (int)params.size();
+  std::map<QString, double>::const_iterator paramIt;
+  for(paramIt = params.begin(); paramIt != params.end(); ++paramIt)
+  {
       stream << paramIt->first;
       stream << paramIt->second;
-    }
+  }
   }
 
   stream << (int)m_vcTimeLapses.size();
   for(size_t i = 0; i < m_vcTimeLapses.size(); ++i)
   {
-    stream << m_vcTimeLapses[i].first->Index();
-    stream << m_vcTimeLapses[i].second->Index();
+  stream << m_vcTimeLapses[i].first->Index();
+  stream << m_vcTimeLapses[i].second->Index();
   }
   
   n = m_bResultsChanged ? 1 : 0;

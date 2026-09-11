@@ -14,21 +14,21 @@ namespace GeomecRGI
 class CSavePropertyTensor : public CSavePropertyBase
 {
   public:
-    CSavePropertyTensor(const RGProperty& rgProperty,
+  CSavePropertyTensor(const RGProperty& rgProperty,
       const ITensorGroup::CComponentComposite::TENSOR_COMPONENT&
-        tensorComponent);
-    virtual ~CSavePropertyTensor();
+    tensorComponent);
+  virtual ~CSavePropertyTensor();
 
   protected:
-    template <typename Tensor>
+  template <typename Tensor>
       bool saveProperty(const Tensor& tensor, RGInterface& rgi,
-        CModelBase& modelBase, const CRockMechProcessor& rmp, double factor);
+    CModelBase& modelBase, const CRockMechProcessor& rmp, double factor);
 
   private:
-    CSavePropertyTensor(const CSavePropertyTensor& rhs);
-    CSavePropertyTensor& operator = (const CSavePropertyTensor& rhs);
+  CSavePropertyTensor(const CSavePropertyTensor& rhs);
+  CSavePropertyTensor& operator = (const CSavePropertyTensor& rhs);
 
-    const ITensorGroup::CComponentComposite::TENSOR_COMPONENT m_tensorComponent;
+  const ITensorGroup::CComponentComposite::TENSOR_COMPONENT m_tensorComponent;
 };
 
 // protected
@@ -43,32 +43,32 @@ const QString TENSOR_COMPONENT_NOT_FOUND =
 
 template <typename Tensor>
   bool CSavePropertyTensor::saveProperty(const Tensor& tensor,
-    RGInterface& rgi, CModelBase& modelBase, const CRockMechProcessor& rmp,
-    double factor)
+  RGInterface& rgi, CModelBase& modelBase, const CRockMechProcessor& rmp,
+  double factor)
 {
   CDepletionStage& stage = modelBase.DepletionStageEntry().
-    StageByIndex(rgi.getCurrentDepletionStage().getDepletionStage());
+  StageByIndex(rgi.getCurrentDepletionStage().getDepletionStage());
   const IResultComponent* resultComponent = tensor.Components().
-    ResultComponent(stage, CAnalysisType::AT_NONLIN, 0, m_tensorComponent);
+  ResultComponent(stage, CAnalysisType::AT_NONLIN, 0, m_tensorComponent);
 
   if (resultComponent == 0)
   {
-    QString logLine = TENSOR_COMPONENT_NOT_FOUND.arg(m_tensorComponent).
+  QString logLine = TENSOR_COMPONENT_NOT_FOUND.arg(m_tensorComponent).
       arg(tensor.Name()).arg(stage.Index());
 
-    rmp.AddLogLine(logLine, &rgi, false, true);
+  rmp.AddLogLine(logLine, &rgi, false, true);
 
-    return false;
+  return false;
   }
 
   std::vector <double> values(modelBase.Mesh().Mesh().ElementSize());
 
   for (int i = 0; i < modelBase.Mesh().Mesh().ElementSize(); ++i)
   {
-    const geo::IElement& element = modelBase.Mesh().Mesh().Element(i);
-    geo::CValue value = resultComponent->ValuePoint(element.MidPoint());
+  const geo::IElement& element = modelBase.Mesh().Mesh().Element(i);
+  geo::CValue value = resultComponent->ValuePoint(element.MidPoint());
 
-    values[i] =
+  values[i] =
       (value.Valid() ? (factor * value.Value()) : RGUtils::nullReal());
   }
 

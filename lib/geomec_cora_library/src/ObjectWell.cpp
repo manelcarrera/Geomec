@@ -65,7 +65,7 @@ const geo::IElement* CObjectWell::getNextElement()
 {
   if (m_sequenceState < m_newWellPath->PolyLine().LineSize())
   {
-    return &(m_newWellPath->PolyLine().Line(m_sequenceState++));
+  return &(m_newWellPath->PolyLine().Line(m_sequenceState++));
   }
 
   return 0;
@@ -74,7 +74,7 @@ const geo::IElement* CObjectWell::getNextElement()
 std::ostream& CObjectWell::operator () (std::ostream& os) const
 {
   os << PREFIX.toStdString() << m_newWellPath->Name().toStdString() <<
-    std::endl;
+  std::endl;
 
   return os;
 }

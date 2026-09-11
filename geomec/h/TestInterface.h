@@ -6,9 +6,9 @@
 class TI : public IListener, public IListenerIpc
 {
 public:
-	TI(const std::string& token);
+  TI(const std::string& token);
 
 protected:
-	virtual void handle(Cmd cmd);
-	virtual void received(Cmd cmd); //ipc
+  virtual void handle(Cmd cmd);
+  virtual void received(Cmd cmd); //ipc
 };

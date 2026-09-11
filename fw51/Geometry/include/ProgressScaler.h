@@ -26,22 +26,22 @@
 
 class GEOMETRY_EXPORT  CProgressScaler : public IProgressBase
 {
-	IProgressBase& m_parent;
-	int m_nTotalParentSteps;
-	int m_nParentSteps;
-	int m_nTotalSteps;
-	int m_nSteps;
+  IProgressBase& m_parent;
+  int m_nTotalParentSteps;
+  int m_nParentSteps;
+  int m_nTotalSteps;
+  int m_nSteps;
 public:
-	CProgressScaler(IProgressBase& parent, int nParentSteps);
-	virtual ~CProgressScaler();
+  CProgressScaler(IProgressBase& parent, int nParentSteps);
+  virtual ~CProgressScaler();
 
-	// set the total number of steps
-	virtual void AddSteps(int nSteps);
-	// increment
-	virtual void Step(int nSteps = 1);
+  // set the total number of steps
+  virtual void AddSteps(int nSteps);
+  // increment
+  virtual void Step(int nSteps = 1);
 
-	// set the title of the progress indicator
-	virtual void StatusMessage(const QString& sMessage);
+  // set the title of the progress indicator
+  virtual void StatusMessage(const QString& sMessage);
 };
 
 #endif // !defined(PROGRESSSCALER_H_INCLUDED_)

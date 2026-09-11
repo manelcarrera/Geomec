@@ -40,16 +40,16 @@ public:
   RescuePropertyGroup *PropertyGroupIdentifiedBy(RESCUEINT64 identifier) 
                   {return groups->ObjectIdentifiedBy(identifier);}
                                    // Do NOT delete the object returned.
-                                    // If you want to remove them from the
-                                    // model use the corresponding Drop method.
+                  // If you want to remove them from the
+                  // model use the corresponding Drop method.
   RESCUEBOOL DropRescuePropertyGroup(RescuePropertyGroup *unitToDrop) 
                           {return ((*groups) -= unitToDrop);}
 
   void AddBlockUnit(RescueBlockUnit *existingBlockUnit) 
-                            {(*blockUnits) += existingBlockUnit;}
+              {(*blockUnits) += existingBlockUnit;}
   RESCUEBOOL DeleteBlockUnit(RescueBlockUnit *existingBlockUnit); 
   RescueBlockUnit *NthBlockUnit(RESCUEINT64 zeroBasedOrdinal)
-    {return (RescueBlockUnit *) (*blockUnits).NthObject(zeroBasedOrdinal);}
+  {return (RescueBlockUnit *) (*blockUnits).NthObject(zeroBasedOrdinal);}
                   // RescueUnit does not "own" RescueBlockUnits,
                   // so it does not create or delete them, merely
                   // catalogs relationships to them.

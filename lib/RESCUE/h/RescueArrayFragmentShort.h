@@ -24,18 +24,18 @@ public:
   RESCUEINT32 ValueLength() {return (RESCUEINT32) valueLength;}
   RESCUEINT32 ValueLength(RESCUEBOOL throwIfTooBig) {return RescueContext::Return32For64(valueLength, throwIfTooBig);}
   RESCUEUSHORT *Value() {return value;}
-                                    // Return copies of the contents.  
-                                    // Do NOT delete returned objects.
+                  // Return copies of the contents.  
+                  // Do NOT delete returned objects.
   void SetValue(RESCUEUSHORT *valueArray);
-                                    // The array has the number of dimensions in
-                                    // the grid.
-                                    // The instance makes a copy of the array.
+                  // The array has the number of dimensions in
+                  // the grid.
+                  // The instance makes a copy of the array.
   void AcceptValue(RESCUEUSHORT *valueArray);
-                                    // Same as SetValue, except that the pointer
-                                    // must have been created with new [].  Instead
-                                    // of copying the array the method copies the
-                                    // pointer.  Do NOT delete the pointer after
-                                    // passing it to the array.
+                  // Same as SetValue, except that the pointer
+                  // must have been created with new [].  Instead
+                  // of copying the array the method copies the
+                  // pointer.  Do NOT delete the pointer after
+                  // passing it to the array.
 private:
   RescueArrayFragmentShort(RescueArray *parentArrayIn,
                            RESCUEINT64 dimensionsIn, RESCUEINT64 iLowBoundIn, RESCUEINT64 iCountIn,
@@ -43,9 +43,9 @@ private:
                                              RESCUEINT64 kLowBoundIn, RESCUEINT64 kCountIn)
                                              :RescueArrayFragment(parentArrayIn,
                                                                   dimensionsIn, iLowBoundIn, iCountIn,
-                                                                                jLowBoundIn, jCountIn,
-                                                                                kLowBoundIn, kCountIn)
-                                                    {value = 0; valueLength = 0;}
+                                        jLowBoundIn, jCountIn,
+                                        kLowBoundIn, kCountIn)
+                          {value = 0; valueLength = 0;}
   virtual void DropMemory() {delete [] value; value = 0;}
   virtual void UnArchiveData(FILE *archiveFile, RESCUEINT64 fileVersion);
   RESCUEUSHORT Replace(RESCUEINT64 iNdx, RESCUEINT64 jNdx, RESCUEINT64 kNdx, RESCUEUSHORT data);

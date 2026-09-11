@@ -13,7 +13,7 @@ CRunModel::CRunModel(CRunModelData& runModelData,
 : m_runModelData(runModelData)
 , m_applicationVersion(applicationVersion)
 , m_analysisTypes(selectAnalysisTypes(m_runModelData.summaryResultFile(),
-    m_runModelData.selectedLSFs()))
+  m_runModelData.selectedLSFs()))
 {
   processModelData();
   validateVersionNumber();
@@ -57,36 +57,36 @@ bool CRunModel::operator () ()
 
   if ((m_runModelData.modelData())() != 0)
   {
-    QString modelPath;
-    QString modelFileName;
+  QString modelPath;
+  QString modelFileName;
 
-    SplitPathAndFileName(m_runModelData.modelData().fileName(), modelPath,
+  SplitPathAndFileName(m_runModelData.modelData().fileName(), modelPath,
       modelFileName);
 
-    QString modelName = RemoveExtension(modelFileName);
-    CRunModelEngine runModelEngine(*(m_analysisTypes.begin()));
+  QString modelName = RemoveExtension(modelFileName);
+  CRunModelEngine runModelEngine(*(m_analysisTypes.begin()));
 
-    m_runModelData.summaryResultFile().addAdditionalInformation(
+  m_runModelData.summaryResultFile().addAdditionalInformation(
       addFullPath(m_runModelData.modelData().fileName()));
 
-    ok = ok && runModelEngine.run(m_runModelData, modelName,
+  ok = ok && runModelEngine.run(m_runModelData, modelName,
       m_applicationVersion);
 
-    if (ok)
-    {
+  if (ok)
+  {
       if (!m_runModelData.minimumOutput())
       {
-        ok = IModelLifetimeFacade::SaveMain(CModelBase::CModelLoadSaveDefault(m_applicationVersion), *m_runModelData.modelData()(), modelFileName, true);
+    ok = IModelLifetimeFacade::SaveMain(CModelBase::CModelLoadSaveDefault(m_applicationVersion), *m_runModelData.modelData()(), modelFileName, true);
       }
-    }
-    else
-    {
+  }
+  else
+  {
       reportDianaFailure(m_runModelData.summaryResultFile());
-    }
+  }
   }
 
   return (ok && (m_runModelData.summaryResultFile().getResultValue() ==
-    CSummaryResultFile::RESULT_VALUE_OK));
+  CSummaryResultFile::RESULT_VALUE_OK));
 }
 
 // private
@@ -103,12 +103,12 @@ void CRunModel::validateVersionNumber()
 {
   if (VERSION_NUMBER < m_runModelData.versionNumber())
   {
-    QString additionalInformation = QString(INVALID_VERSION).
+  QString additionalInformation = QString(INVALID_VERSION).
       arg(m_runModelData.versionNumber()).arg(VERSION_NUMBER);
 
-    m_runModelData.summaryResultFile().setResultValue(
+  m_runModelData.summaryResultFile().setResultValue(
       CSummaryResultFile::RESULT_VALUE_INCONSISTENT);
-    m_runModelData.summaryResultFile().addAdditionalInformation(
+  m_runModelData.summaryResultFile().addAdditionalInformation(
       additionalInformation);
   }
 }
@@ -124,12 +124,12 @@ void CRunModel::processModelData()
 {
   if (m_runModelData.modelData()() == 0)
   {
-    QString additionalInformation =
+  QString additionalInformation =
       QString(MODEL_DOES_NOT_EXIST).arg(m_runModelData.modelData().fileName());
 
-    m_runModelData.summaryResultFile().setResultValue(
+  m_runModelData.summaryResultFile().setResultValue(
       CSummaryResultFile::RESULT_VALUE_INCONSISTENT);
-    m_runModelData.summaryResultFile().addAdditionalInformation(
+  m_runModelData.summaryResultFile().addAdditionalInformation(
       additionalInformation);
   }
 }
@@ -151,20 +151,20 @@ CRunModel::TAnalysisTypes CRunModel::selectAnalysisTypes(
 {
   TAnalysisTypes analysisTypes;
   std::vector <TLimitStateFunction> functions =
-    selectedLSFs.getLimitStateFunctions();
+  selectedLSFs.getLimitStateFunctions();
 
   for (size_t s = 0; s < functions.size(); ++s)
   {
-    analysisTypes.insert((*functions[s]).getAnalysisType());
+  analysisTypes.insert((*functions[s]).getAnalysisType());
   }
 
   if (analysisTypes.size() != ONE_ANALYSIS_TYPE)
   {
-    CAnalysisType analysisType(*(analysisTypes.begin()));
+  CAnalysisType analysisType(*(analysisTypes.begin()));
 
-    summaryResultFile.addAdditionalInformation(
+  summaryResultFile.addAdditionalInformation(
       QString(FIRST_ANALYSIS_TYPE_IS_PROCESSED).
-        arg(analysisType.Label().toLower()));
+    arg(analysisType.Label().toLower()));
   }
 
   return analysisTypes;

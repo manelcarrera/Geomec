@@ -16,35 +16,35 @@ class CUnitNode;
 
 class CAttriNodalValueSet : public CDialog
 {
-	CNodalValueSet& m_value_set;
+  CNodalValueSet& m_value_set;
 public:
 // Construction
-	CAttriNodalValueSet(CNodalValueSet &value_set, CWnd* pParent = NULL);   
+  CAttriNodalValueSet(CNodalValueSet &value_set, CWnd* pParent = NULL);   
 
 // Dialog Data
-	//{{AFX_DATA(CAttriValueSet)
-	enum { IDD = IDD_ATTRI_VALUE_SET };
-	CListCtrl	m_lcValue;
-	//}}AFX_DATA
+  //{{AFX_DATA(CAttriValueSet)
+  enum { IDD = IDD_ATTRI_VALUE_SET };
+  CListCtrl	m_lcValue;
+  //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CAttriNodalValueSet)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+  // ClassWizard generated virtual function overrides
+  //{{AFX_VIRTUAL(CAttriNodalValueSet)
+  protected:
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CAttriValueSet)
-	virtual BOOL OnInitDialog();
+  // Generated message map functions
+  //{{AFX_MSG(CAttriValueSet)
+  virtual BOOL OnInitDialog();
 
-	afx_msg void OnGetDisplayInfo(NMHDR* pNMHDR, LRESULT* pResult);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+  afx_msg void OnGetDisplayInfo(NMHDR* pNMHDR, LRESULT* pResult);
+  //}}AFX_MSG
+  DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}

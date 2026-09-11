@@ -35,10 +35,10 @@ C3DModel* C3DGUI::model() const
 
 void C3DGUI::OnCreateSceneEntry()
 {
-	if (m_b_GUI_disabled)
-		return;
-	
-	CGUIBase::OnCreateSceneEntry();
+  if (m_b_GUI_disabled)
+    return;
+  
+  CGUIBase::OnCreateSceneEntry();
 
   TSceneNodeEntry* pEntry = (TSceneNodeEntry*) m_3DModel->GraphEntry(MD_BASE_SCENE_NODE);
 
@@ -61,25 +61,25 @@ OIV2DHistoryScene* C3DGUI::getOIV2DHistoryScene() const
 
 void C3DGUI::LoadScenes(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS& progress, bool bIgnore)
 {
-	if (m_b_GUI_disabled)
-		return;
+  if (m_b_GUI_disabled)
+    return;
 
   CGUIBase::LoadScenes(stream, version, progress, bIgnore);
 
   if (version > CStreamVersion(4, 1, 52))
   {
-    if (!bIgnore)
-    {
+  if (!bIgnore)
+  {
       getOIV2DWellPathGraphScene()->LoadStream(stream, version, progress);
       getOIV2DHistoryScene()->LoadStream(stream, version, progress);
-    }
+  }
   }
 }
 
 void C3DGUI::SaveScenes(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS& progress)
 {
-	if (m_b_GUI_disabled)
-		return;
+  if (m_b_GUI_disabled)
+    return;
 
   CGUIBase::SaveScenes(stream, progress);
   getOIV2DWellPathGraphScene()->SaveStream(stream, progress);

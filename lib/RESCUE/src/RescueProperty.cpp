@@ -58,7 +58,7 @@ RescueProperty::RescueProperty(RescueDataContainer *parentContainer,
   RESCUEBOOL cellCentered = TRUE;
   if (attachedTo != CELL_CENTERED && attachedTo != FACE_CENTERED)
   {
-    cellCentered = FALSE;
+  cellCentered = FALSE;
   }
   isA = R_RescueProperty;
   (*container->properties) += this;
@@ -93,7 +93,7 @@ RescueProperty::RescueProperty(RescueDataContainer *containerIn, RescueModel *mo
   RESCUEBOOL cellCentered = TRUE;
   if (attachedTo != CELL_CENTERED && attachedTo != FACE_CENTERED)
   {
-    cellCentered = FALSE;
+  cellCentered = FALSE;
   }
   isA = R_RescueProperty;
   (*container->properties) += this;
@@ -132,7 +132,7 @@ RescueProperty::RescueProperty(RescueDataContainer *containerIn, RescueModel *mo
   RESCUEBOOL cellCentered = TRUE;
   if (attachedTo != CELL_CENTERED && attachedTo != FACE_CENTERED)
   {
-    cellCentered = FALSE;
+  cellCentered = FALSE;
   }
   isA = R_RescueProperty;
   (*container->properties) += this;
@@ -170,7 +170,7 @@ RescueProperty::RescueProperty(RescueDataContainer *containerIn, RescueModel *mo
   RESCUEBOOL cellCentered = TRUE;
   if (attachedTo != CELL_CENTERED && attachedTo != FACE_CENTERED)
   {
-    cellCentered = FALSE;
+  cellCentered = FALSE;
   }
   isA = R_RescueProperty;
   (*container->properties) += this;
@@ -206,7 +206,7 @@ RescueProperty::RescueProperty(RescueDataContainer *containerIn, RescueModel *mo
   RESCUEBOOL cellCentered = TRUE;
   if (attachedTo != CELL_CENTERED && attachedTo != FACE_CENTERED)
   {
-    cellCentered = FALSE;
+  cellCentered = FALSE;
   }
   isA = R_RescueProperty;
   (*container->properties) += this;
@@ -241,7 +241,7 @@ RescueProperty::RescueProperty(RescueDataContainer *containerIn, RescueModel *mo
   RESCUEBOOL cellCentered = TRUE;
   if (attachedTo != CELL_CENTERED && attachedTo != FACE_CENTERED)
   {
-    cellCentered = FALSE;
+  cellCentered = FALSE;
   }
   isA = R_RescueProperty;
   (*container->properties) += this;
@@ -473,7 +473,7 @@ RescueProperty::RescueProperty(RescueSurface *parentSurface,
   VetIJSurface();
   if (attachedTo == NODE_CENTERED)
   {
-    cellCentered = FALSE;
+  cellCentered = FALSE;
   }
   data = new RescueArrayFloat(propertyNameIn, propertyTypeIn, unitOfMeasureIn,
                                ijSurface->Grid(), 
@@ -510,7 +510,7 @@ RescueProperty::RescueProperty(RescueSurface *parentSurface,
   VetIJSurface();
   if (attachedTo == NODE_CENTERED)
   {
-    cellCentered = FALSE;
+  cellCentered = FALSE;
   }
   data = new RescueArrayInt(propertyNameIn, propertyTypeIn, unitOfMeasureIn,
                                ijSurface->Grid(), 
@@ -550,7 +550,7 @@ RescueProperty::RescueProperty(RescueSurface *parentSurface,
   RESCUEBOOL cellCentered = TRUE;
   if (attachedTo == NODE_CENTERED)
   {
-    cellCentered = FALSE;
+  cellCentered = FALSE;
   }
   data = new RescueArrayByte(propertyNameIn, propertyTypeIn, unitOfMeasureIn,
                              ijSurface->Grid(), 
@@ -590,7 +590,7 @@ RescueProperty::RescueProperty(RescueSurface *parentSurface,
   RESCUEBOOL cellCentered = TRUE;
   if (attachedTo == NODE_CENTERED)
   {
-    cellCentered = FALSE;
+  cellCentered = FALSE;
   }
   data = new RescueArrayShort(propertyNameIn, propertyTypeIn, unitOfMeasureIn,
                                ijSurface->Grid(), 
@@ -630,7 +630,7 @@ RescueProperty::RescueProperty(RescueSurface *parentSurface,
   RESCUEBOOL cellCentered = TRUE;
   if (attachedTo == NODE_CENTERED)
   {
-    cellCentered = FALSE;
+  cellCentered = FALSE;
   }
   data = new RescueArray2dVector(propertyNameIn, propertyTypeIn, unitOfMeasureIn,
                                  ijSurface->Grid(), 
@@ -669,7 +669,7 @@ RescueProperty::RescueProperty(RescueSurface *parentSurface,
   RESCUEBOOL cellCentered = TRUE;
   if (attachedTo == NODE_CENTERED)
   {
-    cellCentered = FALSE;
+  cellCentered = FALSE;
   }
   data = new RescueArray3dVector(propertyNameIn, propertyTypeIn, unitOfMeasureIn,
                                  ijSurface->Grid(), 
@@ -868,11 +868,11 @@ RescueProperty::~RescueProperty()
   delete data;
   if (loops != 0)
   {
-    delete loops;
+  delete loops;
   }
   if (colorTable != 0)
   {
-    delete colorTable;
+  delete colorTable;
   }
 }
 
@@ -880,148 +880,148 @@ void RescueProperty::VetIJSurface()
 {
   if (ijSurface == 0)
   {
-    ijSurface = surface->NthIJSurface(0);
+  ijSurface = surface->NthIJSurface(0);
   }
 }
 
 RescueProperty::RescueProperty(RescueContext *contextIn, FILE *archiveFile)
-                                :RescueHistoryObject(contextIn)
-                                ,parentBlockUnit(0)
-                                ,parentGeobodyPart(0)
-                                ,geometry(0)
-                                ,container(0)
-                                ,surface(0)
-                                ,loops(0)
-                                ,triangulatedSurface(FALSE)
-                                ,ijSurface(0)
-                                ,isLocked(FALSE)
-                                ,context(contextIn)
-                                ,colorTable(0)
+                :RescueHistoryObject(contextIn)
+                ,parentBlockUnit(0)
+                ,parentGeobodyPart(0)
+                ,geometry(0)
+                ,container(0)
+                ,surface(0)
+                ,loops(0)
+                ,triangulatedSurface(FALSE)
+                ,ijSurface(0)
+                ,isLocked(FALSE)
+                ,context(contextIn)
+                ,colorTable(0)
 {
   RESCUEINT64 typeFlag = 1;
   if (context->ReadFileVersion() >= 11)
   {
-    ReadId(context, archiveFile);
+  ReadId(context, archiveFile);
   }
   if (context->ReadFileVersion() >= 21)
   {
-    myfscanf(context, archiveFile, &isLocked);
+  myfscanf(context, archiveFile, &isLocked);
   }
   if (context->ReadFileVersion() >= 20)
   {
-    myfscanf(context, archiveFile, &typeFlag);
-    if (context->ReadFileVersion() >= 27)
-    {
+  myfscanf(context, archiveFile, &typeFlag);
+  if (context->ReadFileVersion() >= 27)
+  {
       RESCUEINT64 flag;
       myfscanf(context, archiveFile, &flag);
       attachedTo = (AttachmentPoint) flag;
-    }
-    if (typeFlag == 3)
-    {
+  }
+  if (typeFlag == 3)
+  {
       myfscanf(context, archiveFile, &triangulatedSurface);
       if (context->ReadFileVersion() >= 21)
       {
-        RESCUEINT64 flag;
-        if (context->ReadFileVersion() < 27)
-        {
+    RESCUEINT64 flag;
+    if (context->ReadFileVersion() < 27)
+    {
           myfscanf(context, archiveFile, &flag);
           attachedTo = (AttachmentPoint) flag;
-        }
-        myfscanf(context, archiveFile, &flag);
-        howApplies = (AppliesToSurface) flag;
-      }
     }
-    else
-    {
-      if (context->ReadFileVersion() < 27)
-      {
-        attachedTo = CELL_CENTERED;
+    myfscanf(context, archiveFile, &flag);
+    howApplies = (AppliesToSurface) flag;
       }
-      howApplies = NA;
-    }
   }
   else
   {
-    if (context->ReadFileVersion() < 27)
-    {
+      if (context->ReadFileVersion() < 27)
+      {
+    attachedTo = CELL_CENTERED;
+      }
+      howApplies = NA;
+  }
+  }
+  else
+  {
+  if (context->ReadFileVersion() < 27)
+  {
       attachedTo = CELL_CENTERED;
-    }
-    howApplies = NA;
+  }
+  howApplies = NA;
   }
 
   if (context->ReadFileVersion() >= 5)
   {
-    RESCUEINT64 flag;
+  RESCUEINT64 flag;
 
-    myfscanf(context, archiveFile, &flag);
-    if (context->ReadFileVersion() >= 23 && typeFlag == 3)
-    {
+  myfscanf(context, archiveFile, &flag);
+  if (context->ReadFileVersion() >= 23 && typeFlag == 3)
+  {
       myfscanf(context, archiveFile, &ijSurfaceId);
-    }
-    else
-    {
-      ijSurfaceId = 0;
-    }
-
-    switch (flag)
-    {
-    case R_RescueArrayByte:
-      data = new RescueArrayByte(context, archiveFile);
-      break;
-    case R_RescueArrayShort:
-      data = new RescueArrayShort(context, archiveFile);
-      break;
-    case R_RescueArray2dVector:
-      data = new RescueArray2dVector(context, archiveFile);
-      break;
-    case R_RescueArray3dVector:
-      data = new RescueArray3dVector(context, archiveFile);
-      break;
-    case R_RescueArrayInt:
-      data = new RescueArrayInt(context, archiveFile);
-      break;
-    default:
-      data = new RescueArrayFloat(context, archiveFile);
-      break;
-    }
   }
   else
   {
-    data = new RescueArrayFloat(context, archiveFile);
+      ijSurfaceId = 0;
+  }
+
+  switch (flag)
+  {
+  case R_RescueArrayByte:
+      data = new RescueArrayByte(context, archiveFile);
+      break;
+  case R_RescueArrayShort:
+      data = new RescueArrayShort(context, archiveFile);
+      break;
+  case R_RescueArray2dVector:
+      data = new RescueArray2dVector(context, archiveFile);
+      break;
+  case R_RescueArray3dVector:
+      data = new RescueArray3dVector(context, archiveFile);
+      break;
+  case R_RescueArrayInt:
+      data = new RescueArrayInt(context, archiveFile);
+      break;
+  default:
+      data = new RescueArrayFloat(context, archiveFile);
+      break;
+  }
+  }
+  else
+  {
+  data = new RescueArrayFloat(context, archiveFile);
   }
   isA = R_RescueProperty;
 
   if (context->ReadFileVersion() >= 18 && typeFlag != 3 && typeFlag != 4)
   {
-    myfscanf(context, archiveFile, &geometryId);
+  myfscanf(context, archiveFile, &geometryId);
   }
   else
   {
-    geometryId = 0;
+  geometryId = 0;
   }
   if (context->ReadFileVersion() >= 20)
   {
-    RESCUEINT64 flag;
-    myfscanf(context, archiveFile, &flag);
-    if (flag == 1)
-    {
+  RESCUEINT64 flag;
+  myfscanf(context, archiveFile, &flag);
+  if (flag == 1)
+  {
       colorTable = new RescueColorTable(context, archiveFile);
-    }
+  }
   }
   if (context->properties != 0)
   {
-    context->properties->Add(this);
+  context->properties->Add(this);
   }
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -1033,46 +1033,46 @@ void RescueProperty::Relink(RescueObject *parentObject)
   RescueModel *parentModel = 0;
   if (parentObject->IsA() == R_RescueGeometry)
   {
-    geometry = (RescueGeometry *) parentObject;
-    data->SetGrid(geometry->Grid());
-    parentModel = geometry->ParentModel();
-    parentBlockUnit = geometry->ParentBlockUnit();
-    parentGeobodyPart = geometry->ParentGeobodyPart();
+  geometry = (RescueGeometry *) parentObject;
+  data->SetGrid(geometry->Grid());
+  parentModel = geometry->ParentModel();
+  parentBlockUnit = geometry->ParentBlockUnit();
+  parentGeobodyPart = geometry->ParentGeobodyPart();
   }
   else if (parentObject->IsOfType(R_RescueSurface))
   {
-    surface = (RescueSurface *) parentObject;
-    ijSurface = 0;
-    if (ijSurfaceId == 0)
-    {
+  surface = (RescueSurface *) parentObject;
+  ijSurface = 0;
+  if (ijSurfaceId == 0)
+  {
       VetIJSurface();
-    }
-    else
-    {
+  }
+  else
+  {
       ijSurface = surface->SurfaceIJIdentifiedBy(ijSurfaceId);
-    }
+  }
 
-    if (triangulatedSurface)
-    {
+  if (triangulatedSurface)
+  {
       data->SetGrid(surface->TriangulatedSurface()->Grid(attachedTo));
-    }
-    else
-    {
+  }
+  else
+  {
       data->SetGrid(ijSurface->Grid());
-    }
-    parentModel = surface->ParentModel();
-    loops = new cSetRescueTrimLoopStub();
+  }
+  parentModel = surface->ParentModel();
+  loops = new cSetRescueTrimLoopStub();
   }
   else if (parentObject->IsA() == R_RescueDataContainer)
   {
-    container = (RescueDataContainer *) parentObject;
-    data->SetGrid(container->Grid());
-    parentModel = container->ParentModel();
+  container = (RescueDataContainer *) parentObject;
+  data->SetGrid(container->Grid());
+  parentModel = container->ParentModel();
   }
   data->Relink(parentModel);
   if (colorTable != 0)
   {
-    colorTable->Relink(parentModel);
+  colorTable->Relink(parentModel);
   }
 }
 
@@ -1081,130 +1081,130 @@ void RescueProperty::Archive(FILE *archiveFile)
   RESCUEBOOL archiveGeometry = TRUE;
   if (parentBlockUnit != 0)
   {
-    if (context->FileVersion() == 9)
-    {
+  if (context->FileVersion() == 9)
+  {
       if (geometry != parentBlockUnit->GridGeometry(0))
       {
-        archiveGeometry = FALSE;
+    archiveGeometry = FALSE;
       }
-    }
+  }
 /*
   trim properties that relate to any subsequent geometry.
 */
-    if (context->FileVersion()  < 20)
-    {
+  if (context->FileVersion()  < 20)
+  {
       if (data->IsA() == R_RescueArray2dVector
       ||  data->IsA() == R_RescueArray3dVector)
       {
-        archiveGeometry = FALSE;
+    archiveGeometry = FALSE;
       }
-    }
+  }
 /*
   Don't output types that previous versions don't know how to handle.
 */
-    if (archiveGeometry)
-    {
+  if (archiveGeometry)
+  {
       myfprintf(context, archiveFile, "; Property");
       if (context->FileVersion() > 9)
       {
-        myfprintf(context, archiveFile, Identifier());
+    myfprintf(context, archiveFile, Identifier());
       }
       if (context->FileVersion() >= 21)
       {
-        myfprintf(context, archiveFile, isLocked);
+    myfprintf(context, archiveFile, isLocked);
       }
 
       if (context->FileVersion() >= 20)
       {
-        myfprintf(context, archiveFile, (RESCUEINT64) 1);
+    myfprintf(context, archiveFile, (RESCUEINT64) 1);
       }
       if (context->FileVersion() >= 27)
       {
-        myfprintf(context, archiveFile, (RESCUEINT64) attachedTo);
+    myfprintf(context, archiveFile, (RESCUEINT64) attachedTo);
       }
       myfprintf(context, archiveFile, (RESCUEINT64) data->IsA());
       data->Archive(archiveFile);
       if (context->FileVersion() >= 18)
       {
-        myfprintf(context, archiveFile, geometry->Identifier());
+    myfprintf(context, archiveFile, geometry->Identifier());
       }
-    }
+  }
   }
   if (context->FileVersion() >= 20)
   {
-    if (container != 0)
-    {
+  if (container != 0)
+  {
       myfprintf(context, archiveFile, Identifier());
       myfprintf(context, archiveFile, isLocked);
       myfprintf(context, archiveFile, (RESCUEINT64) 4);
       myfprintf(context, archiveFile, (RESCUEINT64) attachedTo);
       myfprintf(context, archiveFile, (RESCUEINT64) data->IsA());
       data->Archive(archiveFile);
-    }
-    else if (surface == 0 && parentBlockUnit == 0)       // was if (parentGeobodyPart != 0)
-                            // now test is if geobodyPart or global to model.
-    {
+  }
+  else if (surface == 0 && parentBlockUnit == 0)       // was if (parentGeobodyPart != 0)
+              // now test is if geobodyPart or global to model.
+  {
       myfprintf(context, archiveFile, Identifier());
       if (context->FileVersion() >= 21)
       {
-        myfprintf(context, archiveFile, isLocked);
+    myfprintf(context, archiveFile, isLocked);
       }
 
       myfprintf(context, archiveFile, (RESCUEINT64) 2);
       if (context->FileVersion() >= 27)
       {
-        myfprintf(context, archiveFile, (RESCUEINT64) attachedTo);
+    myfprintf(context, archiveFile, (RESCUEINT64) attachedTo);
       }
       myfprintf(context, archiveFile, (RESCUEINT64) data->IsA());
       data->Archive(archiveFile);
       myfprintf(context, archiveFile, geometry->Identifier());
-    }
-    else if (surface != 0)
-    {
+  }
+  else if (surface != 0)
+  {
       myfprintf(context, archiveFile, Identifier());
       if (context->FileVersion() >= 21)
       {
-        myfprintf(context, archiveFile, isLocked);
+    myfprintf(context, archiveFile, isLocked);
       }
 
       myfprintf(context, archiveFile, (RESCUEINT64) 3);
       if (context->FileVersion() >= 27)
       {
-        myfprintf(context, archiveFile, (RESCUEINT64) attachedTo);
+    myfprintf(context, archiveFile, (RESCUEINT64) attachedTo);
       }
       myfprintf(context, archiveFile, triangulatedSurface);
       if (context->FileVersion() >= 21)
       {
-        if (context->FileVersion() < 27)
-        {
+    if (context->FileVersion() < 27)
+    {
           myfprintf(context, archiveFile, (RESCUEINT64) attachedTo);
-        }
-        myfprintf(context, archiveFile, (RESCUEINT64) howApplies);
+    }
+    myfprintf(context, archiveFile, (RESCUEINT64) howApplies);
       }
       myfprintf(context, archiveFile, (RESCUEINT64) data->IsA());
 
       if (context->FileVersion() >= 23)
       {
-        if (ijSurface == 0)
-        {
+    if (ijSurface == 0)
+    {
           myfprintf(context, archiveFile, (RESCUEINT64) 0);
-        }
-        else
-        {
+    }
+    else
+    {
           myfprintf(context, archiveFile, ijSurface->Identifier());
-        }
+    }
       }
 
       if (triangulatedSurface
       &&  data->ParentModel()->propertyActionImmediate)
       {
-        RescueTriangulatedSurface *tri = surface->TriangulatedSurface();
-        if (tri->IsLoaded() == FALSE)
-        {
+    RescueTriangulatedSurface *tri = surface->TriangulatedSurface();
+    if (tri->IsLoaded() == FALSE)
+    {
           tri->ReadData(data->ParentModel()->oldPathName);
           tri->hasChanged = FALSE;
           context->binaryFlag = data->ParentModel()->currentBinary;
-        }
+    }
       }
 /*
   If we will be writing the property back, we need
@@ -1215,20 +1215,20 @@ void RescueProperty::Archive(FILE *archiveFile)
   in RescueSurface, that won't be established yet.
 */
       data->Archive(archiveFile);
-    }
-    if (colorTable == 0)
-    {
+  }
+  if (colorTable == 0)
+  {
       myfprintf(context, archiveFile, (RESCUEINT64) 0);
-    }
-    else
-    {
+  }
+  else
+  {
       myfprintf(context, archiveFile, (RESCUEINT64) 1);
       colorTable->Archive(archiveFile);
-    }
+  }
   }
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -1236,7 +1236,7 @@ void RescueProperty::DropWireframeMemory()
 {
   if (loops != 0)
   {
-    delete loops;
+  delete loops;
   }
   loops = new cSetRescueTrimLoopStub();
 }
@@ -1245,31 +1245,31 @@ void RescueProperty::UnArchiveWireframeData(RescueModel *model, FILE *archiveFil
 {
   if (context->ReadFileVersion() >= 28)
   {
-    loops->UnArchive(context, archiveFile);
+  loops->UnArchive(context, archiveFile);
   }
   else
   {
-    loops->EmptySelf();
-    RESCUEINT64 howMany;
-    myfscanf(context, archiveFile, &howMany);
-    RESCUEINT64 loop;
-    for (loop = 0; loop < howMany; loop++)
-    {
+  loops->EmptySelf();
+  RESCUEINT64 howMany;
+  myfscanf(context, archiveFile, &howMany);
+  RESCUEINT64 loop;
+  for (loop = 0; loop < howMany; loop++)
+  {
       RescueTrimLoop *loopObj = new RescueTrimLoop(context, archiveFile);
       RescueTrimLoopStub *stub = new RescueTrimLoopStub(context, loopObj);
       model->wireframes->SaveCompatibleTrimLoop(loopObj, this, stub);
-    }
+  }
   }
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -1282,11 +1282,11 @@ void RescueProperty::ArchiveWireframeData(FILE *archiveFile)
   RESCUEBOOL archiveGeometry = TRUE;
   if (context->FileVersion() == 19)
   {
-    if (data->IsA() == R_RescueArray2dVector
-    ||  data->IsA() == R_RescueArray3dVector)
-    {
+  if (data->IsA() == R_RescueArray2dVector
+  ||  data->IsA() == R_RescueArray3dVector)
+  {
       archiveGeometry = FALSE;
-    }
+  }
   }
 /*
   Don't output types that previous versions don't know how to handle.
@@ -1295,24 +1295,24 @@ void RescueProperty::ArchiveWireframeData(FILE *archiveFile)
 */
   if (archiveGeometry)
   {
-    if (context->FileVersion() >= 28)
-    {
+  if (context->FileVersion() >= 28)
+  {
       loops->Archive(context, archiveFile);
-    }
-    else
-    {
+  }
+  else
+  {
       RescueModel *model = ParentSurface()->ParentModel();
       cBagRescueTrimLoop *loopObjs = new cBagRescueTrimLoop();
       RESCUEINT64 ordinal = 0;
       RescueTrimLoopStub *stub = NthTrimLoop(ordinal++);
       while (stub != 0)
       {
-        RescueTrimLoop *loopObj = stub->TrimLoop(model);
-        if (loopObj != 0)
-        {
+    RescueTrimLoop *loopObj = stub->TrimLoop(model);
+    if (loopObj != 0)
+    {
           (*loopObjs) += loopObj;
-        }
-        stub = NthTrimLoop(ordinal++);
+    }
+    stub = NthTrimLoop(ordinal++);
       }
 /*
   Because we don't know if we have any "nonsignifigant trailing branches"
@@ -1324,18 +1324,18 @@ void RescueProperty::ArchiveWireframeData(FILE *archiveFile)
       RESCUEINT64 loop;
       for (loop = 0; loop < howMany; loop++)
       {
-        RescueTrimLoop *loopObj = loopObjs->NthObject(loop);
-        loopObj->Archive(context, archiveFile);
+    RescueTrimLoop *loopObj = loopObjs->NthObject(loop);
+    loopObj->Archive(context, archiveFile);
       }
       delete loopObjs;
-    }
+  }
 /*
   Archive the actual object.
 */
   }
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -1348,11 +1348,11 @@ RESCUEBOOL RescueProperty::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueProperty)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueHistoryObject::IsOfType(thisType);
+  return RescueHistoryObject::IsOfType(thisType);
   }
 }
 
@@ -1360,8 +1360,8 @@ void RescueProperty::SetColorTable(RescueColorTable *newTable)
 {
   if (colorTable != 0)
   {
-    colorTable->RescueDeleteFile();
-    delete colorTable;
+  colorTable->RescueDeleteFile();
+  delete colorTable;
   }
   colorTable = newTable;
 }
@@ -1371,7 +1371,7 @@ void RescueProperty::Dispose()
   data->RescueDeleteFile();
   if (colorTable != 0)
   {
-    colorTable->RescueDeleteFile();
+  colorTable->RescueDeleteFile();
   }
 }
 
@@ -1379,8 +1379,8 @@ void RescueProperty::AddTrimLoop(RescueTrimLoop *existingLoop)
 {
   if (loops != 0) 
   {
-    (*loops) += new RescueTrimLoopStub(context, existingLoop);
-    existingLoop->propertyID = this->uniqueID;
+  (*loops) += new RescueTrimLoopStub(context, existingLoop);
+  existingLoop->propertyID = this->uniqueID;
   }
 }
 
@@ -1388,22 +1388,22 @@ void RescueProperty::RelinkTrimLoops(RescueModel *model)
 {
   if (loops != 0)
   {
-    RESCUEINT64 ordinal = 0;
-    RescueTrimLoopStub *stub = NthTrimLoop(ordinal++);
-    while (stub != 0)
-    {
+  RESCUEINT64 ordinal = 0;
+  RescueTrimLoopStub *stub = NthTrimLoop(ordinal++);
+  while (stub != 0)
+  {
       RescueTrimLoop *loopObj = stub->TrimLoop(model);
       if (loopObj != 0)
       {
-        loopObj->propertyID = this->uniqueID;
-        RescueWireframe *wireframe = loopObj->Owner();
-        if (wireframe != 0)
-        {
+    loopObj->propertyID = this->uniqueID;
+    RescueWireframe *wireframe = loopObj->Owner();
+    if (wireframe != 0)
+    {
           wireframe->MarkWireframeChanged();
-        }
+    }
       }
       stub = NthTrimLoop(ordinal++);
-    }
+  }
   }
 }
 
@@ -1411,8 +1411,8 @@ void RescueProperty::SwapAxes(bool swapI, RESCUEINT64 iNodes, bool swapJ, RESCUE
 {
   if (data->CellCentered() == TRUE)
   {
-    iNodes--;
-    jNodes--;
+  iNodes--;
+  jNodes--;
   }
   data->SwapAxes(swapI, iNodes, swapJ, jNodes);
 }
@@ -1423,9 +1423,9 @@ void RescueProperty::SwapAxes(bool swapI, RESCUEINT64 iNodes,
 {
   if (data->CellCentered() == TRUE)
   {
-    iNodes--;
-    jNodes--;
-    kNodes--;
+  iNodes--;
+  jNodes--;
+  kNodes--;
   }
   data->SwapAxes(swapI, iNodes, swapJ, jNodes, swapK, kNodes);
 }

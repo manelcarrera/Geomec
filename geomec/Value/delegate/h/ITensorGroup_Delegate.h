@@ -11,34 +11,34 @@ public:
   class CComponentComposite_Delegate : public IResult_Delegate
   {
   public:
-    CComponentComposite_Delegate(
+  CComponentComposite_Delegate(
       ITensorGroup::CComponentComposite* componentComposite);
 
   private:
-    CComponentComposite_Delegate(const CComponentComposite_Delegate& rhs);
-    CComponentComposite_Delegate& operator = (
+  CComponentComposite_Delegate(const CComponentComposite_Delegate& rhs);
+  CComponentComposite_Delegate& operator = (
       const CComponentComposite_Delegate& rhs);
 
-    ITensorGroup::CComponentComposite* m_componentComposite;
+  ITensorGroup::CComponentComposite* m_componentComposite;
 
-    REGISTER_DELEGATE(ITensorGroup::CComponentComposite,
+  REGISTER_DELEGATE(ITensorGroup::CComponentComposite,
       CComponentComposite_Delegate);
   };
 
   class CVectorComposite_Delegate : public IVectorResult_Delegate
   {
   public:
-    CVectorComposite_Delegate(
+  CVectorComposite_Delegate(
       ITensorGroup::CVectorComposite* vectorComposite);
 
   private:
-    CVectorComposite_Delegate(const CVectorComposite_Delegate& rhs);
-    CVectorComposite_Delegate& operator = (
+  CVectorComposite_Delegate(const CVectorComposite_Delegate& rhs);
+  CVectorComposite_Delegate& operator = (
       const CVectorComposite_Delegate& rhs);
 
-    ITensorGroup::CVectorComposite* m_vectorComposite;
+  ITensorGroup::CVectorComposite* m_vectorComposite;
 
-    REGISTER_DELEGATE(ITensorGroup::CVectorComposite,
+  REGISTER_DELEGATE(ITensorGroup::CVectorComposite,
       CVectorComposite_Delegate);
   };
 

@@ -11,15 +11,15 @@ namespace cora
 class CResponseParameterFile
 {
   public:
-    CResponseParameterFile(const QString& fileName);
+  CResponseParameterFile(const QString& fileName);
 
-    void addResponseParameter(const QString& responseParameter);
+  void addResponseParameter(const QString& responseParameter);
 
   private:
-    CResponseParameterFile(const CResponseParameterFile& rhs);
-    CResponseParameterFile& operator = (CResponseParameterFile rhs);
+  CResponseParameterFile(const CResponseParameterFile& rhs);
+  CResponseParameterFile& operator = (CResponseParameterFile rhs);
 
-    std::ofstream m_responseParameterFile;
+  std::ofstream m_responseParameterFile;
 };
 
 } // namespace cora

@@ -40,13 +40,13 @@ public:
   void AddLoopEdge(RescueTrimEdge *existingEdge);
   void DropLoopEdge(RescueTrimEdge *existingEdge);
   RescueTrimEdge *NthLoopEdge(RESCUEINT64 zeroBasedOrdinal)
-                        {return loopEdges->NthObject(zeroBasedOrdinal);}
+            {return loopEdges->NthObject(zeroBasedOrdinal);}
   
   RESCUEINT64  CountOfLoopEdge64() { return  loopEdges->Count64(); }
   RESCUEINT32  CountOfLoopEdge() { return  loopEdges->Count(); }
   RESCUEINT32  CountOfLoopEdge(RESCUEBOOL throwIfTooBig);
   RESCUEBOOL IsLoop(RescueModel *model);    // Returns TRUE if the edges are closed and
-                    // do progress in a consistent direction.
+          // do progress in a consistent direction.
   
   virtual RESCUEBOOL IsOfType(_RescueObjectType thisType);
      // Returns TRUE if the object is a

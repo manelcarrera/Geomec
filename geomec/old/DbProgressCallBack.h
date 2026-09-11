@@ -13,12 +13,12 @@
 
 class CDbProgressCallBack  : public gm3::CProgressCallBack
 {
-	CProgressDlg &m_dlg;
+  CProgressDlg &m_dlg;
 public:
-	CDbProgressCallBack(CProgressDlg &dlg);
-	virtual ~CDbProgressCallBack();
-	virtual void OnNewRecord();
-	virtual void OnNewTable(const CString &strTableName);
+  CDbProgressCallBack(CProgressDlg &dlg);
+  virtual ~CDbProgressCallBack();
+  virtual void OnNewRecord();
+  virtual void OnNewTable(const CString &strTableName);
 };
 
 #endif // !defined(AFX_DBPROGRESSCALLBACK_H__75D73B95_AB02_44F9_A5F4_24EE2F7D0D41__INCLUDED_)

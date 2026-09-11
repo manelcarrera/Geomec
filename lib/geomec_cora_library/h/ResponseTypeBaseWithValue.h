@@ -9,22 +9,22 @@ namespace cora
 class CResponseTypeBaseWithValue : public CResponseTypeBaseValidate
 {
   public:
-    CResponseTypeBaseWithValue(CSummaryResultFile& summaryResultFile,
+  CResponseTypeBaseWithValue(CSummaryResultFile& summaryResultFile,
       const std::vector <QString>& function);
 
-    virtual const QString getResponseType() const;
+  virtual const QString getResponseType() const;
 
   protected:
-    double m_value;
-    bool m_tooHigh;
-    bool m_tooLow;
+  double m_value;
+  bool m_tooHigh;
+  bool m_tooLow;
 
   private:
-    CResponseTypeBaseWithValue(const CResponseTypeBaseWithValue& rhs);
-    CResponseTypeBaseWithValue& operator = (
+  CResponseTypeBaseWithValue(const CResponseTypeBaseWithValue& rhs);
+  CResponseTypeBaseWithValue& operator = (
       const CResponseTypeBaseWithValue& rhs);
 
-    static bool extractInternalFailsWhen(CSummaryResultFile& summaryResultFile,
+  static bool extractInternalFailsWhen(CSummaryResultFile& summaryResultFile,
       const std::vector <QString>& function, const QString& internalFailsWhen);
 
 };

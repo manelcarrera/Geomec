@@ -48,142 +48,142 @@ class CGraphNode
 {
 public:	// Public classes and typedefs ...
 
-	// Less operator compares on pointers. This operator is also used for the
-	// neighbour set of the graph node.
-	class CPtrLess
-	{
-		public:
-		template<class T>
-		bool operator()(const T *pItem1, const T *pItem2) const
-		{	
-			return pItem1 < pItem2;		
-		}
-	};
+  // Less operator compares on pointers. This operator is also used for the
+  // neighbour set of the graph node.
+  class CPtrLess
+  {
+    public:
+    template<class T>
+    bool operator()(const T *pItem1, const T *pItem2) const
+    {	
+      return pItem1 < pItem2;		
+    }
+  };
 
-	// Less operator uses the customised less function of the graphnode it selves. 
-	class CLess
-	{
-		public:
-		template<class T>
-		bool operator()(const T *pItem1, const T *pItem2) const
-		{	
-			return pItem1->Less(*pItem2);
-		}
-	};
+  // Less operator uses the customised less function of the graphnode it selves. 
+  class CLess
+  {
+    public:
+    template<class T>
+    bool operator()(const T *pItem1, const T *pItem2) const
+    {	
+      return pItem1->Less(*pItem2);
+    }
+  };
 
-	typedef std::set<CGraphNode*, CPtrLess> TPtrSet;
-	typedef TPtrSet::iterator iterator;
-	typedef TPtrSet::const_iterator const_iterator;
-	typedef std::vector<CGraphNode*> TNodeVec;
+  typedef std::set<CGraphNode*, CPtrLess> TPtrSet;
+  typedef TPtrSet::iterator iterator;
+  typedef TPtrSet::const_iterator const_iterator;
+  typedef std::vector<CGraphNode*> TNodeVec;
 
   // Status for delayed handling (eg, in OIV); for ease we use <= 1 as the "current set"
   enum eHandleStatus
   {
-    NO_ACTION     = 0,
-    TO_BE_DELETED = 1,
-    FORCE_DELETE,
-    TO_BE_ADDED
+  NO_ACTION     = 0,
+  TO_BE_DELETED = 1,
+  FORCE_DELETE,
+  TO_BE_ADDED
   };
 
 private:
-	// If we have a copy ...
-	CGraphNode* m_pSource;
-	mutable CGraphNode* m_pCopy;
+  // If we have a copy ...
+  CGraphNode* m_pSource;
+  mutable CGraphNode* m_pCopy;
 private:
-	QString m_strName;
-	TNodeVec m_vcChild;
-	TNodeVec m_vcReference;
+  QString m_strName;
+  TNodeVec m_vcChild;
+  TNodeVec m_vcReference;
 
   mutable enum eHandleStatus m_eStatus;
 
-	CGraphNode();
+  CGraphNode();
 protected:
-	// Deratives only ....
-	CGraphNode(const QString& strInstanceName);
-	CGraphNode(unsigned int uInstanceName);
+  // Deratives only ....
+  CGraphNode(const QString& strInstanceName);
+  CGraphNode(unsigned int uInstanceName);
 
-	// These functions only called by the framework and by upper classes.
-	// They can only overided for extra functionality
-	virtual void OnNewNeighbour(const CGraphNode &node);
-	virtual void OnNeighbourModified(const CGraphNode &node, enum ModifiedHint uHint);
-	virtual void OnNeighbourDeleted(const CGraphNode &node);
+  // These functions only called by the framework and by upper classes.
+  // They can only overided for extra functionality
+  virtual void OnNewNeighbour(const CGraphNode &node);
+  virtual void OnNeighbourModified(const CGraphNode &node, enum ModifiedHint uHint);
+  virtual void OnNeighbourDeleted(const CGraphNode &node);
 
-	// Handle with care !!! 
-	virtual void UnLinkAll();
+  // Handle with care !!! 
+  virtual void UnLinkAll();
 
  
   // Copy constructor and assignment
-	CGraphNode(const CGraphNode &rhs);
+  CGraphNode(const CGraphNode &rhs);
 
-	// IModelObject emulation
-	CGraphNode* m_parent;
+  // IModelObject emulation
+  CGraphNode* m_parent;
 public:	
-	// Functionality for copying nodes
-	virtual bool operator==(const CGraphNode& node) const;
-	CGraphNode& operator=(const CGraphNode &rhs);
+  // Functionality for copying nodes
+  virtual bool operator==(const CGraphNode& node) const;
+  CGraphNode& operator=(const CGraphNode &rhs);
 
-	// Copy mode ...
-	bool IsCopied() const;
-	bool IsCopy() const;
+  // Copy mode ...
+  bool IsCopied() const;
+  bool IsCopy() const;
 
-	// Access to source and copy ...
-	const CGraphNode& Source() const;
-	CGraphNode& Source();
-	const CGraphNode& Copy() const;
-	CGraphNode& Copy();
+  // Access to source and copy ...
+  const CGraphNode& Source() const;
+  CGraphNode& Source();
+  const CGraphNode& Copy() const;
+  CGraphNode& Copy();
 
-	// Functions for linkage ..
-	void UnLink(CGraphNode &rhs);
-    void LinkTo(CGraphNode &rhs);
-	bool IsLinkedTo(const CGraphNode &rhs) const;	
+  // Functions for linkage ..
+  void UnLink(CGraphNode &rhs);
+  void LinkTo(CGraphNode &rhs);
+  bool IsLinkedTo(const CGraphNode &rhs) const;	
 
   enum eHandleStatus HandleStatus() const;
   void HandleStatus(enum eHandleStatus status);
-	
+  
   template <class TYPE>
   std::set<TYPE*> Links() const;
 
-	std::size_t childSize() const;
+  std::size_t childSize() const;
   const CGraphNode& childAt(size_t nIndex) const;
   CGraphNode& childAt(size_t nIndex);
-	int isChild( const CGraphNode& node ) const;
+  int isChild( const CGraphNode& node ) const;
 
-	std::size_t referenceSize() const;
+  std::size_t referenceSize() const;
   const CGraphNode& referenceAt(size_t nIndex) const;
   CGraphNode& referenceAt(size_t nIndex);
-	int isReferenced( const CGraphNode& node ) const;
-	
-	// Construction / Destruction ...
+  int isReferenced( const CGraphNode& node ) const;
+  
+  // Construction / Destruction ...
 
-	virtual ~CGraphNode();
+  virtual ~CGraphNode();
 
-	virtual void Modified(enum ModifiedHint uHint = Default);
+  virtual void Modified(enum ModifiedHint uHint = Default);
 
 
-	// Identification
-	virtual const QString &Name() const;
-	virtual void Name(const QString &strName);
+  // Identification
+  virtual const QString &Name() const;
+  virtual void Name(const QString &strName);
   virtual unsigned int IconId() const;
-	virtual unsigned int TypeId() const;
-	virtual QString TypeName() const;
+  virtual unsigned int TypeId() const;
+  virtual QString TypeName() const;
 
-	// Function to support drag and drop ...
-	virtual	bool ConnectItem(const CGraphNode &item);
-	virtual bool CanConnectItem(const CGraphNode &item) const;
-	virtual bool CanDisconnectItem(const CGraphNode& item) const;
+  // Function to support drag and drop ...
+  virtual	bool ConnectItem(const CGraphNode &item);
+  virtual bool CanConnectItem(const CGraphNode &item) const;
+  virtual bool CanDisconnectItem(const CGraphNode& item) const;
   virtual void OnDragLeave(const CGraphNode& item) const;
 
-	// Functions to delete an item ...
-	virtual bool Destroy();
-	virtual bool CanDestroy() const;
-	virtual bool Less(const CGraphNode &node) const;
-	virtual void OnDeselect(CGraphNode* NewSeleceted);
-	
-	virtual void AssertValid() const;
+  // Functions to delete an item ...
+  virtual bool Destroy();
+  virtual bool CanDestroy() const;
+  virtual bool Less(const CGraphNode &node) const;
+  virtual void OnDeselect(CGraphNode* NewSeleceted);
+  
+  virtual void AssertValid() const;
 // IModelObject emulation
-	CGraphNode* parent() const { return m_parent; }
-	void create( CGraphNode* new_parent );
-	void reParent(CGraphNode* new_parent);
+  CGraphNode* parent() const { return m_parent; }
+  void create( CGraphNode* new_parent );
+  void reParent(CGraphNode* new_parent);
 
   virtual bool Accept(graphnode::IConstVisitor& visitor) const { return visitor.VisitGraphNode(*this); }
   virtual bool Accept(graphnode::IVisitor& visitor) { return visitor.VisitGraphNode(*this); }
@@ -192,16 +192,16 @@ private:
   class CDelegateFactory
   {
   public:
-    typedef CDelegate* (*TFactory) (CGraphNode*);
+  typedef CDelegate* (*TFactory) (CGraphNode*);
 
-    static CDelegateFactory* getInstance();
+  static CDelegateFactory* getInstance();
 
-    std::string Register(const std::type_info& tinfo, TFactory createMethod);
-    CDelegate* Create(CGraphNode* node);
+  std::string Register(const std::type_info& tinfo, TFactory createMethod);
+  CDelegate* Create(CGraphNode* node);
 
   private:
-    typedef std::map <TypeInfo, TFactory> TFactoryMap;
-    TFactoryMap m_mpFactory;
+  typedef std::map <TypeInfo, TFactory> TFactoryMap;
+  TFactoryMap m_mpFactory;
   };
 
   CDelegate* m_delegate;
@@ -211,7 +211,7 @@ protected:
 
 public:
   static std::string Register(const std::type_info& tinfo,
-    CDelegateFactory::TFactory createMethod);
+  CDelegateFactory::TFactory createMethod);
 
   CDelegate* getDelegate();
 };
@@ -227,21 +227,21 @@ std::set<TYPE*> CGraphNode::Links() const
   TNodeVec::const_iterator it;
   for(it = m_vcChild.begin(); it != m_vcChild.end(); ++it)
   {
-    TYPE* t = dynamic_cast<TYPE*>(*it);
-    if(t)
+  TYPE* t = dynamic_cast<TYPE*>(*it);
+  if(t)
       stRet.insert(t);
   }
 
   for(it = m_vcReference.begin(); it != m_vcReference.end(); ++it)
   {
-    TYPE* t = dynamic_cast<TYPE*>(*it);
-    if(t)
+  TYPE* t = dynamic_cast<TYPE*>(*it);
+  if(t)
       stRet.insert(t);
   }
 
   TYPE* t = dynamic_cast<TYPE*>(m_parent);
   if(t)
-    stRet.insert(t);
+  stRet.insert(t);
 
   return stRet;
 }

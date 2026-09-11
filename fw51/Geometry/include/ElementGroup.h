@@ -18,32 +18,32 @@ namespace geo {
 class IMesh;
 class GEOMETRY_EXPORT  CElementGroup : public IElementSet  
 {
-	std::vector<IElement*>   m_vcElement;
-	mutable std::vector<int> m_vcNode;
-	IMesh &m_mesh;
+  std::vector<IElement*>   m_vcElement;
+  mutable std::vector<int> m_vcNode;
+  IMesh &m_mesh;
   bool m_bVisible;
-	virtual IPoint &PointAt(int nIndex);
-	void createPointBuffer() const;
+  virtual IPoint &PointAt(int nIndex);
+  void createPointBuffer() const;
 public:
-	CElementGroup(IMesh& mesh, bool bVisible = true);
-	virtual ~CElementGroup();
+  CElementGroup(IMesh& mesh, bool bVisible = true);
+  virtual ~CElementGroup();
 
-	virtual bool AddMeshElement(IElement& elem);
+  virtual bool AddMeshElement(IElement& elem);
 
-	virtual const IPoint &Point(int nIndex) const;
-	virtual int PointSize() const;
+  virtual const IPoint &Point(int nIndex) const;
+  virtual int PointSize() const;
 
-	virtual const IElement &Element(int nIndex) const;
-	virtual IElement& Element(int nIndex);
+  virtual const IElement &Element(int nIndex) const;
+  virtual IElement& Element(int nIndex);
 
-	virtual int ElementSize() const;
-	virtual std::vector<int> ElementsAt(const IPoint &point) const;
-	using IElementSet::ElementsAt;
+  virtual int ElementSize() const;
+  virtual std::vector<int> ElementsAt(const IPoint &point) const;
+  using IElementSet::ElementsAt;
 
-	// get the node indices connected to the given element
-	virtual std::vector<int> Nodes(const IElement &element) const;
+  // get the node indices connected to the given element
+  virtual std::vector<int> Nodes(const IElement &element) const;
 
-	virtual void AssertValid() const;
+  virtual void AssertValid() const;
 
   bool isVisible() const;
   void setVisible(bool bVisible);

@@ -23,7 +23,7 @@ void printEnvironment(char *vars[])
   printf("Environment:\n");
   for (i = 0; vars[i]; ++i)
   {
-    printf("  %s=%s\n", vars[i], getenv(vars[i]));
+  printf("  %s=%s\n", vars[i], getenv(vars[i]));
   }
 }
 
@@ -34,8 +34,8 @@ void printArguments(int argc, char *argv[])
   printf("Arguments:\n");
   for (i = 0; i < argc; ++i)
   {
-    printf("  %d: %s\n", i, argv[i]);
-    if (!strncmp(argv[i], "--interactive", 13))
+  printf("  %d: %s\n", i, argv[i]);
+  if (!strncmp(argv[i], "--interactive", 13))
       interactive = 1;
   }
 }
@@ -44,12 +44,12 @@ void printArguments(int argc, char *argv[])
 int main(int argc, char *argv[])
 {
   char *env[] = {
-    "QTDIR",
-    "QWTDIR",
-    "DIAROOT",
-    "INTEL",
-    "PATH",
-    NULL
+  "QTDIR",
+  "QWTDIR",
+  "DIAROOT",
+  "INTEL",
+  "PATH",
+  NULL
   };
   printVersion();
   printEnvironment(env);
@@ -57,8 +57,8 @@ int main(int argc, char *argv[])
 
   if (interactive)
   {
-    printf("Press a key to continue...\n");
-    getchar();
+  printf("Press a key to continue...\n");
+  getchar();
   }
 
   return 0;

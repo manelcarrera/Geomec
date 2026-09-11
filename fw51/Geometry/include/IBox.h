@@ -24,16 +24,16 @@ namespace geo {
 class GEOMETRY_EXPORT  IBox  : public IHexahedron
 {
 public:
-	IBox();
-	IBox(const IBox& box);
-	virtual ~IBox();
+  IBox();
+  IBox(const IBox& box);
+  virtual ~IBox();
 
-	virtual double Width() const = 0;
-	virtual double Depth() const = 0;
-	virtual double Height() const = 0;
+  virtual double Width() const = 0;
+  virtual double Depth() const = 0;
+  virtual double Height() const = 0;
 
-	virtual double Size() const;
-	virtual bool Visit(IVisitor &visitor) { return visitor.HandleBox(*this); }
+  virtual double Size() const;
+  virtual bool Visit(IVisitor &visitor) { return visitor.HandleBox(*this); }
 };
 }
 #endif // !defined(AFX_IBOX_H__FE86F108_9EED_40BC_A2BA_0D7A22AD9BAF__INCLUDED_)

@@ -14,7 +14,7 @@
 CGoCadVolume::CGoCadVolume(geo::IMesh& mesh)
 : CBodyGroup(mesh), m_pHeader(0)
 {
-	
+  
 }
 
 CGoCadVolume::~CGoCadVolume()
@@ -23,18 +23,18 @@ CGoCadVolume::~CGoCadVolume()
 
 void CGoCadVolume::Header(const QString &sName)
 {
-	m_pHeader = new CGoCadHeader(sName);
+  m_pHeader = new CGoCadHeader(sName);
 }
 
 bool CGoCadVolume::InsertPoint(const int nIndex, const double &dX, const double &dY, const double &dZ)
 {
-	int nRegInd = Mesh().RegisterNode(geo::CPoint(dX, dY , dZ), false);
+  int nRegInd = Mesh().RegisterNode(geo::CPoint(dX, dY , dZ), false);
 
-	if(!m_mpPtInd.insert(TPtIndexMap::value_type(nIndex, nRegInd)).second)
-		return false;
+  if(!m_mpPtInd.insert(TPtIndexMap::value_type(nIndex, nRegInd)).second)
+    return false;
 
   m_nodes.push_back( nRegInd );
-	return true;
+  return true;
 }
 
 bool CGoCadVolume::isPoint(int nIndex) const
@@ -44,38 +44,38 @@ bool CGoCadVolume::isPoint(int nIndex) const
 
 int CGoCadVolume::InsertTetrahedron(const int nIndex1, const int nIndex2, const int nIndex3, const int nIndex4)
 {
-	int p1 = (*m_mpPtInd.find(nIndex1)).second;
-	int p2 = (*m_mpPtInd.find(nIndex2)).second;
-	int p3 = (*m_mpPtInd.find(nIndex3)).second;
-	int p4 = (*m_mpPtInd.find(nIndex4)).second;
+  int p1 = (*m_mpPtInd.find(nIndex1)).second;
+  int p2 = (*m_mpPtInd.find(nIndex2)).second;
+  int p3 = (*m_mpPtInd.find(nIndex3)).second;
+  int p4 = (*m_mpPtInd.find(nIndex4)).second;
 
-	const geo::IPoint &pt1 = Mesh().Point(p1);
-	const geo::IPoint &pt2 = Mesh().Point(p2);
-	const geo::IPoint &pt3 = Mesh().Point(p3);
-	const geo::IPoint &pt4 = Mesh().Point(p4);
+  const geo::IPoint &pt1 = Mesh().Point(p1);
+  const geo::IPoint &pt2 = Mesh().Point(p2);
+  const geo::IPoint &pt3 = Mesh().Point(p3);
+  const geo::IPoint &pt4 = Mesh().Point(p4);
 
-	// we need to prevent negative volumes
-	geo::CVector v1(pt2 - pt1);
-	geo::CVector v2(pt3 - pt2);
-	geo::CVector v3(pt4 - pt2);
-	double dVol = (v1.DotProduct(v2.CrossProduct(v3))) / 6;
+  // we need to prevent negative volumes
+  geo::CVector v1(pt2 - pt1);
+  geo::CVector v2(pt3 - pt2);
+  geo::CVector v3(pt4 - pt2);
+  double dVol = (v1.DotProduct(v2.CrossProduct(v3))) / 6;
 
-	geo::CTetrahedron *Tet;
+  geo::CTetrahedron *Tet;
 
-	if(dVol > 0) Tet = new geo::CTetrahedron(Mesh(), p1, p2, p3, p4);
-	else         Tet = new geo::CTetrahedron(Mesh(), p2, p1, p3, p4);
+  if(dVol > 0) Tet = new geo::CTetrahedron(Mesh(), p1, p2, p3, p4);
+  else         Tet = new geo::CTetrahedron(Mesh(), p2, p1, p3, p4);
 
-	AddBody(*Tet);																		   
+  AddBody(*Tet);																		   
 
-	return Tet->Index();
+  return Tet->Index();
 }
 
 int CGoCadVolume::VolumeIndex(const int nFileIndex) const
 {
-	TPtIndexMap::const_iterator it = m_mpPtInd.find(nFileIndex);
-	assert(it != m_mpPtInd.end());
+  TPtIndexMap::const_iterator it = m_mpPtInd.find(nFileIndex);
+  assert(it != m_mpPtInd.end());
 
-	return it->second;
+  return it->second;
 }
 
 int CGoCadVolume::PointSize() const

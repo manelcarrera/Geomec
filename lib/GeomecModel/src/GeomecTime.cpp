@@ -25,9 +25,9 @@ CGeomecTime::CGeomecTime(int nYear, int nMonth)
 }
 
 CGeomecTime::CGeomecTime(int nYear, int nMonth, int nDay)
-    : m_datetime(QDate(nYear, nMonth, nDay))
+  : m_datetime(QDate(nYear, nMonth, nDay))
 {
-    assert(m_datetime.isValid());
+  assert(m_datetime.isValid());
 }
 
 CGeomecTime::CGeomecTime(const QDateTime &datetime)
@@ -47,17 +47,17 @@ CGeomecTime::~CGeomecTime()
 CGeomecTime& CGeomecTime::operator=(const CGeomecTime& rhs)
 {
   m_datetime = rhs.m_datetime;
-	return *this;
+  return *this;
 }
 
 bool CGeomecTime::operator==(const CGeomecTime& rhs) const
 {
-	return m_datetime == rhs.m_datetime;
+  return m_datetime == rhs.m_datetime;
 }
 
 bool CGeomecTime::operator!=(const CGeomecTime& rhs) const
 {
-	return !operator==(rhs);
+  return !operator==(rhs);
 }
 
 bool CGeomecTime::operator<(const CGeomecTime& rhs) const
@@ -112,7 +112,7 @@ int CGeomecTime::GetYear() const
 
 int CGeomecTime::GetMonth() const
 {
-	return m_datetime.date().month();
+  return m_datetime.date().month();
 }
 
 int CGeomecTime::GetDay() const

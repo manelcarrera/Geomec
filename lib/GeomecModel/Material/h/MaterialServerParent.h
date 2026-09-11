@@ -38,8 +38,8 @@ public:
   virtual void OnNeighbourDeleted(const CGraphNode& node);
 
   // returns the 'active' material for the given depletion stage
-	MATERIALSERVER& Material(const CDepletionStage& stage);
-	const MATERIALSERVER& Material(const CDepletionStage& stage) const;
+  MATERIALSERVER& Material(const CDepletionStage& stage);
+  const MATERIALSERVER& Material(const CDepletionStage& stage) const;
 
   // returns a material when it is actually defined for the stage
   // (always returns a valid pointer for the initial stage)
@@ -47,7 +47,7 @@ public:
   const MATERIALSERVER* ConnectedMaterial(const CDepletionStage& stage) const;
 
  	virtual bool CanConnectItem(const CGraphNode& item) const;
-	virtual bool ConnectItem(const CGraphNode& item);
+  virtual bool ConnectItem(const CGraphNode& item);
 
   bool HasMaterial(const CDepletionStage& stage) const;
 
@@ -87,7 +87,7 @@ CMaterialServerParent<BASE, MATERIALSERVER>::CMaterialServerParent(const QString
   const CDepletionStageEntry& entry = model.DepletionStageEntry();
   for(CDepletionStageEntry::const_iterator it = entry.begin(); it != entry.end(); ++it)
   {
-    if(HasMaterial(*it))
+  if(HasMaterial(*it))
       new MATERIALSERVER(*this, *it);
   }
 }
@@ -108,14 +108,14 @@ CMaterialServerParent<BASE, MATERIALSERVER>::CMaterialServerParent(const CMateri
 template <class BASE, class MATERIALSERVER>
 CMaterialServerParent<BASE, MATERIALSERVER>::~CMaterialServerParent()
 {
-	if(!BASE::IsCopy())
-	{
-    std::vector<MATERIALSERVER*> vcMaterials;
-    typename TMaterialMap::iterator itm;
-    for(itm = m_mpMaterial.begin(); itm != m_mpMaterial.end(); ++itm)
+  if(!BASE::IsCopy())
+  {
+  std::vector<MATERIALSERVER*> vcMaterials;
+  typename TMaterialMap::iterator itm;
+  for(itm = m_mpMaterial.begin(); itm != m_mpMaterial.end(); ++itm)
       vcMaterials.push_back(itm->second);
 
-    for(size_t i = 0; i < vcMaterials.size(); ++i)
+  for(size_t i = 0; i < vcMaterials.size(); ++i)
       vcMaterials[i]->UnLink(*this);
   }
 }
@@ -136,64 +136,64 @@ void CMaterialServerParent<BASE, MATERIALSERVER>::OnNewNeighbour(const CGraphNod
   const MATERIALSERVER* pMatServer = dynamic_cast<const MATERIALSERVER*>(&node);
   if(pMatServer)
   {
-    bool succeeded = 
+  bool succeeded = 
       m_mpMaterial.insert(typename TMaterialMap::value_type(&pMatServer->Stage(), const_cast<MATERIALSERVER*>(pMatServer))).second;
 
-    assert(succeeded);
+  assert(succeeded);
   }
 }
 
 template <class BASE, class MATERIALSERVER>
 void CMaterialServerParent<BASE, MATERIALSERVER>::OnNeighbourModified(const CGraphNode& node, enum ModifiedHint /*uHint*/)
 {
-	bool bModified = false;
+  bool bModified = false;
 
-	CDepletionStageEntry& entry = (CDepletionStageEntry&)(*BASE::Model().GraphEntry(MD_BASE_DEPLETION_STAGE));
-	if(&entry == &node)
-	{
-    for(CDepletionStageEntry::iterator itd = entry.begin(); itd != entry.end(); ++itd)
-		{
+  CDepletionStageEntry& entry = (CDepletionStageEntry&)(*BASE::Model().GraphEntry(MD_BASE_DEPLETION_STAGE));
+  if(&entry == &node)
+  {
+  for(CDepletionStageEntry::iterator itd = entry.begin(); itd != entry.end(); ++itd)
+    {
       typename TMaterialMap::iterator it = m_mpMaterial.find(&*itd);
       if(it == m_mpMaterial.end())
       {
-        // is it an initial or after-branch stage?
-        if(HasMaterial(*itd))
-        {
+    // is it an initial or after-branch stage?
+    if(HasMaterial(*itd))
+    {
           MATERIALSERVER* pMatServer = new MATERIALSERVER(*this, *itd); // create material server for it
           bModified = true;
           if(!itd->Last())
           {
-            typename TMaterialMap::iterator itnext =
+      typename TMaterialMap::iterator itnext =
               m_mpMaterial.find(&itd->Next());
-            if(itnext != m_mpMaterial.end())
-            {
+      if(itnext != m_mpMaterial.end())
+      {
               MATERIALSERVER* pNextServer = itnext->second;
               if(pNextServer->LibraryMaterial())
               {
-                pMatServer->LinkTo(*pNextServer->LibraryMaterial());
-                const typename MATERIALSERVER::TValueTypePairVec vcValueTypes =
+        pMatServer->LinkTo(*pNextServer->LibraryMaterial());
+        const typename MATERIALSERVER::TValueTypePairVec vcValueTypes =
                   pNextServer->ValueTypePairVec();
-                for(size_t i = 0; i < vcValueTypes.size(); ++i)
+        for(size_t i = 0; i < vcValueTypes.size(); ++i)
                   pMatServer->LinkTo((CValueType&)*vcValueTypes[i].first);
               }
-            }
+      }
           }
-        }
+    }
       }
       else
       {
-        // is it not an initial or after-branch stage anymore?
-        if(!HasMaterial(*itd))
-        {
+    // is it not an initial or after-branch stage anymore?
+    if(!HasMaterial(*itd))
+    {
           it->second->UnLink(*this); // destroy the material server
           bModified = true;
-        }
-      }
     }
+      }
+  }
   }
 
-	if(bModified)
-		BASE::Modified();
+  if(bModified)
+    BASE::Modified();
 }
 
 template <class BASE, class MATERIALSERVER>
@@ -202,12 +202,12 @@ void CMaterialServerParent<BASE, MATERIALSERVER>::OnNeighbourDeleted(const CGrap
   typename TMaterialMap::iterator itm;
   for(itm = m_mpMaterial.begin(); itm != m_mpMaterial.end(); ++itm)
   {
-    if(itm->second == &node)
-    {
+  if(itm->second == &node)
+  {
       m_mpMaterial.erase(itm);
       BASE::OnNeighbourDeleted(node);
       return;
-    }
+  }
   }
 
   BASE::OnNeighbourDeleted(node);
@@ -218,7 +218,7 @@ MATERIALSERVER& CMaterialServerParent<BASE, MATERIALSERVER>::Material(const CDep
 {
   MATERIALSERVER* pMat = ConnectedMaterial(stage);
   if(pMat && (pMat->LibraryMaterial() || stage.Initial()))
-    return *pMat;
+  return *pMat;
 
   assert(!stage.Initial());
   return Material(stage.Previous());
@@ -229,7 +229,7 @@ const MATERIALSERVER& CMaterialServerParent<BASE, MATERIALSERVER>::Material(cons
 {
   const MATERIALSERVER* pMat = ConnectedMaterial(stage);
   if(pMat && (pMat->LibraryMaterial() || stage.Initial()))
-    return *pMat;
+  return *pMat;
 
   assert(!stage.Initial());
   return Material(stage.Previous());
@@ -240,7 +240,7 @@ MATERIALSERVER* CMaterialServerParent<BASE, MATERIALSERVER>::ConnectedMaterial(c
 {
   typename TMaterialMap::iterator it = m_mpMaterial.find(&stage);
   if(it != m_mpMaterial.end())
-	  return it->second;
+    return it->second;
 
   return 0;
 }
@@ -250,7 +250,7 @@ const MATERIALSERVER* CMaterialServerParent<BASE, MATERIALSERVER>::ConnectedMate
 {
   typename TMaterialMap::const_iterator it = m_mpMaterial.find(&stage);
   if(it != m_mpMaterial.end())
-	  return it->second;
+    return it->second;
 
   return 0;
 }
@@ -258,85 +258,85 @@ const MATERIALSERVER* CMaterialServerParent<BASE, MATERIALSERVER>::ConnectedMate
 template <class BASE, class MATERIALSERVER>
 bool CMaterialServerParent<BASE, MATERIALSERVER>::CanConnectItem(const CGraphNode& item) const
 {
-	const IPointSet *pPointSet = dynamic_cast<const IPointSet *> (&item);
-	if(pPointSet)
-	{
-		if((static_cast<const CModelBase&>(BASE::Model())).BranchState().IsBranch())
-			return false;
+  const IPointSet *pPointSet = dynamic_cast<const IPointSet *> (&item);
+  if(pPointSet)
+  {
+    if((static_cast<const CModelBase&>(BASE::Model())).BranchState().IsBranch())
+      return false;
 
-		for(int i = 0; i < pPointSet->ValueSetSize(); i++)
-		{
-			if(pPointSet->ValueSet(i).Component())
-			{
-        const CModelBase& model = static_cast<const CModelBase&>(BASE::Model());
-        const IValueComposite& parent = pPointSet->ValueSet(i).Component()->Parent();
-        int idxParentStage = model.DepletionStageEntry().StageIndexFromName(parent.Name().toStdString().c_str());
+    for(int i = 0; i < pPointSet->ValueSetSize(); i++)
+    {
+      if(pPointSet->ValueSet(i).Component())
+      {
+    const CModelBase& model = static_cast<const CModelBase&>(BASE::Model());
+    const IValueComposite& parent = pPointSet->ValueSet(i).Component()->Parent();
+    int idxParentStage = model.DepletionStageEntry().StageIndexFromName(parent.Name().toStdString().c_str());
 
-        // material?
-        if(idxParentStage > 0)
-        {
+    // material?
+    if(idxParentStage > 0)
+    {
           const MATERIALSERVER* pMatServer = ConnectedMaterial(model.DepletionStageEntry().StageByIndex(idxParentStage));
           if(pMatServer && pMatServer->CanConnectItem(parent))
-            return true;
-        }
-        else
-        {
+      return true;
+    }
+    else
+    {
           const MATERIALSERVER& iniMatServer = Material(model.InitialDepletionStage());
           if(iniMatServer.CanConnectItem(parent))
-            return true;
-        }
-			}
-		}
-	}
+      return true;
+    }
+      }
+    }
+  }
 
-	return BASE::CanConnectItem(item);
+  return BASE::CanConnectItem(item);
 }
 
 template <class BASE, class MATERIALSERVER>
 bool CMaterialServerParent<BASE, MATERIALSERVER>::ConnectItem(const CGraphNode& item)
 {
-	const IPointSet *pPointSet = dynamic_cast<const IPointSet *> (&item);
-	if(pPointSet)
-	{
-		assert(CanConnectItem(item));
-		for(int i = 0; i < pPointSet->ValueSetSize(); i++)
-		{
-			if(pPointSet->ValueSet(i).Component())
-			{
-				const IValueComposite &parent = pPointSet->ValueSet(i).Component()->Parent();
-        const CModelBase& model = static_cast<const CModelBase&>(BASE::Model());
-        int idxParentStage = model.DepletionStageEntry().StageIndexFromName(parent.Name().toStdString().c_str());
-        if(idxParentStage >= 0)
-        {
+  const IPointSet *pPointSet = dynamic_cast<const IPointSet *> (&item);
+  if(pPointSet)
+  {
+    assert(CanConnectItem(item));
+    for(int i = 0; i < pPointSet->ValueSetSize(); i++)
+    {
+      if(pPointSet->ValueSet(i).Component())
+      {
+        const IValueComposite &parent = pPointSet->ValueSet(i).Component()->Parent();
+    const CModelBase& model = static_cast<const CModelBase&>(BASE::Model());
+    int idxParentStage = model.DepletionStageEntry().StageIndexFromName(parent.Name().toStdString().c_str());
+    if(idxParentStage >= 0)
+    {
           const CDepletionStage& stage = model.DepletionStageEntry().StageByIndex(idxParentStage);
 
           MATERIALSERVER* pMatServer = ConnectedMaterial(stage);
           if(pMatServer)
           {
-            if(pMatServer->IsLinkedTo(parent))
+      if(pMatServer->IsLinkedTo(parent))
               continue; // nothing to be done...
 
-            if(pMatServer->CanConnectItem(parent))
-            {
+      if(pMatServer->CanConnectItem(parent))
+      {
               pMatServer->ConnectItem(parent);
               continue;
-            }
+      }
           }
-        }
-        else
-        {
+    }
+    else
+    {
           // try initial material (no valid depletion stage suffix)
           MATERIALSERVER& iniMatServer = Material(model.InitialDepletionStage());
           if(iniMatServer.CanConnectItem(parent))
-            iniMatServer.ConnectItem(parent);
-        }
-      }
+      iniMatServer.ConnectItem(parent);
     }
+      }
+  }
 
-		return true;
-	}
+    return true;
+  }
 
-	return BASE::ConnectItem(item);
+  return BASE::ConnectItem(item);
 }
 
 template <class BASE, class MATERIALSERVER>
@@ -347,7 +347,7 @@ void CMaterialServerParent<BASE, MATERIALSERVER>::SaveStream(TSTREAM& stream, TP
   CModelBase& model = static_cast<CModelBase&>(BASE::Model());
   CDepletionStageEntry::iterator it;
   for(it = model.DepletionStageEntry().begin(); it != model.DepletionStageEntry().end(); ++it)
-    SaveMaterial(*it, stream, progress);
+  SaveMaterial(*it, stream, progress);
 }
 
 template <class BASE, class MATERIALSERVER>
@@ -357,9 +357,9 @@ void CMaterialServerParent<BASE, MATERIALSERVER>::LoadStream(TSTREAM& stream, CS
 
   if(version >= CStreamVersion(3, 7, 9))
   {
-    CModelBase& model = static_cast<CModelBase&>(BASE::Model());
-    CDepletionStageEntry::iterator it;
-    for(it = model.DepletionStageEntry().begin(); it != model.DepletionStageEntry().end(); ++it)
+  CModelBase& model = static_cast<CModelBase&>(BASE::Model());
+  CDepletionStageEntry::iterator it;
+  for(it = model.DepletionStageEntry().begin(); it != model.DepletionStageEntry().end(); ++it)
       LoadMaterial(*it, stream, version, progress);
   }
 }
@@ -372,7 +372,7 @@ long CMaterialServerParent<BASE, MATERIALSERVER>::SavedItems() const
   const CModelBase& model = static_cast<const CModelBase&>(BASE::Model());
   CDepletionStageEntry::const_iterator it;
   for(it = model.DepletionStageEntry().begin(); it != model.DepletionStageEntry().end(); ++it)
-    lRet += SavedMaterialItems(*it);
+  lRet += SavedMaterialItems(*it);
 
   return lRet;
 }
@@ -418,7 +418,7 @@ void CMaterialServerParent<BASE, MATERIALSERVER>::SaveMaterial(CDepletionStage& 
 {
   MATERIALSERVER* pMatServer = ConnectedMaterial(stage);
   if(pMatServer)
-    pMatServer->SaveStream(stream, progress);
+  pMatServer->SaveStream(stream, progress);
 }
 
 template <class BASE, class MATERIALSERVER>
@@ -426,10 +426,10 @@ void CMaterialServerParent<BASE, MATERIALSERVER>::LoadMaterial(CDepletionStage& 
 {
   if(HasMaterial(stage))
   {
-    // create material server for this stage
-    MATERIALSERVER* pMatServer = new MATERIALSERVER(*this, stage);
+  // create material server for this stage
+  MATERIALSERVER* pMatServer = new MATERIALSERVER(*this, stage);
 
-    if(version > CStreamVersion(3, 0, 100))
+  if(version > CStreamVersion(3, 0, 100))
       pMatServer->LoadStream(stream, version, progress);
   }
 }
@@ -438,7 +438,7 @@ template <class BASE, class MATERIALSERVER>
 long CMaterialServerParent<BASE, MATERIALSERVER>::SavedMaterialItems(const CDepletionStage& stage) const
 {
   if(HasMaterial(stage))
-    return Material(stage).SavedItems();
+  return Material(stage).SavedItems();
 
   return 0;
 }

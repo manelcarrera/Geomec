@@ -46,10 +46,10 @@ private:
   bool CheckCoordUnit( const QString &s_unit, const t_unit unit);
   bool CheckDepthUnit( const QString &s_unit, const t_unit unit);
   bool _CheckUnit
-    ( const QString &s_unit
-    , const CImportPetrel::t_unit unit
-    , const QString &s_regex
-    );
+  ( const QString &s_unit
+  , const CImportPetrel::t_unit unit
+  , const QString &s_regex
+  );
   void SetProgressSteps();
   void ProgressStep();
 

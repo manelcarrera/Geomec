@@ -19,51 +19,51 @@ bool CTetraSubHorizon_Delegate::Attributes()
 
   if (m_tetraSubHorizon->Slip())
   {
-    // Do fault dialog
+  // Do fault dialog
 
-    TAttriHorizon dlg(IDD_ATTRI_FAULT, *m_tetraSubHorizon, false);
+  TAttriHorizon dlg(IDD_ATTRI_FAULT, *m_tetraSubHorizon, false);
 
-    if (dlg.DoModal() == IDOK)
-    {
+  if (dlg.DoModal() == IDOK)
+  {
       if (!m_tetraSubHorizon->IsLinkedTo(
-        *m_tetraSubHorizon->Model().GraphEntry(MD_TETRA_SUB_ALL)))
+    *m_tetraSubHorizon->Model().GraphEntry(MD_TETRA_SUB_ALL)))
       {
-        m_tetraSubHorizon->AttachToEntry();
-        assert(m_tetraSubHorizon->Model().GraphEntry(MD_BASE_HORIZON));
-        m_tetraSubHorizon->LinkTo(
+    m_tetraSubHorizon->AttachToEntry();
+    assert(m_tetraSubHorizon->Model().GraphEntry(MD_BASE_HORIZON));
+    m_tetraSubHorizon->LinkTo(
           *m_tetraSubHorizon->Model().GraphEntry(MD_BASE_HORIZON));
 
-        CModelBase& model =
+    CModelBase& model =
           dynamic_cast <CModelBase&> (m_tetraSubHorizon->Model());
 
-        model.InvalidateMesh();
+    model.InvalidateMesh();
       }
 
       return TRUE;
-    }
+  }
   }
   else
   {
-    // Do horizon dialog
+  // Do horizon dialog
 
-    TAttriHorizon dlg(IDD_ATTRI_NON_SLIP_HORIZON, *m_tetraSubHorizon, false);
+  TAttriHorizon dlg(IDD_ATTRI_NON_SLIP_HORIZON, *m_tetraSubHorizon, false);
 
-    if (dlg.DoModal() == IDOK)
-    {
+  if (dlg.DoModal() == IDOK)
+  {
       if (!m_tetraSubHorizon->IsLinkedTo(
-        *m_tetraSubHorizon->Model().GraphEntry(MD_TETRA_SUB_ALL)))
+    *m_tetraSubHorizon->Model().GraphEntry(MD_TETRA_SUB_ALL)))
       {
-        m_tetraSubHorizon->AttachToEntry();
-        assert(m_tetraSubHorizon->Model().GraphEntry(MD_BASE_HORIZON));
-        m_tetraSubHorizon->LinkTo(
+    m_tetraSubHorizon->AttachToEntry();
+    assert(m_tetraSubHorizon->Model().GraphEntry(MD_BASE_HORIZON));
+    m_tetraSubHorizon->LinkTo(
           *m_tetraSubHorizon->Model().GraphEntry(MD_BASE_HORIZON));
 
-        CModelBase& model =
+    CModelBase& model =
           dynamic_cast <CModelBase&> (m_tetraSubHorizon->Model());
 
-        model.InvalidateMesh();
+    model.InvalidateMesh();
       }
-    }
+  }
   }
 
   return FALSE;
@@ -73,27 +73,27 @@ void CTetraSubHorizon_Delegate::AppendContextMenu(CContextMenuInvoker &invoker)
 {
 #ifdef TETRA_FAULTS_KEYFILE
   const CKeyFile& keyfile = (dynamic_cast <const CGeomecApp*> (
-    AfxGetApp()))->KeyFile();
+  AfxGetApp()))->KeyFile();
 
   if (m_tetraSubHorizon->keyfile.Unlocked())
   {
 #endif
-    typedef CSingleCommandTemplate <CTetraSubHorizon> THorCommand;
+  typedef CSingleCommandTemplate <CTetraSubHorizon> THorCommand;
 
-    if (m_tetraSubHorizon->Slip())
-    {
+  if (m_tetraSubHorizon->Slip())
+  {
       invoker.AddCommand("Change to &horizon",
-        *(new THorCommand(*m_tetraSubHorizon, &CTetraSubHorizon::ToggleSlip,
+    *(new THorCommand(*m_tetraSubHorizon, &CTetraSubHorizon::ToggleSlip,
           &CTetraSubHorizon::CanToggleSlip)));
-    }
-    else
-    {
+  }
+  else
+  {
       invoker.AddCommand("Change to &fault/fracture",
-        *(new THorCommand(*m_tetraSubHorizon, &CTetraSubHorizon::ToggleSlip,
+    *(new THorCommand(*m_tetraSubHorizon, &CTetraSubHorizon::ToggleSlip,
           &CTetraSubHorizon::CanToggleSlip)));
-    }
+  }
 
-    invoker.AddSeparator();
+  invoker.AddSeparator();
 #ifdef TETRA_FAULTS_KEYFILE
   }
 #endif

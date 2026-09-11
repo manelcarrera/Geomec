@@ -22,7 +22,7 @@ CFaceMoment::~CFaceMoment()
 
 const geo::IFace &CFaceMoment::Face() const
 {
-	return m_Face;
+  return m_Face;
 }
 
 } // namespace dia

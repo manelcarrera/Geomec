@@ -19,7 +19,7 @@ public:
 private:
   CEclipseSubModelEntry_Delegate(const CEclipseSubModelEntry_Delegate& rhs);
   CEclipseSubModelEntry_Delegate& operator = (
-    const CEclipseSubModelEntry_Delegate& rhs);
+  const CEclipseSubModelEntry_Delegate& rhs);
 
   CEclipseSubModelEntry* m_eclipseSubModelEntry;
 

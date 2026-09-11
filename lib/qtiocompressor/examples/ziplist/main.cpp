@@ -70,67 +70,67 @@
 
 int main(int argc, char **argv)
 {
-    if (argc != 2) {
-        qWarning() << "Usage:" << argv[0] << "<zipfile>";
-        return 1;
+  if (argc != 2) {
+    qWarning() << "Usage:" << argv[0] << "<zipfile>";
+    return 1;
+  }
+
+  QFile file(argv[1]);
+  if (!file.open(QIODevice::ReadOnly)) {
+    qWarning() << "Failed to open file" << argv[1];
+    return 1;
+  }
+
+  QTextStream sout(stdout);
+  // Read all from file and print.
+  sout << "Archive: " << argv[1] << endl;
+  sout << "Item  Size Name" << endl;
+  int item = 0;
+  forever {
+    // Zip format "local file header" fields:
+    quint32 signature, crc, compSize, unCompSize;
+    quint16 extractVersion, bitFlag, compMethod, modTime, modDate;
+    quint16 nameLen, extraLen;
+
+    QDataStream s(&file);
+    s.setByteOrder(QDataStream::LittleEndian);
+    s >> signature;
+    if (signature != 0x04034b50)   // zip local file header magic number
+      break;
+    s >> extractVersion >> bitFlag >> compMethod;
+    s >> modTime >> modDate >> crc >> compSize >> unCompSize;
+    s >> nameLen >> extraLen;
+
+    const QByteArray fileName = file.read(nameLen);
+    file.read(extraLen);
+
+    QByteArray compData = file.read(compSize);
+    QByteArray unCompData;
+    if (compMethod == 0) {
+      unCompData = compData;
+    }
+    else {
+      QBuffer compBuf(&compData);
+      QtIOCompressor compressor(&compBuf);
+      compressor.setStreamFormat(QtIOCompressor::RawZipFormat);
+      compressor.open(QIODevice::ReadOnly);
+      unCompData = compressor.readAll();
     }
 
-    QFile file(argv[1]);
-    if (!file.open(QIODevice::ReadOnly)) {
-        qWarning() << "Failed to open file" << argv[1];
-        return 1;
-    }
-
-    QTextStream sout(stdout);
-    // Read all from file and print.
-    sout << "Archive: " << argv[1] << endl;
-    sout << "Item  Size Name" << endl;
-    int item = 0;
-    forever {
-        // Zip format "local file header" fields:
-        quint32 signature, crc, compSize, unCompSize;
-        quint16 extractVersion, bitFlag, compMethod, modTime, modDate;
-        quint16 nameLen, extraLen;
-
-        QDataStream s(&file);
-        s.setByteOrder(QDataStream::LittleEndian);
-        s >> signature;
-        if (signature != 0x04034b50)   // zip local file header magic number
-            break;
-        s >> extractVersion >> bitFlag >> compMethod;
-        s >> modTime >> modDate >> crc >> compSize >> unCompSize;
-        s >> nameLen >> extraLen;
-
-        const QByteArray fileName = file.read(nameLen);
-        file.read(extraLen);
-
-        QByteArray compData = file.read(compSize);
-        QByteArray unCompData;
-        if (compMethod == 0) {
-            unCompData = compData;
-        }
-        else {
-            QBuffer compBuf(&compData);
-            QtIOCompressor compressor(&compBuf);
-            compressor.setStreamFormat(QtIOCompressor::RawZipFormat);
-            compressor.open(QIODevice::ReadOnly);
-            unCompData = compressor.readAll();
-        }
-
-        // unCompData now contains the uncompressed file from the zip archive
-        sout << QString("%1 %2 ").arg(1+item++, 3).arg(unCompData.size(), 6)
+    // unCompData now contains the uncompressed file from the zip archive
+    sout << QString("%1 %2 ").arg(1+item++, 3).arg(unCompData.size(), 6)
              << fileName << endl;
 
-        if (fileName.toLower().endsWith(".txt"))
-            sout << "   Preview: \""
+    if (fileName.toLower().endsWith(".txt"))
+      sout << "   Preview: \""
                  << unCompData.mid(0, unCompData.indexOf('\n')).replace('\r', "")
                  << "\"..." << endl;
-    }
+  }
 
-    if (!item) {
-        qWarning() << "Not a ZIP file!";
-        return 1;
-    }
+  if (!item) {
+    qWarning() << "Not a ZIP file!";
+    return 1;
+  }
 
-    return 0;
+  return 0;
 }

@@ -25,8 +25,8 @@ bool RescueOrientationLedger::GetIJFor(RescueIJSurface *face,
   bool myReturn = false;
   while (candidate != 0 && myReturn == false)
   {
-    if (candidate->face == face)
-    {
+  if (candidate->face == face)
+  {
       iLowBound = candidate->iLowBound;
       iCount = candidate->iCount;
       jLowBound = candidate->jLowBound;
@@ -34,11 +34,11 @@ bool RescueOrientationLedger::GetIJFor(RescueIJSurface *face,
       swapI = candidate->swapI;
       swapJ = candidate->swapJ;
       myReturn = true;
-    }
-    else
-    {
+  }
+  else
+  {
       candidate = candidate->next;
-    }
+  }
   }
   return myReturn;
 }
@@ -51,16 +51,16 @@ void RescueOrientationLedger::SetIJFor(RescueIJSurface *face,
   SurfaceIJ *newIJ = new SurfaceIJ(face, iLowBound, iCount, jLowBound, jCount, swapI, swapJ);
   if (ijList == 0)
   {
-    ijList = newIJ;
+  ijList = newIJ;
   }
   else
   {
-    SurfaceIJ *ijParent = ijList;
-    while (ijParent->next != 0)
-    {
+  SurfaceIJ *ijParent = ijList;
+  while (ijParent->next != 0)
+  {
       ijParent = ijParent->next;
-    }
-    ijParent->next = newIJ;
+  }
+  ijParent->next = newIJ;
   }
 }
 
@@ -72,16 +72,16 @@ bool RescueOrientationLedger::GetKFor(RescueGeometry *geom,
   bool myReturn = false;
   while (candidate != 0 && myReturn == false)
   {
-    if (candidate->geom == geom)
-    {
+  if (candidate->geom == geom)
+  {
       kLowBound = candidate->kLowBound;
       kCount = candidate->kCount;
       swapK = candidate->swapK;
-    }
-    else
-    {
+  }
+  else
+  {
       candidate = candidate->next;
-    }
+  }
   }
   return myReturn;
 }
@@ -92,16 +92,16 @@ void RescueOrientationLedger::SetKFor(RescueGeometry *geom,
   GeomK *newK = new GeomK(geom, kLowBound, kCount, swapK);
   if (kList == 0)
   {
-    kList = newK;
+  kList = newK;
   }
   else
   {
-    GeomK *newParent = kList;
-    while (newParent->next != 0)
-    {
+  GeomK *newParent = kList;
+  while (newParent->next != 0)
+  {
        newParent = newParent->next;
-    }
-    newParent->next = newK;
+  }
+  newParent->next = newK;
   }
 }
 
@@ -109,11 +109,11 @@ RescueOrientationLedger::~RescueOrientationLedger()
 {
   if (kList != 0)
   {
-    delete kList;
+  delete kList;
   }
   if (ijList != 0)
   {
-    delete ijList;
+  delete ijList;
   }
 }
 
@@ -131,7 +131,7 @@ RescueOrientationLedger::GeomK::~GeomK()
 {
   if (next != 0)
   {
-    delete next;
+  delete next;
   }
 }
 
@@ -154,7 +154,7 @@ RescueOrientationLedger::SurfaceIJ::~SurfaceIJ()
 {
   if (next != 0)
   {
-    delete next;
+  delete next;
   }
 }
 

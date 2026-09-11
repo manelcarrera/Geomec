@@ -12,14 +12,14 @@
 class CConvertModeType
 {
   public:
-    CConvertModeType();
+  CConvertModeType();
 
-    CFaultPressure::TModeType operator () (int index) const;
-    int operator () (CFaultPressure::TModeType modeType) const;
+  CFaultPressure::TModeType operator () (int index) const;
+  int operator () (CFaultPressure::TModeType modeType) const;
 
   private:
-    CConvertModeType(const CConvertModeType& rhs);
-    CConvertModeType& operator = (const CConvertModeType& rhs);
+  CConvertModeType(const CConvertModeType& rhs);
+  CConvertModeType& operator = (const CConvertModeType& rhs);
 };
 
 #endif  // _ConvertModeType_h_

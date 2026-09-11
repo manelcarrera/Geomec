@@ -21,9 +21,9 @@ private:
   typedef CStorageNode::TPROGRESS TPROGRESS;
 
 public:
-	CMaterialEntry(int nEntryId, unsigned int uIconId, const QString& strName, CModelBase& model);
-	CMaterialEntry(int nEntryId, unsigned int uIconId, unsigned int uName, CModelBase& model);
-	virtual ~CMaterialEntry();
+  CMaterialEntry(int nEntryId, unsigned int uIconId, const QString& strName, CModelBase& model);
+  CMaterialEntry(int nEntryId, unsigned int uIconId, unsigned int uName, CModelBase& model);
+  virtual ~CMaterialEntry();
 //	BOOL Append(CMatLib &source);
 //	BOOL Append(CMatLib &source, const QString &sMat);
 //	BOOL Append(CMaterialEntry& source);
@@ -40,24 +40,24 @@ public:
   // this function may (will) reshuffle the materials list, so don't call from a loop (or break the loop)
   IMaterial& ConvertMaterial(IMaterial& mat, int iNewMaterialModel);
 
-	void LoadStream(CFemAppModel& model, TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-	void SaveStream(TSTREAM& stream, TPROGRESS& progress);
-	long SavedItems() const;
+  void LoadStream(CFemAppModel& model, TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
+  void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  long SavedItems() const;
 
   int MaterialSize() const;
   const IMaterial& Material(int i) const;
   IMaterial& Material(int i);
 
-	void ExportToMatLib(const CLibraryMaterial& mat);
+  void ExportToMatLib(const CLibraryMaterial& mat);
   void ImportFromMatLib(const CLibraryMaterial& mat);
   void SetExternalMatLibFileName(const QString& strFileName, bool bImport);
   const QString& GetExternalMatLibFileName() const;
-	bool HasValidMatLib() const;
+  bool HasValidMatLib() const;
   void UpdateExternalMatLib();
 
 //	void SetFilterRockMaterial(CMatLib& library);
 
-	bool ReadOnly() const;
+  bool ReadOnly() const;
 
   ml::CMaterialLibrary& MaterialLibrary();
   int MaterialModelFilter() const;
@@ -71,15 +71,15 @@ private:
   class CMaterialLibraryObserver : public ml::CMaterialLibrary::IObserver
   {
   public:
-    CMaterialLibraryObserver(CMaterialEntry& entry);
-    virtual ~CMaterialLibraryObserver();
-    // called just after the material was added
-    virtual void OnMaterialAdded(ml::CMaterial& mat);
-    // called just before the material is deleted
-    virtual void OnDeleteMaterial(ml::CMaterial& mat);
+  CMaterialLibraryObserver(CMaterialEntry& entry);
+  virtual ~CMaterialLibraryObserver();
+  // called just after the material was added
+  virtual void OnMaterialAdded(ml::CMaterial& mat);
+  // called just before the material is deleted
+  virtual void OnDeleteMaterial(ml::CMaterial& mat);
 
   private:
-    CMaterialEntry& m_entry;
+  CMaterialEntry& m_entry;
   };
 
   friend class CMaterialLibraryObserver;
@@ -92,7 +92,7 @@ private:
 
 private:
   typedef std::map<CLibraryMaterial*, IMaterial*> TMaterialMap;
-	TMaterialMap m_mpMaterial;
+  TMaterialMap m_mpMaterial;
 
   ml::CMaterialLibrary* m_pMaterialLibrary;
   CMaterialLibraryObserver* m_pLibraryObserver;

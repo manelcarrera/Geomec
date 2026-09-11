@@ -19,12 +19,12 @@ const char *getExePath(const char *exe)
   
   if (!s)
   {
-    s = _strdup(exe);
-    for (size_t i = strlen(s) - 1; i >= 0; --i)
+  s = _strdup(exe);
+  for (size_t i = strlen(s) - 1; i >= 0; --i)
       if (*(s + i) != '\\' && *(s + i) != '/')
-        *(s + i) = 0;
+    *(s + i) = 0;
       else
-        break;
+    break;
   }
 
   return s;
@@ -77,16 +77,16 @@ const char *buildCommand(int argc, char *argv[])
 
   for (int i = 1; i < argc; ++i)
   {
-    if (!strncmp(argv[i], GM_MODEL_PATH, strlen(GM_MODEL_PATH)))
+  if (!strncmp(argv[i], GM_MODEL_PATH, strlen(GM_MODEL_PATH)))
       sawModelPath = true;
-    command << " " << argv[i];
+  command << " " << argv[i];
   }
 
   if (!sawModelPath)
 #if defined(GM_BUILD_TYPE_RELEASE_NIGHTLY) || defined(GM_BUILD_TYPE_RELEASE)
-	  command << " " << GM_MODEL_PATH << "../src/Tests/Models/";
+    command << " " << GM_MODEL_PATH << "../src/TestData/";
 #else
-	  command << " " << GM_MODEL_PATH << "../../../Tests/Models/";
+    command << " " << GM_MODEL_PATH << "../../../TestData/";
 #endif
 
   return _strdup(command.str().c_str());
@@ -95,10 +95,10 @@ const char *buildCommand(int argc, char *argv[])
 
 int main(int argc, char *argv[])
 {
-	std::string ver = CSettingsIni::instance()->version_str().toStdString();
-	std::string url = QUtil::url(QUtil::eUsrDir::Goemec, "gm_" + ver + ".log");
-	for (int i = 0; i < Printer::ModulesNum; i++)
-		Printer::instance((Printer::eModule)i)->url(url);
+  std::string ver = CSettingsIni::instance()->version_str().toStdString();
+  std::string url = QUtil::url(QUtil::eUsrDir::Goemec, "gm_" + ver + ".log");
+  for (int i = 0; i < Printer::ModulesNum; i++)
+    Printer::instance((Printer::eModule)i)->url(url);
 
 
 #if defined(GM_BUILD_TYPE_RELEASE_NIGHTLY) || defined(GM_BUILD_TYPE_RELEASE)

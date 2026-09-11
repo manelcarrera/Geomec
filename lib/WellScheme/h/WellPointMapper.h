@@ -21,7 +21,7 @@ class IWellPointMapper
 {
 public:
   virtual ~IWellPointMapper();
-	virtual const QString Description() const =0;
+  virtual const QString Description() const =0;
 };
 
 
@@ -29,50 +29,50 @@ template<class T>
 class CWellPointMapper : public IWellPointMapper
 {
 public:
-	
-	CWellPointMapper(QString description,const CWellPointList & List/*, bool bAutoDelete = true*/); 
-	virtual ~CWellPointMapper();
-	virtual const QString Description() const;
-	void Description(QString description);
-	const T& GetItem(const CWellPoint* point) const;
-	T& GetItem(const CWellPoint* point);
-	const CWellPointList &List() const;
-	void InsertItem(CWellPoint* point, const T& item );
-	void ClearMap();
-	//bool AutoDelete() const { return m_bDelete; }
-	//void AutoDelete(bool bDelete) { m_bDelete = bDelete; }
+  
+  CWellPointMapper(QString description,const CWellPointList & List/*, bool bAutoDelete = true*/); 
+  virtual ~CWellPointMapper();
+  virtual const QString Description() const;
+  void Description(QString description);
+  const T& GetItem(const CWellPoint* point) const;
+  T& GetItem(const CWellPoint* point);
+  const CWellPointList &List() const;
+  void InsertItem(CWellPoint* point, const T& item );
+  void ClearMap();
+  //bool AutoDelete() const { return m_bDelete; }
+  //void AutoDelete(bool bDelete) { m_bDelete = bDelete; }
 
-	CWellPointMapper(const CWellPointMapper& rhs)
-		:m_Map(rhs.m_Map),
-		m_Description(rhs.m_Description),
-		m_pList(rhs.m_pList)
-	{
-		
-	}
+  CWellPointMapper(const CWellPointMapper& rhs)
+    :m_Map(rhs.m_Map),
+    m_Description(rhs.m_Description),
+    m_pList(rhs.m_pList)
+  {
+    
+  }
 
-	CWellPointMapper& operator=(const CWellPointMapper& rhs)
-	{
-		m_Map = rhs.m_Map;
-		m_pList = rhs.m_pList;
-		m_Description = rhs.m_Description;
-		return *this;
-	}
+  CWellPointMapper& operator=(const CWellPointMapper& rhs)
+  {
+    m_Map = rhs.m_Map;
+    m_pList = rhs.m_pList;
+    m_Description = rhs.m_Description;
+    return *this;
+  }
 
-	virtual bool Empty() const { return m_Map.size() == 0; }
+  virtual bool Empty() const { return m_Map.size() == 0; }
 
 private:
-	QMap<const CWellPoint*,T> m_Map;
-	QString m_Description;
-	bool m_bDelete;
+  QMap<const CWellPoint*,T> m_Map;
+  QString m_Description;
+  bool m_bDelete;
 protected: 
-	
-	const CWellPointList* m_pList;
+  
+  const CWellPointList* m_pList;
 };
 
 template<class T>
 CWellPointMapper<T>::CWellPointMapper(QString description,const CWellPointList & List) :
-	m_Description(description),
-	m_pList(&List)
+  m_Description(description),
+  m_pList(&List)
 {
 
 }
@@ -80,48 +80,48 @@ CWellPointMapper<T>::CWellPointMapper(QString description,const CWellPointList &
 template<class T>
 CWellPointMapper<T>::~CWellPointMapper()
 {
-	ClearMap();
+  ClearMap();
 }
 
 template<class T>
 const T& CWellPointMapper<T>::GetItem(const CWellPoint* point) const
 {
-	typename QMap <const CWellPoint*, T> ::const_iterator it =
-		m_Map.find(point);
-	assert(it != m_Map.end());
-		
-	return *it;
+  typename QMap <const CWellPoint*, T> ::const_iterator it =
+    m_Map.find(point);
+  assert(it != m_Map.end());
+    
+  return *it;
 }
 
 template<class T>
 T& CWellPointMapper<T>::GetItem(const CWellPoint* point)
 {
-	typename QMap<const CWellPoint*,T>::iterator it = m_Map.find(point);
-	assert(it != m_Map.end());
-		
-	return *it;
+  typename QMap<const CWellPoint*,T>::iterator it = m_Map.find(point);
+  assert(it != m_Map.end());
+    
+  return *it;
 }
 
 template<class T>
 const CWellPointList &CWellPointMapper<T>::List() const
 {
-	return *m_pList;
+  return *m_pList;
 }
 
 template<class T>
 void CWellPointMapper<T>::InsertItem(CWellPoint* point,const T& item)
 {
-	assert(m_pList->Exist(point));
+  assert(m_pList->Exist(point));
 
-	typename QMap<const CWellPoint*,T>::iterator it = m_Map.find(point);
-	assert(it == m_Map.end());
-	m_Map.insert(point,item);
+  typename QMap<const CWellPoint*,T>::iterator it = m_Map.find(point);
+  assert(it == m_Map.end());
+  m_Map.insert(point,item);
 }
 
 template<class T>
 void CWellPointMapper<T>::ClearMap()
 {
-	//if(m_bDelete)
+  //if(m_bDelete)
 //	{
 //		QMap<CWellPoint*,T*>::iterator it;
 //		for(it = m_Map.begin(); it != m_Map.end(); ++it)
@@ -136,19 +136,19 @@ void CWellPointMapper<T>::ClearMap()
 
 
 
-	m_Map.clear();
+  m_Map.clear();
 }
 
 template<class T>
 const QString CWellPointMapper<T>::Description() const
 {
-	return m_Description;
+  return m_Description;
 }
 
 template<class T>
 void CWellPointMapper<T>::Description(QString description)
 {
-	m_Description = description;
+  m_Description = description;
 }
 
 
@@ -158,19 +158,19 @@ void CWellPointMapper<T>::Description(QString description)
 class CWellPointValueMap: public  CWellPointMapper<geo::CValue>
 {
 public:
-	CWellPointValueMap();
-	CWellPointValueMap(const QString& description, const CWellPointList & List, CDoubleQuantity* pQuantity);
-	virtual const CDoubleQuantity& QuantityIndicator();
-	virtual ~CWellPointValueMap();
-	CWellPointValueMap& operator=(const CWellPointValueMap& rhs);
-	
-	//interface
-	geo::CValue GetItemByTMD(const double & TMD) const;
+  CWellPointValueMap();
+  CWellPointValueMap(const QString& description, const CWellPointList & List, CDoubleQuantity* pQuantity);
+  virtual const CDoubleQuantity& QuantityIndicator();
+  virtual ~CWellPointValueMap();
+  CWellPointValueMap& operator=(const CWellPointValueMap& rhs);
+  
+  //interface
+  geo::CValue GetItemByTMD(const double & TMD) const;
 
 
 protected:
 
-	CDoubleQuantity* m_pQuantity;
+  CDoubleQuantity* m_pQuantity;
 };
 
 typedef CWellPointMapper<QString> CWellPointQStringMap;

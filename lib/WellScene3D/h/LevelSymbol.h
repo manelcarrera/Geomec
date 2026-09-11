@@ -16,7 +16,7 @@ class QString;
 class CLevelSymbol: public CWellSymbolBase
 {
 public:
-	CLevelSymbol(const geo::CPoint& level,const QString& description,bool autoDelete =true);
+  CLevelSymbol(const geo::CPoint& level,const QString& description,bool autoDelete =true);
 };
 
 

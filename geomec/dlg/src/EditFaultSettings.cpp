@@ -16,7 +16,7 @@
 IMPLEMENT_DYNAMIC(CEditFaultSettings, CDialog)
 
 CEditFaultSettings::CEditFaultSettings(CFemAppModel* femAppModel, CWnd* pParent)
-	: CDialog(CEditFaultSettings::IDD, pParent)
+  : CDialog(CEditFaultSettings::IDD, pParent)
   , m_femAppModel(femAppModel)
   , m_faultFractureList(m_femAppModel, Unit())
   , m_faultFractureComboBox()
@@ -29,7 +29,7 @@ CEditFaultSettings::CEditFaultSettings(CFemAppModel* femAppModel, CWnd* pParent)
 
 CEditFaultSettings::CEditFaultSettings(CFemAppModel* femAppModel,
   const CHorizonBase* horizonBase, CWnd* pParent)
-	: CDialog(CEditFaultSettings::IDD, pParent)
+  : CDialog(CEditFaultSettings::IDD, pParent)
   , m_femAppModel(femAppModel)
   , m_faultFractureList(m_femAppModel, Unit())
   , m_faultFractureComboBox()
@@ -66,7 +66,7 @@ BOOL CEditFaultSettings::OnInitDialog()
 
   for (size_t index = 0; index < m_faultFractureList.size(); ++index)
   {
-    m_faultFractureComboBox.
+  m_faultFractureComboBox.
       AddString(m_faultFractureList[index].name().toStdString().c_str());
   }
 
@@ -101,31 +101,31 @@ void CEditFaultSettings::OnOK()
 
   if (currentSelection == -1)
   {
-    currentSelection = 0;
+  currentSelection = 0;
   }
 
   if (m_applyBehaviourToAllFaults.GetCheck() == BST_CHECKED)
   {
-    for (int i = 0; i < m_faultFractureList.size(); ++i)
-    {
+  for (int i = 0; i < m_faultFractureList.size(); ++i)
+  {
       m_faultFractureList[i].FinalizeBehaviour();
-    }
+  }
   }
   else
   {
-    m_faultFractureList[currentSelection].FinalizeBehaviour();
+  m_faultFractureList[currentSelection].FinalizeBehaviour();
   }
 
   if (m_applyInitD0ToAllFaults.GetCheck() == BST_CHECKED)
   {
-    for (int i = 0; i < m_faultFractureList.size(); ++i)
-    {
+  for (int i = 0; i < m_faultFractureList.size(); ++i)
+  {
       m_faultFractureList[i].FinalizeInitD0();
-    }
+  }
   }
   else
   {
-    m_faultFractureList[currentSelection].FinalizeInitD0();
+  m_faultFractureList[currentSelection].FinalizeInitD0();
   }
 
   CDialog::OnOK();
@@ -154,7 +154,7 @@ void CEditFaultSettings::OnCbnSelchangeFaultFractureComboBox()
 void CEditFaultSettings::OnBnClickedFaultInitializationMethod()
 {
   CFaultInitSettingsDlg
-    faultInitSettingsDlg(static_cast <CModelBase&> (*m_femAppModel));
+  faultInitSettingsDlg(static_cast <CModelBase&> (*m_femAppModel));
 
   faultInitSettingsDlg.DoModal();
 }
@@ -162,7 +162,7 @@ void CEditFaultSettings::OnBnClickedFaultInitializationMethod()
 void CEditFaultSettings::OnBnClickedGlobalFaultBehaviour()
 {
   CSetGlobalFaultBehaviourDialog
-    setGlobalFaultBehaviourDialog(m_femAppModel, this);
+  setGlobalFaultBehaviourDialog(m_femAppModel, this);
 
   setGlobalFaultBehaviourDialog.DoModal();
 }
@@ -176,7 +176,7 @@ void CEditFaultSettings::OnCheckApplyToAllFaults()
 {
   if (m_applyBehaviourToAllFaults.GetCheck() == BST_CHECKED || m_applyInitD0ToAllFaults.GetCheck() == BST_CHECKED)
   {
-    UpdateData(TRUE);
+  UpdateData(TRUE);
   }
 }
 
@@ -188,36 +188,36 @@ BOOL CEditFaultSettings::OnCommand(WPARAM wParam, LPARAM lParam)
 
   if (currentSelection == -1)
   {
-    currentSelection = 0;
+  currentSelection = 0;
   }
 
   if (m_applyBehaviourToAllFaults.GetCheck() == BST_CHECKED)
   {
-    int slipType = m_handleFaultFractureBehaviour.getSlipType(m_faultFractureList[currentSelection]);
-    WPARAM newWParam = wParam;
-    switch (slipType)
-    {
-    case  CHorizonBase::SLIP:
+  int slipType = m_handleFaultFractureBehaviour.getSlipType(m_faultFractureList[currentSelection]);
+  WPARAM newWParam = wParam;
+  switch (slipType)
+  {
+  case  CHorizonBase::SLIP:
       newWParam = IDC_RADIO_SLIP;
       break;
-    case  CHorizonBase::STICK:
+  case  CHorizonBase::STICK:
       newWParam = IDC_RADIO_STICK;
       break;
-    case  CHorizonBase::USER:
+  case  CHorizonBase::USER:
       newWParam = IDC_RADIO_USER;
       break;
-    case  CHorizonBase::FRACTURE:
+  case  CHorizonBase::FRACTURE:
       newWParam = IDC_RADIO_FRACTURE;
       break;
-    }
-    for (int i = 0; i < m_faultFractureList.size(); ++i)
-    {
+  }
+  for (int i = 0; i < m_faultFractureList.size(); ++i)
+  {
       m_handleFaultFractureBehaviour.onCommand(m_faultFractureList[i], newWParam, lParam);
-    }
+  }
   }
   else
   {
-    m_handleFaultFractureBehaviour.onCommand(m_faultFractureList[currentSelection], wParam, lParam);
+  m_handleFaultFractureBehaviour.onCommand(m_faultFractureList[currentSelection], wParam, lParam);
   }
 
   return CDialog::OnCommand(wParam, lParam);
@@ -232,7 +232,7 @@ void CEditFaultSettings::handleFaultFractureBehaviour(CDataExchange* pDX,
 
   if (currentSelection == -1)
   {
-    currentSelection = 0;
+  currentSelection = 0;
   }
 
   m_handleFaultFractureBehaviour.enableSlipButtons(m_faultFractureList[currentSelection].Slip() && !m_faultFractureList[currentSelection].IsBranch());
@@ -247,18 +247,18 @@ void CEditFaultSettings::handleDefaultFaultParameters(CDataExchange* pDX,
 {
   if (m_applyInitD0ToAllFaults.GetCheck() == BST_CHECKED)
   {
-    for (size_t f = 0; f < m_faultFractureList.size(); ++f)
-    {
+  for (size_t f = 0; f < m_faultFractureList.size(); ++f)
+  {
       CHandleDefaultFaultParameters handleDefaultFaultParameters(&m_faultFractureList[f]);
 
       handleDefaultFaultParameters.DoDataExchange(pDX);
-    }
+  }
   }
   else
   {
-    CHandleDefaultFaultParameters handleDefaultFaultParameters(&m_faultFractureList[currentSelection]);
+  CHandleDefaultFaultParameters handleDefaultFaultParameters(&m_faultFractureList[currentSelection]);
 
-    handleDefaultFaultParameters.DoDataExchange(pDX);
+  handleDefaultFaultParameters.DoDataExchange(pDX);
   }
 }
 
@@ -269,10 +269,10 @@ int CEditFaultSettings::determineInitialSelection(
 {
   for (size_t f = 0; f < faultFractureList.size(); ++f)
   {
-    if (faultFractureList[f].HasHorizon(horizonBase))
-    {
+  if (faultFractureList[f].HasHorizon(horizonBase))
+  {
       return f;
-    }
+  }
   }
 
   return 0;

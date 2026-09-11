@@ -20,7 +20,7 @@ CLimitStateFunctionSurface::CLimitStateFunctionSurface(
 // for now replace 'getSurfaceInfo()' with 'getHorizonInfo()'
 
 : CLimitStateFunctionBase(summaryResultFile, function, modelInfo, versionNumber,
-    modelInfo.getHorizonInfo().getObjects(), SURFACE)
+  modelInfo.getHorizonInfo().getObjects(), SURFACE)
 {
 }
 

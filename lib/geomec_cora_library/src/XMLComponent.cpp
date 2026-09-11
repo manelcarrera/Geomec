@@ -21,7 +21,7 @@ const QString COMPONENT_CLOSE = "</Component>";
 std::ostream& CXMLComponent::operator () (std::ostream& stream) const
 {
   stream << COMPONENT_OPEN.arg(m_object->typeName()).
-    arg(m_object->name()).toStdString() << std::endl;
+  arg(m_object->name()).toStdString() << std::endl;
 
   stream << m_responseParameters;
   stream << m_inputParameters;
@@ -51,9 +51,9 @@ std::ostream& operator << (std::ostream& stream,
   const cora::TXMLComponents& rhs)
 {
   for (cora::TXMLComponents::const_iterator component = rhs.begin();
-    component != rhs.end(); ++component)
+  component != rhs.end(); ++component)
   {
-    stream << *component;
+  stream << *component;
   }
 
   return stream;

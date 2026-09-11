@@ -20,7 +20,7 @@ public:
 private:
   CHexaMeshRegionBase_Delegate(const CHexaMeshRegionBase_Delegate& rhs);
   CHexaMeshRegionBase_Delegate& operator = (
-    const CHexaMeshRegionBase_Delegate& rhs);
+  const CHexaMeshRegionBase_Delegate& rhs);
 
   CHexaMeshRegionBase* m_hexaMeshRegionBase;
 
@@ -41,7 +41,7 @@ public:
 private:
   CHexaMainMeshRegion_Delegate(const CHexaMainMeshRegion_Delegate& rhs);
   CHexaMainMeshRegion_Delegate& operator = (
-    const CHexaMainMeshRegion_Delegate& rhs);
+  const CHexaMainMeshRegion_Delegate& rhs);
 
   CHexaMainMeshRegion* m_hexaMainMeshRegion;
 
@@ -62,7 +62,7 @@ public:
 private:
   CHexaSubMeshRegion_Delegate(const CHexaSubMeshRegion_Delegate& rhs);
   CHexaSubMeshRegion_Delegate& operator = (
-    const CHexaSubMeshRegion_Delegate& rhs);
+  const CHexaSubMeshRegion_Delegate& rhs);
 
   CHexaSubMeshRegion* m_hexaSubMeshRegion;
 
@@ -87,7 +87,7 @@ public:
 private:
   CHexaMeshRegionEntry_Delegate(const CHexaMeshRegionEntry_Delegate& rhs);
   CHexaMeshRegionEntry_Delegate& operator = (
-    const CHexaMeshRegionEntry_Delegate& rhs);
+  const CHexaMeshRegionEntry_Delegate& rhs);
 
   CHexaMeshRegionEntry* m_hexaMeshRegionEntry;
 

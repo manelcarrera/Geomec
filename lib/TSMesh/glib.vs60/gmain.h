@@ -59,18 +59,18 @@ struct _GSourceCallbackFuncs
   void (*ref)   (gpointer     cb_data);
   void (*unref) (gpointer     cb_data);
   void (*get)   (gpointer     cb_data,
-		 GSourceFunc *func,
-		 gpointer    *data);
+     GSourceFunc *func,
+     gpointer    *data);
 };
 
 struct _GSourceFuncs
 {
   gboolean (*prepare)  (GSource    *source,
-			gint       *timeout);
+      gint       *timeout);
   gboolean (*check)    (GSource    *source);
   gboolean (*dispatch) (GSource    *source,
-			GSourceFunc callback,
-			gpointer    user_data);
+      GSourceFunc callback,
+      gpointer    user_data);
   void     (*destroy)  (GSource    *source); /* Can be NULL */
 };
 
@@ -104,8 +104,8 @@ struct _GSourceFuncs
  */
 typedef struct _GPollFD GPollFD;
 typedef gint	(*GPollFunc)	(GPollFD *ufds,
-				 guint	  nfsd,
-				 gint     timeout);
+         guint	  nfsd,
+         gint     timeout);
 
 struct _GPollFD
 {
@@ -128,50 +128,50 @@ GMainContext *g_main_context_get       (GThread      *thread);
 GMainContext *g_main_context_default   (void);
 
 gboolean      g_main_context_iteration (GMainContext *context,
-					gboolean      may_block);
+          gboolean      may_block);
 gboolean      g_main_context_pending   (GMainContext *context);
 
 /* For implementation of legacy interfaces
  */
 GSource      *g_main_context_find_source_by_id              (GMainContext *context,
-							     guint         id);
+                   guint         id);
 GSource      *g_main_context_find_source_by_user_data       (GMainContext *context,
-							     gpointer      user_data);
+                   gpointer      user_data);
 GSource      *g_main_context_find_source_by_funcs_user_data (GMainContext *context,
  							     GSourceFuncs *funcs,
-							     gpointer      user_data);
+                   gpointer      user_data);
 
 /* Low level functions for implementing custom main loops.
  */
 gboolean g_main_context_prepare  (GMainContext *context,
-				  gint         *priority);
+          gint         *priority);
 gint     g_main_context_query    (GMainContext *context,
-				  gint          max_priority,
-				  gint         *timeout,
-				  GPollFD      *fds,
-				  gint          n_fds);
+          gint          max_priority,
+          gint         *timeout,
+          GPollFD      *fds,
+          gint          n_fds);
 gint     g_main_context_check    (GMainContext *context,
-				  gint          max_priority,
-				  GPollFD      *fds,
-				  gint          n_fds);
+          gint          max_priority,
+          GPollFD      *fds,
+          gint          n_fds);
 void     g_main_context_dispatch (GMainContext *context);
 
 void      g_main_context_set_poll_func (GMainContext *context,
-					GPollFunc     func);
+          GPollFunc     func);
 GPollFunc g_main_context_get_poll_func (GMainContext *context);
 
 /* Low level functions for use by source implementations
  */
 void g_main_context_add_poll      (GMainContext *context,
-				   GPollFD      *fd,
-				   gint          priority);
+           GPollFD      *fd,
+           gint          priority);
 void g_main_context_remove_poll   (GMainContext *context,
-				   GPollFD      *fd);
+           GPollFD      *fd);
 
 /* GMainLoop: */
 
 GMainLoop *g_main_loop_new        (GMainContext *context,
-			    	   gboolean      is_running);
+          	   gboolean      is_running);
 void       g_main_loop_run        (GMainLoop    *loop);
 void       g_main_loop_quit       (GMainLoop    *loop);
 void       g_main_loop_destroy    (GMainLoop    *loop);
@@ -180,42 +180,42 @@ gboolean   g_main_loop_is_running (GMainLoop    *loop);
 /* GSource: */
 
 GSource *g_source_new             (GSourceFuncs   *source_funcs,
-				   guint           struct_size);
+           guint           struct_size);
 GSource *g_source_ref             (GSource        *source);
 void     g_source_unref           (GSource        *source);
 
 guint    g_source_attach          (GSource        *source,
-				   GMainContext   *context);
+           GMainContext   *context);
 void     g_source_destroy         (GSource        *source);
 
 void     g_source_set_priority    (GSource        *source,
-				   gint            priority);
+           gint            priority);
 gint     g_source_get_priority    (GSource        *source);
 void     g_source_set_can_recurse (GSource        *source,
-				   gboolean        can_recurse);
+           gboolean        can_recurse);
 gboolean g_source_get_can_recurse (GSource        *source);
 guint    g_source_get_id          (GSource        *source);
 
 GMainContext *g_source_get_context (GSource       *source);
 
 void g_source_set_callback          (GSource              *source,
-				     GSourceFunc           func,
-				     gpointer              data,
-				     GDestroyNotify        notify);
+             GSourceFunc           func,
+             gpointer              data,
+             GDestroyNotify        notify);
 
 
 /* Used to implement g_source_connect_closure and internally*/
 void g_source_set_callback_indirect (GSource              *source,
-				     gpointer              callback_data,
-				     GSourceCallbackFuncs *callback_funcs);
+             gpointer              callback_data,
+             GSourceCallbackFuncs *callback_funcs);
 
 void     g_source_add_poll         (GSource        *source,
-				    GPollFD        *fd);
+          GPollFD        *fd);
 void     g_source_remove_poll      (GSource        *source,
-				    GPollFD        *fd);
+          GPollFD        *fd);
 
 void     g_source_get_current_time (GSource        *source,
-				    GTimeVal       *timeval);
+          GTimeVal       *timeval);
 
  /* void g_source_connect_closure (GSource        *source,
                                   GClosure       *closure);
@@ -244,7 +244,7 @@ void g_get_current_time		        (GTimeVal	*result);
 gboolean g_source_remove                     (guint          tag);
 gboolean g_source_remove_by_user_data        (gpointer       user_data);
 gboolean g_source_remove_by_funcs_user_data  (GSourceFuncs  *funcs,
-					      gpointer       user_data);
+                gpointer       user_data);
 
 /* Functions to manipulate the default main loop
  */
@@ -256,19 +256,19 @@ gboolean g_source_remove_by_funcs_user_data  (GSourceFuncs  *funcs,
 
 /* Idles and timeouts */
 guint		g_timeout_add_full	(gint           priority,
-					 guint          interval, 
-					 GSourceFunc    function,
-					 gpointer       data,
-					 GDestroyNotify notify);
+           guint          interval, 
+           GSourceFunc    function,
+           gpointer       data,
+           GDestroyNotify notify);
 guint		g_timeout_add		(guint          interval,
-					 GSourceFunc    function,
-					 gpointer       data);
+           GSourceFunc    function,
+           gpointer       data);
 guint		g_idle_add	   	(GSourceFunc	function,
-					 gpointer	data);
+           gpointer	data);
 guint	   	g_idle_add_full		(gint   	priority,
-					 GSourceFunc	function,
-					 gpointer	data,
-					 GDestroyNotify notify);
+           GSourceFunc	function,
+           gpointer	data,
+           GDestroyNotify notify);
 gboolean	g_idle_remove_by_data	(gpointer	data);
 
 #ifdef G_OS_WIN32
@@ -277,8 +277,8 @@ gboolean	g_idle_remove_by_data	(gpointer	data);
  * should *not* use this.
  */
 void        g_main_poll_win32_msg_add (gint        priority,
-				       GPollFD    *fd,
-				       guint       hwnd);
+               GPollFD    *fd,
+               guint       hwnd);
 #endif /* G_OS_WIN32 */
 
 G_END_DECLS

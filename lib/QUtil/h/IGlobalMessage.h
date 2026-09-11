@@ -31,26 +31,26 @@ public:
   class IGlobalMessageObserver
   {
   public:
-    IGlobalMessageObserver();
-    virtual ~IGlobalMessageObserver();
+  IGlobalMessageObserver();
+  virtual ~IGlobalMessageObserver();
 
-    virtual void notifyWarning(const std::string& message);
-    virtual void notifyError(const std::string& message);
+  virtual void notifyWarning(const std::string& message);
+  virtual void notifyError(const std::string& message);
   };
 
-	enum eType{ Empty, GUI, GUI_MFC, CLI, Undefined };
+  enum eType{ Empty, GUI, GUI_MFC, CLI, Undefined };
 
 protected:
 
-	eType m_type;
-	void type(eType val){m_type=val;}
+  eType m_type;
+  void type(eType val){m_type=val;}
 
   virtual void notifyWarning(const std::string& message);
   virtual void notifyError(const std::string& message);
 
 public:
 
-	eType type(){return m_type;}
+  eType type(){return m_type;}
 
   void AttachObserver(IGlobalMessageObserver *observer);
   void DetachObserver(IGlobalMessageObserver *observer);
@@ -59,75 +59,75 @@ public:
   //       are captured in the GeomecStringTable; if so, we can replace it
   //       For now, the GUI still provides its own version, and warn/error might not work well there.
 
-	virtual int msg(	
-		const QString& message, 
-		unsigned int style = MB_OK,
-		unsigned int contextID = 0);
-
-	virtual int msg(	
-		const char* message, 
-		unsigned int style = MB_OK,
-		unsigned int contextID = 0) = 0;
-
-	virtual int msg(	
-		unsigned int message, 
-		unsigned int style = MB_OK,
-		unsigned int contextID = 0);
-
-	virtual int msg(	
-		const std::vector <std::string>& message,
-		unsigned int style = MB_OK, 
-		unsigned int contextID = 0);
-
-  virtual int warn(
-    const QString& message,
+  virtual int msg(	
+    const QString& message, 
     unsigned int style = MB_OK,
     unsigned int contextID = 0);
 
-  virtual int warn(
-    const char* message,
+  virtual int msg(	
+    const char* message, 
+    unsigned int style = MB_OK,
+    unsigned int contextID = 0) = 0;
+
+  virtual int msg(	
+    unsigned int message, 
     unsigned int style = MB_OK,
     unsigned int contextID = 0);
 
-  virtual int warn(
-    unsigned int message,
-    unsigned int style = MB_OK,
-    unsigned int contextID = 0);
-
-  virtual int warn(
+  virtual int msg(	
     const std::vector <std::string>& message,
-    unsigned int style = MB_OK,
+    unsigned int style = MB_OK, 
     unsigned int contextID = 0);
+
+  virtual int warn(
+  const QString& message,
+  unsigned int style = MB_OK,
+  unsigned int contextID = 0);
+
+  virtual int warn(
+  const char* message,
+  unsigned int style = MB_OK,
+  unsigned int contextID = 0);
+
+  virtual int warn(
+  unsigned int message,
+  unsigned int style = MB_OK,
+  unsigned int contextID = 0);
+
+  virtual int warn(
+  const std::vector <std::string>& message,
+  unsigned int style = MB_OK,
+  unsigned int contextID = 0);
 
   virtual int error(
-    const QString& message,
-    unsigned int style = MB_OK,
-    unsigned int contextID = 0);
+  const QString& message,
+  unsigned int style = MB_OK,
+  unsigned int contextID = 0);
 
   virtual int error(
-    const char* message,
-    unsigned int style = MB_OK,
-    unsigned int contextID = 0);
+  const char* message,
+  unsigned int style = MB_OK,
+  unsigned int contextID = 0);
 
   virtual int error(
-    unsigned int message,
-    unsigned int style = MB_OK,
-    unsigned int contextID = 0);
+  unsigned int message,
+  unsigned int style = MB_OK,
+  unsigned int contextID = 0);
 
   virtual int error(
-    const std::vector <std::string>& message,
-    unsigned int style = MB_OK,
-    unsigned int contextID = 0);
+  const std::vector <std::string>& message,
+  unsigned int style = MB_OK,
+  unsigned int contextID = 0);
 
-	virtual void status( const QString& message ) = 0;
+  virtual void status( const QString& message ) = 0;
 
-	IGlobalMessage(){m_type=Undefined;};
-	virtual ~IGlobalMessage(){};
+  IGlobalMessage(){m_type=Undefined;};
+  virtual ~IGlobalMessage(){};
 
-	// Just for CLI
-	virtual std::ostream& outstream(){ return std::cout; };
-	virtual bool openlogfile( const std::string& path ){ return false; };
-	virtual bool closelogfile(){ return false;  };
+  // Just for CLI
+  virtual std::ostream& outstream(){ return std::cout; };
+  virtual bool openlogfile( const std::string& path ){ return false; };
+  virtual bool closelogfile(){ return false;  };
 
   static std::string constructMessage(const std::vector <std::string>& message);
   virtual std::string constructMessage(unsigned int message);

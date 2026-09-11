@@ -39,46 +39,46 @@ class MiDataSetI;
 
 class OIDISurfaceMeshOutlineNode : public OIDIMeshNode
 {
-    // Cell shape members
-    SoSwitch*    m_surfaceSwitch;
-    SoSeparator* m_surfaceSeparator;
-    SoGroup*     m_surfaceAppearance;
-    MoDrawStyle* m_surfaceDrawStyle;
-    MoMaterial*  m_surfaceMaterial;
-    MoMeshSurface* m_surface;
+  // Cell shape members
+  SoSwitch*    m_surfaceSwitch;
+  SoSeparator* m_surfaceSeparator;
+  SoGroup*     m_surfaceAppearance;
+  MoDrawStyle* m_surfaceDrawStyle;
+  MoMaterial*  m_surfaceMaterial;
+  MoMeshSurface* m_surface;
 
-    SoSeparator* m_outlineSeparator;
-    SoGroup*     m_outlineAppearance;
-    MoDrawStyle* m_outlineDrawStyle;
-    MoMaterial*  m_outlineMaterial;
-    SoDrawStyle * m_lineDrawStyle;
-    MoMeshOutline * m_outline;
+  SoSeparator* m_outlineSeparator;
+  SoGroup*     m_outlineAppearance;
+  MoDrawStyle* m_outlineDrawStyle;
+  MoMaterial*  m_outlineMaterial;
+  SoDrawStyle * m_lineDrawStyle;
+  MoMeshOutline * m_outline;
 
-    void buildSurfaceAppearanceNode();
-    void buildSurfaceNode();
+  void buildSurfaceAppearanceNode();
+  void buildSurfaceNode();
 
 
-    void buildSurfaceMeshNode();
-    void buildNodes();
+  void buildSurfaceMeshNode();
+  void buildNodes();
 
-    virtual bool highlight();
-    virtual bool dehighlight();
+  virtual bool highlight();
+  virtual bool dehighlight();
 
 public:
 
-    explicit OIDISurfaceMeshOutlineNode(const OIDIMesh* meshData, OIDIMeshNodeManager * meshNodeManager);
+  explicit OIDISurfaceMeshOutlineNode(const OIDIMesh* meshData, OIDIMeshNodeManager * meshNodeManager);
 
-    virtual void updateColorScalarSet();
+  virtual void updateColorScalarSet();
 
-    virtual void updateIsoScalarSet();
+  virtual void updateIsoScalarSet();
 
 
-    virtual void setIsoValues(int isoCount, double min, double max);
-    virtual void setIsoGap(double gap);
+  virtual void setIsoValues(int isoCount, double min, double max);
+  virtual void setIsoGap(double gap);
 
-    virtual void UpdateDisplaySettings(const MeshNodeSettings & meshNodeSettings, bool showColor);
-    virtual void updateGeologyColors();
-    void buildOutlineAppearanceNode();
+  virtual void UpdateDisplaySettings(const MeshNodeSettings & meshNodeSettings, bool showColor);
+  virtual void updateGeologyColors();
+  void buildOutlineAppearanceNode();
 };
 
 #endif

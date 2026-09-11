@@ -19,28 +19,28 @@ class IDrawDef;
 
 class OPENGLFRAME_EXPORT CDrawCountVisitor : public CDrawVisitorBase
 {
-	const COpenGLDraw &m_draw;
-	const IDrawDef &m_drawdef;
-	int m_iCount;
+  const COpenGLDraw &m_draw;
+  const IDrawDef &m_drawdef;
+  int m_iCount;
 
 public:
-	CDrawCountVisitor(const COpenGLDraw &draw, const IDrawDef &drawdef);
-	virtual ~CDrawCountVisitor();
+  CDrawCountVisitor(const COpenGLDraw &draw, const IDrawDef &drawdef);
+  virtual ~CDrawCountVisitor();
 
-	const COpenGLDraw &Draw();
-	const IDrawDef &DrawDef();
-	int Count();
+  const COpenGLDraw &Draw();
+  const IDrawDef &DrawDef();
+  int Count();
 
-	virtual bool HandleSurface(const geo::ISurface &Surface);
-	virtual bool HandleArray(const geo::IArray &Array);
-	virtual bool HandleVolume(const geo::IVolume &Volume);
-	virtual bool HandleBodyGroup(const geo::CBodyGroup &BodyGroup);
-	virtual bool HandleElementSet(const geo::IElementSet &ElementSet);
-	virtual bool HandlePolyLine(const geo::IPolyLine &PolyLine);
-	virtual bool HandlePolygon(const geo::IPolygon &Polygon);
-	virtual bool HandlePointElement(const geo::IPointElement &PointElement);
-	virtual bool HandleSymbol(const ISymbol &Symbol);
-	virtual bool HandleObject(const geo::IObject &Object);
+  virtual bool HandleSurface(const geo::ISurface &Surface);
+  virtual bool HandleArray(const geo::IArray &Array);
+  virtual bool HandleVolume(const geo::IVolume &Volume);
+  virtual bool HandleBodyGroup(const geo::CBodyGroup &BodyGroup);
+  virtual bool HandleElementSet(const geo::IElementSet &ElementSet);
+  virtual bool HandlePolyLine(const geo::IPolyLine &PolyLine);
+  virtual bool HandlePolygon(const geo::IPolygon &Polygon);
+  virtual bool HandlePointElement(const geo::IPointElement &PointElement);
+  virtual bool HandleSymbol(const ISymbol &Symbol);
+  virtual bool HandleObject(const geo::IObject &Object);
 };
 
 #endif // !defined(AFX_DRAWCOUNTVISITOR_H__36C8A917_2008_4A51_B54C_0E049A2403BE__INCLUDED_)

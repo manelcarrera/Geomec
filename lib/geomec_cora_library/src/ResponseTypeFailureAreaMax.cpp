@@ -25,12 +25,12 @@ double CResponseTypeFailureAreaMax::calculate(const TObject& object,
 
   if (element != 0)
   {
-    failureArea = 0;
+  failureArea = 0;
 
-    while (element != 0)
-    {
+  while (element != 0)
+  {
       const IValueDomainScalar::TValueVec valueVec =
-        failureMode->getResultComponent()->ValueElement(*element);
+    failureMode->getResultComponent()->ValueElement(*element);
       double max = -std::numeric_limits <double> ::max();
 
       verifyResponseType(valueVec);
@@ -39,11 +39,11 @@ double CResponseTypeFailureAreaMax::calculate(const TObject& object,
 
       if ((m_tooHigh && (max > m_value)) || (m_tooLow && (max < m_value)))
       {
-        failureArea += element->Size();
+    failureArea += element->Size();
       }
 
       element = object->getNextElement();
-    }
+  }
   }
 
   return failureArea;

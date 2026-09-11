@@ -32,48 +32,48 @@
 
 BOOL CClipboardText::GetText (LPSTR lpszBuffer, int nBufSize, HWND hWnd)
 {
-	HGLOBAL hGlobal;		// Global memory handle
-	LPSTR lpszData;			// Pointer to clipboard data
-	unsigned long nSize;	// Size of clipboard data
+  HGLOBAL hGlobal;		// Global memory handle
+  LPSTR lpszData;			// Pointer to clipboard data
+  unsigned long nSize;	// Size of clipboard data
 
-	// First, open the clipboard. OpenClipboard() takes one
-	// parameter, the handle of the window that will temporarily
-	// be it's owner. If NULL is passed, the current process
-	// is assumed.
-	OpenClipboard(hWnd);
+  // First, open the clipboard. OpenClipboard() takes one
+  // parameter, the handle of the window that will temporarily
+  // be it's owner. If NULL is passed, the current process
+  // is assumed.
+  OpenClipboard(hWnd);
 
-	// Request a pointer to the text on the clipboard.
-	hGlobal = GetClipboardData(CF_TEXT);
+  // Request a pointer to the text on the clipboard.
+  hGlobal = GetClipboardData(CF_TEXT);
 
-	// If there was no text on the clipboard, we have
-	// been returned a NULL handle.	
-	if (hGlobal == NULL) return FALSE;
+  // If there was no text on the clipboard, we have
+  // been returned a NULL handle.	
+  if (hGlobal == NULL) return FALSE;
 
-	// Now we have a global memory handle to the text
-	// stored on the clipboard. We have to lock this global
-	// handle so that we have access to it.
-	lpszData = (LPSTR)GlobalLock(hGlobal);
-	// Now get the size of the text on the clipboard.
-	nSize = GlobalSize(hGlobal);
+  // Now we have a global memory handle to the text
+  // stored on the clipboard. We have to lock this global
+  // handle so that we have access to it.
+  lpszData = (LPSTR)GlobalLock(hGlobal);
+  // Now get the size of the text on the clipboard.
+  nSize = GlobalSize(hGlobal);
 
-	// Make sure the text on the clipboard is not longer
-	// that the buffer that was allocated for it. If it was
-	// snip the text on the clipboard so that it fits.
-	if(nSize >= (unsigned int)nBufSize) nSize = nBufSize - 1;
+  // Make sure the text on the clipboard is not longer
+  // that the buffer that was allocated for it. If it was
+  // snip the text on the clipboard so that it fits.
+  if(nSize >= (unsigned int)nBufSize) nSize = nBufSize - 1;
 
-	// Now, copy the text into the return buffer. At the
-	// end, we need to add a NULL string terminator.
+  // Now, copy the text into the return buffer. At the
+  // end, we need to add a NULL string terminator.
   unsigned int i;
-	for (i = 0; i < nSize; ++i)
-		*(lpszBuffer + i) = *(lpszData + i);
-	*(lpszBuffer + i) = 0;
+  for (i = 0; i < nSize; ++i)
+    *(lpszBuffer + i) = *(lpszData + i);
+  *(lpszBuffer + i) = 0;
 
-	// Now, simply unlock the global memory pointer
-	// and close the clipboard.
-	GlobalUnlock(hGlobal);
-	CloseClipboard();
+  // Now, simply unlock the global memory pointer
+  // and close the clipboard.
+  GlobalUnlock(hGlobal);
+  CloseClipboard();
 
-	return TRUE;
+  return TRUE;
 }
 
 ////////////////////////////////////////////////////////////////////
@@ -95,39 +95,39 @@ BOOL CClipboardText::GetText (LPSTR lpszBuffer, int nBufSize, HWND hWnd)
 
 BOOL CClipboardText::GetTextLength (unsigned long *pnSize, HWND hWnd)
 {
-	HGLOBAL hGlobal;		// Global memory handle
-	unsigned long nSize;	// Size of clipboard data
-	LPSTR lpszData;			// Pointer to clipboard data
+  HGLOBAL hGlobal;		// Global memory handle
+  unsigned long nSize;	// Size of clipboard data
+  LPSTR lpszData;			// Pointer to clipboard data
 
-	// First, open the clipboard. OpenClipboard() takes one
-	// parameter, the handle of the window that will temporarily
-	// be it's owner. If NULL is passed, the current process
-	// is assumed.
-	OpenClipboard(hWnd);
+  // First, open the clipboard. OpenClipboard() takes one
+  // parameter, the handle of the window that will temporarily
+  // be it's owner. If NULL is passed, the current process
+  // is assumed.
+  OpenClipboard(hWnd);
 
-	// Request a pointer to the text on the clipboard.
-	hGlobal = GetClipboardData(CF_TEXT);
+  // Request a pointer to the text on the clipboard.
+  hGlobal = GetClipboardData(CF_TEXT);
 
-	// If there was no text on the clipboard, we have
-	// been returned a NULL handle.	
-	if (hGlobal == NULL) return FALSE;
+  // If there was no text on the clipboard, we have
+  // been returned a NULL handle.	
+  if (hGlobal == NULL) return FALSE;
 
-	// Now we have a global memory handle to the text
-	// stored on the clipboard. We have to lock this global
-	// handle so that we have access to it.
-	lpszData = (LPSTR)GlobalLock(hGlobal);
-	// Now get the size of the text on the clipboard.
-	nSize = GlobalSize(hGlobal);
+  // Now we have a global memory handle to the text
+  // stored on the clipboard. We have to lock this global
+  // handle so that we have access to it.
+  lpszData = (LPSTR)GlobalLock(hGlobal);
+  // Now get the size of the text on the clipboard.
+  nSize = GlobalSize(hGlobal);
 
-	// Now, simply unlock the global memory pointer
-	// and close the clipboard.
-	GlobalUnlock(hGlobal);
-	CloseClipboard();
+  // Now, simply unlock the global memory pointer
+  // and close the clipboard.
+  GlobalUnlock(hGlobal);
+  CloseClipboard();
 
-	// Finally, save the length of the string we found
-	// into the pnSize pointer and return.
-	*pnSize = nSize;
-	return TRUE;
+  // Finally, save the length of the string we found
+  // into the pnSize pointer and return.
+  *pnSize = nSize;
+  return TRUE;
 }
 
 ////////////////////////////////////////////////////////////////////
@@ -147,46 +147,46 @@ BOOL CClipboardText::GetTextLength (unsigned long *pnSize, HWND hWnd)
 
 int CClipboardText::SetText (LPSTR lpszBuffer, HWND hWnd)
 {
-	HGLOBAL hGlobal;		// Global memory handle
-	LPSTR lpszData;			// Pointer to clipboard data
-	unsigned long nSize;	// Size of clipboard data
+  HGLOBAL hGlobal;		// Global memory handle
+  LPSTR lpszData;			// Pointer to clipboard data
+  unsigned long nSize;	// Size of clipboard data
 
-	// First, open the clipboard. OpenClipboard() takes one
-	// parameter, the handle of the window that will temporarily
-	// be it's owner. If NULL is passed, the current process
-	// is assumed. After opening, empty the clipboard so we
-	// can put our text on it.
-	OpenClipboard(hWnd);
-	EmptyClipboard();
+  // First, open the clipboard. OpenClipboard() takes one
+  // parameter, the handle of the window that will temporarily
+  // be it's owner. If NULL is passed, the current process
+  // is assumed. After opening, empty the clipboard so we
+  // can put our text on it.
+  OpenClipboard(hWnd);
+  EmptyClipboard();
 
-	// Get the size of the string in the buffer that was
-	// passed into the function, so we know how much global
-	// memory to allocate for the string.
-	nSize = lstrlen(lpszBuffer);
+  // Get the size of the string in the buffer that was
+  // passed into the function, so we know how much global
+  // memory to allocate for the string.
+  nSize = lstrlen(lpszBuffer);
 
-	// Allocate the memory for the string.
-	hGlobal = GlobalAlloc(GMEM_ZEROINIT, nSize+1);
-	
-	// If we got any error during the memory allocation,
-	// we have been returned a NULL handle.
-	if (hGlobal == NULL) return FALSE;
+  // Allocate the memory for the string.
+  hGlobal = GlobalAlloc(GMEM_ZEROINIT, nSize+1);
+  
+  // If we got any error during the memory allocation,
+  // we have been returned a NULL handle.
+  if (hGlobal == NULL) return FALSE;
 
-	// Now we have a global memory handle to the text
-	// stored on the clipboard. We have to lock this global
-	// handle so that we have access to it.
-	lpszData = (LPSTR)GlobalLock(hGlobal);
+  // Now we have a global memory handle to the text
+  // stored on the clipboard. We have to lock this global
+  // handle so that we have access to it.
+  lpszData = (LPSTR)GlobalLock(hGlobal);
 
-	// Now, copy the text from the buffer into the allocated
-	// global memory pointer.
-	for (unsigned int i = 0; i < nSize + 1; ++i)
-		*(lpszData + i) = *(lpszBuffer + i);
+  // Now, copy the text from the buffer into the allocated
+  // global memory pointer.
+  for (unsigned int i = 0; i < nSize + 1; ++i)
+    *(lpszData + i) = *(lpszBuffer + i);
 
-	// Now, simply unlock the global memory pointer,
-	// set the clipboard data type and pointer,
-	// and close the clipboard.
-	GlobalUnlock(hGlobal);
-	SetClipboardData(CF_TEXT, hGlobal);
-	CloseClipboard();
+  // Now, simply unlock the global memory pointer,
+  // set the clipboard data type and pointer,
+  // and close the clipboard.
+  GlobalUnlock(hGlobal);
+  SetClipboardData(CF_TEXT, hGlobal);
+  CloseClipboard();
 
-	return TRUE;
+  return TRUE;
 }

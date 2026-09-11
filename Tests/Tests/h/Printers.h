@@ -40,15 +40,15 @@ private:
 
   struct Test
   {
-    std::string UnitTest;
-    std::string Class;
-    std::string Method;
-    std::string Execution;
-    bool Result;
-    std::vector<std::string> Messages;
-    std::string Duration;
-    std::string Start;
-    std::string End;
+  std::string UnitTest;
+  std::string Class;
+  std::string Method;
+  std::string Execution;
+  bool Result;
+  std::vector<std::string> Messages;
+  std::string Duration;
+  std::string Start;
+  std::string End;
   };
 
   std::vector<Test> m_Tests;

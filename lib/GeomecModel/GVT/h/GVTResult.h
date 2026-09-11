@@ -19,23 +19,23 @@ class CGVTFactor : public IResult
 public:
   class CGVTFactorComponent : public IResultComponent
   {
-    geo::CValue getElementFactor(const geo::IElement& elm) const;
+  geo::CValue getElementFactor(const geo::IElement& elm) const;
 
   public:
-    CGVTFactorComponent(const QString& strName, CGVTFactor& parent, const CDepletionStage& stage, const CAnalysisType& antype, int nRegister);
-    virtual ~CGVTFactorComponent();
+  CGVTFactorComponent(const QString& strName, CGVTFactor& parent, const CDepletionStage& stage, const CAnalysisType& antype, int nRegister);
+  virtual ~CGVTFactorComponent();
 
-    virtual unsigned int IconId() const;
-    virtual unsigned int TypeId() const;
-    virtual	QString UnitName(const UNIT unit) const;
-    virtual long SavedItems() const;
-    virtual QString ExportLabel() const;
+  virtual unsigned int IconId() const;
+  virtual unsigned int TypeId() const;
+  virtual	QString UnitName(const UNIT unit) const;
+  virtual long SavedItems() const;
+  virtual QString ExportLabel() const;
 
-    virtual IValueDomainScalar::TValue ValuePoint(const geo::IPoint& pt, const UNIT unit = CQuantity::SI_UNIT, geo::IParallelInitializationCallback *cb = 0) const;
-    virtual IValueDomainScalar::TValueVec ValueElement(const geo::IElement& elm, const UNIT unit = CQuantity::SI_UNIT, geo::IParallelInitializationCallback *cb = 0) const;
-    virtual void MapValueElement(const geo::IElement& elm, IValueDomainScalar::TValueVec& values, TMapType map_type, UNIT unit = CQuantity::SI_UNIT, geo::IParallelInitializationCallback *cb = 0) const;
+  virtual IValueDomainScalar::TValue ValuePoint(const geo::IPoint& pt, const UNIT unit = CQuantity::SI_UNIT, geo::IParallelInitializationCallback *cb = 0) const;
+  virtual IValueDomainScalar::TValueVec ValueElement(const geo::IElement& elm, const UNIT unit = CQuantity::SI_UNIT, geo::IParallelInitializationCallback *cb = 0) const;
+  virtual void MapValueElement(const geo::IElement& elm, IValueDomainScalar::TValueVec& values, TMapType map_type, UNIT unit = CQuantity::SI_UNIT, geo::IParallelInitializationCallback *cb = 0) const;
 
-    virtual bool PrepareMapping(const geo::IElementSet *pElementSet);
+  virtual bool PrepareMapping(const geo::IElementSet *pElementSet);
   };
 
   CGVTFactor(unsigned int uName, unsigned int uiValueTypeID, unsigned int uiIconID, CResultGroup& group);

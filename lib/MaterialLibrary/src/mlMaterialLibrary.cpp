@@ -65,13 +65,13 @@ void CMaterialLibrary::DeleteMaterial(CMaterial& material)
   size_t i;
   for(i = 0; i < m_vcMaterials.size(); ++i)
   {
-    if(m_vcMaterials[i] == &material)
-    {
+  if(m_vcMaterials[i] == &material)
+  {
       NotifyDeleteMaterial(material);
       m_vcMaterials.erase(m_vcMaterials.begin() + i);
       delete &material;
       break;
-    }
+  }
   }
 }
 
@@ -80,8 +80,8 @@ void CMaterialLibrary::Clear()
   size_t i;
   for(i = 0; i < m_vcMaterials.size(); ++i)
   {
-    NotifyDeleteMaterial(*m_vcMaterials[i]);
-    delete m_vcMaterials[i];
+  NotifyDeleteMaterial(*m_vcMaterials[i]);
+  delete m_vcMaterials[i];
   }
   m_vcMaterials.clear();
 }
@@ -89,26 +89,26 @@ void CMaterialLibrary::Clear()
 void CMaterialLibrary::RegisterObserver(IObserver& observer)
 {
   if (std::find(m_vcObservers.begin(), m_vcObservers.end(), &observer) == m_vcObservers.end())
-    m_vcObservers.push_back(&observer);
+  m_vcObservers.push_back(&observer);
 }
 
 void CMaterialLibrary::UnregisterObserver(IObserver& observer)
 {
   TObserverVector::iterator it = std::find(m_vcObservers.begin(), m_vcObservers.end(), &observer);
   if (it != m_vcObservers.end())
-    m_vcObservers.erase(it);
+  m_vcObservers.erase(it);
 }
 
 void CMaterialLibrary::NotifyMaterialAdded(CMaterial& mat)
 {
   for(TObserverVector::iterator it = m_vcObservers.begin(); it != m_vcObservers.end(); ++it)
-    (*it)->OnMaterialAdded(mat);
+  (*it)->OnMaterialAdded(mat);
 }
 
 void CMaterialLibrary::NotifyDeleteMaterial(CMaterial& mat)
 {
   for(TObserverVector::iterator it = m_vcObservers.begin(); it != m_vcObservers.end(); ++it)
-    (*it)->OnDeleteMaterial(mat);
+  (*it)->OnDeleteMaterial(mat);
 }
 
 } // namespace ml

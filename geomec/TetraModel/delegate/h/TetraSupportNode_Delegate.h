@@ -19,7 +19,7 @@ public:
 private:
   C3DSupportNode_Delegate(const C3DSupportNode_Delegate& rhs);
   C3DSupportNode_Delegate& operator = (
-    const C3DSupportNode_Delegate& rhs);
+  const C3DSupportNode_Delegate& rhs);
 
   C3DSupportNode* m_tetraSupportNode;
 

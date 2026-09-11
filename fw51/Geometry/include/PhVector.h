@@ -30,22 +30,22 @@ extern void Vector_Add(Value *p1,Value *p2,Value *p3,unsigned length);
 extern void Vector_Sub(Value *p1,Value *p2,Value *p3,unsigned length);
 extern void Vector_Or(Value *p1,Value *p2,Value *p3,unsigned length);
 extern void Vector_Scale(Value *p1, Value *p2, Value lambda, unsigned
-			 length);
+       length);
 extern void Vector_AntiScale(Value *p1,Value *p2,Value lambda,
-			     unsigned length);
+           unsigned length);
 extern Value *Inner_Product(Value *p1,Value *p2,unsigned length);
 extern Value *Vector_Max(Value *p,unsigned length);
 extern Value *Vector_Min(Value *p,unsigned length);
 extern void  Vector_Combine(Value *p1,Value *p2,Value *p3,Value
-                            lambda, Value mu, unsigned length);
+              lambda, Value mu, unsigned length);
 extern int Vector_Equal(Value *Vec1,Value *Vec2,unsigned n);
 extern Value *Vector_Min_Not_Zero(Value *p,unsigned length,int *index);
 extern Value *Vector_Gcd(Value *p,unsigned length);
 extern void Vector_Map(Value *p1,Value *p2,Value *p3,unsigned
-		       length, Value *(*f)());
+           length, Value *(*f)());
 extern void Vector_Normalize(Value *p,unsigned length);
 extern void Vector_Normalize_Positive(Value *p,int length,
-				      int pos);
+              int pos);
 extern Value *Vector_Reduce(Value *p,unsigned length,Value *(*f)());
 extern void Vector_Sort(Value *vector,unsigned n);
 

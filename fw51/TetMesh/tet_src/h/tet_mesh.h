@@ -19,11 +19,11 @@ void     MeshSurfaceAdd( void *, const double *, const double *, const double * 
 
 /* Generate function */
 void     MeshGenerate(const char* sDianaPath, 
-					  const char* sDiaSharePath,
-					  const char* sDianaLibPath,
-					  const char* sDianaSLibPath,
-					  const char* sFgvExeName, 
-					  void * );
+            const char* sDiaSharePath,
+            const char* sDianaLibPath,
+            const char* sDianaSLibPath,
+            const char* sFgvExeName, 
+            void * );
 
 /* Private functions */
 double   MeshTolerance( const void * );

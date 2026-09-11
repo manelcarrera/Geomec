@@ -12,10 +12,10 @@ CRpnUnitConverter::CRpnUnitConverter()
 CRpnUnitConverter::CRpnUnitConverter(CRpnStack &stack, TConversion conversion)
 : m_conversion(conversion)
 {
-	assert(stack.StackSize() > 0);
-	m_pOperand = &stack.Top();
-	stack.Pop();
-	stack.Push(*this);
+  assert(stack.StackSize() > 0);
+  m_pOperand = &stack.Top();
+  stack.Pop();
+  stack.Push(*this);
 }
 
 CRpnUnitConverter::CRpnUnitConverter(const CRpnUnitConverter& rhs)
@@ -33,63 +33,63 @@ CRpnObject* CRpnUnitConverter::Clone(CRpnStack& NewStack) const
 
 CRpnUnitConverter::TValue CRpnUnitConverter::Value(const geo::IPoint &pt, UNIT unit) const
 {
-	return Operation(m_pOperand->Value(pt, unit));
+  return Operation(m_pOperand->Value(pt, unit));
 }
 
 CRpnUnitConverter::TValueVec CRpnUnitConverter::Value(const geo::IElement &el, UNIT unit) const
 {
-	// Fetch operand and size the return vector
-	TValueVec A = m_pOperand->Value(el, unit);
-	TValueVec ret(el.NrOfPoints());
-	assert(A.size() == ret.size());
+  // Fetch operand and size the return vector
+  TValueVec A = m_pOperand->Value(el, unit);
+  TValueVec ret(el.NrOfPoints());
+  assert(A.size() == ret.size());
 
-	// Do formula for each points
-	for(size_t i = 0; i < ret.size(); i++)
-	{
-		ret[i] = Operation(A[i]);
-	}
+  // Do formula for each points
+  for(size_t i = 0; i < ret.size(); i++)
+  {
+    ret[i] = Operation(A[i]);
+  }
 
-	return ret;
+  return ret;
 }
 
 QString CRpnUnitConverter::Formula() const
 {
-	QString sRet;
+  QString sRet;
   switch(m_conversion)
   {
   case FT_M:
-    sRet = "ft_m";
-    break;
+  sRet = "ft_m";
+  break;
   case M_FT:
-    sRet = "m_ft";
-    break;
+  sRet = "m_ft";
+  break;
   case PPG_KGPM3:
-    sRet = "ppg_kgm3";
-    break;
+  sRet = "ppg_kgm3";
+  break;
   case KGPM3_PPG:
-    sRet = "kgm3_ppg";
-    break;
+  sRet = "kgm3_ppg";
+  break;
   case C_K:
-    sRet = "C_K";
-    break;
+  sRet = "C_K";
+  break;
   case K_C:
-    sRet = "K_C";
-    break;
+  sRet = "K_C";
+  break;
   case F_C:
-    sRet = "F_C";
-    break;
+  sRet = "F_C";
+  break;
   case C_F:
-    sRet = "C_F";
-    break;
+  sRet = "C_F";
+  break;
   case PSI_MPA:
-    sRet = "psi_MPa";
-    break;
+  sRet = "psi_MPa";
+  break;
   case MPA_PSI:
-    sRet = "MPa_psi";
-    break;
+  sRet = "MPa_psi";
+  break;
   default:
-    assert(false);
-    sRet = "unknown";
+  assert(false);
+  sRet = "unknown";
   }
 
   sRet += "(" + m_pOperand->Formula() + ")";
@@ -99,32 +99,32 @@ QString CRpnUnitConverter::Formula() const
 
 void CRpnUnitConverter::Clear(CRpnStack &stack)
 {
-	assert(&stack.Top() == this);
-	stack.Pop();
-	stack.Push(*m_pOperand);
-	m_pOperand = 0;
-	delete this;
+  assert(&stack.Top() == this);
+  stack.Pop();
+  stack.Push(*m_pOperand);
+  m_pOperand = 0;
+  delete this;
 }
 
 void CRpnUnitConverter::SaveStream(std::stringstream& stream)
 {
-	CRpnObject::SaveStream(stream);
+  CRpnObject::SaveStream(stream);
 
-	m_pOperand->SaveStream(stream);
+  m_pOperand->SaveStream(stream);
 
-	int nConversion = int(m_conversion);
-	stream << nConversion << " ";
+  int nConversion = int(m_conversion);
+  stream << nConversion << " ";
 }
 
 void CRpnUnitConverter::LoadStream(std::stringstream& stream, CStreamVersion& version, CRpnStack& stack)
 {
-	CRpnObject::LoadStream(stream, version, stack);
+  CRpnObject::LoadStream(stream, version, stack);
 
-	m_pOperand = LoadRpnObject(stream, version, stack);
+  m_pOperand = LoadRpnObject(stream, version, stack);
 
-	int nConversion;
-	stream >> nConversion;
-	m_conversion = (TConversion)nConversion;
+  int nConversion;
+  stream >> nConversion;
+  m_conversion = (TConversion)nConversion;
 }
 
 CRpnUnitConverter::eObjectType CRpnUnitConverter::ObjectType() const
@@ -134,9 +134,9 @@ CRpnUnitConverter::eObjectType CRpnUnitConverter::ObjectType() const
 
 bool CRpnUnitConverter::Recursive(TParentSet stParent) const
 {
-	if(!stParent.insert(this).second)
-		return true;
-	return m_pOperand->Recursive(stParent);
+  if(!stParent.insert(this).second)
+    return true;
+  return m_pOperand->Recursive(stParent);
 }
 
 bool CRpnUnitConverter::Defined() const
@@ -178,45 +178,45 @@ CRpnUnitConverter::TValue CRpnUnitConverter::Operation(const TValue &value) cons
 {
   if(value.Valid())
   {
-    double v = value.Value();
+  double v = value.Value();
 
-    switch(m_conversion)
-    {
-    case FT_M:
+  switch(m_conversion)
+  {
+  case FT_M:
       v /= 3.2808399;
       break;
-    case M_FT:
+  case M_FT:
       v *= 3.2808399;
       break;
-    case PPG_KGPM3:
+  case PPG_KGPM3:
       v /= 0.008345405;
       break;
-    case KGPM3_PPG:
+  case KGPM3_PPG:
       v *= 0.008345405;
       break;
-    case C_K:
+  case C_K:
       v += 273.15;
       break;
-    case K_C:
+  case K_C:
       v -= 273.15;
       break;
-    case F_C:
+  case F_C:
       v = (v - 32) * 5 / 9;
       break;
-    case C_F:
+  case C_F:
       v = v * 9 / 5 + 32;
       break;
-    case PSI_MPA:
+  case PSI_MPA:
       v /= 145.038;
       break;
-    case MPA_PSI:
+  case MPA_PSI:
       v *= 145.038;
       break;
-    default:
+  default:
       assert(false);
-    }
+  }
 
-    return TValue(v);
+  return TValue(v);
   }
 
   return TValue();

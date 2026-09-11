@@ -13,7 +13,7 @@
 IMPLEMENT_DYNAMIC(CResultMaterialSelectDlg, CDialog)
 
 CResultMaterialSelectDlg::CResultMaterialSelectDlg(CModelBase& model, const std::vector<IRpnMaterialParameterProxy*> &materialProxies, CWnd* pParent /*=NULL*/)
-	: CDialog(CResultMaterialSelectDlg::IDD, pParent)
+  : CDialog(CResultMaterialSelectDlg::IDD, pParent)
   , m_Model(model)
   , m_vcMaterialProxies(materialProxies)
   , m_pTimeStep(0)
@@ -39,14 +39,14 @@ void CResultMaterialSelectDlg::SetupDeplCombo()
   const CDepletionStage* pStage = &m_Model.InitialDepletionStage();
   while(pStage)
   {
-	  int nIndex = m_cbTimeSteps.AddString(pStage->Name().toStdString().c_str());
+    int nIndex = m_cbTimeSteps.AddString(pStage->Name().toStdString().c_str());
       m_cbTimeSteps.SetItemData(nIndex, (DWORD_PTR)pStage);
 
       // Go to next stage if any
-	  if(pStage->Last())
-		  pStage = 0;
-	  else
-		  pStage =  &pStage->Next();
+    if(pStage->Last())
+      pStage = 0;
+    else
+      pStage =  &pStage->Next();
   }
   m_cbTimeSteps.SetCurSel(0);
   OnCbnSelchangeTimeStep();
@@ -64,7 +64,7 @@ void CResultMaterialSelectDlg::SetupMatParamListBox()
   for(size_t i = 0; i < m_vcMaterialProxies.size(); ++i)
   if ( ! m_vcMaterialProxies[i]->Obsolete() )
   {
-    m_ImageList.Add( AfxGetApp()->LoadIcon(m_vcMaterialProxies[i]->IconId()));
+  m_ImageList.Add( AfxGetApp()->LoadIcon(m_vcMaterialProxies[i]->IconId()));
   }
 
   m_lcParameters.SetImageList(&m_ImageList, LVSIL_SMALL);
@@ -73,9 +73,9 @@ void CResultMaterialSelectDlg::SetupMatParamListBox()
   for(size_t i = 0; i < m_vcMaterialProxies.size(); ++i)
   if ( ! m_vcMaterialProxies[i]->Obsolete() ) // waij TFS 77889
   {
-    int nIndex = m_lcParameters.InsertItem(nItem, m_vcMaterialProxies[i]->DisplayName().toStdString().c_str(), nItem);
-    m_lcParameters.SetItemData(nIndex, (DWORD_PTR)m_vcMaterialProxies[i]);
-    ++nItem;
+  int nIndex = m_lcParameters.InsertItem(nItem, m_vcMaterialProxies[i]->DisplayName().toStdString().c_str(), nItem);
+  m_lcParameters.SetItemData(nIndex, (DWORD_PTR)m_vcMaterialProxies[i]);
+  ++nItem;
   }
 
   OnLbnSelchangeRmsParametersList();
@@ -118,21 +118,21 @@ void CResultMaterialSelectDlg::OnBnClickedOk()
   POSITION pos = m_lcParameters.GetFirstSelectedItemPosition();
   while ( pos != 0 )
   {
-    int nItem = m_lcParameters.GetNextSelectedItem(pos);
-    IRpnMaterialParameterProxy* pMaterialParameterProxy= 
+  int nItem = m_lcParameters.GetNextSelectedItem(pos);
+  IRpnMaterialParameterProxy* pMaterialParameterProxy= 
       (IRpnMaterialParameterProxy*) (m_lcParameters.GetItemData(nItem));
-    m_pSelectedProxies.insert( m_pSelectedProxies.begin(), pMaterialParameterProxy);
+  m_pSelectedProxies.insert( m_pSelectedProxies.begin(), pMaterialParameterProxy);
   }
 
   if((m_chSetDepletion.GetCheck() == BST_CHECKED))
   {
-    for (std::vector <IRpnMaterialParameterProxy*>::const_iterator
+  for (std::vector <IRpnMaterialParameterProxy*>::const_iterator
       selectedProxy = m_pSelectedProxies.begin();
       selectedProxy != m_pSelectedProxies.end(); ++selectedProxy)
-    {
+  {
       (*selectedProxy)->TimeStep(m_pTimeStep);
       (*selectedProxy)->FixedStage(true);
-    }
+  }
   }
 
   OnOK();

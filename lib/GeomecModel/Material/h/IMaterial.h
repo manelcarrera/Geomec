@@ -26,69 +26,69 @@ class CLibraryMaterialParameter;
 
 class IMaterial : public IMaterialBase
 {
-	// must be able to get the parameter values from the matlibx (no distribution)
-	friend class CFFMaterial;
+  // must be able to get the parameter values from the matlibx (no distribution)
+  friend class CFFMaterial;
 
 public:
-	class TnoCaseStringCompare
-	{
-	public:
-		bool operator()(const QString& s1, const QString&s2) const
-		{	return s1.compare(s2, Qt::CaseInsensitive) < 0; }
-	};
+  class TnoCaseStringCompare
+  {
+  public:
+    bool operator()(const QString& s1, const QString&s2) const
+    {	return s1.compare(s2, Qt::CaseInsensitive) < 0; }
+  };
 
   class TnoCaseQStringCompare
   {
   public:
-    bool operator()(const QString& s1, const QString& s2) const
-    { return QString::compare(s1, s2, Qt::CaseInsensitive) < 0; }
+  bool operator()(const QString& s1, const QString& s2) const
+  { return QString::compare(s1, s2, Qt::CaseInsensitive) < 0; }
   };
 
-	IMaterial(CMaterialEntry &entry, CLibraryMaterial& libmat);
+  IMaterial(CMaterialEntry &entry, CLibraryMaterial& libmat);
   ~IMaterial();
 
   // Material ....
-	virtual unsigned int TypeId() const;
-	virtual bool Destroy();
-	virtual bool CanDestroy() const;
+  virtual unsigned int TypeId() const;
+  virtual bool Destroy();
+  virtual bool CanDestroy() const;
 
-	// return the parameter value with the given ID, no support for distributed values!
-	virtual double ParameterValue(unsigned int ValueTypeID) const;
-	double ParameterValue(const QString& MatLibXID) const;
+  // return the parameter value with the given ID, no support for distributed values!
+  virtual double ParameterValue(unsigned int ValueTypeID) const;
+  double ParameterValue(const QString& MatLibXID) const;
 
-	bool CanExportToMatLib() const;
-	void ExportToMatLib();
+  bool CanExportToMatLib() const;
+  void ExportToMatLib();
 
-	// Is locked ....
-	bool IsLocked() const;
+  // Is locked ....
+  bool IsLocked() const;
 
-	void AddMaterialToLibrary(const QString strName, int nModel, 
-									 std::map<QString, std::pair<double, bool>, TnoCaseStringCompare> mpParam,
-									 int nMaxIterations = 20, double dConvCriterion = 0.001);
+  void AddMaterialToLibrary(const QString strName, int nModel, 
+                   std::map<QString, std::pair<double, bool>, TnoCaseStringCompare> mpParam,
+                   int nMaxIterations = 20, double dConvCriterion = 0.001);
 
-	virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-	virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
-	virtual long SavedItems() const;
-	virtual bool Empty() const;
+  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
+  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  virtual long SavedItems() const;
+  virtual bool Empty() const;
 
-	virtual bool Valid() const;
+  virtual bool Valid() const;
 
-	// the number of parameters in this material
+  // the number of parameters in this material
   size_t ParameterSize() const { return m_mpParameters.size(); }
 
-	// is the given id a valid parameter?
-	virtual bool IsParameter(unsigned int ValueTypeID) const;
+  // is the given id a valid parameter?
+  virtual bool IsParameter(unsigned int ValueTypeID) const;
 
   virtual bool Less(const CGraphNode& node) const;
 
-	// derived classes must write to filos file
-	// this function is declared pure-virtual because it only adds 'default' parameters
-	// to the material, but it has to be implemented by a derived class to complete the set
-	virtual bool Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const = 0;
-	virtual int MaterialModel() const = 0;
+  // derived classes must write to filos file
+  // this function is declared pure-virtual because it only adds 'default' parameters
+  // to the material, but it has to be implemented by a derived class to complete the set
+  virtual bool Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const = 0;
+  virtual int MaterialModel() const = 0;
   virtual long MaterialModelFilter() const = 0;
 
-	void Update();
+  void Update();
 
   virtual bool FixedMaterialModel() const;
   void CloneValues(const IMaterial& source_mat);
@@ -103,7 +103,7 @@ public:
   template <class MATERIAL_TYPE>
   static IMaterial* Create(CMaterialEntry& entry, CLibraryMaterial& libmat)
   {
-    return new MATERIAL_TYPE(entry, libmat);
+  return new MATERIAL_TYPE(entry, libmat);
   }
 
   // Interface for dia::IElementProperty -- implementation present
@@ -131,32 +131,32 @@ private:
   class CObserver : public ml::CMaterial::IObserver
   {
   public:
-    CObserver(IMaterial& parent, ml::CMaterial& notifier);
-    virtual ~CObserver();
-    virtual void Modified();
-    virtual void ForcedUnregister();
+  CObserver(IMaterial& parent, ml::CMaterial& notifier);
+  virtual ~CObserver();
+  virtual void Modified();
+  virtual void ForcedUnregister();
 
   private:
-    IMaterial& m_parent;
-    ml::CMaterial* m_pNotifier;
+  IMaterial& m_parent;
+  ml::CMaterial* m_pNotifier;
   };
 
   friend class CObserver;
 
 private:
-	void CreateParameters();
+  void CreateParameters();
   void DestroyParameters();
-	const CMaterialParameter *Parameter(unsigned int ValueTypeID) const;
+  const CMaterialParameter *Parameter(unsigned int ValueTypeID) const;
 
   // not allowed...
-	IMaterial& operator=(const IMaterial& rhs);
+  IMaterial& operator=(const IMaterial& rhs);
 
   void LibraryMaterialModified();
 
 private:
-	CMaterialEntry &m_entry;
-	typedef std::map<CLibraryMaterialParameter*, CMaterialParameter*> TParameterMap;
-	TParameterMap m_mpParameters;
+  CMaterialEntry &m_entry;
+  typedef std::map<CLibraryMaterialParameter*, CMaterialParameter*> TParameterMap;
+  TParameterMap m_mpParameters;
   CLibraryMaterial& m_LibraryMaterial;
   CObserver m_observer;
 };

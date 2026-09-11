@@ -25,9 +25,9 @@ void CAttriGroupNode::DoDataExchange(CDataExchange* pDX)
 
   if (!pDX->m_bSaveAndValidate)
   {
-    strName = Copy().Name().toStdString().c_str();
-    strDescription = Copy().Description().toStdString().c_str();
-    nReadOnly = Copy().ReadOnly() ? 1 : 0;
+  strName = Copy().Name().toStdString().c_str();
+  strDescription = Copy().Description().toStdString().c_str();
+  nReadOnly = Copy().ReadOnly() ? 1 : 0;
   }
 
   DDX_Text(pDX, IDC_ED_NAME, strName);
@@ -36,9 +36,9 @@ void CAttriGroupNode::DoDataExchange(CDataExchange* pDX)
 
   if (pDX->m_bSaveAndValidate)
   {
-    Copy().Name((LPCSTR)strName);
-    Copy().Description((LPCSTR)strDescription);
-    Copy().ReadOnly(nReadOnly);
+  Copy().Name((LPCSTR)strName);
+  Copy().Description((LPCSTR)strDescription);
+  Copy().ReadOnly(nReadOnly);
   }
 }
 

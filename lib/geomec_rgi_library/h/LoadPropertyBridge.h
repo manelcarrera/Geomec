@@ -26,17 +26,17 @@ namespace GeomecRGI
 class CLoadPropertyBridge
 {
   public:
-    CLoadPropertyBridge(const RGProperty& rgProperty, RGInterface& rgi,
+  CLoadPropertyBridge(const RGProperty& rgProperty, RGInterface& rgi,
       CModelBase& modelBase, CRockMechProcessor& rmp);
-    ~CLoadPropertyBridge();
+  ~CLoadPropertyBridge();
 
-    bool loadProperty();
+  bool loadProperty();
 
   private:
-    CLoadPropertyBridge(const CLoadPropertyBridge& rhs);
-    CLoadPropertyBridge& operator = (const CLoadPropertyBridge& rhs);
+  CLoadPropertyBridge(const CLoadPropertyBridge& rhs);
+  CLoadPropertyBridge& operator = (const CLoadPropertyBridge& rhs);
 
-    QSharedPointer <CLoadPropertyBase> m_LoadPropertyBase;
+  QSharedPointer <CLoadPropertyBase> m_LoadPropertyBase;
 };
 
 } // namespace GeomecRGI

@@ -148,19 +148,19 @@ void ValueTextScene::display()
 
 void ValueTextScene::SetTextColor( float * rgb )
 {
-    m_material->diffuseColor.setValue(rgb);
+  m_material->diffuseColor.setValue(rgb);
 }
 
 void ValueTextScene::GetTextColor( float * rgb )
 {
 
-    const SbColor & color = m_material->diffuseColor[0];
-    color.getValue(rgb[0], rgb[1], rgb[2]);
+  const SbColor & color = m_material->diffuseColor[0];
+  color.getValue(rgb[0], rgb[1], rgb[2]);
 }
 
 void ValueTextScene::setPropertyName(const std::string & propertyName)
 {
-    m_propertyName = propertyName;
+  m_propertyName = propertyName;
 }
 
 void ValueTextScene::setCellId(const std::string & meshName, size_t cellId)
@@ -180,152 +180,152 @@ void ValueTextScene::setCellId(const std::string & meshName, size_t cellId)
 
 void ValueTextScene::setCellCoordinates(const SbVec3f & coordinates)
 {
-    CGlobalUnitNode globalUnitNode;
-    CLengthQuantity qnLength;
+  CGlobalUnitNode globalUnitNode;
+  CLengthQuantity qnLength;
 
-    std::stringstream str;
-    double E, N, D;
+  std::stringstream str;
+  double E, N, D;
 
-    N = m_translation[0] + static_cast<double>(coordinates[0]);
-    E = m_translation[1] + static_cast<double>(coordinates[1]);
-    D = m_translation[2] + static_cast<double>(coordinates[2]);
+  N = m_translation[0] + static_cast<double>(coordinates[0]);
+  E = m_translation[1] + static_cast<double>(coordinates[1]);
+  D = m_translation[2] + static_cast<double>(coordinates[2]);
 
-    E = qnLength.Convert(E, globalUnitNode.unitNode().Unit(), CQuantity::SI_UNIT);
-    N = qnLength.Convert(N, globalUnitNode.unitNode().Unit(), CQuantity::SI_UNIT);
-    D = qnLength.Convert(D, globalUnitNode.unitNode().Unit(), CQuantity::SI_UNIT);
+  E = qnLength.Convert(E, globalUnitNode.unitNode().Unit(), CQuantity::SI_UNIT);
+  N = qnLength.Convert(N, globalUnitNode.unitNode().Unit(), CQuantity::SI_UNIT);
+  D = qnLength.Convert(D, globalUnitNode.unitNode().Unit(), CQuantity::SI_UNIT);
 
-    std::string unit = globalUnitNode.unitNode().Unit() == CQuantity::SI_UNIT ? "m" : "ft";
+  std::string unit = globalUnitNode.unitNode().Unit() == CQuantity::SI_UNIT ? "m" : "ft";
 
-    str << "Coordinates (" << unit << ")   E: " << E << ", N: " << N << ", D: " << D;
-    m_cellCoordinatesText->string = str.str();
+  str << "Coordinates (" << unit << ")   E: " << E << ", N: " << N << ", D: " << D;
+  m_cellCoordinatesText->string = str.str();
 }
 
 void ValueTextScene::setCellPropertyValue(double value)
 {
-    if (value == DBL_UNDEFINED) 
-    {
-        setCellPropertyValueUnknown();
-    }
-    else
-    {
-        std::stringstream str;
-        str << "Value" << ": " << value;
-        m_cellPropertyValueText->string = str.str();
-    }
+  if (value == DBL_UNDEFINED) 
+  {
+    setCellPropertyValueUnknown();
+  }
+  else
+  {
+    std::stringstream str;
+    str << "Value" << ": " << value;
+    m_cellPropertyValueText->string = str.str();
+  }
 }
 
 void ValueTextScene::setCellPropertyValueUnknown()
 {
-    std::stringstream str;
-    str << "Value" << ": " << "no value";
-    m_cellPropertyValueText->string = str.str();
+  std::stringstream str;
+  str << "Value" << ": " << "no value";
+  m_cellPropertyValueText->string = str.str();
 }
 
 void ValueTextScene::setCellPropertyVector(const MbVec3d & vector)
 {
-    if (vector[0] == DBL_UNDEFINED) 
-    {
-        setCellPropertyVectorUnknown();
-    }
-    else
-    {
-        std::stringstream str;
-        vectorToString(vector, str);
+  if (vector[0] == DBL_UNDEFINED) 
+  {
+    setCellPropertyVectorUnknown();
+  }
+  else
+  {
+    std::stringstream str;
+    vectorToString(vector, str);
 
-        m_cellPropertyVectorText->string = str.str();
-    }
+    m_cellPropertyVectorText->string = str.str();
+  }
 }
 
 void ValueTextScene::setCellPropertyVectorUnknown()
 {
-    std::stringstream str;
-    str << "";
-    m_cellPropertyVectorText->string = str.str();
+  std::stringstream str;
+  str << "";
+  m_cellPropertyVectorText->string = str.str();
 }
 
 void ValueTextScene::setNodeId(long long nodeId)
 {
-    std::stringstream str;
-    if (nodeId < 0)
-        str << "Node Id: " << std::setw(8) << "Undefined";
-    else
-        str << "Node Id: " << std::setw(8) << std::setfill ('0') << nodeId;
-    m_nodeIndexText->string = str.str();
+  std::stringstream str;
+  if (nodeId < 0)
+    str << "Node Id: " << std::setw(8) << "Undefined";
+  else
+    str << "Node Id: " << std::setw(8) << std::setfill ('0') << nodeId;
+  m_nodeIndexText->string = str.str();
 }
 
 void ValueTextScene::setNodeCoordinates( const MbVec3d & coordinates )
 {
-    CGlobalUnitNode globalUnitNode;
-    CLengthQuantity qnLength;
+  CGlobalUnitNode globalUnitNode;
+  CLengthQuantity qnLength;
 
-    std::stringstream str;
-    double E, N, D;
+  std::stringstream str;
+  double E, N, D;
 
-    N = m_translation[0] + static_cast<double>(coordinates[0]);
-    E = m_translation[1] + static_cast<double>(coordinates[1]);
-    D = m_translation[2] + static_cast<double>(coordinates[2]);
+  N = m_translation[0] + static_cast<double>(coordinates[0]);
+  E = m_translation[1] + static_cast<double>(coordinates[1]);
+  D = m_translation[2] + static_cast<double>(coordinates[2]);
 
-    E = qnLength.Convert(E, globalUnitNode.unitNode().Unit(), CQuantity::SI_UNIT);
-    N = qnLength.Convert(N, globalUnitNode.unitNode().Unit(), CQuantity::SI_UNIT);
-    D = qnLength.Convert(D, globalUnitNode.unitNode().Unit(), CQuantity::SI_UNIT);
+  E = qnLength.Convert(E, globalUnitNode.unitNode().Unit(), CQuantity::SI_UNIT);
+  N = qnLength.Convert(N, globalUnitNode.unitNode().Unit(), CQuantity::SI_UNIT);
+  D = qnLength.Convert(D, globalUnitNode.unitNode().Unit(), CQuantity::SI_UNIT);
 
-    std::string unit = globalUnitNode.unitNode().Unit() == CQuantity::SI_UNIT ? "m" : "ft";
+  std::string unit = globalUnitNode.unitNode().Unit() == CQuantity::SI_UNIT ? "m" : "ft";
 
-    str << "Coordinates (" << unit << ")   E: " << E << ", N: " << N << ", D: " << D;
-    m_nodeCoordinatesText->string = str.str();
+  str << "Coordinates (" << unit << ")   E: " << E << ", N: " << N << ", D: " << D;
+  m_nodeCoordinatesText->string = str.str();
 }
 
 void ValueTextScene::setNodePropertyValue(double value)
 {
-    if (value == DBL_UNDEFINED) 
-    {
-        setNodePropertyValueUnknown();
-    }
-    else
-    {
-        std::stringstream str;
-        str << "Value" << ": " << value;
-        m_nodePropertyValueText->string = str.str();
-    }
+  if (value == DBL_UNDEFINED) 
+  {
+    setNodePropertyValueUnknown();
+  }
+  else
+  {
+    std::stringstream str;
+    str << "Value" << ": " << value;
+    m_nodePropertyValueText->string = str.str();
+  }
 }
 
 void ValueTextScene::setNodePropertyValueUnknown()
 {
-    std::stringstream str;
-    str << "Value" << ": " << "no value";
-    m_nodePropertyValueText->string = str.str();
+  std::stringstream str;
+  str << "Value" << ": " << "no value";
+  m_nodePropertyValueText->string = str.str();
 }
 
 void ValueTextScene::setNodePropertyVector(const MbVec3d & vector)
 {
-    if (vector[0] == DBL_UNDEFINED) 
-    {
-        setNodePropertyVectorUnknown();
-    }
-    else
-    {
-        std::stringstream str;
-        vectorToString(vector, str);
-        m_nodePropertyVectorText->string = str.str();
-    }
+  if (vector[0] == DBL_UNDEFINED) 
+  {
+    setNodePropertyVectorUnknown();
+  }
+  else
+  {
+    std::stringstream str;
+    vectorToString(vector, str);
+    m_nodePropertyVectorText->string = str.str();
+  }
 }
 
 void ValueTextScene::setNodePropertyVectorUnknown()
 {
-    m_nodePropertyVectorText->string = "";
+  m_nodePropertyVectorText->string = "";
 }
 
 void ValueTextScene::vectorToString( const MbVec3d & vector, std::stringstream & str )
 {
-    double n, e, d, max;
+  double n, e, d, max;
 
-    max = (std::max (std::max (std::abs(vector[0]), std::abs(vector[1])), std::abs(vector[2]) )) / 10000;
+  max = (std::max (std::max (std::abs(vector[0]), std::abs(vector[1])), std::abs(vector[2]) )) / 10000;
 
-    e = (abs(vector[1]) < max) ? 0 : vector[1];
-    n = (abs(vector[0]) < max) ? 0 : vector[0];
-    d = (abs(vector[2]) < max) ? 0 : vector[2];
+  e = (abs(vector[1]) < max) ? 0 : vector[1];
+  n = (abs(vector[0]) < max) ? 0 : vector[0];
+  d = (abs(vector[2]) < max) ? 0 : vector[2];
 
-    str << "Vector  E: " << std::setw(10) << std::setprecision(8) << e << ", N: " << n << ", D: " << d;
+  str << "Vector  E: " << std::setw(10) << std::setprecision(8) << e << ", N: " << n << ", D: " << d;
 }
 
 void ValueTextScene::setNormalVector( const SbVec3f & vector )
@@ -339,18 +339,18 @@ void ValueTextScene::setNormalVector( const SbVec3f & vector )
 
 void ValueTextScene::clearNormalVector(  )
 {
-    m_normalText->string = "";
+  m_normalText->string = "";
 }
 
 void ValueTextScene::setTensor( const ITensor * tensor )
 {
-    if (!tensor)
-    {
-        m_tensorSwitch->whichChild = SO_SWITCH_NONE;
-    }
-    else
-    {
-        m_tensorSwitch->whichChild = SO_SWITCH_ALL;
+  if (!tensor)
+  {
+    m_tensorSwitch->whichChild = SO_SWITCH_NONE;
+  }
+  else
+  {
+    m_tensorSwitch->whichChild = SO_SWITCH_ALL;
 
        std::stringstream strE, strN, strD;
        strE << "E: " << std::setw(12) << std::setprecision(8) << tensor->YY() << "  " << tensor->XY() << "  " << tensor->YZ();
@@ -361,7 +361,7 @@ void ValueTextScene::setTensor( const ITensor * tensor )
 
        strD << "D: " << std::setw(12) << std::setprecision(8) << tensor->YZ() << "  " << tensor->XZ() << "  " << tensor->ZZ();
        m_tensorText->string.set1Value(4, strD.str());     
-    }
+  }
 }
 
 

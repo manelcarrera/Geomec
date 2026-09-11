@@ -25,53 +25,53 @@ static char THIS_FILE[]=__FILE__;#endif  // _MSC_VER
 CColorScaleNode::CColorScaleNode(CGraphModel &model)
 : CStorageNode(model)
 {
-	// Child links to colorscale entry
+  // Child links to colorscale entry
 }
 
 CColorScaleNode::CColorScaleNode(const CString& strName, CGraphModel &model)
 : CStorageNode(strName, model)
 {
-	// Child links to colorscale entry
+  // Child links to colorscale entry
 }
 
 CColorScaleNode::CColorScaleNode(const UINT uName, CGraphModel &model)
 : CStorageNode(uName, model)
 {
-	// Child links to colorscale entry
+  // Child links to colorscale entry
 }
 
 CColorScaleNode::CColorScaleNode(const CColorScaleNode &rhs)
 : CStorageNode(rhs)
 {
-	ASSERT(!rhs.IsCopy());
+  ASSERT(!rhs.IsCopy());
 }
 
 bool CColorScaleNode::operator==(const CColorScaleNode& rhs) const
 {
-	return CModelNode::operator ==(rhs);
+  return CModelNode::operator ==(rhs);
 }
 
 CColorScaleNode& CColorScaleNode::operator=(const CColorScaleNode& rhs)
 {
-	CModelNode::operator=(rhs);
-	return *this;
+  CModelNode::operator=(rhs);
+  return *this;
 }
 
 COLORREF CColorScaleNode::LoadColor(TSTREAM& stream)
 {
-	int nRed, nGreen, nBlue;
-	stream >> nRed;
-	stream >> nGreen;
-	stream >> nBlue;
-	return RGB(nRed, nGreen, nBlue);
+  int nRed, nGreen, nBlue;
+  stream >> nRed;
+  stream >> nGreen;
+  stream >> nBlue;
+  return RGB(nRed, nGreen, nBlue);
 }
 
 void CColorScaleNode::SaveColor(TSTREAM& stream, COLORREF color)
 {
-	int nRed = GetRValue(color);
-	int nGreen = GetGValue(color);
-	int nBlue = GetBValue(color);
-	stream << nRed;
-	stream << nGreen;
-	stream << nBlue;
+  int nRed = GetRValue(color);
+  int nGreen = GetGValue(color);
+  int nBlue = GetBValue(color);
+  stream << nRed;
+  stream << nGreen;
+  stream << nBlue;
 }

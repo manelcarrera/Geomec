@@ -13,65 +13,65 @@ public:
   class CStressStrain
   {
   public:
-    typedef std::pair<double, double> TStressStrainPair;
-    typedef std::list<TStressStrainPair> TStressStrainList;
-    typedef TStressStrainList::iterator iterator;
-    typedef TStressStrainList::const_iterator const_iterator;
-    typedef TStressStrainList::reverse_iterator reverse_iterator;
-    typedef TStressStrainList::const_reverse_iterator const_reverse_iterator;
-    typedef TStressStrainList::size_type size_type;
+  typedef std::pair<double, double> TStressStrainPair;
+  typedef std::list<TStressStrainPair> TStressStrainList;
+  typedef TStressStrainList::iterator iterator;
+  typedef TStressStrainList::const_iterator const_iterator;
+  typedef TStressStrainList::reverse_iterator reverse_iterator;
+  typedef TStressStrainList::const_reverse_iterator const_reverse_iterator;
+  typedef TStressStrainList::size_type size_type;
 
   public:
-    CStressStrain();
-    CStressStrain(const CStressStrain& rhs);
+  CStressStrain();
+  CStressStrain(const CStressStrain& rhs);
 
-    CStressStrain& operator=(const CStressStrain& rhs);
-    bool operator==(const CStressStrain& rhs) const;
+  CStressStrain& operator=(const CStressStrain& rhs);
+  bool operator==(const CStressStrain& rhs) const;
 
-    bool empty() const;
-    size_type size() const;
-    void clear();
+  bool empty() const;
+  size_type size() const;
+  void clear();
 
-    iterator begin();
-    iterator end();
-    const_iterator begin() const;
-    const_iterator end() const;
-    reverse_iterator rbegin();
-    reverse_iterator rend();
-    const_reverse_iterator rbegin() const;
-    const_reverse_iterator rend() const;
+  iterator begin();
+  iterator end();
+  const_iterator begin() const;
+  const_iterator end() const;
+  reverse_iterator rbegin();
+  reverse_iterator rend();
+  const_reverse_iterator rbegin() const;
+  const_reverse_iterator rend() const;
 
-    void push_back(const TStressStrainPair& _Val);
-    void push_front(const TStressStrainPair& _Val);
-    void pop_back();
-    void pop_front();
+  void push_back(const TStressStrainPair& _Val);
+  void push_front(const TStressStrainPair& _Val);
+  void pop_back();
+  void pop_front();
 
-    iterator insert(iterator _Where, const TStressStrainPair& _Val);
+  iterator insert(iterator _Where, const TStressStrainPair& _Val);
 
-    iterator erase(iterator _Where);
-    iterator erase(iterator _First, iterator _Last);
+  iterator erase(iterator _Where);
+  iterator erase(iterator _First, iterator _Last);
 
-    void sort();
+  void sort();
 
-    void LoadStream(CStorageNode::TSTREAM& stream, CStorageNode::TSTREAMVERSION& version, CStorageNode::TPROGRESS& progress);
-    void SaveStream(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS& progress);
-    long SavedItems() const;
+  void LoadStream(CStorageNode::TSTREAM& stream, CStorageNode::TSTREAMVERSION& version, CStorageNode::TPROGRESS& progress);
+  void SaveStream(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS& progress);
+  long SavedItems() const;
 
-    bool Less(const CStressStrain& rhs) const;
+  bool Less(const CStressStrain& rhs) const;
 
   private:
-    class CLess
-    {
-    public:
+  class CLess
+  {
+  public:
       bool operator()(const TStressStrainPair& lhs, const TStressStrainPair& rhs)
       {
-        // sort by increasing strain
-        return lhs.second < rhs.second;
+    // sort by increasing strain
+    return lhs.second < rhs.second;
       }
-    };
+  };
 
   private:
-    TStressStrainList m_lstStressStrain;
+  TStressStrainList m_lstStressStrain;
   };
 
 public:
@@ -84,9 +84,9 @@ public:
   virtual unsigned int IconId() const;
   virtual unsigned int TypeId() const;
 
-	virtual double ParameterValue(unsigned int ValueTypeID) const;
-	virtual bool IsParameter(unsigned int ValueTypeID) const;
-	virtual bool Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const;
+  virtual double ParameterValue(unsigned int ValueTypeID) const;
+  virtual bool IsParameter(unsigned int ValueTypeID) const;
+  virtual bool Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const;
 
   double YoungsModulus() const;
   double PoissonsRatio() const;
@@ -107,9 +107,9 @@ public:
   CStressStrain& StressStrain();
   const CStressStrain& StressStrain() const;
 
-	virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-	virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
-	virtual long SavedItems() const;
+  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
+  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  virtual long SavedItems() const;
   virtual bool Empty() const;
   virtual bool Less(const CGraphNode& node) const;
 
@@ -141,9 +141,9 @@ class CWellCasingSteelMaterialEntry : public CGraphEntryTemp<CWellCasingSteelMat
 public:
   CWellCasingSteelMaterialEntry(int nEntryId, CModelBase& model);
 
-	virtual void LoadStream(CFemAppModel& model, TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-	virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
-	virtual long SavedItems() const;
+  virtual void LoadStream(CFemAppModel& model, TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
+  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  virtual long SavedItems() const;
   CWellCasingSteelMaterial& InsertNew();
 
   ACCEPT_GEOMECMODELVISITORS(VisitWellCasingSteelMaterialEntry);

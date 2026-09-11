@@ -1,10 +1,10 @@
 /*************************************************************************
 
-        cSetRescueDataContainer.h
+    cSetRescueDataContainer.h
 
  Keeps a list of pointers to some RescueDataContainer.
 
-        Rod Hanks               Feb 2006
+    Rod Hanks               Feb 2006
 
 ****************************************************************************/
 

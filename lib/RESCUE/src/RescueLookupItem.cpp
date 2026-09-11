@@ -13,11 +13,11 @@ RESCUEBOOL RescueLookupItem::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueLookupItem)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueObject::IsOfType(thisType);
+  return RescueObject::IsOfType(thisType);
   }
 }
 

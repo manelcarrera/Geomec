@@ -21,8 +21,8 @@ bool CWellZoomInMesh_Delegate::Attributes()
 
   if (m_wellZoomInMesh->getInvalidateAfterDlg())
   {
-    m_wellZoomInMesh->InvalidateMesh();
-    m_wellZoomInMesh->CreateMesh();
+  m_wellZoomInMesh->InvalidateMesh();
+  m_wellZoomInMesh->CreateMesh();
   }
 
   return bRet;

@@ -37,9 +37,9 @@ class RescueIJSurface:public RescueHistoryObject
 {
 public:
   typedef enum {R_FACE_ACTIVE,                  // Face is completely inside the surface
-                R_FACE_INACTIVE,                // Face is completely outside the surface
-                R_FACE_TRUNCATED}               // Cell is inactivated by a Y Fault.
-                    RescueFaceStatus;
+        R_FACE_INACTIVE,                // Face is completely outside the surface
+        R_FACE_TRUNCATED}               // Cell is inactivated by a Y Fault.
+          RescueFaceStatus;
   RescueIJSurface(RescueSurface *surfaceIn,
                   RescueCoordinateSystem::Orientation orientation,
                   RescueCoordinateSystemAxis *i_axis,
@@ -78,7 +78,7 @@ public:
   RESCUEINT64 SurfaceCellCount64() {return surfaceCell->Count64();}
   RESCUEINT32 SurfaceCellCount() {return surfaceCell->Count();}
   RescueSurfaceCell *NthSurfaceCell(RESCUEINT64 zeroBasedOrdinal)
-                        {return surfaceCell->NthObject(zeroBasedOrdinal);}
+            {return surfaceCell->NthObject(zeroBasedOrdinal);}
                   // RescueBlockUnit does not "own" RescueSurfaceCells,
                   // so it does not create or delete them, merely
                   // catalogs relationships to them.  These intersections are
@@ -86,7 +86,7 @@ public:
   RESCUEINT64 SurfaceGridCount64() {return surfaceToGrid->Count64();}
   RESCUEINT32 SurfaceGridCount() {return surfaceToGrid->Count();}
   RescueSurfaceToGrid *NthSurfaceGrid(RESCUEINT64 zeroBasedOrdinal)
-                    {return surfaceToGrid->NthObject(zeroBasedOrdinal);}
+          {return surfaceToGrid->NthObject(zeroBasedOrdinal);}
                   // DO NOT delete the object returned.  Interrogate it for the
                   // intersection points.
   RESCUEINT64 StairSteppedFaultCount64() {return stairSteps->Count64();}
@@ -112,29 +112,29 @@ protected:
   void Relink(RescueObject *parentModel);
 private:
   RESCUEINT64 *AddVertexToArray(RESCUEINT64 *arrayIn, RESCUEINT64 i, RESCUEINT64 j, 
-                        RESCUEINT64 &allocated, RESCUEINT64 &arrayLength);
+            RESCUEINT64 &allocated, RESCUEINT64 &arrayLength);
   void AddWellboreSurface(RescueWellboreSurface *existingIntersect)
-                        {(*surfaceWellbore) += existingIntersect;}
+            {(*surfaceWellbore) += existingIntersect;}
   void DropWellboreSurface(RescueWellboreSurface *existingIntersect)
-                        {(*surfaceWellbore) -= existingIntersect;}
+            {(*surfaceWellbore) -= existingIntersect;}
                                      // Constructor for RescueWellboreSurface will connect
                                      // both ends.
   void AddSurfaceCell(RescueSurfaceCell *existingCell)
-                        {(*surfaceCell) += existingCell;}
+            {(*surfaceCell) += existingCell;}
   void DropSurfaceCell(RescueSurfaceCell *existingCell)
-                        {(*surfaceCell) -= existingCell;}
+            {(*surfaceCell) -= existingCell;}
                                      // Surface cell intersections are managed from
                                      // the geometry side. See RescueGeometry.
   void AddSurfaceToGrid(RescueSurfaceToGrid *existingToGrid)
-                        {(*surfaceToGrid) += existingToGrid;}
+            {(*surfaceToGrid) += existingToGrid;}
   void DropSurfaceToGrid(RescueSurfaceToGrid *existingToGrid)
-                        {(*surfaceToGrid) -= existingToGrid;}
+            {(*surfaceToGrid) -= existingToGrid;}
                                      // Surface to grid intersections are managed from
                                      // the geometry side. See RescueGeometry.
   void AddStairSteps(RescueStairSteppedFault *existingFault)
-                        {(*stairSteps) += existingFault;}
+            {(*stairSteps) += existingFault;}
   void DropSurfaceToGrid(RescueStairSteppedFault *existingFault)
-                        {(*stairSteps) -= existingFault;}
+            {(*stairSteps) -= existingFault;}
                                      // Stair stepped fault intersections are managed from
                                      // the geometry side. See RescueGeometry.
   void DropBags() {surfaceCell->EmptySelf();}

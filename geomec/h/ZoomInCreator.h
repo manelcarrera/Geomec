@@ -32,20 +32,20 @@ class CDepletionStage;
 
 class CZoomInCreator
 {
-	CHomogenizationBox* m_box;
-	void ExtractResults(CElementSet& element_set, const CAnalysisType& antype);
-	void ExtractResults(CElementSet& element_set, const CDepletionStage& stage, const CAnalysisType& antype);
-	typedef std::pair<const IResultComponent*, CElementValueSet*> TResultPair;
-	typedef std::vector<TResultPair> TResultMap;
-    void MapResults(const QString& sResultName,
-					const IResult& source, 
-					CValueType& target, 
-					TResultMap &result_map,
-					const CDepletionStage& stage, 
-					const CAnalysisType& antype);
+  CHomogenizationBox* m_box;
+  void ExtractResults(CElementSet& element_set, const CAnalysisType& antype);
+  void ExtractResults(CElementSet& element_set, const CDepletionStage& stage, const CAnalysisType& antype);
+  typedef std::pair<const IResultComponent*, CElementValueSet*> TResultPair;
+  typedef std::vector<TResultPair> TResultMap;
+  void MapResults(const QString& sResultName,
+          const IResult& source, 
+          CValueType& target, 
+          TResultMap &result_map,
+          const CDepletionStage& stage, 
+          const CAnalysisType& antype);
 public:
-	CZoomInCreator(CHomogenizationBox &box);
-	void Create();
+  CZoomInCreator(CHomogenizationBox &box);
+  void Create();
 };
 
 #endif // !defined(AFX_ZOOMINCREATOR_H__4FB90830_1ED5_4ffb_B2CC_851233CAC743__INCLUDED_)

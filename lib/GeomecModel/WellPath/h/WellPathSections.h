@@ -21,18 +21,18 @@ typedef std::vector <TWellPathSection> TWellPathSections;
 class CWellPathSections
 {
   public:
-    CWellPathSections(const CElementFaces& elementFaces);
+  CWellPathSections(const CElementFaces& elementFaces);
 
-    const TWellPathSections& wellPathSections() const;
+  const TWellPathSections& wellPathSections() const;
 
   private:
-    CWellPathSections(const CWellPathSections& rhs);
-    CWellPathSections& operator = (const CWellPathSections& rhs);
+  CWellPathSections(const CWellPathSections& rhs);
+  CWellPathSections& operator = (const CWellPathSections& rhs);
 
-    static TWellPathSections createWellPathSections(
+  static TWellPathSections createWellPathSections(
       const CElementFaces& elementFaces);
 
-    TWellPathSections m_wellPathSections;
+  TWellPathSections m_wellPathSections;
 };
 
 } // namespace WellPath

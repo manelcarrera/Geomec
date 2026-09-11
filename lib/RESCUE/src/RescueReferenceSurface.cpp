@@ -57,14 +57,14 @@ RescueReferenceSurface::RescueReferenceSurface(RescueContext *context, FILE *arc
   isA = R_RescueReferenceSurface;
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -77,7 +77,7 @@ void RescueReferenceSurface::Archive(FILE *archiveFile)
   myfprintf(context, archiveFile, Identifier());
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -91,11 +91,11 @@ RESCUEBOOL RescueReferenceSurface::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueReferenceSurface)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueSurface::IsOfType(thisType);
+  return RescueSurface::IsOfType(thisType);
   }
 }
 

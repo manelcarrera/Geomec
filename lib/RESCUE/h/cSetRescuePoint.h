@@ -1,10 +1,10 @@
 /*************************************************************************
 
-        cSetRescuePoint.h
+    cSetRescuePoint.h
 
  Keeps a list of pointers to some RescuePoint.
 
-        Rod Hanks              Oct 2003
+    Rod Hanks              Oct 2003
 
 ****************************************************************************/
 

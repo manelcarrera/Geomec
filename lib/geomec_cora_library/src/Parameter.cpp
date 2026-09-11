@@ -15,7 +15,7 @@ CParameter::CParameter(const TFaultParameter&, const QString& name,
   const geo::CValue& minimum, const geo::CValue& maximum, double mean,
   CHorizonBase* horizonBase, int depletionStage, unsigned int valueTypeID)
 : m_objectBase(TParameterBase(new CParameterFault(name, minimum, maximum, mean,
-    valueTypeID, depletionStage, horizonBase)))
+  valueTypeID, depletionStage, horizonBase)))
 {
 }
 
@@ -24,7 +24,7 @@ CParameter::CParameter(const TFormationParameter4Material&, const QString& name,
   CFormationBase* formationBase, int depletionStage,
   CLibraryMaterialParameter& libraryMaterialParameter)
 : m_objectBase(TParameterBase(new CParameterFormation4Material(name, minimum,
-    maximum, mean, formationBase, depletionStage, libraryMaterialParameter)))
+  maximum, mean, formationBase, depletionStage, libraryMaterialParameter)))
 {
 }
 
@@ -32,7 +32,7 @@ CParameter::CParameter(const TFormationParameter4Pressure&, const QString& name,
   const geo::CValue& minimum, const geo::CValue& maximum, double mean,
   CFormationBase* formationBase, int depletionStage, unsigned int valueTypeID)
 : m_objectBase(TParameterBase(new CParameterFormation4Pressure(name, minimum,
-    maximum, mean, formationBase, depletionStage, valueTypeID)))
+  maximum, mean, formationBase, depletionStage, valueTypeID)))
 {
 }
 
@@ -41,7 +41,7 @@ CParameter::CParameter(const TFormationParameter4PressureChange&,
   double mean, CFormationBase* formationBase, int depletionStage,
   unsigned int valueTypeID)
 : m_objectBase(TParameterBase(new CParameterFormation4PressureChange(name, minimum,
-    maximum, mean, formationBase, depletionStage, valueTypeID)))
+  maximum, mean, formationBase, depletionStage, valueTypeID)))
 {
 }
 
@@ -59,7 +59,7 @@ CParameter::CParameter(const TNonMeshedSurfaceParameter&, const QString& name,
   const geo::CValue& minimum, const geo::CValue& maximum, double mean,
   unsigned int valueTypeID, int depletionStage, CSurfaceBase* surfaceBase)
 : m_objectBase(TParameterBase(new CParameterNonMeshedSurface(name, minimum,
-    maximum, mean, valueTypeID, depletionStage, surfaceBase)))
+  maximum, mean, valueTypeID, depletionStage, surfaceBase)))
 {
 }
 
@@ -153,9 +153,9 @@ std::ostream& operator << (std::ostream& os, const cora::TParameters& rhs)
   os << rhs.size() << std::endl;
 
   for (cora::TParameters::const_iterator object = rhs.begin();
-    object != rhs.end(); ++object)
+  object != rhs.end(); ++object)
   {
-    os << *object;
+  os << *object;
   }
 
   return os;

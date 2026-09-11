@@ -13,7 +13,7 @@ class CInterfacePy : public CInterfaceBase
 public:
   typedef enum
   {
-    PY_SCRIPT = IInterfaceBase::FOR_ME + 1,
+  PY_SCRIPT = IInterfaceBase::FOR_ME + 1,
   } TPyCommand;
 
   virtual const char *ShortDescription() const;

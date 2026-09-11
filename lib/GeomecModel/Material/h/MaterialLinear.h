@@ -8,11 +8,11 @@
 class CMaterialLinear : public IMaterialRock
 {
 public:
-	CMaterialLinear(CMaterialEntry &entry, CLibraryMaterial& libmat);
-	CMaterialLinear(const CMaterialLinear& material, CMaterialEntry& entry);
+  CMaterialLinear(CMaterialEntry &entry, CLibraryMaterial& libmat);
+  CMaterialLinear(const CMaterialLinear& material, CMaterialEntry& entry);
 
-	virtual bool Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const;
-	virtual int MaterialModel() const { return MM_LINEAR; }
+  virtual bool Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const;
+  virtual int MaterialModel() const { return MM_LINEAR; }
   virtual long MaterialModelFilter() const { return MLFO_LINEAR; }
 
   // the creator for this material model

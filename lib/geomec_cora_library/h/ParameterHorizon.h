@@ -9,12 +9,12 @@ namespace cora
 class CParameterHorizon : public CParameterLimit
 {
   public:
-    CParameterHorizon();
-    virtual ~CParameterHorizon();
+  CParameterHorizon();
+  virtual ~CParameterHorizon();
 
   private:
-    CParameterHorizon(const CParameterHorizon& rhs);
-    CParameterHorizon& operator = (const CParameterHorizon& rhs);
+  CParameterHorizon(const CParameterHorizon& rhs);
+  CParameterHorizon& operator = (const CParameterHorizon& rhs);
 };
 
 } // namespace cora

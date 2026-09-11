@@ -27,21 +27,21 @@ public:
   RescueSection *Section() {return section;}
 /****************************************************************************************************
 
-    The stub method lets you find out if you are stepping into a part of the model
-    that has not been loaded.  From the stub you can find the
-    RescueWireframe involved in the node, and you can find out if that node is
-    loaded.
+  The stub method lets you find out if you are stepping into a part of the model
+  that has not been loaded.  From the stub you can find the
+  RescueWireframe involved in the node, and you can find out if that node is
+  loaded.
 
-    This method will return zero if RescueModel::LoadWireframe() has not been called.
+  This method will return zero if RescueModel::LoadWireframe() has not been called.
 
 *************************************************************************************************/
   RescueEdgeSetStub *EdgesObj();
 /*********************************************************************************************
 
-    This method will automatically load the wireframe if the part you need for
-    the edges is not yet loaded.
+  This method will automatically load the wireframe if the part you need for
+  the edges is not yet loaded.
 
-    This method will return zero if RescueModel::LoadWireframe() has not been called.
+  This method will return zero if RescueModel::LoadWireframe() has not been called.
 
 **********************************************************************************************/
   RescueEdgeSet *Edges();

@@ -24,43 +24,43 @@ static char THIS_FILE[]=__FILE__;
 IValueComponentBase::IValueComponentBase(unsigned int uName, IValueComposite &composite, unsigned int uComponent, unsigned int uMode)
 : CStorageNode(uName, composite.Model())
 {
-	if(uMode >= composite.m_vcMode.size())
-		composite.m_vcMode.resize(uMode + 1);
+  if(uMode >= composite.m_vcMode.size())
+    composite.m_vcMode.resize(uMode + 1);
 
-	if(uComponent >= composite.m_vcMode[uMode].size())
-		composite.m_vcMode[uMode].resize(uComponent + 1);
+  if(uComponent >= composite.m_vcMode[uMode].size())
+    composite.m_vcMode[uMode].resize(uComponent + 1);
 
-	composite.m_vcMode[uMode][uComponent] = this;
+  composite.m_vcMode[uMode][uComponent] = this;
 
-	reParent(&composite);
+  reParent(&composite);
 }
 
 IValueComponentBase::IValueComponentBase(const QString& sName, IValueComposite &composite, unsigned int uComponent, unsigned int uMode)
 : CStorageNode(sName, composite.Model())
 {
-	if(uMode >= composite.m_vcMode.size())
-		composite.m_vcMode.resize(uMode + 1);
+  if(uMode >= composite.m_vcMode.size())
+    composite.m_vcMode.resize(uMode + 1);
 
-	if(uComponent >= composite.m_vcMode[uMode].size())
-		composite.m_vcMode[uMode].resize(uComponent + 1);
+  if(uComponent >= composite.m_vcMode[uMode].size())
+    composite.m_vcMode[uMode].resize(uComponent + 1);
 
-	composite.m_vcMode[uMode][uComponent] = this;
+  composite.m_vcMode[uMode][uComponent] = this;
 
-	reParent(&composite);
+  reParent(&composite);
 }
 
 IValueComponentBase::IValueComponentBase(IValueComposite &composite, unsigned int uComponent, unsigned int uMode)
 : CStorageNode("", composite.Model())
 {
-	if(uMode >= composite.m_vcMode.size())
-		composite.m_vcMode.resize(uMode + 1);
+  if(uMode >= composite.m_vcMode.size())
+    composite.m_vcMode.resize(uMode + 1);
 
-	if(uComponent >= composite.m_vcMode[uMode].size())
-		composite.m_vcMode[uMode].resize(uComponent + 1);
+  if(uComponent >= composite.m_vcMode[uMode].size())
+    composite.m_vcMode[uMode].resize(uComponent + 1);
 
-	composite.m_vcMode[uMode][uComponent] = this;
-	
-	reParent(&composite);
+  composite.m_vcMode[uMode][uComponent] = this;
+  
+  reParent(&composite);
 }
 
 IValueComponentBase::IValueComponentBase(const IValueComponentBase &rhs)
@@ -100,119 +100,119 @@ IValueDataInterface *IValueComponentBase::Data(int /*type*/)
 
 const IValueComposite& IValueComponentBase::Parent() const
 {
-	assert(parent());
-	assert(!parent()->IsCopy());
-	if(IsCopy() && parent()->IsCopied())
-		return (const IValueComposite&) (parent()->Copy());
+  assert(parent());
+  assert(!parent()->IsCopy());
+  if(IsCopy() && parent()->IsCopied())
+    return (const IValueComposite&) (parent()->Copy());
 
-	return (const IValueComposite&)*parent();
+  return (const IValueComposite&)*parent();
 }
 
 IValueComposite& IValueComponentBase::Parent()
 {
-	assert(parent());
-	assert(!parent()->IsCopy());
-	if(IsCopy() && parent()->IsCopied())
-		return (IValueComposite&) (parent()->Copy());
+  assert(parent());
+  assert(!parent()->IsCopy());
+  if(IsCopy() && parent()->IsCopied())
+    return (IValueComposite&) (parent()->Copy());
 
-	return (IValueComposite&)*parent();
+  return (IValueComposite&)*parent();
 }
 
 IValueComponentBase& IValueComponentBase::operator=(const IValueComponentBase &rhs)
 {
-	assert(rhs.IsCopy());
-	CStorageNode::operator =(rhs);
-	return *this;
+  assert(rhs.IsCopy());
+  CStorageNode::operator =(rhs);
+  return *this;
 }
 
 bool IValueComponentBase::operator==(const IValueComponentBase &rhs) const
 {
-	return CStorageNode::operator ==(rhs);
+  return CStorageNode::operator ==(rhs);
 }
 
 bool IValueComponentBase::Less(const CGraphNode &node) const
 {
-	const IValueComponentBase *pComponent = dynamic_cast<const IValueComponentBase*>(&node);
-	if(pComponent)
-	{
-		// If we have equal parents we compare on component index
-		if(&Parent() == &pComponent->Parent())
-		{
-			int this_index = -1, rhs_index = -1;
-			for(unsigned int nMode = 0; nMode < Parent().ModeSize(); nMode++)
-			{
-				for(unsigned int nComponent = 0; nComponent < Parent().ComponentSize(nMode); nComponent++)
-				{
-					if(&Parent().Component(nComponent, nMode) == pComponent)
-						rhs_index = nComponent;
-					if(&Parent().Component(nComponent, nMode) == this)
-						this_index = nComponent;
-				}
-			}
+  const IValueComponentBase *pComponent = dynamic_cast<const IValueComponentBase*>(&node);
+  if(pComponent)
+  {
+    // If we have equal parents we compare on component index
+    if(&Parent() == &pComponent->Parent())
+    {
+      int this_index = -1, rhs_index = -1;
+      for(unsigned int nMode = 0; nMode < Parent().ModeSize(); nMode++)
+      {
+        for(unsigned int nComponent = 0; nComponent < Parent().ComponentSize(nMode); nComponent++)
+        {
+          if(&Parent().Component(nComponent, nMode) == pComponent)
+            rhs_index = nComponent;
+          if(&Parent().Component(nComponent, nMode) == this)
+            this_index = nComponent;
+        }
+      }
 
-			return this_index < rhs_index;
-		}
-	}
+      return this_index < rhs_index;
+    }
+  }
 
-	return CStorageNode::Less(node);
+  return CStorageNode::Less(node);
 }
 
 int IValueComponentBase::ComponentIndex() const
 {
-	for(unsigned int nMode = 0; nMode < Parent().ModeSize(); nMode++)
-	{
-		for(int nComponent = 0; nComponent < Parent().ComponentSize(nMode); nComponent++)
-		{
-			if(&Parent().Component(nComponent, nMode) == this)
-				return nComponent;
-		}
-	}
+  for(unsigned int nMode = 0; nMode < Parent().ModeSize(); nMode++)
+  {
+    for(int nComponent = 0; nComponent < Parent().ComponentSize(nMode); nComponent++)
+    {
+      if(&Parent().Component(nComponent, nMode) == this)
+        return nComponent;
+    }
+  }
 
-	assert(false);	// Should always work
-	return -1;
+  assert(false);	// Should always work
+  return -1;
 }
 
 int IValueComponentBase::ModeIndex() const
 {
-	for(unsigned int nMode = 0; nMode < Parent().ModeSize(); nMode++)
-	{
-		for(unsigned int nComponent = 0; nComponent < Parent().ComponentSize(nMode); nComponent++)
-		{
-			if(&Parent().Component(nComponent, nMode) == this)
-				return nMode;
-		}
-	}
+  for(unsigned int nMode = 0; nMode < Parent().ModeSize(); nMode++)
+  {
+    for(unsigned int nComponent = 0; nComponent < Parent().ComponentSize(nMode); nComponent++)
+    {
+      if(&Parent().Component(nComponent, nMode) == this)
+        return nMode;
+    }
+  }
 
-	assert(false);	// Should always work
-	return -1;
+  assert(false);	// Should always work
+  return -1;
 }
 
 // Default we can map !!!
 bool IValueComponentBase::CanMap(const COpenGLNode& /*node*/) const
 {
-	return true;
+  return true;
 }
 
 bool IValueComponentBase::CanComputeOnPoints() const
 {
-    return true;
+  return true;
 }
 
 int IValueComponentBase::MinMaxSteps(const geo::IObject &object) const
 {
-	const geo::IElementSet *pElementSet=dynamic_cast<const geo::IElementSet*> (&object);
-	if(pElementSet) return pElementSet->ElementSize();
+  const geo::IElementSet *pElementSet=dynamic_cast<const geo::IElementSet*> (&object);
+  if(pElementSet) return pElementSet->ElementSize();
 
-	int nRet = 0;
-	const geo::IArray* ptArr = dynamic_cast<const geo::IArray *> (&object);
-	if(ptArr) {
-		for(size_t i = 0; i < ptArr->Size(); i++) {
-			nRet += MinMaxSteps( ptArr->ObjectBase(i) );
-			nRet++;
-		}
-	} 
+  int nRet = 0;
+  const geo::IArray* ptArr = dynamic_cast<const geo::IArray *> (&object);
+  if(ptArr) {
+    for(size_t i = 0; i < ptArr->Size(); i++) {
+      nRet += MinMaxSteps( ptArr->ObjectBase(i) );
+      nRet++;
+    }
+  } 
 
-	return nRet;
+  return nRet;
 }
 
 bool IValueComponentBase::NeedParallelInitializationCallback() const

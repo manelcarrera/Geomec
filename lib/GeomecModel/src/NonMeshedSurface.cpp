@@ -15,22 +15,22 @@ CNonMeshedSurface::CGeoSurface::CGeoSurface(const geo::CTriSurface& surface, con
   // indexing of elements and points is equal to the source surface...
 
   for(int i = 0; i < surface.PointSize(); ++i)
-    m_vcPoint[i] = surface.Point(i);
+  m_vcPoint[i] = surface.Point(i);
 
   for(int i = 0; i < surface.FaceSize(); ++i)
   {
-    const geo::IFace& face = surface.Face(i);
-    std::vector<int> vcNodes = surface.Nodes(face);
-    assert(vcNodes.size() == 3);
+  const geo::IFace& face = surface.Face(i);
+  std::vector<int> vcNodes = surface.Nodes(face);
+  assert(vcNodes.size() == 3);
 
-    m_vcTriangle[i] = new geo::CTriangle(*this, i, vcNodes[0], vcNodes[1], vcNodes[2]);
+  m_vcTriangle[i] = new geo::CTriangle(*this, i, vcNodes[0], vcNodes[1], vcNodes[2]);
 
-    for(int j = 0; j < 3; ++j)
-    {
+  for(int j = 0; j < 3; ++j)
+  {
       TPointToFacesMap::iterator it =
-        m_mpPointToFaces.insert(TPointToFacesMap::value_type(&m_vcPoint[vcNodes[j]], geo::CPtrArray<geo::IFace>())).first;
+    m_mpPointToFaces.insert(TPointToFacesMap::value_type(&m_vcPoint[vcNodes[j]], geo::CPtrArray<geo::IFace>())).first;
       it->second.PushBack(*m_vcTriangle[i]);
-    }
+  }
   }
 }
 
@@ -83,7 +83,7 @@ std::vector<int> CNonMeshedSurface::CGeoSurface::Nodes(const geo::IElement &elem
   assert(element.IndexingElementSet() == this);
   std::vector<int> vcRet(element.NrOfPoints());
   for(int i = 0; i < element.NrOfPoints(); ++i)
-    vcRet[i] = element.PointIndex(i);
+  vcRet[i] = element.PointIndex(i);
   return vcRet;
 }
 
@@ -125,7 +125,7 @@ CNonMeshedSurface::CNonMeshedSurface(CSurfaceBase& surface)
 CNonMeshedSurface::~CNonMeshedSurface()
 {
   if(!IsCopy())
-    delete m_pGeoSurface;
+  delete m_pGeoSurface;
 }
 
 unsigned int CNonMeshedSurface::IconId() const
@@ -148,7 +148,7 @@ QString CNonMeshedSurface::TypeName() const
 int CNonMeshedSurface::DisplayListSize() const
 {
   if(m_pSurface)
-    return 1;
+  return 1;
 
   return 0;
 }
@@ -158,8 +158,8 @@ const geo::IObject& CNonMeshedSurface::DisplayList(int /*nIndex*/) const
   assert(m_pSurface);
   if(!m_pGeoSurface)
   {
-    assert(dynamic_cast<const geo::CTriSurface*>(&m_pSurface->Surface()));
-    m_pGeoSurface = new CGeoSurface(static_cast<const geo::CTriSurface&>(m_pSurface->Surface()), *this);
+  assert(dynamic_cast<const geo::CTriSurface*>(&m_pSurface->Surface()));
+  m_pGeoSurface = new CGeoSurface(static_cast<const geo::CTriSurface&>(m_pSurface->Surface()), *this);
   }
 
   return *m_pGeoSurface;
@@ -176,18 +176,18 @@ void CNonMeshedSurface::LoadStream(TSTREAM& stream, CStreamVersion& version, TPR
   stream >> nIndex;
   if(nIndex >= 0)
   {
-    CSurfaceEntry& entry = (CSurfaceEntry&)*Model().GraphEntry(MD_BASE_SURFACE);
-    entry.LinkNodeToIndex(*this, nIndex);
+  CSurfaceEntry& entry = (CSurfaceEntry&)*Model().GraphEntry(MD_BASE_SURFACE);
+  entry.LinkNodeToIndex(*this, nIndex);
 
-    new CNonMeshedSurfaceParametersNode(*this);
-    assert(m_pParametersNode);
-    m_pParametersNode->LoadStream(stream, version, progress);
+  new CNonMeshedSurfaceParametersNode(*this);
+  assert(m_pParametersNode);
+  m_pParametersNode->LoadStream(stream, version, progress);
 
-    new CNonMeshedSurfacePressure(*this);
-    assert(m_pPressure);
-    m_pPressure->LoadStream(stream, version, progress);
+  new CNonMeshedSurfacePressure(*this);
+  assert(m_pPressure);
+  m_pPressure->LoadStream(stream, version, progress);
 
-    reParent(Model().GraphEntry(MD_BASE_NONMESHEDSURFACE));
+  reParent(Model().GraphEntry(MD_BASE_NONMESHEDSURFACE));
   }
 
   progress.Step();
@@ -200,8 +200,8 @@ void CNonMeshedSurface::SaveStream(TSTREAM& stream, TPROGRESS& progress)
   stream << (m_pSurface ? m_pSurface->Index() : -1);
   if(m_pSurface)
   {
-    m_pParametersNode->SaveStream(stream, progress);
-    m_pPressure->SaveStream(stream, progress);
+  m_pParametersNode->SaveStream(stream, progress);
+  m_pPressure->SaveStream(stream, progress);
   }
   progress.Step();
 
@@ -223,7 +223,7 @@ const CNonMeshedSurfacePressure& CNonMeshedSurface::Pressure() const
 int CNonMeshedSurface::FaceSize() const
 {
   if(m_pSurface)
-    return m_pSurface->Surface().FaceSize();
+  return m_pSurface->Surface().FaceSize();
 
   return 0;
 }
@@ -239,31 +239,31 @@ void CNonMeshedSurface::OnNewNeighbour(const CGraphNode& node)
   const CSurfaceBase* pSurface = dynamic_cast<const CSurfaceBase*>(&node);
   if(pSurface)
   {
-    assert(!m_pSurface);
-    assert(!m_pGeoSurface);
-    m_pSurface = pSurface;
-    Modified();
+  assert(!m_pSurface);
+  assert(!m_pGeoSurface);
+  m_pSurface = pSurface;
+  Modified();
   }
 
   const CNonMeshedSurfaceParametersNode* pParametersNode = dynamic_cast<const CNonMeshedSurfaceParametersNode*>(&node);
   if(pParametersNode)
-    m_pParametersNode = const_cast<CNonMeshedSurfaceParametersNode*>(pParametersNode);
+  m_pParametersNode = const_cast<CNonMeshedSurfaceParametersNode*>(pParametersNode);
 
   const CNonMeshedSurfacePressure* pPressure = dynamic_cast<const CNonMeshedSurfacePressure*>(&node);
   if(pPressure)
-    m_pPressure = const_cast<CNonMeshedSurfacePressure*>(pPressure);
+  m_pPressure = const_cast<CNonMeshedSurfacePressure*>(pPressure);
 }
 
 void CNonMeshedSurface::OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint)
 {
   if(&node == m_pSurface)
-    Modified();
+  Modified();
 
   if(&node == m_pParametersNode)
-    Modified();
+  Modified();
 
   if(&node == m_pPressure)
-    Modified();
+  Modified();
 
   CColorNode::OnNeighbourModified(node, uHint);
 }
@@ -272,15 +272,15 @@ void CNonMeshedSurface::OnNeighbourDeleted(const CGraphNode& node)
 {
   if(&node == m_pSurface)
   {
-    delete this;
-    return;
+  delete this;
+  return;
   }
 
   if(&node == m_pParametersNode)
-    m_pParametersNode = 0;
+  m_pParametersNode = 0;
 
   if(&node == m_pPressure)
-    m_pPressure = 0;
+  m_pPressure = 0;
 
   CColorNode::OnNeighbourDeleted(node);
 }
@@ -300,9 +300,9 @@ bool CNonMeshedSurfaceEntry::ConnectItem(const CGraphNode& item)
 {
   if(CanConnectItem(item))
   {
-    const CSurfaceBase& surface = static_cast<const CSurfaceBase&>(item);
-    new CNonMeshedSurface(const_cast<CSurfaceBase&>(surface));
-    return true;
+  const CSurfaceBase& surface = static_cast<const CSurfaceBase&>(item);
+  new CNonMeshedSurface(const_cast<CSurfaceBase&>(surface));
+  return true;
   }
 
   return false;

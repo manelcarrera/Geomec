@@ -41,17 +41,17 @@ public:
 
   typedef enum Size : quint8
   {
-    TYPE_SIZE = 1,
-    NAME_SIZE = 8,
-    PAYLOAD_SIZE = 15,
-    TOTAL_SIZE = 32
+  TYPE_SIZE = 1,
+  NAME_SIZE = 8,
+  PAYLOAD_SIZE = 15,
+  TOTAL_SIZE = 32
   } Size;
 
   typedef enum Type : quint8
   {
-    SIGNAL = 0,
-    REQUEST = 1,
-    RESPONSE = 2
+  SIGNAL = 0,
+  REQUEST = 1,
+  RESPONSE = 2
   } Type;
 
   ModGMBusMessage();
@@ -73,26 +73,26 @@ public:
 
 private:
   struct Fields {
-    Type   type;
+  Type   type;
 
-    char from[NAME_SIZE];
-    char to[NAME_SIZE];
+  char from[NAME_SIZE];
+  char to[NAME_SIZE];
 
-    char payload[PAYLOAD_SIZE];
+  char payload[PAYLOAD_SIZE];
   }; //fields;
 
   union
   {
-    /*struct fields {
+  /*struct fields {
       Type   type;
 
       char from[NAME_SIZE];
       char to[NAME_SIZE];
 
       char payload[PAYLOAD_SIZE];
-    }; //fields;*/
-    Fields fields; 
-    char package[TOTAL_SIZE];
+  }; //fields;*/
+  Fields fields; 
+  char package[TOTAL_SIZE];
   };
 };
 
@@ -144,7 +144,7 @@ class MODGMBUS_EXPORT IConnectionManager : public QObject
 
 public:
   IConnectionManager(QObject *parent = nullptr)
-    : QObject(parent)
+  : QObject(parent)
   {
   }
 
@@ -215,8 +215,8 @@ class MODGMBUS_EXPORT ModGMSharedMemorySocket : public QObject
 public:
 
   typedef enum : int {
-    CLIENT = 0,
-    SERVER = 1
+  CLIENT = 0,
+  SERVER = 1
   } Type;
 
   explicit ModGMSharedMemorySocket(Type type = CLIENT);

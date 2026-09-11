@@ -30,8 +30,8 @@ public:
   _RescueLineDirection Direction() {return direction;}
 /******************************************************************************
 
-    These methods automatically load the wireframe information if it
-    is not currently loaded.
+  These methods automatically load the wireframe information if it
+  is not currently loaded.
 
 *******************************************************************************/
   RescueTrimVertex *StartingPoint(RescueModel *model); 
@@ -39,7 +39,7 @@ public:
   RESCUEINT64 NodeCount64();
   RESCUEINT32 NodeCount() {return (RESCUEINT32) NodeCount64();}
   RescuePolyLineNode *NthNode(RESCUEINT64 zeroBasedOrdinal);
-                                // These do not include vertexes at the end.
+                // These do not include vertexes at the end.
   RescuePolyLine *PolyLine(RescueModel *model);
                                           // Owner of trim edge is owner of
                                           // trim loop it is used in.

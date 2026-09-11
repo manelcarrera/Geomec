@@ -3,12 +3,12 @@
 #include <fstream>
 
 int GlobalMessage_CLI::msg(	
-	const char* message, 
-	unsigned int style,
-	unsigned int contextID)
+  const char* message, 
+  unsigned int style,
+  unsigned int contextID)
 {
-	outstream() << std::endl << message << std::endl;
-	return MB_OK;
+  outstream() << std::endl << message << std::endl;
+  return MB_OK;
 }
 
 std::string GlobalMessage_CLI::constructMessage(unsigned int message)
@@ -21,7 +21,7 @@ std::string GlobalMessage_CLI::constructMessage(unsigned int message)
 
 void GlobalMessage_CLI::status( const QString& message )
 {
-	outstream() << std::endl << message.toStdString() << std::endl;
+  outstream() << std::endl << message.toStdString() << std::endl;
 }
 
 // outstream
@@ -29,7 +29,7 @@ void GlobalMessage_CLI::status( const QString& message )
 std::ostream& GlobalMessage_CLI::outstream()
 {
   if(out_stream.is_open())
-    return out_stream;
+  return out_stream;
 
   return std::cout;
 }
@@ -37,7 +37,7 @@ std::ostream& GlobalMessage_CLI::outstream()
 bool GlobalMessage_CLI::openlogfile(const std::string& path)
 {
   if(out_stream.is_open())
-    closelogfile();
+  closelogfile();
 
   out_stream.open(path.c_str(), std::fstream::out);
   return (out_stream.is_open());
@@ -46,7 +46,7 @@ bool GlobalMessage_CLI::openlogfile(const std::string& path)
 bool GlobalMessage_CLI::closelogfile()
 {
   if(!out_stream.is_open())
-    return false;
+  return false;
 
   out_stream.close();
   return (!out_stream.is_open());

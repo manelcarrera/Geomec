@@ -54,8 +54,8 @@ void gts_fifo_write (GtsFifo * fifo, FILE * fp)
   fprintf (fp, "[");
   i = fifo->head;
   while (i) {
-    fprintf (fp, "%p ", i->data);
-    i = i->next;
+  fprintf (fp, "%p ", i->data);
+  i = i->next;
   }
   fprintf (fp, "]");
 }
@@ -73,7 +73,7 @@ void gts_fifo_push (GtsFifo * fifo, gpointer data)
 
   fifo->head = g_list_prepend (fifo->head, data);
   if (fifo->tail == NULL)
-    fifo->tail = fifo->head;
+  fifo->tail = fifo->head;
 }
 
 /**
@@ -92,7 +92,7 @@ gpointer gts_fifo_pop (GtsFifo * fifo)
   g_return_val_if_fail (fifo != NULL, NULL);
 
   if (fifo->tail == NULL)
-    return NULL;
+  return NULL;
   tail = fifo->tail->prev;
   data = fifo->tail->data;
   fifo->head = g_list_remove_link (fifo->head, fifo->tail);
@@ -112,7 +112,7 @@ gpointer gts_fifo_top (GtsFifo * fifo)
   g_return_val_if_fail (fifo != NULL, NULL);
 
   if (fifo->tail == NULL)
-    return NULL;
+  return NULL;
   return fifo->tail->data;
 }
 
@@ -172,7 +172,7 @@ void gts_fifo_foreach (GtsFifo * fifo, GtsFunc func, gpointer data)
 
   i = fifo->tail;
   while (i) {
-    (* func) (i->data, data);
-    i = i->prev;
+  (* func) (i->data, data);
+  i = i->prev;
   }
 }

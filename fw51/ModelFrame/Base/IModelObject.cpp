@@ -76,15 +76,15 @@ IModelObject::~IModelObject()
 {
   // destroy must have been called...
 #if 0
-    if ( m_created )
-        DIA_ASSERT( m_destroyed );
+  if ( m_created )
+    DIA_ASSERT( m_destroyed );
 #endif
-    DIA_ASSERT( parent() == 0 );
+  DIA_ASSERT( parent() == 0 );
 }
 
 CUndoOperation*
 IModelObject::constructCreateUndoOperation( IModelObject& object,
-                                            const QString& description )
+                      const QString& description )
 {
   return new CCreateUndo( object, description );
 }
@@ -113,24 +113,24 @@ void IModelObject::create( IModelObject*       newParent /* = 0 */,
   m_created = true;
 
   if ( newParent ) {
-    CModelOperation operation( *newParent );
+  CModelOperation operation( *newParent );
 
-    DIA_ASSERT( parent() == 0 ); // must not have been created yet
+  DIA_ASSERT( parent() == 0 ); // must not have been created yet
 
-    addToParent( newParent, before );
+  addToParent( newParent, before );
 
-    if ( operation.stackEnabled() )
+  if ( operation.stackEnabled() )
       operation.push( constructCreateUndoOperation( *this,
                                           tr( "Create %1" ).arg( text() )  ) );
 
-    // execute specialized creation code
-    onCreate(); // call here, before COperation gets destructed.
+  // execute specialized creation code
+  onCreate(); // call here, before COperation gets destructed.
 
-    newParent->childInserted( *this );
+  newParent->childInserted( *this );
   } else {
 
-    // execute specialized creation code
-    onCreate();
+  // execute specialized creation code
+  onCreate();
   }
 }
 
@@ -146,8 +146,8 @@ void IModelObject::addToParent( IModelObject*       newParent,
 
   int index = newParent->m_children.count(); // equiv to append
   if ( before ) {
-    index = newParent->m_children.indexOf( const_cast<IModelObject*>( before ));
-    DIA_ASSERT( index != -1 );
+  index = newParent->m_children.indexOf( const_cast<IModelObject*>( before ));
+  DIA_ASSERT( index != -1 );
   }
   newParent->m_children.insert( index, this );
 }
@@ -173,12 +173,12 @@ void IModelObject::onDestroy()
 void IModelObject::setText(const QString& new_text)
 {
   if( new_text != m_text ) {
-    CModelOperation operation( *this );
-    if ( operation.stackEnabled() )
+  CModelOperation operation( *this );
+  if ( operation.stackEnabled() )
       operation.push( new CTextUndo( *this, m_text,
                                      tr( "Rename \"%1\"" ).arg( m_text ) ) );
-    m_text = new_text;
-    displayChanged();
+  m_text = new_text;
+  displayChanged();
   }
 }
 
@@ -196,9 +196,9 @@ void IModelObject::stateChanged()
 
   stateChanged( *this );
   for ( QList<IModelObject*>::const_iterator it = m_links.begin();
-        it != m_links.end();
-        ++it ) {
-    (*it)->refStateChanged( *this );
+    it != m_links.end();
+    ++it ) {
+  (*it)->refStateChanged( *this );
   }
   if ( operation.stackEnabled() )
      operation.push( new CSimpleUndo( *this, "State changed ") );
@@ -225,9 +225,9 @@ void IModelObject::displayChanged()
 {
   displayChanged( *this );
   for ( QList<IModelObject*>::const_iterator it = m_links.begin();
-        it != m_links.end();
-        ++it ) {
-    (*it)->refDisplayChanged( *this );
+    it != m_links.end();
+    ++it ) {
+  (*it)->refDisplayChanged( *this );
   }
 }
 
@@ -253,9 +253,9 @@ void IModelObject::propertyChanged()
 {
   propertyChanged( *this );
   for ( QList<IModelObject*>::const_iterator it = m_links.begin();
-        it != m_links.end();
-        ++it ) {
-    (*it)->refPropertyChanged( *this );
+    it != m_links.end();
+    ++it ) {
+  (*it)->refPropertyChanged( *this );
   }
 }
 
@@ -281,9 +281,9 @@ void IModelObject::geometryChanged()
 {
   geometryChanged( *this );
   for ( QList<IModelObject*>::const_iterator it = m_links.begin();
-        it != m_links.end();
-        ++it ) {
-    (*it)->refGeometryChanged( *this );
+    it != m_links.end();
+    ++it ) {
+  (*it)->refGeometryChanged( *this );
   }
 }
 
@@ -310,9 +310,9 @@ void IModelObject::parameterChanged()
 {
   parameterChanged( *this );
   for ( QList<IModelObject*>::const_iterator it = m_links.begin();
-        it != m_links.end();
-        ++it ) {
-    (*it)->refParameterChanged( *this );
+    it != m_links.end();
+    ++it ) {
+  (*it)->refParameterChanged( *this );
   }
 }
 
@@ -339,9 +339,9 @@ void IModelObject::childInserted( IModelObject& child )
 {
   childInserted( *this, child );
   for ( QList<IModelObject*>::const_iterator it = m_links.begin();
-        it != m_links.end();
-        ++it ) {
-    (*it)->refChildInserted( *this, child );
+    it != m_links.end();
+    ++it ) {
+  (*it)->refChildInserted( *this, child );
   }
 }
 
@@ -366,9 +366,9 @@ void IModelObject::childRemoved( IModelObject& child )
 {
   childRemoved( *this, child );
   for ( QList<IModelObject*>::const_iterator it = m_links.begin();
-        it != m_links.end();
-        ++it ) {
-    (*it)->refChildRemoved( *this, child );
+    it != m_links.end();
+    ++it ) {
+  (*it)->refChildRemoved( *this, child );
   }
 }
 
@@ -401,12 +401,12 @@ void IModelObject::sortChildren()
   TModelObjectSet set;
   int i;
   for( i = 0; i < childSize(); i++ )
-    set.insert(&childAt(i));
+  set.insert(&childAt(i));
 
   i = 0;
   for( TModelObjectSet::iterator it = set.begin(); it != set.end(); it++ ) {
-    m_children.replace( i, *it );
-    i++;
+  m_children.replace( i, *it );
+  i++;
   }
 
   onChildOrderChanged();
@@ -497,12 +497,12 @@ int IModelObject::index() const
 {
   DIA_ASSERT( m_created );
   if( parent() ) {
-    IModelObject* pParent = dynamic_cast<IModelObject*>(parent());
-    if ( pParent ) {
+  IModelObject* pParent = dynamic_cast<IModelObject*>(parent());
+  if ( pParent ) {
       int i = pParent->m_children.indexOf( const_cast<IModelObject*>( this ) );
       DIA_ASSERT( i != -1 );
       return i;
-    }
+  }
   }
   return -1;
 }
@@ -525,8 +525,8 @@ void IModelObject::storeReferences( TStream& stream ) const
   stream << size;
   int i;
   for ( i = 0; i < size; ++i ) {
-    CModelLocation location( referenceAt( i ) );
-    location.store( stream );
+  CModelLocation location( referenceAt( i ) );
+  location.store( stream );
   }
   for ( i = 0; i < childSize(); ++i ) childAt( i ).storeReferences( stream );
 }
@@ -544,19 +544,19 @@ void IModelObject::restoreReferences( TStream&        stream,
   stream >> size;
   int i;
   for ( i = 0; i < size; ++i ) {
-    CModelLocation location;
-    location.restore( stream, fileVersion );
-    IModelObject* object = location.getObject( *document() );
-    // Check if reference already exists
-    const IModelObject* before = 0;
-    if ( i < referenceSize() )
+  CModelLocation location;
+  location.restore( stream, fileVersion );
+  IModelObject* object = location.getObject( *document() );
+  // Check if reference already exists
+  const IModelObject* before = 0;
+  if ( i < referenceSize() )
       before = &referenceAt( i );
-    if ( before != object ) insertReference( *object, before );
+  if ( before != object ) insertReference( *object, before );
   }
   while ( referenceSize() > size ) removeReference( referenceSize() - 1 );
 
   for ( i = 0; i < childSize(); ++i )
-    childAt( i ).restoreReferences( stream, fileVersion );
+  childAt( i ).restoreReferences( stream, fileVersion );
 }
 
 void IModelObject::reParent( IModelObject*       new_parent,
@@ -569,26 +569,26 @@ void IModelObject::reParent( IModelObject*       new_parent,
   if ( !operationLocation ) return; //No current and not new parent, weird
 
   if ( pParent ) {
-    CModelOperation operation( *this );
-    // Disconnect
-    pParent->childRemoved( *this );
-    if ( operation.stackEnabled() )
-        operation.push( constructDestroyUndoOperation( *pParent,
-                                                        *this,
-                                                        "Delete old parent" ) );
+  CModelOperation operation( *this );
+  // Disconnect
+  pParent->childRemoved( *this );
+  if ( operation.stackEnabled() )
+    operation.push( constructDestroyUndoOperation( *pParent,
+                            *this,
+                            "Delete old parent" ) );
 
-    pParent->m_children.removeOne( this );
-    setParent( 0 );
+  pParent->m_children.removeOne( this );
+  setParent( 0 );
   }
   if ( new_parent ) {
-    CModelOperation operation( *new_parent );
+  CModelOperation operation( *new_parent );
 
-    DIA_ASSERT( m_created ); // No need to set m_created here
-    addToParent( new_parent, before );
+  DIA_ASSERT( m_created ); // No need to set m_created here
+  addToParent( new_parent, before );
 
-    new_parent->childInserted(*this);
+  new_parent->childInserted(*this);
 
-    if ( operation.stackEnabled() )
+  if ( operation.stackEnabled() )
       operation.push( constructCreateUndoOperation( *this, tr( "reParent" ) ) );
   }
 }
@@ -650,7 +650,7 @@ IModelObject& IModelObject::childAt( int index )
 const IModelObject* IModelObject::findChild( const QString& text ) const
 {
   for ( int i = 0; i < childSize(); ++i )
-    if ( childAt( i ).text() == text ) return &childAt( i );
+  if ( childAt( i ).text() == text ) return &childAt( i );
   return 0;
 }
 
@@ -661,7 +661,7 @@ const IModelObject* IModelObject::findChild( const QString& text ) const
 IModelObject* IModelObject::findChild( const QString& text )
 {
   for ( int i = 0; i < childSize(); ++i )
-    if ( childAt( i ).text() == text ) return &childAt( i );
+  if ( childAt( i ).text() == text ) return &childAt( i );
   return 0;
 }
 
@@ -689,13 +689,13 @@ int IModelObject::insertReference( const IModelObject& object, const IModelObjec
 {
   CModelOperation operation( *this );
   if ( operation.stackEnabled() )
-    operation.push( new CReferenceUndo( *this, object, 0 ) );
+  operation.push( new CReferenceUndo( *this, object, 0 ) );
 
   DIA_ASSERT( isReferenced( object ) == -1 );
   int index = referenceSize(); // equivalent to append
   if ( insertBefore ) {
-    index = m_references.indexOf( insertBefore );
-    DIA_ASSERT( index != -1 );
+  index = m_references.indexOf( insertBefore );
+  DIA_ASSERT( index != -1 );
   }
   m_references.insert( index, &object );
   object.m_links.append( this );
@@ -720,7 +720,7 @@ void IModelObject::removeReference( int index )
 
   const IModelObject* ref = m_references.takeAt( index );
   if ( operation.stackEnabled() )
-    operation.push( new CReferenceUndo( *this, *ref, index, 0 ) );
+  operation.push( new CReferenceUndo( *this, *ref, index, 0 ) );
   bool succes = ref->m_links.removeOne( this );
   DIA_ASSERT( succes );
 
@@ -747,12 +747,12 @@ QRgb IModelObject::color() const
 void IModelObject::color(QRgb c)
 {
   if ( m_color != c ) {
-    CModelOperation operation( *this );
-    if ( operation.stackEnabled() )
+  CModelOperation operation( *this );
+  if ( operation.stackEnabled() )
       operation.push( new CColorUndo( *this, m_color,
                                       tr( "Color \"%1\"" ).arg( m_text ) ) );
-    m_color = c;
-    displayChanged();
+  m_color = c;
+  displayChanged();
   }
 }
 
@@ -801,55 +801,55 @@ void IModelObject::destroy()
 
 #if 0
   fprintf( stderr, "destroy: %s(%p) class=%s\n",
-    text().toLatin1().data(), this, typeid( *this ).name() );
+  text().toLatin1().data(), this, typeid( *this ).name() );
 #endif
 
   m_destroyed = true;
 
   { // !!! New scope to end operation before delete this
-    CModelOperation operation( *this, tr( "Delete %1" ).arg( text() ) );
+  CModelOperation operation( *this, tr( "Delete %1" ).arg( text() ) );
 
-    // execute specialized destruction code
-    onDestroy();
+  // execute specialized destruction code
+  onDestroy();
 
-    // Remove reference from other objects
-    while( !m_links.isEmpty() ) m_links.first()->removeReference( *this );
+  // Remove reference from other objects
+  while( !m_links.isEmpty() ) m_links.first()->removeReference( *this );
 
-    // Destroy children
-    int sz = childSize();
+  // Destroy children
+  int sz = childSize();
 #if 0
-    /* Last one first, gives a realy bad preformace on GEOMEC TEMPER table,
+  /* Last one first, gives a realy bad preformace on GEOMEC TEMPER table,
        but was once introduced for performance reasons */
-    while ( sz > 0 ) childAt( --sz ).destroy();
+  while ( sz > 0 ) childAt( --sz ).destroy();
 #else
-    while ( sz-- > 0 ) childAt( 0 ).destroy();
+  while ( sz-- > 0 ) childAt( 0 ).destroy();
 #endif
 
-    // Delete references
-    while( referenceSize() > 0 ) removeReference(0);
+  // Delete references
+  while( referenceSize() > 0 ) removeReference(0);
 
-    // Detach from parent
-    if ( parent() ) {
+  // Detach from parent
+  if ( parent() ) {
       IModelObject* pParent = dynamic_cast<IModelObject*>(parent());
       DIA_ASSERT(pParent);
 
       pParent->childRemoved(*this);
       if ( operation.stackEnabled() )
-        operation.push( constructDestroyUndoOperation( *pParent, *this,
+    operation.push( constructDestroyUndoOperation( *pParent, *this,
                                           tr( "Delete %1" ).arg( text() ) ) );
       pParent->m_children.removeOne( this );
       setParent( 0 );
 #if 0
      /* removeChild is not aware of currentItem in QGList,
-        search is always done from start of list */
+    search is always done from start of list */
      fprintf( stderr, "destroy: parent= %s(%p)\n",
           pParent->text().toLatin1().data(),
           pParent );
 #endif
-    }
+  }
 
-    // Emit that we're destroyed
-    emit onDestroyed();
+  // Emit that we're destroyed
+  emit onDestroyed();
   }
 
   delete this;
@@ -884,8 +884,8 @@ void IModelObject::clear()
 
   // The store and restore functions are used for saving, loading, redo and undo
 void IModelObject::restore( TStream&              stream,
-                            const CStreamVersion& file_version,
-                            IProgressBase&        indicator )
+              const CStreamVersion& file_version,
+              IProgressBase&        indicator )
 {
   // Local version for local changes
   CStreamVersion version;
@@ -907,51 +907,51 @@ void IModelObject::restore( TStream&              stream,
   if ( m_text != previousText || m_color != previousColor ) displayChanged();
 
   if ( version >= CStreamVersion( 0, 0, 2 ) ) {
-    int restoreChildren;
-    stream >> restoreChildren;
-    if ( restoreChildren ) {
+  int restoreChildren;
+  stream >> restoreChildren;
+  if ( restoreChildren ) {
       int nSize;
       stream >> nSize;
       for ( int i = 0; i < nSize; i++ ) {
-        QString className;
-        stream >> className;
+    QString className;
+    stream >> className;
 // qDebug() << "Restore: " << m_text << " child " << i << " " << className;
-        // Restoring an IModelObject base class instance should not occur
-        DIA_ASSERT( className != "IModelObject" );
+    // Restoring an IModelObject base class instance should not occur
+    DIA_ASSERT( className != "IModelObject" );
 
-        // Check if child already exists (e.g. default children like document
-        // containers or fixed children
-        IModelObject* child = 0;
-        IModelObject* before = 0;
-        if ( i < m_children.count() ) {
+    // Check if child already exists (e.g. default children like document
+    // containers or fixed children
+    IModelObject* child = 0;
+    IModelObject* before = 0;
+    if ( i < m_children.count() ) {
           before = &childAt( i );
           if ( QString( before->metaObject()->className() ) == className )
-            child = before;
-        }
+      child = before;
+    }
 
-        bool newChild = ( !child );
-        if ( newChild ) {
+    bool newChild = ( !child );
+    if ( newChild ) {
           child = IModelObjectFactory::create( className.toStdString().c_str() );
           DIA_ASSERT( child );
 
           child->m_created = true;
 
           child->addToParent( this, before );
-        }
-        child->restore(stream, file_version, indicator);
-        if ( newChild )
-        {
+    }
+    child->restore(stream, file_version, indicator);
+    if ( newChild )
+    {
           child->onCreate();
           childInserted( *child );
-        }
+    }
       }
       if ( m_children.count() != nSize )
-        qDebug() << "IModelObject::restore "
+    qDebug() << "IModelObject::restore "
                  << metaObject()->className()
                  << " " << m_text
                  << " child count = " <<  m_children.count()
                  << " restored    = " << nSize;
-    }
+  }
   }
 
   indicator.Step();
@@ -976,8 +976,8 @@ void IModelObject::store( TStream&       stream,
 
   stream << (int)includeChildren;
   if ( includeChildren ) {
-    stream << (int)childSize();
-    for ( int i = 0; i < childSize(); i++ ) {
+  stream << (int)childSize();
+  for ( int i = 0; i < childSize(); i++ ) {
       QString className = childAt( i ).metaObject()->className();
 // qDebug() << "Store: " << m_text << " child " << i << " " << className;
       // Streaming an IModelObject base class instance should not be possible.
@@ -985,7 +985,7 @@ void IModelObject::store( TStream&       stream,
 
       stream << className;
       childAt( i ).store( stream, indicator, includeChildren );
-    }
+  }
   }
 
   indicator.Step();
@@ -995,7 +995,7 @@ int IModelObject::storeSteps( bool includeChildren ) const
 {
   int steps = 1;
   if ( includeChildren )
-    for ( int i = 0; i < childSize(); i++ )
+  for ( int i = 0; i < childSize(); i++ )
       steps += childAt( i ).storeSteps();
   return steps;
 }
@@ -1004,7 +1004,7 @@ int IModelObject::isChild(const IModelObject& object) const
 {
   DIA_ASSERT( m_created );
   for ( int i = 0; i < childSize(); ++i )
-    if ( &childAt(i) == &object )
+  if ( &childAt(i) == &object )
       return i;
   return -1;
 }
@@ -1014,8 +1014,8 @@ bool IModelObject::isChildInTree(const IModelObject& object) const
   DIA_ASSERT( m_created );
   int i;
   for ( i=0 ; i< childSize();i++ ) {
-    if ( &childAt(i) == &object           ) return true;
-    if ( childAt(i).isChildInTree(object) ) return true;
+  if ( &childAt(i) == &object           ) return true;
+  if ( childAt(i).isChildInTree(object) ) return true;
   }
   return false;
 }
@@ -1024,31 +1024,31 @@ void IModelObject::moveChildren( const QList<IModelObject*>& children,
                                  int destinationIndex )
 {
   if ( destinationIndex < 0 )
-    destinationIndex = 0;
+  destinationIndex = 0;
 
   for ( int i = 0; i != children.size(); ++i ) {
-    int index = m_children.indexOf( children[i] );
-    if ( index == -1 ) continue; // not a child, skip it.
-    IModelObject* objToMove = m_children.takeAt( index );
+  int index = m_children.indexOf( children[i] );
+  if ( index == -1 ) continue; // not a child, skip it.
+  IModelObject* objToMove = m_children.takeAt( index );
 
-    // If destination is after remove point it shifted one position due to
-    // the takeAt() above. Adjust it.
-    if ( destinationIndex > index )
+  // If destination is after remove point it shifted one position due to
+  // the takeAt() above. Adjust it.
+  if ( destinationIndex > index )
       --destinationIndex;
 
-    // Insert at destination index. Append if the destination index is out of
-    // bounds.
-    int size = m_children.size();
-    if ( destinationIndex < size ) {
+  // Insert at destination index. Append if the destination index is out of
+  // bounds.
+  int size = m_children.size();
+  if ( destinationIndex < size ) {
       m_children.insert( destinationIndex, objToMove );
-    }
-    else {
+  }
+  else {
       destinationIndex = size;
       m_children.push_back( objToMove );
-    }
+  }
 
-    // Move next item below the just moved item to keep order as expected
-    ++destinationIndex;
+  // Move next item below the just moved item to keep order as expected
+  ++destinationIndex;
   }
   emit onChildOrderChanged();
 }

@@ -3,28 +3,28 @@
 
 template <typename B>
   BOOL EnableBoundarySpecificWindow(CDialog* dialog, int dialogItem,
-    BOOL bEnable = TRUE)
+  BOOL bEnable = TRUE)
 {
   return FALSE;
 }
 
 template <typename B>
   BOOL SetBoundarySpecificReadOnly(CDialog* dialog, int dialogItem,
-    BOOL bReadOnly = TRUE)
+  BOOL bReadOnly = TRUE)
 {
   return FALSE;
 }
 
 template <typename B>
   void SetBoundarySpecificWindowText(CDialog* dialog, int dialogItem,
-    LPCTSTR string)
+  LPCTSTR string)
 {
 }
 
 template <typename B>
   void BoundarySpecificDDX_Point(CGeomecAttriTemp <B>* dialog,
-    CDataExchange* pDX, int nID_X, int nID_Y, int nID_Z, geo::IPoint &point,
-    int nID_UNIT1, int nID_UNIT2, int nID_UNIT3)
+  CDataExchange* pDX, int nID_X, int nID_Y, int nID_Z, geo::IPoint &point,
+  int nID_UNIT1, int nID_UNIT2, int nID_UNIT3)
 {
 }
 

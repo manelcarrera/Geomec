@@ -50,33 +50,33 @@ class CHexaMesh : public CMeshBase
   friend class CHexaMesherNG;
   friend class hmm::CHexaMetaMesh;
 
-	typedef std::map<const geo::CInterfaceElement*, CHexaHorizon*> TInterfaceMap;
-	TInterfaceMap m_mpInterfaces;
+  typedef std::map<const geo::CInterfaceElement*, CHexaHorizon*> TInterfaceMap;
+  TInterfaceMap m_mpInterfaces;
 
   IHexaMesher *m_pMesher;
-	geo::CMesh3D m_mesh;
-	bool m_bReMesh;
+  geo::CMesh3D m_mesh;
+  bool m_bReMesh;
 
   typedef std::map<const geo::INode*, const geo::INode*> TBoundaryNodeMap;
   TBoundaryNodeMap m_mpMeshNode2BoundaryNode;
   TBoundaryNodeMap m_mpBoundaryNode2MeshNode;
 
-	// Internal functions
-	CHexaFormation &GetTopFormation() const;
-	CFormationBase *InternalNextFormation(const CFormationBase *pFormation) const;
-	void CreateSupport();
-	void CreateSupport(IProgressBase& progress);
+  // Internal functions
+  CHexaFormation &GetTopFormation() const;
+  CFormationBase *InternalNextFormation(const CFormationBase *pFormation) const;
+  void CreateSupport();
+  void CreateSupport(IProgressBase& progress);
 
-	// Save and load functions
-	void SaveSlipHorizon(const CHexaHorizon& horizon, TSTREAM& stream, TPROGRESS& progress);
-	void LoadSlipHorizon(CHexaHorizon& horizon, TSTREAM& stream, TPROGRESS& progress);
-	void LoadSideSurface(geo::CBodyGroup::CSideSurface& side_surface, bool bTop, TSTREAM& stream, TPROGRESS& progress);
-	void SaveBodyGroup(const geo::CBodyGroup& body_group, TSTREAM& stream, TPROGRESS& progress);	
-	void LoadBodyGroup(geo::CBodyGroup& body_group, TSTREAM& stream, CStreamVersion &version, TPROGRESS& progress);
-	void old_load_stream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
+  // Save and load functions
+  void SaveSlipHorizon(const CHexaHorizon& horizon, TSTREAM& stream, TPROGRESS& progress);
+  void LoadSlipHorizon(CHexaHorizon& horizon, TSTREAM& stream, TPROGRESS& progress);
+  void LoadSideSurface(geo::CBodyGroup::CSideSurface& side_surface, bool bTop, TSTREAM& stream, TPROGRESS& progress);
+  void SaveBodyGroup(const geo::CBodyGroup& body_group, TSTREAM& stream, TPROGRESS& progress);	
+  void LoadBodyGroup(geo::CBodyGroup& body_group, TSTREAM& stream, CStreamVersion &version, TPROGRESS& progress);
+  void old_load_stream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
 
-	virtual int DisplayListSize() const;
-	virtual const geo::IObject& DisplayList(int nIndex) const;
+  virtual int DisplayListSize() const;
+  virtual const geo::IObject& DisplayList(int nIndex) const;
 
   typedef std::map<int, geo::CCoordinateSet<geo::CVector> > TSupportMap;
   void CreateStandardSupports(const geo::ISurface& surface, TSupportMap& mpSupportMap, IProgressBase& progress);
@@ -85,30 +85,30 @@ class CHexaMesh : public CMeshBase
 
 
 public:
-	// construction
-	CHexaMesh(CHexaModel& model);
-	virtual ~CHexaMesh();
+  // construction
+  CHexaMesh(CHexaModel& model);
+  virtual ~CHexaMesh();
 
-	// GraphNode
-	virtual unsigned int TypeId() const;
-	virtual unsigned int IconId() const;
+  // GraphNode
+  virtual unsigned int TypeId() const;
+  virtual unsigned int IconId() const;
 
-	// Element set
-	virtual DIMENSION Dimension() const;
+  // Element set
+  virtual DIMENSION Dimension() const;
 
-	// Intial volume
-	virtual const geo::IMesh& Mesh() const;
-	virtual geo::IMesh& Mesh();
+  // Intial volume
+  virtual const geo::IMesh& Mesh() const;
+  virtual geo::IMesh& Mesh();
 
-	// Horizon look up
-	virtual const CHorizonBase* SlipHorizon(const geo::IElement &interface_element) const;
+  // Horizon look up
+  virtual const CHorizonBase* SlipHorizon(const geo::IElement &interface_element) const;
 
-	// Mesher
-	//virtual bool OnGridLine(const geo::IPoint& pt1, const geo::IPoint& pt2) const;
-	virtual bool CanCreateMesh() const;
-	virtual void CreateMesh();
-	virtual void InvalidateMesh();
-	virtual bool IsMesh() const;
+  // Mesher
+  //virtual bool OnGridLine(const geo::IPoint& pt1, const geo::IPoint& pt2) const;
+  virtual bool CanCreateMesh() const;
+  virtual void CreateMesh();
+  virtual void InvalidateMesh();
+  virtual bool IsMesh() const;
 
   std::string CurrentMesher() const;
   void SwitchMesher(std::string type);
@@ -116,11 +116,11 @@ public:
   virtual void InvalidateSupports();
   virtual void GenerateSupports();
 
-	// Stream
-	virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-	virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  // Stream
+  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
+  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
 
-	virtual long SavedItems() const;
+  virtual long SavedItems() const;
 
   ACCEPT_GEOMECMODELVISITORS(VisitHexaMesh);
 };

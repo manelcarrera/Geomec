@@ -23,7 +23,7 @@ CGroupNode::CGroupNode(const QString &strName, CFemAppModel& model, CGraphEntry 
   reParent(groupEntry);
 
   if (entry)
-    LinkTo(*entry);
+  LinkTo(*entry);
 }
 
 CGroupNode::CGroupNode(const CGroupNode& rhs)
@@ -106,39 +106,39 @@ void CGroupNode::LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS&
 
   if (m_entry)
   {
-    LinkTo(*m_entry);
+  LinkTo(*m_entry);
 
-    if (groupSize > 0)
-    {
+  if (groupSize > 0)
+  {
       // technical debt: methods to find nodes by id are template-typed, and can't be used here; TODO: refactor storage node entry
       std::map<int, CStorageNode *> entryNodes;
       for (int i = 0; i < m_entry->childSize(); ++i)
       {
-        CStorageNode *entryNode = dynamic_cast<CStorageNode *>(&m_entry->childAt(i));
+    CStorageNode *entryNode = dynamic_cast<CStorageNode *>(&m_entry->childAt(i));
 
-        if (entryNode)
+    if (entryNode)
           entryNodes.insert(std::make_pair(entryNode->Index(), entryNode));
       }
 
       for (int i = 0; i < groupSize; ++i)
       {
-        int index;
-        stream >> index;
+    int index;
+    stream >> index;
 
-        std::map<int, CStorageNode *>::iterator node = entryNodes.find(index);
+    std::map<int, CStorageNode *>::iterator node = entryNodes.find(index);
 
-        if (node != entryNodes.end())
+    if (node != entryNodes.end())
           node->second->LinkTo(*this);
       }
-    }
+  }
   }
   else // shouldn't happen, but if it does, we need to make sure file format is not broken
   {
-    for (int i = 0; i < groupSize; ++i)
-    {
+  for (int i = 0; i < groupSize; ++i)
+  {
       int dummy;
       stream >> dummy;
-    }
+  }
   }
 
   progress.Step();
@@ -158,7 +158,7 @@ void CGroupNode::SaveStream(TSTREAM& stream, TPROGRESS& progress)
   stream << (int)nodes.size();
 
   for (std::set<CStorageNode *>::iterator it = nodes.begin(); it != nodes.end(); ++it)
-    stream << (*it)->Index();
+  stream << (*it)->Index();
 
   progress.Step();
 }
@@ -188,13 +188,13 @@ bool CGroupNode::ConnectItem(const CGraphNode &item)
 {
   if (CanConnectItem(item))
   {
-    if (CGraphNode::ConnectItem(item))
-    {
+  if (CGraphNode::ConnectItem(item))
+  {
       RemoveGroups(const_cast<CGraphNode&>(item), this);
 
       Modified();
       return true;
-    }
+  }
   }
   
   return false;
@@ -229,14 +229,14 @@ void CGroupNode::RemoveGroups(CGraphNode& graphNode, const CGroupNode * keepGrou
 
   for (std::set<CGroupNode *>::iterator it = nodes.begin(); it != nodes.end(); ++it)
   {
-    if (*it != keepGroup)
-    {
+  if (*it != keepGroup)
+  {
       graphNode.UnLink(**it);
       isModified = true;
-    }
+  }
   }
   if (isModified)
-    graphNode.Modified();
+  graphNode.Modified();
 }
 
 

@@ -13,7 +13,7 @@ CLimitStateFunction::CLimitStateFunction(CSummaryResultFile& summaryResultFile,
   std::vector <QString>& function, CGetModelInfo& modelInfo,
   const QString& versionNumber)
 : m_limitStateFunctionBase(selectLimitStateFunction(summaryResultFile, function,
-    modelInfo, versionNumber))
+  modelInfo, versionNumber))
 {
 }
 
@@ -22,7 +22,7 @@ void CLimitStateFunction::calculate(
 {
   if (m_limitStateFunctionBase != 0)
   {
-    m_limitStateFunctionBase->calculate(responseParameterFile);
+  m_limitStateFunctionBase->calculate(responseParameterFile);
   }
 }
 
@@ -58,30 +58,30 @@ TLimitStateFunctionBase CLimitStateFunction::selectLimitStateFunction(
 {
   try
   {
-    if (function[0] == FAILURE_TYPE_FAULT)
-    {
+  if (function[0] == FAILURE_TYPE_FAULT)
+  {
       return TLimitStateFunctionBase(new CLimitStateFunctionFault(
-        summaryResultFile, function, modelInfo, versionNumber));
-    }
-    else if (function[0] == FAILURE_TYPE_FORMATION)
-    {
+    summaryResultFile, function, modelInfo, versionNumber));
+  }
+  else if (function[0] == FAILURE_TYPE_FORMATION)
+  {
       return TLimitStateFunctionBase(new CLimitStateFunctionFormation(
-        summaryResultFile, function, modelInfo, versionNumber));
-    }
-    else if (function[0] == FAILURE_TYPE_SURFACE)
-    {
+    summaryResultFile, function, modelInfo, versionNumber));
+  }
+  else if (function[0] == FAILURE_TYPE_SURFACE)
+  {
       return TLimitStateFunctionBase(new CLimitStateFunctionSurface(
-        summaryResultFile, function, modelInfo, versionNumber));
-    }
-    else if (function[0] == FAILURE_TYPE_WELL)
-    {
+    summaryResultFile, function, modelInfo, versionNumber));
+  }
+  else if (function[0] == FAILURE_TYPE_WELL)
+  {
       return TLimitStateFunctionBase(new CLimitStateFunctionWell(
-        summaryResultFile, function, modelInfo, versionNumber));
-    }
+    summaryResultFile, function, modelInfo, versionNumber));
+  }
 
-    summaryResultFile.setResultValue(
+  summaryResultFile.setResultValue(
       CSummaryResultFile::RESULT_VALUE_INCONSISTENT);
-    summaryResultFile.addAdditionalInformation(
+  summaryResultFile.addAdditionalInformation(
       QString(FAILURE_TYPE_DOES_NOT_EXIST).arg(function[0]));
   }
 

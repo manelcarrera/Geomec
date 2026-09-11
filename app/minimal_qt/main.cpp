@@ -8,12 +8,12 @@
 
 int main(int argc, char *argv[])
 {
-	QCoreApplication a(argc, argv);
+  QCoreApplication a(argc, argv);
 
-	qDebug() << "qDebug";
-	GlobalMessage::init( new GlobalMessage_CLI() );
-	GlobalMessage::instance()->msg("GlobalMessage");
-	Printer::instance()->debug("Printer");
+  qDebug() << "qDebug";
+  GlobalMessage::init( new GlobalMessage_CLI() );
+  GlobalMessage::instance()->msg("GlobalMessage");
+  Printer::instance()->debug("Printer");
 
-	return a.exec();
+  return a.exec();
 }

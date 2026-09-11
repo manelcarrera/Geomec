@@ -19,8 +19,8 @@ CPolygon::CPolygon(const CPtrArray<CPoint>& points, bool bIsHole)
 {
   for(size_t i=0;i< points.Size();i++)
   {
-        CPoint p(points.Object(i));
-    m_points.PushBack(p);
+    CPoint p(points.Object(i));
+  m_points.PushBack(p);
   }
 }
 
@@ -33,7 +33,7 @@ CPolygon::CPolygon(const CArray<CPoint>& points, bool bIsHole)
   std::set<CPoint> temp;
   for(CArray<CPoint>::const_iterator it = points.begin(); it != points.end(); it++)
   {
-    temp.insert(*it);
+  temp.insert(*it);
   }
 
   assert(temp.size() == points.Size());
@@ -46,11 +46,11 @@ CPolygon::CPolygon(const CArray<CPoint>& points, bool bIsHole)
 CPolygon::CPolygon(const IFace& face, bool bIsHole)
 : IPolygon(bIsHole)
 {
-    CPoint p;
+  CPoint p;
   for(int i =0 ;i<face.NrOfPoints();i++) {
-        p = face.Point(i);
-    m_points.PushBack(p);
-    }
+    p = face.Point(i);
+  m_points.PushBack(p);
+  }
 }
 
 CPolygon::CPolygon(bool bIsHole)
@@ -76,11 +76,11 @@ CPolygon::CPolygon(const CPolygon& rhs)
 CPolygon::CPolygon(const IPolyLine& poly_line, bool bIsHole)
 : IPolygon(bIsHole)
 {
-    CPoint p;
+  CPoint p;
   for(int i = 0; i < poly_line.PointSize(); i++)
   {
-        p = poly_line.Point(i);
-    m_points.PushBack(p);
+    p = poly_line.Point(i);
+  m_points.PushBack(p);
   }
 
 }
@@ -96,11 +96,11 @@ bool CPolygon::PushBack( const IPoint& point, bool bUnique )
   // The point must not be equal to the last or first point
   if ( !bUnique && NrOfPoints() > 0 )
   {
-    if((Point(0) == point) || (Point(NrOfPoints() - 1) == point))
+  if((Point(0) == point) || (Point(NrOfPoints() - 1) == point))
       return false;
   }
 
-    CPoint p(point);
+  CPoint p(point);
   m_points.PushBack(p);
   InvalidateCache();
   return true;

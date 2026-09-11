@@ -23,28 +23,28 @@ class CMeasuredTopDisplacementsNode;
 class C3DModel : public CModelBase  
 {
 protected:
-	// Default scene
-	virtual CGeomecDianaRunnerBase* OnCreateDianaRunner(CDianaRunController& controller);
+  // Default scene
+  virtual CGeomecDianaRunnerBase* OnCreateDianaRunner(CDianaRunController& controller);
 
-	C3DModel(CAnalysisLogger& logger, const CVersionManager& versionManager);
-	virtual ~C3DModel();
+  C3DModel(CAnalysisLogger& logger, const CVersionManager& versionManager);
+  virtual ~C3DModel();
 
 public:
   virtual bool OnLoad(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS& prog);
-	virtual bool OnSave(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS& prog);
-	virtual long SavedItems() const;
+  virtual bool OnSave(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS& prog);
+  virtual long SavedItems() const;
 
-	virtual const double &Depth(const geo::ICoordinate &coord) const { return coord.Z(); }
-	virtual double Northing(const geo::ICoordinate& coord) const { return coord.X(); }
-	virtual double Easting(const geo::ICoordinate& coord) const { return coord.Y(); }
+  virtual const double &Depth(const geo::ICoordinate &coord) const { return coord.Z(); }
+  virtual double Northing(const geo::ICoordinate& coord) const { return coord.X(); }
+  virtual double Easting(const geo::ICoordinate& coord) const { return coord.Y(); }
 
-	// This routine only creates the entries for the graph
-	virtual void createContainers();
-	// This routine creates all default items we want to have.
-	virtual void createDefaults();
-	virtual void OnCloseModel();
+  // This routine only creates the entries for the graph
+  virtual void createContainers();
+  // This routine creates all default items we want to have.
+  virtual void createDefaults();
+  virtual void OnCloseModel();
 
-	virtual int Dimension() const { return 3; }
+  virtual int Dimension() const { return 3; }
 
   virtual void CollectBoundaryNodes(TNodeElementsMap& mpNodeElements) const;
 

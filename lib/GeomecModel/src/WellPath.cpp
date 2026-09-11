@@ -53,47 +53,47 @@ void CWellPath::Init()
 
   m_bSectionsDirty = true;
 
-	CModelBase *pModel = dynamic_cast<CModelBase*>(&Model());
+  CModelBase *pModel = dynamic_cast<CModelBase*>(&Model());
 
-	CDepletionStage &initial_stage = pModel->InitialDepletionStage();
-	SetBirthDate(QDate(initial_stage.Time().GetYear(), initial_stage.Time().GetMonth(), 1));
+  CDepletionStage &initial_stage = pModel->InitialDepletionStage();
+  SetBirthDate(QDate(initial_stage.Time().GetYear(), initial_stage.Time().GetMonth(), 1));
 
-	m_pDsbResults = new CDstaborResultMap(*this);
+  m_pDsbResults = new CDstaborResultMap(*this);
 
-	InsertWellSectionList( new well::CWellSectionList(*this,true),LST_SC_FORM);
-	GetWellSectionList(LST_SC_FORM).SetDescription("Formation");
+  InsertWellSectionList( new well::CWellSectionList(*this,true),LST_SC_FORM);
+  GetWellSectionList(LST_SC_FORM).SetDescription("Formation");
 
-	InsertWellSectionList( new well::CWellSectionList(*this,true),LST_SC_WELL);
-	GetWellSectionList(LST_SC_WELL).SetDescription("Well section");
+  InsertWellSectionList( new well::CWellSectionList(*this,true),LST_SC_WELL);
+  GetWellSectionList(LST_SC_WELL).SetDescription("Well section");
 
 
-	InsertWellPointList(new well::CWellPointList(*this,true),LST_PT_DSTABOR);
-	GetWellPointList(LST_PT_DSTABOR).SetDescription("Dstabor Points");
+  InsertWellPointList(new well::CWellPointList(*this,true),LST_PT_DSTABOR);
+  GetWellPointList(LST_PT_DSTABOR).SetDescription("Dstabor Points");
 
-	InsertWellPointList(new well::CWellPointList(*this,true),LST_PT_DCASING);
-	GetWellPointList(LST_PT_DCASING).SetDescription("DCasint Points");
+  InsertWellPointList(new well::CWellPointList(*this,true),LST_PT_DCASING);
+  GetWellPointList(LST_PT_DCASING).SetDescription("DCasint Points");
 
-	InsertWellPointList(new well::CWellPointList(*this,true),LST_PT_GRAPH);
+  InsertWellPointList(new well::CWellPointList(*this,true),LST_PT_GRAPH);
   m_graphPointsCalculated = false;
-	GetWellPointList(LST_PT_GRAPH).SetDescription("Graph points");
+  GetWellPointList(LST_PT_GRAPH).SetDescription("Graph points");
 
-	InsertWellPointList(new well::CWellPointList(*this,true),LST_PT_INTERSEC_MESH);
-	GetWellPointList(LST_PT_INTERSEC_MESH).SetDescription("Intersection points with mesh");
+  InsertWellPointList(new well::CWellPointList(*this,true),LST_PT_INTERSEC_MESH);
+  GetWellPointList(LST_PT_INTERSEC_MESH).SetDescription("Intersection points with mesh");
 
-	InsertWellPointList(new well::CWellPointList(*this,true),LST_PT_INTERSEC_FORM);
-	GetWellPointList(LST_PT_INTERSEC_FORM).SetDescription("Intersection points with formation");
+  InsertWellPointList(new well::CWellPointList(*this,true),LST_PT_INTERSEC_FORM);
+  GetWellPointList(LST_PT_INTERSEC_FORM).SetDescription("Intersection points with formation");
 
-	InsertWellPointList(new well::CWellPointList(*this, true), LST_PT_FIST_EXP);
-	GetWellPointList(LST_PT_FIST_EXP).SetDescription("Points used for FIST export");
+  InsertWellPointList(new well::CWellPointList(*this, true), LST_PT_FIST_EXP);
+  GetWellPointList(LST_PT_FIST_EXP).SetDescription("Points used for FIST export");
 
-	AutoDeleteSectionLists(true);
-	AutoDeletePointLists(true);
+  AutoDeleteSectionLists(true);
+  AutoDeletePointLists(true);
 
-	m_DsbLiquidFluid=1;
-	m_DsbFluidLossCoefficient=1;
+  m_DsbLiquidFluid=1;
+  m_DsbFluidLossCoefficient=1;
 
-	m_dMudGradRefDepth=0;
-	m_bShowDsbPointsInScene= false; //wjrx mantis 2542
+  m_dMudGradRefDepth=0;
+  m_bShowDsbPointsInScene= false; //wjrx mantis 2542
 
   m_pZoomInModel = 0;
 }
@@ -102,31 +102,31 @@ void CWellPath::Init()
 CWellPath::CWellPath(CFemAppModel& model)
 : CColorNode(model)
 {
-	IModelObject::create();
-	Init();
+  IModelObject::create();
+  Init();
 }
 
 
 CWellPath::CWellPath(const QString& sName, CFemAppModel& model)
 : CColorNode(sName, model)
 {
-	IModelObject::create();
-	Init();
-	CGraphNode::create( Model().GraphEntry(MD_BASE_WELLPATH) );
-	LinkTo(dynamic_cast<CModelBase&>(Model()).Mesh());
-	LinkTo(*Model().GraphEntry(MD_BASE_DEPLETION_STAGE));
+  IModelObject::create();
+  Init();
+  CGraphNode::create( Model().GraphEntry(MD_BASE_WELLPATH) );
+  LinkTo(dynamic_cast<CModelBase&>(Model()).Mesh());
+  LinkTo(*Model().GraphEntry(MD_BASE_DEPLETION_STAGE));
 }
 
 CWellPath::CWellPath(const QString &sName, CFemAppModel &model, const geo::CPoint &BasePoint)
 : CColorNode(sName, model),
   m_VerticalPointDef(BasePoint)
 {
-	IModelObject::create();
-	Init();
-	InitVerticalWell(true);
-	CGraphNode::create(Model().GraphEntry(MD_BASE_WELLPATH));
-	LinkTo(dynamic_cast<CModelBase&>(Model()).Mesh());
-	LinkTo(*Model().GraphEntry(MD_BASE_DEPLETION_STAGE));
+  IModelObject::create();
+  Init();
+  InitVerticalWell(true);
+  CGraphNode::create(Model().GraphEntry(MD_BASE_WELLPATH));
+  LinkTo(dynamic_cast<CModelBase&>(Model()).Mesh());
+  LinkTo(*Model().GraphEntry(MD_BASE_DEPLETION_STAGE));
 }
 
 CWellPath::CWellPath(const CWellPath &well_path, CFemAppModel &model)
@@ -134,14 +134,14 @@ CWellPath::CWellPath(const CWellPath &well_path, CFemAppModel &model)
   CWellPathBase(well_path),
   m_VerticalPointDef(well_path.m_VerticalPointDef)
 {
-	Init();
+  Init();
 
-	CGraphNode::create(Model().GraphEntry(MD_BASE_WELLPATH));
-	LinkTo(dynamic_cast<CModelBase&>(Model()).Mesh());
-	LinkTo(*Model().GraphEntry(MD_BASE_DEPLETION_STAGE));
+  CGraphNode::create(Model().GraphEntry(MD_BASE_WELLPATH));
+  LinkTo(dynamic_cast<CModelBase&>(Model()).Mesh());
+  LinkTo(*Model().GraphEntry(MD_BASE_DEPLETION_STAGE));
 
-	// Copy color, derrickelevation, easting, northing, vertical and points
-	Color(well_path.Color());
+  // Copy color, derrickelevation, easting, northing, vertical and points
+  Color(well_path.Color());
 }
 
 CWellPath::CWellPath(const CWellPath &WellPath)
@@ -149,40 +149,40 @@ CWellPath::CWellPath(const CWellPath &WellPath)
   CWellPathBase(WellPath),
   m_pIntermediate(WellPath.Intermediate())
 {
-	assert(false); // 13-02-04 There is reason to believe that this is not used anymore, so this assert is a test!!
-	//copy constructor from atrributres dialoog
-	AutoDeletePointLists(false);
-	DefPointList() = WellPath.DefPointList();
-	m_DsbLiquidFluid=WellPath.m_DsbLiquidFluid;
-	m_DsbFluidLossCoefficient=WellPath.m_DsbFluidLossCoefficient;
-	m_dMudGradRefDepth = WellPath.m_dMudGradRefDepth;
-	m_bShowDsbPointsInScene=WellPath.m_bShowDsbPointsInScene;
+  assert(false); // 13-02-04 There is reason to believe that this is not used anymore, so this assert is a test!!
+  //copy constructor from atrributres dialoog
+  AutoDeletePointLists(false);
+  DefPointList() = WellPath.DefPointList();
+  m_DsbLiquidFluid=WellPath.m_DsbLiquidFluid;
+  m_DsbFluidLossCoefficient=WellPath.m_DsbFluidLossCoefficient;
+  m_dMudGradRefDepth = WellPath.m_dMudGradRefDepth;
+  m_bShowDsbPointsInScene=WellPath.m_bShowDsbPointsInScene;
   m_bSectionsDirty = WellPath.m_bSectionsDirty;
-	
+  
 }
 
 CWellPath::~CWellPath()
 {
-	m_display_list.ClearAndDelete();
-	m_pIntermediate->Detach();
+  m_display_list.ClearAndDelete();
+  m_pIntermediate->Detach();
   delete m_pCachingIntermediate;
   m_pIntermediate = 0;
 
-	RemoveWellPointList(LST_PT_DCASING);
-	RemoveWellPointList(LST_PT_DSTABOR);
-	RemoveWellPointList(LST_PT_GRAPH);
+  RemoveWellPointList(LST_PT_DCASING);
+  RemoveWellPointList(LST_PT_DSTABOR);
+  RemoveWellPointList(LST_PT_GRAPH);
   m_graphPointsCalculated = false;
-	RemoveWellPointList(LST_PT_INTERSEC_FORM);
-	RemoveWellPointList(LST_PT_INTERSEC_MESH);
-	RemoveWellSectionList(LST_SC_FORM);
-	RemoveWellSectionList(LST_SC_WELL);
+  RemoveWellPointList(LST_PT_INTERSEC_FORM);
+  RemoveWellPointList(LST_PT_INTERSEC_MESH);
+  RemoveWellSectionList(LST_SC_FORM);
+  RemoveWellSectionList(LST_SC_WELL);
 
-	
+  
 
-	delete m_pDsbResults;
+  delete m_pDsbResults;
 
-	TSectDeplLogMap::iterator it;
-	//TODO tnma crash..
+  TSectDeplLogMap::iterator it;
+  //TODO tnma crash..
 //	for(it = m_mpSectDplLog.begin(); it != m_mpSectDplLog.end(); it++)
 //	{
 //		delete it->second.second;
@@ -194,247 +194,247 @@ CWellPath::~CWellPath()
 
 const well::CWellPointList& CWellPath::DStaborPoints() const
 {
-	return GetWellPointList(LST_PT_DSTABOR);
+  return GetWellPointList(LST_PT_DSTABOR);
 }
 
 const well::CWellPointList& CWellPath::DCasintPoints() const
 {
-	const well::CWellPointList & List = GetWellPointList(LST_PT_DCASING);
-	return List;
+  const well::CWellPointList & List = GetWellPointList(LST_PT_DCASING);
+  return List;
 }
 
 well::CWellPointList& CWellPath::DCasintPoints()
 {
-	well::CWellPointList& List = GetWellPointList(LST_PT_DCASING);
-	return List;
+  well::CWellPointList& List = GetWellPointList(LST_PT_DCASING);
+  return List;
 }
 
 well::CWellPointList& CWellPath::DStaborPoints(bool bCheck)
 {
-	if ( bCheck )
-	{
-		well::CWellPointList &dsp= GetWellPointList(LST_PT_DSTABOR);
-		well::CWellPointList::Iterator it= dsp.begin();
-		CModelBase* pModel = dynamic_cast<CModelBase*>(&Model());
-		CValidateModel validateModel(pModel);
+  if ( bCheck )
+  {
+    well::CWellPointList &dsp= GetWellPointList(LST_PT_DSTABOR);
+    well::CWellPointList::Iterator it= dsp.begin();
+    CModelBase* pModel = dynamic_cast<CModelBase*>(&Model());
+    CValidateModel validateModel(pModel);
 
-		while (it != dsp.end())
-		{
-			CGeoWellPoint gwp( *pModel, **it);
-			const CFormationBase *pFormation= gwp.Formation();
-			if ( pFormation==0
-			|| validateModel.checkMaterial(*pFormation)==false)
-			{
-				well::CWellPointList::Iterator it2= it;
-				++it;
-				dsp.RemovePoint(*it2);
-			}
-			else
-			{
-				++it;
-			}
-		}
-	}
-	return GetWellPointList(LST_PT_DSTABOR);
+    while (it != dsp.end())
+    {
+      CGeoWellPoint gwp( *pModel, **it);
+      const CFormationBase *pFormation= gwp.Formation();
+      if ( pFormation==0
+      || validateModel.checkMaterial(*pFormation)==false)
+      {
+        well::CWellPointList::Iterator it2= it;
+        ++it;
+        dsp.RemovePoint(*it2);
+      }
+      else
+      {
+        ++it;
+      }
+    }
+  }
+  return GetWellPointList(LST_PT_DSTABOR);
 }
 
 const well::CWellPointList& CWellPath::GraphPoints() const
 {
-	if(!m_graphPointsCalculated)
+  if(!m_graphPointsCalculated)
   {
-		const_cast<CWellPath&>(*this).CalcGraphPoints();
+    const_cast<CWellPath&>(*this).CalcGraphPoints();
   }
 
-	return GetWellPointList(LST_PT_GRAPH);
+  return GetWellPointList(LST_PT_GRAPH);
 }
 
 well::CWellPointList& CWellPath::GraphPoints()
 {
-	if(!m_graphPointsCalculated)
-		const_cast<CWellPath&>(*this).CalcGraphPoints();
+  if(!m_graphPointsCalculated)
+    const_cast<CWellPath&>(*this).CalcGraphPoints();
 
-	return GetWellPointList(LST_PT_GRAPH);
+  return GetWellPointList(LST_PT_GRAPH);
 }
 
 const well::CWellPointList& CWellPath::FormIntersecPoints() const
 {
-	if(GetWellPointList(LST_PT_INTERSEC_FORM).NrOfPoints() ==0)
-		const_cast<CWellPath*>(this)->CalculateFormationIntersecPoints();
+  if(GetWellPointList(LST_PT_INTERSEC_FORM).NrOfPoints() ==0)
+    const_cast<CWellPath*>(this)->CalculateFormationIntersecPoints();
 
-	return GetWellPointList(LST_PT_INTERSEC_FORM);
+  return GetWellPointList(LST_PT_INTERSEC_FORM);
 }
 
 well::CWellPointList& CWellPath::FormIntersecPoints()
 {
-	if(GetWellPointList(LST_PT_INTERSEC_FORM).NrOfPoints() ==0)
-		CalculateFormationIntersecPoints();
+  if(GetWellPointList(LST_PT_INTERSEC_FORM).NrOfPoints() ==0)
+    CalculateFormationIntersecPoints();
 
-	return GetWellPointList(LST_PT_INTERSEC_FORM);
+  return GetWellPointList(LST_PT_INTERSEC_FORM);
 }
 
 const well::CWellPointList& CWellPath::MeshIntersecPoints() const
 {
-	if(GetWellPointList(LST_PT_INTERSEC_MESH).NrOfPoints() ==0)
-		const_cast<CWellPath*>(this)->CalculateMeshIntersecPoints();
+  if(GetWellPointList(LST_PT_INTERSEC_MESH).NrOfPoints() ==0)
+    const_cast<CWellPath*>(this)->CalculateMeshIntersecPoints();
 
-	return GetWellPointList(LST_PT_INTERSEC_MESH);
+  return GetWellPointList(LST_PT_INTERSEC_MESH);
 
 }
 
 well::CWellPointList& CWellPath::MeshIntersecPoints()
 {
-	if(GetWellPointList(LST_PT_INTERSEC_MESH).NrOfPoints() ==0)
-		const_cast<CWellPath*>(this)->CalculateMeshIntersecPoints();
+  if(GetWellPointList(LST_PT_INTERSEC_MESH).NrOfPoints() ==0)
+    const_cast<CWellPath*>(this)->CalculateMeshIntersecPoints();
 
-	return GetWellPointList(LST_PT_INTERSEC_MESH);
+  return GetWellPointList(LST_PT_INTERSEC_MESH);
 
 }
 
 void CWellPath::InvalidatePointLists()
 {
-	GetWellPointList(LST_PT_DSTABOR).RemoveAllPoints();
-	GetWellPointList(LST_PT_DCASING).RemoveAllPoints();
-	GetWellPointList(LST_PT_GRAPH).RemoveAllPoints();
+  GetWellPointList(LST_PT_DSTABOR).RemoveAllPoints();
+  GetWellPointList(LST_PT_DCASING).RemoveAllPoints();
+  GetWellPointList(LST_PT_GRAPH).RemoveAllPoints();
   m_graphPointsCalculated = false;
-	GetWellPointList(LST_PT_INTERSEC_MESH).RemoveAllPoints();
-	GetWellPointList(LST_PT_INTERSEC_FORM).RemoveAllPoints();
-	GetWellPointList(LST_PT_FIST_EXP).RemoveAllPoints();
-	GetWellSectionList(LST_SC_FORM).RemoveAllSections();
-	GetWellSectionList(LST_SC_WELL).RemoveAllSections();
+  GetWellPointList(LST_PT_INTERSEC_MESH).RemoveAllPoints();
+  GetWellPointList(LST_PT_INTERSEC_FORM).RemoveAllPoints();
+  GetWellPointList(LST_PT_FIST_EXP).RemoveAllPoints();
+  GetWellSectionList(LST_SC_FORM).RemoveAllSections();
+  GetWellSectionList(LST_SC_WELL).RemoveAllSections();
 }
 
 // This function calculates the intersection points with the mesh
 // invalidates the dependent lists (formation intersec points and formation sections)
 void CWellPath::CalculateMeshIntersecPoints()
 {
-	InvalidatePointLists();
+  InvalidatePointLists();
   assert(GetWellPointList(LST_PT_INTERSEC_MESH).NrOfPoints() == 0);
 
-	if(!dynamic_cast<CModelBase*>(&Model())->IsMesh())
-		return;
+  if(!dynamic_cast<CModelBase*>(&Model())->IsMesh())
+    return;
 
-	well::CWellPointList lst(*this);
-	lst.AutoDelete(true);
+  well::CWellPointList lst(*this);
+  lst.AutoDelete(true);
 
-	//loop over the volumes in a formation
+  //loop over the volumes in a formation
 
-	CalculateIntersections(dynamic_cast<CModelBase*>(&Model())->Mesh().Mesh(), lst);
-	lst.RemoveUnDefinedPoints();
+  CalculateIntersections(dynamic_cast<CModelBase*>(&Model())->Mesh().Mesh(), lst);
+  lst.RemoveUnDefinedPoints();
 
-	//copy the points in the mesh intersec
-	well::CWellPointList::Iterator it =lst.begin();
-	while(it != lst.end())
-	{
+  //copy the points in the mesh intersec
+  well::CWellPointList::Iterator it =lst.begin();
+  while(it != lst.end())
+  {
   	well::CWellPoint* p = *it;
-    CGeoWellPoint* pWP = new CGeoWellPoint(*this,p->TMD().Value());
-    pWP->setElements(p->getElements());
-		GetWellPointList(LST_PT_INTERSEC_MESH).AddPoint(pWP);
-		++it;
-	}
+  CGeoWellPoint* pWP = new CGeoWellPoint(*this,p->TMD().Value());
+  pWP->setElements(p->getElements());
+    GetWellPointList(LST_PT_INTERSEC_MESH).AddPoint(pWP);
+    ++it;
+  }
 
-	GetWellPointList(LST_PT_INTERSEC_MESH).RemoveUnDefinedPoints();
-	//UpdateFormationSections();
+  GetWellPointList(LST_PT_INTERSEC_MESH).RemoveUnDefinedPoints();
+  //UpdateFormationSections();
 }
 
 // This function calculates the intersection points with the horizons/formations
 // it uses the mesh intersection points
 void CWellPath::CalculateFormationIntersecPoints()
 {
-	GetWellSectionList(LST_SC_FORM).RemoveAllSections();
+  GetWellSectionList(LST_SC_FORM).RemoveAllSections();
 
-	well::CWellPointList& lst = GetWellPointList(LST_PT_INTERSEC_FORM);
-	lst.RemoveAllPoints();
+  well::CWellPointList& lst = GetWellPointList(LST_PT_INTERSEC_FORM);
+  lst.RemoveAllPoints();
 
-	//well::CWellPointList& mesh_intersec = MeshInter
+  //well::CWellPointList& mesh_intersec = MeshInter
   const well::CWellPointList& wpl = MeshIntersecPoints();
-	well::CWellPointList::Iterator it = wpl.begin();
+  well::CWellPointList::Iterator it = wpl.begin();
 
-	CGeoWellPoint* p1 = 0;
-	CGeoWellPoint* p2 = 0;
+  CGeoWellPoint* p1 = 0;
+  CGeoWellPoint* p2 = 0;
 
   if(it != wpl.end())
-    p1 = (CGeoWellPoint*)*it++;
+  p1 = (CGeoWellPoint*)*it++;
   if(it != wpl.end())
-    p2 = (CGeoWellPoint*)*it;
+  p2 = (CGeoWellPoint*)*it;
 
-	const CFormationBase* pForm=0;
+  const CFormationBase* pForm=0;
 
-	while(p1 && p2)
-	{
-		//take a point in the middle
-		double middle = (p1->TMD().Value() + p2->TMD().Value())/2.0;
-		CGeoWellPoint mid1(*this,middle);
-		const CFormationBase* form = mid1.Formation();
+  while(p1 && p2)
+  {
+    //take a point in the middle
+    double middle = (p1->TMD().Value() + p2->TMD().Value())/2.0;
+    CGeoWellPoint mid1(*this,middle);
+    const CFormationBase* form = mid1.Formation();
 
-		// wjrx mantis 2540
-		// If the midpoint is not in the formation look near p1 and p2
-		//
-		if ( ! form )
-		{
-			middle = p1->TMD().Value() + 0.01 * (p2->TMD().Value() - p1->TMD().Value());
-			CGeoWellPoint mid2(*this,middle);
-			form = mid2.Formation();
-		}
+    // wjrx mantis 2540
+    // If the midpoint is not in the formation look near p1 and p2
+    //
+    if ( ! form )
+    {
+      middle = p1->TMD().Value() + 0.01 * (p2->TMD().Value() - p1->TMD().Value());
+      CGeoWellPoint mid2(*this,middle);
+      form = mid2.Formation();
+    }
 
-		// wjrx mantis 2540
-		if ( ! form )
-		{
-			middle = p1->TMD().Value() + 0.99 * (p2->TMD().Value() - p1->TMD().Value());
-			CGeoWellPoint mid3(*this,middle);
-			form= mid3.Formation();
-		}
+    // wjrx mantis 2540
+    if ( ! form )
+    {
+      middle = p1->TMD().Value() + 0.99 * (p2->TMD().Value() - p1->TMD().Value());
+      CGeoWellPoint mid3(*this,middle);
+      form= mid3.Formation();
+    }
 
-		if(!form)
-		{
-			lst.AddPoint(new CGeoWellPoint(*this,p1->TMD().Value()));
-			pForm = form;
-		}
-		else if(p1 == MeshIntersecPoints().First() /*wjrx mantis 2540 taken out: && IsVertical() */)
-		{
-			lst.AddPoint(new CGeoWellPoint(*this,p1->TMD().Value()));
-			pForm = form;
-		}
-		else
-		{
-			if(!pForm)
-			{
-				pForm = form;
-			}
-			else if(pForm != form)
-			{
-				pForm = form;
-				lst.AddPoint(new CGeoWellPoint(*this,p1->TMD().Value()));
-			}
-		}
-		
-		p1 = p2;
-    ++it;
-    if(it != wpl.end())
-		  p2 = (CGeoWellPoint*)*it;
+    if(!form)
+    {
+      lst.AddPoint(new CGeoWellPoint(*this,p1->TMD().Value()));
+      pForm = form;
+    }
+    else if(p1 == MeshIntersecPoints().First() /*wjrx mantis 2540 taken out: && IsVertical() */)
+    {
+      lst.AddPoint(new CGeoWellPoint(*this,p1->TMD().Value()));
+      pForm = form;
+    }
     else
+    {
+      if(!pForm)
+      {
+        pForm = form;
+      }
+      else if(pForm != form)
+      {
+        pForm = form;
+        lst.AddPoint(new CGeoWellPoint(*this,p1->TMD().Value()));
+      }
+    }
+    
+    p1 = p2;
+  ++it;
+  if(it != wpl.end())
+      p2 = (CGeoWellPoint*)*it;
+  else
       p2 = 0;
 
-    // wedx 09052008: add the last point
-    if(!p2)
-    {
+  // wedx 09052008: add the last point
+  if(!p2)
+  {
       if(DefPointList().Last()->TMD().Value() > p1->TMD().Value() + EPS)
       {
     		CGeoWellPoint* p = new CGeoWellPoint(*this,DefPointList().Last()->TMD().Value());
-        if(p->Defined())
-        {
+    if(p->Defined())
+    {
           lst.AddPoint(p);
-        }
-        else
-        {
+    }
+    else
+    {
           lst.AddPoint(new CGeoWellPoint(*this, p1->TMD().Value()));
           delete p;
-        }
+    }
       }
       else
-        lst.AddPoint(new CGeoWellPoint(*this, p1->TMD().Value()));
-    }
+    lst.AddPoint(new CGeoWellPoint(*this, p1->TMD().Value()));
+  }
 
-	}
+  }
 
 }
 
@@ -443,218 +443,218 @@ void CWellPath::UpdateFormationSections()
 {
 //  m_pCachingIntermediate->Clear();
 
-	// The FormIntersecPoints() call below can lead to an
-	// InvalidatePointLists() call if we don't Calculate... here.
-	// This interferes with drawing the wellpath.
-	// wjrx mantis 2555
-	if(GetWellPointList(LST_PT_INTERSEC_FORM).NrOfPoints() ==0)
-		CalculateFormationIntersecPoints();
+  // The FormIntersecPoints() call below can lead to an
+  // InvalidatePointLists() call if we don't Calculate... here.
+  // This interferes with drawing the wellpath.
+  // wjrx mantis 2555
+  if(GetWellPointList(LST_PT_INTERSEC_FORM).NrOfPoints() ==0)
+    CalculateFormationIntersecPoints();
 
-	CModelBase* pModel = dynamic_cast<CModelBase*>(&Model());
+  CModelBase* pModel = dynamic_cast<CModelBase*>(&Model());
 
-	GetWellSectionList(LST_SC_WELL).RemoveAllSections();
+  GetWellSectionList(LST_SC_WELL).RemoveAllSections();
 
-	if(DefPointList().First() && DefPointList().Last())
-	{
-		well::CWellSectionList& well_section = GetWellSectionList(LST_SC_WELL);
-		
-		well::CWellSection* pSection = new well::CWellSection(*this, DefPointList().First()->TMD().Value(), DefPointList().Last()->TMD().Value());
-		well_section.AddSection(pSection);
-    m_pIntermediate->AddSection(*pSection, IIntermediate::LINE, Color(), 3, true, QString());
-	}
+  if(DefPointList().First() && DefPointList().Last())
+  {
+    well::CWellSectionList& well_section = GetWellSectionList(LST_SC_WELL);
+    
+    well::CWellSection* pSection = new well::CWellSection(*this, DefPointList().First()->TMD().Value(), DefPointList().Last()->TMD().Value());
+    well_section.AddSection(pSection);
+  m_pIntermediate->AddSection(*pSection, IIntermediate::LINE, Color(), 3, true, QString());
+  }
 
-	well::CWellSectionList& sections = GetWellSectionList(LST_SC_FORM);
-	sections.RemoveAllSections();//wjrx mantis 2554
+  well::CWellSectionList& sections = GetWellSectionList(LST_SC_FORM);
+  sections.RemoveAllSections();//wjrx mantis 2554
 
-	if(!pModel->IsMesh())
-		return;
+  if(!pModel->IsMesh())
+    return;
 
-	well::CWellPointList& formIntersec = FormIntersecPoints();
-	if(formIntersec.NrOfPoints() == 0)
-		return;
+  well::CWellPointList& formIntersec = FormIntersecPoints();
+  if(formIntersec.NrOfPoints() == 0)
+    return;
 
-	well::CWellPointList& lst = formIntersec;
+  well::CWellPointList& lst = formIntersec;
 
-	assert(lst.NrOfPoints() > 0);
-	assert(DefPointList().NrOfPoints() > 0);
+  assert(lst.NrOfPoints() > 0);
+  assert(DefPointList().NrOfPoints() > 0);
 
 /* wedx mantis #2588: this seems to introduce very short formation sections at the beginning and/or the end
-	if(!(*lst.First() == *DefPointList().First()))
-	{
-		CGeoWellPoint p(*this,DefPointList().First()->TMD().Value());
-		if(p.Defined())
-			lst.AddPoint( DefPointList().First());
-	}
+  if(!(*lst.First() == *DefPointList().First()))
+  {
+    CGeoWellPoint p(*this,DefPointList().First()->TMD().Value());
+    if(p.Defined())
+      lst.AddPoint( DefPointList().First());
+  }
 
-	if(!(*lst.Last() == *DefPointList().Last()))
-	{
-		CGeoWellPoint p(*this,DefPointList().Last()->TMD().Value());
-		if(p.Defined())
-			lst.AddPoint( DefPointList().Last());
-	}
+  if(!(*lst.Last() == *DefPointList().Last()))
+  {
+    CGeoWellPoint p(*this,DefPointList().Last()->TMD().Value());
+    if(p.Defined())
+      lst.AddPoint( DefPointList().Last());
+  }
 */
-	//need at least 2 intersection points to create a section
-	if(lst.NrOfPoints() < 2)
-		return;
+  //need at least 2 intersection points to create a section
+  if(lst.NrOfPoints() < 2)
+    return;
 
-	well::CWellPointList::Iterator it = lst.begin();
+  well::CWellPointList::Iterator it = lst.begin();
 
-	CGeoWellPoint*  top = 0;
-	CGeoWellPoint*  bottom = 0;
-
-  if(it != lst.end())
-    top = (CGeoWellPoint*)*it++;
+  CGeoWellPoint*  top = 0;
+  CGeoWellPoint*  bottom = 0;
 
   if(it != lst.end())
-    bottom = (CGeoWellPoint*)*it;
-	
-	while(top && bottom)
-	{
-		CGeoWellPoint mid(*this,(top->TMD().Value() + bottom->TMD().Value())/2.0);
+  top = (CGeoWellPoint*)*it++;
 
-		assert(mid.well::CWellPoint::Defined());
+  if(it != lst.end())
+  bottom = (CGeoWellPoint*)*it;
+  
+  while(top && bottom)
+  {
+    CGeoWellPoint mid(*this,(top->TMD().Value() + bottom->TMD().Value())/2.0);
 
-		if(!mid.Formation())
-		{ // this only happens when there is a void in the model caused by a fault made up from two surfaces
-			top    = bottom;
+    assert(mid.well::CWellPoint::Defined());
+
+    if(!mid.Formation())
+    { // this only happens when there is a void in the model caused by a fault made up from two surfaces
+      top    = bottom;
       ++it;
       if(it != lst.end())
-			  bottom = (CGeoWellPoint*)*it;
+        bottom = (CGeoWellPoint*)*it;
       else
-        bottom = 0;
-			continue;
-		}
-		// Link to formations to propagate Modified() signals. TODO: unlink formations again.
-		if(!IsLinkedTo( *const_cast<CFormationBase*>(mid.Formation()) ))
-			LinkTo( *const_cast<CFormationBase*>(mid.Formation()) );
+    bottom = 0;
+      continue;
+    }
+    // Link to formations to propagate Modified() signals. TODO: unlink formations again.
+    if(!IsLinkedTo( *const_cast<CFormationBase*>(mid.Formation()) ))
+      LinkTo( *const_cast<CFormationBase*>(mid.Formation()) );
 
-		CFormationSection* pSection = new CFormationSection(*this, mid.Formation(), top, bottom);
-		//pSection->SetDescription(QString(above.Formation()->Name()));
-		sections.AddSection(pSection);	
+    CFormationSection* pSection = new CFormationSection(*this, mid.Formation(), top, bottom);
+    //pSection->SetDescription(QString(above.Formation()->Name()));
+    sections.AddSection(pSection);	
 
 //		FORMATION COLORS		
-    m_pIntermediate->AddSection(*pSection, IIntermediate::LINE, Color(), 3, true, QString());
+  m_pIntermediate->AddSection(*pSection, IIntermediate::LINE, Color(), 3, true, QString());
 
 //		FORMATION ARROWS
-    m_pIntermediate->AddSection(*pSection, IIntermediate::ARROW, qRgb(255, 255, 255), 1, true, mid.Formation()->Name());
+  m_pIntermediate->AddSection(*pSection, IIntermediate::ARROW, qRgb(255, 255, 255), 1, true, mid.Formation()->Name());
 /*
-		CWellSectionDrawSpec& ds2 = m_pSceneInterMed->AddSection(*pSection,CWellSectionDrawSpec::ARROW);
-		ds2.SetColor(qRgb(255,255,255));
-		ds2.SetDescription(QString(mid.Formation()->Name()));
-		ds2.SetLineWidth(1);
-		ds2.SetVisible(true);
+    CWellSectionDrawSpec& ds2 = m_pSceneInterMed->AddSection(*pSection,CWellSectionDrawSpec::ARROW);
+    ds2.SetColor(qRgb(255,255,255));
+    ds2.SetDescription(QString(mid.Formation()->Name()));
+    ds2.SetLineWidth(1);
+    ds2.SetVisible(true);
 */
 
-		top    = bottom;
+    top    = bottom;
 
-    ++it;
-    if(it != lst.end())
-		  bottom =(CGeoWellPoint*)*it;
-    else
+  ++it;
+  if(it != lst.end())
+      bottom =(CGeoWellPoint*)*it;
+  else
       bottom = 0;
 
-	}
+  }
 
   m_bSectionsDirty = false;
 
 #ifdef _DEBUG	
-	//debug
+  //debug
 /*	//if(true) wjrx mantis 2542 Code moved to ShowDsbAnalysisPointsInScene 
-	{
-		well::CWellPointList& points = MeshIntersecPoints();
-		well::CWellPointList::Iterator itmp  = points.GetIterator();
-		well::CWellPoint* p = itmp.current();
-		while(p)
-		{
-			
-			CWellPointDrawSpec& wpds = m_pSceneInterMed->AddPoint(*p , CWellPointDrawSpec::SINGLE_DOT);
-			wpds.SetPointSize(8);
-			wpds.SetColor(qRgb(255,0,0));
-			wpds.SetVisible(true);
-			p = ++itmp;
-		}
-	}
+  {
+    well::CWellPointList& points = MeshIntersecPoints();
+    well::CWellPointList::Iterator itmp  = points.GetIterator();
+    well::CWellPoint* p = itmp.current();
+    while(p)
+    {
+      
+      CWellPointDrawSpec& wpds = m_pSceneInterMed->AddPoint(*p , CWellPointDrawSpec::SINGLE_DOT);
+      wpds.SetPointSize(8);
+      wpds.SetColor(qRgb(255,0,0));
+      wpds.SetVisible(true);
+      p = ++itmp;
+    }
+  }
 */
-	//debug
-	if(true)
-	{
-		well::CWellPointList& points = DefPointList();
-		well::CWellPointList::Iterator itmp  = points.begin();
-		while(itmp != points.end())
-		{
+  //debug
+  if(true)
+  {
+    well::CWellPointList& points = DefPointList();
+    well::CWellPointList::Iterator itmp  = points.begin();
+    while(itmp != points.end())
+    {
   		well::CWellPoint* p = *itmp;
       m_pIntermediate->AddPoint(*p, qRgb(0, 0, 255), 8, false);
 /*
-			CWellPointDrawSpec& wpds = m_pSceneInterMed->AddPoint(*p , CWellPointDrawSpec::SINGLE_DOT);
-			wpds.SetPointSize(8);
-			wpds.SetColor(qRgb(0,0,255));
+      CWellPointDrawSpec& wpds = m_pSceneInterMed->AddPoint(*p , CWellPointDrawSpec::SINGLE_DOT);
+      wpds.SetPointSize(8);
+      wpds.SetColor(qRgb(0,0,255));
 */
-			//wpds.SetVisible(true);
-			++itmp;
-		}
-	}
+      //wpds.SetVisible(true);
+      ++itmp;
+    }
+  }
 #endif
 
 }
 
 CWellPath::TColor CWellPath::Color() const
 {
-	return CColorNode::Color();
+  return CColorNode::Color();
 }
 
 /*
 void CWellPath::SetSectionColor(TColor nColor, long SectionListID)
 {
-	well::CWellSectionList& sections = GetWellSectionList(SectionListID);
+  well::CWellSectionList& sections = GetWellSectionList(SectionListID);
 
-	well::CWellSectionList::Iterator it =  sections.begin();
+  well::CWellSectionList::Iterator it =  sections.begin();
 
-	while(it != sections.end())
-	{
-		long count=0;
-		while(m_pSceneInterMed->ExistSection(**it,count))
-		{
-			CWellSectionDrawSpec* spec = &(m_pSceneInterMed->GetSection(**it,count));
-			if(!(spec->GetType() == CWellSectionDrawSpec::ARROW))
-			{
-				spec->SetColor(nColor);
-			}
-			count++;
-		}
-		++it;
-	}
+  while(it != sections.end())
+  {
+    long count=0;
+    while(m_pSceneInterMed->ExistSection(**it,count))
+    {
+      CWellSectionDrawSpec* spec = &(m_pSceneInterMed->GetSection(**it,count));
+      if(!(spec->GetType() == CWellSectionDrawSpec::ARROW))
+      {
+        spec->SetColor(nColor);
+      }
+      count++;
+    }
+    ++it;
+  }
 }
 */
 void CWellPath::Color(TColor nColor)
 {
-	CColorNode::Color(nColor);
+  CColorNode::Color(nColor);
   m_pIntermediate->Color(nColor);
 /*
-	SetSectionColor(nColor, LST_SC_FORM);
-	SetSectionColor(nColor, LST_SC_WELL);
+  SetSectionColor(nColor, LST_SC_FORM);
+  SetSectionColor(nColor, LST_SC_WELL);
 */
 }
 
 const well::CWellSectionList& CWellPath::FormationSections() const
 {
-	if(m_bSectionsDirty || GetWellSectionList(LST_SC_FORM).NrOfSections() == 0)
-		const_cast<CWellPath*>(this)->UpdateFormationSections();
+  if(m_bSectionsDirty || GetWellSectionList(LST_SC_FORM).NrOfSections() == 0)
+    const_cast<CWellPath*>(this)->UpdateFormationSections();
 
-	return GetWellSectionList(LST_SC_FORM);
+  return GetWellSectionList(LST_SC_FORM);
 }
 
 well::CWellSectionList& CWellPath::FormationSections()
 {
-	if(m_bSectionsDirty || GetWellSectionList(LST_SC_FORM).NrOfSections() == 0)
-		UpdateFormationSections();
+  if(m_bSectionsDirty || GetWellSectionList(LST_SC_FORM).NrOfSections() == 0)
+    UpdateFormationSections();
 
-	return GetWellSectionList(LST_SC_FORM); 
+  return GetWellSectionList(LST_SC_FORM); 
 }
 
 well::CWellSectionList& CWellPath::FormationSectionsForLoadingOldFiles()
 {
   if(GetWellSectionList(LST_SC_FORM).NrOfSections() == 0)
-    UpdateFormationSectionsForLoadingOldFiles();
+  UpdateFormationSectionsForLoadingOldFiles();
 
   return GetWellSectionList(LST_SC_FORM);
 }
@@ -669,259 +669,259 @@ void CWellPath::UpdateFormationSectionsForLoadingOldFiles()
 {
 //  m_pCachingIntermediate->Clear();
 
-	// The FormIntersecPoints() call below can lead to an
-	// InvalidatePointLists() call if we don't Calculate... here.
-	// This interferes with drawing the wellpath.
-	// wjrx mantis 2555
-	if(GetWellPointList(LST_PT_INTERSEC_FORM).NrOfPoints() ==0)
-		CalculateFormationIntersecPointsForLoadingOldFiles();
+  // The FormIntersecPoints() call below can lead to an
+  // InvalidatePointLists() call if we don't Calculate... here.
+  // This interferes with drawing the wellpath.
+  // wjrx mantis 2555
+  if(GetWellPointList(LST_PT_INTERSEC_FORM).NrOfPoints() ==0)
+    CalculateFormationIntersecPointsForLoadingOldFiles();
 
-	CModelBase* pModel = dynamic_cast<CModelBase*>(&Model());
+  CModelBase* pModel = dynamic_cast<CModelBase*>(&Model());
 
-	GetWellSectionList(LST_SC_WELL).RemoveAllSections();
+  GetWellSectionList(LST_SC_WELL).RemoveAllSections();
 
-	if(DefPointList().First() && DefPointList().Last())
-	{
-		well::CWellSectionList& well_section = GetWellSectionList(LST_SC_WELL);
-		
-		well::CWellSection* pSection = new well::CWellSection(*this, DefPointList().First()->TMD().Value(), DefPointList().Last()->TMD().Value());
-		well_section.AddSection(pSection);
-    m_pIntermediate->AddSection(*pSection, IIntermediate::LINE, Color(), 3, true, QString());
+  if(DefPointList().First() && DefPointList().Last())
+  {
+    well::CWellSectionList& well_section = GetWellSectionList(LST_SC_WELL);
+    
+    well::CWellSection* pSection = new well::CWellSection(*this, DefPointList().First()->TMD().Value(), DefPointList().Last()->TMD().Value());
+    well_section.AddSection(pSection);
+  m_pIntermediate->AddSection(*pSection, IIntermediate::LINE, Color(), 3, true, QString());
 /*
-		CWellSectionDrawSpec* ds = &m_pSceneInterMed->AddSection(*pSection);
-		ds->SetColor(Color());
-		ds->SetLineWidth(3);
-		ds->SetVisible(true);
+    CWellSectionDrawSpec* ds = &m_pSceneInterMed->AddSection(*pSection);
+    ds->SetColor(Color());
+    ds->SetLineWidth(3);
+    ds->SetVisible(true);
 */
-	}
+  }
 
-	well::CWellSectionList& sections = GetWellSectionList(LST_SC_FORM);
+  well::CWellSectionList& sections = GetWellSectionList(LST_SC_FORM);
   sections.RemoveAllSections();
 
-	if(!pModel->IsMesh())
-		return;
+  if(!pModel->IsMesh())
+    return;
 
-	well::CWellPointList& formIntersec = FormIntersecPointsForLoadingOldFiles();
-	if(formIntersec.NrOfPoints() == 0)
-		return;
+  well::CWellPointList& formIntersec = FormIntersecPointsForLoadingOldFiles();
+  if(formIntersec.NrOfPoints() == 0)
+    return;
 
-	well::CWellPointList lst = formIntersec;
-	lst.AutoDelete(false);
+  well::CWellPointList lst = formIntersec;
+  lst.AutoDelete(false);
 
-	assert(lst.NrOfPoints() > 0);
-	assert(DefPointList().NrOfPoints() > 0);
+  assert(lst.NrOfPoints() > 0);
+  assert(DefPointList().NrOfPoints() > 0);
 
-	if(!(*lst.First() == *DefPointList().First()))
-	{
-		CGeoWellPoint p(*this,DefPointList().First()->TMD().Value());
-		if(p.Defined())
-			lst.AddPoint( DefPointList().First());
-	}
+  if(!(*lst.First() == *DefPointList().First()))
+  {
+    CGeoWellPoint p(*this,DefPointList().First()->TMD().Value());
+    if(p.Defined())
+      lst.AddPoint( DefPointList().First());
+  }
 
-	if(!(*lst.Last() == *DefPointList().Last()))
-	{
-		CGeoWellPoint p(*this,DefPointList().Last()->TMD().Value());
-		if(p.Defined())
-			lst.AddPoint( DefPointList().Last());
-	}
+  if(!(*lst.Last() == *DefPointList().Last()))
+  {
+    CGeoWellPoint p(*this,DefPointList().Last()->TMD().Value());
+    if(p.Defined())
+      lst.AddPoint( DefPointList().Last());
+  }
 
 
-	//need at least 2 intersection points to create a section
-	if(lst.NrOfPoints() < 2)
-		return;
+  //need at least 2 intersection points to create a section
+  if(lst.NrOfPoints() < 2)
+    return;
 
-	well::CWellPointList::Iterator it = lst.begin();
+  well::CWellPointList::Iterator it = lst.begin();
 
-	CGeoWellPoint*  top = 0;
-	CGeoWellPoint*  bottom = 0;
+  CGeoWellPoint*  top = 0;
+  CGeoWellPoint*  bottom = 0;
 
   if(it != lst.end())
-    top = (CGeoWellPoint*)*it++;
+  top = (CGeoWellPoint*)*it++;
   if(it != lst.end())
-    bottom = (CGeoWellPoint*)*it;
-	
-	while(top && bottom)
-	{
-		CGeoWellPoint mid(*this,(top->TMD().Value() + bottom->TMD().Value())/2.0);
+  bottom = (CGeoWellPoint*)*it;
+  
+  while(top && bottom)
+  {
+    CGeoWellPoint mid(*this,(top->TMD().Value() + bottom->TMD().Value())/2.0);
 
-		assert(mid.well::CWellPoint::Defined());
+    assert(mid.well::CWellPoint::Defined());
 
-		if(!mid.Formation())
-		{ // this only happens when there is a void in the model caused by a fault made up from two surfaces
-			top    = bottom;
+    if(!mid.Formation())
+    { // this only happens when there is a void in the model caused by a fault made up from two surfaces
+      top    = bottom;
       ++it;
       if(it != lst.end())
-			  bottom = (CGeoWellPoint*)*it;
+        bottom = (CGeoWellPoint*)*it;
       else
-        bottom = 0;
-			continue;
-		}
-		// Link to formations to propagate Modified() signals. TODO: unlink formations again.
-		if(!IsLinkedTo( *const_cast<CFormationBase*>(mid.Formation()) ))
-			LinkTo( *const_cast<CFormationBase*>(mid.Formation()) );
+    bottom = 0;
+      continue;
+    }
+    // Link to formations to propagate Modified() signals. TODO: unlink formations again.
+    if(!IsLinkedTo( *const_cast<CFormationBase*>(mid.Formation()) ))
+      LinkTo( *const_cast<CFormationBase*>(mid.Formation()) );
 
-		CFormationSection* pSection = new CFormationSection(*this, mid.Formation(), top, bottom);
-		//pSection->SetDescription(QString(above.Formation()->Name()));
-		sections.AddSection(pSection);	
+    CFormationSection* pSection = new CFormationSection(*this, mid.Formation(), top, bottom);
+    //pSection->SetDescription(QString(above.Formation()->Name()));
+    sections.AddSection(pSection);	
 
 //		FORMATION COLORS		
-    m_pIntermediate->AddSection(*pSection, IIntermediate::LINE, Color(), 3, true, QString());
+  m_pIntermediate->AddSection(*pSection, IIntermediate::LINE, Color(), 3, true, QString());
 /*
-		CWellSectionDrawSpec& ds = m_pSceneInterMed->AddSection(*pSection);
-		//ds.SetColor(mid.Formation()->Color());
-		ds.SetColor(Color());
-		ds.SetLineWidth(3);
-		ds.SetVisible(true);
+    CWellSectionDrawSpec& ds = m_pSceneInterMed->AddSection(*pSection);
+    //ds.SetColor(mid.Formation()->Color());
+    ds.SetColor(Color());
+    ds.SetLineWidth(3);
+    ds.SetVisible(true);
 */
 
 //		FORMATION ARROWS
-    m_pIntermediate->AddSection(*pSection, IIntermediate::ARROW, qRgb(255, 255, 255), 1, true, mid.Formation()->Name());
+  m_pIntermediate->AddSection(*pSection, IIntermediate::ARROW, qRgb(255, 255, 255), 1, true, mid.Formation()->Name());
 /*
-		CWellSectionDrawSpec& ds2 = m_pSceneInterMed->AddSection(*pSection,CWellSectionDrawSpec::ARROW);
-		ds2.SetColor(qRgb(255,255,255));
-		ds2.SetDescription(QString(mid.Formation()->Name()));
-		ds2.SetLineWidth(1);
-		ds2.SetVisible(true);
+    CWellSectionDrawSpec& ds2 = m_pSceneInterMed->AddSection(*pSection,CWellSectionDrawSpec::ARROW);
+    ds2.SetColor(qRgb(255,255,255));
+    ds2.SetDescription(QString(mid.Formation()->Name()));
+    ds2.SetLineWidth(1);
+    ds2.SetVisible(true);
 */
 
-		top    = bottom;
-    ++it;
-    if(it != lst.end())
-		  bottom = (CGeoWellPoint*)*it;
-    else
+    top    = bottom;
+  ++it;
+  if(it != lst.end())
+      bottom = (CGeoWellPoint*)*it;
+  else
       bottom = 0;
 
-	}
+  }
 
   m_bSectionsDirty = false;
 }
 
 well::CWellPointList& CWellPath::FormIntersecPointsForLoadingOldFiles()
 {
-	if(GetWellPointList(LST_PT_INTERSEC_FORM).NrOfPoints() ==0)
-		CalculateFormationIntersecPointsForLoadingOldFiles();
+  if(GetWellPointList(LST_PT_INTERSEC_FORM).NrOfPoints() ==0)
+    CalculateFormationIntersecPointsForLoadingOldFiles();
 
-	return GetWellPointList(LST_PT_INTERSEC_FORM);
+  return GetWellPointList(LST_PT_INTERSEC_FORM);
 }
 
 // This function calculates the intersection points with the horizons/formations
 // it uses the mesh intersection points
 void CWellPath::CalculateFormationIntersecPointsForLoadingOldFiles()
 {
-	GetWellSectionList(LST_SC_FORM).RemoveAllSections();
+  GetWellSectionList(LST_SC_FORM).RemoveAllSections();
 
-	well::CWellPointList& lst = GetWellPointList(LST_PT_INTERSEC_FORM);
-	lst.RemoveAllPoints();
+  well::CWellPointList& lst = GetWellPointList(LST_PT_INTERSEC_FORM);
+  lst.RemoveAllPoints();
 
-	//well::CWellPointList& mesh_intersec = MeshInter
+  //well::CWellPointList& mesh_intersec = MeshInter
   well::CWellPointList& wpl = MeshIntersecPointsForLoadingOldFiles();
-	well::CWellPointList::Iterator it = wpl.begin();
-	CGeoWellPoint* p1 = 0;
-	CGeoWellPoint* p2 = 0;
+  well::CWellPointList::Iterator it = wpl.begin();
+  CGeoWellPoint* p1 = 0;
+  CGeoWellPoint* p2 = 0;
 
   if(it != wpl.end())
-    p1 = (CGeoWellPoint*)*it++;
+  p1 = (CGeoWellPoint*)*it++;
   if(it != wpl.end())
-    p2 = (CGeoWellPoint*)*it;
+  p2 = (CGeoWellPoint*)*it;
 
   const CFormationBase* pForm=0;
 
-	while(p1 && p2)
-	{
-		//take a point in the middle
-		double middle = (p1->TMD().Value() + p2->TMD().Value())/2.0;
-		CGeoWellPoint mid(*this,middle);
+  while(p1 && p2)
+  {
+    //take a point in the middle
+    double middle = (p1->TMD().Value() + p2->TMD().Value())/2.0;
+    CGeoWellPoint mid(*this,middle);
 
-		const CFormationBase* form = mid.Formation();
-		//assert(mid.Formation());
-		if(!form)
-		{
-			lst.AddPoint(new CGeoWellPoint(*this,p1->TMD().Value()));
-			pForm = form;
-		}
-		else if(p1 == MeshIntersecPointsForLoadingOldFiles().First() && IsVertical())
-		{
-			lst.AddPoint(new CGeoWellPoint(*this,p1->TMD().Value()));
-			pForm = form;
-		}
-		else
-		{
-			if(!pForm)
-			{
-				pForm = form;
-			}
-			else if(pForm != form)
-			{
-				pForm = form;
-				lst.AddPoint(new CGeoWellPoint(*this,p1->TMD().Value()));
-			}
-		}
-		
-		p1 = p2;
-    ++it;
-    if(it != wpl.end())
-  		p2 = (CGeoWellPoint*)*it;
+    const CFormationBase* form = mid.Formation();
+    //assert(mid.Formation());
+    if(!form)
+    {
+      lst.AddPoint(new CGeoWellPoint(*this,p1->TMD().Value()));
+      pForm = form;
+    }
+    else if(p1 == MeshIntersecPointsForLoadingOldFiles().First() && IsVertical())
+    {
+      lst.AddPoint(new CGeoWellPoint(*this,p1->TMD().Value()));
+      pForm = form;
+    }
     else
+    {
+      if(!pForm)
+      {
+        pForm = form;
+      }
+      else if(pForm != form)
+      {
+        pForm = form;
+        lst.AddPoint(new CGeoWellPoint(*this,p1->TMD().Value()));
+      }
+    }
+    
+    p1 = p2;
+  ++it;
+  if(it != wpl.end())
+  		p2 = (CGeoWellPoint*)*it;
+  else
       p2 = 0;
 
-    // add the last point
-    if(!p2)
-    {
+  // add the last point
+  if(!p2)
+  {
       if(DefPointList().Last()->TMD().Value() > p1->TMD().Value() + EPS)
       {
     		CGeoWellPoint* p = new CGeoWellPoint(*this,DefPointList().Last()->TMD().Value());
-        if(p->Defined())
-        {
+    if(p->Defined())
+    {
           lst.AddPoint(p);
-        }
-        else
-        {
+    }
+    else
+    {
           lst.AddPoint(new CGeoWellPoint(*this, p1->TMD().Value()));
           delete p;
-        }
+    }
       }
       else
-        lst.AddPoint(new CGeoWellPoint(*this, p1->TMD().Value()));
-    }
+    lst.AddPoint(new CGeoWellPoint(*this, p1->TMD().Value()));
+  }
 
-	}
+  }
 
 }
 
 well::CWellPointList& CWellPath::MeshIntersecPointsForLoadingOldFiles()
 {
-	if(GetWellPointList(LST_PT_INTERSEC_MESH).NrOfPoints() ==0)
-		const_cast<CWellPath*>(this)->CalculateMeshIntersecPointsForLoadingOldFiles();
+  if(GetWellPointList(LST_PT_INTERSEC_MESH).NrOfPoints() ==0)
+    const_cast<CWellPath*>(this)->CalculateMeshIntersecPointsForLoadingOldFiles();
 
-	return GetWellPointList(LST_PT_INTERSEC_MESH);
+  return GetWellPointList(LST_PT_INTERSEC_MESH);
 
 }
 
 void CWellPath::CalculateMeshIntersecPointsForLoadingOldFiles()
 {
-	InvalidatePointLists();
+  InvalidatePointLists();
 
-	if(!dynamic_cast<CModelBase*>(&Model())->IsMesh())
-		return;
+  if(!dynamic_cast<CModelBase*>(&Model())->IsMesh())
+    return;
 
-	well::CWellPointList lst(*this);
-	lst.AutoDelete(true);
+  well::CWellPointList lst(*this);
+  lst.AutoDelete(true);
 
-	//loop over the volumes in a formation
+  //loop over the volumes in a formation
 
-	CalculateIntersections(dynamic_cast<CModelBase*>(&Model())->Mesh().Mesh(), lst);
-	lst.RemoveUnDefinedPoints();
+  CalculateIntersections(dynamic_cast<CModelBase*>(&Model())->Mesh().Mesh(), lst);
+  lst.RemoveUnDefinedPoints();
 
-	//copy the points in the mesh intersec
-	well::CWellPointList::Iterator it =lst.begin();
-	while(it != lst.end())
-	{
+  //copy the points in the mesh intersec
+  well::CWellPointList::Iterator it =lst.begin();
+  while(it != lst.end())
+  {
   	well::CWellPoint* p = *it;
-		GetWellPointList(LST_PT_INTERSEC_MESH).AddPoint(new CGeoWellPoint(*this,p->TMD().Value()));
-		++it;
-	}
+    GetWellPointList(LST_PT_INTERSEC_MESH).AddPoint(new CGeoWellPoint(*this,p->TMD().Value()));
+    ++it;
+  }
 
-	GetWellPointList(LST_PT_INTERSEC_MESH).RemoveUnDefinedPoints();
+  GetWellPointList(LST_PT_INTERSEC_MESH).RemoveUnDefinedPoints();
 }
 
 
@@ -948,97 +948,97 @@ void CWellPath::slotOnFinished()
 well::CWellDefinitionPointList& CWellPath::DefPointList()
 {
 
-	if(CWellPathBase::DefPointList().NrOfPoints()==0 && !m_VerticalPointDef.Empty())
-		InitVerticalWell(false);
-	return CWellPathBase::DefPointList();
+  if(CWellPathBase::DefPointList().NrOfPoints()==0 && !m_VerticalPointDef.Empty())
+    InitVerticalWell(false);
+  return CWellPathBase::DefPointList();
 }
 
 const well::CWellDefinitionPointList& CWellPath::DefPointList() const
 {
-	if(CWellPathBase::DefPointList().NrOfPoints()==0 && !m_VerticalPointDef.Empty())
-		const_cast<CWellPath*>(this)->InitVerticalWell(false);
-	
-	
+  if(CWellPathBase::DefPointList().NrOfPoints()==0 && !m_VerticalPointDef.Empty())
+    const_cast<CWellPath*>(this)->InitVerticalWell(false);
+  
+  
 
-	return CWellPathBase::DefPointList();
+  return CWellPathBase::DefPointList();
 }
 
 void CWellPath::InitVerticalWell(bool bResetGlobalTVD)
 {
-	assert(!m_VerticalPointDef.Empty());
+  assert(!m_VerticalPointDef.Empty());
 
-	CModelBase *pModel = dynamic_cast<CModelBase*>(&Model());
+  CModelBase *pModel = dynamic_cast<CModelBase*>(&Model());
 
-	if(!pModel->IsMesh())
-		return;
+  if(!pModel->IsMesh())
+    return;
 
-	double Zmax = pModel->Mesh().Mesh().Max().Z();
-	double Zmin = pModel->Mesh().Mesh().Min().Z();
-	
-	double maxZ = Zmax +(Zmax-Zmin)*0.5;
-	double minZ = Zmin -(Zmax-Zmin)*0.5;
+  double Zmax = pModel->Mesh().Mesh().Max().Z();
+  double Zmin = pModel->Mesh().Mesh().Min().Z();
+  
+  double maxZ = Zmax +(Zmax-Zmin)*0.5;
+  double minZ = Zmin -(Zmax-Zmin)*0.5;
 
-	geo::CPoint p1(m_VerticalPointDef.X(),m_VerticalPointDef.Y(),minZ); //
-	geo::CPoint p2(m_VerticalPointDef.X(),m_VerticalPointDef.Y(),maxZ); //
-	geo::CLine line(p1,p2);
-	std::set<geo::CPoint> PointSet;
-	GetInterSectionPointsWithFormationSkin(line,PointSet);		
-	
-	if(PointSet.size() == 0)
-		return;
+  geo::CPoint p1(m_VerticalPointDef.X(),m_VerticalPointDef.Y(),minZ); //
+  geo::CPoint p2(m_VerticalPointDef.X(),m_VerticalPointDef.Y(),maxZ); //
+  geo::CLine line(p1,p2);
+  std::set<geo::CPoint> PointSet;
+  GetInterSectionPointsWithFormationSkin(line,PointSet);		
+  
+  if(PointSet.size() == 0)
+    return;
 
-	const geo::CPoint* first = &*PointSet.begin();
-	const geo::CPoint* last  = &*PointSet.rbegin();
+  const geo::CPoint* first = &*PointSet.begin();
+  const geo::CPoint* last  = &*PointSet.rbegin();
 
-	//initialization of a vertical wellpath (SI_UNIT)
+  //initialization of a vertical wellpath (SI_UNIT)
 //	InitVertical(	first->X(),
 //					first->Y(),
 //					first->Z(),
 //					0,
 //					last->Z());
 
-	InitVertical(	first->X(),
-					first->Y(),
-					bResetGlobalTVD ? first->Z() : GlobalTVD().Value(),
-					0,
-					last->Z());
+  InitVertical(	first->X(),
+          first->Y(),
+          bResetGlobalTVD ? first->Z() : GlobalTVD().Value(),
+          0,
+          last->Z());
 
-	UpdateFormationSections();
-	m_display_list.ClearAndDelete();
+  UpdateFormationSections();
+  m_display_list.ClearAndDelete();
 }
 
 void CWellPath::Recalculate()
 {
-	std::auto_ptr <IProgressBase> wait(_g->prog()->create(eProgress::Wait));
+  std::auto_ptr <IProgressBase> wait(_g->prog()->create(eProgress::Wait));
 
-	ClearLogdataMaps();
-	DsbResults().ClearAllResults();
+  ClearLogdataMaps();
+  DsbResults().ClearAllResults();
 
-	GetWellSectionList(LST_SC_FORM).RemoveAllSections();
-	GetWellSectionList(LST_SC_WELL).RemoveAllSections();
-	
-	GetWellPointList(LST_PT_GRAPH).RemoveAllPoints();
+  GetWellSectionList(LST_SC_FORM).RemoveAllSections();
+  GetWellSectionList(LST_SC_WELL).RemoveAllSections();
+  
+  GetWellPointList(LST_PT_GRAPH).RemoveAllPoints();
   m_graphPointsCalculated = false;
-	GetWellPointList(LST_PT_INTERSEC_FORM).RemoveAllPoints();
-	GetWellPointList(LST_PT_INTERSEC_MESH).RemoveAllPoints();
-	GetWellPointList(LST_PT_DSTABOR).RemoveAllPoints();
-	GetWellPointList(LST_PT_DCASING).RemoveAllPoints();
-	GetWellPointList(LST_PT_FIST_EXP).RemoveAllPoints();
-	
-	if(!m_VerticalPointDef.Empty())
-		InitVerticalWell(false);
+  GetWellPointList(LST_PT_INTERSEC_FORM).RemoveAllPoints();
+  GetWellPointList(LST_PT_INTERSEC_MESH).RemoveAllPoints();
+  GetWellPointList(LST_PT_DSTABOR).RemoveAllPoints();
+  GetWellPointList(LST_PT_DCASING).RemoveAllPoints();
+  GetWellPointList(LST_PT_FIST_EXP).RemoveAllPoints();
+  
+  if(!m_VerticalPointDef.Empty())
+    InitVerticalWell(false);
 
 //TODO  std::set<COpenGLSceneBase*> stScenes = Links<COpenGLSceneBase>();
 //TODO  if(!stScenes.empty())
-    FormationSections(); // force update if necessary
+  FormationSections(); // force update if necessary
 }
 
 //set a new x,y point for this vertical wellpath
 void CWellPath::Recalculate(const geo::CPoint &NewPoint)
 {
-	CWellPathBase::DefPointList().RemoveAllPoints();
-	m_VerticalPointDef=NewPoint;
-	Recalculate();
+  CWellPathBase::DefPointList().RemoveAllPoints();
+  m_VerticalPointDef=NewPoint;
+  Recalculate();
 }
 
 //wjrx mantix 2542
@@ -1047,333 +1047,333 @@ void CWellPath::UpdateDsbAnalysisPointsInScene()
   m_pIntermediate->RemoveAllPoints();
 //	m_pSceneInterMed->RemoveAllPoints();
 
-	if(m_bShowDsbPointsInScene)
-	{
-		well::CWellPointList& points = DStaborPoints();
-		well::CWellPointList::Iterator itmp  = points.begin();
+  if(m_bShowDsbPointsInScene)
+  {
+    well::CWellPointList& points = DStaborPoints();
+    well::CWellPointList::Iterator itmp  = points.begin();
 
-		while(itmp != points.end())
-		{
+    while(itmp != points.end())
+    {
   		well::CWellPoint* p = *itmp;
       m_pIntermediate->AddPoint(*p, qRgb(255, 0, 0), 8, true);
 /*
-			CWellPointDrawSpec& wpds =
-			  m_pSceneInterMed->AddPoint(*p,
-					  CWellPointDrawSpec::SINGLE_DOT);
-			wpds.SetPointSize(8);
-			wpds.SetColor(qRgb(255,0,0));
-			wpds.SetVisible(true);
+      CWellPointDrawSpec& wpds =
+        m_pSceneInterMed->AddPoint(*p,
+            CWellPointDrawSpec::SINGLE_DOT);
+      wpds.SetPointSize(8);
+      wpds.SetColor(qRgb(255,0,0));
+      wpds.SetVisible(true);
 */
-			++itmp;
-		}
-	}
+      ++itmp;
+    }
+  }
 }
 
 void CWellPath::ShowDsbAnalysisPointsInScene(bool bShow)
 {
-	m_bShowDsbPointsInScene=bShow;
-	UpdateDsbAnalysisPointsInScene();
+  m_bShowDsbPointsInScene=bShow;
+  UpdateDsbAnalysisPointsInScene();
 
-	m_display_list.ClearAndDelete();
-	Modified();
+  m_display_list.ClearAndDelete();
+  Modified();
 }
 bool CWellPath::ShowDsbAnalysisPointsInScene()
 {
-	return m_bShowDsbPointsInScene;
+  return m_bShowDsbPointsInScene;
 }
 
 
 geo::CPoint CWellPath::MaxPoint() const
 {
-	return DefPointList().MaxPoint();
+  return DefPointList().MaxPoint();
 }
 
 geo::CPoint CWellPath::MinPoint() const
 {
-	return DefPointList().MinPoint();
+  return DefPointList().MinPoint();
 }
 
 
 CWellPath& CWellPath::operator =(const CWellPath &rhs)
 {
-	assert(false); // 13-02-04 There is reason to believe that this is not used anymore, so this assert is a test!!
-	CColorNode::operator =(rhs);
+  assert(false); // 13-02-04 There is reason to believe that this is not used anymore, so this assert is a test!!
+  CColorNode::operator =(rhs);
 
-	//conot convert from vertiacal to non vertical
-	assert(IsVertical() == rhs.IsVertical());
+  //conot convert from vertiacal to non vertical
+  assert(IsVertical() == rhs.IsVertical());
 
-	//see if the position is changed
-	bool bPosChanged=false;
+  //see if the position is changed
+  bool bPosChanged=false;
 
-	m_DsbLiquidFluid=rhs.m_DsbLiquidFluid;
-	m_DsbFluidLossCoefficient=rhs.m_DsbFluidLossCoefficient;
-
-
-	if(fabs(GlobalNorthing().Value()-rhs.GlobalNorthing().Value()) > EPS)
-		bPosChanged=true;
-
-	if(fabs(GlobalEasting().Value()-rhs.GlobalEasting().Value()) > EPS)
-		bPosChanged=true;
+  m_DsbLiquidFluid=rhs.m_DsbLiquidFluid;
+  m_DsbFluidLossCoefficient=rhs.m_DsbFluidLossCoefficient;
 
 
-	m_bShowDsbPointsInScene=rhs.m_bShowDsbPointsInScene;
+  if(fabs(GlobalNorthing().Value()-rhs.GlobalNorthing().Value()) > EPS)
+    bPosChanged=true;
 
-	//invalidate position specific data because position is changed
-	if(bPosChanged)
-	{
-		assert(IsVertical());
-		Recalculate(geo::CPoint(rhs.GlobalEasting().Value(),rhs.GlobalNorthing().Value()));
-	}
+  if(fabs(GlobalEasting().Value()-rhs.GlobalEasting().Value()) > EPS)
+    bPosChanged=true;
 
-	if(m_dMudGradRefDepth != rhs.m_dMudGradRefDepth)
-	{
-		m_dMudGradRefDepth = rhs.m_dMudGradRefDepth;
 
-		if(m_dMudGradRefDepth > MinPoint().Z())
-			m_dMudGradRefDepth=MinPoint().Z();
+  m_bShowDsbPointsInScene=rhs.m_bShowDsbPointsInScene;
 
-		DsbResults().ClearAllResults();
-	}
+  //invalidate position specific data because position is changed
+  if(bPosChanged)
+  {
+    assert(IsVertical());
+    Recalculate(geo::CPoint(rhs.GlobalEasting().Value(),rhs.GlobalNorthing().Value()));
+  }
 
-	m_display_list.ClearAndDelete();
-	Modified();
-	return *this;
+  if(m_dMudGradRefDepth != rhs.m_dMudGradRefDepth)
+  {
+    m_dMudGradRefDepth = rhs.m_dMudGradRefDepth;
+
+    if(m_dMudGradRefDepth > MinPoint().Z())
+      m_dMudGradRefDepth=MinPoint().Z();
+
+    DsbResults().ClearAllResults();
+  }
+
+  m_display_list.ClearAndDelete();
+  Modified();
+  return *this;
 
 }
 
 bool CWellPath::operator ==(const CWellPath &rhs) const
 {
-	if(!(CColorNode::operator ==(rhs)))
-		return false;
+  if(!(CColorNode::operator ==(rhs)))
+    return false;
 
-	if(!(fabs(m_dMudGradRefDepth - rhs.m_dMudGradRefDepth) < EPS))
-		return false;
+  if(!(fabs(m_dMudGradRefDepth - rhs.m_dMudGradRefDepth) < EPS))
+    return false;
 
-	if(m_bShowDsbPointsInScene != rhs.m_bShowDsbPointsInScene)
-		return false;
+  if(m_bShowDsbPointsInScene != rhs.m_bShowDsbPointsInScene)
+    return false;
 
-	if(!(fabs(m_DsbLiquidFluid - rhs.m_DsbLiquidFluid) < EPS))
-		return false;
+  if(!(fabs(m_DsbLiquidFluid - rhs.m_DsbLiquidFluid) < EPS))
+    return false;
 
-	if(!(fabs(m_DsbFluidLossCoefficient - rhs.m_DsbFluidLossCoefficient) < EPS))
-		return false;
+  if(!(fabs(m_DsbFluidLossCoefficient - rhs.m_DsbFluidLossCoefficient) < EPS))
+    return false;
 
 
-	return true;
+  return true;
 }
 
 
 bool CWellPath::CanExportToFist() const
 {
-	const CModelBase &model = (const CModelBase&)(Model());
-	if(!model.IsResult())
-		return false;
-	return FistExportPoints().NrOfPoints() > 0;
+  const CModelBase &model = (const CModelBase&)(Model());
+  if(!model.IsResult())
+    return false;
+  return FistExportPoints().NrOfPoints() > 0;
 }
 
 int CWellPath::DisplayListSize() const
 {
-	return 1;
+  return 1;
 }
 
 const geo::IObject& CWellPath::DisplayList(int /*nIndex*/) const 
 {
-	return m_display_list;
+  return m_display_list;
 }
 
 geo::CPtrArray <geo::IObject>& CWellPath::DisplayList()
 {
-	return m_display_list;
+  return m_display_list;
 }
 
 unsigned int CWellPath::IconId() const
 {
-	return IDI_WELLPATH;
+  return IDI_WELLPATH;
 }
 
 unsigned int CWellPath::TypeId() const
 {
-	return IDT_TREE_WELL_PATHS;
+  return IDT_TREE_WELL_PATHS;
 }
 
 QString CWellPath::TypeName() const
 {
-	return getStringTableEntry(IDS_TREE_WELL_PATHS);
+  return getStringTableEntry(IDS_TREE_WELL_PATHS);
 }
 
 void CWellPath::LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress)
 {
-	// Load the base first
-	CColorNode::LoadStream(stream, version, progress);
+  // Load the base first
+  CColorNode::LoadStream(stream, version, progress);
 
-	// Set progress indicator
-	std::string pr("Loading WellPath ");
-	pr += Name().toStdString();
-	progress.StatusMessage(pr.c_str());
+  // Set progress indicator
+  std::string pr("Loading WellPath ");
+  pr += Name().toStdString();
+  progress.StatusMessage(pr.c_str());
 
-	//Load Birth Date 
+  //Load Birth Date 
 
-	if(CStreamVersion(3, 0, 39) < version)
-	{
-		int year;
-		int month;
-		int day;
-		stream >> year;
-		stream >> month;
-		stream >> day;
-		SetBirthDate(QDate(year, month, day));
-	}
-	
+  if(CStreamVersion(3, 0, 39) < version)
+  {
+    int year;
+    int month;
+    int day;
+    stream >> year;
+    stream >> month;
+    stream >> day;
+    SetBirthDate(QDate(year, month, day));
+  }
+  
 
-	// Load position and elevation
+  // Load position and elevation
 
-	double global_northing,global_easting,global_depth;
+  double global_northing,global_easting,global_depth;
 
-	stream >> global_northing;
-	stream >> global_easting;
-	stream >> global_depth;
+  stream >> global_northing;
+  stream >> global_easting;
+  stream >> global_depth;
 
-	stream >> m_dMudGradRefDepth;
-		
-	// Is the well vertical?
-	int bVertical;
-	stream >> bVertical;
+  stream >> m_dMudGradRefDepth;
+    
+  // Is the well vertical?
+  int bVertical;
+  stream >> bVertical;
 
-	if ( bVertical ) m_GlobalTVD.SetValue(global_depth);// wjrx mantis 2555
+  if ( bVertical ) m_GlobalTVD.SetValue(global_depth);// wjrx mantis 2555
 
-	if(bVertical && CStreamVersion(3, 0, 45) < version)
-	{
-		double dX;
-		double dY;
-		stream >> dX;
-		stream >> dY;
-		m_VerticalPointDef = geo::CPoint(dX,dY);
-	}
+  if(bVertical && CStreamVersion(3, 0, 45) < version)
+  {
+    double dX;
+    double dY;
+    stream >> dX;
+    stream >> dY;
+    m_VerticalPointDef = geo::CPoint(dX,dY);
+  }
 
 
-	QVector<double> tmd;
-	QVector<double> azi;
-	QVector<double> inc;
+  QVector<double> tmd;
+  QVector<double> azi;
+  QVector<double> inc;
 
-	// Load points
-	int nSize;
-	stream >> nSize;
-	tmd.resize(nSize);
-	azi.resize(nSize);
-	inc.resize(nSize);
+  // Load points
+  int nSize;
+  stream >> nSize;
+  tmd.resize(nSize);
+  azi.resize(nSize);
+  inc.resize(nSize);
 
-	for(int i = 0; i < nSize; i++)
-	{
-		double x, y, z, azimuth, inclination, alongholedepth;
+  for(int i = 0; i < nSize; i++)
+  {
+    double x, y, z, azimuth, inclination, alongholedepth;
 
-		stream >> x;
-		stream >> y;
-		stream >> z;
-		stream >> azimuth;
-		stream >> inclination;
-		stream >> alongholedepth;
-		tmd[i]=alongholedepth;
-		azi[i]=azimuth;
-		inc[i]=inclination;
-		progress.Step();
-	}
+    stream >> x;
+    stream >> y;
+    stream >> z;
+    stream >> azimuth;
+    stream >> inclination;
+    stream >> alongholedepth;
+    tmd[i]=alongholedepth;
+    azi[i]=azimuth;
+    inc[i]=inclination;
+    progress.Step();
+  }
 
-	if(nSize > 0 && !bVertical)
-	{
-		assert(nSize > 1);
-		InitFromArray_tmd_azi_inc( global_northing,
-							       global_easting,
-							       global_depth,
-							       0,0,0,
-									tmd,
-									azi,
-									inc);
-	}
+  if(nSize > 0 && !bVertical)
+  {
+    assert(nSize > 1);
+    InitFromArray_tmd_azi_inc( global_northing,
+                     global_easting,
+                     global_depth,
+                     0,0,0,
+                  tmd,
+                  azi,
+                  inc);
+  }
 
   // wedx 15102008 (mantis #2646):
   // Force update of formation sections here so loaded point lists are not invalidated when
   // formation sections are requested later on
   if(version >= CStreamVersion(3, 0, 93))
-    FormationSections();
+  FormationSections();
   else
-    FormationSectionsForLoadingOldFiles();
-	
-	// load the d-stabor points
-	int nDStaborSize;
-	stream >> nDStaborSize;
-	srand((unsigned)time( NULL ));
+  FormationSectionsForLoadingOldFiles();
+  
+  // load the d-stabor points
+  int nDStaborSize;
+  stream >> nDStaborSize;
+  srand((unsigned)time( NULL ));
 
-	for(int i = 0; i < nDStaborSize; i++)
-	{
-		// Load the point
-		double x, y, z, azimuth, inclination, alongholedepth;
+  for(int i = 0; i < nDStaborSize; i++)
+  {
+    // Load the point
+    double x, y, z, azimuth, inclination, alongholedepth;
 
-		stream >> x;
-		stream >> y;
-		stream >> z;
-		stream >> azimuth;
-		stream >> inclination;
-		stream >> alongholedepth;
+    stream >> x;
+    stream >> y;
+    stream >> z;
+    stream >> azimuth;
+    stream >> inclination;
+    stream >> alongholedepth;
 
-		CGeoWellPoint* pPoint = new CDstaborWellPoint(*this, alongholedepth);
-		DStaborPoints().AddPoint(pPoint);
+    CGeoWellPoint* pPoint = new CDstaborWellPoint(*this, alongholedepth);
+    DStaborPoints().AddPoint(pPoint);
 
-		// Get the results 
-		int bLoadRes;
-		stream >> bLoadRes;
+    // Get the results 
+    int bLoadRes;
+    stream >> bLoadRes;
 
-		while(bLoadRes)
-		{
-			// Load depletion stage
-			int nIndex;
-			CAnalysisType antype;
-			stream >> nIndex;
+    while(bLoadRes)
+    {
+      // Load depletion stage
+      int nIndex;
+      CAnalysisType antype;
+      stream >> nIndex;
 
-			if(nIndex < 0 )  //old databse
-				nIndex=0;
-			
-			CDepletionStageEntry& dep_entry = (CDepletionStageEntry&)*Model().GraphEntry(MD_BASE_DEPLETION_STAGE);
-			CDepletionStage *pDepl = dep_entry.FindIndex(nIndex);
+      if(nIndex < 0 )  //old databse
+        nIndex=0;
+      
+      CDepletionStageEntry& dep_entry = (CDepletionStageEntry&)*Model().GraphEntry(MD_BASE_DEPLETION_STAGE);
+      CDepletionStage *pDepl = dep_entry.FindIndex(nIndex);
       int bLinear;
 
-			if(pDepl==0) //old database
-			{
-				//fake reading
-				double dum;
-				int idum;
-				stream >> bLinear;
-				stream >> idum;
-				stream >> dum;
-				stream >> bLoadRes;
-				continue;
-			}
-			int status;
-			double value;
-			// Load linearity tag, status and value
-			stream >> bLinear;
+      if(pDepl==0) //old database
+      {
+        //fake reading
+        double dum;
+        int idum;
+        stream >> bLinear;
+        stream >> idum;
+        stream >> dum;
+        stream >> bLoadRes;
+        continue;
+      }
+      int status;
+      double value;
+      // Load linearity tag, status and value
+      stream >> bLinear;
       CDsbStatusValue &rs = DsbResults().GetResult(*pPoint, *pDepl, (bLinear ? CAnalysisType::AT_LINEAR : CAnalysisType::AT_NONLIN));
-			stream >> status;
-			stream >> value ;
-			rs.Value(value, (CDsbStatusValue::eDsbStatus)status);
-			
-			// Continue?
-			stream >> bLoadRes;
-		}
+      stream >> status;
+      stream >> value ;
+      rs.Value(value, (CDsbStatusValue::eDsbStatus)status);
+      
+      // Continue?
+      stream >> bLoadRes;
+    }
 
-		progress.Step();
-	}
-		progress.Step();
+    progress.Step();
+  }
+    progress.Step();
 
-	stream >> m_DsbLiquidFluid;
-	stream >> m_DsbFluidLossCoefficient;
+  stream >> m_DsbLiquidFluid;
+  stream >> m_DsbFluidLossCoefficient;
 
-	if(CStreamVersion(3, 0, 36) < version)
-	{
-    if(version < CStreamVersion(3, 8, 2))
-    {
+  if(CStreamVersion(3, 0, 36) < version)
+  {
+  if(version < CStreamVersion(3, 8, 2))
+  {
       // DCasing material index
-		  int nMaterial;
-		  stream >> nMaterial;
+      int nMaterial;
+      stream >> nMaterial;
 
       // Load DCasingGeneralParameters (13 CDoubleQuantity values)
 
@@ -1381,234 +1381,234 @@ void CWellPath::LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& 
       double dValue;
       for(int i = 0; i < 13; ++i)
       {
-	      stream >> iDefined;
-	      if(iDefined)
-		      stream >> dValue;
+        stream >> iDefined;
+        if(iDefined)
+          stream >> dValue;
       }
 /*
-		  CDCasingGeneralParameters &param = Casing().GetGeneralParameters();
+      CDCasingGeneralParameters &param = Casing().GetGeneralParameters();
 
-		  // basic parameters
-		  Load(param.OuterDiameter(), stream);
-		  Load(param.WallThickness(), stream);
-		  Load(param.DriftingDiameter(), stream);
-		  Load(param.RequiredDrifting(), stream);
-		  Load(param.CementYoungsModulus(), stream);
-		  Load(param.CementPoissonRatio(), stream);
-		  Load(param.ReferenceDepth(), stream);
-		  Load(param.ReferencePressure(), stream);
-		  Load(param.PressureGradient(), stream);
+      // basic parameters
+      Load(param.OuterDiameter(), stream);
+      Load(param.WallThickness(), stream);
+      Load(param.DriftingDiameter(), stream);
+      Load(param.RequiredDrifting(), stream);
+      Load(param.CementYoungsModulus(), stream);
+      Load(param.CementPoissonRatio(), stream);
+      Load(param.ReferenceDepth(), stream);
+      Load(param.ReferencePressure(), stream);
+      Load(param.PressureGradient(), stream);
 
-		  // advanced parameters 
-		  Load(param.PipeLengthOD(), stream);
-		  Load(param.JointSpacing(), stream);
-		  Load(param.ModelOutDiamBoreDiamRatio(), stream);
-		  Load(param.MaxAxialCompStrain(), stream);
+      // advanced parameters 
+      Load(param.PipeLengthOD(), stream);
+      Load(param.JointSpacing(), stream);
+      Load(param.ModelOutDiamBoreDiamRatio(), stream);
+      Load(param.MaxAxialCompStrain(), stream);
 */
-		  QString str;
-		  stream >> str;
+      QString str;
+      stream >> str;
 
-		  int iBool;
-		  stream >> iBool;
-    }
+      int iBool;
+      stream >> iBool;
+  }
 
-	}
+  }
 
-	if(CStreamVersion(3, 0, 46) < version)
-		LoadMeshIntersectionNew(stream, version, progress);
+  if(CStreamVersion(3, 0, 46) < version)
+    LoadMeshIntersectionNew(stream, version, progress);
 
-	if((CStreamVersion(3, 0, 37) < version) && (version < CStreamVersion(3, 0, 42)))
-		LoadMeshIntersection(stream,version,progress);
-	
-	if(CStreamVersion(3, 0, 42) < version) 
-		LoadWellLogData(stream,version,progress);
+  if((CStreamVersion(3, 0, 37) < version) && (version < CStreamVersion(3, 0, 42)))
+    LoadMeshIntersection(stream,version,progress);
+  
+  if(CStreamVersion(3, 0, 42) < version) 
+    LoadWellLogData(stream,version,progress);
 
   if(version < CStreamVersion(3, 8, 2))
-	  LoadDCasint(stream,version,progress);
+    LoadDCasint(stream,version,progress);
 
-	if( CStreamVersion(3, 0, 79) < version ) {
-		long NrOfFistPoints;
-		stream >> NrOfFistPoints;
+  if( CStreamVersion(3, 0, 79) < version ) {
+    long NrOfFistPoints;
+    stream >> NrOfFistPoints;
 
-		well::CWellPointList& fist_list = GetWellPointList(LST_PT_FIST_EXP);
-		for(int i =0;i<NrOfFistPoints;i++)
-		{
-			double dTmd;
-			stream >> dTmd;
-			CGeoWellPoint* p=new CGeoWellPoint(*this, dTmd);
-			fist_list.AddPoint(p);
-		}
-	}
+    well::CWellPointList& fist_list = GetWellPointList(LST_PT_FIST_EXP);
+    for(int i =0;i<NrOfFistPoints;i++)
+    {
+      double dTmd;
+      stream >> dTmd;
+      CGeoWellPoint* p=new CGeoWellPoint(*this, dTmd);
+      fist_list.AddPoint(p);
+    }
+  }
 
-	if( CStreamVersion(3, 0, 91) < version ) //wjrx mantis 2549
-	{
-    double dDerElev;
-		stream >> dDerElev;
-    m_GlobalTVD.SetValue(dDerElev);
-	}
+  if( CStreamVersion(3, 0, 91) < version ) //wjrx mantis 2549
+  {
+  double dDerElev;
+    stream >> dDerElev;
+  m_GlobalTVD.SetValue(dDerElev);
+  }
 
   if(CStreamVersion(3, 0, 108) < version)
   {
-    // link LAS pointsets
-    int sz;
-    stream >> sz;
-    TPointSetEntry* psentry = static_cast<TPointSetEntry*>(Model().GraphEntry(MD_BASE_POINTSET));
+  // link LAS pointsets
+  int sz;
+  stream >> sz;
+  TPointSetEntry* psentry = static_cast<TPointSetEntry*>(Model().GraphEntry(MD_BASE_POINTSET));
 
-    for(int i = 0; i < sz; ++i)
-    {
+  for(int i = 0; i < sz; ++i)
+  {
       int idx;
       stream >> idx;
       IPointSet* pPointSet = psentry->FindIndex(idx);
       assert(dynamic_cast<const CLasPointSet*>(pPointSet));
       LinkTo(*pPointSet);
-    }
+  }
   }
 
-	CGraphNode::create(Model().GraphEntry(MD_BASE_WELLPATH));
-	LinkTo(dynamic_cast<CModelBase&>(Model()).Mesh());
-	LinkTo(*Model().GraphEntry(MD_BASE_DEPLETION_STAGE));
+  CGraphNode::create(Model().GraphEntry(MD_BASE_WELLPATH));
+  LinkTo(dynamic_cast<CModelBase&>(Model()).Mesh());
+  LinkTo(*Model().GraphEntry(MD_BASE_DEPLETION_STAGE));
 
   if(CStreamVersion(3, 0, 109) < version)
   {
-    int iHasZoomIn;
-    stream >> iHasZoomIn;
+  int iHasZoomIn;
+  stream >> iHasZoomIn;
 
-    if(iHasZoomIn)
-    {
+  if(iHasZoomIn)
+  {
       DestroyZoomInModel();
       CreateZoomInModel();
       assert(m_pZoomInModel);
       CModelBase& model = static_cast<CModelBase&>(Model());
       model.LoadChildModel(stream, version, progress, *m_pZoomInModel);
-    }
+  }
   }
 }
 
 void CWellPath::LoadMeshIntersectionNew(TSTREAM& stream, CStreamVersion& /*version*/, TPROGRESS& /*progress*/)
 {
-	int NrOfInterSecPoints;
-	stream >> NrOfInterSecPoints;
+  int NrOfInterSecPoints;
+  stream >> NrOfInterSecPoints;
 
-	for(int i =0;i<NrOfInterSecPoints;i++)
-	{
-		double tmd;
-		stream >> tmd;
+  for(int i =0;i<NrOfInterSecPoints;i++)
+  {
+    double tmd;
+    stream >> tmd;
 //		CGeoWellPoint* p=new CGeoWellPoint(*this,tmd);
 //		mesh_intersec_list.AddPoint(p);
-	}
+  }
 }
 
 void CWellPath::SaveMeshIntersectionNew(TSTREAM& stream, TPROGRESS& /*progress*/)
 {
-	well::CWellPointList& mesh_intersec_list = GetWellPointList(LST_PT_INTERSEC_MESH);
-	stream << mesh_intersec_list.NrOfPoints();
-	
-	for(int i =0;i<mesh_intersec_list.NrOfPoints();i++)
-	{
-		stream << mesh_intersec_list.At(i)->TMD().Value();
-	}
+  well::CWellPointList& mesh_intersec_list = GetWellPointList(LST_PT_INTERSEC_MESH);
+  stream << mesh_intersec_list.NrOfPoints();
+  
+  for(int i =0;i<mesh_intersec_list.NrOfPoints();i++)
+  {
+    stream << mesh_intersec_list.At(i)->TMD().Value();
+  }
 
 }
 
 void CWellPath::LoadMeshIntersection(TSTREAM& stream, CStreamVersion& version, TPROGRESS& /*progress*/)
 {
-	//load the mesh intersection points
-	long NrOfInterSecPoints;
-	stream >> NrOfInterSecPoints;
+  //load the mesh intersection points
+  long NrOfInterSecPoints;
+  stream >> NrOfInterSecPoints;
 
-	well::CWellPointList& mesh_intersec_list = GetWellPointList(LST_PT_INTERSEC_MESH);
+  well::CWellPointList& mesh_intersec_list = GetWellPointList(LST_PT_INTERSEC_MESH);
   int i;
-	for(i =0;i<NrOfInterSecPoints;i++)
-	{
-		double tmd;
-		stream >> tmd;
-		CGeoWellPoint* p=new CGeoWellPoint(*this,tmd);
-		mesh_intersec_list.AddPoint(p);
-	}
+  for(i =0;i<NrOfInterSecPoints;i++)
+  {
+    double tmd;
+    stream >> tmd;
+    CGeoWellPoint* p=new CGeoWellPoint(*this,tmd);
+    mesh_intersec_list.AddPoint(p);
+  }
 
-	//load the formation intersection points
-	stream >> NrOfInterSecPoints;
-	well::CWellPointList& form_intersec_list = GetWellPointList(LST_PT_INTERSEC_FORM);
+  //load the formation intersection points
+  stream >> NrOfInterSecPoints;
+  well::CWellPointList& form_intersec_list = GetWellPointList(LST_PT_INTERSEC_FORM);
 
-	for(i =0;i<NrOfInterSecPoints;i++)
-	{
-		double tmd;
-		stream >> tmd;
-		CGeoWellPoint* p = new CGeoWellPoint(*this,tmd);
-		form_intersec_list.AddPoint(p);
-	}
+  for(i =0;i<NrOfInterSecPoints;i++)
+  {
+    double tmd;
+    stream >> tmd;
+    CGeoWellPoint* p = new CGeoWellPoint(*this,tmd);
+    form_intersec_list.AddPoint(p);
+  }
 
-	well::CWellPointList lst = form_intersec_list;
-	lst.AutoDelete(false);
-	int use_defpoint;
-	
-	if(CStreamVersion(3, 0, 38) < version)
-	{
-		stream >> use_defpoint;
-		if(use_defpoint)
-			lst.AddPoint( DefPointList().First());
+  well::CWellPointList lst = form_intersec_list;
+  lst.AutoDelete(false);
+  int use_defpoint;
+  
+  if(CStreamVersion(3, 0, 38) < version)
+  {
+    stream >> use_defpoint;
+    if(use_defpoint)
+      lst.AddPoint( DefPointList().First());
 
-		stream >> use_defpoint;
-		if(use_defpoint)
-			lst.AddPoint( DefPointList().Last());
+    stream >> use_defpoint;
+    if(use_defpoint)
+      lst.AddPoint( DefPointList().Last());
 
-	}
+  }
 
-	// construct the formationsections
-	well::CWellSectionList& sections = FormationSections();
-	sections.RemoveAllSections();
+  // construct the formationsections
+  well::CWellSectionList& sections = FormationSections();
+  sections.RemoveAllSections();
 
-	well::CWellPointList::Iterator it = lst.begin();
-	CGeoWellPoint*  top = 0;
-	CGeoWellPoint*  bottom = 0;
+  well::CWellPointList::Iterator it = lst.begin();
+  CGeoWellPoint*  top = 0;
+  CGeoWellPoint*  bottom = 0;
 
   if(it != lst.end())
-    top = (CGeoWellPoint*)*it++;
+  top = (CGeoWellPoint*)*it++;
   if(it != lst.end())
-    bottom = (CGeoWellPoint*)*it;
-	
-	while(top && bottom)
-	{
-		TFormationBaseEntry& formation_entry = (TFormationBaseEntry&)*Model().GraphEntry(MD_BASE_FORMATION);
-		int index;
-		stream >> index;
-		CFormationBase* pForm = formation_entry.FindIndex(index);
-		assert(pForm);
-		
-		CFormationSection* pSection = new CFormationSection(*this, pForm, top, bottom);
-		sections.AddSection(pSection);	
-		
-    m_pIntermediate->AddSection(*pSection, IIntermediate::LINE, pForm->Color(), 3, true, QString());
+  bottom = (CGeoWellPoint*)*it;
+  
+  while(top && bottom)
+  {
+    TFormationBaseEntry& formation_entry = (TFormationBaseEntry&)*Model().GraphEntry(MD_BASE_FORMATION);
+    int index;
+    stream >> index;
+    CFormationBase* pForm = formation_entry.FindIndex(index);
+    assert(pForm);
+    
+    CFormationSection* pSection = new CFormationSection(*this, pForm, top, bottom);
+    sections.AddSection(pSection);	
+    
+  m_pIntermediate->AddSection(*pSection, IIntermediate::LINE, pForm->Color(), 3, true, QString());
 /*
-		CWellSectionDrawSpec& ds = m_pSceneInterMed->AddSection(*pSection);
-		ds.SetColor(pForm->Color());
-		ds.SetLineWidth(3);
-		ds.SetVisible(true);
+    CWellSectionDrawSpec& ds = m_pSceneInterMed->AddSection(*pSection);
+    ds.SetColor(pForm->Color());
+    ds.SetLineWidth(3);
+    ds.SetVisible(true);
 */
 
-    m_pIntermediate->AddSection(*pSection, IIntermediate::ARROW, qRgb(255, 255, 255), 1, true, pForm->Name());
+  m_pIntermediate->AddSection(*pSection, IIntermediate::ARROW, qRgb(255, 255, 255), 1, true, pForm->Name());
 /*
-		CWellSectionDrawSpec& ds2 = m_pSceneInterMed->AddSection(*pSection,CWellSectionDrawSpec::ARROW);
-		ds2.SetColor(qRgb(255,255,255));
-		ds2.SetDescription(QString(pForm->Name()));
-		ds2.SetLineWidth(1);
-		ds2.SetVisible(true);
+    CWellSectionDrawSpec& ds2 = m_pSceneInterMed->AddSection(*pSection,CWellSectionDrawSpec::ARROW);
+    ds2.SetColor(qRgb(255,255,255));
+    ds2.SetDescription(QString(pForm->Name()));
+    ds2.SetLineWidth(1);
+    ds2.SetVisible(true);
 */
 
-		top    = bottom;
-    ++it;
-    if(it != lst.end())
-		  bottom = (CGeoWellPoint*)*it;
-    else
+    top    = bottom;
+  ++it;
+  if(it != lst.end())
+      bottom = (CGeoWellPoint*)*it;
+  else
       bottom = 0;
-	}
+  }
 
 }
 
 
 void CWellPath::SaveWellLogData(TSTREAM& stream, TPROGRESS& progress)
 {
-	well::CWellSectionList& formations = FormationSections();
+  well::CWellSectionList& formations = FormationSections();
 
   // wedx 18012008:
   // Save the status of the formation sections, so we can load it
@@ -1616,98 +1616,98 @@ void CWellPath::SaveWellLogData(TSTREAM& stream, TPROGRESS& progress)
   int iHasFormationSections = (formations.NrOfSections() > 0 ? 1 : 0);
   stream << iHasFormationSections;
 
-	if(iHasFormationSections)
-	{
-		// Saving of the wellog data and the maps........
-		CModelBase &model = (CModelBase&)(Model());
-		TSectDeplLogMap::iterator it_1;
-		int nStageIndex = 0;
-		int nSectionIndex = 0;
+  if(iHasFormationSections)
+  {
+    // Saving of the wellog data and the maps........
+    CModelBase &model = (CModelBase&)(Model());
+    TSectDeplLogMap::iterator it_1;
+    int nStageIndex = 0;
+    int nSectionIndex = 0;
 
-		well::CWellSectionList::Iterator form_it = formations.begin();
+    well::CWellSectionList::Iterator form_it = formations.begin();
 
-		stream << int(m_mpSectDplLog.size());
-		for(it_1 = m_mpSectDplLog.begin(); it_1 != m_mpSectDplLog.end(); it_1++)
-		{
-			
-			CDepletionStage *pStage = &model.InitialDepletionStage();
-			while(pStage)
-			{
-				if(pStage == it_1->second.first)
-				{
-					stream << nStageIndex;
-					break;
-				}
-				nStageIndex++;
-				if(pStage->Last())
-					pStage = 0;
-				else
-					pStage = &pStage->Next();
-			}
-			
-			form_it = formations.begin(); // reset the formation iterator...
-			while(form_it != formations.end())
-			{
-				if(*form_it == it_1->first)
-				{
-					stream << nSectionIndex;
-					break;
-				}
-				nSectionIndex++;
-				++form_it;
-			}
-			
-			SaveWellLog(it_1->second.second, stream, progress); // progress is increased in this function...
-		}
-		
+    stream << int(m_mpSectDplLog.size());
+    for(it_1 = m_mpSectDplLog.begin(); it_1 != m_mpSectDplLog.end(); it_1++)
+    {
+      
+      CDepletionStage *pStage = &model.InitialDepletionStage();
+      while(pStage)
+      {
+        if(pStage == it_1->second.first)
+        {
+          stream << nStageIndex;
+          break;
+        }
+        nStageIndex++;
+        if(pStage->Last())
+          pStage = 0;
+        else
+          pStage = &pStage->Next();
+      }
+      
+      form_it = formations.begin(); // reset the formation iterator...
+      while(form_it != formations.end())
+      {
+        if(*form_it == it_1->first)
+        {
+          stream << nSectionIndex;
+          break;
+        }
+        nSectionIndex++;
+        ++form_it;
+      }
+      
+      SaveWellLog(it_1->second.second, stream, progress); // progress is increased in this function...
+    }
+    
 /*
-		nSectionIndex = 0;
-		stream << int(m_mpSectEpsType.size());
-		TSectEpsTypeMap::iterator it_2;
-		for(it_2 = m_mpSectEpsType.begin(); it_2 != m_mpSectEpsType.end(); it_2++)
-		{
-			form_it = formations.begin(); // reset the formation iterator
-			while(form_it != formations.end())
-			{
-				if(*form_it == it_2->first)
-				{
-					stream << nSectionIndex;
-					break;
-				}
-				nSectionIndex++;
-				++form_it;
-			}
+    nSectionIndex = 0;
+    stream << int(m_mpSectEpsType.size());
+    TSectEpsTypeMap::iterator it_2;
+    for(it_2 = m_mpSectEpsType.begin(); it_2 != m_mpSectEpsType.end(); it_2++)
+    {
+      form_it = formations.begin(); // reset the formation iterator
+      while(form_it != formations.end())
+      {
+        if(*form_it == it_2->first)
+        {
+          stream << nSectionIndex;
+          break;
+        }
+        nSectionIndex++;
+        ++form_it;
+      }
 
-			// save the DCASINT_EPS_TYPE.....
-			stream << (int)(it_2->second);
-			progress.Step();
-		}
+      // save the DCASINT_EPS_TYPE.....
+      stream << (int)(it_2->second);
+      progress.Step();
+    }
 */
-		nSectionIndex = 0;
-		stream << int(m_mpCorrectAllStages.size());
-		std::map<CFormationSection*, bool>::iterator it_3;
-		for(it_3 = m_mpCorrectAllStages.begin(); it_3 != m_mpCorrectAllStages.end(); it_3++)
-		{
-			form_it = formations.begin(); // reset the formation iterator
-			while(form_it != formations.end())
-			{
-				if(*form_it == it_3->first)
-				{
-					stream << nSectionIndex;
-					break;
-				}
-				nSectionIndex++;
-				++form_it;
-			}
+    nSectionIndex = 0;
+    stream << int(m_mpCorrectAllStages.size());
+    std::map<CFormationSection*, bool>::iterator it_3;
+    for(it_3 = m_mpCorrectAllStages.begin(); it_3 != m_mpCorrectAllStages.end(); it_3++)
+    {
+      form_it = formations.begin(); // reset the formation iterator
+      while(form_it != formations.end())
+      {
+        if(*form_it == it_3->first)
+        {
+          stream << nSectionIndex;
+          break;
+        }
+        nSectionIndex++;
+        ++form_it;
+      }
 
-			if(it_3->second)
-				stream << 0;
-			else
-				stream << 1;
+      if(it_3->second)
+        stream << 0;
+      else
+        stream << 1;
 
-			progress.Step();
-		}
-	}
+      progress.Step();
+    }
+  }
 
 
 
@@ -1715,262 +1715,262 @@ void CWellPath::SaveWellLogData(TSTREAM& stream, TPROGRESS& progress)
 
 void CWellPath::LoadWellLogData(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress)
 {
-	if(version == CStreamVersion(3, 0, 38))
-	{
-		int nMapSize;
-		stream >> nMapSize;
-		stream >> nMapSize;
-		stream >> nMapSize;
-		return;
-	}
+  if(version == CStreamVersion(3, 0, 38))
+  {
+    int nMapSize;
+    stream >> nMapSize;
+    stream >> nMapSize;
+    stream >> nMapSize;
+    return;
+  }
 
-	if(!(CStreamVersion(3, 0, 37) < version))
-		return;
+  if(!(CStreamVersion(3, 0, 37) < version))
+    return;
 
 
   if(version >= CStreamVersion(3, 0, 93))
   {
-    // wedx 18012008:
-    // Load formation sections status from file
-    // Return if no sections are available
-    int iHasFormationSections;
-    stream >> iHasFormationSections;
-    if(!iHasFormationSections)
+  // wedx 18012008:
+  // Load formation sections status from file
+  // Return if no sections are available
+  int iHasFormationSections;
+  stream >> iHasFormationSections;
+  if(!iHasFormationSections)
       return;
   }
   else
   {
-    // make sure no sections exist
-    GetWellSectionList(LST_SC_FORM).RemoveAllSections();
-    assert(GetWellSectionList(LST_SC_FORM).NrOfSections() == 0);
+  // make sure no sections exist
+  GetWellSectionList(LST_SC_FORM).RemoveAllSections();
+  assert(GetWellSectionList(LST_SC_FORM).NrOfSections() == 0);
   	GetWellSectionList(LST_SC_WELL).RemoveAllSections();
-    GetWellPointList(LST_PT_INTERSEC_FORM).RemoveAllPoints();
-    GetWellPointList(LST_PT_INTERSEC_MESH).RemoveAllPoints();
+  GetWellPointList(LST_PT_INTERSEC_FORM).RemoveAllPoints();
+  GetWellPointList(LST_PT_INTERSEC_MESH).RemoveAllPoints();
 
-	  bool bContinue = (FormationSectionsForLoadingOldFiles().NrOfSections() > 0);
+    bool bContinue = (FormationSectionsForLoadingOldFiles().NrOfSections() > 0);
 
-    // remove all generated sections, so the new functionality is actually used
-    // when it's needed
-    GetWellSectionList(LST_SC_FORM).RemoveAllSections();
-    assert(GetWellSectionList(LST_SC_FORM).NrOfSections() == 0);
+  // remove all generated sections, so the new functionality is actually used
+  // when it's needed
+  GetWellSectionList(LST_SC_FORM).RemoveAllSections();
+  assert(GetWellSectionList(LST_SC_FORM).NrOfSections() == 0);
   	GetWellSectionList(LST_SC_WELL).RemoveAllSections();
-    GetWellPointList(LST_PT_INTERSEC_FORM).RemoveAllPoints();
-    GetWellPointList(LST_PT_INTERSEC_MESH).RemoveAllPoints();
+  GetWellPointList(LST_PT_INTERSEC_FORM).RemoveAllPoints();
+  GetWellPointList(LST_PT_INTERSEC_MESH).RemoveAllPoints();
 
-    if(!bContinue)
-		  return;
+  if(!bContinue)
+      return;
   }
 
-	// Loading of the log data and creating of the maps....
-	CModelBase &model = (CModelBase&)(Model());
-	well::CWellSectionList& formations = FormationSections();
-	well::CWellSectionList::Iterator form_it = formations.begin();
-	int nSectionIndex, nSectionNr, nStageIndex, nStageNr;
-	int nMapSize;
-	stream >> nMapSize;
+  // Loading of the log data and creating of the maps....
+  CModelBase &model = (CModelBase&)(Model());
+  well::CWellSectionList& formations = FormationSections();
+  well::CWellSectionList::Iterator form_it = formations.begin();
+  int nSectionIndex, nSectionNr, nStageIndex, nStageNr;
+  int nMapSize;
+  stream >> nMapSize;
 
-	for(int d = 0; d < nMapSize; d++)
-	{
-		stream >> nStageNr;
-		nStageIndex = 0;
-		CDepletionStage *pStage = &model.InitialDepletionStage();
-		while(pStage)
-		{
-			if(nStageIndex == nStageNr)
-				break;
-			
-			nStageIndex++;
-			if(pStage->Last())
-				pStage = 0;
-			else
-				pStage = &pStage->Next();
-		}
-		
-		stream >> nSectionNr;
-		nSectionIndex = 0;
-		form_it = formations.begin();
-		while(form_it != formations.end())
-		{
-			if(nSectionIndex == nSectionNr)
-				break;
+  for(int d = 0; d < nMapSize; d++)
+  {
+    stream >> nStageNr;
+    nStageIndex = 0;
+    CDepletionStage *pStage = &model.InitialDepletionStage();
+    while(pStage)
+    {
+      if(nStageIndex == nStageNr)
+        break;
+      
+      nStageIndex++;
+      if(pStage->Last())
+        pStage = 0;
+      else
+        pStage = &pStage->Next();
+    }
+    
+    stream >> nSectionNr;
+    nSectionIndex = 0;
+    form_it = formations.begin();
+    while(form_it != formations.end())
+    {
+      if(nSectionIndex == nSectionNr)
+        break;
 
-			nSectionIndex++;
-			++form_it;
-		}
+      nSectionIndex++;
+      ++form_it;
+    }
 
-		well::CWellLog *pLog = new well::CWellLog(this,(CFormationSection*)(*form_it));
-		LoadWellLog(pLog, stream, progress); // progress is increased in this function
+    well::CWellLog *pLog = new well::CWellLog(this,(CFormationSection*)(*form_it));
+    LoadWellLog(pLog, stream, progress); // progress is increased in this function
 
-		m_mpSectDplLog.insert(TSectDeplLogMap::value_type((CFormationSection*)(*form_it), TStageLogPair(pStage, pLog)));
-	}
+    m_mpSectDplLog.insert(TSectDeplLogMap::value_type((CFormationSection*)(*form_it), TStageLogPair(pStage, pLog)));
+  }
 
   if(version < CStreamVersion(3, 8, 2))
   {
-	  stream >> nMapSize;
-	  //DCASINT_EPS_TYPE 
-	  int eps_type;
-	  //int nEps;
-	  for(int j = 0; j < nMapSize; j++)
-	  {
-		  stream >> nSectionNr;
-		  stream >> eps_type;
-		  progress.Step();
-	  }
+    stream >> nMapSize;
+    //DCASINT_EPS_TYPE 
+    int eps_type;
+    //int nEps;
+    for(int j = 0; j < nMapSize; j++)
+    {
+      stream >> nSectionNr;
+      stream >> eps_type;
+      progress.Step();
+    }
   }
 
-	stream >> nMapSize;
-	int correction;
-	for(int k = 0; k < nMapSize; k++)
-	{
-		stream >> nSectionNr;
-		nSectionIndex = 0;
-		form_it = formations.begin();
-		while(form_it != formations.end())
-		{
-			if(nSectionIndex == nSectionNr)
-				break;
+  stream >> nMapSize;
+  int correction;
+  for(int k = 0; k < nMapSize; k++)
+  {
+    stream >> nSectionNr;
+    nSectionIndex = 0;
+    form_it = formations.begin();
+    while(form_it != formations.end())
+    {
+      if(nSectionIndex == nSectionNr)
+        break;
 
-			nSectionIndex++;
-			++form_it;
-		}
+      nSectionIndex++;
+      ++form_it;
+    }
 
-		stream >> correction;
-		m_mpCorrectAllStages.insert(std::map<CFormationSection*, bool>::value_type((CFormationSection*)(*form_it), correction != 0));
-		progress.Step();
-	}
+    stream >> correction;
+    m_mpCorrectAllStages.insert(std::map<CFormationSection*, bool>::value_type((CFormationSection*)(*form_it), correction != 0));
+    progress.Step();
+  }
 
 }
 
 void CWellPath::SaveStream(TSTREAM& stream, TPROGRESS& progress)
 {
-	// Let save base first
-	CColorNode::SaveStream(stream, progress);
+  // Let save base first
+  CColorNode::SaveStream(stream, progress);
 
-	// Update progress indicator
-	std::string pr("Saving WellPath ");
-	pr += Name().toStdString();
-	progress.StatusMessage(pr.c_str());
-	
-	// Save birth date
-	stream << GetBirthDate().year(); 
-	stream << GetBirthDate().month();
-	stream << GetBirthDate().day();
+  // Update progress indicator
+  std::string pr("Saving WellPath ");
+  pr += Name().toStdString();
+  progress.StatusMessage(pr.c_str());
+  
+  // Save birth date
+  stream << GetBirthDate().year(); 
+  stream << GetBirthDate().month();
+  stream << GetBirthDate().day();
 
-	// Save position
-	stream << GlobalNorthing().Value();
-	stream << GlobalEasting().Value();
+  // Save position
+  stream << GlobalNorthing().Value();
+  stream << GlobalEasting().Value();
 
-	// Elevation
-	stream << GlobalTVD().Value();
+  // Elevation
+  stream << GlobalTVD().Value();
 
-	//ref depth
-	stream << MudGradRefDepth();
+  //ref depth
+  stream << MudGradRefDepth();
 
-	// Vertical
-	if(IsVertical())
-	{
-		stream << (int) TRUE; // Qt\4.6.1\src\corelib\global\qglobal.h, line 919.
-		stream << m_VerticalPointDef.X();
-		stream << m_VerticalPointDef.Y();
-	}
-	else
-	{
-		stream << (int) FALSE;  // Qt\4.6.1\src\corelib\global\qglobal.h, line 920.
-	}
+  // Vertical
+  if(IsVertical())
+  {
+    stream << (int) TRUE; // Qt\4.6.1\src\corelib\global\qglobal.h, line 919.
+    stream << m_VerticalPointDef.X();
+    stream << m_VerticalPointDef.Y();
+  }
+  else
+  {
+    stream << (int) FALSE;  // Qt\4.6.1\src\corelib\global\qglobal.h, line 920.
+  }
 
-	stream << CWellPathBase::DefPointList().NrOfPoints(); //from base class, does not trigger intersection calculation for vertical wellpaths
-	// Save all wellpoints
-	well::CWellPointList::Iterator it  = CWellPathBase::DefPointList().begin();
+  stream << CWellPathBase::DefPointList().NrOfPoints(); //from base class, does not trigger intersection calculation for vertical wellpaths
+  // Save all wellpoints
+  well::CWellPointList::Iterator it  = CWellPathBase::DefPointList().begin();
   while(it != CWellPathBase::DefPointList().end())
-	{
+  {
   	well::CWellPoint* point = *it;
 
-		// Save position
-		stream << point->X() << point->Y() << point->Z();
+    // Save position
+    stream << point->X() << point->Y() << point->Z();
 
-		// Save values
-		stream << point->Azimuth().Value() << point->Inclination().Value() << point->TMD().Value();
+    // Save values
+    stream << point->Azimuth().Value() << point->Inclination().Value() << point->TMD().Value();
 
-		progress.Step();
-		++it;
-	}
-	
+    progress.Step();
+    ++it;
+  }
+  
 
-	// Save le d-stabor analysis
-	it = DStaborPoints().begin();
-	int nSize = DStaborPoints().NrOfPoints();
-	stream << nSize;
-	while(it != DStaborPoints().end())
-	{ 
-    well::CWellPoint* point = *it;
-		// Save le location
-		stream << point->X() << point->Y() << point->Z();
+  // Save le d-stabor analysis
+  it = DStaborPoints().begin();
+  int nSize = DStaborPoints().NrOfPoints();
+  stream << nSize;
+  while(it != DStaborPoints().end())
+  { 
+  well::CWellPoint* point = *it;
+    // Save le location
+    stream << point->X() << point->Y() << point->Z();
 
-		// Save azimuth, inclination and alonghole depth
-		stream << point->Azimuth().Value() << point->Inclination().Value() << point->TMD().Value();
+    // Save azimuth, inclination and alonghole depth
+    stream << point->Azimuth().Value() << point->Inclination().Value() << point->TMD().Value();
 
-		// Save results
-		CDepletionStage *pStage = &(((CModelBase*)&Model())->InitialDepletionStage());
-		while(pStage)
-		{
+    // Save results
+    CDepletionStage *pStage = &(((CModelBase*)&Model())->InitialDepletionStage());
+    while(pStage)
+    {
       if(DsbResults().ResultExist(*point,*pStage,CAnalysisType::AT_LINEAR))
-			{
-        CDsbStatusValue &linval = DsbResults().GetResult(*point,*pStage,CAnalysisType::AT_LINEAR);
-				if (linval.IsCalculated())
-				{
-					// Qt\4.6.1\src\corelib\global\qglobal.h, line 919.
-					stream << (int) TRUE;		// Start reading tag
-					stream << pStage->Index();
-					// Qt\4.6.1\src\corelib\global\qglobal.h, line 919.
-					stream << (int) TRUE;		// Linear
-					stream << linval.Status();
-					stream << linval.Value();
-				}
-			}
+      {
+    CDsbStatusValue &linval = DsbResults().GetResult(*point,*pStage,CAnalysisType::AT_LINEAR);
+        if (linval.IsCalculated())
+        {
+          // Qt\4.6.1\src\corelib\global\qglobal.h, line 919.
+          stream << (int) TRUE;		// Start reading tag
+          stream << pStage->Index();
+          // Qt\4.6.1\src\corelib\global\qglobal.h, line 919.
+          stream << (int) TRUE;		// Linear
+          stream << linval.Status();
+          stream << linval.Value();
+        }
+      }
 
       if(DsbResults().ResultExist(*point,*pStage,CAnalysisType::AT_NONLIN))
-			{
-        CDsbStatusValue &nonlinval = DsbResults().GetResult(*point,*pStage,CAnalysisType::AT_NONLIN);
-				if (nonlinval.IsCalculated())
-				{
-					// Qt\4.6.1\src\corelib\global\qglobal.h, line 919.
-					stream << (int) TRUE;		// Start reading tag
-					stream << pStage->Index();
-					// Qt\4.6.1\src\corelib\global\qglobal.h, line 920.
-					stream << (int) FALSE;	// Non linear
-					stream << (int)nonlinval.Status();
-					stream << nonlinval.Value();
-				}
-			}
-					
-			if(pStage->Last())
-				pStage = 0;
-			else
-				pStage = &pStage->Next();
-		}
+      {
+    CDsbStatusValue &nonlinval = DsbResults().GetResult(*point,*pStage,CAnalysisType::AT_NONLIN);
+        if (nonlinval.IsCalculated())
+        {
+          // Qt\4.6.1\src\corelib\global\qglobal.h, line 919.
+          stream << (int) TRUE;		// Start reading tag
+          stream << pStage->Index();
+          // Qt\4.6.1\src\corelib\global\qglobal.h, line 920.
+          stream << (int) FALSE;	// Non linear
+          stream << (int)nonlinval.Status();
+          stream << nonlinval.Value();
+        }
+      }
+          
+      if(pStage->Last())
+        pStage = 0;
+      else
+        pStage = &pStage->Next();
+    }
 
-		// Delimit results of point  with end tag
-		stream << (int) FALSE;  // Qt\4.6.1\src\corelib\global\qglobal.h, line 920.
+    // Delimit results of point  with end tag
+    stream << (int) FALSE;  // Qt\4.6.1\src\corelib\global\qglobal.h, line 920.
 
-		progress.Step();
-		++it;
-	}
+    progress.Step();
+    ++it;
+  }
 
-	stream << m_DsbLiquidFluid;
-	stream << m_DsbFluidLossCoefficient;
+  stream << m_DsbLiquidFluid;
+  stream << m_DsbFluidLossCoefficient;
 
-	SaveMeshIntersectionNew(stream, progress);
+  SaveMeshIntersectionNew(stream, progress);
 
-	SaveWellLogData(stream,progress);	
+  SaveWellLogData(stream,progress);	
 //	SaveDCasint(stream,progress);
 
-	// Fist points...
-	well::CWellPointList& fist_list = GetWellPointList(LST_PT_FIST_EXP);
-	stream << (long)fist_list.NrOfPoints();
-	for(int i =0;i<fist_list.NrOfPoints();i++) stream << fist_list.At(i)->TMD().Value();
+  // Fist points...
+  well::CWellPointList& fist_list = GetWellPointList(LST_PT_FIST_EXP);
+  stream << (long)fist_list.NrOfPoints();
+  for(int i =0;i<fist_list.NrOfPoints();i++) stream << fist_list.At(i)->TMD().Value();
 
-	//Derrick elevation wjrx mantis 2549
-	stream << DerElev();
+  //Derrick elevation wjrx mantis 2549
+  stream << DerElev();
 
   // collect and save the LAS pointsets linked to the wellpath
   std::vector<const CLasPointSet*> vcLasPointSets;
@@ -1979,278 +1979,278 @@ void CWellPath::SaveStream(TSTREAM& stream, TPROGRESS& progress)
   CGraphEntry::TEntryNodeSet::iterator itentry;
   for(itentry = stNodes.begin(); itentry != stNodes.end(); ++itentry)
   {
-    const CLasPointSet* pLasPointSet = dynamic_cast<const CLasPointSet*>(*itentry);
-    if(pLasPointSet)
-    {
+  const CLasPointSet* pLasPointSet = dynamic_cast<const CLasPointSet*>(*itentry);
+  if(pLasPointSet)
+  {
       if(IsLinkedTo(*pLasPointSet))
-        vcLasPointSets.push_back(pLasPointSet);
-    }
+    vcLasPointSets.push_back(pLasPointSet);
+  }
   }
 
   stream << int(vcLasPointSets.size());
   for(size_t i = 0; i < vcLasPointSets.size(); ++i)
-    stream << vcLasPointSets[i]->Index();
+  stream << vcLasPointSets[i]->Index();
 
   if(m_pZoomInModel)
   {
-    stream << 1;
-    CModelBase& model = static_cast<CModelBase&>(Model());
-    model.SaveChildModel(stream, progress, *m_pZoomInModel);
+  stream << 1;
+  CModelBase& model = static_cast<CModelBase&>(Model());
+  model.SaveChildModel(stream, progress, *m_pZoomInModel);
   }
   else
   {
-    stream << 0;
+  stream << 0;
   }
 }
 
 void CWellPath::LoadDCasint(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress)
 {
-	if(!(CStreamVersion(3, 0, 38) < version))
-		return;
+  if(!(CStreamVersion(3, 0, 38) < version))
+    return;
 
-	//Load the casint points
+  //Load the casint points
 //	well::CWellPointList::Iterator it  = DCasintPoints().begin();
 //	well::CWellPoint* point = it.current();
 
-	long nSize;
-	stream >> nSize;
+  long nSize;
+  stream >> nSize;
 
-	for(int i=0; i< nSize ; i++)
-	{ 
-		double tmd;
-		// store
-		stream >> tmd;
+  for(int i=0; i< nSize ; i++)
+  { 
+    double tmd;
+    // store
+    stream >> tmd;
 
-    int iDefined;
-    double dValue;
-    for(int j = 0; j < 13; ++j)
-    {
+  int iDefined;
+  double dValue;
+  for(int j = 0; j < 13; ++j)
+  {
       stream >> iDefined;
       if(iDefined)
-	      stream >> dValue;
-    }
-	}
+        stream >> dValue;
+  }
+  }
 
-	stream >> nSize;
-	
-	//loop over casint-result and store 
-	for(int i=0; i< nSize ; i++)
-	{
-		int dep_index;
-		int point_index;
-    CAnalysisType antype;
+  stream >> nSize;
+  
+  //loop over casint-result and store 
+  for(int i=0; i< nSize ; i++)
+  {
+    int dep_index;
+    int point_index;
+  CAnalysisType antype;
 
-    if(version < CStreamVersion(3, 0, 116))
-    {
-		  int linear;
-		  stream >> linear;
-    }
-    else
-    {
+  if(version < CStreamVersion(3, 0, 116))
+  {
+      int linear;
+      stream >> linear;
+  }
+  else
+  {
       antype.LoadStream(stream, version, progress);
-    }
-		stream >> dep_index;
-		stream >> point_index;
+  }
+    stream >> dep_index;
+    stream >> point_index;
 
-    double ddum;
-    int idum;
-		stream >> ddum;
-		stream >> ddum;
-		stream >> ddum;
-		stream >> idum;
+  double ddum;
+  int idum;
+    stream >> ddum;
+    stream >> ddum;
+    stream >> ddum;
+    stream >> idum;
 
-		stream >> ddum;
-		stream >> ddum;
-		stream >> ddum;
-		stream >> idum;
+    stream >> ddum;
+    stream >> ddum;
+    stream >> ddum;
+    stream >> idum;
 
-		stream >> ddum;
-		stream >> ddum;
-		stream >> idum;
-	}
+    stream >> ddum;
+    stream >> ddum;
+    stream >> idum;
+  }
 }
 
 void CWellPath::SaveWellLog(well::CWellLog *log, TSTREAM& stream, TPROGRESS& progress)
 {
-	// First the log data //////////////////////////////////////////
-	stream << log->LogPointSize();
+  // First the log data //////////////////////////////////////////
+  stream << log->LogPointSize();
 
-	//first the tmd's...
-	for(int i = 0; i < log->LogPointSize(); i++)
-	{
-		stream << log->Depth(well::CWellLog::ORIGINAL_TMD, i);
-	}
-	// now the tvd's...
-	for(int j = 0; j < log->LogPointSize(); j++)
-	{
-		stream << log->Depth(well::CWellLog::ORIGINAL_TVD, j);
-	}
-	// the shalyness factors....
-	for(int k = 0; k < log->LogPointSize(); k++)
-	{
-		stream << log->getShalyness(k);
-	}
-	// the compressibility....
-	for(int l = 0; l < log->LogPointSize(); l++)
-	{
-		stream << log->getCompressibility(l);
-	}
-	// the sand cut-off value....
-	if(log->LogPointSize() > 0)
-		stream << log->SandCutOff();
-	////////////////////////////////////////////////////////////////
+  //first the tmd's...
+  for(int i = 0; i < log->LogPointSize(); i++)
+  {
+    stream << log->Depth(well::CWellLog::ORIGINAL_TMD, i);
+  }
+  // now the tvd's...
+  for(int j = 0; j < log->LogPointSize(); j++)
+  {
+    stream << log->Depth(well::CWellLog::ORIGINAL_TVD, j);
+  }
+  // the shalyness factors....
+  for(int k = 0; k < log->LogPointSize(); k++)
+  {
+    stream << log->getShalyness(k);
+  }
+  // the compressibility....
+  for(int l = 0; l < log->LogPointSize(); l++)
+  {
+    stream << log->getCompressibility(l);
+  }
+  // the sand cut-off value....
+  if(log->LogPointSize() > 0)
+    stream << log->SandCutOff();
+  ////////////////////////////////////////////////////////////////
 
-	// Now the radioactive tag data ////////////////////////////////
-	stream << log->RTagSize();
+  // Now the radioactive tag data ////////////////////////////////
+  stream << log->RTagSize();
 
-	// first the tmd's....
-	for(int m = 0; m < log->RTagSize(); m++)
-	{
-		stream << log->RTTMD(m);
-	}
-	// now the tvd's...
-	for(int n = 0; n < log->RTagSize(); n++)
-	{
-		stream << log->RTTVD(n);
-	}
-	// now the relative displacements.....
-	for(int z = 0; z < log->RTagSize(); z++)
-	{
-		stream << log->RTRelDispl(z);
-	}
-	///////////////////////////////////////////////////////////////
-	progress.Step();
+  // first the tmd's....
+  for(int m = 0; m < log->RTagSize(); m++)
+  {
+    stream << log->RTTMD(m);
+  }
+  // now the tvd's...
+  for(int n = 0; n < log->RTagSize(); n++)
+  {
+    stream << log->RTTVD(n);
+  }
+  // now the relative displacements.....
+  for(int z = 0; z < log->RTagSize(); z++)
+  {
+    stream << log->RTRelDispl(z);
+  }
+  ///////////////////////////////////////////////////////////////
+  progress.Step();
 }
 
 void CWellPath::LoadWellLog(well::CWellLog *log,TSTREAM& stream,TPROGRESS& progress)
 {
-	int point_size, rat_size;
-	double val;
-	std::vector<double> vcTMD;
-	std::vector<double> vcTVD;
+  int point_size, rat_size;
+  double val;
+  std::vector<double> vcTMD;
+  std::vector<double> vcTVD;
 
-	stream >> point_size;
-	if(point_size > 0)
-	{	
-		std::vector<double> vcShaly;
-		std::vector<double> vcComp;
+  stream >> point_size;
+  if(point_size > 0)
+  {	
+    std::vector<double> vcShaly;
+    std::vector<double> vcComp;
 
-		// load the tmd's
-		for(int i = 0; i < point_size; i++)
-		{
-			stream >> val;
-			vcTMD.push_back(val);
-		}
-		// now the tvd's
-		for(int j = 0; j < point_size; j++)
-		{
-			stream >>val;
-			vcTVD.push_back(val);
-		}
-		// next the shalyness...
-		for(int k = 0; k < point_size; k++)
-		{
-			stream >> val;
-			vcShaly.push_back(val);
-		}
-		// the compressibility.....
-		for(int l = 0; l < point_size; l++)
-		{
-			stream >> val;
-			vcComp.push_back(val);
-		}
-		double sand_cutoff;
-		stream >> sand_cutoff;
-		
-		// intitiate the log...
-		log->InitLog(vcTMD, vcTVD, vcShaly, vcComp, sand_cutoff);
-	}
-	stream >> rat_size;
-	if(rat_size > 0)
-	{
-		vcTMD.clear();
-		vcTVD.clear();
-		std::vector<double> vcRelDispl;
+    // load the tmd's
+    for(int i = 0; i < point_size; i++)
+    {
+      stream >> val;
+      vcTMD.push_back(val);
+    }
+    // now the tvd's
+    for(int j = 0; j < point_size; j++)
+    {
+      stream >>val;
+      vcTVD.push_back(val);
+    }
+    // next the shalyness...
+    for(int k = 0; k < point_size; k++)
+    {
+      stream >> val;
+      vcShaly.push_back(val);
+    }
+    // the compressibility.....
+    for(int l = 0; l < point_size; l++)
+    {
+      stream >> val;
+      vcComp.push_back(val);
+    }
+    double sand_cutoff;
+    stream >> sand_cutoff;
+    
+    // intitiate the log...
+    log->InitLog(vcTMD, vcTVD, vcShaly, vcComp, sand_cutoff);
+  }
+  stream >> rat_size;
+  if(rat_size > 0)
+  {
+    vcTMD.clear();
+    vcTVD.clear();
+    std::vector<double> vcRelDispl;
 
-		// load the tmd's...
-		for(int m = 0; m < rat_size; m++)
-		{
-			stream >> val;
-			vcTMD.push_back(val);
-		}
-		// now the tvd's...
-		for(int n = 0; n < rat_size; n++)
-		{
-			stream >> val;
-			vcTVD.push_back(val);
-		}
-		// now the relative displacements....
-		for(int z = 0; z < rat_size; z++)
-		{
-			stream >> val;
-			vcRelDispl.push_back(val);
-		}
+    // load the tmd's...
+    for(int m = 0; m < rat_size; m++)
+    {
+      stream >> val;
+      vcTMD.push_back(val);
+    }
+    // now the tvd's...
+    for(int n = 0; n < rat_size; n++)
+    {
+      stream >> val;
+      vcTVD.push_back(val);
+    }
+    // now the relative displacements....
+    for(int z = 0; z < rat_size; z++)
+    {
+      stream >> val;
+      vcRelDispl.push_back(val);
+    }
 
-		// initiate the radioactive tags...
-		log->InitRadioactiveTags(vcTMD, vcTVD, vcRelDispl);
-	}
+    // initiate the radioactive tags...
+    log->InitRadioactiveTags(vcTMD, vcTVD, vcRelDispl);
+  }
 
-	progress.Step();
+  progress.Step();
 }
 
 
 
 long CWellPath::SavedItems() const
 {
-	long nRet = CColorNode::SavedItems();
+  long nRet = CColorNode::SavedItems();
 
-	if (IsVertical())
-		nRet += DStaborPoints().NrOfPoints();
-	else
-		nRet += DefPointList().NrOfPoints()+ DStaborPoints().NrOfPoints();
+  if (IsVertical())
+    nRet += DStaborPoints().NrOfPoints();
+  else
+    nRet += DefPointList().NrOfPoints()+ DStaborPoints().NrOfPoints();
 
-	nRet += m_mpSectDplLog.size();
-	nRet += m_mpCorrectAllStages.size();
+  nRet += m_mpSectDplLog.size();
+  nRet += m_mpCorrectAllStages.size();
 
   if(m_pZoomInModel)
   {
-    const CModelBase& model = static_cast<const CModelBase&>(Model());
-    nRet += model.SavedItemsChildModel(*m_pZoomInModel);
+  const CModelBase& model = static_cast<const CModelBase&>(Model());
+  nRet += model.SavedItemsChildModel(*m_pZoomInModel);
   }
 
-	return nRet;
+  return nRet;
 }
-	
+  
 bool CWellPath::Empty() const
 {
-	return DefPointList().NrOfPoints()==0;
+  return DefPointList().NrOfPoints()==0;
 }
 
 /*virtual*/ bool CWellPath::IsVertical() const
 {
-	return !m_VerticalPointDef.Empty();
+  return !m_VerticalPointDef.Empty();
 }
 
 
 bool CWellPath::DsbCanCalculate(const CFormationBase& formation) const
 {
-	if(formation.FormationType() == CFormationBase::FT_SHALE        || 
-	   formation.FormationType() == CFormationBase::FT_NOTSPECIFIED || //mantis 2541 wjrx
+  if(formation.FormationType() == CFormationBase::FT_SHALE        || 
+     formation.FormationType() == CFormationBase::FT_NOTSPECIFIED || //mantis 2541 wjrx
      formation.FormationType() == CFormationBase::FT_LIMESTONE)      //mantis 2618 wedx
-		return true;
+    return true;
 
-	return false;
+  return false;
 }
 
 bool CWellPath::DsbCanCalculateEFG(const CFormationBase& formation) const
 {
-	if(formation.FormationType()==CFormationBase::FT_SAND)
-		return true;
+  if(formation.FormationType()==CFormationBase::FT_SAND)
+    return true;
 
-	if(formation.FormationType()==CFormationBase::FT_SANDSTONE)
-		return true;
+  if(formation.FormationType()==CFormationBase::FT_SANDSTONE)
+    return true;
 
-	return false;
+  return false;
 }
 
 
@@ -2262,261 +2262,261 @@ void CWellPath::CalculateDsbResult(const CDepletionStage& stage, const CAnalysis
 
 /*void CWellPath::CalculateCasingPoints()
 {
-	well::CWellPointList& list = GetWellPointList(LST_PT_DCASING);
+  well::CWellPointList& list = GetWellPointList(LST_PT_DCASING);
 
-	CModelBase *pModel = dynamic_cast<CModelBase*>(&Model());
-	if(!pModel->IsMesh())
-	{
-		list.RemoveAllPoints();
-		return;
-	}
+  CModelBase *pModel = dynamic_cast<CModelBase*>(&Model());
+  if(!pModel->IsMesh())
+  {
+    list.RemoveAllPoints();
+    return;
+  }
 
-	if(list.NrOfPoints() > 0)
-		return;
+  if(list.NrOfPoints() > 0)
+    return;
 
-	CWaitCursor wait;
+  CWaitCursor wait;
 
-	well::CWellPointList& intersect = FormIntersecPoints();
+  well::CWellPointList& intersect = FormIntersecPoints();
 
-	if(intersect.NrOfPoints() < 2)
-		return;
+  if(intersect.NrOfPoints() < 2)
+    return;
 
-	double delta = 0.1; //delta for above and below intersection
+  double delta = 0.1; //delta for above and below intersection
 
-	const int NrOfPointsInFormation = 5; //number of points in formation
+  const int NrOfPointsInFormation = 5; //number of points in formation
 
-	assert(NrOfPointsInFormation > 2);
+  assert(NrOfPointsInFormation > 2);
 
-	well::CWellPointList::Iterator it  = intersect.GetIterator();
+  well::CWellPointList::Iterator it  = intersect.GetIterator();
 
-	CGeoWellPoint* p1 = (CGeoWellPoint*)it.current();
-	CGeoWellPoint* p2 = (CGeoWellPoint*)++it;
+  CGeoWellPoint* p1 = (CGeoWellPoint*)it.current();
+  CGeoWellPoint* p2 = (CGeoWellPoint*)++it;
 
-	well::CWellPointList collect(*this); //collect created points that are not inserted.
-	
+  well::CWellPointList collect(*this); //collect created points that are not inserted.
+  
 
-	while(p1 && p2)
-	{
-		
-		CGeoWellPoint* above = new CCasingWellPoint(*this,p1->TMD().Value()+delta);
-		CGeoWellPoint* below = new CCasingWellPoint(*this,p2->TMD().Value()-delta);
-		collect.AddPoint(above);
-		collect.AddPoint(below);
-		
-		if(!list.EqualPointExist(*above) && above->Defined())
-			list.AddPoint(above);
-		
-		if(!list.EqualPointExist(*below) && above->Defined())
-			list.AddPoint(below);
+  while(p1 && p2)
+  {
+    
+    CGeoWellPoint* above = new CCasingWellPoint(*this,p1->TMD().Value()+delta);
+    CGeoWellPoint* below = new CCasingWellPoint(*this,p2->TMD().Value()-delta);
+    collect.AddPoint(above);
+    collect.AddPoint(below);
+    
+    if(!list.EqualPointExist(*above) && above->Defined())
+      list.AddPoint(above);
+    
+    if(!list.EqualPointExist(*below) && above->Defined())
+      list.AddPoint(below);
 
 
-		double delta_tmd = (below->TMD().Value() - above->TMD().Value())/(NrOfPointsInFormation-1);
-		for(int i=0 ; i<NrOfPointsInFormation-2 ;i++)
-		{
-			double tmd = above->TMD().Value() + delta_tmd*(i+1);
-			CGeoWellPoint* point = new CCasingWellPoint(*this,tmd);
-			collect.AddPoint(point);
+    double delta_tmd = (below->TMD().Value() - above->TMD().Value())/(NrOfPointsInFormation-1);
+    for(int i=0 ; i<NrOfPointsInFormation-2 ;i++)
+    {
+      double tmd = above->TMD().Value() + delta_tmd*(i+1);
+      CGeoWellPoint* point = new CCasingWellPoint(*this,tmd);
+      collect.AddPoint(point);
 
-			if(!list.EqualPointExist(*point) && point->Defined())
-				list.AddPoint(point);
-			
-		}
-		p1 = p2;
-		p2 = (CGeoWellPoint*)++it;
-	}
+      if(!list.EqualPointExist(*point) && point->Defined())
+        list.AddPoint(point);
+      
+    }
+    p1 = p2;
+    p2 = (CGeoWellPoint*)++it;
+  }
 
-	//removes and deletes non used points
-	collect.AutoDelete(true);
-		collect.RemoveNonDuplicatePoints(list);
-	collect.AutoDelete(false);
+  //removes and deletes non used points
+  collect.AutoDelete(true);
+    collect.RemoveNonDuplicatePoints(list);
+  collect.AutoDelete(false);
 
-	//removes and deletes non defined points
-	list.RemoveUnDefinedPoints();
+  //removes and deletes non defined points
+  list.RemoveUnDefinedPoints();
 
-	well::CWellPointList::Iterator pt = list.GetIterator();
-	Casing().RemoveAll();
-	while(pt.current())
-	{
-		Casing().AddPoint(&((CCasingWellPoint*)pt.current())->CasingPoint());
-		++pt;
-	}
+  well::CWellPointList::Iterator pt = list.GetIterator();
+  Casing().RemoveAll();
+  while(pt.current())
+  {
+    Casing().AddPoint(&((CCasingWellPoint*)pt.current())->CasingPoint());
+    ++pt;
+  }
 }
 */
 
 void CWellPath::AddDefaultFistPoints(well::CWellPointList& list) const 
 {
-	const CModelBase *pModel = dynamic_cast<const CModelBase*>(&Model());
-	if(!pModel->IsMesh())
-	{
-		return;
-	}
+  const CModelBase *pModel = dynamic_cast<const CModelBase*>(&Model());
+  if(!pModel->IsMesh())
+  {
+    return;
+  }
 
-	std::auto_ptr <IProgressBase> wait(_g->prog()->create(eProgress::Wait));
-
-
-	const well::CWellSectionList& sections = FormationSections();
-
-	if(sections.NrOfSections() < 1)
-		return;
-
-	double delta = 0.1;
-	const int NrOfPointsInFormation = 5; //number of points in formation
+  std::auto_ptr <IProgressBase> wait(_g->prog()->create(eProgress::Wait));
 
 
-	well::CWellPointList& FistPoints =list;
+  const well::CWellSectionList& sections = FormationSections();
 
-	well::CWellPointList collect(*this); //collect created points that are not inserted.
-	collect.AutoDelete(true);
+  if(sections.NrOfSections() < 1)
+    return;
 
-	well::CWellSectionList::Iterator it  = sections.begin();
+  double delta = 0.1;
+  const int NrOfPointsInFormation = 5; //number of points in formation
 
-	while(it != sections.end())
-	{
+
+  well::CWellPointList& FistPoints =list;
+
+  well::CWellPointList collect(*this); //collect created points that are not inserted.
+  collect.AutoDelete(true);
+
+  well::CWellSectionList::Iterator it  = sections.begin();
+
+  while(it != sections.end())
+  {
   	CFormationSection* section = (CFormationSection*)*it;
 
-    CFormationBase::TFormationType formtype = section->Formation()->FormationType();
-    if(section->Formation()->Depleting() &&
+  CFormationBase::TFormationType formtype = section->Formation()->FormationType();
+  if(section->Formation()->Depleting() &&
        (formtype == CFormationBase::FT_SAND || formtype == CFormationBase::FT_SANDSTONE || formtype == CFormationBase::FT_NOTSPECIFIED))
-		{
-		
-			CGeoWellPoint* above = new CGeoWellPoint(*this,section->Top().TMD().Value()+delta);
-			CGeoWellPoint* below = new CGeoWellPoint(*this,section->Bottom().TMD().Value()-delta);
-			collect.AddPoint(above);
-			collect.AddPoint(below);
-			
-			if(!FistPoints.EqualPointExist(*above) && above->Defined())
-				FistPoints.AddPoint(above);
-			
-			if(!FistPoints.EqualPointExist(*below) && above->Defined())
-				FistPoints.AddPoint(below);
+    {
+    
+      CGeoWellPoint* above = new CGeoWellPoint(*this,section->Top().TMD().Value()+delta);
+      CGeoWellPoint* below = new CGeoWellPoint(*this,section->Bottom().TMD().Value()-delta);
+      collect.AddPoint(above);
+      collect.AddPoint(below);
+      
+      if(!FistPoints.EqualPointExist(*above) && above->Defined())
+        FistPoints.AddPoint(above);
+      
+      if(!FistPoints.EqualPointExist(*below) && above->Defined())
+        FistPoints.AddPoint(below);
 
 
-			double delta_tmd = (below->TMD().Value() - above->TMD().Value())/(NrOfPointsInFormation-1);
-			for(int i=0 ; i<NrOfPointsInFormation-2 ;i++)
-			{
-				double tmd = above->TMD().Value() + delta_tmd*(i+1);
-				CGeoWellPoint* point = new CGeoWellPoint(*this,tmd);
-				collect.AddPoint(point);
+      double delta_tmd = (below->TMD().Value() - above->TMD().Value())/(NrOfPointsInFormation-1);
+      for(int i=0 ; i<NrOfPointsInFormation-2 ;i++)
+      {
+        double tmd = above->TMD().Value() + delta_tmd*(i+1);
+        CGeoWellPoint* point = new CGeoWellPoint(*this,tmd);
+        collect.AddPoint(point);
 
-				if(!FistPoints.EqualPointExist(*point) && point->Defined())
-					FistPoints.AddPoint(point);
-				
-			}
-		}
+        if(!FistPoints.EqualPointExist(*point) && point->Defined())
+          FistPoints.AddPoint(point);
+        
+      }
+    }
 
 
-		++it;
+    ++it;
 
-		
-	}
-	//removes and deletes non used points
-	collect.RemoveNonDuplicatePoints(FistPoints);
+    
+  }
+  //removes and deletes non used points
+  collect.RemoveNonDuplicatePoints(FistPoints);
 
-	FistPoints.RemoveUnDefinedPoints();
-	collect.AutoDelete(false);
+  FistPoints.RemoveUnDefinedPoints();
+  collect.AutoDelete(false);
 }
 
 void CWellPath::AddDefaultDstaborPoints(well::CWellPointList& list) const
 {
-	
-	const CModelBase *pModel = dynamic_cast<const CModelBase*>(&Model());
-	if(!pModel->IsMesh())
-	{
-		return;
-	}
+  
+  const CModelBase *pModel = dynamic_cast<const CModelBase*>(&Model());
+  if(!pModel->IsMesh())
+  {
+    return;
+  }
 
-	std::auto_ptr <IProgressBase> wait(_g->prog()->create(eProgress::Wait));
+  std::auto_ptr <IProgressBase> wait(_g->prog()->create(eProgress::Wait));
 
 
-	const well::CWellSectionList& sections = FormationSections();
+  const well::CWellSectionList& sections = FormationSections();
 
-	if(sections.NrOfSections() < 1)
-		return;
+  if(sections.NrOfSections() < 1)
+    return;
 
-	double delta = 0.1;
-	const int NrOfPointsInFormation = 5; //number of points in formation
+  double delta = 0.1;
+  const int NrOfPointsInFormation = 5; //number of points in formation
 
-	assert(NrOfPointsInFormation > 2);
+  assert(NrOfPointsInFormation > 2);
 
-	well::CWellPointList& DstaborPoints =list;
+  well::CWellPointList& DstaborPoints =list;
 
-	well::CWellPointList collect(*this); //collect created points that are not inserted.
-	collect.AutoDelete(true);
+  well::CWellPointList collect(*this); //collect created points that are not inserted.
+  collect.AutoDelete(true);
 
-	well::CWellSectionList::Iterator it  = sections.begin();
+  well::CWellSectionList::Iterator it  = sections.begin();
 
-	while(it != sections.end())
-	{
+  while(it != sections.end())
+  {
   	well::IWellSection* section = *it;
 
-		CGeoWellPoint* above = new CDstaborWellPoint(*this,section->Top().TMD().Value()+delta);
-		CGeoWellPoint* below = new CDstaborWellPoint(*this,section->Bottom().TMD().Value()-delta);
-		collect.AddPoint(above);
-		collect.AddPoint(below);
-		
-		if(!DstaborPoints.EqualPointExist(*above) && above->Defined())
-			DstaborPoints.AddPoint(above);
-		
-		if(!DstaborPoints.EqualPointExist(*below) && above->Defined())
-			DstaborPoints.AddPoint(below);
+    CGeoWellPoint* above = new CDstaborWellPoint(*this,section->Top().TMD().Value()+delta);
+    CGeoWellPoint* below = new CDstaborWellPoint(*this,section->Bottom().TMD().Value()-delta);
+    collect.AddPoint(above);
+    collect.AddPoint(below);
+    
+    if(!DstaborPoints.EqualPointExist(*above) && above->Defined())
+      DstaborPoints.AddPoint(above);
+    
+    if(!DstaborPoints.EqualPointExist(*below) && above->Defined())
+      DstaborPoints.AddPoint(below);
 
 
-		double delta_tmd = (below->TMD().Value() - above->TMD().Value())/(NrOfPointsInFormation-1);
-		for(int i=0 ; i<NrOfPointsInFormation-2 ;i++)
-		{
-			double tmd = above->TMD().Value() + delta_tmd*(i+1);
-			CGeoWellPoint* point = new CDstaborWellPoint(*this,tmd);
-			collect.AddPoint(point);
+    double delta_tmd = (below->TMD().Value() - above->TMD().Value())/(NrOfPointsInFormation-1);
+    for(int i=0 ; i<NrOfPointsInFormation-2 ;i++)
+    {
+      double tmd = above->TMD().Value() + delta_tmd*(i+1);
+      CGeoWellPoint* point = new CDstaborWellPoint(*this,tmd);
+      collect.AddPoint(point);
 
-			if(!DstaborPoints.EqualPointExist(*point) && point->Defined())
-				DstaborPoints.AddPoint(point);
-			
-		}
-		++it;
-	}
-	//removes and deletes non used points
-	collect.RemoveNonDuplicatePoints(DstaborPoints);
+      if(!DstaborPoints.EqualPointExist(*point) && point->Defined())
+        DstaborPoints.AddPoint(point);
+      
+    }
+    ++it;
+  }
+  //removes and deletes non used points
+  collect.RemoveNonDuplicatePoints(DstaborPoints);
 
-	DstaborPoints.RemoveUnDefinedPoints();
-	collect.AutoDelete(false);
+  DstaborPoints.RemoveUnDefinedPoints();
+  collect.AutoDelete(false);
 }
 
 void CWellPath::GetInterSectionPointsWithFormationSkin(const geo::ILine& line , std::set<geo::CPoint>& PointSet) const
 {
-	const CModelBase *pModel = dynamic_cast<const CModelBase*>(&Model());
+  const CModelBase *pModel = dynamic_cast<const CModelBase*>(&Model());
 
-	if(!pModel->IsMesh())
-		return;
+  if(!pModel->IsMesh())
+    return;
 
-	//loop over the volumes in a formation
-	CWellPath* pThis=const_cast<CWellPath*>(this);
+  //loop over the volumes in a formation
+  CWellPath* pThis=const_cast<CWellPath*>(this);
 
-	TFormationBaseEntry::TNodeSet formations = ((TFormationBaseEntry*) pThis->Model().GraphEntry(MD_BASE_FORMATION))->EntryNodes();
-	//loop over the formations
-	for(TFormationBaseEntry::TNodeSet::iterator iter = formations.begin(); iter != formations.end(); iter++)
-	{
-		//loop over the volumes in a formation
-		for(int i = 0; i < (*iter)->ElementSetSize(); i++)
-		{
-			geo::CBodyGroup *pGeoVolume = dynamic_cast<geo::CBodyGroup*>(&(*iter)->ElementSet(i).ElementSet());
-			assert(pGeoVolume);
+  TFormationBaseEntry::TNodeSet formations = ((TFormationBaseEntry*) pThis->Model().GraphEntry(MD_BASE_FORMATION))->EntryNodes();
+  //loop over the formations
+  for(TFormationBaseEntry::TNodeSet::iterator iter = formations.begin(); iter != formations.end(); iter++)
+  {
+    //loop over the volumes in a formation
+    for(int i = 0; i < (*iter)->ElementSetSize(); i++)
+    {
+      geo::CBodyGroup *pGeoVolume = dynamic_cast<geo::CBodyGroup*>(&(*iter)->ElementSet(i).ElementSet());
+      assert(pGeoVolume);
 
-			//get the intersection points with the volume and the vertical line
-			pGeoVolume->IntersectionWithEdgeFaces(line,PointSet);
-		}
-	}
+      //get the intersection points with the volume and the vertical line
+      pGeoVolume->IntersectionWithEdgeFaces(line,PointSet);
+    }
+  }
 }
 
 bool CWellPath::assignContainingElement(CGeoWellPoint& pt, const std::set<const geo::IElement*>& stElements) const
 {
   for(std::set<const geo::IElement*>::const_iterator it = stElements.begin(); it != stElements.end(); ++it)
   {
-    const geo::IElement& elm = **it;
-    if(elm.Contains(pt, false))
-    {
+  const geo::IElement& elm = **it;
+  if(elm.Contains(pt, false))
+  {
       pt.addElement(&elm);
       return true;
-    }
+  }
   }
 
   return false;
@@ -2525,70 +2525,70 @@ bool CWellPath::assignContainingElement(CGeoWellPoint& pt, const std::set<const 
 void CWellPath::CalcGraphPoints()
 {
 
-	if(DefPointList().NrOfPoints()==0)
-		Recalculate();
+  if(DefPointList().NrOfPoints()==0)
+    Recalculate();
 
-	std::auto_ptr <IProgressBase> wait(_g->prog()->create(eProgress::Wait));
+  std::auto_ptr <IProgressBase> wait(_g->prog()->create(eProgress::Wait));
 
-	well::CWellPointList& graph_points=GetWellPointList(LST_PT_GRAPH);
-	graph_points.RemoveAllPoints();
+  well::CWellPointList& graph_points=GetWellPointList(LST_PT_GRAPH);
+  graph_points.RemoveAllPoints();
   
 
-	const CModelBase *pModel = dynamic_cast<const CModelBase*>(&Model());
+  const CModelBase *pModel = dynamic_cast<const CModelBase*>(&Model());
 
-	if(!pModel->Mesh().IsMesh())
+  if(!pModel->Mesh().IsMesh())
   {
       m_graphPointsCalculated = true;
-		return;
+    return;
   }
 
-	const double dist = 0.01;
+  const double dist = 0.01;
 
-	well::CWellPointList& intersect = MeshIntersecPoints();
+  well::CWellPointList& intersect = MeshIntersecPoints();
 
-	if(intersect.NrOfPoints() < 2)
+  if(intersect.NrOfPoints() < 2)
   {
       m_graphPointsCalculated = true;
       return;
   }
 //	assert(intersect.NrOfPoints() >= 2); // no mesh?
 
-	well::CWellPointList::Iterator it  = intersect.begin();
+  well::CWellPointList::Iterator it  = intersect.begin();
 
-	while(it != intersect.end())
-	{
+  while(it != intersect.end())
+  {
   	well::CWellPoint* p = *it;
-    const std::set<const geo::IElement*>& stElements = p->getElements();
+  const std::set<const geo::IElement*>& stElements = p->getElements();
 
 
-		CGeoWellPoint* p1 = new CGeoWellPoint(*this,p->TMD().Value()-dist);
-    assignContainingElement(*p1, stElements);
-		graph_points.AddPoint(p1);
+    CGeoWellPoint* p1 = new CGeoWellPoint(*this,p->TMD().Value()-dist);
+  assignContainingElement(*p1, stElements);
+    graph_points.AddPoint(p1);
 
-		CGeoWellPoint* p2 = new CGeoWellPoint(*this,p->TMD().Value()+dist);
-    assignContainingElement(*p2, stElements);
-		graph_points.AddPoint(p2);
+    CGeoWellPoint* p2 = new CGeoWellPoint(*this,p->TMD().Value()+dist);
+  assignContainingElement(*p2, stElements);
+    graph_points.AddPoint(p2);
 
-		++it;
-	}
+    ++it;
+  }
 
 
-	//add dstabor points to graph points
-	
-	it = DStaborPoints().begin();
-	while(it != DStaborPoints().end())
+  //add dstabor points to graph points
+  
+  it = DStaborPoints().begin();
+  while(it != DStaborPoints().end())
  	{
   	CGeoWellPoint* dsb = (CGeoWellPoint*)*it;
-		CGeoWellPoint* point = new CGeoWellPoint(*dsb);
-		graph_points.AddPoint(point);
-		++it;
-	}
+    CGeoWellPoint* point = new CGeoWellPoint(*dsb);
+    graph_points.AddPoint(point);
+    ++it;
+  }
 
-	graph_points.RemoveUnDefinedPoints();
+  graph_points.RemoveUnDefinedPoints();
 
-	//set graph limits
-	graph_points.RemoveUnDefinedPoints();
-	m_display_list.ClearAndDelete();
+  //set graph limits
+  graph_points.RemoveUnDefinedPoints();
+  m_display_list.ClearAndDelete();
 
   m_graphPointsCalculated = true;
 //	Modified();
@@ -2596,140 +2596,140 @@ void CWellPath::CalcGraphPoints()
 
 void CWellPath::GetIntersectionPointsWithPlane(geo::CPtrArray<CGeoWellPoint>& /*points*/,const geo::CPlane& /*plane*/) const
 {
-	//TODO htg// 
+  //TODO htg// 
 }
 
 CDstaborResultMap& CWellPath::DsbResults()
 {
-	return *m_pDsbResults;
+  return *m_pDsbResults;
 }
 
 const CDstaborResultMap& CWellPath::DsbResults() const
 {
-	return *m_pDsbResults;
+  return *m_pDsbResults;
 }
 
 well::CWellDateList &CWellPath::FistDates()
 {
-	return m_FistDates;
+  return m_FistDates;
 }
 
 const well::CWellDateList &CWellPath::FistDates() const
 {
-	 return m_FistDates;
+   return m_FistDates;
 }
 
 const well::CWellPointList &CWellPath::FistExportPoints() const
 {
-	return GetWellPointList(LST_PT_FIST_EXP);
+  return GetWellPointList(LST_PT_FIST_EXP);
 }
 
 well::CWellPointList &CWellPath::FistExportPoints()
 {
-	return GetWellPointList(LST_PT_FIST_EXP);
+  return GetWellPointList(LST_PT_FIST_EXP);
 }
 
 
 void CWellPath::MudGradRefDepth(double newval)
 {
-	m_dMudGradRefDepth=newval;
+  m_dMudGradRefDepth=newval;
 }
 
 double CWellPath::MudGradRefDepth() const
 {
-	return m_dMudGradRefDepth;
+  return m_dMudGradRefDepth;
 }
 
 void CWellPath::DerElev(double newval) //wjrx mantis 2549
 {
-	m_GlobalTVD.SetValue(newval);
+  m_GlobalTVD.SetValue(newval);
 }
 
 double CWellPath::DerElev() const //wjrx mantis 2549
 {
-	return m_GlobalTVD.Value();
+  return m_GlobalTVD.Value();
 }
 
 double CWellPath::DsbLiquidFluid() const
 {
-	return m_DsbLiquidFluid;
+  return m_DsbLiquidFluid;
 }
 
 void CWellPath::DsbLiquidFluid(double newval)
 {
-	m_DsbLiquidFluid=newval;
+  m_DsbLiquidFluid=newval;
 }
 
 double CWellPath::DsbFluidLossCoefficient() const
 {
-	return m_DsbFluidLossCoefficient;
+  return m_DsbFluidLossCoefficient;
 }
 
 void CWellPath::DsbFluidLossCoefficient(double newval)
 {
-	m_DsbFluidLossCoefficient=newval;
+  m_DsbFluidLossCoefficient=newval;
 }
 
 
 void CWellPath::OnNeighbourModified(const CGraphNode &node, enum ModifiedHint uHint)
 {
-	const CMeshBase* pMesh=dynamic_cast<const CMeshBase*>(&node);
-	if (pMesh)
-	{
-		if(!pMesh->IsMesh() || (uHint == MeshCreated))
-		{
-			ClearLogdataMaps();
-			DsbResults().ClearAllResults();
-			InvalidatePointLists();
-			m_display_list.ClearAndDelete();
-		//	FistDates().Clear();
-			if(!m_VerticalPointDef.Empty())
-			{
-
-				CWellPathBase::DefPointList().RemoveAllPoints();
-			}
-
-			Modified();
-		}
-
-		return;
-	}
-
-	const CDepletionStage* pStage=dynamic_cast<const CDepletionStage*>(&node);
-	if (pStage)
-	{
-		ClearLogdataMaps();
-		DsbResults().ClearAllResults();
-		Modified();
-	}
-
-
-	const CFormationBase* fb = dynamic_cast<const CFormationBase*>(&node);
-	if ( fb )
-	{
-    // dirty sections
- //   SetSectionsDirty();
-    well::CWellSectionList& form_sections = GetWellSectionList(LST_SC_FORM);
-    well::CWellSectionList::Iterator it;
-    for(it = form_sections.begin(); it != form_sections.end(); ++it)
+  const CMeshBase* pMesh=dynamic_cast<const CMeshBase*>(&node);
+  if (pMesh)
+  {
+    if(!pMesh->IsMesh() || (uHint == MeshCreated))
     {
+      ClearLogdataMaps();
+      DsbResults().ClearAllResults();
+      InvalidatePointLists();
+      m_display_list.ClearAndDelete();
+    //	FistDates().Clear();
+      if(!m_VerticalPointDef.Empty())
+      {
+
+        CWellPathBase::DefPointList().RemoveAllPoints();
+      }
+
+      Modified();
+    }
+
+    return;
+  }
+
+  const CDepletionStage* pStage=dynamic_cast<const CDepletionStage*>(&node);
+  if (pStage)
+  {
+    ClearLogdataMaps();
+    DsbResults().ClearAllResults();
+    Modified();
+  }
+
+
+  const CFormationBase* fb = dynamic_cast<const CFormationBase*>(&node);
+  if ( fb )
+  {
+  // dirty sections
+ //   SetSectionsDirty();
+  well::CWellSectionList& form_sections = GetWellSectionList(LST_SC_FORM);
+  well::CWellSectionList::Iterator it;
+  for(it = form_sections.begin(); it != form_sections.end(); ++it)
+  {
       well::IWellSection* pSection = *it;
       assert(dynamic_cast<CFormationSection*>(pSection));
       CFormationSection* pFormSection = static_cast<CFormationSection*>(pSection);
       if(pFormSection->Formation() == fb)
       {
-        // update display list
-        m_pIntermediate->SetSectionDescription(*pSection, fb->Name());
+    // update display list
+    m_pIntermediate->SetSectionDescription(*pSection, fb->Name());
 /*
-        CWellSectionDrawSpec& ds = const_cast<CWellSectionDrawSpec&>(m_pSceneInterMed->GetSection(*pSection, 1));
-        ds.SetDescription(QString(fb->Name())); // force rebuild
+    CWellSectionDrawSpec& ds = const_cast<CWellSectionDrawSpec&>(m_pSceneInterMed->GetSection(*pSection, 1));
+    ds.SetDescription(QString(fb->Name())); // force rebuild
 */
       }
-    }
-    Modified();
-	}
-	
-	CColorNode::OnNeighbourModified(node,uHint);
+  }
+  Modified();
+  }
+  
+  CColorNode::OnNeighbourModified(node,uHint);
 }
 
 void CWellPath::SetSectionsDirty()
@@ -2739,8 +2739,8 @@ void CWellPath::SetSectionsDirty()
   // update immediately when shown
 //  if(m_pSceneInterMed->Scene())
   if(m_pIntermediate->IsVisible())
-	  FormationSections();
-	Modified();
+    FormationSections();
+  Modified();
 }
 
 bool CWellPath::hasZoomInModel() const
@@ -2753,13 +2753,13 @@ void CWellPath::CreateZoomInModel()
 #ifdef ZOOMIN
   if(!m_pZoomInModel)
   {
-    constructZoomInModel();
+  constructZoomInModel();
 
-    // inform model that there is a new child
-    CModelBase& model = static_cast<CModelBase&>(Model());
-    model.OnNewChildModel(*m_pZoomInModel, false);
+  // inform model that there is a new child
+  CModelBase& model = static_cast<CModelBase&>(Model());
+  model.OnNewChildModel(*m_pZoomInModel, false);
 
-    Modified();
+  Modified();
   }
 #endif
 }
@@ -2784,170 +2784,170 @@ void CWellPath::DestroyZoomInModel()
 {
   if(m_pZoomInModel)
   {
-    m_pZoomInModel->DestroyZoomInModel();
-    if (m_pZoomInModel) // this one is 0, but I leave it in, so that we can look at this later. Ideally, we use the facade
+  m_pZoomInModel->DestroyZoomInModel();
+  if (m_pZoomInModel) // this one is 0, but I leave it in, so that we can look at this later. Ideally, we use the facade
       IModelLifetimeFacade::Delete(m_pZoomInModel);
-    m_pZoomInModel = 0;
+  m_pZoomInModel = 0;
   }
 }
 
 void CWellPath::OnNeighbourDeleted(const CGraphNode &node)
 {
   if(m_pIntermediate)
-    m_pIntermediate->OnNeighbourDeleted(node);
-	const CDepletionStage* pStage=dynamic_cast<const CDepletionStage*>(&node);
-	if (pStage)
-	{
-		ClearLogdataMaps();
-		DsbResults().ClearAllResults();
-		Modified();
-	}
+  m_pIntermediate->OnNeighbourDeleted(node);
+  const CDepletionStage* pStage=dynamic_cast<const CDepletionStage*>(&node);
+  if (pStage)
+  {
+    ClearLogdataMaps();
+    DsbResults().ClearAllResults();
+    Modified();
+  }
 
   if(&node == m_pZoomInModel)
-    m_pZoomInModel = 0;
+  m_pZoomInModel = 0;
 
-	CColorNode::OnNeighbourDeleted(node);
+  CColorNode::OnNeighbourDeleted(node);
 }
 
 void CWellPath::OnNewNeighbour(const CGraphNode& node)
 {
   if(m_pIntermediate->OnNewNeighbour(node))
-    FormationSections(); // trigger update
-	const CDepletionStage* pStage=dynamic_cast<const CDepletionStage*>(&node);
-	if (pStage)
-	{
-		ClearLogdataMaps();
-		DsbResults().ClearAllResults();
-		Modified();
-	}
+  FormationSections(); // trigger update
+  const CDepletionStage* pStage=dynamic_cast<const CDepletionStage*>(&node);
+  if (pStage)
+  {
+    ClearLogdataMaps();
+    DsbResults().ClearAllResults();
+    Modified();
+  }
 
-	CColorNode::OnNewNeighbour(node);
+  CColorNode::OnNewNeighbour(node);
 }
 
 well::CWellLog *CWellPath::WellLog(CFormationSection *pSection) const
 {
-	CWellPath::TSectDeplLogMap::const_iterator it;
-	it = m_mpSectDplLog.find(pSection);
-	if(it == m_mpSectDplLog.end())
-		return 0;
+  CWellPath::TSectDeplLogMap::const_iterator it;
+  it = m_mpSectDplLog.find(pSection);
+  if(it == m_mpSectDplLog.end())
+    return 0;
 
-	return (*it).second.second;
+  return (*it).second.second;
 }
 
 void CWellPath::InsertLog(CFormationSection *pSection, CDepletionStage *pStage, well::CWellLog *pWellLog)
 {
-	CWellPath::TSectDeplLogMap::iterator it;
-	it = m_mpSectDplLog.find(pSection);
+  CWellPath::TSectDeplLogMap::iterator it;
+  it = m_mpSectDplLog.find(pSection);
 
-	if(it != m_mpSectDplLog.end())
-		m_mpSectDplLog.erase(it);
+  if(it != m_mpSectDplLog.end())
+    m_mpSectDplLog.erase(it);
 
-	m_mpSectDplLog.insert(CWellPath::TSectDeplLogMap::value_type(pSection, CWellPath::TStageLogPair(pStage, pWellLog)));
+  m_mpSectDplLog.insert(CWellPath::TSectDeplLogMap::value_type(pSection, CWellPath::TStageLogPair(pStage, pWellLog)));
 }
 
 void CWellPath::InsertCorrection(CFormationSection *pSection, bool bCorrect)
 {
-	std::map<CFormationSection*, bool>::iterator it = m_mpCorrectAllStages.find(pSection);
-	if(it == m_mpCorrectAllStages.end())
-		m_mpCorrectAllStages.insert(std::map<CFormationSection*, bool>::value_type(pSection, bCorrect));
-	else
-		it->second = bCorrect;
+  std::map<CFormationSection*, bool>::iterator it = m_mpCorrectAllStages.find(pSection);
+  if(it == m_mpCorrectAllStages.end())
+    m_mpCorrectAllStages.insert(std::map<CFormationSection*, bool>::value_type(pSection, bCorrect));
+  else
+    it->second = bCorrect;
 }
 
 bool CWellPath::UseCorrection(CFormationSection *pSection) const
 {
-	std::map<CFormationSection*, bool>::const_iterator it;
-	it = m_mpCorrectAllStages.find(pSection);
-	
-	if(it == m_mpCorrectAllStages.end())
-		return false; // something is wrong
-	
-	return it->second;
+  std::map<CFormationSection*, bool>::const_iterator it;
+  it = m_mpCorrectAllStages.find(pSection);
+  
+  if(it == m_mpCorrectAllStages.end())
+    return false; // something is wrong
+  
+  return it->second;
 }
 
 // This function is used whenever the 'regular' strains have to be displayes in a DCasint situation
 // is called in DCasintView and in CDCasingLogRatDlg......
 void CWellPath::GetGeomecStrainValues(well::CWellPointList &list, well::CWellPointValueMap &map, const CDepletionStage &stage, const CAnalysisType& antype) const
 {
-	map.ClearMap();
-	const CModelBase &model = (const CModelBase&)(Model());
-	const CResultTree &result_tree = model.ResultTree();
-	int nMode = result_tree.TotalStrain().Components().Mode(antype, stage);
-	assert(nMode >= 0);
+  map.ClearMap();
+  const CModelBase &model = (const CModelBase&)(Model());
+  const CResultTree &result_tree = model.ResultTree();
+  int nMode = result_tree.TotalStrain().Components().Mode(antype, stage);
+  assert(nMode >= 0);
 
-	well::CWellPointList::Iterator it_list = list.begin();
-	while(it_list != list.end())
-	{
-		CStrainTensor geom_eps(
-		result_tree.TotalStrain().Components().Component(ITensorGroup::CComponentComposite::TC_XX, nMode).ScalarData().ValuePoint(**it_list).Value(),
-		result_tree.TotalStrain().Components().Component(ITensorGroup::CComponentComposite::TC_YY, nMode).ScalarData().ValuePoint(**it_list).Value(),
-		result_tree.TotalStrain().Components().Component(ITensorGroup::CComponentComposite::TC_ZZ, nMode).ScalarData().ValuePoint(**it_list).Value(),
-		result_tree.TotalStrain().Components().Component(ITensorGroup::CComponentComposite::TC_XY, nMode).ScalarData().ValuePoint(**it_list).Value(),
-		result_tree.TotalStrain().Components().Component(ITensorGroup::CComponentComposite::TC_YZ, nMode).ScalarData().ValuePoint(**it_list).Value(),
-		result_tree.TotalStrain().Components().Component(ITensorGroup::CComponentComposite::TC_ZX, nMode).ScalarData().ValuePoint(**it_list).Value());
+  well::CWellPointList::Iterator it_list = list.begin();
+  while(it_list != list.end())
+  {
+    CStrainTensor geom_eps(
+    result_tree.TotalStrain().Components().Component(ITensorGroup::CComponentComposite::TC_XX, nMode).ScalarData().ValuePoint(**it_list).Value(),
+    result_tree.TotalStrain().Components().Component(ITensorGroup::CComponentComposite::TC_YY, nMode).ScalarData().ValuePoint(**it_list).Value(),
+    result_tree.TotalStrain().Components().Component(ITensorGroup::CComponentComposite::TC_ZZ, nMode).ScalarData().ValuePoint(**it_list).Value(),
+    result_tree.TotalStrain().Components().Component(ITensorGroup::CComponentComposite::TC_XY, nMode).ScalarData().ValuePoint(**it_list).Value(),
+    result_tree.TotalStrain().Components().Component(ITensorGroup::CComponentComposite::TC_YZ, nMode).ScalarData().ValuePoint(**it_list).Value(),
+    result_tree.TotalStrain().Components().Component(ITensorGroup::CComponentComposite::TC_ZX, nMode).ScalarData().ValuePoint(**it_list).Value());
 
-		geo::CVector direction = (*it_list)->GetDirection();
-		direction = direction.UnitVector();
-		geo::CVector perp1 = direction.GetNormal();
-		perp1.UnitVector();
-		geo::CVector perp2;
-		perp2 = direction.CrossProduct(perp1);
+    geo::CVector direction = (*it_list)->GetDirection();
+    direction = direction.UnitVector();
+    geo::CVector perp1 = direction.GetNormal();
+    perp1.UnitVector();
+    geo::CVector perp2;
+    perp2 = direction.CrossProduct(perp1);
 
-		geo::CMatrix rot_mat(3, 3);
-		rot_mat.Value(0, 0, perp1.X());	rot_mat.Value(0, 1, perp2.X()); rot_mat.Value(0, 2, direction.X());
-		rot_mat.Value(1, 0, perp1.Y()); rot_mat.Value(1, 1, perp2.Y()); rot_mat.Value(1, 2, direction.Y());
-		rot_mat.Value(2, 0, perp1.Z()); rot_mat.Value(2, 1, perp2.Z()); rot_mat.Value(2, 2, direction.Z());
+    geo::CMatrix rot_mat(3, 3);
+    rot_mat.Value(0, 0, perp1.X());	rot_mat.Value(0, 1, perp2.X()); rot_mat.Value(0, 2, direction.X());
+    rot_mat.Value(1, 0, perp1.Y()); rot_mat.Value(1, 1, perp2.Y()); rot_mat.Value(1, 2, direction.Y());
+    rot_mat.Value(2, 0, perp1.Z()); rot_mat.Value(2, 1, perp2.Z()); rot_mat.Value(2, 2, direction.Z());
 
-		CStrainTensor tens_rot = geom_eps.RotateTensor(rot_mat);
-			
-		map.InsertItem(*it_list, tens_rot.ZZ());
-		++it_list;
-	} 
+    CStrainTensor tens_rot = geom_eps.RotateTensor(rot_mat);
+      
+    map.InsertItem(*it_list, tens_rot.ZZ());
+    ++it_list;
+  } 
 }
 
 const CFormationSection *CWellPath::FormationSection(const CGeoWellPoint &pt) const
 {
-	const well::CWellSectionList &list = FormationSections();
-	well::CWellSectionList formation_list = list.GetSections( pt );
-	if( formation_list.NrOfSections() == 0 ) return 0;
-	assert( formation_list.NrOfSections() == 1 );
-	well::CWellSectionList::Iterator it = formation_list.begin();
-	assert(it != formation_list.end());
-	return dynamic_cast<const CFormationSection*>( *it );
+  const well::CWellSectionList &list = FormationSections();
+  well::CWellSectionList formation_list = list.GetSections( pt );
+  if( formation_list.NrOfSections() == 0 ) return 0;
+  assert( formation_list.NrOfSections() == 1 );
+  well::CWellSectionList::Iterator it = formation_list.begin();
+  assert(it != formation_list.end());
+  return dynamic_cast<const CFormationSection*>( *it );
 }
 
 void CWellPath::ClearLogdataMaps()
 {
-	m_mpCorrectAllStages.clear();
+  m_mpCorrectAllStages.clear();
 
-	TSectDeplLogMap::iterator it;
-	for(it = m_mpSectDplLog.begin(); it != m_mpSectDplLog.end(); it++)
-	{
-		delete it->second.second;
-	}
+  TSectDeplLogMap::iterator it;
+  for(it = m_mpSectDplLog.begin(); it != m_mpSectDplLog.end(); it++)
+  {
+    delete it->second.second;
+  }
 
 
-	m_mpSectDplLog.clear();
+  m_mpSectDplLog.clear();
 }
 
 void CWellPath::ToggleDrawWellInfo()
 {
-	DrawWellInfo(!DrawWellInfo());
+  DrawWellInfo(!DrawWellInfo());
 }
 
 void CWellPath::DrawWellInfo(bool bDraw)
 {
   if(bDraw != m_pIntermediate->DrawInfo())
   {
-    m_pIntermediate->DrawInfo(bDraw);
-    Modified();
+  m_pIntermediate->DrawInfo(bDraw);
+  Modified();
   }
 /*
-	if(bDraw != DrawWellInfo())
-	{
-		m_pSceneInterMed->DrawWellInfo(bDraw);
-		Modified();
-	}
+  if(bDraw != DrawWellInfo())
+  {
+    m_pSceneInterMed->DrawWellInfo(bDraw);
+    Modified();
+  }
 */
 }
 
@@ -2960,7 +2960,7 @@ bool CWellPath::DrawWellInfo() const
 bool CWellPath::CanZoomIn() const
 {
   if(m_pZoomInModel != 0)
-    return false;
+  return false;
 
   const well::CWellPointList& lstFormationPoints = FormIntersecPoints();
   return (lstFormationPoints.First() != 0 && lstFormationPoints.Last() != 0);
@@ -2999,28 +2999,28 @@ CWellPathEntry::CWellPathEntry(C3DModel &model)
 
 CWellPathEntry::~CWellPathEntry() 
 {
-	while (EntryNodes().begin() != EntryNodes().end())
-	{
-		(*EntryNodes().begin())->destroy(); // Normally things work with delete
-	}
+  while (EntryNodes().begin() != EntryNodes().end())
+  {
+    (*EntryNodes().begin())->destroy(); // Normally things work with delete
+  }
 }
 
 void CWellPathEntry::ShowAllWellPathInfo()
 {
-	AllWellPathInfo(true);
+  AllWellPathInfo(true);
 }
 
 void CWellPathEntry::HideAllWellPathInfo()
 {
-	AllWellPathInfo(false);
+  AllWellPathInfo(false);
 }
 
 void CWellPathEntry::AllWellPathInfo(bool bShow)
 {
-	CWellPathEntry::TNodeSet stWellPaths = EntryNodes();
-	CWellPathEntry::TNodeSet::iterator it;
-	for(it = stWellPaths.begin(); it != stWellPaths.end(); ++it)
-		(*it)->DrawWellInfo(bShow);
+  CWellPathEntry::TNodeSet stWellPaths = EntryNodes();
+  CWellPathEntry::TNodeSet::iterator it;
+  for(it = stWellPaths.begin(); it != stWellPaths.end(); ++it)
+    (*it)->DrawWellInfo(bShow);
 }
 
 bool CWellPathEntry::CanExport() const
@@ -3030,73 +3030,73 @@ bool CWellPathEntry::CanExport() const
 
 bool CWellPathEntry::CanExportToFist() const
 {
-	CModelBase& model = (CModelBase&)(Model());
-	if(!model.IsResult())
-		return false;
+  CModelBase& model = (CModelBase&)(Model());
+  if(!model.IsResult())
+    return false;
 
-	CWellPathEntry::TNodeSet well_paths = EntryNodes();
-	if(well_paths.size() == 0)
-		return false;
-	for(CWellPathEntry::TNodeSet::iterator it = well_paths.begin(); it != well_paths.end(); it++)
-	{
-		if((*it)->FistExportPoints().NrOfPoints() > 0)
-			return true;
-	}
+  CWellPathEntry::TNodeSet well_paths = EntryNodes();
+  if(well_paths.size() == 0)
+    return false;
+  for(CWellPathEntry::TNodeSet::iterator it = well_paths.begin(); it != well_paths.end(); it++)
+  {
+    if((*it)->FistExportPoints().NrOfPoints() > 0)
+      return true;
+  }
 
-	return false;
+  return false;
 }
 
 bool CWellPathEntry::ImportFile(const QString &strFileName, IProgressBase &dlg, CModelBase &model, const CQuantity::UNIT& /*unit*/)
 {
-	QString sPath,sFile;
-	SplitPathAndFileName(strFileName,sPath,sFile);
-	std::auto_ptr <IProgressBase> prog(_g->prog()->create(eProgress::Geo, ""));
-	if(sFile.right(4).compare(".MWR", Qt::CaseInsensitive) == 0) {
-		assert(false);
-	} else if((sFile.right(4).compare(".DAT", Qt::CaseInsensitive) == 0) ||
-		      (sFile.right(4).compare(".TXT", Qt::CaseInsensitive) == 0)) {
+  QString sPath,sFile;
+  SplitPathAndFileName(strFileName,sPath,sFile);
+  std::auto_ptr <IProgressBase> prog(_g->prog()->create(eProgress::Geo, ""));
+  if(sFile.right(4).compare(".MWR", Qt::CaseInsensitive) == 0) {
     assert(false);
-	} else if(sFile.right(4).compare(".XLS", Qt::CaseInsensitive) == 0 || sFile.right(5).left(4).compare(".XLS", Qt::CaseInsensitive) == 0) {
-		CElementSetExcelFile file( (CModelBase&)model, false );
-		CGraphNode::TNodeVec nodeVec;
-		file.ReadSheets(strFileName.toStdString().c_str(), dlg, nodeVec);
-	} else if(sFile.right(3).compare(".MX", Qt::CaseInsensitive) == 0) {
+  } else if((sFile.right(4).compare(".DAT", Qt::CaseInsensitive) == 0) ||
+          (sFile.right(4).compare(".TXT", Qt::CaseInsensitive) == 0)) {
+  assert(false);
+  } else if(sFile.right(4).compare(".XLS", Qt::CaseInsensitive) == 0 || sFile.right(5).left(4).compare(".XLS", Qt::CaseInsensitive) == 0) {
+    CElementSetExcelFile file( (CModelBase&)model, false );
+    CGraphNode::TNodeVec nodeVec;
+    file.ReadSheets(strFileName.toStdString().c_str(), dlg, nodeVec);
+  } else if(sFile.right(3).compare(".MX", Qt::CaseInsensitive) == 0) {
 
-		// Load GoCad File
-		CGoCadWellFile file;
-		if(file.Open(strFileName, *prog)) {
+    // Load GoCad File
+    CGoCadWellFile file;
+    if(file.Open(strFileName, *prog)) {
 
-			for(int k=0; k < file.wellSize();k++)
-			{
-				QString wellName = file.wellName(k);
+      for(int k=0; k < file.wellSize();k++)
+      {
+        QString wellName = file.wellName(k);
 
-				CWellPath* pWellPath = new CWellPath(wellName, model);
-				int size = file.pointSize(k);
+        CWellPath* pWellPath = new CWellPath(wellName, model);
+        int size = file.pointSize(k);
 
-				QVector<geo::CPoint> vcPoint(size);
+        QVector<geo::CPoint> vcPoint(size);
 
-				for(int i=0 ; i< size;i++)
-				{
-					vcPoint[i]=file.pointAt(k,i);
-				}
-				pWellPath->InitFromPointArray(vcPoint);
-			}
-			
-		} else {
-			_m()->msg(file.ErrorMessage());
-		}
-	} else {
+        for(int i=0 ; i< size;i++)
+        {
+          vcPoint[i]=file.pointAt(k,i);
+        }
+        pWellPath->InitFromPointArray(vcPoint);
+      }
+      
+    } else {
+      _m()->msg(file.ErrorMessage());
+    }
+  } else {
 
-	}
+  }
 
-	return true;
+  return true;
 }
 
 //*********************************************  CDstaborWellPoint ******************************************
 
 CDstaborWellPoint::~CDstaborWellPoint()
 {
-	((CWellPath*)(&WellPath()))->DsbResults().RemoveResult(*this);
+  ((CWellPath*)(&WellPath()))->DsbResults().RemoveResult(*this);
 }
 
 CDstaborWellPoint::CDstaborWellPoint(const CWellPath& wellpath , const double& tmd)
@@ -3123,34 +3123,34 @@ CGeoWellPoint::CGeoWellPoint(const CGeoWellPoint& rhs)
 CGeoWellPoint& CGeoWellPoint::operator=(const CGeoWellPoint& rhs)
 {
 
-	CWellPoint::operator=(rhs);
-	m_pFormation=rhs.m_pFormation;
-	//const_cast<CModelBase&>(m_model) = rhs.m_model;
-	m_model = rhs.m_model;
-	m_bInit=rhs.m_bInit;
-	return *this;
+  CWellPoint::operator=(rhs);
+  m_pFormation=rhs.m_pFormation;
+  //const_cast<CModelBase&>(m_model) = rhs.m_model;
+  m_model = rhs.m_model;
+  m_bInit=rhs.m_bInit;
+  return *this;
 }
 
 void CGeoWellPoint::InitPoint() const
 {
-	m_bInit = true;
-	m_pFormation = 0;
+  m_bInit = true;
+  m_pFormation = 0;
 
 
-	// Get the point from the mesh
-	std::vector<int> vcElement = m_model->Mesh().Mesh().ElementsAt(*this);
-	for(size_t i = 0; i < vcElement.size(); i++)
-	{
-		const geo::IElement& element = m_model->Mesh().Mesh().Element(vcElement[i]);
-		if(dynamic_cast<const geo::IBody*>(&element))
-		{
-			if(element.Contains(*this,true))
-			{
-				m_pFormation = const_cast<CFormationBase*>(m_model->Mesh().Formation(element));
-				return;
-			}
-		}
-	}
+  // Get the point from the mesh
+  std::vector<int> vcElement = m_model->Mesh().Mesh().ElementsAt(*this);
+  for(size_t i = 0; i < vcElement.size(); i++)
+  {
+    const geo::IElement& element = m_model->Mesh().Mesh().Element(vcElement[i]);
+    if(dynamic_cast<const geo::IBody*>(&element))
+    {
+      if(element.Contains(*this,true))
+      {
+        m_pFormation = const_cast<CFormationBase*>(m_model->Mesh().Formation(element));
+        return;
+      }
+    }
+  }
 }
 
 CGeoWellPoint::CGeoWellPoint(CModelBase& model, const well::CWellPoint& wellpoint)
@@ -3163,29 +3163,29 @@ CGeoWellPoint::CGeoWellPoint(CModelBase& model, const well::CWellPoint& wellpoin
 
 /*virtual*/ bool CGeoWellPoint::Defined() const
 {
-	if(!CWellPoint::Defined())
-		return false;
+  if(!CWellPoint::Defined())
+    return false;
 
-	if(!Formation())
-		return false;
+  if(!Formation())
+    return false;
 
-	return true;
+  return true;
 }
 
 /*virtual*/ void CGeoWellPoint::Invalidate()
 {
-	CWellPoint::Invalidate();
-	m_bInit=false;
-	m_pFormation=0;
+  CWellPoint::Invalidate();
+  m_bInit=false;
+  m_pFormation=0;
 }
 
 const CFormationBase* CGeoWellPoint::Formation() const
 {
-	if(!m_bInit)
-		InitPoint();
+  if(!m_bInit)
+    InitPoint();
 
 
-	return m_pFormation;
+  return m_pFormation;
 }
 
 
@@ -3202,24 +3202,24 @@ CWellPointResultKey::CWellPointResultKey(const well::CWellPoint& point ,const CD
 
 bool CWellPointResultKey::operator<( const CWellPointResultKey& rhs) const
 {
-	if(m_point > rhs.m_point)
-		return false;
-
-	if(m_point < rhs.m_point)
-		return true;
-
-	if(&m_stage > &rhs.m_stage)
-		return false;
-
-	if(&m_stage < &rhs.m_stage)
-		return true;
-
-  if(m_antype > rhs.m_antype)
+  if(m_point > rhs.m_point)
     return false;
 
-  if(m_antype < rhs.m_antype)
+  if(m_point < rhs.m_point)
     return true;
 
-	//equal point
-	return false;
+  if(&m_stage > &rhs.m_stage)
+    return false;
+
+  if(&m_stage < &rhs.m_stage)
+    return true;
+
+  if(m_antype > rhs.m_antype)
+  return false;
+
+  if(m_antype < rhs.m_antype)
+  return true;
+
+  //equal point
+  return false;
 }

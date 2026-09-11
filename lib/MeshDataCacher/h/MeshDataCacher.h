@@ -28,8 +28,8 @@ class CMeshDataCacher
   friend class CStorageInterfaceDefault;
   friend class ::CHDF5StorageInterface;
 
-	const geo::IMesh &m_mesh;
-	CCache *m_pCache;
+  const geo::IMesh &m_mesh;
+  CCache *m_pCache;
 
   IStorageInterface *m_storage;
 
@@ -42,10 +42,10 @@ class CMeshDataCacher
 
 
 public:
-	// cache size is in Mb (1024 * 1024 bytes), and is a real maximum, unless only one cell can fit, 512Mb by default
+  // cache size is in Mb (1024 * 1024 bytes), and is a real maximum, unless only one cell can fit, 512Mb by default
   // we get ownership of the storage interface
-	CMeshDataCacher(const geo::IMesh &mesh, IStorageInterface *storage, int nCacheSizeMb = 512);
-	virtual ~CMeshDataCacher();
+  CMeshDataCacher(const geo::IMesh &mesh, IStorageInterface *storage, int nCacheSizeMb = 512);
+  virtual ~CMeshDataCacher();
 
   void Flush();
 
@@ -55,12 +55,12 @@ public:
 
   void Resize(const char *directory, int cacheSize);
 
-	// the returned pointer contains the data for the element
-	// don't access beyond the element's number of nodes !
-	// returns NULL if the values could not be found
-	const double *Value(int nElement, int nColumn, int nNode = 0) const;
+  // the returned pointer contains the data for the element
+  // don't access beyond the element's number of nodes !
+  // returns NULL if the values could not be found
+  const double *Value(int nElement, int nColumn, int nNode = 0) const;
 
-	void Value(int nElement, int nColumn, int nNode, double val); // to set the nodal values for the elements
+  void Value(int nElement, int nColumn, int nNode, double val); // to set the nodal values for the elements
 
   bool StartCriticalSection(int nColumn, int nNumber); // see CCache
   void EndCriticalSection();

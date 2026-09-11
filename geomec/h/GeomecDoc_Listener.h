@@ -5,9 +5,9 @@
 class CGeomecDoc_Listener : public IListener
 {
 protected:
-	virtual void handle(Cmd cmd);
+  virtual void handle(Cmd cmd);
 
 public:
-	CGeomecDoc_Listener();
-	~CGeomecDoc_Listener();
+  CGeomecDoc_Listener();
+  ~CGeomecDoc_Listener();
 };

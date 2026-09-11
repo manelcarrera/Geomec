@@ -7,42 +7,42 @@
 template <class VALUE_TYPE, class SINGLE_TYPE, class GRADIENT_TYPE>
 class CFormationLoadGradientComponent : public CFormationLoadComponent<VALUE_TYPE>
 {
-	SINGLE_TYPE			m_ReferenceValue;
-	CLengthQuantity		m_ReferenceDepth;
-	GRADIENT_TYPE		m_Gradient;
+  SINGLE_TYPE			m_ReferenceValue;
+  CLengthQuantity		m_ReferenceDepth;
+  GRADIENT_TYPE		m_Gradient;
 
 public:
-	// Contruction
-	CFormationLoadGradientComponent(CFormationLoadBase<VALUE_TYPE> &formationload, bool bEmpty = false);
-	CFormationLoadGradientComponent(const CFormationLoadGradientComponent &rhs);
+  // Contruction
+  CFormationLoadGradientComponent(CFormationLoadBase<VALUE_TYPE> &formationload, bool bEmpty = false);
+  CFormationLoadGradientComponent(const CFormationLoadGradientComponent &rhs);
 
-	// IconId and TypeName
+  // IconId and TypeName
 //	virtual unsigned int TypeId() const;
 //	virtual unsigned int IconId() const;
 //	virtual QString TypeName() const;
 
-	// Get and set values
-	const SINGLE_TYPE& ReferenceValue() const;
-	const CLengthQuantity& ReferenceDepth() const;
-	const GRADIENT_TYPE& Gradient() const;
-	void Set(const double& dReferenceValue,
-			 const double& dReferenceDepth,
-			 const double& dGradient,
-			 const CQuantity::UNIT unit = CQuantity::SI_UNIT);
+  // Get and set values
+  const SINGLE_TYPE& ReferenceValue() const;
+  const CLengthQuantity& ReferenceDepth() const;
+  const GRADIENT_TYPE& Gradient() const;
+  void Set(const double& dReferenceValue,
+       const double& dReferenceDepth,
+       const double& dGradient,
+       const CQuantity::UNIT unit = CQuantity::SI_UNIT);
 
-	// Value implementation
-	virtual bool Defined() const;
+  // Value implementation
+  virtual bool Defined() const;
   virtual IValueDomainScalar::TValue ValuePoint(const geo::IPoint& pt, const CQuantity::UNIT unit = CQuantity::SI_UNIT, geo::IParallelInitializationCallback *cb = 0) const;
   virtual IValueDomainScalar::TValueVec ValueElement(const geo::IElement& elm, const CQuantity::UNIT unit = CQuantity::SI_UNIT, geo::IParallelInitializationCallback *cb = 0) const;
 
-	// Assignment
-	bool operator==(const CFormationLoadGradientComponent &rhs) const;
-	CFormationLoadGradientComponent& operator=(const CFormationLoadGradientComponent& rhs);
+  // Assignment
+  bool operator==(const CFormationLoadGradientComponent &rhs) const;
+  CFormationLoadGradientComponent& operator=(const CFormationLoadGradientComponent& rhs);
 
-	// Save and Load
-	virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-	virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
-	virtual long SavedItems() const;
+  // Save and Load
+  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
+  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  virtual long SavedItems() const;
 
   virtual bool PrepareMapping(const geo::IElementSet *pElementSet);
 };
@@ -65,42 +65,42 @@ CFormationLoadGradientComponent<VALUE_TYPE, SINGLE_TYPE, GRADIENT_TYPE>::CFormat
 template <class VALUE_TYPE, class SINGLE_TYPE, class GRADIENT_TYPE>
 const SINGLE_TYPE& CFormationLoadGradientComponent<VALUE_TYPE, SINGLE_TYPE, GRADIENT_TYPE>::ReferenceValue() const
 {
-	return m_ReferenceValue;
+  return m_ReferenceValue;
 }
 
 template <class VALUE_TYPE, class SINGLE_TYPE, class GRADIENT_TYPE>
 const CLengthQuantity& CFormationLoadGradientComponent<VALUE_TYPE, SINGLE_TYPE, GRADIENT_TYPE>::ReferenceDepth() const
 {
-	return m_ReferenceDepth;
+  return m_ReferenceDepth;
 }
 
 template <class VALUE_TYPE, class SINGLE_TYPE, class GRADIENT_TYPE>
 const GRADIENT_TYPE& CFormationLoadGradientComponent<VALUE_TYPE, SINGLE_TYPE, GRADIENT_TYPE>::Gradient() const
 {
-	return m_Gradient;
+  return m_Gradient;
 }
 
 template <class VALUE_TYPE, class SINGLE_TYPE, class GRADIENT_TYPE>
 void CFormationLoadGradientComponent<VALUE_TYPE, SINGLE_TYPE, GRADIENT_TYPE>::Set(const double& dReferenceValue,
-							 const double& dReferenceDepth,
-							 const double& dGradient,
-							 const CQuantity::UNIT unit)
+               const double& dReferenceDepth,
+               const double& dGradient,
+               const CQuantity::UNIT unit)
 {
-	m_ReferenceValue.Value(dReferenceValue, unit);
-	m_ReferenceDepth.Value(dReferenceDepth, unit);
-	m_Gradient.Value(dGradient, unit);
+  m_ReferenceValue.Value(dReferenceValue, unit);
+  m_ReferenceDepth.Value(dReferenceDepth, unit);
+  m_Gradient.Value(dGradient, unit);
 }
 
 template <class VALUE_TYPE, class SINGLE_TYPE, class GRADIENT_TYPE>
 bool CFormationLoadGradientComponent<VALUE_TYPE, SINGLE_TYPE, GRADIENT_TYPE>::Defined() const
 {
-	return true;
+  return true;
 }
 
 template <class VALUE_TYPE, class SINGLE_TYPE, class GRADIENT_TYPE>
 IValueDomainScalar::TValueVec CFormationLoadGradientComponent<VALUE_TYPE, SINGLE_TYPE, GRADIENT_TYPE>::ValueElement(const geo::IElement& elm, const CQuantity::UNIT unit, geo::IParallelInitializationCallback *cb) const
 {
-	const CModelBase& model = static_cast<const CModelBase&> (CFormationLoadComponent <VALUE_TYPE> ::Model());
+  const CModelBase& model = static_cast<const CModelBase&> (CFormationLoadComponent <VALUE_TYPE> ::Model());
 //	if(model.Mesh().FormationElementSet(elm).InitialPressure())
 //	{
 //		const CPressure* pPressure = dynamic_cast<const CPressure*> (&Parent());
@@ -110,21 +110,21 @@ IValueDomainScalar::TValueVec CFormationLoadGradientComponent<VALUE_TYPE, SINGLE
 //		}
 //	}
 
-	IValueDomainScalar::TValueVec vcRet = CFormationLoadComponent<VALUE_TYPE>::ValueElement(elm, unit, cb);
+  IValueDomainScalar::TValueVec vcRet = CFormationLoadComponent<VALUE_TYPE>::ValueElement(elm, unit, cb);
 
-	for(int i = 0; i < vcRet.size(); i++)
-	{
-		if(!vcRet[i].Valid())
-			vcRet[i] = geo::CValue((ReferenceDepth().Convert(model.Depth(elm.Point(i)), unit, CQuantity::SI_UNIT)  - ReferenceDepth().Value(unit)) * Gradient().Value(unit) + ReferenceValue().Value(unit));
-	}
+  for(int i = 0; i < vcRet.size(); i++)
+  {
+    if(!vcRet[i].Valid())
+      vcRet[i] = geo::CValue((ReferenceDepth().Convert(model.Depth(elm.Point(i)), unit, CQuantity::SI_UNIT)  - ReferenceDepth().Value(unit)) * Gradient().Value(unit) + ReferenceValue().Value(unit));
+  }
 
-	return vcRet;
+  return vcRet;
 }
 
 template <class VALUE_TYPE, class SINGLE_TYPE, class GRADIENT_TYPE>
 IValueDomainScalar::TValue CFormationLoadGradientComponent<VALUE_TYPE, SINGLE_TYPE, GRADIENT_TYPE>::ValuePoint(const geo::IPoint& pt, const CQuantity::UNIT unit, geo::IParallelInitializationCallback *cb) const
 {
-	const CModelBase& model = static_cast<const CModelBase&> (CFormationLoadComponent <VALUE_TYPE> ::Model());
+  const CModelBase& model = static_cast<const CModelBase&> (CFormationLoadComponent <VALUE_TYPE> ::Model());
 //	std::vector<int> vcCandidates = model.Mesh().Mesh().ElementsAt(pt);
 //	bool bInitial = false;
 //	int i;
@@ -141,79 +141,79 @@ IValueDomainScalar::TValue CFormationLoadGradientComponent<VALUE_TYPE, SINGLE_TY
 //		}
 //	}
 
-	geo::CValue value = CFormationLoadComponent<VALUE_TYPE>::ValuePoint(pt, unit, cb);
-	if(value.Valid())
-		return value;
+  geo::CValue value = CFormationLoadComponent<VALUE_TYPE>::ValuePoint(pt, unit, cb);
+  if(value.Valid())
+    return value;
 
-	return geo::CValue((ReferenceDepth().Convert(model.Depth(pt), unit, CQuantity::SI_UNIT)  - ReferenceDepth().Value(unit)) * Gradient().Value(unit) + ReferenceValue().Value(unit));
+  return geo::CValue((ReferenceDepth().Convert(model.Depth(pt), unit, CQuantity::SI_UNIT)  - ReferenceDepth().Value(unit)) * Gradient().Value(unit) + ReferenceValue().Value(unit));
 }
 
 template <class VALUE_TYPE, class SINGLE_TYPE, class GRADIENT_TYPE>
 bool CFormationLoadGradientComponent<VALUE_TYPE, SINGLE_TYPE, GRADIENT_TYPE>::operator==(const CFormationLoadGradientComponent &rhs) const
 {
-	if(rhs.IsCopy())
-	{
-		assert(CFormationLoadComponent <VALUE_TYPE> ::IsCopied());
-		if( !CFormationLoadComponent<VALUE_TYPE>::operator ==(rhs) )
-			return false;
-	}
-	
-	return ((ReferenceValue() == rhs.ReferenceValue()) &&
-			(ReferenceDepth() == rhs.ReferenceDepth()) &&
-			(Gradient() == rhs.Gradient()));
+  if(rhs.IsCopy())
+  {
+    assert(CFormationLoadComponent <VALUE_TYPE> ::IsCopied());
+    if( !CFormationLoadComponent<VALUE_TYPE>::operator ==(rhs) )
+      return false;
+  }
+  
+  return ((ReferenceValue() == rhs.ReferenceValue()) &&
+      (ReferenceDepth() == rhs.ReferenceDepth()) &&
+      (Gradient() == rhs.Gradient()));
 }
 
 template <class VALUE_TYPE, class SINGLE_TYPE, class GRADIENT_TYPE>
 CFormationLoadGradientComponent<VALUE_TYPE, SINGLE_TYPE, GRADIENT_TYPE>& CFormationLoadGradientComponent<VALUE_TYPE, SINGLE_TYPE, GRADIENT_TYPE>::operator=(const CFormationLoadGradientComponent& rhs)
 {
-	if(!((*this) == rhs))
-	{
-		CModelBase *pModel = dynamic_cast<CModelBase*> (&CFormationLoadComponent <VALUE_TYPE> ::Model());
-		assert(pModel);
-		pModel->ResultRegister().ClearLinear(false);
-    pModel->ResultRegister().ClearNonLinear(false);
-    pModel->ResultRegister().ClearMixture();
-	}
-		
-	if(rhs.IsCopy())
-	{
-		assert(CFormationLoadComponent <VALUE_TYPE> ::IsCopied());
-		CFormationLoadComponent<VALUE_TYPE>::operator=(rhs);
-	}
-	
-	m_ReferenceValue = rhs.ReferenceValue();
-	m_ReferenceDepth = rhs.ReferenceDepth();
-	m_Gradient = rhs.Gradient();
+  if(!((*this) == rhs))
+  {
+    CModelBase *pModel = dynamic_cast<CModelBase*> (&CFormationLoadComponent <VALUE_TYPE> ::Model());
+    assert(pModel);
+    pModel->ResultRegister().ClearLinear(false);
+  pModel->ResultRegister().ClearNonLinear(false);
+  pModel->ResultRegister().ClearMixture();
+  }
+    
+  if(rhs.IsCopy())
+  {
+    assert(CFormationLoadComponent <VALUE_TYPE> ::IsCopied());
+    CFormationLoadComponent<VALUE_TYPE>::operator=(rhs);
+  }
+  
+  m_ReferenceValue = rhs.ReferenceValue();
+  m_ReferenceDepth = rhs.ReferenceDepth();
+  m_Gradient = rhs.Gradient();
 
-	return *this;
+  return *this;
 }
 
 template <class VALUE_TYPE, class SINGLE_TYPE, class GRADIENT_TYPE>
 void CFormationLoadGradientComponent<VALUE_TYPE, SINGLE_TYPE, GRADIENT_TYPE>::SaveStream(TSTREAM &stream, TPROGRESS &progress)
 {
-	CFormationLoadComponent<VALUE_TYPE>::SaveStream(stream,progress);
-	stream << m_ReferenceValue.Value();
-	stream << m_ReferenceDepth.Value();
-	stream << m_Gradient.Value();
+  CFormationLoadComponent<VALUE_TYPE>::SaveStream(stream,progress);
+  stream << m_ReferenceValue.Value();
+  stream << m_ReferenceDepth.Value();
+  stream << m_Gradient.Value();
 }
 
 template <class VALUE_TYPE, class SINGLE_TYPE, class GRADIENT_TYPE>
 void CFormationLoadGradientComponent<VALUE_TYPE, SINGLE_TYPE, GRADIENT_TYPE>::LoadStream(TSTREAM &stream, CStreamVersion &version, TPROGRESS &progress)
 {
-	CFormationLoadComponent<VALUE_TYPE>::LoadStream(stream,version,progress);
-	double dVal;
-	stream >> dVal;
-	m_ReferenceValue.Value(dVal,CQuantity::SI_UNIT);
-	stream >> dVal;
-	m_ReferenceDepth.Value(dVal,CQuantity::SI_UNIT);
-	stream >> dVal;
-	m_Gradient.Value(dVal,CQuantity::SI_UNIT);
+  CFormationLoadComponent<VALUE_TYPE>::LoadStream(stream,version,progress);
+  double dVal;
+  stream >> dVal;
+  m_ReferenceValue.Value(dVal,CQuantity::SI_UNIT);
+  stream >> dVal;
+  m_ReferenceDepth.Value(dVal,CQuantity::SI_UNIT);
+  stream >> dVal;
+  m_Gradient.Value(dVal,CQuantity::SI_UNIT);
 }
 
 template <class VALUE_TYPE, class SINGLE_TYPE, class GRADIENT_TYPE>
 long CFormationLoadGradientComponent<VALUE_TYPE, SINGLE_TYPE, GRADIENT_TYPE>::SavedItems() const
 {
-	return CFormationLoadComponent<VALUE_TYPE>::SavedItems();
+  return CFormationLoadComponent<VALUE_TYPE>::SavedItems();
 }
 
 template <class VALUE_TYPE, class SINGLE_TYPE, class GRADIENT_TYPE>

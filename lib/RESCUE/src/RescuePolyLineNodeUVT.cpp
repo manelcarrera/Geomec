@@ -19,7 +19,7 @@ RescueTriangulatedSurface *RescuePolyLineNodeUVT::Face(RescueModel *model)
 {
   if (face == 0)
   {
-    face = model->TriangulatedSurfaceIdentifiedBy(faceID);
+  face = model->TriangulatedSurfaceIdentifiedBy(faceID);
   }
   return face;
 }
@@ -28,11 +28,11 @@ RESCUEBOOL RescuePolyLineNodeUVT::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescuePolyLineNodeUVT)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueObject::IsOfType(thisType);
+  return RescueObject::IsOfType(thisType);
   }
 }
 
@@ -41,14 +41,14 @@ RESCUEBOOL RescuePolyLineNodeUVT::CompareFace(RescueTriangulatedSurface *toCompa
   RESCUEBOOL myReturn = FALSE;
   if (toCompare == face)
   {
-    myReturn = TRUE;
+  myReturn = TRUE;
   }
   else if (toCompare != 0)
   {
-    if (toCompare->Identifier() == faceID)
-    {
+  if (toCompare->Identifier() == faceID)
+  {
       myReturn = TRUE;
-    }
+  }
   }
   return myReturn;
 }
@@ -61,18 +61,18 @@ void RescuePolyLineNodeUVT::Archive(RescueContext *context, FILE *archiveFile)
   myfprintf(context, archiveFile, faceNdx);
   if (faceID == 0)
   {
-    faceID = face->Identifier();
+  faceID = face->Identifier();
   }
   myfprintf(context, archiveFile, faceID);
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
 RescuePolyLineNodeUVT::RescuePolyLineNodeUVT(RescueContext *context, FILE *archiveFile)
-                                :RescueObject(context)
-                                ,face(0)
+                :RescueObject(context)
+                ,face(0)
 {
   isA = R_RescuePolyLineNodeUVT;
   myfscanf(context, archiveFile, &uValue);
@@ -81,14 +81,14 @@ RescuePolyLineNodeUVT::RescuePolyLineNodeUVT(RescueContext *context, FILE *archi
   myfscanf(context, archiveFile, &faceID);
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 

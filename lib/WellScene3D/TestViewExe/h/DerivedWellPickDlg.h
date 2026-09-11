@@ -14,8 +14,8 @@
 class CDerivedWellPoint: public well::CWellPoint
 {
 public:
-	CDerivedWellPoint(well::CWellPathBase& WellPath, double TMD,int extra );
-	virtual ~CDerivedWellPoint();
+  CDerivedWellPoint(well::CWellPathBase& WellPath, double TMD,int extra );
+  virtual ~CDerivedWellPoint();
 
 };
 
@@ -23,15 +23,15 @@ public:
 class CDerivedWellPickDlg : public CWellPointPickDlg  
 {
 public:
-	CDerivedWellPickDlg(well::CWellPointList* pList,
-						CWellSceneInterMed* pSceneInterMed,
-						QPtrVector<well::CWellSectionList> Sections,
-						CDoubleQuantity::UNIT unit = CDoubleQuantity::SI_UNIT,
-						CWnd* pParent = NULL);   
+  CDerivedWellPickDlg(well::CWellPointList* pList,
+            CWellSceneInterMed* pSceneInterMed,
+            QPtrVector<well::CWellSectionList> Sections,
+            CDoubleQuantity::UNIT unit = CDoubleQuantity::SI_UNIT,
+            CWnd* pParent = NULL);   
 
-	virtual well::CWellPoint*	OnCreateWellPoint(well::CWellPathBase& wellpath,double tmd);
-	virtual void OnAddDefault(well::CWellPointList& list){};
-	virtual ~CDerivedWellPickDlg();
+  virtual well::CWellPoint*	OnCreateWellPoint(well::CWellPathBase& wellpath,double tmd);
+  virtual void OnAddDefault(well::CWellPointList& list){};
+  virtual ~CDerivedWellPickDlg();
 
 };
 

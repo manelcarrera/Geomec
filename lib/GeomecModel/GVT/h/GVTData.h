@@ -33,19 +33,19 @@ class CGVTDataTypes
 public:
 
   typedef enum {
-    MeanStress = 0,
-    StressZZ,
-    StrainZZ,
-    Velocity,
-    Displacement
+  MeanStress = 0,
+  StressZZ,
+  StrainZZ,
+  Velocity,
+  Displacement
   } INPUT;
 
   typedef enum {
-    LENGTH = 0,
-    VSTRAIN,
-    TSTRAIN,
-    TIMESHIFT,
-    DELTAV,
+  LENGTH = 0,
+  VSTRAIN,
+  TSTRAIN,
+  TIMESHIFT,
+  DELTAV,
   } OUTPUT;
 
   typedef std::map<CFormationBase *, CGVTVelocityModel *> TFormationVelocityModels;

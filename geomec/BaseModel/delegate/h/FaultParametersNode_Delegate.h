@@ -15,7 +15,7 @@ public:
 private:
   CFaultParametersNode_Delegate(const CFaultParametersNode_Delegate& rhs);
   CFaultParametersNode_Delegate& operator = (
-    const CFaultParametersNode_Delegate& rhs);
+  const CFaultParametersNode_Delegate& rhs);
 
   CFaultParametersNode* m_faultParametersNode;
 

@@ -8,17 +8,17 @@ class COpenInventorSceneNode;
 class COpenInventorSceneNode_Delegate : public CStorageNode_Delegate
 {
 public:
-    COpenInventorSceneNode_Delegate(COpenInventorSceneNode* node);
+  COpenInventorSceneNode_Delegate(COpenInventorSceneNode* node);
 
-    virtual bool Attributes();
+  virtual bool Attributes();
 
 private:
-    COpenInventorSceneNode_Delegate(const COpenInventorSceneNode_Delegate& rhs);
-    COpenInventorSceneNode_Delegate& operator = (const COpenInventorSceneNode_Delegate& rhs);
+  COpenInventorSceneNode_Delegate(const COpenInventorSceneNode_Delegate& rhs);
+  COpenInventorSceneNode_Delegate& operator = (const COpenInventorSceneNode_Delegate& rhs);
 
-    COpenInventorSceneNode* m_Node;
+  COpenInventorSceneNode* m_Node;
 
-    REGISTER_DELEGATE(COpenInventorSceneNode, COpenInventorSceneNode_Delegate);
+  REGISTER_DELEGATE(COpenInventorSceneNode, COpenInventorSceneNode_Delegate);
 };
 
 #endif  // _OpenInventorSceneNode_Delegate_h_

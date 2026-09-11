@@ -13,9 +13,9 @@ private:
 public:
   static CValueTypeIdContainer* instance()
   {
-    if (obj==0)
+  if (obj==0)
       obj= new CValueTypeIdContainer;
-    return obj;
+  return obj;
   }
   void add(int id) { m_vcID.push_back(id);}
   size_t size() const { return m_vcID.size();}

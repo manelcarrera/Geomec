@@ -12,11 +12,11 @@ class CDumpModel
 public:
   enum TLineType
   {
-    text,
-    newLine,
-    boldText,
-    boldUnderlinedText,
-    redText
+  text,
+  newLine,
+  boldText,
+  boldUnderlinedText,
+  redText
   };
 
   CDumpModel(const CModelBase& model);

@@ -44,7 +44,7 @@ CWellCasingSteelMaterial::CWellCasingSteelMaterial(CWellCasingSteelMaterialEntry
 {
   size_t i;
   for(i = 0; i < sizeof(Default_StressStrain) / sizeof(TStressStrainInit); ++i)
-    m_StressStrain.push_back(std::make_pair(Default_StressStrain[i].stress, Default_StressStrain[i].strain));
+  m_StressStrain.push_back(std::make_pair(Default_StressStrain[i].stress, Default_StressStrain[i].strain));
 
   reParent(&entry);
 }
@@ -66,18 +66,18 @@ CWellCasingSteelMaterial& CWellCasingSteelMaterial::operator=(const CWellCasingS
 {
   if(!(*this == rhs))
   {
-    IMaterialBase::operator=(rhs);
+  IMaterialBase::operator=(rhs);
 
-    m_dYoung               = rhs.m_dYoung;
-    m_dPoisson             = rhs.m_dPoisson;
-    m_dDensity             = rhs.m_dDensity;
-    m_dThermalExpansion    = rhs.m_dThermalExpansion;
-    m_dThermalConductivity = rhs.m_dThermalConductivity;
-    m_dThermalCapacity     = rhs.m_dThermalCapacity;
-    m_bPerforated          = rhs.m_bPerforated;
-    m_StressStrain         = rhs.m_StressStrain;
+  m_dYoung               = rhs.m_dYoung;
+  m_dPoisson             = rhs.m_dPoisson;
+  m_dDensity             = rhs.m_dDensity;
+  m_dThermalExpansion    = rhs.m_dThermalExpansion;
+  m_dThermalConductivity = rhs.m_dThermalConductivity;
+  m_dThermalCapacity     = rhs.m_dThermalCapacity;
+  m_bPerforated          = rhs.m_bPerforated;
+  m_StressStrain         = rhs.m_StressStrain;
 
-    Modified();
+  Modified();
   }
 
   return *this;
@@ -86,26 +86,26 @@ CWellCasingSteelMaterial& CWellCasingSteelMaterial::operator=(const CWellCasingS
 bool CWellCasingSteelMaterial::operator==(const CWellCasingSteelMaterial& rhs) const
 {
   if(!IMaterialBase::operator==(rhs))
-    return false;
+  return false;
 
   return (
-    fabs(m_dYoung               - rhs.m_dYoung)               < 1e-6 &&
-    fabs(m_dPoisson             - rhs.m_dPoisson)             < 1e-8 &&
-    fabs(m_dDensity             - rhs.m_dDensity)             < 1e-6 &&
-    fabs(m_dThermalExpansion    - rhs.m_dThermalExpansion)    < 1e-6 &&
-    fabs(m_dThermalConductivity - rhs.m_dThermalConductivity) < 1e-6 &&
-    fabs(m_dThermalCapacity     - rhs.m_dThermalCapacity)     < 1e-6 &&
-    m_StressStrain              == rhs.m_StressStrain                &&
-    m_bPerforated               == rhs.m_bPerforated);
+  fabs(m_dYoung               - rhs.m_dYoung)               < 1e-6 &&
+  fabs(m_dPoisson             - rhs.m_dPoisson)             < 1e-8 &&
+  fabs(m_dDensity             - rhs.m_dDensity)             < 1e-6 &&
+  fabs(m_dThermalExpansion    - rhs.m_dThermalExpansion)    < 1e-6 &&
+  fabs(m_dThermalConductivity - rhs.m_dThermalConductivity) < 1e-6 &&
+  fabs(m_dThermalCapacity     - rhs.m_dThermalCapacity)     < 1e-6 &&
+  m_StressStrain              == rhs.m_StressStrain                &&
+  m_bPerforated               == rhs.m_bPerforated);
 }
 
 unsigned int CWellCasingSteelMaterial::IconId() const
 {
   // TODO
   if(ReadOnly())
-    return IDI_ROCK_MATERIAL_LOCKED;
+  return IDI_ROCK_MATERIAL_LOCKED;
 
-	return IDI_ROCK_MATERIAL;
+  return IDI_ROCK_MATERIAL;
 }
 
 unsigned int CWellCasingSteelMaterial::TypeId() const
@@ -118,17 +118,17 @@ double CWellCasingSteelMaterial::ParameterValue(unsigned int ValueTypeID) const
   switch(ValueTypeID)
   {
   case IDT_VALUETYPE_YOUNGS_MODULUS:
-    return m_dYoung;
+  return m_dYoung;
   case IDT_VALUETYPE_POISSONS_RATIO:
-    return m_dPoisson;
+  return m_dPoisson;
   case IDT_VALUETYPE_RHOB:
-    return m_dDensity;
+  return m_dDensity;
   case IDT_VALUETYPE_THERMAL_EXPANSION:
-    return m_dThermalExpansion;
+  return m_dThermalExpansion;
   case IDT_VALUETYPE_THERM_CONDUCT:
-    return m_dThermalConductivity;
+  return m_dThermalConductivity;
   case IDT_VALUETYPE_THERM_CAPACI:
-    return m_dThermalCapacity;
+  return m_dThermalCapacity;
   }
 
   assert(FALSE);
@@ -138,12 +138,12 @@ double CWellCasingSteelMaterial::ParameterValue(unsigned int ValueTypeID) const
 bool CWellCasingSteelMaterial::IsParameter(unsigned int ValueTypeID) const
 {
   return (
-    ValueTypeID == IDT_VALUETYPE_YOUNGS_MODULUS    ||
-    ValueTypeID == IDT_VALUETYPE_POISSONS_RATIO    ||
-    ValueTypeID == IDT_VALUETYPE_RHOB              ||
-    ValueTypeID == IDT_VALUETYPE_THERMAL_EXPANSION ||
-    ValueTypeID == IDT_VALUETYPE_THERM_CONDUCT     ||
-    ValueTypeID == IDT_VALUETYPE_THERM_CAPACI      );
+  ValueTypeID == IDT_VALUETYPE_YOUNGS_MODULUS    ||
+  ValueTypeID == IDT_VALUETYPE_POISSONS_RATIO    ||
+  ValueTypeID == IDT_VALUETYPE_RHOB              ||
+  ValueTypeID == IDT_VALUETYPE_THERMAL_EXPANSION ||
+  ValueTypeID == IDT_VALUETYPE_THERM_CONDUCT     ||
+  ValueTypeID == IDT_VALUETYPE_THERM_CAPACI      );
 }
 
 bool CWellCasingSteelMaterial::Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const
@@ -167,9 +167,9 @@ bool CWellCasingSteelMaterial::Write(const CFFMaterial &ffmat, dia::IDianaRunner
   size_t i;
   for(i = 0, it = m_StressStrain.begin(); it != m_StressStrain.end(); ++i, ++it)
   {
-    assert(i < m_StressStrain.size());
-    pKapsig[2 * i]     = (ftn_double_t)it->second;
-    pKapsig[2 * i + 1] = (ftn_double_t)it->first * 1e6;
+  assert(i < m_StressStrain.size());
+  pKapsig[2 * i]     = (ftn_double_t)it->second;
+  pKapsig[2 * i + 1] = (ftn_double_t)it->first * 1e6;
   }
 
   pKapsig[2 * m_StressStrain.size()] = 1.;
@@ -193,15 +193,15 @@ bool CWellCasingSteelMaterial::Write(const CFFMaterial &ffmat, dia::IDianaRunner
 runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE_CONTAINMENT)
 && m_bPerforated)
   {
-    // write modified permeability k' = k / mu
-    ftn_double_t mu = (ftn_double_t)ffmat.ParameterValue(IDT_VALUETYPE_VISCOSITY); // in cP (= 1e-3 Pa.s)
-    mu *= 1e-3; // Pa.s
-    ftn_double_t k = (ftn_double_t)ffmat.ParameterValue(IDT_VALUETYPE_PERMEA); // in mD (= 1e-15 m2)
-    k *= 1e-15; // m2
-    ftn_double_t k_mod = k / mu;
-    //    if(!m_bPerforated)
-    //      k_mod *= 1e-15; // very low permeability
-    PutItemLength("PERMEA", &k_mod, 1);
+  // write modified permeability k' = k / mu
+  ftn_double_t mu = (ftn_double_t)ffmat.ParameterValue(IDT_VALUETYPE_VISCOSITY); // in cP (= 1e-3 Pa.s)
+  mu *= 1e-3; // Pa.s
+  ftn_double_t k = (ftn_double_t)ffmat.ParameterValue(IDT_VALUETYPE_PERMEA); // in mD (= 1e-15 m2)
+  k *= 1e-15; // m2
+  ftn_double_t k_mod = k / mu;
+  //    if(!m_bPerforated)
+  //      k_mod *= 1e-15; // very low permeability
+  PutItemLength("PERMEA", &k_mod, 1);
   }
 
 if (runner.Controller().AnalysisType() == CAnalysisType::AT_HEAT)
@@ -218,7 +218,7 @@ if (runner.Controller().AnalysisType() == CAnalysisType::AT_HEAT)
   // according to heat flow design document by Chantal Frissen the POROSI
   // material parameter can not be present in heat flow calculation
   if (XistIndexed("POROSI", 0))
-    RemoveIndexedItem("POROSI", 0);
+  RemoveIndexedItem("POROSI", 0);
 }
 
 return true;
@@ -239,15 +239,15 @@ int CWellCasingSteelMaterial::WriteFilosParamSize(const CFFMaterial &/*ffmat*/, 
   size += 2 * m_StressStrain.size() + 2; // KAPSIG
 
   if ((runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE ||
-    runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE_CONTAINMENT)
-    && m_bPerforated)
+  runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE_CONTAINMENT)
+  && m_bPerforated)
   {
-    size += 1; // PERMEA
+  size += 1; // PERMEA
   }
 
   if (runner.Controller().AnalysisType() == CAnalysisType::AT_HEAT)
   {
-    size += 2; // CONDUC/CAPACI
+  size += 2; // CONDUC/CAPACI
   }
 
   return size;
@@ -260,70 +260,70 @@ bool CWellCasingSteelMaterial::WriteFilosParamName(const CFFMaterial &/*ffmat*/,
 
   if (i < 4)
   {
-    switch (i)
-    {
-    case 0:
+  switch (i)
+  {
+  case 0:
       strncpy(name, "YOUNG", 10);
       break;
-    case 1:
+  case 1:
       strncpy(name, "POISON", 10);
       break;
-    case 2:
+  case 2:
       strncpy(name, "DENSIT", 10);
       break;
-    case 3:
+  case 3:
       strncpy(name, "THERMX", 10);
       break;
-    default:
+  default:
       assert(false);
-    }
-    return true;
+  }
+  return true;
   }
   else if (i < 4 + 2 * m_StressStrain.size() + 2)
   {
-    QString kapsig = QString("KAPSIG(%1)").arg(i - 4 + 1);
-    strncpy(name, kapsig.toStdString().c_str(), kapsig.length());
-    return true;
+  QString kapsig = QString("KAPSIG(%1)").arg(i - 4 + 1);
+  strncpy(name, kapsig.toStdString().c_str(), kapsig.length());
+  return true;
   }
   else
   {
-    if ((runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE ||
+  if ((runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE ||
       runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE_CONTAINMENT)
       && m_bPerforated)
-    {
+  {
       if (i == 4 + 2 * m_StressStrain.size() + 2)
       {
-        strncpy(name, "PERMEA", 10);
-        return true;
+    strncpy(name, "PERMEA", 10);
+    return true;
       }
       else
       {
-        assert(false);
-        return false;
+    assert(false);
+    return false;
       }
-    }
+  }
 
-    if (runner.Controller().AnalysisType() == CAnalysisType::AT_HEAT)
-    {
+  if (runner.Controller().AnalysisType() == CAnalysisType::AT_HEAT)
+  {
       if (i == 4 + 2 * m_StressStrain.size() + 2)
       {
-        strncpy(name, "CONDUC", 10);
-        return true;
+    strncpy(name, "CONDUC", 10);
+    return true;
       }
       else if (i == 4 + 2 * m_StressStrain.size() + 2 + 1)
       {
-        strncpy(name, "CAPACI", 10);
-        return true;
+    strncpy(name, "CAPACI", 10);
+    return true;
       }
       else
       {
-        assert(false);
-        return false;
-      }
-    }
-
     assert(false);
     return false;
+      }
+  }
+
+  assert(false);
+  return false;
   }
 }
 
@@ -346,11 +346,11 @@ void CWellCasingSteelMaterial::WriteFilosParamValues(const CFFMaterial &ffmat, d
 
   for (CStressStrain::const_iterator it = m_StressStrain.begin(); it != m_StressStrain.end(); ++it)
   {
-    *values = it->second;
-    values += stride;
+  *values = it->second;
+  values += stride;
 
-    *values = it->first * 1e6;
-    values += stride;
+  *values = it->first * 1e6;
+  values += stride;
   }
 
   *values = 1;
@@ -360,34 +360,34 @@ void CWellCasingSteelMaterial::WriteFilosParamValues(const CFFMaterial &ffmat, d
   values += stride;
 
   if ((runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE ||
-    runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE_CONTAINMENT)
-    && m_bPerforated)
+  runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE_CONTAINMENT)
+  && m_bPerforated)
   {
-    // write modified permeability k' = k / mu
-    ftn_double_t mu = (ftn_double_t)ffmat.ParameterValue(IDT_VALUETYPE_VISCOSITY); // in cP (= 1e-3 Pa.s)
-    mu *= 1e-3; // Pa.s
-    ftn_double_t k = (ftn_double_t)ffmat.ParameterValue(IDT_VALUETYPE_PERMEA); // in mD (= 1e-15 m2)
-    k *= 1e-15; // m2
-    ftn_double_t k_mod = k / mu;
+  // write modified permeability k' = k / mu
+  ftn_double_t mu = (ftn_double_t)ffmat.ParameterValue(IDT_VALUETYPE_VISCOSITY); // in cP (= 1e-3 Pa.s)
+  mu *= 1e-3; // Pa.s
+  ftn_double_t k = (ftn_double_t)ffmat.ParameterValue(IDT_VALUETYPE_PERMEA); // in mD (= 1e-15 m2)
+  k *= 1e-15; // m2
+  ftn_double_t k_mod = k / mu;
 
-    *values = k_mod;
-    values += stride;
+  *values = k_mod;
+  values += stride;
   }
 
   if (runner.Controller().AnalysisType() == CAnalysisType::AT_HEAT)
   {
-    ftn_double_t ddum = (ftn_double_t)ffmat.ParameterValue(IDT_VALUETYPE_THERM_CONDUCT);
-    // use months as time unit instead of seconds
-    ddum *= SECONDS_PER_MONTH;
+  ftn_double_t ddum = (ftn_double_t)ffmat.ParameterValue(IDT_VALUETYPE_THERM_CONDUCT);
+  // use months as time unit instead of seconds
+  ddum *= SECONDS_PER_MONTH;
 
-    *values = ddum;
-    values += stride;
+  *values = ddum;
+  values += stride;
 
-    ddum = (ftn_double_t)ffmat.ParameterValue(IDT_VALUETYPE_THERM_CAPACI);
-    ddum *= (ftn_double_t)ffmat.ParameterValue(IDT_VALUETYPE_RHOB);
+  ddum = (ftn_double_t)ffmat.ParameterValue(IDT_VALUETYPE_THERM_CAPACI);
+  ddum *= (ftn_double_t)ffmat.ParameterValue(IDT_VALUETYPE_RHOB);
 
-    *values = ddum;
-    values += stride;
+  *values = ddum;
+  values += stride;
   }
 }
 
@@ -431,8 +431,8 @@ bool CWellCasingSteelMaterial::SetYoungsModulus(double dValue)
 {
   if(dValue > 0)
   {
-    m_dYoung = dValue;
-    return true;
+  m_dYoung = dValue;
+  return true;
   }
 
   return false;
@@ -442,8 +442,8 @@ bool CWellCasingSteelMaterial::SetPoissonsRatio(double dValue)
 {
   if(dValue >= 0 && dValue < 0.5)
   {
-    m_dPoisson = dValue;
-    return true;
+  m_dPoisson = dValue;
+  return true;
   }
 
   return false;
@@ -453,8 +453,8 @@ bool CWellCasingSteelMaterial::SetDensity(double dValue)
 {
   if(dValue >= 0)
   {
-    m_dDensity = dValue;
-    return true;
+  m_dDensity = dValue;
+  return true;
   }
 
   return false;
@@ -464,8 +464,8 @@ bool CWellCasingSteelMaterial::SetThermalExpansion(double dValue)
 {
   if(dValue >= 0)
   {
-    m_dThermalExpansion = dValue;
-    return true;
+  m_dThermalExpansion = dValue;
+  return true;
   }
 
   return false;
@@ -475,8 +475,8 @@ bool CWellCasingSteelMaterial::SetThermalConductivity(double dValue)
 {
   if(dValue >= 0)
   {
-    m_dThermalConductivity = dValue;
-    return true;
+  m_dThermalConductivity = dValue;
+  return true;
   }
 
   return false;
@@ -486,8 +486,8 @@ bool CWellCasingSteelMaterial::SetThermalCapacity(double dValue)
 {
   if(dValue >= 0)
   {
-    m_dThermalCapacity = dValue;
-    return true;
+  m_dThermalCapacity = dValue;
+  return true;
   }
 
   return false;
@@ -515,9 +515,9 @@ void CWellCasingSteelMaterial::LoadStream(TSTREAM& stream, CStreamVersion& versi
   stream >> m_dYoung >> m_dPoisson >> m_dDensity >> m_dThermalExpansion;
   if(version >= CStreamVersion(3, 7, 12))
   {
-    int nPerforated;
-    stream >> nPerforated;
-    m_bPerforated = (nPerforated != 0);
+  int nPerforated;
+  stream >> nPerforated;
+  m_bPerforated = (nPerforated != 0);
   }
   progress.Step();
 
@@ -553,28 +553,28 @@ bool CWellCasingSteelMaterial::Less(const CGraphNode& node) const
   const CWellCasingSteelMaterial* pMat = dynamic_cast<const CWellCasingSteelMaterial*>(&node);
   if(pMat)
   {
-    if(m_dYoung < pMat->m_dYoung) return true;
-    if(m_dYoung > pMat->m_dYoung) return false;
+  if(m_dYoung < pMat->m_dYoung) return true;
+  if(m_dYoung > pMat->m_dYoung) return false;
 
-    if(m_dPoisson < pMat->m_dPoisson) return true;
-    if(m_dPoisson > pMat->m_dPoisson) return false;
+  if(m_dPoisson < pMat->m_dPoisson) return true;
+  if(m_dPoisson > pMat->m_dPoisson) return false;
 
-    if(m_dDensity < pMat->m_dDensity) return true;
-    if(m_dDensity > pMat->m_dDensity) return false;
+  if(m_dDensity < pMat->m_dDensity) return true;
+  if(m_dDensity > pMat->m_dDensity) return false;
 
-    if(m_dThermalExpansion < pMat->m_dThermalExpansion) return true;
-    if(m_dThermalExpansion > pMat->m_dThermalExpansion) return false;
+  if(m_dThermalExpansion < pMat->m_dThermalExpansion) return true;
+  if(m_dThermalExpansion > pMat->m_dThermalExpansion) return false;
 
-    if(m_dThermalConductivity < pMat->m_dThermalConductivity) return true;
-    if(m_dThermalConductivity > pMat->m_dThermalConductivity) return false;
+  if(m_dThermalConductivity < pMat->m_dThermalConductivity) return true;
+  if(m_dThermalConductivity > pMat->m_dThermalConductivity) return false;
 
-    if(m_dThermalCapacity < pMat->m_dThermalCapacity) return true;
-    if(m_dThermalCapacity > pMat->m_dThermalCapacity) return false;
+  if(m_dThermalCapacity < pMat->m_dThermalCapacity) return true;
+  if(m_dThermalCapacity > pMat->m_dThermalCapacity) return false;
 
-    if(m_bPerforated < pMat->m_bPerforated) return true;
-    if(m_bPerforated > pMat->m_bPerforated) return false;
+  if(m_bPerforated < pMat->m_bPerforated) return true;
+  if(m_bPerforated > pMat->m_bPerforated) return false;
 
-    return m_StressStrain.Less(pMat->m_StressStrain);
+  return m_StressStrain.Less(pMat->m_StressStrain);
   }
 
   return IMaterialBase::Less(node);
@@ -708,11 +708,11 @@ void CWellCasingSteelMaterial::CStressStrain::LoadStream(CStorageNode::TSTREAM& 
   int i;
   for(i = 0; i < n; ++i)
   {
-    double dFirst;
-    double dSecond;
-    stream >> dFirst >> dSecond;
-    m_lstStressStrain.push_back(std::make_pair(dFirst, dSecond));
-    progress.Step();
+  double dFirst;
+  double dSecond;
+  stream >> dFirst >> dSecond;
+  m_lstStressStrain.push_back(std::make_pair(dFirst, dSecond));
+  progress.Step();
   }
 }
 
@@ -723,8 +723,8 @@ void CWellCasingSteelMaterial::CStressStrain::SaveStream(CStorageNode::TSTREAM& 
   iterator it;
   for(it = m_lstStressStrain.begin(); it != m_lstStressStrain.end(); ++it)
   {
-    stream << it->first << it->second;
-    progress.Step();
+  stream << it->first << it->second;
+  progress.Step();
   }
 }
 
@@ -754,8 +754,8 @@ void CWellCasingSteelMaterialEntry::LoadStream(CFemAppModel& /*model*/, TSTREAM&
   int i;
   for(i = 0; i < nMat; ++i)
   {
-    CWellCasingSteelMaterial* pMat = new CWellCasingSteelMaterial(*this, QString());
-    pMat->LoadStream(stream, version, progress);
+  CWellCasingSteelMaterial* pMat = new CWellCasingSteelMaterial(*this, QString());
+  pMat->LoadStream(stream, version, progress);
   }
 }
 
@@ -768,8 +768,8 @@ void CWellCasingSteelMaterialEntry::SaveStream(TSTREAM& stream, TPROGRESS& progr
   TNodeSet::const_iterator it;
   for(it = stNodes.begin(); it != stNodes.end(); ++it)
   {
-    (*it)->Index(++nIndex);
-    (*it)->SaveStream(stream, progress);
+  (*it)->Index(++nIndex);
+  (*it)->SaveStream(stream, progress);
   }
 }
 
@@ -780,7 +780,7 @@ long CWellCasingSteelMaterialEntry::SavedItems() const
   const TNodeSet& stNodes = EntryNodes();
   TNodeSet::const_iterator it;
   for(it = stNodes.begin(); it != stNodes.end(); ++it)
-    lRet += (*it)->SavedItems();
+  lRet += (*it)->SavedItems();
 
   return lRet;
 }
@@ -797,7 +797,7 @@ const size_t DEFAULT_INITIAL_NUMBER = 1;
 CWellCasingSteelMaterial& CWellCasingSteelMaterialEntry::InsertNew()
 {
   QString sName = createUniqueName(DEFAULT_STEEL_MATERIAL_NAME,
-    DEFAULT_INITIAL_NUMBER);
+  DEFAULT_INITIAL_NUMBER);
   CWellCasingSteelMaterial* pMat =  new CWellCasingSteelMaterial(*this, sName.toStdString().c_str());
   return *pMat;
 }

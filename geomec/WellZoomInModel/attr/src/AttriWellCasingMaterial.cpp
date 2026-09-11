@@ -22,7 +22,7 @@ bool CAttriWellCasingMaterialDlg::CanSetStrain(double dStrain) const
   CWellCasingSteelMaterial::CStressStrain::const_iterator it;
   for(it = Copy().StressStrain().begin(); it != Copy().StressStrain().end(); ++it)
   {
-    if(it->second == dStrain)
+  if(it->second == dStrain)
       return false;
   }
 
@@ -44,22 +44,22 @@ void CAttriWellCasingMaterialDlg::AddNew()
 {
   CWellCasingSteelMaterial::CStressStrain& ss = Copy().StressStrain();
   if(ss.empty())
-    ss.push_back(std::make_pair(10000., 0.0001));
+  ss.push_back(std::make_pair(10000., 0.0001));
   else if(ss.size() == 1)
   {
-    CWellCasingSteelMaterial::CStressStrain::TStressStrainPair pr = *ss.begin(); // copy
-    pr.first += 1000;
-    pr.second += 0.0001;
-    ss.push_back(pr);
+  CWellCasingSteelMaterial::CStressStrain::TStressStrainPair pr = *ss.begin(); // copy
+  pr.first += 1000;
+  pr.second += 0.0001;
+  ss.push_back(pr);
   }
   else
   {
-    CWellCasingSteelMaterial::CStressStrain::reverse_iterator rit = ss.rbegin();
-    CWellCasingSteelMaterial::CStressStrain::TStressStrainPair prLast = *rit;
-    CWellCasingSteelMaterial::CStressStrain::TStressStrainPair prNext = *(++rit);
-    prLast.first += (prLast.first - prNext.first);
-    prLast.second += (prLast.second - prNext.second);
-    ss.push_back(prLast);
+  CWellCasingSteelMaterial::CStressStrain::reverse_iterator rit = ss.rbegin();
+  CWellCasingSteelMaterial::CStressStrain::TStressStrainPair prLast = *rit;
+  CWellCasingSteelMaterial::CStressStrain::TStressStrainPair prNext = *(++rit);
+  prLast.first += (prLast.first - prNext.first);
+  prLast.second += (prLast.second - prNext.second);
+  ss.push_back(prLast);
   }
 
   new CStressStrainListObject(m_lbStressStrain, *ss.rbegin(), *this, UnitNode().Unit());
@@ -67,8 +67,8 @@ void CAttriWellCasingMaterialDlg::AddNew()
 
   if(ss.size() == MAX_NUM_SS_ITEMS) // max
   {
-    delete m_pNewListObject;
-    m_pNewListObject = 0;
+  delete m_pNewListObject;
+  m_pNewListObject = 0;
   }
 }
 
@@ -77,16 +77,16 @@ void CAttriWellCasingMaterialDlg::DeleteItem(std::pair<double, double>& prDelete
   CWellCasingSteelMaterial::CStressStrain::iterator it;
   for(it = Copy().StressStrain().begin(); it != Copy().StressStrain().end(); ++it)
   {
-    if(&*it == &prDelete)
-    {
+  if(&*it == &prDelete)
+  {
       Copy().StressStrain().erase(it);
       delete pListObject;
       break;
-    }
+  }
   }
 
   if(Copy().StressStrain().size() < MAX_NUM_SS_ITEMS && m_pNewListObject == 0)
-    m_pNewListObject = new CNewStressStrainListObject(m_lbStressStrain, *this);
+  m_pNewListObject = new CNewStressStrainListObject(m_lbStressStrain, *this);
 }
 
 void CAttriWellCasingMaterialDlg::DoDataExchange(CDataExchange* pDX)
@@ -109,15 +109,15 @@ void CAttriWellCasingMaterialDlg::DoDataExchange(CDataExchange* pDX)
 
   if(!pDX->m_bSaveAndValidate)
   {
-    strName = Copy().Name().toStdString().c_str();
-    dPoisson = Copy().PoissonsRatio();
-    dThermX = Copy().ThermalExpansion();
-    strThermXUnit = "C";
-    nPerforated = (Copy().Perforated() ? 1 : 0);
+  strName = Copy().Name().toStdString().c_str();
+  dPoisson = Copy().PoissonsRatio();
+  dThermX = Copy().ThermalExpansion();
+  strThermXUnit = "C";
+  nPerforated = (Copy().Perforated() ? 1 : 0);
 
-    switch(UnitNode().Unit())
-    {
-    case CDoubleQuantity::SI_UNIT:
+  switch(UnitNode().Unit())
+  {
+  case CDoubleQuantity::SI_UNIT:
       dYoung = Copy().YoungsModulus();
       strYoungUnit = "MPa";
       dDensity = Copy().Density();
@@ -127,7 +127,7 @@ void CAttriWellCasingMaterialDlg::DoDataExchange(CDataExchange* pDX)
       dThermCapaci = Copy().ThermalCapacity();
       strThermCapaciUnit = "J/kg/K";
       break;
-    case CDoubleQuantity::FIELD_UNIT:
+  case CDoubleQuantity::FIELD_UNIT:
       dYoung = Copy().YoungsModulus() * FF_FACTOR_STRESS;
       strYoungUnit = "psi";
       dDensity = Copy().Density() * FF_FACTOR_DENSITY;
@@ -137,9 +137,9 @@ void CAttriWellCasingMaterialDlg::DoDataExchange(CDataExchange* pDX)
       dThermCapaci = Copy().ThermalCapacity() * FF_FACTOR_THERM_CAPACI;
       strThermCapaciUnit = "J/lb/K";
       break;
-    default:
+  default:
       assert(FALSE);
-    }
+  }
   }
 
   DDX_Control(pDX, IDC_LST_STRESS_STRAIN, m_lbStressStrain);
@@ -159,71 +159,71 @@ void CAttriWellCasingMaterialDlg::DoDataExchange(CDataExchange* pDX)
 
   if(pDX->m_bSaveAndValidate)
   {
-    if(strName.IsEmpty())
-    {
+  if(strName.IsEmpty())
+  {
       _m()->msg("Please enter a valid name");
       pDX->PrepareEditCtrl(IDC_ED_NAME);
       pDX->Fail();
-    }
+  }
 
-    if(UnitNode().Unit() == CDoubleQuantity::FIELD_UNIT)
-    {
+  if(UnitNode().Unit() == CDoubleQuantity::FIELD_UNIT)
+  {
       dYoung /= FF_FACTOR_STRESS;
       dDensity /= FF_FACTOR_DENSITY;
       dThermConduc /= FF_FACTOR_THERM_CONDUCT;
       dThermCapaci /= FF_FACTOR_THERM_CAPACI;
-    }
+  }
 
-    if(dYoung < 0)
-    {
+  if(dYoung < 0)
+  {
       _m()->msg("Young's modulus must be greater than or equal to 0");
       pDX->PrepareEditCtrl(IDC_ED_YOUNG);
       pDX->Fail();
-    }
+  }
 
-    if(dPoisson < 0 || dPoisson >= 0.5)
-    {
+  if(dPoisson < 0 || dPoisson >= 0.5)
+  {
       _m()->msg("Poisson's ratio must greater than or equal to 0 and less than 0.5");
       pDX->PrepareEditCtrl(IDC_ED_POISSON);
       pDX->Fail();
-    }
+  }
 
-    if(dDensity < 0)
-    {
+  if(dDensity < 0)
+  {
       _m()->msg("Density must be greater than or equal to 0");
       pDX->PrepareEditCtrl(IDC_ED_DENSITY);
       pDX->Fail();
-    }
+  }
 
-    if(dThermX < 0 || dThermX > 1e-3)
-    {
+  if(dThermX < 0 || dThermX > 1e-3)
+  {
       _m()->msg("Thermal Expansion Coefficient must be at least 0 and at most 1e-3");
       pDX->PrepareEditCtrl(IDC_ED_THERMX);
       pDX->Fail();
-    }
+  }
 
-    if(dThermConduc < 0)
-    {
+  if(dThermConduc < 0)
+  {
       _m()->msg("Thermal Conductivity must be at least 0");
       pDX->PrepareEditCtrl(IDC_ED_THERMCONDUC);
       pDX->Fail();
-    }
+  }
 
-    if(dThermCapaci < 0)
-    {
+  if(dThermCapaci < 0)
+  {
       _m()->msg("Thermal Capacity must be at least 0");
       pDX->PrepareEditCtrl(IDC_ED_THERMCAPACI);
       pDX->Fail();
-    }
+  }
 
-    Copy().Name((LPCSTR) strName);
-    Copy().SetYoungsModulus(dYoung);
-    Copy().SetPoissonsRatio(dPoisson);
-    Copy().SetDensity(dDensity);
-    Copy().SetThermalExpansion(dThermX);
-    Copy().SetThermalConductivity(dThermConduc);
-    Copy().SetThermalCapacity(dThermCapaci);
-    Copy().SetPerforated(nPerforated != 0);
+  Copy().Name((LPCSTR) strName);
+  Copy().SetYoungsModulus(dYoung);
+  Copy().SetPoissonsRatio(dPoisson);
+  Copy().SetDensity(dDensity);
+  Copy().SetThermalExpansion(dThermX);
+  Copy().SetThermalConductivity(dThermConduc);
+  Copy().SetThermalCapacity(dThermCapaci);
+  Copy().SetPerforated(nPerforated != 0);
   }
 }
 
@@ -241,10 +241,10 @@ BOOL CAttriWellCasingMaterialDlg::OnInitDialog()
 
   CWellCasingSteelMaterial::CStressStrain::iterator it;
   for(it = Copy().StressStrain().begin(); it != Copy().StressStrain().end(); ++it)
-    new CStressStrainListObject(m_lbStressStrain, *it, *this, UnitNode().Unit());
+  new CStressStrainListObject(m_lbStressStrain, *it, *this, UnitNode().Unit());
 
   if(Copy().StressStrain().size() < MAX_NUM_SS_ITEMS)
-    m_pNewListObject = new CNewStressStrainListObject(m_lbStressStrain, *this);
+  m_pNewListObject = new CNewStressStrainListObject(m_lbStressStrain, *this);
 
   return TRUE;
 }
@@ -261,19 +261,19 @@ int CALLBACK CAttriWellCasingMaterialDlg::ListCtrlCompareFunc(LPARAM lParam1, LP
   const CAttriWellCasingMaterialDlg::CNewStressStrainListObject* pNewObject2 = dynamic_cast<const CAttriWellCasingMaterialDlg::CNewStressStrainListObject*>(pListObject2);
 
   if(pNewObject1 && pNewObject2)
-    return 0;
+  return 0;
   else if(pNewObject1)
-    return 1;
+  return 1;
   else if(pNewObject2)
-    return -1;
+  return -1;
 
   const CAttriWellCasingMaterialDlg::CStressStrainListObject* pObject1 = (const CAttriWellCasingMaterialDlg::CStressStrainListObject*)lParam1;
   const CAttriWellCasingMaterialDlg::CStressStrainListObject* pObject2 = (const CAttriWellCasingMaterialDlg::CStressStrainListObject*)lParam2;
 
   if(pObject1->Strain() < pObject2->Strain())
-    return -1;
+  return -1;
   if(pObject1->Strain() > pObject2->Strain())
-    return 1;
+  return 1;
   return 0;
 }
 
@@ -314,14 +314,14 @@ BOOL CAttriWellCasingMaterialDlg::CStressStrainListObject::EditText(const QStrin
   double d = qs.toDouble(&b);
   if(!b)
   {
-    m_dlg.SetWarning("Invalid value");
-    return FALSE;
+  m_dlg.SetWarning("Invalid value");
+  return FALSE;
   }
 
   if(d < 0)
   {
-    m_dlg.SetWarning("Stresses must be greater than 0");
-    return FALSE;
+  m_dlg.SetWarning("Stresses must be greater than 0");
+  return FALSE;
   }
 
   double dFactor = (m_unit == CDoubleQuantity::SI_UNIT ? 1 : FF_FACTOR_STRESS);
@@ -333,7 +333,7 @@ BOOL CAttriWellCasingMaterialDlg::CStressStrainListObject::EditText(const QStrin
 void CAttriWellCasingMaterialDlg::CStressStrainListObject::OnDoubleClick(int nItemIndex)
 {
   if(!nItemIndex)
-    Ctrl().EditLabel(Index());
+  Ctrl().EditLabel(Index());
 }
 
 double CAttriWellCasingMaterialDlg::CStressStrainListObject::Stress() const
@@ -353,20 +353,20 @@ BOOL CAttriWellCasingMaterialDlg::CStressStrainListObject::EditStrainText(const 
   double dStrain = qs.toDouble(&b);
   if(!b)
   {
-    m_dlg.SetWarning("Invalid value");
-    return FALSE;
+  m_dlg.SetWarning("Invalid value");
+  return FALSE;
   }
 
   if(dStrain < 0)
   {
-    m_dlg.SetWarning("Strains must be greater than 0");
-    return FALSE;
+  m_dlg.SetWarning("Strains must be greater than 0");
+  return FALSE;
   }
 
   if(!m_dlg.CanSetStrain(dStrain))
   {
-    m_dlg.SetWarning("Strain values must be unique");
-    return false;
+  m_dlg.SetWarning("Strain values must be unique");
+  return false;
   }
 
   m_prStressStrain.second = dStrain;
@@ -378,7 +378,7 @@ BOOL CAttriWellCasingMaterialDlg::CStressStrainListObject::EditStrainText(const 
 /* NOT OBSOLETE */ void CAttriWellCasingMaterialDlg::CStressStrainListObject::AppendContextMenu(CContextMenuInvoker& invoker)
 {
   if(Index() > 0)
-    invoker.AddCommand("Delete", *new CSingleCommandTemplate<CStressStrainListObject>(*this, &CStressStrainListObject::DeleteItem));
+  invoker.AddCommand("Delete", *new CSingleCommandTemplate<CStressStrainListObject>(*this, &CStressStrainListObject::DeleteItem));
 }
 
 void CAttriWellCasingMaterialDlg::CStressStrainListObject::DeleteItem()
@@ -417,8 +417,8 @@ void CAttriWellCasingMaterialDlg::CStressStrainListSubObject::OnDoubleClick(cons
 {
   if(CanEditText())
   {
-    CListCtrlBase& ctrl = static_cast<CListCtrlBase&>(Ctrl());
-    ctrl.EditSubLabel(std::make_pair(ListObject().Index(), Index()));
+  CListCtrlBase& ctrl = static_cast<CListCtrlBase&>(Ctrl());
+  ctrl.EditSubLabel(std::make_pair(ListObject().Index(), Index()));
   }
 }
 

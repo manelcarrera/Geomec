@@ -9,7 +9,7 @@ class CDualProgress : public CProgressBase
 {
 public:
   CDualProgress(int jobs, const QString& primaryTitle, bool cancel = true,
-    CWnd* parent = 0);
+  CWnd* parent = 0);
   virtual ~CDualProgress();
   //base
   virtual void AddSteps(int steps);

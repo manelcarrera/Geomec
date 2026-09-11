@@ -6,7 +6,7 @@
 
 namespace
 {
-	Printer* printer = Printer::instance(Printer::RunP);
+  Printer* printer = Printer::instance(Printer::RunP);
 }
 
 IProgressBase::IProgressBase(){}

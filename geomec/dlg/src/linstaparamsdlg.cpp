@@ -22,26 +22,26 @@ CLinstaParamsDlg::CLinstaParamsDlg(CModelBase& model, CWnd* pParent /*=NULL*/)
 : CDialog(CLinstaParamsDlg::IDD, pParent),
   m_model(model)
 {
-	//{{AFX_DATA_INIT(CLinstaParamsDlg)
-	//}}AFX_DATA_INIT
-	m_iMaxIter = model.IniStressMaxIterations();
-	m_dTolcon = model.IniStressConvCriterion();
+  //{{AFX_DATA_INIT(CLinstaParamsDlg)
+  //}}AFX_DATA_INIT
+  m_iMaxIter = model.IniStressMaxIterations();
+  m_dTolcon = model.IniStressConvCriterion();
 }
 
 
 void CLinstaParamsDlg::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CLinstaParamsDlg)
-	DDX_Text(pDX, IDC_ED_MAXITE, m_iMaxIter);
-	DDX_Text(pDX, IDC_ED_TOLCON, m_dTolcon);
-	//}}AFX_DATA_MAP
+  CDialog::DoDataExchange(pDX);
+  //{{AFX_DATA_MAP(CLinstaParamsDlg)
+  DDX_Text(pDX, IDC_ED_MAXITE, m_iMaxIter);
+  DDX_Text(pDX, IDC_ED_TOLCON, m_dTolcon);
+  //}}AFX_DATA_MAP
 }
 
 
 BEGIN_MESSAGE_MAP(CLinstaParamsDlg, CDialog)
-	//{{AFX_MSG_MAP(CLinstaParamsDlg)
-	//}}AFX_MSG_MAP
+  //{{AFX_MSG_MAP(CLinstaParamsDlg)
+  //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -49,12 +49,12 @@ END_MESSAGE_MAP()
 
 void CLinstaParamsDlg::OnOK() 
 {
-	if(!UpdateData(TRUE))
-		return;
+  if(!UpdateData(TRUE))
+    return;
 
-	m_model.IniStressMaxIterations(m_iMaxIter);
-	m_model.IniStressConvCriterion(m_dTolcon);
-	m_model.LinstaOnlyInitialStress(false);
-	
-	CDialog::OnOK();
+  m_model.IniStressMaxIterations(m_iMaxIter);
+  m_model.IniStressConvCriterion(m_dTolcon);
+  m_model.LinstaOnlyInitialStress(false);
+  
+  CDialog::OnOK();
 }

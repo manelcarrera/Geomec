@@ -8,19 +8,19 @@ class CAnalysisPoint;
 
 class HistoryCurve : public Curve
 {
-    const CAnalysisPoint * m_analysisPoint;
+  const CAnalysisPoint * m_analysisPoint;
 
-    QString m_resultPath;
+  QString m_resultPath;
 
-    void CreateDepletionStageValueMap();
-    void FillCurve(std::vector<DepletionStageValuePair> & depletionStageValueMap);
+  void CreateDepletionStageValueMap();
+  void FillCurve(std::vector<DepletionStageValuePair> & depletionStageValueMap);
   
 public:
-    HistoryCurve(std::vector<DepletionStageValuePair> & depletionStageValueMap, const IValueComponentBase* valueComponent, const CAnalysisPoint * analysisPoint, CUnitNode::TUnitType unit, int colorIndex);
-    const CAnalysisPoint * analysisPoint() const;
+  HistoryCurve(std::vector<DepletionStageValuePair> & depletionStageValueMap, const IValueComponentBase* valueComponent, const CAnalysisPoint * analysisPoint, CUnitNode::TUnitType unit, int colorIndex);
+  const CAnalysisPoint * analysisPoint() const;
 
-    virtual QString getTextRepresentation() const;
-    virtual void onUnitChanged();
+  virtual QString getTextRepresentation() const;
+  virtual void onUnitChanged();
 };
 
 #endif  // _HistoryCurve_h_

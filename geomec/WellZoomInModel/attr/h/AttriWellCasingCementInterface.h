@@ -17,7 +17,7 @@ protected:
   DECLARE_MESSAGE_MAP()
 
 private:
-	typedef QRgb TColor;
+  typedef QRgb TColor;
 
 private:
   TColor SelectColor(TColor nDefaultColor);

@@ -26,107 +26,107 @@ CValueTypeBuilder::~CValueTypeBuilder()
 
 void CValueTypeFactory::AppendValueTypeBuilder(unsigned int uValueType, unsigned int uNameId, unsigned int uExportId, CValueTypeBuilder *pBuilder)
 {
-	assert(pBuilder);
+  assert(pBuilder);
 
-	CValueTypeIdContainer::instance()->add(uExportId);
+  CValueTypeIdContainer::instance()->add(uExportId);
 
-	// Create new builder entry
-	VERIFY(m_mpBuilder.insert(TBuilderMap::value_type(uValueType, TBuilder(pBuilder, uNameId))).second);
+  // Create new builder entry
+  VERIFY(m_mpBuilder.insert(TBuilderMap::value_type(uValueType, TBuilder(pBuilder, uNameId))).second);
 
-	// Create new import entry
-	QString sImportTag;
-	sImportTag = getStringTableEntry(uExportId);
-	VERIFY(m_mpImport.insert(TImportMap::value_type(sImportTag, uValueType)).second);
+  // Create new import entry
+  QString sImportTag;
+  sImportTag = getStringTableEntry(uExportId);
+  VERIFY(m_mpImport.insert(TImportMap::value_type(sImportTag, uValueType)).second);
   VERIFY(m_mpValueType2ImportTag.insert(
-    TValueType2ImportTag::value_type(uValueType, sImportTag)).second);
+  TValueType2ImportTag::value_type(uValueType, sImportTag)).second);
 }
 
 CValueTypeFactory::CValueTypeFactory()
 {
-	// Pressure
-	AppendValueTypeBuilder(IDT_VALUETYPE_PRESSURE,
-						   IDS_VALUENAME_PRESSURE,
-						   IDS_ET_PRESSURE,
-						   new CValueTypeBuilderTemp<TPressure>());
+  // Pressure
+  AppendValueTypeBuilder(IDT_VALUETYPE_PRESSURE,
+               IDS_VALUENAME_PRESSURE,
+               IDS_ET_PRESSURE,
+               new CValueTypeBuilderTemp<TPressure>());
 
-	// Fracture Matrix Pressure
-	AppendValueTypeBuilder(IDT_VALUETYPE_FRACTURE_MATRIX_PRESSURE,
-						   IDS_VALUENAME_FRACTURE_MATRIX_PRESSURE,
-						   IDS_ET_FRACTURE_MATRIX_PRESSURE,
-						   new CValueTypeBuilderTemp<TFractureMatrixPressure>());
+  // Fracture Matrix Pressure
+  AppendValueTypeBuilder(IDT_VALUETYPE_FRACTURE_MATRIX_PRESSURE,
+               IDS_VALUENAME_FRACTURE_MATRIX_PRESSURE,
+               IDS_ET_FRACTURE_MATRIX_PRESSURE,
+               new CValueTypeBuilderTemp<TFractureMatrixPressure>());
 
-	// Temperature
-	AppendValueTypeBuilder(IDT_VALUETYPE_TEMPERATURE,
-						   IDS_VALUENAME_TEMPERATURE,
-						   IDS_ET_TEMPERATURE,
-						   new CValueTypeBuilderTemp<TTemperature>());
+  // Temperature
+  AppendValueTypeBuilder(IDT_VALUETYPE_TEMPERATURE,
+               IDS_VALUENAME_TEMPERATURE,
+               IDS_ET_TEMPERATURE,
+               new CValueTypeBuilderTemp<TTemperature>());
 
   // Correction strain
   AppendValueTypeBuilder(IDT_VALUETYPE_VOLUMETRICSTRAIN,
-                IDS_VALUENAME_VOLUMETRICSTRAIN,
-                IDS_ET_VOLUMETRICSTRAIN,
-                new CValueTypeBuilderTemp<TVolumetricStrain>());
+        IDS_VALUENAME_VOLUMETRICSTRAIN,
+        IDS_ET_VOLUMETRICSTRAIN,
+        new CValueTypeBuilderTemp<TVolumetricStrain>());
 
   // Normal strain
   AppendValueTypeBuilder(IDT_VALUETYPE_NRMSTRAIN,
-                IDS_VALUENAME_NRMSTRAIN,
-                IDS_ET_NRMSTRAIN,
-                new CValueTypeBuilderTemp<TNormalStrain>());
+        IDS_VALUENAME_NRMSTRAIN,
+        IDS_ET_NRMSTRAIN,
+        new CValueTypeBuilderTemp<TNormalStrain>());
 
   // Lateral strain
   AppendValueTypeBuilder(IDT_VALUETYPE_LATSTRAIN,
-                IDS_VALUENAME_LATSTRAIN,
-                IDS_ET_LATSTRAIN,
-                new CValueTypeBuilderTemp<TLateralStrain>());
+        IDS_VALUENAME_LATSTRAIN,
+        IDS_ET_LATSTRAIN,
+        new CValueTypeBuilderTemp<TLateralStrain>());
 
   // Strain
-	AppendValueTypeBuilder(IDT_VALUETYPE_STRAIN_TENSOR,
-						   IDS_VALUENAME_STRAIN_TENSOR,
-						   IDS_ET_STRAIN,
-						   new CValueTypeBuilderTemp<TStrainTensor>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_STRAIN_TENSOR,
+               IDS_VALUENAME_STRAIN_TENSOR,
+               IDS_ET_STRAIN,
+               new CValueTypeBuilderTemp<TStrainTensor>());
 
   // Stress
-	AppendValueTypeBuilder(IDT_VALUETYPE_STRESS_TENSOR,
-						   IDS_VALUENAME_STRESS_TENSOR,
-						   IDS_ET_STRESS,
-						   new CValueTypeBuilderTemp<TStressTensor>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_STRESS_TENSOR,
+               IDS_VALUENAME_STRESS_TENSOR,
+               IDS_ET_STRESS,
+               new CValueTypeBuilderTemp<TStressTensor>());
 
 /*
   // Change in effective stress
-	AppendValueTypeBuilder(IDT_VALUETYPE_CHANGE_EFF_STRESS_TENSOR,
-						   IDS_VALUENAME_CHANGE_EFF_STRESS,
-						   IDS_ET_CHANGE_EFF_STRESS,
-						   new CValueTypeBuilderTemp<TChangeEffectiveStressTensor>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_CHANGE_EFF_STRESS_TENSOR,
+               IDS_VALUENAME_CHANGE_EFF_STRESS,
+               IDS_ET_CHANGE_EFF_STRESS,
+               new CValueTypeBuilderTemp<TChangeEffectiveStressTensor>());
 */
   //Fracture Intensity
   AppendValueTypeBuilder(IDT_VALUETYPE_FRACT_TENSOR,
-						   IDS_VALUENAME_FRACT_TENSOR,
-						   IDS_ET_FRACT_TENSOR,
-						   new CValueTypeBuilderTemp<CFractTensor>());
+               IDS_VALUENAME_FRACT_TENSOR,
+               IDS_ET_FRACT_TENSOR,
+               new CValueTypeBuilderTemp<CFractTensor>());
 
-	// Displacement
-	AppendValueTypeBuilder(IDT_VALUETYPE_DISPLACEMENT,
-						   IDS_VALUENAME_DISPLACEMENT,
-						   IDS_ET_DISPLACEMENT,
-						   new CValueTypeBuilderTemp<TDisplacementVector>());
+  // Displacement
+  AppendValueTypeBuilder(IDT_VALUETYPE_DISPLACEMENT,
+               IDS_VALUENAME_DISPLACEMENT,
+               IDS_ET_DISPLACEMENT,
+               new CValueTypeBuilderTemp<TDisplacementVector>());
 
-	// Cohesion
-	AppendValueTypeBuilder(IDT_VALUETYPE_COHESION,
-						   IDS_VALUENAME_COHESION,
-						   IDS_ET_COHESION,
-						   new CValueTypeBuilderTemp<TCohesion>());
+  // Cohesion
+  AppendValueTypeBuilder(IDT_VALUETYPE_COHESION,
+               IDS_VALUENAME_COHESION,
+               IDS_ET_COHESION,
+               new CValueTypeBuilderTemp<TCohesion>());
 
-	// Bulk Stiffness
-	AppendValueTypeBuilder(IDT_VALUETYPE_BULKSTIFFNESS,
-						   IDS_VALUENAME_BULKSTIFFNESS,
-						   IDS_ET_BULKSTIFFNESS,
-						   new CValueTypeBuilderTemp<TBulkStiffness>());
+  // Bulk Stiffness
+  AppendValueTypeBuilder(IDT_VALUETYPE_BULKSTIFFNESS,
+               IDS_VALUENAME_BULKSTIFFNESS,
+               IDS_ET_BULKSTIFFNESS,
+               new CValueTypeBuilderTemp<TBulkStiffness>());
 
-	// Shear Modulus
-	AppendValueTypeBuilder(IDT_VALUETYPE_SHEARMODULUS,
-						   IDS_VALUENAME_SHEARMODULUS,
-						   IDS_ET_SHEARMODULUS,
-						   new CValueTypeBuilderTemp<TShearModulus>());
+  // Shear Modulus
+  AppendValueTypeBuilder(IDT_VALUETYPE_SHEARMODULUS,
+               IDS_VALUENAME_SHEARMODULUS,
+               IDS_ET_SHEARMODULUS,
+               new CValueTypeBuilderTemp<TShearModulus>());
 
   // Vp
   AppendValueTypeBuilder(IDT_VALUETYPE_VELOCITYP,
@@ -140,298 +140,298 @@ CValueTypeFactory::CValueTypeFactory()
                IDS_ET_VELOCITYS,
                new CValueTypeBuilderTemp<TVelocityS>());
 
-	// Friction angle
-	AppendValueTypeBuilder(IDT_VALUETYPE_FRICTION_ANGLE,
-						   IDS_VALUENAME_FRICTION_ANGLE,
-						   IDS_ET_FRICTION_ANGLE, 
-						   new CValueTypeBuilderTemp<TFrictionAngle>());
-	
-	// Poissons Ratio
-	AppendValueTypeBuilder(IDT_VALUETYPE_POISSONS_RATIO, 
-						   IDS_VALUENAME_POISSONS_RATIO,
-						   IDS_ET_POISSON_RATIO,
-						   new CValueTypeBuilderTemp<TPoissonsRatio>());
+  // Friction angle
+  AppendValueTypeBuilder(IDT_VALUETYPE_FRICTION_ANGLE,
+               IDS_VALUENAME_FRICTION_ANGLE,
+               IDS_ET_FRICTION_ANGLE, 
+               new CValueTypeBuilderTemp<TFrictionAngle>());
+  
+  // Poissons Ratio
+  AppendValueTypeBuilder(IDT_VALUETYPE_POISSONS_RATIO, 
+               IDS_VALUENAME_POISSONS_RATIO,
+               IDS_ET_POISSON_RATIO,
+               new CValueTypeBuilderTemp<TPoissonsRatio>());
 
-	// Youngs modulus Ratio
-	AppendValueTypeBuilder(IDT_VALUETYPE_YOUNGS_MODULUS,
-						   IDS_VALUENAME_YOUNGS_MODULUS,
-						   IDS_ET_YOUNG_MODULUS,
-						   new CValueTypeBuilderTemp<TYoungsModulus>());
+  // Youngs modulus Ratio
+  AppendValueTypeBuilder(IDT_VALUETYPE_YOUNGS_MODULUS,
+               IDS_VALUENAME_YOUNGS_MODULUS,
+               IDS_ET_YOUNG_MODULUS,
+               new CValueTypeBuilderTemp<TYoungsModulus>());
 
-	// Density
-	AppendValueTypeBuilder(IDT_VALUETYPE_RHOB,
-						   IDS_VALUENAME_RHOB,
-						   IDS_ET_RHOB,
-						   new CValueTypeBuilderTemp<TDensity>());
+  // Density
+  AppendValueTypeBuilder(IDT_VALUETYPE_RHOB,
+               IDS_VALUENAME_RHOB,
+               IDS_ET_RHOB,
+               new CValueTypeBuilderTemp<TDensity>());
 
-	// Porosity
-	AppendValueTypeBuilder(IDT_VALUETYPE_POROSITY,
-						   IDS_VALUENAME_POROSITY,
-						   IDS_ET_POROSITY,
-						   new CValueTypeBuilderTemp<TPorosity>());
+  // Porosity
+  AppendValueTypeBuilder(IDT_VALUETYPE_POROSITY,
+               IDS_VALUENAME_POROSITY,
+               IDS_ET_POROSITY,
+               new CValueTypeBuilderTemp<TPorosity>());
 
-	// Intial friction
-	AppendValueTypeBuilder(IDT_VALUETYPE_INITFRICTION,
-						   IDS_VALUENAME_INITFRICTION,
-						   IDS_ET_INITFRICTION,
-						   new CValueTypeBuilderTemp<TInitFriction>());
+  // Intial friction
+  AppendValueTypeBuilder(IDT_VALUETYPE_INITFRICTION,
+               IDS_VALUENAME_INITFRICTION,
+               IDS_ET_INITFRICTION,
+               new CValueTypeBuilderTemp<TInitFriction>());
 
-	// Hardening
-	AppendValueTypeBuilder(IDT_VALUETYPE_HARDENING,
-						   IDS_VALUENAME_HARDENING,
-						   IDS_ET_HARDENING,
-						   new CValueTypeBuilderTemp<THardening>());
+  // Hardening
+  AppendValueTypeBuilder(IDT_VALUETYPE_HARDENING,
+               IDS_VALUENAME_HARDENING,
+               IDS_ET_HARDENING,
+               new CValueTypeBuilderTemp<THardening>());
 
-	// Preconsolidation
-	AppendValueTypeBuilder(IDT_VALUETYPE_PRECONSOLIDATION,
-						   IDS_VALUENAME_PRECONSOLIDATION,
-						   IDS_ET_PRECONSOLIDATION,
-						   new CValueTypeBuilderTemp<TPreConsolidation>());
+  // Preconsolidation
+  AppendValueTypeBuilder(IDT_VALUETYPE_PRECONSOLIDATION,
+               IDS_VALUENAME_PRECONSOLIDATION,
+               IDS_ET_PRECONSOLIDATION,
+               new CValueTypeBuilderTemp<TPreConsolidation>());
 
-	// CapShape
-	AppendValueTypeBuilder(IDT_VALUETYPE_CAPSHAPE,
-						   IDS_VALUENAME_CAPSHAPE,
-						   IDS_ET_CAPSHAPE,
-						   new CValueTypeBuilderTemp<TCapShape>());
+  // CapShape
+  AppendValueTypeBuilder(IDT_VALUETYPE_CAPSHAPE,
+               IDS_VALUENAME_CAPSHAPE,
+               IDS_ET_CAPSHAPE,
+               new CValueTypeBuilderTemp<TCapShape>());
 
-	// Dilatation
-	AppendValueTypeBuilder(IDT_VALUETYPE_DILATATION,
-						   IDS_VALUENAME_DILATATION,
-						   IDS_ET_DILATATION,
-						   new CValueTypeBuilderTemp<TDilatation>());
+  // Dilatation
+  AppendValueTypeBuilder(IDT_VALUETYPE_DILATATION,
+               IDS_VALUENAME_DILATATION,
+               IDS_ET_DILATATION,
+               new CValueTypeBuilderTemp<TDilatation>());
 
-	// Latratio min/max
-	AppendValueTypeBuilder(IDT_VALUETYPE_LATRATIO_MIN,
-						   IDS_VALUENAME_LATRATIO_MIN,
-						   IDS_ET_LATRATIO_MIN,
-						   new CValueTypeBuilderTemp<TLatRatioMin>());
+  // Latratio min/max
+  AppendValueTypeBuilder(IDT_VALUETYPE_LATRATIO_MIN,
+               IDS_VALUENAME_LATRATIO_MIN,
+               IDS_ET_LATRATIO_MIN,
+               new CValueTypeBuilderTemp<TLatRatioMin>());
 
-	AppendValueTypeBuilder(IDT_VALUETYPE_LATRATIO_MAX,
-						   IDS_VALUENAME_LATRATIO_MAX,
-						   IDS_ET_LATRATIO_MAX,
-							new CValueTypeBuilderTemp<TLatRatioMax>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_LATRATIO_MAX,
+               IDS_VALUENAME_LATRATIO_MAX,
+               IDS_ET_LATRATIO_MAX,
+              new CValueTypeBuilderTemp<TLatRatioMax>());
 
-	// Azimuth
-	AppendValueTypeBuilder(IDT_VALUETYPE_AZIMUTH,
-						   IDS_VALUENAME_AZIMUTH,
-						   IDS_ET_AZIMUTH,
-						   new CValueTypeBuilderTemp<TAzimuth>());
-	// A1
-	AppendValueTypeBuilder(IDT_VALUETYPE_CREEP_A1,
-						   IDS_VALUENAME_CREEP_A1,
-						   IDS_ET_CREEP_A1,
-						   new CValueTypeBuilderTemp<TCreepA1>());
-	// N1
-	AppendValueTypeBuilder(IDT_VALUETYPE_CREEP_N1,
-						   IDS_VALUENAME_CREEP_N1,
-						   IDS_ET_CREEP_N1,
-						   new CValueTypeBuilderTemp<TCreepN1>());
-	// A2
-	AppendValueTypeBuilder(IDT_VALUETYPE_CREEP_A2,
-						   IDS_VALUENAME_CREEP_A2,
-						   IDS_ET_CREEP_A2,
-						   new CValueTypeBuilderTemp<TCreepA2>());
-	// N2
-	AppendValueTypeBuilder(IDT_VALUETYPE_CREEP_N2,
-						   IDS_VALUENAME_CREEP_N2,
-						   IDS_ET_CREEP_N2,
-						   new CValueTypeBuilderTemp<TCreepN2>());
+  // Azimuth
+  AppendValueTypeBuilder(IDT_VALUETYPE_AZIMUTH,
+               IDS_VALUENAME_AZIMUTH,
+               IDS_ET_AZIMUTH,
+               new CValueTypeBuilderTemp<TAzimuth>());
+  // A1
+  AppendValueTypeBuilder(IDT_VALUETYPE_CREEP_A1,
+               IDS_VALUENAME_CREEP_A1,
+               IDS_ET_CREEP_A1,
+               new CValueTypeBuilderTemp<TCreepA1>());
+  // N1
+  AppendValueTypeBuilder(IDT_VALUETYPE_CREEP_N1,
+               IDS_VALUENAME_CREEP_N1,
+               IDS_ET_CREEP_N1,
+               new CValueTypeBuilderTemp<TCreepN1>());
+  // A2
+  AppendValueTypeBuilder(IDT_VALUETYPE_CREEP_A2,
+               IDS_VALUENAME_CREEP_A2,
+               IDS_ET_CREEP_A2,
+               new CValueTypeBuilderTemp<TCreepA2>());
+  // N2
+  AppendValueTypeBuilder(IDT_VALUETYPE_CREEP_N2,
+               IDS_VALUENAME_CREEP_N2,
+               IDS_ET_CREEP_N2,
+               new CValueTypeBuilderTemp<TCreepN2>());
 
-	// QR1
-	AppendValueTypeBuilder(IDT_VALUETYPE_CREEP_QR1,
-						   IDS_VALUENAME_CREEP_QR1,
-						   IDS_ET_CREEP_QR1,
-						   new CValueTypeBuilderTemp<TCreepQR1>());
-	// QR1
-	AppendValueTypeBuilder(IDT_VALUETYPE_CREEP_QR2,
-						   IDS_VALUENAME_CREEP_QR2,
-						   IDS_ET_CREEP_QR2,
-						   new CValueTypeBuilderTemp<TCreepQR2>());
+  // QR1
+  AppendValueTypeBuilder(IDT_VALUETYPE_CREEP_QR1,
+               IDS_VALUENAME_CREEP_QR1,
+               IDS_ET_CREEP_QR1,
+               new CValueTypeBuilderTemp<TCreepQR1>());
+  // QR1
+  AppendValueTypeBuilder(IDT_VALUETYPE_CREEP_QR2,
+               IDS_VALUENAME_CREEP_QR2,
+               IDS_ET_CREEP_QR2,
+               new CValueTypeBuilderTemp<TCreepQR2>());
 
   // Alpha
   AppendValueTypeBuilder(IDT_VALUETYPE_CREEP_ALPHA,
-                IDS_VALUENAME_CREEP_ALPHA,
-                IDS_ET_CREEP_ALPHA,
-                new CValueTypeBuilderTemp<TCreepAlpha>());
+        IDS_VALUENAME_CREEP_ALPHA,
+        IDS_ET_CREEP_ALPHA,
+        new CValueTypeBuilderTemp<TCreepAlpha>());
 
-	// Tensile stretch
-	AppendValueTypeBuilder(IDT_VALUETYPE_TENSILE_STRETCH,
-						   IDS_VALUENAME_TENSILE_STRETCH,
-						   IDS_ET_TENSILE_STRETCH,
-						   new CValueTypeBuilderTemp<TTensileStretch>());
+  // Tensile stretch
+  AppendValueTypeBuilder(IDT_VALUETYPE_TENSILE_STRETCH,
+               IDS_VALUENAME_TENSILE_STRETCH,
+               IDS_ET_TENSILE_STRETCH,
+               new CValueTypeBuilderTemp<TTensileStretch>());
 
-	// Volumetric thermal expansion coefficient
-	AppendValueTypeBuilder(IDT_VALUETYPE_THERMAL_EXPANSION,
-						   IDS_VALUENAME_THERMAL_EXPANSION,
-						   IDS_ET_THERMAL_EXPANSION,
-						   new CValueTypeBuilderTemp<TThermalExpansion>());
+  // Volumetric thermal expansion coefficient
+  AppendValueTypeBuilder(IDT_VALUETYPE_THERMAL_EXPANSION,
+               IDS_VALUENAME_THERMAL_EXPANSION,
+               IDS_ET_THERMAL_EXPANSION,
+               new CValueTypeBuilderTemp<TThermalExpansion>());
 
-	// Surfaces
-	AppendValueTypeBuilder(IDT_VALUETYPE_SURFACE,
-						   IDS_VALUENAME_SURFACE,
-						   IDS_ET_SURFACE,
-						   new CValueTypeBuilderTemp<CSurfaceValueType>());	
-	// Bulk fluid modulus
-	AppendValueTypeBuilder(IDT_VALUETYPE_FLUID_BULK_MOD,
-						   IDS_VALUENAME_FLUID_BULK_MOD,
-						   IDS_ET_VALUETYPE_FLUID_SHEAR_MOD,
-						   new CValueTypeBuilderTemp<TFluidBulkModulus>());
-						  
+  // Surfaces
+  AppendValueTypeBuilder(IDT_VALUETYPE_SURFACE,
+               IDS_VALUENAME_SURFACE,
+               IDS_ET_SURFACE,
+               new CValueTypeBuilderTemp<CSurfaceValueType>());	
+  // Bulk fluid modulus
+  AppendValueTypeBuilder(IDT_VALUETYPE_FLUID_BULK_MOD,
+               IDS_VALUENAME_FLUID_BULK_MOD,
+               IDS_ET_VALUETYPE_FLUID_SHEAR_MOD,
+               new CValueTypeBuilderTemp<TFluidBulkModulus>());
+              
 // Cohesion hardening
-	AppendValueTypeBuilder(IDT_VALUETYPE_HARD_COHESION1,
-						  IDS_VALUENAME_HARD_COHESION1,
-						  IDS_ET_HARD_COHESION1, 
-						  new CValueTypeBuilderTemp<THardCohesion1>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_HARD_COHESION1,
+              IDS_VALUENAME_HARD_COHESION1,
+              IDS_ET_HARD_COHESION1, 
+              new CValueTypeBuilderTemp<THardCohesion1>());
 
-	AppendValueTypeBuilder(IDT_VALUETYPE_HARD_COHESION2,
-						  IDS_VALUENAME_HARD_COHESION2,
-						  IDS_ET_HARD_COHESION2, 
-						  new CValueTypeBuilderTemp<THardCohesion2>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_HARD_COHESION2,
+              IDS_VALUENAME_HARD_COHESION2,
+              IDS_ET_HARD_COHESION2, 
+              new CValueTypeBuilderTemp<THardCohesion2>());
 
-	AppendValueTypeBuilder(IDT_VALUETYPE_HARD_COHESION3,
-						  IDS_VALUENAME_HARD_COHESION3,
-						  IDS_ET_HARD_COHESION3,
-						  new CValueTypeBuilderTemp<THardCohesion3>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_HARD_COHESION3,
+              IDS_VALUENAME_HARD_COHESION3,
+              IDS_ET_HARD_COHESION3,
+              new CValueTypeBuilderTemp<THardCohesion3>());
 
 // Friction Angle hardening
-	AppendValueTypeBuilder(IDT_VALUETYPE_HARD_FRICTION1,
-						 IDS_VALUENAME_HARD_FRICTION1,
-						 IDS_ET_HARD_FRICTION1, 
-						 new CValueTypeBuilderTemp<THardFriction1>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_HARD_FRICTION1,
+             IDS_VALUENAME_HARD_FRICTION1,
+             IDS_ET_HARD_FRICTION1, 
+             new CValueTypeBuilderTemp<THardFriction1>());
 
-	AppendValueTypeBuilder(IDT_VALUETYPE_HARD_FRICTION2,
-						 IDS_VALUENAME_HARD_FRICTION2,
-						 IDS_ET_HARD_FRICTION2,
-						 new CValueTypeBuilderTemp<THardFriction2>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_HARD_FRICTION2,
+             IDS_VALUENAME_HARD_FRICTION2,
+             IDS_ET_HARD_FRICTION2,
+             new CValueTypeBuilderTemp<THardFriction2>());
 
-	AppendValueTypeBuilder(IDT_VALUETYPE_HARD_FRICTION3,
-						 IDS_VALUENAME_HARD_FRICTION3,
-						 IDS_ET_HARD_FRICTION3,
-						 new CValueTypeBuilderTemp<THardFriction3>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_HARD_FRICTION3,
+             IDS_VALUENAME_HARD_FRICTION3,
+             IDS_ET_HARD_FRICTION3,
+             new CValueTypeBuilderTemp<THardFriction3>());
 
 // waij TFS 82017
 // Equivalent Plastic Strain
-	AppendValueTypeBuilder(IDT_VALUETYPE_EQUIV_PLAST_STRAIN1,
-						 IDS_VALUENAME_EQUIV_PLAST_STRAIN1,
-						 IDS_ET_EQUIV_PLAST_STRAIN1,
-						 new CValueTypeBuilderTemp<TEquivalentPlasticStrain1>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_EQUIV_PLAST_STRAIN1,
+             IDS_VALUENAME_EQUIV_PLAST_STRAIN1,
+             IDS_ET_EQUIV_PLAST_STRAIN1,
+             new CValueTypeBuilderTemp<TEquivalentPlasticStrain1>());
 
-	AppendValueTypeBuilder(IDT_VALUETYPE_EQUIV_PLAST_STRAIN2,
-						 IDS_VALUENAME_EQUIV_PLAST_STRAIN2,
-						 IDS_ET_EQUIV_PLAST_STRAIN2,
-						 new CValueTypeBuilderTemp<TEquivalentPlasticStrain2>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_EQUIV_PLAST_STRAIN2,
+             IDS_VALUENAME_EQUIV_PLAST_STRAIN2,
+             IDS_ET_EQUIV_PLAST_STRAIN2,
+             new CValueTypeBuilderTemp<TEquivalentPlasticStrain2>());
 
-	AppendValueTypeBuilder(IDT_VALUETYPE_EQUIV_PLAST_STRAIN3,
-						 IDS_VALUENAME_EQUIV_PLAST_STRAIN3,
-						 IDS_ET_EQUIV_PLAST_STRAIN3,
-						 new CValueTypeBuilderTemp<TEquivalentPlasticStrain3>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_EQUIV_PLAST_STRAIN3,
+             IDS_VALUENAME_EQUIV_PLAST_STRAIN3,
+             IDS_ET_EQUIV_PLAST_STRAIN3,
+             new CValueTypeBuilderTemp<TEquivalentPlasticStrain3>());
 
 // Homogenization rigidty parameters
-	AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM1,
-						 IDS_RIGI_PARAM1,
-						 IDS_RIGI_PARAM1,
-						 new CValueTypeBuilderTemp<TRigidParam1>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM1,
+             IDS_RIGI_PARAM1,
+             IDS_RIGI_PARAM1,
+             new CValueTypeBuilderTemp<TRigidParam1>());
 
-	AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM2,
-						 IDS_RIGI_PARAM2,
-						 IDS_RIGI_PARAM2,
-						 new CValueTypeBuilderTemp<TRigidParam2>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM2,
+             IDS_RIGI_PARAM2,
+             IDS_RIGI_PARAM2,
+             new CValueTypeBuilderTemp<TRigidParam2>());
 
-	AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM3,
-						 IDS_RIGI_PARAM3,
-						 IDS_RIGI_PARAM3,
-						 new CValueTypeBuilderTemp<TRigidParam3>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM3,
+             IDS_RIGI_PARAM3,
+             IDS_RIGI_PARAM3,
+             new CValueTypeBuilderTemp<TRigidParam3>());
 
-	AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM4,
-						 IDS_RIGI_PARAM4,
-						 IDS_RIGI_PARAM4,
-						 new CValueTypeBuilderTemp<TRigidParam4>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM4,
+             IDS_RIGI_PARAM4,
+             IDS_RIGI_PARAM4,
+             new CValueTypeBuilderTemp<TRigidParam4>());
 
-	AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM5,
-						 IDS_RIGI_PARAM5,
-						 IDS_RIGI_PARAM5,
-						 new CValueTypeBuilderTemp<TRigidParam5>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM5,
+             IDS_RIGI_PARAM5,
+             IDS_RIGI_PARAM5,
+             new CValueTypeBuilderTemp<TRigidParam5>());
 
-	AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM6,
-						 IDS_RIGI_PARAM6,
-						 IDS_RIGI_PARAM6,
-						 new CValueTypeBuilderTemp<TRigidParam6>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM6,
+             IDS_RIGI_PARAM6,
+             IDS_RIGI_PARAM6,
+             new CValueTypeBuilderTemp<TRigidParam6>());
 
-	AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM7,
-						 IDS_RIGI_PARAM7,
-						 IDS_RIGI_PARAM7,
-						 new CValueTypeBuilderTemp<TRigidParam7>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM7,
+             IDS_RIGI_PARAM7,
+             IDS_RIGI_PARAM7,
+             new CValueTypeBuilderTemp<TRigidParam7>());
 
-	AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM8,
-						 IDS_RIGI_PARAM8,
-						 IDS_RIGI_PARAM8,
-						 new CValueTypeBuilderTemp<TRigidParam8>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM8,
+             IDS_RIGI_PARAM8,
+             IDS_RIGI_PARAM8,
+             new CValueTypeBuilderTemp<TRigidParam8>());
 
-	AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM9,
-						 IDS_RIGI_PARAM9,
-						 IDS_RIGI_PARAM9,
-						 new CValueTypeBuilderTemp<TRigidParam9>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM9,
+             IDS_RIGI_PARAM9,
+             IDS_RIGI_PARAM9,
+             new CValueTypeBuilderTemp<TRigidParam9>());
 
-	AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM10,
-						 IDS_RIGI_PARAM10,
-						 IDS_RIGI_PARAM10,
-						 new CValueTypeBuilderTemp<TRigidParam10>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM10,
+             IDS_RIGI_PARAM10,
+             IDS_RIGI_PARAM10,
+             new CValueTypeBuilderTemp<TRigidParam10>());
 
-	AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM11,
-						 IDS_RIGI_PARAM11,
-						 IDS_RIGI_PARAM11,
-						 new CValueTypeBuilderTemp<TRigidParam11>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM11,
+             IDS_RIGI_PARAM11,
+             IDS_RIGI_PARAM11,
+             new CValueTypeBuilderTemp<TRigidParam11>());
 
-	AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM12,
-						 IDS_RIGI_PARAM12,
-						 IDS_RIGI_PARAM12,
-						 new CValueTypeBuilderTemp<TRigidParam12>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM12,
+             IDS_RIGI_PARAM12,
+             IDS_RIGI_PARAM12,
+             new CValueTypeBuilderTemp<TRigidParam12>());
 
-	AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM13,
-						 IDS_RIGI_PARAM13,
-						 IDS_RIGI_PARAM13,
-						 new CValueTypeBuilderTemp<TRigidParam13>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM13,
+             IDS_RIGI_PARAM13,
+             IDS_RIGI_PARAM13,
+             new CValueTypeBuilderTemp<TRigidParam13>());
 
-	AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM14,
-						 IDS_RIGI_PARAM14,
-						 IDS_RIGI_PARAM14,
-						 new CValueTypeBuilderTemp<TRigidParam14>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM14,
+             IDS_RIGI_PARAM14,
+             IDS_RIGI_PARAM14,
+             new CValueTypeBuilderTemp<TRigidParam14>());
 
-	AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM15,
-						 IDS_RIGI_PARAM15,
-						 IDS_RIGI_PARAM15,
-						 new CValueTypeBuilderTemp<TRigidParam15>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM15,
+             IDS_RIGI_PARAM15,
+             IDS_RIGI_PARAM15,
+             new CValueTypeBuilderTemp<TRigidParam15>());
 
-	AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM16,
-						 IDS_RIGI_PARAM16,
-						 IDS_RIGI_PARAM16,
-						 new CValueTypeBuilderTemp<TRigidParam16>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM16,
+             IDS_RIGI_PARAM16,
+             IDS_RIGI_PARAM16,
+             new CValueTypeBuilderTemp<TRigidParam16>());
 
-	AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM17,
-						 IDS_RIGI_PARAM17,
-						 IDS_RIGI_PARAM17,
-						 new CValueTypeBuilderTemp<TRigidParam17>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM17,
+             IDS_RIGI_PARAM17,
+             IDS_RIGI_PARAM17,
+             new CValueTypeBuilderTemp<TRigidParam17>());
 
-	AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM18,
-						 IDS_RIGI_PARAM18,
-						 IDS_RIGI_PARAM18,
-						 new CValueTypeBuilderTemp<TRigidParam18>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM18,
+             IDS_RIGI_PARAM18,
+             IDS_RIGI_PARAM18,
+             new CValueTypeBuilderTemp<TRigidParam18>());
 
-	AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM19,
-						 IDS_RIGI_PARAM19,
-						 IDS_RIGI_PARAM19,
-						 new CValueTypeBuilderTemp<TRigidParam19>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM19,
+             IDS_RIGI_PARAM19,
+             IDS_RIGI_PARAM19,
+             new CValueTypeBuilderTemp<TRigidParam19>());
 
-	AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM20,
-						 IDS_RIGI_PARAM20,
-						 IDS_RIGI_PARAM20,
-						 new CValueTypeBuilderTemp<TRigidParam20>());
+  AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM20,
+             IDS_RIGI_PARAM20,
+             IDS_RIGI_PARAM20,
+             new CValueTypeBuilderTemp<TRigidParam20>());
 
-	AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM21,
-						 IDS_RIGI_PARAM21,
-						 IDS_RIGI_PARAM21,
-						 new CValueTypeBuilderTemp<TRigidParam21>());
-		
+  AppendValueTypeBuilder(IDT_VALUETYPE_RIGI_PARAM21,
+             IDS_RIGI_PARAM21,
+             IDS_RIGI_PARAM21,
+             new CValueTypeBuilderTemp<TRigidParam21>());
+    
   AppendValueTypeBuilder(IDT_VALUETYPE_ELASTIC_HARDENING,
              IDS_VALUENAME_ELASTIC_HARDENING,
              IDS_ET_ELASTIC_HARDENING,
@@ -679,52 +679,52 @@ CValueTypeFactory::CValueTypeFactory()
               new CValueTypeBuilderTemp<TDummyMaterialParameter>());
 
   AppendValueTypeBuilder(IDT_VALUETYPE_NRMSTRESS,
-    IDS_VALUENAME_NRMSTRESS,
-    IDS_ET_NRMSTRESS,
-    new CValueTypeBuilderTemp<TNormalStress>());
+  IDS_VALUENAME_NRMSTRESS,
+  IDS_ET_NRMSTRESS,
+  new CValueTypeBuilderTemp<TNormalStress>());
 
   AppendValueTypeBuilder(IDT_VALUETYPE_MEANSTRESS,
-    IDS_VALUENAME_MEANSTRESS,
-    IDS_ET_MEANSTRESS,
-    new CValueTypeBuilderTemp<TMeanStress>());
+  IDS_VALUENAME_MEANSTRESS,
+  IDS_ET_MEANSTRESS,
+  new CValueTypeBuilderTemp<TMeanStress>());
 
   AppendValueTypeBuilder(IDT_VALUETYPE_TIMESTRAIN,
-    IDS_VALUENAME_TIMESTRAIN,
-    IDS_ET_TIMESTRAIN,
-    new CValueTypeBuilderTemp<TTimeStrain>());
+  IDS_VALUENAME_TIMESTRAIN,
+  IDS_ET_TIMESTRAIN,
+  new CValueTypeBuilderTemp<TTimeStrain>());
 
   AppendValueTypeBuilder(IDT_VALUETYPE_DELTAV,
-    IDS_VALUENAME_DELTAV,
-    IDS_ET_DELTAV,
-    new CValueTypeBuilderTemp<TDeltaV>());
+  IDS_VALUENAME_DELTAV,
+  IDS_ET_DELTAV,
+  new CValueTypeBuilderTemp<TDeltaV>());
 
   AppendValueTypeBuilder(IDT_VALUETYPE_DELTAT,
-    IDS_VALUENAME_DELTAT,
-    IDS_ET_DELTAT,
-    new CValueTypeBuilderTemp<TDeltaT>());
+  IDS_VALUENAME_DELTAT,
+  IDS_ET_DELTAT,
+  new CValueTypeBuilderTemp<TDeltaT>());
 
   AppendValueTypeBuilder(IDT_VALUETYPE_DISPLACEMENTZ,
-    IDS_VALUENAME_DISPLACEMENTZ,
-    IDS_ET_DISPLACEMENTZ,
-    new CValueTypeBuilderTemp<TDisplacementZ>());
+  IDS_VALUENAME_DISPLACEMENTZ,
+  IDS_ET_DISPLACEMENTZ,
+  new CValueTypeBuilderTemp<TDisplacementZ>());
 
   AppendValueTypeBuilder(IDT_VALUETYPE_KRAD,
-    IDS_VALUENAME_KRAD,
-    IDS_ET_KRAD,
-    new CValueTypeBuilderTemp<TBoundaryKradMaterialParameter>());
+  IDS_VALUENAME_KRAD,
+  IDS_ET_KRAD,
+  new CValueTypeBuilderTemp<TBoundaryKradMaterialParameter>());
 
   AppendValueTypeBuilder(IDT_VALUETYPE_KTAN,
-    IDS_VALUENAME_KTAN,
-    IDS_ET_KTAN,
-    new CValueTypeBuilderTemp<TBoundaryKtanMaterialParameter>());
+  IDS_VALUENAME_KTAN,
+  IDS_ET_KTAN,
+  new CValueTypeBuilderTemp<TBoundaryKtanMaterialParameter>());
 }
 
 CValueTypeFactory::TValueTypeVec CValueTypeFactory::ValueTypes() const
 {
-	TValueTypeVec vcRet;
-	for(TBuilderMap::const_iterator it = m_mpBuilder.begin(); it != m_mpBuilder.end(); it++)
-		vcRet.push_back(TValueTypeIdNamePair(it->first, it->second.second));
-	return vcRet;
+  TValueTypeVec vcRet;
+  for(TBuilderMap::const_iterator it = m_mpBuilder.begin(); it != m_mpBuilder.end(); it++)
+    vcRet.push_back(TValueTypeIdNamePair(it->first, it->second.second));
+  return vcRet;
 }
 
 const CValueTypeFactory *CValueTypeFactory::instance()
@@ -737,81 +737,81 @@ void CValueTypeFactory::reset()
 {
   // We should only remove user defined types, but we don't have any yet, and hence we don't have to do anything (auto-cleanup @ exit)
   //for (TBuilderMap::const_iterator it = instance()->m_mpBuilder.begin(); it != instance()->m_mpBuilder.end(); it++)
-	//  delete it->second.first;
+  //  delete it->second.first;
 }
 
 // Function to build a quantity
 bool CValueTypeFactory::ValueTypeAvailable(unsigned int uValueType) const
 {
-	// Yes, a value type for pointset is available
-	if(uValueType == IDT_VALUETYPE_COORDINATE)
-		return true;
+  // Yes, a value type for pointset is available
+  if(uValueType == IDT_VALUETYPE_COORDINATE)
+    return true;
 
-	TBuilderMap::const_iterator it = m_mpBuilder.find(uValueType);
-	
-	return it != m_mpBuilder.end();
+  TBuilderMap::const_iterator it = m_mpBuilder.find(uValueType);
+  
+  return it != m_mpBuilder.end();
 }
 
 CValueType* CValueTypeFactory::BuildValueType(IPointSet &point_set, const QString &sFileTag, unsigned int uName) const
 {
-	TImportMap::const_iterator it = m_mpImport.find(sFileTag);
-	if(it == m_mpImport.end())
-		return 0;
+  TImportMap::const_iterator it = m_mpImport.find(sFileTag);
+  if(it == m_mpImport.end())
+    return 0;
 
-	return BuildValueType(point_set, it->second, uName);
+  return BuildValueType(point_set, it->second, uName);
 }
 
 CValueType* CValueTypeFactory::BuildValueType(IPointSet &point_set, const QString &sFileTag, const QString &sName) const
 {
-	TImportMap::const_iterator it = m_mpImport.find(sFileTag);
-	if(it == m_mpImport.end())
-		return 0;
+  TImportMap::const_iterator it = m_mpImport.find(sFileTag);
+  if(it == m_mpImport.end())
+    return 0;
 
-	return BuildValueType(point_set, it->second, sName);
+  return BuildValueType(point_set, it->second, sName);
 }
 
 CValueType* CValueTypeFactory::BuildValueType(IPointSet &point_set, unsigned int uValueType, unsigned int uName) const
 {
-	if(uValueType == IDT_VALUETYPE_COORDINATE)
-	{
-		CPointSet& ps = dynamic_cast<CPointSet&>(point_set);
-		return &ps.Coordinates();
-	}
+  if(uValueType == IDT_VALUETYPE_COORDINATE)
+  {
+    CPointSet& ps = dynamic_cast<CPointSet&>(point_set);
+    return &ps.Coordinates();
+  }
 
-	assert(ValueTypeAvailable(uValueType));
-	TBuilderMap::const_iterator it = m_mpBuilder.find(uValueType);
-	
-	if(it == m_mpBuilder.end())
-		return 0;
+  assert(ValueTypeAvailable(uValueType));
+  TBuilderMap::const_iterator it = m_mpBuilder.find(uValueType);
+  
+  if(it == m_mpBuilder.end())
+    return 0;
 
-	// Execut builder
-	CValueType *pValueType = it->second.first->Build(point_set, uName);
+  // Execut builder
+  CValueType *pValueType = it->second.first->Build(point_set, uName);
 
-	pValueType->AssertValid();
+  pValueType->AssertValid();
 
-	return pValueType;
+  return pValueType;
 }
 
 CValueType* CValueTypeFactory::BuildValueType(IPointSet &point_set, unsigned int uValueType, const QString &sName) const
 {
-	if(uValueType == IDT_VALUETYPE_COORDINATE)
-	{
-		CPointSet& ps = dynamic_cast<CPointSet&>(point_set);
-		return &ps.Coordinates();
-	}
+  if(uValueType == IDT_VALUETYPE_COORDINATE)
+  {
+    CPointSet& ps = dynamic_cast<CPointSet&>(point_set);
+    return &ps.Coordinates();
+  }
 
-	assert(ValueTypeAvailable(uValueType));
-	TBuilderMap::const_iterator it = m_mpBuilder.find(uValueType);
-	
-	if(it == m_mpBuilder.end())
-		return 0;
+  assert(ValueTypeAvailable(uValueType));
+  TBuilderMap::const_iterator it = m_mpBuilder.find(uValueType);
+  
+  if(it == m_mpBuilder.end())
+    return 0;
 
-	// Create value type
-	CValueType *pValueType = it->second.first->Build(point_set, sName);
+  // Create value type
+  CValueType *pValueType = it->second.first->Build(point_set, sName);
 
-	pValueType->AssertValid();
+  pValueType->AssertValid();
 
-	return pValueType;
+  return pValueType;
 }
 
 unsigned int CValueTypeFactory::ValueTypeIconID(unsigned int uValueType) const
@@ -822,28 +822,28 @@ unsigned int CValueTypeFactory::ValueTypeIconID(unsigned int uValueType) const
   // return icon IDI_EMPTY. Failing to return a valid icon gives
   // problems when displaying them in a CListCtrl.
   if(it == m_mpBuilder.end())
-    return IDI_EMPTY;
+  return IDI_EMPTY;
 
   return it->second.first->IconID();
 }
 
 int CValueTypeFactory::NameIndex(unsigned int uValueType) const
 {
-	TBuilderMap::const_iterator it = m_mpBuilder.find(uValueType);
-	
-	if(it == m_mpBuilder.end())
-		return -1;
-	return it->second.second;
+  TBuilderMap::const_iterator it = m_mpBuilder.find(uValueType);
+  
+  if(it == m_mpBuilder.end())
+    return -1;
+  return it->second.second;
 }
 
 QString CValueTypeFactory::getImportTag(unsigned int valueType) const
 {
   TValueType2ImportTag::const_iterator importTag =
-    m_mpValueType2ImportTag.find(valueType);
+  m_mpValueType2ImportTag.find(valueType);
 
   if (importTag == m_mpValueType2ImportTag.end())
   {
-    return "";
+  return "";
   }
 
   return importTag->second;
@@ -854,14 +854,14 @@ CSurfaceValueType::CSurfaceValueType(IPointSet& point_set, const QString &strNam
 {
   new TLengthComponent(*this);
 //	assert(point_set.Dimension() == CPointSet::DIM_2D);
-	if(dynamic_cast<CHexaModel*>(&Model()))
-		m_pSurface = new CHexaSurface(*this);
-	else
-		m_pSurface = new CTetraSurface(*this);
-  if (strName == "Surface")
-    m_pSurface->Name(point_set.Name());
+  if(dynamic_cast<CHexaModel*>(&Model()))
+    m_pSurface = new CHexaSurface(*this);
   else
-	  m_pSurface->Name(strName);
+    m_pSurface = new CTetraSurface(*this);
+  if (strName == "Surface")
+  m_pSurface->Name(point_set.Name());
+  else
+    m_pSurface->Name(strName);
 }
 
 CSurfaceValueType::~CSurfaceValueType()
@@ -870,60 +870,60 @@ CSurfaceValueType::~CSurfaceValueType()
 
 void CSurfaceValueType::Unit(CQuantity::UNIT unit)
 {
-	m_pSurface->CoordinateUnit(unit);
+  m_pSurface->CoordinateUnit(unit);
 }
 
 
 void CSurfaceValueType::OnNeighbourDeleted(const CGraphNode& node)
 {
-	if(m_pSurface == &node)
-	{
-		delete this;
-		return;
-	}
+  if(m_pSurface == &node)
+  {
+    delete this;
+    return;
+  }
 
-	TBaseClass::OnNeighbourDeleted(node);
+  TBaseClass::OnNeighbourDeleted(node);
 }
 
 void CSurfaceValueType::OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint)
 {
-	TBaseClass::OnNeighbourModified(node, uHint);
+  TBaseClass::OnNeighbourModified(node, uHint);
 
-	if(m_pSurface == &node)
-	{
-		if(Name() != m_pSurface->Name())
-		{
-			CValueType::Name(m_pSurface->Name());
-		}
-	}
-	if (&PointSet() == &node)
-	{
-		// The component is modified, just propagate to the surface
-		m_pSurface->Invalidate();
-	}
+  if(m_pSurface == &node)
+  {
+    if(Name() != m_pSurface->Name())
+    {
+      CValueType::Name(m_pSurface->Name());
+    }
+  }
+  if (&PointSet() == &node)
+  {
+    // The component is modified, just propagate to the surface
+    m_pSurface->Invalidate();
+  }
 }
-	
+  
 const CSurfaceBase& CSurfaceValueType::Surface() const
 {
-	return *m_pSurface;
+  return *m_pSurface;
 }
 
 CSurfaceBase& CSurfaceValueType::Surface()
 {
-	return *m_pSurface;
+  return *m_pSurface;
 }
 
 void CSurfaceValueType::Name(const QString& sName)
 {
-	m_pSurface->Name(sName);
+  m_pSurface->Name(sName);
 }
 
 const QString& CSurfaceValueType::Name() const
 {
-	return CValueType::Name();
+  return CValueType::Name();
 }
 
 bool CSurfaceValueType::CanDestroy() const
 {
-	return !m_pSurface->Used();
+  return !m_pSurface->Used();
 }

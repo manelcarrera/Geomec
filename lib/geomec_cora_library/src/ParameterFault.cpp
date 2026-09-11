@@ -59,11 +59,11 @@ double CParameterFault::min() const
 {
   if (m_minimum.Valid())
   {
-    return m_minimum.Value();
+  return m_minimum.Value();
   }
   else
   {
-    return NAN_DOUBLE;
+  return NAN_DOUBLE;
   }
 }
 
@@ -71,11 +71,11 @@ double CParameterFault::max() const
 {
   if (m_maximum.Valid())
   {
-    return m_maximum.Value();
+  return m_maximum.Value();
   }
   else
   {
-    return NAN_DOUBLE;
+  return NAN_DOUBLE;
   }
 }
 
@@ -87,8 +87,8 @@ double CParameterFault::mean() const
 std::ostream& CParameterFault::operator () (std::ostream& os) const
 {
   os << "parameter:" << m_name.toStdString() << "," <<
-    m_minimum.Representation() << "," << m_maximum.Representation() << "," <<
-    m_mean << std::endl;
+  m_minimum.Representation() << "," << m_maximum.Representation() << "," <<
+  m_mean << std::endl;
 
   return os;
 }

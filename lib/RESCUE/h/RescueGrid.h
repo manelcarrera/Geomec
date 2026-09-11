@@ -23,7 +23,7 @@ class RescueBlockUnit;
   The displayOrientation shows which corner the origin is located on: 
   LUF, LUB, LDF, LDB, RUF, RUB, RDF, and RDB.
 
-    Key: Left/Right
+  Key: Left/Right
          Up/Down
          Front/Back
 */

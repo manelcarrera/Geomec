@@ -10,30 +10,30 @@ namespace cora
 class CGetModelInfoData
 {
   public:
-    CGetModelInfoData(int argc, char* argv[]);
-    ~CGetModelInfoData();
+  CGetModelInfoData(int argc, char* argv[]);
+  ~CGetModelInfoData();
 
-    CModelData& modelData();
-    const CModelData& modelData() const;
+  CModelData& modelData();
+  const CModelData& modelData() const;
 
-    const QString& versionNumber() const;
+  const QString& versionNumber() const;
 
-    const char* modelInfoFileName() const;
+  const char* modelInfoFileName() const;
 
-    CSummaryResultFile& summaryResultFile();
-    const CSummaryResultFile& summaryResultFile() const;
+  CSummaryResultFile& summaryResultFile();
+  const CSummaryResultFile& summaryResultFile() const;
 
   private:
-    CGetModelInfoData(const CGetModelInfoData& rhs);
-    CGetModelInfoData& operator = (const CGetModelInfoData& rhs);
+  CGetModelInfoData(const CGetModelInfoData& rhs);
+  CGetModelInfoData& operator = (const CGetModelInfoData& rhs);
 
-    static bool isVersionNumberPresent(int argc, char* argv[]);
+  static bool isVersionNumberPresent(int argc, char* argv[]);
 
-    CModelData m_modelData;
-    bool m_versionNumberIsPresent;
-    const QString m_versionNumber;
-    const char* m_modelInfoFileName;
-    CSummaryResultFile m_summaryResultFile;
+  CModelData m_modelData;
+  bool m_versionNumberIsPresent;
+  const QString m_versionNumber;
+  const char* m_modelInfoFileName;
+  CSummaryResultFile m_summaryResultFile;
 };
 
 } // namespace cora

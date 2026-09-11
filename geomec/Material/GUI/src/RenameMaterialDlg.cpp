@@ -28,20 +28,20 @@ CRenameMaterialDlg::CRenameMaterialDlg(const QString& sName, mlMatModel matmodel
   m_iModelComboIndex(-1)
 {
   AddListedModel(MM_LINEAR);
-	AddListedModel(MM_CAMCLAY);
-	AddListedModel(MM_MOHRCOULOMB);
-	AddListedModel(MM_MC_COHESION_HARD1);
-	AddListedModel(MM_MC_COHESION_HARD2);
-	AddListedModel(MM_MC_COHESION_HARD3);
-	AddListedModel(MM_MC_FRICTION_HARD1);
-	AddListedModel(MM_MC_FRICTION_HARD2);
-	AddListedModel(MM_MC_FRICTION_HARD3);
-	AddListedModel(MM_MODIFIEDMOHRCOULOMB);
-	AddListedModel(MM_CREEP);
-	AddListedModel(MM_UNDRAINED);
-	AddListedModel(MM_RIGIDITY);
-	AddListedModel(MM_DUALCAP_LINELA);
-	AddListedModel(MM_FRACTURE_ANISOTROPY);
+  AddListedModel(MM_CAMCLAY);
+  AddListedModel(MM_MOHRCOULOMB);
+  AddListedModel(MM_MC_COHESION_HARD1);
+  AddListedModel(MM_MC_COHESION_HARD2);
+  AddListedModel(MM_MC_COHESION_HARD3);
+  AddListedModel(MM_MC_FRICTION_HARD1);
+  AddListedModel(MM_MC_FRICTION_HARD2);
+  AddListedModel(MM_MC_FRICTION_HARD3);
+  AddListedModel(MM_MODIFIEDMOHRCOULOMB);
+  AddListedModel(MM_CREEP);
+  AddListedModel(MM_UNDRAINED);
+  AddListedModel(MM_RIGIDITY);
+  AddListedModel(MM_DUALCAP_LINELA);
+  AddListedModel(MM_FRACTURE_ANISOTROPY);
   AddListedModel(MM_UPSCALED_ANISOTROPY);
   AddListedModel(MM_ANISOTROPIC_CAMCLAY);
   AddListedModel(MM_FRACTURE_APERTURE2);
@@ -68,76 +68,76 @@ void CRenameMaterialDlg::DoDataExchange(CDataExchange* pDX)
 
 void CRenameMaterialDlg::OnOK() 
 {
-	// let's see if the entered name is valid
-	CString strName;
-	GetDlgItem( IDC_EDITNAME )->GetWindowText( strName );
+  // let's see if the entered name is valid
+  CString strName;
+  GetDlgItem( IDC_EDITNAME )->GetWindowText( strName );
 
-	if(strName.IsEmpty())
-	{
-		_m()->msg( "Please enter a valid name", MB_OK | MB_ICONEXCLAMATION | MB_HELP );
-		GetDlgItem( IDC_EDITNAME )->SetFocus();
-		( (CEdit *) GetDlgItem( IDC_EDITNAME ) )->SetSel( 0, -1 );
-		return;
-	}
+  if(strName.IsEmpty())
+  {
+    _m()->msg( "Please enter a valid name", MB_OK | MB_ICONEXCLAMATION | MB_HELP );
+    GetDlgItem( IDC_EDITNAME )->SetFocus();
+    ( (CEdit *) GetDlgItem( IDC_EDITNAME ) )->SetSel( 0, -1 );
+    return;
+  }
 
   UpdateData(TRUE);
 
   if(m_iModelComboIndex >= 0)
   {
-    assert(m_iModelComboIndex < m_vcListedModels.size());
-    m_matmodel = (mlMatModel)m_vcListedModels[m_iModelComboIndex];
+  assert(m_iModelComboIndex < m_vcListedModels.size());
+  m_matmodel = (mlMatModel)m_vcListedModels[m_iModelComboIndex];
   }
 
   m_strName = (LPCSTR)strName;
-	CDialog::OnOK();
+  CDialog::OnOK();
 }
 
 void CRenameMaterialDlg::AddListedModel(mlMatModel mm)
 {
   if(FilterContainsMaterialModel(mm, m_nModelFilter))
-    m_vcListedModels.push_back(mm);
+  m_vcListedModels.push_back(mm);
 }
 
 BOOL CRenameMaterialDlg::OnInitDialog() 
 {
-	CDialog::OnInitDialog();
+  CDialog::OnInitDialog();
 
   if(!m_vcListedModels.empty())
-    FillModelListBox();
+  FillModelListBox();
 
   size_t i;
   for(i = 0; i < m_vcListedModels.size(); ++i)
   {
-    if(m_vcListedModels[i] == m_matmodel)
-    {
+  if(m_vcListedModels[i] == m_matmodel)
+  {
       m_iModelComboIndex = i;
       break;
-    }
+  }
   }
 
   m_MaterialTypeCombo.EnableWindow(m_bAllowModelChange);
 
-	CEdit *pEdit = (CEdit *) GetDlgItem( IDC_EDITNAME );
-	pEdit->SetFocus();
-	pEdit->SetWindowText( m_strName.toStdString().c_str() );
-	pEdit->SetSel( 0, -1 );
+  CEdit *pEdit = (CEdit *) GetDlgItem( IDC_EDITNAME );
+  pEdit->SetFocus();
+  pEdit->SetWindowText( m_strName.toStdString().c_str() );
+  pEdit->SetSel( 0, -1 );
 
   UpdateData(FALSE);
-	
-	return FALSE;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX Property Pages should return FALSE
+  
+  return FALSE;  // return TRUE unless you set the focus to a control
+                // EXCEPTION: OCX Property Pages should return FALSE
 }
 
 void CRenameMaterialDlg::AddModelToCombo(mlMatModel nModel)
 {
-	m_MaterialTypeCombo.AddString(MaterialModelName(nModel).toStdString().c_str());
+  m_MaterialTypeCombo.AddString(MaterialModelName(nModel).toStdString().c_str());
 }
 
 void CRenameMaterialDlg::FillModelListBox()
 {
-	assert(!m_vcListedModels.empty());
+  assert(!m_vcListedModels.empty());
 
-	for(size_t i = 0; i < m_vcListedModels.size(); i++)
-		AddModelToCombo(m_vcListedModels[i]);
+  for(size_t i = 0; i < m_vcListedModels.size(); i++)
+    AddModelToCombo(m_vcListedModels[i]);
   m_MaterialTypeCombo.SetCurSel(0);
 }

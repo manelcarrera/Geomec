@@ -14,15 +14,15 @@ class IProgressBase;
 class CProgressFactory : public IProgressFactory
 {
 public:
-	virtual IProgressBase* create(
-		eProgress type_,
-		const QString& title="", 
-		bool cancel = true,
-		int jobs=1);
+  virtual IProgressBase* create(
+    eProgress type_,
+    const QString& title="", 
+    bool cancel = true,
+    int jobs=1);
 
   virtual IProgressBase* create_imp(
-    eProgress type_,
-    const QString& title = "",
-    bool cancel = true,
-    int jobs = 1);
+  eProgress type_,
+  const QString& title = "",
+  bool cancel = true,
+  int jobs = 1);
 };

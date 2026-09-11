@@ -20,7 +20,7 @@ class CMaterialServer : public IRockMaterialServerTempl<TMaterialServerParent>
   typedef IRockMaterialServerTempl<TMaterialServerParent> TBase;
 
 public:
-	CMaterialServer(TMaterialServerParent &parent, const CDepletionStage& stage);
+  CMaterialServer(TMaterialServerParent &parent, const CDepletionStage& stage);
 
   ACCEPT_GEOMECMODELVISITORS(VisitMaterialServer);
 };

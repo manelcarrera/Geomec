@@ -75,13 +75,13 @@ extern Edge_t *EdgeAdd( Edge_t *edge, Surface_t *surface )
          /* Beware of REALLOC ! */
          newListId = EdgeNewList( edge, surface, triangleId, p );
          if ( foundKey->list == -1 ) {
-            foundKey->list = newListId;
+      foundKey->list = newListId;
          } else {
-            EdgeList_t   *list = EDGE_LIST( edge, foundKey->list );
-            while ( list->next != -1 ) {
+      EdgeList_t   *list = EDGE_LIST( edge, foundKey->list );
+      while ( list->next != -1 ) {
                list = EDGE_LIST( edge, list->next );
-            }
-            list->next = newListId;
+      }
+      list->next = newListId;
          }
       }
 
@@ -95,10 +95,10 @@ extern bool_t EdgeKeyDebug( Edge_t *edge, const EdgeKey_t *key )
   bool_t    found = FALSE;
   UNUSED(edge);
   if ( EdgeKeyContains( key, 3409 ) && EdgeKeyContains( key, 16318 ) ) {
-    /* Stop here in debugger */
-    found= TRUE;
+  /* Stop here in debugger */
+  found= TRUE;
 #if 0
-    EdgeKeyPrint( edge, key, stderr );
+  EdgeKeyPrint( edge, key, stderr );
 #endif
   }
   return found;
@@ -137,7 +137,7 @@ extern int EdgeListSize( Edge_t *edge, const EdgeKey_t *key, int *nFaults )
    while ( list ) {
       len += 1;
       if ( nFaults && ( SurfaceType( EdgeListSurface( list ) ) != surfNormal ) ) {
-        *nFaults += 1;
+    *nFaults += 1;
       }
       list = EdgeListNext( edge, list );
    }
@@ -189,7 +189,7 @@ extern void EdgeListPrint( const EdgeList_t *list, FILE *fp )
   const Surface_t *surf = EdgeListSurface(list);
   fprintf( fp, " surface=%s triangleId=%d edge=%d\n", 
            SurfaceUserInfo( buf, surf),
-            EdgeListTriangleId(list), list->edge );
+      EdgeListTriangleId(list), list->edge );
 }
 
 extern void EdgeKeyPrint( Edge_t *edge, const EdgeKey_t  *key, FILE *fp )
@@ -235,9 +235,9 @@ extern bool_t EdgeInternal( Edge_t *edge, const EdgeKey_t *key )
       const Surface_t    *surf = EdgeListSurface( list );
       const SurfaceType_t type = SurfaceType( surf );
       const Surface_t   **prevSurf = ( type == surfNormal ? &normal : (
-                                    ( type == surfFrontFault ? &front : (
-                                    ( type == surfBackFault ? &back : (NULL) )
-                                    ))));
+                  ( type == surfFrontFault ? &front : (
+                  ( type == surfBackFault ? &back : (NULL) )
+                  ))));
       assert( prevSurf != NULL );
       if ( *prevSurf == NULL ) {
          *prevSurf = surf;
@@ -254,7 +254,7 @@ extern bool_t EdgeInternal( Edge_t *edge, const EdgeKey_t *key )
       } else if ( front && back ) {
          isInternal = ( SurfaceID( front ) == SurfaceID( back ) ); 
          if ( isInternal ) {
-            isInternal = ( EdgeListSize( edge, key, NULL ) == 4 );
+      isInternal = ( EdgeListSize( edge, key, NULL ) == 4 );
          }
       } else {
          isInternal = TRUE;
@@ -297,13 +297,13 @@ extern bool_t EdgeFaultTouchesOuter(
   bool_t     innerFault = FALSE;
   EdgeList_t  *list = EdgeListFirst( edge, key );
   while ( list ) {
-    const Surface_t *surf = EdgeListSurface( list );
-    if ( SurfaceAtOuterBoundary( surf ) ) {
+  const Surface_t *surf = EdgeListSurface( list );
+  if ( SurfaceAtOuterBoundary( surf ) ) {
       outerBound = TRUE;
-    } else if ( SurfaceType( surf ) != surfNormal ) {
+  } else if ( SurfaceType( surf ) != surfNormal ) {
       innerFault = TRUE;
-    }
-    list = EdgeListNext( edge, list );
+  }
+  list = EdgeListNext( edge, list );
   }
   return ( outerBound && innerFault );
 }
@@ -340,11 +340,11 @@ extern void EdgeKeyMeshMessageAdd(
   MeshMessageAdd( mesh, "Surface(s) connected to edge:\n" );
  
   while ( list ) {
-    Surface_t   *surf = EdgeListSurface( list );
-    if ( !SurfaceSetTest( uniqueSet, surf ) ) {
+  Surface_t   *surf = EdgeListSurface( list );
+  if ( !SurfaceSetTest( uniqueSet, surf ) ) {
       SurfaceSetAdd( uniqueSet, surf );
-    }
-    list = EdgeListNext( edge, list );
+  }
+  list = EdgeListNext( edge, list );
   }
   SurfaceSetMeshMessageAdd( mesh, uniqueSet );
   EdgeKeyPoints( key, &p0, &p1 );

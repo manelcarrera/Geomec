@@ -28,11 +28,11 @@ CPoint::CPoint(const IVector &vec)
 : m_empty( vec.Empty() )
 {
   if(!vec.Empty()) {
-    vec.AssertValid();
-    m_coor[0] = vec.X();
-    m_coor[1] = vec.Y();
-    m_coor[2] = vec.Z();
-    assert(!Empty());
+  vec.AssertValid();
+  m_coor[0] = vec.X();
+  m_coor[1] = vec.Y();
+  m_coor[2] = vec.Z();
+  assert(!Empty());
   }
 }
 
@@ -43,11 +43,11 @@ CPoint::CPoint(const IPoint &pt)
 : m_empty( pt.Empty() )
 {
   if(!pt.Empty()) {
-    pt.AssertValid();
-    m_coor[0] = pt.X();
-    m_coor[1] = pt.Y();
-    m_coor[2] = pt.Z();
-    assert(!Empty());
+  pt.AssertValid();
+  m_coor[0] = pt.X();
+  m_coor[1] = pt.Y();
+  m_coor[2] = pt.Z();
+  assert(!Empty());
   }
 }
 
@@ -58,11 +58,11 @@ CPoint::CPoint(const CPoint &pt)
 : m_empty( pt.Empty() )
 {
   if(!pt.Empty()) {
-    pt.AssertValid();
-    m_coor[0] = pt.X();
-    m_coor[1] = pt.Y();
-    m_coor[2] = pt.Z();
-    assert(!Empty());
+  pt.AssertValid();
+  m_coor[0] = pt.X();
+  m_coor[1] = pt.Y();
+  m_coor[2] = pt.Z();
+  assert(!Empty());
   }
 }
 
@@ -87,9 +87,9 @@ CPoint& CPoint::operator=(const CPoint& rhs)
 {
   m_empty = rhs.Empty();
   if(!rhs.Empty()) {
-    m_coor[0] = rhs.X();
-    m_coor[1] = rhs.Y();
-    m_coor[2] = rhs.Z();
+  m_coor[0] = rhs.X();
+  m_coor[1] = rhs.Y();
+  m_coor[2] = rhs.Z();
   }        
 
   return *this;
@@ -97,12 +97,12 @@ CPoint& CPoint::operator=(const CPoint& rhs)
 
 bool CPoint::Empty() const
 {
-	return m_empty;
+  return m_empty;
 }
 
 void CPoint::AssertValid() const
 {
-	assert(!Empty());
+  assert(!Empty());
 }
 
 const double &CPoint::X() const

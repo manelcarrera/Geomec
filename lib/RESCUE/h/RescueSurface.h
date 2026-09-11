@@ -35,61 +35,61 @@ class RescueSurface:public RescueWireframeOwner
 {
 public:
   typedef enum {AUXILLIARY, FAULT, UNCONFORMITY, LEASE_BOUNDARY, HORIZON,
-                OIL_CONTACT, GAS_CONTACT, WATER_CONTACT, SALT_DOME} SurfaceType;
+        OIL_CONTACT, GAS_CONTACT, WATER_CONTACT, SALT_DOME} SurfaceType;
   RescueSurface(RescueModel *modelIn,
-                RescueCoordinateSystem::Orientation orientation,
-                RescueCoordinateSystemAxis *i_axis,
-                RESCUEFLOAT i_origin, RESCUEFLOAT i_step,
-                RESCUEINT64 i_lowbound, RESCUEINT64 i_count,
-                RescueCoordinateSystemAxis *j_axis,
-                RESCUEFLOAT j_origin, RESCUEFLOAT j_step,
-                RESCUEINT64 j_lowbound, RESCUEINT64 j_count,
-                RESCUEFLOAT missingValue, 
-                SurfaceType type);
+        RescueCoordinateSystem::Orientation orientation,
+        RescueCoordinateSystemAxis *i_axis,
+        RESCUEFLOAT i_origin, RESCUEFLOAT i_step,
+        RESCUEINT64 i_lowbound, RESCUEINT64 i_count,
+        RescueCoordinateSystemAxis *j_axis,
+        RESCUEFLOAT j_origin, RESCUEFLOAT j_step,
+        RESCUEINT64 j_lowbound, RESCUEINT64 j_count,
+        RESCUEFLOAT missingValue, 
+        SurfaceType type);
   RescueSurface(RescueModel *modelIn,
-                RescueCoordinateSystem::Orientation orientation,
-                RescueCoordinateSystemAxis *i_axis,
-                RESCUEFLOAT i_origin, RESCUEFLOAT i_step,
-                RESCUEINT64 i_lowbound, RESCUEINT64 i_count,
-                RescueCoordinateSystemAxis *j_axis,
-                RESCUEFLOAT j_origin, RESCUEFLOAT j_step,
-                RESCUEINT64 j_lowbound, RESCUEINT64 j_count,
-                RESCUEFLOAT missingValue, 
-                RESCUEFLOAT *values,
-                SurfaceType type);
+        RescueCoordinateSystem::Orientation orientation,
+        RescueCoordinateSystemAxis *i_axis,
+        RESCUEFLOAT i_origin, RESCUEFLOAT i_step,
+        RESCUEINT64 i_lowbound, RESCUEINT64 i_count,
+        RescueCoordinateSystemAxis *j_axis,
+        RESCUEFLOAT j_origin, RESCUEFLOAT j_step,
+        RESCUEINT64 j_lowbound, RESCUEINT64 j_count,
+        RESCUEFLOAT missingValue, 
+        RESCUEFLOAT *values,
+        SurfaceType type);
           // Creates a new surface with regular x/y geometry.
           // If passed, the values are applied to the Z axis.
   RescueSurface(RescueModel *modelIn,
-                RescueCoordinateSystem::Orientation orientation,
-                RESCUEINT64 i_lowbound, RESCUEINT64 i_count,
-                RESCUEINT64 j_lowbound, RESCUEINT64 j_count,
-                RESCUEFLOAT missingValue,
-                SurfaceType type);
+        RescueCoordinateSystem::Orientation orientation,
+        RESCUEINT64 i_lowbound, RESCUEINT64 i_count,
+        RESCUEINT64 j_lowbound, RESCUEINT64 j_count,
+        RESCUEFLOAT missingValue,
+        SurfaceType type);
   RescueSurface(RescueModel *modelIn,
-                RescueCoordinateSystem::Orientation orientation,
-                RESCUEINT64 i_lowbound, RESCUEINT64 i_count,
-                RESCUEINT64 j_lowbound, RESCUEINT64 j_count,
-                RESCUEFLOAT missingValue, 
-                RESCUEFLOAT *tripletArray,
-                SurfaceType type);
+        RescueCoordinateSystem::Orientation orientation,
+        RESCUEINT64 i_lowbound, RESCUEINT64 i_count,
+        RESCUEINT64 j_lowbound, RESCUEINT64 j_count,
+        RESCUEFLOAT missingValue, 
+        RESCUEFLOAT *tripletArray,
+        SurfaceType type);
           // Creates a new parametric surface.
 /****************************************************************************************************
 
-    The stub method lets you find out if you are stepping into a part of the model
-    that has not been loaded.  From the stub you can find the
-    RescueWireframe involved in the node, and you can find out if that node is
-    loaded.
+  The stub method lets you find out if you are stepping into a part of the model
+  that has not been loaded.  From the stub you can find the
+  RescueWireframe involved in the node, and you can find out if that node is
+  loaded.
 
-    This method will return zero if RescueModel::LoadWireframe() has not been called.
+  This method will return zero if RescueModel::LoadWireframe() has not been called.
 
 *************************************************************************************************/
   RescueEdgeSetStub *EdgesObj();
 /*********************************************************************************************
 
-    This method will automatically load the wireframe if the part you need for
-    the edges is not yet loaded.
+  This method will automatically load the wireframe if the part you need for
+  the edges is not yet loaded.
 
-    This method will return zero if RescueModel::LoadWireframe() has not been called.
+  This method will return zero if RescueModel::LoadWireframe() has not been called.
 
 **********************************************************************************************/
   RescueEdgeSet *Edges();
@@ -118,9 +118,9 @@ public:
   RescueProperty *PropertyIdentifiedBy(RESCUEINT64 identifier) 
                   {return properties->ObjectIdentifiedBy(identifier);}
   RescueProperty *PropertyNamed(RESCUECHAR *name) {return properties->ObjectNamed(name);}
-                                    // Do NOT delete the object returned.
-                                    // If you want to remove them from the
-                                    // model use the corresponding Drop method.
+                  // Do NOT delete the object returned.
+                  // If you want to remove them from the
+                  // model use the corresponding Drop method.
   RESCUEBOOL DropRescueProperty(RescueProperty *unitToDrop); 
                                    // The property is automatically dropped from
                                    // any RescueTimeStepGroups of which it was a
@@ -134,9 +134,9 @@ public:
                   {return ijSurfaces->ObjectIdentifiedBy(identifier);}
   RescueTriangulatedSurface *SurfaceTriangulatedIdentifiedBy(RESCUEINT64 identifier);
   RESCUEBOOL DropIJSurface(RescueIJSurface *toDrop);
-                                    // Any properties on this surface are automatically dropped.
-                                    // Won't drop the final IJSurface
-                                    // (there must always be one).
+                  // Any properties on this surface are automatically dropped.
+                  // Won't drop the final IJSurface
+                  // (there must always be one).
   RescueModel *ParentModel() {return parentModel;}
   RESCUEINT64  CountOfPropertyGroup64() {return (*groups).Count64();}
   RESCUEINT32  CountOfPropertyGroup() {return (*groups).Count();}
@@ -172,7 +172,7 @@ public:
   RescueTriangulatedSurface *TriangulatedSurface() {return triangulatedSurface;}
 /****************************************************************************************
 
-    Methods dealing with RescueDataContainers.
+  Methods dealing with RescueDataContainers.
 
 *******************************************************************************************/
   cSetRescueDataContainer *DataContainers();

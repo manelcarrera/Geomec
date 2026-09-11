@@ -29,7 +29,7 @@ CDataCell::CDataCell(const CMeshDataCacher &cacher, int nColumn)
 
 CDataCell::~CDataCell()
 {
-	if(m_pData) delete [] m_pData;
+  if(m_pData) delete [] m_pData;
 }
 
 void CDataCell::ReuseFor(int nColumn)
@@ -40,29 +40,29 @@ void CDataCell::ReuseFor(int nColumn)
 
 bool CDataCell::Contains(int nColumn) const
 {
-	return m_nColumn == nColumn;
+  return m_nColumn == nColumn;
 }
 
 const double *CDataCell::Value(int nElement, int nNode)
 {
-	if(!m_pData)
-		return 0;
+  if(!m_pData)
+    return 0;
 
-	int offset = m_cacher.Offset(nElement, nNode);
-	
-	if(m_pData[offset] == DBL_MAX)
-		return 0;
+  int offset = m_cacher.Offset(nElement, nNode);
+  
+  if(m_pData[offset] == DBL_MAX)
+    return 0;
 
-	return &m_pData[offset];
+  return &m_pData[offset];
 }
 
 void CDataCell::Value(int nElement, int nNode, double val)
 {
-	InitData();
+  InitData();
 
-	m_pData[m_cacher.Offset(nElement, nNode)] = val;
+  m_pData[m_cacher.Offset(nElement, nNode)] = val;
 
-	m_bDirty = true;
+  m_bDirty = true;
   m_checkSum.reset();
 }
 
@@ -74,17 +74,17 @@ void CDataCell::InitData(bool bReinitialize)
   if (!m_pData)
   {
   	m_pData = new double[nSize];
-    bReinitialize = true;
+  bReinitialize = true;
   }
 
   if (bReinitialize)
   {
   	for (int i = 0; i < nSize; ++i)
-	  {
-		  m_pData[i] = std::numeric_limits<double>::quiet_NaN();
-	  }
+    {
+      m_pData[i] = std::numeric_limits<double>::quiet_NaN();
+    }
 
-    m_checkSum.reset();
+  m_checkSum.reset();
   }
 }
 
@@ -123,20 +123,20 @@ bool CDataCell::ChecksumOK(int *nStatus)
   assert(m_checkSum.type == 2); // only one we support right now; type 1 may exist in some dev models
 
   if (nStatus)
-    *nStatus = 0;
+  *nStatus = 0;
 
   if (!m_pData)
-    return false;
+  return false;
 
   if (nStatus)
-    *nStatus = 1;
+  *nStatus = 1;
 
   if (m_checkSum.seed.first == 0)
   {
-    srand(time(0));
-    m_checkSum.seed.first = rand();
-    m_checkSum.seed.second = rand();
-    if (nStatus)
+  srand(time(0));
+  m_checkSum.seed.first = rand();
+  m_checkSum.seed.second = rand();
+  if (nStatus)
       *nStatus += 2;
   }
 
@@ -144,13 +144,13 @@ bool CDataCell::ChecksumOK(int *nStatus)
 
   if (m_checkSum.hash.first == 0)
   {
-    m_checkSum.hash = hash;
-    if (nStatus)
+  m_checkSum.hash = hash;
+  if (nStatus)
       *nStatus += 4;
   }
 
   if (nStatus && m_checkSum.hash == hash)
-    *nStatus += 8;
+  *nStatus += 8;
 
   return m_checkSum.hash == hash;
 }
@@ -160,19 +160,19 @@ bool CDataCell::ChecksumOK(int *nStatus)
 void CDataCell::SaveAs(const char *fileName, int nElement, int nSize)
 {
   if (!m_pData)
-    return;
+  return;
 
   FILE *fp = fopen(fileName, "w+");
 
   if (!fp)
-    return;
+  return;
 
   if (nSize == 0 || nSize > m_cacher.m_mesh.ElementSize())
-    nSize = m_cacher.m_mesh.ElementSize();
+  nSize = m_cacher.m_mesh.ElementSize();
 
   for (size_t i = nElement; i < nSize; ++i)
   {
-    for (size_t j = 0; j < m_cacher.MaxNodeSize(i); ++j)
+  for (size_t j = 0; j < m_cacher.MaxNodeSize(i); ++j)
       fprintf(fp, "% 6zd  % 2zd %f\n", i, j, m_pData[m_cacher.Offset(i, j)]);
   }
 
@@ -183,12 +183,12 @@ void CDataCell::SaveAs(const char *fileName, int nElement, int nSize)
 
 bool CDataCell::Dirty() const
 {
-	return m_bDirty;
+  return m_bDirty;
 }
 
 const CMeshDataCacher &CDataCell::Cacher() const
 {
-	return m_cacher;
+  return m_cacher;
 }
 
 

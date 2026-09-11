@@ -14,7 +14,7 @@ public:
   virtual double ConvertToSi(const double &value) const= 0;
   const std::string &Name() const {return m_name;}
 protected:
-	IUnitConversion(const std::string &sJustAName):m_name(sJustAName) {};
+  IUnitConversion(const std::string &sJustAName):m_name(sJustAName) {};
 private:
   std::string m_name;
 };

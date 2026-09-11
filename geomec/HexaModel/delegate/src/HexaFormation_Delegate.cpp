@@ -29,24 +29,24 @@ void CHexaFormationEntry_Delegate::AppendContextMenu(
   CContextMenuInvoker& invoker)
 {
   typedef CSingleCommandTemplate <
-    CFormationEntryTempl_Delegate <CHexaFormation> > TForBaseCommand;
+  CFormationEntryTempl_Delegate <CHexaFormation> > TForBaseCommand;
 
   // allow gocad export
 
   invoker.AddCommand("Export to Gocad",
-    *(new TForBaseCommand(*this,
+  *(new TForBaseCommand(*this,
       &CFormationEntryTempl_Delegate <CHexaFormation> ::OnExportGocad,
       &CFormationEntryTempl_Delegate <CHexaFormation> ::CanExportGocad)));
   invoker.AddSeparator();
 
-	CFormationEntryTempl_Delegate <CHexaFormation> ::AppendContextMenu(
-    invoker);
+  CFormationEntryTempl_Delegate <CHexaFormation> ::AppendContextMenu(
+  invoker);
 
-	typedef CSingleCommandTemplate <CHexaFormationEntry> TForCommand;
+  typedef CSingleCommandTemplate <CHexaFormationEntry> TForCommand;
 
 #if 0
-	invoker.AddCommand("Show formation skin",
-		*(new TForCommand(*m_hexaFormationEntry, &CHexaFormationEntry::OnShowSkin,
+  invoker.AddCommand("Show formation skin",
+    *(new TForCommand(*m_hexaFormationEntry, &CHexaFormationEntry::OnShowSkin,
       0, &CHexaFormationEntry::ShowSkin)));
 #endif
 }

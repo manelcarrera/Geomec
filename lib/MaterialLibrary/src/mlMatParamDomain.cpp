@@ -42,33 +42,33 @@ bool CMatParamDomain::operator()(double dValue, const CMatParam& param, QString&
 
   if(!m_bMinIsInf && !m_bMaxIsInf)
   {
-    if(m_bIncludeMax)
-    {
+  if(m_bIncludeMax)
+  {
       if(m_bIncludeMin)
-        strErrorMsg = QObject::tr("Value must be at least %1 and at most %2").arg(dMin).arg(dMax);
+    strErrorMsg = QObject::tr("Value must be at least %1 and at most %2").arg(dMin).arg(dMax);
       else
-        strErrorMsg = QObject::tr("Value must be greater than %1 and at most %2").arg(dMin).arg(dMax);
-    }
-    else
-    {
+    strErrorMsg = QObject::tr("Value must be greater than %1 and at most %2").arg(dMin).arg(dMax);
+  }
+  else
+  {
       if(m_bIncludeMin)
-        strErrorMsg = QObject::tr("Value must be at least %1 and less than %2").arg(dMin).arg(dMax);
+    strErrorMsg = QObject::tr("Value must be at least %1 and less than %2").arg(dMin).arg(dMax);
       else
-        strErrorMsg = QObject::tr("Value must be greater than %1 and less than %2").arg(dMin).arg(dMax);
-    }
+    strErrorMsg = QObject::tr("Value must be greater than %1 and less than %2").arg(dMin).arg(dMax);
+  }
   }
   else if(m_bMaxIsInf)
   {
-    if(m_bIncludeMin)
+  if(m_bIncludeMin)
       strErrorMsg = QObject::tr("Value must be at least %1").arg(dMin);
-    else
+  else
       strErrorMsg = QObject::tr("Value must be greater than %1").arg(dMin);
   }
   else
   {
-    if(m_bIncludeMax)
+  if(m_bIncludeMax)
       strErrorMsg = QObject::tr("Value must be at most %1").arg(dMax);
-    else
+  else
       strErrorMsg = QObject::tr("Value must be less than %1").arg(dMax);
   }
 

@@ -4,9 +4,9 @@ static const double NaN = -9999.999; //FIXME
 
 namespace geo
 {
-	class IPoint;
-	class CValue;
-	class IElement;
+  class IPoint;
+  class CValue;
+  class IElement;
 }
 
 //for displacements

@@ -12,8 +12,8 @@
 class CStressComponentProxy  
 {
 public:
-	CStressComponentProxy();
-	virtual ~CStressComponentProxy();
+  CStressComponentProxy();
+  virtual ~CStressComponentProxy();
 
 };
 

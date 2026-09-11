@@ -3,7 +3,7 @@
 
 namespace vcbfunctions
 {
-    QString getResultPath(const IValueComponentBase& valueComponent, int exceptFirst = 1);
+  QString getResultPath(const IValueComponentBase& valueComponent, int exceptFirst = 1);
 }
 
 #endif  // _vcbfunctions_h_

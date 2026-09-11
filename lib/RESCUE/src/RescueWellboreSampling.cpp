@@ -37,19 +37,19 @@ RescueWellboreSampling::~RescueWellboreSampling()
 {
   if (grid != 0)
   {
-    delete grid;
+  delete grid;
   }
   if (properties != 0)
   {
-    delete properties;
+  delete properties;
   }
   if (values != 0)
   {
-    delete [] values;
+  delete [] values;
   }
   if (timeStamp != 0)
   {
-    delete timeStamp;
+  delete timeStamp;
   }
 }
 
@@ -57,7 +57,7 @@ void RescueWellboreSampling::SetValues(RESCUEFLOAT *valuesIn)
 {
   if (values != 0)
   {
-    delete [] values;
+  delete [] values;
   }
   values = valuesIn;
 }
@@ -67,14 +67,14 @@ void RescueWellboreSampling::Swap()
   grid->Axis(0)->Swap();
   if (values != 0)
   {
-    RescueContext::SwapArray(values, grid->Axis(0)->Count64());
+  RescueContext::SwapArray(values, grid->Axis(0)->Count64());
   }
   RESCUEINT64 pOrd = 0;
   RescueWellboreProperty *property = NthRescueWellboreProperty(pOrd++);
   while (property != 0)
   {
-    property->Swap();
-    property = NthRescueWellboreProperty(pOrd++);
+  property->Swap();
+  property = NthRescueWellboreProperty(pOrd++);
   }
 }
 
@@ -129,16 +129,16 @@ RescueWellboreSampling::RescueWellboreSampling(RescueContext *context, FILE *arc
       myfgets(context, myString, 255, archiveFile);
       while (strcmp(myString, "EOD") != 0)
       {
-        if (strcmp(myString, "timeStamp") == 0)
-        {
+    if (strcmp(myString, "timeStamp") == 0)
+    {
           RescueBuffer buf(context, archiveFile);
           buf >> (*timeStamp);
-        }
-        else
-        {
+    }
+    else
+    {
           RescueBuffer buf(context, archiveFile);
-        }
-        myfgets(context, myString, 255, archiveFile);
+    }
+    myfgets(context, myString, 255, archiveFile);
       }
    }
    grid = new RescueGrid(context, archiveFile);
@@ -159,22 +159,22 @@ void RescueWellboreSampling::Archive(FILE *archiveFile)
   RescueContext *context = ParentWellbore()->ParentModel()->Context();
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "timeStamp");
-    RescueBuffer buf(context, timeStamp->length64() + 5);
-    buf << (*timeStamp);
-    buf.Archive(archiveFile);
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "timeStamp");
+  RescueBuffer buf(context, timeStamp->length64() + 5);
+  buf << (*timeStamp);
+  buf.Archive(archiveFile);
+  myfprintf(context, archiveFile, "EOD");
   }
   grid->Archive(context, archiveFile);
   if (values == 0)
   {
-    myfprintf(context, archiveFile, (RESCUEINT64) 0);
+  myfprintf(context, archiveFile, (RESCUEINT64) 0);
   }
   else
   {
-    RESCUEINT64 howMany = Count64();
-    myfprintf(context, archiveFile, howMany);
-    myfprintf(context, archiveFile, values, howMany, context->FileVersion() > 15);
+  RESCUEINT64 howMany = Count64();
+  myfprintf(context, archiveFile, howMany);
+  myfprintf(context, archiveFile, values, howMany, context->FileVersion() > 15);
   }
   properties->Archive(context, archiveFile);
 }
@@ -190,34 +190,34 @@ RESCUEFLOAT RescueWellboreSampling::MeasuredDepthAt(RESCUEINT64 ndx)
 {
   if (values == 0)
   {
-    return grid->Axis(0)->ValueAt(ndx);
+  return grid->Axis(0)->ValueAt(ndx);
   }
   else
   {
-    return values[ndx];
+  return values[ndx];
   }
 }
 
 RescueWellboreProperty *RescueWellboreSampling::PropertyDescribedBy(const RESCUECHAR *name,
-                                                                    const RESCUECHAR *type,
-                                                                    const RESCUECHAR *uom)
+                                  const RESCUECHAR *type,
+                                  const RESCUECHAR *uom)
 {
   RescueWellboreProperty *myReturn = 0;
   RESCUEINT64 loop;
   for (loop = 0; loop < properties->Count64() && myReturn == 0; loop++)
   {
-    RescueWellboreProperty *candidate = properties->NthObject(loop);
-    RescueArray *data = candidate->Data();
-    if (strcmp(name, data->PropertyName()->NonNullString()) == 0)
-    {
+  RescueWellboreProperty *candidate = properties->NthObject(loop);
+  RescueArray *data = candidate->Data();
+  if (strcmp(name, data->PropertyName()->NonNullString()) == 0)
+  {
       if (strcmp(type, data->PropertyType()->NonNullString()) == 0)
       {
-        if (strcmp(uom, data->UnitOfMeasure()->NonNullString()) == 0)
-        {
+    if (strcmp(uom, data->UnitOfMeasure()->NonNullString()) == 0)
+    {
           myReturn = candidate;
-        }
-      }
     }
+      }
+  }
   }
   return myReturn;
 }
@@ -226,7 +226,7 @@ void RescueWellboreSampling::WriteWITSML(FILE *file, RescueWellbore *wellbore, R
 {
   if (Count64() > 0)
   {
-    fprintf(file, " <wellLog>\n");
+  fprintf(file, " <wellLog>\n");
    fprintf(file, " <nameWell>%s</nameWell>\n", wellbore->WellboreName()->NonNullString());
    fprintf(file, " <nameWellbore>%s</nameWellbore>\n", wellbore->WellboreName()->NonNullString());
    fprintf(file, " <name>%s - %lld</name>\n", timeStamp->NonNullString(), Identifier());
@@ -238,233 +238,233 @@ void RescueWellboreSampling::WriteWITSML(FILE *file, RescueWellbore *wellbore, R
   fprintf(file, "   <classWitsml>measured depth</classWitsml>\n");
   fprintf(file, "   <unit>%s</unit>\n", uom->NonNullString());
   fprintf(file, "   <nullValue>-999.25</nullValue>\n"); // If we ever have null values in MD I'm not aware of it.
-    fprintf(file, "   <wellDatum>modelDatum</wellDatum>\n");
+  fprintf(file, "   <wellDatum>modelDatum</wellDatum>\n");
   fprintf(file, "   <curveDescription>measured depth</curveDescription>\n");
   fprintf(file, "   <typeLogData>double</typeLogData>\n"); // Really float.
   fprintf(file, " </logCurveInfo>\n");
-    int pNdx = 0;
-    RescueWellboreProperty *property = NthRescueWellboreProperty(pNdx++);
-    while (property != 0)
-    {
-    fprintf(file, " <logCurveInfo uid=\"%d\">\n", pNdx);
+  int pNdx = 0;
+  RescueWellboreProperty *property = NthRescueWellboreProperty(pNdx++);
+  while (property != 0)
+  {
+  fprintf(file, " <logCurveInfo uid=\"%d\">\n", pNdx);
       RescueArray *data = property->Data();
-    fprintf(file, "   <mnemonic>%s</mnemonic>\n", data->PropertyType()->NonNullString());
-    fprintf(file, "   <unit>%s</unit>\n", data->UnitOfMeasure()->NonNullString());
+  fprintf(file, "   <mnemonic>%s</mnemonic>\n", data->PropertyType()->NonNullString());
+  fprintf(file, "   <unit>%s</unit>\n", data->UnitOfMeasure()->NonNullString());
       switch (data->IsA())
       {
       case R_RescueArrayFloat:
-        {
+    {
           RescueArrayFloat *fData = (RescueArrayFloat *) data;
-        fprintf(file, "   <nullValue>%f</nullValue>\n", fData->NullValue());
+    fprintf(file, "   <nullValue>%f</nullValue>\n", fData->NullValue());
           break;
-        }
-        break;
+    }
+    break;
       case R_RescueArrayDouble:
-        {
+    {
           RescueArrayDouble *fData = (RescueArrayDouble *) data;
-        fprintf(file, "   <nullValue>%lf</nullValue>\n", fData->NullValue());
+    fprintf(file, "   <nullValue>%lf</nullValue>\n", fData->NullValue());
           break;
-        }
-        break;
+    }
+    break;
       case R_RescueArrayInt:
-        {
+    {
           RescueArrayInt *fData = (RescueArrayInt *) data;
-        fprintf(file, "   <nullValue>%d</nullValue>\n", fData->NullValue());
+    fprintf(file, "   <nullValue>%d</nullValue>\n", fData->NullValue());
           break;
-        }
-        break;
+    }
+    break;
       case R_RescueArrayShort:
-        {
+    {
           RescueArrayShort *fData = (RescueArrayShort *) data;
-        fprintf(file, "   <nullValue>%d</nullValue>\n", (int) fData->NullValue());
+    fprintf(file, "   <nullValue>%d</nullValue>\n", (int) fData->NullValue());
           break;
-        }
-        break;
+    }
+    break;
       case R_RescueArrayByte:
-        {
+    {
           RescueArrayByte *fData = (RescueArrayByte *) data;
-        fprintf(file, "   <nullValue>%d</nullValue>\n", (int) fData->NullValue());
+    fprintf(file, "   <nullValue>%d</nullValue>\n", (int) fData->NullValue());
           break;
-        }
-        break;
+    }
+    break;
       case R_RescueArray2dVector:
-        {
+    {
           RescueArray2dVector *fData = (RescueArray2dVector *) data;
           Rescue2dVector nullValue = fData->NullValue();
-        fprintf(file, "   <nullValue>%f %f</nullValue>\n", nullValue.coord1, nullValue.coord2);
+    fprintf(file, "   <nullValue>%f %f</nullValue>\n", nullValue.coord1, nullValue.coord2);
           break;
-        }
-        break;
+    }
+    break;
       case R_RescueArray3dVector:
-        {
+    {
           RescueArray3dVector *fData = (RescueArray3dVector *) data;
           Rescue3dVector nullValue = fData->NullValue();
-        fprintf(file, "   <nullValue>%f %f %f</nullValue>\n", nullValue.coord1, nullValue.coord2, nullValue.coord3);
+    fprintf(file, "   <nullValue>%f %f %f</nullValue>\n", nullValue.coord1, nullValue.coord2, nullValue.coord3);
           break;
-        }
-        break;
+    }
+    break;
       default:
  break;   // Quiet warning
       }
-    fprintf(file, "   <curveDescription>%s</curveDescription>\n", data->PropertyName()->NonNullString());
+  fprintf(file, "   <curveDescription>%s</curveDescription>\n", data->PropertyName()->NonNullString());
       switch (data->IsA())
       {
       case R_RescueArrayFloat:
-        {
-        fprintf(file, "   <typeLogData>double</typeLogData>\n"); // Really float.
+    {
+    fprintf(file, "   <typeLogData>double</typeLogData>\n"); // Really float.
           break;
-        }
-        break;
+    }
+    break;
       case R_RescueArrayDouble:
-        {
-        fprintf(file, "   <typeLogData>double</typeLogData>\n"); 
+    {
+    fprintf(file, "   <typeLogData>double</typeLogData>\n"); 
           break;
-        }
-        break;
+    }
+    break;
       case R_RescueArrayInt:
-        {
-        fprintf(file, "   <typeLogData>long</typeLogData>\n"); 
+    {
+    fprintf(file, "   <typeLogData>long</typeLogData>\n"); 
           break;
-        }
-        break;
+    }
+    break;
       case R_RescueArrayShort:
-        {
-        fprintf(file, "   <typeLogData>long</typeLogData>\n"); 
+    {
+    fprintf(file, "   <typeLogData>long</typeLogData>\n"); 
           break;
-        }
-        break;
+    }
+    break;
       case R_RescueArrayByte:
-        {
-        fprintf(file, "   <typeLogData>long</typeLogData>\n"); 
+    {
+    fprintf(file, "   <typeLogData>long</typeLogData>\n"); 
           break;
-        }
-        break;
+    }
+    break;
       case R_RescueArray2dVector:
-        {
-        fprintf(file, "   <typeLogData>string</typeLogData>\n"); 
+    {
+    fprintf(file, "   <typeLogData>string</typeLogData>\n"); 
           break;
-        }
-        break;
+    }
+    break;
       case R_RescueArray3dVector:
-        {
-        fprintf(file, "   <typeLogData>string</typeLogData>\n"); 
+    {
+    fprintf(file, "   <typeLogData>string</typeLogData>\n"); 
           break;
-        }
-        break;
+    }
+    break;
       default:
-        {
-        fprintf(file, "   <typeLogData>unknown</typeLogData>\n");
-        }
-        break;
+    {
+    fprintf(file, "   <typeLogData>unknown</typeLogData>\n");
+    }
+    break;
       }
-    fprintf(file, " </logCurveInfo>\n");
+  fprintf(file, " </logCurveInfo>\n");
       if (data->IsLoaded() == FALSE)
       {
-        data->Load();
+    data->Load();
       }
       property = NthRescueWellboreProperty(pNdx++);
-    }
-    fprintf(file, "  <blockInfo uid=\"0\">\n");
-    fprintf(file, "    <indexType>measured depth</indexType>\n");
-    fprintf(file, "    <blockCurveInfo uid=\"bci-0\">\n");
-    fprintf(file, "      <curveId>0</curveId>\n");
-    fprintf(file, "      <columnIndex>1</columnIndex>\n");
-    fprintf(file, "    </blockCurveInfo>\n");
-    pNdx = 0;
-    property = NthRescueWellboreProperty(pNdx++);
-    while (property != 0)
-    {
+  }
+  fprintf(file, "  <blockInfo uid=\"0\">\n");
+  fprintf(file, "    <indexType>measured depth</indexType>\n");
+  fprintf(file, "    <blockCurveInfo uid=\"bci-0\">\n");
+  fprintf(file, "      <curveId>0</curveId>\n");
+  fprintf(file, "      <columnIndex>1</columnIndex>\n");
+  fprintf(file, "    </blockCurveInfo>\n");
+  pNdx = 0;
+  property = NthRescueWellboreProperty(pNdx++);
+  while (property != 0)
+  {
       fprintf(file, "    <blockCurveInfo uid=\"bci-%d\">\n", pNdx);
       fprintf(file, "      <curveId>%d</curveId>\n", pNdx);
       fprintf(file, "      <columnIndex>%d</columnIndex>\n", (pNdx + 1));
       fprintf(file, "    </blockCurveInfo>\n");
       property = NthRescueWellboreProperty(pNdx++);
-    }
-    fprintf(file, "  </blockInfo>\n");
+  }
+  fprintf(file, "  </blockInfo>\n");
   fprintf(file, " <logData>\n");
-    RESCUEINT64 dNdx = 0;
-    while (dNdx < Count64())
-    {
+  RESCUEINT64 dNdx = 0;
+  while (dNdx < Count64())
+  {
       fprintf(file, " <data id='0'>%f", MeasuredDepthAt(dNdx));
       int pNdx = 0;
       RescueWellboreProperty *property = NthRescueWellboreProperty(pNdx++);
       while (property != 0)
       {
-        fprintf(file, ",");
-        RescueArray *data = property->Data();
-        switch (data->IsA())
-        {
-        case R_RescueArrayFloat:
+    fprintf(file, ",");
+    RescueArray *data = property->Data();
+    switch (data->IsA())
+    {
+    case R_RescueArrayFloat:
           {
-            RescueArrayFloat *fData = (RescueArrayFloat *) data;
+      RescueArrayFloat *fData = (RescueArrayFloat *) data;
           fprintf(file, "%f", fData->Value()[dNdx]);
-            break;
+      break;
           }
           break;
-        case R_RescueArrayDouble:
+    case R_RescueArrayDouble:
           {
-            RescueArrayDouble *fData = (RescueArrayDouble *) data;
+      RescueArrayDouble *fData = (RescueArrayDouble *) data;
           fprintf(file, "%lf", fData->Value()[dNdx]);
-            break;
+      break;
           }
           break;
-        case R_RescueArrayInt:
+    case R_RescueArrayInt:
           {
-            RescueArrayInt *fData = (RescueArrayInt *) data;
+      RescueArrayInt *fData = (RescueArrayInt *) data;
           fprintf(file, "%d", fData->Value()[dNdx]);
-            break;
+      break;
           }
           break;
-        case R_RescueArrayShort:
+    case R_RescueArrayShort:
           {
-            RescueArrayShort *fData = (RescueArrayShort *) data;
+      RescueArrayShort *fData = (RescueArrayShort *) data;
           fprintf(file, "%d", (int) fData->Value()[dNdx]);
-            break;
+      break;
           }
           break;
-        case R_RescueArrayByte:
+    case R_RescueArrayByte:
           {
-            RescueArrayByte *fData = (RescueArrayByte *) data;
+      RescueArrayByte *fData = (RescueArrayByte *) data;
           fprintf(file, "%d", (int) fData->Value()[dNdx]);
-            break;
+      break;
           }
           break;
-        case R_RescueArray2dVector:
+    case R_RescueArray2dVector:
           {
-            RescueArray2dVector *fData = (RescueArray2dVector *) data;
-            Rescue2dVector nullValue = fData->NullValue();
+      RescueArray2dVector *fData = (RescueArray2dVector *) data;
+      Rescue2dVector nullValue = fData->NullValue();
           fprintf(file, "%f %f", nullValue.coord1, nullValue.coord2);
-            break;
+      break;
           }
           break;
-        case R_RescueArray3dVector:
+    case R_RescueArray3dVector:
           {
-            RescueArray3dVector *fData = (RescueArray3dVector *) data;
-            Rescue3dVector nullValue = fData->NullValue();
+      RescueArray3dVector *fData = (RescueArray3dVector *) data;
+      Rescue3dVector nullValue = fData->NullValue();
           fprintf(file, "%f %f %f", nullValue.coord1, nullValue.coord2, nullValue.coord3);
-            break;
+      break;
           }
           break;
 
  default:
    break;   // Quiet warning
-        }
-        
-        property = NthRescueWellboreProperty(pNdx++);
+    }
+    
+    property = NthRescueWellboreProperty(pNdx++);
       }
       fprintf(file, "</data>\n");
       dNdx++;
-    }
+  }
   fprintf(file, " </logData>\n");
 
-    pNdx = 0;
-    property = NthRescueWellboreProperty(pNdx++);
-    while (property != 0)
-    {
+  pNdx = 0;
+  property = NthRescueWellboreProperty(pNdx++);
+  while (property != 0)
+  {
       property->Data()->Unload();
       property = NthRescueWellboreProperty(pNdx++);
-    }
-    fprintf(file, "  </wellLog>\n");
+  }
+  fprintf(file, "  </wellLog>\n");
   }
 }
 
@@ -477,11 +477,11 @@ RESCUEBOOL RescueWellboreSampling::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueWellboreSampling)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueObject::IsOfType(thisType);
+  return RescueObject::IsOfType(thisType);
   }
 }
 

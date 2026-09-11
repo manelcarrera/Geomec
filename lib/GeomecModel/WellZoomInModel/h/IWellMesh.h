@@ -35,18 +35,18 @@ public:
   IWellMesh& operator=(const IWellMesh& rhs);
   bool operator==(const IWellMesh& rhs) const;
 
-	virtual unsigned int IconId() const;
-	virtual unsigned int TypeId() const;
+  virtual unsigned int IconId() const;
+  virtual unsigned int TypeId() const;
 
   virtual void OnNewNeighbour(const CGraphNode& node);
   virtual void OnNeighbourDeleted(const CGraphNode& node);
   virtual void OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint);
 
  	virtual DIMENSION Dimension() const;
-	virtual const CHorizonBase* SlipHorizon(const geo::IElement& element) const;
+  virtual const CHorizonBase* SlipHorizon(const geo::IElement& element) const;
 
   virtual const geo::IMesh& Mesh() const;
-	virtual geo::IMesh& Mesh();
+  virtual geo::IMesh& Mesh();
 
   virtual void InvalidateMesh();
 
@@ -84,28 +84,28 @@ protected:
   class CBoundaryElementDef
   {
   public:
-    CBoundaryElementDef(const geo::IFace& face, const std::vector<int>& vcNodes, CBoundaryInterfaceDef::TBoundarySurface surfacedef)
+  CBoundaryElementDef(const geo::IFace& face, const std::vector<int>& vcNodes, CBoundaryInterfaceDef::TBoundarySurface surfacedef)
       : m_pFace(&face), m_vcNodes(vcNodes), m_surfacedef(surfacedef)
-    {
-    }
+  {
+  }
 
-    const geo::IFace& Face() const { return *m_pFace; }
-    const std::vector<int>& Nodes() const { return m_vcNodes; }
-    CBoundaryInterfaceDef::TBoundarySurface SurfaceDef() const { return m_surfacedef; }
+  const geo::IFace& Face() const { return *m_pFace; }
+  const std::vector<int>& Nodes() const { return m_vcNodes; }
+  CBoundaryInterfaceDef::TBoundarySurface SurfaceDef() const { return m_surfacedef; }
 
   private:
-    const geo::IFace* m_pFace;
-    std::vector<int> m_vcNodes;
-    CBoundaryInterfaceDef::TBoundarySurface m_surfacedef;
+  const geo::IFace* m_pFace;
+  std::vector<int> m_vcNodes;
+  CBoundaryInterfaceDef::TBoundarySurface m_surfacedef;
   };
   typedef std::vector<CBoundaryElementDef> TBoundaryElementVec;
 
   struct SegmentInfo
   {
-    bool bFormationTop;
-    bool bFormationBottom;
-    bool bModelStart;
-    bool bModelEnd;
+  bool bFormationTop;
+  bool bFormationBottom;
+  bool bModelStart;
+  bool bModelEnd;
   };
 
 protected:
@@ -120,10 +120,10 @@ protected:
   void LoadFormationVolumes(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
 
   geo::CBodyGroup* getBodyGroup4Formation(IWellModel& wellModel,
-    const CFormationBase* formationBase);
+  const CFormationBase* formationBase);
   geo::CBodyGroup* findBodyGroupContainingMidPointOfHexahedron(
-    IWellModel& wellModel, geo::CBodyGroup* bodyGroup,
-    const CFormationBase* formation, const geo::CHexahedron* hexahedron);
+  IWellModel& wellModel, geo::CBodyGroup* bodyGroup,
+  const CFormationBase* formation, const geo::CHexahedron* hexahedron);
 
   virtual void Create3DGridAt(const geo::IPoint& point, const geo::IVector& vecNormal, T3DGrid& vcGrid3D) const = 0;
   virtual void RegisterGridNodes(const T3DGrid& vc3DGrid, std::vector<int>& vcGridNodeIndices, bool bModelStart, bool bModelEnd) = 0;

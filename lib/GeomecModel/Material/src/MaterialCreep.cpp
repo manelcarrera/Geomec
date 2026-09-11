@@ -14,45 +14,45 @@ CMaterialCreep::CMaterialCreep(CMaterialEntry &entry, CLibraryMaterial& libmat)
 
 bool CMaterialCreep::Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const
 {
-	ftn_double_t ddum;
+  ftn_double_t ddum;
 
-	double dCohesi = ffmat.ParameterValue(IDT_VALUETYPE_COHESION) * 1e6;
-	double dFricti = ffmat.ParameterValue(IDT_VALUETYPE_FRICTION_ANGLE) * PI / 180;
-	double dA1 = ffmat.ParameterValue(IDT_VALUETYPE_CREEP_A1);
-	double dA2 = ffmat.ParameterValue(IDT_VALUETYPE_CREEP_A2);
-	double dn1 = ffmat.ParameterValue(IDT_VALUETYPE_CREEP_N1);
-	double dn2 = ffmat.ParameterValue(IDT_VALUETYPE_CREEP_N2);
-	double dQR1 = ffmat.ParameterValue(IDT_VALUETYPE_CREEP_QR1);
-	double dQR2 = ffmat.ParameterValue(IDT_VALUETYPE_CREEP_QR2);
-	double dAlpha = ffmat.ParameterValue(IDT_VALUETYPE_CREEP_ALPHA) * 1e6;
+  double dCohesi = ffmat.ParameterValue(IDT_VALUETYPE_COHESION) * 1e6;
+  double dFricti = ffmat.ParameterValue(IDT_VALUETYPE_FRICTION_ANGLE) * PI / 180;
+  double dA1 = ffmat.ParameterValue(IDT_VALUETYPE_CREEP_A1);
+  double dA2 = ffmat.ParameterValue(IDT_VALUETYPE_CREEP_A2);
+  double dn1 = ffmat.ParameterValue(IDT_VALUETYPE_CREEP_N1);
+  double dn2 = ffmat.ParameterValue(IDT_VALUETYPE_CREEP_N2);
+  double dQR1 = ffmat.ParameterValue(IDT_VALUETYPE_CREEP_QR1);
+  double dQR2 = ffmat.ParameterValue(IDT_VALUETYPE_CREEP_QR2);
+  double dAlpha = ffmat.ParameterValue(IDT_VALUETYPE_CREEP_ALPHA) * 1e6;
 
   // switch to 1/month unit
   dA1 *= SECONDS_PER_MONTH;
   dA2 *= SECONDS_PER_MONTH;
 
-	ddum = (ftn_double_t) (dCohesi);
+  ddum = (ftn_double_t) (dCohesi);
   PutItemLength("COHESI", &ddum, 1);
 
-	ddum = (ftn_double_t) (dFricti);
-	PutItemLength("PHI", &ddum, 1);
+  ddum = (ftn_double_t) (dFricti);
+  PutItemLength("PHI", &ddum, 1);
 
 //	ddum = (ftn_double_t) (dCohesi / tan(dFricti));
 //	PutItem("PSHIFT", &ddum);
 
-	PutCharItem("CREEP", "COMPLI");
+  PutCharItem("CREEP", "COMPLI");
 
-	ftn_double_t seccrp[7];
-	seccrp[0] = (ftn_double_t) (dA1);
-	seccrp[1] = (ftn_double_t) (dn1);
-	seccrp[2] = (ftn_double_t) (dQR1);
-	seccrp[3] = (ftn_double_t) (dA2);
-	seccrp[4] = (ftn_double_t) (dn2);
-	seccrp[5] = (ftn_double_t) (dQR2);
-	seccrp[6] = (ftn_double_t) (dAlpha);
+  ftn_double_t seccrp[7];
+  seccrp[0] = (ftn_double_t) (dA1);
+  seccrp[1] = (ftn_double_t) (dn1);
+  seccrp[2] = (ftn_double_t) (dQR1);
+  seccrp[3] = (ftn_double_t) (dA2);
+  seccrp[4] = (ftn_double_t) (dn2);
+  seccrp[5] = (ftn_double_t) (dQR2);
+  seccrp[6] = (ftn_double_t) (dAlpha);
 
-	PutItemLength("SECCRP", seccrp, 7);
+  PutItemLength("SECCRP", seccrp, 7);
 
-	return IMaterial::Write(ffmat, diarunner);
+  return IMaterial::Write(ffmat, diarunner);
 }
 
 
@@ -69,23 +69,23 @@ bool CMaterialCreep::WriteFilosParamName(const CFFMaterial &ffmat, dia::IDianaRu
 {
   if (i == 0)
   {
-    strncpy(name, "COHESI", 10);
-    return true;
+  strncpy(name, "COHESI", 10);
+  return true;
   }
   --i;
 
   if (i == 0)
   {
-    strncpy(name, "PHI", 10);
-    return true;
+  strncpy(name, "PHI", 10);
+  return true;
   }
   --i;
 
   if (i < 7)
   {
-    QString seccrp = QString("SECCRP(%1)").arg(i + 1);
-    strncpy(name, seccrp.toStdString().c_str(), 10);
-    return true;
+  QString seccrp = QString("SECCRP(%1)").arg(i + 1);
+  strncpy(name, seccrp.toStdString().c_str(), 10);
+  return true;
   }
   i -= 7;
 

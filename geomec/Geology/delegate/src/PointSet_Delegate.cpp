@@ -24,10 +24,10 @@ bool CPointSet_Delegate::Attributes()
 
   if (dlg.DoModal() == IDOK)
   {
-    m_pointSet->AssertValid();
-    m_pointSet->Modified(); // wjrx mantis 3335
+  m_pointSet->AssertValid();
+  m_pointSet->Modified(); // wjrx mantis 3335
 
-    return true;
+  return true;
   }
 
   return false;
@@ -41,17 +41,17 @@ void CPointSet_Delegate::AppendContextMenu(CContextMenuInvoker &invoker)
   // Export all ...
 
   invoker.AddCommand(_T("&Export"),
-    *(new TPointSet_DelegateCommand(*this, &CPointSet_Delegate::Export)));
+  *(new TPointSet_DelegateCommand(*this, &CPointSet_Delegate::Export)));
 
   if (m_pointSet->Dimension() == 2 || m_pointSet->Dimension() == 3)
   {
-    // wjrx mantis 3186
+  // wjrx mantis 3186
 
-    invoker.AddCommand(_T("&Sample"),
+  invoker.AddCommand(_T("&Sample"),
       *(new TPointSet_DelegateCommand(*this, &CPointSet_Delegate::Sample)));
 
 #if _DEBUG
-    invoker.AddCommand(_T("Delete Convex &Hull"), *(new TPointSet_DelegateCommand(*this, &CPointSet_Delegate::DestroyConvexHull, &CPointSet_Delegate::CanDestroyConvexHull)));
+  invoker.AddCommand(_T("Delete Convex &Hull"), *(new TPointSet_DelegateCommand(*this, &CPointSet_Delegate::DestroyConvexHull, &CPointSet_Delegate::CanDestroyConvexHull)));
 #endif
   }
 
@@ -72,13 +72,13 @@ void CPointSet_Delegate::Export()
   const CModelBase& model = (CModelBase&) m_pointSet->Model();
 
   CTnoFileDialog dlg(FALSE, "dat", m_pointSet->Name().toStdString().c_str(),
-    OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_NOREADONLYRETURN,
-    "ASCII Files (*.dat;*.txt;*.xyz)|*.dat;*.txt;*.xyz|"
-    "Excel Files (*.xls;*.xls*)|*.xls;*.xls*||", FemAppGetMainWnd());
+  OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_NOREADONLYRETURN,
+  "ASCII Files (*.dat;*.txt;*.xyz)|*.dat;*.txt;*.xyz|"
+  "Excel Files (*.xls;*.xls*)|*.xls;*.xls*||", FemAppGetMainWnd());
 
   if (dlg.DoModal() == IDOK)
   {
-    m_pointSet->Export(arg, (LPCSTR) dlg.GetPathName());
+  m_pointSet->Export(arg, (LPCSTR) dlg.GetPathName());
   }
 }
 
@@ -88,7 +88,7 @@ void CPointSet_Delegate::Sample()
 
   if (m_pointSet->Dimension() < 2 )
   {
-    return;
+  return;
   }
 
   CGeomecDoc& doc = *GetGeomecDoc();
@@ -96,7 +96,7 @@ void CPointSet_Delegate::Sample()
 
   if (sampleDlg.DoModal() == IDOK)
   {
-    m_pointSet->Sample((LPCSTR) sampleDlg.getName(), sampleDlg.getSizeNorth(),
+  m_pointSet->Sample((LPCSTR) sampleDlg.getName(), sampleDlg.getSizeNorth(),
       sampleDlg.getSizeEast(), sampleDlg.getSizeDepth());
   }
 }

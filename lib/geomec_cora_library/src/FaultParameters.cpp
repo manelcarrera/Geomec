@@ -40,18 +40,18 @@ TParameters CFaultParameters::getParameters(CModelBase* modelBase,
   CHorizonBase* horizonBase)
 {
   const CDepletionStageEntry* depletionStages =
-    dynamic_cast <const CDepletionStageEntry*> (
+  dynamic_cast <const CDepletionStageEntry*> (
       modelBase->GraphEntry(MD_BASE_DEPLETION_STAGE));
   TParameters faultParameters;
 
   for (CDepletionStageEntry::const_iterator
-    depletionStage = depletionStages->begin();
-    depletionStage != depletionStages->LastStage(); ++depletionStage)
+  depletionStage = depletionStages->begin();
+  depletionStage != depletionStages->LastStage(); ++depletionStage)
   {
-    if ((*depletionStage).IsPhaseStartStage())
-    {
+  if ((*depletionStage).IsPhaseStartStage())
+  {
       getParameters(faultParameters, modelBase, *depletionStage, horizonBase);
-    }
+  }
   }
 
   return faultParameters;
@@ -68,17 +68,17 @@ void CFaultParameters::getParameters(TParameters& faultParameters,
   // See CFaultParametersNode::CanConnectItem(...)!
 
   if (!modelBase->BranchState().IsFixedStage(depletionStage) &&
-    horizonBase->hasFaultParameters(depletionStage))
+  horizonBase->hasFaultParameters(depletionStage))
   {
-    getParameters(faultParameters, modelBase, depletionStage, horizonBase,
+  getParameters(faultParameters, modelBase, depletionStage, horizonBase,
       IDT_VALUETYPE_COHESION, IDS_VALUENAME_COHESION);
-    getParameters(faultParameters, modelBase, depletionStage, horizonBase,
+  getParameters(faultParameters, modelBase, depletionStage, horizonBase,
       IDT_VALUETYPE_FRICTION_ANGLE, IDS_VALUENAME_FRICTION_ANGLE);
   }
 
   if (horizonBase->Slip())
   {
-    getFaultParameters(faultParameters, modelBase, depletionStage, horizonBase,
+  getFaultParameters(faultParameters, modelBase, depletionStage, horizonBase,
       IDT_VALUETYPE_PRESSURE, IDS_VALUENAME_FAULT_PRESSURE);
   }
 }
@@ -89,21 +89,21 @@ void CFaultParameters::getParameters(TParameters& faultParameters,
   unsigned int /*valueTypeName*/)
 {
   const CFaultParametersNode& faultParametersNode =
-    horizonBase->FaultParameters(depletionStage);
+  horizonBase->FaultParameters(depletionStage);
   CGetValueTypeInfo& getValueTypeInfo(CGetValueTypeInfo::instance(modelBase));
   CObjectParametersNodeValue <geo::CElementGroup, CFaultParametersNode>
-    faultParametersNodeValue(horizonBase->InterfaceElementGroup(), valueTypeID,
+  faultParametersNodeValue(horizonBase->InterfaceElementGroup(), valueTypeID,
       faultParametersNode);
   std::pair <geo::CValue, geo::CValue> range =
-    faultParametersNodeValue.getRange();
+  faultParametersNodeValue.getRange();
   double mean = faultParametersNodeValue.getMean();
 
   faultParameters.push_back(TParameter(new CParameter(
-    CParameter::faultParameter, QString("%1_D%2").
+  CParameter::faultParameter, QString("%1_D%2").
       arg(getValueTypeInfo.getImportTag(valueTypeID)).
       arg(depletionStage.Index()),
-    range.first, range.second, mean, horizonBase, depletionStage.Index(),
-    valueTypeID)));
+  range.first, range.second, mean, horizonBase, depletionStage.Index(),
+  valueTypeID)));
 }
 
 namespace
@@ -119,7 +119,7 @@ void CFaultParameters::getFaultParameters(TParameters& faultParameters,
   unsigned int valueTypeName)
 {
   getPressureParameters <CHorizonBase, geo::IElementSet,
-    CParameter::TFaultParameter, CFaultPressure> (faultParameters,
+  CParameter::TFaultParameter, CFaultPressure> (faultParameters,
       modelBase, depletionStage, horizonBase,
       *(horizonBase->InterfaceElementGroup()),
       CParameter::faultParameter, valueTypeID,

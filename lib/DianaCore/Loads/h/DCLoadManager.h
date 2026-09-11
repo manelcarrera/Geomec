@@ -24,58 +24,58 @@ class IDianaRunner;
 
 class CLoadManager  
 {
-	friend class ILoad;
+  friend class ILoad;
   friend class dia::CInitialNodalPotential;
 
-	const geo::IMesh &m_Mesh;
-	IDianaRunner &m_Runner;
+  const geo::IMesh &m_Mesh;
+  IDianaRunner &m_Runner;
 
-	std::vector<CLoadCase *> m_vcLoadCases;
+  std::vector<CLoadCase *> m_vcLoadCases;
   std::vector<CBoundaCase*> m_vcBoundaCases;
-	std::vector<CLoadCombination *> m_vcLoadCombinations;
-	std::set<ILoad *> m_stLoads;
+  std::vector<CLoadCombination *> m_vcLoadCombinations;
+  std::set<ILoad *> m_stLoads;
   std::vector<dia::CInitialNodalPotential*> m_vcInitialNodalPotentials;
 
-	// called by constructor of (friend) ILoad
-	bool InsertLoad(ILoad &load);
+  // called by constructor of (friend) ILoad
+  bool InsertLoad(ILoad &load);
 
   // called by constructor of (friend) CInitialNodalPotential, returns the index
   int InsertInitialNodalPotential(dia::CInitialNodalPotential& potential);
 
 public:
-	CLoadManager(const geo::IMesh &mesh, IDianaRunner &runner);
-	virtual ~CLoadManager();
+  CLoadManager(const geo::IMesh &mesh, IDianaRunner &runner);
+  virtual ~CLoadManager();
 
-	void Clear();
+  void Clear();
 
-	int LoadCaseSize() const;
-	const CLoadCase &LoadCase(int nCase) const;
-	CLoadCase &LoadCase(int nCase);
+  int LoadCaseSize() const;
+  const CLoadCase &LoadCase(int nCase) const;
+  CLoadCase &LoadCase(int nCase);
 
-	CLoadCase &NewLoadCase();
+  CLoadCase &NewLoadCase();
 
-	int BoundaCaseSize() const;
-	const CBoundaCase &BoundaCase(int nCase) const;
-	CBoundaCase &BoundaCase(int nCase);
+  int BoundaCaseSize() const;
+  const CBoundaCase &BoundaCase(int nCase) const;
+  CBoundaCase &BoundaCase(int nCase);
 
-	CBoundaCase &NewBoundaCase();
+  CBoundaCase &NewBoundaCase();
 
   int CaseSize() const;
   const ICase& Case(int nCase) const;
   ICase& Case(int nCase);
 
-	int LoadCombinationSize() const;
-	const CLoadCombination &LoadCombination(int nCombination) const;
-	CLoadCombination &LoadCombination(int nCombination);
+  int LoadCombinationSize() const;
+  const CLoadCombination &LoadCombination(int nCombination) const;
+  CLoadCombination &LoadCombination(int nCombination);
 
-	CLoadCombination &NewLoadCombination();
+  CLoadCombination &NewLoadCombination();
 
-	bool WriteFilos() const;
+  bool WriteFilos() const;
 
-	const geo::IMesh &Mesh() const;
+  const geo::IMesh &Mesh() const;
 
-	const IDianaRunner &Runner() const;
-	IDianaRunner &Runner();
+  const IDianaRunner &Runner() const;
+  IDianaRunner &Runner();
 };
 
 }

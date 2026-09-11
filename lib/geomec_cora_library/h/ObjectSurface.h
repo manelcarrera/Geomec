@@ -19,27 +19,27 @@ namespace cora
 class CObjectSurface : public CObjectBase
 {
   public:
-    CObjectSurface(CSurfaceBase* surfaceBase);
-    virtual ~CObjectSurface();
+  CObjectSurface(CSurfaceBase* surfaceBase);
+  virtual ~CObjectSurface();
 
-    virtual const QString& name() const;
-    virtual const TParameters& getParameters() const;
-    virtual const QString& prefix() const;
-    virtual const COpenGLNode* object() const;
-    virtual const QString& typeName() const;
+  virtual const QString& name() const;
+  virtual const TParameters& getParameters() const;
+  virtual const QString& prefix() const;
+  virtual const COpenGLNode* object() const;
+  virtual const QString& typeName() const;
 
-    virtual const geo::IElement* getFirstElement();
-    virtual const geo::IElement* getNextElement();
+  virtual const geo::IElement* getFirstElement();
+  virtual const geo::IElement* getNextElement();
 
-    virtual std::ostream& operator () (std::ostream& os) const;
+  virtual std::ostream& operator () (std::ostream& os) const;
 
   private:
-    CObjectSurface(const CObjectSurface& rhs);
-    CObjectSurface& operator = (CObjectSurface rhs);
+  CObjectSurface(const CObjectSurface& rhs);
+  CObjectSurface& operator = (CObjectSurface rhs);
 
-    CSurfaceBase* m_surfaceBase;
-    TParameters m_parameters;
-    int m_sequenceState;
+  CSurfaceBase* m_surfaceBase;
+  TParameters m_parameters;
+  int m_sequenceState;
 };
 
 } // namespace cora

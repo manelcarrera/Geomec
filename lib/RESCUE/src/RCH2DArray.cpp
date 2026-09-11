@@ -11,34 +11,34 @@
 #include "RCH2DArray.h"
 
 RCH2DArray::RCH2DArray(RESCUEINT64 maxIin, RESCUEINT64 maxJin, RESCUEFLOAT *valuesIn)
-                            :maxI(maxIin)
-                            ,maxJ(maxJin)
-                            ,values(valuesIn)
+              :maxI(maxIin)
+              ,maxJ(maxJin)
+              ,values(valuesIn)
 {
   if (values == 0)
   {
-    values = new RESCUEFLOAT[(size_t) (maxI * maxJ)];
-    freeValues = TRUE;
+  values = new RESCUEFLOAT[(size_t) (maxI * maxJ)];
+  freeValues = TRUE;
   }
   else
   {
-    freeValues = FALSE;
+  freeValues = FALSE;
   }
 }
 
 RCH2DArray::RCH2DArray(RESCUEINT32 maxIin, RESCUEINT32 maxJin, RESCUEFLOAT *valuesIn)
-                            :maxI((RESCUEINT64) maxIin)
-                            ,maxJ((RESCUEINT64) maxJin)
-                            ,values(valuesIn)
+              :maxI((RESCUEINT64) maxIin)
+              ,maxJ((RESCUEINT64) maxJin)
+              ,values(valuesIn)
 {
   if (values == 0)
   {
-    values = new RESCUEFLOAT[(size_t) (maxI * maxJ)];
-    freeValues = TRUE;
+  values = new RESCUEFLOAT[(size_t) (maxI * maxJ)];
+  freeValues = TRUE;
   }
   else
   {
-    freeValues = FALSE;
+  freeValues = FALSE;
   }
 }
 
@@ -66,15 +66,15 @@ RESCUEINT32 RCH2DArray::ArrayLength(RESCUEBOOL throwIfTrue)
   RESCUEINT64 count = ArrayLength64();
   if (count > 2147483647)
   {
-    if (throwIfTrue)
-    {
+  if (throwIfTrue)
+  {
       throw "Model is too large to be accessed in 32 bit mode.";
-    }
-    return 0;
+  }
+  return 0;
   }
   else
   {
-    return (RESCUEINT32) count;
+  return (RESCUEINT32) count;
   }
 }
 

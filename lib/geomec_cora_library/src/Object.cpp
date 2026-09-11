@@ -32,7 +32,7 @@ CObject::CObject(const TSurfaceObject&, CSurfaceBase* surfaceBase)
 CObject::CObject(const TNonMeshedSurfaceObject&, CModelBase* modelBase,
   CNonMeshedSurface* nonMeshedSurface)
 : m_objectBase(TObjectBase(
-    new CObjectNonMeshedSurface(modelBase, nonMeshedSurface)))
+  new CObjectNonMeshedSurface(modelBase, nonMeshedSurface)))
 , m_objectType(NON_MESHED_SURFACE)
 {
 }
@@ -129,9 +129,9 @@ std::ostream& operator << (std::ostream& os, const cora::TObjects& rhs)
   os << rhs.size() << std::endl;
 
   for (cora::TObjects::const_iterator object = rhs.begin(); object != rhs.end();
-    ++object)
+  ++object)
   {
-    os << *object;
+  os << *object;
   }
 
   return os;

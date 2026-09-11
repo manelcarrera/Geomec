@@ -52,8 +52,8 @@ $CP -R ../data .
 
 $CP $INTEL/*.so* lib
 
-$CP ../../../lib/tbb/linux/lib/intel64/gcc4.7/libtbb.so* lib
-$CP ../../../lib/tbb/linux/lib/intel64/gcc4.7/libtbbmalloc.so* lib
+$CP ../../../third_party/tbb/linux/lib/intel64/gcc4.7/libtbb.so* lib
+$CP ../../../third_party/tbb/linux/lib/intel64/gcc4.7/libtbbmalloc.so* lib
 
 $CP $QTLIB/libQt5Core.so* lib
 $CP $QTLIB/libQt5Gui.so* lib

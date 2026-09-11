@@ -8,11 +8,11 @@ namespace dia {
 
 class IFlowLoad : public ILoad
 {
-	CBoundaCase &m_BoundaCase;
+  CBoundaCase &m_BoundaCase;
 
 public:
-	IFlowLoad(CBoundaCase &boundacase, double size);
-	IFlowLoad(CBoundaCase &boundacase, const std::vector<double>& vcValue);
+  IFlowLoad(CBoundaCase &boundacase, double size);
+  IFlowLoad(CBoundaCase &boundacase, const std::vector<double>& vcValue);
 
   virtual const CBoundaCase& Case() const;
 };

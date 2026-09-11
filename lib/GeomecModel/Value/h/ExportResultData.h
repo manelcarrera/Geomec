@@ -63,8 +63,8 @@ public:
 
   union
   {
-    TSetValue m_nSetValue;
-    CDepletionStage::eOutputType m_nTypeValue;
+  TSetValue m_nSetValue;
+  CDepletionStage::eOutputType m_nTypeValue;
   };
 
   QString   m_sName;

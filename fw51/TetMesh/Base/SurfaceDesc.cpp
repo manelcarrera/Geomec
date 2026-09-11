@@ -12,9 +12,9 @@ namespace geo {
   Constructor for surface ....
 */
 CSurfaceDesc::CSurfaceDesc( CTetMeshBase&      mesh,
-                            const ISurface&    surface,
-                            const std::string& sName,
-                            bool               bSlip )
+              const ISurface&    surface,
+              const std::string& sName,
+              bool               bSlip )
 : m_mesh(mesh),
   m_vcTetSurface(0),
   m_pElementGroup(0),
@@ -23,7 +23,7 @@ CSurfaceDesc::CSurfaceDesc( CTetMeshBase&      mesh,
 {
   mesh.m_vcSurfaceDesc.push_back(this);
   if(bSlip)
-    m_pElementGroup = new CElementGroup(mesh, false);
+  m_pElementGroup = new CElementGroup(mesh, false);
 }
 
 /*!
@@ -53,12 +53,12 @@ void CSurfaceDesc::Slip( bool bSlip )
   if ( bSlip == Slip() ) return;
 
   if ( bSlip ) {
-    assert ( m_pElementGroup == 0 );
-    m_pElementGroup = new CElementGroup(m_mesh, false);
+  assert ( m_pElementGroup == 0 );
+  m_pElementGroup = new CElementGroup(m_mesh, false);
   } else {
-    assert( m_pElementGroup != 0 );
-    delete m_pElementGroup;
-    m_pElementGroup = 0;
+  assert( m_pElementGroup != 0 );
+  delete m_pElementGroup;
+  m_pElementGroup = 0;
   }
 }
 
@@ -76,8 +76,8 @@ const CElementGroup& CSurfaceDesc::interfaceElements() const
 
 void CSurfaceDesc::AddInterfaceElement(CInterfaceElement& element)
 {
-	assert(Slip());
-	m_pElementGroup->AddMeshElement(element);
+  assert(Slip());
+  m_pElementGroup->AddMeshElement(element);
 }
 
 

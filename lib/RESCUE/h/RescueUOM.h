@@ -24,15 +24,15 @@ public:
 
   struct UOM
   {
-    const RESCUECHAR *name;
-    const RESCUECHAR *quantityTypeArray[13];
-    RESCUEINT32 quantityTypeCount;
-    RESCUEINT32 baseUnit;
-    ConversionTypes conversionType;
-    RESCUEDOUBLE conversion_A;
-    RESCUEDOUBLE conversion_B;
-    RESCUEDOUBLE conversion_C;
-    RESCUEDOUBLE conversion_D;
+  const RESCUECHAR *name;
+  const RESCUECHAR *quantityTypeArray[13];
+  RESCUEINT32 quantityTypeCount;
+  RESCUEINT32 baseUnit;
+  ConversionTypes conversionType;
+  RESCUEDOUBLE conversion_A;
+  RESCUEDOUBLE conversion_B;
+  RESCUEDOUBLE conversion_C;
+  RESCUEDOUBLE conversion_D;
   };
 
   static UOM uom[];

@@ -28,12 +28,12 @@ static void segment_destroy (GtsObject * object)
   v1->segments = g_slist_remove (v1->segments, segment);
   if (!GTS_OBJECT_DESTROYED (v1) &&
       !gts_allow_floating_vertices && v1->segments == NULL)
-    gts_object_destroy (GTS_OBJECT (v1));
+  gts_object_destroy (GTS_OBJECT (v1));
 
   v2->segments = g_slist_remove (v2->segments, segment);
   if (!GTS_OBJECT_DESTROYED (v2) &&
       !gts_allow_floating_vertices && v2->segments == NULL)
-    gts_object_destroy (GTS_OBJECT (v2));
+  gts_object_destroy (GTS_OBJECT (v2));
 
   (* GTS_OBJECT_CLASS (gts_segment_class ())->parent_class->destroy) (object);
 }
@@ -58,7 +58,7 @@ GtsSegmentClass * gts_segment_class (void)
   static GtsSegmentClass * klass = NULL;
 
   if (klass == NULL) {
-    GtsObjectClassInfo segment_info = {
+  GtsObjectClassInfo segment_info = {
       "GtsSegment",
       sizeof (GtsSegment),
       sizeof (GtsSegmentClass),
@@ -66,9 +66,9 @@ GtsSegmentClass * gts_segment_class (void)
       (GtsObjectInitFunc) segment_init,
       (GtsArgSetFunc) NULL,
       (GtsArgGetFunc) NULL
-    };
-    klass = gts_object_class_new (gts_object_class (), 
-				  &segment_info);
+  };
+  klass = gts_object_class_new (gts_object_class (), 
+          &segment_info);
   }
 
   return klass;
@@ -83,7 +83,7 @@ GtsSegmentClass * gts_segment_class (void)
  * Returns: a new #GtsSegment linking @v1 and @v2.
  */
 GtsSegment * gts_segment_new (GtsSegmentClass * klass, 
-			      GtsVertex * v1, GtsVertex * v2)
+            GtsVertex * v1, GtsVertex * v2)
 {
   GtsSegment * s;
 
@@ -117,19 +117,19 @@ GtsSegment * gts_segment_is_duplicate (GtsSegment * s)
   v2 = s->v2;
   i = s->v1->segments;
   if (s->v1 == v2) /* s is degenerate: special treatment */
-    while (i) {
+  while (i) {
       GtsSegment * s1 = i->data;
       if (s1 != s && s1->v1 == v2 && s1->v2 == v2)
-	return s1;
+  return s1;
       i = i->next;
-    }
+  }
   else /* s is not degenerate */
-    while (i) {
+  while (i) {
       GtsSegment * s1 = i->data;
       if (s1 != s && (s1->v1 == v2 || s1->v2 == v2))
-	return s1;
+  return s1;
       i = i->next;
-    }
+  }
   return NULL;
 }
 
@@ -154,14 +154,14 @@ GtsIntersect gts_segments_are_intersecting (GtsSegment * s1, GtsSegment * s2)
   d2 = gts_point_orientation (p1, p2, p4);
   if ((d1 > 0.0 && d2 > 0.0) ||
       (d1 < 0.0 && d2 < 0.0))
-    return GTS_OUT;
+  return GTS_OUT;
   d3 = gts_point_orientation (p3, p4, p1);
   d4 = gts_point_orientation (p3, p4, p2);
   if ((d3 > 0.0 && d4 > 0.0) ||
       (d3 < 0.0 && d4 < 0.0))
-    return GTS_OUT;
+  return GTS_OUT;
   if (d1 == 0.0 || d2 == 0.0 || d3 == 0.0 || d4 == 0.0)
-    return GTS_ON;
+  return GTS_ON;
   return GTS_IN;
 }
 
@@ -181,9 +181,9 @@ GtsVertex * gts_segment_midvertex (GtsSegment * s, GtsVertexClass * klass)
 
   p1 = GTS_POINT (s->v1); p2 = GTS_POINT (s->v2);
   return gts_vertex_new (klass,
-			 (p1->x + p2->x)/2., 
-			 (p1->y + p2->y)/2.,
-			 (p1->z + p2->z)/2.);
+       (p1->x + p2->x)/2., 
+       (p1->y + p2->y)/2.,
+       (p1->z + p2->z)/2.);
 }
 
 /**
@@ -201,16 +201,16 @@ GSList * gts_segments_from_vertices (GSList * vertices)
   hash = g_hash_table_new (NULL, NULL);
   i = vertices;
   while (i) {
-    GSList * j = GTS_VERTEX (i->data)->segments;
-    while (j) {
+  GSList * j = GTS_VERTEX (i->data)->segments;
+  while (j) {
       GtsSegment * s = j->data;
       if (g_hash_table_lookup (hash, s) == NULL) {
-	segments = g_slist_prepend (segments, s);
-	g_hash_table_insert (hash, s, i);
+  segments = g_slist_prepend (segments, s);
+  g_hash_table_insert (hash, s, i);
       }
       j = j->next;
-    }
-    i = i->next;
+  }
+  i = i->next;
   }
   g_hash_table_destroy (hash);
   return segments;

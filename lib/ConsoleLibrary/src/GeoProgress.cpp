@@ -37,7 +37,7 @@ CGeoProgress::CGeoProgress(CWnd* /*parent*/, unsigned int uTitle, bool bCancel)
   m_bCancel(bCancel),
   m_bBlockStatusMessage(false)
 {
-	m_strTitle = getStringTableEntry(uTitle);
+  m_strTitle = getStringTableEntry(uTitle);
 }
 
 CGeoProgress::~CGeoProgress()
@@ -47,13 +47,13 @@ CGeoProgress::~CGeoProgress()
 // set the total number of steps
 void CGeoProgress::AddSteps(int nSteps)
 {
-	// Start the next job when we are for the first time here 
-	if(m_nSteps == 0)
+  // Start the next job when we are for the first time here 
+  if(m_nSteps == 0)
   {
-    StatusMessage(m_strTitle);
+  StatusMessage(m_strTitle);
   }
 
-	m_nSteps += nSteps;
+  m_nSteps += nSteps;
 }
 
 // increment
@@ -64,25 +64,25 @@ void CGeoProgress::Step(int nSteps)
 
   if (before != after)
   {
-    _m()->outstream() << '*';
+  _m()->outstream() << '*';
   }
 
-	m_nCurStep += nSteps;
+  m_nCurStep += nSteps;
 }
 
 void CGeoProgress::StatusMessage(const QString& sMessage)
 {
   if(sMessage != m_strStatusMessage)
   {
-    _m()->outstream() << std::endl <<
+  _m()->outstream() << std::endl <<
       CProgressBase::getDateTimeStamp().toStdString() <<
       sMessage.toStdString() << std::endl;
-    m_strStatusMessage = sMessage;
-    if(m_nSteps > 0)
-    {
+  m_strStatusMessage = sMessage;
+  if(m_nSteps > 0)
+  {
       int n = m_nCurStep / (m_nSteps / 80.);
       for(int i = 0; i < n; ++i)
-        _m()->outstream() << '*';
-    }
+    _m()->outstream() << '*';
+  }
   }
 }

@@ -1,10 +1,10 @@
 /*************************************************************************
 
-        cSetRescueTriangleFace.h
+    cSetRescueTriangleFace.h
 
  Keeps a list of pointers to some RescueTriangleFace.
 
-        Rod Hanks              June, 1999
+    Rod Hanks              June, 1999
 
 ****************************************************************************/
 

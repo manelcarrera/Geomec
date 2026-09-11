@@ -10,18 +10,18 @@ class CFailureTypeParameterFormation4Material :
   public CFailureTypeParameterFormation
 {
   public:
-    CFailureTypeParameterFormation4Material(
+  CFailureTypeParameterFormation4Material(
       CSummaryResultFile& summaryResultFile, const std::string& object,
       const std::string& option, const std::string& parameter,
       std::vector <double>& value, const CGetModelInfo& modelInfo);
-    virtual ~CFailureTypeParameterFormation4Material();
+  virtual ~CFailureTypeParameterFormation4Material();
 
-    virtual void modify(CModelBase* modelBase);
+  virtual void modify(CModelBase* modelBase);
 
   private:
-    CFailureTypeParameterFormation4Material(
+  CFailureTypeParameterFormation4Material(
       const CFailureTypeParameterFormation4Material& rhs);
-    CFailureTypeParameterFormation4Material& operator = (
+  CFailureTypeParameterFormation4Material& operator = (
       CFailureTypeParameterFormation4Material rhs);
 };
 

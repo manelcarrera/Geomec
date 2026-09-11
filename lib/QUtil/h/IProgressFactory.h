@@ -10,17 +10,17 @@ class IProgressFactory
 {
 public:
 
-	virtual IProgressBase* create(
-		eProgress type_,
-		const QString& title="", 
-		bool cancel=true,
-		int jobs=1)=0;
+  virtual IProgressBase* create(
+    eProgress type_,
+    const QString& title="", 
+    bool cancel=true,
+    int jobs=1)=0;
 
   virtual IProgressBase *create_imp(
-    eProgress type_,
-    const QString& title = "",
-    bool cancel = true,
-    int jobs = 1) = 0;
+  eProgress type_,
+  const QString& title = "",
+  bool cancel = true,
+  int jobs = 1) = 0;
 };
 
 //
@@ -34,21 +34,21 @@ class EmptyProgressFactory : public IProgressFactory
 {
 public:
 
-	virtual IProgressBase* create(
-		eProgress type_,
-		const QString& title, 
-		bool cancel,
-		int jobs)
-	{ 
-		return nullptr; // FIXME !!!
-	};
-
-  virtual IProgressBase* create_imp(
+  virtual IProgressBase* create(
     eProgress type_,
-    const QString& title,
+    const QString& title, 
     bool cancel,
     int jobs)
-  {
+  { 
     return nullptr; // FIXME !!!
+  };
+
+  virtual IProgressBase* create_imp(
+  eProgress type_,
+  const QString& title,
+  bool cancel,
+  int jobs)
+  {
+  return nullptr; // FIXME !!!
   };
 };

@@ -19,7 +19,7 @@ bool CAnalysisPoint_Delegate::Attributes()
 
   if (dlg.DoModal() == IDOK)
   {
-    return true;
+  return true;
   }
 
   return false;
@@ -38,7 +38,7 @@ void CAnalysisPointEntry_Delegate::AppendContextMenu(
   typedef CSingleCommandTemplate <CAnalysisPointEntry_Delegate> TMyCommand;
 
   invoker.AddCommand("Create &Analysis point", *(new TMyCommand(*this,
-    &CAnalysisPointEntry_Delegate::CreateAnalysisPoint)));
+  &CAnalysisPointEntry_Delegate::CreateAnalysisPoint)));
 }
 
 namespace
@@ -52,11 +52,11 @@ const size_t DEFAULT_INITIAL_NUMBER = 0;
 void CAnalysisPointEntry_Delegate::CreateAnalysisPoint()
 {
   QString sName =
-    m_analysisPointEntry->createUniqueName(DEFAULT_ANALYSIS_POINT_NAME,
+  m_analysisPointEntry->createUniqueName(DEFAULT_ANALYSIS_POINT_NAME,
       DEFAULT_INITIAL_NUMBER);
   CModelBase& model = (CModelBase&) m_analysisPointEntry->Model();
   geo::CPoint point = model.Boundary().Min() +
-    (model.Boundary().Max() - model.Boundary().Min()) / 2;
+  (model.Boundary().Max() - model.Boundary().Min()) / 2;
 
   assert(!point.Empty());
 
@@ -65,7 +65,7 @@ void CAnalysisPointEntry_Delegate::CreateAnalysisPoint()
 
   if (!pPoint_Delegate->Attributes())
   {
-    delete pPoint_Delegate;
-    delete pPoint;
+  delete pPoint_Delegate;
+  delete pPoint;
   }
 }

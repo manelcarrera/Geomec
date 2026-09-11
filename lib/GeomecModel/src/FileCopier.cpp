@@ -35,37 +35,37 @@ bool CFileCopier::Copy()
 
   if (!opened)
   {
-    return false;
+  return false;
   }
 
   while ((totalBytes > 0) && ((bytesRead = from.read(buffer, chunkSize)) != -1))
   {
-    assert(bytesRead = chunkSize);
-    bytesWritten = to.write(buffer, chunkSize);
-    assert(bytesWritten = chunkSize);
-    totalBytes -= bytesRead;
+  assert(bytesRead = chunkSize);
+  bytesWritten = to.write(buffer, chunkSize);
+  assert(bytesWritten = chunkSize);
+  totalBytes -= bytesRead;
 
-    try
-    {
+  try
+  {
       progress->Step();
-    }
+  }
 
-    catch (CProgressCancel* e)
-    {
+  catch (CProgressCancel* e)
+  {
       delete e;
       bytesRead = -1;
       break;
-    }
+  }
 
-    if (chunkSize > totalBytes)
-    {
+  if (chunkSize > totalBytes)
+  {
       chunkSize = totalBytes;
-    }
+  }
   }
 
   if (bytesRead == -1)
   {
-    return false;
+  return false;
   }
 
   return true;

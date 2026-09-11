@@ -12,13 +12,13 @@
 
 class CEditFaultSettings : public CDialog
 {
-	DECLARE_DYNAMIC(CEditFaultSettings)
+  DECLARE_DYNAMIC(CEditFaultSettings)
 
 public:
-	CEditFaultSettings(CFemAppModel* femAppModel, CWnd* pParent = NULL);
-	CEditFaultSettings(CFemAppModel* femAppModel, const CHorizonBase* horizonBase,
-    CWnd* pParent = NULL);
-	virtual ~CEditFaultSettings();
+  CEditFaultSettings(CFemAppModel* femAppModel, CWnd* pParent = NULL);
+  CEditFaultSettings(CFemAppModel* femAppModel, const CHorizonBase* horizonBase,
+  CWnd* pParent = NULL);
+  virtual ~CEditFaultSettings();
 
   static bool hasFaultFractures(const CFemAppModel* femAppModel);
 
@@ -31,13 +31,13 @@ public:
   afx_msg void OnCheckApplyToAllFaults();
 
 // Dialog Data
-	enum { IDD = IDD_EDIT_FAULT_SETTINGS };
+  enum { IDD = IDD_EDIT_FAULT_SETTINGS };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
   virtual void OnOK();
 
-	DECLARE_MESSAGE_MAP()
+  DECLARE_MESSAGE_MAP()
 
 private:
   virtual BOOL OnCommand(WPARAM wParam, LPARAM lParam);
@@ -48,8 +48,8 @@ private:
   CDoubleQuantity::UNIT Unit() const;
 
   static int determineInitialSelection(
-    const CFaultFractureList& faultFractureList,
-    const CHorizonBase* horizonBase);
+  const CFaultFractureList& faultFractureList,
+  const CHorizonBase* horizonBase);
 
   CFemAppModel* m_femAppModel;
   CFaultFractureList m_faultFractureList;

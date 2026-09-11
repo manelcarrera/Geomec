@@ -21,23 +21,23 @@ class ICase;
 
 class ILoad  
 {
-	CLoadManager &m_Manager;
-	int m_nValueSize;
-	ftn_double_t* m_pValue;
+  CLoadManager &m_Manager;
+  int m_nValueSize;
+  ftn_double_t* m_pValue;
 protected:
-	void WriteGroupName(const geo::IElementSet &group, int nIndex) const;
-	void WriteGroupName(const geo::CMeshNodeGroup &group) const;
-	ftn_double_t* Values() const;
+  void WriteGroupName(const geo::IElementSet &group, int nIndex) const;
+  void WriteGroupName(const geo::CMeshNodeGroup &group) const;
+  ftn_double_t* Values() const;
 public:
-	ILoad(ICase& icase, double size);
-	ILoad(ICase& icase, const std::vector<double>& vcValue);
-	virtual ~ILoad();
+  ILoad(ICase& icase, double size);
+  ILoad(ICase& icase, const std::vector<double>& vcValue);
+  virtual ~ILoad();
 
-	virtual bool WriteFilos() const = 0;
-	ftn_int_t ValueSize() const;
+  virtual bool WriteFilos() const = 0;
+  ftn_int_t ValueSize() const;
 
-	CLoadManager &Manager() const;
-	virtual const ICase &Case() const = 0;
+  CLoadManager &Manager() const;
+  virtual const ICase &Case() const = 0;
 };
 
 }

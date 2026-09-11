@@ -181,49 +181,49 @@ private:
   class CReadStatusException
   {
   public:
-    CReadStatusException(const QString& strError);
-    CReadStatusException(const CReadStatusException& rhs);
-    const QString& Error() const;
+  CReadStatusException(const QString& strError);
+  CReadStatusException(const CReadStatusException& rhs);
+  const QString& Error() const;
 
   private:
-    CReadStatusException& operator = (CReadStatusException rhs);
+  CReadStatusException& operator = (CReadStatusException rhs);
 
-    QString m_strError;
+  QString m_strError;
   };
 
   class CReadStatus
   {
   public:
-    CReadStatus();
-    CReadStatus(const CReadStatus& rhs);
-    CReadStatus& operator = (CReadStatus rhs);
+  CReadStatus();
+  CReadStatus(const CReadStatus& rhs);
+  CReadStatus& operator = (CReadStatus rhs);
 
-    bool SectionOpen() const;
-    bool ReadingHeader() const;
-    bool HeaderSeen() const;
-    bool ZPositiveSeen() const;
-    bool AxisUnitSeen() const;
-    bool PropertiesSeen() const;
-    bool TetraPropertiesSeen() const;
+  bool SectionOpen() const;
+  bool ReadingHeader() const;
+  bool HeaderSeen() const;
+  bool ZPositiveSeen() const;
+  bool AxisUnitSeen() const;
+  bool PropertiesSeen() const;
+  bool TetraPropertiesSeen() const;
 
-    void OpenSection();
-    void CloseSection();
-    void StartHeader();
-    void StartZPositive();
-    void StartAxisUnit();
-    void StartProperties();
-    void StartTetraProperties();
+  void OpenSection();
+  void CloseSection();
+  void StartHeader();
+  void StartZPositive();
+  void StartAxisUnit();
+  void StartProperties();
+  void StartTetraProperties();
 
   private:
-    void swap(CReadStatus& rhs);
+  void swap(CReadStatus& rhs);
 
-    bool m_bSectionOpen; // reading between { and }
-    bool m_bReadingHeader; // reading section HEADER
-    bool m_bHeaderSeen;
-    bool m_bZPositiveSeen;
-    bool m_bAxisUnitSeen;
-    bool m_bPropertiesSeen;
-    bool m_bTetraPropertiesSeen;
+  bool m_bSectionOpen; // reading between { and }
+  bool m_bReadingHeader; // reading section HEADER
+  bool m_bHeaderSeen;
+  bool m_bZPositiveSeen;
+  bool m_bAxisUnitSeen;
+  bool m_bPropertiesSeen;
+  bool m_bTetraPropertiesSeen;
   };
 
   CReadStatus m_status;

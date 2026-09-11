@@ -17,123 +17,123 @@ IMPLEMENT_DYNCREATE(CDianaX, CWnd)
 
 BOOL CDianaX::GetShowDialog()
 {
-	BOOL result;
-	GetProperty(0x1, VT_BOOL, (void*)&result);
-	return result;
+  BOOL result;
+  GetProperty(0x1, VT_BOOL, (void*)&result);
+  return result;
 }
 
 void CDianaX::SetShowDialog(BOOL propVal)
 {
-	SetProperty(0x1, VT_BOOL, propVal);
+  SetProperty(0x1, VT_BOOL, propVal);
 }
 
 CString CDianaX::GetSuccessMessageString()
 {
-	CString result;
-	GetProperty(0x2, VT_BSTR, (void*)&result);
-	return result;
+  CString result;
+  GetProperty(0x2, VT_BSTR, (void*)&result);
+  return result;
 }
 
 void CDianaX::SetSuccessMessageString(LPCTSTR propVal)
 {
-	SetProperty(0x2, VT_BSTR, propVal);
+  SetProperty(0x2, VT_BSTR, propVal);
 }
 
 long CDianaX::GetNumberOfMessages()
 {
-	long result;
-	GetProperty(0x3, VT_I4, (void*)&result);
-	return result;
+  long result;
+  GetProperty(0x3, VT_I4, (void*)&result);
+  return result;
 }
 
 void CDianaX::SetNumberOfMessages(long propVal)
 {
-	SetProperty(0x3, VT_I4, propVal);
+  SetProperty(0x3, VT_I4, propVal);
 }
 
 BOOL CDianaX::GetDisplayStopMessage()
 {
-	BOOL result;
-	GetProperty(0x4, VT_BOOL, (void*)&result);
-	return result;
+  BOOL result;
+  GetProperty(0x4, VT_BOOL, (void*)&result);
+  return result;
 }
 
 void CDianaX::SetDisplayStopMessage(BOOL propVal)
 {
-	SetProperty(0x4, VT_BOOL, propVal);
+  SetProperty(0x4, VT_BOOL, propVal);
 }
 
 BOOL CDianaX::GetShowDefaultMessages()
 {
-	BOOL result;
-	GetProperty(0x5, VT_BOOL, (void*)&result);
-	return result;
+  BOOL result;
+  GetProperty(0x5, VT_BOOL, (void*)&result);
+  return result;
 }
 
 void CDianaX::SetShowDefaultMessages(BOOL propVal)
 {
-	SetProperty(0x5, VT_BOOL, propVal);
+  SetProperty(0x5, VT_BOOL, propVal);
 }
 
 CString CDianaX::GetDialogCaption()
 {
-	CString result;
-	GetProperty(0xa, VT_BSTR, (void*)&result);
-	return result;
+  CString result;
+  GetProperty(0xa, VT_BSTR, (void*)&result);
+  return result;
 }
 
 void CDianaX::SetDialogCaption(LPCTSTR propVal)
 {
-	SetProperty(0xa, VT_BSTR, propVal);
+  SetProperty(0xa, VT_BSTR, propVal);
 }
 
 BOOL CDianaX::GetAutoCloseDialog()
 {
-	BOOL result;
-	GetProperty(0xb, VT_BOOL, (void*)&result);
-	return result;
+  BOOL result;
+  GetProperty(0xb, VT_BOOL, (void*)&result);
+  return result;
 }
 
 void CDianaX::SetAutoCloseDialog(BOOL propVal)
 {
-	SetProperty(0xb, VT_BOOL, propVal);
+  SetProperty(0xb, VT_BOOL, propVal);
 }
 
 BOOL CDianaX::GetAlwaysAutoCloseDialog()
 {
-	BOOL result;
-	GetProperty(0xe, VT_BOOL, (void*)&result);
-	return result;
+  BOOL result;
+  GetProperty(0xe, VT_BOOL, (void*)&result);
+  return result;
 }
 
 void CDianaX::SetAlwaysAutoCloseDialog(BOOL propVal)
 {
-	SetProperty(0xe, VT_BOOL, propVal);
+  SetProperty(0xe, VT_BOOL, propVal);
 }
 
 
 BOOL CDianaX::GetProgressIsLifesign()
 {
-	BOOL result;
-	GetProperty(0xc, VT_BOOL, (void*)&result);
-	return result;
+  BOOL result;
+  GetProperty(0xc, VT_BOOL, (void*)&result);
+  return result;
 }
 
 void CDianaX::SetProgressIsLifesign(BOOL propVal)
 {
-	SetProperty(0xc, VT_BOOL, propVal);
+  SetProperty(0xc, VT_BOOL, propVal);
 }
 
 long CDianaX::GetNumberOfAppSpcMessages()
 {
-	long result;
-	GetProperty(0xd, VT_I4, (void*)&result);
-	return result;
+  long result;
+  GetProperty(0xd, VT_I4, (void*)&result);
+  return result;
 }
 
 void CDianaX::SetNumberOfAppSpcMessages(long propVal)
 {
-	SetProperty(0xd, VT_I4, propVal);
+  SetProperty(0xd, VT_I4, propVal);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -141,42 +141,42 @@ void CDianaX::SetNumberOfAppSpcMessages(long propVal)
 
 BOOL CDianaX::SetEnvironmentVar(LPCTSTR VarName, LPCTSTR Value)
 {
-	BOOL result;
-	static BYTE parms[] =
-		VTS_BSTR VTS_BSTR;
-	InvokeHelper(0x6, DISPATCH_METHOD, VT_BOOL, (void*)&result, parms,
-		VarName, Value);
-	return result;
+  BOOL result;
+  static BYTE parms[] =
+    VTS_BSTR VTS_BSTR;
+  InvokeHelper(0x6, DISPATCH_METHOD, VT_BOOL, (void*)&result, parms,
+    VarName, Value);
+  return result;
 }
 
 short CDianaX::ExecuteDiana(LPCTSTR ExeName, LPCTSTR WorkingDir, LPCTSTR ComFile, LPCTSTR DatFile, LPCTSTR FilosFile, LPCTSTR BaseName)
 {
-	short result;
-	static BYTE parms[] =
-		VTS_BSTR VTS_BSTR VTS_BSTR VTS_BSTR VTS_BSTR VTS_BSTR;
-	InvokeHelper(0x7, DISPATCH_METHOD, VT_I2, (void*)&result, parms,
-		ExeName, WorkingDir, ComFile, DatFile, FilosFile, BaseName);
-	return result;
+  short result;
+  static BYTE parms[] =
+    VTS_BSTR VTS_BSTR VTS_BSTR VTS_BSTR VTS_BSTR VTS_BSTR;
+  InvokeHelper(0x7, DISPATCH_METHOD, VT_I2, (void*)&result, parms,
+    ExeName, WorkingDir, ComFile, DatFile, FilosFile, BaseName);
+  return result;
 }
 
 BOOL CDianaX::GetCalculationResult()
 {
-	BOOL result;
-	InvokeHelper(0x8, DISPATCH_METHOD, VT_BOOL, (void*)&result, NULL);
-	return result;
+  BOOL result;
+  InvokeHelper(0x8, DISPATCH_METHOD, VT_BOOL, (void*)&result, NULL);
+  return result;
 }
 
 BOOL CDianaX::SetUserMagic(LPCTSTR Leader, LPCTSTR Trailer)
 {
-	BOOL result;
-	static BYTE parms[] =
-		VTS_BSTR VTS_BSTR;
-	InvokeHelper(0x9, DISPATCH_METHOD, VT_BOOL, (void*)&result, parms,
-		Leader, Trailer);
-	return result;
+  BOOL result;
+  static BYTE parms[] =
+    VTS_BSTR VTS_BSTR;
+  InvokeHelper(0x9, DISPATCH_METHOD, VT_BOOL, (void*)&result, parms,
+    Leader, Trailer);
+  return result;
 }
 
 void CDianaX::AboutBox()
 {
-	InvokeHelper(0xfffffdd8, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
+  InvokeHelper(0xfffffdd8, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
 }

@@ -8,8 +8,8 @@
 CWellCasingMaterialServer_Delegate::CWellCasingMaterialServer_Delegate(
   CWellCasingMaterialServer* wellCasingMaterialServer)
 : IMaterialServerTempl_Delegate <CWellCasingSteelMaterial,
-    CWellCasingSteelMaterial_Delegate,
-    TWellCasingMaterialServerParent> (wellCasingMaterialServer)
+  CWellCasingSteelMaterial_Delegate,
+  TWellCasingMaterialServerParent> (wellCasingMaterialServer)
 , m_wellCasingMaterialServer(wellCasingMaterialServer)
 {
 }

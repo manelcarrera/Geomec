@@ -18,7 +18,7 @@ class IDeformation;
 class CWellCasingModel : public IWellModel
 {
 public:
-	IDeformation* m_deformation;
+  IDeformation* m_deformation;
 private:
   friend class IModelLifetimeFacade;
 
@@ -31,38 +31,38 @@ public:
   bool operator==(const CWellCasingModel& rhs) const;
   
   virtual void createContainers();
-	virtual void createDefaults();
+  virtual void createDefaults();
   virtual void CreateChildren();
 
   virtual unsigned int ModelIconId() const;
-	virtual unsigned int TypeId() const;
-	virtual QString documentType() const;
+  virtual unsigned int TypeId() const;
+  virtual QString documentType() const;
 
-	virtual void CreateDensityPoints(const geo::IElement &element, CPointSet &pointset);
-	virtual CGeomecDianaRunnerBase* OnCreateDianaRunner(CDianaRunController& controller);
+  virtual void CreateDensityPoints(const geo::IElement &element, CPointSet &pointset);
+  virtual CGeomecDianaRunnerBase* OnCreateDianaRunner(CDianaRunController& controller);
 
-	virtual const double &Depth(const geo::ICoordinate &coord) const;
-	virtual double Northing(const geo::ICoordinate& coord) const;
-	virtual double Easting(const geo::ICoordinate& coord) const;
-	virtual bool IsResult() const;
-	virtual void Calculate();
-	virtual int Dimension() const;
+  virtual const double &Depth(const geo::ICoordinate &coord) const;
+  virtual double Northing(const geo::ICoordinate& coord) const;
+  virtual double Easting(const geo::ICoordinate& coord) const;
+  virtual bool IsResult() const;
+  virtual void Calculate();
+  virtual int Dimension() const;
 
   virtual const CWellZoomInModel& ParentModel() const;
   virtual CWellZoomInModel& ParentModel();
 
   virtual CWellCasingMesh& Mesh();
   virtual const CWellCasingMesh& Mesh() const;
-	virtual bool CanCalculate() const;
+  virtual bool CanCalculate() const;
   virtual bool CanCalculateMixture() const;
   virtual bool CanCalculateHeatFlow() const;
 
   virtual void OnCloseModel();
 
-	virtual long SavedItems() const;
+  virtual long SavedItems() const;
   bool LoadWellCasing(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &prog);
-	virtual bool OnLoad(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &prog);
-	virtual bool OnSave(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &progress);
+  virtual bool OnLoad(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &prog);
+  virtual bool OnSave(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &progress);
 
   virtual CWellPath* WellPath();
   virtual const CWellPath* WellPath() const;
@@ -113,9 +113,9 @@ class CWellCasingFormationEntry : public CWellFormationEntry
 public:
   CWellCasingFormationEntry(int nEntryId, CWellCasingModel& model);
 
-	virtual void OnShowSkin();
-	virtual void OnShowMidpoints();
-	virtual void OnShowFullMesh();
+  virtual void OnShowSkin();
+  virtual void OnShowMidpoints();
+  virtual void OnShowFullMesh();
 
   ACCEPT_GEOMECMODELVISITORS(VisitWellCasingFormationEntry);
 };

@@ -42,31 +42,31 @@ class CExportGocadDlg : public IExportDlg
 
   class CObjectSelection
   {
-    CExportGocadDlg& m_dlg;
+  CExportGocadDlg& m_dlg;
 
   public:
-    CObjectSelection(CExportGocadDlg& dlg);
+  CObjectSelection(CExportGocadDlg& dlg);
 
  	  void populateTree();
-    void select_formation(const CFormationBase& formation, bool bSelect);
-    bool formation_selected(const CFormationBase& formation) const;
-    void select_fault(const CTetraSubHorizon& fault, bool bSelect);
-    bool fault_selected(const CTetraSubHorizon& fault) const;
-    void select_pointset(const CPointSet& ptSet, bool bSelect);
-    bool pointset_selected(const CPointSet& fault) const;
+  void select_formation(const CFormationBase& formation, bool bSelect);
+  bool formation_selected(const CFormationBase& formation) const;
+  void select_fault(const CTetraSubHorizon& fault, bool bSelect);
+  bool fault_selected(const CTetraSubHorizon& fault) const;
+  void select_pointset(const CPointSet& ptSet, bool bSelect);
+  bool pointset_selected(const CPointSet& fault) const;
 
-    bool MultipleValueComponentsAllowed()
-    {
-        return true;
-    }
-	// called by CSelectionBranchObserver_Delegate
-	virtual void BranchToggle(bool bBranchToggle) {}
+  bool MultipleValueComponentsAllowed()
+  {
+    return true;
+  }
+  // called by CSelectionBranchObserver_Delegate
+  virtual void BranchToggle(bool bBranchToggle) {}
   };
 
   friend class CObjectSelection;
 
-	CListCtrlBase	m_lbTimeStep;
-	CTreeCtrlBase	m_tcResults;
+  CListCtrlBase	m_lbTimeStep;
+  CTreeCtrlBase	m_tcResults;
   CTreeCtrlBase m_tcObjects;
 
   CGocadExport& m_source;
@@ -87,8 +87,8 @@ protected:
   DECLARE_MESSAGE_MAP()
 
 public:
-	CExportGocadDlg(CGocadExport& gocadexport, const CResultGroup* pResultGroup = 0, CWnd* pParent = 0);
-	virtual ~CExportGocadDlg();
+  CExportGocadDlg(CGocadExport& gocadexport, const CResultGroup* pResultGroup = 0, CWnd* pParent = 0);
+  virtual ~CExportGocadDlg();
 
   CModelBase& Model();
   const CModelBase& Model() const;
@@ -101,7 +101,7 @@ public:
       return true;
   }
 
-	// Timestep functions
+  // Timestep functions
   virtual bool TimeStep(const CDepletionStage& stage) const;
   virtual void TimeStep(const CDepletionStage& stage, bool bEnable);
 
@@ -117,24 +117,24 @@ public:
   bool PointSet(const CPointSet& ptSet) const;
   void PointSet(const CPointSet& ptSet, bool bEnable);
 
-	// Is a result valid?
-	BOOL Valid(const IValueComposite& composite) const;
-	BOOL Valid(const IValueComponentBase& component) const;
+  // Is a result valid?
+  BOOL Valid(const IValueComposite& composite) const;
+  BOOL Valid(const IValueComponentBase& component) const;
 
-	bool ResultComposite(const IValueComposite& composite) const;
-	void ResultComposite(const IValueComposite& composite, bool bEnable);
+  bool ResultComposite(const IValueComposite& composite) const;
+  void ResultComposite(const IValueComposite& composite, bool bEnable);
 
   virtual void toggleState() const {;}
 
   bool Selected(const IValueComponentBase *pComponent) const
   {
-    return m_selection.find(pComponent) != m_selection.end();
+  return m_selection.find(pComponent) != m_selection.end();
   }
 
   void Select(const IValueComponentBase *pComponent) // toggle
   {
-    std::pair<std::set<const IValueComponentBase *>::iterator, bool> retval = m_selection.insert(pComponent);
-    if (!retval.second)
+  std::pair<std::set<const IValueComponentBase *>::iterator, bool> retval = m_selection.insert(pComponent);
+  if (!retval.second)
       m_selection.erase(retval.first);
   }
 };

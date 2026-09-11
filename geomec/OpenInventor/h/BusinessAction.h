@@ -6,7 +6,7 @@
 class CWorldAction
 {
 public:
-    virtual ~CWorldAction () = 0;
+  virtual ~CWorldAction () = 0;
 
-    virtual void operator()(const std::vector<geo::CPoint> &) = 0;
+  virtual void operator()(const std::vector<geo::CPoint> &) = 0;
 };

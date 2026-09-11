@@ -25,14 +25,14 @@ CDbProgressCallBack::~CDbProgressCallBack()
 
 void CDbProgressCallBack::OnNewRecord()
 {
-	if (m_dlg.OnProgress(SET_PROGRESS, (LPARAM)((CurrentRecord() * 100) / TotalRecords())) == 0)
-		OnCancel();
-	//gm3::
-	CProgressCallBack::OnNewRecord();
+  if (m_dlg.OnProgress(SET_PROGRESS, (LPARAM)((CurrentRecord() * 100) / TotalRecords())) == 0)
+    OnCancel();
+  //gm3::
+  CProgressCallBack::OnNewRecord();
 }
 
 
 void CDbProgressCallBack::OnNewTable(const CString &strTableName)
 {	
-	m_dlg.JobComment(strTableName);
+  m_dlg.JobComment(strTableName);
 }

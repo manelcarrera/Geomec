@@ -5,8 +5,8 @@
 #include <QString>
 
 CDianaXWrapper::CDianaXWrapper( IExecuteDianaDialog* exe_diana_dlg )
-	: IDianaXWrapper(), 
-	m_exe_diana_dlg( exe_diana_dlg )
+  : IDianaXWrapper(), 
+  m_exe_diana_dlg( exe_diana_dlg )
 {
 }
 
@@ -20,18 +20,18 @@ void CDianaXWrapper::SetProgressIsLifesign(bool progressIsLifesign){	m_exe_diana
 
 void CDianaXWrapper::SetRunner(dia::IDianaRunner *runner)
 {				
-	m_exe_diana_dlg->SetRunner( runner ); 
+  m_exe_diana_dlg->SetRunner( runner ); 
 }
 
 bool CDianaXWrapper::GetCalculationResult()
 {							
-	return m_exe_diana_dlg->GetCalculationResult(); 
+  return m_exe_diana_dlg->GetCalculationResult(); 
 }
 
 short CDianaXWrapper::ExecuteDiana()
 {
-	// 0 is Ok
-	return m_exe_diana_dlg->ExecuteDiana();
+  // 0 is Ok
+  return m_exe_diana_dlg->ExecuteDiana();
 }
 
 void CDianaXWrapper::ExecuteDianaCleanup()

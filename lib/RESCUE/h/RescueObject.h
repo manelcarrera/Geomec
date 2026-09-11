@@ -119,7 +119,7 @@ public:
   virtual RESCUEBOOL IsNamed(const RESCUECHAR * /*mayBeName*/) {return FALSE;}
   _RescueObjectType IsA() {return isA;}
   virtual RESCUEBOOL IsOfType(_RescueObjectType thisType)
-    {return (thisType == R_RescueObject);}
+  {return (thisType == R_RescueObject);}
                                  // Returns TRUE if the object is a
                                  // member of the specified class.
 /************************** H o u s e k e e p i n g **********************/

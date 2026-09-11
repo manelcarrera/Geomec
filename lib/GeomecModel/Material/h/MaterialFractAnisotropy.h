@@ -28,11 +28,11 @@ public:
 
 private:
   geo::CMatrix CalculateStiffnessMatrix(const CFFMaterial &ffmat,
-                                        double En,
-                                        double Et,
-                                        double Nun,
-                                        double Nut,
-                                        double G) const;
+                    double En,
+                    double Et,
+                    double Nun,
+                    double Nut,
+                    double G) const;
   geo::CMatrix CalculateAnisotropyComplianceMatrix(const CFFMaterial &ffmat,
                                                    double En,
                                                    double Et,

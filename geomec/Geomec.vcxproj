@@ -296,7 +296,7 @@
     <ProjectReference Include="..\lib\blosc_filter\blosc_filter.vcxproj">
       <Project>{49b5a2c2-90a9-4205-954b-bdc6aece8e22}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\lib\c-blosc-1.9.0\build\blosc\blosc_shared.vcxproj">
+    <ProjectReference Include="..\third_party\c-blosc-1.9.0\build\blosc\blosc_shared.vcxproj">
       <Project>{9e79b5fd-f368-386f-a1b2-481cb5992aa6}</Project>
     </ProjectReference>
     <ProjectReference Include="..\lib\CommonWellScheme\CommonWellScheme.vcxproj">
@@ -313,7 +313,7 @@
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
-    <ProjectReference Include="..\lib\CutSurfaceUtil\CutSurfaceUtil.vcxproj">
+    <ProjectReference Include="..\platform\CutSurfaceUtil\CutSurfaceUtil.vcxproj">
       <Project>{a3ba5cad-d4ee-4ec0-b3c9-9ae8b6558d08}</Project>
       <Private>false</Private>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -327,7 +327,7 @@
     <ProjectReference Include="..\lib\DianaGlue\DianaGlue.vcxproj">
       <Project>{344f283e-11eb-452d-973b-49589be2f0b5}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\lib\DoubleEditLib\DoubleEditLib.vcxproj">
+    <ProjectReference Include="..\platform\DoubleEditLib\DoubleEditLib.vcxproj">
       <Project>{77925400-c8db-4aaf-8e1a-bd7274ae1fa5}</Project>
       <Private>false</Private>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -335,7 +335,7 @@
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
-    <ProjectReference Include="..\lib\FemAppGUI\FemAppGUI.vcxproj">
+    <ProjectReference Include="..\platform\FemAppGUI\FemAppGUI.vcxproj">
       <Project>{d123fa8c-5a4d-44a8-a1bb-04b5b8fe86ef}</Project>
       <Private>false</Private>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -367,7 +367,7 @@
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
-    <ProjectReference Include="..\lib\GmDatabase\GmDatabase.vcxproj">
+    <ProjectReference Include="..\platform\GmDatabase\GmDatabase.vcxproj">
       <Project>{96073ff9-fbe7-4123-8c73-ecc42b79c529}</Project>
       <Private>false</Private>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -378,7 +378,7 @@
     <ProjectReference Include="..\lib\GMSkuaConnector\GMSkuaConnector.vcxproj">
       <Project>{7dff0108-6cff-4da1-985c-de482241d396}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\lib\IT\IT.vcxproj">
+    <ProjectReference Include="..\platform\IT\IT.vcxproj">
       <Project>{16be587e-c260-4a4a-9817-e4f7f5a68c07}</Project>
     </ProjectReference>
     <ProjectReference Include="..\lib\MaterialLibraryXML\MaterialLibraryXML.vcxproj">
@@ -405,7 +405,7 @@
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
-    <ProjectReference Include="..\lib\MfcGuiFrame\MfcGuiFrame.vcxproj">
+    <ProjectReference Include="..\platform\MfcGuiFrame\MfcGuiFrame.vcxproj">
       <Project>{de87a883-268b-4a5e-bd54-a7522191a9c5}</Project>
       <Private>false</Private>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -421,13 +421,13 @@
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
-    <ProjectReference Include="..\lib\OpenInventorDataInterface\OpenInventorDataInterface.vcxproj">
+    <ProjectReference Include="..\platform\OpenInventorDataInterface\OpenInventorDataInterface.vcxproj">
       <Project>{c12d912c-41ad-4888-b92a-0876fd147ab9}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\lib\Plugins\Plugins.vcxproj">
+    <ProjectReference Include="..\platform\Plugins\Plugins.vcxproj">
       <Project>{f2b1aa28-9235-41af-85ed-9a6a7acddbd0}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\lib\PyLib\PyLib.vcxproj">
+    <ProjectReference Include="..\platform\PyLib\PyLib.vcxproj">
       <Project>{cf6d0c66-92da-4d28-b7e3-4fab2370427e}</Project>
     </ProjectReference>
     <ProjectReference Include="..\lib\qtiocompressor\qtiocompressor.vcxproj">
@@ -438,7 +438,7 @@
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
-    <ProjectReference Include="..\lib\qtwinmigrate\qtwinmigrate.vcxproj">
+    <ProjectReference Include="..\platform\qtwinmigrate\qtwinmigrate.vcxproj">
       <Project>{ac4a2ddf-6bb5-4e9d-bf6c-383059506cbe}</Project>
       <Private>false</Private>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -505,7 +505,7 @@
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
-    <ProjectReference Include="..\lib\WindowsRegistry\WindowsRegistry.vcxproj">
+    <ProjectReference Include="..\platform\WindowsRegistry\WindowsRegistry.vcxproj">
       <Project>{8743519e-49dc-424c-ad47-94e4781bef6a}</Project>
       <Private>false</Private>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -513,7 +513,7 @@
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
-    <ProjectReference Include="..\lib\XMLLib\XMLLib.vcxproj">
+    <ProjectReference Include="..\platform\XMLLib\XMLLib.vcxproj">
       <Project>{fc709f20-22cf-4130-ac2f-d7eb22452b8a}</Project>
       <Private>false</Private>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -521,7 +521,7 @@
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
-    <ProjectReference Include="..\lib\zlib-1.2.6\contrib\vstudio\vc10\zlibvc.vcxproj">
+    <ProjectReference Include="..\third_party\zlib-1.2.6\contrib\vstudio\vc10\zlibvc.vcxproj">
       <Project>{8fd826f8-3739-44e6-8cc8-997122e53b8d}</Project>
       <Private>false</Private>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

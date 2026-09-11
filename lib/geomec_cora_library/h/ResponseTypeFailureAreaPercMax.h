@@ -9,16 +9,16 @@ namespace cora
 class CResponseTypeFailureAreaPercMax : public CResponseTypeBaseWithValue
 {
   public:
-    CResponseTypeFailureAreaPercMax(CSummaryResultFile& summaryResultFile,
+  CResponseTypeFailureAreaPercMax(CSummaryResultFile& summaryResultFile,
       const std::vector <QString>& function);
-    virtual ~CResponseTypeFailureAreaPercMax();
+  virtual ~CResponseTypeFailureAreaPercMax();
 
-    virtual double calculate(const TObject& object,
+  virtual double calculate(const TObject& object,
       const TFailureMode& failureMode);
 
   private:
-    CResponseTypeFailureAreaPercMax(const CResponseTypeFailureAreaPercMax& rhs);
-    CResponseTypeFailureAreaPercMax& operator = (
+  CResponseTypeFailureAreaPercMax(const CResponseTypeFailureAreaPercMax& rhs);
+  CResponseTypeFailureAreaPercMax& operator = (
       CResponseTypeFailureAreaPercMax rhs);
 };
 

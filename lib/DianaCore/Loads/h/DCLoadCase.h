@@ -18,10 +18,10 @@ class ILoad;
 
 class CLoadCase : public ICase
 {
-	friend class CLoadManager;
+  friend class CLoadManager;
 
-	// only called by (friend) CLoadManager
-	CLoadCase(CLoadManager &manager, int index);
+  // only called by (friend) CLoadManager
+  CLoadCase(CLoadManager &manager, int index);
 
 protected:
   virtual std::string FilosDirName() const;

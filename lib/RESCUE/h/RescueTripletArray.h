@@ -46,35 +46,35 @@ public:
                                   {isA = R_RescueTripletArray;}
   RescueTripletArray(RescueGrid *existingGrid, RESCUEFLOAT missingValueIn, 
                      RESCUEFLOAT *valueArray, RescueModel *parentModelIn);
-                                    // Create the array with or without the triplets.
+                  // Create the array with or without the triplets.
   ~RescueTripletArray();
   RescueGrid *Grid() {return grid;}
   RESCUEFLOAT MissingValue() {return missingValue;}
   void SetValue(RESCUEFLOAT nullValueIn, RESCUEFLOAT *valueArray);
-                                    // The array has the number of dimensions in
-                                    // the grid, plus an extra dimension with count
-                                    // of 3, corresponding to x, y, and z.
-                                    // The instance makes a copy of the array.
-                                    // if the grid has regular axes, then values
-                                    // corresponding to the regular axis dimensions
-                                    // are ignored.
+                  // The array has the number of dimensions in
+                  // the grid, plus an extra dimension with count
+                  // of 3, corresponding to x, y, and z.
+                  // The instance makes a copy of the array.
+                  // if the grid has regular axes, then values
+                  // corresponding to the regular axis dimensions
+                  // are ignored.
   void AssignXValue(RESCUEFLOAT *valueArray);
   void AssignYValue(RESCUEFLOAT *valueArray);
   void AssignZValue(RESCUEFLOAT *valueArray);
-                                    // The array has the number of dimensions in
-                                    // the grid. The pointer is copied, meaning the
-                                    // array must have been created with new RESCUEFLOAT [].
-                                    // The pointer becomes the property of the object.
+                  // The array has the number of dimensions in
+                  // the grid. The pointer is copied, meaning the
+                  // array must have been created with new RESCUEFLOAT [].
+                  // The pointer becomes the property of the object.
   void SetXValue(RESCUEFLOAT *valueArray);
   void SetYValue(RESCUEFLOAT *valueArray);
   void SetZValue(RESCUEFLOAT *valueArray);
-                                    // The array has the number of dimensions in
-                                    // the grid.  
+                  // The array has the number of dimensions in
+                  // the grid.  
   RESCUEFLOAT *RescueGetXValue();         // Returns a pointer to an array for the
   RESCUEFLOAT *RescueGetYValue();         // coordinate system axis desired.  Do NOT
   RESCUEFLOAT *RescueGetZValue();         // delete the array when you are done with it.
-                                    // If no array was defined because the axis is
-                                    // regular, RescueTripletArray will build one.
+                  // If no array was defined because the axis is
+                  // regular, RescueTripletArray will build one.
   RESCUEINT64 RescueGetXValueLength64();
   RESCUEINT64 RescueGetYValueLength64();
   RESCUEINT64 RescueGetZValueLength64();
@@ -84,11 +84,11 @@ public:
   void XValues(RESCUEFLOAT *buffer, RESCUEINT64 offset, RESCUEINT64 valueCount);         
   void YValues(RESCUEFLOAT *buffer, RESCUEINT64 offset, RESCUEINT64 valueCount);         
   void ZValues(RESCUEFLOAT *buffer, RESCUEINT64 offset, RESCUEINT64 valueCount);         
-                                    // Writes the values into an array allocated by
-                                    // the caller.  Better for those who want to do
-                                    // their own memory allocation.  Especially good
-                                    // for Java RJNI users.  valueCount is the number
-                                    // of good values in the buffer (excluding offset).
+                  // Writes the values into an array allocated by
+                  // the caller.  Better for those who want to do
+                  // their own memory allocation.  Especially good
+                  // for Java RJNI users.  valueCount is the number
+                  // of good values in the buffer (excluding offset).
   virtual RESCUEBOOL IsOfType(_RescueObjectType thisType);
      // Returns TRUE if the object is a
      // member of the specified class.
@@ -110,16 +110,16 @@ public:
 
 ***********************************************************************************/
   void XYZCornerAt(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 faceNumber, RESCUEFLOAT &x, RESCUEFLOAT &y, RESCUEFLOAT &z);
-                                    // For 2d grids. See documentation for a description
-                                    // of face number.  For non-split nodes all face numbers
-                                    // will return the same value.
+                  // For 2d grids. See documentation for a description
+                  // of face number.  For non-split nodes all face numbers
+                  // will return the same value.
   RESCUEBOOL HasSplitNodes();       // Returns TRUE if there is at least one split node.
   RESCUEBOOL IsSplit(RESCUEINT64 i, RESCUEINT64 j); // Returns TRUE if the given ij node is split.
   void SetXYZCorner(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 faceNumber, RESCUEFLOAT x, RESCUEFLOAT y, RESCUEFLOAT z);
-                                    // Sets the value of a split node corner.  If the
-                                    // corner has been truncated away, pass FLT_MAX.
+                  // Sets the value of a split node corner.  If the
+                  // corner has been truncated away, pass FLT_MAX.
   void ClearSplitNode(RESCUEINT64 i, RESCUEINT64 j);// Removes split node information for a specific
-                                    // node.
+                  // node.
   void ClearSplitNodes();           // Removes all split node information.
 /***********************************************************************************
 
@@ -136,16 +136,16 @@ public:
   void MarkChanged() {hasChanged = TRUE;}
 /***********************************************************************************/
   RESCUEINT32 Version(RESCUEBOOL reload = FALSE); // These methods return a version number for the file which
-                                    // starts at zero and increments each time the file is
-                                    // written.  Applications can use this as a quick check to
-                                    // see if the file has been updated (by saving the version
-                                    // number AFTER a write operation). If reload is TRUE the library
-                                    // always goes back to the disk to read the version number,
-                                    // in case it has been recently changed.  Therefore, the
-                                    // version number returned is the version which would be
-                                    // available if the data were loaded now, not the version which
-                                    // IS loaded now (if any). If false, the version number returned
-                                    // is the version of the last data loaded (if any).
+                  // starts at zero and increments each time the file is
+                  // written.  Applications can use this as a quick check to
+                  // see if the file has been updated (by saving the version
+                  // number AFTER a write operation). If reload is TRUE the library
+                  // always goes back to the disk to read the version number,
+                  // in case it has been recently changed.  Therefore, the
+                  // version number returned is the version which would be
+                  // available if the data were loaded now, not the version which
+                  // IS loaded now (if any). If false, the version number returned
+                  // is the version of the last data loaded (if any).
 protected:
   RescueTripletArray(RescueContext *context, FILE *archiveFile);
   virtual void Archive(FILE *archiveFile);

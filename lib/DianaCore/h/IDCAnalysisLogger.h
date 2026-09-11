@@ -17,19 +17,19 @@ namespace dia {
 class IAnalysisLogger  
 {
 public:
-	IAnalysisLogger();
-	virtual ~IAnalysisLogger();
+  IAnalysisLogger();
+  virtual ~IAnalysisLogger();
 
-	void Empty();
-	void AddLine(const std::string &Line, bool bVerbose = false);
-	bool IsEmpty() const;
+  void Empty();
+  void AddLine(const std::string &Line, bool bVerbose = false);
+  bool IsEmpty() const;
 
-	long LineSize() const;
-	const std::string &Line(int nIndex) const;
+  long LineSize() const;
+  const std::string &Line(int nIndex) const;
   bool Verbose(int nIndex) const;
 
-	// export the log to an ASCII file given the (absolute) path
-	bool ExportToFile(const std::string& path, bool bVerbose = false) const;
+  // export the log to an ASCII file given the (absolute) path
+  bool ExportToFile(const std::string& path, bool bVerbose = false) const;
 
   // Qt's signal handlers get in the way of using a specific logger, so we introduce a flag to ignore messages
   void Silent(bool flag);

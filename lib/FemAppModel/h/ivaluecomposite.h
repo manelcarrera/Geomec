@@ -14,49 +14,49 @@
 
 class IValueComposite : public CStorageNode
 {
-	friend class IValueComponentBase;
-	typedef std::vector<IValueComponentBase*> TComponentVec;
-	typedef std::vector<TComponentVec> TModeVec;
-	TModeVec	m_vcMode;
+  friend class IValueComponentBase;
+  typedef std::vector<IValueComponentBase*> TComponentVec;
+  typedef std::vector<TComponentVec> TModeVec;
+  TModeVec	m_vcMode;
 public:
-	typedef enum _enumWeightingType
-	{
-		NO_WEIGHTING = 0,
-		VOLUME,
-		INVERSE_VOLUME
-	} TWeightingType;
+  typedef enum _enumWeightingType
+  {
+    NO_WEIGHTING = 0,
+    VOLUME,
+    INVERSE_VOLUME
+  } TWeightingType;
 
-	// Construction / Destruction
-	IValueComposite(CFemAppModel& model);
-	IValueComposite(const QString &strName, CFemAppModel& model);
-	IValueComposite(unsigned int uName, CFemAppModel& model);
-	IValueComposite(const IValueComposite &rhs);
-	virtual ~IValueComposite();
+  // Construction / Destruction
+  IValueComposite(CFemAppModel& model);
+  IValueComposite(const QString &strName, CFemAppModel& model);
+  IValueComposite(unsigned int uName, CFemAppModel& model);
+  IValueComposite(const IValueComposite &rhs);
+  virtual ~IValueComposite();
 
   virtual QString ExportLabel() const { return Name(); }
 
-    virtual bool IsTensorVector  () const
-    {
-        return false;
-    }
+  virtual bool IsTensorVector  () const
+  {
+    return false;
+  }
 
-	// Mode interface ...
-	virtual unsigned int ModeSize() const;							// Returns number of modes > 0
-	virtual QString ModeName(unsigned int uMode = 0) const;		// Returns name of the mode 
+  // Mode interface ...
+  virtual unsigned int ModeSize() const;							// Returns number of modes > 0
+  virtual QString ModeName(unsigned int uMode = 0) const;		// Returns name of the mode 
 
-	// Component interface ...
-	virtual unsigned int ComponentSize(unsigned int uMode = 0) const;
-	virtual IValueComponentBase& Component(unsigned int uComponent = 0, unsigned int uMode = 0);
-	virtual const IValueComponentBase& Component(unsigned int uComponent = 0, unsigned int uMode = 0) const;
-	virtual void OnNeighbourModified(const CGraphNode &node, enum ModifiedHint uHint);
-	virtual void OnNeighbourDeleted(const CGraphNode &node);
+  // Component interface ...
+  virtual unsigned int ComponentSize(unsigned int uMode = 0) const;
+  virtual IValueComponentBase& Component(unsigned int uComponent = 0, unsigned int uMode = 0);
+  virtual const IValueComponentBase& Component(unsigned int uComponent = 0, unsigned int uMode = 0) const;
+  virtual void OnNeighbourModified(const CGraphNode &node, enum ModifiedHint uHint);
+  virtual void OnNeighbourDeleted(const CGraphNode &node);
 
-	// Construction / Destruction ...
-	IValueComposite& operator=(const IValueComposite &rhs);
-	bool operator==(const IValueComposite &rhs) const;
+  // Construction / Destruction ...
+  IValueComposite& operator=(const IValueComposite &rhs);
+  bool operator==(const IValueComposite &rhs) const;
 
-	// Save and load
-	virtual bool Empty() const;
+  // Save and load
+  virtual bool Empty() const;
 
   virtual bool Less(const CGraphNode& rhs) const;
   virtual bool isFaultResult () const;

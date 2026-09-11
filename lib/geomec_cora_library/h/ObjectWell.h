@@ -18,27 +18,27 @@ namespace cora
 class CObjectWell : public CObjectBase
 {
   public:
-    CObjectWell(CNewWellPath* newWellPath);
-    virtual ~CObjectWell();
+  CObjectWell(CNewWellPath* newWellPath);
+  virtual ~CObjectWell();
 
-    virtual const QString& name() const;
-    virtual const TParameters& getParameters() const;
-    virtual const QString& prefix() const;
-    virtual const COpenGLNode* object() const;
-    virtual const QString& typeName() const;
+  virtual const QString& name() const;
+  virtual const TParameters& getParameters() const;
+  virtual const QString& prefix() const;
+  virtual const COpenGLNode* object() const;
+  virtual const QString& typeName() const;
 
-    virtual const geo::IElement* getFirstElement();
-    virtual const geo::IElement* getNextElement();
+  virtual const geo::IElement* getFirstElement();
+  virtual const geo::IElement* getNextElement();
 
-    virtual std::ostream& operator () (std::ostream& os) const;
+  virtual std::ostream& operator () (std::ostream& os) const;
 
   private:
-    CObjectWell(const CObjectWell& rhs);
-    CObjectWell& operator = (CObjectWell rhs);
+  CObjectWell(const CObjectWell& rhs);
+  CObjectWell& operator = (CObjectWell rhs);
 
-    CNewWellPath* m_newWellPath;
-    TParameters m_parameters;
-    int m_sequenceState;
+  CNewWellPath* m_newWellPath;
+  TParameters m_parameters;
+  int m_sequenceState;
 };
 
 } // namespace cora

@@ -14,7 +14,7 @@ CFormationVolume_Delegate::CFormationVolume_Delegate(
 bool CFormationVolume_Delegate::Attributes() 
 {
   CAttriFormationElementSet <IFormationElementSet> dlg(
-    IDD_ATTRI_FORMATION_VOLUME, *m_formationVolume);
+  IDD_ATTRI_FORMATION_VOLUME, *m_formationVolume);
 
   return dlg.DoModal() == IDOK;
 }

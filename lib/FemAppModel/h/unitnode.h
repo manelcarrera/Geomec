@@ -14,22 +14,22 @@
 
 class CUnitNode : public CGraphNode
 {
-	IQuantityDouble::UNIT m_unit;
+  IQuantityDouble::UNIT m_unit;
 protected:
-	// Unit settings are store under "Settings", "UNIT"
-	virtual void ReadRegister();	// Read unit settings in register
-	virtual void StoreRegister();	// Store unit settings in register
+  // Unit settings are store under "Settings", "UNIT"
+  virtual void ReadRegister();	// Read unit settings in register
+  virtual void StoreRegister();	// Store unit settings in register
 public:
-	typedef IQuantityDouble::UNIT TUnitType;
-	CUnitNode(TUnitType unit = IQuantityDouble::SI_UNIT);
+  typedef IQuantityDouble::UNIT TUnitType;
+  CUnitNode(TUnitType unit = IQuantityDouble::SI_UNIT);
 
-	TUnitType Unit() const;
-	void Unit(TUnitType unit);
+  TUnitType Unit() const;
+  void Unit(TUnitType unit);
 
-	QString UnitName(TUnitType unit) const;
+  QString UnitName(TUnitType unit) const;
 
-	virtual unsigned int IconId() const;
-	virtual unsigned int TypeId() const;
+  virtual unsigned int IconId() const;
+  virtual unsigned int TypeId() const;
 
   virtual bool Accept(graphnode::IConstVisitor& visitor) const { return visitor.VisitUnitNode(*this); }
   virtual bool Accept(graphnode::IVisitor& visitor) { return visitor.VisitUnitNode(*this); }

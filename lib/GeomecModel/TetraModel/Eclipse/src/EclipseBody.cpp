@@ -23,25 +23,25 @@ CEclipseBody::~CEclipseBody()
 
 const geo::IPoint &CEclipseBody::Point(int nIndex) const
 {
-	assert(nIndex >= 0 && nIndex < NrOfPoints());
-	return m_mesh.Node(m_vcNodes[nIndex]);
+  assert(nIndex >= 0 && nIndex < NrOfPoints());
+  return m_mesh.Node(m_vcNodes[nIndex]);
 }
 
 void CEclipseBody::Point(int nIndex, const geo::IPoint &pt)
 {
-	assert(nIndex >= 0 && nIndex < NrOfPoints());
-	m_mesh.Node(nIndex, pt);
+  assert(nIndex >= 0 && nIndex < NrOfPoints());
+  m_mesh.Node(nIndex, pt);
 }
 
 /*
 geo::CPoint CEclipseBody::GlobalFromIsoparametric(const double &xi, const double &eta, const double &zeta) const
 {
-	geo::CPoint ptret(
-		ShapeFunction(xi, eta, zeta, geo::IPoint::X),
-		ShapeFunction(xi, eta, zeta, geo::IPoint::Y),
-		ShapeFunction(xi, eta, zeta, geo::IPoint::Z));
+  geo::CPoint ptret(
+    ShapeFunction(xi, eta, zeta, geo::IPoint::X),
+    ShapeFunction(xi, eta, zeta, geo::IPoint::Y),
+    ShapeFunction(xi, eta, zeta, geo::IPoint::Z));
 
-	return ptret;
+  return ptret;
 }
 
 // returns the xi, eta and zeta for the point in a CPoint
@@ -49,43 +49,43 @@ geo::CPoint CEclipseBody::GlobalFromIsoparametric(const double &xi, const double
 // returns empty point if maximum number of iterations is exceeded
 geo::CPoint CEclipseBody::IsoparametricFromGlobal(const geo::IPoint &point) const
 {
-	// a little iteration needs to be done to find the right xi, eta, zeta values for the given point
+  // a little iteration needs to be done to find the right xi, eta, zeta values for the given point
 
-	// define a maximum number of iterations to prevent deadlocking
-	const int maxiter = 10;
+  // define a maximum number of iterations to prevent deadlocking
+  const int maxiter = 10;
 
-	double xi = 0;
-	double eta = 0;
-	double zeta = 0;
+  double xi = 0;
+  double eta = 0;
+  double zeta = 0;
 
-	geo::CPoint estimate = GlobalFromIsoparametric(xi, eta, zeta);
-	int iter = 0;
+  geo::CPoint estimate = GlobalFromIsoparametric(xi, eta, zeta);
+  int iter = 0;
 
-	geo::CPoint diff(estimate - point);
+  geo::CPoint diff(estimate - point);
 
-	while(fabs(diff.X()) > 1e-8 || fabs(diff.Y()) > 1e-8 || fabs(diff.Z()) > 1e-8)
-	{
-		if(++iter > maxiter) return geo::CPoint();
+  while(fabs(diff.X()) > 1e-8 || fabs(diff.Y()) > 1e-8 || fabs(diff.Z()) > 1e-8)
+  {
+    if(++iter > maxiter) return geo::CPoint();
 
-		// the delta values
-		geo::CVector delta(
-			point.X() - estimate.X(),
-			point.Y() - estimate.Y(),
-			point.Z() - estimate.Z());
+    // the delta values
+    geo::CVector delta(
+      point.X() - estimate.X(),
+      point.Y() - estimate.Y(),
+      point.Z() - estimate.Z());
 
-		// the matrix with derivatives
-		geo::CMatrix mat(3, 3);
+    // the matrix with derivatives
+    geo::CMatrix mat(3, 3);
 
-		Jacobian(mat, xi, eta, zeta);
+    Jacobian(mat, xi, eta, zeta);
 
-		// invert it, and multiply by the delta vector to get
-		// delta in terms of xi, eta and zeta
-		geo::CMatrix matinv = mat.GetInverse();
-		geo::CVector delta_iso = matinv * delta;
+    // invert it, and multiply by the delta vector to get
+    // delta in terms of xi, eta and zeta
+    geo::CMatrix matinv = mat.GetInverse();
+    geo::CVector delta_iso = matinv * delta;
 
-		xi   += delta_iso.X();
-		eta  += delta_iso.Y();
-		zeta += delta_iso.Z();
+    xi   += delta_iso.X();
+    eta  += delta_iso.Y();
+    zeta += delta_iso.Z();
 
 //		if(xi < -0.5) xi = -0.5;
 //		if(xi > 0.5) xi = 0.5;
@@ -94,37 +94,37 @@ geo::CPoint CEclipseBody::IsoparametricFromGlobal(const geo::IPoint &point) cons
 //		if(zeta < -0.5) zeta = -0.5;
 //		if(zeta > 0.5) zeta = 0.5;
 
-		estimate = GlobalFromIsoparametric(xi, eta, zeta);
-		diff = estimate - point;
-	}
+    estimate = GlobalFromIsoparametric(xi, eta, zeta);
+    diff = estimate - point;
+  }
 
-	return geo::CPoint(xi, eta, zeta);
+  return geo::CPoint(xi, eta, zeta);
 }
 */
 // checks whether the element is degenerate (e.g. concave)
 bool CEclipseBody::Degenerate() const
 {
 /*
-	// loop over nodes, and see if det(J) is <= 0 for any of them
-	geo::CMatrix J(3, 3);
+  // loop over nodes, and see if det(J) is <= 0 for any of them
+  geo::CMatrix J(3, 3);
 
-	Jacobian(J, -0.5, -0.5, -0.5);
-	if(J.GetDeterminant() < EPS) return true;
-	Jacobian(J,  0.5, -0.5, -0.5);
-	if(J.GetDeterminant() < EPS) return true;
-	Jacobian(J,  0.5,  0.5, -0.5);
-	if(J.GetDeterminant() < EPS) return true;
-	Jacobian(J, -0.5,  0.5, -0.5);
-	if(J.GetDeterminant() < EPS) return true;
-	Jacobian(J, -0.5, -0.5,  0.5);
-	if(J.GetDeterminant() < EPS) return true;
-	Jacobian(J,  0.5, -0.5,  0.5);
-	if(J.GetDeterminant() < EPS) return true;
-	Jacobian(J,  0.5,  0.5,  0.5);
-	if(J.GetDeterminant() < EPS) return true;
-	Jacobian(J, -0.5,  0.5,  0.5);
-	if(J.GetDeterminant() < EPS) return true;
+  Jacobian(J, -0.5, -0.5, -0.5);
+  if(J.GetDeterminant() < EPS) return true;
+  Jacobian(J,  0.5, -0.5, -0.5);
+  if(J.GetDeterminant() < EPS) return true;
+  Jacobian(J,  0.5,  0.5, -0.5);
+  if(J.GetDeterminant() < EPS) return true;
+  Jacobian(J, -0.5,  0.5, -0.5);
+  if(J.GetDeterminant() < EPS) return true;
+  Jacobian(J, -0.5, -0.5,  0.5);
+  if(J.GetDeterminant() < EPS) return true;
+  Jacobian(J,  0.5, -0.5,  0.5);
+  if(J.GetDeterminant() < EPS) return true;
+  Jacobian(J,  0.5,  0.5,  0.5);
+  if(J.GetDeterminant() < EPS) return true;
+  Jacobian(J, -0.5,  0.5,  0.5);
+  if(J.GetDeterminant() < EPS) return true;
 */
 
-	return false;
+  return false;
 }

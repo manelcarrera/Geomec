@@ -24,7 +24,7 @@ const dia::IMaterial& CWellCasingMixtureDianaRunner::Material(const geo::IElemen
   CWellCasingDianaRunnerHelper helper(CasingModel(), Controller(), ParentLinearResults());
   const dia::IMaterial* pMat = helper.Material(element);
   if(pMat)
-    return *pMat;
+  return *pMat;
 
   return CGeomecMixtureDianaRunner::Material(element);
 }
@@ -56,17 +56,17 @@ bool CWellCasingMixtureDianaRunner::HasConcentrationValue(const geo::IElement& e
 {
   const geo::CInterfaceElement* pIface = dynamic_cast<const geo::CInterfaceElement*>(&element);
   if(pIface || CasingModel().Mesh().IsSteelElement(element))
-    return false;
+  return false;
 
   const CModelBase& model = Model();
   bool bVolumetric = false;
   for(CDepletionStageEntry::const_iterator it = model.DepletionStageEntry().begin(); it != model.DepletionStageEntry().end(); ++it)
   {
-    if(!it->Initial() && CasingModel().CasingCement().Strain(*it).IsVolumetric())
-    {
+  if(!it->Initial() && CasingModel().CasingCement().Strain(*it).IsVolumetric())
+  {
       bVolumetric = true;
       break;
-    }
+  }
   }
 
   return bVolumetric;
@@ -87,103 +87,103 @@ void CWellCasingMixtureDianaRunner::WriteModelSpecificLoads(const TStageMap& mpS
   int n;
   for(n = 0; n < nGrids; ++n)
   {
-    bool bCap = (n == 0 || n == nGrids - 1);
+  bool bCap = (n == 0 || n == nGrids - 1);
 
-    // loop over the spokes
-    int i;
-    for(i = 0; i < nSpokes; ++i)
-    {
+  // loop over the spokes
+  int i;
+  for(i = 0; i < nSpokes; ++i)
+  {
       const geo::INode& node = mesh.Node(nNode);
 
       double dIniPressure = 0;
       CDepletionStageEntry::const_iterator it;
       for(it = Model().DepletionStageEntry().begin(); it != Model().DepletionStageEntry().end(); ++it)
       {
-        const CDepletionStage& stage = *it;
-        TStageMap::const_iterator its = mpStages.find(&stage);
-        assert(its != mpStages.end());
-        dia::CLoadCase& lcase = *its->second;
-        if(lcase.Active())
-        {
+    const CDepletionStage& stage = *it;
+    TStageMap::const_iterator its = mpStages.find(&stage);
+    assert(its != mpStages.end());
+    dia::CLoadCase& lcase = *its->second;
+    if(lcase.Active())
+    {
           const CWellCasingInternalPressure& internalPressure = CasingModel().CasingNode().InternalPressure(stage);
           double dPressure = internalPressure.Component().ScalarData().ValuePoint(node).Value();
           if(stage.Initial())
           {
-            dIniPressure = dPressure;
-            if(fabs(dPressure) > EPS)
+      dIniPressure = dPressure;
+      if(fabs(dPressure) > EPS)
               new dia::CPrescribedPressurePotential(node, lcase, dPressure * 1e6);
           }
           else
           {
-            double dDeltaPressure = dPressure - dIniPressure;
-            if(fabs(dDeltaPressure) > EPS)
+      double dDeltaPressure = dPressure - dIniPressure;
+      if(fabs(dDeltaPressure) > EPS)
               new dia::CPrescribedPressurePotential(node, lcase, dDeltaPressure * 1e6);
           }
-        }
+    }
       }
 
       nNode += (bCap ? 2 * nNodesPerSpoke : nNodesPerSpoke);
-    }
+  }
   }
 
   // write temperatures in cement
   for(int i = 0; i < CasingModel().CasingCement().ElementSetSize(); ++i)
   {
-    for(int j = 0; j < CasingModel().CasingCement().ElementSet(i).ElementSet().ElementSize(); ++j)
-    {
+  for(int j = 0; j < CasingModel().CasingCement().ElementSet(i).ElementSet().ElementSize(); ++j)
+  {
       const geo::IElement& elm = CasingModel().CasingCement().ElementSet(i).ElementSet().Element(j);
       CDepletionStageEntry::const_iterator it;
       IValueDomainScalar::TValueVec vcInitialTemperatures;
       for(it = Model().DepletionStageEntry().begin(); it != Model().DepletionStageEntry().end(); ++it)
       {
-        const CDepletionStage& stage = *it;
-        TStageMap::const_iterator its = mpStages.find(&stage);
-        assert(its != mpStages.end());
-        dia::CLoadCase& lcase = *its->second;
-        if(lcase.Active())
-        {
+    const CDepletionStage& stage = *it;
+    TStageMap::const_iterator its = mpStages.find(&stage);
+    assert(its != mpStages.end());
+    dia::CLoadCase& lcase = *its->second;
+    if(lcase.Active())
+    {
           bool bWriteMultiple = false;
           bool bWriteThem = false;
           const IValueDomainScalar::TValueVec& vcTemperatures = ElementTemperatures(elm, stage);
           std::vector<double> vcTemper(vcTemperatures.size());
           if(stage.Initial())
           {
-            vcInitialTemperatures = vcTemperatures;
-            for(size_t l = 0; l < vcTemperatures.size(); ++l)
-            {
+      vcInitialTemperatures = vcTemperatures;
+      for(size_t l = 0; l < vcTemperatures.size(); ++l)
+      {
               vcTemper[l] = vcTemperatures[l].Value() + 273.15; // convert to Kelvin
               if(l && fabs(vcTemper[l] - vcTemper[l-1]) > MIN_TEMPER_LOAD_VAL)
-                bWriteMultiple = true;
-            }
+        bWriteMultiple = true;
+      }
 
-            if(bWriteMultiple)
+      if(bWriteMultiple)
               new dia::CTemperatureLoad(lcase, vcTemper, elm);
-            else
+      else
               new dia::CTemperatureLoad(lcase, vcTemper[0], elm);
           }
           else
           {
-            assert(!vcInitialTemperatures.size() == vcTemperatures.size()); // should have seen initial stage (iterator works in stage order)
-            for(size_t l = 0; l < vcTemperatures.size(); ++l)
-            {
+      assert(!vcInitialTemperatures.size() == vcTemperatures.size()); // should have seen initial stage (iterator works in stage order)
+      for(size_t l = 0; l < vcTemperatures.size(); ++l)
+      {
               vcTemper[l] = vcTemperatures[l].Value() - vcInitialTemperatures[l].Value();
               if(fabs(vcTemper[l]) > MIN_TEMPER_LOAD_VAL)
-                bWriteThem = true;
+        bWriteThem = true;
               if(l && fabs(vcTemper[l] - vcTemper[l-1]) > MIN_TEMPER_LOAD_VAL)
-                bWriteMultiple = true;
-            }
-
-            if(bWriteThem)
-            {
-              if(bWriteMultiple)
-                new dia::CTemperatureLoad(lcase, vcTemper, elm);
-              else
-                new dia::CTemperatureLoad(lcase, vcTemper[0], elm);
-            }
-          }
-        }
+        bWriteMultiple = true;
       }
+
+      if(bWriteThem)
+      {
+              if(bWriteMultiple)
+        new dia::CTemperatureLoad(lcase, vcTemper, elm);
+              else
+        new dia::CTemperatureLoad(lcase, vcTemper[0], elm);
+      }
+          }
     }
+      }
+  }
   }
 }
 
@@ -191,28 +191,28 @@ void CWellCasingMixtureDianaRunner::CreateStrainLoad(const geo::IElement& elm, c
 {
   const geo::CInterfaceElement* pIface = dynamic_cast<const geo::CInterfaceElement*>(&elm);
   if(!pIface && !CasingModel().Mesh().IsSteelElement(elm) && !CasingModel().Mesh().IsCementElement(elm))
-    CGeomecMixtureDianaRunner::CreateStrainLoad(elm, stage, lcase);
+  CGeomecMixtureDianaRunner::CreateStrainLoad(elm, stage, lcase);
 }
 
 void CWellCasingMixtureDianaRunner::ElementPressures(const geo::IElement& elm, const CDepletionStage& stage, IValueDomainScalar::TValueVec& vcValues) const
 {
   if(CasingModel().Mesh().IsCementElement(elm))
-    vcValues = CasingModel().CasingCement().Pressure(stage).Component().ScalarData().ValueElement(elm);
+  vcValues = CasingModel().CasingCement().Pressure(stage).Component().ScalarData().ValueElement(elm);
   else if(CasingModel().Mesh().IsCementInterfaceElement(elm))
   {
-    CWellCasingDianaRunnerHelper helper(CasingModel(), Controller(), ParentLinearResults());
-    helper.InterfaceElementPressures(const_cast<CWellCasingMixtureDianaRunner&>(*this), elm, stage, vcValues);
+  CWellCasingDianaRunnerHelper helper(CasingModel(), Controller(), ParentLinearResults());
+  helper.InterfaceElementPressures(const_cast<CWellCasingMixtureDianaRunner&>(*this), elm, stage, vcValues);
   }
   else if(!CasingModel().Mesh().IsSteelElement(elm))
-    CGeomecMixtureDianaRunner::ElementPressures(elm, stage, vcValues);
+  CGeomecMixtureDianaRunner::ElementPressures(elm, stage, vcValues);
   else
-    vcValues.resize(elm.NrOfNodes(), geo::CValue());
+  vcValues.resize(elm.NrOfNodes(), geo::CValue());
 }
 
 IValueDomainScalar::TValueVec CWellCasingMixtureDianaRunner::ElementTemperatures(const geo::IElement& element, const CDepletionStage& stage) const
 {
   if(CasingModel().Mesh().IsCementElement(element))
-    return CasingModel().CasingCement().EffectiveTemperature(stage).Component().ScalarData().ValueElement(element);
+  return CasingModel().CasingCement().EffectiveTemperature(stage).Component().ScalarData().ValueElement(element);
 
   return CGeomecMixtureDianaRunner::ElementTemperatures(element, stage);
 }
@@ -221,15 +221,15 @@ IValueDomainScalar::TValueVec CWellCasingMixtureDianaRunner::ElementConcentratio
 {
   if(CasingModel().Mesh().IsCementElement(element))
   {
-    if(CasingModel().CasingCement().Strain(stage).IsVolumetric())
-    {
+  if(CasingModel().CasingCement().Strain(stage).IsVolumetric())
+  {
       return CasingModel().CasingCement().Strain(stage).Component().ScalarData().ValueElement(element);
-    }
-    else
-    {
+  }
+  else
+  {
       IValueDomainScalar::TValueVec vcValues(element.NrOfNodes(), 0);
       return vcValues;
-    }
+  }
   }
 
   return CGeomecMixtureDianaRunner::ElementConcentrations(element, stage);
@@ -238,7 +238,7 @@ IValueDomainScalar::TValueVec CWellCasingMixtureDianaRunner::ElementConcentratio
 void CWellCasingMixtureDianaRunner::executeCommandInGeomec() const
 {
   if (CasingModel().LargeDeformations())
-    PutCharItem("GEOTYP", "UPDATE");
+  PutCharItem("GEOTYP", "UPDATE");
 }
 
 bool CWellCasingMixtureDianaRunner::WriteBoundaryLoads(const TStageMap &mpStages)

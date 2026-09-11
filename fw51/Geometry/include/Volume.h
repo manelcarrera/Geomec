@@ -20,42 +20,42 @@ namespace geo {
 
 class GEOMETRY_EXPORT  CVolume : public IVolume  
 {
-	typedef std::set<const IBody*> TBodySet;
-	typedef std::vector<const IBody*> TBodyVec;
-	typedef std::map<const IPoint*, TBodyVec, ICoordinate::CCoordinateLess> TPointMap;
+  typedef std::set<const IBody*> TBodySet;
+  typedef std::vector<const IBody*> TBodyVec;
+  typedef std::map<const IPoint*, TBodyVec, ICoordinate::CCoordinateLess> TPointMap;
 
-	mutable TPointMap m_mpPointMap;
-	TBodyVec m_vcBody;
-	mutable geo::CNearestNeighbour m_NearestNeighbour;
+  mutable TPointMap m_mpPointMap;
+  TBodyVec m_vcBody;
+  mutable geo::CNearestNeighbour m_NearestNeighbour;
 
 
-	void UpdatePointMap() const;
-	void UpdateFaceVector() const;
+  void UpdatePointMap() const;
+  void UpdateFaceVector() const;
 protected:
-	virtual IPoint& PointAt(int nIndex);
-	virtual void InvalidateCache();
+  virtual IPoint& PointAt(int nIndex);
+  virtual void InvalidateCache();
 public:
-	CVolume();
-	CVolume(const IVolume &rhs);
-	virtual ~CVolume();
+  CVolume();
+  CVolume(const IVolume &rhs);
+  virtual ~CVolume();
 
-	void Clear();
-	void ClearEdgeFaces();
-	void PushBack(const IBody &body);
+  void Clear();
+  void ClearEdgeFaces();
+  void PushBack(const IBody &body);
 
-	virtual const IBody &Body(int nIndex) const;
-	virtual int BodySize() const;
+  virtual const IBody &Body(int nIndex) const;
+  virtual int BodySize() const;
 
-	virtual const IPoint &Point(int nIndex) const;
-	virtual int PointSize() const;
+  virtual const IPoint &Point(int nIndex) const;
+  virtual int PointSize() const;
 
-	virtual void AssertValid() const;
+  virtual void AssertValid() const;
 
-	// Point is member of the mesh
-	// Return value : Bodies adjacent to the point
-	const std::vector<const IBody*>& PointToBody(const IPoint &point) const;
+  // Point is member of the mesh
+  // Return value : Bodies adjacent to the point
+  const std::vector<const IBody*>& PointToBody(const IPoint &point) const;
 
-	virtual std::vector<int> Nodes(const IElement &element) const;
+  virtual std::vector<int> Nodes(const IElement &element) const;
 };
 
 }

@@ -80,7 +80,7 @@ const geo::IElement* CObjectNonMeshedSurface::getNextElement()
 {
   if (m_sequenceState < m_nonMeshedSurface->FaceSize())
   {
-    return &(m_nonMeshedSurface->Face(m_sequenceState++));
+  return &(m_nonMeshedSurface->Face(m_sequenceState++));
   }
 
   return 0;
@@ -89,12 +89,12 @@ const geo::IElement* CObjectNonMeshedSurface::getNextElement()
 std::ostream& CObjectNonMeshedSurface::operator () (std::ostream& os) const
 {
   os << PREFIX.toStdString() << m_nonMeshedSurface->Name().toStdString() <<
-    std::endl;
+  std::endl;
   os << m_parameters.size() << std::endl;
 
   for (size_t s = 0; s < m_parameters.size(); ++s)
   {
-    os << m_parameters[s];
+  os << m_parameters[s];
   }
 
   return os;
@@ -108,19 +108,19 @@ TParameters CObjectNonMeshedSurface::getParameters(CModelBase* modelBase,
   CNonMeshedSurface* nonMeshedSurface)
 {
   const CDepletionStageEntry* depletionStages =
-    dynamic_cast <const CDepletionStageEntry*> (
+  dynamic_cast <const CDepletionStageEntry*> (
       modelBase->GraphEntry(MD_BASE_DEPLETION_STAGE));
   TParameters nonMeshedParameters;
 
   for (CDepletionStageEntry::const_iterator
-    depletionStage = depletionStages->begin();
-    depletionStage != depletionStages->LastStage(); ++depletionStage)
+  depletionStage = depletionStages->begin();
+  depletionStage != depletionStages->LastStage(); ++depletionStage)
   {
-    if ((*depletionStage).IsPhaseStartStage())
-    {
+  if ((*depletionStage).IsPhaseStartStage())
+  {
       getParameters(nonMeshedParameters, modelBase, *depletionStage,
-        nonMeshedSurface);
-    }
+    nonMeshedSurface);
+  }
   }
 
   return nonMeshedParameters;
@@ -134,9 +134,9 @@ void CObjectNonMeshedSurface::getParameters(TParameters& nonMeshedParameters,
 
   if (nonMeshedSurface != 0)
   {
-    getParameters(nonMeshedParameters, modelBase, depletionStage,
+  getParameters(nonMeshedParameters, modelBase, depletionStage,
       nonMeshedSurface, IDT_VALUETYPE_COHESION, IDS_VALUENAME_COHESION);
-    getParameters(nonMeshedParameters, modelBase, depletionStage,
+  getParameters(nonMeshedParameters, modelBase, depletionStage,
       nonMeshedSurface, IDT_VALUETYPE_FRICTION_ANGLE,
       IDS_VALUENAME_FRICTION_ANGLE);
   }
@@ -148,7 +148,7 @@ void CObjectNonMeshedSurface::getParameters(TParameters& nonMeshedParameters,
   unsigned int /*valueTypeName*/)
 {
   const CNonMeshedSurfaceParametersNode& nonMeshedSurfaceParametersNode =
-    nonMeshedSurface->ParametersNode();
+  nonMeshedSurface->ParametersNode();
   CGetValueTypeInfo& getValueTypeInfo(CGetValueTypeInfo::instance(modelBase));
   std::set <CSurfaceBase*> surfaces = nonMeshedSurface->Links <CSurfaceBase> ();
 
@@ -156,19 +156,19 @@ void CObjectNonMeshedSurface::getParameters(TParameters& nonMeshedParameters,
 
   CSurfaceBase* surfaceBase = *(surfaces.begin());
   CObjectParametersNodeValue <geo::IElementSet, CNonMeshedSurfaceParametersNode>
-    nonMeshedSurfaceParametersNodeValue(
-    &(surfaceBase->ElementSet()),
+  nonMeshedSurfaceParametersNodeValue(
+  &(surfaceBase->ElementSet()),
       valueTypeID, nonMeshedSurfaceParametersNode);
   std::pair <geo::CValue, geo::CValue> range =
-    nonMeshedSurfaceParametersNodeValue.getRange();
+  nonMeshedSurfaceParametersNodeValue.getRange();
   double mean = nonMeshedSurfaceParametersNodeValue.getMean();
 
   nonMeshedParameters.push_back(TParameter(new CParameter(
-    CParameter::nonMeshedSurfaceParameter, QString("%1_D%2").
+  CParameter::nonMeshedSurfaceParameter, QString("%1_D%2").
       arg(getValueTypeInfo.getImportTag(valueTypeID)).
       arg(depletionStage.Index()),
-    range.first, range.second, mean, valueTypeID, depletionStage.Index(),
-    surfaceBase)));
+  range.first, range.second, mean, valueTypeID, depletionStage.Index(),
+  surfaceBase)));
 }
 
 } // namespace cora

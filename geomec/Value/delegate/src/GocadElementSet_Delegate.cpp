@@ -14,20 +14,20 @@ bool selectGocadSolidDlg(
   std::vector<int>& vcSolids)
 #else
   bool selectGocadSolidDlg(
-    const std::vector <QSharedPointer <CGocadData::CTSolid> >& solids,
-    std::vector<int>& vcSolids)
+  const std::vector <QSharedPointer <CGocadData::CTSolid> >& solids,
+  std::vector<int>& vcSolids)
 #endif
 {
   CSelectGocadSolidDlg dlg(solids);
 
   if (dlg.DoModal() != IDOK)
   {
-    return false;
+  return false;
   }
 
   vcSolids.clear();
   for(int i = 0; i < dlg.SelectedSize(); ++i)
-    vcSolids.push_back(dlg.SelectedEntry(i));
+  vcSolids.push_back(dlg.SelectedEntry(i));
 
   return true;
 }
@@ -44,7 +44,7 @@ CGocadElementSet_Delegate::CGocadElementSet_Delegate(
 void CGocadElementSet_Delegate::AppendContextMenu(CContextMenuInvoker& invoker)
 {
   invoker.AddCommand(_T("Import in Gocad model"),
-    *(new CSingleCommandTemplate <CGocadElementSet_Delegate> (*this,
+  *(new CSingleCommandTemplate <CGocadElementSet_Delegate> (*this,
       &CGocadElementSet_Delegate::importInGocadModel,
       &CGocadElementSet_Delegate::canImportInGocadModel)));
   invoker.AddSeparator();

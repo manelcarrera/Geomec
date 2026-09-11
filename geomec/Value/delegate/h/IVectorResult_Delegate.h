@@ -13,17 +13,17 @@ public:
   class CVectorComponent_Delegate : public IResultComponent_Delegate
   {
   public:
-    CVectorComponent_Delegate(
+  CVectorComponent_Delegate(
       IVectorResult::CVectorComponent* vectorComponent);
 
   private:
-    CVectorComponent_Delegate(const CVectorComponent_Delegate& rhs);
-    CVectorComponent_Delegate& operator = (
+  CVectorComponent_Delegate(const CVectorComponent_Delegate& rhs);
+  CVectorComponent_Delegate& operator = (
       const CVectorComponent_Delegate& rhs);
 
-    IVectorResult::CVectorComponent* m_vectorComponent;
+  IVectorResult::CVectorComponent* m_vectorComponent;
 
-    REGISTER_DELEGATE(IVectorResult::CVectorComponent, CVectorComponent_Delegate);
+  REGISTER_DELEGATE(IVectorResult::CVectorComponent, CVectorComponent_Delegate);
   };
 
   IVectorResult_Delegate(IVectorResult* vectorResult);

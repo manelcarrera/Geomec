@@ -44,38 +44,38 @@ class CLicenseBorrowDlg : public CDialog
 {
 // Construction
 public:
-	CLicenseBorrowDlg(CWnd* pParent = NULL);   // standard constructor
+  CLicenseBorrowDlg(CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
-	//{{AFX_DATA(CLicenseBorrowDlg)
-	enum { IDD = IDD_LICENSE_BORROW_DLG };
-	CDateTimeCtrl	m_cBorrowEnd;
-    CEdit	m_cReturnLicenseInformationEdit;
-    CEdit	m_cBorrowInformationEdit;
-	//}}AFX_DATA
+  //{{AFX_DATA(CLicenseBorrowDlg)
+  enum { IDD = IDD_LICENSE_BORROW_DLG };
+  CDateTimeCtrl	m_cBorrowEnd;
+  CEdit	m_cReturnLicenseInformationEdit;
+  CEdit	m_cBorrowInformationEdit;
+  //}}AFX_DATA
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CLicenseBorrowDlg)
-	public:
-	virtual INT_PTR DoModal();
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+  // ClassWizard generated virtual function overrides
+  //{{AFX_VIRTUAL(CLicenseBorrowDlg)
+  public:
+  virtual INT_PTR DoModal();
+  protected:
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-    void Updatelist();
-    void SetDateRange();
+  void Updatelist();
+  void SetDateRange();
 
-	// Generated message map functions
-	//{{AFX_MSG(CLicenseBorrowDlg)
-	afx_msg void OnBorrowLicense();
-	virtual BOOL OnInitDialog();
-	afx_msg void OnReturnBorrowedLicense();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+  // Generated message map functions
+  //{{AFX_MSG(CLicenseBorrowDlg)
+  afx_msg void OnBorrowLicense();
+  virtual BOOL OnInitDialog();
+  afx_msg void OnReturnBorrowedLicense();
+  //}}AFX_MSG
+  DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}

@@ -6,16 +6,16 @@
 class CGammaAxialView : public CGammaView
 {
 protected:
-	CGammaAxialView();           // protected constructor used by dynamic creation
-	DECLARE_DYNCREATE(CGammaAxialView)
+  CGammaAxialView();           // protected constructor used by dynamic creation
+  DECLARE_DYNCREATE(CGammaAxialView)
 
 public:
-	virtual double GetStressOrStrain( CStressStrain const &StressStrain ) const;
-	virtual double GetStrain( CStressStrain const &StressStrain ) const;
-	virtual double GetStress( CStressStrain const &StressStrain ) const;
+  virtual double GetStressOrStrain( CStressStrain const &StressStrain ) const;
+  virtual double GetStrain( CStressStrain const &StressStrain ) const;
+  virtual double GetStress( CStressStrain const &StressStrain ) const;
 
 protected:
-	virtual ~CGammaAxialView();
+  virtual ~CGammaAxialView();
 };
 
 #endif

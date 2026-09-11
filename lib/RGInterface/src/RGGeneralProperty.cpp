@@ -16,27 +16,27 @@
 
 RGGeneralProperty::RGGeneralProperty(const std::string &propName, const std::string &quant, const RGSupport::Support &support)
 {
-	if (propName == "" || propName.find(' ') != std::string::npos || !RGQuantity::IsKnownQuantity(quant))
-	{
-		throw std::runtime_error("RGGeneralProperty() - Recieved Invalid Input");
-	}
+  if (propName == "" || propName.find(' ') != std::string::npos || !RGQuantity::IsKnownQuantity(quant))
+  {
+    throw std::runtime_error("RGGeneralProperty() - Recieved Invalid Input");
+  }
 
-	m_propName = propName;
-	m_quantity = quant;
-	m_support = support;
+  m_propName = propName;
+  m_quantity = quant;
+  m_support = support;
 }
 
 std::string RGGeneralProperty::GetProperty() const
 {
-	return m_propName;
+  return m_propName;
 }
 
 std::string RGGeneralProperty::GetQuantity() const
 {
-	return m_quantity;
+  return m_quantity;
 }
 
 RGSupport::Support RGGeneralProperty::GetSupport() const
 {
-	return m_support;
+  return m_support;
 }

@@ -40,13 +40,13 @@ CMeshBase::CMeshBase(const QString& sName, CDepletionStageEntry& dep_entry)
   m_bInvalidateAtUnlock(false),
   m_bGenerateSupports(true)
 {	// Connect to boundary
-	CModelBase *pModel = dynamic_cast<CModelBase*>(&dep_entry.Model());
+  CModelBase *pModel = dynamic_cast<CModelBase*>(&dep_entry.Model());
 
   LinkTo(pModel->Boundary());
   assert(IsLinkedTo(pModel->Boundary()));
 
-	// Create result register
-	m_pResultRegister = new CResultRegister( *this, dep_entry );
+  // Create result register
+  m_pResultRegister = new CResultRegister( *this, dep_entry );
 }
 
 CMeshBase::~CMeshBase()
@@ -55,46 +55,46 @@ CMeshBase::~CMeshBase()
 
 void CMeshBase::BuildFormationElementSetMap() const
 {
-	assert(IsMesh());
-	assert(m_vcElementToFormationSet.size() == 0);
+  assert(IsMesh());
+  assert(m_vcElementToFormationSet.size() == 0);
 
 //	int nTetSize = 0;
 
-	m_vcElementToFormationSet.resize(Mesh().ElementSize(), 0);
+  m_vcElementToFormationSet.resize(Mesh().ElementSize(), 0);
 
-	const TFormationBaseEntry *pEntry = dynamic_cast<const TFormationBaseEntry*> (Model().GraphEntry(MD_BASE_FORMATION));
-	assert(pEntry);
-	TFormationBaseEntry::TNodeSet stFormation = pEntry->EntryNodes();
-	TFormationBaseEntry::TNodeSet::iterator it;
+  const TFormationBaseEntry *pEntry = dynamic_cast<const TFormationBaseEntry*> (Model().GraphEntry(MD_BASE_FORMATION));
+  assert(pEntry);
+  TFormationBaseEntry::TNodeSet stFormation = pEntry->EntryNodes();
+  TFormationBaseEntry::TNodeSet::iterator it;
 /*
-	for(it = stFormation.begin(); it != stFormation.end(); it++)
-	{ // first calculate the number of tetrahedrons (so without the boundaryinterface elements)
-		CFormationBase& formation = **it;
-		for(int i = 0; i < formation.ElementSetSize(); i++)
-		{
-			const IFormationElementSet &elementset = formation.ElementSet(i);
-			nTetSize += elementset.ElementSet().ElementSize();
-		}
-	}
-	m_vcElementToFormationSet.resize(nTetSize, 0);
+  for(it = stFormation.begin(); it != stFormation.end(); it++)
+  { // first calculate the number of tetrahedrons (so without the boundaryinterface elements)
+    CFormationBase& formation = **it;
+    for(int i = 0; i < formation.ElementSetSize(); i++)
+    {
+      const IFormationElementSet &elementset = formation.ElementSet(i);
+      nTetSize += elementset.ElementSet().ElementSize();
+    }
+  }
+  m_vcElementToFormationSet.resize(nTetSize, 0);
 */
-	for(it = stFormation.begin(); it != stFormation.end(); it++)
-	{
-		CFormationBase& formation = **it;
-		for(int i = 0; i < formation.ElementSetSize(); i++)
-		{
-			const IFormationElementSet &elementset = formation.ElementSet(i);
-			for(int j = 0; j < elementset.ElementSet().ElementSize(); j++)
-			{
-				const geo::IElement &element = elementset.ElementSet().Element(j);
-				assert(element.IndexingElementSet() == &Mesh());
-				assert(element.Index() >= 0);
-				//assert(element.Index() < nTetSize);
-        assert(element.Index() < Mesh().ElementSize());
-				m_vcElementToFormationSet[element.Index()] = &elementset;
-			}
-		}
-	}	
+  for(it = stFormation.begin(); it != stFormation.end(); it++)
+  {
+    CFormationBase& formation = **it;
+    for(int i = 0; i < formation.ElementSetSize(); i++)
+    {
+      const IFormationElementSet &elementset = formation.ElementSet(i);
+      for(int j = 0; j < elementset.ElementSet().ElementSize(); j++)
+      {
+        const geo::IElement &element = elementset.ElementSet().Element(j);
+        assert(element.IndexingElementSet() == &Mesh());
+        assert(element.Index() >= 0);
+        //assert(element.Index() < nTetSize);
+    assert(element.Index() < Mesh().ElementSize());
+        m_vcElementToFormationSet[element.Index()] = &elementset;
+      }
+    }
+  }	
 }
 
 /*!
@@ -102,8 +102,8 @@ void CMeshBase::BuildFormationElementSetMap() const
 */
 const CResultRegister& CMeshBase::ResultRegister() const
 {
-	assert(m_pResultRegister);
-	return *m_pResultRegister;
+  assert(m_pResultRegister);
+  return *m_pResultRegister;
 }
 
 /*!
@@ -111,8 +111,8 @@ const CResultRegister& CMeshBase::ResultRegister() const
 */
 CResultRegister& CMeshBase::ResultRegister()
 {
-	assert(m_pResultRegister);
-	return *m_pResultRegister;
+  assert(m_pResultRegister);
+  return *m_pResultRegister;
 }
 
 bool CMeshBase::CanInvalidateMesh() const
@@ -123,57 +123,57 @@ bool CMeshBase::CanInvalidateMesh() const
 // Interface of elementset always returning the current deformed mesh ...
 const geo::IElementSet &CMeshBase::ElementSet() const
 {
-	return Mesh();
+  return Mesh();
 }
 
 geo::IElementSet &CMeshBase::ElementSet()
 {
-	return Mesh();
+  return Mesh();
 }
 
 bool CMeshBase::PointInConvexHull(const geo::IPoint& pt) const
 {
-	return Mesh().Contains(pt, true);
+  return Mesh().Contains(pt, true);
 }
 
 int CMeshBase::DisplayListSize() const
 {
-	return 1;
+  return 1;
 }
 
 const geo::IObject& CMeshBase::DisplayList(int /*nIndex*/) const
 {
-	return Mesh();
+  return Mesh();
 }
 
 void CMeshBase::InvalidateAtUnLock()
 {
-	assert(Locked());
-	m_bInvalidateAtUnlock = true;
+  assert(Locked());
+  m_bInvalidateAtUnlock = true;
 }
 
 void CMeshBase::Lock() const
 {
-	m_bLocked = true;
+  m_bLocked = true;
 }
 
 void CMeshBase::Unlock()
 {
   if(m_bLocked)
   {
-	  m_bLocked = false;
-	  if(m_bInvalidateAtUnlock)
-    {
+    m_bLocked = false;
+    if(m_bInvalidateAtUnlock)
+  {
       m_bInvalidateAtUnlock = false;
       if(!ImportedMesh())
-		    InvalidateMesh();
-	  }
+      InvalidateMesh();
+    }
   }
 }
 
 bool CMeshBase::Locked() const
 {
-	return m_bLocked;
+  return m_bLocked;
 }
 
 /*!
@@ -186,56 +186,56 @@ Invalidating the mesh automatically results in invalidation of any results.
 */
 void CMeshBase::InvalidateMesh()
 {
-	// Clear the current mesh and set current timestep to zero
-	CModelBase *pModel = dynamic_cast<CModelBase*>(&Model());
-	assert(pModel);
+  // Clear the current mesh and set current timestep to zero
+  CModelBase *pModel = dynamic_cast<CModelBase*>(&Model());
+  assert(pModel);
 
-	// block invalidation in branch state
-	if(pModel->BranchState().IsBranch())
-	{
-		IPlatform* platform = IPlatform::instance();
+  // block invalidation in branch state
+  if(pModel->BranchState().IsBranch())
+  {
+    IPlatform* platform = IPlatform::instance();
 
-		platform->trace("WARNING: CMeshBase::InvalidateMesh called in branched "
-			"state, ignoring call\n");
-		return;
-	}
+    platform->trace("WARNING: CMeshBase::InvalidateMesh called in branched "
+      "state, ignoring call\n");
+    return;
+  }
 
-	// Clear result register
-	pModel->ResultRegister().ClearAll();
-	m_vcElementToFormationSet.clear();
+  // Clear result register
+  pModel->ResultRegister().ClearAll();
+  m_vcElementToFormationSet.clear();
 
   CInterfaceBoundary* pBoundary = dynamic_cast<CInterfaceBoundary*>(&pModel->Boundary());
   if (pBoundary)
-    pBoundary->InterfaceDefinition().ClearInterfaceMaterials();
+  pBoundary->InterfaceDefinition().ClearInterfaceMaterials();
 }
 
 const CFormationBase* CMeshBase::Formation(const geo::IElement& element) const
 {
   const IFormationElementSet* pSet = FormationElementSet(element);
   if(!pSet)
-    return 0;
+  return 0;
 
-	return &pSet->Formation();
+  return &pSet->Formation();
 }
 
 const IFormationElementSet* CMeshBase::FormationElementSet(const geo::IElement& element) const
 {
-	assert(IsMesh());
+  assert(IsMesh());
 //	assert(element.IndexingElementSet() == &Mesh());
-	if(m_vcElementToFormationSet.size() == 0)
-		BuildFormationElementSetMap();
+  if(m_vcElementToFormationSet.size() == 0)
+    BuildFormationElementSetMap();
 
-	assert( element.Index() < m_vcElementToFormationSet.size() );
+  assert( element.Index() < m_vcElementToFormationSet.size() );
 
-	return m_vcElementToFormationSet[element.Index()];
+  return m_vcElementToFormationSet[element.Index()];
 }
 
 void CMeshBase::OnNeighbourDeleted(const CGraphNode &item) 
 {
-	IElementSet::OnNeighbourDeleted(item);
+  IElementSet::OnNeighbourDeleted(item);
 
-	// Forget about the result register if it has been deleted
-	if ( &item == m_pResultRegister ) m_pResultRegister = 0;
+  // Forget about the result register if it has been deleted
+  if ( &item == m_pResultRegister ) m_pResultRegister = 0;
 }
 
 long CMeshBase::SavedItemsValueSets() const
@@ -261,11 +261,11 @@ void CMeshBase::SaveStream(TSTREAM& stream, TPROGRESS& /*progress*/)
 
   if(!m_bGenerateSupports)
   {
-    // save them...
-    int nSize = Mesh().SupportSize();
-    stream << nSize;
-    for(int i = 0; i < nSize; ++i)
-    {
+  // save them...
+  int nSize = Mesh().SupportSize();
+  stream << nSize;
+  for(int i = 0; i < nSize; ++i)
+  {
       const geo::ISupport& support = Mesh().Support(i);
       assert(dynamic_cast<const geo::CTranslationSupport*>(&support)); // for now, only translation supports supported
       int nNodeIdx = support.NodeIndex();
@@ -275,12 +275,12 @@ void CMeshBase::SaveStream(TSTREAM& stream, TPROGRESS& /*progress*/)
       stream << nDirSize;
       for(int j = 0; j < nDirSize; ++j)
       {
-        const geo::IVector& vecDir = support.Direction(j);
-        stream << vecDir.X();
-        stream << vecDir.Y();
-        stream << vecDir.Z();
+    const geo::IVector& vecDir = support.Direction(j);
+    stream << vecDir.X();
+    stream << vecDir.Y();
+    stream << vecDir.Z();
       }
-    }
+  }
   }
 
   // from version 3.7.17 base class functionality is called elsewhere
@@ -289,37 +289,37 @@ void CMeshBase::SaveStream(TSTREAM& stream, TPROGRESS& /*progress*/)
 void CMeshBase::LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress)
 {
   if(version < CStreamVersion(3, 7, 17))
-    IElementSet::LoadStream(stream, version, progress);
+  IElementSet::LoadStream(stream, version, progress);
 
   if(version >= CStreamVersion(4, 1, 11))
   {
-    int nGenerateSupports;
-    stream >> nGenerateSupports;
-    m_bGenerateSupports = (nGenerateSupports != 0);
+  int nGenerateSupports;
+  stream >> nGenerateSupports;
+  m_bGenerateSupports = (nGenerateSupports != 0);
 
-    if(!m_bGenerateSupports)
-    {
+  if(!m_bGenerateSupports)
+  {
       int nSize;
       stream >> nSize;
       for(int i = 0; i < nSize; ++i)
       {
-        int nNodeIdx;
-        stream >> nNodeIdx;
+    int nNodeIdx;
+    stream >> nNodeIdx;
 
-        int nDirSize;
-        stream >> nDirSize;
+    int nDirSize;
+    stream >> nDirSize;
 
-        for(int j = 0; j < nDirSize; ++j)
-        {
+    for(int j = 0; j < nDirSize; ++j)
+    {
           double x, y, z;
           stream >> x;
           stream >> y;
           stream >> z;
           geo::CVector vecDir(x, y, z);
           Mesh().CreateTranslationSupport(nNodeIdx, vecDir);
-        }
-      }
     }
+      }
+  }
   }
 }
 
@@ -329,29 +329,29 @@ const CFFMaterial* CMeshBase::getCFFMaterial(const geo::IElement& element,
   const CFormationBase* formation = Formation(element);
 
   if(formation && formation->Material(depletionStage).LibraryMaterial())
-    return &(formation->Material(depletionStage).Material(element));
+  return &(formation->Material(depletionStage).Material(element));
 
   return 0;
 }
 
 int CMeshBase::ReferencePointIndex() const
 {
-	assert(IsMesh()); // can only do this if a mesh exists
+  assert(IsMesh()); // can only do this if a mesh exists
   const CModelBase& model = static_cast<const CModelBase&>(Model());
-	const CInterfaceBoundary* pBoundary = dynamic_cast<const CInterfaceBoundary*>(&model.Boundary());
+  const CInterfaceBoundary* pBoundary = dynamic_cast<const CInterfaceBoundary*>(&model.Boundary());
   if(pBoundary)
   {
-	  const CDisplacementSupportNode &dnode = pBoundary->DisplacementSupportNode();
+    const CDisplacementSupportNode &dnode = pBoundary->DisplacementSupportNode();
 
-	  for(int i = 0; i < Mesh().PointSize(); i++)
-	  {
-		  if(Mesh().Point(i) == dnode.ReferencePoint())
-        return i;
-	  }
+    for(int i = 0; i < Mesh().PointSize(); i++)
+    {
+      if(Mesh().Point(i) == dnode.ReferencePoint())
+    return i;
+    }
   }
 
-	assert(false);
-	return -1;
+  assert(false);
+  return -1;
 }
 
 bool CMeshBase::ImportedMesh() const

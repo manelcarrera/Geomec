@@ -25,15 +25,15 @@ TElementFaces CElementFaces::createElementFaces(
 
   for (size_t f = 0; f < formations.size(); ++f)
   {
-    for (int s = 0; s < formations[f]->ElementSetSize(); ++s)
-    {
+  for (int s = 0; s < formations[f]->ElementSetSize(); ++s)
+  {
       for (int e = 0;
-        e < formations[f]->ElementSet(s).ElementSet().ElementSize(); ++e)
+    e < formations[f]->ElementSet(s).ElementSet().ElementSize(); ++e)
       {
-        createElementFace(elementFaces,
+    createElementFace(elementFaces,
           formations[f]->ElementSet(s).ElementSet().Element(e));
       }
-    }
+  }
   }
 
   return elementFaces;
@@ -47,21 +47,21 @@ std::pair <TElementFaces::iterator, bool> localCreateElementFace(
   size_t index1, size_t index2, size_t index3, bool top)
 {
   QSharedPointer <CElementFace> elementFace(new CElementFace(
-    element.PointIndex(index0), element.PointIndex(index1),
-    element.PointIndex(index2), element.PointIndex(index3), element,
-    INITIAL_REFERENCE_COUNT, top));
+  element.PointIndex(index0), element.PointIndex(index1),
+  element.PointIndex(index2), element.PointIndex(index3), element,
+  INITIAL_REFERENCE_COUNT, top));
   std::pair <TElementFaces::iterator, bool> inserted =
-    elementFaces.insert(elementFace);
+  elementFaces.insert(elementFace);
 
   if (!inserted.second)
   {
-    (*inserted.first)->incrementReferenceCount();
+  (*inserted.first)->incrementReferenceCount();
 
-    if (top)
-    {
+  if (top)
+  {
       (*inserted.first)->top(top);
       (*inserted.first)->element(elementFace->element());
-    }
+  }
   }
 
   return inserted;
@@ -73,9 +73,9 @@ void CElementFaces::createElementFace(TElementFaces& elementFaces,
   const geo::IElement& element)
 {
   std::pair <TElementFaces::iterator, bool> top =
-    localCreateElementFace(elementFaces, element, 0, 1, 2, 3, true);
+  localCreateElementFace(elementFaces, element, 0, 1, 2, 3, true);
   std::pair <TElementFaces::iterator, bool> bottom =
-    localCreateElementFace(elementFaces, element, 4, 5, 6, 7, false);
+  localCreateElementFace(elementFaces, element, 4, 5, 6, 7, false);
 
   // link
 

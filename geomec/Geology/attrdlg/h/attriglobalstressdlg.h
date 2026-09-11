@@ -17,29 +17,29 @@ class CAttriGlobalStressDlg : public CAttributesTemplate<CGlobalInitialStressNod
 {
 // Construction
 public:
-	CAttriGlobalStressDlg(CGlobalInitialStressNode& stress, CWnd* pParent = NULL);   // standard constructor
+  CAttriGlobalStressDlg(CGlobalInitialStressNode& stress, CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
-	//{{AFX_DATA(CAttriGlobalStressDlg)
-	enum { IDD = IDD_ATTRI_GLOBAL_STRESS };
-	//}}AFX_DATA
+  //{{AFX_DATA(CAttriGlobalStressDlg)
+  enum { IDD = IDD_ATTRI_GLOBAL_STRESS };
+  //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CAttriGlobalStressDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+  // ClassWizard generated virtual function overrides
+  //{{AFX_VIRTUAL(CAttriGlobalStressDlg)
+  protected:
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CAttriGlobalStressDlg)
-	//}}AFX_MSG
-	BOOL OnInitDialog();
-	DECLARE_MESSAGE_MAP()
+  // Generated message map functions
+  //{{AFX_MSG(CAttriGlobalStressDlg)
+  //}}AFX_MSG
+  BOOL OnInitDialog();
+  DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}

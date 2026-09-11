@@ -9,15 +9,15 @@ namespace GeomecRGI
 class CSavePropertyFluidPressure : public CSavePropertyBase
 {
   public:
-    CSavePropertyFluidPressure(const RGProperty& rgProperty);
-    virtual ~CSavePropertyFluidPressure();
+  CSavePropertyFluidPressure(const RGProperty& rgProperty);
+  virtual ~CSavePropertyFluidPressure();
 
-    virtual bool saveProperty(RGInterface& rgi, CModelBase& modelBase,
+  virtual bool saveProperty(RGInterface& rgi, CModelBase& modelBase,
       const CRockMechProcessor& rmp);
 
   private:
-    CSavePropertyFluidPressure(const CSavePropertyFluidPressure& rhs);
-    CSavePropertyFluidPressure& operator = (
+  CSavePropertyFluidPressure(const CSavePropertyFluidPressure& rhs);
+  CSavePropertyFluidPressure& operator = (
       const CSavePropertyFluidPressure& rhs);
 };
 

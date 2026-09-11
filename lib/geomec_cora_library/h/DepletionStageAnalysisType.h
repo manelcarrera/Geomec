@@ -19,19 +19,19 @@ typedef std::vector <TDepletionStageAnalysisType>
 class CDepletionStageAnalysisType
 {
   public:
-    CDepletionStageAnalysisType(CModelBase* modelBase);
+  CDepletionStageAnalysisType(CModelBase* modelBase);
 
-    const TDepletionStageAnalysisTypeVector
+  const TDepletionStageAnalysisTypeVector
       getDepletionStageAnalysisType() const;
 
   private:
-    CDepletionStageAnalysisType(const CDepletionStageAnalysisType& rhs);
-    CDepletionStageAnalysisType& operator = (CDepletionStageAnalysisType rhs);
+  CDepletionStageAnalysisType(const CDepletionStageAnalysisType& rhs);
+  CDepletionStageAnalysisType& operator = (CDepletionStageAnalysisType rhs);
 
-    static TDepletionStageAnalysisTypeVector
+  static TDepletionStageAnalysisTypeVector
       createDepletionStageAnalysisTypeVector(CModelBase* modelBase);
 
-    TDepletionStageAnalysisTypeVector m_depletionStageAnalysisTypeVector;
+  TDepletionStageAnalysisTypeVector m_depletionStageAnalysisTypeVector;
 };
 
 } // namespace cora

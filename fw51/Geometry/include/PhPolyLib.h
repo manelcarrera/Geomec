@@ -47,8 +47,8 @@ typedef double Value;
 #define value_modulus(res, nom, den)	((res) = (0))
 #define value_substract(res, v1, v2) 	((res) = (v1) - (v2))
 #define value_swap(d1, d2)				{Value tmp; tmp = d2; \
-											d2 = d1; d1 = tmp;   \
-											}
+                      d2 = d1; d1 = tmp;   \
+                      }
 #define value_orto(res, val1, val2)		((res) = (double)((int)(val1) | (int)(val2)))
 #define value_maximum(res, val1, val2)	((res) = value_max((val1), (val2)))
 #define value_minimum(res, val1, val2)	((res) = value_min((val1), (val2)))

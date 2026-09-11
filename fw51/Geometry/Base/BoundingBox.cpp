@@ -36,35 +36,35 @@ void BBox::setBoundingBox(const geo::IPoint & point1, const geo::IPoint & point2
 
   if (point1.X() < point2.X())
   {
-    min_x = point1.X() - extend;
-    max_x = point2.X() + extend;
+  min_x = point1.X() - extend;
+  max_x = point2.X() + extend;
   }
   else
   {
-    min_x = point2.X() - extend;
-    max_x = point1.X() + extend;
+  min_x = point2.X() - extend;
+  max_x = point1.X() + extend;
   }
 
   if (point1.Y() < point2.Y())
   {
-    min_y = point1.Y() - extend;
-    max_y = point2.Y() + extend;
+  min_y = point1.Y() - extend;
+  max_y = point2.Y() + extend;
   }
   else
   {
-    min_y = point2.Y() - extend;
-    max_y = point1.Y() + extend;
+  min_y = point2.Y() - extend;
+  max_y = point1.Y() + extend;
   }
 
   if (point1.Z() < point2.Z())
   {
-    min_z = point1.Z() - extend;
-    max_z = point2.Z() + extend;
+  min_z = point1.Z() - extend;
+  max_z = point2.Z() + extend;
   }
   else
   {
-    min_z = point2.Z() - extend;
-    max_z = point1.Z() + extend;
+  min_z = point2.Z() - extend;
+  max_z = point1.Z() + extend;
   }
 
   min.Set(min_x, min_y, min_z);

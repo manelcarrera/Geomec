@@ -12,7 +12,7 @@ CSelectedLSFs::CSelectedLSFs(CSummaryResultFile& summaryResultFile,
 , m_selectedLSFsFile(m_fileName.toStdString().c_str())
 , m_summaryResultFile(summaryResultFile)
 , m_limitStateFunctions(readSelectedLSFs(m_summaryResultFile,
-    m_selectedLSFsFile, modelInfo, versionNumber, m_fileName))
+  m_selectedLSFsFile, modelInfo, versionNumber, m_fileName))
 {
 }
 
@@ -40,9 +40,9 @@ std::vector <TLimitStateFunction> CSelectedLSFs::readSelectedLSFs(
 {
   if (!selectedLSFsFile.good())
   {
-    summaryResultFile.setResultValue(
+  summaryResultFile.setResultValue(
       CSummaryResultFile::RESULT_VALUE_INCONSISTENT);
-    summaryResultFile.addAdditionalInformation(
+  summaryResultFile.addAdditionalInformation(
       QString(SELECTED_LFS_FILE_DOES_NOT_EXIST).arg(fileName));
   }
 
@@ -52,12 +52,12 @@ std::vector <TLimitStateFunction> CSelectedLSFs::readSelectedLSFs(
 
   while (oneFunction.size() > 0)
   {
-    TLimitStateFunction limitStateFunction = TLimitStateFunction(
+  TLimitStateFunction limitStateFunction = TLimitStateFunction(
       new CLimitStateFunction(summaryResultFile, oneFunction, modelInfo,
-        versionNumber));
+    versionNumber));
 
-    limitStateFunctions.push_back(limitStateFunction);
-    oneFunction = parseCSV.readLine();
+  limitStateFunctions.push_back(limitStateFunction);
+  oneFunction = parseCSV.readLine();
   }
 
   return limitStateFunctions;

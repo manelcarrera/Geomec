@@ -39,32 +39,32 @@ int CResultInfo::TimeStep() const
 void CResultInfo::Component(const std::string &cc)
 {
   if ( cc.empty() )
-    m_component= 0;
+  m_component= 0;
   else if ( getStringTableEntry(IDS_ET_VECTOR_X) == cc )
-    m_component= IVectorResult::VC_X;
+  m_component= IVectorResult::VC_X;
   else if ( getStringTableEntry(IDS_ET_VECTOR_Y) == cc )
-    m_component= IVectorResult::VC_Y;
+  m_component= IVectorResult::VC_Y;
   else if ( getStringTableEntry(IDS_ET_VECTOR_Z) == cc )
-    m_component= IVectorResult::VC_Z;
+  m_component= IVectorResult::VC_Z;
   else if ( getStringTableEntry(IDS_ET_VECTOR_LENGTH) == cc )
-    m_component= IVectorResult::VC_LENGTH;
+  m_component= IVectorResult::VC_LENGTH;
   else if ( getStringTableEntry(IDS_ET_VECTOR_FULL) == cc )
-    m_component= IVectorResult::VC_FULLVECTOR;
+  m_component= IVectorResult::VC_FULLVECTOR;
 
   else if ( getStringTableEntry(IDS_ET_TENSOR_XX) == cc )
-    m_component=  ITensorGroup::CComponentComposite::TC_XX;
+  m_component=  ITensorGroup::CComponentComposite::TC_XX;
   else if ( getStringTableEntry(IDS_ET_TENSOR_YY) == cc )
-    m_component=  ITensorGroup::CComponentComposite::TC_YY;
+  m_component=  ITensorGroup::CComponentComposite::TC_YY;
   else if ( getStringTableEntry(IDS_ET_TENSOR_ZZ) == cc )
-    m_component=  ITensorGroup::CComponentComposite::TC_ZZ;
+  m_component=  ITensorGroup::CComponentComposite::TC_ZZ;
   else if ( getStringTableEntry(IDS_ET_TENSOR_XY) == cc )
-    m_component=  ITensorGroup::CComponentComposite::TC_XY;
+  m_component=  ITensorGroup::CComponentComposite::TC_XY;
   else if ( getStringTableEntry(IDS_ET_TENSOR_YZ) == cc )
-    m_component=  ITensorGroup::CComponentComposite::TC_YZ;
+  m_component=  ITensorGroup::CComponentComposite::TC_YZ;
   else if ( getStringTableEntry(IDS_ET_TENSOR_XZ) == cc )
-    m_component=  ITensorGroup::CComponentComposite::TC_ZX;
+  m_component=  ITensorGroup::CComponentComposite::TC_ZX;
   else if ( getStringTableEntry(IDS_ET_TENSOR_FT) == cc )
-    m_component=  ITensorGroup::CComponentComposite::TC_FT;
+  m_component=  ITensorGroup::CComponentComposite::TC_FT;
 }	
   
 void CResultInfo::Component(unsigned int ii)

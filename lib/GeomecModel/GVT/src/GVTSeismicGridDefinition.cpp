@@ -205,24 +205,24 @@ void CGVTSeismicGridDefinition::LoadStream(TSTREAM& stream, CStreamVersion& vers
   double length = 0, width = 0;
   if(version < CStreamVersion(4, 1, 37))
   {
-    stream >> length;
-    stream >> width;
+  stream >> length;
+  stream >> width;
   }
   else
   {
-    int numbin, numtrack, deltabin, deltatrack, firstbin, firsttrack;
-    stream >> numbin;
-    stream >> numtrack;
-    stream >> deltabin;
-    stream >> deltatrack;
-    stream >> firstbin;
-    stream >> firsttrack;
-    m_Grid.NumBin(numbin);
-    m_Grid.NumTrack(numtrack);
-    m_Grid.DeltaBin(deltabin != 0 ? deltabin : 1);
-    m_Grid.DeltaTrack(deltatrack != 0 ? deltatrack : 1);
-    m_Grid.FirstBin(firstbin);
-    m_Grid.FirstTrack(firsttrack);
+  int numbin, numtrack, deltabin, deltatrack, firstbin, firsttrack;
+  stream >> numbin;
+  stream >> numtrack;
+  stream >> deltabin;
+  stream >> deltatrack;
+  stream >> firstbin;
+  stream >> firsttrack;
+  m_Grid.NumBin(numbin);
+  m_Grid.NumTrack(numtrack);
+  m_Grid.DeltaBin(deltabin != 0 ? deltabin : 1);
+  m_Grid.DeltaTrack(deltatrack != 0 ? deltatrack : 1);
+  m_Grid.FirstBin(firstbin);
+  m_Grid.FirstTrack(firsttrack);
   }
   double azi, cnorth, ceast, track, bin;
   stream >> azi;
@@ -238,8 +238,8 @@ void CGVTSeismicGridDefinition::LoadStream(TSTREAM& stream, CStreamVersion& vers
 
   if(version < CStreamVersion(4, 1, 37))
   {
-    m_Grid.SetLength(length);
-    m_Grid.SetWidth(width);
+  m_Grid.SetLength(length);
+  m_Grid.SetWidth(width);
   }
 }
 
@@ -273,50 +273,50 @@ bool CGVTSeismicGridDefinition::Import(const QString& fileName, CModelBase& mode
 {
   if (CGVTVtFile::IsBinaryVtFile(fileName))
   {
-    CGVTVtFile VtFile(model);
+  CGVTVtFile VtFile(model);
 
-    try
-    {
+  try
+  {
       std::auto_ptr<IProgressBase> prog(_g->prog()->create(eProgress::Geo, "Import Vt file..."));
 
       if (VtFile.Import(fileName, *prog, bNoData))
       {
-        CGVTVtFileCheck checkInfo = VtFile.getCheckInfo();
+    CGVTVtFileCheck checkInfo = VtFile.getCheckInfo();
 
-        NumTrack(checkInfo.NumRows());
-        FirstTrack(checkInfo.FirstRow());
-        DeltaTrack(checkInfo.DeltaRow());
+    NumTrack(checkInfo.NumRows());
+    FirstTrack(checkInfo.FirstRow());
+    DeltaTrack(checkInfo.DeltaRow());
 
-        NumBin(checkInfo.NumCols());
-        FirstBin(checkInfo.FirstCol());
-        DeltaBin(checkInfo.DeltaCol());
+    NumBin(checkInfo.NumCols());
+    FirstBin(checkInfo.FirstCol());
+    DeltaBin(checkInfo.DeltaCol());
 
-        CornerEasting(checkInfo.CornerEasting());
-        TrackSpacing(checkInfo.DeltaEasting());
+    CornerEasting(checkInfo.CornerEasting());
+    TrackSpacing(checkInfo.DeltaEasting());
 
-        CornerNorthing(checkInfo.CornerNorthing());
-        BinSpacing(checkInfo.DeltaNorthing());
+    CornerNorthing(checkInfo.CornerNorthing());
+    BinSpacing(checkInfo.DeltaNorthing());
 
-        //Depth(checkInfo.MaxZ());
-        Depth(model.Mesh().Max().Z()); // temporarily, by Peter's request
-        Azimuth(checkInfo.Azimuth());
+    //Depth(checkInfo.MaxZ());
+    Depth(model.Mesh().Max().Z()); // temporarily, by Peter's request
+    Azimuth(checkInfo.Azimuth());
 
-        return true;
+    return true;
       }
-    }
-    catch (CProgressCancel* e)
-    {
+  }
+  catch (CProgressCancel* e)
+  {
       delete e;
-    }
+  }
 
-    return false;
+  return false;
   }
   else
   {
-    CGVT123DIImport import;
+  CGVT123DIImport import;
 
-    if (import.Import(fileName))
-    {
+  if (import.Import(fileName))
+  {
       CornerNorthing(import.REAL_GEO_Y());
       CornerEasting(import.REAL_GEO_X());
       Azimuth(import.SKEW_ANGLE());
@@ -330,13 +330,13 @@ bool CGVTSeismicGridDefinition::Import(const QString& fileName, CModelBase& mode
       NumTrack(import.N_TRACK());
 
       return true;
-    }
-    else
-    {
+  }
+  else
+  {
       _m()->msg(import.ErrorMessage());
 
       return false;
-    }
+  }
   }
 }
 

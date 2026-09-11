@@ -17,7 +17,7 @@ public:
   mlMatModel MaterialModel() const;
  
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);
+  virtual void DoDataExchange(CDataExchange* pDX);
 
 private:
   QString m_strName;
@@ -25,10 +25,10 @@ private:
 
   std::vector<mlMatModel> m_vcListedModels;
   bool m_bAllowModelChange;
-	int m_nModelFilter;
+  int m_nModelFilter;
   int m_iModelComboIndex;
 
-	enum { IDD = IDD_RENAMEMATERIALDLG };
+  enum { IDD = IDD_RENAMEMATERIALDLG };
 
 
   void AddListedModel(mlMatModel mm);
@@ -36,8 +36,8 @@ private:
   void AddModelToCombo(mlMatModel nModel);
 
 protected:
-	virtual void OnOK();
-	virtual BOOL OnInitDialog();
+  virtual void OnOK();
+  virtual BOOL OnInitDialog();
 
 public:
   CComboBox m_MaterialTypeCombo;

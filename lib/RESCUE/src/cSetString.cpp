@@ -18,11 +18,11 @@ Software Product or documentation licensed under this agreement.
 ****************************************************************************/
 /*************************************************************************
 
-        cSetString.h
+    cSetString.h
 
  Keeps a list of integers.
 
-        Rod Hanks               December 15th, 1995  / August 1996
+    Rod Hanks               December 15th, 1995  / August 1996
 
 ****************************************************************************/
 #include "myHeaders.h"
@@ -48,7 +48,7 @@ void cSetString::EmptySelf()
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    delete objects[loop];
+  delete objects[loop];
   }
   count = 0;
 }
@@ -57,23 +57,23 @@ void cSetString::AddIfUnique(const RESCUECHAR *toAdd)
 {
   if (toAdd != 0)
   {
-    RESCUEBOOL found = FALSE;
-    if (count > 0)
-    {
+  RESCUEBOOL found = FALSE;
+  if (count > 0)
+  {
       RESCUEINT64 loop;
       for (loop = 0; loop < count && found == FALSE; loop++)
       {
-        if ((*objects[loop]) == toAdd)
-        {
-          found = TRUE;
-        }
-      }
-    }
-    if (found == FALSE)
+    if ((*objects[loop]) == toAdd)
     {
+          found = TRUE;
+    }
+      }
+  }
+  if (found == FALSE)
+  {
       RCHString *toAddObj = new RCHString(toAdd);
       (*this) += toAddObj;
-    }
+  }
   }
 }
 
@@ -81,8 +81,8 @@ void cSetString::operator+=(RCHString *newObject)
 {
   if (allocated == count)
   {
-    allocated += 10;
-    objects = (RCHString **) realloc(objects, sizeof(RCHString *) * (size_t) allocated);
+  allocated += 10;
+  objects = (RCHString **) realloc(objects, sizeof(RCHString *) * (size_t) allocated);
   }
   objects[count++] = newObject;
 }
@@ -94,24 +94,24 @@ RESCUEBOOL cSetString::operator-=(RCHString *existingObject)
 
   while (ndx < count && found == FALSE)
   {
-    if (existingObject == objects[ndx])
-    {
+  if (existingObject == objects[ndx])
+  {
       found = TRUE;
-    }
-    else
-    {
+  }
+  else
+  {
       ndx++;
-    }
+  }
   }
   if (found)
   {
-    RESCUEINT64 loop;
+  RESCUEINT64 loop;
 
-    count--;
-    for (loop = ndx; loop < count; loop++)
-    {
+  count--;
+  for (loop = ndx; loop < count; loop++)
+  {
       objects[loop] = objects[loop + 1];
-    }
+  }
   }
   return found;
 }
@@ -120,11 +120,11 @@ RCHString *cSetString::NthObject(RESCUEINT64 ordinal)
 {
   if (ordinal < 0 || ordinal >= count)
   {
-    return 0;
+  return 0;
   }
   else
   {
-    return objects[ordinal];
+  return objects[ordinal];
   }
 }
 
@@ -133,14 +133,14 @@ RESCUEBOOL cSetString::Contains(RCHString *example)
   RESCUEBOOL myReturn = FALSE;
   if (count > 0)
   {
-    RESCUEINT64 loop;
-    for (loop = 0; loop < count && myReturn == FALSE; loop++)
-    {
+  RESCUEINT64 loop;
+  for (loop = 0; loop < count && myReturn == FALSE; loop++)
+  {
       if ((*objects[loop]) == (*example))
       {
-        myReturn = TRUE;
+    myReturn = TRUE;
       }
-    }
+  }
   }
   return myReturn;
 }
@@ -149,15 +149,15 @@ RESCUEINT32 cSetString::Count(RESCUEBOOL throwIfTrue)
 {
   if (count > 2147483647)
   {
-    if (throwIfTrue)
-    {
+  if (throwIfTrue)
+  {
       throw "Model is too large to be accessed in 32 bit mode.";
-    }
-    return 0;
+  }
+  return 0;
   }
   else
   {
-    return (RESCUEINT32) count;
+  return (RESCUEINT32) count;
   }
 }
 

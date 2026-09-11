@@ -8,7 +8,7 @@ class CDianaStartUp;
 
 class CDianaExecuter : public IDianaXWrapper
 {
-	CDianaStartUp* m_dsu;
+  CDianaStartUp* m_dsu;
 public:
   CDianaExecuter();
   virtual ~CDianaExecuter();
@@ -26,13 +26,13 @@ public:
   virtual bool GetCalculationResult();
 
 private:
-	//
-	// not used !!!
-	//
-	CDianaExecuterSignalHandler* m_handler;
+  //
+  // not used !!!
+  //
+  CDianaExecuterSignalHandler* m_handler;
 
-	//
-	// not used !!!
-	//
-	bool m_bShowDefaultMessages;
+  //
+  // not used !!!
+  //
+  bool m_bShowDefaultMessages;
 };

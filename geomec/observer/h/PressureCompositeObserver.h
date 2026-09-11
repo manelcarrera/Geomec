@@ -15,26 +15,26 @@
 class CPressureCompositeObserver : public CValueCompositeObserver  
 {
 public:
-	virtual ~CPressureCompositeObserver();
+  virtual ~CPressureCompositeObserver();
 
-	CPressureCompositeObserver(CPressure& node,
-							CTreeNode &parent,
-							const BOOL rename,
-							const enum REMOVE_TYPE remove,
-							HTREEITEM hInsertAfter = TVI_LAST,
-							BOOL bInitialUpdate = FALSE,
-							BOOL bSortAfterInsertion = TRUE );
+  CPressureCompositeObserver(CPressure& node,
+              CTreeNode &parent,
+              const BOOL rename,
+              const enum REMOVE_TYPE remove,
+              HTREEITEM hInsertAfter = TVI_LAST,
+              BOOL bInitialUpdate = FALSE,
+              BOOL bSortAfterInsertion = TRUE );
 
-	CPressureCompositeObserver(CPressure& node,
-							CTreeCtrl &ctrl,
-							const BOOL rename,
-							const enum REMOVE_TYPE remove,
-							HTREEITEM hParent = TVI_ROOT,
-							HTREEITEM hInsertAfter = TVI_LAST,
-							BOOL bInitialUpdate = FALSE,
-							BOOL bSortAfterInsertion = TRUE);
-	virtual UINT StateIcon() const;
-	virtual void ToggleState();
+  CPressureCompositeObserver(CPressure& node,
+              CTreeCtrl &ctrl,
+              const BOOL rename,
+              const enum REMOVE_TYPE remove,
+              HTREEITEM hParent = TVI_ROOT,
+              HTREEITEM hInsertAfter = TVI_LAST,
+              BOOL bInitialUpdate = FALSE,
+              BOOL bSortAfterInsertion = TRUE);
+  virtual UINT StateIcon() const;
+  virtual void ToggleState();
 };
 
 #endif // !defined(AFX_PRESSURECOMPOSITEOBSERVER_H__17B5C0BE_37EC_4FB6_A109_485CC99A718D__INCLUDED_)

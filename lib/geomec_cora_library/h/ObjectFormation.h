@@ -17,41 +17,41 @@ namespace cora
 class CObjectFormation : public CObjectBase
 {
   public:
-    CObjectFormation(CFormationBase* formationBase, CModelBase* modelBase);
-    virtual ~CObjectFormation();
+  CObjectFormation(CFormationBase* formationBase, CModelBase* modelBase);
+  virtual ~CObjectFormation();
 
-    virtual const QString& name() const;
-    virtual const TParameters& getParameters() const;
-    virtual const QString& prefix() const;
-    virtual const COpenGLNode* object() const;
-    virtual const QString& typeName() const;
+  virtual const QString& name() const;
+  virtual const TParameters& getParameters() const;
+  virtual const QString& prefix() const;
+  virtual const COpenGLNode* object() const;
+  virtual const QString& typeName() const;
 
-    virtual const geo::IElement* getFirstElement();
-    virtual const geo::IElement* getNextElement();
+  virtual const geo::IElement* getFirstElement();
+  virtual const geo::IElement* getNextElement();
 
-    virtual std::ostream& operator () (std::ostream& os) const;
+  virtual std::ostream& operator () (std::ostream& os) const;
 
-    virtual CElementSet* getElementSet() const;
+  virtual CElementSet* getElementSet() const;
 
   private:
-    CObjectFormation(const CObjectFormation& rhs);
-    CObjectFormation& operator = (CObjectFormation rhs);
+  CObjectFormation(const CObjectFormation& rhs);
+  CObjectFormation& operator = (CObjectFormation rhs);
 
-    static TParameters getParameters(CFormationBase* formationBase,
+  static TParameters getParameters(CFormationBase* formationBase,
       CModelBase* modelBase);
-    static CElementSet* createElementSet(bool& owner, CModelBase* modelBase,
+  static CElementSet* createElementSet(bool& owner, CModelBase* modelBase,
       CFormationBase* formationBase);
-    static CElementSet* elementSetExists(CModelBase* modelBase,
+  static CElementSet* elementSetExists(CModelBase* modelBase,
       CFormationBase* formationBase);
 
-    CFormationBase* m_formationBase;
-    TParameters m_parameters;
-    bool m_owner;
-    CElementSet* m_elementSet;
+  CFormationBase* m_formationBase;
+  TParameters m_parameters;
+  bool m_owner;
+  CElementSet* m_elementSet;
 
-    typedef std::pair <int, int> TSequenceState;
+  typedef std::pair <int, int> TSequenceState;
 
-    TSequenceState m_sequenceState;
+  TSequenceState m_sequenceState;
 };
 
 } // namespace cora

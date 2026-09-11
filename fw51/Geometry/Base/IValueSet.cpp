@@ -45,7 +45,7 @@ std::vector<double> IValueSet::WeightFactors(const std::vector<int> &vecElements
 CValue IValueSet::GetWeightedAverage(const std::vector<CValue> &values, const std::vector<double> &weightfactors, TWeightingType nWeightingType) const
 {
   for(size_t i = 0; i < values.size(); i++)
-    if(!values[i].Valid()) return CValue();
+  if(!values[i].Valid()) return CValue();
 
   CValue total(0);
   double weighttotal = 0;
@@ -56,44 +56,44 @@ CValue IValueSet::GetWeightedAverage(const std::vector<CValue> &values, const st
   switch(nWeightingType)
   {
   case WT_NONE:
-    {
+  {
       for(std::vector<CValue>::const_iterator it = values.begin(); it != values.end(); it++) total += *it;
       retval = total / values.size();
-    }
-    break;
+  }
+  break;
   case WT_VOIGHT:
-    {
+  {
       assert(weightfactors.size() == values.size());
       std::vector<double>::const_iterator itw;
       std::vector<CValue>::const_iterator itv;
       for(itw = weightfactors.begin(), itv = values.begin(); itw != weightfactors.end(); itw++, itv++)
       {
-        weighttotal += *itw;
-        total += itv->Value() * *itw;
+    weighttotal += *itw;
+    total += itv->Value() * *itw;
       }
 
       assert(fabs(weighttotal) > EPS);
       retval = total / weighttotal;
-    }
-    break;
+  }
+  break;
   case WT_REUSS:
-    {
+  {
       assert(weightfactors.size() == values.size());
       std::vector<CValue> vcInvValues(values.size());
       for(size_t i = 0; i < values.size(); i++)
       {
-        if(fabs(values[i].Value()) < EPS) return CValue(); // must be able to invert
-        vcInvValues[i] = CValue(1.0 / values[i].Value());
+    if(fabs(values[i].Value()) < EPS) return CValue(); // must be able to invert
+    vcInvValues[i] = CValue(1.0 / values[i].Value());
       }
 
       CValue InvRet = GetWeightedAverage(vcInvValues, weightfactors, WT_VOIGHT);
       if(!InvRet.Valid() || fabs(InvRet.Value()) < EPS) return CValue();
 
       retval = CValue(1.0 / InvRet.Value());
-    }
-    break;
+  }
+  break;
   default:
-    assert(false); // unknown weighting type
+  assert(false); // unknown weighting type
   }
 
   return retval;
@@ -110,25 +110,25 @@ CValue IValueSet::PointValue(const IPoint &point, std::vector<int> &vecElements,
 
   if(vecElements.size() == 1)
   {
-    // single element found, simply interpolate
-    retval = InterpolateValue(point, vecElements[0], cb);
+  // single element found, simply interpolate
+  retval = InterpolateValue(point, vecElements[0], cb);
   }
   else
   {
-    // multiple elements found, average based on weighting
-    std::vector<double> weightfactors;
+  // multiple elements found, average based on weighting
+  std::vector<double> weightfactors;
 
-    if(nWeightingType != WT_NONE)
-    {
+  if(nWeightingType != WT_NONE)
+  {
       weightfactors = WeightFactors(vecElements);
       assert(weightfactors.size() == vecElements.size());
-    }
+  }
 
-    std::vector<CValue> elmvalues(vecElements.size());
-    for(size_t i = 0; i < vecElements.size(); i++)
+  std::vector<CValue> elmvalues(vecElements.size());
+  for(size_t i = 0; i < vecElements.size(); i++)
       elmvalues[i] = InterpolateValue(point, vecElements[i], cb);
 
-    retval = GetWeightedAverage(elmvalues, weightfactors, nWeightingType);
+  retval = GetWeightedAverage(elmvalues, weightfactors, nWeightingType);
   }
 
   return retval;
@@ -185,10 +185,10 @@ CValue IValueSet::NodeValue(int iNodeIndex, TWeightingType nWeightingType, IPara
 
   for(size_t i = 0; i < vcElementNodes.size(); i++)
   {
-    TValueVec vcSource( ValueSize( vcElementNodes[i].first->Index() ) );
-    ElementValues( vcSource, vcElementNodes[i].first->Index(), cb );
-    values[i] = vcSource[vcElementNodes[i].second];
-    weights[i] = vcElementNodes[i].first->Size();
+  TValueVec vcSource( ValueSize( vcElementNodes[i].first->Index() ) );
+  ElementValues( vcSource, vcElementNodes[i].first->Index(), cb );
+  values[i] = vcSource[vcElementNodes[i].second];
+  weights[i] = vcElementNodes[i].first->Size();
   }
 
   return GetWeightedAverage(values, weights, nWeightingType);
@@ -200,15 +200,15 @@ bool IValueSet::MapValues(const IBody &body, std::vector<CValue> &values, TWeigh
   // If we "know" the element we return the stored values
   if(body.IndexingElementSet() == &ElementSet())
   {
-    ElementValues(values, body.Index(), cb);
-    return true;
+  ElementValues(values, body.Index(), cb);
+  return true;
   }
 
-	ICacheInterface &ci = const_cast<IElementSet *>(body.IndexingElementSet())->CacheInterface();
-	CElementCacheObject *cached = ci.ElementCacheObject(&ElementSet(), &body);
+  ICacheInterface &ci = const_cast<IElementSet *>(body.IndexingElementSet())->CacheInterface();
+  CElementCacheObject *cached = ci.ElementCacheObject(&ElementSet(), &body);
 
-	if (cached)
-		return MapValuesWithCache(*cached, body, values, nWeightingType, cb);
+  if (cached)
+    return MapValuesWithCache(*cached, body, values, nWeightingType, cb);
 
 
 //  const IElementSet &elset = ElementSet();
@@ -223,45 +223,45 @@ bool IValueSet::MapValues(const IBody &body, std::vector<CValue> &values, TWeigh
 
   for(std::set<int>::iterator it = stIndex.begin(); it != stIndex.end(); it++)
   {
-    // We only consider bodies ...
-    const IBody *pBody = dynamic_cast<const IBody*>(&ElementSet().Element(*it));
-    if(pBody)
-    {
+  // We only consider bodies ...
+  const IBody *pBody = dynamic_cast<const IBody*>(&ElementSet().Element(*it));
+  if(pBody)
+  {
       TValueVec vcSrcValues( ValueSize( *it ));
       ElementValues(vcSrcValues, *it, cb);
 
       if(body.BoundingBoxIntersect(*pBody, false))
       {
-        IBody::TIntersection Intersect = body.Intersection(*pBody);
+    IBody::TIntersection Intersect = body.Intersection(*pBody);
 
-        double dFraction = Intersect.first / pBody->Size();
-        if(dFraction > EPS)
-        {
+    double dFraction = Intersect.first / pBody->Size();
+    if(dFraction > EPS)
+    {
           bIntersectionFound = true;
           if(fabs(dFraction) >= 1)
           {
-            // pBody is completely contained inside body
-            for(int j = 0; j < pBody->NrOfPoints(); j++)
-            {
+      // pBody is completely contained inside body
+      for(int j = 0; j < pBody->NrOfPoints(); j++)
+      {
               assert(body.Contains(pBody->Point(j), true));
               CValue val = vcSrcValues[j];
               vcSourceValues.push_back(IElement::TValuePoint(new CPoint(pBody->Point(j)), val));
               vcWeights.push_back(1.0 / pBody->NrOfPoints());
-            }
+      }
           }
           else
           {
-            // only part of pBody is inside body
-            for(size_t j = 0; j < Intersect.second.size(); j++)
-            {
+      // only part of pBody is inside body
+      for(size_t j = 0; j < Intersect.second.size(); j++)
+      {
               CValue val = pBody->InterpolateValue(Intersect.second[j], vcSrcValues);
               vcSourceValues.push_back(IElement::TValuePoint(new CPoint(Intersect.second[j]), val));
               vcWeights.push_back(dFraction / Intersect.second.size());
-            }
-          }
-        }
       }
+          }
     }
+      }
+  }
   }
 
   values = body.MapValues(vcSourceValues, nWeightingType, vcWeights);
@@ -274,126 +274,126 @@ bool IValueSet::MapValues(const IBody &body, std::vector<CValue> &values, TWeigh
 
 bool IValueSet::MapValuesWithCache(CElementCacheObject &cached, const IBody &body, std::vector<CValue> &values, TWeightingType nWeightingType, IParallelInitializationCallback *cb) const
 {
-	std::vector<const IPoint *> vcPoints;
-	std::vector<double> vcWeights;
+  std::vector<const IPoint *> vcPoints;
+  std::vector<double> vcWeights;
 
-	// Check if we have done the mapping
-	ICacheInterface &ci = const_cast<IElementSet *>(body.IndexingElementSet())->CacheInterface();
-    
-	if (!cached.Valid() || cached.Type() != nWeightingType)
-	{
-		std::set<int> stIndex = ElementSet().Candidates(body.Min(), body.Max());
-		if(stIndex.empty()) return false;  // since Candidates is cached, we're not caching this
+  // Check if we have done the mapping
+  ICacheInterface &ci = const_cast<IElementSet *>(body.IndexingElementSet())->CacheInterface();
+  
+  if (!cached.Valid() || cached.Type() != nWeightingType)
+  {
+    std::set<int> stIndex = ElementSet().Candidates(body.Min(), body.Max());
+    if(stIndex.empty()) return false;  // since Candidates is cached, we're not caching this
 
-		cached.Clear();
-		cached.Type(nWeightingType);
+    cached.Clear();
+    cached.Type(nWeightingType);
 
-		for(std::set<int>::iterator it = stIndex.begin(); it != stIndex.end(); it++)
-		{
-			// We only consider bodies ...
-			const IBody *pBody = dynamic_cast<const IBody*>(&ElementSet().Element(*it));
-			if(pBody)
-			{
-				if(body.BoundingBoxIntersect(*pBody, false))
-				{
-					IBody::TIntersection Intersect = body.Intersection(*pBody);
+    for(std::set<int>::iterator it = stIndex.begin(); it != stIndex.end(); it++)
+    {
+      // We only consider bodies ...
+      const IBody *pBody = dynamic_cast<const IBody*>(&ElementSet().Element(*it));
+      if(pBody)
+      {
+        if(body.BoundingBoxIntersect(*pBody, false))
+        {
+          IBody::TIntersection Intersect = body.Intersection(*pBody);
 
-					double dFraction = Intersect.first / body.Size();
-					if(dFraction > EPS)
-					{
-					  cached.addBody(pBody);
-					  cached.addIntersection(Intersect);
+          double dFraction = Intersect.first / body.Size();
+          if(dFraction > EPS)
+          {
+            cached.addBody(pBody);
+            cached.addIntersection(Intersect);
+          }
+    }
+      }
+  }
+
+  for (int i = 0; i < cached.NrOfBodies(); ++i)
+  {
+      const IBody *pBody = cached.getBody(i);
+      if (pBody)
+      {
+
+    const IBody::TIntersection *pIntersect = cached.getIntersection(i);
+    if (pIntersect)
+    {
+
+          double dFraction = pIntersect->first / pBody->Size();
+          if(dFraction > EPS)
+          {
+            if(fabs(dFraction) >= 1)
+            {
+              // pBody is completely contained inside body
+              int size = pBody->NrOfPoints();
+              double weight = 1.0 / size;
+              cached.addSize(size);
+              for(int j = 0; j < size; j++)
+              {
+                assert(body.Contains(pBody->Point(j), true));
+                cached.addPoint(&pBody->Point(j));
+                cached.addWeight(weight);
+              }
+            }
+            else
+            {
+              // only part of pBody is inside body
+              int size = pIntersect->second.size();
+              double weight = dFraction / size;
+              cached.addSize(size);
+              for(int j = 0; j < size; j++)
+              {
+                cached.addPoint(&pIntersect->second[j]);
+                cached.addWeight(weight);
+              }
+            }
           }
         }
       }
     }
 
-    for (int i = 0; i < cached.NrOfBodies(); ++i)
+  if (cached.IntersectionFound())
+      body.MapValuesPrepare(cached, nWeightingType);
+
+    ci.ElementCacheObject(&ElementSet(), body.Index(), cached);
+  }
+
+  std::vector<CValue> vcSourceValues;
+  vcSourceValues.reserve(cached.getPoints()->size());
+
+  std::size_t size = cached.NrOfBodies();
+  for (int i = 0; i < size; ++i)
+  {
+    const IBody *pBody = cached.getBody(i);
+    const IBody::TIntersection *Intersect = cached.getIntersection(i);
+
+    double dFraction = Intersect->first / pBody->Size();
+    if(dFraction > EPS)
     {
-      const IBody *pBody = cached.getBody(i);
-      if (pBody)
+      TValueVec vcSrcValues( ValueSize( pBody->Index() ));
+      ElementValues(vcSrcValues, pBody->Index(), cb);
+
+      if(fabs(dFraction) >= 1)
       {
-
-        const IBody::TIntersection *pIntersect = cached.getIntersection(i);
-        if (pIntersect)
+        // pBody is completely contained inside body
+        for(int j = 0; j < pBody->NrOfPoints(); j++)
         {
-
-					double dFraction = pIntersect->first / pBody->Size();
-					if(dFraction > EPS)
-					{
-						if(fabs(dFraction) >= 1)
-						{
-							// pBody is completely contained inside body
-							int size = pBody->NrOfPoints();
-							double weight = 1.0 / size;
-							cached.addSize(size);
-							for(int j = 0; j < size; j++)
-							{
-								assert(body.Contains(pBody->Point(j), true));
-								cached.addPoint(&pBody->Point(j));
-								cached.addWeight(weight);
-							}
-						}
-						else
-						{
-							// only part of pBody is inside body
-							int size = pIntersect->second.size();
-							double weight = dFraction / size;
-							cached.addSize(size);
-						    for(int j = 0; j < size; j++)
-							{
-								cached.addPoint(&pIntersect->second[j]);
-								cached.addWeight(weight);
-							}
-						}
-			        }
-				}
-			}
-		}
-
-    if (cached.IntersectionFound())
-		  body.MapValuesPrepare(cached, nWeightingType);
-
-		ci.ElementCacheObject(&ElementSet(), body.Index(), cached);
-	}
-
-	std::vector<CValue> vcSourceValues;
-	vcSourceValues.reserve(cached.getPoints()->size());
-
-	std::size_t size = cached.NrOfBodies();
-	for (int i = 0; i < size; ++i)
-	{
-		const IBody *pBody = cached.getBody(i);
-		const IBody::TIntersection *Intersect = cached.getIntersection(i);
-
-		double dFraction = Intersect->first / pBody->Size();
-		if(dFraction > EPS)
-		{
-			TValueVec vcSrcValues( ValueSize( pBody->Index() ));
-			ElementValues(vcSrcValues, pBody->Index(), cb);
-
-			if(fabs(dFraction) >= 1)
-			{
-				// pBody is completely contained inside body
-				for(int j = 0; j < pBody->NrOfPoints(); j++)
-				{
-					vcSourceValues.push_back(vcSrcValues[j]);
-				}
-			}
-			else
-			{
-				// only part of pBody is inside body
-			    for(size_t j = 0; j < Intersect->second.size(); j++)
-				{
-					vcSourceValues.push_back(pBody->InterpolateValue(Intersect->second[j], vcSrcValues));
-				}
-			}
+          vcSourceValues.push_back(vcSrcValues[j]);
         }
-	}
+      }
+      else
+      {
+        // only part of pBody is inside body
+        for(size_t j = 0; j < Intersect->second.size(); j++)
+        {
+          vcSourceValues.push_back(pBody->InterpolateValue(Intersect->second[j], vcSrcValues));
+        }
+      }
+    }
+  }
 
-	values = body.MapValuesFinal(cached, vcSourceValues, nWeightingType);
+  values = body.MapValuesFinal(cached, vcSourceValues, nWeightingType);
 
-	return cached.IntersectionFound();
+  return cached.IntersectionFound();
 }
 
 
@@ -405,18 +405,18 @@ bool IValueSet::GetSmoothedNodalValues(const IElement &element, std::vector<CVal
   // If we "know" the element we return the stored values
   if(element.IndexingElementSet() == &ElementSet())
   {
-    ElementValues(values, element.Index(), cb);
-    return true;
+  ElementValues(values, element.Index(), cb);
+  return true;
   }
 
   assert(element.NrOfPoints() == values.size());
   for(int i = 0; i < element.NrOfPoints(); i++)
   {
-    std::vector<int> vecElements = ElementSet().ElementsAt(element.Point(i));
-    if(vecElements.size() == 0)
+  std::vector<int> vecElements = ElementSet().ElementsAt(element.Point(i));
+  if(vecElements.size() == 0)
       return false;
 
-    values[i] = PointValue(element.Point(i), vecElements, WT_NONE, cb);
+  values[i] = PointValue(element.Point(i), vecElements, WT_NONE, cb);
   }
 
   return true;
@@ -431,13 +431,13 @@ void IValueSet::MapValues(IValueSet &TargetValues, TWeightingType nWeightingType
 
   for(int i = 0; i < stTarget.ElementSize(); i++)
   {
-    const IElement &el = stTarget.Element(i);
-    std::vector<CValue> values;
-    const IBody *pBody = dynamic_cast<const IBody *> (&el);
-    assert(pBody != 0); // can only map for bodies
-    MapValues(*pBody, values, nWeightingType, cb);
-    TargetValues.PushBack(values);
-    if(pProgress) pProgress->Step();
+  const IElement &el = stTarget.Element(i);
+  std::vector<CValue> values;
+  const IBody *pBody = dynamic_cast<const IBody *> (&el);
+  assert(pBody != 0); // can only map for bodies
+  MapValues(*pBody, values, nWeightingType, cb);
+  TargetValues.PushBack(values);
+  if(pProgress) pProgress->Step();
   }
 }
 

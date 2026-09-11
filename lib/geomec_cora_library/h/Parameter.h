@@ -16,61 +16,61 @@ namespace cora
 class CParameter
 {
   public:
-    static struct TFaultParameter {} faultParameter;
-    static struct TFormationParameter4Material {} formationParameter4Material;
-    static struct TFormationParameter4Pressure {} formationParameter4Pressure;
-    static struct TFormationParameter4PressureChange {}
+  static struct TFaultParameter {} faultParameter;
+  static struct TFormationParameter4Material {} formationParameter4Material;
+  static struct TFormationParameter4Pressure {} formationParameter4Pressure;
+  static struct TFormationParameter4PressureChange {}
       formationParameter4PressureChange;
-    static struct THorizonParameter {} horizonParameter;
-    static struct TSurfaceParameter {} surfaceParameter;
-    static struct TNonMeshedSurfaceParameter {} nonMeshedSurfaceParameter;
-    static struct TWellParameter {} wellParameter;
+  static struct THorizonParameter {} horizonParameter;
+  static struct TSurfaceParameter {} surfaceParameter;
+  static struct TNonMeshedSurfaceParameter {} nonMeshedSurfaceParameter;
+  static struct TWellParameter {} wellParameter;
 
-    CParameter(const TFaultParameter&, const QString& name,
+  CParameter(const TFaultParameter&, const QString& name,
       const geo::CValue& minimum, const geo::CValue& maximum, double mean,
       CHorizonBase* horizonBase, int depletionStage, unsigned int valueTypeID);
-    CParameter(const TFormationParameter4Material&, const QString& name,
+  CParameter(const TFormationParameter4Material&, const QString& name,
       const geo::CValue& minimum, const geo::CValue& maximum, double mean,
       CFormationBase* formationBase, int depletionStage,
       CLibraryMaterialParameter& libraryMaterialParameter);
-    CParameter(const TFormationParameter4Pressure&, const QString& name,
+  CParameter(const TFormationParameter4Pressure&, const QString& name,
       const geo::CValue& minimum, const geo::CValue& maximum, double mean,
       CFormationBase* formationBase, int depletionStage,
       unsigned int valueTypeID);
-    CParameter(const TFormationParameter4PressureChange&, const QString& name,
+  CParameter(const TFormationParameter4PressureChange&, const QString& name,
       const geo::CValue& minimum, const geo::CValue& maximum, double mean,
       CFormationBase* formationBase, int depletionStage,
       unsigned int valueTypeID);
-    CParameter(const THorizonParameter&);
-    CParameter(const TSurfaceParameter&);
-    CParameter(const TNonMeshedSurfaceParameter&, const QString& name,
+  CParameter(const THorizonParameter&);
+  CParameter(const TSurfaceParameter&);
+  CParameter(const TNonMeshedSurfaceParameter&, const QString& name,
       const geo::CValue& minimum, const geo::CValue& maximum, double mean,
       unsigned int valueTypeID, int depletionStage, CSurfaceBase* surfaceBase);
-    CParameter(const TWellParameter&);
+  CParameter(const TWellParameter&);
 
-    int depletionStage() const;
-    unsigned int valueTypeID() const;
-    const QString& name() const;
+  int depletionStage() const;
+  unsigned int valueTypeID() const;
+  const QString& name() const;
 
-    CGraphNode* object() const;
+  CGraphNode* object() const;
 
-    double min() const;
-    double max() const;
-    double mean() const;
+  double min() const;
+  double max() const;
+  double mean() const;
 
-    const QString lowerLimit() const;
-    const QString upperLimit() const;
+  const QString lowerLimit() const;
+  const QString upperLimit() const;
 
-    std::ostream& operator () (std::ostream& os) const;
+  std::ostream& operator () (std::ostream& os) const;
 
-    template <typename ParameterType>
+  template <typename ParameterType>
       bool isParameterType() const;
 
   private:
-    CParameter(const CParameter& rhs);
-    CParameter& operator = (CParameter rhs);
+  CParameter(const CParameter& rhs);
+  CParameter& operator = (CParameter rhs);
 
-    TParameterBase m_objectBase;
+  TParameterBase m_objectBase;
 };
 
 template <typename ParameterType>

@@ -28,15 +28,15 @@ CGammaAxialView::~CGammaAxialView()
 //wjrx mantis 3167
 double CGammaAxialView::GetStressOrStrain( CStressStrain const &StressStrain ) const
 {
-	return GetStrain(StressStrain);
+  return GetStrain(StressStrain);
 }
 
 double CGammaAxialView::GetStrain( CStressStrain const &StressStrain ) const
 {
-	return StressStrain.m_dAxialStrain;
+  return StressStrain.m_dAxialStrain;
 }
 
 double CGammaAxialView::GetStress( CStressStrain const &StressStrain ) const
 {
-	return StressStrain.m_dAxialStress;
+  return StressStrain.m_dAxialStress;
 }

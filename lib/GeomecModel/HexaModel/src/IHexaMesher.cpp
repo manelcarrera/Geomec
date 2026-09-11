@@ -13,13 +13,13 @@
 bool IHexaMesher::CXYLess::operator()(const geo::IPoint& P1, const geo::IPoint& P2) const
 {
   if (P1.Y() - P2.Y() < -EPS)
-    return true;
+  return true;
 
   if (P1.Y() - P2.Y() > EPS)
-    return false;
+  return false;
 
   if (P1.X() - P2.X() < -EPS)
-    return true;
+  return true;
 
   return false;
 }
@@ -54,7 +54,7 @@ bool IHexaMesher::ValidRegions()
 
   for (CHexaMeshRegionEntry::TNodeSet::iterator itMeshRegion = stNode.begin(); itMeshRegion != stNode.end(); ++itMeshRegion)
   {
-    if ((*itMeshRegion)->Hull().NrOfPoints() < 4)
+  if ((*itMeshRegion)->Hull().NrOfPoints() < 4)
       delete *itMeshRegion;
   }
 
@@ -64,32 +64,32 @@ bool IHexaMesher::ValidRegions()
   stNode = pEntry->EntryNodes();
   for (CHexaMeshRegionEntry::TNodeSet::iterator itMeshRegion = stNode.begin(); itMeshRegion != stNode.end(); ++itMeshRegion)
   {
-    geo::CPoint ptMeshRegionMin = rs.LocalMin((*itMeshRegion)->Hull());
-    geo::CPoint ptMeshRegionMax = rs.LocalMax((*itMeshRegion)->Hull());
+  geo::CPoint ptMeshRegionMin = rs.LocalMin((*itMeshRegion)->Hull());
+  geo::CPoint ptMeshRegionMax = rs.LocalMax((*itMeshRegion)->Hull());
 
-    if (dynamic_cast<CHexaSubMeshRegion*>(*itMeshRegion))
-    {
+  if (dynamic_cast<CHexaSubMeshRegion*>(*itMeshRegion))
+  {
       // only when current meshregion is not the main mesh region.
       for (CHexaMeshRegionEntry::TNodeSet::iterator itOtherRegion = stNode.begin(); itOtherRegion != stNode.end(); ++itOtherRegion)
       {
-        if (*itOtherRegion == *itMeshRegion)
+    if (*itOtherRegion == *itMeshRegion)
           continue;
 
-        geo::CPoint ptRegionMin = rs.LocalMin((*itOtherRegion)->Hull());
-        geo::CPoint ptRegionMax = rs.LocalMax((*itOtherRegion)->Hull());
-        bool bInside = (ptRegionMin.X() > ptMeshRegionMin.X() && ptRegionMin.Y() > ptMeshRegionMin.Y() &&
+    geo::CPoint ptRegionMin = rs.LocalMin((*itOtherRegion)->Hull());
+    geo::CPoint ptRegionMax = rs.LocalMax((*itOtherRegion)->Hull());
+    bool bInside = (ptRegionMin.X() > ptMeshRegionMin.X() && ptRegionMin.Y() > ptMeshRegionMin.Y() &&
           ptRegionMax.X() < ptMeshRegionMax.X() && ptRegionMax.Y() < ptMeshRegionMax.Y());
 
-        if (bInside)
-        {
+    if (bInside)
+    {
           // don't allow smaller gridsizes
           if ((*itOtherRegion)->GridSizeX() > (*itMeshRegion)->GridSizeX() || (*itOtherRegion)->GridSizeY() > (*itMeshRegion)->GridSizeY())
           {
-            return false;
+      return false;
           }
-        }
-      }
     }
+      }
+  }
   }
 
   return true;

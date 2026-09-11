@@ -8,28 +8,28 @@ int findOneOf(const QString& target, const QString& characterSet)
   QString newCharacterSet;
 
   for (QString::const_iterator begin = characterSet.begin(), end = characterSet.end();
-    begin != end;)
+  begin != end;)
   {
-    if (*begin == '|')
-    {
+  if (*begin == '|')
+  {
       newCharacterSet += "\\|";
-    }
-    else
-    {
+  }
+  else
+  {
       newCharacterSet += *begin;
-    }
+  }
 
-    ++begin;
+  ++begin;
 
-    if (begin != end)
-    {
+  if (begin != end)
+  {
       newCharacterSet += '|';
-    }
+  }
   }
 
   if (newCharacterSet.isEmpty())
   {
-    return -1;
+  return -1;
   }
 
   QRegExp regularExpression(newCharacterSet);
@@ -43,7 +43,7 @@ QString spanExcluding(const QString& target, const QString& characterSet)
 
   if (length == -1)
   {
-    length = target.length();
+  length = target.length();
   }
 
   return target.left(length);
@@ -55,7 +55,7 @@ QString trimRight(const QString& target)
 
   while ((length > 0) && (target[length - 1].isSpace()))
   {
-    --length;
+  --length;
   }
 
   return target.left(length);

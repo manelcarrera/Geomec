@@ -26,22 +26,22 @@ void CTetraBoundary_Delegate::AppendContextMenu(CContextMenuInvoker &invoker)
 
   typedef CSingleCommandTemplate <CTetraBoundary> TBoundaryCommand;
   typedef CSingleCommandTemplate <CTetraBoundary_Delegate>
-    TBoundaryCommand_Delegate;
+  TBoundaryCommand_Delegate;
 
   invoker.AddCommand(_T("&Export generated surfaces"),
-    *(new TBoundaryCommand_Delegate(*this,
+  *(new TBoundaryCommand_Delegate(*this,
       &CTetraBoundary_Delegate::ExportSurfaces,
       &CTetraBoundary_Delegate::CanExportSurface)));
 
   if(!m_tetraBoundary->Model().parentModel())
   {
-    invoker.AddCommand(_T("&Apply boundary interfaces"),
+  invoker.AddCommand(_T("&Apply boundary interfaces"),
       *(new TBoundaryCommand(*m_tetraBoundary, &CTetraBoundary::ToggleInterfaces,
-        0, &CTetraBoundary::CreateInterfaces)));
+    0, &CTetraBoundary::CreateInterfaces)));
   }
 
   invoker.AddCommand(_T("&Interface attributes"),
-    *(new TBoundaryCommand_Delegate(*this,
+  *(new TBoundaryCommand_Delegate(*this,
       &CTetraBoundary_Delegate::InterfaceAttributes,
       &CTetraBoundary_Delegate::CanCreateInterfaces)));
   invoker.AddSeparator();
@@ -52,7 +52,7 @@ void CTetraBoundary_Delegate::AppendContextMenu(CContextMenuInvoker &invoker)
 bool CTetraBoundary_Delegate::CanModify() const
 {
   return m_tetraBoundary->IsSuperModel() &&
-    !(static_cast <const CModelBase&> (m_tetraBoundary->Model())).
+  !(static_cast <const CModelBase&> (m_tetraBoundary->Model())).
       BranchState().IsBranch();
 }
 
@@ -66,10 +66,10 @@ bool CTetraBoundary_Delegate::CanCreateInterfaces() const
 void CTetraBoundary_Delegate::InterfaceAttributes()
 {
   assert(typeid(m_tetraBoundary->InterfaceDefinition()).name() ==
-    typeid(CBoundaryInterfaceDef).name());
+  typeid(CBoundaryInterfaceDef).name());
 
   CBoundaryInterfaceDef_Delegate* boundaryInterfaceDef_Delegate =
-    static_cast <CBoundaryInterfaceDef_Delegate*> (
+  static_cast <CBoundaryInterfaceDef_Delegate*> (
       m_tetraBoundary->InterfaceDefinition().getDelegate());
 
   boundaryInterfaceDef_Delegate->Attributes();
@@ -85,13 +85,13 @@ void CTetraBoundary_Delegate::ExportSurfaces()
   // Export boundary surfaces
 
   CTnoFileDialog dlg(FALSE, "mx", "Boundary.mx", OFN_OVERWRITEPROMPT,
-    "GoCad surface (*.mx)|*.mx|All Files (*.*)|*.*||");
+  "GoCad surface (*.mx)|*.mx|All Files (*.*)|*.*||");
 
   if (dlg.DoModal() == IDOK)
   {
-    CFemAppDoc& doc = *GetGeomecDoc();
+  CFemAppDoc& doc = *GetGeomecDoc();
 
-    m_tetraBoundary->ExportSurfaces((LPCSTR)dlg.GetPathName(), doc.UnitNode());
+  m_tetraBoundary->ExportSurfaces((LPCSTR)dlg.GetPathName(), doc.UnitNode());
   }
 }
 
@@ -102,7 +102,7 @@ void CTetraBoundary_Delegate::ExportSurfaces()
 CAttriTetraBoundaryDlg::CAttriTetraBoundaryDlg(CTetraBoundary& boundary,
   CWnd* pParent)
 : CAttriBoundaryDlg <CTetraBoundary> (boundary, IDD_ATTRI_TETRA_BOUNDARY,
-    pParent)
+  pParent)
 {
 }
 
@@ -111,35 +111,35 @@ void CAttriTetraBoundaryDlg::DoDataExchange(CDataExchange* pDX)
   CString sUnit;
   double dDistance;
   bool bBranch = (static_cast <const CModelBase&> (
-    Copy().Model())).BranchState().IsBranch();
+  Copy().Model())).BranchState().IsBranch();
 
   if (!pDX->m_bSaveAndValidate)
   {
-    dDistance = Copy().DistanceToSubBoundary().Value(UnitNode().Unit());
-    sUnit = CString(Copy().DistanceToSubBoundary().UnitName(UnitNode().Unit()).
+  dDistance = Copy().DistanceToSubBoundary().Value(UnitNode().Unit());
+  sUnit = CString(Copy().DistanceToSubBoundary().UnitName(UnitNode().Unit()).
       c_str());
   }
 
   DDX_Text(pDX, IDC_ED_DISTANCE, dDistance);
   DDX_Text(pDX, IDC_ST_DISTANCE_UNIT, sUnit);
   DDV_MinMaxDouble(pDX, dDistance,
-    Copy().DistanceToSubBoundary().MinValue(UnitNode().Unit()),
-    Copy().DistanceToSubBoundary().MaxValue(UnitNode().Unit()));
+  Copy().DistanceToSubBoundary().MinValue(UnitNode().Unit()),
+  Copy().DistanceToSubBoundary().MaxValue(UnitNode().Unit()));
 
   if (pDX->m_bSaveAndValidate)
   {
-    Copy().DistanceToSubBoundary(dDistance, UnitNode().Unit());
+  Copy().DistanceToSubBoundary(dDistance, UnitNode().Unit());
   }
 
   CAttriBoundaryDlg <CTetraBoundary> ::DoDataExchange(pDX);
 
   GetDlgItem(IDC_RD_BEST_FIT)->EnableWindow(Copy().IsSuperModel() && !bBranch);
   GetDlgItem(IDC_RD_USER_DEFINED)->EnableWindow(Copy().IsSuperModel() &&
-    !bBranch);
+  !bBranch);
   GetDlgItem(IDC_ST_DISTANCE)->EnableWindow(Copy().IsSuperModel() && !bBranch);
   GetDlgItem(IDC_ED_DISTANCE)->EnableWindow(Copy().IsSuperModel() && !bBranch);
   GetDlgItem(IDC_ST_DISTANCE_UNIT)->EnableWindow(Copy().IsSuperModel() &&
-    !bBranch);
+  !bBranch);
 }
 
 BOOL CAttriTetraBoundaryDlg::OnCommand(WPARAM wParam, LPARAM lParam)
@@ -149,12 +149,12 @@ BOOL CAttriTetraBoundaryDlg::OnCommand(WPARAM wParam, LPARAM lParam)
 
   if (nNotification == EN_KILLFOCUS)
   {
-    if (nControlID == IDC_ED_DISTANCE)
-    {
+  if (nControlID == IDC_ED_DISTANCE)
+  {
       OnKillFocusCoordinate();
 
       return TRUE;
-    }
+  }
   }
 
   return CAttriBoundaryDlg <CTetraBoundary> ::OnCommand(wParam, lParam);

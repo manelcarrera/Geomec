@@ -38,7 +38,7 @@ public:
 
   bool Save(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &prog, bool bSaveHeader);
   void SaveFileHeader(CStorageNode::TSTREAM &stream,
-    const QString& currentAppVersion);
+  const QString& currentAppVersion);
   long SavedItems() const;
 
   virtual void LoadScenes(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS& progress, bool bIgnore = false);
@@ -62,42 +62,42 @@ private:
   class CChildModelLoadSave : public CModelBase::IModelLoadSave
   {
   public:
-    CChildModelLoadSave(CGUIBase& gui);
-    virtual bool LoadModel(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& prog, CModelBase& childModel);
-	  virtual bool SaveModel(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS& prog, CModelBase& childModel);
-	  virtual long SavedItems(CModelBase& childModel) const;
+  CChildModelLoadSave(CGUIBase& gui);
+  virtual bool LoadModel(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& prog, CModelBase& childModel);
+    virtual bool SaveModel(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS& prog, CModelBase& childModel);
+    virtual long SavedItems(CModelBase& childModel) const;
 
-    virtual bool SupportGMP() const;
-    virtual CArchiveInterface *createCArchive(const QString& filename) const;
-
-  private:
-    CGUIBase* getChildGUI(CModelBase& childModel);
-    const  CGUIBase* getChildGUI(CModelBase& childModel) const;
+  virtual bool SupportGMP() const;
+  virtual CArchiveInterface *createCArchive(const QString& filename) const;
 
   private:
-    CGUIBase& m_gui;
+  CGUIBase* getChildGUI(CModelBase& childModel);
+  const  CGUIBase* getChildGUI(CModelBase& childModel) const;
+
+  private:
+  CGUIBase& m_gui;
   };
 
 public:
   class CMainModelLoadSave : public CModelBase::IModelLoadSave
   {
   public:
-    CMainModelLoadSave(CGUIBase *pGUI = 0);
-    CMainModelLoadSave(const QString& appVersion, CGUIBase *pGUI = 0);
-    virtual bool LoadModel(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& prog, CModelBase& model);
-	  virtual bool SaveModel(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS& prog, CModelBase& model);
-	  virtual long SavedItems(CModelBase& model) const;
+  CMainModelLoadSave(CGUIBase *pGUI = 0);
+  CMainModelLoadSave(const QString& appVersion, CGUIBase *pGUI = 0);
+  virtual bool LoadModel(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& prog, CModelBase& model);
+    virtual bool SaveModel(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS& prog, CModelBase& model);
+    virtual long SavedItems(CModelBase& model) const;
 
-    virtual void SetVersionManager(CVersionManager& versionManager);
+  virtual void SetVersionManager(CVersionManager& versionManager);
 
-    virtual bool SupportGMP() const;
-    virtual CArchiveInterface *createCArchive(const QString& filename) const;
+  virtual bool SupportGMP() const;
+  virtual CArchiveInterface *createCArchive(const QString& filename) const;
 
-    CGUIBase *GetGUI() const;
+  CGUIBase *GetGUI() const;
 
   private:
-    CGUIBase        *m_gui;
-    CVersionManager *m_pVersionManager;
+  CGUIBase        *m_gui;
+  CVersionManager *m_pVersionManager;
   };
 
 private:

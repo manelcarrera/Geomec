@@ -19,7 +19,7 @@ public:
 private:
   IFormationElementSet_Delegate(const IFormationElementSet_Delegate& rhs);
   IFormationElementSet_Delegate& operator = (
-    const IFormationElementSet_Delegate& rhs);
+  const IFormationElementSet_Delegate& rhs);
 
   IFormationElementSet* m_formationElementSet;
 
@@ -28,10 +28,10 @@ private:
 
 class CFormationBase_Delegate :
   public CMaterialServerParent_Delegate <
-    CColorNode_Delegate, CColorNode, CMaterialServer>
+  CColorNode_Delegate, CColorNode, CMaterialServer>
 {
   typedef CMaterialServerParent_Delegate <
-    CColorNode_Delegate, CColorNode, CMaterialServer> TBase;
+  CColorNode_Delegate, CColorNode, CMaterialServer> TBase;
 
 public:
   CFormationBase_Delegate(CFormationBase* formationBase);
@@ -60,7 +60,7 @@ public:
 private:
   CFormationThickness_Delegate(const CFormationThickness_Delegate& rhs);
   CFormationThickness_Delegate& operator = (
-    const CFormationThickness_Delegate& rhs);
+  const CFormationThickness_Delegate& rhs);
 
   CFormationThickness* m_formationThickness;
 
@@ -69,11 +69,11 @@ private:
 
 template <class FORMATION>
   class CFormationEntryTempl_Delegate :
-    public CStorageNodeEntry_Delegate <FORMATION>
+  public CStorageNodeEntry_Delegate <FORMATION>
 {
 public:
   CFormationEntryTempl_Delegate(CFormationEntryTempl <FORMATION> *
-    formationEntryTempl);
+  formationEntryTempl);
 
   virtual void AppendContextMenu(CContextMenuInvoker& invoker);
 
@@ -83,40 +83,40 @@ public:
 private:
   CFormationEntryTempl_Delegate(const CFormationEntryTempl_Delegate& rhs);
   CFormationEntryTempl_Delegate& operator = (
-    const CFormationEntryTempl_Delegate& rhs);
+  const CFormationEntryTempl_Delegate& rhs);
 
   CFormationEntryTempl <FORMATION> * m_formationEntryTempl;
 
   REGISTER_DELEGATE(CFormationEntryTempl <FORMATION>,
-    CFormationEntryTempl_Delegate <FORMATION>);
+  CFormationEntryTempl_Delegate <FORMATION>);
 };
 
 template <class FORMATION>
   CFormationEntryTempl_Delegate <FORMATION> ::
-    CFormationEntryTempl_Delegate(CFormationEntryTempl <FORMATION> *
+  CFormationEntryTempl_Delegate(CFormationEntryTempl <FORMATION> *
       formationEntryTempl)
 : CStorageNodeEntry_Delegate(formationEntryTempl)
 , m_formationEntryTempl(formationEntryTempl)
 {
   ACTIVATE_TEMPLATE_DELEGATE(CFormationEntryTempl <FORMATION>,
-    CFormationEntryTempl_Delegate <FORMATION>);
+  CFormationEntryTempl_Delegate <FORMATION>);
 }
 
 template <class FORMATION>
   void CFormationEntryTempl_Delegate <FORMATION> ::
-    AppendContextMenu(CContextMenuInvoker& invoker)
+  AppendContextMenu(CContextMenuInvoker& invoker)
 {
   typedef CSingleCommandTemplate <CFormationEntryTempl <FORMATION> >
-    TForCommand;
+  TForCommand;
 
 #if 0
   invoker.AddCommand("Show element center points",
-    *(new TForCommand(*m_formationEntryTempl,
+  *(new TForCommand(*m_formationEntryTempl,
       &CFormationEntryTempl <FORMATION> ::OnShowMidpoints, 0,
       &CFormationEntryTempl <FORMATION> ::ShowMidpoints)));
 
   invoker.AddCommand("Show full elements",
-    *(new TForCommand(*m_formationEntryTempl,
+  *(new TForCommand(*m_formationEntryTempl,
       &CFormationEntryTempl <FORMATION> ::OnShowFullMesh, 0,
       &CFormationEntryTempl <FORMATION> ::ShowFullMesh)));
 #endif
@@ -145,7 +145,7 @@ public:
 private:
   TFormationBaseEntry_Delegate(const TFormationBaseEntry_Delegate& rhs);
   TFormationBaseEntry_Delegate& operator = (
-    const TFormationBaseEntry_Delegate& rhs);
+  const TFormationBaseEntry_Delegate& rhs);
 
   TFormationBaseEntry* m_formationBaseEntry;
 

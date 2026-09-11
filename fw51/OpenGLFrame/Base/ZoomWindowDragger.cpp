@@ -32,8 +32,8 @@ CZoomWindowDragger::~CZoomWindowDragger()
 
 bool CZoomWindowDragger::OnOK()
 {
-	m_scene.ZoomWindow(BeginScreenPoint(), CurrentScreenPoint());
-	CRectangleDragger::OnOK();
-	return TRUE;
+  m_scene.ZoomWindow(BeginScreenPoint(), CurrentScreenPoint());
+  CRectangleDragger::OnOK();
+  return TRUE;
 }
 

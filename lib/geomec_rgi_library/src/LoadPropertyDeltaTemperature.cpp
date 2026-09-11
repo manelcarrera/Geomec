@@ -36,7 +36,7 @@ IValueDomainScalar::TValueVec CLoadPropertyDeltaTemperature::addDeltaSpecific(
 {
   if (pFormation)
   {
-    return pFormation->UserTemperature(prevstage).Component().ScalarData().ValueElement(elm);
+  return pFormation->UserTemperature(prevstage).Component().ScalarData().ValueElement(elm);
   }
 
   IValueDomainScalar::TValueVec vcPrevValues(nNod, 0);

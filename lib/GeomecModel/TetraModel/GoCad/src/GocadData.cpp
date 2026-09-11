@@ -27,11 +27,11 @@ void loadVectorRef(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStor
 
   for (int i = 0; i < size; ++i)
   {
-    typename V::value_type
+  typename V::value_type
       value(typename V::value_type(new typename V::value_type::value_type()));
 
-    value->LoadStream(stream, version, progress, ref);
-    vector[i] = value;
+  value->LoadStream(stream, version, progress, ref);
+  vector[i] = value;
   }
 }
 
@@ -46,7 +46,7 @@ void loadBasicVector(CStorageNode::TSTREAM &stream, CStreamVersion &/*version*/,
 
   for (int i = 0; i < size; ++i)
   {
-    stream >> vector[i];
+  stream >> vector[i];
   }
 }
 
@@ -59,13 +59,13 @@ void loadVectorAtomRef(CStorageNode::TSTREAM &stream, CStreamVersion &version, C
 
   if (version < CStreamVersion(4, 1, 12))
   {
-    // complete data instead of reference was erroneously written, so now we have to dummy read that data
+  // complete data instead of reference was erroneously written, so now we have to dummy read that data
 
-    std::vector<std::vector<double> > dummy;
-    int id;
+  std::vector<std::vector<double> > dummy;
+  int id;
 
-    for (int i = 0; i < size; ++i)
-    {
+  for (int i = 0; i < size; ++i)
+  {
       stream >> id;
 
       int numberOfOuterProperties = 0;
@@ -73,12 +73,12 @@ void loadVectorAtomRef(CStorageNode::TSTREAM &stream, CStreamVersion &version, C
 
       if (numberOfOuterProperties > 0)
       {
-        dummy.resize(numberOfOuterProperties);
+    dummy.resize(numberOfOuterProperties);
 
-        for (int j = 0; j < numberOfOuterProperties; ++j)
-        {
+    for (int j = 0; j < numberOfOuterProperties; ++j)
+    {
           loadBasicVector(stream, version, progress, dummy[j]);
-        }
+    }
       }
 
       int dummy_ref;
@@ -90,14 +90,14 @@ void loadVectorAtomRef(CStorageNode::TSTREAM &stream, CStreamVersion &version, C
       dummy.clear();
 
       vector.push_back(pAtom);
-    }
+  }
   }
   else
   {
-    int id;
+  int id;
 
-    for (int i = 0; i < size; ++i)
-    {
+  for (int i = 0; i < size; ++i)
+  {
       stream >> id;
 
       const CGocadData::CAtom *pAtom = parent.AtomID(id);
@@ -105,7 +105,7 @@ void loadVectorAtomRef(CStorageNode::TSTREAM &stream, CStreamVersion &version, C
       assert(pAtom);
 
       vector.push_back(pAtom);
-    }
+  }
   }
 }
 
@@ -118,13 +118,13 @@ void loadVectorVertexRef(CStorageNode::TSTREAM &stream, CStreamVersion &version,
 
   if (version < CStreamVersion(4, 1, 12))
   {
-    // complete data instead of reference was erroneously written, so now we have to dummy read that data
+  // complete data instead of reference was erroneously written, so now we have to dummy read that data
 
-    std::vector<std::vector<double> > dummy;
-    int id;
+  std::vector<std::vector<double> > dummy;
+  int id;
 
-    for (int i = 0; i < size; ++i)
-    {
+  for (int i = 0; i < size; ++i)
+  {
       stream >> id;
 
       int numberOfOuterProperties = 0;
@@ -132,12 +132,12 @@ void loadVectorVertexRef(CStorageNode::TSTREAM &stream, CStreamVersion &version,
 
       if (numberOfOuterProperties > 0)
       {
-        dummy.resize(numberOfOuterProperties);
+    dummy.resize(numberOfOuterProperties);
 
-        for (int j = 0; j < numberOfOuterProperties; ++j)
-        {
+    for (int j = 0; j < numberOfOuterProperties; ++j)
+    {
           loadBasicVector(stream, version, progress, dummy[j]);
-        }
+    }
       }
 
       int numberOfCoord = 0;
@@ -147,7 +147,7 @@ void loadVectorVertexRef(CStorageNode::TSTREAM &stream, CStreamVersion &version,
 
       for (int j = 0; j < numberOfCoord; ++j)
       {
-        stream >> dummy_coord;
+    stream >> dummy_coord;
       }
 
       const CGocadData::CVertex *pVertex = parent.VertexID(id);
@@ -156,14 +156,14 @@ void loadVectorVertexRef(CStorageNode::TSTREAM &stream, CStreamVersion &version,
       dummy.clear();
 
       vector.push_back(pVertex);
-    }
+  }
   }
   else
   {
-    int id;
+  int id;
 
-    for (int i = 0; i < size; ++i)
-    {
+  for (int i = 0; i < size; ++i)
+  {
       stream >> id;
 
       const CGocadData::CVertex *pVertex = parent.VertexID(id);
@@ -171,7 +171,7 @@ void loadVectorVertexRef(CStorageNode::TSTREAM &stream, CStreamVersion &version,
       assert(pVertex);
 
       vector.push_back(pVertex);
-    }
+  }
   }
 }
 
@@ -184,16 +184,16 @@ void loadNodesRef(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStora
 
   if (version < CStreamVersion(4, 1, 12))
   {
-    // complete data instead of reference was erroneously written, so now we have to dummy read that data
-    // Note: LoadStream of base class CNode was called, so we miss the CAtom/CVertex dummies
+  // complete data instead of reference was erroneously written, so now we have to dummy read that data
+  // Note: LoadStream of base class CNode was called, so we miss the CAtom/CVertex dummies
 
-    std::vector<std::vector<double> > dummy;
+  std::vector<std::vector<double> > dummy;
 
-    const CGocadData::CNode *node = 0;
-    int what, id;
+  const CGocadData::CNode *node = 0;
+  int what, id;
 
-    for (int i = 0; i < numberOfNodes; ++i)
-    {
+  for (int i = 0; i < numberOfNodes; ++i)
+  {
       stream >> what;
       stream >> id;
 
@@ -202,53 +202,53 @@ void loadNodesRef(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStora
 
       if (numberOfOuterProperties > 0)
       {
-        dummy.resize(numberOfOuterProperties);
+    dummy.resize(numberOfOuterProperties);
 
-        for (int j = 0; j < numberOfOuterProperties; ++j)
-        {
+    for (int j = 0; j < numberOfOuterProperties; ++j)
+    {
           loadBasicVector(stream, version, progress, dummy[j]);
-        }
+    }
       }
 
       if (what == CGocadData::IS_VERTEX)
       {
-        node = ref.VertexID(id);
+    node = ref.VertexID(id);
       }
       else if (what == CGocadData::IS_ATOM)
       {
-        node = ref.AtomID(id);
+    node = ref.AtomID(id);
       }
       else
       {
-        assert(false);
+    assert(false);
       }
 
       assert(node);
       dummy.clear();
 
       nodes[i] = node;
-    }
+  }
   }
   else
   {
-    const CGocadData::CNode *node;
-    int id;
+  const CGocadData::CNode *node;
+  int id;
 
-    for (int i = 0; i < numberOfNodes; ++i)
-    {
+  for (int i = 0; i < numberOfNodes; ++i)
+  {
       stream >> id;
 
       node = ref.VertexID(id);
 
       if (!node)
       {
-        node = ref.AtomID(id);
+    node = ref.AtomID(id);
       }
 
       assert(node);
 
       nodes[i] = node;
-    }
+  }
   }
 }
 
@@ -261,14 +261,14 @@ void loadMap(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNod
 
   for (int i = 0; i < size; ++i)
   {
-    int key;
+  int key;
 
-    stream >> key;
+  stream >> key;
 
-    Type *value = new Type;
+  Type *value = new Type;
 
-    value->LoadStream(stream, version, progress, parent);
-    map[key] = value;
+  value->LoadStream(stream, version, progress, parent);
+  map[key] = value;
   }
 }
 
@@ -281,7 +281,7 @@ void saveVector(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &progress
 
   for (int i = 0; i < size; ++i)
   {
-    vector[i]->SaveStream(stream, progress);
+  vector[i]->SaveStream(stream, progress);
   }
 }
 
@@ -294,7 +294,7 @@ void saveVectorRef(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &/*pro
 
   for (int i = 0; i < size; ++i)
   {
-    stream << vector[i]->ID();
+  stream << vector[i]->ID();
   }
 }
 
@@ -307,7 +307,7 @@ void saveBasicVector(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &/*p
 
   for (int i = 0; i < size; ++i)
   {
-    stream << vector[i];
+  stream << vector[i];
   }
 }
 
@@ -320,7 +320,7 @@ void saveNodesRef(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &/*prog
 
   for (int i = 0; i < numberOfNodes; ++i)
   {
-    stream << nodes[i]->ID();
+  stream << nodes[i]->ID();
   }
 
 }
@@ -334,8 +334,8 @@ void saveMap(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &progress, M
 
   for (typename M::const_iterator iterator = map.begin(); iterator != map.end(); ++iterator)
   {
-    stream << iterator->first;
-    iterator->second->SaveStream(stream, progress);
+  stream << iterator->first;
+  iterator->second->SaveStream(stream, progress);
   }
 }
 
@@ -343,12 +343,12 @@ void fillNodes(std::vector<const CGocadData::CNode *>& nodes, CGocadData::IGoCad
 {
   for (CGocadData::IGoCadTypes::TVertexMap::const_iterator vertex = vertexIDs.begin(); vertex != vertexIDs.end(); ++vertex)
   {
-    nodes.push_back(vertex->second);
+  nodes.push_back(vertex->second);
   }
 
   for (CGocadData::IGoCadTypes::TAtomMap::const_iterator atom = atomIDs.begin(); atom != atomIDs.end(); ++atom)
   {
-    nodes.push_back(atom->second);
+  nodes.push_back(atom->second);
   }
 }
 
@@ -391,7 +391,7 @@ void CGocadData::CNode::LoadStream(CStorageNode::TSTREAM& stream,
 
   for (int i = 0; i < numberOfOuterProperties; ++i)
   {
-    loadBasicVector(stream, version, progress, m_vcProperties[i]);
+  loadBasicVector(stream, version, progress, m_vcProperties[i]);
   }
 }
 
@@ -405,7 +405,7 @@ void CGocadData::CNode::SaveStream(CStorageNode::TSTREAM& stream, CStorageNode::
 
   for (int i = 0; i < numberOfOuterProperties; ++i)
   {
-    saveBasicVector(stream, progress, m_vcProperties[i]);
+  saveBasicVector(stream, progress, m_vcProperties[i]);
   }
 }
 
@@ -435,7 +435,7 @@ void CGocadData::CVertex::LoadStream(CStorageNode::TSTREAM& stream, CStreamVersi
 
   for (int i = 0; i < numberOfCoord; ++i)
   {
-    stream >> m_dCoord[i];
+  stream >> m_dCoord[i];
   }
 }
 
@@ -449,7 +449,7 @@ void CGocadData::CVertex::SaveStream(CStorageNode::TSTREAM& stream, CStorageNode
 
   for (int i = 0; i < numberOfCoord; ++i)
   {
-    stream << m_dCoord[i];
+  stream << m_dCoord[i];
   }
 }
 
@@ -591,7 +591,7 @@ void CGocadData::CTetra::LoadStream(CStorageNode::TSTREAM& stream, CStreamVersio
 
   for (int i = 0; i < numberOfOuterProperties; ++i)
   {
-    loadBasicVector(stream, version, progress, m_vcProperties[i]);
+  loadBasicVector(stream, version, progress, m_vcProperties[i]);
   }
 }
 
@@ -605,7 +605,7 @@ void CGocadData::CTetra::SaveStream(CStorageNode::TSTREAM& stream, CStorageNode:
 
   for (int i = 0; i < numberOfOuterProperties; ++i)
   {
-    saveBasicVector(stream, progress, m_vcProperties[i]);
+  saveBasicVector(stream, progress, m_vcProperties[i]);
   }
 }
 
@@ -615,7 +615,7 @@ CGocadData::CTriangle::CTriangle(const CTriangle& rhs)
 {
   for (size_t s = 0; s < 3; ++s)
   {
-    m_Nodes[s] = rhs.m_Nodes[s];
+  m_Nodes[s] = rhs.m_Nodes[s];
   }
 }
 
@@ -820,9 +820,9 @@ CGocadData::IGoCadTypes::IGoCadTypes()
 CGocadData::IGoCadTypes::~IGoCadTypes()
 {
   for (std::vector<const CNode *>::iterator it = m_vcNodes.begin(); it != m_vcNodes.end(); ++it)
-    delete (*it);
+  delete (*it);
   for (TSharedVertexMap::iterator it = m_mpSharedVertexIDs.begin(); it != m_mpSharedVertexIDs.end(); ++it)
-    delete it->second;
+  delete it->second;
 }
 
 
@@ -890,10 +890,10 @@ const CGocadData::CNode *CGocadData::IGoCadTypes::NodeID(int i) const
   const CGocadData::CNode *pNode = VertexID(i);
 
   if (!pNode)
-    pNode = AtomID(i);
+  pNode = AtomID(i);
 
   if (!pNode)
-    pNode = SharedVertexID(i);
+  pNode = SharedVertexID(i);
 
   return pNode;
 }
@@ -927,7 +927,7 @@ void CGocadData::IGoCadTypes::LoadStream(CStorageNode::TSTREAM& stream,
 
   for (int i = 0; i < numberOfUnitFactor; ++i)
   {
-    stream >> m_dUnitFactor[i];
+  stream >> m_dUnitFactor[i];
   }
 
   stream >> m_strName;
@@ -943,7 +943,7 @@ void CGocadData::IGoCadTypes::LoadStream(CStorageNode::TSTREAM& stream,
 
   if (version > CStreamVersion(4, 1, 55))
   {
-    loadMap<CSharedVertex>(stream, version, progress, m_mpSharedVertexIDs, *this);
+  loadMap<CSharedVertex>(stream, version, progress, m_mpSharedVertexIDs, *this);
   }
 
   //fillVertexReferences(m_mpAtomIDs, m_mpVertexIDs);
@@ -961,7 +961,7 @@ void CGocadData::IGoCadTypes::SaveStream(CStorageNode::TSTREAM& stream,
 
   for (int i = 0; i < numberOfUnitFactor; ++i)
   {
-    stream << m_dUnitFactor[i];
+  stream << m_dUnitFactor[i];
   }
 
   stream << m_strName;
@@ -1077,21 +1077,21 @@ void CGocadData::CTSolid::MinMaxNodeIDs(int & minID, int & maxID) const
 
   for (TVertexMap::const_iterator it = m_mpVertexIDs.begin(); it != m_mpVertexIDs.end(); ++it)
   {
-    int id = it->second->ID();
-    if (id < minID) minID = id;
-    if (id > maxID) maxID = id;
+  int id = it->second->ID();
+  if (id < minID) minID = id;
+  if (id > maxID) maxID = id;
   }
   for (TAtomMap::const_iterator it = m_mpAtomIDs.begin(); it != m_mpAtomIDs.end(); ++it)
   {
-    int id = it->second->ID();
-    if (id < minID) minID = id;
-    if (id > maxID) maxID = id;
+  int id = it->second->ID();
+  if (id < minID) minID = id;
+  if (id > maxID) maxID = id;
   }
   for (TSharedVertexMap::const_iterator it = m_mpSharedVertexIDs.begin(); it != m_mpSharedVertexIDs.end(); ++it)
   {
-    int id = it->second->ID();
-    if (id < minID) minID = id;
-    if (id > maxID) maxID = id;
+  int id = it->second->ID();
+  if (id < minID) minID = id;
+  if (id > maxID) maxID = id;
   }
 }
 
@@ -1156,13 +1156,13 @@ void transform(const CGocadData::CNode& old_data, struct SKUAParseData::Vertex& 
 
   if (old_data.Type() == CGocadData::IS_VERTEX)
   {
-    new_data.coordinate[0] = old_data.Y(); // SKUA has X/Y switched, and we keep it as in SKUA
-    new_data.coordinate[1] = old_data.X();
-    new_data.coordinate[2] = old_data.Z();
+  new_data.coordinate[0] = old_data.Y(); // SKUA has X/Y switched, and we keep it as in SKUA
+  new_data.coordinate[1] = old_data.X();
+  new_data.coordinate[2] = old_data.Z();
   }
   else
   {
-    new_data.link = old_data.Vertex().ID();
+  new_data.link = old_data.Vertex().ID();
   }
 }
 
@@ -1178,21 +1178,21 @@ void transform(const CGocadData::CTVolume& old_data, struct SKUAParseData& new_d
 
   for (int i = 0; i < old_data.TetraSize(); ++i)
   {
-    volumes[i] = (int)new_data.tetras.size();
-    
-    new_data.tetras.emplace_back(SKUAParseData::Tetra());
+  volumes[i] = (int)new_data.tetras.size();
+  
+  new_data.tetras.emplace_back(SKUAParseData::Tetra());
 
-    const CGocadData::CTetra& old_tetra = old_data.Tetra(i);
-    SKUAParseData::Tetra& new_tetra = new_data.tetras.back();
+  const CGocadData::CTetra& old_tetra = old_data.Tetra(i);
+  SKUAParseData::Tetra& new_tetra = new_data.tetras.back();
 
-    for (int j = 0; j < 4; ++j)
-    {
+  for (int j = 0; j < 4; ++j)
+  {
       new_tetra.model_region = model_region;
       new_tetra.node[j] = new_data.find_node(old_tetra.Node(j).ID());
       new_tetra.opposite_signs[j] = 1;
       new_tetra.opposite_types[j] = 0;
       new_tetra.opposite_faces[j] = -1;
-    }
+  }
   }
 
   new_data.model_region_names.push_back(SKUAParseData::String(model_region, old_data.Name().toStdString().c_str()));
@@ -1218,18 +1218,18 @@ void transform(const CGocadData::CSurface& old_data, struct SKUAParseData& new_d
   size_t triangle_size = 0;
 
   for (int i = 0; i < old_data.TFaceSize(); ++i)
-    triangle_size += old_data.TFace(i).TriangleSize();
+  triangle_size += old_data.TFace(i).TriangleSize();
 
   surface.reserve(triangle_size);
-    
+  
   for (int i = 0; i < old_data.TFaceSize(); ++i)
   {
-    const CGocadData::CTFace& old_face = old_data.TFace(i);
+  const CGocadData::CTFace& old_face = old_data.TFace(i);
 
-    int old_triangle_size = old_face.TriangleSize();
+  int old_triangle_size = old_face.TriangleSize();
 
-    if (old_triangle_size > 0)
-    {
+  if (old_triangle_size > 0)
+  {
       faces.emplace_back(SKUAParseData::Face());
 
       SKUAParseData::Face& new_face = faces.back();
@@ -1238,25 +1238,25 @@ void transform(const CGocadData::CSurface& old_data, struct SKUAParseData& new_d
       face_names.emplace_back(SKUAParseData::String(new_face.id, old_face.Name().toStdString().c_str()));
 
       for (int j = 0; j < 3; ++j)
-        new_face.key_vertices[j] = new_data.find_node(old_face.Triangle(0).Node(j).ID());
+    new_face.key_vertices[j] = new_data.find_node(old_face.Triangle(0).Node(j).ID());
 
       new_face.triangle = (int)surface.size();
       new_face.type = type;
 
       for (int j = 0; j < old_triangle_size; ++j)
       {
-        const CGocadData::CTriangle& old_triangle = old_face.Triangle(j);
+    const CGocadData::CTriangle& old_triangle = old_face.Triangle(j);
 
-        surface.emplace_back(SKUAParseData::Triangle());
+    surface.emplace_back(SKUAParseData::Triangle());
 
-        ++new_face.size;
+    ++new_face.size;
 
-        SKUAParseData::Triangle& new_triangle = surface.back();
+    SKUAParseData::Triangle& new_triangle = surface.back();
 
-        for (int k = 0; k < 3; ++k)
+    for (int k = 0; k < 3; ++k)
           new_triangle.node[k] = new_data.find_node(old_triangle.Node(k).ID());
       }
-    }
+  }
   }
 }
 
@@ -1267,7 +1267,7 @@ void transform_vertex_properties(const CGocadData::CTSolid& old_data, struct SKU
   props.size = old_data.PropertiesSize();
 
   if (props.size == 0)
-    return;
+  return;
 
   props.names.reserve(props.size);
   props.esizes.reserve(props.size);
@@ -1275,13 +1275,13 @@ void transform_vertex_properties(const CGocadData::CTSolid& old_data, struct SKU
   props.units.reserve(props.size);
 
   for (int i = 0; i < old_data.PropertiesSize(); ++i)
-    props.names.emplace_back(SKUAParseData::String(i, old_data.PropertyName(i).toStdString().c_str()));
+  props.names.emplace_back(SKUAParseData::String(i, old_data.PropertyName(i).toStdString().c_str()));
   for (int i = 0; i < old_data.ESizeSize(); ++i)
-    props.esizes.emplace_back(old_data.ESize(i));
+  props.esizes.emplace_back(old_data.ESize(i));
   for (int i = 0; i < old_data.NoDataValueSize(); ++i)
-    props.no_data_values.emplace_back(old_data.NoDataValue(i));
+  props.no_data_values.emplace_back(old_data.NoDataValue(i));
   for (int i = 0; i < old_data.PropertiesSize(); ++i)
-    props.units.emplace_back(SKUAParseData::String(i, ""));
+  props.units.emplace_back(SKUAParseData::String(i, ""));
 
   size_t prop_size = 0;
 
@@ -1291,30 +1291,30 @@ void transform_vertex_properties(const CGocadData::CTSolid& old_data, struct SKU
 
   for (int i = 0; i < prop_size; ++i)
   {
-    props.values.emplace_back(std::vector<double>());
-    props.values.back().reserve(new_data.vertices.size());
+  props.values.emplace_back(std::vector<double>());
+  props.values.back().reserve(new_data.vertices.size());
   }
 
   size_t value_index = 0;
 
   for (int i = minID; i <= maxID; ++i)
   {
-    const CGocadData::CNode *old_node = old_data.NodeID(i);
+  const CGocadData::CNode *old_node = old_data.NodeID(i);
 
-    if (!old_node)
+  if (!old_node)
       continue;
 
-    size_t prop_index = 0;
-    for (int j = 0; j < old_node->PropertySize(); ++j)
-    {
+  size_t prop_index = 0;
+  for (int j = 0; j < old_node->PropertySize(); ++j)
+  {
       const std::vector<double>& old_values = old_node->Property(j);
 
       for (std::vector<double>::const_iterator it = old_values.begin(); it != old_values.end(); ++it)
       {
-        props.values[prop_index++].emplace_back(*it);
+    props.values[prop_index++].emplace_back(*it);
       }
-    }
-    ++value_index;
+  }
+  ++value_index;
   }
 }
 
@@ -1325,7 +1325,7 @@ void transform_tetra_properties(const CGocadData::CTSolid& old_data, struct SKUA
   props.size = old_data.TetraPropertiesSize();
 
   if (props.size == 0)
-    return;
+  return;
 
   props.names.reserve(props.size);
   props.esizes.reserve(props.size);
@@ -1334,13 +1334,13 @@ void transform_tetra_properties(const CGocadData::CTSolid& old_data, struct SKUA
   props.values.reserve(props.size);
 
   for (int i = 0; i < old_data.TetraPropertiesSize(); ++i)
-    props.names.emplace_back(SKUAParseData::String(i, old_data.TetraPropertyName(i).toStdString().c_str()));
+  props.names.emplace_back(SKUAParseData::String(i, old_data.TetraPropertyName(i).toStdString().c_str()));
   for (int i = 0; i < old_data.TetraESizeSize(); ++i)
-    props.esizes.emplace_back(old_data.TetraESize(i));
+  props.esizes.emplace_back(old_data.TetraESize(i));
   for (int i = 0; i < old_data.TetraNoDataValueSize(); ++i)
-    props.no_data_values.emplace_back(old_data.TetraNoDataValue(i));
+  props.no_data_values.emplace_back(old_data.TetraNoDataValue(i));
   for (int i = 0; i < old_data.TetraPropertiesSize(); ++i)
-    props.units.emplace_back(SKUAParseData::String(i, ""));
+  props.units.emplace_back(SKUAParseData::String(i, ""));
 
   size_t prop_size = 0;
 
@@ -1350,31 +1350,31 @@ void transform_tetra_properties(const CGocadData::CTSolid& old_data, struct SKUA
 
   for (int i = 0; i < prop_size; ++i)
   {
-    props.values.emplace_back(std::vector<double>());
-    props.values.back().reserve(new_data.tetras.size());
+  props.values.emplace_back(std::vector<double>());
+  props.values.back().reserve(new_data.tetras.size());
   }
 
   size_t value_index = 0;
   for (int i = 0; i < old_data.VolumeSize(); ++i)
   {
-    const CGocadData::CTVolume& old_volume = old_data.Volume(i);
+  const CGocadData::CTVolume& old_volume = old_data.Volume(i);
 
-    for (int j = 0; j < old_volume.TetraSize(); ++j)
-    {
+  for (int j = 0; j < old_volume.TetraSize(); ++j)
+  {
       const CGocadData::CTetra& old_tetra = old_volume.Tetra(j);
 
       size_t prop_index = 0;
       for (int k = 0; k < old_tetra.PropertySize(); ++k)
       {
-        const std::vector<double>& old_values = old_tetra.Property(k);
+    const std::vector<double>& old_values = old_tetra.Property(k);
 
-        for (std::vector<double>::const_iterator it = old_values.begin(); it != old_values.end(); ++it)
-        {
+    for (std::vector<double>::const_iterator it = old_values.begin(); it != old_values.end(); ++it)
+    {
           props.values[prop_index++].emplace_back(*it);
-        }
+    }
       }
       ++value_index;
-    }
+  }
   }
 }
 
@@ -1405,8 +1405,8 @@ void transform(const CGocadData::CTSolid& old_data, struct SKUAParseData& new_da
 
   for (int i = minID; i <= maxID; ++i)
   {
-    const CGocadData::CNode *node = old_data.NodeID(i);
-    if (node)
+  const CGocadData::CNode *node = old_data.NodeID(i);
+  if (node)
       transform(*node, vertices[vertex_idx++]);
   }
 
@@ -1418,7 +1418,7 @@ void transform(const CGocadData::CTSolid& old_data, struct SKUAParseData& new_da
   new_data.model_region_names.reserve(old_data.VolumeSize());
 
   for (int i = 0; i < old_data.VolumeSize(); ++i)
-    transform(old_data.Volume(i), new_data);
+  transform(old_data.Volume(i), new_data);
 
   // surfaces
   new_data.surfaces.reserve(old_data.SurfaceSize());
@@ -1428,11 +1428,11 @@ void transform(const CGocadData::CTSolid& old_data, struct SKUAParseData& new_da
 
   size_t faces = 0;
   for (int i = 0; i < old_data.SurfaceSize(); ++i)
-    faces += old_data.Surface(i).TFaceSize();
+  faces += old_data.Surface(i).TFaceSize();
   new_data.face_names.reserve(faces);
 
   for (int i = 0; i < old_data.SurfaceSize(); ++i)
-    transform(old_data.Surface(i), new_data);
+  transform(old_data.Surface(i), new_data);
 
   // properties
   transform_vertex_properties(old_data, new_data, minID, maxID);

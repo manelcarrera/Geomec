@@ -1,10 +1,10 @@
 /*************************************************************************
 
-        cBagRescueTriangleVertex.h
+    cBagRescueTriangleVertex.h
 
  Keeps a list of pointers to RescueTriangleVertex.
 
-        Rod Hanks               June, 1999
+    Rod Hanks               June, 1999
 
 ****************************************************************************/
 

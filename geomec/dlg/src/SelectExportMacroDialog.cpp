@@ -43,12 +43,12 @@ BOOL CSelectExportMacroDialog::OnInitDialog()
   CDialog::OnInitDialog();
 
   for (CGraphEntry::TEntryNodeSet::const_iterator iterator =
-    m_entryNodeSet.begin(); iterator != m_entryNodeSet.end(); ++iterator)
+  m_entryNodeSet.begin(); iterator != m_entryNodeSet.end(); ++iterator)
   {
-    int index = m_selectExportMacrosList.AddString(
+  int index = m_selectExportMacrosList.AddString(
       (*iterator)->Name().toStdString().c_str());
 
-    m_selectExportMacrosList.SetItemData(index, (DWORD_PTR) *iterator);
+  m_selectExportMacrosList.SetItemData(index, (DWORD_PTR) *iterator);
   }
 
   OnLbnSelcancelSelectExportMacroList();

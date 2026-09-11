@@ -83,8 +83,8 @@ bool CElementPoint::RemoveElement(const IElement& element)
   std::set<const IElement*>::iterator it = m_stElements.find(&element);
   if(it != m_stElements.end())
   {
-    m_stElements.erase(it);
-    return true;
+  m_stElements.erase(it);
+  return true;
   }
 
   return false;

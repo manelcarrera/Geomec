@@ -56,13 +56,13 @@ void CReferenceUndo::undo( CDocumentBase& document )
   IModelObject& reference = *m_referenceLocation.getObject( document );
 
   if ( m_remove ) {
-    // undo remove
-    const IModelObject* before = 0;
-    if ( m_index < object.referenceSize() )
+  // undo remove
+  const IModelObject* before = 0;
+  if ( m_index < object.referenceSize() )
       before = &object.referenceAt( m_index );
-    object.insertReference( reference, before );
+  object.insertReference( reference, before );
   } else {
-    // undo insert
-    object.removeReference( reference );
+  // undo insert
+  object.removeReference( reference );
   }
 }

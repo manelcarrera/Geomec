@@ -15,7 +15,7 @@ CBoundaryInterfaceDef_Delegate::CBoundaryInterfaceDef_Delegate(
 bool CBoundaryInterfaceDef_Delegate::Attributes()
 {
   CIntFaceAttrDlg dlg(*m_boundaryInterfaceDef,
-    GetGeomecDoc()->UnitNode().Unit());
+  GetGeomecDoc()->UnitNode().Unit());
 
   return (dlg.DoModal() == IDOK);
 }

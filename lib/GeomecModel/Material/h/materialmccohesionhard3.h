@@ -7,11 +7,11 @@
 class CMaterialMCCohesionHard3 : public CMaterialMohrCo
 {
 public:
-	CMaterialMCCohesionHard3(CMaterialEntry &entry, CLibraryMaterial& libmat);
-	CMaterialMCCohesionHard3(const CMaterialMCCohesionHard3& material, CMaterialEntry &entry);
+  CMaterialMCCohesionHard3(CMaterialEntry &entry, CLibraryMaterial& libmat);
+  CMaterialMCCohesionHard3(const CMaterialMCCohesionHard3& material, CMaterialEntry &entry);
 
-	virtual bool Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const;
-	virtual int MaterialModel() const { return MM_MC_COHESION_HARD3; }
+  virtual bool Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const;
+  virtual int MaterialModel() const { return MM_MC_COHESION_HARD3; }
   virtual long MaterialModelFilter() const { return MLFO_MC_COHESION_HARD3; }
 
   // the creator for this material model

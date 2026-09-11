@@ -15,14 +15,14 @@
 class CMeshRegionBase : public CColorNode 
 {
 public:
-	CMeshRegionBase(CFemAppModel& model);
-	CMeshRegionBase(const QString &strName, CFemAppModel& model);
-	CMeshRegionBase(const unsigned int uName, CFemAppModel& model);
-	CMeshRegionBase(const CMeshRegionBase &rhs);
-	CMeshRegionBase& operator=(const CMeshRegionBase &rhs);
-	bool operator==(const CMeshRegionBase &rhs) const;
-	virtual unsigned int TypeId() const;
-	virtual QString TypeName() const;
+  CMeshRegionBase(CFemAppModel& model);
+  CMeshRegionBase(const QString &strName, CFemAppModel& model);
+  CMeshRegionBase(const unsigned int uName, CFemAppModel& model);
+  CMeshRegionBase(const CMeshRegionBase &rhs);
+  CMeshRegionBase& operator=(const CMeshRegionBase &rhs);
+  bool operator==(const CMeshRegionBase &rhs) const;
+  virtual unsigned int TypeId() const;
+  virtual QString TypeName() const;
 
   ACCEPT_GEOMECMODELVISITORS(VisitMeshRegionBase);
 };

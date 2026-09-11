@@ -18,27 +18,27 @@
 
 class OPENGLFRAME_EXPORT CSphereSymbol : public ISymbol  
 {
-	geo::CPoint m_location;
-	geo::CPtrArray<geo::IObject> m_geometry;
+  geo::CPoint m_location;
+  geo::CPtrArray<geo::IObject> m_geometry;
 
 public:
-	CSphereSymbol(const geo::IPoint &location, const double& radius);
-	virtual ~CSphereSymbol();
+  CSphereSymbol(const geo::IPoint &location, const double& radius);
+  virtual ~CSphereSymbol();
 
-	//ISymbol interface
-	virtual int NrOfPositions() const;
-	virtual const geo::IPoint& Position(int Index) const;
-	virtual const geo::IArray& Geometry() const;
-	virtual const geo::IPoint& PivotPoint() const;
+  //ISymbol interface
+  virtual int NrOfPositions() const;
+  virtual const geo::IPoint& Position(int Index) const;
+  virtual const geo::IArray& Geometry() const;
+  virtual const geo::IPoint& PivotPoint() const;
 
-	//IObject interface
-	virtual void Rotate(const geo::IVector &/*vec*/, const double &/*dAngleDeg*/){assert(false);}
-	virtual void Move(const geo::IVector &/*vec*/){assert(false);}
-	virtual void Transform(const geo::IMatrix &/*matrix*/){assert(false);}
-	virtual void AssertValid() const;
-	virtual bool Empty() const;
-	virtual geo::CPoint Min() const;
-	virtual geo::CPoint Max() const;
+  //IObject interface
+  virtual void Rotate(const geo::IVector &/*vec*/, const double &/*dAngleDeg*/){assert(false);}
+  virtual void Move(const geo::IVector &/*vec*/){assert(false);}
+  virtual void Transform(const geo::IMatrix &/*matrix*/){assert(false);}
+  virtual void AssertValid() const;
+  virtual bool Empty() const;
+  virtual geo::CPoint Min() const;
+  virtual geo::CPoint Max() const;
 
 };
 

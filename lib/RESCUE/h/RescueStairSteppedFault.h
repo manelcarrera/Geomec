@@ -27,10 +27,10 @@ struct RescueIJKCellPair
   RESCUEINT64 j2;                   //            1 - positive I face,
   RESCUEINT64 k2;                   //            2 - positive J face,
   RESCUEINT64 face2;                //            3 - positive K face,
-                            //           -1 - negative I face,
-                            //           -2 - negative J face,
-                            //           -3 - negative K face.
-                            //            0 - old model or face not given.
+              //           -1 - negative I face,
+              //           -2 - negative J face,
+              //           -3 - negative K face.
+              //            0 - old model or face not given.
   RESCUEINT64 lgrid2;               // 0 if primary geometry.  -1 if old model.
 };
 

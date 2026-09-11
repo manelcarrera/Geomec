@@ -11,7 +11,7 @@ static int IndexOf(const CFormationBase& formation, const std::vector<const CFor
   int i;
   for(i = 0; i < vcFormations.size(); ++i)
   {
-    if(vcFormations[i] == &formation)
+  if(vcFormations[i] == &formation)
       return i;
   }
 
@@ -44,7 +44,7 @@ void CAttriWellZoomInModelDlg::DoDataExchange(CDataExchange* pDX)
 
   CString strUnit;
   double dRadius;
-	CLengthQuantity qnLength;
+  CLengthQuantity qnLength;
 
   int nStartMethod;
   double dStartAHD =  -9999;
@@ -62,64 +62,64 @@ void CAttriWellZoomInModelDlg::DoDataExchange(CDataExchange* pDX)
 
   if(!pDX->m_bSaveAndValidate)
   {
-    switch(globalUnitNode.unitNode().Unit())
-    {
-		case CQuantity::SI_UNIT:
-			strUnit.Format("m");
-			break;
-		case CQuantity::FIELD_UNIT:
-			strUnit.Format("ft");
-			break;
-    }
+  switch(globalUnitNode.unitNode().Unit())
+  {
+    case CQuantity::SI_UNIT:
+      strUnit.Format("m");
+      break;
+    case CQuantity::FIELD_UNIT:
+      strUnit.Format("ft");
+      break;
+  }
 
-    dRadius = qnLength.Convert(m_dRadius, globalUnitNode.unitNode().Unit(), CQuantity::SI_UNIT);
+  dRadius = qnLength.Convert(m_dRadius, globalUnitNode.unitNode().Unit(), CQuantity::SI_UNIT);
 
-    nStartMethod = int(m_pStartPosition->Method());
-    dStartAHD = qnLength.Convert(m_pStartPosition->AHD(), globalUnitNode.unitNode().Unit(), CQuantity::SI_UNIT);
-    if(m_pStartPosition->InsideFormation())
-    {
+  nStartMethod = int(m_pStartPosition->Method());
+  dStartAHD = qnLength.Convert(m_pStartPosition->AHD(), globalUnitNode.unitNode().Unit(), CQuantity::SI_UNIT);
+  if(m_pStartPosition->InsideFormation())
+  {
       nStartFormation = IndexOf(m_pStartPosition->Formation(), vcFormations);
       strStartFormation = m_pStartPosition->Formation().Name().toStdString().c_str();
-    }
-    else
-    {
+  }
+  else
+  {
       nStartFormation = -1;
       strStartFormation = "<outside parent model>";
-    }
+  }
 
-    GetDlgItem(IDC_ED_START_AHD)->EnableWindow(nStartMethod == IWellModel::CPositionDef::PDM_AHD);
-    GetDlgItem(IDC_UNIT_START_AHD)->EnableWindow(nStartMethod == IWellModel::CPositionDef::PDM_AHD);
-    GetDlgItem(IDC_COMBO_START_FORMATION)->EnableWindow(nStartMethod == IWellModel::CPositionDef::PDM_FORMATION);
+  GetDlgItem(IDC_ED_START_AHD)->EnableWindow(nStartMethod == IWellModel::CPositionDef::PDM_AHD);
+  GetDlgItem(IDC_UNIT_START_AHD)->EnableWindow(nStartMethod == IWellModel::CPositionDef::PDM_AHD);
+  GetDlgItem(IDC_COMBO_START_FORMATION)->EnableWindow(nStartMethod == IWellModel::CPositionDef::PDM_FORMATION);
 
-    nEndMethod = int(m_pEndPosition->Method());
-    dEndAHD = qnLength.Convert(m_pEndPosition->AHD(), globalUnitNode.unitNode().Unit(), CQuantity::SI_UNIT);
-    if(m_pEndPosition->InsideFormation())
-    {
+  nEndMethod = int(m_pEndPosition->Method());
+  dEndAHD = qnLength.Convert(m_pEndPosition->AHD(), globalUnitNode.unitNode().Unit(), CQuantity::SI_UNIT);
+  if(m_pEndPosition->InsideFormation())
+  {
       nEndFormation = IndexOf(m_pEndPosition->Formation(), vcFormations);
       strEndFormation = m_pEndPosition->Formation().Name().toStdString().c_str();
-    }
-    else
-    {
+  }
+  else
+  {
       nEndFormation = -1;
       strEndFormation = "<outside parent model>";
-    }
+  }
 
-    GetDlgItem(IDC_ED_END_AHD)->EnableWindow(nEndMethod == IWellModel::CPositionDef::PDM_AHD);
-    GetDlgItem(IDC_UNIT_END_AHD)->EnableWindow(nEndMethod == IWellModel::CPositionDef::PDM_AHD);
-    GetDlgItem(IDC_COMBO_END_FORMATION)->EnableWindow(nEndMethod == IWellModel::CPositionDef::PDM_FORMATION);
+  GetDlgItem(IDC_ED_END_AHD)->EnableWindow(nEndMethod == IWellModel::CPositionDef::PDM_AHD);
+  GetDlgItem(IDC_UNIT_END_AHD)->EnableWindow(nEndMethod == IWellModel::CPositionDef::PDM_AHD);
+  GetDlgItem(IDC_COMBO_END_FORMATION)->EnableWindow(nEndMethod == IWellModel::CPositionDef::PDM_FORMATION);
 
-    bool bInsideModel = (m_pStartPosition->InsideFormation() && m_pEndPosition->InsideFormation());
-    bool bStartToEnd = (m_pEndPosition->AHD() > m_pStartPosition->AHD());
-    bool bValidAHD = bInsideModel && bStartToEnd;
+  bool bInsideModel = (m_pStartPosition->InsideFormation() && m_pEndPosition->InsideFormation());
+  bool bStartToEnd = (m_pEndPosition->AHD() > m_pStartPosition->AHD());
+  bool bValidAHD = bInsideModel && bStartToEnd;
 
-    if(!bInsideModel)
+  if(!bInsideModel)
       GetDlgItem(IDC_INVALID_AHD_WARNING)->SetWindowText("Both the start AHD and the end AHD must be inside the parent model");
-    else if(!bStartToEnd)
+  else if(!bStartToEnd)
       GetDlgItem(IDC_INVALID_AHD_WARNING)->SetWindowText("The End AHD must be greater than the Start AHD");
-    else
+  else
       GetDlgItem(IDC_INVALID_AHD_WARNING)->SetWindowText("");
 
-    GetDlgItem(IDOK)->EnableWindow(bValidAHD);
+  GetDlgItem(IDOK)->EnableWindow(bValidAHD);
   }
 
   DDX_Text(pDX, IDC_UNIT_RADIUS, strUnit);
@@ -130,80 +130,80 @@ void CAttriWellZoomInModelDlg::DoDataExchange(CDataExchange* pDX)
   CString str, empty1, empty2;
   GetDlgItem(IDC_ED_START_AHD)->GetWindowText(str);
   if(!pDX->m_bSaveAndValidate && (nStartMethod != IWellModel::CPositionDef::PDM_AHD))
-    DDX_Text(pDX, IDC_ED_START_AHD, empty1);
+  DDX_Text(pDX, IDC_ED_START_AHD, empty1);
   else if(!pDX->m_bSaveAndValidate || !str.IsEmpty())
-    DDX_Text(pDX, IDC_ED_START_AHD, dStartAHD);
+  DDX_Text(pDX, IDC_ED_START_AHD, dStartAHD);
   else
-    dStartAHD = qnLength.Convert(m_pStartPosition->AHD(), globalUnitNode.unitNode().Unit(), CQuantity::SI_UNIT);
+  dStartAHD = qnLength.Convert(m_pStartPosition->AHD(), globalUnitNode.unitNode().Unit(), CQuantity::SI_UNIT);
 
   DDX_Text(pDX, IDC_UNIT_START_AHD, strUnit);
 
   if(!pDX->m_bSaveAndValidate && (nStartMethod != IWellModel::CPositionDef::PDM_FORMATION))
-    nStartFormation = -1;
+  nStartFormation = -1;
   DDX_CBIndex(pDX, IDC_COMBO_START_FORMATION, nStartFormation);
 
   if(!pDX->m_bSaveAndValidate)
   {
-    DDX_Text(pDX, IDC_LBL_START_AHD_RESULT, dStartAHD);
-    DDX_Text(pDX, IDC_UNIT_START_AHD_RESULT, strUnit);
-    DDX_Text(pDX, IDC_LBL_START_FORMATION_RESULT, strStartFormation);
+  DDX_Text(pDX, IDC_LBL_START_AHD_RESULT, dStartAHD);
+  DDX_Text(pDX, IDC_UNIT_START_AHD_RESULT, strUnit);
+  DDX_Text(pDX, IDC_LBL_START_FORMATION_RESULT, strStartFormation);
   }
 
   DDX_Radio(pDX, IDC_RADIO_END_DEFAULT, nEndMethod);
 
   GetDlgItem(IDC_ED_END_AHD)->GetWindowText(str);
   if(!pDX->m_bSaveAndValidate && (nEndMethod != IWellModel::CPositionDef::PDM_AHD))
-    DDX_Text(pDX, IDC_ED_END_AHD, empty2);
+  DDX_Text(pDX, IDC_ED_END_AHD, empty2);
   else if(!pDX->m_bSaveAndValidate || !str.IsEmpty())
-    DDX_Text(pDX, IDC_ED_END_AHD, dEndAHD);
+  DDX_Text(pDX, IDC_ED_END_AHD, dEndAHD);
   else
-    dEndAHD = qnLength.Convert(m_pEndPosition->AHD(), globalUnitNode.unitNode().Unit(), CQuantity::SI_UNIT);
+  dEndAHD = qnLength.Convert(m_pEndPosition->AHD(), globalUnitNode.unitNode().Unit(), CQuantity::SI_UNIT);
 
   DDX_Text(pDX, IDC_UNIT_END_AHD, strUnit);
 
   if(!pDX->m_bSaveAndValidate && (nEndMethod != IWellModel::CPositionDef::PDM_FORMATION))
-    nEndFormation = -1;
+  nEndFormation = -1;
   DDX_CBIndex(pDX, IDC_COMBO_END_FORMATION, nEndFormation);
 
   if(!pDX->m_bSaveAndValidate)
   {
-    DDX_Text(pDX, IDC_LBL_END_AHD_RESULT, dEndAHD);
-    DDX_Text(pDX, IDC_UNIT_END_AHD_RESULT, strUnit);
-    DDX_Text(pDX, IDC_LBL_END_FORMATION_RESULT, strEndFormation);
+  DDX_Text(pDX, IDC_LBL_END_AHD_RESULT, dEndAHD);
+  DDX_Text(pDX, IDC_UNIT_END_AHD_RESULT, strUnit);
+  DDX_Text(pDX, IDC_LBL_END_FORMATION_RESULT, strEndFormation);
   }
 
   if(pDX->m_bSaveAndValidate)
   {
-    if(dRadius <= 0)
-    {
+  if(dRadius <= 0)
+  {
       pDX->PrepareEditCtrl(IDC_ED_RADIUS);
       _m()->msg("The radius must be greater than 0");
       pDX->Fail();
-    }
+  }
 
-    m_dRadius = qnLength.Convert(dRadius, CQuantity::SI_UNIT, globalUnitNode.unitNode().Unit());
+  m_dRadius = qnLength.Convert(dRadius, CQuantity::SI_UNIT, globalUnitNode.unitNode().Unit());
 
-    if(nStartMethod == IWellModel::CPositionDef::PDM_DEFAULT)
+  if(nStartMethod == IWellModel::CPositionDef::PDM_DEFAULT)
       m_pStartPosition->SetDefault();
-    else if(nStartMethod == IWellModel::CPositionDef::PDM_AHD)
+  else if(nStartMethod == IWellModel::CPositionDef::PDM_AHD)
       m_pStartPosition->SetAHD(qnLength.Convert(dStartAHD, CQuantity::SI_UNIT, globalUnitNode.unitNode().Unit()));
-    else
-    {
+  else
+  {
       assert(nStartFormation == -1 || nStartFormation < vcFormations.size());
       if(nStartFormation >= 0)
-        m_pStartPosition->SetFormation(*vcFormations[nStartFormation]);
-    }
+    m_pStartPosition->SetFormation(*vcFormations[nStartFormation]);
+  }
 
-    if(nEndMethod == IWellModel::CPositionDef::PDM_DEFAULT)
+  if(nEndMethod == IWellModel::CPositionDef::PDM_DEFAULT)
       m_pEndPosition->SetDefault();
-    else if(nEndMethod == IWellModel::CPositionDef::PDM_AHD)
+  else if(nEndMethod == IWellModel::CPositionDef::PDM_AHD)
       m_pEndPosition->SetAHD(qnLength.Convert(dEndAHD, CQuantity::SI_UNIT, globalUnitNode.unitNode().Unit()));
-    else
-    {
+  else
+  {
       assert(nEndFormation == -1 || nEndFormation < vcFormations.size());
       if(nEndFormation >= 0)
-        m_pEndPosition->SetFormation(*vcFormations[nEndFormation]);
-    }
+    m_pEndPosition->SetFormation(*vcFormations[nEndFormation]);
+  }
   }
 }
 
@@ -224,8 +224,8 @@ BOOL CAttriWellZoomInModelDlg::OnInitDialog()
   CComboBox* pComboEnd   = (CComboBox*)GetDlgItem(IDC_COMBO_END_FORMATION);
   for(size_t i = 0; i < vcFormations.size(); ++i)
   {
-    pComboStart->AddString(vcFormations[i]->Name().toStdString().c_str());
-    pComboEnd->AddString(vcFormations[i]->Name().toStdString().c_str());
+  pComboStart->AddString(vcFormations[i]->Name().toStdString().c_str());
+  pComboEnd->AddString(vcFormations[i]->Name().toStdString().c_str());
   }
 
   UpdateData(FALSE);
@@ -235,36 +235,36 @@ BOOL CAttriWellZoomInModelDlg::OnInitDialog()
 
 void CAttriWellZoomInModelDlg::OnOK()
 {
-	if(UpdateData())
-	{
-    bool bSendModified = false;
-    if(!(m_model.StartPosition() == *m_pStartPosition))
-    {
+  if(UpdateData())
+  {
+  bool bSendModified = false;
+  if(!(m_model.StartPosition() == *m_pStartPosition))
+  {
       m_model.StartPosition() = *m_pStartPosition;
       bSendModified = true;
-    }
-    if(!(m_model.EndPosition() == *m_pEndPosition))
-    {
+  }
+  if(!(m_model.EndPosition() == *m_pEndPosition))
+  {
       m_model.EndPosition() = *m_pEndPosition;
       bSendModified = true;
-    }
+  }
 
-    if(m_model.Radius() != m_dRadius)
-    {
+  if(m_model.Radius() != m_dRadius)
+  {
       m_model.Radius(m_dRadius);
       bSendModified = false; // already done by Radius function
-    }
+  }
 
-    if(bSendModified)
+  if(bSendModified)
       m_model.Modified(GEOMETRY_CHANGED);
 
-		EndDialog(IDOK);
-	}
+    EndDialog(IDOK);
+  }
 }
 
 void CAttriWellZoomInModelDlg::PostNcDestroy()
 {
-	delete m_pStartPosition;
+  delete m_pStartPosition;
   delete m_pEndPosition;
 }
 
@@ -286,7 +286,7 @@ void CAttriWellZoomInModelDlg::OnStartFormation()
 {
   UpdateData(TRUE);
   if(!m_pStartPosition->InsideFormation())
-    m_pStartPosition->SetDefault();
+  m_pStartPosition->SetDefault();
   m_pStartPosition->SetFormation(m_pStartPosition->Formation());
   UpdateData(FALSE);
 }
@@ -315,7 +315,7 @@ void CAttriWellZoomInModelDlg::OnEndFormation()
 {
   UpdateData(TRUE);
   if(!m_pEndPosition->InsideFormation())
-    m_pEndPosition->SetDefault();
+  m_pEndPosition->SetDefault();
   m_pEndPosition->SetFormation(m_pEndPosition->Formation());
   UpdateData(FALSE);
 }
@@ -335,11 +335,11 @@ void CAttriWellZoomInModelDlg::OnChangeStartAHD()
   pWnd->GetWindowText(sText);
   double d;
   if((_sntscanf_s(sText, sText.GetLength(), _T("%lf"), &d) == 1) &&
-    (d != previousValue))
+  (d != previousValue))
   {
-    previousValue = d;
-    UpdateData(TRUE);
-    UpdateData(FALSE);
+  previousValue = d;
+  UpdateData(TRUE);
+  UpdateData(FALSE);
   }
 }
 
@@ -352,10 +352,10 @@ void CAttriWellZoomInModelDlg::OnChangeEndAHD()
   pWnd->GetWindowText(sText);
   double d;
   if((_sntscanf_s(sText, sText.GetLength(), _T("%lf"), &d) == 1) &&
-    (d != previousValue))
+  (d != previousValue))
   {
-    previousValue = d;
-    UpdateData(TRUE);
-    UpdateData(FALSE);
+  previousValue = d;
+  UpdateData(TRUE);
+  UpdateData(FALSE);
   }
 }

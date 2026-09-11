@@ -15,8 +15,8 @@ int main(int argc, char *argv[])
 
   for (int i = 1; i < argc; ++i)
   {
-    QStringList l = QString(argv[i]).split('=');
-    if (l.size() == 2 && l[0] == "name")
+  QStringList l = QString(argv[i]).split('=');
+  if (l.size() == 2 && l[0] == "name")
       name = l[1];
   }
 

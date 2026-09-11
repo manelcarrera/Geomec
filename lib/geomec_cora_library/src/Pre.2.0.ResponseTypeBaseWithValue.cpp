@@ -17,7 +17,7 @@ CPre20ResponseTypeBaseWithValue::CPre20ResponseTypeBaseWithValue(
   CSummaryResultFile& summaryResultFile, const std::vector <QString>& function)
 : CResponseTypeBaseValidate(summaryResultFile, function)
 , m_value(extractValue(summaryResultFile, function, LSF_LENGTH_WITH_VALUE,
-    VALUE_POSITION))
+  VALUE_POSITION))
 {
 }
 

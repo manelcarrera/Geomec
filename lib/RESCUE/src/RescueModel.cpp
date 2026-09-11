@@ -56,8 +56,8 @@ void RescueModel::DeletePropertyGroup(RescuePropertyGroup *existingPropertyGroup
   RescueModelPropertyGroup *group = propertyGroup->NthObject(ndx++);
   while (group != 0)
   {
-    group->RemoveGroup(existingPropertyGroup);
-    group = propertyGroup->NthObject(ndx++);
+  group->RemoveGroup(existingPropertyGroup);
+  group = propertyGroup->NthObject(ndx++);
   }
 }
 
@@ -110,25 +110,25 @@ void RescueModel::CommonInitialization(RescueContext *contextIn, const RESCUECHA
   registeredObjects = new RescueTree();
   if (coordinateSystem != 0)
   {
-    coordinateSystem->RegisterWith(this);
+  coordinateSystem->RegisterWith(this);
   }
   uintSize = sizeof(RESCUEUINT64);
   if (context->LittleEndian())
   {
-    uintSwap = TRUE;
+  uintSwap = TRUE;
   }
   else
   {
-    uintSwap = FALSE;
+  uintSwap = FALSE;
   }
   intSize = sizeof(RESCUEINT64);
   if (context->LittleEndian())
   {
-    intSwap = TRUE;
+  intSwap = TRUE;
   }
   else
   {
-    intSwap = FALSE;
+  intSwap = FALSE;
   }
   write32 = TRUE;
 }
@@ -142,29 +142,29 @@ void RescueModel::UnRegisterObject(RescueObject *toUnregister)
 {
   if (registeredObjects != 0)
   {
-    registeredObjects->Delete(toUnregister);
+  registeredObjects->Delete(toUnregister);
   }
 }
 
 RescueModel::RescueModel(RescueContext *contextIn, RESCUECHAR *modelNameIn)
-                    :RescueHistoryObject(contextIn)
-                    ,modelMoniker(0)
-                    ,coordinateSystem(0)
-                    ,units(0)
-                    ,blocks(0)
-                    ,horizons(0)
-                    ,wellbores(0)
-                    ,sections(0)
-                    ,referenceSurfaces(0)
-                    ,lookups(0)
-                    ,nameValuePairs(0)
-                    ,logicalOrder(0)
-                    ,wireframeCallBackObject(0)
-                    ,rotation((RESCUEFLOAT) 0)
-                    ,properties(0)
-                    ,propertyContainerId(0)
-                    ,documents(0)
-                    ,documentListId(0)
+          :RescueHistoryObject(contextIn)
+          ,modelMoniker(0)
+          ,coordinateSystem(0)
+          ,units(0)
+          ,blocks(0)
+          ,horizons(0)
+          ,wellbores(0)
+          ,sections(0)
+          ,referenceSurfaces(0)
+          ,lookups(0)
+          ,nameValuePairs(0)
+          ,logicalOrder(0)
+          ,wireframeCallBackObject(0)
+          ,rotation((RESCUEFLOAT) 0)
+          ,properties(0)
+          ,propertyContainerId(0)
+          ,documents(0)
+          ,documentListId(0)
 {
   CommonInitialization(contextIn, modelNameIn);
   colorTableList = new RescueColorTableList(context);
@@ -175,23 +175,23 @@ RescueModel::RescueModel(RescueContext *contextIn, RESCUECHAR *modelNameIn)
 RescueModel::RescueModel(RESCUECHAR *modelNameIn,
                          RescueCoordinateSystem *coordinateSystemIn)
                    :RescueHistoryObject(coordinateSystemIn->Context())
-                    ,modelMoniker(0)
-                    ,coordinateSystem(coordinateSystemIn)
-                    ,units(0)
-                    ,blocks(0)
-                    ,horizons(0)
-                    ,wellbores(0)
-                    ,sections(0)
-                    ,referenceSurfaces(0)
-                    ,lookups(0)
-                    ,nameValuePairs(0)
-                    ,logicalOrder(0)
-                    ,wireframeCallBackObject(0)
-                    ,rotation((RESCUEFLOAT) 0)
-                    ,properties(0)
-                    ,propertyContainerId(0)
-                    ,documents(0)
-                    ,documentListId(0)
+          ,modelMoniker(0)
+          ,coordinateSystem(coordinateSystemIn)
+          ,units(0)
+          ,blocks(0)
+          ,horizons(0)
+          ,wellbores(0)
+          ,sections(0)
+          ,referenceSurfaces(0)
+          ,lookups(0)
+          ,nameValuePairs(0)
+          ,logicalOrder(0)
+          ,wireframeCallBackObject(0)
+          ,rotation((RESCUEFLOAT) 0)
+          ,properties(0)
+          ,propertyContainerId(0)
+          ,documents(0)
+          ,documentListId(0)
 {
   CommonInitialization(coordinateSystemIn->Context(), modelNameIn);
   colorTableList = new RescueColorTableList(context);
@@ -202,109 +202,109 @@ RescueModel::~RescueModel()
 {
   if (gridGeometries != 0)
   {
-    delete gridGeometries;
+  delete gridGeometries;
   }
   if (blocks != 0)
   {
-    blocks->PrepareModelDelete();
+  blocks->PrepareModelDelete();
   }
   if (modelMoniker != 0)
   {
-    delete modelMoniker;
+  delete modelMoniker;
   }
   if (units != 0)
   {
-    delete units;
+  delete units;
   }
   if (blocks != 0)
   {
-    delete blocks;
+  delete blocks;
   }
   if (wellbores != 0)
   {
-    delete wellbores;
+  delete wellbores;
   }
   if (horizons != 0)
   {
-    delete horizons;
+  delete horizons;
   }
   if (sections != 0)
   {
-    delete sections;
+  delete sections;
   }
   if (referenceSurfaces != 0)
   {
-    delete referenceSurfaces;
+  delete referenceSurfaces;
   }
   if (lookups != 0)
   {
-    delete lookups;
+  delete lookups;
   }
   if (nameValuePairs != 0)
   {
-    delete nameValuePairs;
+  delete nameValuePairs;
   }
   if (currentPathName != 0)
   {
-    free(currentPathName);
+  free(currentPathName);
   }
   if (oldPathName != 0)
   {
-    free(oldPathName);
+  free(oldPathName);
   }
   if (propertyGroup != 0)
   {
-    delete propertyGroup;
+  delete propertyGroup;
   }
   if (registeredObjects != 0)
   {
-    RescueObject *object = (RescueObject *) registeredObjects->NthObject(0);
-    while (object != 0)
-    {
+  RescueObject *object = (RescueObject *) registeredObjects->NthObject(0);
+  while (object != 0)
+  {
       delete object;
       object = (RescueObject *) registeredObjects->NthObject(0);
-    }
-    delete registeredObjects;
+  }
+  delete registeredObjects;
   }
   if (history != 0)
   {
-    delete history;
+  delete history;
   }
   if (colorTableList != 0)
   {
-    delete colorTableList;
+  delete colorTableList;
   }
   if (geoBodies != 0)
   {
-    delete geoBodies;
+  delete geoBodies;
   }
   if (eventDescr != 0)
   {
-    delete eventDescr;
+  delete eventDescr;
   }
   if (faultIntersections != 0)
   {
-    delete faultIntersections;
+  delete faultIntersections;
   }
   if (reservoirs != 0)
   {
-    delete reservoirs;
+  delete reservoirs;
   }
   if (localGroups != 0)
   {
-    delete localGroups;
+  delete localGroups;
   }
   if (wireframes != 0)
   {
-    delete wireframes;
+  delete wireframes;
   }
   if (logicalOrder != 0)
   {
-    delete logicalOrder;
+  delete logicalOrder;
   }
   if (properties != 0)
   {
-    delete properties;
+  delete properties;
   }
 }
 
@@ -315,14 +315,14 @@ RescueCoordinateSystem *RescueModel::CoordinateSystemIdentifiedBy(RESCUEINT64 id
   RescueObject *object = (RescueObject *) registeredObjects->NthObject(ordinal++);
   while (myReturn == 0 && object != 0)
   {
-    if (object->Identifier() == identifier)
-    {
+  if (object->Identifier() == identifier)
+  {
       myReturn = (RescueCoordinateSystem *) object;
-    }
-    else
-    {
+  }
+  else
+  {
       object = (RescueObject *) registeredObjects->NthObject(ordinal++);
-    }
+  }
   }
   return myReturn;
 }
@@ -348,7 +348,7 @@ RescueTriangulatedSurface *RescueModel::TriangulatedSurfaceIdentifiedBy(RESCUEIN
   RescueTriangulatedSurface *myReturn = HorizonTriangulatedSurfaceIdentifiedBy(identifier);
   if (myReturn == 0)
   {
-    myReturn = SectionTriangulatedSurfaceIdentifiedBy(identifier);
+  myReturn = SectionTriangulatedSurfaceIdentifiedBy(identifier);
   }
   return myReturn;
 }
@@ -358,7 +358,7 @@ RescueIJSurface *RescueModel::IJSurfaceIdentifiedBy(RESCUEINT64 identifier)
   RescueIJSurface *myReturn = HorizonIJSurfaceIdentifiedBy(identifier);
   if (myReturn == 0)
   {
-    myReturn = SectionIJSurfaceIdentifiedBy(identifier);
+  myReturn = SectionIJSurfaceIdentifiedBy(identifier);
   }
   return myReturn;
 }
@@ -368,7 +368,7 @@ RescueSurface *RescueModel::SurfaceIdentifiedBy(RESCUEINT64 identifier)
   RescueSurface *myReturn = HorizonSurfaceIdentifiedBy(identifier);
   if (myReturn == 0)
   {
-    myReturn = SectionIdentifiedBy(identifier);
+  myReturn = SectionIdentifiedBy(identifier);
   }
   return myReturn;
 }
@@ -379,8 +379,8 @@ RescueGeobodyVolume *RescueModel::GeobodyVolumeIdentifiedBy(RESCUEINT64 identifi
   RESCUEINT64 loop;
   for (loop = 0; loop < geoBodies->Count64() && myReturn == 0; loop++)
   {
-    RescueGeobody *body = geoBodies->NthObject(loop);
-    myReturn = body->GeobodyVolumeIdentifiedBy(identifier);
+  RescueGeobody *body = geoBodies->NthObject(loop);
+  myReturn = body->GeobodyVolumeIdentifiedBy(identifier);
   }
   return myReturn;
 }
@@ -391,8 +391,8 @@ RescueMacroVolume *RescueModel::MacroVolumeIdentifiedBy(RESCUEINT64 identifier)
   RESCUEINT64 loop;
   for (loop = 0; loop < blocks->Count64() && myReturn == 0; loop++)
   {
-    RescueBlock *block = blocks->NthObject(loop);
-    myReturn = block->MacroVolumeIdentifiedBy(identifier);
+  RescueBlock *block = blocks->NthObject(loop);
+  myReturn = block->MacroVolumeIdentifiedBy(identifier);
   }
   return myReturn;
 }
@@ -403,8 +403,8 @@ RescueBlockUnitSide *RescueModel::BlockUnitSideIdentifiedBy(RESCUEINT64 identifi
   RESCUEINT64 loop;
   for (loop = 0; loop < blocks->Count64() && myReturn == 0; loop++)
   {
-    RescueBlock *block = blocks->NthObject(loop);
-    myReturn = block->BlockUnitSideIdentifiedBy(identifier);
+  RescueBlock *block = blocks->NthObject(loop);
+  myReturn = block->BlockUnitSideIdentifiedBy(identifier);
   }
   return myReturn;
 }
@@ -415,8 +415,8 @@ RescueGeobodySurface *RescueModel::GeobodySurfaceIdentifiedBy(RESCUEINT64 identi
   RESCUEINT64 loop;
   for (loop = 0; loop < geoBodies->Count64() && myReturn == 0; loop++)
   {
-    RescueGeobody *body = geoBodies->NthObject(loop);
-    myReturn = body->GeobodySurfaceIdentifiedBy(identifier);
+  RescueGeobody *body = geoBodies->NthObject(loop);
+  myReturn = body->GeobodySurfaceIdentifiedBy(identifier);
   }
   return myReturn;
 }
@@ -491,7 +491,7 @@ RescueReferenceSurface *RescueModel::ReferenceSurfaceIdentifiedBy(RESCUEINT64 id
   RescueReferenceSurface *myReturn = referenceSurfaces->ObjectIdentifiedBy(identifier);
   if (myReturn == 0)
   {
-    myReturn = HorizonSurfaceIdentifiedBy(identifier);
+  myReturn = HorizonSurfaceIdentifiedBy(identifier);
   }
   return myReturn;
 }
@@ -500,14 +500,14 @@ void RescueModel::MakeBackupFile(RESCUECHAR *fileName)
 {
   if (context->backupEnabled == TRUE)
   {
-    RCHString backupName = fileName;
-    backupName << ".bak";
-    FILE *testFile1 = fopen(backupName.String(), "r");
-    if (testFile1 == 0)
-    {
+  RCHString backupName = fileName;
+  backupName << ".bak";
+  FILE *testFile1 = fopen(backupName.String(), "r");
+  if (testFile1 == 0)
+  {
       if (rename(fileName, backupName.String()) != 0)
       {
-        filesCreated += new RCHString(fileName);
+    filesCreated += new RCHString(fileName);
       }
 /*
   If no current bak file, rename existing to bak.  If
@@ -515,11 +515,11 @@ void RescueModel::MakeBackupFile(RESCUECHAR *fileName)
   fact does not exist.  In that case, remember we
   created it.
 */
-    }
-    else
-    {
+  }
+  else
+  {
       fclose(testFile1);
-    }
+  }
 /*
   Can't count on rename to fail if backup file exists.
   Some platforms replace silently.  If we are able to
@@ -540,51 +540,51 @@ RESCUEBOOL RescueModel::ArchiveModel()
 {
   if (ExistingModel())
   {
-    propertyActionImmediate = FALSE;
-    geometryActionImmediate = FALSE;
-    context->fileVersion = FILE_VERSION;
-    desiredFileVersion = FILE_VERSION;
-    context->readFileVersion = currentFileVersion;
-    RESCUEBOOL needRewrite = (currentFileVersion != context->fileVersion);
-    if (needRewrite)
-    {
+  propertyActionImmediate = FALSE;
+  geometryActionImmediate = FALSE;
+  context->fileVersion = FILE_VERSION;
+  desiredFileVersion = FILE_VERSION;
+  context->readFileVersion = currentFileVersion;
+  RESCUEBOOL needRewrite = (currentFileVersion != context->fileVersion);
+  if (needRewrite)
+  {
       propertyActionImmediate = TRUE;
       geometryActionImmediate = TRUE;
       oldPathName = currentPathName;
-    }
+  }
 /*
   Because subsidiary files may also change format when we change
   versions, we need to re-write all files when changing versions.
 */
-    RESCUEBOOL myReturn = ArchiveModelPrimitive(currentPathName, currentBinary);
-    if (myReturn)
-    {
+  RESCUEBOOL myReturn = ArchiveModelPrimitive(currentPathName, currentBinary);
+  if (myReturn)
+  {
       currentFileVersion = desiredFileVersion;
-    }
-    if (myReturn)
-    {
+  }
+  if (myReturn)
+  {
       if (context->backupEnabled == FALSE)
       {
-        RESCUEINT64 howMany = filesDeleted.Count64();
-        RESCUEINT64 loop;
-        for (loop = 0; loop < howMany; loop++)
-        {
+    RESCUEINT64 howMany = filesDeleted.Count64();
+    RESCUEINT64 loop;
+    for (loop = 0; loop < howMany; loop++)
+    {
           RCHString *thisFile = filesDeleted.NthObject(loop);
           remove(thisFile->String());
-        }
-        filesDeleted.EmptySelf();
+    }
+    filesDeleted.EmptySelf();
       }
-    }
-    if (needRewrite)
-    {
+  }
+  if (needRewrite)
+  {
       oldPathName = 0;
-    }
-    return myReturn;
+  }
+  return myReturn;
   }
   else
   {
-    context->SetError("Use ArchiveModel method with a file name.");
-    return FALSE;
+  context->SetError("Use ArchiveModel method with a file name.");
+  return FALSE;
   }
 }
 
@@ -593,50 +593,50 @@ RESCUEBOOL RescueModel::ArchiveModel(RESCUECHAR *pathName, RESCUEBOOL binary, RE
   if (fileVersionIn != 9
   &&  fileVersionIn < 19)
   {
-    return FALSE;
+  return FALSE;
   }
   else
   {
-    RCHString vettedFileName = pathName;
-    context->VetFileName(&vettedFileName, TRUE, binary);
-    context->fileVersion = fileVersionIn;
-    desiredFileVersion = fileVersionIn;
-    context->readFileVersion = currentFileVersion;
-    currentBinary = binary;
-    propertyActionImmediate = FALSE;
-    geometryActionImmediate = FALSE;
-    if (currentPathName != 0)
-    {
+  RCHString vettedFileName = pathName;
+  context->VetFileName(&vettedFileName, TRUE, binary);
+  context->fileVersion = fileVersionIn;
+  desiredFileVersion = fileVersionIn;
+  context->readFileVersion = currentFileVersion;
+  currentBinary = binary;
+  propertyActionImmediate = FALSE;
+  geometryActionImmediate = FALSE;
+  if (currentPathName != 0)
+  {
       if (strcmp(vettedFileName.String(), currentPathName) != 0
       ||  context->fileVersion != currentFileVersion)
       {
-        propertyActionImmediate = TRUE;
-        geometryActionImmediate = TRUE;
-        if (oldPathName != 0)
-        {
+    propertyActionImmediate = TRUE;
+    geometryActionImmediate = TRUE;
+    if (oldPathName != 0)
+    {
           free(oldPathName);
-        }
-        oldPathName = currentPathName;
-        currentPathName = _strdup(vettedFileName.String());
-        write32 = write32in;
-        context->write32 = write32;
-        if (write32)
-        {
+    }
+    oldPathName = currentPathName;
+    currentPathName = _strdup(vettedFileName.String());
+    write32 = write32in;
+    context->write32 = write32;
+    if (write32)
+    {
           Set32();
-        }
-        else
-        {
+    }
+    else
+    {
           Set64();
-        }
+    }
       }
 /*
   Note we are not paying attention to the user's write32 argument if they already have
   a file and they are not changing the name.  They could end up with half a file in
   one condition and half in another.
 */
-    }
-    else
-    {
+  }
+  else
+  {
       oldPathName = 0;
       currentPathName = _strdup(vettedFileName.String());
       currentBinary = binary;
@@ -644,19 +644,19 @@ RESCUEBOOL RescueModel::ArchiveModel(RESCUECHAR *pathName, RESCUEBOOL binary, RE
       context->write32 = write32;
       if (write32)
       {
-        Set32();
+    Set32();
       }
       else
       {
-        Set64();
+    Set64();
       }
-    }
-    RESCUEBOOL myReturn = ArchiveModelPrimitive(currentPathName, currentBinary);
-    if (myReturn)
-    {
+  }
+  RESCUEBOOL myReturn = ArchiveModelPrimitive(currentPathName, currentBinary);
+  if (myReturn)
+  {
       currentFileVersion = desiredFileVersion;
-    }
-    return myReturn;
+  }
+  return myReturn;
   }
 }
 
@@ -668,22 +668,22 @@ RESCUEBOOL RescueModel::ArchiveModelPrimitive(RESCUECHAR *pathName, RESCUEBOOL b
   MakeBackupFile(pathName);
   if (binary)
   {
-    archiveFile = (FILE *) fopen(pathName, "wb");
+  archiveFile = (FILE *) fopen(pathName, "wb");
   }
   else
   {
-    archiveFile = (FILE *) fopen(pathName, "wt");
+  archiveFile = (FILE *) fopen(pathName, "wt");
   }
   context->binaryFlag = binary;
   if (archiveFile != NULL)
   {
-    Archive(archiveFile);
-    if (ferror(archiveFile) == 0)
-    {
+  Archive(archiveFile);
+  if (ferror(archiveFile) == 0)
+  {
       myReturn = TRUE;
-    }
-    else
-    {
+  }
+  else
+  {
       RCHString message;
       message << "Error writing to file:";
       message << pathName;
@@ -691,14 +691,14 @@ RESCUEBOOL RescueModel::ArchiveModelPrimitive(RESCUECHAR *pathName, RESCUEBOOL b
       message << (RESCUEINT64) ferror(archiveFile);
       message << ")";
       context->SetError(message.NonNullString());
-    }
-    WriteEOFMarks(archiveFile);
+  }
+  WriteEOFMarks(archiveFile);
   }
   else
   {
-    RCHString message(100);
-    message << "Unable to open " << pathName;
-    context->SetError(message.NonNullString());
+  RCHString message(100);
+  message << "Unable to open " << pathName;
+  context->SetError(message.NonNullString());
   }
   return myReturn;
 }
@@ -711,16 +711,16 @@ void RescueModel::WriteEOFMarks(FILE *archiveFile)
   RESCUEINT64 markerSize = 10 - (context->Write32() ? sizeof(RESCUEUINT32) : sizeof(RESCUEUINT64));
   while (markerSize != 0)
   {
-    myfprintf(context, archiveFile, (RESCUEUCHAR) 255);
-    markerSize--;
+  myfprintf(context, archiveFile, (RESCUEUCHAR) 255);
+  markerSize--;
   }
   RESCUEINT64 typeMarker2 = 16909060; // 4 + 256 * 3 + 256^2*2 + 256^3
   myfprintf(context, archiveFile, typeMarker2);
   markerSize = 10 - (context->Write32() ? sizeof(RESCUEINT32) : sizeof(RESCUEINT64));
   while (markerSize != 0)
   {
-    myfprintf(context, archiveFile, (RESCUEUCHAR) 255);
-    markerSize--;
+  myfprintf(context, archiveFile, (RESCUEUCHAR) 255);
+  markerSize--;
   }
 
   RESCUECHAR buffer[60];
@@ -730,11 +730,11 @@ void RescueModel::WriteEOFMarks(FILE *archiveFile)
 
   if (ferror(archiveFile) != 0)
   {
-    RCHString message;
-    message << "Error writing to main file: (";
-    message << (RESCUEINT64) ferror(archiveFile);
-    message << ")";
-    context->SetError(message.NonNullString());
+  RCHString message;
+  message << "Error writing to main file: (";
+  message << (RESCUEINT64) ferror(archiveFile);
+  message << ")";
+  context->SetError(message.NonNullString());
   }
 
   fclose(archiveFile);
@@ -744,7 +744,7 @@ RescueLogicalOrder *RescueModel::LogicalOrder()
 {
   if (logicalOrder == 0)
   {
-    logicalOrder = new RescueLogicalOrder(context);
+  logicalOrder = new RescueLogicalOrder(context);
   }
   return logicalOrder;
 }
@@ -752,7 +752,7 @@ RescueLogicalOrder *RescueModel::LogicalOrder()
 RescueEventDescr *RescueModel::MakeUnconformity(RESCUECHAR *name)
 {
   RescueEventDescr *myReturn = new RescueEventDescr(Context(), name, 
-                                                    RescueEventDescr::UNCONFORMITY);
+                          RescueEventDescr::UNCONFORMITY);
   (*eventDescr) += myReturn;
   return myReturn;
 }
@@ -760,7 +760,7 @@ RescueEventDescr *RescueModel::MakeUnconformity(RESCUECHAR *name)
 RescueEventDescr *RescueModel::MakeDiapir(RESCUECHAR *name )
 {
   RescueEventDescr *myReturn = new RescueEventDescr(Context(), name, 
-                                                    RescueEventDescr::UNCONFORMITY);
+                          RescueEventDescr::UNCONFORMITY);
   (*eventDescr) += myReturn;
   return myReturn;
 }
@@ -822,8 +822,8 @@ RescueTrimVertex *RescueModel::TrimVertexLocatedBy(RESCUEFLOAT x, RESCUEFLOAT y,
   RESCUEINT64 loop;
   for (loop = 0; loop < howMany && myReturn == 0; loop++)
   {
-    RescueWireframe *wireframe = wireframes->NthObject(loop);
-    myReturn = wireframe->TrimVertexLocatedBy(x, y, z);
+  RescueWireframe *wireframe = wireframes->NthObject(loop);
+  myReturn = wireframe->TrimVertexLocatedBy(x, y, z);
   }
   return myReturn;
 }
@@ -835,8 +835,8 @@ RescuePolyLine *RescueModel::PolyLineBetween(RescueTrimVertex *end1, RescueTrimV
   RESCUEINT64 loop;
   for (loop = 0; loop < howMany && myReturn == 0; loop++)
   {
-    RescueWireframe *wireframe = wireframes->NthObject(loop);
-    myReturn = wireframe->PolyLineBetween(end1, end2);
+  RescueWireframe *wireframe = wireframes->NthObject(loop);
+  myReturn = wireframe->PolyLineBetween(end1, end2);
   }
   return myReturn;
 }
@@ -847,50 +847,50 @@ void RescueModel::Archive(FILE *archiveFile)
   RESCUEBOOL loadedNow = IsWireframeLoaded();
   if (context->fileVersion == 9)
   {
-    if (loadedNow == FALSE)
-    {
+  if (loadedNow == FALSE)
+  {
       ReadWireframeData(oldPathName);
-    }
-    RESCUEINT64 howMany = wireframes->Count64();
-    RESCUEINT64 loop;
-    for (loop = 0; loop < howMany; loop++)
-    {
+  }
+  RESCUEINT64 howMany = wireframes->Count64();
+  RESCUEINT64 loop;
+  for (loop = 0; loop < howMany; loop++)
+  {
       if (wireframes->NthObject(loop)->IsWireframeLoaded() == FALSE)
       {
-        wireframes->NthObject(loop)->ReadWireframeData(oldPathName);
+    wireframes->NthObject(loop)->ReadWireframeData(oldPathName);
       }
-    }
+  }
   }
   context->binaryFlag = localBinary;
   if (context->binaryFlag)
   {
-    if (context->fileVersion == 9)
-    {
+  if (context->fileVersion == 9)
+  {
       putc((RESCUEUCHAR) context->fileVersion, archiveFile);
-    }
-    else
-    {
-      putc((RESCUEUCHAR) context->fileVersion, archiveFile);
-      fwrite("Rescue Model File", sizeof(RESCUECHAR), 17, archiveFile);
-    }
   }
   else
   {
-    if (context->fileVersion == 9)
-    {
+      putc((RESCUEUCHAR) context->fileVersion, archiveFile);
+      fwrite("Rescue Model File", sizeof(RESCUECHAR), 17, archiveFile);
+  }
+  }
+  else
+  {
+  if (context->fileVersion == 9)
+  {
       fprintf(archiveFile, "File Version %d\n", context->fileVersion);
-    }
-    else
-    {
+  }
+  else
+  {
       fprintf(archiveFile, "Rescue Model File Version %d\n", context->fileVersion);
-    }
+  }
   }
   if (context->fileVersion > 9)
   {
 #ifdef TESTING
-    myfprintf(context, archiveFile, mainFileVersion);
+  myfprintf(context, archiveFile, mainFileVersion);
 #else
-    myfprintf(context, archiveFile, ++mainFileVersion);
+  myfprintf(context, archiveFile, ++mainFileVersion);
 #endif
   }
   myfprintf(context, archiveFile, modelMoniker->String());
@@ -903,12 +903,12 @@ void RescueModel::Archive(FILE *archiveFile)
   sections->Archive(context, archiveFile);
   if (context->fileVersion == 9)
   {
-    wireframes->ArchiveCompatiblePolyLines(context, archiveFile);
-    wireframes->ArchiveCompatibleTrimVertexes(context, archiveFile);
-    if (loadedNow == FALSE)
-    {
+  wireframes->ArchiveCompatiblePolyLines(context, archiveFile);
+  wireframes->ArchiveCompatibleTrimVertexes(context, archiveFile);
+  if (loadedNow == FALSE)
+  {
       DropWireframeMemory();
-    }
+  }
   }
   referenceSurfaces->Archive(context, archiveFile);
   context->RescueProgress("Lookup Tables");
@@ -918,111 +918,111 @@ void RescueModel::Archive(FILE *archiveFile)
 
   if (context->fileVersion > 9)
   {
-    propertyGroup->Archive(context, archiveFile);
-    if (IsWireframeLoaded())
-    {
+  propertyGroup->Archive(context, archiveFile);
+  if (IsWireframeLoaded())
+  {
       if (context->delayedGeometryLoad == FALSE
       ||  WireframeHasChanged() == TRUE
       ||  geometryActionImmediate == TRUE)
       {
-        if (context->fileVersion >= 28)
-        {
+    if (context->fileVersion >= 28)
+    {
           wireframes->UpdateWireframeData();
-        }
+    }
       }
       WriteWireframeData();
-    }
-    else if (geometryActionImmediate)
-    {
+  }
+  else if (geometryActionImmediate)
+  {
       if (ReadWireframeData(oldPathName))
       {
-        if (context->fileVersion >= 28)
-        {
+    if (context->fileVersion >= 28)
+    {
           wireframes->CopyWireframeData(oldPathName);
           wireframes->DropWireframeMemory();
-        }
-        WriteWireframeData();
-        DropWireframeMemory();
-      }
     }
-    if (context->fileVersion >= 20)
-    {
+    WriteWireframeData();
+    DropWireframeMemory();
+      }
+  }
+  if (context->fileVersion >= 20)
+  {
       history->Archive(context, archiveFile);
       colorTableList->Archive(context, archiveFile);
       geoBodies->Archive(context, archiveFile);
-    }
-    if (context->fileVersion >= 24)
-    {
+  }
+  if (context->fileVersion >= 24)
+  {
       eventDescr->Archive(this, context, archiveFile);
       faultIntersections->Archive(context, archiveFile);
-    }
-    if (context->fileVersion >= 25)
-    {
+  }
+  if (context->fileVersion >= 25)
+  {
       myfprintf(context, archiveFile, rotation);
-    }
-    if (context->fileVersion >= 28)
-    {
+  }
+  if (context->fileVersion >= 28)
+  {
       gridGeometries->Archive(context, archiveFile);
-    }
-    if (context->fileVersion >= 29)
-    {
+  }
+  if (context->fileVersion >= 29)
+  {
       localGroups->Archive(context, archiveFile);
       reservoirs->Archive(context, archiveFile);
-    }
-    if (context->fileVersion >= 30)
-    {
+  }
+  if (context->fileVersion >= 30)
+  {
       LogicalOrder()->Archive(context, archiveFile);
-    }
+  }
   }
   if (context->FileVersion() >= 37)
   {
-    if (properties == 0 
-    &&  propertyContainerId != 0 
-    &&  this->propertyActionImmediate == TRUE)
-    {
+  if (properties == 0 
+  &&  propertyContainerId != 0 
+  &&  this->propertyActionImmediate == TRUE)
+  {
       properties = new cSetRescueDataContainer(this, propertyContainerId);  // Will Read.
-    }
-    if (properties != 0)
-    {
+  }
+  if (properties != 0)
+  {
       myfprintf(context, archiveFile, "properties");
       RescueBuffer buf1(context, 10);
       buf1 << properties->Identifier();
       buf1.Archive(archiveFile);
 
       properties->Archive(); // Goes into it's own file.
-    }
-    else if (properties == 0 && propertyContainerId != 0)
-    {
+  }
+  else if (properties == 0 && propertyContainerId != 0)
+  {
       myfprintf(context, archiveFile, "properties");
       RescueBuffer buf1(context, 10);
       buf1 << propertyContainerId;
       buf1.Archive(archiveFile);
-    }
-    
-    if (documents == 0 
-    &&  documentListId != 0 
-    &&  this->propertyActionImmediate == TRUE)
-    {
+  }
+  
+  if (documents == 0 
+  &&  documentListId != 0 
+  &&  this->propertyActionImmediate == TRUE)
+  {
       documents = new RescueDocumentList(this, documentListId);  // Will Read.
-    }
-    if (documents != 0)
-    {
+  }
+  if (documents != 0)
+  {
       myfprintf(context, archiveFile, "documents");
       RescueBuffer buf1(context, 10);
       buf1 << documents->Identifier();
       buf1.Archive(archiveFile);
 
       documents->Archive(); // Goes into it's own file.
-    }
-    else if (documents == 0 && documentListId != 0)
-    {
+  }
+  else if (documents == 0 && documentListId != 0)
+  {
       myfprintf(context, archiveFile, "documents");
       RescueBuffer buf1(context, 10);
       buf1 << documentListId;
       buf1.Archive(archiveFile);
-    }
+  }
 
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -1031,64 +1031,64 @@ RESCUEBOOL RescueModel::AnyFileTruncated()
   RESCUEBOOL myReturn = context->FileTruncated(currentPathName);
   if (myReturn == FALSE)
   {
-    if (context->readFileVersion > 12)
-    {
+  if (context->readFileVersion > 12)
+  {
       myReturn = WireframeFileTruncated();
       if (myReturn == FALSE)
       {
-        myReturn = geoBodies->AnyFileTruncated();
-        if (myReturn == FALSE)
-        {
+    myReturn = geoBodies->AnyFileTruncated();
+    if (myReturn == FALSE)
+    {
           myReturn = blocks->AnyFileTruncated();
           if (myReturn == FALSE)
           {
-            myReturn = wellbores->AnyFileTruncated();
-            if (myReturn == FALSE)
-            {
+      myReturn = wellbores->AnyFileTruncated();
+      if (myReturn == FALSE)
+      {
               myReturn = horizons->AnyFileTruncated();
               if (myReturn == FALSE)
               {
-                myReturn = referenceSurfaces->AnyFileTruncated();
-                if (myReturn == FALSE)
-                {
+        myReturn = referenceSurfaces->AnyFileTruncated();
+        if (myReturn == FALSE)
+        {
                   myReturn = sections->AnyFileTruncated();
                   if (myReturn == FALSE)
                   {
-                    myReturn = wireframes->AnyFileTruncated();
-                    if (myReturn == FALSE)
-                    {
+          myReturn = wireframes->AnyFileTruncated();
+          if (myReturn == FALSE)
+          {
                       myReturn = gridGeometries->AnyFileTruncated();
-                    }
-                  }
-                }
-              }
-            }
           }
+                  }
         }
+              }
       }
+          }
     }
+      }
+  }
   }
   if (myReturn == FALSE)
   {
-    if (properties == 0 && propertyContainerId != 0)
-    {
+  if (properties == 0 && propertyContainerId != 0)
+  {
       properties = new cSetRescueDataContainer(this, propertyContainerId);  // Will Read.
-    }
-    if (properties != 0)
-    {
+  }
+  if (properties != 0)
+  {
       myReturn = properties->AnyFileTruncated();
-    }
+  }
   }
   if (myReturn == FALSE)
   {
-    if (documents == 0 && documentListId != 0)
-    {
+  if (documents == 0 && documentListId != 0)
+  {
       documents = new RescueDocumentList(this, documentListId);  // Will Read.
-    }
-    if (documents != 0)
-    {
+  }
+  if (documents != 0)
+  {
       myReturn = documents->AnyFileTruncated();
-    }
+  }
   }
   return myReturn;
 }
@@ -1106,9 +1106,9 @@ RescueModel *RescueModel::UnarchiveModel(RescueContext *context, RESCUECHAR *pat
 */
   if (version >= 4 && version <= FILE_VERSION)
   {
-    context->SoftwareVersion(vettedFileName.String(), context->readFileMainSoftwareVersion, context->readFileSubSoftwareVersion);
-    if (context->binaryFlag)
-    {
+  context->SoftwareVersion(vettedFileName.String(), context->readFileMainSoftwareVersion, context->readFileSubSoftwareVersion);
+  if (context->binaryFlag)
+  {
       RESCUECHAR buffer[91];
 
       context->archiveFile = (FILE *) fopen(vettedFileName.String(), "rb");
@@ -1119,135 +1119,135 @@ RescueModel *RescueModel::UnarchiveModel(RescueContext *context, RESCUECHAR *pat
       RESCUECHAR *pos = buffer;
       while ((pos < buffer + 60) && (strncmp(pos, "written by code version ", 24) != 0))
       {
-        pos++;
+    pos++;
       }
       RESCUECHAR *spot = strstr(pos, "written by code version ");
       if (spot != 0)
       {
-        int versionNo;
+    int versionNo;
 /*
   I'm assuming here that %d is always the correct format spec for "int".
   Having no 64-bit machine, it is more than I can prove.  Passing
   RESCUEINT64 is bad if RESCUEINT64 is 64 bit and it is a 32 bit machine.
 */
-        sscanf(spot, "written by code version %d", &versionNo);
-        if (versionNo >= 37)
-        {
+    sscanf(spot, "written by code version %d", &versionNo);
+    if (versionNo >= 37)
+    {
           RESCUEUCHAR *xfer = (RESCUEUCHAR *) (pos - 22);
           if (*xfer == 1)
           {
-            context->uintSize = 4;  //4 Normal
-            if (context->LittleEndian())
-            {
+      context->uintSize = 4;  //4 Normal
+      if (context->LittleEndian())
+      {
               context->uintSwap = TRUE;
-            }
-            else
-            {
+      }
+      else
+      {
               context->uintSwap = FALSE;
-            }
+      }
           }
           else if (*xfer == 4)
           {
-            if (*(xfer + 4) == 0)
-            {
+      if (*(xfer + 4) == 0)
+      {
               context->uintSize = 8; // 8 Swapped
               if (context->LittleEndian())
               {
-                context->uintSwap = FALSE;
+        context->uintSwap = FALSE;
               }
               else
               {
-                context->uintSwap = TRUE;
+        context->uintSwap = TRUE;
               }
-            }
-            else
-            {
+      }
+      else
+      {
               context->uintSize = 4; // 4 Swapped
               if (context->LittleEndian())
               {
-                context->uintSwap = FALSE;
+        context->uintSwap = FALSE;
               }
               else
               {
-                context->uintSwap = TRUE;
+        context->uintSwap = TRUE;
               }
-            }
+      }
           }
           else if (*xfer == 0)
           {
-            context->uintSize = 8; // 8 Normal
-            if (context->LittleEndian())
-            {
+      context->uintSize = 8; // 8 Normal
+      if (context->LittleEndian())
+      {
               context->uintSwap = TRUE;
-            }
-            else
-            {
+      }
+      else
+      {
               context->uintSwap = FALSE;
-            }
+      }
           }
           xfer += 10;
           if (*xfer == 1)
           {
-            context->intSize = 4;  //4 Normal
-            if (context->LittleEndian())
-            {
+      context->intSize = 4;  //4 Normal
+      if (context->LittleEndian())
+      {
               context->intSwap = TRUE;
-            }
-            else
-            {
+      }
+      else
+      {
               context->intSwap = FALSE;
-            }
+      }
           }
           else if (*xfer == 4)
           {
-            if (*(xfer + 4) == 0)
-            {
+      if (*(xfer + 4) == 0)
+      {
               context->intSize = 8; // 8 Swapped
               if (context->LittleEndian())
               {
-                context->intSwap = FALSE;
+        context->intSwap = FALSE;
               }
               else
               {
-                context->intSwap = TRUE;
+        context->intSwap = TRUE;
               }
-            }
-            else
-            {
+      }
+      else
+      {
               context->intSize = 4; // 4 Swapped
               if (context->LittleEndian())
               {
-                context->intSwap = FALSE;
+        context->intSwap = FALSE;
               }
               else
               {
-                context->intSwap = TRUE;
+        context->intSwap = TRUE;
               }
-            }
+      }
           }
           else if (*xfer == 0)
           {
-            context->intSize = 8; // 8 Normal
-            if (context->LittleEndian())
-            {
+      context->intSize = 8; // 8 Normal
+      if (context->LittleEndian())
+      {
               context->intSwap = TRUE;
-            }
-            else
-            {
+      }
+      else
+      {
               context->intSwap = FALSE;
-            }
+      }
           }
           else if (*xfer == 255)
           {
-            context->intSize = context->uintSize;
-            context->intSwap = context->uintSwap;
+      context->intSize = context->uintSize;
+      context->intSwap = context->uintSwap;
           }
 /*
   The file is v37.1 or earlier.
 */
-        }
-        else
-        {
+    }
+    else
+    {
           context->intSize = 4;
           context->uintSize = 4;
 #ifdef WIN32
@@ -1257,16 +1257,16 @@ RescueModel *RescueModel::UnarchiveModel(RescueContext *context, RESCUECHAR *pat
           context->intSwap = FALSE;
           context->intSwap = FALSE;
 #endif
-        }
+    }
       }
       fseek(context->archiveFile, 0L, SEEK_SET);
-    }
-    else
-    {
+  }
+  else
+  {
       context->archiveFile = (FILE *) fopen(vettedFileName.String(), "rt");
-    }
-    if (context->archiveFile != NULL)
-    {
+  }
+  if (context->archiveFile != NULL)
+  {
       context->wellboreProperties = new RescueIdTree();     
       context->timeStepGroups = new RescueIdTree();        
       context->properties = new RescueIdTree();
@@ -1321,15 +1321,15 @@ RescueModel *RescueModel::UnarchiveModel(RescueContext *context, RESCUECHAR *pat
       context->geobodyParts = 0;
       context->blockUnitSides = 0;
       context->propertyGroups = 0;
-    }
-    else
-    {
-      context->SetError("Failed to open main model file.");
-    }
   }
   else
   {
-    context->SetError("Model version number is out of range.");
+      context->SetError("Failed to open main model file.");
+  }
+  }
+  else
+  {
+  context->SetError("Model version number is out of range.");
   }
   return context->unarchivingModel;
 }
@@ -1338,7 +1338,7 @@ RescueContext *RescueModel::Context(bool setContext)
 {
   if (setContext)
   {
-    context->write32 = write32;
+  context->write32 = write32;
   }
   return context;
 }
@@ -1348,20 +1348,20 @@ void RescueModel::Set32()
   uintSize = sizeof(RESCUEUINT32);
   if (context->LittleEndian())
   {
-    uintSwap = TRUE;
+  uintSwap = TRUE;
   }
   else
   {
-    uintSwap = FALSE;
+  uintSwap = FALSE;
   }
   intSize = sizeof(RESCUEINT32);
   if (context->LittleEndian())
   {
-    intSwap = TRUE;
+  intSwap = TRUE;
   }
   else
   {
-    intSwap = FALSE;
+  intSwap = FALSE;
   }
   LoadContext();
 }
@@ -1371,20 +1371,20 @@ void RescueModel::Set64()
   uintSize = sizeof(RESCUEUINT64);
   if (context->LittleEndian())
   {
-    uintSwap = TRUE;
+  uintSwap = TRUE;
   }
   else
   {
-    uintSwap = FALSE;
+  uintSwap = FALSE;
   }
   intSize = sizeof(RESCUEINT64);
   if (context->LittleEndian())
   {
-    intSwap = TRUE;
+  intSwap = TRUE;
   }
   else
   {
-    intSwap = FALSE;
+  intSwap = FALSE;
   }
   LoadContext();
 }
@@ -1435,52 +1435,52 @@ RESCUEINT32 RescueModel::Version(RESCUEBOOL reload)
   RESCUEINT32 myReturn = mainFileVersion;
   if (reload)
   {
-    if (context->binaryFlag)
-    {
+  if (context->binaryFlag)
+  {
       FILE *archiveFile = (FILE *) fopen(currentPathName, "rb");
       if (archiveFile != 0)
       {
-        context->fileVersion = getc(archiveFile);
-        if (context->fileVersion >= 12)
-        {
+    context->fileVersion = getc(archiveFile);
+    if (context->fileVersion >= 12)
+    {
           fseek(archiveFile, 17, SEEK_CUR);
-        }
-        if (context->fileVersion >= 4 && context->fileVersion <= FILE_VERSION)
-        {
+    }
+    if (context->fileVersion >= 4 && context->fileVersion <= FILE_VERSION)
+    {
           if (context->fileVersion >= 14)
           {
-            myfscanf(context, archiveFile, &myReturn);
+      myfscanf(context, archiveFile, &myReturn);
           }
-        }
-        fclose(archiveFile);
-      }
     }
-    else
-    {
+    fclose(archiveFile);
+      }
+  }
+  else
+  {
       FILE *archiveFile = (FILE *) fopen(currentPathName, "rt");
       if (archiveFile != 0)
       {
-        RESCUECHAR myString[255];
+    RESCUECHAR myString[255];
 
-        myfgets(context, myString, 255, archiveFile);
-        if (strncmp(myString, "Rescue", 6) == 0)
-        {
+    myfgets(context, myString, 255, archiveFile);
+    if (strncmp(myString, "Rescue", 6) == 0)
+    {
           sscanf(myString, "Rescue Model File Version %d\n", &context->fileVersion);
-        }
-        else
-        {
+    }
+    else
+    {
           sscanf(myString, "File Version %d\n", &context->fileVersion);
-        }
-        if (context->fileVersion >= 4 && context->fileVersion <= FILE_VERSION)
-        {
+    }
+    if (context->fileVersion >= 4 && context->fileVersion <= FILE_VERSION)
+    {
           if (context->fileVersion >= 14)
           {
-            myfscanf(context, archiveFile, &myReturn);
+      myfscanf(context, archiveFile, &myReturn);
           }
-        }
-        fclose(archiveFile);
-      }
     }
+    fclose(archiveFile);
+      }
+  }
   }
   return myReturn;
 }
@@ -1494,45 +1494,45 @@ void RescueModel::UnArchive(FILE *archiveFile)
   wireframeHasChanged = FALSE;
   if (context->binaryFlag)
   {
-    context->readFileVersion = getc(archiveFile);
-    if (context->readFileVersion >= 12)
-    {
+  context->readFileVersion = getc(archiveFile);
+  if (context->readFileVersion >= 12)
+  {
       fseek(archiveFile, 17, SEEK_CUR);
-    }
+  }
   }
   else
   {
-    myfgets(context, myString, 255, archiveFile);
-    if (strncmp(myString, "Rescue", 6) == 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  if (strncmp(myString, "Rescue", 6) == 0)
+  {
       sscanf(myString, "Rescue Model File Version %d\n", &context->readFileVersion);
-    }
-    else
-    {
+  }
+  else
+  {
       sscanf(myString, "File Version %d\n", &context->readFileVersion);
-    }
+  }
   }
   currentFileVersion = context->readFileVersion;
   context->fileVersion = context->readFileVersion;
   desiredFileVersion = context->readFileVersion;
   if (context->readFileVersion >= 4 && context->readFileVersion <= FILE_VERSION)
   {
-    if (context->readFileVersion >= 14)
-    {
+  if (context->readFileVersion >= 14)
+  {
       myfscanf(context, archiveFile, &mainFileVersion);
-    }
-    myfgets(context, myString, 255, archiveFile);
-    (*modelMoniker) = myString;
-    context->RescueProgress("Coordinate System");
-    coordinateSystem = new RescueCoordinateSystem(context, archiveFile);
-    coordinateSystem->RegisterWith(this);
-    units->UnArchive(context, archiveFile);
-    blocks->UnArchive(context, archiveFile);
-    horizons->UnArchive(context, archiveFile);
-    wellbores->UnArchive(context, archiveFile);
-    sections->UnArchive(context, archiveFile);
-    if (context->readFileVersion < 14)
-    {
+  }
+  myfgets(context, myString, 255, archiveFile);
+  (*modelMoniker) = myString;
+  context->RescueProgress("Coordinate System");
+  coordinateSystem = new RescueCoordinateSystem(context, archiveFile);
+  coordinateSystem->RegisterWith(this);
+  units->UnArchive(context, archiveFile);
+  blocks->UnArchive(context, archiveFile);
+  horizons->UnArchive(context, archiveFile);
+  wellbores->UnArchive(context, archiveFile);
+  sections->UnArchive(context, archiveFile);
+  if (context->readFileVersion < 14)
+  {
       context->RescueProgress("Poly Lines");
       wireframes->UnArchiveCompatiblePolyLines(context, archiveFile);
       context->RescueProgress("Trim Vertexes");
@@ -1540,94 +1540,94 @@ void RescueModel::UnArchive(FILE *archiveFile)
 
       wireframeLoaded = TRUE;
       wireframeHasChanged = FALSE;
-    }
-    if (context->readFileVersion >= 5)
-    {
+  }
+  if (context->readFileVersion >= 5)
+  {
       referenceSurfaces->UnArchive(context, archiveFile);
       context->RescueProgress("Lookup Tables");
       lookups->UnArchive(context, archiveFile);
-    }
+  }
 
-    if (context->readFileVersion >= 8)
-    {
+  if (context->readFileVersion >= 8)
+  {
       context->RescueProgress("Name/Value Pairs");
       delete nameValuePairs;
       nameValuePairs = new cNameValuePair(context, archiveFile);
-    }
+  }
 
-    if (context->readFileVersion >= 11)
-    {
+  if (context->readFileVersion >= 11)
+  {
       context->RescueProgress("Property Model Groups");
       propertyGroup->UnArchive(context, archiveFile);
-    }
-    if (context->readFileVersion >= 20)
-    {
+  }
+  if (context->readFileVersion >= 20)
+  {
       context->RescueProgress("Histories");
       history->UnArchive(context, archiveFile);
       context->RescueProgress("Color Tables");
       colorTableList = new RescueColorTableList(context, archiveFile);
       context->RescueProgress("GeoBodies");
       geoBodies->UnArchive(context, archiveFile);
-    }
-    if (context->readFileVersion >= 24)
-    {
+  }
+  if (context->readFileVersion >= 24)
+  {
       context->RescueProgress("Event Descriptions");
       eventDescr->UnArchive(context, archiveFile);
       context->RescueProgress("Fault Intersections");
       faultIntersections->UnArchive(context, archiveFile);
-    }
-    if (context->readFileVersion >= 25)
-    {
+  }
+  if (context->readFileVersion >= 25)
+  {
       myfscanf(context, archiveFile, &rotation);
-    }
-    if (context->readFileVersion >= 28)
-    {
+  }
+  if (context->readFileVersion >= 28)
+  {
       context->RescueProgress("Global Geometries");
       gridGeometries->UnArchive(context, archiveFile);
-    }
-    if (context->readFileVersion >= 29)
-    {
+  }
+  if (context->readFileVersion >= 29)
+  {
       context->RescueProgress("Global Geometry Property Groups");
       localGroups->UnArchive(context, archiveFile);
       reservoirs->UnArchive(context, archiveFile);
-    }
-    if (context->readFileVersion >= 30)
-    {
+  }
+  if (context->readFileVersion >= 30)
+  {
       logicalOrder = new RescueLogicalOrder(this, archiveFile);
-    }
-    else
-    {
+  }
+  else
+  {
       logicalOrder = new RescueLogicalOrder(this->Context());
       logicalOrder->BuildFrom(this);
-    }
+  }
   }
   if (colorTableList == 0)
   {
-    colorTableList = new RescueColorTableList(context);
+  colorTableList = new RescueColorTableList(context);
   }
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       if (strcmp(myString, "properties") == 0)
       {
-        RescueBuffer buf(context, archiveFile);
-        buf >> propertyContainerId;
+    RescueBuffer buf(context, archiveFile);
+    buf >> propertyContainerId;
       }
       else if (strcmp(myString, "documents") == 0)
       {
-        RescueBuffer buf(context, archiveFile);
-        buf >> documentListId;
+    RescueBuffer buf(context, archiveFile);
+    buf >> documentListId;
       }
       else
       {
-        RescueBuffer buf(context, archiveFile);
+    RescueBuffer buf(context, archiveFile);
       }
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -1635,19 +1635,19 @@ void RescueModel::RelinkNoArgs()
 {
   if (context->delayedPropertyLoad == FALSE)
   {
-    propertyActionImmediate = TRUE;
+  propertyActionImmediate = TRUE;
   }
   else
   {
-    propertyActionImmediate = FALSE;
+  propertyActionImmediate = FALSE;
   }
   if (context->delayedGeometryLoad == FALSE)
   {
-    geometryActionImmediate = TRUE;
+  geometryActionImmediate = TRUE;
   }
   else
   {
-    geometryActionImmediate = FALSE;
+  geometryActionImmediate = FALSE;
   }
   context->RescueProgress("Relinking units");
   units->Relink(this);
@@ -1673,11 +1673,11 @@ void RescueModel::RelinkNoArgs()
 */
   if (geometryActionImmediate && IsWireframeLoaded() == FALSE)
   {
-    LoadWireframe();
+  LoadWireframe();
   }
   else if (IsWireframeLoaded())
   {
-    wireframes->Relink(this);
+  wireframes->Relink(this);
   }
 /*
   When we read an old (version 12 or newer) file we load the wireframe
@@ -1701,18 +1701,18 @@ RESCUEINT32 RescueModel::WireframeVersion(RESCUEBOOL reload)
 {
   if (reload)
   {
-    RESCUEINT32 myReturn = wireframeVersion;
-    RESCUEINT32 savedArrayVersion = wireframeVersion;
-    if (ReadWireframeData(currentPathName, TRUE))
-    {
+  RESCUEINT32 myReturn = wireframeVersion;
+  RESCUEINT32 savedArrayVersion = wireframeVersion;
+  if (ReadWireframeData(currentPathName, TRUE))
+  {
       myReturn = wireframeVersion;
       wireframeVersion = savedArrayVersion;
-    }
-    return myReturn;
+  }
+  return myReturn;
   }
   else
   {
-    return wireframeVersion;
+  return wireframeVersion;
   }
 }
 
@@ -1721,18 +1721,18 @@ RESCUEBOOL RescueModel::LoadWireframe()
   RESCUEBOOL myReturn = FALSE;
   if (IsWireframeLoaded())
   {
-    DropWireframeMemory();
+  DropWireframeMemory();
   }
   if (ExistingModel())
   {
-    context->readFileVersion = currentFileVersion;
-    context->readFileMainSoftwareVersion = readFileMainSoftwareVersion;
-    context->readFileSubSoftwareVersion = readFileSubSoftwareVersion;
-    myReturn = ReadWireframeData(currentPathName);
+  context->readFileVersion = currentFileVersion;
+  context->readFileMainSoftwareVersion = readFileMainSoftwareVersion;
+  context->readFileSubSoftwareVersion = readFileSubSoftwareVersion;
+  myReturn = ReadWireframeData(currentPathName);
   }
   if (myReturn == TRUE)
   {
-    wireframeHasChanged = FALSE;
+  wireframeHasChanged = FALSE;
   }
   return myReturn;
 }
@@ -1746,17 +1746,17 @@ RESCUEBOOL RescueModel::UnloadWireframe()
   RESCUEBOOL myReturn = FALSE;
   if (WireframeHasChanged() == FALSE)
   {
-    DropWireframeMemory();
-    myReturn = TRUE;
+  DropWireframeMemory();
+  myReturn = TRUE;
   }
   else if (IsWireframeLoaded() && ExistingModel())
   {
-    context->fileVersion = desiredFileVersion;
-    if (WriteWireframeData())
-    {
+  context->fileVersion = desiredFileVersion;
+  if (WriteWireframeData())
+  {
       DropWireframeMemory();
       myReturn = TRUE;
-    }
+  }
   }
   return myReturn;
 }
@@ -1773,76 +1773,76 @@ RESCUEBOOL RescueModel::ReadWireframeData(RESCUECHAR *basePathName, RESCUEBOOL v
   FILE *archiveFile = (FILE *) fopen(fileName.String(), "rb");
   if (archiveFile != 0)
   {
-    RESCUEINT64 readFileVersion = getc(archiveFile);
-    if (readFileVersion == 'R')
-    {
+  RESCUEINT64 readFileVersion = getc(archiveFile);
+  if (readFileVersion == 'R')
+  {
       context->binaryFlag = FALSE;
       fread(buffer, sizeof(RESCUECHAR), 21, archiveFile);
       if (strncmp(buffer, "escue Wireframe File", 20) == 0)
       {
-        modelFile = TRUE;
+    modelFile = TRUE;
       }
-    }
-    else
-    {
+  }
+  else
+  {
       context->binaryFlag = TRUE;
       fread(buffer, sizeof(RESCUECHAR), 21, archiveFile);
       if (strncmp(buffer, "Rescue Wireframe File", 21) == 0)
       {
-        modelFile = TRUE;
+    modelFile = TRUE;
       }
-    }
-    fclose(archiveFile);
-    if (modelFile)
-    {
+  }
+  fclose(archiveFile);
+  if (modelFile)
+  {
       int fileVersion = 0;
       if (context->binaryFlag)
       {
-        archiveFile = (FILE *) fopen(fileName.String(), "rb");
-        fileVersion = getc(archiveFile);
-        readFileVersion = fileVersion;
-        fseek(archiveFile, 21, SEEK_CUR);
-        if (versionOnly)
-        {
+    archiveFile = (FILE *) fopen(fileName.String(), "rb");
+    fileVersion = getc(archiveFile);
+    readFileVersion = fileVersion;
+    fseek(archiveFile, 21, SEEK_CUR);
+    if (versionOnly)
+    {
           myfscanf(context, archiveFile, &wireframeVersion);
-        }
-        else
-        {
+    }
+    else
+    {
           UnArchiveWireframeData(archiveFile);
-        }
-        fclose(archiveFile);
+    }
+    fclose(archiveFile);
       }
       else
       {
-        RESCUECHAR myString[255];
+    RESCUECHAR myString[255];
 
-        archiveFile = (FILE *) fopen(fileName.String(), "rt");
-        myfgets(context, myString, 255, archiveFile);
-        sscanf(myString, "Rescue Wireframe File Version %d\n", &fileVersion);
-        readFileVersion = fileVersion;
-        if (versionOnly)
-        {
+    archiveFile = (FILE *) fopen(fileName.String(), "rt");
+    myfgets(context, myString, 255, archiveFile);
+    sscanf(myString, "Rescue Wireframe File Version %d\n", &fileVersion);
+    readFileVersion = fileVersion;
+    if (versionOnly)
+    {
           myfscanf(context, archiveFile, &wireframeVersion);
-        }
-        else
-        {
+    }
+    else
+    {
           UnArchiveWireframeData(archiveFile);
-        }
-        fclose(archiveFile);
+    }
+    fclose(archiveFile);
       }
       myReturn = TRUE;
       if (versionOnly == FALSE)
       {
-        wireframeLoaded = TRUE;
-        wireframeHasChanged = FALSE;
+    wireframeLoaded = TRUE;
+    wireframeHasChanged = FALSE;
       }
-    }
-    else
-    {
+  }
+  else
+  {
       RCHString message;
       message << "Not a Rescue Wireframe File:" << fileName.NonNullString();
       context->SetError(message.NonNullString());
-    }
+  }
   }
   return myReturn;
 }
@@ -1852,13 +1852,13 @@ RESCUEBOOL RescueModel::WireframeHasChanged()
   RESCUEBOOL myReturn = wireframeHasChanged;
   if (wireframes != 0)
   {
-    RESCUEINT64 howMany = wireframes->Count64();
-    RESCUEINT64 ndx = 0;
-    while (myReturn == FALSE && ndx < howMany)
-    {
+  RESCUEINT64 howMany = wireframes->Count64();
+  RESCUEINT64 ndx = 0;
+  while (myReturn == FALSE && ndx < howMany)
+  {
       RescueWireframe *wireframe = wireframes->NthObject(ndx++);
       myReturn = wireframe->WireframeHasChanged();
-    }
+  }
   }
   return myReturn;
 }
@@ -1879,30 +1879,30 @@ RESCUEBOOL RescueModel::WriteWireframeData()
   FILE *archiveFile;
   if (currentBinary)
   {
-    archiveFile = (FILE *) fopen(fileName.String(), "wb");
+  archiveFile = (FILE *) fopen(fileName.String(), "wb");
   }
   else
   {
-    archiveFile = (FILE *) fopen(fileName.String(), "wt");
+  archiveFile = (FILE *) fopen(fileName.String(), "wt");
   }
   if (archiveFile != 0)
   {
-    Context(true);
-    context->fileVersion = desiredFileVersion;
-    context->binaryFlag = currentBinary;
-    if (context->binaryFlag)
-    {
+  Context(true);
+  context->fileVersion = desiredFileVersion;
+  context->binaryFlag = currentBinary;
+  if (context->binaryFlag)
+  {
       putc((RESCUEUCHAR) context->fileVersion, archiveFile);
       fwrite("Rescue Wireframe File", sizeof(RESCUECHAR), 21, archiveFile);
-    }
-    else
-    {
+  }
+  else
+  {
       fprintf(archiveFile, "Rescue Wireframe File Version %d\n", context->fileVersion);
-    }
-    ArchiveWireframeData(archiveFile);
-    myfprintf(context, archiveFile, "abracadabra jump jump");
-    if (ferror(archiveFile) != 0)
-    {
+  }
+  ArchiveWireframeData(archiveFile);
+  myfprintf(context, archiveFile, "abracadabra jump jump");
+  if (ferror(archiveFile) != 0)
+  {
       RCHString message;
       message << "Error writing to file:";
       message << fileName.NonNullString();
@@ -1910,9 +1910,9 @@ RESCUEBOOL RescueModel::WriteWireframeData()
       message << (RESCUEINT64) ferror(archiveFile);
       message << ")";
       context->SetError(message.NonNullString());
-    }
-    fclose(archiveFile);
-    myReturn = TRUE;
+  }
+  fclose(archiveFile);
+  myReturn = TRUE;
 
 
   }
@@ -1924,8 +1924,8 @@ void RescueModel::UnArchiveWireframeData(FILE *archiveFile)
   myfscanf(context, archiveFile, &wireframeVersion);
   if (context->readFileVersion >= 28)
   {
-    context->RescueProgress("Wireframe files");
-    wireframes->UnArchive(context, archiveFile);
+  context->RescueProgress("Wireframe files");
+  wireframes->UnArchive(context, archiveFile);
   }
   context->RescueProgress("Blocks wireframe");
   blocks->UnArchiveWireframeData(this, archiveFile);
@@ -1935,31 +1935,31 @@ void RescueModel::UnArchiveWireframeData(FILE *archiveFile)
   sections->UnArchiveWireframeData(this, archiveFile);
   if (context->readFileVersion < 28)
   {
-    context->RescueProgress("Poly Lines");
-    wireframes->UnArchiveCompatiblePolyLines(context, archiveFile);
-    context->RescueProgress("Trim Vertexes");
-    wireframes->UnArchiveCompatibleTrimVertexes(context, archiveFile);
+  context->RescueProgress("Poly Lines");
+  wireframes->UnArchiveCompatiblePolyLines(context, archiveFile);
+  context->RescueProgress("Trim Vertexes");
+  wireframes->UnArchiveCompatibleTrimVertexes(context, archiveFile);
   }
   context->RescueProgress("Reference surfaces wire frame");
   referenceSurfaces->UnArchiveWireframeData(this, archiveFile);
   if (context->readFileVersion >= 20)
   {
-    geoBodies->UnArchiveWireframeData(this, archiveFile);
+  geoBodies->UnArchiveWireframeData(this, archiveFile);
   }
   if (context->readFileVersion >= 24)
   {
-    RescueFaultIntersection::UnArchiveWireframeData(this, archiveFile);
+  RescueFaultIntersection::UnArchiveWireframeData(this, archiveFile);
   }
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 
   RelinkWireframeData();
@@ -1989,45 +1989,45 @@ void RescueModel::ArchiveWireframeData(FILE *archiveFile)
 #endif
   if (context->fileVersion >= 28)
   {
-    wireframes->Archive(context, archiveFile);
+  wireframes->Archive(context, archiveFile);
   }
   else
   {
-    RESCUEBOOL localBinary = context->binaryFlag;
-    RESCUEINT64 howMany = wireframes->Count64();
-    RESCUEINT64 loop;
-    for (loop = 0; loop < howMany; loop++)
-    {
+  RESCUEBOOL localBinary = context->binaryFlag;
+  RESCUEINT64 howMany = wireframes->Count64();
+  RESCUEINT64 loop;
+  for (loop = 0; loop < howMany; loop++)
+  {
       RescueWireframe *wireframe = wireframes->NthObject(loop);
       if (wireframe->IsWireframeLoaded() == FALSE)
       {
-        wireframes->NthObject(loop)->ReadWireframeData(oldPathName);
+    wireframes->NthObject(loop)->ReadWireframeData(oldPathName);
       }
-    }
-    context->binaryFlag = localBinary;
+  }
+  context->binaryFlag = localBinary;
   }
   blocks->ArchiveWireframeData(archiveFile);
   horizons->ArchiveWireframeData(archiveFile);
   sections->ArchiveWireframeData(archiveFile);
   if (context->fileVersion < 28)
   {
-    context->RescueProgress("Poly Lines");
-    wireframes->ArchiveCompatiblePolyLines(context, archiveFile);
-    context->RescueProgress("Trim Vertexes");
-    wireframes->ArchiveCompatibleTrimVertexes(context, archiveFile);
+  context->RescueProgress("Poly Lines");
+  wireframes->ArchiveCompatiblePolyLines(context, archiveFile);
+  context->RescueProgress("Trim Vertexes");
+  wireframes->ArchiveCompatibleTrimVertexes(context, archiveFile);
   }
   referenceSurfaces->ArchiveWireframeData(archiveFile);
   if (context->fileVersion >= 20)
   {
-    geoBodies->ArchiveWireframeData(archiveFile);
+  geoBodies->ArchiveWireframeData(archiveFile);
   }
   if (context->fileVersion >= 24)
   {
-    faultIntersections->ArchiveWireframeData(context, archiveFile);
+  faultIntersections->ArchiveWireframeData(context, archiveFile);
   }
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -2035,28 +2035,28 @@ void RescueModel::DropWireframeMemory()
 {
   if (blocks != 0)
   {
-    blocks->DropWireframeMemory();
+  blocks->DropWireframeMemory();
   }
   if (horizons != 0)
   {
-    horizons->DropWireframeMemory();
+  horizons->DropWireframeMemory();
   }
   if (sections != 0)
   {
-    sections->DropWireframeMemory();
+  sections->DropWireframeMemory();
   }
   if (wireframes != 0)
   {
-    delete wireframes;
-    wireframes = new cSetRescueWireframe();
+  delete wireframes;
+  wireframes = new cSetRescueWireframe();
   }
   if (referenceSurfaces != 0)
   {
-    referenceSurfaces->DropWireframeMemory();
+  referenceSurfaces->DropWireframeMemory();
   }
   if (geoBodies != 0)
   {
-    geoBodies->DropWireframeMemory();
+  geoBodies->DropWireframeMemory();
   }
   wireframeLoaded = FALSE;
   wireframeHasChanged = FALSE;
@@ -2066,11 +2066,11 @@ RESCUEBOOL RescueModel::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueModel)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueHistoryObject::IsOfType(thisType);
+  return RescueHistoryObject::IsOfType(thisType);
   }
 }
 
@@ -2087,17 +2087,17 @@ cSetString *RescueModel::ListBakFiles()
   RESCUECHAR *end = strrchr(dirName, pathSeparator);
   if (end != 0)
   {
-    *end = 0;
+  *end = 0;
   }
   else
   {
-    dirName[0] = 0;
+  dirName[0] = 0;
   }
   WIN32_FIND_DATAA file_data;
   HANDLE search = FindFirstFileA(lookName, &file_data);
   if (search == INVALID_HANDLE_VALUE)
   {
-    pleaseContinue = FALSE;
+  pleaseContinue = FALSE;
   }
 #else
   RESCUECHAR pathSeparator = '/';
@@ -2105,51 +2105,51 @@ cSetString *RescueModel::ListBakFiles()
   RESCUECHAR *end = strrchr(dirName, pathSeparator);
   if (end != 0)
   {
-    *end = 0;
+  *end = 0;
   }
   else
   {
-    free(dirName);
-    dirName = _strdup(".");
+  free(dirName);
+  dirName = _strdup(".");
   }
   DIR *current_dir;
   struct dirent *this_entry;
   current_dir = opendir(dirName);
   if (strcmp(dirName, ".") == 0)
   {
-    dirName[0] = 0;
+  dirName[0] = 0;
   }
   this_entry = readdir(current_dir);
   if (this_entry == 0)
   {
-    pleaseContinue = FALSE;
+  pleaseContinue = FALSE;
   }
 #endif
   while (pleaseContinue == TRUE)
   {
-    RCHString thisName = dirName;
-    if (thisName.length64() > 0)
-    {
+  RCHString thisName = dirName;
+  if (thisName.length64() > 0)
+  {
       thisName << pathSeparator;
-    }
+  }
 #ifdef _WIN32
-    thisName << file_data.cFileName;
+  thisName << file_data.cFileName;
 #else
-    thisName << this_entry->d_name;
+  thisName << this_entry->d_name;
 #endif
-    if (thisName.EndsWith(".bak") && thisName.StartsWith(currentPathName))
-    {
+  if (thisName.EndsWith(".bak") && thisName.StartsWith(currentPathName))
+  {
       RCHString *toDelete = new RCHString(thisName.String());
       (*bakFilesToDelete) += toDelete;
-    }
+  }
 #ifdef _WIN32
-    pleaseContinue = FindNextFileA(search, &file_data);
+  pleaseContinue = FindNextFileA(search, &file_data);
 #else
-    this_entry = readdir(current_dir);
-    if (this_entry == 0)
-    {
+  this_entry = readdir(current_dir);
+  if (this_entry == 0)
+  {
       pleaseContinue = FALSE;
-    }
+  }
 #endif
   }
   free(dirName);
@@ -2157,7 +2157,7 @@ cSetString *RescueModel::ListBakFiles()
   free(lookName);
   if (search != INVALID_HANDLE_VALUE)
   {
-    FindClose(search);
+  FindClose(search);
   }
 #else
   closedir(current_dir);
@@ -2172,15 +2172,15 @@ void RescueModel::Rollback()
   RCHString *fileName = bakFilesToDelete->NthObject(ordinal++);
   while (fileName != 0)
   {
-    RCHString oldFileName = fileName->String();
-    RESCUECHAR *pos = strstr(oldFileName.String(), ".bak");
-    if (pos != 0)
-    {
+  RCHString oldFileName = fileName->String();
+  RESCUECHAR *pos = strstr(oldFileName.String(), ".bak");
+  if (pos != 0)
+  {
       *pos = 0;
       remove(oldFileName.String());
       rename(fileName->String(), oldFileName.String());
-    }
-    fileName = bakFilesToDelete->NthObject(ordinal++);
+  }
+  fileName = bakFilesToDelete->NthObject(ordinal++);
   }
   delete bakFilesToDelete;
 /*
@@ -2194,8 +2194,8 @@ void RescueModel::Rollback()
   RESCUEINT64 loop;
   for (loop = 0; loop < howMany; loop++)
   {
-    RCHString *thisFile = filesCreated.NthObject(loop);
-    remove(thisFile->String());
+  RCHString *thisFile = filesCreated.NthObject(loop);
+  remove(thisFile->String());
   }
   filesCreated.EmptySelf();
 /*
@@ -2210,8 +2210,8 @@ void RescueModel::Commit()
   RCHString *fileName = bakFilesToDelete->NthObject(ordinal++);
   while (fileName != 0)
   {
-    remove(fileName->String());
-    fileName = bakFilesToDelete->NthObject(ordinal++);
+  remove(fileName->String());
+  fileName = bakFilesToDelete->NthObject(ordinal++);
   }
   delete bakFilesToDelete;
 /*
@@ -2221,8 +2221,8 @@ void RescueModel::Commit()
   RESCUEINT64 loop;
   for (loop = 0; loop < howMany; loop++)
   {
-    RCHString *thisFile = filesDeleted.NthObject(loop);
-    remove(thisFile->String());
+  RCHString *thisFile = filesDeleted.NthObject(loop);
+  remove(thisFile->String());
   }
   filesDeleted.EmptySelf();
 /*
@@ -2239,11 +2239,11 @@ RescueGeometry *RescueModel::GeometryIdentifiedBy(RESCUEINT64 identifier)
   RescueGeometry *myReturn = blocks->GeometryIdentifiedBy(identifier);
   if (myReturn == 0)
   {
-    myReturn = geoBodies->GeometryIdentifiedBy(identifier);
+  myReturn = geoBodies->GeometryIdentifiedBy(identifier);
   }
   if (myReturn == 0)
   {
-    myReturn = gridGeometries->ObjectIdentifiedBy(identifier);
+  myReturn = gridGeometries->ObjectIdentifiedBy(identifier);
   }
   return myReturn;
 }
@@ -2261,8 +2261,8 @@ RescueProperty *RescueModel::PropertyIdentifiedBy(RESCUEINT64 id)
   RescueGeometry *geometry = GridGeometry(ordinal++);
   while (geometry != 0 && myReturn == 0)
   {
-    myReturn = geometry->PropertyIdentifiedBy(id);
-    geometry = GridGeometry(ordinal++);
+  myReturn = geometry->PropertyIdentifiedBy(id);
+  geometry = GridGeometry(ordinal++);
   }
   return myReturn;
 }
@@ -2272,63 +2272,63 @@ RescueProperty *RescueModel::GlobalPropertyIdentifiedBy(RESCUEINT64 id)
   RescueProperty *myReturn = PropertyIdentifiedBy(id);
   if (myReturn == 0)
   {
-    RESCUEINT64 loop;
-    for (loop = 0; loop < blocks->Count64() && myReturn == 0; loop++)
-    {
+  RESCUEINT64 loop;
+  for (loop = 0; loop < blocks->Count64() && myReturn == 0; loop++)
+  {
       RescueBlock *block = blocks->NthObject(loop);
       if (block != 0)
       {
-        myReturn = block->PropertyIdentifiedBy(id);
+    myReturn = block->PropertyIdentifiedBy(id);
       }
-    }
+  }
   }
   if (myReturn == 0)
   {
-    RESCUEINT64 loop;
-    for (loop = 0; loop < geoBodies->Count64() && myReturn == 0; loop++)
-    {
+  RESCUEINT64 loop;
+  for (loop = 0; loop < geoBodies->Count64() && myReturn == 0; loop++)
+  {
       RescueGeobody *gb = geoBodies->NthObject(loop);
       if (gb)
       {
-        myReturn = gb->PropertyIdentifiedBy(id);
+    myReturn = gb->PropertyIdentifiedBy(id);
       }
-    }
+  }
   }
   if (myReturn == 0)
   {
-    RESCUEINT64 loop;
-    for (loop = 0; loop < horizons->Count64() && myReturn == 0; loop++)
-    {
+  RESCUEINT64 loop;
+  for (loop = 0; loop < horizons->Count64() && myReturn == 0; loop++)
+  {
       RescueHorizon *horizon = horizons->NthObject(loop);
       if (horizon)
       {
-        myReturn = horizon->PropertyIdentifiedBy(id);
+    myReturn = horizon->PropertyIdentifiedBy(id);
       }
-    }
+  }
   }
   if (myReturn == 0)
   {
-    RESCUEINT64 loop;
-    for (loop = 0; loop < sections->Count64() && myReturn == 0; loop++)
-    {
+  RESCUEINT64 loop;
+  for (loop = 0; loop < sections->Count64() && myReturn == 0; loop++)
+  {
       RescueSection *section = sections->NthObject(loop);
       if (section)
       {
-        myReturn = section->PropertyIdentifiedBy(id);
+    myReturn = section->PropertyIdentifiedBy(id);
       }
-    }
+  }
   }
   if (myReturn == 0)
   {
-    RESCUEINT64 loop;
-    for (loop = 0; loop < referenceSurfaces->Count64() && myReturn == 0; loop++)
-    {
+  RESCUEINT64 loop;
+  for (loop = 0; loop < referenceSurfaces->Count64() && myReturn == 0; loop++)
+  {
       RescueReferenceSurface *surface = referenceSurfaces->NthObject(loop);
       if (surface)
       {
-        myReturn = surface->PropertyIdentifiedBy(id);
+    myReturn = surface->PropertyIdentifiedBy(id);
       }
-    }
+  }
   }
   return myReturn;
 }
@@ -2337,14 +2337,14 @@ RescueDocumentList *RescueModel::Documents()
 {
   if (documents == 0)
   {
-    if (documentListId != 0)
-    {
+  if (documentListId != 0)
+  {
       documents = new RescueDocumentList(this, documentListId);  // Will Read.
-    }
-    else
-    {
+  }
+  else
+  {
       documents = new RescueDocumentList(this);
-    }
+  }
   }
   return documents;
 }
@@ -2353,10 +2353,10 @@ cSetRescueDataContainer *RescueModel::DataContainers()
 {
   if (properties == 0)
   {
-    if (propertyContainerId != 0)
-    {
+  if (propertyContainerId != 0)
+  {
       properties = new cSetRescueDataContainer(this, propertyContainerId);  // Will Read.
-    }
+  }
   }
   return properties;
 }
@@ -2365,14 +2365,14 @@ cSetRescueDataContainer *RescueModel::DemandDataContainers()
 {
   if (properties == 0)
   {
-    if (propertyContainerId != 0)
-    {
+  if (propertyContainerId != 0)
+  {
       properties = new cSetRescueDataContainer(this, propertyContainerId);  // Will Read.
-    }
-    else
-    {
+  }
+  else
+  {
       properties = new cSetRescueDataContainer(this);
-    }
+  }
   }
   return properties;
 }
@@ -2394,40 +2394,40 @@ RescueCoordinateSystem::Orientation RescueModel::IJKPreferenceEnum()
   RESCUECHAR *name = nameValuePairs->GetNameValuePair("Preferred User Orientation");
   if (name == 0)
   {
-    throw "User IJK Preference not given.";
+  throw "User IJK Preference not given.";
   }
   else
   {
-    RescueCoordinateSystem::Orientation orientation = RescueCoordinateSystem::LDF;
-    if (strcmp(name, "LDB") == 0)
-    {
+  RescueCoordinateSystem::Orientation orientation = RescueCoordinateSystem::LDF;
+  if (strcmp(name, "LDB") == 0)
+  {
       orientation = RescueCoordinateSystem::LDB;
-    }
-    else if (strcmp(name, "LUF") == 0)
-    {
+  }
+  else if (strcmp(name, "LUF") == 0)
+  {
       orientation = RescueCoordinateSystem::LUF;
-    }
-    else if (strcmp(name, "LUB") == 0)
-    {
+  }
+  else if (strcmp(name, "LUB") == 0)
+  {
       orientation = RescueCoordinateSystem::LUB;
-    }
-    else if (strcmp(name, "RUB") == 0)
-    {
+  }
+  else if (strcmp(name, "RUB") == 0)
+  {
       orientation = RescueCoordinateSystem::RUB;
-    }
-    else if (strcmp(name, "RUF") == 0)
-    {
+  }
+  else if (strcmp(name, "RUF") == 0)
+  {
       orientation = RescueCoordinateSystem::RUF;
-    }
-    else if (strcmp(name, "RDF") == 0)
-    {
+  }
+  else if (strcmp(name, "RDF") == 0)
+  {
       orientation = RescueCoordinateSystem::RDF;
-    }
-    else if (strcmp(name, "RDB") == 0)
-    {
+  }
+  else if (strcmp(name, "RDB") == 0)
+  {
       orientation = RescueCoordinateSystem::RDB;
-    }
-    return orientation;
+  }
+  return orientation;
   }
 }
 
@@ -2438,20 +2438,20 @@ RescueHistory *RescueModel::GetWriterHistory()
   RescueHistory *candidate = history->NthObject(ordinal++);
   while (candidate != 0 && myReturn == 0)
   {
-    if (strncmp(candidate->ChangeDescription()->NonNullString(), "Rescue Creator Record:", 22) == 0)
-    {
+  if (strncmp(candidate->ChangeDescription()->NonNullString(), "Rescue Creator Record:", 22) == 0)
+  {
       myReturn = candidate;
-    }
-    else
-    {
+  }
+  else
+  {
       candidate = history->NthObject(ordinal++);
-    }
+  }
   }
   return myReturn;
 }
 
 void RescueModel::SetWriter(const RESCUECHAR *vendorName, const RESCUECHAR *vendorVersion, 
-                            const RESCUECHAR *modelDate,  const RESCUECHAR *userName)
+              const RESCUECHAR *modelDate,  const RESCUECHAR *userName)
 {
   RCHString readable(100);
   readable << "Rescue Creator Record:Vendor="
@@ -2480,12 +2480,12 @@ void RescueModel::SetWriter(const RESCUECHAR *vendorName, const RESCUECHAR *vend
   RescueHistory *existingStamp = GetWriterHistory();
   if (existingStamp == 0)
   {
-    new RescueHistory(this, readable.String(), stamp.String());
+  new RescueHistory(this, readable.String(), stamp.String());
   }
   else
   {
-    existingStamp->SetChangeDescription(readable.String());
-    existingStamp->SetParsableDescription(stamp.String());
+  existingStamp->SetChangeDescription(readable.String());
+  existingStamp->SetParsableDescription(stamp.String());
   }
 }
 
@@ -2495,18 +2495,18 @@ RCHString *RescueModel::VendorSegment(const RESCUECHAR *beginKey, const RESCUECH
   RescueHistory *stamp = GetWriterHistory();
   if (stamp != 0)
   {
-    RESCUECHAR *pos = stamp->ParsableDescription()->NonNullString();
-    RESCUECHAR *beginPos = strstr(pos, beginKey);
-    RESCUECHAR *endPos = strstr(pos, endKey);
-    if (beginPos != 0 && endPos != 0)
-    {
+  RESCUECHAR *pos = stamp->ParsableDescription()->NonNullString();
+  RESCUECHAR *beginPos = strstr(pos, beginKey);
+  RESCUECHAR *endPos = strstr(pos, endKey);
+  if (beginPos != 0 && endPos != 0)
+  {
       myReturn = new RCHString((int) (endPos - beginPos) + 5);
       beginPos += strlen(beginKey);
       while (beginPos != endPos)
       {
-        myReturn->AddTo(*beginPos++);
+    myReturn->AddTo(*beginPos++);
       }
-    }
+  }
   }
   return myReturn;
 }
@@ -2532,19 +2532,19 @@ RCHString *RescueModel::UserName()
 }
 
 int RescueModel::SetOrientation(RescueContext *context, 
-                                char *modelFileName, 
-                                RescueCoordinateSystem::Orientation orientation)
+                char *modelFileName, 
+                RescueCoordinateSystem::Orientation orientation)
 {
   int myReturn = 0;
   RescueModel *myModel = UnarchiveModel(context, modelFileName);
   if (myModel == 0)
   {
-    myReturn = 1;
+  myReturn = 1;
   }
   else
   {
-    myReturn = myModel->SetOrientationPrimitive(orientation);
-    delete myModel;
+  myReturn = myModel->SetOrientationPrimitive(orientation);
+  delete myModel;
   }
   return myReturn;
 }
@@ -2557,58 +2557,58 @@ int RescueModel::SetOrientationPrimitive(RescueCoordinateSystem::Orientation ori
   RescueGeometry *geometry = gridGeometries->NthObject(ordinal++);
   while (geometry != 0)
   {
-    geometry->SetOrientation(ledger, orientation);
-    geometry = gridGeometries->NthObject(ordinal++);
+  geometry->SetOrientation(ledger, orientation);
+  geometry = gridGeometries->NthObject(ordinal++);
   }
   ordinal = 0;
   RescueBlock *block = blocks->NthObject(ordinal++);
   while (block != 0)
   {
-    block->SetOrientation(ledger, orientation);
-    block = blocks->NthObject(ordinal++);
+  block->SetOrientation(ledger, orientation);
+  block = blocks->NthObject(ordinal++);
   }
   ordinal = 0;
   RescueGeobody *geobody = geoBodies->NthObject(ordinal++);
   while (geobody != 0)
   {
-    geobody->SetOrientation(ledger, orientation);
-    geobody = geoBodies->NthObject(ordinal++);
+  geobody->SetOrientation(ledger, orientation);
+  geobody = geoBodies->NthObject(ordinal++);
   }
   ordinal = 0;
   RescueWellbore *wellbore = wellbores->NthObject(ordinal++);
   while (wellbore != 0)
   {
-    wellbore->SetOrientation(ledger, orientation);
-    wellbore = wellbores->NthObject(ordinal++);
+  wellbore->SetOrientation(ledger, orientation);
+  wellbore = wellbores->NthObject(ordinal++);
   }
   ordinal = 0;
   RescueHorizon *horizon = horizons->NthObject(ordinal++);
   while (horizon != 0)
   {
-    horizon->SetOrientation(ledger, orientation);
-    horizon = horizons->NthObject(ordinal++);
+  horizon->SetOrientation(ledger, orientation);
+  horizon = horizons->NthObject(ordinal++);
   }
   ordinal = 0;
   RescueSection *section = sections->NthObject(ordinal++);
   while (section != 0)
   {
-    section->SetOrientation(ledger, orientation);
-    section = sections->NthObject(ordinal++);
+  section->SetOrientation(ledger, orientation);
+  section = sections->NthObject(ordinal++);
   }
   ordinal = 0;
   RescueReferenceSurface *referenceSurface = referenceSurfaces->NthObject(ordinal++);
   while (referenceSurface != 0)
   {
-    referenceSurface->SetOrientation(ledger, orientation);
-    referenceSurface = referenceSurfaces->NthObject(ordinal++);
+  referenceSurface->SetOrientation(ledger, orientation);
+  referenceSurface = referenceSurfaces->NthObject(ordinal++);
   }
   LoadWireframe();
   ordinal = 0;
   RescueWireframe *wireframe = wireframes->NthObject(ordinal++);
   while (wireframe != 0)
   {
-    wireframe->SetOrientation(ledger);
-    wireframe = wireframes->NthObject(ordinal++);
+  wireframe->SetOrientation(ledger);
+  wireframe = wireframes->NthObject(ordinal++);
   }
   MarkWireframeChanged();
   UnloadWireframe();
@@ -2640,132 +2640,132 @@ bool RescueModel::ReadWITSML(const RESCUECHAR *pathName, RescueProgressReporter 
   FILE *file = fopen(pathName, "r");
   if (file != 0)
   {
-    RCHXMLTokenizer *tokens = new RCHXMLTokenizer(file);
-    RESCUECHAR *token = tokens->NextToken();
-    while (token != 0)
-    {
+  RCHXMLTokenizer *tokens = new RCHXMLTokenizer(file);
+  RESCUECHAR *token = tokens->NextToken();
+  while (token != 0)
+  {
       if (tokens->TokenIsTag("trajectory"))
       {
-        RCHString wellboreName;
-        RCHString depthUOM;
-        size_t dCount = 0;
-        size_t dAlloc = 100;
-        RESCUEFLOAT *mds = (RESCUEFLOAT *) malloc(sizeof(RESCUEFLOAT) * dAlloc);
-        RESCUEFLOAT *tvds = (RESCUEFLOAT *) malloc(sizeof(RESCUEFLOAT) * dAlloc);
-        RESCUEFLOAT *eastings = (RESCUEFLOAT *) malloc(sizeof(RESCUEFLOAT) * dAlloc);
-        RESCUEFLOAT *northings = (RESCUEFLOAT *) malloc(sizeof(RESCUEFLOAT) * dAlloc);
+    RCHString wellboreName;
+    RCHString depthUOM;
+    size_t dCount = 0;
+    size_t dAlloc = 100;
+    RESCUEFLOAT *mds = (RESCUEFLOAT *) malloc(sizeof(RESCUEFLOAT) * dAlloc);
+    RESCUEFLOAT *tvds = (RESCUEFLOAT *) malloc(sizeof(RESCUEFLOAT) * dAlloc);
+    RESCUEFLOAT *eastings = (RESCUEFLOAT *) malloc(sizeof(RESCUEFLOAT) * dAlloc);
+    RESCUEFLOAT *northings = (RESCUEFLOAT *) malloc(sizeof(RESCUEFLOAT) * dAlloc);
 
-        tokens->ConsumeTag();
-        token = tokens->NextToken();
-        RESCUEBOOL pleaseContinue = TRUE;
-        while (token != 0 && pleaseContinue == TRUE)
-        {
+    tokens->ConsumeTag();
+    token = tokens->NextToken();
+    RESCUEBOOL pleaseContinue = TRUE;
+    while (token != 0 && pleaseContinue == TRUE)
+    {
           if (tokens->TokenIsTag("/trajectory"))
           {
-            tokens->ConsumeTag();
-            pleaseContinue = FALSE;
+      tokens->ConsumeTag();
+      pleaseContinue = FALSE;
           }
           else
           {
-            if (tokens->TokenIsTag("nameWellbore"))
-            {
+      if (tokens->TokenIsTag("nameWellbore"))
+      {
               tokens->ConsumeTag();
               wellboreName = tokens->NextToken();
-            }
-            else if (tokens->TokenIsTag("trajectoryStation"))
-            {
+      }
+      else if (tokens->TokenIsTag("trajectoryStation"))
+      {
               if (dCount == dAlloc)
               {
-                dAlloc *= 2;
-                mds = (RESCUEFLOAT *) realloc(mds, sizeof(RESCUEFLOAT) * dAlloc);
-                tvds = (RESCUEFLOAT *) realloc(tvds, sizeof(RESCUEFLOAT) * dAlloc);
-                eastings = (RESCUEFLOAT *) realloc(eastings, sizeof(RESCUEFLOAT) * dAlloc);
-                northings = (RESCUEFLOAT *) realloc(northings, sizeof(RESCUEFLOAT) * dAlloc);
+        dAlloc *= 2;
+        mds = (RESCUEFLOAT *) realloc(mds, sizeof(RESCUEFLOAT) * dAlloc);
+        tvds = (RESCUEFLOAT *) realloc(tvds, sizeof(RESCUEFLOAT) * dAlloc);
+        eastings = (RESCUEFLOAT *) realloc(eastings, sizeof(RESCUEFLOAT) * dAlloc);
+        northings = (RESCUEFLOAT *) realloc(northings, sizeof(RESCUEFLOAT) * dAlloc);
               }
-            }
-            else if (tokens->TokenIsTag("/trajectoryStation"))
-            {
+      }
+      else if (tokens->TokenIsTag("/trajectoryStation"))
+      {
               dCount++;
-            }
-            else if (tokens->TokenIsTag("md"))
-            {
+      }
+      else if (tokens->TokenIsTag("md"))
+      {
               if (depthUOM.length64() == 0)
               {
-                while (tokens->InTag())
-                {
+        while (tokens->InTag())
+        {
                   token = tokens->NextToken();
                   if (strcmp(token, "uom"))
                   {
-                    token = tokens->NextToken();
-                    if (strcmp(token, "=") == 0)
-                    {
+          token = tokens->NextToken();
+          if (strcmp(token, "=") == 0)
+          {
                       depthUOM = tokens->UnquotedToken();
-                    }
-                    tokens->ConsumeTag();
+          }
+          tokens->ConsumeTag();
                   }
-                }
+        }
               }
               else
               {
-                tokens->ConsumeTag();
+        tokens->ConsumeTag();
               }
               mds[dCount] = (float) atof(tokens->NextToken());
-            }
-            else if (tokens->TokenIsTag("tvd"))
-            {
+      }
+      else if (tokens->TokenIsTag("tvd"))
+      {
               tokens->ConsumeTag();
               tvds[dCount] = (float) atof(tokens->NextToken());
-            }
-            else if (tokens->TokenIsTag("northing"))
-            {
+      }
+      else if (tokens->TokenIsTag("northing"))
+      {
               tokens->ConsumeTag();
               northings[dCount] = (float) atof(tokens->NextToken());
-            }
-            else if (tokens->TokenIsTag("easting"))
-            {
+      }
+      else if (tokens->TokenIsTag("easting"))
+      {
               tokens->ConsumeTag();
               eastings[dCount] = (float) atof(tokens->NextToken());
-            }
-            token = tokens->NextToken();
+      }
+      token = tokens->NextToken();
           }
-        }
-        if (dCount > 0 && wellboreName.length64() > 0)
-        {
+    }
+    if (dCount > 0 && wellboreName.length64() > 0)
+    {
           RESCUEINT64 ndx = 0;
           RescueWellbore *logWellbore = 0;
           RescueWellbore *wellbore = NthRescueWellbore(ndx++);
           while (wellbore != 0 && logWellbore == 0)
           {
-            if (wellboreName == wellbore->WellboreName()->String())
-            {
+      if (wellboreName == wellbore->WellboreName()->String())
+      {
               logWellbore = wellbore;
-            }
-            else
-            {
+      }
+      else
+      {
               wellbore = NthRescueWellbore(ndx++);
-            }
+      }
           }
           if (logWellbore == 0)
           {
-            logWellbore = new RescueWellbore(RescueCoordinateSystem::LUB,
+      logWellbore = new RescueWellbore(RescueCoordinateSystem::LUB,
                                                           this,
                                                           wellboreName.String(),
                                                           -999.25F,
                                                           0, dCount);
-            if (loggingObject != 0)
-            {
+      if (loggingObject != 0)
+      {
               RCHString message;
               message << "Adding RescueWellbore ";
               message << wellboreName.String();
               loggingObject->ReportProgress(message.NonNullString());
-            }
+      }
           }
           else if (loggingObject != 0)
           {
-            RCHString message;
-            message << "Setting RescueWellbore geometry ";
-            message << wellboreName.String();
-            loggingObject->ReportProgress(message.NonNullString());
+      RCHString message;
+      message << "Setting RescueWellbore geometry ";
+      message << wellboreName.String();
+      loggingObject->ReportProgress(message.NonNullString());
           }
           RescueQuadrupletArray *geometry = logWellbore->WellboreGeometry();
           geometry->SetMDValue(mds);
@@ -2775,104 +2775,104 @@ bool RescueModel::ReadWITSML(const RESCUECHAR *pathName, RescueProgressReporter 
 
           if (loggingObject != 0)
           {
-            RCHString stats;
-            stats << (RESCUEINT32) dCount << " points MD:" << mds[0] << " to " << mds[dCount - 1];
-            loggingObject->ReportProgress(stats.String());
+      RCHString stats;
+      stats << (RESCUEINT32) dCount << " points MD:" << mds[0] << " to " << mds[dCount - 1];
+      loggingObject->ReportProgress(stats.String());
           }
-        }
-        free(mds);
-        free(tvds);
-        free(eastings);
-        free(northings);
+    }
+    free(mds);
+    free(tvds);
+    free(eastings);
+    free(northings);
       }
       else if (tokens->TokenIsTag("wellLog"))
       {
-        RescueWellbore *wellbore = 0;
-        RescueWellboreSampling *sampling = 0;
-        RCHString depthUOM;
+    RescueWellbore *wellbore = 0;
+    RescueWellboreSampling *sampling = 0;
+    RCHString depthUOM;
 
-        size_t pDepthNdx = 0;
-        size_t dCount = 0;
-        size_t dAlloc = 100;
-        size_t pCount = 0;
-        size_t pAlloc = 10;
-        size_t bCount = 0;
-        size_t bAlloc = 10;
-        float **pValue = (RESCUEFLOAT **) malloc(sizeof(RESCUEFLOAT *) * pAlloc);
-        RESCUECHAR **pCurveId = (RESCUECHAR **) malloc(sizeof(RESCUECHAR *) * pAlloc);
-        RESCUECHAR **pName = (RESCUECHAR **) malloc(sizeof(RESCUECHAR *) * pAlloc);
-        RESCUECHAR **pType = (RESCUECHAR **) malloc(sizeof(RESCUECHAR *) * pAlloc);
-        RESCUECHAR **pUom = (RESCUECHAR **) malloc(sizeof(RESCUECHAR *) * pAlloc);
-        RESCUEFLOAT *pNull = (RESCUEFLOAT *) malloc(sizeof(RESCUEFLOAT) * pAlloc);
+    size_t pDepthNdx = 0;
+    size_t dCount = 0;
+    size_t dAlloc = 100;
+    size_t pCount = 0;
+    size_t pAlloc = 10;
+    size_t bCount = 0;
+    size_t bAlloc = 10;
+    float **pValue = (RESCUEFLOAT **) malloc(sizeof(RESCUEFLOAT *) * pAlloc);
+    RESCUECHAR **pCurveId = (RESCUECHAR **) malloc(sizeof(RESCUECHAR *) * pAlloc);
+    RESCUECHAR **pName = (RESCUECHAR **) malloc(sizeof(RESCUECHAR *) * pAlloc);
+    RESCUECHAR **pType = (RESCUECHAR **) malloc(sizeof(RESCUECHAR *) * pAlloc);
+    RESCUECHAR **pUom = (RESCUECHAR **) malloc(sizeof(RESCUECHAR *) * pAlloc);
+    RESCUEFLOAT *pNull = (RESCUEFLOAT *) malloc(sizeof(RESCUEFLOAT) * pAlloc);
 
-        RESCUECHAR **bId = (RESCUECHAR **) malloc(sizeof(RESCUECHAR *) * bAlloc);
-        size_t **pSpot = (size_t **) malloc(sizeof(size_t *) * bAlloc);
+    RESCUECHAR **bId = (RESCUECHAR **) malloc(sizeof(RESCUECHAR *) * bAlloc);
+    size_t **pSpot = (size_t **) malloc(sizeof(size_t *) * bAlloc);
 
-        size_t pLoop;
+    size_t pLoop;
 
-        tokens->ConsumeTag();
-        token = tokens->NextToken();
-        RESCUEBOOL pleaseContinue = TRUE;
-        RESCUEBOOL skipLog = FALSE;
-        while (token != 0 && pleaseContinue == TRUE)
-        {
+    tokens->ConsumeTag();
+    token = tokens->NextToken();
+    RESCUEBOOL pleaseContinue = TRUE;
+    RESCUEBOOL skipLog = FALSE;
+    while (token != 0 && pleaseContinue == TRUE)
+    {
           if (tokens->TokenIsTag("/wellLog"))
           {
-            tokens->ConsumeTag();
-            pleaseContinue = FALSE;
+      tokens->ConsumeTag();
+      pleaseContinue = FALSE;
           }
           else if (skipLog == FALSE)
           {
-            if (tokens->TokenIsTag("nameWell"))
-            {
+      if (tokens->TokenIsTag("nameWell"))
+      {
               tokens->ConsumeTag();
               RCHString wellboreName = tokens->NextToken();
               RESCUEINT64 ndx = 0;
               RescueWellbore *candidate = NthRescueWellbore(ndx++);
               while (candidate != 0 && wellbore == 0)
               {
-                if (wellboreName == candidate->WellboreName()->String())
-                {
+        if (wellboreName == candidate->WellboreName()->String())
+        {
                   wellbore = candidate;
-                }
-                else
-                {
+        }
+        else
+        {
                   candidate = NthRescueWellbore(ndx++);
-                }
+        }
               }
               if (wellbore == 0)
               {
-                skipLog = TRUE;
-                if (loggingObject != 0)
-                {
+        skipLog = TRUE;
+        if (loggingObject != 0)
+        {
                   RCHString message;
                   message << "ERROR: wellLog skipped for " << wellboreName.String() << " RescueWellbore not found.";
                   loggingObject->ReportProgress(message.String());
-                }
+        }
               }
               else if (loggingObject != 0)
               {
-                RCHString message;
-                message << "For RescueWellbore " << wellboreName.String();
-                loggingObject->ReportProgress(message.String());
+        RCHString message;
+        message << "For RescueWellbore " << wellboreName.String();
+        loggingObject->ReportProgress(message.String());
               }
-            }
-            else if (tokens->TokenIsTag("name"))
-            {
+      }
+      else if (tokens->TokenIsTag("name"))
+      {
               tokens->ConsumeTag();
               RCHString nameValue = tokens->NextToken();
               if (wellbore != 0 && sampling == 0)
               {
-                RESCUECHAR *lastDash = strrchr(nameValue.NonNullString(), '-');
-                if (lastDash != 0)
-                {
+        RESCUECHAR *lastDash = strrchr(nameValue.NonNullString(), '-');
+        if (lastDash != 0)
+        {
                   RESCUEINT64 id = atoi(++lastDash);
                   sampling = wellbore->WellboreSamplingIdentifiedBy(id);
-                }
+        }
               }
-            }
-            else if (tokens->TokenIsTag("logCurveInfo"))
-            {
+      }
+      else if (tokens->TokenIsTag("logCurveInfo"))
+      {
               RCHString mnemonic;
               RCHString unit;
               RCHString nullValue;
@@ -2881,62 +2881,62 @@ bool RescueModel::ReadWITSML(const RESCUECHAR *pathName, RescueProgressReporter 
 
               while (tokens->InTag())
               {
-                token = tokens->NextToken();
-                if (strcmp(token, "uid") == 0)
-                {
+        token = tokens->NextToken();
+        if (strcmp(token, "uid") == 0)
+        {
                   token = tokens->NextToken();
                   if (*token == '=')
                   {
-                    curveId = tokens->UnquotedToken();
+          curveId = tokens->UnquotedToken();
                   }
-                }
+        }
               }
 
               RESCUEBOOL continueLoop = TRUE;
               while (tokens != 0 && continueLoop == TRUE)
               {
-                if (tokens->TokenIsTag("/logCurveInfo"))
-                {
+        if (tokens->TokenIsTag("/logCurveInfo"))
+        {
                   continueLoop = FALSE;
-                }
-                else
-                {
+        }
+        else
+        {
                   if (tokens->TokenIsTag("mnemonic"))
                   {
-                    mnemonic = tokens->NextToken();
+          mnemonic = tokens->NextToken();
                   }
                   else if (tokens->TokenIsTag("unit"))
                   {
-                    unit = tokens->NextToken();
+          unit = tokens->NextToken();
                   }
                   else if (tokens->TokenIsTag("nullValue"))
                   {
-                    nullValue = tokens->NextToken();
+          nullValue = tokens->NextToken();
                   }
                   else if (tokens->TokenIsTag("curveDescription"))
                   {
-                    curveDescription = tokens->NextToken();
+          curveDescription = tokens->NextToken();
                   }
                   else if (tokens->TokenIsTag("classWitsml"))
                   {
-                    token = tokens->NextToken();
-                    if (strcmp(token, "measured depth") == 0)
-                    {
+          token = tokens->NextToken();
+          if (strcmp(token, "measured depth") == 0)
+          {
                       pDepthNdx = pCount;
-                    }
+          }
                   }
                   tokens->NextToken();
-                }
+        }
               }
               if (pCount == pAlloc)
               {
-                pAlloc += 20;
-                pValue = (RESCUEFLOAT **) realloc(pValue, sizeof(RESCUEFLOAT *) * pAlloc);
-                pCurveId = (RESCUECHAR **) realloc(pCurveId, sizeof(RESCUECHAR *) * pAlloc);
-                pName = (RESCUECHAR **) realloc(pName, sizeof(RESCUECHAR *) * pAlloc);
-                pType = (RESCUECHAR **) realloc(pType, sizeof(RESCUECHAR *) * pAlloc);
-                pUom = (RESCUECHAR **) realloc(pUom, sizeof(RESCUECHAR *) * pAlloc);
-                pNull = (RESCUEFLOAT *) realloc(pNull, sizeof(RESCUEFLOAT) * pAlloc);
+        pAlloc += 20;
+        pValue = (RESCUEFLOAT **) realloc(pValue, sizeof(RESCUEFLOAT *) * pAlloc);
+        pCurveId = (RESCUECHAR **) realloc(pCurveId, sizeof(RESCUECHAR *) * pAlloc);
+        pName = (RESCUECHAR **) realloc(pName, sizeof(RESCUECHAR *) * pAlloc);
+        pType = (RESCUECHAR **) realloc(pType, sizeof(RESCUECHAR *) * pAlloc);
+        pUom = (RESCUECHAR **) realloc(pUom, sizeof(RESCUECHAR *) * pAlloc);
+        pNull = (RESCUEFLOAT *) realloc(pNull, sizeof(RESCUEFLOAT) * pAlloc);
               }
               pValue[pCount] = (RESCUEFLOAT *) malloc(sizeof(RESCUEFLOAT) * dAlloc);
               pCurveId[pCount] = _strdup(curveId.NonNullString());
@@ -2945,31 +2945,31 @@ bool RescueModel::ReadWITSML(const RESCUECHAR *pathName, RescueProgressReporter 
               pUom[pCount] = _strdup(unit.NonNullString());
               pNull[pCount] = (RESCUEFLOAT) atof(nullValue.NonNullString());
               pCount++;
-            }
-            else if (tokens->TokenIsTag("blockInfo"))
-            {
+      }
+      else if (tokens->TokenIsTag("blockInfo"))
+      {
               if (bCount == bAlloc)
               {
-                bAlloc += 10;
-                bId = (RESCUECHAR **) realloc(bId, sizeof(RESCUECHAR *) * bAlloc);
-                pSpot = (size_t **) realloc(pSpot, sizeof(size_t *) * bAlloc);
+        bAlloc += 10;
+        bId = (RESCUECHAR **) realloc(bId, sizeof(RESCUECHAR *) * bAlloc);
+        pSpot = (size_t **) realloc(pSpot, sizeof(size_t *) * bAlloc);
               }
               pSpot[bCount] = (size_t *) malloc(sizeof(size_t) * pCount);
               for (pLoop = 0; pLoop < pCount; pLoop++)
               {
-                pSpot[bCount][pLoop] = pLoop;
+        pSpot[bCount][pLoop] = pLoop;
               }
               while (tokens->InTag())
               {
-                token = tokens->NextToken();
-                if (strcmp(token, "uid") == 0)
-                {
+        token = tokens->NextToken();
+        if (strcmp(token, "uid") == 0)
+        {
                   token = tokens->NextToken();
                   if (*token == '=')
                   {
-                    bId[bCount] = _strdup(tokens->UnquotedToken());
+          bId[bCount] = _strdup(tokens->UnquotedToken());
                   }
-                }
+        }
               }
 
               token = tokens->NextToken();
@@ -2977,208 +2977,208 @@ bool RescueModel::ReadWITSML(const RESCUECHAR *pathName, RescueProgressReporter 
               RESCUEBOOL continueLoop = TRUE;
               while (tokens != 0 && continueLoop == TRUE)
               {
-                if (tokens->TokenIsTag("/blockInfo"))
-                {
+        if (tokens->TokenIsTag("/blockInfo"))
+        {
                   bCount++;
                   continueLoop = FALSE;
-                }
-                else if (tokens->TokenIsTag("blockCurveInfo"))
-                {
+        }
+        else if (tokens->TokenIsTag("blockCurveInfo"))
+        {
                   RCHString curveId;
                   RCHString columnNo;
                   RESCUEBOOL continueLoop = TRUE;
                   while (tokens != 0 && continueLoop == TRUE)
                   {
-                    if (tokens->TokenIsTag("/blockCurveInfo"))
-                    {
+          if (tokens->TokenIsTag("/blockCurveInfo"))
+          {
                       continueLoop = FALSE;
-                    }
-                    else
-                    {
+          }
+          else
+          {
                       if (tokens->TokenIsTag("curveId"))
                       {
-                        tokens->ConsumeTag();
-                        curveId = tokens->NextToken();
+            tokens->ConsumeTag();
+            curveId = tokens->NextToken();
                       }
                       else if (tokens->TokenIsTag("columnIndex"))
                       {
-                        tokens->ConsumeTag();
-                        columnNo = tokens->NextToken();
+            tokens->ConsumeTag();
+            columnNo = tokens->NextToken();
                       }
                       tokens->NextToken();
-                    }
+          }
                   }
                   if (curveId.length64() > 0 && columnNo.length64() > 0)
                   {
-                    size_t pNdx = 0;
-                    size_t cNdx = pCount + 1;
-                    while (pNdx < pCount && cNdx > pCount)
-                    {
+          size_t pNdx = 0;
+          size_t cNdx = pCount + 1;
+          while (pNdx < pCount && cNdx > pCount)
+          {
                       if (curveId == pCurveId[pNdx])
                       {
-                        cNdx = pNdx;
+            cNdx = pNdx;
                       }
                       else
                       {
-                        pNdx++;
+            pNdx++;
                       }
-                    }
-                    if (cNdx < pCount)
-                    {
+          }
+          if (cNdx < pCount)
+          {
                       RESCUEINT32 cNo = atoi(columnNo.String()) - 1;
                       if (cNo != (RESCUEINT32) cNdx)
                       {
-                        size_t temp = pSpot[bCount][cNo];
-                        pSpot[bCount][cNo] = pSpot[bCount][cNdx];
-                        pSpot[bCount][cNdx] = temp;
+            size_t temp = pSpot[bCount][cNo];
+            pSpot[bCount][cNo] = pSpot[bCount][cNdx];
+            pSpot[bCount][cNdx] = temp;
                       }
-                    }
+          }
                   }
-                }
-                if (continueLoop)
-                {
+        }
+        if (continueLoop)
+        {
                   token = tokens->NextToken();
-                }
+        }
               }
-            }
-            else if (tokens->TokenIsTag("logData"))
-            {
+      }
+      else if (tokens->TokenIsTag("logData"))
+      {
               if (bCount == 0)
               {
-                pSpot[bCount] = (size_t *) malloc(sizeof(size_t) * pCount);
-                for (pLoop = 0; pLoop < pCount; pLoop++)
-                {
+        pSpot[bCount] = (size_t *) malloc(sizeof(size_t) * pCount);
+        for (pLoop = 0; pLoop < pCount; pLoop++)
+        {
                   pSpot[bCount][pLoop] = pLoop;
-                }
-                bCount++;
+        }
+        bCount++;
               }
 
               RESCUEBOOL continueLoop = TRUE;
               while (tokens != 0 && continueLoop == TRUE)
               {
-                if (tokens->TokenIsTag("/logData"))
-                {
+        if (tokens->TokenIsTag("/logData"))
+        {
                   continueLoop = FALSE;
-                }
-                else
-                {
+        }
+        else
+        {
                   if (tokens->TokenIsTag("data"))
                   {
-                    size_t bNdx = 0;
-                    while (tokens->InTag())
-                    {
+          size_t bNdx = 0;
+          while (tokens->InTag())
+          {
                       token = tokens->NextToken();
                       if (strcmp(token, "id") == 0)
                       {
-                        token = tokens->NextToken();
-                        if (*token == '=')
-                        {
+            token = tokens->NextToken();
+            if (*token == '=')
+            {
                           token = tokens->UnquotedToken();
                           for (pLoop = 0; pLoop < bCount; pLoop++)
                           {
-                            if (bId[pLoop] != 0)
-                            {
+              if (bId[pLoop] != 0)
+              {
                               if (strcmp(bId[pLoop], token) == 0)
                               {
-                                bNdx = pLoop;
+                bNdx = pLoop;
                               }
-                            }
+              }
                           }
-                        }
+            }
                       }
-                    }
-                    tokens->ConsumeTag();
-                    token = tokens->NextToken();
+          }
+          tokens->ConsumeTag();
+          token = tokens->NextToken();
 
-                    if (dCount == dAlloc)
-                    {
+          if (dCount == dAlloc)
+          {
                       dAlloc *= 2;
                       for (pLoop = 0; pLoop < pCount; pLoop++)
                       {
-                        pValue[pSpot[bNdx][pLoop]] = (RESCUEFLOAT *) realloc(pValue[pSpot[bNdx][pLoop]], sizeof(RESCUEFLOAT *) * dAlloc);
+            pValue[pSpot[bNdx][pLoop]] = (RESCUEFLOAT *) realloc(pValue[pSpot[bNdx][pLoop]], sizeof(RESCUEFLOAT *) * dAlloc);
                       }
-                    }
-                    RESCUECHAR *commaPos = strchr(token, ',');
-                    for (pLoop = 0; pLoop < pCount; pLoop++)
-                    {
+          }
+          RESCUECHAR *commaPos = strchr(token, ',');
+          for (pLoop = 0; pLoop < pCount; pLoop++)
+          {
                       if (commaPos != 0)
                       {
-                        *commaPos++ = 0;
-                        sscanf(token, "%f", &pValue[pSpot[bNdx][pLoop]][dCount]);
-                        token = commaPos;
-                        commaPos = strchr(token, ',');
+            *commaPos++ = 0;
+            sscanf(token, "%f", &pValue[pSpot[bNdx][pLoop]][dCount]);
+            token = commaPos;
+            commaPos = strchr(token, ',');
                       }
                       else
                       {
-                        sscanf(token, "%f", &pValue[pSpot[bNdx][pLoop]][dCount]);
+            sscanf(token, "%f", &pValue[pSpot[bNdx][pLoop]][dCount]);
                       }
-                    }
-                    dCount++;
+          }
+          dCount++;
                   }
                   token = tokens->NextToken();
-                }
+        }
               }
-            }
+      }
           }
           if (pleaseContinue == TRUE)
           {
-            token = tokens->NextToken();
+      token = tokens->NextToken();
           }
-        }
-        if (wellbore != 0 && skipLog == FALSE && dCount > 0)
-        {
+    }
+    if (wellbore != 0 && skipLog == FALSE && dCount > 0)
+    {
           if (sampling == 0)
           {
-            sampling = new RescueWellboreSampling(wellbore, dCount, pValue[pDepthNdx]);
-            if (loggingObject != 0)
-            {
+      sampling = new RescueWellboreSampling(wellbore, dCount, pValue[pDepthNdx]);
+      if (loggingObject != 0)
+      {
               loggingObject->ReportProgress("Adding new RescueWellboreSampling.");
-            }
+      }
           }
           else
           {
-            if (dCount == (size_t) sampling->Count64())
-            {
+      if (dCount == (size_t) sampling->Count64())
+      {
               sampling->SetValues(pValue[pDepthNdx]);
               if (loggingObject != 0)
               {
-                RCHString message;
-                message << "Updating existing RescueWellboreSampling " << sampling->Identifier();
-                loggingObject->ReportProgress(message.NonNullString());
+        RCHString message;
+        message << "Updating existing RescueWellboreSampling " << sampling->Identifier();
+        loggingObject->ReportProgress(message.NonNullString());
               }
-            }
-            else
-            {
+      }
+      else
+      {
               if (loggingObject != 0)
               {
-                RCHString message;
-                message << "Replacing existing RescueWellboreSampling " << sampling->Identifier();
-                loggingObject->ReportProgress("Replacing new RescueWellboreSampling.");
+        RCHString message;
+        message << "Replacing existing RescueWellboreSampling " << sampling->Identifier();
+        loggingObject->ReportProgress("Replacing new RescueWellboreSampling.");
               }
               wellbore->DropRescueWellboreSampling(sampling);
               sampling = new RescueWellboreSampling(wellbore, dCount, pValue[pDepthNdx]);
-            }
+      }
           }
           pValue[pDepthNdx] = 0;
           for (pLoop = 0; pLoop < pCount; pLoop++)
           {
-            if (pLoop != pDepthNdx)
-            {
+      if (pLoop != pDepthNdx)
+      {
               RescueWellboreProperty *incumbent = sampling->PropertyDescribedBy(pName[pLoop], pType[pLoop], pUom[pLoop]);
               if (incumbent != 0)
               {
-                RescueArray *data = incumbent->Data();
-                if (data->IsA() != R_RescueArrayFloat)
-                {
+        RescueArray *data = incumbent->Data();
+        if (data->IsA() != R_RescueArrayFloat)
+        {
                   if (loggingObject != 0)
                   {
-                    RCHString message;
-                    message << "Did not update property " << pName[pLoop] << "," << pType[pLoop] << "," << pUom[pLoop] << " incumbent was not RescueArrayFloat";
-                    loggingObject->ReportProgress(message.String());
+          RCHString message;
+          message << "Did not update property " << pName[pLoop] << "," << pType[pLoop] << "," << pUom[pLoop] << " incumbent was not RescueArrayFloat";
+          loggingObject->ReportProgress(message.String());
                   }
-                }
-                else
-                {
+        }
+        else
+        {
                   RescueArrayFloat *fData = (RescueArrayFloat *) data;
                   data->Load();
                   fData->AcceptValue(pNull[pLoop], pValue[pLoop]);
@@ -3187,84 +3187,84 @@ bool RescueModel::ReadWITSML(const RESCUECHAR *pathName, RescueProgressReporter 
                   pValue[pLoop] = 0;
                   if (loggingObject != 0)
                   {
-                    RCHString message;
-                    message << "Updated existing property " << pName[pLoop] << "," << pType[pLoop] << "," << pUom[pLoop];
-                    loggingObject->ReportProgress(message.String());
+          RCHString message;
+          message << "Updated existing property " << pName[pLoop] << "," << pType[pLoop] << "," << pUom[pLoop];
+          loggingObject->ReportProgress(message.String());
                   }
-                }
+        }
               }
               else
               {
   new RescueWellboreProperty(sampling, 
-        pName[pLoop], 
-        pType[pLoop], 
-        pUom[pLoop], 
-        pNull[pLoop], 
-        pValue[pLoop]);
-                pValue[pLoop] = 0;
+    pName[pLoop], 
+    pType[pLoop], 
+    pUom[pLoop], 
+    pNull[pLoop], 
+    pValue[pLoop]);
+        pValue[pLoop] = 0;
 
-                if (loggingObject != 0)
-                {
+        if (loggingObject != 0)
+        {
                   RCHString message;
                   message << "Adding property " << pName[pLoop] << "," << pType[pLoop] << "," << pUom[pLoop];
                   loggingObject->ReportProgress(message.String());
-                }
-              }
-            }
-          }
         }
-        for (pLoop = 0; pLoop < pCount; pLoop++)
-        {
+              }
+      }
+          }
+    }
+    for (pLoop = 0; pLoop < pCount; pLoop++)
+    {
           if (pCurveId[pLoop] != 0)
           {
-            free(pCurveId[pLoop]);
+      free(pCurveId[pLoop]);
           }
           if (pValue[pLoop] != 0)
           {
-            free(pValue[pLoop]);
+      free(pValue[pLoop]);
           }
           if (pName[pLoop] != 0)
           {
-            free(pName[pLoop]);
+      free(pName[pLoop]);
           }
           if (pType[pLoop] != 0)
           {
-            free(pType[pLoop]);
+      free(pType[pLoop]);
           }
           if (pUom[pLoop] != 0)
           {
-            free(pUom[pLoop]);
+      free(pUom[pLoop]);
           }
-        }
-        for (pLoop = 0; pLoop < bCount; pLoop++)
-        {
+    }
+    for (pLoop = 0; pLoop < bCount; pLoop++)
+    {
           if (bId[pLoop] != 0)
           {
-            free(bId[pLoop]);
+      free(bId[pLoop]);
           }
           free(pSpot[pLoop]);
-        }
-        free(pValue);
-        free(pCurveId);
-        free(pType);
-        free(pName);
-        free(pUom);
-        free(pNull);
-        free(bId);
-        free(pSpot);
+    }
+    free(pValue);
+    free(pCurveId);
+    free(pType);
+    free(pName);
+    free(pUom);
+    free(pNull);
+    free(bId);
+    free(pSpot);
       }
       token = tokens->NextToken();
-    }
-    delete tokens;
-    myReturn = true;
+  }
+  delete tokens;
+  myReturn = true;
   }
   else if (loggingObject != 0)
   {
-    RCHString errorMessage;
-    errorMessage << "ERROR: Unable to open ";
-    errorMessage << pathName;
-    errorMessage << " for reading.";
-    loggingObject->ReportProgress(errorMessage.String());
+  RCHString errorMessage;
+  errorMessage << "ERROR: Unable to open ";
+  errorMessage << pathName;
+  errorMessage << " for reading.";
+  loggingObject->ReportProgress(errorMessage.String());
   }
   return myReturn;
 }
@@ -3275,66 +3275,66 @@ bool RescueModel::WriteWITSML(const RESCUECHAR *pathName)
   FILE *file = fopen(pathName, "w");
   if (file != 0)
   {
-    fprintf(file, "%s\n", "<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>");
-    fprintf(file, "%s\n", "<WITSMLComposite xmlns=\"http://www.witsml.org/schemas/131\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.witsml.org/schemas/131 http://www.witsml.org/schemas/131/obj_trajectory.xsd\" version=\"1.3.1.0\">");
-    fprintf(file, "%s\n", "  <allObjects>");
-    fprintf(file, "%s\n", "    <wellDatum>");
-    fprintf(file, "%s\n", "      <name>modelDatum</name>");
-    RescueVertex *mVertex = coordinateSystem->Vertex();
-    if (mVertex != 0)
-    {
+  fprintf(file, "%s\n", "<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>");
+  fprintf(file, "%s\n", "<WITSMLComposite xmlns=\"http://www.witsml.org/schemas/131\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.witsml.org/schemas/131 http://www.witsml.org/schemas/131/obj_trajectory.xsd\" version=\"1.3.1.0\">");
+  fprintf(file, "%s\n", "  <allObjects>");
+  fprintf(file, "%s\n", "    <wellDatum>");
+  fprintf(file, "%s\n", "      <name>modelDatum</name>");
+  RescueVertex *mVertex = coordinateSystem->Vertex();
+  if (mVertex != 0)
+  {
       RescueCoordinateSystemAxis *axis = mVertex->CoordinateSystem()->Axis(2);
       if (axis != 0)
       {
-        fprintf(file, "      <elevation uom=\"%s\" datum=\"%s\">%f</elevation>\n", axis->UnitOfMeasure()->NonNullString(), mVertex->VertexName()->NonNullString(), mVertex->Z());
+    fprintf(file, "      <elevation uom=\"%s\" datum=\"%s\">%f</elevation>\n", axis->UnitOfMeasure()->NonNullString(), mVertex->VertexName()->NonNullString(), mVertex->Z());
       }
-    }
-    fprintf(file, "%s\n", "    </wellDatum>");
-    fprintf(file, "%s\n", "    <trajectorySet>");
-    fprintf(file, "      <name>%s Trajectories</name>\n", modelMoniker->NonNullString());
-    fprintf(file, "%s\n", "      <trajectorys>");
+  }
+  fprintf(file, "%s\n", "    </wellDatum>");
+  fprintf(file, "%s\n", "    <trajectorySet>");
+  fprintf(file, "      <name>%s Trajectories</name>\n", modelMoniker->NonNullString());
+  fprintf(file, "%s\n", "      <trajectorys>");
 
-    RCHString *uom = CoordinateSystem()->Axis(2)->UnitOfMeasure();
-    RCHString *csName = CoordinateSystem()->Name();
+  RCHString *uom = CoordinateSystem()->Axis(2)->UnitOfMeasure();
+  RCHString *csName = CoordinateSystem()->Name();
 
-    RESCUEINT64 ordinal = 0;
-    RescueWellbore *wellbore = wellbores->NthObject(ordinal++);
-    while (wellbore != 0)
-    {
+  RESCUEINT64 ordinal = 0;
+  RescueWellbore *wellbore = wellbores->NthObject(ordinal++);
+  while (wellbore != 0)
+  {
       RescueQuadrupletArray *wellboreGeom = wellbore->WellboreGeometry();
       wellboreGeom->WriteWITSML(file, wellbore, uom, csName);
 
       wellbore = wellbores->NthObject(ordinal++);
-    }
+  }
 
-    fprintf(file, "%s\n", "      </trajectorys>");
-    fprintf(file, "%s\n", "    </trajectorySet>");
-    fprintf(file, "%s\n", "    <wellLogSet>");
-    fprintf(file, "      <name>%s Well Logs</name>\n", modelMoniker->NonNullString());
-    fprintf(file, "%s\n", "      <wellLogs>");
+  fprintf(file, "%s\n", "      </trajectorys>");
+  fprintf(file, "%s\n", "    </trajectorySet>");
+  fprintf(file, "%s\n", "    <wellLogSet>");
+  fprintf(file, "      <name>%s Well Logs</name>\n", modelMoniker->NonNullString());
+  fprintf(file, "%s\n", "      <wellLogs>");
 
-    ordinal = 0;
-    wellbore = wellbores->NthObject(ordinal++);
-    while (wellbore != 0)
-    {
+  ordinal = 0;
+  wellbore = wellbores->NthObject(ordinal++);
+  while (wellbore != 0)
+  {
       RESCUEINT64 subOrdinal = 0;
       RescueWellboreSampling *sampling = wellbore->NthRescueWellboreSampling(subOrdinal++);
       while (sampling != 0)
       {
-        sampling->WriteWITSML(file, wellbore, uom);
-        sampling = wellbore->NthRescueWellboreSampling(subOrdinal++);
+    sampling->WriteWITSML(file, wellbore, uom);
+    sampling = wellbore->NthRescueWellboreSampling(subOrdinal++);
       }
 
       wellbore = wellbores->NthObject(ordinal++);
-    }
+  }
 
-    fprintf(file, "%s\n", "      </wellLogs>");
-    fprintf(file, "%s\n", "    </wellLogSet>");
-    fprintf(file, "%s\n", "  </allObjects>");
-    fprintf(file, "%s\n", "</WITSMLComposite>");
+  fprintf(file, "%s\n", "      </wellLogs>");
+  fprintf(file, "%s\n", "    </wellLogSet>");
+  fprintf(file, "%s\n", "  </allObjects>");
+  fprintf(file, "%s\n", "</WITSMLComposite>");
 
-    myReturn = ferror(file) == 0;
-    fclose(file);
+  myReturn = ferror(file) == 0;
+  fclose(file);
   }
   return myReturn;
 }

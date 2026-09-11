@@ -35,22 +35,22 @@ private:
   class Observer : public CGraphNode
   {
   public:
-    Observer(CFemAppGUI& femAppGUI, const QString& strInstanceName);
-    Observer(CFemAppGUI& femAppGUI, unsigned int uInstanceName);
+  Observer(CFemAppGUI& femAppGUI, const QString& strInstanceName);
+  Observer(CFemAppGUI& femAppGUI, unsigned int uInstanceName);
 
-    virtual void OnNewNeighbour(const CGraphNode& node);
-    virtual void OnNeighbourModified(const CGraphNode& node,
+  virtual void OnNewNeighbour(const CGraphNode& node);
+  virtual void OnNeighbourModified(const CGraphNode& node,
       enum ModifiedHint uHint);
-    virtual void OnNeighbourDeleted(const CGraphNode& node);
+  virtual void OnNeighbourDeleted(const CGraphNode& node);
 
-    virtual unsigned int IconId() const;
-    virtual unsigned int TypeId() const;
+  virtual unsigned int IconId() const;
+  virtual unsigned int TypeId() const;
 
   private:
-    Observer(const Observer& rhs);
-    Observer& operator = (const Observer& rhs);
+  Observer(const Observer& rhs);
+  Observer& operator = (const Observer& rhs);
 
-    CFemAppGUI& m_femAppGUI;
+  CFemAppGUI& m_femAppGUI;
   };
 
   CFemAppGUI(const CFemAppGUI& rhs);
@@ -62,9 +62,9 @@ private:
   CFemAppGUI* m_parentGUI;
 
 protected:
-	bool m_b_GUI_disabled;
+  bool m_b_GUI_disabled;
 public:
-	bool disabled(){ return m_b_GUI_disabled; }
+  bool disabled(){ return m_b_GUI_disabled; }
 };
 
 #endif  // _FemAppGUI_h_

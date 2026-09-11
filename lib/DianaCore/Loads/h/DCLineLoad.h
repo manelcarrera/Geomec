@@ -18,15 +18,15 @@ class CLoadManager;
 
 class CLineLoad : public IDirectedLoad  
 {
-	const geo::IObject &m_Object;
-	int m_nSetIndex;
+  const geo::IObject &m_Object;
+  int m_nSetIndex;
 
 public:
-	CLineLoad(CLoadCase &loadcase, double size, const geo::IVector &vecDirection, const geo::ILine &line);
-	CLineLoad(CLoadCase &loadcase, double size, const geo::IVector &vecDirection, const geo::IElementSet &group, int nSetIndex);
-	virtual ~CLineLoad();
+  CLineLoad(CLoadCase &loadcase, double size, const geo::IVector &vecDirection, const geo::ILine &line);
+  CLineLoad(CLoadCase &loadcase, double size, const geo::IVector &vecDirection, const geo::IElementSet &group, int nSetIndex);
+  virtual ~CLineLoad();
 
-	virtual bool WriteFilos() const;
+  virtual bool WriteFilos() const;
 };
 
 }

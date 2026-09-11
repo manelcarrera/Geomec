@@ -13,7 +13,7 @@ public:
   CNodalTemperature(CBoundaCase& boundacase, double size, const geo::INode& node);
 
   const geo::INode& Node() const;
-	virtual bool WriteFilos() const;
+  virtual bool WriteFilos() const;
 };
 
 }

@@ -8,14 +8,14 @@ namespace cora
 CCreateElementValueSet::CCreateElementValueSet(
   const TMapSingleValue2ElementValues&)
 : m_createElementValueSet(
-    TCreateElementValueSetBase(new CMapSingleValue2ElementValues()))
+  TCreateElementValueSetBase(new CMapSingleValue2ElementValues()))
 {
 }
 
 CCreateElementValueSet::CCreateElementValueSet(
   const TMapInterfaceElement2ElementValues&)
 : m_createElementValueSet(
-    TCreateElementValueSetBase(new CMapInterfaceElement2ElementValues()))
+  TCreateElementValueSetBase(new CMapInterfaceElement2ElementValues()))
 {
 }
 
@@ -23,7 +23,7 @@ void CCreateElementValueSet::createElementValueSet(CModelBase* modelBase,
   const CFailureTypeParameterBase* failureTypeParameterBase)
 {
   m_createElementValueSet->
-    createElementValueSet(modelBase, failureTypeParameterBase);
+  createElementValueSet(modelBase, failureTypeParameterBase);
 }
 
 // static

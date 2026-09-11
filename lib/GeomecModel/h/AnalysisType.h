@@ -11,13 +11,13 @@ public:
 
   typedef enum _AnalysisType
   {
-    AT_FIRST,
-    AT_LINEAR = AT_FIRST,
-    AT_NONLIN,
-    AT_HEAT,
-    AT_MIXTURE,
-    AT_MIXTURE_CONTAINMENT,
-    AT_LAST = AT_MIXTURE_CONTAINMENT  // update when adding types !!
+  AT_FIRST,
+  AT_LINEAR = AT_FIRST,
+  AT_NONLIN,
+  AT_HEAT,
+  AT_MIXTURE,
+  AT_MIXTURE_CONTAINMENT,
+  AT_LAST = AT_MIXTURE_CONTAINMENT  // update when adding types !!
   } TAnalysisType;
 
   // to iterate over the available analysis types, check for Valid()
@@ -47,9 +47,9 @@ public:
   QString Label() const;
   unsigned int IconId() const;
 
-	void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-	void SaveStream(TSTREAM& stream, TPROGRESS& progress) const;
-	long SavedItems() const;
+  void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
+  void SaveStream(TSTREAM& stream, TPROGRESS& progress) const;
+  long SavedItems() const;
 
   void LoadStream(std::stringstream& stream, CStreamVersion& version);
   void SaveStream(std::stringstream& stream) const;

@@ -25,22 +25,22 @@ CWellSection::~CWellSection()
 
 const CWellPoint& CWellSection::Top() const
 {
-	return m_Top;
+  return m_Top;
 }
 
 const CWellPoint& CWellSection::Bottom() const
 {
-	return m_Bottom;
+  return m_Bottom;
 }
 
 QString CWellSection::GetDescription() const
 {
-	return m_Description;
+  return m_Description;
 }
 
 void CWellSection::SetDescription(QString description) 
 {
-	m_Description=description;
+  m_Description=description;
 }
 
 

@@ -11,7 +11,7 @@ class CSetGlobalFaultBehaviourDialog : public CDialogEx
 
 public:
   CSetGlobalFaultBehaviourDialog(CFemAppModel* femAppModel,
-    CWnd* pParent = NULL);
+  CWnd* pParent = NULL);
   virtual ~CSetGlobalFaultBehaviourDialog();
 
   virtual BOOL OnInitDialog();

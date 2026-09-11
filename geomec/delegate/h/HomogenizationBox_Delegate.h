@@ -30,7 +30,7 @@ public:
 private:
   CHomogenizationBox_Delegate(const CHomogenizationBox_Delegate& rhs);
   CHomogenizationBox_Delegate& operator = (
-    const CHomogenizationBox_Delegate& rhs);
+  const CHomogenizationBox_Delegate& rhs);
 
   CHomogenizationBox* m_homogenizationBox;
 

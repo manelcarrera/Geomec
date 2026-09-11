@@ -15,62 +15,62 @@
 class CRock : public COleDispatchDriver
 {
 public:
-	CRock() {}		// Calls COleDispatchDriver default constructor
-	CRock(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
-	CRock(const CRock& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
+  CRock() {}		// Calls COleDispatchDriver default constructor
+  CRock(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
+  CRock(const CRock& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
 // Attributes
 public:
-	double GetYoung1();
-	void SetYoung1(double);
-	double GetYoung2();
-	void SetYoung2(double);
-	double GetPoisson();
-	void SetPoisson(double);
-	double GetCohesion();
-	void SetCohesion(double);
-	double GetFriction();
-	void SetFriction(double);
-	double GetDilatation();
-	void SetDilatation(double);
-	double GetBulkSolid();
-	void SetBulkSolid(double);
-	double GetBulkFluid();
-	void SetBulkFluid(double);
-	double GetPorosity();
-	void SetPorosity(double);
-	double GetPermeability();
-	void SetPermeability(double);
-	double GetViscosity();
-	void SetViscosity(double);
-	BOOL GetIsotropy();
-	void SetIsotropy(BOOL);
-	double GetTensileStrength();
-	void SetTensileStrength(double);
-	double GetMudExposureTime();
-	void SetMudExposureTime(double);
-	double GetEquilibriumTime();
-	void SetEquilibriumTime(double);
-	double GetThermalRockLinearExpansion();
-	void SetThermalRockLinearExpansion(double);
-	double GetThermalFluidLinearExpansion();
-	void SetThermalFluidLinearExpansion(double);
-	double GetThermalConductivity();
-	void SetThermalConductivity(double);
-	long GetHardeningType();
-	void SetHardeningType(long);
-	double GetFractureEnergy();
-	void SetFractureEnergy(double);
-	double GetHardeningGradient();
-	void SetHardeningGradient(double);
-	double GetDipDirection();
-	void SetDipDirection(double);
-	double GetDipAngle();
-	void SetDipAngle(double);
-	double GetVolumetricSpecificHeat();
-	void SetVolumetricSpecificHeat(double);
-	double GetCriticalPlasticStrain();
-	void SetCriticalPlasticStrain(double);
+  double GetYoung1();
+  void SetYoung1(double);
+  double GetYoung2();
+  void SetYoung2(double);
+  double GetPoisson();
+  void SetPoisson(double);
+  double GetCohesion();
+  void SetCohesion(double);
+  double GetFriction();
+  void SetFriction(double);
+  double GetDilatation();
+  void SetDilatation(double);
+  double GetBulkSolid();
+  void SetBulkSolid(double);
+  double GetBulkFluid();
+  void SetBulkFluid(double);
+  double GetPorosity();
+  void SetPorosity(double);
+  double GetPermeability();
+  void SetPermeability(double);
+  double GetViscosity();
+  void SetViscosity(double);
+  BOOL GetIsotropy();
+  void SetIsotropy(BOOL);
+  double GetTensileStrength();
+  void SetTensileStrength(double);
+  double GetMudExposureTime();
+  void SetMudExposureTime(double);
+  double GetEquilibriumTime();
+  void SetEquilibriumTime(double);
+  double GetThermalRockLinearExpansion();
+  void SetThermalRockLinearExpansion(double);
+  double GetThermalFluidLinearExpansion();
+  void SetThermalFluidLinearExpansion(double);
+  double GetThermalConductivity();
+  void SetThermalConductivity(double);
+  long GetHardeningType();
+  void SetHardeningType(long);
+  double GetFractureEnergy();
+  void SetFractureEnergy(double);
+  double GetHardeningGradient();
+  void SetHardeningGradient(double);
+  double GetDipDirection();
+  void SetDipDirection(double);
+  double GetDipAngle();
+  void SetDipAngle(double);
+  double GetVolumetricSpecificHeat();
+  void SetVolumetricSpecificHeat(double);
+  double GetCriticalPlasticStrain();
+  void SetCriticalPlasticStrain(double);
 
 // Operations
 public:

@@ -12,7 +12,7 @@ typedef struct {
 } XFaultPoint_t;
 
 typedef struct {
-	int nDummy;
+  int nDummy;
 } XNormal2Fault_t;
 
 typedef enum {

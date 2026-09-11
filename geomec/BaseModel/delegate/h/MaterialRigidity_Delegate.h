@@ -13,7 +13,7 @@ public:
 private:
   CMaterialRigidity_Delegate(const CMaterialRigidity_Delegate& rhs);
   CMaterialRigidity_Delegate& operator = (
-    const CMaterialRigidity_Delegate& rhs);
+  const CMaterialRigidity_Delegate& rhs);
 
   CMaterialRigidity* m_materialRigidity;
 

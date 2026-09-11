@@ -18,29 +18,29 @@ bool CEclipseGUI::NewModel(bool bAttachToDocument)
   // the eclipse file he want to open.
 
   CTnoFileDialog file_dlg(TRUE, NULL, NULL,
-    OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
-    "Eclipse Files (*.grid;*.ecl)|*.grid; *.ecl|All Files (*.*)|*.*||");
+  OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
+  "Eclipse Files (*.grid;*.ecl)|*.grid; *.ecl|All Files (*.*)|*.*||");
 
   if (file_dlg.DoModal() == IDOK)
   {
-    m_eclipseModel->setFileName((LPCSTR) file_dlg.GetPathName());
+  m_eclipseModel->setFileName((LPCSTR) file_dlg.GetPathName());
   }
   else
   {
-    return false; // File dialog is cancled
+  return false; // File dialog is cancled
   }
 
   if (m_eclipseModel->NewModel(bAttachToDocument))
   {
-    if (!EditSubModel())
-    {
+  if (!EditSubModel())
+  {
       IModelLifetimeFacade::Close(m_eclipseModel);
       return false;
-    }
+  }
   }
   else
   {
-    return false;
+  return false;
   }
 
   return true;
@@ -57,9 +57,9 @@ bool CEclipseGUI::EditSubModel()
 
   if (dlg.DoModal() == IDOK)
   {
-    m_eclipseModel->CreateSubBoundary();
+  m_eclipseModel->CreateSubBoundary();
 
-    return true;
+  return true;
   }
 
   return false;
@@ -73,7 +73,7 @@ CEclipseModel* CEclipseGUI::model() const
 bool CEclipseGUI::LoadPre381Stream(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &prog)
 {
   if(!CTetraGUI::LoadPre381Stream(stream, version, prog))
-    return false;
+  return false;
 
   return m_eclipseModel->LoadEclipse(stream, version, prog);
 }

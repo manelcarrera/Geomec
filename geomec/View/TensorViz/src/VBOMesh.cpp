@@ -24,16 +24,16 @@ VBOMesh::VBOMesh(GLuint vertexBuffer, GLuint indexBuffer, GLenum indexType, GLsi
 
 void VBOMesh::setInstancedParams(GLuint instancedDataBuffer, size_t instanceCount)
 {
-    m_instancedDataBuffer = instancedDataBuffer;
-    m_instanceCount = instanceCount;
+  m_instancedDataBuffer = instancedDataBuffer;
+  m_instanceCount = instanceCount;
 }
 
 bool VBOMesh::valid() const
 {
   return
-    m_vertexBuffer != 0 &&
-    m_indexBuffer != 0 &&
-    m_count != 0;
+  m_vertexBuffer != 0 &&
+  m_indexBuffer != 0 &&
+  m_count != 0;
 }
 
 void VBOMesh::free()
@@ -96,10 +96,10 @@ void VBOMesh::render()
   glVertexAttribPointer(centerAttribIndex, 3, GL_FLOAT, false, stride, (const GLvoid*)8);
 
   for(int i=0; i < 3; ++i)
-    glVertexAttribPointer(rotationAttribIndex + i, 3, GL_FLOAT, false, stride, (const GLvoid*)(20 + 12 * (long long)i));
+  glVertexAttribPointer(rotationAttribIndex + i, 3, GL_FLOAT, false, stride, (const GLvoid*)(20 + 12 * (long long)i));
 
   for(int i=0; i < 6; ++i)
-    glVertexAttribDivisor(propertyValue1AttribIndex + i, 1);
+  glVertexAttribDivisor(propertyValue1AttribIndex + i, 1);
 
   GLGETERROR();
 

@@ -9,11 +9,11 @@ CDianaExecuterSignalHandler::CDianaExecuterSignalHandler()
 {
   CDianaStartUp* dsu = CDianaStartUp::instance();
 
-	connect( dsu, SIGNAL(OnMessage(      QString)), this, SLOT(OnMessage(      QString)));
-	connect( dsu, SIGNAL(OnAppSpcMessage(QString)), this, SLOT(OnAppSpcMessage(QString)));
-	connect( dsu, SIGNAL(OnError(        QString)), this, SLOT(OnError(        QString)));
-	connect( dsu, SIGNAL(OnWarning(      QString)), this, SLOT(OnWarning(      QString)));
-	connect( dsu, SIGNAL(OnFinished(            )), this, SLOT(OnFinished(            )));
+  connect( dsu, SIGNAL(OnMessage(      QString)), this, SLOT(OnMessage(      QString)));
+  connect( dsu, SIGNAL(OnAppSpcMessage(QString)), this, SLOT(OnAppSpcMessage(QString)));
+  connect( dsu, SIGNAL(OnError(        QString)), this, SLOT(OnError(        QString)));
+  connect( dsu, SIGNAL(OnWarning(      QString)), this, SLOT(OnWarning(      QString)));
+  connect( dsu, SIGNAL(OnFinished(            )), this, SLOT(OnFinished(            )));
 }
 
 CDianaExecuterSignalHandler::~CDianaExecuterSignalHandler()
@@ -29,30 +29,30 @@ CDianaExecuterSignalHandler::~CDianaExecuterSignalHandler()
 
 bool CDianaExecuterSignalHandler::GetCalculationResult()
 { 
-	return (m_bFinished && !m_bError); 
+  return (m_bFinished && !m_bError); 
 }
 
 void CDianaExecuterSignalHandler::OnMessage(QString str)
 {
-	_m()->outstream() << str.toStdString() << std::endl; 
+  _m()->outstream() << str.toStdString() << std::endl; 
 }
 void CDianaExecuterSignalHandler::OnAppSpcMessage(QString str)
 { 
-	_m()->outstream() << str.toStdString() << std::endl; 
+  _m()->outstream() << str.toStdString() << std::endl; 
 }
 
 void CDianaExecuterSignalHandler::OnError(QString str)
 {
-	_m()->outstream() << str.toStdString() << std::endl;
-	m_bError = true;
+  _m()->outstream() << str.toStdString() << std::endl;
+  m_bError = true;
 }
 
 void CDianaExecuterSignalHandler::OnWarning(QString str)
 { 
-	_m()->outstream() << str.toStdString() << std::endl; 
+  _m()->outstream() << str.toStdString() << std::endl; 
 }
 
 void CDianaExecuterSignalHandler::OnFinished()
 { 
-	m_bFinished = true; 
+  m_bFinished = true; 
 }

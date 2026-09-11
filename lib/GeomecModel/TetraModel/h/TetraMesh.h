@@ -25,9 +25,9 @@ class CPressureSupportNode;
 class CTetraSubHorizon;
 
 namespace geo {
-	class CInterfaceElement;
-	class CSurfaceDesc;
-	class CBodyTriangle;
+  class CInterfaceElement;
+  class CSurfaceDesc;
+  class CBodyTriangle;
 }
 
 namespace gm_dsf
@@ -49,31 +49,31 @@ class CTetraMesh : public CMeshBase
   friend class CGocadMeshImporter;
   friend class gm_dsf::DSFIntermediateSurfaceGenerator;
   friend class GeomecRGI::CLoadGridFromRGI;
-	friend class CShellGoCadFile;
+  friend class CShellGoCadFile;
 
 public:
-	typedef CSingleCommandTemplate<CTetraMesh> TTetraMeshCommand;
+  typedef CSingleCommandTemplate<CTetraMesh> TTetraMeshCommand;
   typedef enum eMesherType : int { FGV = 0, CM2 = 1 } eMesherType;
 private:
-	const CSurfaceBase* Surface(const geo::ISurface& surface);
+  const CSurfaceBase* Surface(const geo::ISurface& surface);
 
-	// The tetrahedron mesh object
-	geo::CTetMeshBase *m_pMesh;
-	// The mapping of surfaces sources 
-	std::vector<COpenGLNode*> m_vcSurfaceSource;
-	bool m_bCanInvalidateMesh;
+  // The tetrahedron mesh object
+  geo::CTetMeshBase *m_pMesh;
+  // The mapping of surfaces sources 
+  std::vector<COpenGLNode*> m_vcSurfaceSource;
+  bool m_bCanInvalidateMesh;
 
-	int AddSurface(const geo::ISurface& surface, const QString& sName, bool bSlip);
-	CTetraHorizonBase* Horizon(const CSurfaceBase& base);
-	void GenerateSupportsForSurfaceDesc(const geo::CSurfaceDesc &surfacedesc, const CPressureSupportNode &pnode, int iRefNode,
+  int AddSurface(const geo::ISurface& surface, const QString& sName, bool bSlip);
+  CTetraHorizonBase* Horizon(const CSurfaceBase& base);
+  void GenerateSupportsForSurfaceDesc(const geo::CSurfaceDesc &surfacedesc, const CPressureSupportNode &pnode, int iRefNode,
                                       const geo::IVector& vecNormal, const geo::IVector& vecTangent);
 
 /*
-	This map is udes for storing and loading the elements.
-	expand this map when new element types are added to the mesh. Make sure the map is filled correctly
-	in the constructor.
+  This map is udes for storing and loading the elements.
+  expand this map when new element types are added to the mesh. Make sure the map is filled correctly
+  in the constructor.
 */
-	std::map<std::string, int> m_mpElementType;
+  std::map<std::string, int> m_mpElementType;
 
   bool m_bBuildingFromGocad;
   double m_dMaxGocadSurfaceAngle; // in radians, when angles are larger surfaces will be split
@@ -100,82 +100,82 @@ private:
                           const std::set<const geo::CBodyGroup::CSideSurface*>& stFaultSurfaces) const;
 
 public:
-	// Construction of the mesher
-	CTetraMesh(CTetraModel& model);
-	virtual ~CTetraMesh();
+  // Construction of the mesher
+  CTetraMesh(CTetraModel& model);
+  virtual ~CTetraMesh();
 
-	// Interface of element set
-	virtual const geo::IElementSet &ElementSet() const;
-	virtual geo::IElementSet &ElementSet();
-	virtual DIMENSION Dimension() const;
-	virtual unsigned int IconId() const;
-	virtual unsigned int TypeId() const;
-	virtual int DisplayListSize() const;
-	virtual const geo::IObject& DisplayList(int nIndex) const;
+  // Interface of element set
+  virtual const geo::IElementSet &ElementSet() const;
+  virtual geo::IElementSet &ElementSet();
+  virtual DIMENSION Dimension() const;
+  virtual unsigned int IconId() const;
+  virtual unsigned int TypeId() const;
+  virtual int DisplayListSize() const;
+  virtual const geo::IObject& DisplayList(int nIndex) const;
 
 #ifdef SKUA_NEW
   bool ImportMeshFromGoCadFile(const QString& string,
-    bool(*selectGocadSolidDlg)(const std::vector<const gm_skua::SKUAParseData *>& solids,
+  bool(*selectGocadSolidDlg)(const std::vector<const gm_skua::SKUAParseData *>& solids,
       std::vector<int>& vcSolids));
   bool CreateMeshFromSolids(const QString& sPath,
-    const std::vector<const gm_skua::SKUAParseData *>& solids,
-    const std::vector<int>& vcSolidIndices);
+  const std::vector<const gm_skua::SKUAParseData *>& solids,
+  const std::vector<int>& vcSolidIndices);
   bool CreateMeshFromSolids(const QString& sPath,
-    const std::vector<const gm_skua::SKUAParseData *>& solids,
-    bool(*selectGocadSolidDlg)(const std::vector<const gm_skua::SKUAParseData *>& solids,
+  const std::vector<const gm_skua::SKUAParseData *>& solids,
+  bool(*selectGocadSolidDlg)(const std::vector<const gm_skua::SKUAParseData *>& solids,
       std::vector<int>& vcSolids));
 #else
-	bool ImportMeshFromGoCadFile(	const QString& string,
-									bool (*selectGocadSolidDlg)(	const std::vector <QSharedPointer <CGocadData::CTSolid> >& solids,
-																	std::vector<int>& vcSolids));
+  bool ImportMeshFromGoCadFile(	const QString& string,
+                  bool (*selectGocadSolidDlg)(	const std::vector <QSharedPointer <CGocadData::CTSolid> >& solids,
+                                  std::vector<int>& vcSolids));
   bool CreateMeshFromSolids(const QString& sPath,
-							std::vector <QSharedPointer <CGocadData::CTSolid> >& solids, 
-							const std::vector<int>& vcSolidIndices);
+              std::vector <QSharedPointer <CGocadData::CTSolid> >& solids, 
+              const std::vector<int>& vcSolidIndices);
   bool CreateMeshFromSolids(const QString& sPath,
-							std::vector <QSharedPointer <CGocadData::CTSolid> >& solids,
-							bool (*selectGocadSolidDlg)(	const std::vector <QSharedPointer <CGocadData::CTSolid> >& solids,
-															std::vector<int>& vcSolids) );
+              std::vector <QSharedPointer <CGocadData::CTSolid> >& solids,
+              bool (*selectGocadSolidDlg)(	const std::vector <QSharedPointer <CGocadData::CTSolid> >& solids,
+                              std::vector<int>& vcSolids) );
 #endif
-	virtual const geo::IMesh& Mesh() const;
-	virtual geo::IMesh& Mesh();
+  virtual const geo::IMesh& Mesh() const;
+  virtual geo::IMesh& Mesh();
 
-	// Save and load
-	virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-	virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
-	virtual long SavedItems() const;
-	
-	// Fixed mesh ...
-	virtual bool CanInvalidateMesh() const;
+  // Save and load
+  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
+  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  virtual long SavedItems() const;
+  
+  // Fixed mesh ...
+  virtual bool CanInvalidateMesh() const;
 
-	// Meshing interface
-	virtual bool IsMesh() const;
-	virtual bool CanCreateMesh() const;
-	virtual void CreateMesh();
-	virtual void InvalidateMesh();
+  // Meshing interface
+  virtual bool IsMesh() const;
+  virtual bool CanCreateMesh() const;
+  virtual void CreateMesh();
+  virtual void InvalidateMesh();
 
   eMesherType CurrentMesherType() const;
   std::string CurrentMesher() const;
   void SwitchMesher(std::string type);
   void SwitchMesher(eMesherType type);
 
-	// Functions to retrieve the input surfaces. You can only access these functions when IsMesh()
-	// is flagged. The input surface descriptor is returned with the graph where it is extracted from.
-	// TetSurfaces (output) can accessed via the surface discriptor.
-	virtual int InputSurfaceSize() const;
-	typedef std::pair<const geo::CSurfaceDesc*, COpenGLNode*> TInputSurface;
-	virtual TInputSurface InputSurface(int nIndex) const;
+  // Functions to retrieve the input surfaces. You can only access these functions when IsMesh()
+  // is flagged. The input surface descriptor is returned with the graph where it is extracted from.
+  // TetSurfaces (output) can accessed via the surface discriptor.
+  virtual int InputSurfaceSize() const;
+  typedef std::pair<const geo::CSurfaceDesc*, COpenGLNode*> TInputSurface;
+  virtual TInputSurface InputSurface(int nIndex) const;
 
-	// Retrieve adjacent graph nodes to a given volume
-	TGraphNodeSet VolumeIdentity(const geo::CBodyGroup& volume) const;
+  // Retrieve adjacent graph nodes to a given volume
+  TGraphNodeSet VolumeIdentity(const geo::CBodyGroup& volume) const;
 
-	// Supports generation (currently for tetra models only)
+  // Supports generation (currently for tetra models only)
   void GetModelOrientation(geo::IVector& vecNormal, geo::IVector& vecTangent);
-	virtual void GenerateSupports();
+  virtual void GenerateSupports();
 
-	// get the 'fault' from a contact element
-	virtual const CHorizonBase* SlipHorizon(const geo::IElement &element) const;
+  // get the 'fault' from a contact element
+  virtual const CHorizonBase* SlipHorizon(const geo::IElement &element) const;
 
-	void ExportInterfaces();
+  void ExportInterfaces();
 
   const double& MaxGocadSurfaceAngle() const;
   void MaxGocadSurfaceAngle(const double& dValue);
@@ -190,14 +190,14 @@ public:
 
 private:
   const geo::IFace *LoadBodyTriangle(TSTREAM& stream, CStreamVersion& version);
-	void SaveBodyTriangle( const geo::IFace*, TSTREAM& stream );
+  void SaveBodyTriangle( const geo::IFace*, TSTREAM& stream );
 
   const geo::IFace *LoadTiedPointBodyTriangle(TSTREAM& stream, CStreamVersion& version);
   void SaveTiedBodyTriangle(const geo::IFace& face, TSTREAM& stream);
 
-	void SaveInterfaceElement(TSTREAM &stream,TPROGRESS &progress,const geo::IElement &element);
-	void LoadInterfaceElement(TSTREAM &stream,CStreamVersion& version,TPROGRESS &progress);
-	void LoadContactElement(TSTREAM &stream,TPROGRESS &progress);
+  void SaveInterfaceElement(TSTREAM &stream,TPROGRESS &progress,const geo::IElement &element);
+  void LoadInterfaceElement(TSTREAM &stream,CStreamVersion& version,TPROGRESS &progress);
+  void LoadContactElement(TSTREAM &stream,TPROGRESS &progress);
 
   void SaveTyings(TSTREAM& stream, TPROGRESS& progress);
   void LoadTyings(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);

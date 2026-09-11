@@ -25,16 +25,16 @@ CMeshProgress::CMeshProgress(IProgressBase& dlg)
 
 void CMeshProgress::StartMesh(int nJobs)
 {
-	m_nTotalSteps = nJobs;
-	m_dlg.AddSteps(m_nTotalSteps);
+  m_nTotalSteps = nJobs;
+  m_dlg.AddSteps(m_nTotalSteps);
 }
 
 void CMeshProgress::NewJob(std::string sJobName)
 {
-	assert(m_nTotalSteps > 0);
+  assert(m_nTotalSteps > 0);
   m_dlg.StatusMessage(sJobName.c_str());
-	m_dlg.Step();
-	m_nCurrentStep++;
+  m_dlg.Step();
+  m_nCurrentStep++;
 }
 
 void CMeshProgress::StopMesh()

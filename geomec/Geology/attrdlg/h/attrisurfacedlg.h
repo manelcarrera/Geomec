@@ -18,31 +18,31 @@ class CAttriSurfaceDlg : public CAttributesTemplate<CSurfaceBase>
 
 // Construction
 public:
-	CAttriSurfaceDlg(CSurfaceBase& surface, CWnd* pParent = NULL);   // standard constructor
+  CAttriSurfaceDlg(CSurfaceBase& surface, CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
-	//{{AFX_DATA(CAttriSurfaceDlg)
-	enum { IDD = IDD_ATRI_SURFACE };
-	//}}AFX_DATA
+  //{{AFX_DATA(CAttriSurfaceDlg)
+  enum { IDD = IDD_ATRI_SURFACE };
+  //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CAttriSurfaceDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+  // ClassWizard generated virtual function overrides
+  //{{AFX_VIRTUAL(CAttriSurfaceDlg)
+  protected:
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CAttriSurfaceDlg)
-	virtual BOOL OnInitDialog();
-	afx_msg void OnBtColor();
-	afx_msg void OnPaint();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+  // Generated message map functions
+  //{{AFX_MSG(CAttriSurfaceDlg)
+  virtual BOOL OnInitDialog();
+  afx_msg void OnBtColor();
+  afx_msg void OnPaint();
+  //}}AFX_MSG
+  DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}

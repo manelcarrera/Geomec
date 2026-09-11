@@ -1,10 +1,10 @@
 /*************************************************************************
 
-        cSetRescueDataContainer.cpp
+    cSetRescueDataContainer.cpp
 
  Keeps a list of pointers to some RescueDataContainer.
 
-        Rod Hanks               Feb 2006
+    Rod Hanks               Feb 2006
 
 ****************************************************************************/
 #include "RescueModel.h"
@@ -27,40 +27,40 @@ cSetRescueDataContainer::cSetRescueDataContainer(RescueModel *modelIn, RESCUEINT
   RCHString fileName;
   if (model->oldPathName != 0)
   {
-    fileName << model->oldPathName;
+  fileName << model->oldPathName;
   }
   else
   {
-    fileName << model->currentPathName;
+  fileName << model->currentPathName;
   }
   fileName << "." << Identifier();
   FILE *archiveFile;
   if (context->binaryFlag)
   {
-    archiveFile = (FILE *) fopen(fileName.String(), "rb");
-    if (archiveFile != 0)
-    {
+  archiveFile = (FILE *) fopen(fileName.String(), "rb");
+  if (archiveFile != 0)
+  {
       getc(archiveFile);
       fseek(archiveFile, 26, SEEK_CUR);
       myfscanf(context, archiveFile, &fileVersion);
       UnArchive(archiveFile);
       fclose(archiveFile);
-    }
+  }
   }
   else
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    archiveFile = (FILE *) fopen(fileName.String(), "rt");
-    if (archiveFile != 0)
-    {
+  archiveFile = (FILE *) fopen(fileName.String(), "rt");
+  if (archiveFile != 0)
+  {
       myfgets(context, myString, 255, archiveFile);
       RESCUEINT64 fileFormatVersion;
       sscanf(myString, "Rescue Data Container File Version %lld\n", &fileFormatVersion);
       myfscanf(context, archiveFile, &fileVersion);
       UnArchive(archiveFile);
       fclose(archiveFile);
-    }
+  }
   }
   Relink(model);
 }
@@ -83,41 +83,41 @@ void cSetRescueDataContainer::Archive()
   model->MakeBackupFile(fileName.String());
   if (model->currentBinary)
   {
-    archiveFile = (FILE *) fopen(fileName.String(), "wb");
+  archiveFile = (FILE *) fopen(fileName.String(), "wb");
   }
   else
   {
-    archiveFile = (FILE *) fopen(fileName.String(), "wt");
+  archiveFile = (FILE *) fopen(fileName.String(), "wt");
   }
   if (archiveFile != 0)
   {
-    model->Context()->binaryFlag = model->currentBinary;
-    if (model->Context()->binaryFlag)
-    {
+  model->Context()->binaryFlag = model->currentBinary;
+  if (model->Context()->binaryFlag)
+  {
       putc((RESCUEUCHAR) DATA_CONTAINER_FILE_VERSION, archiveFile);
       fwrite("Rescue Data Container File", sizeof(RESCUECHAR), 26, archiveFile);
-    }
-    else
-    {
+  }
+  else
+  {
       fprintf(archiveFile, "Rescue Data Container File Version %d\n", DATA_CONTAINER_FILE_VERSION);
-    }
+  }
 #ifdef TESTING
-    myfprintf(model->Context(), archiveFile, fileVersion);
+  myfprintf(model->Context(), archiveFile, fileVersion);
 #else
-    myfprintf(model->Context(), archiveFile, ++fileVersion);
+  myfprintf(model->Context(), archiveFile, ++fileVersion);
 #endif
-    Archive(archiveFile);
-    myfprintf(model->Context(), archiveFile, "abracadabra jump jump");
-    if (ferror(archiveFile) != 0)
-    {
+  Archive(archiveFile);
+  myfprintf(model->Context(), archiveFile, "abracadabra jump jump");
+  if (ferror(archiveFile) != 0)
+  {
       RCHString message;
       message << "Error writing to Rescue Data Container File:";
       message<< fileName.String();
       message << " (";
       message << (RESCUEINT64) ferror(archiveFile);
       message << ")";
-    }
-    fclose(archiveFile);
+  }
+  fclose(archiveFile);
   }
 }
 
@@ -127,7 +127,7 @@ cSetRescueDataContainer::~cSetRescueDataContainer()
 
   for (loop = 0; loop < count; loop++)
   {
-    delete objects[loop];
+  delete objects[loop];
   }
   free(objects);
 }
@@ -146,7 +146,7 @@ void cSetRescueDataContainer::Archive(FILE *archiveFile)
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    objects[loop]->Archive(archiveFile);
+  objects[loop]->Archive(archiveFile);
   }
 }
 
@@ -155,7 +155,7 @@ void cSetRescueDataContainer::Relink(RescueObject *parent)
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    objects[loop]->Relink(parent);
+  objects[loop]->Relink(parent);
   }
 }
 
@@ -164,11 +164,11 @@ RESCUEBOOL cSetRescueDataContainer::AnyFileTruncated()
   RESCUEBOOL myReturn = FileTruncated();
   if (myReturn == FALSE)
   {
-    RESCUEINT64 loop;
-    for (loop = 0; loop < count && myReturn == FALSE; loop++)
-    {
+  RESCUEINT64 loop;
+  for (loop = 0; loop < count && myReturn == FALSE; loop++)
+  {
       myReturn = objects[loop]->AnyFileTruncated();
-    }
+  }
   }
   return myReturn;
 }
@@ -183,8 +183,8 @@ void cSetRescueDataContainer::UnArchive(FILE *archiveFile)
   RESCUEINT64 loop;
   for (loop = 0; loop < newCount; loop++)
   {
-    RescueDataContainer *newObject = new RescueDataContainer(model, archiveFile);
-    (*this) += newObject;
+  RescueDataContainer *newObject = new RescueDataContainer(model, archiveFile);
+  (*this) += newObject;
   }
 }
 
@@ -194,7 +194,7 @@ void cSetRescueDataContainer::EmptySelf(void)
  
   for (loop = 0; loop < count; loop++)
   {
-    delete objects[loop];
+  delete objects[loop];
   }
   count = 0;
 }
@@ -203,8 +203,8 @@ void cSetRescueDataContainer::operator+=(RescueDataContainer *newObject)
 {
   if (allocated == count)
   {
-    allocated += 10;
-    objects = (RescueDataContainer **) realloc(objects, sizeof(RescueDataContainer *) * (size_t) allocated);
+  allocated += 10;
+  objects = (RescueDataContainer **) realloc(objects, sizeof(RescueDataContainer *) * (size_t) allocated);
   }
   objects[count++] = newObject;
 }
@@ -216,25 +216,25 @@ RESCUEBOOL cSetRescueDataContainer::operator-=(RescueDataContainer *existingObje
 
   while (ndx < count && found == FALSE)
   {
-    if (existingObject == objects[ndx])
-    {
+  if (existingObject == objects[ndx])
+  {
       found = TRUE;
-    }
-    else
-    {
+  }
+  else
+  {
       ndx++;
-    }
+  }
   }
   if (found)
   {
-    RESCUEINT64 loop;
+  RESCUEINT64 loop;
 
-    objects[ndx]->Dispose();
-    count--;
-    for (loop = ndx; loop < count; loop++)
-    {
+  objects[ndx]->Dispose();
+  count--;
+  for (loop = ndx; loop < count; loop++)
+  {
       objects[loop] = objects[loop + 1];
-    }
+  }
   }
   return found;
 }
@@ -246,22 +246,22 @@ RescueDataContainer *cSetRescueDataContainer::ObjectIdentifiedBy(RESCUEINT64 ide
 
   while (ndx < count && found == FALSE)
   {
-    if (objects[ndx]->IsIdentifiedBy(identifier))
-    {
-      found = TRUE;
-    }
-    else
-    {
-      ndx++;
-    }
-  }
-  if (found)
+  if (objects[ndx]->IsIdentifiedBy(identifier))
   {
-    return objects[ndx];
+      found = TRUE;
   }
   else
   {
-    return 0;
+      ndx++;
+  }
+  }
+  if (found)
+  {
+  return objects[ndx];
+  }
+  else
+  {
+  return 0;
   }
 }
 
@@ -269,19 +269,19 @@ RESCUEBOOL cSetRescueDataContainer::operator-=(RESCUEINT64 ndx)
 {
   if (ndx >= 0 && ndx < count)
   {
-    RESCUEINT64 loop;
+  RESCUEINT64 loop;
 
-    objects[ndx]->Dispose();
-    count--;
-    for (loop = ndx; loop < count; loop++)
-    {
+  objects[ndx]->Dispose();
+  count--;
+  for (loop = ndx; loop < count; loop++)
+  {
       objects[loop] = objects[loop + 1];
-    }
-    return TRUE;
+  }
+  return TRUE;
   }
   else
   {
-    return FALSE;
+  return FALSE;
   }
 }
 
@@ -289,11 +289,11 @@ RescueDataContainer *cSetRescueDataContainer::NthObject(RESCUEINT64 ordinal)
 {
   if (ordinal < 0 || ordinal >= count)
   {
-    return 0;
+  return 0;
   }
   else
   {
-    return objects[ordinal];
+  return objects[ordinal];
   }
 }
 
@@ -312,7 +312,7 @@ void cSetRescueDataContainer::FindUniquePropertyNames(cSetString *container)
   int loop;
   for (loop = 0; loop < count; loop++)
   {
-    objects[loop]->FindUniquePropertyNames(container);
+  objects[loop]->FindUniquePropertyNames(container);
   }
 
 }
@@ -321,15 +321,15 @@ RESCUEINT32 cSetRescueDataContainer::Count(RESCUEBOOL throwIfTrue)
 {
   if (count > 2147483647)
   {
-    if (throwIfTrue)
-    {
+  if (throwIfTrue)
+  {
       throw "Model is too large to be accessed in 32 bit mode.";
-    }
-    return 0;
+  }
+  return 0;
   }
   else
   {
-    return (RESCUEINT32) count;
+  return (RESCUEINT32) count;
   }
 }
 

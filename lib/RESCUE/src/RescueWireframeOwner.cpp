@@ -17,17 +17,17 @@ RescueWireframe *RescueWireframeOwner::Wireframe()
 {
   if (ParentModel()->IsWireframeLoaded() == FALSE)
   {
-    if (wireframe != 0)
-    {
+  if (wireframe != 0)
+  {
       wireframe = 0;
-    }
+  }
   }
   else
   {
-    if (wireframe == 0)
-    {
+  if (wireframe == 0)
+  {
       wireframe = new RescueWireframe(ParentModel(), this);
-    }
+  }
   }
   return wireframe;
 }
@@ -36,11 +36,11 @@ RESCUEBOOL RescueWireframeOwner::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueWireframeOwner)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueHistoryObject::IsOfType(thisType);
+  return RescueHistoryObject::IsOfType(thisType);
   }
 }
 

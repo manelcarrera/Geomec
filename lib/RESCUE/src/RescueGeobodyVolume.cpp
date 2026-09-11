@@ -34,17 +34,17 @@ RESCUEBOOL RescueGeobodyVolume::DeleteKLayerEdge(RescueEdgeSet *existingEdgeSet)
   RESCUEINT64 loop;
   for (loop = 0; loop < howMany && myReturn == FALSE; loop++)
   {
-    RescueEdgeSetStub *stub = kLayerEdges->NthObject(loop);
-    if (stub->Equals(existingEdgeSet))
-    {
+  RescueEdgeSetStub *stub = kLayerEdges->NthObject(loop);
+  if (stub->Equals(existingEdgeSet))
+  {
       myReturn = ((*kLayerEdges) -= loop);
-    }
+  }
   }
   return myReturn;
 }
 
 void RescueGeobodyVolume::AddGeobodySurface(RescueSurface *existingSurface, 
-                                            RescueGeobodySurface::Role role)
+                      RescueGeobodySurface::Role role)
 {
   RescueGeobodySurface *newSurface = new RescueGeobodySurface(this, existingSurface, role);
   (*surfaces) += newSurface;
@@ -56,15 +56,15 @@ void RescueGeobodyVolume::DropGeobodySurface(RescueSurface *existingSurface)
   RescueGeobodySurface *surface = surfaces->NthObject(ndx);
   while (surface != 0)
   {
-    if (surface->Surface() == existingSurface)
-    {
+  if (surface->Surface() == existingSurface)
+  {
       (*surfaces) -= surface;
-    }
-    else
-    {
+  }
+  else
+  {
       ndx++;
-    }
-    surface = surfaces->NthObject(ndx);
+  }
+  surface = surfaces->NthObject(ndx);
   }
 }
 
@@ -78,17 +78,17 @@ RESCUEBOOL RescueGeobodyVolume::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueGeobodyVolume)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueHistoryObject::IsOfType(thisType);
+  return RescueHistoryObject::IsOfType(thisType);
   }
 }
 
 RescueGeobodyVolume::RescueGeobodyVolume(RescueGeobodyPart *part)
-                    :RescueHistoryObject(part->Body()->ParentModel()->Context())
-                    ,parentPart(part)
+          :RescueHistoryObject(part->Body()->ParentModel()->Context())
+          ,parentPart(part)
 {
   isA = R_RescueGeobodyVolume;
   surfaces = new cSetRescueGeobodySurface();
@@ -96,8 +96,8 @@ RescueGeobodyVolume::RescueGeobodyVolume(RescueGeobodyPart *part)
 }
 
 RescueGeobodyVolume::RescueGeobodyVolume(RescueContext *context, FILE *archiveFile)
-                    :RescueHistoryObject(context)
-                    ,parentPart(0)
+          :RescueHistoryObject(context)
+          ,parentPart(0)
 {
   isA = R_RescueGeobodyVolume;
   surfaces = new cSetRescueGeobodySurface();
@@ -107,14 +107,14 @@ RescueGeobodyVolume::RescueGeobodyVolume(RescueContext *context, FILE *archiveFi
   context->geobodyVolumes->Add(this);
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -126,7 +126,7 @@ void RescueGeobodyVolume::Archive(FILE *archiveFile)
   surfaces->Archive(context, archiveFile);
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -150,20 +150,20 @@ void RescueGeobodyVolume::UnArchiveWireframeData(RescueModel *model, FILE *archi
   kLayerEdges = new cSetRescueEdgeSetStub();
   if (context->ReadFileVersion() >= 28)
   {
-    kLayerEdges->UnArchive(context, archiveFile);
+  kLayerEdges->UnArchive(context, archiveFile);
   }
   else
   {
-    RESCUEINT64 howMany;
-    myfscanf(context, archiveFile, &howMany);
-    RESCUEINT64 loop;
-    for (loop = 0; loop < howMany; loop++)
-    {
+  RESCUEINT64 howMany;
+  myfscanf(context, archiveFile, &howMany);
+  RESCUEINT64 loop;
+  for (loop = 0; loop < howMany; loop++)
+  {
       RescueEdgeSet *edgesObj = new RescueEdgeSet(context, archiveFile);
       RescueEdgeSetStub *stub = new RescueEdgeSetStub(context, edgesObj);
       model->wireframes->SaveCompatibleEdgeSet(edgesObj, this, stub);
       (*kLayerEdges) += stub;
-    }
+  }
   }
   surfaces->UnArchiveWireframeData(model, archiveFile);
 }
@@ -178,11 +178,11 @@ void RescueGeobodyVolume::ArchiveWireframeData(FILE *archiveFile)
   RescueContext *context = parentPart->Body()->ParentModel()->Context();
   if (context->FileVersion() >= 28)
   {
-    kLayerEdges->Archive(context, archiveFile);
+  kLayerEdges->Archive(context, archiveFile);
   }
   else
   {
-    WriteActualEdgeSet(context, archiveFile);
+  WriteActualEdgeSet(context, archiveFile);
   }
   surfaces->ArchiveWireframeData(archiveFile);
 }
@@ -195,12 +195,12 @@ void RescueGeobodyVolume::WriteActualEdgeSet(RescueContext *context, FILE *archi
   RescueEdgeSetStub *stub = kLayerEdges->NthObject(ordinal++);
   while (stub != 0)
   {
-    RescueEdgeSet *edgeObj = stub->EdgeSet(model);
-    if (edgeObj != 0)
-    {
+  RescueEdgeSet *edgeObj = stub->EdgeSet(model);
+  if (edgeObj != 0)
+  {
       (*setObjs) += edgeObj;
-    }
-    stub = kLayerEdges->NthObject(ordinal++);
+  }
+  stub = kLayerEdges->NthObject(ordinal++);
   }
 /*
   Because we don't know if we have any "nonsignifigant trailing branches"
@@ -212,8 +212,8 @@ void RescueGeobodyVolume::WriteActualEdgeSet(RescueContext *context, FILE *archi
   RESCUEINT64 loop;
   for (loop = 0; loop < howMany; loop++)
   {
-    RescueEdgeSet *edgeObj = setObjs->NthObject(loop);
-    edgeObj->Archive(archiveFile);
+  RescueEdgeSet *edgeObj = setObjs->NthObject(loop);
+  edgeObj->Archive(archiveFile);
   }
   delete setObjs;
 }

@@ -14,13 +14,13 @@
 class IColorScaleEntry : public CGraphEntryTemp<IColorScaleNode>
 {
 public:
-	// Constructing
-	IColorScaleEntry(CFemAppModel& model);
-	virtual ~IColorScaleEntry();
+  // Constructing
+  IColorScaleEntry(CFemAppModel& model);
+  virtual ~IColorScaleEntry();
 
-	// Interface of color scale entry
-	virtual const IColorScaleNode& CurrentColorScale() const = 0;
-	virtual IColorScaleNode& CurrentColorScale() = 0;
+  // Interface of color scale entry
+  virtual const IColorScaleNode& CurrentColorScale() const = 0;
+  virtual IColorScaleNode& CurrentColorScale() = 0;
 
   virtual bool Accept(graphnode::IConstVisitor& visitor) const { return visitor.VisitIColorScaleEntry(*this); }
   virtual bool Accept(graphnode::IVisitor& visitor) { return visitor.VisitIColorScaleEntry(*this); }

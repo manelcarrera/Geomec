@@ -17,7 +17,7 @@ public:
 private:
   CInterfaceMaterial_Delegate(const CInterfaceMaterial_Delegate& rhs);
   CInterfaceMaterial_Delegate& operator = (
-    const CInterfaceMaterial_Delegate& rhs);
+  const CInterfaceMaterial_Delegate& rhs);
 
   CInterfaceMaterial* m_interfaceMaterial;
 
@@ -29,7 +29,7 @@ class CInterfaceMaterialEntry_Delegate :
 {
 public:
   CInterfaceMaterialEntry_Delegate(
-    CInterfaceMaterialEntry* interfaceMaterialEntry);
+  CInterfaceMaterialEntry* interfaceMaterialEntry);
 
   virtual bool Attributes();
 
@@ -40,7 +40,7 @@ public:
 private:
   CInterfaceMaterialEntry_Delegate(const CInterfaceMaterialEntry_Delegate& rhs);
   CInterfaceMaterialEntry_Delegate& operator = (
-    const CInterfaceMaterialEntry_Delegate& rhs);
+  const CInterfaceMaterialEntry_Delegate& rhs);
 
   CInterfaceMaterialEntry* m_interfaceMaterialEntry;
 

@@ -8,17 +8,17 @@
 static const size_t s_elementSize[ RGElementType::typeElementLast ] =
 {
    // Tetrahedron
-    4, // typeTE12L Linear
+  4, // typeTE12L Linear
    10, // typeCTE30 Quadratic
    
    // Hexahedron
-    8, // typeHX24L Linear
+  8, // typeHX24L Linear
    20, // typeCHX60 Quadratic
    
    // Interface
-    6, // typeT18IF 3-noded-tri-interface element
+  6, // typeT18IF 3-noded-tri-interface element
    12, // typeCT36I 6-noded-tri-interface element
-    8, // typeQ24IF 4-noded-quad-interface element
+  8, // typeQ24IF 4-noded-quad-interface element
    16  // typeCQ48I 8-noded-quad-interface element
 };
 

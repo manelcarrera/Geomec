@@ -23,9 +23,9 @@ ml::CMaterial* CMaterialLibraryXML::CreateMaterial(const QString& strName, int i
   ml::CMaterial::CCreator* pCreator = f->getMatCreator(iMaterialModel);
   if(pCreator)
   {
-    ml::CMaterial* pMat = pCreator->OnCreateMaterial();
-    pCreator->Create(strName, *pMat);
-    return pMat;
+  ml::CMaterial* pMat = pCreator->OnCreateMaterial();
+  pCreator->Create(strName, *pMat);
+  return pMat;
   }
 
   assert(false); // unknown material model
@@ -36,7 +36,7 @@ mlxml::CMaterialXML* CMaterialLibraryXML::OnCreateMaterialXML(ml::CMaterial &mat
 {
   CLibraryMaterial* pLibMat = dynamic_cast<CLibraryMaterial*>(&mat);
   if(pLibMat)
-    return new CMaterialXML(*pLibMat);
+  return new CMaterialXML(*pLibMat);
 
   return mlxml::CMaterialLibraryXML::OnCreateMaterialXML(mat);
 }
@@ -49,7 +49,7 @@ void CMaterialLibraryXML::DestroyMaterial(int iMaterialModel, ml::CMaterial* mat
   ml::CMaterial::CCreator* pCreator = f->getMatCreator(iMaterialModel);
   if(pCreator)
   {
-    pCreator->Destroy(mat);
+  pCreator->Destroy(mat);
   }
 }
 
@@ -67,9 +67,9 @@ void CMaterialXML::Load(QDomElement& domElement)
   QDomElement child = domElement.firstChildElement("GeomecMaterial");
   if(!child.isNull())
   {
-    CLibraryMaterial& mat = static_cast<CLibraryMaterial&>(Material());
-    mat.ConvCriterion(mlxml::AttributeDoubleValue(child, "ConvergenceCriterion"));
-    mat.MaxIterations(mlxml::AttributeIntValue(child, "MaximumIterations"));
+  CLibraryMaterial& mat = static_cast<CLibraryMaterial&>(Material());
+  mat.ConvCriterion(mlxml::AttributeDoubleValue(child, "ConvergenceCriterion"));
+  mat.MaxIterations(mlxml::AttributeIntValue(child, "MaximumIterations"));
   }
 }
 
@@ -89,7 +89,7 @@ mlxml::CMaterialParameterXML* CMaterialXML::OnCreateMaterialParameterXML(ml::CMa
 {
   CLibraryMaterialParameter* pLibMatParam = dynamic_cast<CLibraryMaterialParameter*>(&matparam);
   if(pLibMatParam)
-    return new CMaterialParameterXML(*pLibMatParam);
+  return new CMaterialParameterXML(*pLibMatParam);
 
   return mlxml::CMaterialXML::OnCreateMaterialParameterXML(matparam);
 }
@@ -108,9 +108,9 @@ void CMaterialParameterXML::Load(QDomElement& domElement)
   CLibraryMaterialParameter& matparam = static_cast<CLibraryMaterialParameter&>(MaterialParameter());
   if(!matparam.CalibrationPath().isEmpty() && !matparam.IsFixedCalibrationParameter())
   {
-    // see if the XML contains GEOMEC specific info...
-    QDomElement child = domElement.firstChildElement("GeomecMaterialParameter");
-    if(!child.isNull())
+  // see if the XML contains GEOMEC specific info...
+  QDomElement child = domElement.firstChildElement("GeomecMaterialParameter");
+  if(!child.isNull())
       matparam.CurrentlyFixed(mlxml::AttributeIntValue(child, "Fixed") != 0);
   }
 }
@@ -123,8 +123,8 @@ void CMaterialParameterXML::Save(QDomElement& domElement)
   CLibraryMaterialParameter& matparam = static_cast<CLibraryMaterialParameter&>(MaterialParameter());
   if(!matparam.CalibrationPath().isEmpty() && !matparam.IsFixedCalibrationParameter())
   {
-    QDomElement child = domElement.ownerDocument().createElement("GeomecMaterialParameter");
-    domElement.appendChild(child);
-    child.setAttribute("Fixed", int(matparam.IsCurrentlyFixed() ? 1 : 0));
+  QDomElement child = domElement.ownerDocument().createElement("GeomecMaterialParameter");
+  domElement.appendChild(child);
+  child.setAttribute("Fixed", int(matparam.IsCurrentlyFixed() ? 1 : 0));
   }
 }

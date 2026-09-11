@@ -33,10 +33,10 @@ public:
   RCHString *PropertyName() {return propertyName;}
   void SetPropertyName(RESCUECHAR *newPropertyName) {(*propertyName) = newPropertyName;}
   RCHString *PropertyType() {return propertyType;}
-                                    // Do NOT drop the objects returned.
+                  // Do NOT drop the objects returned.
   void SetPropertyType(RESCUECHAR *newPropertyType) {(*propertyType) = newPropertyType;}
   RCHString *UnitOfMeasure() {return unitOfMeasure;}
-                                    // Do NOT drop the object returned.
+                  // Do NOT drop the object returned.
   void SetUnitOfMeasure(RESCUECHAR *newUnitOfMeasure) {(*unitOfMeasure) = newUnitOfMeasure;}
   RescueGrid *Grid() {return grid;}
   RESCUEBOOL CellCentered() {return cellCentered;}
@@ -48,34 +48,34 @@ public:
   virtual RESCUEBOOL IsLoaded()=0;  // Returns FALSE if fragments are loaded.
   RESCUEBOOL FileTruncated();
   RESCUEBOOL Load();                // If there are fragments in memory these will be merged,
-                                    // not overridden.
+                  // not overridden.
   RESCUEBOOL Unload();              // If fragments are loaded these will be merged into the
-                                    // the archived file if we write the file.
+                  // the archived file if we write the file.
   RESCUEBOOL HasChanged() {return hasChanged;}
   RESCUEBOOL MinMaxDirty() {return dirtyMinMax;}
   void CalculateMinMax();
   void MarkChanged() {hasChanged = TRUE; dirtyMinMax = TRUE;}
   RESCUEINT32 Version(RESCUEBOOL reload = FALSE); // These methods return a version number for the file which
-                                    // starts at zero and increments each time the file is
-                                    // written.  Applications can use this as a quick check to
-                                    // see if the file has been updated (by saving the version
-                                    // number AFTER a write operation). If reload is TRUE the library
-                                    // always goes back to the disk to read the version number,
-                                    // in case it has been recently changed.  Therefore, the
-                                    // version number returned is the version which would be
-                                    // available if the data were loaded now, not the version which
-                                    // IS loaded now (if any). If false, the version number returned
-                                    // is the version of the last data loaded (if any).
+                  // starts at zero and increments each time the file is
+                  // written.  Applications can use this as a quick check to
+                  // see if the file has been updated (by saving the version
+                  // number AFTER a write operation). If reload is TRUE the library
+                  // always goes back to the disk to read the version number,
+                  // in case it has been recently changed.  Therefore, the
+                  // version number returned is the version which would be
+                  // available if the data were loaded now, not the version which
+                  // IS loaded now (if any). If false, the version number returned
+                  // is the version of the last data loaded (if any).
   /**************************************************************************************
 
   These methods have to do with slab loading.
 
   **************************************************************************************/
   virtual RescueArrayFragment *Load(RESCUEINT64 iLowBound, RESCUEINT64 iCount,      // Valid function for 2 or 3d grids.
-                                    RESCUEINT64 jLowBound, RESCUEINT64 jCount)=0;   // If 3d returns all k layers.
+                  RESCUEINT64 jLowBound, RESCUEINT64 jCount)=0;   // If 3d returns all k layers.
   virtual RescueArrayFragment *Load(RESCUEINT64 iLowBound, RESCUEINT64 iCount,      // Reads the data from the disk file
-                                    RESCUEINT64 jLowBound, RESCUEINT64 jCount,      // if it exists.
-                                    RESCUEINT64 kLowBound, RESCUEINT64 kCount)=0;   // Use this version on 3d only.
+                  RESCUEINT64 jLowBound, RESCUEINT64 jCount,      // if it exists.
+                  RESCUEINT64 kLowBound, RESCUEINT64 kCount)=0;   // Use this version on 3d only.
 
   virtual RescueArrayFragment *Create(RESCUEINT64 iLowBound, RESCUEINT64 iCount,    // Valid function for 2 or 3d grids.
                                       RESCUEINT64 jLowBound, RESCUEINT64 jCount)=0; // If 3d returns all k layers.
@@ -83,10 +83,10 @@ public:
                                       RESCUEINT64 jLowBound, RESCUEINT64 jCount,    // reading the disk.
                                       RESCUEINT64 kLowBound, RESCUEINT64 kCount)=0; // Use this version on 3d only.
   virtual RescueArrayFragment *Load(RESCUEINT32 iLowBound, RESCUEINT32 iCount,      // Valid function for 2 or 3d grids.
-                                    RESCUEINT32 jLowBound, RESCUEINT32 jCount)=0;   // If 3d returns all k layers.
+                  RESCUEINT32 jLowBound, RESCUEINT32 jCount)=0;   // If 3d returns all k layers.
   virtual RescueArrayFragment *Load(RESCUEINT32 iLowBound, RESCUEINT32 iCount,      // Reads the data from the disk file
-                                    RESCUEINT32 jLowBound, RESCUEINT32 jCount,      // if it exists.
-                                    RESCUEINT32 kLowBound, RESCUEINT32 kCount)=0;   // Use this version on 3d only.
+                  RESCUEINT32 jLowBound, RESCUEINT32 jCount,      // if it exists.
+                  RESCUEINT32 kLowBound, RESCUEINT32 kCount)=0;   // Use this version on 3d only.
 
   virtual RescueArrayFragment *Create(RESCUEINT32 iLowBound, RESCUEINT32 iCount,    // Valid function for 2 or 3d grids.
                                       RESCUEINT32 jLowBound, RESCUEINT32 jCount)=0; // If 3d returns all k layers.
@@ -97,11 +97,11 @@ public:
   
   RESCUEBOOL HasFragments();                        // Will return TRUE if there is at least 1 fragment.
   cSetRescueArrayFragment *Fragments() {return fragments;}             
-                                                    // Will return null if there have never
-                                                    // been fragments.  Even if it returns
-                                                    // non-null, the Count() method of the
-                                                    // object may return 0.  Do NOT delete
-                                                    // the object returned.
+                          // Will return null if there have never
+                          // been fragments.  Even if it returns
+                          // non-null, the Count() method of the
+                          // object may return 0.  Do NOT delete
+                          // the object returned.
   /*************************************************************************************/
 
 protected:
@@ -127,8 +127,8 @@ private:
   virtual void LoadAndSwapArray()=0;
   virtual void SwapAxes(bool swapI, RESCUEINT64 iNodes, bool swapJ, RESCUEINT64 jNodes)= 0;
   virtual void SwapAxes(bool swapI, RESCUEINT64 iNodes, 
-                        bool swapJ, RESCUEINT64 jNodes,
-                        bool swapK, RESCUEINT64 kNodes)= 0;
+            bool swapJ, RESCUEINT64 jNodes,
+            bool swapK, RESCUEINT64 kNodes)= 0;
 
 protected:
   RCHString *propertyName;

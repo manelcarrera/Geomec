@@ -21,7 +21,7 @@ int CCalibSettingsDlg::MaxNumIterations() const
 
 void CCalibSettingsDlg::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
-	DDX_Text(pDX, IDC_ED_CONVCRIT, m_dConvCrit);
-	DDX_Text(pDX, IDC_ED_MAXNUMITER, m_iMaxNumIter);
+  CDialog::DoDataExchange(pDX);
+  DDX_Text(pDX, IDC_ED_CONVCRIT, m_dConvCrit);
+  DDX_Text(pDX, IDC_ED_MAXNUMITER, m_iMaxNumIter);
 }

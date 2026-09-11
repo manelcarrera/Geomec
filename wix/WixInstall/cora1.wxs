@@ -2,7 +2,7 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <!-- chicken and egg (and local) -->
   
-  <!-- Command to generate: heat dir 3rdParty\cora1 -gg -sfrag -srd -suid -var var.CoraSourceDir -o cora1.wxs -->
+  <!-- Command to generate: heat dir third_party\cora1 -gg -sfrag -srd -suid -var var.CoraSourceDir -o cora1.wxs -->
   <!-- copy/paste text between the DirectoryRef's, and special copy/adjust of CORA_*.xlsm" -->
   <!-- check that the documentation still has the same documents (otherwise adjust the list below) and turn each <File ... /> into <File><Shortcut.../></File>
             <Shortcut Id="CORA_Document_1" Directory="CORADocumentsShortcutFolder" Name="1. CORA general workflow" Advertise="no" WorkingDirectory="CORA_PATH"/>

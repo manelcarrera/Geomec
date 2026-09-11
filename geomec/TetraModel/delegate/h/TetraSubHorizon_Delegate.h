@@ -33,7 +33,7 @@ public:
 private:
   CTetraSubHorizonEntry_Delegate(const CTetraSubHorizonEntry_Delegate& rhs);
   CTetraSubHorizonEntry_Delegate& operator = (
-    const CTetraSubHorizonEntry_Delegate& rhs);
+  const CTetraSubHorizonEntry_Delegate& rhs);
 
   CTetraSubHorizonEntry* m_tetraSubHorizonEntry;
 

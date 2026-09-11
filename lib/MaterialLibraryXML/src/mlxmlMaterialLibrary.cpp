@@ -69,18 +69,18 @@ void CMaterialLibraryXML::LoadFile(const QString& sFileName)
 {
   QFile file(sFileName);
   if(!file.open(QIODevice::ReadOnly))
-    throw CException(QObject::tr("Unable to open file '%1' for reading").arg(sFileName));
+  throw CException(QObject::tr("Unable to open file '%1' for reading").arg(sFileName));
 
   QDomDocument doc;
   if(!doc.setContent(&file))
   {
-    file.close();
-    throw CException(QObject::tr("Unable to parse the content of file '%1'").arg(sFileName));
+  file.close();
+  throw CException(QObject::tr("Unable to parse the content of file '%1'").arg(sFileName));
   }
 
   QDomElement docElement = doc.documentElement();
   if(docElement.tagName() != "MaterialLibrary")
-    throw CException(QObject::tr("The root element of the XML file must be 'MaterialLibrary'"));
+  throw CException(QObject::tr("The root element of the XML file must be 'MaterialLibrary'"));
 
   Load(docElement);
 }
@@ -98,7 +98,7 @@ void CMaterialLibraryXML::SaveFile(const QString& sFileName)
 {
   QFile file(sFileName);
   if(!file.open(QIODevice::WriteOnly | QIODevice::Text))
-    throw CException(QObject::tr("Unable to open file '%1' for writing").arg(sFileName));
+  throw CException(QObject::tr("Unable to open file '%1' for writing").arg(sFileName));
 
   QDomDocument doc("MaterialLibrary");
   QDomElement root = doc.createElement("MaterialLibrary");
@@ -121,38 +121,38 @@ void CMaterialLibraryXML::Load(QDomElement& domElement)
 
   try
   {
-    QDomElement child = domElement.firstChildElement("Material");
-    while(!child.isNull())
-    {
+  QDomElement child = domElement.firstChildElement("Material");
+  while(!child.isNull())
+  {
       QString strName = AttributeStringValue(child, "Name");
       int iMaterialModel = AttributeIntValue(child, "MaterialModel");
       ml::CMaterial* pMaterial = CreateMaterial(strName, iMaterialModel);
       if(pMaterial)
       {
-        CMaterialXML* pMatxml = OnCreateMaterialXML(*pMaterial);
-        pMatxml->Load(child);
-        delete pMatxml;
+    CMaterialXML* pMatxml = OnCreateMaterialXML(*pMaterial);
+    pMatxml->Load(child);
+    delete pMatxml;
 
-        vcLoadedMaterials.push_back(std::make_pair(iMaterialModel, pMaterial));
+    vcLoadedMaterials.push_back(std::make_pair(iMaterialModel, pMaterial));
       }
 
       child = child.nextSiblingElement("Material");
-    }
+  }
   }
   catch(CException e)
   {
-    // delete any created materials
-    size_t i;
-    for(i = 0; i < vcLoadedMaterials.size(); ++i)
+  // delete any created materials
+  size_t i;
+  for(i = 0; i < vcLoadedMaterials.size(); ++i)
       DestroyMaterial(vcLoadedMaterials[i].first, vcLoadedMaterials[i].second);
 
-    throw;
+  throw;
   }
 
   // add loaded materials to library
   size_t i;
   for(i = 0; i < vcLoadedMaterials.size(); ++i)
-    MaterialLibrary().AddMaterial(*vcLoadedMaterials[i].second);
+  MaterialLibrary().AddMaterial(*vcLoadedMaterials[i].second);
 }
 
 /*!
@@ -165,11 +165,11 @@ void CMaterialLibraryXML::Save(QDomElement& domElement)
   int i;
   for(i = 0; i < MaterialLibrary().MaterialSize(); ++i)
   {
-    QDomElement child = domElement.ownerDocument().createElement("Material");
-    domElement.appendChild(child);
-    CMaterialXML* pMatxml = OnCreateMaterialXML(MaterialLibrary().Material(i));
-    pMatxml->Save(child);
-    delete pMatxml;
+  QDomElement child = domElement.ownerDocument().createElement("Material");
+  domElement.appendChild(child);
+  CMaterialXML* pMatxml = OnCreateMaterialXML(MaterialLibrary().Material(i));
+  pMatxml->Save(child);
+  delete pMatxml;
   }
 }
 

@@ -40,26 +40,26 @@ IValueDomainScalar::TValueVec CLoadPropertyDeltaFluidPressure::addDeltaSpecific(
 {
   if (pFormation)
   {
-    if (isFractureApertureModel(*pFormation, prevstage, elm))
-    {
+  if (isFractureApertureModel(*pFormation, prevstage, elm))
+  {
       m_useFractureMatrixPressure = true;
       return pFormation->FractureMatrixPressure(prevstage).Component().
-        ScalarData().ValueElement(elm);
-    }
-    else
-    {
-      return pFormation->Pressure(prevstage).Component().
-        ScalarData().ValueElement(elm);
-    }
+    ScalarData().ValueElement(elm);
   }
   else
   {
-    const CHorizonBase* pFault = m_ModelBase.Mesh().SlipHorizon(elm);
+      return pFormation->Pressure(prevstage).Component().
+    ScalarData().ValueElement(elm);
+  }
+  }
+  else
+  {
+  const CHorizonBase* pFault = m_ModelBase.Mesh().SlipHorizon(elm);
 
-    if (pFault && pFault->Slip())
-    {
+  if (pFault && pFault->Slip())
+  {
       return pFault->Pressure(prevstage).Component().ScalarData().ValueElement(elm);
-    }
+  }
   }
 
   IValueDomainScalar::TValueVec vcPrevValues(nNod, 0);

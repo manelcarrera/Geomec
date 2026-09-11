@@ -15,25 +15,25 @@
 class CMudWeight : public COleDispatchDriver
 {
 public:
-	CMudWeight() {}		// Calls COleDispatchDriver default constructor
-	CMudWeight(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
-	CMudWeight(const CMudWeight& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
+  CMudWeight() {}		// Calls COleDispatchDriver default constructor
+  CMudWeight(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
+  CMudWeight(const CMudWeight& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
 // Attributes
 public:
-	long GetCount();
-	void SetCount(long);
+  long GetCount();
+  void SetCount(long);
 
 // Operations
 public:
-	double Item(long itemnr);
-	void Remove(long itemnr);
-	void Clear();
-	long Add(double NewValue);
-	void Sort();
-	short OrderOfMudweights();
-	BOOL GetOptimumMudweightEx(double CriticalPlasticStrain, VARIANT* EpeqResults, double* OptimumMudweight, BOOL* OptimumMudweightFound, short* Case);
-	BOOL SetDefaultEx(BOOL* IsDefaultSet);
+  double Item(long itemnr);
+  void Remove(long itemnr);
+  void Clear();
+  long Add(double NewValue);
+  void Sort();
+  short OrderOfMudweights();
+  BOOL GetOptimumMudweightEx(double CriticalPlasticStrain, VARIANT* EpeqResults, double* OptimumMudweight, BOOL* OptimumMudweightFound, short* Case);
+  BOOL SetDefaultEx(BOOL* IsDefaultSet);
 };
 
 //{{AFX_INSERT_LOCATION}}

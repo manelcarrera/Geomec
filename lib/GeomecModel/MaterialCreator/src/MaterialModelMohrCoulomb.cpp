@@ -99,23 +99,23 @@ IPQPlotter* CMaterialMohrCoulombCreatorV2::CPQPlotter::Clone() const
 void CMaterialMohrCoulombCreatorV2::CPQPlotter::GetPrimaryYieldCurve(const CLibraryMaterial& mat, double dPMin, double dPMax, CStressStrainArray& values) const
 {
   const ml::CMatParam *pPhi = mat.Parameter(MLD_FRICTIONANGLE);
-	const ml::CMatParam *pCohesion = mat.Parameter(MLD_COHESION);
+  const ml::CMatParam *pCohesion = mat.Parameter(MLD_COHESION);
 
-	double dPhi = pPhi->Value();
-	double dPhiRad = dPhi * PI / 180;	// phi in radians
-	double dCohesion = pCohesion->Value();
+  double dPhi = pPhi->Value();
+  double dPhiRad = dPhi * PI / 180;	// phi in radians
+  double dCohesion = pCohesion->Value();
 
-	double k = 6 * dCohesion * cos(dPhiRad) / (3 - sin(dPhiRad));
-	double m = 6 * sin(dPhiRad) / (3 - sin(dPhiRad));
+  double k = 6 * dCohesion * cos(dPhiRad) / (3 - sin(dPhiRad));
+  double m = 6 * sin(dPhiRad) / (3 - sin(dPhiRad));
 
-	double dQMin = k + m * dPMin;
-	double dQMax = k + m * dPMax;
+  double dQMin = k + m * dPMin;
+  double dQMax = k + m * dPMax;
 
-	CStressStrain ptMin(dPMin, dQMin);
-	CStressStrain ptMax(dPMax, dQMax);
+  CStressStrain ptMin(dPMin, dQMin);
+  CStressStrain ptMax(dPMax, dQMax);
 
-	values.push_back(ptMin);
-	values.push_back(ptMax);
+  values.push_back(ptMin);
+  values.push_back(ptMax);
 }
 
 
@@ -186,57 +186,57 @@ IPQPlotter* CMaterialMohrCoulombCreatorDEPRECATED::CPQPlotter::Clone() const
 void CMaterialMohrCoulombCreatorDEPRECATED::CPQPlotter::GetPrimaryYieldCurve(const CLibraryMaterial& mat, double dPMin, double dPMax, CStressStrainArray& values) const
 {
   const ml::CMatParam *pPhi = mat.Parameter(MLD_FRICTIONANGLE);
-	const ml::CMatParam *pCohesion = mat.Parameter(MLD_COHESION);
+  const ml::CMatParam *pCohesion = mat.Parameter(MLD_COHESION);
 
-	double dPhi = pPhi->Value();
-	double dPhiRad = dPhi * PI / 180;	// phi in radians
-	double dCohesion = pCohesion->Value();
+  double dPhi = pPhi->Value();
+  double dPhiRad = dPhi * PI / 180;	// phi in radians
+  double dCohesion = pCohesion->Value();
 
-	double k = 6 * dCohesion * cos(dPhiRad) / (3 - sin(dPhiRad));
-	double m = 6 * sin(dPhiRad) / (3 - sin(dPhiRad));
+  double k = 6 * dCohesion * cos(dPhiRad) / (3 - sin(dPhiRad));
+  double m = 6 * sin(dPhiRad) / (3 - sin(dPhiRad));
 
-	double dQMin = k + m * dPMin;
-	double dQMax = k + m * dPMax;
+  double dQMin = k + m * dPMin;
+  double dQMax = k + m * dPMax;
 
-	CStressStrain ptMin(dPMin, dQMin);
-	CStressStrain ptMax(dPMax, dQMax);
+  CStressStrain ptMin(dPMin, dQMin);
+  CStressStrain ptMax(dPMax, dQMax);
 
-	values.push_back(ptMin);
-	values.push_back(ptMax);
+  values.push_back(ptMin);
+  values.push_back(ptMax);
 }
 
 bool CMaterialMohrCoulombFrictionCheckStrategy::operator()(double dValue, const ml::CMatParam& param, QString& strErrorMsg, int nUnitDef) const
 {
-	// check against dilatation angle
+  // check against dilatation angle
   const ml::CMaterial& mat = param.ParentMaterial();
 
   const ml::CMatParam *pDilatation = mat.MatParameter(MLD_DILATATION);
-	assert(pDilatation);
-	double dDilatation = pDilatation->ValueToUserUnit(nUnitDef);
+  assert(pDilatation);
+  double dDilatation = pDilatation->ValueToUserUnit(nUnitDef);
 
-	if(dValue < dDilatation || dValue > 90)
-	{
-    strErrorMsg = QObject::tr("Friction angle must be at least equal to the Dilatation angle and at most 90.");
-		return false;
-	}
+  if(dValue < dDilatation || dValue > 90)
+  {
+  strErrorMsg = QObject::tr("Friction angle must be at least equal to the Dilatation angle and at most 90.");
+    return false;
+  }
 
-	return true;
+  return true;
 }
 
 bool CMaterialMohrCoulombDilatationCheckStrategy::operator()(double dValue, const ml::CMatParam& param, QString& strErrorMsg, int nUnitDef) const
 {
-	// check against friction angle
+  // check against friction angle
   const ml::CMaterial& mat = param.ParentMaterial();
 
   const ml::CMatParam *pFriction = mat.MatParameter(MLD_FRICTIONANGLE);
-	assert(pFriction);
-	double dFriction = pFriction->ValueToUserUnit(nUnitDef);
+  assert(pFriction);
+  double dFriction = pFriction->ValueToUserUnit(nUnitDef);
 
-	if(dValue < 0 || dValue > dFriction)
-	{
-    strErrorMsg = QObject::tr("Dilatation angle must be at least zero and at most equal to the Friction angle.");
-		return false;
-	}
+  if(dValue < 0 || dValue > dFriction)
+  {
+  strErrorMsg = QObject::tr("Dilatation angle must be at least zero and at most equal to the Friction angle.");
+    return false;
+  }
 
   return true;
 }

@@ -207,7 +207,7 @@ void FilesystemHelper::mkdir( const std::string & dirName )
 #if defined(WIN32) || defined(WIN64) || defined(_WIN32) || defined(_WIN64)
    int failed = _mkdir( dirName.c_str() );
    if (failed == -1){
-	   throw std::runtime_error("FilesystemHelper::mkdir() - mkdir system call Failed to create directory");
+     throw std::runtime_error("FilesystemHelper::mkdir() - mkdir system call Failed to create directory");
    }
 #else
    bool failed = ::mkdir( dirName.c_str(), S_IRWXU );

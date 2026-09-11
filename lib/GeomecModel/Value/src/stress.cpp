@@ -15,7 +15,7 @@ CStressGradient::CStressGradient(const double &value, const UNIT unit)
 
 unsigned int CStressGradient::QuantityNameId() const
 {
-	return IDS_STRESS_GRAD_QUANTITY ;
+  return IDS_STRESS_GRAD_QUANTITY ;
 }
 
 CSingleStress::CSingleStress(const double &value, const UNIT unit)
@@ -25,6 +25,6 @@ CSingleStress::CSingleStress(const double &value, const UNIT unit)
 
 unsigned int CSingleStress::QuantityNameId() const
 {
-	return IDS_STRESS_QUANTITY;
+  return IDS_STRESS_QUANTITY;
 }
 

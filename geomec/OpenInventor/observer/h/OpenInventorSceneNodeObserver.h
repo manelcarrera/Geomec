@@ -10,13 +10,13 @@ typedef CNodeObserver_Delegate<COpenInventorSceneNode, COpenInventorSceneNode_De
 class COpenInventorSceneNodeObserver : public TOpenInventorSceneNodeObserver
 {
 public:
-    COpenInventorSceneNodeObserver(COpenInventorSceneNode& node,
-        CTreeNode& parent,
-        const BOOL rename,
-        const REMOVE_TYPE remove,
-        HTREEITEM hInsertAfter = TVI_LAST);
+  COpenInventorSceneNodeObserver(COpenInventorSceneNode& node,
+    CTreeNode& parent,
+    const BOOL rename,
+    const REMOVE_TYPE remove,
+    HTREEITEM hInsertAfter = TVI_LAST);
 
-    virtual unsigned int Icon() const;
+  virtual unsigned int Icon() const;
 };
 
 

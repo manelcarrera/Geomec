@@ -28,59 +28,59 @@
 // The cell shape appearance node contains a draw style and a material node.
 void OIDISurfaceMeshOutlineNode::buildSurfaceAppearanceNode()
 {
-    // The draw style specifies which components to draw (faces / edges / points)
-    m_surfaceDrawStyle = new MoDrawStyle;
-    m_surfaceDrawStyle->displayFaces = true;
-    m_surfaceDrawStyle->displayEdges = false; // draw the edges of the triangles
-    m_surfaceDrawStyle->displayPoints = false;
+  // The draw style specifies which components to draw (faces / edges / points)
+  m_surfaceDrawStyle = new MoDrawStyle;
+  m_surfaceDrawStyle->displayFaces = true;
+  m_surfaceDrawStyle->displayEdges = false; // draw the edges of the triangles
+  m_surfaceDrawStyle->displayPoints = false;
 
-    // MoMaterial defines the material of surface representations
-    m_surfaceMaterial = new MoMaterial;
-    // m_surfaceMaterial->enhancedColoring = TRUE;
+  // MoMaterial defines the material of surface representations
+  m_surfaceMaterial = new MoMaterial;
+  // m_surfaceMaterial->enhancedColoring = TRUE;
 
-    m_surfaceMaterial->faceColoring = MoMaterial::COLOR;
-    m_surfaceMaterial->faceColor = SbColor(0.7f, 0.7f, 0.0f); // green
+  m_surfaceMaterial->faceColoring = MoMaterial::COLOR;
+  m_surfaceMaterial->faceColor = SbColor(0.7f, 0.7f, 0.0f); // green
 
-    m_surfaceMaterial->transparency = 1.0f;
+  m_surfaceMaterial->transparency = 1.0f;
 
-    // Group both draw style and material together
-    m_surfaceAppearance = new SoGroup;
+  // Group both draw style and material together
+  m_surfaceAppearance = new SoGroup;
 
-    m_surfaceAppearance->addChild(m_surfaceDrawStyle);
-    m_surfaceAppearance->addChild(m_surfaceMaterial);
+  m_surfaceAppearance->addChild(m_surfaceDrawStyle);
+  m_surfaceAppearance->addChild(m_surfaceMaterial);
 }
 
 
 
 void OIDISurfaceMeshOutlineNode::buildSurfaceNode()
 {
-    // Add a MoMeshCellShape node to visualize the all cells in the mesh.
-    m_surface = new MoMeshSurface;
-    m_surface->colorScalarSetId = -1;
-    
+  // Add a MoMeshCellShape node to visualize the all cells in the mesh.
+  m_surface = new MoMeshSurface;
+  m_surface->colorScalarSetId = -1;
+  
 
-    buildSurfaceAppearanceNode();
+  buildSurfaceAppearanceNode();
 
-    // Put the cell shape node under a separator with the given cellShapeAppearance, so 
-    // the cellShapeAppearance won't affect other visualization nodes 
-    m_surfaceSeparator = new SoSeparator;
-    m_surfaceSeparator->addChild(m_surfaceAppearance);
-    m_surfaceSeparator->addChild(m_surface);
+  // Put the cell shape node under a separator with the given cellShapeAppearance, so 
+  // the cellShapeAppearance won't affect other visualization nodes 
+  m_surfaceSeparator = new SoSeparator;
+  m_surfaceSeparator->addChild(m_surfaceAppearance);
+  m_surfaceSeparator->addChild(m_surface);
 
 
-    m_outline = new MoMeshOutline;
-    m_outline->colorScalarSetId = -1;
-    buildOutlineAppearanceNode();
+  m_outline = new MoMeshOutline;
+  m_outline->colorScalarSetId = -1;
+  buildOutlineAppearanceNode();
 
-    m_outlineSeparator = new SoSeparator;
-    m_outlineSeparator->addChild(m_outlineAppearance);
-    m_outlineSeparator->addChild(m_outline);
+  m_outlineSeparator = new SoSeparator;
+  m_outlineSeparator->addChild(m_outlineAppearance);
+  m_outlineSeparator->addChild(m_outline);
 
-    // Add the cell shape node to a switch, so we can disable it easily
-    m_surfaceSwitch = new SoSwitch;
-    m_surfaceSwitch->addChild(m_surfaceSeparator);
-    m_surfaceSwitch->addChild(m_outlineSeparator);
-    m_surfaceSwitch->whichChild = SO_SWITCH_ALL;
+  // Add the cell shape node to a switch, so we can disable it easily
+  m_surfaceSwitch = new SoSwitch;
+  m_surfaceSwitch->addChild(m_surfaceSeparator);
+  m_surfaceSwitch->addChild(m_outlineSeparator);
+  m_surfaceSwitch->whichChild = SO_SWITCH_ALL;
 }
 
 
@@ -88,12 +88,12 @@ void OIDISurfaceMeshOutlineNode::buildSurfaceNode()
 // and a color map for the properties
 void OIDISurfaceMeshOutlineNode::buildSurfaceMeshNode()
 {
-    buildMeshNode();
-    buildSurfaceNode();
-    buildVectorsNode();
+  buildMeshNode();
+  buildSurfaceNode();
+  buildVectorsNode();
 
-    // Make all these nodes children of this one
-    addChild(m_surfaceSwitch);
+  // Make all these nodes children of this one
+  addChild(m_surfaceSwitch);
 }
 
 
@@ -101,27 +101,27 @@ void OIDISurfaceMeshOutlineNode::buildSurfaceMeshNode()
 // can then be added to the objects group.
 void OIDISurfaceMeshOutlineNode::buildNodes()
 {
-    buildSurfaceMeshNode();
+  buildSurfaceMeshNode();
 }
 
 /**
 * Constructor
 */
 OIDISurfaceMeshOutlineNode::OIDISurfaceMeshOutlineNode(const OIDIMesh* meshData, OIDIMeshNodeManager * meshNodeManager)
-    : OIDIMeshNode(meshData, meshNodeManager)
-    , m_surfaceSwitch(0)
-    , m_surfaceSeparator(0)
-    , m_surfaceAppearance(0)
-    , m_surfaceDrawStyle(0)
-    , m_surfaceMaterial(0)
-    , m_surface(0)
-    , m_outlineSeparator(0)
-    , m_outlineAppearance(0)
-    , m_outlineDrawStyle(0)
-    , m_outlineMaterial(0)
-    , m_outline(0)
+  : OIDIMeshNode(meshData, meshNodeManager)
+  , m_surfaceSwitch(0)
+  , m_surfaceSeparator(0)
+  , m_surfaceAppearance(0)
+  , m_surfaceDrawStyle(0)
+  , m_surfaceMaterial(0)
+  , m_surface(0)
+  , m_outlineSeparator(0)
+  , m_outlineAppearance(0)
+  , m_outlineDrawStyle(0)
+  , m_outlineMaterial(0)
+  , m_outline(0)
 {
-    buildNodes();
+  buildNodes();
 }
 
 
@@ -135,24 +135,24 @@ void OIDISurfaceMeshOutlineNode::setIsoGap(double gap)
 
 void OIDISurfaceMeshOutlineNode::UpdateDisplaySettings(const MeshNodeSettings & meshNodeSettings, bool showColor)
 {
-    OIDIMeshNode::UpdateDisplaySettings(meshNodeSettings, showColor);
+  OIDIMeshNode::UpdateDisplaySettings(meshNodeSettings, showColor);
 
-    if (!isVisible())
-    {
-        m_surfaceSwitch->whichChild = SO_SWITCH_NONE;
-        m_outlineMaterial->transparency = 1.0f;
+  if (!isVisible())
+  {
+    m_surfaceSwitch->whichChild = SO_SWITCH_NONE;
+    m_outlineMaterial->transparency = 1.0f;
 
-    }
-    else
-    {
-        m_surfaceSwitch->whichChild = SO_SWITCH_ALL;
-        m_outlineMaterial->transparency = meshNodeSettings.transparency / 100.0f;
-    }
+  }
+  else
+  {
+    m_surfaceSwitch->whichChild = SO_SWITCH_ALL;
+    m_outlineMaterial->transparency = meshNodeSettings.transparency / 100.0f;
+  }
 }
 
 void OIDISurfaceMeshOutlineNode::updateColorScalarSet()
 {
-    // m_surface->colorScalarSetId = m_colorScalarSetId;
+  // m_surface->colorScalarSetId = m_colorScalarSetId;
 }
 
 void OIDISurfaceMeshOutlineNode::updateIsoScalarSet()
@@ -162,61 +162,61 @@ void OIDISurfaceMeshOutlineNode::updateIsoScalarSet()
 
 void OIDISurfaceMeshOutlineNode::updateGeologyColors()
 {
-    // m_surfaceMaterial->faceColor = m_geologyColor;
+  // m_surfaceMaterial->faceColor = m_geologyColor;
 }
 
 
 void OIDISurfaceMeshOutlineNode::buildOutlineAppearanceNode()
 {
-    // The draw style specifies which components to draw (faces / edges / points)
-    m_outlineDrawStyle = new MoDrawStyle;
-    m_outlineDrawStyle->displayFaces = false;
-    m_outlineDrawStyle->displayEdges = true; // draw the edges of the triangles
-    m_outlineDrawStyle->displayPoints = false;
+  // The draw style specifies which components to draw (faces / edges / points)
+  m_outlineDrawStyle = new MoDrawStyle;
+  m_outlineDrawStyle->displayFaces = false;
+  m_outlineDrawStyle->displayEdges = true; // draw the edges of the triangles
+  m_outlineDrawStyle->displayPoints = false;
 
-    // MoMaterial defines the material of outline representations
-    m_outlineMaterial = new MoMaterial;
+  // MoMaterial defines the material of outline representations
+  m_outlineMaterial = new MoMaterial;
 
-    // CONTOURING means that rendering uses the color mapping defined by a scalar 
-    // set and a color mapping function
-    m_outlineMaterial->faceColoring = MoMaterial::COLOR;
-    // Use a solid color for rendering the edges
-    m_outlineMaterial->lineColoring = MoMaterial::COLOR;
-    m_outlineMaterial->lineColor = SbColor(1.0f, 1.0f, 1.0f); // white;
-    m_outlineMaterial->transparency = .0f;
+  // CONTOURING means that rendering uses the color mapping defined by a scalar 
+  // set and a color mapping function
+  m_outlineMaterial->faceColoring = MoMaterial::COLOR;
+  // Use a solid color for rendering the edges
+  m_outlineMaterial->lineColoring = MoMaterial::COLOR;
+  m_outlineMaterial->lineColor = SbColor(1.0f, 1.0f, 1.0f); // white;
+  m_outlineMaterial->transparency = .0f;
 
-    m_lineDrawStyle = new SoDrawStyle;
-    m_lineDrawStyle->style = SoDrawStyle::LINES;
-    m_lineDrawStyle->lineWidth = 2;
+  m_lineDrawStyle = new SoDrawStyle;
+  m_lineDrawStyle->style = SoDrawStyle::LINES;
+  m_lineDrawStyle->lineWidth = 2;
 
-    // Group both draw style and material together
-    m_outlineAppearance = new SoGroup;
-    m_outlineAppearance->addChild(m_lineDrawStyle);
+  // Group both draw style and material together
+  m_outlineAppearance = new SoGroup;
+  m_outlineAppearance->addChild(m_lineDrawStyle);
 
-    m_outlineAppearance->addChild(m_outlineDrawStyle);
-    m_outlineAppearance->addChild(m_outlineMaterial);
+  m_outlineAppearance->addChild(m_outlineDrawStyle);
+  m_outlineAppearance->addChild(m_outlineMaterial);
 }
 
 bool OIDISurfaceMeshOutlineNode::highlight()
 {
-    m_outlineMaterial->lineColoring = MoMaterial::COLOR;
-    m_outlineMaterial->lineColor = SbColor(1.0f, 1.0f, 0.0f); // yellow;
-    m_lineDrawStyle->style = SoDrawStyle::LINES;
-    m_lineDrawStyle->lineWidth = 4;
+  m_outlineMaterial->lineColoring = MoMaterial::COLOR;
+  m_outlineMaterial->lineColor = SbColor(1.0f, 1.0f, 0.0f); // yellow;
+  m_lineDrawStyle->style = SoDrawStyle::LINES;
+  m_lineDrawStyle->lineWidth = 4;
 
-    m_surfaceMaterial->transparency = 0.4f;
+  m_surfaceMaterial->transparency = 0.4f;
 
-    return true;
+  return true;
 }
 bool OIDISurfaceMeshOutlineNode::dehighlight()
 {
-    m_outlineMaterial->lineColoring = MoMaterial::COLOR;
-    m_outlineMaterial->lineColor = SbColor(1.0f, 1.0f, 1.0f); // white;
-    m_lineDrawStyle->style = SoDrawStyle::LINES;
-    m_lineDrawStyle->lineWidth = 2;
+  m_outlineMaterial->lineColoring = MoMaterial::COLOR;
+  m_outlineMaterial->lineColor = SbColor(1.0f, 1.0f, 1.0f); // white;
+  m_lineDrawStyle->style = SoDrawStyle::LINES;
+  m_lineDrawStyle->lineWidth = 2;
 
-    m_surfaceMaterial->transparency = 1.0f;
-    return true;
+  m_surfaceMaterial->transparency = 1.0f;
+  return true;
 }
 
 

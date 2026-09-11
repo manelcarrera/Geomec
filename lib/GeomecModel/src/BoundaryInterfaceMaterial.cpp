@@ -31,8 +31,8 @@ CBoundaryInterfaceMaterial::~CBoundaryInterfaceMaterial()
 
 bool CBoundaryInterfaceMaterial::WriteFilos(dia::IDianaRunner& diarunner) const
 {
-	ftn_double_t dsn = (ftn_double_t)(m_dKrad); 
-	ftn_double_t dst = (ftn_double_t)(m_dKtan);
+  ftn_double_t dsn = (ftn_double_t)(m_dKrad); 
+  ftn_double_t dst = (ftn_double_t)(m_dKtan);
 
   PutItemLength("DSNZ", &dsn, 1);
   PutItemLength("DSSX", &dst, 1);
@@ -44,9 +44,9 @@ bool CBoundaryInterfaceMaterial::WriteFilos(dia::IDianaRunner& diarunner) const
   if(runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE ||
      runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE_CONTAINMENT)
   {
-    // write very low permeability for boundary interfaces
-    ftn_double_t k_mod = 1e-8;
-    PutItemLength("DPERME", &k_mod, 1);
+  // write very low permeability for boundary interfaces
+  ftn_double_t k_mod = 1e-8;
+  PutItemLength("DPERME", &k_mod, 1);
   }
 
   return true;
@@ -54,18 +54,18 @@ bool CBoundaryInterfaceMaterial::WriteFilos(dia::IDianaRunner& diarunner) const
 
 bool CBoundaryInterfaceMaterial::operator<(const dia::IMaterial &rhs) const
 {
-	const CBoundaryInterfaceMaterial *pMat = 
-		dynamic_cast<const CBoundaryInterfaceMaterial*>(&rhs);
+  const CBoundaryInterfaceMaterial *pMat = 
+    dynamic_cast<const CBoundaryInterfaceMaterial*>(&rhs);
 
-	if(pMat)
-	{
-		if(m_dKrad < pMat->m_dKrad)
-			return true;
-    if(pMat->m_dKrad < m_dKrad)
+  if(pMat)
+  {
+    if(m_dKrad < pMat->m_dKrad)
+      return true;
+  if(pMat->m_dKrad < m_dKrad)
       return false;
 
-		return (m_dKtan < pMat->m_dKtan);
-	}
+    return (m_dKtan < pMat->m_dKtan);
+  }
 
   return dia::IMaterial::operator<(rhs);
 }
@@ -84,9 +84,9 @@ int CBoundaryInterfaceMaterial::WriteFilosParamSize(dia::IDianaRunner& diarunner
   CGeomecDianaRunnerBase& runner = static_cast<CGeomecDianaRunnerBase&>(diarunner);
 
   if (runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE ||
-    runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE_CONTAINMENT)
+  runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE_CONTAINMENT)
   {
-    size += 1; // DPERME
+  size += 1; // DPERME
   }
 
   return size;
@@ -96,22 +96,22 @@ bool CBoundaryInterfaceMaterial::WriteFilosParamName(dia::IDianaRunner& diarunne
 {
   if (i == 0)
   {
-    strncpy(name, "DSNZ", 10);
-    return true;
+  strncpy(name, "DSNZ", 10);
+  return true;
   }
   --i;
 
   if (i == 0)
   {
-    strncpy(name, "DSSX", 10);
-    return true;
+  strncpy(name, "DSSX", 10);
+  return true;
   }
   --i;
 
   if (i == 0)
   {
-    strncpy(name, "DSSY", 10);
-    return true;
+  strncpy(name, "DSSY", 10);
+  return true;
   }
   --i;
 
@@ -119,13 +119,13 @@ bool CBoundaryInterfaceMaterial::WriteFilosParamName(dia::IDianaRunner& diarunne
   CGeomecDianaRunnerBase& runner = static_cast<CGeomecDianaRunnerBase&>(diarunner);
 
   if (runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE ||
-    runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE_CONTAINMENT)
+  runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE_CONTAINMENT)
   {
-    if (i == 0)
-    {
+  if (i == 0)
+  {
       strncpy(name, "DPERME", 10);
       return true;
-    }
+  }
   }
 
   return false;
@@ -146,10 +146,10 @@ void CBoundaryInterfaceMaterial::WriteFilosParamValues(dia::IDianaRunner& diarun
   CGeomecDianaRunnerBase& runner = static_cast<CGeomecDianaRunnerBase&>(diarunner);
 
   if (runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE ||
-    runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE_CONTAINMENT)
+  runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE_CONTAINMENT)
   {
-    // write very low permeability for boundary interfaces
-    *values = 1e-8; // DPERME
+  // write very low permeability for boundary interfaces
+  *values = 1e-8; // DPERME
   }
 }
 

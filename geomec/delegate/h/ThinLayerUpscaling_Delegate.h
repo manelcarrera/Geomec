@@ -9,7 +9,7 @@ class CThinLayerUpscalingNode_Delegate : public IUpscalingNodeBase_Delegate
 {
 public:
   CThinLayerUpscalingNode_Delegate(
-    CThinLayerUpscalingNode* thinLayerUpscalingNode);
+  CThinLayerUpscalingNode* thinLayerUpscalingNode);
 
   virtual bool CanExecute() const;
   virtual void Execute();
@@ -17,7 +17,7 @@ public:
 private:
   CThinLayerUpscalingNode_Delegate(const CThinLayerUpscalingNode_Delegate& rhs);
   CThinLayerUpscalingNode_Delegate& operator = (
-    const CThinLayerUpscalingNode_Delegate& rhs);
+  const CThinLayerUpscalingNode_Delegate& rhs);
 
   CThinLayerUpscalingNode* m_thinLayerUpscalingNode;
 

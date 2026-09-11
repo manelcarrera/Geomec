@@ -21,7 +21,7 @@ CLoadPropertyResidualStrainLoading::~CLoadPropertyResidualStrainLoading()
 bool CLoadPropertyResidualStrainLoading::loadProperty()
 {
   return m_buildTensor.loadProperty(m_RGI, m_ModelBase, m_RMP, m_RGProperty,
-    m_tensorComponent);
+  m_tensorComponent);
 }
 
 } // namespace GeomecRGI

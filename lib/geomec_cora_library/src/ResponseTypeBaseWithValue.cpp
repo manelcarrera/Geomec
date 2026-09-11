@@ -20,7 +20,7 @@ CResponseTypeBaseWithValue::CResponseTypeBaseWithValue(
   CSummaryResultFile& summaryResultFile, const std::vector <QString>& function)
 : CResponseTypeBaseValidate(summaryResultFile, function)
 , m_value(extractValue(summaryResultFile, function, LSF_LENGTH_WITH_VALUE,
-    VALUE_POSITION))
+  VALUE_POSITION))
 , m_tooHigh(extractInternalFailsWhen(summaryResultFile, function, TOO_HIGH))
 , m_tooLow(extractInternalFailsWhen(summaryResultFile, function, TOO_LOW))
 {
@@ -29,8 +29,8 @@ CResponseTypeBaseWithValue::CResponseTypeBaseWithValue(
 const QString CResponseTypeBaseWithValue::getResponseType() const
 {
   QString responseType = QString("%1,%2,%3").
-    arg(CResponseTypeBase::getResponseType()).arg(m_value).
-    arg(m_tooHigh ? TOO_HIGH : TOO_LOW);
+  arg(CResponseTypeBase::getResponseType()).arg(m_value).
+  arg(m_tooHigh ? TOO_HIGH : TOO_LOW);
 
   return responseType;
 }
@@ -59,14 +59,14 @@ bool CResponseTypeBaseWithValue::extractInternalFailsWhen(
   if ((function[INTERNAL_FAILS_WHEN_POSITION] != TOO_LOW) &&
       (function[INTERNAL_FAILS_WHEN_POSITION] != TOO_HIGH))
   {
-    QString message = concatenateFunction(function);
+  QString message = concatenateFunction(function);
 
-    summaryResultFile.setResultValue(
+  summaryResultFile.setResultValue(
       CSummaryResultFile::RESULT_VALUE_INCONSISTENT);
-    message = QString(LSF_DESCRIPTION_MISSES_INTERNAL_FAILS_WHEN).arg(message);
-    summaryResultFile.addAdditionalInformation(message);
+  message = QString(LSF_DESCRIPTION_MISSES_INTERNAL_FAILS_WHEN).arg(message);
+  summaryResultFile.addAdditionalInformation(message);
 
-    throw CIncompleteLimitStateFunction(message.toStdString());
+  throw CIncompleteLimitStateFunction(message.toStdString());
   }
 
   return (function[INTERNAL_FAILS_WHEN_POSITION] == internalFailsWhen);

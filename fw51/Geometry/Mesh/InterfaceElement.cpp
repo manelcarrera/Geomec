@@ -55,21 +55,21 @@ void CInterfaceElement::setFront(const geo::IFace* pFront)
   // Determine m_nFrontStartIndex if there is a front triangle
   if(pFront)
   {
-    assert(m_vcNode.size()/2 == pFront->NrOfPoints());
-    for(int i = 0; i < pFront->NrOfNodes(); i++)
-    {
+  assert(m_vcNode.size()/2 == pFront->NrOfPoints());
+  for(int i = 0; i < pFront->NrOfNodes(); i++)
+  {
       if(m_mesh.Point(m_vcNode[0]) == pFront->Node(i))
       {
-        m_nFrontStartIndex = i;
-        break;
+    m_nFrontStartIndex = i;
+    break;
       }
-    }
-    assert(m_nFrontStartIndex >= 0);
-    assert(m_mesh.Point(m_vcNode[0]) == pFront->Node(m_nFrontStartIndex)); 
+  }
+  assert(m_nFrontStartIndex >= 0);
+  assert(m_mesh.Point(m_vcNode[0]) == pFront->Node(m_nFrontStartIndex)); 
   }
   else
   {
-    m_nFrontStartIndex = -1;
+  m_nFrontStartIndex = -1;
   }
 }
 
@@ -80,21 +80,21 @@ void CInterfaceElement::setBack(const geo::IFace* pBack)
   // Determine m_nBackStartIndex if there is a back triangle
   if(pBack)
   {
-    assert(m_vcNode.size()/2 == pBack->NrOfPoints());
-    for(int i = 0; i < pBack->NrOfNodes(); i++)
-    {
+  assert(m_vcNode.size()/2 == pBack->NrOfPoints());
+  for(int i = 0; i < pBack->NrOfNodes(); i++)
+  {
       if(m_mesh.Point(m_vcNode[m_vcNode.size()/2]) == pBack->Node(i))
       {
-        m_nBackStartIndex = i;
-        break;
+    m_nBackStartIndex = i;
+    break;
       }
-    }
-    assert(m_nBackStartIndex >= 0);
-    assert(m_mesh.Point(m_vcNode[m_vcNode.size()/2]) == pBack->Node(m_nBackStartIndex));    
+  }
+  assert(m_nBackStartIndex >= 0);
+  assert(m_mesh.Point(m_vcNode[m_vcNode.size()/2]) == pBack->Node(m_nBackStartIndex));    
   }
   else
   {
-    m_nBackStartIndex = -1;
+  m_nBackStartIndex = -1;
   }
 }
 
@@ -169,9 +169,9 @@ std::string CInterfaceElement::Type() const
 int CInterfaceElement::BodyFaceNode(int nIndex) const
 {
   if( nIndex >= 0 && nIndex < NrOfNodes()/2 ) {
-    // front
-    assert(m_front);
-    return (m_nFrontStartIndex + nIndex) % m_front->NrOfPoints();
+  // front
+  assert(m_front);
+  return (m_nFrontStartIndex + nIndex) % m_front->NrOfPoints();
   } 
 
   // back
@@ -196,11 +196,11 @@ int CInterfaceElement::BodyNode( int nIndex ) const
   const CBodyQuadrilateral* pQuad = 0;
   const CBodyTriangle* pTri = 0;  
   if( 0 <= nIndex && nIndex < NrOfPoints()/2 ) {
-    pQuad = dynamic_cast<const CBodyQuadrilateral*>( &Front() );
-    pTri  = dynamic_cast<const CBodyTriangle*>( &Front() );
+  pQuad = dynamic_cast<const CBodyQuadrilateral*>( &Front() );
+  pTri  = dynamic_cast<const CBodyTriangle*>( &Front() );
   } else {
-    pQuad = dynamic_cast<const CBodyQuadrilateral*>( &Back() );
-    pTri  = dynamic_cast<const CBodyTriangle*>( &Back() );
+  pQuad = dynamic_cast<const CBodyQuadrilateral*>( &Back() );
+  pTri  = dynamic_cast<const CBodyTriangle*>( &Back() );
   }
   if(pQuad) return pQuad->BodyNode( nFaceNode );
   if(pTri ) return pTri->BodyNode( nFaceNode );

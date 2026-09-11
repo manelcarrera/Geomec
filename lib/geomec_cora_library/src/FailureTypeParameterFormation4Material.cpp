@@ -9,7 +9,7 @@ CFailureTypeParameterFormation4Material::CFailureTypeParameterFormation4Material
   const std::string& option, const std::string& parameter,
   std::vector <double>& value, const CGetModelInfo& modelInfo)
 : CFailureTypeParameterFormation(summaryResultFile, object, option, parameter, value,
-    modelInfo)
+  modelInfo)
 {
 }
 
@@ -29,17 +29,17 @@ void CFailureTypeParameterFormation4Material::modify(CModelBase* modelBase)
 {
   if (m_actualParameter)
   {
-    int set = modelBase->Mesh().AddElementValueSet();
-    CElementValueSet& elementValueSet = modelBase->Mesh().ElementValueSet(set);
-    unsigned int valueTypeID = m_actualParameter->valueTypeID();
-    CFormationBase* formationBase = dynamic_cast <CFormationBase*> (
+  int set = modelBase->Mesh().AddElementValueSet();
+  CElementValueSet& elementValueSet = modelBase->Mesh().ElementValueSet(set);
+  unsigned int valueTypeID = m_actualParameter->valueTypeID();
+  CFormationBase* formationBase = dynamic_cast <CFormationBase*> (
       m_actualParameter->object());
 
-    for (int e = 0; e < modelBase->Mesh().Mesh().ElementSize(); ++e)
-    {
+  for (int e = 0; e < modelBase->Mesh().Mesh().ElementSize(); ++e)
+  {
       const geo::IElement& element = modelBase->Mesh().Mesh().Element(e);
       const CFFMaterial& cffMaterial = formationBase->Material(
-        modelBase->DepletionStageEntry().StageByIndex(
+    modelBase->DepletionStageEntry().StageByIndex(
           m_actualParameter->depletionStage())).Material(element);
       int nodes = element.NrOfNodes();
       std::vector <double> newValues(nodes);
@@ -47,23 +47,23 @@ void CFailureTypeParameterFormation4Material::modify(CModelBase* modelBase)
 
       if (cffMaterial.IsParameter(valueTypeID))
       {
-        double value =
+    double value =
           cffMaterial.ParameterValue(valueTypeID);
 
-        newValue = m_parameterModifier->modify(value).Value();
+    newValue = m_parameterModifier->modify(value).Value();
       }
       else
       {
-        m_summaryResultFile.addAdditionalInformation(
+    m_summaryResultFile.addAdditionalInformation(
           QString(VALUE_TYPE_NOT_PRESENT).arg(valueTypeID).arg(FORMATION).
-            arg(m_object));
+      arg(m_object));
       }
 
       std::fill(newValues.begin(), newValues.end(), newValue);
       elementValueSet.PushBack(newValues);
-    }
+  }
 
-    createAndLinkValueType(modelBase, elementValueSet,
+  createAndLinkValueType(modelBase, elementValueSet,
       formationBase->ActiveMaterial(), modelBase->Mesh(), valueTypeID);
   }
 }

@@ -16,13 +16,13 @@ namespace test_lib
 CMaterial::CMaterial(QTextStream &os)
 : IModelObject()
 {
-	new CModelObjectReceiver(*this, os);
+  new CModelObjectReceiver(*this, os);
 }
 
 CMaterial::CMaterial(const QString& sName, QTextStream &os)
 : IModelObject(sName)
 {
-	new CModelObjectReceiver(*this, os);
+  new CModelObjectReceiver(*this, os);
 }
 
 CMaterial::~CMaterial()

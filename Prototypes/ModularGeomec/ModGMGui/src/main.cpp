@@ -8,41 +8,41 @@
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    ModGMGui w;
+  QApplication a(argc, argv);
+  ModGMGui w;
 
-    // default interface name is Gui; unlikely to be changed through arguments
+  // default interface name is Gui; unlikely to be changed through arguments
 
-    QString name("Gui");
+  QString name("Gui");
 
-    for (int i = 1; i < argc; ++i)
-    {
+  for (int i = 1; i < argc; ++i)
+  {
       QStringList l = QString(argv[i]).split('=');
       if (l.size() == 2 && l[0] == "name")
-        name = l[1];
-    }
+    name = l[1];
+  }
 
 
-    // client
+  // client
 
-    quint64 ppid = ModGMLocalBusHelper::getPid(argc, argv);
+  quint64 ppid = ModGMLocalBusHelper::getPid(argc, argv);
 
-    ModGMLocalBusClient client(ModGMLocalBusHelper::getBase(ppid), name, &a);
+  ModGMLocalBusClient client(ModGMLocalBusHelper::getBase(ppid), name, &a);
 
-    // we read messages from the backend, show errors, and we can send a command to all other processes (see form)
+  // we read messages from the backend, show errors, and we can send a command to all other processes (see form)
 
-    QObject::connect(&w, &ModGMGui::finished, &client, &ModGMLocalBusClient::quit);
-    QObject::connect(&client, SIGNAL(finished()), &a, SLOT(quit()));
+  QObject::connect(&w, &ModGMGui::finished, &client, &ModGMLocalBusClient::quit);
+  QObject::connect(&client, SIGNAL(finished()), &a, SLOT(quit()));
 
-    QObject::connect(&client, &ModGMLocalBusClient::receivedMessage, &w, &ModGMGui::receivedMessage);
-    QObject::connect(&client, &ModGMLocalBusClient::shmError, &w, &ModGMGui::onReceivedError);
-    QObject::connect(&w, &ModGMGui::handleMessage, &client, &ModGMLocalBusClient::handleMessage);
+  QObject::connect(&client, &ModGMLocalBusClient::receivedMessage, &w, &ModGMGui::receivedMessage);
+  QObject::connect(&client, &ModGMLocalBusClient::shmError, &w, &ModGMGui::onReceivedError);
+  QObject::connect(&w, &ModGMGui::handleMessage, &client, &ModGMLocalBusClient::handleMessage);
 
 
-    // call setup slot, show window and start event loop
-    QTimer::singleShot(0, &client, SLOT(setup()));
+  // call setup slot, show window and start event loop
+  QTimer::singleShot(0, &client, SLOT(setup()));
 
-    w.show();
+  w.show();
 
-    return a.exec();
+  return a.exec();
 }

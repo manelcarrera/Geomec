@@ -35,17 +35,17 @@ CNewWellPath_Delegate::CNewWellPath_Delegate(CNewWellPath* newWellPath)
 void CNewWellPath_Delegate::AppendContextMenu(CContextMenuInvoker& invoker)
 {
   typedef CSingleCommandTemplate<CNewWellPath_Delegate>
-    TNewWellPath_DelegateCommand;
+  TNewWellPath_DelegateCommand;
   invoker.AddCommand(_T("Show wellpath information"),
-    *(new CSingleCommandTemplate<CNewWellPath>(*m_pNewWellPath,
-    &CNewWellPath::ToggleDrawWellInfo, 0, &CNewWellPath::DrawWellInfo)));
+  *(new CSingleCommandTemplate<CNewWellPath>(*m_pNewWellPath,
+  &CNewWellPath::ToggleDrawWellInfo, 0, &CNewWellPath::DrawWellInfo)));
   invoker.AddSeparator();
 
   if (m_pNewWellPath->IsVertical())
   {
-    invoker.AddCommand(_T("Change &Position"),
+  invoker.AddCommand(_T("Change &Position"),
       *(new TNewWellPath_DelegateCommand(*this, &CNewWellPath_Delegate::Edit)));
-    invoker.AddSeparator();
+  invoker.AddSeparator();
   }
 
   invoker.AddCommand(_T("&Flip Depth"), *(new TNewWellPath_DelegateCommand(*this, &CNewWellPath_Delegate::FlipDepth)));
@@ -54,32 +54,32 @@ void CNewWellPath_Delegate::AppendContextMenu(CContextMenuInvoker& invoker)
   // wjrx mantis 3647 3680
   //
   invoker.AddCommand(_T("Generate IDM input"),
-    *(new TNewWellPath_DelegateCommand(*this,
-    &CNewWellPath_Delegate::GenerateIDMInput)));
+  *(new TNewWellPath_DelegateCommand(*this,
+  &CNewWellPath_Delegate::GenerateIDMInput)));
 
-    invoker.AddSeparator();
+  invoker.AddSeparator();
   // wjrx mantis 3564
   //
   invoker.AddCommand(_T("Select points for &FIST export"),
-    *(new TNewWellPath_DelegateCommand(*this,
+  *(new TNewWellPath_DelegateCommand(*this,
       &CNewWellPath_Delegate::DefineFistPoints,
       &CNewWellPath_Delegate::CanDefineFistPoints)));
   invoker.AddCommand(_T("&Export to FIST"),
-    *(new TNewWellPath_DelegateCommand(*this,
+  *(new TNewWellPath_DelegateCommand(*this,
           &CNewWellPath_Delegate::ExportToFist,
-        &CNewWellPath_Delegate::CanExportToFist)));
+    &CNewWellPath_Delegate::CanExportToFist)));
   
   invoker.AddCommand(_T("Create zoom-in model"),
-    *new TNewWellPath_DelegateCommand(*this,
-	    &CNewWellPath_Delegate::CreateZoomInModel,
-	    &CNewWellPath_Delegate::CanZoomIn));
+  *new TNewWellPath_DelegateCommand(*this,
+    &CNewWellPath_Delegate::CreateZoomInModel,
+    &CNewWellPath_Delegate::CanZoomIn));
 
   invoker.AddCommand(_T("Export Log ASCII Standard (LAS) file"),
-    *new TNewWellPath_DelegateCommand(*this, &CNewWellPath_Delegate::ExportLAS,
-    &CNewWellPath_Delegate::CanExportLAS));
+  *new TNewWellPath_DelegateCommand(*this, &CNewWellPath_Delegate::ExportLAS,
+  &CNewWellPath_Delegate::CanExportLAS));
 
   invoker.AddCommand(_T("Import Log ASCII Standard (LAS) file"),
-    *new TNewWellPath_DelegateCommand(*this, &CNewWellPath_Delegate::ImportLAS,
+  *new TNewWellPath_DelegateCommand(*this, &CNewWellPath_Delegate::ImportLAS,
       &CNewWellPath_Delegate::CanImportLAS));
 
   invoker.AddSeparator();
@@ -89,9 +89,9 @@ void CNewWellPath_Delegate::AppendContextMenu(CContextMenuInvoker& invoker)
 bool CNewWellPath_Delegate::Edit()
 {
   CNewWellPathEntry* pEntry =
-    (CNewWellPathEntry*) (m_pNewWellPath->Model().GraphEntry(MD_NEW_WELLPATH));
+  (CNewWellPathEntry*) (m_pNewWellPath->Model().GraphEntry(MD_NEW_WELLPATH));
   CNewWellPathEntry_Delegate* pEntry_Delegate =
-    static_cast <CNewWellPathEntry_Delegate*> (pEntry->getDelegate());
+  static_cast <CNewWellPathEntry_Delegate*> (pEntry->getDelegate());
 
   pEntry_Delegate->EditVerticalWellPath(m_pNewWellPath);
 
@@ -143,13 +143,13 @@ bool CNewWellPath_Delegate::CanImportLAS() const
 void CNewWellPath_Delegate::ImportLAS()
 {
   QString sFilter =
-    "Log ASCII Standard files (*.las)|*.las|All Files (*.*)|*.*||";
+  "Log ASCII Standard files (*.las)|*.las|All Files (*.*)|*.*||";
   CTnoFileDialog dlg(true, "las", 0, OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
-    sFilter.toStdString().c_str(), FemAppGetMainWnd());
+  sFilter.toStdString().c_str(), FemAppGetMainWnd());
 
   if (dlg.DoModal() == IDOK)
   {
-    m_pNewWellPath->ImportLAS((LPCSTR) dlg.GetPathName());
+  m_pNewWellPath->ImportLAS((LPCSTR) dlg.GetPathName());
   }
 }
 
@@ -187,16 +187,16 @@ void CNewWellPath_Delegate::DefineFistPoints()
 
   if (!pModel->IsMesh())
   {
-    if (pModel->CanCreateMesh())
-    {
+  if (pModel->CanCreateMesh())
+  {
       pModel->CreateMesh();
-    }
+  }
   }
 
   if (!pModel->IsMesh())
   {
-    _m()->msg("First create a mesh");
-    return;
+  _m()->msg("First create a mesh");
+  return;
   }
 
   CUnitNode unitNode;
@@ -204,7 +204,7 @@ void CNewWellPath_Delegate::DefineFistPoints()
   Sections.push_back(m_pNewWellPath->FormationSectionPointers());
 
   CFistPointPickDlg dlg(&m_pNewWellPath->FistExportPoints(),
-    *m_pNewWellPath, Sections, unitNode.Unit());
+  *m_pNewWellPath, Sections, unitNode.Unit());
 
   dlg.WellPointListCtrl().ShowTMDOnly();
   dlg.DoModal();
@@ -230,7 +230,7 @@ bool CNewWellPath_Delegate::CanExportToFist() const
 void CNewWellPath_Delegate::ExportToFist()
 { 
   CFistExportDlg
-    dlg(m_pNewWellPath,(const CModelBase*)(&m_pNewWellPath->Model()));
+  dlg(m_pNewWellPath,(const CModelBase*)(&m_pNewWellPath->Model()));
 
   dlg.DoModal();
 }
@@ -242,16 +242,16 @@ void CNewWellPath_Delegate::GenerateIDMInput()
 
   if (!pModel->IsMesh())
   {
-    if (pModel->CanCreateMesh())
-    {
+  if (pModel->CanCreateMesh())
+  {
       pModel->CreateMesh();
-    }
+  }
   }
 
   if (!pModel->IsMesh())
   {
-    _m()->msg("First create a mesh");
-    return;
+  _m()->msg("First create a mesh");
+  return;
   }
 
   CUnitNode unitNode;
@@ -260,16 +260,16 @@ void CNewWellPath_Delegate::GenerateIDMInput()
   Sections.push_back(m_pNewWellPath->FormationSectionPointers());
 
   CDsbPickPointsDlg dlg(&m_pNewWellPath->DStaborPoints(),
-    *m_pNewWellPath, Sections, unitNode.Unit());
+  *m_pNewWellPath, Sections, unitNode.Unit());
 
   dlg.WellPointListCtrl().ShowTMDOnly();
   if ( dlg.DoModal() == IDOK
       && m_pNewWellPath->DStaborPoints().empty() == false )
   {
-    // wjrx mantis 3680
-    CStartIDMStaborDlg
+  // wjrx mantis 3680
+  CStartIDMStaborDlg
       StartDlg(&m_pNewWellPath->DStaborPoints(),*pModel);
-    StartDlg.DoModal();
+  StartDlg.DoModal();
   }
 
   //--- wjrx mantis 3647: display of dstabor points not supported
@@ -284,12 +284,12 @@ void CNewWellPath_Delegate::GenerateIDMInput()
 void CNewWellPathEntry_Delegate::AppendContextMenu(CContextMenuInvoker &invoker)
 {
   invoker.AddCommand(_T("Show wellpath information"),
-    *(new CSingleCommandTemplate<CNewWellPathEntry>(*m_newWellPathEntry,
-    &CNewWellPathEntry::ToggleDrawWellInfo, 0, &CNewWellPathEntry::DrawWellInfo)));
+  *(new CSingleCommandTemplate<CNewWellPathEntry>(*m_newWellPathEntry,
+  &CNewWellPathEntry::ToggleDrawWellInfo, 0, &CNewWellPathEntry::DrawWellInfo)));
   invoker.AddSeparator();
 
   invoker.AddCommand(_T("Import deviated wellpath 3d &point set"),
-    *(new CSingleCommandTemplate <CNewWellPathEntry_Delegate> (*this,
+  *(new CSingleCommandTemplate <CNewWellPathEntry_Delegate> (*this,
       &CNewWellPathEntry_Delegate::InsertDeviatedWellPathByPointSet,
       &CNewWellPathEntry_Delegate::CanInsertNew))); //wjrx mantis 3185
 
@@ -299,11 +299,11 @@ void CNewWellPathEntry_Delegate::AppendContextMenu(CContextMenuInvoker &invoker)
 
 
   pSubMenu->AddCommand(_T("&Graphically"),
-    *(new CSingleCommandTemplate <CNewWellPathEntry_Delegate> (*this,
+  *(new CSingleCommandTemplate <CNewWellPathEntry_Delegate> (*this,
       &CNewWellPathEntry_Delegate::InsertVerticalWellPathGraphical,
       &CNewWellPathEntry_Delegate::CanInsertNew)));
   pSubMenu->AddCommand(_T("&By value"),
-    *(new CSingleCommandTemplate <CNewWellPathEntry_Delegate> (*this,
+  *(new CSingleCommandTemplate <CNewWellPathEntry_Delegate> (*this,
       &CNewWellPathEntry_Delegate::InsertVerticalWellPathByValue,
       &CNewWellPathEntry_Delegate::CanInsertNew)));
   invoker.AddInvoker("Insert &vertical wellpath", *pSubMenu);
@@ -315,19 +315,19 @@ void CNewWellPathEntry_Delegate::AppendContextMenu(CContextMenuInvoker &invoker)
 #endif
 
   invoker.AddCommand(_T("&Export"),
-    *new CSingleCommandTemplate <CNewWellPathEntry_Delegate> (*this,
+  *new CSingleCommandTemplate <CNewWellPathEntry_Delegate> (*this,
       &CNewWellPathEntry_Delegate::Export,
       &CNewWellPathEntry_Delegate::CanExport));
 
   invoker.AddCommand(_T("Export to &FIST"),
-    *(new CSingleCommandTemplate <CNewWellPathEntry_Delegate> (*this,
+  *(new CSingleCommandTemplate <CNewWellPathEntry_Delegate> (*this,
       &CNewWellPathEntry_Delegate::ExportToFist,
       &CNewWellPathEntry_Delegate::CanExportToFist)));
 
   invoker.AddSeparator();
 
   invoker.AddCommand(_T("Add group"),
-    *(new CSingleCommandTemplate<CNewWellPathEntry_Delegate>(*this,
+  *(new CSingleCommandTemplate<CNewWellPathEntry_Delegate>(*this,
       &CNewWellPathEntry_Delegate::InsertGroup)));
 }
 
@@ -335,11 +335,11 @@ void CNewWellPathEntry_Delegate::InsertGroup()
 {
   if (TreeNode())
   {
-    CGroupNodeEntry *entry = static_cast<CGroupNodeEntry *>(m_newWellPathEntry->Model().GraphEntry(MD_BASE_GROUPNODE));
-    // TODO: use CGraphNode::createUniqueName, but that one crashes
-    QString name("New Group");
-    CGroupNode *groupNode = new CGroupNode(name, m_newWellPathEntry->Model(), m_newWellPathEntry);
-    new TNewWellPathGroupNodeObserver(*groupNode, *TreeNode());
+  CGroupNodeEntry *entry = static_cast<CGroupNodeEntry *>(m_newWellPathEntry->Model().GraphEntry(MD_BASE_GROUPNODE));
+  // TODO: use CGraphNode::createUniqueName, but that one crashes
+  QString name("New Group");
+  CGroupNode *groupNode = new CGroupNode(name, m_newWellPathEntry->Model(), m_newWellPathEntry);
+  new TNewWellPathGroupNodeObserver(*groupNode, *TreeNode());
   }
 }
 
@@ -351,7 +351,7 @@ bool CNewWellPathEntry_Delegate::CanExportToFist() const
 void CNewWellPathEntry_Delegate::ExportToFist()
 {
   CFistExportDlg
-    dlg(true,(const CModelBase*)(&m_newWellPathEntry->Model()));
+  dlg(true,(const CModelBase*)(&m_newWellPathEntry->Model()));
 
   dlg.DoModal();
 }
@@ -379,21 +379,21 @@ void CNewWellPathEntry_Delegate::InsertVerticalWellPathByValue()
 
   if (!model.IsMesh())
   {
-    _m()->msg("First create a mesh",0,0);
-    return;
+  _m()->msg("First create a mesh",0,0);
+  return;
   }
 
   // Just create a well in the middle of the model
 
   geo::CPoint point(
-    (model.Boundary().Max().X() + model.Boundary().Min().X()) / 2,
-    (model.Boundary().Max().Y() + model.Boundary().Min().Y()) / 2);
+  (model.Boundary().Max().X() + model.Boundary().Min().X()) / 2,
+  (model.Boundary().Max().Y() + model.Boundary().Min().Y()) / 2);
 
   // Create unique name
 
   QString sName = m_newWellPathEntry->createUniqueName(
-    CNewWellPathEntry::DEFAULT_NEWWELL_NAME,
-    CNewWellPathEntry::DEFAULT_INITIAL_NUMBER);
+  CNewWellPathEntry::DEFAULT_NEWWELL_NAME,
+  CNewWellPathEntry::DEFAULT_INITIAL_NUMBER);
 
   CNewWellPathInput *input = new CNewWellPathInput(sName.toStdString().c_str(), model, point);
 
@@ -401,16 +401,16 @@ void CNewWellPathEntry_Delegate::InsertVerticalWellPathByValue()
 
   if (dlg.DoModal() == IDCANCEL)
   {
-    input->Destroy();
-    input = 0;
+  input->Destroy();
+  input = 0;
   }
   else
   {
-    std::vector<std::string> messages;
+  std::vector<std::string> messages;
 
-    const CNewWellPath *pWellPath = CNewWellPathInput::CreateWellPath(input, model, &messages);
+  const CNewWellPath *pWellPath = CNewWellPathInput::CreateWellPath(input, model, &messages);
 
-    if (messages.size())
+  if (messages.size())
       _m()->msg(messages);
   }
 }
@@ -421,9 +421,9 @@ void CNewWellPathEntry_Delegate::InsertVerticalWellPathGraphical()
 
   if (!model.IsMesh())
   {
-    _m()->msg("First create a mesh", 0, 0);
+  _m()->msg("First create a mesh", 0, 0);
 
-    return;
+  return;
   }
 
   EditVerticalWellPath();
@@ -431,18 +431,18 @@ void CNewWellPathEntry_Delegate::InsertVerticalWellPathGraphical()
 
 void CNewWellPathEntry_Delegate::EditVerticalWellPath(CNewWellPath* pWellPath)
 {
-    C3DModel& model = (C3DModel&) (m_newWellPathEntry->Model());
-    if (!model.IsMesh())
-    {
-        _m()->msg("First create a mesh", 0, 0);
-        return;
-    }
+  C3DModel& model = (C3DModel&) (m_newWellPathEntry->Model());
+  if (!model.IsMesh())
+  {
+    _m()->msg("First create a mesh", 0, 0);
+    return;
+  }
 
-    CGeomecDoc* pDoc = GetGeomecDoc();
-    C3DGUI& guiModel = (C3DGUI&) *(dynamic_cast <C3DGUI*> (pDoc->GUI()));
-    COpenInventorSceneNode& oivNode = guiModel.OpenInventorScene();
-    pDoc->CurrentScene(&oivNode);
-    oivNode.EditVerticalNewWellPath (pWellPath);
+  CGeomecDoc* pDoc = GetGeomecDoc();
+  C3DGUI& guiModel = (C3DGUI&) *(dynamic_cast <C3DGUI*> (pDoc->GUI()));
+  COpenInventorSceneNode& oivNode = guiModel.OpenInventorScene();
+  pDoc->CurrentScene(&oivNode);
+  oivNode.EditVerticalNewWellPath (pWellPath);
 }
 //===
 

@@ -65,13 +65,13 @@ const geo::IElement* CObjectSurface::getFirstElement()
 const geo::IElement* CObjectSurface::getNextElement()
 {
   if (m_sequenceState <
-    m_surfaceBase->ElementSet().ElementSize())
+  m_surfaceBase->ElementSet().ElementSize())
   {
-    // m_surfaceBase->ElementSet().Element(...),
-    // m_surfaceBase->Surface().Element(...) and
-    // m_surfaceBase->Surface().Face(...) return the same element.
+  // m_surfaceBase->ElementSet().Element(...),
+  // m_surfaceBase->Surface().Element(...) and
+  // m_surfaceBase->Surface().Face(...) return the same element.
 
-    return &(m_surfaceBase->ElementSet().Element(m_sequenceState++));
+  return &(m_surfaceBase->ElementSet().Element(m_sequenceState++));
   }
 
   return 0;
@@ -80,7 +80,7 @@ const geo::IElement* CObjectSurface::getNextElement()
 std::ostream& CObjectSurface::operator () (std::ostream& os) const
 {
   os << PREFIX.toStdString() << m_surfaceBase->Name().toStdString() <<
-    std::endl;
+  std::endl;
 
   return os;
 }

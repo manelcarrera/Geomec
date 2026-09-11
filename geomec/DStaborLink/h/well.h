@@ -15,18 +15,18 @@
 class CWell : public COleDispatchDriver
 {
 public:
-	CWell() {}		// Calls COleDispatchDriver default constructor
-	CWell(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
-	CWell(const CWell& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
+  CWell() {}		// Calls COleDispatchDriver default constructor
+  CWell(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
+  CWell(const CWell& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
 // Attributes
 public:
-	double GetAzimuth();
-	void SetAzimuth(double);
-	double GetInclination();
-	void SetInclination(double);
-	double GetVerticalDepth();
-	void SetVerticalDepth(double);
+  double GetAzimuth();
+  void SetAzimuth(double);
+  double GetInclination();
+  void SetInclination(double);
+  double GetVerticalDepth();
+  void SetVerticalDepth(double);
 
 // Operations
 public:

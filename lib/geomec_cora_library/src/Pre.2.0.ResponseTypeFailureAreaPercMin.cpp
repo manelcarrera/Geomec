@@ -25,13 +25,13 @@ double CPre20ResponseTypeFailureAreaPercMin::calculate(const TObject& object,
 
   if (element != 0)
   {
-    double failureArea = 0;
-    double totalSize = calculateTotalSize(object, element);
+  double failureArea = 0;
+  double totalSize = calculateTotalSize(object, element);
 
-    while (element != 0)
-    {
+  while (element != 0)
+  {
       const IValueDomainScalar::TValueVec valueVec =
-        failureMode->getResultComponent()->ValueElement(*element);
+    failureMode->getResultComponent()->ValueElement(*element);
       double min = std::numeric_limits <double> ::max();
 
       verifyResponseType(valueVec);
@@ -40,13 +40,13 @@ double CPre20ResponseTypeFailureAreaPercMin::calculate(const TObject& object,
 
       if (min <= m_value)
       {
-        failureArea += element->Size();
+    failureArea += element->Size();
       }
 
       element = object->getNextElement();
-    }
+  }
 
-    failureAreaPercentage = failureArea / totalSize;
+  failureAreaPercentage = failureArea / totalSize;
   }
 
   return failureAreaPercentage;

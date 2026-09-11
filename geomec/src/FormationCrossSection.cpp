@@ -43,9 +43,9 @@ public:
    *          most likely changed.
    */
   ExtractorCallback(MoMesh* mesh, MoMeshPlaneSlice* slice, DecimatingCellFilterI* filter)
-    : m_mesh(mesh)
-    , m_slice(slice)
-    , m_filter(filter)
+  : m_mesh(mesh)
+  , m_slice(slice)
+  , m_filter(filter)
   {
   }
 
@@ -54,31 +54,31 @@ public:
   }
 
   virtual void beginExtract(
-    const std::string extractorName, 
-    bool geomChanged, 
-    bool topoChanged, 
-    bool dataSetChanged, 
-    size_t numPhases)
+  const std::string extractorName, 
+  bool geomChanged, 
+  bool topoChanged, 
+  bool dataSetChanged, 
+  size_t numPhases)
   {
   }
 
   virtual void endExtract()
   {
-    // This is somehow necessary to update the items that are defined on the extracted mesh
-    // (outline, isoline, vectors, tensor vectors). If we don't do this, they sometimes stay
-    // behind when dragging the cross section. Probably an OIV bug, but this nicely works 
-    // around the issue.
-    if(m_mesh)
+  // This is somehow necessary to update the items that are defined on the extracted mesh
+  // (outline, isoline, vectors, tensor vectors). If we don't do this, they sometimes stay
+  // behind when dragging the cross section. Probably an OIV bug, but this nicely works 
+  // around the issue.
+  if(m_mesh)
       m_mesh->touch();
 
-    //[svdr] TODO: this is done on every extraction, even when no filtering on vectors / tensors is
-    // being done. Still need to find an elegant way of doing this only when necessary.
-    const MiPlaneSliceExtractUnstructured* extractor = m_slice->getUnstructuredExtractor();
-    const MeXSurfaceMeshUnstructured& surfaceMesh = extractor->getExtract();
+  //[svdr] TODO: this is done on every extraction, even when no filtering on vectors / tensors is
+  // being done. Still need to find an elegant way of doing this only when necessary.
+  const MiPlaneSliceExtractUnstructured* extractor = m_slice->getUnstructuredExtractor();
+  const MeXSurfaceMeshUnstructured& surfaceMesh = extractor->getExtract();
 
-    // Update the cell filter for the correct number of cells
-    size_t numCells = surfaceMesh.getTopology().getNumCells();
-    m_filter->init(numCells);
+  // Update the cell filter for the correct number of cells
+  size_t numCells = surfaceMesh.getTopology().getNumCells();
+  m_filter->init(numCells);
   }
 
   // not used

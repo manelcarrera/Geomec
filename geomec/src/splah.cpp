@@ -98,64 +98,64 @@ void CSplashWnd::OnPaint()
 {
    CPaintDC dc(this);
 #ifdef NODIB
-	// Code for ordinary bitmap:
-	CDC dcImage;
-	if (!dcImage.CreateCompatibleDC(&dc))
-		return;
-	BITMAP bm;
-	m_bitmap.GetBitmap(&bm);
+  // Code for ordinary bitmap:
+  CDC dcImage;
+  if (!dcImage.CreateCompatibleDC(&dc))
+    return;
+  BITMAP bm;
+  m_bitmap.GetBitmap(&bm);
 
-	// Paint the image.
-	CBitmap* pOldBitmap = dcImage.SelectObject(&m_bitmap);
-	dc.BitBlt(0, 0, bm.bmWidth, bm.bmHeight, &dcImage, 0, 0, SRCCOPY);
-	dcImage.SelectObject(pOldBitmap);
+  // Paint the image.
+  CBitmap* pOldBitmap = dcImage.SelectObject(&m_bitmap);
+  dc.BitBlt(0, 0, bm.bmWidth, bm.bmHeight, &dcImage, 0, 0, SRCCOPY);
+  dcImage.SelectObject(pOldBitmap);
 
 
-	// Draw the text in the splashwindow.
-	CFont font;
-	CFont* oldfont;
-	font.CreateFont(-20, 0, 0, 0, FW_DONTCARE, 0,0,0,DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,CLIP_DEFAULT_PRECIS,DEFAULT_QUALITY,DEFAULT_PITCH|FF_ROMAN,"Arial");
-	oldfont = dc.SelectObject(&font);
-	int mode = dc.SetBkMode(TRANSPARENT);
+  // Draw the text in the splashwindow.
+  CFont font;
+  CFont* oldfont;
+  font.CreateFont(-20, 0, 0, 0, FW_DONTCARE, 0,0,0,DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,CLIP_DEFAULT_PRECIS,DEFAULT_QUALITY,DEFAULT_PITCH|FF_ROMAN,"Arial");
+  oldfont = dc.SelectObject(&font);
+  int mode = dc.SetBkMode(TRANSPARENT);
 
-	// The strings are drawn 2 times because of a shadow.
-	CString str;
-	str = getStringTableEntry(IDS_PACKAGE_NAME);
-	dc.SetTextColor(RGB(0,0,0));
-	dc.TextOut(102,152,str);
-	dc.SetTextColor(RGB(255,255,255));
-	dc.TextOut(100,150,str);
+  // The strings are drawn 2 times because of a shadow.
+  CString str;
+  str = getStringTableEntry(IDS_PACKAGE_NAME);
+  dc.SetTextColor(RGB(0,0,0));
+  dc.TextOut(102,152,str);
+  dc.SetTextColor(RGB(255,255,255));
+  dc.TextOut(100,150,str);
 
-	// Version 
+  // Version 
 //	str = AfxGetAppName();
-	str = "geomec.exe";
-	CVersionInfo *version = new CVersionInfo();
-	version->GetVersionInfo((char*)LPCTSTR(str));
-	str.Format("Version: %s", version->m_strFullVersion);
-	delete version;
+  str = "geomec.exe";
+  CVersionInfo *version = new CVersionInfo();
+  version->GetVersionInfo((char*)LPCTSTR(str));
+  str.Format("Version: %s", version->m_strFullVersion);
+  delete version;
 
-	dc.SetTextColor(RGB(0,0,0));
-	dc.TextOut(102,202,str);
-	dc.SetTextColor(RGB(255,255,255));
-	dc.TextOut(100,200,str);
+  dc.SetTextColor(RGB(0,0,0));
+  dc.TextOut(102,202,str);
+  dc.SetTextColor(RGB(255,255,255));
+  dc.TextOut(100,200,str);
 
-	// A smaller font is used so delete the old font and create a new one.
-	dc.SelectObject(oldfont);
-	font.DeleteObject();
-	font.CreateFont(-14, 0, 0, 0, FW_DONTCARE, 0,0,0,DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,CLIP_DEFAULT_PRECIS,DEFAULT_QUALITY,DEFAULT_PITCH|FF_ROMAN,"Arial");
-	oldfont = dc.SelectObject(&font);
+  // A smaller font is used so delete the old font and create a new one.
+  dc.SelectObject(oldfont);
+  font.DeleteObject();
+  font.CreateFont(-14, 0, 0, 0, FW_DONTCARE, 0,0,0,DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,CLIP_DEFAULT_PRECIS,DEFAULT_QUALITY,DEFAULT_PITCH|FF_ROMAN,"Arial");
+  oldfont = dc.SelectObject(&font);
 
   str = "Checking licenses...";
   dc.SetTextColor(RGB(200,200,200));
   dc.TextOut(100, 330, str);
 
-	// A smaller font is used so delete the old font and create a new one.
-	dc.SelectObject(oldfont);
-	font.DeleteObject();
-	font.CreateFont(-10, 0, 0, 0, FW_DONTCARE, 0,0,0,DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,CLIP_DEFAULT_PRECIS,DEFAULT_QUALITY,DEFAULT_PITCH|FF_ROMAN,"Arial");
-	oldfont = dc.SelectObject(&font);
+  // A smaller font is used so delete the old font and create a new one.
+  dc.SelectObject(oldfont);
+  font.DeleteObject();
+  font.CreateFont(-10, 0, 0, 0, FW_DONTCARE, 0,0,0,DEFAULT_CHARSET, OUT_DEFAULT_PRECIS,CLIP_DEFAULT_PRECIS,DEFAULT_QUALITY,DEFAULT_PITCH|FF_ROMAN,"Arial");
+  oldfont = dc.SelectObject(&font);
 
-	// These lines doesn't make use of a shadow.
+  // These lines doesn't make use of a shadow.
 #ifdef _WIN64
   str = getStringTableEntry(IDS_64_EDITION);
 #else
@@ -163,15 +163,15 @@ void CSplashWnd::OnPaint()
 #endif
   dc.SetTextColor(RGB(255, 255, 255));
   dc.TextOut(400, 80, str);
-	str = getStringTableEntry(IDS_COPYRIGHT);
-	dc.SetTextColor(RGB(255,255,255));
-	dc.TextOut(400,300,str);
+  str = getStringTableEntry(IDS_COPYRIGHT);
+  dc.SetTextColor(RGB(255,255,255));
+  dc.TextOut(400,300,str);
 
-	dc.SelectObject(oldfont);
-	dc.SetBkMode(mode);
+  dc.SelectObject(oldfont);
+  dc.SetBkMode(mode);
 
-	// Delete the old font.
-	font.DeleteObject();
+  // Delete the old font.
+  font.DeleteObject();
 
 #else
    m_dib.Draw(dc);
@@ -187,17 +187,17 @@ void CSplashWnd::OnTimer(UINT_PTR nIDEvent)
   CWinApp* pApp = AfxGetApp();
   CWnd* pMainWnd = pApp->m_pMainWnd;
   if ((m_flags & CSplash::NoWaitForMainWnd) ||
-                IsWindow(pMainWnd->GetSafeHwnd()))
+        IsWindow(pMainWnd->GetSafeHwnd()))
   {
-    // have main window: OK to die
-    if(IsWindow(pMainWnd->GetSafeHwnd()))
+  // have main window: OK to die
+  if(IsWindow(pMainWnd->GetSafeHwnd()))
       pMainWnd->SetForegroundWindow();
-    SendMessage(WM_CLOSE);
+  SendMessage(WM_CLOSE);
   }
   else
   {
-    // no main window: keep splashing
-    SetTimer(1,100,NULL);
+  // no main window: keep splashing
+  SetTimer(1,100,NULL);
   }
 }
 
@@ -208,22 +208,22 @@ BOOL CSplashWnd::PreTranslateMessage(MSG* pMsg)
 {
   if (m_flags & CSplash::KillOnClick)
   {
-    unsigned int msg = pMsg->message;
-    if (msg == WM_KEYDOWN ||
-        msg == WM_SYSKEYDOWN ||
-        msg == WM_LBUTTONDOWN ||
-        msg == WM_RBUTTONDOWN ||
-        msg == WM_MBUTTONDOWN)
-    {
+  unsigned int msg = pMsg->message;
+  if (msg == WM_KEYDOWN ||
+    msg == WM_SYSKEYDOWN ||
+    msg == WM_LBUTTONDOWN ||
+    msg == WM_RBUTTONDOWN ||
+    msg == WM_MBUTTONDOWN)
+  {
       CWinApp* pApp = AfxGetApp();
       CWnd* pMainWnd = pApp->m_pMainWnd;
       if(IsWindow(pMainWnd->GetSafeHwnd()))
       {
-        pMainWnd->SetForegroundWindow();
-        PostMessage(WM_CLOSE); // post don't send, to let current msg process
-        return TRUE; // eat it
+    pMainWnd->SetForegroundWindow();
+    PostMessage(WM_CLOSE); // post don't send, to let current msg process
+    return TRUE; // eat it
       }
-    }
+  }
   }
   return CWnd::PreTranslateMessage(pMsg);
 }

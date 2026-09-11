@@ -26,49 +26,49 @@ public:
   class CGroup
   {
   public:
-    CGroup(CMaterial* mat, const QString& strName);
+  CGroup(CMaterial* mat, const QString& strName);
 
-    const QString& Name() const;
+  const QString& Name() const;
 
-    size_t ParameterSize() const;
-    const CMatParam& Parameter(size_t i) const;
-    CMatParam& Parameter(size_t i);
+  size_t ParameterSize() const;
+  const CMatParam& Parameter(size_t i) const;
+  CMatParam& Parameter(size_t i);
 
-    void AddParameter(size_t parent_i);
+  void AddParameter(size_t parent_i);
 
-    CMaterial& Material();
-    const CMaterial& Material() const;
+  CMaterial& Material();
+  const CMaterial& Material() const;
 
   private:
-    CMaterial* m_mat;
-    QString m_strName;
+  CMaterial* m_mat;
+  QString m_strName;
   protected:
-    friend class CMaterial;
-    std::vector<size_t> m_vcParameters;
+  friend class CMaterial;
+  std::vector<size_t> m_vcParameters;
   };
 
   class CCreator
   {
   protected:
-    CCreator();
-    virtual ~CCreator();
+  CCreator();
+  virtual ~CCreator();
   public:
 
-    // must call this function from OnCreateParameters, pParam must be created on the heap (with new)
-    void Add(CMatParam* pParam, const QString& strGroupName = QString());
+  // must call this function from OnCreateParameters, pParam must be created on the heap (with new)
+  void Add(CMatParam* pParam, const QString& strGroupName = QString());
 
-    virtual CMaterial* OnCreateMaterial() = 0; // CMaterial is now abstract
-    virtual void OnCreateParameters(CMaterial& mat) = 0;
-    virtual int MaterialModel() = 0;
-    virtual QString MaterialModelName() = 0;
-    void Create(const QString& strName, CMaterial& mat);
+  virtual CMaterial* OnCreateMaterial() = 0; // CMaterial is now abstract
+  virtual void OnCreateParameters(CMaterial& mat) = 0;
+  virtual int MaterialModel() = 0;
+  virtual QString MaterialModelName() = 0;
+  void Create(const QString& strName, CMaterial& mat);
 
-    void Destroy(CMaterial* mat);
+  void Destroy(CMaterial* mat);
 
-    void Reset();
+  void Reset();
 
   private:
-    std::vector<size_t> m_vcUngrouped;
+  std::vector<size_t> m_vcUngrouped;
   };
 
   friend class CCreator;
@@ -76,20 +76,20 @@ public:
   class IObserver
   {
   public:
-    virtual ~IObserver() {}
-    virtual void Modified() = 0;
-    virtual void ForcedUnregister() = 0;
+  virtual ~IObserver() {}
+  virtual void Modified() = 0;
+  virtual void ForcedUnregister() = 0;
   };
 
   class CCheckStrategy
   {
   public:
-    CCheckStrategy() {}
-    virtual ~CCheckStrategy() {}
-    virtual bool operator () (const ml::CMaterial& material) const = 0;
+  CCheckStrategy() {}
+  virtual ~CCheckStrategy() {}
+  virtual bool operator () (const ml::CMaterial& material) const = 0;
   private:
-    CCheckStrategy(const CCheckStrategy& rhs);
-    CCheckStrategy& operator = (const CCheckStrategy& rhs);
+  CCheckStrategy(const CCheckStrategy& rhs);
+  CCheckStrategy& operator = (const CCheckStrategy& rhs);
   };
 
 public:

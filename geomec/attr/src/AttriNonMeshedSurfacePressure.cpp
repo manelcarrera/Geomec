@@ -25,44 +25,44 @@ void CAttriNonMeshedSurfacePressure::DoDataExchange(CDataExchange* pDX)
 
   if(!pDX->m_bSaveAndValidate)
   {
-    dRefPressure = CSinglePressure(Copy().ReferencePressure()).Value(UnitNode().Unit());
-    dRefDepth = CLengthQuantity(Copy().ReferenceDepth()).Value(UnitNode().Unit());
-    dGradient = CPressureGradientQuantity(Copy().Gradient()).Value(UnitNode().Unit());
+  dRefPressure = CSinglePressure(Copy().ReferencePressure()).Value(UnitNode().Unit());
+  dRefDepth = CLengthQuantity(Copy().ReferenceDepth()).Value(UnitNode().Unit());
+  dGradient = CPressureGradientQuantity(Copy().Gradient()).Value(UnitNode().Unit());
 
-    CString strUnitPressure = CSinglePressure().UnitName(UnitNode().Unit()).c_str();
-    CString strUnitDepth = CLengthQuantity().UnitName(UnitNode().Unit()).c_str();
-    CString strUnitGradient = CPressureGradientQuantity().UnitName(UnitNode().Unit()).c_str();
+  CString strUnitPressure = CSinglePressure().UnitName(UnitNode().Unit()).c_str();
+  CString strUnitDepth = CLengthQuantity().UnitName(UnitNode().Unit()).c_str();
+  CString strUnitGradient = CPressureGradientQuantity().UnitName(UnitNode().Unit()).c_str();
 
-    DDX_Text(pDX, IDC_UN_REFPRESSURE, strUnitPressure);
-    DDX_Text(pDX, IDC_UN_REFDEPTH, strUnitDepth);
-    DDX_Text(pDX, IDC_UN_GRADIENT, strUnitGradient);
+  DDX_Text(pDX, IDC_UN_REFPRESSURE, strUnitPressure);
+  DDX_Text(pDX, IDC_UN_REFDEPTH, strUnitDepth);
+  DDX_Text(pDX, IDC_UN_GRADIENT, strUnitGradient);
 
-    nManual = Copy().ManualValues() ? 1 : 0;
+  nManual = Copy().ManualValues() ? 1 : 0;
   }
 
   DDX_Radio(pDX, IDC_RADIO_FORMATIONS, nManual);
 
   if(Copy().ManualValues())
   {
-    DDX_Text(pDX, IDC_EDIT_REFPRESSURE, dRefPressure);
-    DDX_Text(pDX, IDC_EDIT_REFDEPTH, dRefDepth);
-    DDX_Text(pDX, IDC_EDIT_GRADIENT, dGradient);
+  DDX_Text(pDX, IDC_EDIT_REFPRESSURE, dRefPressure);
+  DDX_Text(pDX, IDC_EDIT_REFDEPTH, dRefDepth);
+  DDX_Text(pDX, IDC_EDIT_GRADIENT, dGradient);
   }
   else if(!pDX->m_bSaveAndValidate)
   {
-    DDX_Text(pDX, IDC_EDIT_REFPRESSURE, strEmpty);
-    DDX_Text(pDX, IDC_EDIT_REFDEPTH, strEmpty);
-    DDX_Text(pDX, IDC_EDIT_GRADIENT, strEmpty);
+  DDX_Text(pDX, IDC_EDIT_REFPRESSURE, strEmpty);
+  DDX_Text(pDX, IDC_EDIT_REFDEPTH, strEmpty);
+  DDX_Text(pDX, IDC_EDIT_GRADIENT, strEmpty);
   }
 
   if(pDX->m_bSaveAndValidate)
   {
-    if(Copy().ManualValues())
-    {
+  if(Copy().ManualValues())
+  {
       Copy().ReferencePressure(CSinglePressure(dRefPressure, UnitNode().Unit()).Value());
       Copy().ReferenceDepth(CLengthQuantity(dRefDepth, UnitNode().Unit()).Value());
       Copy().Gradient(CPressureGradientQuantity(dGradient, UnitNode().Unit()).Value());
-    }
+  }
   }
 }
 

@@ -128,7 +128,7 @@
     <ProjectReference Include="..\lib\blosc_filter\blosc_filter.vcxproj">
       <Project>{49b5a2c2-90a9-4205-954b-bdc6aece8e22}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\lib\c-blosc-1.9.0\build\blosc\blosc_shared.vcxproj">
+    <ProjectReference Include="..\third_party\c-blosc-1.9.0\build\blosc\blosc_shared.vcxproj">
       <Project>{9e79b5fd-f368-386f-a1b2-481cb5992aa6}</Project>
     </ProjectReference>
     <ProjectReference Include="..\lib\CommonWellScheme\CommonWellScheme.vcxproj">
@@ -176,10 +176,10 @@
     <ProjectReference Include="..\lib\NewWellScheme\NewWellScheme.vcxproj">
       <Project>{2a6e8f7b-8d6b-4d66-ae56-1989dff03f6a}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\lib\Plugins\Plugins.vcxproj">
+    <ProjectReference Include="..\platform\Plugins\Plugins.vcxproj">
       <Project>{f2b1aa28-9235-41af-85ed-9a6a7acddbd0}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\lib\PyLib\PyLib.vcxproj">
+    <ProjectReference Include="..\platform\PyLib\PyLib.vcxproj">
       <Project>{cf6d0c66-92da-4d28-b7e3-4fab2370427e}</Project>
     </ProjectReference>
     <ProjectReference Include="..\lib\qtiocompressor\qtiocompressor.vcxproj">
@@ -209,7 +209,7 @@
     <ProjectReference Include="..\lib\WellScheme\WellScheme.vcxproj">
       <Project>{196d6005-6814-4b11-89d7-dd391a44c239}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\lib\zlib-1.2.6\contrib\vstudio\vc10\zlibvc.vcxproj">
+    <ProjectReference Include="..\third_party\zlib-1.2.6\contrib\vstudio\vc10\zlibvc.vcxproj">
       <Project>{8fd826f8-3739-44e6-8cc8-997122e53b8d}</Project>
     </ProjectReference>
     <ProjectReference Include="..\Prototypes\ModularGeomec\ModGMBus\ModGMBus.vcxproj">

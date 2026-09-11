@@ -22,7 +22,7 @@ std::set <int> getDistinctFormationVolumeIDs(
 
   for (size_t id = 0; id < formationVolumeIDs.size(); ++id)
   {
-    distinctFormationVolumeIDs.insert(formationVolumeIDs[id]);
+  distinctFormationVolumeIDs.insert(formationVolumeIDs[id]);
   }
 
   return distinctFormationVolumeIDs;
@@ -35,14 +35,14 @@ std::vector <CGraphNode*> getFormationVolumes(const CModelBase& modelBase)
   std::vector <CGraphNode*> formationVolumes;
 
   for (CGraphEntry::TEntryNodeSet::const_iterator entryNode =
-    entryNodeSet.begin(); entryNode != entryNodeSet.end(); ++entryNode)
+  entryNodeSet.begin(); entryNode != entryNodeSet.end(); ++entryNode)
   {
-    C3DFormation* formation = dynamic_cast <C3DFormation*> (*entryNode);
+  C3DFormation* formation = dynamic_cast <C3DFormation*> (*entryNode);
 
-    for (int volume = 0; volume < formation->VolumeSize(); ++volume)
-    {
+  for (int volume = 0; volume < formation->VolumeSize(); ++volume)
+  {
       formationVolumes.push_back(&formation->Volume(volume));
-    }
+  }
   }
 
   return formationVolumes;
@@ -52,27 +52,27 @@ std::vector <int> getGeomecFormationVolumeIDs(const CModelBase& modelBase,
   const std::vector <CGraphNode*>& formationVolumes)
 {
   std::vector <int>
-    geomecFormationVolumeIDs(modelBase.Mesh().Mesh().ElementSize());
+  geomecFormationVolumeIDs(modelBase.Mesh().Mesh().ElementSize());
 
   for (int e = 0; e < modelBase.Mesh().Mesh().ElementSize(); ++e)
   {
-    const geo::IElement& element = modelBase.Mesh().Mesh().Element(e);
+  const geo::IElement& element = modelBase.Mesh().Mesh().Element(e);
 
-    if (dynamic_cast<const geo::IInterfaceElement *>(&element))
+  if (dynamic_cast<const geo::IInterfaceElement *>(&element))
       continue;
 
-    const IFormationElementSet* formationElementSet =
+  const IFormationElementSet* formationElementSet =
       modelBase.Mesh().FormationElementSet(element);
 
-    assert(formationElementSet != 0);
+  assert(formationElementSet != 0);
 
-    std::vector <CGraphNode*> ::const_iterator formationVolume =
+  std::vector <CGraphNode*> ::const_iterator formationVolume =
       std::find(formationVolumes.begin(), formationVolumes.end(),
-        formationElementSet);
+    formationElementSet);
 
-    assert(formationVolume != formationVolumes.end());
+  assert(formationVolume != formationVolumes.end());
 
-    geomecFormationVolumeIDs[e] =
+  geomecFormationVolumeIDs[e] =
       std::distance(formationVolumes.begin(), formationVolume);
   }
 
@@ -89,9 +89,9 @@ CGeomecFormationVolumeIDs2RGI::CGeomecFormationVolumeIDs2RGI(
 : m_modelBase(modelBase)
 , m_formationVolumes(getFormationVolumes(m_modelBase))
 , m_GeomecFormationVolumeIDs(
-    getGeomecFormationVolumeIDs(m_modelBase, m_formationVolumes))
+  getGeomecFormationVolumeIDs(m_modelBase, m_formationVolumes))
 , m_distinctGeomecFormationVolumeIDs(
-    getDistinctFormationVolumeIDs(m_GeomecFormationVolumeIDs))
+  getDistinctFormationVolumeIDs(m_GeomecFormationVolumeIDs))
 {
 }
 

@@ -10,22 +10,22 @@ public:
   class CDerivedResultComponent_Delegate : public IResultComponent_Delegate
   {
   public:
-    CDerivedResultComponent_Delegate(
+  CDerivedResultComponent_Delegate(
       CDerivedResult::CDerivedResultComponent* derivedResultComponent);
 
-    virtual bool Attributes();
+  virtual bool Attributes();
 
-    virtual void AppendContextMenu(CContextMenuInvoker& invoker);
+  virtual void AppendContextMenu(CContextMenuInvoker& invoker);
 
   private:
-    CDerivedResultComponent_Delegate(
+  CDerivedResultComponent_Delegate(
       const CDerivedResultComponent_Delegate& rhs);
-    CDerivedResultComponent_Delegate& operator = (
+  CDerivedResultComponent_Delegate& operator = (
       const CDerivedResultComponent_Delegate& rhs);
 
-    CDerivedResult::CDerivedResultComponent* m_derivedResultComponent;
+  CDerivedResult::CDerivedResultComponent* m_derivedResultComponent;
 
-    REGISTER_DELEGATE(CDerivedResult::CDerivedResultComponent,
+  REGISTER_DELEGATE(CDerivedResult::CDerivedResultComponent,
       CDerivedResultComponent_Delegate);
   };
 
@@ -63,7 +63,7 @@ public:
 private:
   CDerivedResultGroup_Delegate(const CDerivedResultGroup_Delegate& rhs);
   CDerivedResultGroup_Delegate& operator = (
-    const CDerivedResultGroup_Delegate& rhs);
+  const CDerivedResultGroup_Delegate& rhs);
 
   CDerivedResultGroup* m_derivedResultGroup;
 

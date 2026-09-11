@@ -130,10 +130,10 @@ public:
   std::map<CFormationBase*, CGVTVelocityModel*> &FormationToVelModelMp();
 
   typedef CStorageNode::TSTREAM TSTREAM;
-	typedef CStorageNode::TPROGRESS TPROGRESS;
+  typedef CStorageNode::TPROGRESS TPROGRESS;
 
-	virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-	virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
+  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
   virtual long SavedItems() const { return 0; }
   virtual unsigned int TypeId() const { return 0; }
   virtual unsigned int IconId() const { return 0; }

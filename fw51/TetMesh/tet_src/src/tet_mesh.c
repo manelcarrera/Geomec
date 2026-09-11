@@ -140,8 +140,8 @@ static void ShiftPointSetPrint(
   const ShiftPoint_t *sp = RBTreeFirst( spSet, &iter );
   fprintf( fp, "Shifted Fault Points: %d\n", (int)RBTreeSize( spSet ) );
   while ( sp ) {
-    fprintf( fp, " %d %d\n", sp->pointId, sp->orgId );
-    sp = RBTreeNext( spSet, &iter );
+  fprintf( fp, " %d %d\n", sp->pointId, sp->orgId );
+  sp = RBTreeNext( spSet, &iter );
   }
 }
 #endif
@@ -271,9 +271,9 @@ static Set_t *ClusterInnerBodies(
          int         n1, n2;
          /* Quadratic loop to set up connectivity */
          for ( n1 = 0; n1 < nBodyIndex; n1++ ) {
-            for ( n2 = n1; n2 < nBodyIndex; n2++ ) {
+      for ( n2 = n1; n2 < nBodyIndex; n2++ ) {
                TetGraphAdd( graph, bodyIds[n1], bodyIds[n2] );
-            }
+      }
          }
          s2bP->bodySetIndex = SetDelete( s2bP->bodySetIndex );
          s2bP = RBTreeNext( surfBodyTree, &iter );
@@ -313,17 +313,17 @@ static Body_t *CavityShell(
 
   /* Get surface -> body connectivity */
   for ( n = 0; n < nBody; n++ ) {
-    Surf2BodiesAdd( surfBodyTree, BodySetGet( bodySet, n ), n );
+  Surf2BodiesAdd( surfBodyTree, BodySetGet( bodySet, n ), n );
   }
   
   /* Put surfaces connected to single body in a new cavity body */
   s2b = RBTreeFirst( surfBodyTree, &iter );
   while ( s2b ) {
-    if ( SetSize( s2b->bodySetIndex ) == 1 ) {
+  if ( SetSize( s2b->bodySetIndex ) == 1 ) {
       BodyAdd( cavity, s2b->surf, TRUE );
-    }
-    SetDelete( s2b->bodySetIndex );
-    s2b = RBTreeNext( surfBodyTree, &iter );
+  }
+  SetDelete( s2b->bodySetIndex );
+  s2b = RBTreeNext( surfBodyTree, &iter );
   }
   RBTreeDelete( surfBodyTree );
   return cavity;
@@ -340,31 +340,31 @@ static RBTree_t *BodyInnerCreate(
   /* Create memory for inner bodies */ 
   Body_t *body = BodySetFirst( bodySet, &iter );
   while ( body ) {
-    BodyInner_t   biFind;
-    biFind.body = body;
-    biFind.innerBodies = SetCreate( 0, sizeof( Body_t * ) );
-    biFind.cavities = BodySetCreate();
-    RBTreeSearch( bodyInnertree, &biFind );
-    body = BodySetNext( bodySet, &iter );
+  BodyInner_t   biFind;
+  biFind.body = body;
+  biFind.innerBodies = SetCreate( 0, sizeof( Body_t * ) );
+  biFind.cavities = BodySetCreate();
+  RBTreeSearch( bodyInnertree, &biFind );
+  body = BodySetNext( bodySet, &iter );
   }
 
 
   /* Fill bodies with interior bodies */
   body = BodySetFirst( bodySet, &iter );
   while ( body && !MESH_ERROR( mesh ) ) {
-    Body_t *outer = BodyOuterGet( body );
-    if ( outer ) {
+  Body_t *outer = BodyOuterGet( body );
+  if ( outer ) {
       bi = BodyInnerGet( bodyInnertree, outer, NULL );
       SetAdd( bi->innerBodies, &body, 1 );
-    }
-    body = BodySetNext( bodySet, &iter );
+  }
+  body = BodySetNext( bodySet, &iter );
   }
 
 
   /* Split the inner bodies in connected clusters */
   bi = RBTreeFirst( bodyInnertree, &iter );
   while ( bi ) {
-    if ( SetSize( bi->innerBodies ) ) {
+  if ( SetSize( bi->innerBodies ) ) {
       Set_t         *bodyCluster = ClusterInnerBodies( mesh, bi->innerBodies );
       const int      nCluster = SetSize( bodyCluster );
       BodySet_t    **cluster = SetGet( bodyCluster );
@@ -372,16 +372,16 @@ static RBTree_t *BodyInnerCreate(
 
       /* Create extra shells for body clusters */
       for ( n = 0; n < nCluster; n++ ) {
-        if ( BodySetSize( cluster[ n ] ) ) {
+    if ( BodySetSize( cluster[ n ] ) ) {
           Body_t  *cavity = CavityShell( mesh, cluster[ n ] );
           BodySetAdd( bi->cavities, cavity );
-        }
-        BodySetClear( cluster[ n ] );
-        BodySetDelete( cluster[ n ] );
+    }
+    BodySetClear( cluster[ n ] );
+    BodySetDelete( cluster[ n ] );
       }
       SetDelete( bodyCluster );
-    }
-    bi = RBTreeNext( bodyInnertree, &iter );
+  }
+  bi = RBTreeNext( bodyInnertree, &iter );
   }
 
   return bodyInnertree;
@@ -391,14 +391,14 @@ static RBTree_t *BodyInnerDelete(
                   RBTree_t                   *bodyInnertree )
 {
   if ( bodyInnertree ) {
-    Iterator_t   iter;
-    BodyInner_t *bi = RBTreeFirst( bodyInnertree, &iter );
-    while ( bi ) {
+  Iterator_t   iter;
+  BodyInner_t *bi = RBTreeFirst( bodyInnertree, &iter );
+  while ( bi ) {
       SetDelete( bi->innerBodies );
       BodySetDelete( bi->cavities );
       bi = RBTreeNext( bodyInnertree, &iter );
-    }
-    RBTreeDelete( bodyInnertree );
+  }
+  RBTreeDelete( bodyInnertree );
   }
   return NULL;
 }
@@ -476,11 +476,11 @@ static MeshErrorData_t *MeshErrorDataCopy(
   to->messages = SetCreate( nMessages, sizeof( Message_t ) );
   /* Deep copy */
   for ( n = 0; n < nMessages; n++ ) {
-    const Message_t   *fromMessage = SetElmGet( from->messages, n );
-    Message_t         *toMessage = SetNew( to->messages, 1 );
-    UTIL_COPY( toMessage, fromMessage, 1 );
-    toMessage->text = DIMALLOC( strlen(fromMessage->text)+1 );
-    strcpy( toMessage->text, fromMessage->text );
+  const Message_t   *fromMessage = SetElmGet( from->messages, n );
+  Message_t         *toMessage = SetNew( to->messages, 1 );
+  UTIL_COPY( toMessage, fromMessage, 1 );
+  toMessage->text = DIMALLOC( strlen(fromMessage->text)+1 );
+  strcpy( toMessage->text, fromMessage->text );
   }
   return to;
 }
@@ -917,17 +917,17 @@ extern void *MeshCreate( double pointTolerance )
 static MeshOutput_t *MeshOutputDelete( MeshOutput_t *meshOutput )
 {
   if ( meshOutput ) {
-    Iterator_t   iter;
-    BodyMesh_t *bm = SetFirst( meshOutput->bodyMesh, &iter );
-    while ( bm ) {
+  Iterator_t   iter;
+  BodyMesh_t *bm = SetFirst( meshOutput->bodyMesh, &iter );
+  while ( bm ) {
       SurfaceSetClear( bm->sideSurfaces );
       SurfaceSetDelete( bm->sideSurfaces );
       bm = SetNext( meshOutput->bodyMesh, &iter );
-    }
-    meshOutput->bodyMesh = SetDelete( meshOutput->bodyMesh );
-    meshOutput->node2Point = RBTreeDelete( meshOutput->node2Point );
-    meshOutput->tetSet = TetrahedronSetDelete( meshOutput->tetSet );
-    DIFREE( meshOutput );
+  }
+  meshOutput->bodyMesh = SetDelete( meshOutput->bodyMesh );
+  meshOutput->node2Point = RBTreeDelete( meshOutput->node2Point );
+  meshOutput->tetSet = TetrahedronSetDelete( meshOutput->tetSet );
+  DIFREE( meshOutput );
   }
   return NULL;
 }
@@ -945,12 +945,12 @@ static MeshOutput_t *MeshOutputCreate( void )
 static MeshReadBuffer_t *MeshReadBufferDelete( MeshReadBuffer_t *readBuffer ) 
 {
   if ( readBuffer ) {
-    SurfaceDelete( readBuffer->frontSurface );
-    SurfaceDelete( readBuffer->backSurface  );
-    BoundBoxTreeDelete( readBuffer->pointTree );
-    DIFREE( readBuffer->pointCor );
-    DIFREE( readBuffer->pointId );
-    SetDelete( readBuffer->workId );
+  SurfaceDelete( readBuffer->frontSurface );
+  SurfaceDelete( readBuffer->backSurface  );
+  BoundBoxTreeDelete( readBuffer->pointTree );
+  DIFREE( readBuffer->pointCor );
+  DIFREE( readBuffer->pointId );
+  SetDelete( readBuffer->workId );
   }
   DIFREE( readBuffer );
   return NULL;
@@ -959,9 +959,9 @@ static MeshReadBuffer_t *MeshReadBufferDelete( MeshReadBuffer_t *readBuffer )
 static MeshModelData_t *MeshModelDataDelete( MeshModelData_t *modelData ) 
 {
   if ( modelData ) {
-    SurfaceSetDelete( modelData->surfaceSet );
-    RBTreeDelete( modelData->surfIdTypeTree );
-    PointSetDelete( modelData->pointSet );
+  SurfaceSetDelete( modelData->surfaceSet );
+  RBTreeDelete( modelData->surfIdTypeTree );
+  PointSetDelete( modelData->pointSet );
   }
   DIFREE( modelData );
   return NULL;
@@ -971,9 +971,9 @@ static MeshDerivedData_t *
 MeshDerivedDataDelete( MeshDerivedData_t *derivedData ) 
 {
   if ( derivedData ) {
-    SurfaceSetDelete( derivedData->surfaceSet );
-    BodySetDelete( derivedData->bodySet );
-    PointSetDelete(derivedData->pointSet );
+  SurfaceSetDelete( derivedData->surfaceSet );
+  BodySetDelete( derivedData->bodySet );
+  PointSetDelete(derivedData->pointSet );
   }
   DIFREE( derivedData );
   return NULL;
@@ -982,14 +982,14 @@ MeshDerivedDataDelete( MeshDerivedData_t *derivedData )
 static MeshErrorData_t *MeshErrorDataDelete( MeshErrorData_t  *errorData ) 
 {
   if ( errorData ) {
-    /* Free message text strings */
-    const int  nMessage = SetSize( errorData->messages );
-    int        n;
-    for ( n = 0; n < nMessage; n++ ) {
+  /* Free message text strings */
+  const int  nMessage = SetSize( errorData->messages );
+  int        n;
+  for ( n = 0; n < nMessage; n++ ) {
       Message_t *msg = SetElmGet( errorData->messages, n );
       DIFREE( msg->text );
-    }
-    SetDelete( errorData->messages );
+  }
+  SetDelete( errorData->messages );
   }
   DIFREE( errorData );
   return NULL;
@@ -1028,13 +1028,13 @@ static void MeshPreparePointNumbering( Mesh_t *mesh )
          int       n, numUniquePoint = 0;
          bool_t   *pointDone = NULL;
          for ( n = 0; n < nPoints; n++ ) {
-            BoundBox_t bbMem, *bb = BoundBoxTreeGet(  pointTree, n, &bbMem );
-            int        p;
-            overlap = BoundBoxTreeFind( overlap, pointTree, bb, BoundBoxOverlap );
-            for ( p = 0; p < SetSize( overlap ); p++ ) {
+      BoundBox_t bbMem, *bb = BoundBoxTreeGet(  pointTree, n, &bbMem );
+      int        p;
+      overlap = BoundBoxTreeFind( overlap, pointTree, bb, BoundBoxOverlap );
+      for ( p = 0; p < SetSize( overlap ); p++ ) {
                const int *overlapId = SetElmGet( overlap, p );
                TetGraphAdd( graph, n, *overlapId );
-            }
+      }
          }
          readBuffer->pointId = TetGraphGetConnectivity( graph, &numUniquePoint );
          readBuffer->pointCor = DIMALLOC( 3*numUniquePoint*sizeof(*readBuffer->pointCor) );
@@ -1042,14 +1042,14 @@ static void MeshPreparePointNumbering( Mesh_t *mesh )
          pointDone = DIMALLOC( numUniquePoint*sizeof(*pointDone) );
          UTIL_SET( pointDone, FALSE, numUniquePoint );
          for ( n = 0; n < nPoints; n++ ) {
-            const int uniqueId = readBuffer->pointId[ n ];
-            if ( !pointDone[ uniqueId ] ) {
+      const int uniqueId = readBuffer->pointId[ n ];
+      if ( !pointDone[ uniqueId ] ) {
                double *cor = readBuffer->pointCor+3*uniqueId;
                BoundBox_t bb;
                BoundBoxTreeGet( pointTree, n, &bb );
                BoundBoxCenter( &bb, cor );
                pointDone[ uniqueId ] = TRUE;
-            }
+      }
          }
          TetGraphDelete( graph );
          SetDelete( overlap );
@@ -1077,23 +1077,23 @@ extern void MeshSurfaceOpen( void       *meshv,
           readBuffer->backSurface  == NULL );
 
   if ( !bFault ) {
-    if ( normalExists || frontExists || backExists ) {
+  if ( normalExists || frontExists || backExists ) {
       char buf[ BUFSIZ ];
       MeshMessageOpen( mesh, MeshStatusSurfaceIdExists );
       sprintf( buf, "Failure to create normal surface USERNAME=%s;"
-                    " ID=%d exists already ", userName, surfaceID );
-        MeshMessageAdd( mesh, buf );
-        MeshMessageClose( mesh );
-    }
+          " ID=%d exists already ", userName, surfaceID );
+    MeshMessageAdd( mesh, buf );
+    MeshMessageClose( mesh );
+  }
   } else {
-    if ( normalExists || frontExists || backExists ) {
+  if ( normalExists || frontExists || backExists ) {
       char buf[ BUFSIZ ];
       MeshMessageOpen( mesh, MeshStatusSurfaceIdExists );
       sprintf( buf, "Failure to create front of fault USERNAME=%s;"
-                    " ID=%d exists already ", userName, surfaceID );
+          " ID=%d exists already ", userName, surfaceID );
       MeshMessageAdd( mesh, buf );
       MeshMessageClose( mesh );
-    }
+  }
   }
   if ( MESH_ERROR( mesh ) ) return;
    
@@ -1101,29 +1101,29 @@ extern void MeshSurfaceOpen( void       *meshv,
   if ( MESH_ERROR( mesh ) ) return;
 
   if ( bFault ) {
-    SurfIdTypeAdd( modelData->surfIdTypeTree,
+  SurfIdTypeAdd( modelData->surfIdTypeTree,
                    userName,
                    surfaceID,
                    surfFrontFault );
-    SurfIdTypeAdd( modelData->surfIdTypeTree,
+  SurfIdTypeAdd( modelData->surfIdTypeTree,
                    userName,
                    surfaceID,
                    surfBackFault );
-    readBuffer->frontSurface = SurfaceCreate( surfaceID,
+  readBuffer->frontSurface = SurfaceCreate( surfaceID,
                                               0,
                                               surfFrontFault,
                                               frontUnknownDir,
                                               userName,
                                               surfOuterUnknown );
-    readBuffer->backSurface  = SurfaceCreate( surfaceID,
+  readBuffer->backSurface  = SurfaceCreate( surfaceID,
                                               0,
                                               surfBackFault,
                                               frontUnknownDir,
                                               userName,
                                               surfOuterUnknown );
   } else {
-    SurfIdTypeAdd( modelData->surfIdTypeTree, userName, surfaceID, surfNormal );
-    readBuffer->frontSurface = SurfaceCreate( surfaceID,
+  SurfIdTypeAdd( modelData->surfIdTypeTree, userName, surfaceID, surfNormal );
+  readBuffer->frontSurface = SurfaceCreate( surfaceID,
                                               0,
                                               surfNormal,
                                               frontUnknownDir,
@@ -1146,7 +1146,7 @@ static void MeshCloseEachSurface( void *meshv, Surface_t *surface )
          Iterator_t iter;
          EdgeKey_t *key = EdgeKeyFirst( edge, &iter );
          while ( key && !MESH_ERROR( mesh ) ) {
-            if( EdgeListSize( edge, key, NULL ) > 2 ) {
+      if( EdgeListSize( edge, key, NULL ) > 2 ) {
                int   point1, point2;
                EdgeKeyPoints( key, &point1, &point2 );
                MeshMessageOpen( mesh, MeshStatusEdgeOverConnected );
@@ -1154,8 +1154,8 @@ static void MeshCloseEachSurface( void *meshv, Surface_t *surface )
                PointMeshMessageAdd( mesh, modelData->pointSet, point1 );
                PointMeshMessageAdd( mesh, modelData->pointSet, point2 );
                MeshMessageClose( mesh );
-            }
-            key = EdgeKeyNext( edge, &iter );
+      }
+      key = EdgeKeyNext( edge, &iter );
          }
       }
 
@@ -1168,16 +1168,16 @@ static void MeshCloseEachSurface( void *meshv, Surface_t *surface )
       /* Fault surfaces must be simply connected, contain a least 2 triangles */
       if ( !MESH_ERROR( mesh ) && SurfaceIsFault(surface) ) {
          if ( SurfaceSize( surface ) <= 1 ) {
-            MeshMessageOpen( mesh, MeshStatusFault2Triangle );
-            MeshMessageAdd( mesh, "Fault surface must contain at least 2 triangles:\n" );
-            SurfaceMeshMessageAdd( mesh, surface );
-            MeshMessageClose( mesh );
+      MeshMessageOpen( mesh, MeshStatusFault2Triangle );
+      MeshMessageAdd( mesh, "Fault surface must contain at least 2 triangles:\n" );
+      SurfaceMeshMessageAdd( mesh, surface );
+      MeshMessageClose( mesh );
          }
          if ( SurfaceSetSize(simpleSurfSet) > 1 ) {
-            MeshMessageOpen( mesh, MeshStatusDisconnectedFault );
-            MeshMessageAdd( mesh, "Fault surface consists of more than 1 part. Give different labels to different parts of the fault:\n" );
-            SurfaceMeshMessageAdd( mesh, surface );
-            MeshMessageClose( mesh );
+      MeshMessageOpen( mesh, MeshStatusDisconnectedFault );
+      MeshMessageAdd( mesh, "Fault surface consists of more than 1 part. Give different labels to different parts of the fault:\n" );
+      SurfaceMeshMessageAdd( mesh, surface );
+      MeshMessageClose( mesh );
          }
       }
 
@@ -1185,15 +1185,15 @@ static void MeshCloseEachSurface( void *meshv, Surface_t *surface )
          Iterator_t    iter;
          Surface_t    *simpleSurf = SurfaceSetFirst( simpleSurfSet, &iter );
          while ( simpleSurf && !MESH_ERROR( mesh ) ) {
-            Surface_t *newSurf = SurfaceCopy( simpleSurf );
-            if ( !MESH_ERROR( mesh ) ) {
+      Surface_t *newSurf = SurfaceCopy( simpleSurf );
+      if ( !MESH_ERROR( mesh ) ) {
                SurfaceOrientate( newSurf );
-            }
+      }
  //           if ( !MESH_ERROR( mesh ) && readBuffer->flipFault ) {
    //            SurfaceFlip( newSurf );
 //            }
-            SurfaceSetAdd( modelData->surfaceSet, newSurf );
-            simpleSurf = SurfaceSetNext( simpleSurfSet, &iter );
+      SurfaceSetAdd( modelData->surfaceSet, newSurf );
+      simpleSurf = SurfaceSetNext( simpleSurfSet, &iter );
          }
       }
       SurfaceSetDelete( surfSet );
@@ -1275,7 +1275,7 @@ static Triangle_t* MeshTriangleCreate( void *meshv, Surface_t* surface, int *poi
 }
 
 extern void MeshSurfaceAdd( void *meshv, const double *p1, const double *p2, 
-                            const double *p3 )
+              const double *p3 )
 {
    Mesh_t*     mesh = meshv;
    int         corners[4];
@@ -1324,24 +1324,24 @@ static void OrientFault(
          Surface_t   *surf0 = EdgeListSurface( edge0 );
          Surface_t   *surf1 = EdgeListSurface( edge1 );
          if ( SurfaceType(surf0) != SurfaceType(surf1) ) {
-            int         triangleId0 = EdgeListTriangleId( edge0 );
-            int         triangleId1 = EdgeListTriangleId( edge1 );
-            Triangle_t *triangle0 = SurfaceGet( surf0, triangleId0 );
-            Triangle_t *triangle1 = SurfaceGet( surf1, triangleId1 );
-            int         edge0_p1, edge0_p2, edge1_p1, edge1_p2;
-            TriangleSide( triangle0, edge0->edge, &edge0_p1, &edge0_p2 );
-            TriangleSide( triangle1, edge1->edge, &edge1_p1, &edge1_p2 );
-            if ( edge0_p1 == edge1_p1 ) {
+      int         triangleId0 = EdgeListTriangleId( edge0 );
+      int         triangleId1 = EdgeListTriangleId( edge1 );
+      Triangle_t *triangle0 = SurfaceGet( surf0, triangleId0 );
+      Triangle_t *triangle1 = SurfaceGet( surf1, triangleId1 );
+      int         edge0_p1, edge0_p2, edge1_p1, edge1_p2;
+      TriangleSide( triangle0, edge0->edge, &edge0_p1, &edge0_p2 );
+      TriangleSide( triangle1, edge1->edge, &edge1_p1, &edge1_p2 );
+      if ( edge0_p1 == edge1_p1 ) {
                assert( edge0_p2 == edge1_p2 );
                ready = TRUE;
-            } else if ( edge0_p1 == edge1_p2 ) {
+      } else if ( edge0_p1 == edge1_p2 ) {
                assert(  edge0_p2 == edge1_p1 );
                SurfaceFlip( back );
                ready = TRUE;
                break;
-            } else {
+      } else {
                assert( FALSE );
-            }
+      }
          }
       }
       edgeKey = EdgeKeyNext( edge, &keyIter );
@@ -1391,13 +1391,13 @@ static void  MeshOrientFaults(
       Surface_t    *surf0 = SurfaceSetFirst( surfSet, &iter ); 
       if ( surf0 ) {
          if ( SurfaceIsFault( surf0 ) ) {
-            Surface_t  *surf1 = SurfaceSetNext( surfSet, &iter ); 
-            assert( SurfaceSetSize( surfSet ) == 2 ); /* Single front and back */
-            if ( SurfaceType( surf0 ) == surfFrontFault ) {
+      Surface_t  *surf1 = SurfaceSetNext( surfSet, &iter ); 
+      assert( SurfaceSetSize( surfSet ) == 2 ); /* Single front and back */
+      if ( SurfaceType( surf0 ) == surfFrontFault ) {
                OrientFault( mesh, pointSet, surf0, surf1 );
-            } else {
+      } else {
                OrientFault( mesh, pointSet, surf1, surf0 );
-            }
+      }
          }
       }
       SurfaceSetDelete( SurfaceSetClear( surfSet ) );
@@ -1412,11 +1412,11 @@ static bool_t UnexpectedIntersection(
 {
   bool_t isWrong = FALSE;
   if ( triangle1 != triangle2 ) {
-    if ( !TriangleCommonPoint( triangle1, triangle2, NULL ) ) {
+  if ( !TriangleCommonPoint( triangle1, triangle2, NULL ) ) {
       if ( TriangleIntersect( triangle1, triangle2, pointSet ) ) {
-        isWrong = TRUE;
+    isWrong = TRUE;
       }
-    } 
+  } 
   }
   return isWrong;
 }
@@ -1447,9 +1447,9 @@ static void MeshCheckSurfaceIntersection(
    
   /* Build tree of triangle bounding boxes */
   while ( surf ) {
-    Iterator_t    iter;
-    Triangle_t   *triangle = SurfaceFirst( surf, NULL, &iter );
-    while ( surfTypeActive[SurfaceType( surf)-surfTypeFirst] && triangle ) {
+  Iterator_t    iter;
+  Triangle_t   *triangle = SurfaceFirst( surf, NULL, &iter );
+  while ( surfTypeActive[SurfaceType( surf)-surfTypeFirst] && triangle ) {
       BoundBox_t   bb;
       TriangleBoundBox( triangle, pointSet, BoundBoxInit( &bb ) );
       BoundBoxTreeAdd( bbTree, id, &bb );
@@ -1457,26 +1457,26 @@ static void MeshCheckSurfaceIntersection(
       id2Triangle[id] = triangle;
       id += 1;
       triangle = SurfaceNext( surf, NULL, &iter );
-    }
-    surf = SurfaceSetNext( surfaceSet, &surfSetIter );
+  }
+  surf = SurfaceSetNext( surfaceSet, &surfSetIter );
   }
   assert( id <= nTriangle );
 
   /* Loop over all triangles in all faults and check for intersection */ 
   surf = SurfaceSetFirst( surfaceSet, &surfSetIter );
   while ( surf ) {
-    Iterator_t    iter;
-    Triangle_t   *triangle = SurfaceFirst( surf, NULL, &iter );
-    while ( surfTypeActive[SurfaceType( surf)-surfTypeFirst] && triangle ) {
+  Iterator_t    iter;
+  Triangle_t   *triangle = SurfaceFirst( surf, NULL, &iter );
+  while ( surfTypeActive[SurfaceType( surf)-surfTypeFirst] && triangle ) {
       BoundBox_t   bb;
       int          n;
       TriangleBoundBox( triangle, pointSet, BoundBoxInit( &bb ) );
       BoundBoxTreeFind( intersect, bbTree, &bb, BoundBoxOverlap );
       for ( n = 0; n < SetSize( intersect ); n++ ) {
-        const int        *idFound = SetElmGet( intersect, n );
-        const Triangle_t *triangleFound = id2Triangle[*idFound];
-        const Surface_t  *surfFound = id2Surface[*idFound];
-        if ( UnexpectedIntersection( triangle, triangleFound, pointSet ) ) {
+    const int        *idFound = SetElmGet( intersect, n );
+    const Triangle_t *triangleFound = id2Triangle[*idFound];
+    const Surface_t  *surfFound = id2Surface[*idFound];
+    if ( UnexpectedIntersection( triangle, triangleFound, pointSet ) ) {
           /* Surface intersection ?? */
           int   surfIdPair[2];
           const int  id1 = SurfaceID( surf );
@@ -1489,26 +1489,26 @@ static void MeshCheckSurfaceIntersection(
   MeshEditTwoTriangles( "intersectingTriangles.dat", triangle, triangleFound, pointSet );
 #endif
 
-            MeshMessageOpen( mesh, MeshStatusTriangle2Surfaces );
-            MeshMessageAdd( mesh, "Two triangles intersect in the surfaces\n" );
-            SurfaceMeshMessageAdd( mesh, surf );
-            MeshMessageAdd( mesh, "and\n" );
-            SurfaceMeshMessageAdd( mesh, surfFound );
-            MeshMessageAdd( mesh, "Triangle coordinates\n" );
-            TriangleMeshMessageAdd( mesh, pointSet, triangle );
-            MeshMessageAdd( mesh, "and\n" );
-            TriangleMeshMessageAdd( mesh, pointSet, triangleFound );
-            MeshMessageAdd( mesh, "\n\n" );
-            MeshMessageClose( mesh );
+      MeshMessageOpen( mesh, MeshStatusTriangle2Surfaces );
+      MeshMessageAdd( mesh, "Two triangles intersect in the surfaces\n" );
+      SurfaceMeshMessageAdd( mesh, surf );
+      MeshMessageAdd( mesh, "and\n" );
+      SurfaceMeshMessageAdd( mesh, surfFound );
+      MeshMessageAdd( mesh, "Triangle coordinates\n" );
+      TriangleMeshMessageAdd( mesh, pointSet, triangle );
+      MeshMessageAdd( mesh, "and\n" );
+      TriangleMeshMessageAdd( mesh, pointSet, triangleFound );
+      MeshMessageAdd( mesh, "\n\n" );
+      MeshMessageClose( mesh );
 
-            /* Don't message this surface pair again */
-            RBTreeSearch( surfPairMessaged, surfIdPair ) ;
+      /* Don't message this surface pair again */
+      RBTreeSearch( surfPairMessaged, surfIdPair ) ;
           }
-        }
+    }
       }
       triangle = SurfaceNext( surf, NULL, &iter );
-    }
-    surf = SurfaceSetNext( surfaceSet, &surfSetIter );
+  }
+  surf = SurfaceSetNext( surfaceSet, &surfSetIter );
   }
 
   SetDelete( intersect );
@@ -1526,28 +1526,28 @@ static void MeshFrontBackCheck( Mesh_t *mesh )
    while ( sit && !MESH_ERROR( mesh ) ) {
       switch ( sit->type ) {
          case surfNormal:
-            break;
+      break;
          case surfFrontFault:
-            if ( !SurfIdTypeExists(  sitTree, sit->ID, surfBackFault ) ) {
+      if ( !SurfIdTypeExists(  sitTree, sit->ID, surfBackFault ) ) {
                char   buf[ BUFSIZ ];
                MeshMessageOpen( mesh, MeshStatusNoFrontOrBack );
                sprintf( buf, "Back of fault %s (ID=%d) not specified", sit->name, sit->ID );
                MeshMessageAdd( mesh, buf );
                MeshMessageClose( mesh );
-            }
-            break;
+      }
+      break;
          case surfBackFault:
-            if ( !SurfIdTypeExists(  sitTree, sit->ID, surfFrontFault ) ) {
+      if ( !SurfIdTypeExists(  sitTree, sit->ID, surfFrontFault ) ) {
                char     buf[ BUFSIZ ];
                MeshMessageOpen( mesh, MeshStatusNoFrontOrBack );
                sprintf( buf, "Front of fault %s (ID=%d) not specified", sit->name, sit->ID );
                MeshMessageAdd( mesh, buf );
                MeshMessageClose( mesh );
-            }
-            break;
+      }
+      break;
          default:
-            assert( FALSE );
-            break;
+      assert( FALSE );
+      break;
       }
       sit = RBTreeNext( sitTree, &iter );
   }
@@ -1561,7 +1561,7 @@ static void MeshIsolatedEdges( Mesh_t       *mesh,
   Iterator_t    keyIter;
   EdgeKey_t    *key = EdgeKeyFirst( edge, &keyIter );
   while ( key && !MESH_ERROR( mesh ) ) {
-    if ( EdgeListSize( edge, key, NULL ) == 1 ) {
+  if ( EdgeListSize( edge, key, NULL ) == 1 ) {
       int              p1, p2;
       EdgeList_t      *list = EdgeListFirst( edge, key );
       const Surface_t *surf = EdgeListSurface( list );
@@ -1573,8 +1573,8 @@ static void MeshIsolatedEdges( Mesh_t       *mesh,
       PointMeshMessageAdd( mesh, pointSet, p1 );
       PointMeshMessageAdd( mesh, pointSet, p2 );
       MeshMessageClose( mesh );
-    }
-    key = EdgeKeyNext( edge, &keyIter );
+  }
+  key = EdgeKeyNext( edge, &keyIter );
   }
 }
 
@@ -1594,9 +1594,9 @@ static void MeshCheckTriangleAngles( Mesh_t       *mesh,
       while ( triangle ) {
          const double angle = TriangleSmallestAngle( triangle, pointSet );
          if ( angle < smallestAngle ) {
-            smallestAngle = angle;
-            inSurf = surf;
-            inTriangle = triangle;
+      smallestAngle = angle;
+      inSurf = surf;
+      inTriangle = triangle;
          }
          triangle = SurfaceNext( surf, NULL, &surfaceIter );
       }
@@ -1633,18 +1633,18 @@ static void MeshCheckTriangleAngleBetween(
   Set_t            *edgeListSet = SetCreate( 0, sizeof(EdgeList_t) );
 
   while ( key ) {
-    /* Get angle between all different triangles */
-    int       t1, t2;
-    const int edgeSize = EdgeListSize( edge, key, NULL );
-    EdgeList_t *edges = SetNew( SetClear(edgeListSet), edgeSize );
-    EdgeListGet( edge, key, edges, NULL );
+  /* Get angle between all different triangles */
+  int       t1, t2;
+  const int edgeSize = EdgeListSize( edge, key, NULL );
+  EdgeList_t *edges = SetNew( SetClear(edgeListSet), edgeSize );
+  EdgeListGet( edge, key, edges, NULL );
 
-    for ( t1 = 0; t1 < edgeSize; t1++ ) {
+  for ( t1 = 0; t1 < edgeSize; t1++ ) {
       const Surface_t *edgeSurface1 = EdgeListSurface( edges+t1 );
       const int        triangleId1 = EdgeListTriangleId( edges+t1 );
       for ( t2 = t1+1; t2 < edgeSize; t2++ ) {
-        const Surface_t *edgeSurface2 = EdgeListSurface( edges+t2 );
-        if ( !SurfaceFrontBackOfSameFault( edgeSurface1, edgeSurface2 ) ) {
+    const Surface_t *edgeSurface2 = EdgeListSurface( edges+t2 );
+    if ( !SurfaceFrontBackOfSameFault( edgeSurface1, edgeSurface2 ) ) {
           const int        triangleId2 = EdgeListTriangleId( edges+t2 );
           const double angle = TriangleAngleBetween( 
                                    SurfaceGet( edgeSurface1, triangleId1 ),
@@ -1652,51 +1652,51 @@ static void MeshCheckTriangleAngleBetween(
                                    pointSet );
           assert( angle >= 0 );
           if ( angle < minAngle ) {
-            minAngle = angle;
-            surf1 = edgeSurface1;
-            surf2 = edgeSurface2;
-            triangle1 = SurfaceGet( edgeSurface1, triangleId1 );
-            triangle2 = SurfaceGet( edgeSurface2, triangleId2 );
+      minAngle = angle;
+      surf1 = edgeSurface1;
+      surf2 = edgeSurface2;
+      triangle1 = SurfaceGet( edgeSurface1, triangleId1 );
+      triangle2 = SurfaceGet( edgeSurface2, triangleId2 );
           }
-        }
-      }
     }
-    key = EdgeKeyNext( edge, &keyIter );
+      }
+  }
+  key = EdgeKeyNext( edge, &keyIter );
   }
 
   /* Convert angle from radians to degrees */
   minAngle = minAngle*180/M_PI;
 
   if ( minAngle < MeshAngleGetWarningCrit( mesh ) ) {
-    char   buf[ BUFSIZ ];
-    MeshMessageOpen( mesh, MeshStatusJointDegeneracy );
-    sprintf( buf, "Smallest angle between two triangles: %e [DEG].\n", minAngle );
-    MeshMessageAdd( mesh, buf );
-    MeshMessageAdd( mesh, "Triangle 1\n" );
-    TriangleMeshMessageAdd( mesh, pointSet, triangle1 );
-    MeshMessageAdd( mesh, "in surface\n" );
-    SurfaceMeshMessageAdd( mesh, surf1 );
-    MeshMessageAdd( mesh, "and triangle 2\n" );
-    TriangleMeshMessageAdd( mesh, pointSet, triangle2 );
-    MeshMessageAdd( mesh, "in surface\n" );
-    SurfaceMeshMessageAdd( mesh, surf2 );
-    MeshMessageClose( mesh );
+  char   buf[ BUFSIZ ];
+  MeshMessageOpen( mesh, MeshStatusJointDegeneracy );
+  sprintf( buf, "Smallest angle between two triangles: %e [DEG].\n", minAngle );
+  MeshMessageAdd( mesh, buf );
+  MeshMessageAdd( mesh, "Triangle 1\n" );
+  TriangleMeshMessageAdd( mesh, pointSet, triangle1 );
+  MeshMessageAdd( mesh, "in surface\n" );
+  SurfaceMeshMessageAdd( mesh, surf1 );
+  MeshMessageAdd( mesh, "and triangle 2\n" );
+  TriangleMeshMessageAdd( mesh, pointSet, triangle2 );
+  MeshMessageAdd( mesh, "in surface\n" );
+  SurfaceMeshMessageAdd( mesh, surf2 );
+  MeshMessageClose( mesh );
   }
 
   SetDelete( edgeListSet );
 }
 
 static void InvalidateIsolatedFaultEdgeXPoints( Mesh_t       *mesh,
-                                                SurfaceSet_t *surfaceSet,
-                                                XPointSet_t  *xpointSet )
+                        SurfaceSet_t *surfaceSet,
+                        XPointSet_t  *xpointSet )
 {
   Edge_t       *edge = SurfaceSetEdge( surfaceSet );
   Iterator_t    keyIter;
   EdgeKey_t    *key = EdgeKeyFirst( edge, &keyIter );
    
   while ( key && !MESH_ERROR( mesh ) ) {
-    /* Analyze fault edge */
-    if ( SurfaceSetClosedFault( mesh, surfaceSet, edge, key ) ) {
+  /* Analyze fault edge */
+  if ( SurfaceSetClosedFault( mesh, surfaceSet, edge, key ) ) {
       EdgeList_t  *list = EdgeListFirst( edge, key );
       int          p0, p1;
 
@@ -1704,23 +1704,23 @@ static void InvalidateIsolatedFaultEdgeXPoints( Mesh_t       *mesh,
 
       /* Loop over the fault surfaces */
       while( list ) {
-        const Surface_t *fault = EdgeListSurface( list );
-        if ( SurfaceIsFault( fault ) ) {
+    const Surface_t *fault = EdgeListSurface( list );
+    if ( SurfaceIsFault( fault ) ) {
           /* Unshift the 2 points */
           XPointSetUnshift( xpointSet, p0, fault, EdgeListTriangleId( list ) );
           XPointSetUnshift( xpointSet, p1, fault, EdgeListTriangleId( list ) );
-        }
-        list = EdgeListNext( edge, list );
-      }
     }
-    key = EdgeKeyNext( edge, &keyIter );
+    list = EdgeListNext( edge, list );
+      }
+  }
+  key = EdgeKeyNext( edge, &keyIter );
   }
 }
 
 static void SetFaultPointShift( PointSet_t       *pointSet,
-                                const Surface_t  *surf,
-                                const Triangle_t *triangle,
-                                double           *shift )
+                const Surface_t  *surf,
+                const Triangle_t *triangle,
+                double           *shift )
 {
   const bool_t  isFront = ( SurfaceType( surf ) == surfFrontFault );
   const bool_t  frontPos = ( SurfaceGetFrontDir( surf ) == frontPosDir );
@@ -1742,23 +1742,23 @@ static void DuplicateFaultXPoints( PointSet_t   *pointSet,
   Surface_t    *surf = SurfaceSetFirst( surfaceSet, &surfaceSetIter );
   /* Double all fault points */
   while ( surf ) {
-    if ( SurfaceIsFault( surf ) ) {
+  if ( SurfaceIsFault( surf ) ) {
       int         triangleId;
       Iterator_t  surfaceIter;
       Triangle_t *triangle = SurfaceFirst( surf, &triangleId, &surfaceIter );
       while ( triangle ) {
-        const int    *pointId = TrianglePoints( triangle );
-        double       shift[ 3 ];
-        int             n;
-        assert( TriangleSize( triangle ) == 3 );
-        SetFaultPointShift( pointSet, surf, triangle, shift );
-        for ( n = 0; n < 3; n++ ) {
+    const int    *pointId = TrianglePoints( triangle );
+    double       shift[ 3 ];
+    int             n;
+    assert( TriangleSize( triangle ) == 3 );
+    SetFaultPointShift( pointSet, surf, triangle, shift );
+    for ( n = 0; n < 3; n++ ) {
           XPointSetAddFault( xpointSet, pointId[n], surf, triangleId, shift );
-        }
-        triangle = SurfaceNext( surf, &triangleId, &surfaceIter );
-      }
     }
-    surf = SurfaceSetNext( surfaceSet, &surfaceSetIter );
+    triangle = SurfaceNext( surf, &triangleId, &surfaceIter );
+      }
+  }
+  surf = SurfaceSetNext( surfaceSet, &surfaceSetIter );
   }
 }
 
@@ -1773,8 +1773,8 @@ static int ShiftNewPoint( Mesh_t       *mesh,
   double       shiftScaleFactor = 1;
  
   if ( VecL2Norm( baseShift, 3 ) > DBL_MIN ) {
-    PointSetFind( pointSet, orgId, org+0, org+1, org+2 );
-    while ( !ready ) {
+  PointSetFind( pointSet, orgId, org+0, org+1, org+2 );
+  while ( !ready ) {
       const int    pointIdExpect = PointSetSize( pointSet );
       double       cor[3];
       UTIL_COPY( cor, org, 3 );
@@ -1785,11 +1785,11 @@ fprintf( stderr, "ShiftNewPoint orgId=%d newPointId=%d\n", orgId, newPointId );
 #endif
       ready = ( newPointId == pointIdExpect );
       shiftScaleFactor *= 1.5;
-    }
+  }
   } else {
-    MeshMessageOpen( mesh, MeshStatusFaultShift );
-    MeshMessageAdd( mesh, "Unable to determine shift of fault point. Please contact support.\n\n" );
-    MeshMessageClose( mesh );
+  MeshMessageOpen( mesh, MeshStatusFaultShift );
+  MeshMessageAdd( mesh, "Unable to determine shift of fault point. Please contact support.\n\n" );
+  MeshMessageClose( mesh );
   }
   return  newPointId;
 }
@@ -1802,19 +1802,19 @@ static void AddExtraFaultPoints( Mesh_t          *mesh,
   Iterator_t   iter;
   XPoint_t    *xp = XPointSetFirst( xpointSet, &iter );
   while ( xp && !MESH_ERROR( mesh ) ) {
-    if ( xp->type == xpointFault ) {
+  if ( xp->type == xpointFault ) {
       double baseShift[3];
       const int pointId = ShiftNewPoint( mesh, xp->orgId, 
                                          XPointGetShift( pointSet, xpointSet, xp, MeshShiftScaleFactor( mesh ), baseShift ), 
                                          pointSet );
       if ( !MESH_ERROR( mesh ) ) {
-        xp->data.faultPoint.pointId = pointId;
-        if ( !ShiftPointSetFind( spSet, pointId ) ) {
+    xp->data.faultPoint.pointId = pointId;
+    if ( !ShiftPointSetFind( spSet, pointId ) ) {
           ShiftPointSetAdd( spSet, pointId, xp->orgId );
-        }
-      }
     }
-    xp = XPointSetNext( xpointSet, &iter );
+      }
+  }
+  xp = XPointSetNext( xpointSet, &iter );
   }
 }
 
@@ -1827,33 +1827,33 @@ static void ChangeTriangles (
 
   /* Used shifted fault points in triangles */
   while ( surf ) {
-    int          triangleId;
-    Iterator_t   surfaceIter;
-    Triangle_t  *triangle = SurfaceFirst( surf, &triangleId, &surfaceIter );
-    while ( triangle ) {
+  int          triangleId;
+  Iterator_t   surfaceIter;
+  Triangle_t  *triangle = SurfaceFirst( surf, &triangleId, &surfaceIter );
+  while ( triangle ) {
       const int *points = TrianglePoints( triangle );
       int        newPoints[ 3 ];
       bool_t     isChanged = FALSE;
       int        p;
 
       for ( p = 0; p < 3; p++ ) {
-        const  XPoint_t    *xp = XPointSetFind( xpointSet, points[p], surf, triangleId ); 
-        if ( xp ) {
+    const  XPoint_t    *xp = XPointSetFind( xpointSet, points[p], surf, triangleId ); 
+    if ( xp ) {
           const int           pointId = XPointSetPointId( xpointSet, xp );
           if ( pointId != points[p] ) {
-            if ( !isChanged ) {
+      if ( !isChanged ) {
               UTIL_COPY( newPoints, points, 3 );
-            }
-            newPoints[p] = pointId;
-            isChanged = TRUE;
+      }
+      newPoints[p] = pointId;
+      isChanged = TRUE;
           }
-        }
+    }
       }
 
       if ( isChanged ) TriangleChange( triangle, newPoints );
       triangle = SurfaceNext( surf, &triangleId, &surfaceIter );
-    }
-    surf = SurfaceSetNext( surfaceSet, &surfaceSetIter );
+  }
+  surf = SurfaceSetNext( surfaceSet, &surfaceSetIter );
   }
 
   /* Delete connectivity */
@@ -1882,51 +1882,51 @@ static bool_t FaultCornerSet(
 
   EdgeKeyPoints( key, &fc.point0, &fc.point1 );
   for(side = 0; side < 2; side++) {
-    fc.fault0[side] = EdgeListSurface( list[side] );
-    fc.fault1[side] = EdgeListSurface( list[side + 2] );
+  fc.fault0[side] = EdgeListSurface( list[side] );
+  fc.fault1[side] = EdgeListSurface( list[side + 2] );
 
-    fc.triangle0[side] = EdgeListTriangleId( list[side] );
-    fc.triangle1[side] = EdgeListTriangleId( list[side + 2] );
+  fc.triangle0[side] = EdgeListTriangleId( list[side] );
+  fc.triangle1[side] = EdgeListTriangleId( list[side + 2] );
   }
 
   for(i = 0; i < 4; i++) {
-    Surface_t*  surface          = EdgeListSurface( list[i] );
-    int               triangleId = EdgeListTriangleId( list[i] );
-    const Triangle_t *triangle   = SurfaceGet( surface, triangleId );
+  Surface_t*  surface          = EdgeListSurface( list[i] );
+  int               triangleId = EdgeListTriangleId( list[i] );
+  const Triangle_t *triangle   = SurfaceGet( surface, triangleId );
 
-    // Could we split the triangles or are they already used?
-    for( side = 0; side < 3; side++ ) {
+  // Could we split the triangles or are they already used?
+  for( side = 0; side < 3; side++ ) {
       int p2[2], p0, p1;
       TriangleSide( triangle, side, &p0, &p1 );
       p2[0] = MIN( p0, p1 );
       p2[1] = MAX( p0, p1 );
       if ( RBTreeFindGet( edges, p2 ) ) {
-        canSplit = FALSE;
+    canSplit = FALSE;
       }
-    }    
+  }    
   }
 
   if ( canSplit ) {
-    /* Mark the 4 edges of the 2 triangles as non-splittable */
+  /* Mark the 4 edges of the 2 triangles as non-splittable */
 #if 0
 fprintf( stderr, "\n\n SPLIT %d %d \n\n", fc.point0, fc.point1 );
 #endif
-    for( i = 0; i < 4; i++ ) {
+  for( i = 0; i < 4; i++ ) {
       const EdgeList_t* edge       = list[i];
       const Surface_t*  surface    = EdgeListSurface( edge );
       int               triangleId = EdgeListTriangleId( edge );
       const Triangle_t *triangle   = SurfaceGet( surface, triangleId );
       int  s;
       for ( s = 0; s < 3; s++ ) {
-        int p2[2], p0, p1;
-        TriangleSide( triangle, s, &p0, &p1 );
-        p2[0] = MIN( p0, p1 );
-        p2[1] = MAX( p0, p1 );
-        RBTreeSearch( edges, p2 );
+    int p2[2], p0, p1;
+    TriangleSide( triangle, s, &p0, &p1 );
+    p2[0] = MIN( p0, p1 );
+    p2[1] = MAX( p0, p1 );
+    RBTreeSearch( edges, p2 );
       }
-    }
-    /* Add to the list of triangle pairs that will be split */
-    SetAdd( edgeList, &fc, 1 );
+  }
+  /* Add to the list of triangle pairs that will be split */
+  SetAdd( edgeList, &fc, 1 );
   }
   return canSplit;
 }
@@ -1946,7 +1946,7 @@ static void AnalyzeFaultTriangle(
 
   /* Flip if wong orientation */
   if ( SurfaceFaultDir( fault, TRUE ) == frontNegDir ) {
-    *orient = !*orient;
+  *orient = !*orient;
   }
 }
 
@@ -1968,8 +1968,8 @@ static void SplitTriangle(
   UTIL_COPY( trgp1, points, 3 );
   
   for ( n = 0; n < 3; n++ ) {
-    if ( trgp0[n] == point0 ) trgp0[n] = pointX;
-    if ( trgp1[n] == point1 ) trgp1[n] = pointX;
+  if ( trgp0[n] == point0 ) trgp0[n] = pointX;
+  if ( trgp1[n] == point1 ) trgp1[n] = pointX;
   }
 
   TriangleChange( triangle, trgp0 );
@@ -1999,13 +1999,13 @@ static bool_t SameFaultSide(
   bool_t  sameSide = !SurfaceFrontBackOfSameFault( EdgeListSurface( list1 ),
                                                    EdgeListSurface( list2 ) );
   if ( sameSide ) {
-    int     other1, other2;
-    bool_t  orient1, orient2;
-    AnalyzeFaultTriangle( key, list1, &other1, &orient1 );
-    AnalyzeFaultTriangle( key, list2, &other2, &orient2 );
+  int     other1, other2;
+  bool_t  orient1, orient2;
+  AnalyzeFaultTriangle( key, list1, &other1, &orient1 );
+  AnalyzeFaultTriangle( key, list2, &other2, &orient2 );
 
-    /* Two different triangles, with different orientation */
-    sameSide = ( ( other1 != other2 ) && ( orient1 != orient2 ));
+  /* Two different triangles, with different orientation */
+  sameSide = ( ( other1 != other2 ) && ( orient1 != orient2 ));
   }
   return sameSide;
 }
@@ -2014,20 +2014,20 @@ static bool_t SameFaultSide(
   Returns the back of a fault triangle given the interface idx
 */
 const EdgeList_t* FindBackTriangle( Edge_t    *edge,
-                                    EdgeKey_t *key,
-                                    int        nInterfaceIdx )
+                  EdgeKey_t *key,
+                  int        nInterfaceIdx )
 {
   const EdgeList_t *list = EdgeListFirst( edge, key );
   while( list ) {
-    Surface_t* surface = EdgeListSurface( list );
-    if( SurfaceType( surface ) == surfBackFault ) {
+  Surface_t* surface = EdgeListSurface( list );
+  if( SurfaceType( surface ) == surfBackFault ) {
       const Triangle_t* triangle = SurfaceGet( surface, EdgeListTriangleId( list ) );
       if( TriangleInterfaceIdx( triangle ) == nInterfaceIdx ) {
-        return list;
+    return list;
       }
-    }
+  }
 
-    list = EdgeListNext( edge, list );
+  list = EdgeListNext( edge, list );
   }
 
   return list;
@@ -2048,36 +2048,36 @@ static bool_t SortEdgeList(Edge_t            *edge,
   const EdgeList_t *list = EdgeListFirst( edge, key );
   /* Set the list to zero */
   for(i = 0; i < 4; i++) {
-    ret[i] = 0;
+  ret[i] = 0;
   }
 
   /* Fill list */
   while( list ) {
-    Surface_t* surface = EdgeListSurface( list );
-    if( SurfaceType( surface ) == surfFrontFault ) {
+  Surface_t* surface = EdgeListSurface( list );
+  if( SurfaceType( surface ) == surfFrontFault ) {
       // Get the corresponding back edge
       const Triangle_t* triangle = SurfaceGet( surface, EdgeListTriangleId( list ) );
       const EdgeList_t* back = FindBackTriangle( edge, key, TriangleInterfaceIdx( triangle ));
       if ( !back ) return FALSE; /* Back not found */
       if( ret[0] ) {
-        if( SameFaultSide( key, ret[0], list ) ) {
+    if( SameFaultSide( key, ret[0], list ) ) {
           ret[2] = list;
           ret[3] = back;
-        } else {
+    } else {
           ret[2] = back;
           ret[3] = list;
-        }
+    }
       } else {
           ret[0] = list;
           ret[1] = back;
       }
-    }
-    list = EdgeListNext( edge, list );
+  }
+  list = EdgeListNext( edge, list );
   }
 
   if( ret[0] && ret[1] && ret[2] && ret[3] &&
       SameFaultSide( key, ret[0], ret[2] ) &&  SameFaultSide( key, ret[1], ret[3] ) )
-    return TRUE;
+  return TRUE;
 
   return FALSE;
 }
@@ -2107,45 +2107,45 @@ static bool_t AddExtraMidPoints(
 
   /* Get list of unshifted fault points */
   while ( key && !MESH_ERROR( mesh ) ) {
-    if ( SurfaceSetClosedFault( mesh, surfaceSet, edge, key ) ) {
+  if ( SurfaceSetClosedFault( mesh, surfaceSet, edge, key ) ) {
       int       p0, p1;
       EdgeKeyPoints( key, &p0, &p1 );
       RBTreeSearch( edgePoints, &p0 );
       RBTreeSearch( edgePoints, &p1 );
-    }
-    key = EdgeKeyNext( edge, &iter );
+  }
+  key = EdgeKeyNext( edge, &iter );
   }
 
   /* Get list of edges of for which an extra mid point is needed */
   key = EdgeKeyFirst( edge, &iter );
   while ( key && !MESH_ERROR( mesh ) ) {
-    int       nFault;
-    const int edgeSize = EdgeListSize( edge, key, &nFault );
-    if ( edgeSize == nFault && edgeSize == 4 ) {
+  int       nFault;
+  const int edgeSize = EdgeListSize( edge, key, &nFault );
+  if ( edgeSize == nFault && edgeSize == 4 ) {
       if ( !EdgeIsolatedFault( edge, key ) ) {
-        int           p0, p1;
-        EdgeKeyPoints( key, &p0, &p1 );
-        if ( RBTreeFindGet( edgePoints, &p0 ) && RBTreeFindGet( edgePoints, &p1 ) ) {
+    int           p0, p1;
+    EdgeKeyPoints( key, &p0, &p1 );
+    if ( RBTreeFindGet( edgePoints, &p0 ) && RBTreeFindGet( edgePoints, &p1 ) ) {
           // All edges should come from the same fault
           const EdgeList_t*   list[4];
           if( SortEdgeList( edge, key, list ) ) {
-            /* Tricky: triangle can be split already; skip these triangles, and treat them in next sweep */
-            if ( !FaultCornerSet( edges, key, list, edgeList ) ) ready = FALSE;
+      /* Tricky: triangle can be split already; skip these triangles, and treat them in next sweep */
+      if ( !FaultCornerSet( edges, key, list, edgeList ) ) ready = FALSE;
           }
-        }
-      }
     }
-    key = EdgeKeyNext( edge, &iter );
+      }
+  }
+  key = EdgeKeyNext( edge, &iter );
   }
   
   for ( el = 0; el < SetSize( edgeList ) && !MESH_ERROR( mesh ); el++ ) {
-    const FaultCorner_t *fc = SetElmGet( edgeList, el );
-    int interfaceIdx0 = mesh->modelData->maxInterfaceIdx++;
-    int interfaceIdx1 = mesh->modelData->maxInterfaceIdx++;
-    int side;
-    for( side = 0; side < 2; side++ ) {
+  const FaultCorner_t *fc = SetElmGet( edgeList, el );
+  int interfaceIdx0 = mesh->modelData->maxInterfaceIdx++;
+  int interfaceIdx1 = mesh->modelData->maxInterfaceIdx++;
+  int side;
+  for( side = 0; side < 2; side++ ) {
       int midPointId;
-    
+  
       /* Mark this edge as split */
       RBTreeSearch( edges, &fc->triangle0[side] );
       RBTreeSearch( edges, &fc->triangle1[side] );
@@ -2160,12 +2160,12 @@ fprintf( stderr, "AddExtraMidPoints old0=%d old1=%d new=%d (%f %f %f)\n",
       /* Split triangles in 2 */
       SplitTriangle( fc->fault0[side], fc->triangle0[side], interfaceIdx0, fc->point0, fc->point1, midPointId );
       SplitTriangle( fc->fault1[side], fc->triangle1[side], interfaceIdx1, fc->point0, fc->point1, midPointId );
-    }
+  }
   }
 
   if ( SetSize( edgeList ) ) {
-    /* Connectivity is lost */
-    SurfaceSetPurge( surfaceSet );
+  /* Connectivity is lost */
+  SurfaceSetPurge( surfaceSet );
   }
   RBTreeDelete( edgePoints );
   RBTreeDelete( edges );
@@ -2183,36 +2183,36 @@ static void MeshExtraFaultPoints( Mesh_t          *mesh,
   bool_t        ready;
 
   if ( !MESH_ERROR( mesh ) ) {
-    /* Add extra mid-points on fault edges near corners */
-    do {
+  /* Add extra mid-points on fault edges near corners */
+  do {
       ready = AddExtraMidPoints( mesh, pointSet, surfaceSet );
-    } while ( !ready && !MESH_ERROR( mesh ) );
+  } while ( !ready && !MESH_ERROR( mesh ) );
   }
 
   /* Duplicate all the fault points */
   if ( !MESH_ERROR( mesh ) ) {
-    DuplicateFaultXPoints( pointSet, surfaceSet, xpointSet );
+  DuplicateFaultXPoints( pointSet, surfaceSet, xpointSet );
   }
 
   /* Points along isolated edges of faults are not shifted */
   if ( !MESH_ERROR( mesh ) ) {
-    InvalidateIsolatedFaultEdgeXPoints( mesh, surfaceSet, xpointSet );
+  InvalidateIsolatedFaultEdgeXPoints( mesh, surfaceSet, xpointSet );
   }
 
   /* Join fault points */
   if ( !MESH_ERROR( mesh ) ) {
-    const bool_t skipOuter2Outer = FALSE;
-    SurfaceSetLinkFaultPoints( mesh, pointSet, xpointSet, surfaceSet, skipOuter2Outer );
+  const bool_t skipOuter2Outer = FALSE;
+  SurfaceSetLinkFaultPoints( mesh, pointSet, xpointSet, surfaceSet, skipOuter2Outer );
   }
 
   /* Add the extra fault points to the mesh */
   if ( !MESH_ERROR( mesh ) ) {
-    AddExtraFaultPoints( mesh, pointSet, xpointSet, spSet );
+  AddExtraFaultPoints( mesh, pointSet, xpointSet, spSet );
   }
 
   /* Change triangles to use the extra points */
   if ( !MESH_ERROR( mesh ) ) {
-    ChangeTriangles( surfaceSet, xpointSet );
+  ChangeTriangles( surfaceSet, xpointSet );
   }
 
   XPointSetDelete( xpointSet );
@@ -2243,13 +2243,13 @@ static void MeshSharedTriangles( Mesh_t *mesh, SurfaceSet_t *surfSet, PointSet_t
          Iterator_t        surfaceIter;
          const Triangle_t *triangle = SurfaceFirst( surf, NULL, &surfaceIter );
          while ( triangle && !MESH_ERROR( mesh ) ) {
-            SharedTriangle_t st;
-            st.triangle = triangle;
-            st.surface  = NULL;
-            if ( RBTreeFind( tree, &st ) == RBTREE_INVALID_ID ) {
+      SharedTriangle_t st;
+      st.triangle = triangle;
+      st.surface  = NULL;
+      if ( RBTreeFind( tree, &st ) == RBTREE_INVALID_ID ) {
                st.surface = surf;
                RBTreeSearch( tree, &st );
-            } else {
+      } else {
                SharedTriangle_t *found = RBTreeSearchGet( tree, &st );
                if ( found->surface != surf ) {
                   /* Triangle in 2 normal surfaces: error */
@@ -2263,8 +2263,8 @@ static void MeshSharedTriangles( Mesh_t *mesh, SurfaceSet_t *surfSet, PointSet_t
                } else {
                   /* Triangle twice in same surface, stupid but OK */
                }
-            }
-            triangle = SurfaceNext( surf, NULL, &surfaceIter );
+      }
+      triangle = SurfaceNext( surf, NULL, &surfaceIter );
          }
       }
       surf = SurfaceSetNext( surfSet, &surfaceSetIter );
@@ -2291,7 +2291,7 @@ static int Node2PointAdd(
   nodePoint[1] = -1;
   np = RBTreeSearchGet( node2Point, nodePoint );
   if ( np[1] < 0 ) {
-    np[1] = ShiftPointSetGetOrgId( spSet, nodeId );
+  np[1] = ShiftPointSetGetOrgId( spSet, nodeId );
   }
   return np[1];
 }
@@ -2325,16 +2325,16 @@ static void MeshAddTetrahedra(
   /* Add tetrahedra to the full mesh */
   tet = TetrahedronSetFirst( tetSet, &iter );
   while ( tet ) {
-    int   p0, p1, p2, p3;
-    TetrahedronGet( tet, &p0, &p1, &p2, &p3 );
-    /* Add these nodes to the node set */
-    Node2PointAdd( meshOutput->node2Point, spSet, p0 );
-    Node2PointAdd( meshOutput->node2Point, spSet, p1 );
-    Node2PointAdd( meshOutput->node2Point, spSet, p2 );
-    Node2PointAdd( meshOutput->node2Point, spSet, p3 );
-    /* Add this tetrahedron to the full set of tetrahedra */
-    TetrahedronSetAdd( meshOutput->tetSet, p0, p1, p2, p3 );
-    tet = TetrahedronSetNext( tetSet, &iter );
+  int   p0, p1, p2, p3;
+  TetrahedronGet( tet, &p0, &p1, &p2, &p3 );
+  /* Add these nodes to the node set */
+  Node2PointAdd( meshOutput->node2Point, spSet, p0 );
+  Node2PointAdd( meshOutput->node2Point, spSet, p1 );
+  Node2PointAdd( meshOutput->node2Point, spSet, p2 );
+  Node2PointAdd( meshOutput->node2Point, spSet, p3 );
+  /* Add this tetrahedron to the full set of tetrahedra */
+  TetrahedronSetAdd( meshOutput->tetSet, p0, p1, p2, p3 );
+  tet = TetrahedronSetNext( tetSet, &iter );
   }
 }
 
@@ -2350,8 +2350,8 @@ static SurfaceSet_t  *GetActiveSurfaces(
   SurfaceSetAddBody( actSurfaces, body );
 
   while ( cavity ) {
-    SurfaceSetAddBody( actSurfaces, cavity );
-    cavity = BodySetNext( cavities, &iter );
+  SurfaceSetAddBody( actSurfaces, cavity );
+  cavity = BodySetNext( cavities, &iter );
   }
   return actSurfaces;
 }
@@ -2363,14 +2363,14 @@ static MeshTriangleSet_t *BuildMeshTriangleSet(
   Iterator_t            iter;
   const Tetrahedron_t  *tet = TetrahedronSetFirst( tetSet, &iter );
   while ( tet ) {
-    int  p0, p1, p2, p3;
-    TetrahedronGet( tet, &p0, &p1, &p2, &p3 );
-    /* Add the 4 triangles to the set */
-    MeshTriangleSetAdd( mtSet, p0, p1, p2, p3 );
-    MeshTriangleSetAdd( mtSet, p1, p2, p3, p0 );
-    MeshTriangleSetAdd( mtSet, p2, p3, p0, p1 );
-    MeshTriangleSetAdd( mtSet, p3, p0, p1, p2 );
-    tet = TetrahedronSetNext( tetSet, &iter );
+  int  p0, p1, p2, p3;
+  TetrahedronGet( tet, &p0, &p1, &p2, &p3 );
+  /* Add the 4 triangles to the set */
+  MeshTriangleSetAdd( mtSet, p0, p1, p2, p3 );
+  MeshTriangleSetAdd( mtSet, p1, p2, p3, p0 );
+  MeshTriangleSetAdd( mtSet, p2, p3, p0, p1 );
+  MeshTriangleSetAdd( mtSet, p3, p0, p1, p2 );
+  tet = TetrahedronSetNext( tetSet, &iter );
   }
   return mtSet;
 }
@@ -2386,21 +2386,21 @@ static bool_t MeshTriangleSurfaces(
   Surface_t *surface = SurfaceSetFirst( surfaceSet, &surfaceSetIter );
   UNUSED(pointSet);
   while ( surface && isCorrect ) {
-    Iterator_t   surfaceIter;
-    Triangle_t  *triangle = SurfaceFirst( surface, NULL, &surfaceIter );
-    while ( triangle && isCorrect ) {
+  Iterator_t   surfaceIter;
+  Triangle_t  *triangle = SurfaceFirst( surface, NULL, &surfaceIter );
+  while ( triangle && isCorrect ) {
       const int *points = TrianglePoints( triangle );
       MeshTriangle_t *mtFound = MeshTriangleSetFind( mtSet, points[0], points[1], points[2] );
       if ( mtFound ) {
-        if ( !MeshTriangleGetSurface( mtFound ) ) {
+    if ( !MeshTriangleGetSurface( mtFound ) ) {
           MeshTriangleSetSurface( mtFound, surface, TriangleInterfaceIdx( triangle ) );
-        }
+    }
       } else {
-        isCorrect = FALSE;
+    isCorrect = FALSE;
       }
       triangle = SurfaceNext( surface, NULL, &surfaceIter );
-    }
-    surface = SurfaceSetNext( surfaceSet, &surfaceSetIter );
+  }
+  surface = SurfaceSetNext( surfaceSet, &surfaceSetIter );
   }
   return isCorrect;
 }
@@ -2414,32 +2414,32 @@ static bool_t MeshBodyIsCorrect(
   bool_t  isCorrect = ( TetrahedronSetSize( tetSet ) > 0 );
 
   if ( isCorrect ) {
-    /* Colllect triangle data */
-    MeshTriangleSet_t    *mtSet = BuildMeshTriangleSet( tetSet );
-    const MeshTriangle_t *mt = NULL;
-    Iterator_t            iter;
+  /* Colllect triangle data */
+  MeshTriangleSet_t    *mtSet = BuildMeshTriangleSet( tetSet );
+  const MeshTriangle_t *mt = NULL;
+  Iterator_t            iter;
   
-    /* Connect surfaces to triangles */
-    isCorrect = MeshTriangleSurfaces( mtSet, pointSet, surfaceSet );
+  /* Connect surfaces to triangles */
+  isCorrect = MeshTriangleSurfaces( mtSet, pointSet, surfaceSet );
 
-    /* All triangles connected to at most 2 tetrahedra? */
-    mt = MeshTriangleSetFirst( mtSet, &iter );
-    while ( mt && isCorrect ) {
+  /* All triangles connected to at most 2 tetrahedra? */
+  mt = MeshTriangleSetFirst( mtSet, &iter );
+  while ( mt && isCorrect ) {
       const int size = MeshTriangleSize( mt );
       if ( size == 1 ) {
-        /* Connected to surface? */
-        isCorrect = MeshTriangleGetSurface( mt ) != NULL;
+    /* Connected to surface? */
+    isCorrect = MeshTriangleGetSurface( mt ) != NULL;
       } else if ( size == 2 ) {
 #if 0
-        /* Not Connected to surface? My fail in case of tampered body */
-        isCorrect = MeshTriangleGetSurface( mt ) == NULL;
+    /* Not Connected to surface? My fail in case of tampered body */
+    isCorrect = MeshTriangleGetSurface( mt ) == NULL;
 #endif
       } else {
-        isCorrect = FALSE;
+    isCorrect = FALSE;
       }
       mt = MeshTriangleSetNext( mtSet, &iter );
-    }
-    MeshTriangleSetDelete( mtSet );
+  }
+  MeshTriangleSetDelete( mtSet );
   }
   return isCorrect;
 }
@@ -2455,27 +2455,27 @@ static void SplitTriangleList( Mesh_t                     *mesh,
   
   // Order fault parts and normal parts
   while ( list ) {
-    Surface_t* surface = EdgeListSurface( list );
-    if( SurfaceType( surface ) == surfNormal  ) {
+  Surface_t* surface = EdgeListSurface( list );
+  if( SurfaceType( surface ) == surfNormal  ) {
       SplitTriangle( surface, EdgeListTriangleId( list ), -1, p0, p1, midPoint);
-    } else {
+  } else {
       // Do only fronts and search for back
       if( SurfaceType( surface ) == surfFrontFault  ) {
-        int newIdx        = mesh->modelData->maxInterfaceIdx++;
-        int nInterfaceIdx =
-            TriangleInterfaceIdx( SurfaceGet( EdgeListSurface( list ),
+    int newIdx        = mesh->modelData->maxInterfaceIdx++;
+    int nInterfaceIdx =
+      TriangleInterfaceIdx( SurfaceGet( EdgeListSurface( list ),
                                               EdgeListTriangleId( list ) ) );
-        const EdgeList_t* back = FindBackTriangle( edge, key, nInterfaceIdx );
-        if(back)
-        {
+    const EdgeList_t* back = FindBackTriangle( edge, key, nInterfaceIdx );
+    if(back)
+    {
           SplitTriangle( EdgeListSurface( list ),
                          EdgeListTriangleId( list ), newIdx, p0, p1, midPoint );
           SplitTriangle( EdgeListSurface( back ),
                          EdgeListTriangleId( back ), newIdx, p0, p1, midPoint );
-        }
-      }
     }
-    list = EdgeListNext( edge, list );
+      }
+  }
+  list = EdgeListNext( edge, list );
   }
 }
 
@@ -2496,47 +2496,47 @@ static bool_t SplitSingleEdgeSeam( Mesh_t       *mesh,
 
   /* Set multiplicity of fault-normal crossings */
   while ( key ) {
-    int        nFault;
-    const int  nEdge = EdgeListSize( edge, key, &nFault );
-    if ( nFault && nFault != nEdge ) {
+  int        nFault;
+  const int  nEdge = EdgeListSize( edge, key, &nFault );
+  if ( nFault && nFault != nEdge ) {
       int p0, p1;
       EdgeKeyPoints( key, &p0, &p1 );
       multiplicity[p0] += 1;
       multiplicity[p1] += 1;
-    }
-    key = EdgeKeyNext( edge, &iter );
+  }
+  key = EdgeKeyNext( edge, &iter );
   }
 
   /* Isolated fault edges are special */
   key = EdgeKeyFirst( edge, &iter );
   while ( key ) {
-    if ( EdgeIsolatedFault( edge, key ) ) {
+  if ( EdgeIsolatedFault( edge, key ) ) {
       int p0, p1;
       EdgeKeyPoints( key, &p0, &p1 );
       multiplicity[p0] = 1;
       multiplicity[p1] = 1;
-    }
-    key = EdgeKeyNext( edge, &iter );
+  }
+  key = EdgeKeyNext( edge, &iter );
   }
 
   /* Split too small normal-fault crossings */
   key = EdgeKeyFirst( edge, &iter );
   while ( key ) {
-    int        nFault;
-    const int  nEdge = EdgeListSize( edge, key, &nFault );
-    if ( nFault && nFault != nEdge ) {
+  int        nFault;
+  const int  nEdge = EdgeListSize( edge, key, &nFault );
+  if ( nFault && nFault != nEdge ) {
       int p0, p1;
       EdgeKeyPoints( key, &p0, &p1 );
       if ( multiplicity[p0]  == 1 && multiplicity[p1] == 1 ) {
-        const int midPoint = PointSetCreateMidPoint( pointSet, p0, p1 );
-        SplitTriangleList( mesh, edge, key, p0, p1, midPoint );
-        ready = FALSE;
-        SurfaceSetPurge( surfaceSet );
-        break;
+    const int midPoint = PointSetCreateMidPoint( pointSet, p0, p1 );
+    SplitTriangleList( mesh, edge, key, p0, p1, midPoint );
+    ready = FALSE;
+    SurfaceSetPurge( surfaceSet );
+    break;
       }
-    }
+  }
       
-    key = EdgeKeyNext( edge, &iter );
+  key = EdgeKeyNext( edge, &iter );
   }
   DIFREE( multiplicity );
   return ready;
@@ -2550,30 +2550,30 @@ static void ConstructBodies( Mesh_t          *mesh,
 {
   /* Mark the outer surfaces of the model */
   if ( !MESH_ERROR( mesh ) ) {
-    SurfaceSetMarkOuterBoundary( mesh, TRUE, pointSet, surfaceSet ); 
+  SurfaceSetMarkOuterBoundary( mesh, TRUE, pointSet, surfaceSet ); 
   }
 
   /* fault-normal seams consisting of a single edge */
   if ( !MESH_ERROR( mesh ) ) {
-    bool_t   ready = FALSE;
-    while ( !ready ) {
+  bool_t   ready = FALSE;
+  while ( !ready ) {
       ready = SplitSingleEdgeSeam( mesh, surfaceSet, pointSet );
-    }
+  }
   }
 
   /* Add extra fault points */
   if ( !MESH_ERROR( mesh ) ) {
-    MeshExtraFaultPoints( mesh, spSet, pointSet, surfaceSet );
+  MeshExtraFaultPoints( mesh, spSet, pointSet, surfaceSet );
   }
 
   /* Construct bodies */
   if ( !MESH_ERROR( mesh ) ) {
-    SurfaceSetFillBodySet( mesh, surfaceSet, pointSet, bodySet );
+  SurfaceSetFillBodySet( mesh, surfaceSet, pointSet, bodySet );
   }
  
   /* Set relation between degenerate body and containing body */
   if ( !MESH_ERROR( mesh ) ) {
-    BodySetHierarchy( mesh, bodySet, pointSet );
+  BodySetHierarchy( mesh, bodySet, pointSet );
   }
 }
 
@@ -2586,9 +2586,9 @@ static bool_t UnshiftPoints(
   bool_t     changed = FALSE;
   int        n;
   for ( n = 0; n < nPoints; n++ ) {
-    newPoints[n] = ShiftPointSetGetOrgId( spSet, oldPoints[n] );
-    /* This point is shifted? */
-    if ( oldPoints[n] != newPoints[n] ) changed = TRUE;
+  newPoints[n] = ShiftPointSetGetOrgId( spSet, oldPoints[n] );
+  /* This point is shifted? */
+  if ( oldPoints[n] != newPoints[n] ) changed = TRUE;
   }
   return changed;
 }
@@ -2601,8 +2601,8 @@ static bool_t UnshiftTriangle(
   bool_t     changed = FALSE;
   int        newPoints[3];
   if ( UnshiftPoints( spSet, 3, TrianglePoints( triangle ), newPoints ) ) {
-    changed = TRUE;
-    TriangleChange( triangle, newPoints );
+  changed = TRUE;
+  TriangleChange( triangle, newPoints );
   }
   return changed;
 }
@@ -2616,20 +2616,20 @@ static void UnshiftSurfaces(
   Iterator_t surfaceSetIter;
   Surface_t *surf = SurfaceSetFirst( surfaceSet, &surfaceSetIter );
   while ( surf ) {
-    Iterator_t  surfaceIter;
-    Triangle_t *triangle = SurfaceFirst( surf, NULL, &surfaceIter );
-    while ( triangle ) {
+  Iterator_t  surfaceIter;
+  Triangle_t *triangle = SurfaceFirst( surf, NULL, &surfaceIter );
+  while ( triangle ) {
       if ( UnshiftTriangle( spSet, triangle ) ) {
-        changed = TRUE;
+    changed = TRUE;
       }
       triangle = SurfaceNext( surf, NULL, &surfaceIter );
-    }
-    surf = SurfaceSetNext( surfaceSet, &surfaceSetIter );
+  }
+  surf = SurfaceSetNext( surfaceSet, &surfaceSetIter );
   }
 
   /* Delete connectivity */
   if ( changed ) {
-    SurfaceSetPurge( surfaceSet );
+  SurfaceSetPurge( surfaceSet );
   }
 }
 
@@ -2643,11 +2643,11 @@ static TetrahedronSet_t *UnshiftTetrahedra(
   Iterator_t           iter;
   const Tetrahedron_t *tet = TetrahedronSetFirst( tetSet, &iter );
   while ( tet ) {
-    int     oldPoints[4], newPoints[4];
-    TetrahedronGet( tet, oldPoints+0, oldPoints+1, oldPoints+2, oldPoints+3 );
-    UnshiftPoints( spSet, 4, oldPoints, newPoints );
-    TetrahedronSetAdd( result, newPoints[0],  newPoints[1],  newPoints[2],  newPoints[3] );
-    tet = TetrahedronSetNext( tetSet, &iter );
+  int     oldPoints[4], newPoints[4];
+  TetrahedronGet( tet, oldPoints+0, oldPoints+1, oldPoints+2, oldPoints+3 );
+  UnshiftPoints( spSet, 4, oldPoints, newPoints );
+  TetrahedronSetAdd( result, newPoints[0],  newPoints[1],  newPoints[2],  newPoints[3] );
+  tet = TetrahedronSetNext( tetSet, &iter );
   }
   return result;
 }
@@ -2683,36 +2683,36 @@ static SurfaceSet_t *MarkTrueOuterBoundary(
 
   /* Make a copy of the surfaceset set, and replace faults by normal surfaces */
   for ( surfCount = 0; surfCount < nSurface; surfCount++ ) {
-    Surface_t          *surf = SurfaceSetGet( surfaceSet, surfCount );
-    const SurfaceType_t surfType = surfNormal;
-    const int           ID = SurfaceID(surf);
-    const int           part = SurfacePartGet(surf);
-    const SurfOuterBoundary_t outer = SurfaceType(surf) == surfNormal ? SurfaceOuterBoundaryGet(surf) : surfOuterNot;
+  Surface_t          *surf = SurfaceSetGet( surfaceSet, surfCount );
+  const SurfaceType_t surfType = surfNormal;
+  const int           ID = SurfaceID(surf);
+  const int           part = SurfacePartGet(surf);
+  const SurfOuterBoundary_t outer = SurfaceType(surf) == surfNormal ? SurfaceOuterBoundaryGet(surf) : surfOuterNot;
 
-    /* Make sure that front and back do not occur twice */
-    if ( !SurfaceSetFind( outerBoundSet, ID, part, surfType ) ) {
+  /* Make sure that front and back do not occur twice */
+  if ( !SurfaceSetFind( outerBoundSet, ID, part, surfType ) ) {
       Surface_t        *newSurf = SurfaceCreate( ID, part, surfType, frontUnknownDir, SurfaceUserName(surf), outer );
       /* Copy surface */
       Iterator_t  surfaceIter;
       Triangle_t *triangle = SurfaceFirst( surf, NULL, &surfaceIter );
       while ( triangle ) {
-        const int *oldPoints = TrianglePoints( triangle );
-        int        newPoints[3];
-        int        n;
-        /* Unshift the points */
-        for ( n = 0; n < 3; n++ ) {
+    const int *oldPoints = TrianglePoints( triangle );
+    int        newPoints[3];
+    int        n;
+    /* Unshift the points */
+    for ( n = 0; n < 3; n++ ) {
           newPoints[n] = ShiftPointSetGetOrgId( spSet, oldPoints[n] );
-        }
-        SurfaceAdd( newSurf, TriangleCreate( newPoints, TriangleInterfaceIdx( triangle ) ) );
-        triangle = SurfaceNext( surf, NULL, &surfaceIter );
+    }
+    SurfaceAdd( newSurf, TriangleCreate( newPoints, TriangleInterfaceIdx( triangle ) ) );
+    triangle = SurfaceNext( surf, NULL, &surfaceIter );
       }
       SurfaceSetAdd( outerBoundSet, newSurf );
-    }
+  }
   }
 
   if ( !MESH_ERROR( mesh ) ) {
-    /* Mark true outer boundary of model */
-    SurfaceSetMarkOuterBoundary( mesh, TRUE, pointSet, outerBoundSet ); 
+  /* Mark true outer boundary of model */
+  SurfaceSetMarkOuterBoundary( mesh, TRUE, pointSet, outerBoundSet ); 
   }
   return outerBoundSet;
 }
@@ -2744,8 +2744,8 @@ static void ShiftIntersectingOuterBoundaryPoint(
 {
   EdgeList_t        *list = EdgeListFirst( edge, key );
   while ( list ) {
-    const Surface_t *surf = EdgeListSurface( list );
-    if ( SurfaceAtOuterBoundary( surf ) ) {
+  const Surface_t *surf = EdgeListSurface( list );
+  if ( SurfaceAtOuterBoundary( surf ) ) {
       /* Add this triangle to the fault */
       const Triangle_t *triangle = SurfaceGet( EdgeListSurface( list ), EdgeListTriangleId( list ) );
       const int         triangleId = SurfaceAdd( fault, TriangleCopy( triangle ) );
@@ -2759,8 +2759,8 @@ static void ShiftIntersectingOuterBoundaryPoint(
       /* ... and link the normal surface(=outer boundary) to it */
       xp = XPointSetFind( xpointSet, point, fault, triangleId );
       XPointSetLinkNormal( xpointSet, point, surf, EdgeListTriangleId( list ), xp );
-    }
-    list = EdgeListNext( edge, list );
+  }
+  list = EdgeListNext( edge, list );
   }
 }
 
@@ -2783,91 +2783,91 @@ static void OpenSelfIntersectingOuterBoundary(
 
   /* Count the number of outer boundaries in this edge */
   while ( key && !MESH_ERROR( mesh ) ) {
-    EdgeList_t        *list = EdgeListFirst( edge, key );
-    int                outerCount = 0;
-    while ( list ) {
+  EdgeList_t        *list = EdgeListFirst( edge, key );
+  int                outerCount = 0;
+  while ( list ) {
       const Surface_t *surf = EdgeListSurface( list );
       if ( SurfaceAtOuterBoundary( surf ) ) {
-        outerCount += 1;
+    outerCount += 1;
       }
       list = EdgeListNext( edge, list );
-    }
-    if ( outerCount > 2 ) {
+  }
+  if ( outerCount > 2 ) {
       int p0, p1;
 
       list = EdgeListFirst( edge, key );
       while ( list ) {
-        /* No faults here!! */
-        assert( SurfaceType( EdgeListSurface(list) ) == surfNormal );
-        list = EdgeListNext( edge, list );
+    /* No faults here!! */
+    assert( SurfaceType( EdgeListSurface(list) ) == surfNormal );
+    list = EdgeListNext( edge, list );
       }
       /* Store mark points */
       EdgeKeyPoints( key, &p0, &p1 );
       shiftCount[p0] += 1;
       shiftCount[p1] += 1;
       ready = FALSE;
-    }
-    key = EdgeKeyNext( edge, &iter );
+  }
+  key = EdgeKeyNext( edge, &iter );
   }
 
   if ( !ready ) {
-    XPointSet_t  *xpointSet = XPointSetCreate( );
-    /* Create a dummy fault surface */
-    const int    faultID =  SurfaceSetFreeID( surfaceSet );
-    const SurfOuterBoundary_t isOuter = surfOuterUnknown;
-    Surface_t     *fault = SurfaceCreate( faultID, 1, surfFrontFault, frontPosDir, "DummyFault", isOuter );
+  XPointSet_t  *xpointSet = XPointSetCreate( );
+  /* Create a dummy fault surface */
+  const int    faultID =  SurfaceSetFreeID( surfaceSet );
+  const SurfOuterBoundary_t isOuter = surfOuterUnknown;
+  Surface_t     *fault = SurfaceCreate( faultID, 1, surfFrontFault, frontPosDir, "DummyFault", isOuter );
 
-    /* Keep it simple */
-    for ( n = 0; n < nPoints; n++ ) {
-    assert( shiftCount[n] <= 2 );
-    }
+  /* Keep it simple */
+  for ( n = 0; n < nPoints; n++ ) {
+  assert( shiftCount[n] <= 2 );
+  }
 
-    /* Shift the self intersection points */
-    key = EdgeKeyFirst( edge, &iter );
-    while ( key && !MESH_ERROR( mesh ) ) {
+  /* Shift the self intersection points */
+  key = EdgeKeyFirst( edge, &iter );
+  while ( key && !MESH_ERROR( mesh ) ) {
       int p0, p1;
       EdgeKeyPoints( key, &p0, &p1 );
       if ( shiftCount[p0] > 1 || shiftCount[p1] > 1 ) {
-        int        nFault;
-        EdgeListSize( edge, key, &nFault );
-        assert( !nFault );
-        if ( shiftCount[p0] > 1 ) {
+    int        nFault;
+    EdgeListSize( edge, key, &nFault );
+    assert( !nFault );
+    if ( shiftCount[p0] > 1 ) {
           ShiftIntersectingOuterBoundaryPoint( fault, pointSet, xpointSet, edge, key, p0 );
-        }
-        if ( shiftCount[p1] > 1 ) {
+    }
+    if ( shiftCount[p1] > 1 ) {
           ShiftIntersectingOuterBoundaryPoint( fault, pointSet, xpointSet, edge, key, p1 );
-        }
+    }
       }
       key = EdgeKeyNext( edge, &iter );
-    }
+  }
 
-    /* Link the outer boundary points to the dummy fault */
-    if ( !MESH_ERROR( mesh ) ) {
+  /* Link the outer boundary points to the dummy fault */
+  if ( !MESH_ERROR( mesh ) ) {
       SurfaceSet_t  *surfOuterOnly = SurfaceSetCreate();
       Surface_t     *surf = SurfaceSetFirst( surfaceSet, &iter );
       const bool_t   skipOuter2Outer = TRUE;
       while ( surf ) {
-        if ( SurfaceAtOuterBoundary( surf ) ) {
+    if ( SurfaceAtOuterBoundary( surf ) ) {
           SurfaceSetAdd( surfOuterOnly, surf );
-        }
-        surf = SurfaceSetNext( surfaceSet, &iter );
+    }
+    surf = SurfaceSetNext( surfaceSet, &iter );
       }
 
       SurfaceSetLinkFaultPoints( mesh, pointSet, xpointSet, surfOuterOnly, skipOuter2Outer );
       SurfaceSetDelete( SurfaceSetClear( surfOuterOnly ) );
-    }
+  }
 
-    /* Add the extra fault points to the mesh */
-    if ( !MESH_ERROR( mesh ) ) {
+  /* Add the extra fault points to the mesh */
+  if ( !MESH_ERROR( mesh ) ) {
       AddExtraFaultPoints( mesh, pointSet, xpointSet, spSet );
-    }
+  }
 
-    /* Change triangles to use the extra points */
-    if ( !MESH_ERROR( mesh ) ) {
+  /* Change triangles to use the extra points */
+  if ( !MESH_ERROR( mesh ) ) {
       ChangeTriangles( surfaceSet, xpointSet );
-    }
-    XPointSetDelete( xpointSet );
-    SurfaceDelete( fault );
+  }
+  XPointSetDelete( xpointSet );
+  SurfaceDelete( fault );
   }
 
   DIFREE( shiftCount );
@@ -2882,7 +2882,7 @@ static TetrahedronSet_t *MeshTamperedBody(
                   SurfaceSet_t               *surfaceSet,
                   Body_t                     *body,
                   BodySet_t                  *cavities,
-				  const FemGvPath_t          *FemGvPath )
+          const FemGvPath_t          *FemGvPath )
 {
   TetrahedronSet_t *result = NULL;
   ShiftPointSet_t  *spSet = ShiftPointSetCreate( );
@@ -2895,9 +2895,9 @@ static TetrahedronSet_t *MeshTamperedBody(
   SurfaceSet_t     *outerBoundSet = MarkTrueOuterBoundary( mesh, oldSpSet, pointSet, surfaceSet );
 
   if ( !MESH_ERROR( mesh ) ) {
-    int               surfCount;
-    /* Replace outer boundary faults by normal surfaces */
-    for ( surfCount = 0; surfCount < nSurface; surfCount++ ) {
+  int               surfCount;
+  /* Replace outer boundary faults by normal surfaces */
+  for ( surfCount = 0; surfCount < nSurface; surfCount++ ) {
       Surface_t          *surf = SurfaceSetGet( surfaceSet, surfCount );
       const int           ID = SurfaceID(surf);
       const int           part = SurfacePartGet(surf);
@@ -2905,88 +2905,88 @@ static TetrahedronSet_t *MeshTamperedBody(
       Surface_t          *newSurf = NULL;
 
       assert( outerSurf != NULL );
-        
+    
       if ( SurfaceAtOuterBoundary( outerSurf ) ) {
-        /* Make sure that front and back do not occur twice, and turn fault into normal */
-        if ( !SurfaceSetFind( newSurfaceSet, ID, part, surfNormal ) ) {
+    /* Make sure that front and back do not occur twice, and turn fault into normal */
+    if ( !SurfaceSetFind( newSurfaceSet, ID, part, surfNormal ) ) {
           newSurf = SurfaceCreate( ID, part, surfNormal, frontUnknownDir, SurfaceUserName(surf), SurfaceOuterBoundaryGet(outerSurf) );
-        }
+    }
       } else {
-        /* This is not a copy: the outer boundary info is taken from outerSurf !! */
-        newSurf = SurfaceCreate( ID, part, SurfaceType( surf ), SurfaceGetFrontDir(surf), SurfaceUserName(surf), SurfaceOuterBoundaryGet(outerSurf));
+    /* This is not a copy: the outer boundary info is taken from outerSurf !! */
+    newSurf = SurfaceCreate( ID, part, SurfaceType( surf ), SurfaceGetFrontDir(surf), SurfaceUserName(surf), SurfaceOuterBoundaryGet(outerSurf));
       }
       if ( newSurf ) {
-        /* Copy surface */
-        SurfaceAddSurface( newSurf, surf );
-        SurfaceSetAdd( newSurfaceSet, newSurf );
+    /* Copy surface */
+    SurfaceAddSurface( newSurf, surf );
+    SurfaceSetAdd( newSurfaceSet, newSurf );
       }
-    }
+  }
   }
 
   outerBoundSet = SurfaceSetDelete( outerBoundSet );
 
   /* Mark cavities: the faults should open here */
   if ( !MESH_ERROR( mesh ) ) {
-    Iterator_t        bodyIter;
-    Body_t  *cavity = BodySetFirst( cavities, &bodyIter );
-    while ( cavity ) {
+  Iterator_t        bodyIter;
+  Body_t  *cavity = BodySetFirst( cavities, &bodyIter );
+  while ( cavity ) {
       Iterator_t          surfIter;
       BodySurface_t      *bs = BodyFirst( cavity, &surfIter );
       while ( bs ) {
-        Surface_t       *surf = BodySurfaceGet( bs );
-        SurfaceSetOpenFault( surf, TRUE );
-        bs = BodyNext( cavity, &surfIter );
+    Surface_t       *surf = BodySurfaceGet( bs );
+    SurfaceSetOpenFault( surf, TRUE );
+    bs = BodyNext( cavity, &surfIter );
       }
       cavity = BodySetNext( cavities, &bodyIter );
-    }
+  }
   }
 
   OpenSelfIntersectingOuterBoundary( mesh, spSet, pointSet, newSurfaceSet );
 
   /* Agin shift the fault points: fault touching normal will be opened now */
   if ( !MESH_ERROR( mesh ) ) {
-    BodyInner_t      *bi = NULL;
-    Iterator_t        iter;
-    ConstructBodies( mesh, spSet, pointSet, newSurfaceSet, bodySet );
-    innerBodies = BodyInnerCreate( mesh, bodySet );
-    /* Pick up single outer body */
-    body = NULL;
-    bi = RBTreeFirst( innerBodies, &iter );
-    while ( bi && !MESH_ERROR( mesh ) ) {
+  BodyInner_t      *bi = NULL;
+  Iterator_t        iter;
+  ConstructBodies( mesh, spSet, pointSet, newSurfaceSet, bodySet );
+  innerBodies = BodyInnerCreate( mesh, bodySet );
+  /* Pick up single outer body */
+  body = NULL;
+  bi = RBTreeFirst( innerBodies, &iter );
+  while ( bi && !MESH_ERROR( mesh ) ) {
       if ( !BodyOuterGet( bi->body ) ) {
-        /* Single body ???? */
-        if ( body ) {
+    /* Single body ???? */
+    if ( body ) {
           MeshBodyFailure( mesh, newSurfaceSet );
 
-        }
-        body = bi->body;
-        cavities = bi->cavities;
+    }
+    body = bi->body;
+    cavities = bi->cavities;
       }
       bi = RBTreeNext( innerBodies, &iter );
-    }
+  }
   }
   /* Generate a mesh */
   if ( !MESH_ERROR( mesh ) ) {
-    result = FemGvMeshBody( pointSet, newSurfaceSet, body, cavities, FemGvPath );
+  result = FemGvMeshBody( pointSet, newSurfaceSet, body, cavities, FemGvPath );
   } else {
-    /* Return empty set to indicate error */
-    result = TetrahedronSetCreate();
+  /* Return empty set to indicate error */
+  result = TetrahedronSetCreate();
   }
 
   /* Restore outer boundary and cavity information */
   if ( !MESH_ERROR( mesh ) ) {
-    int               surfCount;
-    for ( surfCount = 0; surfCount < nSurface; surfCount++ ) {
+  int               surfCount;
+  for ( surfCount = 0; surfCount < nSurface; surfCount++ ) {
       SurfaceSetOpenFault( SurfaceSetGet( surfaceSet, surfCount ), FALSE );
-    }
+  }
   }
 
   /* Unshift the surfaces and mesh */
   if ( !MESH_ERROR( mesh ) && TetrahedronSetSize( result ) ) {
-    TetrahedronSet_t  *tetSet = UnshiftSurfacesAndMesh( spSet, newSurfaceSet, result );
-    /* Overwrite result */
-    TetrahedronSetDelete( result );
-    result = tetSet;
+  TetrahedronSet_t  *tetSet = UnshiftSurfacesAndMesh( spSet, newSurfaceSet, result );
+  /* Overwrite result */
+  TetrahedronSetDelete( result );
+  result = tetSet;
   }
 
   spSet = ShiftPointSetDelete( spSet );
@@ -3004,20 +3004,20 @@ static void MeshCheckSingleSideHorizonAddBody(
   Iterator_t     iter;
   BodySurface_t *bs = BodyFirst( body, &iter );
   while ( bs && !MESH_ERROR( mesh ) ) {
-    Surface_t  *surf = BodySurfaceGet( bs );
-    if ( SurfaceType( surf ) == surfNormal ) {
+  Surface_t  *surf = BodySurfaceGet( bs );
+  if ( SurfaceType( surf ) == surfNormal ) {
       const bool_t      posDir = BodySurfacePosDir( bs );
       if ( !BodyContains( bodyAll, surf, !posDir ) ) {
-        BodyAdd( bodyAll, surf, posDir );
+    BodyAdd( bodyAll, surf, posDir );
       } else {
-            MeshMessageOpen( mesh, MeshStatusNotHorizon );
-            MeshMessageAdd( mesh, "Horizon\n" );
-            SurfaceMeshMessageAdd( mesh,  surf );
-            MeshMessageAdd( mesh, "does not separate 2 formations.  Turn it into a fault.\n" );
-            MeshMessageClose( mesh );
+      MeshMessageOpen( mesh, MeshStatusNotHorizon );
+      MeshMessageAdd( mesh, "Horizon\n" );
+      SurfaceMeshMessageAdd( mesh,  surf );
+      MeshMessageAdd( mesh, "does not separate 2 formations.  Turn it into a fault.\n" );
+      MeshMessageClose( mesh );
       }
-    }
-    bs = BodyNext( body, &iter );
+  }
+  bs = BodyNext( body, &iter );
   }
 }
 
@@ -3053,35 +3053,35 @@ static TetrahedronSet_t *MeshSingleBody(
 #endif
 
   while ( key && !MESH_ERROR( mesh ) ) {
-    int        nFault;
-    const int  nEdge = EdgeListSize( edge, key, &nFault );
-    switch ( nEdge ) {
+  int        nFault;
+  const int  nEdge = EdgeListSize( edge, key, &nFault );
+  switch ( nEdge ) {
       case 2:
-        /* Normal case */
-        break;
+    /* Normal case */
+    break;
       case 1:
-        MeshMessageOpen( mesh, MeshStatusIsolatedEdgeAfterShift );
-        MeshMessageAdd( mesh, "Isolated edge found after fault shift. Please contact support.\n\n" );
-        MeshMessageClose( mesh );
-        break;
+    MeshMessageOpen( mesh, MeshStatusIsolatedEdgeAfterShift );
+    MeshMessageAdd( mesh, "Isolated edge found after fault shift. Please contact support.\n\n" );
+    MeshMessageClose( mesh );
+    break;
       default:
-        {
+    {
           /* Repairable? */
           isOK = FALSE;
-        }
-        break;
     }
-    key = EdgeKeyNext( edge, &iter );
+    break;
+  }
+  key = EdgeKeyNext( edge, &iter );
   }
 
   if ( !MESH_ERROR( mesh ) ) {
-    if ( isOK ) {
+  if ( isOK ) {
       /* Normal case */
       result = FemGvMeshBody( pointSet, surfaceSet, body, cavities, FemGvPath );
-    } else {
+  } else {
       /* Try to fix the body by cutting and glueing */
       result = MeshTamperedBody( mesh, spSet, pointSet, surfaceSet, body, cavities, FemGvPath );
-    }
+  }
   }
   return result;
 }
@@ -3096,23 +3096,23 @@ static void MeshAddSingleBody(
                   const FemGvPath_t          *FemGvPath)
 {
   if ( !MESH_ERROR( mesh ) ) {
-    MeshCheckSingleSideHorizon( mesh, body, cavities );
+  MeshCheckSingleSideHorizon( mesh, body, cavities );
   }
 
   if ( !MESH_ERROR( mesh ) ) {
-    SurfaceSet_t     *activeSurfaces = GetActiveSurfaces( body, cavities );
-    TetrahedronSet_t *tetSet = MeshSingleBody( mesh, spSet, pointSet, activeSurfaces, body, cavities, FemGvPath );
+  SurfaceSet_t     *activeSurfaces = GetActiveSurfaces( body, cavities );
+  TetrahedronSet_t *tetSet = MeshSingleBody( mesh, spSet, pointSet, activeSurfaces, body, cavities, FemGvPath );
 
-    if ( !MESH_ERROR( mesh ) ) {
+  if ( !MESH_ERROR( mesh ) ) {
       if ( MeshBodyIsCorrect( tetSet, pointSet, activeSurfaces ) ) {
-        MeshAddTetrahedra( mesh, body, activeSurfaces, spSet, tetSet, meshOutput );
+    MeshAddTetrahedra( mesh, body, activeSurfaces, spSet, tetSet, meshOutput );
       } else if ( SurfaceSetSize( activeSurfaces ) ) {
-        MeshBodyFailure( mesh, activeSurfaces );
+    MeshBodyFailure( mesh, activeSurfaces );
       }
-    }
-    SurfaceSetClear( activeSurfaces );
-    SurfaceSetDelete( activeSurfaces );
-    TetrahedronSetDelete( tetSet );
+  }
+  SurfaceSetClear( activeSurfaces );
+  SurfaceSetDelete( activeSurfaces );
+  TetrahedronSetDelete( tetSet );
   }
 }
 
@@ -3130,50 +3130,50 @@ static void MeshIsCorrect(
 
 
   if ( !nError ) {
-    Iterator_t    iter;
-    MeshTriangleSurfaces( mtSet, pointSet, surfaceSet );
-    mt = MeshTriangleSetFirst( mtSet, &iter );
-    while ( mt && !nError ) {
+  Iterator_t    iter;
+  MeshTriangleSurfaces( mtSet, pointSet, surfaceSet );
+  mt = MeshTriangleSetFirst( mtSet, &iter );
+  while ( mt && !nError ) {
       const int size = MeshTriangleSize( mt );
       if ( size == 1 ) {
-        /* Connected to special surface? */
-        const Surface_t *surf = MeshTriangleGetSurface( mt );
-        if ( surf ) {
+    /* Connected to special surface? */
+    const Surface_t *surf = MeshTriangleGetSurface( mt );
+    if ( surf ) {
           if ( !SurfaceAtOuterBoundary( surf ) && SurfaceType( surf ) == surfNormal ) {
-            nError += 1;
+      nError += 1;
           }
-        } else {
+    } else {
           nError += 1;
-        }
+    }
       } else if ( size != 2 ){
-        nError += 1;
+    nError += 1;
       }
       mt = MeshTriangleSetNext( mtSet, &iter );
-    }
+  }
   }
 
   /* All surface triangles in mesh? */
   if ( !nError ) {
-    Iterator_t surfaceSetIter;
-    Surface_t *surface = SurfaceSetFirst( surfaceSet, &surfaceSetIter );
-    while ( surface && !nError ) {
+  Iterator_t surfaceSetIter;
+  Surface_t *surface = SurfaceSetFirst( surfaceSet, &surfaceSetIter );
+  while ( surface && !nError ) {
       Iterator_t   surfaceIter;
       Triangle_t  *triangle = SurfaceFirst( surface, NULL, &surfaceIter );
       while ( triangle && !nError ) {
-        const int *points = TrianglePoints( triangle );
-        if ( !MeshTriangleSetFind( mtSet, points[0], points[1], points[2] ) ) {
+    const int *points = TrianglePoints( triangle );
+    if ( !MeshTriangleSetFind( mtSet, points[0], points[1], points[2] ) ) {
           nError += 1;
-        }
-        triangle = SurfaceNext( surface, NULL, &surfaceIter );
+    }
+    triangle = SurfaceNext( surface, NULL, &surfaceIter );
       }
       surface = SurfaceSetNext( surfaceSet, &surfaceSetIter );
-    }
+  }
   }
 
   if ( nError ) {
-    MeshMessageOpen( mesh, MeshStatusMeshFailure );
-    MeshMessageAdd( mesh, "Inconsistent mesh generated" );
-    MeshMessageClose( mesh );
+  MeshMessageOpen( mesh, MeshStatusMeshFailure );
+  MeshMessageAdd( mesh, "Inconsistent mesh generated" );
+  MeshMessageClose( mesh );
   }
 
   MeshTriangleSetDelete( mtSet );
@@ -3196,9 +3196,9 @@ static int PointFaultComp( const void* data0, const void* data1 )
   const PointFault_t *pf1 = data1;
   int   result = UTIL_COMPARE( pf0->pointId, pf1->pointId );
   if ( !result ) {
-    if ( pf0->fault && pf1->fault ) {
+  if ( pf0->fault && pf1->fault ) {
       result = SurfaceComp( pf0->fault, pf1->fault );
-    }
+  }
   }
   return result;
 }
@@ -3217,7 +3217,7 @@ static void MeshSinglePointSeamIntersection( Mesh_t        *mesh,
   const PointFault_t*pf = NULL;
 
   while ( key ) {
-    if ( EdgeIsolatedFault( edge, key ) ) {
+  if ( EdgeIsolatedFault( edge, key ) ) {
       int                points[2], n;
       const Surface_t   *fault = NULL;
       EdgeList_t        *edge0 = EdgeListFirst( edge, key );
@@ -3225,21 +3225,21 @@ static void MeshSinglePointSeamIntersection( Mesh_t        *mesh,
       const Surface_t   *fault0 = EdgeListSurface( edge0 );
       const Surface_t   *fault1 = EdgeListSurface( edge1 );
       if ( SurfaceType(fault0) == faultType ) {
-        fault = fault0;
+    fault = fault0;
       } else if ( SurfaceType(fault1) == faultType ) {
-        fault = fault1;
+    fault = fault1;
       }
       assert( fault && EdgeListSize( edge, key, NULL ) == 2 );
       EdgeKeyPoints( key, points+0, points+1 );
       for ( n = 0; n < 2; n++ ) {
-        PointFault_t   fp;
-        UTIL_ZERO( &fp );
-        fp.pointId = points[n];
-        fp.fault = fault;
-        RBTreeSearch( tree, &fp );
+    PointFault_t   fp;
+    UTIL_ZERO( &fp );
+    fp.pointId = points[n];
+    fp.fault = fault;
+    RBTreeSearch( tree, &fp );
       }
-    }
-    key = EdgeKeyNext( edge, &iter );
+  }
+  key = EdgeKeyNext( edge, &iter );
   }
 
   /* All points not on isolated fault edge are OK, we are not so sure about
@@ -3247,86 +3247,86 @@ static void MeshSinglePointSeamIntersection( Mesh_t        *mesh,
   UTIL_SET( pointOK, TRUE, nPoints );
   pf = RBTreeFirst( tree, &iter );
   while ( pf ) {
-    PointFault_t  pfMatch;
-    UTIL_ZERO( &pfMatch );
-    pfMatch.pointId = pf->pointId;
-    pointOK[pf->pointId] = ( RBTreeCountMatch( tree, &pfMatch ) == 1 );
-    pf = RBTreeNext( tree, &iter );
+  PointFault_t  pfMatch;
+  UTIL_ZERO( &pfMatch );
+  pfMatch.pointId = pf->pointId;
+  pointOK[pf->pointId] = ( RBTreeCountMatch( tree, &pfMatch ) == 1 );
+  pf = RBTreeNext( tree, &iter );
   }
 
   /* Now check if there are edges in which the suspected points occur */
   key = EdgeKeyFirst( edge, &iter );
   while ( key ) {
-    int p0, p1;
-    EdgeKeyPoints( key, &p0, &p1 );
-    if ( !pointOK[p0] || !pointOK[p1] ) {
+  int p0, p1;
+  EdgeKeyPoints( key, &p0, &p1 );
+  if ( !pointOK[p0] || !pointOK[p1] ) {
       EdgeList_t        *list = EdgeListFirst( edge, key );
       SurfaceSet_t      *faultSet = SurfaceSetCreate();
       while ( list ) {
-        Surface_t *surf = EdgeListSurface( list );
-        if ( SurfaceType( surf ) == faultType ) {
+    Surface_t *surf = EdgeListSurface( list );
+    if ( SurfaceType( surf ) == faultType ) {
           if ( !SurfaceSetTest( faultSet, surf ) ) {
-            SurfaceSetAdd( faultSet, surf );
+      SurfaceSetAdd( faultSet, surf );
           }
-        }
-        list = EdgeListNext( edge, list );
+    }
+    list = EdgeListNext( edge, list );
       }
       /* At least 2 faults cross here, assume this is a real crossing */
       if ( SurfaceSetSize( faultSet ) > 1 ) {
-        int       n;
-        for ( n = 0; n < SurfaceSetSize( faultSet ); n++ ) {
+    int       n;
+    for ( n = 0; n < SurfaceSetSize( faultSet ); n++ ) {
           Surface_t *fault = SurfaceSetGet( faultSet, n );
           int        np;
           for ( np = 0; np < 2; np++ ) {
-            PointFault_t  pfMatch, *found = NULL;
-            pfMatch.pointId = ( np == 0 ? p0 : p1 );
-            if  ( !pointOK[pfMatch.pointId] ) {
+      PointFault_t  pfMatch, *found = NULL;
+      pfMatch.pointId = ( np == 0 ? p0 : p1 );
+      if  ( !pointOK[pfMatch.pointId] ) {
               pfMatch.fault = fault;
               found = RBTreeFindGet( tree, &pfMatch );
               if ( found ) found->isOK = TRUE;
-            }
+      }
           }
-        }
+    }
       }
       SurfaceSetDelete( SurfaceSetClear( faultSet ) );
-    }
-    key = EdgeKeyNext( edge, &iter );
+  }
+  key = EdgeKeyNext( edge, &iter );
   }
 
   /* Treat wrong points */
   {
-    int   n;
-    for ( n = 0; n < nPoints; n++ ) {
+  int   n;
+  for ( n = 0; n < nPoints; n++ ) {
       /* Multiple errors allowed here: only a few expected in worst case */
       if( !pointOK[n] ) {
-        PointFault_t  pfMatch;
-        bool_t        isOK = TRUE;
+    PointFault_t  pfMatch;
+    bool_t        isOK = TRUE;
 
-        UTIL_ZERO( &pfMatch );
-        pfMatch.pointId = n;
-        pf = RBTreeFirstMatch( tree, &pfMatch, &iter );
-        while ( pf ) {
+    UTIL_ZERO( &pfMatch );
+    pfMatch.pointId = n;
+    pf = RBTreeFirstMatch( tree, &pfMatch, &iter );
+    while ( pf ) {
           if ( !pf->isOK ) isOK = FALSE;
           pf = RBTreeNextMatch( tree, &pfMatch, &iter );
-        }
+    }
 
-        if ( !isOK ) {
+    if ( !isOK ) {
           MeshMessageOpen( mesh, MeshStatusFaultPoint1Intersect );
           pf = RBTreeFirstMatch( tree, &pfMatch, &iter );
           MeshMessageAdd( mesh, "The faults\n" );
           while ( pf ) {
-            SurfaceMeshMessageAdd( mesh, pf->fault );
-            pf = RBTreeNextMatch( tree, &pfMatch, &iter );
+      SurfaceMeshMessageAdd( mesh, pf->fault );
+      pf = RBTreeNextMatch( tree, &pfMatch, &iter );
           }
           MeshMessageAdd( mesh,
                           "intersect in a single point with coordinates\n" );
           PointMeshMessageAdd( mesh, pointSet, n );
           MeshMessageAdd( mesh, "The mesher cannot handle this situation,"
-                                " please change your model.\n" );
+                " please change your model.\n" );
           MeshMessageClose( mesh );
-        }
-      }
     }
+      }
+  }
   }
   DIFREE( pointOK );
   RBTreeDelete( tree );
@@ -3344,20 +3344,20 @@ static void MeshCheckIntersection( Mesh_t       *mesh,
   /* We can check all surfaces for self intersection in 1 go */
   UTIL_SET( surfTypeActive, TRUE, surfTypeLast );
   MeshCheckSurfaceIntersection( mesh,
-                                surfTypeActive,
-                                surfaceSet,
-                                pointSet,
-                                spSet );
+                surfTypeActive,
+                surfaceSet,
+                pointSet,
+                spSet );
 
   ShiftPointSetDelete( spSet );
 }
 
 static void  MeshPrepareModel( Mesh_t *mesh )
 {
-    PointSet_t   *pointSet = mesh->modelData->pointSet;
-    SurfaceSet_t *surfaceSet = mesh->modelData->surfaceSet;
+  PointSet_t   *pointSet = mesh->modelData->pointSet;
+  SurfaceSet_t *surfaceSet = mesh->modelData->surfaceSet;
 
-    if ( !MESH_ERROR( mesh ) && PointSetSize( pointSet ) > 1 ) {
+  if ( !MESH_ERROR( mesh ) && PointSetSize( pointSet ) > 1 ) {
       int          id1, id2;
       double       measure;
       const double dist =
@@ -3498,10 +3498,10 @@ static void MeshGenerateTry( Mesh_t *mesh )
       Iterator_t iter;
       Body_t    *body = BodySetFirst( mesh->derivedData->bodySet, &iter );
       while ( body ) {
-        if ( BodyTypeGet( body ) == bodyNormal ) {
+    if ( BodyTypeGet( body ) == bodyNormal ) {
           nBody += 1;
-        }
-        body = BodySetNext( mesh->derivedData->bodySet, &iter );
+    }
+    body = BodySetNext( mesh->derivedData->bodySet, &iter );
       }
       if ( !nBody ) {
          MeshMessageOpen( mesh, MeshStatusNoBodies );
@@ -3512,34 +3512,34 @@ static void MeshGenerateTry( Mesh_t *mesh )
 
   /* Mesh body by body */
   if ( !MESH_ERROR( mesh ) ) {
-    RBTree_t    *innerBodies = BodyInnerCreate( mesh, mesh->derivedData->bodySet );
-    Iterator_t   iter;
-    BodyInner_t *bi = RBTreeFirst( innerBodies, &iter );
-    mesh->meshOutput = MeshOutputCreate( );
-    while ( bi && !MESH_ERROR( mesh ) ) {
+  RBTree_t    *innerBodies = BodyInnerCreate( mesh, mesh->derivedData->bodySet );
+  Iterator_t   iter;
+  BodyInner_t *bi = RBTreeFirst( innerBodies, &iter );
+  mesh->meshOutput = MeshOutputCreate( );
+  while ( bi && !MESH_ERROR( mesh ) ) {
       Body_t  *body = bi->body;
       if ( !MESH_ERROR( mesh ) && BodyTypeGet( body ) != bodyDegenerate ) {
-        MeshAddSingleBody( mesh, spSet, body, bi->cavities, pointSet, mesh->meshOutput, &(mesh->derivedData->FemGvPath) );
+    MeshAddSingleBody( mesh, spSet, body, bi->cavities, pointSet, mesh->meshOutput, &(mesh->derivedData->FemGvPath) );
       }
       bi = RBTreeNext( innerBodies, &iter );
-    }
+  }
 
-    if ( !MESH_ERROR( mesh ) ) {
+  if ( !MESH_ERROR( mesh ) ) {
       MeshIsCorrect( mesh, mesh->meshOutput->tetSet, pointSet, surfaceSet );
-    }
+  }
 
-    BodyInnerDelete( innerBodies );
+  BodyInnerDelete( innerBodies );
   }
 
   ShiftPointSetDelete( spSet );
 }
 
 extern void MeshGenerate(const char* sDianaPath, 
-						 const char* sDiaSharePath,
-						 const char* sDianaLibPath,
-						 const char* sDianaSLibPath,
-						 const char* sFgvExeName, 
-						 void *meshV )
+             const char* sDiaSharePath,
+             const char* sDianaLibPath,
+             const char* sDianaSLibPath,
+             const char* sFgvExeName, 
+             void *meshV )
 {
   Mesh_t   *mesh = meshV;
 
@@ -3548,19 +3548,19 @@ extern void MeshGenerate(const char* sDianaPath,
 
   /* Carry out various checks on the model as specified by the user */
   if ( !MESH_ERROR( mesh ) ) {
-    MeshPrepareModel( mesh );
+  MeshPrepareModel( mesh );
   }
 
   if ( !MESH_ERROR( mesh ) ) {
-    int      n;
+  int      n;
 
-    double   shiftScaleFactor = 0.01;
+  double   shiftScaleFactor = 0.01;
 
-    /* Store the warnings generated so far */
-    MeshErrorData_t *orgMessages = mesh->errorData;
-    mesh->errorData = NULL;
+  /* Store the warnings generated so far */
+  MeshErrorData_t *orgMessages = mesh->errorData;
+  mesh->errorData = NULL;
 
-    for ( n = 0; n < 6; n++ ) {
+  for ( n = 0; n < 6; n++ ) {
 
       /* Pick up the model warnings */
       MeshErrorDataDelete( mesh->errorData );
@@ -3570,29 +3570,29 @@ extern void MeshGenerate(const char* sDianaPath,
       MeshDerivedDataDelete( mesh->derivedData );
       mesh->derivedData =  MeshDerivedDataCreate( );
       if ( !MESH_ERROR( mesh ) ) {
-        mesh->derivedData->surfaceSet = SurfaceSetCopy( mesh->modelData->surfaceSet ); 
-        mesh->derivedData->pointSet = PointSetCopy( mesh->modelData->pointSet );
+    mesh->derivedData->surfaceSet = SurfaceSetCopy( mesh->modelData->surfaceSet ); 
+    mesh->derivedData->pointSet = PointSetCopy( mesh->modelData->pointSet );
       }
 
       if ( !MESH_ERROR( mesh ) ) {
-        mesh->derivedData->FemGvPath.sDianaPath     = sDianaPath; 
-        mesh->derivedData->FemGvPath.sDiaSharePath  = sDiaSharePath;
-        mesh->derivedData->FemGvPath.sDianaLibPath  = sDianaLibPath;
-        mesh->derivedData->FemGvPath.sDianaSLibPath = sDianaSLibPath;
-        mesh->derivedData->FemGvPath.sFgvExeName    = sFgvExeName;
+    mesh->derivedData->FemGvPath.sDianaPath     = sDianaPath; 
+    mesh->derivedData->FemGvPath.sDiaSharePath  = sDiaSharePath;
+    mesh->derivedData->FemGvPath.sDianaLibPath  = sDianaLibPath;
+    mesh->derivedData->FemGvPath.sDianaSLibPath = sDianaSLibPath;
+    mesh->derivedData->FemGvPath.sFgvExeName    = sFgvExeName;
 
-        /* Attempt to generate mesh */
-        mesh->derivedData->shiftScaleFactor = shiftScaleFactor;
-        MeshGenerateTry( mesh );
-        if ( !MESH_ERROR( mesh ) ) {
+    /* Attempt to generate mesh */
+    mesh->derivedData->shiftScaleFactor = shiftScaleFactor;
+    MeshGenerateTry( mesh );
+    if ( !MESH_ERROR( mesh ) ) {
           /* Succesfull */
           break;
-        } else {
+    } else {
           shiftScaleFactor /= 2;
-        }
-      }
     }
-    MeshErrorDataDelete( orgMessages );
+      }
+  }
+  MeshErrorDataDelete( orgMessages );
   }
 }
 

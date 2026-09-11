@@ -15,30 +15,30 @@
 class COutput : public COleDispatchDriver
 {
 public:
-	COutput() {}		// Calls COleDispatchDriver default constructor
-	COutput(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
-	COutput(const COutput& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
+  COutput() {}		// Calls COleDispatchDriver default constructor
+  COutput(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
+  COutput(const COutput& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
 // Attributes
 public:
-	BOOL GetTabulated();
-	void SetTabulated(BOOL);
-	BOOL GetFemview();
-	void SetFemview(BOOL);
-	BOOL GetNeutral();
-	void SetNeutral(BOOL);
-	BOOL GetPlasticity();
-	void SetPlasticity(BOOL);
-	BOOL GetStress();
-	void SetStress(BOOL);
-	BOOL GetStrain();
-	void SetStrain(BOOL);
-	BOOL GetDisplacement();
-	void SetDisplacement(BOOL);
-	BOOL GetPressure();
-	void SetPressure(BOOL);
-	BOOL GetTemperature();
-	void SetTemperature(BOOL);
+  BOOL GetTabulated();
+  void SetTabulated(BOOL);
+  BOOL GetFemview();
+  void SetFemview(BOOL);
+  BOOL GetNeutral();
+  void SetNeutral(BOOL);
+  BOOL GetPlasticity();
+  void SetPlasticity(BOOL);
+  BOOL GetStress();
+  void SetStress(BOOL);
+  BOOL GetStrain();
+  void SetStrain(BOOL);
+  BOOL GetDisplacement();
+  void SetDisplacement(BOOL);
+  BOOL GetPressure();
+  void SetPressure(BOOL);
+  BOOL GetTemperature();
+  void SetTemperature(BOOL);
 
 // Operations
 public:

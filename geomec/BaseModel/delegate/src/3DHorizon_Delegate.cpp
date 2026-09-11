@@ -18,11 +18,11 @@ bool C3DHorizon_Delegate::Attributes()
 
   if (dlg.DoModal() == IDOK)
   {
-    // If not linked to entry
+  // If not linked to entry
 
-    if (!m_3dHorizon->IsLinkedTo(
+  if (!m_3dHorizon->IsLinkedTo(
       *m_3dHorizon->Model().GraphEntry(MD_BASE_HORIZON)))
-    {
+  {
       // Link to entry ..
 
       assert(m_3dHorizon->Model().GraphEntry(MD_BASE_HORIZON));
@@ -31,12 +31,12 @@ bool C3DHorizon_Delegate::Attributes()
       CModelBase& model = dynamic_cast <CModelBase&> (m_3dHorizon->Model());
 
       model.InvalidateMesh();
-    }
+  }
 
-    m_3dHorizon->UpdateFaultParameters();
-    m_3dHorizon->Modified();
+  m_3dHorizon->UpdateFaultParameters();
+  m_3dHorizon->Modified();
 
-    return true;
+  return true;
   }
 
   return false;
@@ -48,10 +48,10 @@ void C3DHorizon_Delegate::AppendContextMenu(CContextMenuInvoker &invoker)
 
   if (m_3dHorizon->ConstantDepth())
   {
-    invoker.AddCommand(_T("&Export constant depth surface"),
+  invoker.AddCommand(_T("&Export constant depth surface"),
       *(new THorizonCommand(*this,
-        &C3DHorizon_Delegate::ExportConstantDepthSurface)));
-    invoker.AddSeparator();
+    &C3DHorizon_Delegate::ExportConstantDepthSurface)));
+  invoker.AddSeparator();
   }
 
   CColorNode_Delegate::AppendContextMenu(invoker);
@@ -65,16 +65,16 @@ void C3DHorizon_Delegate::ExportConstantDepthSurface()
 
   if (idxdot >= 0)
   {
-    sName = sName.left(idxdot);
+  sName = sName.left(idxdot);
   }
 
   sFileName = QString("%1.ts").arg(sName);
 
   CTnoFileDialog dlg(FALSE, "ts", sFileName.toStdString().c_str(),
-    OFN_OVERWRITEPROMPT, "GoCad surface (*.ts)|*.ts||");
+  OFN_OVERWRITEPROMPT, "GoCad surface (*.ts)|*.ts||");
 
   if (dlg.DoModal() == IDOK)
   {
-    m_3dHorizon->ExportConstantDepthSurface((LPCSTR) dlg.GetPathName());
+  m_3dHorizon->ExportConstantDepthSurface((LPCSTR) dlg.GetPathName());
   }
 }

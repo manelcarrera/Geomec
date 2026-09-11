@@ -59,7 +59,7 @@ unix {
 	QMAKE_DISTCLEAN += fgvstr.str geomec.dat geomec.ini MyDoc.dat
 	QMAKE_DISTCLEAN += test test_output.trx test-debug
 	QMAKE_DISTCLEAN += debug/Tests.vcxprojResolveAssemblyReference.cache
-	QMAKE_DISTCLEAN += $${TESTSROOT}/Models/Fw51Output/*/*
+	QMAKE_DISTCLEAN += $${TESTDATAROOT}/Fw51Output/*/*
 }
 
 #
@@ -75,14 +75,14 @@ test.target   = test
 #test.depends  = $${DESTINATION}/$${TARGET} run_tests
 
 unix:test.commands = \
-cd ../../test/Tests && \
+cd ../../IntegrationTests/Tests && \
 /bin/sh ./run_tests \
 $$CONF \
---gm-model-path=../../Tests/Models && \
+--gm-model-path=../../TestData && \
 touch test && \
 cd -
-	
-#win32:test.commands = $${DESTINATION}/$${TARGET} --gm-model-path=$${TESTSROOT}/Models && touch test
+
+#win32:test.commands = $${DESTINATION}/$${TARGET} --gm-model-path=$${TESTDATAROOT} && touch test
 
 
 QMAKE_EXTRA_TARGETS += test
@@ -94,12 +94,12 @@ kk {
 	
 	unix { 
 		test-debug.depends  = ./debug/$${TARGET} run_tests
-		test-debug.commands = /bin/sh ./run_tests debug --gm-model-path=$${TESTSROOT}/Models && touch test-debug
+		test-debug.commands = /bin/sh ./run_tests debug --gm-model-path=$${TESTDATAROOT} && touch test-debug
 	}
-	
+
 	win32 {
 		test-debug.depends  = ./Debug/$${TARGET}
-		test-debug.commands = ./Debug/$${TARGET} --gm-model-path=$${TESTSROOT}/Models && touch test-debug
+		test-debug.commands = ./Debug/$${TARGET} --gm-model-path=$${TESTDATAROOT} && touch test-debug
 	}
 
 	QMAKE_EXTRA_TARGETS += test-debug

@@ -17,19 +17,19 @@ namespace geo {
 
 class CSpringElement : public geo::IPointElement
 {
-	geo::IMesh &m_mesh;
-	int m_nNodeIndex;
+  geo::IMesh &m_mesh;
+  int m_nNodeIndex;
 public:
-	CSpringElement(geo::IMesh &mesh, int nNodeIndex);
-	virtual ~CSpringElement();
+  CSpringElement(geo::IMesh &mesh, int nNodeIndex);
+  virtual ~CSpringElement();
 
-	virtual const geo::INode &Node(int nIndex) const;
-	virtual size_t NrOfNodes() const;
-	virtual std::string Type() const;
+  virtual const geo::INode &Node(int nIndex) const;
+  virtual size_t NrOfNodes() const;
+  virtual std::string Type() const;
 
-	virtual const geo::IElementSet*	IndexingElementSet() const;
+  virtual const geo::IElementSet*	IndexingElementSet() const;
 
-	virtual int	PointIndex(int nIndex) const;
+  virtual int	PointIndex(int nIndex) const;
 
 //	virtual const geo::IPoint &Point(int nIndex) const;
 //	virtual void Point(int nIndex, const geo::IPoint &pt);

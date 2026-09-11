@@ -15,25 +15,25 @@ public:
   class CMatTensorComponent : public CValueComponent
   {
   private:
-    Units::CUnitType m_UnitType;
-    Ranges::CRangeType m_RangeType;
-    unsigned int m_ExportLabel;
-    unsigned int m_TypeID;
+  Units::CUnitType m_UnitType;
+  Ranges::CRangeType m_RangeType;
+  unsigned int m_ExportLabel;
+  unsigned int m_TypeID;
  
   public:
-    CMatTensorComponent(CValueType &value_type, const Units::CUnitType& unittype,
+  CMatTensorComponent(CValueType &value_type, const Units::CUnitType& unittype,
       const Ranges::CRangeType& rangetype, unsigned int uComponentName, 
       unsigned int uComponentIndex, unsigned int uExportLabel, unsigned int typeID);
-	  CMatTensorComponent(const CMatTensorComponent& rhs);
+    CMatTensorComponent(const CMatTensorComponent& rhs);
 
-    virtual unsigned int TypeId() const;
-	  virtual QString ExportLabel() const;
-    
-	  virtual	QString UnitName(const CQuantity::UNIT unit = CQuantity::SI_UNIT) const;
-	  virtual double FieldFactor() const;
-	  virtual bool IsInRange(const IValueSet& value_set) const;
-	  virtual geo::CValue RangeMin(const CQuantity::UNIT unit = CQuantity::SI_UNIT) const;
-    virtual geo::CValue RangeMax(const CQuantity::UNIT unit = CQuantity::SI_UNIT) const;
+  virtual unsigned int TypeId() const;
+    virtual QString ExportLabel() const;
+  
+    virtual	QString UnitName(const CQuantity::UNIT unit = CQuantity::SI_UNIT) const;
+    virtual double FieldFactor() const;
+    virtual bool IsInRange(const IValueSet& value_set) const;
+    virtual geo::CValue RangeMin(const CQuantity::UNIT unit = CQuantity::SI_UNIT) const;
+  virtual geo::CValue RangeMax(const CQuantity::UNIT unit = CQuantity::SI_UNIT) const;
    };
 
 private:
@@ -44,18 +44,18 @@ private:
   QString m_TypeName;
 public:
   CMatParamsTensor(unsigned int uExportID, unsigned int uTypeID, unsigned int uIconID, 
-    IPointSet& point_set, const QString &strName);
+  IPointSet& point_set, const QString &strName);
 
-	virtual IValueComponentBase& Component(unsigned int uComponent = 0, unsigned int uMode = 0);
-	virtual const IValueComponentBase& Component(unsigned int uComponent = 0, unsigned int uMode = 0) const;
+  virtual IValueComponentBase& Component(unsigned int uComponent = 0, unsigned int uMode = 0);
+  virtual const IValueComponentBase& Component(unsigned int uComponent = 0, unsigned int uMode = 0) const;
   unsigned int ComponentTypeID(unsigned int uComponent);
   unsigned int ComponentTypeID(unsigned int uComponent) const;
 
   void AddComponent(unsigned int uComponentName, unsigned int uExportLabel, unsigned int uTypeID,
-    const Units::CUnitType &unittype, const Ranges::CRangeType &rangetype);
+  const Units::CUnitType &unittype, const Ranges::CRangeType &rangetype);
   virtual QString ExportType() const;
   virtual unsigned int TypeId() const;
-	virtual unsigned int IconId() const;
+  virtual unsigned int IconId() const;
   virtual QString TypeName() const;
 
   virtual void AddComponents() = 0;

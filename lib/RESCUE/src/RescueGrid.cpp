@@ -18,7 +18,7 @@ RescueGrid::~RescueGrid()
 {
   if (axes != 0)
   {
-    delete axes;
+  delete axes;
   }
 }
 
@@ -37,7 +37,7 @@ RescueGrid::RescueGrid(RescueContext *context,
 RescueGrid::RescueGrid(RescueContext *context,
                        RescueCoordinateSystem::Orientation displayOrientationIn, 
              RESCUEFLOAT i_origin, RESCUEFLOAT i_step, RESCUEINT64 i_lowbound, RESCUEINT64 i_count)
-        :RescueHistoryObject(context)
+    :RescueHistoryObject(context)
              ,displayOrientation(displayOrientationIn)
              ,axes(0)
 {
@@ -48,8 +48,8 @@ RescueGrid::RescueGrid(RescueContext *context,
 
 RescueGrid::RescueGrid(RescueContext *context,
                        RescueCoordinateSystem::Orientation displayOrientationIn,
-        RESCUEINT64 i_lowbound, RESCUEINT64 i_count, RESCUEINT64 j_lowbound, RESCUEINT64 j_count)
-        :RescueHistoryObject(context)
+    RESCUEINT64 i_lowbound, RESCUEINT64 i_count, RESCUEINT64 j_lowbound, RESCUEINT64 j_count)
+    :RescueHistoryObject(context)
              ,displayOrientation(displayOrientationIn)
              ,axes(0)
 {
@@ -65,7 +65,7 @@ RescueGrid::RescueGrid(RescueContext *context,
                        RESCUEFLOAT i_origin, RESCUEFLOAT i_step, RESCUEINT64 i_lowbound, RESCUEINT64 i_count, 
                        RescueCoordinateSystemAxis *j_axis,
                        RESCUEFLOAT j_origin, RESCUEFLOAT j_step, RESCUEINT64 j_lowbound, RESCUEINT64 j_count)
-        :RescueHistoryObject(context)
+    :RescueHistoryObject(context)
              ,displayOrientation(displayOrientationIn)
              ,axes(0)
 {
@@ -77,8 +77,8 @@ RescueGrid::RescueGrid(RescueContext *context,
 
 RescueGrid::RescueGrid(RescueContext *context,
                        RescueCoordinateSystem::Orientation displayOrientationIn,
-        RESCUEINT64 i_lowbound, RESCUEINT64 i_count, RESCUEINT64 j_lowbound, RESCUEINT64 j_count, RESCUEINT64 k_lowbound, RESCUEINT64 k_count)
-        :RescueHistoryObject(context)
+    RESCUEINT64 i_lowbound, RESCUEINT64 i_count, RESCUEINT64 j_lowbound, RESCUEINT64 j_count, RESCUEINT64 k_lowbound, RESCUEINT64 k_count)
+    :RescueHistoryObject(context)
              ,displayOrientation(displayOrientationIn)
              ,axes(0)
 {
@@ -96,7 +96,7 @@ RescueGrid::RescueGrid(RescueContext *context,
                        RescueCoordinateSystemAxis *j_axis,
                        RESCUEFLOAT j_origin, RESCUEFLOAT j_step, RESCUEINT64 j_lowbound, RESCUEINT64 j_count, 
                        RESCUEINT64 k_lowbound, RESCUEINT64 k_count)
-        :RescueHistoryObject(context)
+    :RescueHistoryObject(context)
              ,displayOrientation(displayOrientationIn)
              ,axes(0)
 {
@@ -114,7 +114,7 @@ RescueGrid::RescueGrid(RescueContext *context,
                        RescueCoordinateSystemAxis *j_axis,
                        RESCUEFLOAT j_origin, RESCUEFLOAT j_step, RESCUEINT64 j_lowbound, RESCUEINT64 j_count,
                        RESCUEFLOAT k_origin, RESCUEFLOAT k_step, RESCUEINT64 k_lowbound, RESCUEINT64 k_count)
-        :RescueHistoryObject(context)
+    :RescueHistoryObject(context)
              ,displayOrientation(displayOrientationIn)
              ,axes(0)
 {
@@ -137,7 +137,7 @@ void RescueGrid::AddAxis(RescueGridAxis *axis)
 {
   if (axis->parentGrid != 0)
   {
-    throw "Attempt to add an owned axis.";
+  throw "Attempt to add an owned axis.";
   }
   (*axes) += axis;
   axis->parentGrid = this;
@@ -152,8 +152,8 @@ RescueGrid::RescueGrid(RescueContext *context,
   ReadId(context, archiveFile);
   if (context->ReadFileVersion() < 32)
   {
-    RESCUEFLOAT zRotation;
-    myfscanf(context, archiveFile, &zRotation);
+  RESCUEFLOAT zRotation;
+  myfscanf(context, archiveFile, &zRotation);
   }
   RESCUEINT64 orientationFlag;
   myfscanf(context, archiveFile, &orientationFlag);
@@ -161,29 +161,29 @@ RescueGrid::RescueGrid(RescueContext *context,
   (*axes).UnArchive(context, archiveFile);
   if (context->ReadFileVersion() >= 5 && context->ReadFileVersion() < 32)
   {
-    RESCUEINT64 vertexFlag;
+  RESCUEINT64 vertexFlag;
 
-    myfscanf(context, archiveFile, &vertexFlag);
-    if (vertexFlag == 1)
-    {
+  myfscanf(context, archiveFile, &vertexFlag);
+  if (vertexFlag == 1)
+  {
       RescueVertex *vertex = new RescueVertex(context, archiveFile);
       delete vertex;
-    }
+  }
   }
   if (context->grids != 0)
   {
-    context->grids->Add(this);
+  context->grids->Add(this);
   }
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -193,8 +193,8 @@ void RescueGrid::Relink(RescueObject *parentModel)
   RescueGridAxis *axis = (*axes).NthObject(ndx++);
   while (axis != NULL)
   {
-    axis->Relink(this, ((RescueModel *) parentModel)->CoordinateSystem());
-    axis = (*axes).NthObject(ndx++);
+  axis->Relink(this, ((RescueModel *) parentModel)->CoordinateSystem());
+  axis = (*axes).NthObject(ndx++);
   }
 }
 
@@ -206,18 +206,18 @@ void RescueGrid::Archive(RescueContext *context,
   myfprintf(context, archiveFile, Identifier());
   if (context->FileVersion() < 32)
   {
-    RESCUEFLOAT zRotation = (RESCUEFLOAT) 0;
-    myfprintf(context, archiveFile, zRotation);
+  RESCUEFLOAT zRotation = (RESCUEFLOAT) 0;
+  myfprintf(context, archiveFile, zRotation);
   }
   myfprintf(context, archiveFile, (RESCUEINT64) displayOrientation);
   (*axes).Archive(context, archiveFile);
   if (context->FileVersion() < 32)
   {
-    myfprintf(context, archiveFile, (RESCUEINT64) 0);
+  myfprintf(context, archiveFile, (RESCUEINT64) 0);
   }
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -227,7 +227,7 @@ RESCUEBOOL RescueGrid::IsRegular(RESCUEINT64 which)
   RescueGridAxis *axis = this->Axis(which);
   if (axis != 0)
   {
-    myReturn = axis->IsRegular();
+  myReturn = axis->IsRegular();
   }
   return myReturn;
 }
@@ -240,12 +240,12 @@ RESCUEINT64 RescueGrid::NodeCount64(RESCUEBOOL cellCentered)
 
   for (loop = 0; loop < count; loop++)
   {
-    RESCUEINT64 nodes = (*axes).NthObject(loop)->Count64();
-    if (nodes > 1 && cellCentered)
-    {
+  RESCUEINT64 nodes = (*axes).NthObject(loop)->Count64();
+  if (nodes > 1 && cellCentered)
+  {
       nodes--;
-    }
-    size *= nodes;
+  }
+  size *= nodes;
   }
   return size;
 }
@@ -258,14 +258,14 @@ RESCUEINT64 RescueGrid::Vertices64()
  }
  else
  {
-    RESCUEINT64 loop;
-    RESCUEINT64 size = 1;
+  RESCUEINT64 loop;
+  RESCUEINT64 size = 1;
 
-    for (loop = 0; loop < 2; loop++)
-    {
+  for (loop = 0; loop < 2; loop++)
+  {
       size *= (*axes).NthObject(loop)->Count64();
-    }
-    return size;
+  }
+  return size;
  }
 }
 
@@ -273,11 +273,11 @@ RESCUEBOOL RescueGrid::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueGrid)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueHistoryObject::IsOfType(thisType);
+  return RescueHistoryObject::IsOfType(thisType);
   }
 }
 
@@ -287,15 +287,15 @@ void RescueGrid::SetOrientation(RescueCoordinateSystem::Orientation orientIn, bo
   RESCUEINT64 howMany = (*axes).Count64();
   if (swapI)
   {
-    (*axes).NthObject(0)->Swap();
+  (*axes).NthObject(0)->Swap();
   }
   if (swapJ && howMany >= 2)
   {
-    (*axes).NthObject(1)->Swap();
+  (*axes).NthObject(1)->Swap();
   }
   if (swapK && howMany >= 3)
   {
-    (*axes).NthObject(2)->Swap();
+  (*axes).NthObject(2)->Swap();
   }
 }
 
@@ -304,10 +304,10 @@ RESCUEINT32 RescueGrid::Vertices(RESCUEBOOL throwIfTooBig)
   RESCUEINT64 output = Vertices64();
   if (throwIfTooBig)
   {
-    if (output > 2147483647 || output < -2147483647)
-    {
+  if (output > 2147483647 || output < -2147483647)
+  {
       throw "Model is too large to be read in 32 bit mode.";
-    }
+  }
   }
   return (RESCUEINT32) output;
 }

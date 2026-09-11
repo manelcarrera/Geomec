@@ -13,11 +13,11 @@ CHandleDefaultFaultParameters::CHandleDefaultFaultParameters(CFaultFracture* fau
 {
   if (m_faultFracture->Slip() && m_faultFracture->hasFaultParametersForInitialDepletionStage())
   {
-    m_cohesionUnit = m_faultFracture->CohesionUnitName().toStdString().c_str();
-    m_frictionAngleUnit = m_faultFracture->FrictionAngleUnitName().toStdString().c_str();
+  m_cohesionUnit = m_faultFracture->CohesionUnitName().toStdString().c_str();
+  m_frictionAngleUnit = m_faultFracture->FrictionAngleUnitName().toStdString().c_str();
 
-    m_cohesion = m_faultFracture->Cohesion();
-    m_frictionAngle = m_faultFracture->FrictionAngle();
+  m_cohesion = m_faultFracture->Cohesion();
+  m_frictionAngle = m_faultFracture->FrictionAngle();
   }
 }
 
@@ -28,14 +28,14 @@ void CHandleDefaultFaultParameters::DoDataExchange(CDataExchange* pDX)
 
   if (m_faultFracture->Slip() && m_faultFracture->hasFaultParametersForInitialDepletionStage())
   {
-    DDX_Text(pDX, IDC_ED_COHESION, m_cohesion);
-    DDX_Text(pDX, IDC_ED_FRICTION, m_frictionAngle);
+  DDX_Text(pDX, IDC_ED_COHESION, m_cohesion);
+  DDX_Text(pDX, IDC_ED_FRICTION, m_frictionAngle);
 
-    if (m_faultFracture->Slip() && m_faultFracture->hasFaultParametersForInitialDepletionStage())
-    {
+  if (m_faultFracture->Slip() && m_faultFracture->hasFaultParametersForInitialDepletionStage())
+  {
       m_faultFracture->Cohesion(m_cohesion);
       m_faultFracture->FrictionAngle(m_frictionAngle);
-    }
+  }
   }
 }
 

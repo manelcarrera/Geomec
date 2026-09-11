@@ -6,11 +6,11 @@ class CUpscalingPointsetRangesBranch;
 class CAttriUpscalingTargetPointsets : public CDialog
 {
 public:
-	CAttriUpscalingTargetPointsets(CUpscalingPointsetRangesBranch& branch, CWnd* pParent = NULL);   // standard constructor
-	virtual ~CAttriUpscalingTargetPointsets();
+  CAttriUpscalingTargetPointsets(CUpscalingPointsetRangesBranch& branch, CWnd* pParent = NULL);   // standard constructor
+  virtual ~CAttriUpscalingTargetPointsets();
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
   virtual void OnOK();
 
 private:

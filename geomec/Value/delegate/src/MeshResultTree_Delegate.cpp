@@ -17,7 +17,7 @@ void CMeshResult_Delegate::AppendContextMenu(CContextMenuInvoker &invoker)
   typedef CSingleCommandTemplate <CMeshResult_Delegate> TCommand;
 
   invoker.AddCommand("&Export results",
-    *(new TCommand(*this, &CMeshResult_Delegate::Export,
+  *(new TCommand(*this, &CMeshResult_Delegate::Export,
       &CMeshResult_Delegate::CanExport)));
 }
 
@@ -45,7 +45,7 @@ void CMeshResultTree_Delegate::AppendContextMenu(CContextMenuInvoker &invoker)
   typedef CSingleCommandTemplate <CMeshResultTree_Delegate> TCommand;
 
   invoker.AddCommand("&Export results",
-    *(new TCommand(*this, &CMeshResultTree_Delegate::Export,
+  *(new TCommand(*this, &CMeshResultTree_Delegate::Export,
       &CMeshResultTree_Delegate::CanExport)));
 }
 

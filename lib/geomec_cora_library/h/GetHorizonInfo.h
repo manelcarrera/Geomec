@@ -13,25 +13,25 @@ namespace cora
 class CGetHorizonInfo
 {
   public:
-    static CGetHorizonInfo& instance(const CModelBase* modelBase);
+  static CGetHorizonInfo& instance(const CModelBase* modelBase);
 
-    const TObjects getObjects() const;
+  const TObjects getObjects() const;
 
-    std::ostream& operator () (std::ostream& os) const;
+  std::ostream& operator () (std::ostream& os) const;
 
   private:
-    CGetHorizonInfo(const CModelBase* modelBase);
-    ~CGetHorizonInfo();
+  CGetHorizonInfo(const CModelBase* modelBase);
+  ~CGetHorizonInfo();
 
-    CGetHorizonInfo(const CGetHorizonInfo& rhs);
-    CGetHorizonInfo& operator = (CGetHorizonInfo rhs);
+  CGetHorizonInfo(const CGetHorizonInfo& rhs);
+  CGetHorizonInfo& operator = (CGetHorizonInfo rhs);
 
-    static TObjects getObjects(const CModelBase* modelBase);
-    static void cleanup();
+  static TObjects getObjects(const CModelBase* modelBase);
+  static void cleanup();
 
-    static CGetHorizonInfo* m_getHorizonInfo;
-    const CModelBase* m_modelBase;
-    TObjects m_objects;
+  static CGetHorizonInfo* m_getHorizonInfo;
+  const CModelBase* m_modelBase;
+  TObjects m_objects;
 };
 
 } // namespace cora

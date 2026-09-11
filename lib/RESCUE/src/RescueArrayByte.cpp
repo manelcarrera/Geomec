@@ -21,7 +21,7 @@ RescueArrayByte::~RescueArrayByte()
 {
   if (value != 0)
   {
-    delete [] value;
+  delete [] value;
   }
 }
 
@@ -29,7 +29,7 @@ RESCUEUCHAR *RescueArrayByte::DemandValue()
 {
   if (IsLoaded() == FALSE)
   {
-    RescueArray::Load();
+  RescueArray::Load();
   }
   return value;
 }
@@ -38,17 +38,17 @@ void RescueArrayByte::AllValues(RESCUEUCHAR *buffer, RESCUEINT64 offset, RESCUEI
 {
   if (IsLoaded() == FALSE)
   {
-    RescueArray::Load();
+  RescueArray::Load();
   }
   if (value != 0)
   {
-    RESCUEUCHAR *pos = &buffer[offset];
-    RESCUEUCHAR *src = value;
-    while (bufferLength > 0)
-    {
+  RESCUEUCHAR *pos = &buffer[offset];
+  RESCUEUCHAR *src = value;
+  while (bufferLength > 0)
+  {
       *pos++ = *src++;
       bufferLength--;
-    }
+  }
   }
 /*
   If value == 0, valueLength should be zero too.
@@ -62,44 +62,44 @@ void RescueArrayByte::Relink(RescueObject *parent)
 }
 
 RescueArrayByte::RescueArrayByte(RescueContext *context, FILE *archiveFile)
-                            :RescueArray(context, archiveFile)
-                            ,value(0),valueLength(0)
+              :RescueArray(context, archiveFile)
+              ,value(0),valueLength(0)
 {
   isA = R_RescueArrayByte;
   InitMinMax();
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       if (strcmp(myString, "dirtyMinMax") == 0)
       {
-        RescueBuffer buf(context, archiveFile);
-        buf >> dirtyMinMax;
+    RescueBuffer buf(context, archiveFile);
+    buf >> dirtyMinMax;
       }
       else if (strcmp(myString, "minMax") == 0)
       {
-        ReadMinMax(context, archiveFile);
+    ReadMinMax(context, archiveFile);
       }
       else
       {
-        RescueBuffer buf(context, archiveFile);
+    RescueBuffer buf(context, archiveFile);
       }
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
   myfscanf(context, archiveFile, &nullValue);
   myfscanf(context, archiveFile, &lookupId);
   if (context->ReadFileVersion() < 12)
   {
-    myfscanf(context, archiveFile, &valueLength);
-    if (valueLength != 0)
-    {
+  myfscanf(context, archiveFile, &valueLength);
+  if (valueLength != 0)
+  {
       value = new RESCUEUCHAR [(size_t) valueLength];
       myfscanf(context, archiveFile, value, valueLength);
-    }
+  }
   }
 }
 
@@ -110,26 +110,26 @@ void RescueArrayByte::Archive(FILE *archiveFile)
   myfprintf(ParentModel()->Context(), archiveFile, lookupTable->Identifier());
   if (ParentModel()->Context()->FileVersion() == 9)
   {
-    RESCUEBOOL loadedNow = IsLoaded();
-    if (loadedNow == FALSE)
-    {
+  RESCUEBOOL loadedNow = IsLoaded();
+  if (loadedNow == FALSE)
+  {
       ReadData(parentModel->oldPathName);
-    }
-    if (value == 0)
-    {
+  }
+  if (value == 0)
+  {
       myfprintf(ParentModel()->Context(), archiveFile, (RESCUEINT64) 0);
-    }
-    else
-    {
+  }
+  else
+  {
       RESCUEINT64 items = grid->NodeCount(cellCentered);
 
       myfprintf(ParentModel()->Context(), archiveFile, items);
       myfprintf(ParentModel()->Context(), archiveFile, value, items);
-    }
-    if (loadedNow == FALSE)
-    {
+  }
+  if (loadedNow == FALSE)
+  {
       DropMemory();
-    }
+  }
   }
 }
 
@@ -137,59 +137,59 @@ void RescueArrayByte::CalculateMinMaxData(FILE *fragmentFile, RESCUEINT64 fileVe
 {
   if (value == 0)
   {
-    bool firstIteration = true;
-    minValue = 0;
-    maxValue = 0;
-    if (HasFragments())
-    {
+  bool firstIteration = true;
+  minValue = 0;
+  maxValue = 0;
+  if (HasFragments())
+  {
       RESCUEINT64 count = 0;
       if (fragmentFile != 0)
       {
-        myfscanf(ParentModel()->Context(), fragmentFile, &count);
+    myfscanf(ParentModel()->Context(), fragmentFile, &count);
       }
       if (count == 0)
       {
-        count = grid->NodeCount(cellCentered);
+    count = grid->NodeCount(cellCentered);
       }
       if (count != 0)
       {
-        RESCUEINT64 axisDecrement = 0;
-        if (CellCentered())
-        {
+    RESCUEINT64 axisDecrement = 0;
+    if (CellCentered())
+    {
           axisDecrement = 1;
-        }
-        RESCUEINT64 fragCount = fragments->Count64();
+    }
+    RESCUEINT64 fragCount = fragments->Count64();
 
-        RescueGridAxis *axis = grid->Axis(0);
-        RESCUEINT64 origILowBound = axis->LowBound64();
-        RESCUEINT64 origICount = axis->Count64() - axisDecrement;
+    RescueGridAxis *axis = grid->Axis(0);
+    RESCUEINT64 origILowBound = axis->LowBound64();
+    RESCUEINT64 origICount = axis->Count64() - axisDecrement;
 
-        axis = grid->Axis(1);
-        RESCUEINT64 origJLowBound = axis->LowBound64();
-        RESCUEINT64 origJCount = axis->Count64() - axisDecrement;
-        RESCUEINT64 origKLowBound = -1;
-        if (grid->Dimensions() >= 3)
-        {
+    axis = grid->Axis(1);
+    RESCUEINT64 origJLowBound = axis->LowBound64();
+    RESCUEINT64 origJCount = axis->Count64() - axisDecrement;
+    RESCUEINT64 origKLowBound = -1;
+    if (grid->Dimensions() >= 3)
+    {
           axis = grid->Axis(2);
           origKLowBound = axis->LowBound64();
-        }
-        RESCUEINT64 iFollower = 0;
-        RESCUEINT64 jFollower = 0;
-        RESCUEINT64 kFollower = 0;
+    }
+    RESCUEINT64 iFollower = 0;
+    RESCUEINT64 jFollower = 0;
+    RESCUEINT64 kFollower = 0;
 
-        RESCUEINT64 loop;
-        for (loop = 0; loop < count; loop++)
-        {
+    RESCUEINT64 loop;
+    for (loop = 0; loop < count; loop++)
+    {
           RESCUEUCHAR data = nullValue;
           if (fragmentFile != 0)
           {
-            myfscanf(ParentModel()->Context(), fragmentFile, &data);
+      myfscanf(ParentModel()->Context(), fragmentFile, &data);
           }
 
           RESCUEINT64 frag;
           for (frag = 0; frag < fragCount; frag++)
           {
-            data = ((RescueArrayFragmentByte *) 
+      data = ((RescueArrayFragmentByte *) 
               fragments->NthObject(frag))->Replace(origILowBound + iFollower, 
                                                    origJLowBound + jFollower, 
                                                    origKLowBound + kFollower, data);
@@ -197,70 +197,70 @@ void RescueArrayByte::CalculateMinMaxData(FILE *fragmentFile, RESCUEINT64 fileVe
 
           if (minValue != nullValue)
           {
-            if (firstIteration)
-            {
+      if (firstIteration)
+      {
               minValue = data;
               maxValue = data;
               firstIteration = false;
-            }
-            else
-            {
+      }
+      else
+      {
               if (data < minValue)
               {
-                minValue = data;
+        minValue = data;
               }
               if (data > maxValue)
               {
-                maxValue = data;
+        maxValue = data;
               }
-            }
+      }
           }
 
           iFollower++;
           if (iFollower >= origICount)
           {
-            iFollower = 0;
-            jFollower++;
-            if (jFollower >= origJCount)
-            {
+      iFollower = 0;
+      jFollower++;
+      if (jFollower >= origJCount)
+      {
               jFollower = 0;
               kFollower++;
-            }
-          }
-        }
       }
+          }
     }
+      }
+  }
   }
   else
   {
-    RESCUEUINT64 items = (RESCUEUINT64) grid->NodeCount(cellCentered);
-    RESCUEUCHAR *ptr = value;
-    bool firstIteration = true;
-    while (items > 0)
-    {
+  RESCUEUINT64 items = (RESCUEUINT64) grid->NodeCount(cellCentered);
+  RESCUEUCHAR *ptr = value;
+  bool firstIteration = true;
+  while (items > 0)
+  {
       if (*ptr != nullValue)
       {
-        if (firstIteration)
-        {
+    if (firstIteration)
+    {
           minValue = *ptr;
           maxValue = *ptr;
           firstIteration = false;
-        }
-        else
-        {
+    }
+    else
+    {
           if (*ptr < minValue)
           {
-            minValue = *ptr;
+      minValue = *ptr;
           }
           if (*ptr > maxValue)
           {
-            maxValue = *ptr;
+      maxValue = *ptr;
           }
-        }
+    }
       }
       ptr++;
       items--;
-    }
+  }
   }
 }
 
@@ -289,57 +289,57 @@ void RescueArrayByte::ArchiveData(FILE *archiveFile, FILE *fragmentFile, RESCUEI
 {
   if (value == 0)
   {
-    if (HasFragments())
-    {
+  if (HasFragments())
+  {
       RESCUEINT64 count = 0;
       if (fragmentFile != 0)
       {
-        myfscanf(ParentModel()->Context(), fragmentFile, &count);
+    myfscanf(ParentModel()->Context(), fragmentFile, &count);
       }
       if (count == 0)
       {
-        count = grid->NodeCount(cellCentered);
+    count = grid->NodeCount(cellCentered);
       }
       myfprintf(ParentModel()->Context(), archiveFile, count);
       if (count != 0)
       {
-        RESCUEINT64 axisDecrement = 0;
-        if (CellCentered())
-        {
+    RESCUEINT64 axisDecrement = 0;
+    if (CellCentered())
+    {
           axisDecrement = 1;
-        }
-        RESCUEINT64 fragCount = fragments->Count64();
+    }
+    RESCUEINT64 fragCount = fragments->Count64();
 
-        RescueGridAxis *axis = grid->Axis(0);
-        RESCUEINT64 origILowBound = axis->LowBound64();
-        RESCUEINT64 origICount = axis->Count64() - axisDecrement;
+    RescueGridAxis *axis = grid->Axis(0);
+    RESCUEINT64 origILowBound = axis->LowBound64();
+    RESCUEINT64 origICount = axis->Count64() - axisDecrement;
 
-        axis = grid->Axis(1);
-        RESCUEINT64 origJLowBound = axis->LowBound64();
-        RESCUEINT64 origJCount = axis->Count64() - axisDecrement;
-        RESCUEINT64 origKLowBound = -1;
-        if (grid->Dimensions() >= 3)
-        {
+    axis = grid->Axis(1);
+    RESCUEINT64 origJLowBound = axis->LowBound64();
+    RESCUEINT64 origJCount = axis->Count64() - axisDecrement;
+    RESCUEINT64 origKLowBound = -1;
+    if (grid->Dimensions() >= 3)
+    {
           axis = grid->Axis(2);
           origKLowBound = axis->LowBound64();
-        }
-        RESCUEINT64 iFollower = 0;
-        RESCUEINT64 jFollower = 0;
-        RESCUEINT64 kFollower = 0;
+    }
+    RESCUEINT64 iFollower = 0;
+    RESCUEINT64 jFollower = 0;
+    RESCUEINT64 kFollower = 0;
 
-        RESCUEINT64 loop;
-        for (loop = 0; loop < count; loop++)
-        {
+    RESCUEINT64 loop;
+    for (loop = 0; loop < count; loop++)
+    {
           RESCUEUCHAR data = nullValue;
           if (fragmentFile != 0)
           {
-            myfscanf(ParentModel()->Context(), fragmentFile, &data);
+      myfscanf(ParentModel()->Context(), fragmentFile, &data);
           }
 
           RESCUEINT64 frag;
           for (frag = 0; frag < fragCount; frag++)
           {
-            data = ((RescueArrayFragmentByte *) 
+      data = ((RescueArrayFragmentByte *) 
               fragments->NthObject(frag))->Replace(origILowBound + iFollower, 
                                                    origJLowBound + jFollower, 
                                                    origKLowBound + kFollower, data);
@@ -348,28 +348,28 @@ void RescueArrayByte::ArchiveData(FILE *archiveFile, FILE *fragmentFile, RESCUEI
           iFollower++;
           if (iFollower >= origICount)
           {
-            iFollower = 0;
-            jFollower++;
-            if (jFollower >= origJCount)
-            {
+      iFollower = 0;
+      jFollower++;
+      if (jFollower >= origJCount)
+      {
               jFollower = 0;
               kFollower++;
-            }
-          }
-        }
       }
+          }
     }
-    else
-    {
-      myfprintf(ParentModel()->Context(), archiveFile, (RESCUEINT64) 0);
-    }
+      }
   }
   else
   {
-    RESCUEINT64 items = grid->NodeCount(cellCentered);
+      myfprintf(ParentModel()->Context(), archiveFile, (RESCUEINT64) 0);
+  }
+  }
+  else
+  {
+  RESCUEINT64 items = grid->NodeCount(cellCentered);
 
-    myfprintf(ParentModel()->Context(), archiveFile, items);
-    myfprintf(ParentModel()->Context(), archiveFile, value, items);
+  myfprintf(ParentModel()->Context(), archiveFile, items);
+  myfprintf(ParentModel()->Context(), archiveFile, value, items);
   }
 }
 
@@ -378,8 +378,8 @@ void RescueArrayByte::UnArchiveData(FILE *archiveFile, RESCUEINT64 fileVersion)
   myfscanf(ParentModel()->Context(), archiveFile, &valueLength);
   if (valueLength != 0)
   {
-    value = new RESCUEUCHAR [(size_t) valueLength];
-    myfscanf(ParentModel()->Context(), archiveFile, value, valueLength);
+  value = new RESCUEUCHAR [(size_t) valueLength];
+  myfscanf(ParentModel()->Context(), archiveFile, value, valueLength);
   }
 }
 
@@ -390,7 +390,7 @@ void RescueArrayByte::SetValue(RESCUEUCHAR nullValueIn, RESCUEUCHAR *valueArray)
 
   if (value != 0)
   {
-    delete [] value;
+  delete [] value;
   }
   nullValue = nullValueIn;
   value = new RESCUEUCHAR [(size_t) valueLength];
@@ -398,7 +398,7 @@ void RescueArrayByte::SetValue(RESCUEUCHAR nullValueIn, RESCUEUCHAR *valueArray)
   RESCUEINT64 loop;
   for (loop = 0; loop < valueLength; loop++)
   {
-    value[loop] = valueArray[loop];
+  value[loop] = valueArray[loop];
   }
 }
 
@@ -407,7 +407,7 @@ void RescueArrayByte::AcceptValue(RESCUEUCHAR nullValueIn, RESCUEUCHAR *valueArr
   DropFragments();
   if (value != 0)
   {
-    delete [] value;
+  delete [] value;
   }
   nullValue = nullValueIn;
   value = valueArray;
@@ -437,14 +437,14 @@ RescueArrayFragment *RescueArrayByte::CreatePrimitive(RESCUEINT64 iLowBound, RES
   RescueArrayFragment *myReturn = 0;
   if (grid->Dimensions() == 3)
   {
-    RescueGridAxis *kAxis = grid->Axis(2);
-    myReturn = new RescueArrayFragmentByte(this, 3, iLowBound, iCount, 
+  RescueGridAxis *kAxis = grid->Axis(2);
+  myReturn = new RescueArrayFragmentByte(this, 3, iLowBound, iCount, 
                                                      jLowBound, jCount,
                                                      kAxis->LowBound64(), kAxis->Count64());
   }
   else
   {
-    myReturn = new RescueArrayFragmentByte(this, 2, iLowBound, iCount,
+  myReturn = new RescueArrayFragmentByte(this, 2, iLowBound, iCount,
                                                      jLowBound, jCount, -1, -1);
   }
   DemandFragments();
@@ -477,8 +477,8 @@ RescueArrayFragment *RescueArrayByte::CreatePrimitive(RESCUEINT64 iLowBound, RES
                                               RESCUEINT64 kLowBound, RESCUEINT64 kCount)
 {
   RescueArrayFragment *myReturn = new RescueArrayFragmentByte(this, 3, iLowBound, iCount, 
-                                                                        jLowBound, jCount,
-                                                                        kLowBound, kCount);
+                                    jLowBound, jCount,
+                                    kLowBound, kCount);
   DemandFragments();
   (*fragments) += myReturn;
   return myReturn;
@@ -525,7 +525,7 @@ void RescueArrayByte::LoadAndSwapArray()
 {
   if (IsLoaded() == FALSE)
   {
-    RescueArray::Load();
+  RescueArray::Load();
   }
   RescueContext::SwapArray(value, valueLength);
   MarkChanged();
@@ -536,7 +536,7 @@ void RescueArrayByte::SwapAxes(bool swapI, RESCUEINT64 iNodes, bool swapJ, RESCU
 {
   if (IsLoaded() == FALSE)
   {
-    RescueArray::Load();
+  RescueArray::Load();
   }
   RescueContext::SwapAxes(value, swapI, iNodes, swapJ, jNodes);
   MarkChanged();
@@ -544,12 +544,12 @@ void RescueArrayByte::SwapAxes(bool swapI, RESCUEINT64 iNodes, bool swapJ, RESCU
 }
   
 void RescueArrayByte::SwapAxes(bool swapI, RESCUEINT64 iNodes, 
-                                bool swapJ, RESCUEINT64 jNodes,
-                                bool swapK, RESCUEINT64 kNodes)
+                bool swapJ, RESCUEINT64 jNodes,
+                bool swapK, RESCUEINT64 kNodes)
 {
   if (IsLoaded() == FALSE)
   {
-    RescueArray::Load();
+  RescueArray::Load();
   }
   RescueContext::SwapAxes(value, swapI, iNodes, swapJ, jNodes, swapK, kNodes);
   MarkChanged();
@@ -560,11 +560,11 @@ RESCUEBOOL RescueArrayByte::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueArrayByte)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueObject::IsOfType(thisType);
+  return RescueObject::IsOfType(thisType);
   }
 }
 

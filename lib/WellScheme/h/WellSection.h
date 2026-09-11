@@ -35,23 +35,23 @@ class CWellPointList;
 
 class CWellSection  : public IWellSection 
 {
-	Q_OBJECT;
+  Q_OBJECT;
 
 public:
-	CWellSection(CWellPathBase& pWellPath , double TopTMD, double BottomTMD);
-	virtual ~CWellSection();
-	
-	void    SetDescription(QString description);
+  CWellSection(CWellPathBase& pWellPath , double TopTMD, double BottomTMD);
+  virtual ~CWellSection();
+  
+  void    SetDescription(QString description);
 
-	//IWellSection interface
-	virtual const CWellPoint& Top() const;
-	virtual const CWellPoint& Bottom() const;
-	virtual QString GetDescription() const;
+  //IWellSection interface
+  virtual const CWellPoint& Top() const;
+  virtual const CWellPoint& Bottom() const;
+  virtual QString GetDescription() const;
 
 protected:
-	CWellPoint m_Top;
-	CWellPoint m_Bottom;
-	QString m_Description;
+  CWellPoint m_Top;
+  CWellPoint m_Bottom;
+  QString m_Description;
 };
 }
 

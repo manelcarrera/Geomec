@@ -22,18 +22,18 @@ namespace cora
 class CXMLResponseParameters
 {
   public:
-    CXMLResponseParameters(CModelData& modelData, TObject object);
+  CXMLResponseParameters(CModelData& modelData, TObject object);
 
-    std::ostream& operator () (std::ostream& stream) const;
+  std::ostream& operator () (std::ostream& stream) const;
 
   private:
-    CXMLResponseParameters(const CXMLResponseParameters& rhs);
-    CXMLResponseParameters& operator = (CXMLResponseParameters rhs);
+  CXMLResponseParameters(const CXMLResponseParameters& rhs);
+  CXMLResponseParameters& operator = (CXMLResponseParameters rhs);
 
-    static TXMLResponseParameters
+  static TXMLResponseParameters
       createResponseParameters(CModelData& modelData, TObject object);
 
-    TXMLResponseParameters m_responseParameters;
+  TXMLResponseParameters m_responseParameters;
 };
 
 } // namespace cora

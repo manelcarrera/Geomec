@@ -19,33 +19,33 @@ namespace
 void applyParameterFile(CRunModelData& runModelData)
 {
   std::vector <TFailureTypeParameter> parameters =
-    runModelData.parameterFile().getParameters();
+  runModelData.parameterFile().getParameters();
 
   for (size_t s = 0; s < parameters.size(); ++s)
   {
-    (*parameters[s]).modify(runModelData.modelData()());
+  (*parameters[s]).modify(runModelData.modelData()());
   }
 }
 
 void validateResultComponents(CRunModelData& runModelData)
 {
   TFailureModes failureModes =
-    runModelData.getModelInfo().getFailureModeInfo().getFailureModes();
+  runModelData.getModelInfo().getFailureModeInfo().getFailureModes();
 
   for (size_t r = 0; r < failureModes.size(); ++r)
   {
-    assert(failureModes[r]->getResultComponent()->RegisterIndex() == 0);
+  assert(failureModes[r]->getResultComponent()->RegisterIndex() == 0);
   }
 }
 
 void retrieveResponseParameterFile(CRunModelData& runModelData)
 {
   std::vector <TLimitStateFunction> functions =
-    runModelData.selectedLSFs().getLimitStateFunctions();
+  runModelData.selectedLSFs().getLimitStateFunctions();
 
   for (size_t s = 0; s < functions.size(); ++s)
   {
-    (*functions[s]).calculate(runModelData.responseParameterFile());
+  (*functions[s]).calculate(runModelData.responseParameterFile());
   }
 }
 
@@ -57,15 +57,15 @@ bool CRunModelSingleRunEngine::run(CRunModelData& runModelData,
   CRetrieveDianaFileNamesConsole& retrieveDianaFileNamesConsole) const
 {
   if ((m_analysisType != CAnalysisType::AT_NONLIN) &&
-    (runModelData.modelData()()->HasBranches() ||
+  (runModelData.modelData()()->HasBranches() ||
       runModelData.modelData()()->HasPhases()))
   {
-    QString additionalInformation =
+  QString additionalInformation =
       QString(getStringTableEntry(IDS_CHECK_FOR_ANALYSIS_WARNING)).
-        arg(CAnalysisType(m_analysisType).Label()).
-        arg(runModelData.modelData()()->InitialDepletionStage().Name());
+    arg(CAnalysisType(m_analysisType).Label()).
+    arg(runModelData.modelData()()->InitialDepletionStage().Name());
 
-    runModelData.summaryResultFile().addAdditionalInformation(
+  runModelData.summaryResultFile().addAdditionalInformation(
       additionalInformation);
   }
 
@@ -74,14 +74,14 @@ bool CRunModelSingleRunEngine::run(CRunModelData& runModelData,
   applyParameterFile(runModelData);
 
   ok = ok && runModelData.modelData()()->WriteFilosModel(
-    runModelData.modelData().fileName(), &dianaExecuter,
-    modelName.toStdString(), m_analysisType, false, false,
-    saveModelConsole, retrieveDianaFileNamesConsole);
+  runModelData.modelData().fileName(), &dianaExecuter,
+  modelName.toStdString(), m_analysisType, false, false,
+  saveModelConsole, retrieveDianaFileNamesConsole);
 
   if (ok)
   {
-    validateResultComponents(runModelData);
-    retrieveResponseParameterFile(runModelData);
+  validateResultComponents(runModelData);
+  retrieveResponseParameterFile(runModelData);
   }
 
   return ok;

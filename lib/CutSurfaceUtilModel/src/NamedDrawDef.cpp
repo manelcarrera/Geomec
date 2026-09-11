@@ -26,5 +26,5 @@ NamedDrawDef::NamedDrawDef(const QString& name)
 
 QString NamedDrawDef::Name() const
 {
-	return m_name;
+  return m_name;
 }

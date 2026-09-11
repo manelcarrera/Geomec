@@ -14,17 +14,17 @@ const char* programName(const char* argv0)
 
   if (p == 0)
   {
-    p = strrchr(argv0, '\\');
+  p = strrchr(argv0, '\\');
   }
 
   if (p != 0)
   {
-    ++p; 
+  ++p; 
   }
 
   if ((p != 0) && (*p != 0))
   {
-    return p;
+  return p;
   }
 
   return argv0;
@@ -42,9 +42,9 @@ int main(int argc, char* argv[])
 {
   if (argc != 2)
   {
-    usage(argv[0]);
+  usage(argv[0]);
 
-    exit(1);
+  exit(1);
   }
 
   RGSync sync(RGSync::Lead, argv[1]);
@@ -53,5 +53,5 @@ int main(int argc, char* argv[])
   sync.release();
   sync.waitFor(0);
 
-	return 0;
+  return 0;
 }

@@ -22,26 +22,26 @@ namespace cora
 class CRunModel
 {
   public:
-    CRunModel(CRunModelData& runModelData, const QString& applicationVersion);
+  CRunModel(CRunModelData& runModelData, const QString& applicationVersion);
 
-    bool operator () ();
+  bool operator () ();
 
   private:
-    CRunModel(const CRunModel& rhs);
-    CRunModel& operator = (CRunModel rhs);
+  CRunModel(const CRunModel& rhs);
+  CRunModel& operator = (CRunModel rhs);
 
-    void validateVersionNumber();
+  void validateVersionNumber();
 
-    typedef std::set <CAnalysisType::TAnalysisType> TAnalysisTypes;
+  typedef std::set <CAnalysisType::TAnalysisType> TAnalysisTypes;
 
-    void processModelData();
+  void processModelData();
 
-    static TAnalysisTypes selectAnalysisTypes(
+  static TAnalysisTypes selectAnalysisTypes(
       CSummaryResultFile& summaryResultFile, const CSelectedLSFs& selectedLSFs);
 
-    CRunModelData& m_runModelData;
-    const QString m_applicationVersion;
-    TAnalysisTypes m_analysisTypes;
+  CRunModelData& m_runModelData;
+  const QString m_applicationVersion;
+  TAnalysisTypes m_analysisTypes;
 };
 
 } // namespace cora

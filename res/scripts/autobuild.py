@@ -85,7 +85,7 @@ class DEF:
 	# logs
 	logfile='build.log'
 	
-	TEST_RGI='./test/geomec_rgi'
+	TEST_RGI='./IntegrationTests/geomec_rgi'
 	exe_files=[
 		'qmake/check.environment.sh',
 		'qmake/create.diana.pri',
@@ -690,7 +690,7 @@ class Build:
 		# make target hard-coded to 'installer-no-test.target' (DEF.make_target)
 		# it does:
 		#	+ make release
-		#	+ cd test/geomec_rgi && python create_installation.py && cd -
+		#	+ cd IntegrationTests/geomec_rgi && python create_installation.py && cd -
 		#
 		# to build in debug mode 'geomec.pro' must be updated
 		#
@@ -1004,11 +1004,11 @@ class Tools:
 
 	@staticmethod
 	def create_installation(wks):
-		'''creates installation into SOURCES/wks/test/geomec_rgi/geomec_rgi_TMP'''
+		'''creates installation into SOURCES/wks/IntegrationTests/geomec_rgi/geomec_rgi_TMP'''
 		'''then zips it into SOURCES/__build_/wks/bin/release/install_files/geomec_rgi.tar.bz2'''
 		try:
 			path_=Tools.path(wks)
-			path__='{}/test/geomec_rgi'.format(path_)
+			path__='{}/IntegrationTests/geomec_rgi'.format(path_)
 			#
 			import imp
 			module = imp.load_source('create_installation', '{}/create_installation.py'.format(path__)) #'module.name'
@@ -1190,7 +1190,7 @@ class Tools:
 		'''tests ids to choose which tests pass to test function as a parameters'''
 		try:
 			path_=Tools.path(wks)
-			path__='{}/test/Tests'.format(path_)
+			path__='{}/IntegrationTests/Tests'.format(path_)
 			#
 			import imp
 			module = imp.load_source('func', '{}/func.py'.format(path__)) #'module.name'
@@ -1206,7 +1206,7 @@ class Tools:
 		'''run tests'''
 		try:
 			path_=Tools.path(wks)
-			dir='{}/test/Tests'.format(path_)
+			dir='{}/IntegrationTests/Tests'.format(path_)
 			current_dir=os.getcwd()
 			#
 			os.chdir(dir)

@@ -16,9 +16,9 @@ bool COpenGLNodeSelection::Less::operator()(const COpenGLNode *lhs, const COpenG
 {
   if (lhs && rhs)
   {
-    if (lhs->Less(*rhs))
+  if (lhs->Less(*rhs))
       return true;
-    if (rhs->Less(*lhs))
+  if (rhs->Less(*lhs))
       return false;
   }
 
@@ -39,7 +39,7 @@ COpenGLNodeSelection::~COpenGLNodeSelection()
 {
   // delete registered observers
   for(TObserverSet::iterator it = m_stObservers.begin(); it != m_stObservers.end(); ++it)
-    delete *it;
+  delete *it;
 }
 
 COpenGLNodeSelection& COpenGLNodeSelection::operator=(const COpenGLNodeSelection& rhs)
@@ -49,10 +49,10 @@ COpenGLNodeSelection& COpenGLNodeSelection::operator=(const COpenGLNodeSelection
 
   // items in my set but not in rhs are removed
   std::set_difference(m_stSelection.begin(), m_stSelection.end(), rhs.m_stSelection.begin(), rhs.m_stSelection.end(),
-    std::inserter(stRemoved, stRemoved.end()));
+  std::inserter(stRemoved, stRemoved.end()));
   // items in rhs but not in my set are added
   std::set_difference(rhs.m_stSelection.begin(), rhs.m_stSelection.end(), m_stSelection.begin(), m_stSelection.end(),
-    std::inserter(stAdded, stAdded.end()));
+  std::inserter(stAdded, stAdded.end()));
 
   m_stSelection = rhs.m_stSelection;
 
@@ -92,7 +92,7 @@ std::pair<COpenGLNodeSelection::iterator, bool> COpenGLNodeSelection::insert(con
 
   if(prInsert.second)
   {
-    for(TObserverSet::iterator it = m_stObservers.begin(); it != m_stObservers.end(); ++it)
+  for(TObserverSet::iterator it = m_stObservers.begin(); it != m_stObservers.end(); ++it)
       (*it)->OnNodeInserted(node);
   }
 
@@ -106,14 +106,14 @@ void COpenGLNodeSelection::erase(iterator pos)
   m_stSelection.erase(pos);
 
   for(TObserverSet::iterator it = m_stObservers.begin(); it != m_stObservers.end(); ++it)
-    (*it)->OnNodeErased(node);
+  (*it)->OnNodeErased(node);
 }
 
 void COpenGLNodeSelection::erase(const COpenGLNode& node)
 {
   iterator pos = find(node);
   if(pos != end())
-    erase(pos);
+  erase(pos);
 }
 
 COpenGLNodeSelection::iterator COpenGLNodeSelection::find(const COpenGLNode& node)
@@ -129,7 +129,7 @@ COpenGLNodeSelection::const_iterator COpenGLNodeSelection::find(const COpenGLNod
 void COpenGLNodeSelection::clear()
 {
   while(!m_stSelection.empty())
-    erase(begin());
+  erase(begin());
 }
 
 bool COpenGLNodeSelection::empty() const
@@ -143,7 +143,7 @@ void COpenGLNodeSelection::RegisterObserver(CObserver& observer)
 
   // initialize observer
   for(const_iterator it = begin(); it != end(); ++it)
-    observer.OnNodeInserted(**it);
+  observer.OnNodeInserted(**it);
 }
 
 void COpenGLNodeSelection::UnregisterObserver(CObserver& observer)
@@ -167,45 +167,45 @@ void COpenGLNodeSelection::LoadStream(CStorageNode::TSTREAM& stream,
   CFemAppModel& model)
 {
   THorizonBaseEntry* horizonBaseEntry =
-    dynamic_cast <THorizonBaseEntry*> (model.GraphEntry(MD_BASE_HORIZON));
+  dynamic_cast <THorizonBaseEntry*> (model.GraphEntry(MD_BASE_HORIZON));
   TFormationBaseEntry* formationBaseEntry =
-    dynamic_cast <TFormationBaseEntry*>(model.GraphEntry(MD_BASE_FORMATION));
+  dynamic_cast <TFormationBaseEntry*>(model.GraphEntry(MD_BASE_FORMATION));
   CHexaFormationEntry* hexaFormationEntry =
-    dynamic_cast <CHexaFormationEntry*> (model.GraphEntry(MD_HEXA_FORMATION));
+  dynamic_cast <CHexaFormationEntry*> (model.GraphEntry(MD_HEXA_FORMATION));
   CNewWellPathEntry* newWellPathEntry =
-    dynamic_cast <CNewWellPathEntry*> (model.GraphEntry(MD_NEW_WELLPATH));
+  dynamic_cast <CNewWellPathEntry*> (model.GraphEntry(MD_NEW_WELLPATH));
   TPointSetEntry* pointSetEntry =
-    dynamic_cast <TPointSetEntry*> (model.GraphEntry(MD_BASE_POINTSET));
+  dynamic_cast <TPointSetEntry*> (model.GraphEntry(MD_BASE_POINTSET));
   unsigned long size = 0;
 
   stream >> size;
 
   for (unsigned long s = 0; s < size; ++s)
   {
-    int index = 0;
+  int index = 0;
 
-    stream >> index;
+  stream >> index;
 
-    if ((horizonBaseEntry != 0) && (horizonBaseEntry->FindIndex(index) != 0))
-    {
+  if ((horizonBaseEntry != 0) && (horizonBaseEntry->FindIndex(index) != 0))
+  {
       m_stSelection.insert(horizonBaseEntry->FindIndex(index));
-    }
-    else if ((formationBaseEntry != 0) &&
+  }
+  else if ((formationBaseEntry != 0) &&
       (formationBaseEntry->FindIndex(index) != 0))
-    {
+  {
       m_stSelection.insert(formationBaseEntry->FindIndex(index));
-    }
-    else if ((newWellPathEntry != 0) &&
+  }
+  else if ((newWellPathEntry != 0) &&
       (newWellPathEntry->FindIndex(index) != 0))
-    {
+  {
       m_stSelection.insert(newWellPathEntry->FindIndex(index));
-    }
-    else if ((pointSetEntry != 0) && (pointSetEntry->FindIndex(index) != 0))
-    {
+  }
+  else if ((pointSetEntry != 0) && (pointSetEntry->FindIndex(index) != 0))
+  {
       m_stSelection.insert(pointSetEntry->FindIndex(index));
-    }
-    else
-    {
+  }
+  else
+  {
       int planeType = 0;
       int parent = 0;
 
@@ -213,18 +213,18 @@ void COpenGLNodeSelection::LoadStream(CStorageNode::TSTREAM& stream,
       stream >> parent;
 
       if ((hexaFormationEntry != 0) &&
-        (hexaFormationEntry->FindIndex(parent) != 0))
+    (hexaFormationEntry->FindIndex(parent) != 0))
       {
-        CHexaFormation* hexaFormation = hexaFormationEntry->FindIndex(parent);
+    CHexaFormation* hexaFormation = hexaFormationEntry->FindIndex(parent);
 
-        m_stSelection.insert(hexaFormation->FormationPlane(
+    m_stSelection.insert(hexaFormation->FormationPlane(
           CFormationPlane::ePlaneType(planeType)).data());
       }
       else
       {
-        assert(false);
+    assert(false);
       }
-    }
+  }
   }
 }
 
@@ -234,19 +234,19 @@ void COpenGLNodeSelection::SaveStream(CStorageNode::TSTREAM& stream,
   stream << (unsigned long) m_stSelection.size();
 
   for (TSelectionSet::const_iterator iterator = m_stSelection.begin();
-    iterator != m_stSelection.end(); ++iterator)
+  iterator != m_stSelection.end(); ++iterator)
   {
-    stream << (*iterator)->Index();
+  stream << (*iterator)->Index();
 
-    if (dynamic_cast <const CFormationPlane*> (*iterator) != 0)
-    {
+  if (dynamic_cast <const CFormationPlane*> (*iterator) != 0)
+  {
       const CFormationPlane* formationPlane =
-        dynamic_cast <const CFormationPlane*> (*iterator);
+    dynamic_cast <const CFormationPlane*> (*iterator);
 
       stream << formationPlane->PlaneType();
       stream <<
-        dynamic_cast <CStorageNode*> (formationPlane->parent())->Index();
-    }
+    dynamic_cast <CStorageNode*> (formationPlane->parent())->Index();
+  }
   }
 }
 

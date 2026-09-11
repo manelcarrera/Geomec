@@ -61,7 +61,7 @@ static void ** malloc2D (guint nx, guint ny, gulong size)
   guint i;
 
   for (i = 0; i < nx; i++)
-    m[i] = g_malloc0 (ny*size);
+  m[i] = g_malloc0 (ny*size);
 
   return m;
 }
@@ -73,7 +73,7 @@ static void free2D (void ** m, guint nx)
   g_return_if_fail (m != NULL);
 
   for (i = 0; i < nx; i++)
-    g_free (m[i]);
+  g_free (m[i]);
   g_free (m);
 }
 
@@ -126,11 +126,11 @@ GtsIsoSlice * gts_iso_slice_new (guint nx, guint ny)
 
   slice->vertices = g_malloc (3*sizeof (OrientedVertex **));
   slice->vertices[0] = 
-    (OrientedVertex **) malloc2D (nx, ny, sizeof (OrientedVertex));
+  (OrientedVertex **) malloc2D (nx, ny, sizeof (OrientedVertex));
   slice->vertices[1] = 
-    (OrientedVertex **) malloc2D (nx - 1, ny, sizeof (OrientedVertex));
+  (OrientedVertex **) malloc2D (nx - 1, ny, sizeof (OrientedVertex));
   slice->vertices[2] = 
-    (OrientedVertex **) malloc2D (nx, ny - 1, sizeof (OrientedVertex));
+  (OrientedVertex **) malloc2D (nx, ny - 1, sizeof (OrientedVertex));
   slice->nx = nx;
   slice->ny = ny;
 
@@ -152,12 +152,12 @@ GtsIsoSlice * gts_iso_slice_new (guint nx, guint ny)
  * f1 (x,y,z) = @iso and f2 (x, y, z) = @iso.
  */
 void gts_iso_slice_fill (GtsIsoSlice * slice,
-			 GtsGridPlane * plane1,
-			 GtsGridPlane * plane2,
-			 gdouble ** f1,
-			 gdouble ** f2,
-			 gdouble iso,
-			 GtsVertexClass * klass)
+       GtsGridPlane * plane1,
+       GtsGridPlane * plane2,
+       gdouble ** f1,
+       gdouble ** f2,
+       gdouble iso,
+       GtsVertexClass * klass)
 {
   OrientedVertex *** vertices;
   GtsPoint ** p1, ** p2 = NULL;
@@ -170,60 +170,60 @@ void gts_iso_slice_fill (GtsIsoSlice * slice,
 
   p1 = plane1->p;
   if (plane2) 
-    p2 = plane2->p;
+  p2 = plane2->p;
   vertices = slice->vertices;
   nx = slice->nx;
   ny = slice->ny;
 
   if (f2)
-    for (i = 0; i < nx; i++)
+  for (i = 0; i < nx; i++)
       for (j = 0; j < ny; j++) {
-	gdouble v1 = f1[i][j] - iso;
-	gdouble v2 = f2[i][j] - iso;
-	if ((v1 >= 0. && v2 < 0.) || (v1 < 0. && v2 >= 0.)) {
-	  gdouble c2 = v1/(v1 - v2), c1 = 1. - c2;
-	  vertices[0][i][j].v = 
-	    gts_vertex_new (klass,
-			    c1*p1[i][j].x + c2*p2[i][j].x,
-			    c1*p1[i][j].y + c2*p2[i][j].y,
-			    c1*p1[i][j].z + c2*p2[i][j].z);
-	  vertices[0][i][j].orientation = v2 >= 0. ? RIGHT : LEFT;
-	}
-	else
-	  vertices[0][i][j].v = NULL;
+  gdouble v1 = f1[i][j] - iso;
+  gdouble v2 = f2[i][j] - iso;
+  if ((v1 >= 0. && v2 < 0.) || (v1 < 0. && v2 >= 0.)) {
+    gdouble c2 = v1/(v1 - v2), c1 = 1. - c2;
+    vertices[0][i][j].v = 
+    gts_vertex_new (klass,
+        c1*p1[i][j].x + c2*p2[i][j].x,
+        c1*p1[i][j].y + c2*p2[i][j].y,
+        c1*p1[i][j].z + c2*p2[i][j].z);
+    vertices[0][i][j].orientation = v2 >= 0. ? RIGHT : LEFT;
+  }
+  else
+    vertices[0][i][j].v = NULL;
       }
   for (i = 0; i < nx - 1; i++)
-    for (j = 0; j < ny; j++) {
+  for (j = 0; j < ny; j++) {
       gdouble v1 = f1[i][j] - iso;
       gdouble v2 = f1[i+1][j] - iso;
       if ((v1 >= 0. && v2 < 0.) || (v1 < 0. && v2 >= 0.)) {
-	gdouble c2 = v1/(v1 - v2), c1 = 1. - c2;
-	vertices[1][i][j].v = 
-	  gts_vertex_new (klass,
-			  c1*p1[i][j].x + c2*p1[i+1][j].x,
-			  c1*p1[i][j].y + c2*p1[i+1][j].y,
-			  c1*p1[i][j].z + c2*p1[i+1][j].z);
-	vertices[1][i][j].orientation = v2 >= 0. ? RIGHT : LEFT;
+  gdouble c2 = v1/(v1 - v2), c1 = 1. - c2;
+  vertices[1][i][j].v = 
+    gts_vertex_new (klass,
+        c1*p1[i][j].x + c2*p1[i+1][j].x,
+        c1*p1[i][j].y + c2*p1[i+1][j].y,
+        c1*p1[i][j].z + c2*p1[i+1][j].z);
+  vertices[1][i][j].orientation = v2 >= 0. ? RIGHT : LEFT;
       }
       else
-	vertices[1][i][j].v = NULL;
-    }
+  vertices[1][i][j].v = NULL;
+  }
   for (i = 0; i < nx; i++)
-    for (j = 0; j < ny - 1; j++) {
+  for (j = 0; j < ny - 1; j++) {
       gdouble v1 = f1[i][j] - iso;
       gdouble v2 = f1[i][j+1] - iso;
       if ((v1 >= 0. && v2 < 0.) || (v1 < 0. && v2 >= 0.)) {
-	gdouble c2 = v1/(v1 - v2), c1 = 1. - c2;
-	vertices[2][i][j].v = 
-	  gts_vertex_new (klass,
-			  c1*p1[i][j].x + c2*p1[i][j+1].x,
-			  c1*p1[i][j].y + c2*p1[i][j+1].y,
-			  c1*p1[i][j].z + c2*p1[i][j+1].z);
-	vertices[2][i][j].orientation = v2 >= 0. ? RIGHT : LEFT;
+  gdouble c2 = v1/(v1 - v2), c1 = 1. - c2;
+  vertices[2][i][j].v = 
+    gts_vertex_new (klass,
+        c1*p1[i][j].x + c2*p1[i][j+1].x,
+        c1*p1[i][j].y + c2*p1[i][j+1].y,
+        c1*p1[i][j].z + c2*p1[i][j+1].z);
+  vertices[2][i][j].orientation = v2 >= 0. ? RIGHT : LEFT;
       }
       else
-	vertices[2][i][j].v = NULL;
-    }
+  vertices[2][i][j].v = NULL;
+  }
 }
  
 /**
@@ -239,11 +239,11 @@ void gts_iso_slice_fill (GtsIsoSlice * slice,
  * f1 (x,y,z) = @iso and f2 (x, y, z) = @iso.
  */
 void gts_iso_slice_fill_cartesian (GtsIsoSlice * slice,
-				   GtsCartesianGrid g,
-				   gdouble ** f1,
-				   gdouble ** f2,
-				   gdouble iso,
-				   GtsVertexClass * klass)
+           GtsCartesianGrid g,
+           gdouble ** f1,
+           gdouble ** f2,
+           gdouble iso,
+           GtsVertexClass * klass)
 {
   OrientedVertex *** vertices;
   guint i, j;
@@ -255,43 +255,43 @@ void gts_iso_slice_fill_cartesian (GtsIsoSlice * slice,
   vertices = slice->vertices;
 
   if (f2)
-    for (i = 0, x = g.x; i < g.nx; i++, x += g.dx)
+  for (i = 0, x = g.x; i < g.nx; i++, x += g.dx)
       for (j = 0, y = g.y; j < g.ny; j++, y += g.dy) {
-	gdouble v1 = f1[i][j] - iso;
-	gdouble v2 = f2[i][j] - iso;
-	if ((v1 >= 0. && v2 < 0.) || (v1 < 0. && v2 >= 0.)) {
-	  vertices[0][i][j].v = 
-	    gts_vertex_new (klass,
-			    x, y, g.z + g.dz*v1/(v1 - v2));
-	  vertices[0][i][j].orientation = v2 >= 0. ? RIGHT : LEFT;
-	}
-	else
-	  vertices[0][i][j].v = NULL;
+  gdouble v1 = f1[i][j] - iso;
+  gdouble v2 = f2[i][j] - iso;
+  if ((v1 >= 0. && v2 < 0.) || (v1 < 0. && v2 >= 0.)) {
+    vertices[0][i][j].v = 
+    gts_vertex_new (klass,
+        x, y, g.z + g.dz*v1/(v1 - v2));
+    vertices[0][i][j].orientation = v2 >= 0. ? RIGHT : LEFT;
+  }
+  else
+    vertices[0][i][j].v = NULL;
       }
   for (i = 0, x = g.x; i < g.nx - 1; i++, x += g.dx)
-    for (j = 0, y = g.y; j < g.ny; j++, y += g.dy) {
+  for (j = 0, y = g.y; j < g.ny; j++, y += g.dy) {
       gdouble v1 = f1[i][j] - iso;
       gdouble v2 = f1[i+1][j] - iso;
       if ((v1 >= 0. && v2 < 0.) || (v1 < 0. && v2 >= 0.)) {
-	vertices[1][i][j].v = 
-	  gts_vertex_new (klass, x + g.dx*v1/(v1 - v2), y, g.z);
-	vertices[1][i][j].orientation = v2 >= 0. ? RIGHT : LEFT;
+  vertices[1][i][j].v = 
+    gts_vertex_new (klass, x + g.dx*v1/(v1 - v2), y, g.z);
+  vertices[1][i][j].orientation = v2 >= 0. ? RIGHT : LEFT;
       }
       else
-	vertices[1][i][j].v = NULL;
-    }
+  vertices[1][i][j].v = NULL;
+  }
   for (i = 0, x = g.x; i < g.nx; i++, x += g.dx)
-    for (j = 0, y = g.y; j < g.ny - 1; j++, y += g.dy) {
+  for (j = 0, y = g.y; j < g.ny - 1; j++, y += g.dy) {
       gdouble v1 = f1[i][j] - iso;
       gdouble v2 = f1[i][j+1] - iso;
       if ((v1 >= 0. && v2 < 0.) || (v1 < 0. && v2 >= 0.)) {
-	vertices[2][i][j].v = 
-	  gts_vertex_new (klass, x, y + g.dy*v1/(v1 - v2), g.z);
-	vertices[2][i][j].orientation = v2 >= 0. ? RIGHT : LEFT;
+  vertices[2][i][j].v = 
+    gts_vertex_new (klass, x, y + g.dy*v1/(v1 - v2), g.z);
+  vertices[2][i][j].orientation = v2 >= 0. ? RIGHT : LEFT;
       }
       else
-	vertices[2][i][j].v = NULL;
-    }
+  vertices[2][i][j].v = NULL;
+  }
 }
 
 /**
@@ -321,8 +321,8 @@ void gts_iso_slice_destroy (GtsIsoSlice * slice)
  * segments and triangles which are added to @surface.
  */
 void gts_isosurface_slice (GtsIsoSlice * slice1,
-			   GtsIsoSlice * slice2,
-			   GtsSurface * surface)
+         GtsIsoSlice * slice2,
+         GtsSurface * surface)
 {
   guint j, k, l, nx, ny;
   OrientedVertex *** vertices[2];
@@ -340,50 +340,50 @@ void gts_isosurface_slice (GtsIsoSlice * slice1,
 
   /* link vertices with segments and triangles */
   for (j = 0; j < nx - 1; j++)
-    for (k = 0; k < ny - 1; k++) {
+  for (k = 0; k < ny - 1; k++) {
       gboolean cube_is_cut = FALSE;
       for (l = 0; l < 12; l++) {
-	guint nv = 0, e = l;
-	OrientedVertex ov = 
-	  vertices[c[e][1]][c[e][0]][j + c[e][2]][k + c[e][3]];
-	while (ov.v && !GTS_OBJECT (ov.v)->reserved) {
-	  guint m = 0, * ne = edge[e][ov.orientation];
-	  va[nv++] = ov.v;
-	  GTS_OBJECT (ov.v)->reserved = surface;
-	  ov.v = NULL;
-	  while (m < 3 && !ov.v) {
-	    e = ne[m++];
-	    ov = vertices[c[e][1]][c[e][0]][j + c[e][2]][k + c[e][3]];
-	  }
-	}
-	/* create edges and faces */
-	if (nv > 2) {
-	  GtsEdge * e1, * e2, * e3;
-	  guint m;
-	  if (!(e1 = GTS_EDGE (gts_vertices_are_connected (va[0], va[1]))))
-	    e1 = gts_edge_new (surface->edge_class, va[0], va[1]);
-	  for (m = 1; m < nv - 1; m++) {
-	    if (!(e2 = GTS_EDGE (gts_vertices_are_connected (va[m], va[m+1]))))
-	      e2 = gts_edge_new (surface->edge_class, va[m], va[m+1]);
-	    if (!(e3 = GTS_EDGE (gts_vertices_are_connected (va[m+1], va[0]))))
-	      e3 = gts_edge_new (surface->edge_class, va[m+1], va[0]);
-	    gts_surface_add_face (surface, 
-				  gts_face_new (surface->face_class,
-						e1, e2, e3));
-	    e1 = e3;
-	  }
-	}
-	if (nv > 0)
-	  cube_is_cut = TRUE;
+  guint nv = 0, e = l;
+  OrientedVertex ov = 
+    vertices[c[e][1]][c[e][0]][j + c[e][2]][k + c[e][3]];
+  while (ov.v && !GTS_OBJECT (ov.v)->reserved) {
+    guint m = 0, * ne = edge[e][ov.orientation];
+    va[nv++] = ov.v;
+    GTS_OBJECT (ov.v)->reserved = surface;
+    ov.v = NULL;
+    while (m < 3 && !ov.v) {
+    e = ne[m++];
+    ov = vertices[c[e][1]][c[e][0]][j + c[e][2]][k + c[e][3]];
+    }
+  }
+  /* create edges and faces */
+  if (nv > 2) {
+    GtsEdge * e1, * e2, * e3;
+    guint m;
+    if (!(e1 = GTS_EDGE (gts_vertices_are_connected (va[0], va[1]))))
+    e1 = gts_edge_new (surface->edge_class, va[0], va[1]);
+    for (m = 1; m < nv - 1; m++) {
+    if (!(e2 = GTS_EDGE (gts_vertices_are_connected (va[m], va[m+1]))))
+        e2 = gts_edge_new (surface->edge_class, va[m], va[m+1]);
+    if (!(e3 = GTS_EDGE (gts_vertices_are_connected (va[m+1], va[0]))))
+        e3 = gts_edge_new (surface->edge_class, va[m+1], va[0]);
+    gts_surface_add_face (surface, 
+          gts_face_new (surface->face_class,
+            e1, e2, e3));
+    e1 = e3;
+    }
+  }
+  if (nv > 0)
+    cube_is_cut = TRUE;
       }
       if (cube_is_cut)
-	for (l = 0; l < 12; l++) {
-	  GtsVertex * v = 
-	    vertices[c[l][1]][c[l][0]][j + c[l][2]][k + c[l][3]].v;
-	  if (v)
-	    GTS_OBJECT (v)->reserved = NULL;
-	}
-    }
+  for (l = 0; l < 12; l++) {
+    GtsVertex * v = 
+    vertices[c[l][1]][c[l][0]][j + c[l][2]][k + c[l][3]].v;
+    if (v)
+    GTS_OBJECT (v)->reserved = NULL;
+  }
+  }
 }
 
 #define SWAP(s1, s2, tmp) (tmp = s1, s1 = s2, s2 = tmp)
@@ -405,10 +405,10 @@ void gts_isosurface_slice (GtsIsoSlice * slice1,
  * the values of the function for which the isosurface is to be computed.
  */
 void gts_isosurface_cartesian (GtsSurface * surface,
-			       GtsCartesianGrid g,
-			       GtsIsoCartesianFunc f,
-			       gpointer data,
-			       gdouble iso)
+             GtsCartesianGrid g,
+             GtsIsoCartesianFunc f,
+             gpointer data,
+             gdouble iso)
 {
   void * tmp;
   gdouble ** f1, ** f2;
@@ -431,21 +431,21 @@ void gts_isosurface_cartesian (GtsSurface * surface,
   (*f) (f2, g, 1, data);
   g.z -= g.dz;
   gts_iso_slice_fill_cartesian (slice1, g, f1, f2, iso, 
-				surface->vertex_class);
+        surface->vertex_class);
   g.z += g.dz;
   for (i = 2; i < g.nz; i++) {
-    g.z += g.dz;
-    (*f) (f1, g, i, data);
-    SWAP (f1, f2, tmp);
-    g.z -= g.dz;
-    gts_iso_slice_fill_cartesian (slice2, g, f1, f2, iso, 
-				  surface->vertex_class);
-    g.z += g.dz;
-    gts_isosurface_slice (slice1, slice2, surface);
-    SWAP (slice1, slice2, tmp);
+  g.z += g.dz;
+  (*f) (f1, g, i, data);
+  SWAP (f1, f2, tmp);
+  g.z -= g.dz;
+  gts_iso_slice_fill_cartesian (slice2, g, f1, f2, iso, 
+          surface->vertex_class);
+  g.z += g.dz;
+  gts_isosurface_slice (slice1, slice2, surface);
+  SWAP (slice1, slice2, tmp);
   }
   gts_iso_slice_fill_cartesian (slice2, g, f2, NULL, iso,
-				surface->vertex_class);
+        surface->vertex_class);
   gts_isosurface_slice (slice1, slice2, surface);
 
   gts_iso_slice_destroy (slice1);

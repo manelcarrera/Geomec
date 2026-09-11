@@ -29,25 +29,25 @@ namespace cora
 class CObjectBase
 {
   public:
-    CObjectBase();
-    virtual ~CObjectBase() = 0;
+  CObjectBase();
+  virtual ~CObjectBase() = 0;
 
-    virtual const QString& name() const = 0;
-    virtual const TParameters& getParameters() const = 0;
-    virtual const QString& prefix() const = 0;
-    virtual const COpenGLNode* object() const = 0;
-    virtual const QString& typeName() const = 0;
+  virtual const QString& name() const = 0;
+  virtual const TParameters& getParameters() const = 0;
+  virtual const QString& prefix() const = 0;
+  virtual const COpenGLNode* object() const = 0;
+  virtual const QString& typeName() const = 0;
 
-    virtual const geo::IElement* getFirstElement() = 0;
-    virtual const geo::IElement* getNextElement() = 0;
+  virtual const geo::IElement* getFirstElement() = 0;
+  virtual const geo::IElement* getNextElement() = 0;
 
-    virtual std::ostream& operator () (std::ostream& os) const = 0;
+  virtual std::ostream& operator () (std::ostream& os) const = 0;
 
-    virtual CElementSet* getElementSet() const;
+  virtual CElementSet* getElementSet() const;
 
   private:
-    CObjectBase(const CObjectBase& rhs);
-    CObjectBase& operator = (const CObjectBase& rhs);
+  CObjectBase(const CObjectBase& rhs);
+  CObjectBase& operator = (const CObjectBase& rhs);
 };
 
 typedef QSharedPointer <CObjectBase> TObjectBase;

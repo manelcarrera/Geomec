@@ -31,7 +31,7 @@ bool CColorScaleEntry_Delegate::Attributes()
   COpenInventorSceneNode *node = pScene->OpenInventorScene();
 
   if (node)
-    node->UpdateLegend();
+  node->UpdateLegend();
 
   return retval;
 }
@@ -51,21 +51,21 @@ void CColorScaleEntry_Delegate::OnNewColorGradient()
   // Create a new global gradient
 
   CColorGradient* pGradient = new CColorGradient(IDS_NEW_COLOR_GRADIENT,
-    m_colorScaleEntry->Model(),
-    pScene->MinValue(), pScene->MaxValue(),
-    m_colorScaleEntry->LocalColorGradient()->MinColor(),
-    m_colorScaleEntry->LocalColorGradient()->MaxColor());
+  m_colorScaleEntry->Model(),
+  pScene->MinValue(), pScene->MaxValue(),
+  m_colorScaleEntry->LocalColorGradient()->MinColor(),
+  m_colorScaleEntry->LocalColorGradient()->MaxColor());
   CAttriColorGradientDlg dlg(*pGradient);
 
   if (dlg.DoModal() == IDCANCEL)
   {
-    delete pGradient;
+  delete pGradient;
   }
   else
   {
-    // Make the dialog the current selection
+  // Make the dialog the current selection
 
-    m_colorScaleEntry->SelectGlobalColorGradient(*pGradient);
+  m_colorScaleEntry->SelectGlobalColorGradient(*pGradient);
   }
 }
 
@@ -74,18 +74,18 @@ void CColorScaleEntry_Delegate::OnNewHotSpot()
   // Create a new global gradient
 
   CHotSpot* pHotSpot = new CHotSpot(IDS_NEW_HOTSPOT, m_colorScaleEntry->Model(),
-    m_colorScaleEntry->LocalColorGradient()->MinColor(),
-    m_colorScaleEntry->LocalColorGradient()->MaxColor()); 
+  m_colorScaleEntry->LocalColorGradient()->MinColor(),
+  m_colorScaleEntry->LocalColorGradient()->MaxColor()); 
   CAttriHotSpotDlg dlg(*pHotSpot);
 
   if (dlg.DoModal() == IDCANCEL)
   {
-    delete pHotSpot;
+  delete pHotSpot;
   }
   else
   {
-    // Make the dialog the current selection
+  // Make the dialog the current selection
 
-    m_colorScaleEntry->SelectHotSpot(*pHotSpot);
+  m_colorScaleEntry->SelectHotSpot(*pHotSpot);
   }
 }

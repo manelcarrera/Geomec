@@ -10,7 +10,7 @@ call tfs_instrument.bat tests.exe
 
 vsperfcmd /start:coverage /output:tests.coverage
 
-call tfs_test.bat ..\src\Tests\Models\ tests
+call tfs_test.bat ..\src\TestData\ tests
 
 vsperfcmd /shutdown
 

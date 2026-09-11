@@ -11,7 +11,7 @@ CFaultParametersHub::CFaultParametersHub(CHorizonBase& horizonBase)
 void CFaultParametersHub::attributes()
 {
   CEditFaultSettings
-    editFaultSettings(&(m_horizonBase.Model()), &m_horizonBase);
+  editFaultSettings(&(m_horizonBase.Model()), &m_horizonBase);
 
   editFaultSettings.DoModal();
 }
@@ -19,5 +19,5 @@ void CFaultParametersHub::attributes()
 bool CFaultParametersHub::hasAttributes() const
 {
   return ((&(m_horizonBase.Model()) != 0) &&
-    CEditFaultSettings::hasFaultFractures(&(m_horizonBase.Model())));
+  CEditFaultSettings::hasFaultFractures(&(m_horizonBase.Model())));
 }

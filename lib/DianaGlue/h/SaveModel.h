@@ -5,12 +5,12 @@
 class CSaveModel : public ISaveModel
 {
 public:
-	CSaveModel(){};
-	virtual ~CSaveModel(){}; // =0
+  CSaveModel(){};
+  virtual ~CSaveModel(){}; // =0
 
-	virtual bool saveModel(const QString& fileName, bool bSwitch) { return true; }; // =0
+  virtual bool saveModel(const QString& fileName, bool bSwitch) { return true; }; // =0
 
 private:
-	CSaveModel(const CSaveModel& rhs) {};
-	CSaveModel& operator = (const CSaveModel& rhs) {};
+  CSaveModel(const CSaveModel& rhs) {};
+  CSaveModel& operator = (const CSaveModel& rhs) {};
 };

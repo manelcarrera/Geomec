@@ -71,7 +71,7 @@ typedef gint            (*GCompareFunc)         (gconstpointer  a,
                                                  gconstpointer  b);
 typedef gint            (*GCompareFuncData)     (gconstpointer  a,
                                                  gconstpointer  b,
-						 gpointer       user_data);
+             gpointer       user_data);
 typedef gboolean        (*GEqualFunc)           (gconstpointer  a,
                                                  gconstpointer  b);
 typedef void            (*GDestroyNotify)       (gpointer       data);
@@ -107,13 +107,13 @@ typedef void            (*GFreeFunc)            (gpointer       data);
 /* Basic bit swapping functions
  */
 #define GUINT16_SWAP_LE_BE_CONSTANT(val)	((guint16) ( \
-    (((guint16) (val) & (guint16) 0x00ffU) << 8) | \
-    (((guint16) (val) & (guint16) 0xff00U) >> 8)))
+  (((guint16) (val) & (guint16) 0x00ffU) << 8) | \
+  (((guint16) (val) & (guint16) 0xff00U) >> 8)))
 #define GUINT32_SWAP_LE_BE_CONSTANT(val)	((guint32) ( \
-    (((guint32) (val) & (guint32) 0x000000ffU) << 24) | \
-    (((guint32) (val) & (guint32) 0x0000ff00U) <<  8) | \
-    (((guint32) (val) & (guint32) 0x00ff0000U) >>  8) | \
-    (((guint32) (val) & (guint32) 0xff000000U) >> 24)))
+  (((guint32) (val) & (guint32) 0x000000ffU) << 24) | \
+  (((guint32) (val) & (guint32) 0x0000ff00U) <<  8) | \
+  (((guint32) (val) & (guint32) 0x00ff0000U) >>  8) | \
+  (((guint32) (val) & (guint32) 0xff000000U) >> 24)))
 
 /* Intel specific stuff for speed
  */
@@ -121,39 +121,39 @@ typedef void            (*GFreeFunc)            (gpointer       data);
 #  define GUINT16_SWAP_LE_BE_X86(val) \
      (__extension__					\
       ({ register guint16 __v;				\
-	 if (__builtin_constant_p (val))		\
-	   __v = GUINT16_SWAP_LE_BE_CONSTANT (val);	\
-	 else						\
-	   __asm__ __const__ ("rorw $8, %w0"		\
-			      : "=r" (__v)		\
-			      : "0" ((guint16) (val)));	\
-	__v; }))
+   if (__builtin_constant_p (val))		\
+     __v = GUINT16_SWAP_LE_BE_CONSTANT (val);	\
+   else						\
+     __asm__ __const__ ("rorw $8, %w0"		\
+            : "=r" (__v)		\
+            : "0" ((guint16) (val)));	\
+  __v; }))
 #  define GUINT16_SWAP_LE_BE(val) (GUINT16_SWAP_LE_BE_X86 (val))
 #  if !defined(__i486__) && !defined(__i586__) \
       && !defined(__pentium__) && !defined(__i686__) && !defined(__pentiumpro__)
 #     define GUINT32_SWAP_LE_BE_X86(val) \
-        (__extension__						\
+    (__extension__						\
          ({ register guint32 __v;				\
-	    if (__builtin_constant_p (val))			\
-	      __v = GUINT32_SWAP_LE_BE_CONSTANT (val);		\
-	  else							\
-	    __asm__ __const__ ("rorw $8, %w0\n\t"		\
-			       "rorl $16, %0\n\t"		\
-			       "rorw $8, %w0"			\
-			       : "=r" (__v)			\
-			       : "0" ((guint32) (val)));	\
-	__v; }))
+    if (__builtin_constant_p (val))			\
+        __v = GUINT32_SWAP_LE_BE_CONSTANT (val);		\
+    else							\
+    __asm__ __const__ ("rorw $8, %w0\n\t"		\
+             "rorl $16, %0\n\t"		\
+             "rorw $8, %w0"			\
+             : "=r" (__v)			\
+             : "0" ((guint32) (val)));	\
+  __v; }))
 #  else /* 486 and higher has bswap */
 #     define GUINT32_SWAP_LE_BE_X86(val) \
-        (__extension__						\
+    (__extension__						\
          ({ register guint32 __v;				\
-	    if (__builtin_constant_p (val))			\
-	      __v = GUINT32_SWAP_LE_BE_CONSTANT (val);		\
-	  else							\
-	    __asm__ __const__ ("bswap %0"			\
-			       : "=r" (__v)			\
-			       : "0" ((guint32) (val)));	\
-	__v; }))
+    if (__builtin_constant_p (val))			\
+        __v = GUINT32_SWAP_LE_BE_CONSTANT (val);		\
+    else							\
+    __asm__ __const__ ("bswap %0"			\
+             : "=r" (__v)			\
+             : "0" ((guint32) (val)));	\
+  __v; }))
 #  endif /* processor specific 32-bit stuff */
 #  define GUINT32_SWAP_LE_BE(val) (GUINT32_SWAP_LE_BE_X86 (val))
 #else /* !__i386__ */
@@ -164,37 +164,37 @@ typedef void            (*GFreeFunc)            (gpointer       data);
 #ifdef G_HAVE_GINT64
 #  define GUINT64_SWAP_LE_BE_CONSTANT(val)	((guint64) ( \
       (((guint64) (val) &						\
-	(guint64) G_GINT64_CONSTANT(0x00000000000000ffU)) << 56) |	\
+  (guint64) G_GINT64_CONSTANT(0x00000000000000ffU)) << 56) |	\
       (((guint64) (val) &						\
-	(guint64) G_GINT64_CONSTANT(0x000000000000ff00U)) << 40) |	\
+  (guint64) G_GINT64_CONSTANT(0x000000000000ff00U)) << 40) |	\
       (((guint64) (val) &						\
-	(guint64) G_GINT64_CONSTANT(0x0000000000ff0000U)) << 24) |	\
+  (guint64) G_GINT64_CONSTANT(0x0000000000ff0000U)) << 24) |	\
       (((guint64) (val) &						\
-	(guint64) G_GINT64_CONSTANT(0x00000000ff000000U)) <<  8) |	\
+  (guint64) G_GINT64_CONSTANT(0x00000000ff000000U)) <<  8) |	\
       (((guint64) (val) &						\
-	(guint64) G_GINT64_CONSTANT(0x000000ff00000000U)) >>  8) |	\
+  (guint64) G_GINT64_CONSTANT(0x000000ff00000000U)) >>  8) |	\
       (((guint64) (val) &						\
-	(guint64) G_GINT64_CONSTANT(0x0000ff0000000000U)) >> 24) |	\
+  (guint64) G_GINT64_CONSTANT(0x0000ff0000000000U)) >> 24) |	\
       (((guint64) (val) &						\
-	(guint64) G_GINT64_CONSTANT(0x00ff000000000000U)) >> 40) |	\
+  (guint64) G_GINT64_CONSTANT(0x00ff000000000000U)) >> 40) |	\
       (((guint64) (val) &						\
-	(guint64) G_GINT64_CONSTANT(0xff00000000000000U)) >> 56)))
+  (guint64) G_GINT64_CONSTANT(0xff00000000000000U)) >> 56)))
 #  if defined (__i386__) && defined (__GNUC__) && __GNUC__ >= 2
 #    define GUINT64_SWAP_LE_BE_X86(val) \
-	(__extension__						\
-	 ({ union { guint64 __ll;				\
-		    guint32 __l[2]; } __r;			\
-	    if (__builtin_constant_p (val))			\
-	      __r.__ll = GUINT64_SWAP_LE_BE_CONSTANT (val);	\
-	    else						\
-	      {							\
-	 	union { guint64 __ll;				\
-			guint32 __l[2]; } __w;			\
-		__w.__ll = ((guint64) val);			\
-		__r.__l[0] = GUINT32_SWAP_LE_BE (__w.__l[1]);	\
-		__r.__l[1] = GUINT32_SWAP_LE_BE (__w.__l[0]);	\
-	      }							\
-	  __r.__ll; }))
+  (__extension__						\
+   ({ union { guint64 __ll;				\
+      guint32 __l[2]; } __r;			\
+    if (__builtin_constant_p (val))			\
+        __r.__ll = GUINT64_SWAP_LE_BE_CONSTANT (val);	\
+    else						\
+        {							\
+   	union { guint64 __ll;				\
+      guint32 __l[2]; } __w;			\
+    __w.__ll = ((guint64) val);			\
+    __r.__l[0] = GUINT32_SWAP_LE_BE (__w.__l[1]);	\
+    __r.__l[1] = GUINT32_SWAP_LE_BE (__w.__l[0]);	\
+        }							\
+    __r.__ll; }))
 #    define GUINT64_SWAP_LE_BE(val) (GUINT64_SWAP_LE_BE_X86 (val))
 #  else /* !__i386__ */
 #    define GUINT64_SWAP_LE_BE(val) (GUINT64_SWAP_LE_BE_CONSTANT(val))
@@ -204,11 +204,11 @@ typedef void            (*GFreeFunc)            (gpointer       data);
 #define GUINT16_SWAP_LE_PDP(val)	((guint16) (val))
 #define GUINT16_SWAP_BE_PDP(val)	(GUINT16_SWAP_LE_BE (val))
 #define GUINT32_SWAP_LE_PDP(val)	((guint32) ( \
-    (((guint32) (val) & (guint32) 0x0000ffffU) << 16) | \
-    (((guint32) (val) & (guint32) 0xffff0000U) >> 16)))
+  (((guint32) (val) & (guint32) 0x0000ffffU) << 16) | \
+  (((guint32) (val) & (guint32) 0xffff0000U) >> 16)))
 #define GUINT32_SWAP_BE_PDP(val)	((guint32) ( \
-    (((guint32) (val) & (guint32) 0x00ff00ffU) << 8) | \
-    (((guint32) (val) & (guint32) 0xff00ff00U) >> 8)))
+  (((guint32) (val) & (guint32) 0x00ff00ffU) << 8) | \
+  (((guint32) (val) & (guint32) 0xff00ff00U) >> 8)))
 
 /* The G*_TO_?E() macros are defined in glibconfig.h.
  * The transformation is symmetric, so the FROM just maps to the TO.
@@ -275,19 +275,19 @@ union _GFloatIEEE754
 {
   gfloat v_float;
   struct {
-    guint mantissa : 23;
-    guint biased_exponent : 8;
-    guint sign : 1;
+  guint mantissa : 23;
+  guint biased_exponent : 8;
+  guint sign : 1;
   } mpn;
 };
 union _GDoubleIEEE754
 {
   gdouble v_double;
   struct {
-    guint mantissa_low : 32;
-    guint mantissa_high : 20;
-    guint biased_exponent : 11;
-    guint sign : 1;
+  guint mantissa_low : 32;
+  guint mantissa_high : 20;
+  guint biased_exponent : 11;
+  guint sign : 1;
   } mpn;
 };
 #elif G_BYTE_ORDER == G_BIG_ENDIAN
@@ -295,19 +295,19 @@ union _GFloatIEEE754
 {
   gfloat v_float;
   struct {
-    guint sign : 1;
-    guint biased_exponent : 8;
-    guint mantissa : 23;
+  guint sign : 1;
+  guint biased_exponent : 8;
+  guint mantissa : 23;
   } mpn;
 };
 union _GDoubleIEEE754
 {
   gdouble v_double;
   struct {
-    guint sign : 1;
-    guint biased_exponent : 11;
-    guint mantissa_high : 20;
-    guint mantissa_low : 32;
+  guint sign : 1;
+  guint biased_exponent : 11;
+  guint mantissa_high : 20;
+  guint mantissa_low : 32;
   } mpn;
 };
 #else /* !G_LITTLE_ENDIAN && !G_BIG_ENDIAN */

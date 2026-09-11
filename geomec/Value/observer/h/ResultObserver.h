@@ -32,122 +32,122 @@ public:
   // the function AppendContextMenu does not ask for a delegate. However one
   // could verify that this function is never used!
 
-	class CResultObserver : public CTreeNode
-	{
-	public:
-		// If a result has more than one component the result component observers
-		// represent the different components of the result.
+  class CResultObserver : public CTreeNode
+  {
+  public:
+    // If a result has more than one component the result component observers
+    // represent the different components of the result.
 
-    // TODO AppendContextMenu
-    // CResultComponentObserver is not derived from CGraphNode, hence
-    // the function AppendContextMenu does not ask for a delegate. However one
-    // could verify that this function is never used!
+  // TODO AppendContextMenu
+  // CResultComponentObserver is not derived from CGraphNode, hence
+  // the function AppendContextMenu does not ask for a delegate. However one
+  // could verify that this function is never used!
 
-		class CResultComponentObserver : public IGraphTreeObject
-		{
-		private:
-			int m_nComponent;
-		public:
-			// Construction
-			CResultComponentObserver(CResultObserver& parent, int nComponent);
-
-			// Destruction
-			~CResultComponentObserver();
-
-			// Parent access
-			const CResultObserver& ResultObserver() const;
-			CResultObserver& ResultObserver();
-
-			// Treeobject overrides
-			virtual QString Text() const;
-			virtual unsigned int Icon() const;
-			virtual unsigned int StateIcon() const;
-			virtual void ToggleState();
-			virtual void AppendContextMenu(CContextMenuInvoker &invoker);
-
+    class CResultComponentObserver : public IGraphTreeObject
+    {
     private:
-      IResult_Delegate* m_pDelegate;
-		};
-	private:
-		IResult& m_result;
-	public:
-		// Construction
-		CResultObserver(IResult& result, IResultGroupObserver& parent);
+      int m_nComponent;
+    public:
+      // Construction
+      CResultComponentObserver(CResultObserver& parent, int nComponent);
 
-		// Destruction
-		~CResultObserver();
+      // Destruction
+      ~CResultComponentObserver();
 
-		// Result access
-		const IResult& Result() const;
-		IResult& Result();
+      // Parent access
+      const CResultObserver& ResultObserver() const;
+      CResultObserver& ResultObserver();
 
-		// Result Group observer
-		const IResultGroupObserver& ResultGroupObserver() const;
-		IResultGroupObserver& ResultGroupObserver();
-
-		virtual const CGraphNode& ObservedItem() const;
-		virtual CGraphNode& ObservedItem();
-
-		virtual const CGraphNode_Delegate& Delegate() const;
-		virtual CGraphNode_Delegate& Delegate();
-
-		// Handlers result components
-    virtual unsigned int ResultComponentStateIconId(const IValueComposite& result, int nComponent) const;
-    virtual void ResultComponentToggleState(IValueComposite& result, int nComponent);
-		virtual void AppendResultComponentContextMenu(IResult_Delegate& result, int nComponent, CContextMenuInvoker &invoker);
-
-		// Treeobject overrides
-		virtual unsigned int StateIcon() const;
-		virtual void ToggleState();
-		virtual void AppendContextMenu(CContextMenuInvoker &invoker);
+      // Treeobject overrides
+      virtual QString Text() const;
+      virtual unsigned int Icon() const;
+      virtual unsigned int StateIcon() const;
+      virtual void ToggleState();
+      virtual void AppendContextMenu(CContextMenuInvoker &invoker);
 
   private:
-    IResult_Delegate* m_pDelegate;
-	};
-private:
-	CResultGroup& m_group;
-public:
-	// Construction
-	IResultGroupObserver(CResultGroup& group, IResultGroupObserver& parent);
-	IResultGroupObserver(CResultGroup& group, CTreeCtrl& ctrl, HTREEITEM hParent, HTREEITEM hInsertAfter);
+      IResult_Delegate* m_pDelegate;
+    };
+  private:
+    IResult& m_result;
+  public:
+    // Construction
+    CResultObserver(IResult& result, IResultGroupObserver& parent);
 
-	// Destruction
-	~IResultGroupObserver();
+    // Destruction
+    ~CResultObserver();
 
-	// Parent
-	const IResultGroupObserver* ResultGroupObserver() const;
-	IResultGroupObserver* ResultGroupObserver();
-	
-	virtual const CGraphNode& ObservedItem() const;
-	virtual CGraphNode& ObservedItem();
+    // Result access
+    const IResult& Result() const;
+    IResult& Result();
 
-	virtual const CGraphNode_Delegate& Delegate() const;
-	virtual CGraphNode_Delegate& Delegate();
+    // Result Group observer
+    const IResultGroupObserver& ResultGroupObserver() const;
+    IResultGroupObserver& ResultGroupObserver();
 
-	// Handlers for result group events
-	virtual unsigned int ResultGroupStateIconId(const CResultGroup& group) const;
-	virtual void ResultGroupToggleState(CResultGroup& group);
-	virtual void AppendResultGroupContextMenu(CResultGroup_Delegate& group_Delegate, CContextMenuInvoker &invoker);
-	virtual BOOL CanInsertResultGroup(const CResultGroup& group) const;
+    virtual const CGraphNode& ObservedItem() const;
+    virtual CGraphNode& ObservedItem();
 
-	// Handlers for results
-  virtual unsigned int ResultStateIconId(const IValueComposite& result) const;
-  virtual void ResultToggleState(IValueComposite& result);
-	virtual void AppendResultContextMenu(IResult_Delegate& result, CContextMenuInvoker &invoker);
-	virtual BOOL CanInsertResult(const IResult& result) const;
-	
-	// Handlers result components
+    virtual const CGraphNode_Delegate& Delegate() const;
+    virtual CGraphNode_Delegate& Delegate();
+
+    // Handlers result components
   virtual unsigned int ResultComponentStateIconId(const IValueComposite& result, int nComponent) const;
   virtual void ResultComponentToggleState(IValueComposite& result, int nComponent);
-	virtual void AppendResultComponentContextMenu(const IResult_Delegate& result, int nComponent, CContextMenuInvoker &invoker);
+    virtual void AppendResultComponentContextMenu(IResult_Delegate& result, int nComponent, CContextMenuInvoker &invoker);
 
-	// Treeobject overrides
-	virtual unsigned int StateIcon() const;
-	virtual void ToggleState();
-	virtual void AppendContextMenu(CContextMenuInvoker &invoker);
-	virtual CTreeNode* InsertChild(CGraphNode& node);
-	virtual BOOL OnFilter(const CGraphNode& node) const;
-	virtual void SortChildren() {};	// Don't mesh up insertion order
+    // Treeobject overrides
+    virtual unsigned int StateIcon() const;
+    virtual void ToggleState();
+    virtual void AppendContextMenu(CContextMenuInvoker &invoker);
+
+  private:
+  IResult_Delegate* m_pDelegate;
+  };
+private:
+  CResultGroup& m_group;
+public:
+  // Construction
+  IResultGroupObserver(CResultGroup& group, IResultGroupObserver& parent);
+  IResultGroupObserver(CResultGroup& group, CTreeCtrl& ctrl, HTREEITEM hParent, HTREEITEM hInsertAfter);
+
+  // Destruction
+  ~IResultGroupObserver();
+
+  // Parent
+  const IResultGroupObserver* ResultGroupObserver() const;
+  IResultGroupObserver* ResultGroupObserver();
+  
+  virtual const CGraphNode& ObservedItem() const;
+  virtual CGraphNode& ObservedItem();
+
+  virtual const CGraphNode_Delegate& Delegate() const;
+  virtual CGraphNode_Delegate& Delegate();
+
+  // Handlers for result group events
+  virtual unsigned int ResultGroupStateIconId(const CResultGroup& group) const;
+  virtual void ResultGroupToggleState(CResultGroup& group);
+  virtual void AppendResultGroupContextMenu(CResultGroup_Delegate& group_Delegate, CContextMenuInvoker &invoker);
+  virtual BOOL CanInsertResultGroup(const CResultGroup& group) const;
+
+  // Handlers for results
+  virtual unsigned int ResultStateIconId(const IValueComposite& result) const;
+  virtual void ResultToggleState(IValueComposite& result);
+  virtual void AppendResultContextMenu(IResult_Delegate& result, CContextMenuInvoker &invoker);
+  virtual BOOL CanInsertResult(const IResult& result) const;
+  
+  // Handlers result components
+  virtual unsigned int ResultComponentStateIconId(const IValueComposite& result, int nComponent) const;
+  virtual void ResultComponentToggleState(IValueComposite& result, int nComponent);
+  virtual void AppendResultComponentContextMenu(const IResult_Delegate& result, int nComponent, CContextMenuInvoker &invoker);
+
+  // Treeobject overrides
+  virtual unsigned int StateIcon() const;
+  virtual void ToggleState();
+  virtual void AppendContextMenu(CContextMenuInvoker &invoker);
+  virtual CTreeNode* InsertChild(CGraphNode& node);
+  virtual BOOL OnFilter(const CGraphNode& node) const;
+  virtual void SortChildren() {};	// Don't mesh up insertion order
 
 private:
   CResultGroup_Delegate* m_pDelegate;
@@ -159,39 +159,39 @@ private:
 class CDepletionStageBranch;
 class CResultGroupObserver : public IResultGroupObserver
 {
-	CDepletionStageBranch* m_pDepletionStageBranch;
-	CResultRegister& ResultRegister();
+  CDepletionStageBranch* m_pDepletionStageBranch;
+  CResultRegister& ResultRegister();
 
 public:
-	// Construction
-	CResultGroupObserver(CResultGroup& group, CTreeViewBase& view, HTREEITEM hParent, bool bShowAnalysisTypesAndDimensions, bool bShowDepletions = true);
-	CResultGroupObserver(CResultGroup& group, CResultGroupObserver& parent);
+  // Construction
+  CResultGroupObserver(CResultGroup& group, CTreeViewBase& view, HTREEITEM hParent, bool bShowAnalysisTypesAndDimensions, bool bShowDepletions = true);
+  CResultGroupObserver(CResultGroup& group, CResultGroupObserver& parent);
 
-	// Handlers for result group events
-	virtual unsigned int ResultGroupStateIconId(const CResultGroup& group) const;
-	virtual void ResultGroupToggleState(CResultGroup& group);
-	virtual void AppendResultGroupContextMenu(CResultGroup_Delegate& group_Delegate, CContextMenuInvoker &invoker);
-	virtual BOOL CanInsertResultGroup(const CResultGroup& group) const;
+  // Handlers for result group events
+  virtual unsigned int ResultGroupStateIconId(const CResultGroup& group) const;
+  virtual void ResultGroupToggleState(CResultGroup& group);
+  virtual void AppendResultGroupContextMenu(CResultGroup_Delegate& group_Delegate, CContextMenuInvoker &invoker);
+  virtual BOOL CanInsertResultGroup(const CResultGroup& group) const;
 
-	// Handlers for results
+  // Handlers for results
   virtual unsigned int ResultStateIconId(const IValueComposite& result) const;
   virtual void ResultToggleState(IValueComposite& result);
-	virtual void AppendResultContextMenu(IResult_Delegate& result, CContextMenuInvoker &invoker);
-	virtual BOOL CanInsertResult(const IResult& result) const;
-	
-	// Handlers result components
+  virtual void AppendResultContextMenu(IResult_Delegate& result, CContextMenuInvoker &invoker);
+  virtual BOOL CanInsertResult(const IResult& result) const;
+  
+  // Handlers result components
   virtual unsigned int ResultComponentStateIconId(const IValueComposite& result, int nComponent) const;
   virtual void ResultComponentToggleState(IValueComposite& result, int nComponent);
-	virtual void AppendResultComponentContextMenu(const IResult_Delegate& result, int nComponent, CContextMenuInvoker &invoker);
+  virtual void AppendResultComponentContextMenu(const IResult_Delegate& result, int nComponent, CContextMenuInvoker &invoker);
 
-	// Insert 
-	virtual CTreeNode* InsertChild(CGraphNode& node);
-	BOOL operator<(const ICtrlObjectBase &object) const;
-	virtual void SortChildren() {};	// Don't mesh up insertion order
-	virtual void Update();
+  // Insert 
+  virtual CTreeNode* InsertChild(CGraphNode& node);
+  BOOL operator<(const ICtrlObjectBase &object) const;
+  virtual void SortChildren() {};	// Don't mesh up insertion order
+  virtual void Update();
 
 private:
-	CAnalysisType::TAnalysisType determineInitialAnalysisType();
+  CAnalysisType::TAnalysisType determineInitialAnalysisType();
 };
 
 class CGVTResultGroupObserver : public CResultGroupObserver
@@ -218,91 +218,91 @@ typedef CNodeObserver_Delegate<CDepletionStageEntry, CDepletionStageEntry_Delega
 class CDepletionStageBranch : public TDepletionStageBranchBase
 {
 public:
-	// The depletionstage observer observes the depletionstage. When no result is selected 
-	// the depletionstage is grayed out.
-	typedef CNodeObserver_Delegate<CDepletionStage, CDepletionStage_Delegate, CDummyNode, CDummyObserver, FALSE, FIXED_ITEM> TDepletionStageLeafBase;
+  // The depletionstage observer observes the depletionstage. When no result is selected 
+  // the depletionstage is grayed out.
+  typedef CNodeObserver_Delegate<CDepletionStage, CDepletionStage_Delegate, CDummyNode, CDummyObserver, FALSE, FIXED_ITEM> TDepletionStageLeafBase;
 
   // TODO AppendContextMenu
   // CDepletionStageObserver is not derived from CGraphNode, hence
   // the function AppendContextMenu does not ask for a delegate. However one
   // could verify that this function is never used!
 
-	class CDepletionStageObserver : public TDepletionStageLeafBase
-	{
-		std::vector<IResultComponent*> SwitchTo() const;
-        bool CanSwitchTo() const;
-        bool IsChecked() const;
-        bool MultipleStagesAllowed() const;
-        int NumDisplayedStages() const;
-		IResultComponent* Current() const;
+  class CDepletionStageObserver : public TDepletionStageLeafBase
+  {
+    std::vector<IResultComponent*> SwitchTo() const;
+    bool CanSwitchTo() const;
+    bool IsChecked() const;
+    bool MultipleStagesAllowed() const;
+    int NumDisplayedStages() const;
+    IResultComponent* Current() const;
 
-		bool IsMarkedAsInitial() const;
-		void OnMarkAsInitial();
+    bool IsMarkedAsInitial() const;
+    void OnMarkAsInitial();
 
-	public:
-		CDepletionStageObserver(CDepletionStageBranch& branch, CDepletionStage& stage);
-		virtual unsigned int StateIcon() const;
-		virtual void ToggleState();
-		virtual void AppendContextMenu(CContextMenuInvoker &invoker);
-	};
+  public:
+    CDepletionStageObserver(CDepletionStageBranch& branch, CDepletionStage& stage);
+    virtual unsigned int StateIcon() const;
+    virtual void ToggleState();
+    virtual void AppendContextMenu(CContextMenuInvoker &invoker);
+  };
  
 public:
-	CDepletionStageBranch(CResultGroupObserver &parent, CDepletionStageEntry& entry);
-	virtual CTreeNode* InsertChild(CDepletionStage& stage);
-	virtual void SortChildren();	// Don't mesh up insertion order
+  CDepletionStageBranch(CResultGroupObserver &parent, CDepletionStageEntry& entry);
+  virtual CTreeNode* InsertChild(CDepletionStage& stage);
+  virtual void SortChildren();	// Don't mesh up insertion order
 
 protected:
-	virtual void OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint);
+  virtual void OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint);
 };
 
 // The linearitybranch shows all posible analysis types (Linear and Non-Linear for this moment).
 // 
 class CLinearityBranch : public IGraphTreeObject
 {
-	class CLinearityLeaf : public IGraphTreeObject
-	{
-		CAnalysisType m_antype;
-		IResultComponent* SwitchTo() const;
-    bool CanSwitchTo() const;
+  class CLinearityLeaf : public IGraphTreeObject
+  {
+    CAnalysisType m_antype;
+    IResultComponent* SwitchTo() const;
+  bool CanSwitchTo() const;
 
-    size_t NumValueComponents() const;
+  size_t NumValueComponents() const;
 
-    IResultComponent* Current(size_t index = 0) const;
-	public:
-		CLinearityLeaf(CLinearityBranch& linear_branch, const CAnalysisType& antype);
-		virtual QString Text() const;
-		virtual unsigned int StateIcon() const;
-		virtual unsigned int Icon() const;
-		virtual void ToggleState();
-	};
+  IResultComponent* Current(size_t index = 0) const;
+  public:
+    CLinearityLeaf(CLinearityBranch& linear_branch, const CAnalysisType& antype);
+    virtual QString Text() const;
+    virtual unsigned int StateIcon() const;
+    virtual unsigned int Icon() const;
+    virtual void ToggleState();
+  };
 public:
-	CLinearityBranch(CResultGroupObserver &root_observer);
-	virtual QString Text() const;
-	virtual unsigned int Icon() const;
-	virtual void SortChildren() {};	// Don't mesh up insertion order
+  CLinearityBranch(CResultGroupObserver &root_observer);
+  virtual QString Text() const;
+  virtual unsigned int Icon() const;
+  virtual void SortChildren() {};	// Don't mesh up insertion order
 };
 
 // The linearitybranch shows all posible analysis types (Linear and Non-Linear for this moment).
 // 
 class CDimensionBranch : public IGraphTreeObject
 {
-	class CDimensionLeaf : public IGraphTreeObject
-	{
-		int m_nRegister;
-		IResultComponent* SwitchTo() const;
-		IResultComponent* Current() const;
-	public:
-		CDimensionLeaf(CDimensionBranch& dimension_branch, int nRegister);
-		virtual QString Text() const;
-		virtual unsigned int StateIcon() const;
-		virtual unsigned int Icon() const;
-		virtual void ToggleState();
-	};
+  class CDimensionLeaf : public IGraphTreeObject
+  {
+    int m_nRegister;
+    IResultComponent* SwitchTo() const;
+    IResultComponent* Current() const;
+  public:
+    CDimensionLeaf(CDimensionBranch& dimension_branch, int nRegister);
+    virtual QString Text() const;
+    virtual unsigned int StateIcon() const;
+    virtual unsigned int Icon() const;
+    virtual void ToggleState();
+  };
 public:
-	CDimensionBranch(CResultGroupObserver &root_observer);
-	virtual QString Text() const;
-	virtual unsigned int Icon() const;
-	virtual void SortChildren() {};	// Don't mesh up insertion order
+  CDimensionBranch(CResultGroupObserver &root_observer);
+  virtual QString Text() const;
+  virtual unsigned int Icon() const;
+  virtual void SortChildren() {};	// Don't mesh up insertion order
 };
 
 

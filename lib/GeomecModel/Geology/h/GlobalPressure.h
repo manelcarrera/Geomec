@@ -19,13 +19,13 @@ class TPressure;
 class CGlobalPressure : public CGlobalFormationLoad<TPressure, CComponentConstant <TPressure> >
 {
 public:
-	CGlobalPressure(CFemAppModel& model,
-					const double &dReferencePressure = 0,
-					const double &dReferenceDepth = 0,
-					const double &dPressureGradient = 0);
-	CGlobalPressure(const CGlobalPressure& rhs);
+  CGlobalPressure(CFemAppModel& model,
+          const double &dReferencePressure = 0,
+          const double &dReferenceDepth = 0,
+          const double &dPressureGradient = 0);
+  CGlobalPressure(const CGlobalPressure& rhs);
 
-	virtual unsigned int IconId() const;
+  virtual unsigned int IconId() const;
 
   virtual void OnNewNeighbour(const CGraphNode& node);
   virtual void OnNeighbourDeleted(const CGraphNode& node);

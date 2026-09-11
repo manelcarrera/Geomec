@@ -38,9 +38,9 @@ public:
   RESCUEINT64 VertexCount64();                  // as an estimate.  After loading they are exact.
   RESCUEINT64 EdgeSetCount64();
   RESCUEINT64 TrimLoopCount64();                // Does not include RescueTrimLoop objects which
-                                                // are part of RescueEdgeSet objects.  Only RescueTrimLoop
-                                                // instances used directly, such as those in
-                                                // RescueProperty and RescueFaultIntersection.
+                        // are part of RescueEdgeSet objects.  Only RescueTrimLoop
+                        // instances used directly, such as those in
+                        // RescueProperty and RescueFaultIntersection.
   RESCUEINT32 PolyLineCount() {return (RESCUEINT32) PolyLineCount64();}
   RESCUEINT32 VertexCount() {return (RESCUEINT32) VertexCount64();}
   RESCUEINT32 EdgeSetCount() {return (RESCUEINT32) EdgeSetCount64();}
@@ -56,34 +56,34 @@ public:
   RESCUEBOOL IsWireframeLoaded() {return wireframeLoaded;}
   RESCUEBOOL LoadWireframe();
   void DeleteWireframe();               // All wireframe objects will be deleted, but the RescueWireframe
-                                        // itself is not deleted until the RescueModel file is written
-                                        // out, so use the IsDeleted() method when traversing the
-                                        // list of RescueWireframe instances.
+                    // itself is not deleted until the RescueModel file is written
+                    // out, so use the IsDeleted() method when traversing the
+                    // list of RescueWireframe instances.
   RESCUEBOOL IsDeleted() {return (RESCUEBOOL) isDeleted;}
   RESCUEBOOL WireframeFileTruncated();
   RescueModel *ParentModel() {return model;}
   RESCUEINT64 WireframeVersion(RESCUEBOOL reload = FALSE);
-                                    // This methods return a version number for the file which
-                                    // starts at zero and increments each time the file is
-                                    // written.  Applications can use this as a quick check to
-                                    // see if the file has been updated (by saving the version
-                                    // number AFTER a write operation). If reload is TRUE the library
-                                    // always goes back to the disk to read the version number,
-                                    // in case it has been recently changed.  Therefore, the
-                                    // version number returned is the version which would be
-                                    // available if the data were loaded now, not the version which
-                                    // IS loaded now (if any). If false, the version number returned
-                                    // is the version of the last data loaded (if any).
+                  // This methods return a version number for the file which
+                  // starts at zero and increments each time the file is
+                  // written.  Applications can use this as a quick check to
+                  // see if the file has been updated (by saving the version
+                  // number AFTER a write operation). If reload is TRUE the library
+                  // always goes back to the disk to read the version number,
+                  // in case it has been recently changed.  Therefore, the
+                  // version number returned is the version which would be
+                  // available if the data were loaded now, not the version which
+                  // IS loaded now (if any). If false, the version number returned
+                  // is the version of the last data loaded (if any).
   RESCUEUINT64 WireframeFileSize();   
  RescueTrimVertex *TrimVertexLocatedBy(RESCUEFLOAT x, RESCUEFLOAT y, RESCUEFLOAT z);
   RescuePolyLine *PolyLineBetween(RescueTrimVertex *end1, RescueTrimVertex *end2);
-                                    // These return null if the wireframe is not loaded or is deleted.
+                  // These return null if the wireframe is not loaded or is deleted.
   virtual RESCUEBOOL IsOfType(_RescueObjectType thisType);
      // Returns TRUE if the object is a
      // member of the specified class.
 /***********************************************************************************************
 
-    Functions that should be called only after a wireframe is loaded.
+  Functions that should be called only after a wireframe is loaded.
 
 ***********************************************************************************************/
 
@@ -105,13 +105,13 @@ public:
   RESCUEBOOL UnloadWireframe();
   RESCUEBOOL WireframeHasChanged() {return wireframeHasChanged;}
   RESCUEINT64 LoadNo() {return loadNo;}     // This number is incremented each time the wireframe is loaded
-                                    // into memory during a session.
+                  // into memory during a session.
   void MarkWireframeChanged() {wireframeHasChanged = TRUE;}
 /***************************************************************************************************
 
-    The following bounding coordinates are as good as the last time the Wireframe object was
-    unloaded.  They can be read after calling RescueModel::LoadWireFrame().  You don't have to
-    load the individual RescueWireframe object to read these.
+  The following bounding coordinates are as good as the last time the Wireframe object was
+  unloaded.  They can be read after calling RescueModel::LoadWireFrame().  You don't have to
+  load the individual RescueWireframe object to read these.
 
 ****************************************************************************************************/
   RESCUEFLOAT X1() {return x1;}                           // Minimum x coordinate.

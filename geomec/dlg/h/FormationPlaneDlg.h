@@ -14,36 +14,36 @@ class CFormationPlaneDlg : public CDialog
 {
 // Construction
 public:
-	CFormationPlaneDlg(CWnd* pParent = NULL);   // standard constructor
+  CFormationPlaneDlg(CWnd* pParent = NULL);   // standard constructor
 
-	void SetPlane(int level, int state);
-	int GetPlaneLevel(int level);
+  void SetPlane(int level, int state);
+  int GetPlaneLevel(int level);
 
 // Dialog Data
-	//{{AFX_DATA(CFormationPlaneDlg)
-	enum { IDD = IDD_FORMATIONPLANEDLG };
-	int	m_nTop;
-	int	m_nMiddle;
-	int m_nBottom;
-	//}}AFX_DATA
+  //{{AFX_DATA(CFormationPlaneDlg)
+  enum { IDD = IDD_FORMATIONPLANEDLG };
+  int	m_nTop;
+  int	m_nMiddle;
+  int m_nBottom;
+  //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CFormationPlaneDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+  // ClassWizard generated virtual function overrides
+  //{{AFX_VIRTUAL(CFormationPlaneDlg)
+  protected:
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  //}}AFX_VIRTUAL
 
 // Implementation
 
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CFormationPlaneDlg)
-		// NOTE: the ClassWizard will add member functions here
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+  // Generated message map functions
+  //{{AFX_MSG(CFormationPlaneDlg)
+    // NOTE: the ClassWizard will add member functions here
+  //}}AFX_MSG
+  DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}

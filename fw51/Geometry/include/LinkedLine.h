@@ -21,37 +21,37 @@ namespace geo {
 
 class CLinkedLine : public IFace
 {
-	class CLinkedPoint : public CPoint
-	{
-		typedef std::pair<CLinkedPoint*, CLinkedPoint*> TPointPair;
-		TPointPair m_pair;
-		CLinkedLine& m_linked_line;
-		void Swap();
-	public:
-		CLinkedPoint(CLinkedLine& linked_line, const IPoint& point);
-		CLinkedPoint* First();
-		CLinkedPoint* Second();
-		bool Connect(CLinkedPoint& point);
-	};
-	friend class CLinkedPoint;
+  class CLinkedPoint : public CPoint
+  {
+    typedef std::pair<CLinkedPoint*, CLinkedPoint*> TPointPair;
+    TPointPair m_pair;
+    CLinkedLine& m_linked_line;
+    void Swap();
+  public:
+    CLinkedPoint(CLinkedLine& linked_line, const IPoint& point);
+    CLinkedPoint* First();
+    CLinkedPoint* Second();
+    bool Connect(CLinkedPoint& point);
+  };
+  friend class CLinkedPoint;
   typedef CCoordinateSet<IPoint*> TPointSet;
-	//std::set<IPoint*, ICoordinate::CCoordinateLess> m_stPoint;
+  //std::set<IPoint*, ICoordinate::CCoordinateLess> m_stPoint;
   TPointSet m_stPoint;
-	CLinkedPoint* m_pBegin;
-	mutable std::vector<IPoint*> m_vcPoint;
-	bool CreateCache() const;
+  CLinkedPoint* m_pBegin;
+  mutable std::vector<IPoint*> m_vcPoint;
+  bool CreateCache() const;
 public:
-	CLinkedLine();
-	virtual ~CLinkedLine();
-	bool AddLine(const IPoint& first, const IPoint& second);
-	void Clear();
-	bool Valid() const;
-	virtual const IPoint &Point(int nIndex) const;
-	virtual void Point(int nIndex, const IPoint &pt);
-	virtual int NrOfPoints() const;
-	using IFace::InterpolateValue;
-	virtual CValue InterpolateValue(const IPoint &point, const std::vector<CValue> &values) const;
-	virtual size_t Order() const;
+  CLinkedLine();
+  virtual ~CLinkedLine();
+  bool AddLine(const IPoint& first, const IPoint& second);
+  void Clear();
+  bool Valid() const;
+  virtual const IPoint &Point(int nIndex) const;
+  virtual void Point(int nIndex, const IPoint &pt);
+  virtual int NrOfPoints() const;
+  using IFace::InterpolateValue;
+  virtual CValue InterpolateValue(const IPoint &point, const std::vector<CValue> &values) const;
+  virtual size_t Order() const;
 };
 
 }

@@ -16,40 +16,40 @@ class CSelectWorksheetDlg : public CDialog
 {
 // Construction
 public:
-	CSelectWorksheetDlg(CWnd* pParent = NULL);   // standard constructor
-	~CSelectWorksheetDlg();
+  CSelectWorksheetDlg(CWnd* pParent = NULL);   // standard constructor
+  ~CSelectWorksheetDlg();
   void SetStrings( const std::vector<CString>& vcStrings );
-	void GetSelectedIndices( int **piIndices, int *nIndices );
-	void SetTitle( CString strTitle ) {m_strTitle = strTitle;}
+  void GetSelectedIndices( int **piIndices, int *nIndices );
+  void SetTitle( CString strTitle ) {m_strTitle = strTitle;}
 
 // Dialog Data
-	//{{AFX_DATA(CSelectWorksheetDlg)
-	enum { IDD = IDD_SELWORKSHEET };
-		// NOTE: the ClassWizard will add data members here
-	//}}AFX_DATA
+  //{{AFX_DATA(CSelectWorksheetDlg)
+  enum { IDD = IDD_SELWORKSHEET };
+    // NOTE: the ClassWizard will add data members here
+  //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CSelectWorksheetDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+  // ClassWizard generated virtual function overrides
+  //{{AFX_VIRTUAL(CSelectWorksheetDlg)
+  protected:
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  //}}AFX_VIRTUAL
 
 // Implementation
 protected:
   std::vector<CString> m_vcStrings;
-	int *m_piIndices;
-	int m_nIndices;
-	CString m_strTitle;
+  int *m_piIndices;
+  int m_nIndices;
+  CString m_strTitle;
 
-	// Generated message map functions
-	//{{AFX_MSG(CSelectWorksheetDlg)
-	virtual BOOL OnInitDialog();
-	virtual void OnOK();
-	afx_msg void OnSelchangeList();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+  // Generated message map functions
+  //{{AFX_MSG(CSelectWorksheetDlg)
+  virtual BOOL OnInitDialog();
+  virtual void OnOK();
+  afx_msg void OnSelchangeList();
+  //}}AFX_MSG
+  DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}

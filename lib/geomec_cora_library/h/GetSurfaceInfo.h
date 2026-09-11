@@ -13,25 +13,25 @@ namespace cora
 class CGetSurfaceInfo
 {
   public:
-    static CGetSurfaceInfo& instance(const CModelBase* modelBase);
+  static CGetSurfaceInfo& instance(const CModelBase* modelBase);
 
-    const TObjects getObjects() const;
+  const TObjects getObjects() const;
 
-    std::ostream& operator () (std::ostream& os) const;
+  std::ostream& operator () (std::ostream& os) const;
 
   private:
-    CGetSurfaceInfo(const CModelBase* modelBase);
-    ~CGetSurfaceInfo();
+  CGetSurfaceInfo(const CModelBase* modelBase);
+  ~CGetSurfaceInfo();
 
-    CGetSurfaceInfo(const CGetSurfaceInfo& rhs);
-    CGetSurfaceInfo& operator = (CGetSurfaceInfo rhs);
+  CGetSurfaceInfo(const CGetSurfaceInfo& rhs);
+  CGetSurfaceInfo& operator = (CGetSurfaceInfo rhs);
 
-    static TObjects getObjects(const CModelBase* modelBase);
-    static void cleanup();
+  static TObjects getObjects(const CModelBase* modelBase);
+  static void cleanup();
 
-    static CGetSurfaceInfo* m_getSurfaceInfo;
-    const CModelBase* m_modelBase;
-    TObjects m_objects;
+  static CGetSurfaceInfo* m_getSurfaceInfo;
+  const CModelBase* m_modelBase;
+  TObjects m_objects;
 };
 
 } // namespace cora

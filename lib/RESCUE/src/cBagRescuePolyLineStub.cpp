@@ -18,11 +18,11 @@ Software Product or documentation licensed under this agreement.
 ****************************************************************************/
 /*************************************************************************
 
-        cBagRescuePolyLineStub.h
+    cBagRescuePolyLineStub.h
 
  Keeps a list of pointers to RescuePolyLineStub.
 
-        Rod Hanks               March 2001
+    Rod Hanks               March 2001
 
 ****************************************************************************/
 #include "myHeaders.h"
@@ -59,15 +59,15 @@ RESCUEINT32 cBagRescuePolyLineStub::Count(RESCUEBOOL throwIfTrue)
 {
   if (tree->Count() > 2147483647)
   {
-    if (throwIfTrue)
-    {
+  if (throwIfTrue)
+  {
       throw "Model is too large to be accessed in 32 bit mode.";
-    }
-    return 0;
+  }
+  return 0;
   }
   else
   {
-    return (RESCUEINT32) tree->Count();
+  return (RESCUEINT32) tree->Count();
   }
 }
 

@@ -16,26 +16,26 @@ namespace geo {
 class CRingFactory;
 class CDirectedSegment  
 {
-	std::pair<int, int> m_segment;
-	const CRingFactory& m_factory;
-	std::vector<CDirectedSegment> AdjacentSegments(int nVertex) const;
+  std::pair<int, int> m_segment;
+  const CRingFactory& m_factory;
+  std::vector<CDirectedSegment> AdjacentSegments(int nVertex) const;
 public:
-	typedef std::pair<int, int> TSegment;
-	CDirectedSegment(const CRingFactory& factory, int nFirst, int nSecond);
-	CDirectedSegment(const CRingFactory& factory, int nFirst, const TSegment& segment);
-	CDirectedSegment(const CDirectedSegment& rhs);
+  typedef std::pair<int, int> TSegment;
+  CDirectedSegment(const CRingFactory& factory, int nFirst, int nSecond);
+  CDirectedSegment(const CRingFactory& factory, int nFirst, const TSegment& segment);
+  CDirectedSegment(const CDirectedSegment& rhs);
 
-	bool operator==(const CDirectedSegment &rhs) const;
-	CDirectedSegment& operator=(const CDirectedSegment &rhs);
-	
-	int First() const;
-	int Second() const;
+  bool operator==(const CDirectedSegment &rhs) const;
+  CDirectedSegment& operator=(const CDirectedSegment &rhs);
+  
+  int First() const;
+  int Second() const;
 
-	std::vector<CDirectedSegment> NextSegments() const;
-	std::vector<CDirectedSegment> PrevSegments() const;
+  std::vector<CDirectedSegment> NextSegments() const;
+  std::vector<CDirectedSegment> PrevSegments() const;
 
-	double Angle(const CDirectedSegment &rhs) const;
-	bool operator<(const CDirectedSegment& rhs) const;
+  double Angle(const CDirectedSegment &rhs) const;
+  bool operator<(const CDirectedSegment& rhs) const;
 };
 
 }

@@ -18,16 +18,16 @@ bool INewWellSection::Contains
 ) const
 {
   if(point < Top())
-    return false;
+  return false;
 
   if(point > Bottom())
-    return false;
+  return false;
 
   if(point == Top())
-    return bIncludeEdge;
+  return bIncludeEdge;
 
   if(point == Bottom())
-    return bIncludeEdge;
+  return bIncludeEdge;
 
   return true;
 }
@@ -54,7 +54,7 @@ CNewWellSection::CNewWellSection
 CNewWellSection::~CNewWellSection()
 {
 }
-	
+  
 const CNewWellPoint & CNewWellSection::Top() const
 {
   return m_Top;

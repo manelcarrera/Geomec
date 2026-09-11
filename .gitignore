@@ -11,4 +11,4 @@ x64/
 *.suo
 
 # Exceeds GitHub's 100 MiB per-file limit; keep locally unless Git LFS is installed
-Tests/Models/test.ff
+TestData/test.ff

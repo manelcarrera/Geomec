@@ -20,11 +20,11 @@ class RescueZStack:public RescueGeometryObject
 {
 private:
   RescueZStack(RescueGeometry *geometry);
-    // stackValuesIn must have been created with new RESCUEFLOAT[].
+  // stackValuesIn must have been created with new RESCUEFLOAT[].
      // Becomes property of this object.
   RescueZStack(RescueGeometry *geometry, RESCUEFLOAT *stackValuesIn)
-    :value(stackValuesIn) {}
-    // stackValuesIn must have been created with new RESCUEFLOAT[].
+  :value(stackValuesIn) {}
+  // stackValuesIn must have been created with new RESCUEFLOAT[].
      // Becomes property of this object.
   void ZStack(RescueGeometry *geometry, RESCUEFLOAT *newZValues);
   void ZValue(RESCUEINT64 k, RESCUEFLOAT newZValues);

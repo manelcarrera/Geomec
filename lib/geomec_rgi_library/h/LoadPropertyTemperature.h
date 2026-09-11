@@ -9,13 +9,13 @@ namespace GeomecRGI
 class CLoadPropertyTemperature : public CLoadPropertyTemperatureBase
 {
   public:
-    CLoadPropertyTemperature(const RGProperty& rgProperty, RGInterface& rgi,
+  CLoadPropertyTemperature(const RGProperty& rgProperty, RGInterface& rgi,
       CModelBase& modelBase, CRockMechProcessor& rmp);
-    virtual ~CLoadPropertyTemperature();
+  virtual ~CLoadPropertyTemperature();
 
   private:
-    CLoadPropertyTemperature(const CLoadPropertyTemperature& rhs);
-    CLoadPropertyTemperature& operator = (const CLoadPropertyTemperature& rhs);
+  CLoadPropertyTemperature(const CLoadPropertyTemperature& rhs);
+  CLoadPropertyTemperature& operator = (const CLoadPropertyTemperature& rhs);
 };
 
 } // namespace GeomecRGI

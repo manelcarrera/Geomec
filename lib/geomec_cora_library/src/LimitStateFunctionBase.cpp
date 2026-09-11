@@ -22,11 +22,11 @@ CLimitStateFunctionBase::CLimitStateFunctionBase(
   CGetModelInfo& modelInfo, const QString& versionNumber,
   const TObjects& objects, const QString& objectType)
 : m_validFunctionSize(CResponseTypeBaseValidate::validateFunctionSize(
-    summaryResultFile, function, LSF_LENGTH_WITHOUT_VALUE))
+  summaryResultFile, function, LSF_LENGTH_WITHOUT_VALUE))
 , m_object(findObject(summaryResultFile, modelInfo, function[2], objects,
-    objectType))
+  objectType))
 , m_responseType(TResponseType(
-    new CResponseType(summaryResultFile, versionNumber, function)))
+  new CResponseType(summaryResultFile, versionNumber, function)))
 , m_summaryResultFile(summaryResultFile)
 , m_modelInfo(modelInfo)
 , m_depletionStage(captureDepletionStage(function[1]))
@@ -53,34 +53,34 @@ void CLimitStateFunctionBase::calculate(
 {
   if (m_object != 0)
   {
-    TFailureMode failureMode = findFailureMode(m_summaryResultFile, m_modelInfo,
+  TFailureMode failureMode = findFailureMode(m_summaryResultFile, m_modelInfo,
       m_failureMode, m_object, m_objectType);
 
-    if (failureMode->getResultComponent() != 0)
-    {
+  if (failureMode->getResultComponent() != 0)
+  {
       if (failureMode->getResultComponent()->ResultRegister().ResultsAvailable(
-        failureMode->getResultComponent()->AnalysisType()))
+    failureMode->getResultComponent()->AnalysisType()))
       {
-        m_responseType->calculate(responseParameterFile, m_object, failureMode);
+    m_responseType->calculate(responseParameterFile, m_object, failureMode);
       }
       else
       {
-        if (std::find(m_failureModeIsNotAvailable.begin(),
+    if (std::find(m_failureModeIsNotAvailable.begin(),
           m_failureModeIsNotAvailable.end(), m_failureMode) ==
-            m_failureModeIsNotAvailable.end())
-        {
+      m_failureModeIsNotAvailable.end())
+    {
           m_summaryResultFile.setResultValue(
-            CSummaryResultFile::RESULT_VALUE_INCONSISTENT);
+      CSummaryResultFile::RESULT_VALUE_INCONSISTENT);
 
           QString message = QString(RESULT_NOT_AVAILABLE).
-            arg(failureMode->getResultComponent()->AnalysisType().Label()).
-            arg(m_failureMode);
+      arg(failureMode->getResultComponent()->AnalysisType().Label()).
+      arg(m_failureMode);
 
           m_summaryResultFile.addAdditionalInformation(message);
           m_failureModeIsNotAvailable.push_back(m_failureMode);
-        }
-      }
     }
+      }
+  }
   }
 }
 
@@ -112,17 +112,17 @@ TObject CLimitStateFunctionBase::findObject(
 {
   for (TObjects::const_iterator o = objects.begin(); o != objects.end(); ++o)
   {
-    if (((*o)->name() == object) ||
+  if (((*o)->name() == object) ||
       ((objectType + SEPARATOR + (*o)->name()) == object))
-    {
+  {
       return (*o);
-    }
+  }
   }
 
   summaryResultFile.setResultValue(
-    CSummaryResultFile::RESULT_VALUE_INCONSISTENT);
+  CSummaryResultFile::RESULT_VALUE_INCONSISTENT);
   summaryResultFile.addAdditionalInformation(QString(OBJECT_DOES_NOT_EXIST).
-    arg(objectType).arg(object));
+  arg(objectType).arg(object));
 
   return TObject();
 }
@@ -137,13 +137,13 @@ const QString FAILURE_DOES_NOT_MAP =
 struct TCompareWithFailureModeString
 {
   TCompareWithFailureModeString(const QString& failureModeString)
-    : m_failureModeString(failureModeString)
+  : m_failureModeString(failureModeString)
   {
   }
 
   bool operator () (const TFailureMode& result)
   {
-    return result->getResultExportLabel() == m_failureModeString;
+  return result->getResultExportLabel() == m_failureModeString;
   }
 
 private:
@@ -160,33 +160,33 @@ TFailureMode CLimitStateFunctionBase::findFailureMode(
   TFailureModes failureModes = getFailureModeInfo.getFailureModes();
 
   /*
-    Too bad, the C++11 lambda expression is not yet supported on all platforms
+  Too bad, the C++11 lambda expression is not yet supported on all platforms
 
-    std::vector <CGetFailureModeInfo::TFailureMode>::const_iterator
+  std::vector <CGetFailureModeInfo::TFailureMode>::const_iterator
       failureMode = std::find_if(failureModes.begin(), failureModes.end(),
-        [&failureModeString] (const CGetFailureModeInfo::TFailureMode& result) {
+    [&failureModeString] (const CGetFailureModeInfo::TFailureMode& result) {
           return result.first == failureModeString; });
   */
 
   TFailureModes::const_iterator failureMode = std::find_if(failureModes.begin(),
-    failureModes.end(), TCompareWithFailureModeString(failureModeString));
+  failureModes.end(), TCompareWithFailureModeString(failureModeString));
 
   if (failureMode == failureModes.end())
   {
-    summaryResultFile.setResultValue(
+  summaryResultFile.setResultValue(
       CSummaryResultFile::RESULT_VALUE_INCONSISTENT);
-    summaryResultFile.addAdditionalInformation(
+  summaryResultFile.addAdditionalInformation(
       QString(FAILURE_MODE_DOES_NOT_EXIST).arg(failureModeString));
   }
   else if (!(*failureMode)->getResultComponent()->CanMap(*(object->object())))
   {
-    summaryResultFile.setResultValue(
+  summaryResultFile.setResultValue(
       CSummaryResultFile::RESULT_VALUE_INCONSISTENT);
-    summaryResultFile.addAdditionalInformation(
+  summaryResultFile.addAdditionalInformation(
       QString(FAILURE_DOES_NOT_MAP).arg(failureModeString).arg(objectType).
       arg(object->prefix()).arg(object->name()));
 
-    failureMode = failureModes.end();
+  failureMode = failureModes.end();
   }
 
   return (failureMode == failureModes.end() ? TFailureMode() : *failureMode);
@@ -197,12 +197,12 @@ CAnalysisType::TAnalysisType CLimitStateFunctionBase::selectAnalysisType(
 {
   if (m_analysisTypes.empty())
   {
-    for (CAnalysisType analysisType = CAnalysisType::FirstType();
+  for (CAnalysisType analysisType = CAnalysisType::FirstType();
       analysisType.Valid(); analysisType = analysisType.NextType())
-    {
+  {
       m_analysisTypes.insert(TAnalysisTypes::value_type(
-        analysisType.ExportCharacter(), analysisType.AnalysisType()));
-    }
+    analysisType.ExportCharacter(), analysisType.AnalysisType()));
+  }
   }
 
   assert(m_analysisTypes.find(failureMode[failureMode.length() - 1].toLatin1()) != m_analysisTypes.end());
@@ -223,7 +223,7 @@ int CLimitStateFunctionBase::captureDepletionStage(const QString& failureMode)
 
   if ((pattern.indexIn(failureMode) < 0) || (pattern.captureCount() != 1))
   {
-    throw CFailureModePatternMismatch(failureMode, PATTERN);
+  throw CFailureModePatternMismatch(failureMode, PATTERN);
   }
 
   return pattern.cap(1).toInt();

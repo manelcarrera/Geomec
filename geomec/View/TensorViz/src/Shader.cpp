@@ -73,33 +73,33 @@ const char* fragmentShaderSrc[] =
 
 namespace
 {
-    /**
+  /**
      * Compile a shader from source
      * @param type The type of shader, either GL_VERTEX_SHADER or GL_FRAGMENT_SHADER
      * @param src The shader source code
      * @param lineCount The length of the src array
      */
-    GLuint createShader(GLenum type, const char* src[], GLsizei lineCount)
+  GLuint createShader(GLenum type, const char* src[], GLsizei lineCount)
+  {
+    GLuint shader = glCreateShader(type);
+    glShaderSource(shader, lineCount, src, 0);
+    glCompileShader(shader);
+
+    GLint compileStatus;
+    glGetShaderiv(shader, GL_COMPILE_STATUS, &compileStatus);
+    if(compileStatus != GL_TRUE)
     {
-        GLuint shader = glCreateShader(type);
-        glShaderSource(shader, lineCount, src, 0);
-        glCompileShader(shader);
+      char buf[512];
+      glGetShaderInfoLog(shader, sizeof(buf), 0, buf);
 
-        GLint compileStatus;
-        glGetShaderiv(shader, GL_COMPILE_STATUS, &compileStatus);
-        if(compileStatus != GL_TRUE)
-        {
-            char buf[512];
-            glGetShaderInfoLog(shader, sizeof(buf), 0, buf);
-
-            OutputDebugString("Error compiling shader");
-            OutputDebugString(buf);
-        }
-
-        return shader;
+      OutputDebugString("Error compiling shader");
+      OutputDebugString(buf);
     }
 
-    /**
+    return shader;
+  }
+
+  /**
      * Creating a shader program involves the following steps:
      *   - compile a vertex shader
      *   - compile a fragment shader
@@ -108,46 +108,46 @@ namespace
      *     so we can use the corresponding glUniformXXX() functions to pass values
      *     to those parameters for rendering
      */
-    GLuint createProgram(int buildFlags)
+  GLuint createProgram(int buildFlags)
+  {
+    // Based on the build flags, we modify some #define directives in the shader
+    // source code, in order to build different programs. This feels a bit like
+    // a hack, but GLSL has no other way to reuse different bits of code.
+    vertexShaderSrc[1] = (buildFlags & Shader::PRIMARY_COLORMAP_ENABLED)  
+      ? "#define PRIMARY_COLORMAP_ENABLED\n" 
+      : "\n";
+    vertexShaderSrc[2] = (buildFlags & Shader::SECONDARY_COLORMAP_ENABLED)
+      ? "#define SECONDARY_COLORMAP_ENABLED\n" 
+      : "\n";
+
+    // Work out the number of lines of code for the shaders
+    GLsizei vsCount = sizeof(vertexShaderSrc) / sizeof(const char*);
+    GLsizei fsCount = sizeof(fragmentShaderSrc) / sizeof(const char*);
+
+    // Create both the vertex shader and the fragment shader
+    GLuint vs = createShader(GL_VERTEX_SHADER, vertexShaderSrc, vsCount);
+    GLuint fs = createShader(GL_FRAGMENT_SHADER, fragmentShaderSrc, fsCount);
+
+    // Link to vertex and fragment shaders together to form a program
+    GLuint program = glCreateProgram();
+    glAttachShader(program, vs);
+    glAttachShader(program, fs);
+    glLinkProgram(program);
+
+    // Check if everything went OK
+    GLint linkStatus;
+    glGetProgramiv(program, GL_LINK_STATUS, &linkStatus);
+    if(linkStatus != GL_TRUE)
     {
-        // Based on the build flags, we modify some #define directives in the shader
-        // source code, in order to build different programs. This feels a bit like
-        // a hack, but GLSL has no other way to reuse different bits of code.
-        vertexShaderSrc[1] = (buildFlags & Shader::PRIMARY_COLORMAP_ENABLED)  
-            ? "#define PRIMARY_COLORMAP_ENABLED\n" 
-            : "\n";
-        vertexShaderSrc[2] = (buildFlags & Shader::SECONDARY_COLORMAP_ENABLED)
-            ? "#define SECONDARY_COLORMAP_ENABLED\n" 
-            : "\n";
+      char buf[512];
+      glGetProgramInfoLog(program, sizeof(buf), 0, buf);
 
-        // Work out the number of lines of code for the shaders
-        GLsizei vsCount = sizeof(vertexShaderSrc) / sizeof(const char*);
-        GLsizei fsCount = sizeof(fragmentShaderSrc) / sizeof(const char*);
-
-        // Create both the vertex shader and the fragment shader
-        GLuint vs = createShader(GL_VERTEX_SHADER, vertexShaderSrc, vsCount);
-        GLuint fs = createShader(GL_FRAGMENT_SHADER, fragmentShaderSrc, fsCount);
-
-        // Link to vertex and fragment shaders together to form a program
-        GLuint program = glCreateProgram();
-        glAttachShader(program, vs);
-        glAttachShader(program, fs);
-        glLinkProgram(program);
-
-        // Check if everything went OK
-        GLint linkStatus;
-        glGetProgramiv(program, GL_LINK_STATUS, &linkStatus);
-        if(linkStatus != GL_TRUE)
-        {
-            char buf[512];
-            glGetProgramInfoLog(program, sizeof(buf), 0, buf);
-
-            OutputDebugString("Error linking program");
-            OutputDebugString(buf);
-        }
-
-        return program;
+      OutputDebugString("Error linking program");
+      OutputDebugString(buf);
     }
+
+    return program;
+  }
 }
 
 Shader::Shader()
@@ -166,26 +166,26 @@ Shader::Shader()
 
 void Shader::init(int buildFlags)
 {
-    flags = buildFlags;
+  flags = buildFlags;
 
-    program = createProgram(buildFlags);
+  program = createProgram(buildFlags);
 
-    // Get the locations of all uniform parameters. These are the parameters that are
-    // set once at the beginning of rendering a set of beachballs, and are the same
-    // for the entire data set.
-    colorScaleLocation = glGetUniformLocation(program, "colorScale");
-    colorScaleRangeLocation = glGetUniformLocation(program, "colorScaleRange");
-    mvMatrixLocation = glGetUniformLocation(program, "mvMatrix");
-    mvpMatrixLocation = glGetUniformLocation(program, "mvpMatrix");
-    primaryColorLocation = glGetUniformLocation(program, "primaryColor");
-    secondaryColorLocation = glGetUniformLocation(program, "secondaryColor");
-    scaleLocation = glGetUniformLocation(program, "scale");
-    lightDirLocation = glGetUniformLocation(program, "lightdir");
-    clipPlaneLocation = glGetUniformLocation(program, "clipPlane");
+  // Get the locations of all uniform parameters. These are the parameters that are
+  // set once at the beginning of rendering a set of beachballs, and are the same
+  // for the entire data set.
+  colorScaleLocation = glGetUniformLocation(program, "colorScale");
+  colorScaleRangeLocation = glGetUniformLocation(program, "colorScaleRange");
+  mvMatrixLocation = glGetUniformLocation(program, "mvMatrix");
+  mvpMatrixLocation = glGetUniformLocation(program, "mvpMatrix");
+  primaryColorLocation = glGetUniformLocation(program, "primaryColor");
+  secondaryColorLocation = glGetUniformLocation(program, "secondaryColor");
+  scaleLocation = glGetUniformLocation(program, "scale");
+  lightDirLocation = glGetUniformLocation(program, "lightdir");
+  clipPlaneLocation = glGetUniformLocation(program, "clipPlane");
 
-    // Get the locations of the vertex attributes
-    int positionLocation = glGetAttribLocation(program, "position");
-    int normalLocation = glGetAttribLocation(program, "normal");
-    int colorLocation = glGetAttribLocation(program, "color");
-    int centerLocation = glGetAttribLocation(program, "center");
+  // Get the locations of the vertex attributes
+  int positionLocation = glGetAttribLocation(program, "position");
+  int normalLocation = glGetAttribLocation(program, "normal");
+  int colorLocation = glGetAttribLocation(program, "color");
+  int centerLocation = glGetAttribLocation(program, "center");
 }

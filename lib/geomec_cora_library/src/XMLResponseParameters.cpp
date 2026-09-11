@@ -29,15 +29,15 @@ std::ostream& CXMLResponseParameters::operator () (std::ostream& stream) const
 {
   if (m_responseParameters.empty())
   {
-    stream << RESPONSE_PARAMETERS_EMPTY.toStdString() << std::endl;
+  stream << RESPONSE_PARAMETERS_EMPTY.toStdString() << std::endl;
   }
   else
   {
-    stream << RESPONSE_PARAMETERS_OPEN.toStdString() << std::endl;
+  stream << RESPONSE_PARAMETERS_OPEN.toStdString() << std::endl;
 
-    stream << m_responseParameters;
+  stream << m_responseParameters;
 
-    stream << RESPONSE_PARAMETERS_CLOSE.toStdString() << std::endl;
+  stream << RESPONSE_PARAMETERS_CLOSE.toStdString() << std::endl;
   }
 
   return stream;
@@ -56,18 +56,18 @@ TXMLResponseParameters CXMLResponseParameters::createResponseParameters(
   std::set <QString> failureModeLabels;
 
   for (TFailureModes::iterator failureMode = failureModes.begin();
-    failureMode != failureModes.end(); ++failureMode)
+  failureMode != failureModes.end(); ++failureMode)
   {
-    if ((*failureMode)->getObject() == object)
-    {
+  if ((*failureMode)->getObject() == object)
+  {
       if (failureModeLabels.find((*failureMode)->getFailureModeLabel()) ==
-        failureModeLabels.end())
+    failureModeLabels.end())
       {
-        failureModeLabels.insert((*failureMode)->getFailureModeLabel());
-        responseParameters.push_back(TXMLResponseParameter(
+    failureModeLabels.insert((*failureMode)->getFailureModeLabel());
+    responseParameters.push_back(TXMLResponseParameter(
           new CXMLResponseParameter(*failureMode)));
       }
-    }
+  }
   }
 
   return responseParameters;

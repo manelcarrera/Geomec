@@ -24,20 +24,20 @@ namespace geo {
 class GEOMETRY_EXPORT  IRectangle : public IQuadrilateral
 {
 public:
-	IRectangle();
+  IRectangle();
 
-	virtual const IPoint& Refpoint() const = 0;
-	virtual const IVector& Direction1() const = 0;
-	virtual const IVector& Direction2() const = 0;
+  virtual const IPoint& Refpoint() const = 0;
+  virtual const IVector& Direction1() const = 0;
+  virtual const IVector& Direction2() const = 0;
 
-	//returns -1 if p is not a point on the rectangle
-	virtual int GetOpositeIndex(const geo::CPoint& p);
+  //returns -1 if p is not a point on the rectangle
+  virtual int GetOpositeIndex(const geo::CPoint& p);
 
-	//From IElement...
-	virtual int NrOfPoints() const;
-	virtual TDoubleVec WorldToIso(const geo::IPoint& point) const;
+  //From IElement...
+  virtual int NrOfPoints() const;
+  virtual TDoubleVec WorldToIso(const geo::IPoint& point) const;
 
-	virtual bool Visit(IVisitor &visitor) { return visitor.HandleRectangle(*this); }
+  virtual bool Visit(IVisitor &visitor) { return visitor.HandleRectangle(*this); }
 
 };
 }

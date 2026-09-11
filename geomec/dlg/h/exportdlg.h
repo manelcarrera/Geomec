@@ -9,32 +9,32 @@
 
 class CExportDlg : public CDialog
 {
-	IExportFormat::TAxisSystem m_axis_system;
+  IExportFormat::TAxisSystem m_axis_system;
 public:
-	CExportDlg(IExportFormat::TAxisSystem axis_system, CWnd* pParent = NULL);   // standard constructor
-	IExportFormat::TAxisSystem AxisSystem() const;
+  CExportDlg(IExportFormat::TAxisSystem axis_system, CWnd* pParent = NULL);   // standard constructor
+  IExportFormat::TAxisSystem AxisSystem() const;
 
 // Dialog Data
-	//{{AFX_DATA(CExportDlg)
-	enum { IDD = IDD_EXPORT_POINTSET };
-	//}}AFX_DATA
+  //{{AFX_DATA(CExportDlg)
+  enum { IDD = IDD_EXPORT_POINTSET };
+  //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CExportDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+  // ClassWizard generated virtual function overrides
+  //{{AFX_VIRTUAL(CExportDlg)
+  protected:
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CExportDlg)
-		// NOTE: the ClassWizard will add member functions here
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+  // Generated message map functions
+  //{{AFX_MSG(CExportDlg)
+    // NOTE: the ClassWizard will add member functions here
+  //}}AFX_MSG
+  DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}

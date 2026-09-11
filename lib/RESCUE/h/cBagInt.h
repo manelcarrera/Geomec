@@ -18,11 +18,11 @@ Software Product or documentation licensed under this agreement.
 ****************************************************************************/
 /*************************************************************************
 
-        cBagInt.h
+    cBagInt.h
 
   Keeps a list of integers.
 
-    Rod Hanks               December 15th, 1995  / August 1996
+  Rod Hanks               December 15th, 1995  / August 1996
 
 ****************************************************************************/
 

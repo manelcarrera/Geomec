@@ -20,10 +20,10 @@ class RescuePolyLineNodeUV:public RescueObject
 {
 public:
   RescuePolyLineNodeUV(RescueContext *context, RescueIJSurface *faceIn, RESCUEFLOAT u, RESCUEFLOAT v)
-                            :RescueObject(context)
-                            ,uValue(u)
-                            ,vValue(v)
-                            ,face(faceIn) {isA = R_RescuePolyLineNodeUV;}
+              :RescueObject(context)
+              ,uValue(u)
+              ,vValue(v)
+              ,face(faceIn) {isA = R_RescuePolyLineNodeUV;}
   void SetUVValue(RESCUEFLOAT u, RESCUEFLOAT v) {uValue = u; vValue = v;}
   RESCUEFLOAT U() {return uValue;} 
   RESCUEFLOAT V() {return vValue;} 

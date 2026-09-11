@@ -18,15 +18,15 @@ namespace cora
 class ICreateElementValueSet
 {
   public:
-    ICreateElementValueSet();
-    virtual ~ICreateElementValueSet() = 0;
+  ICreateElementValueSet();
+  virtual ~ICreateElementValueSet() = 0;
 
-    virtual void createElementValueSet(CModelBase* modelBase,
+  virtual void createElementValueSet(CModelBase* modelBase,
       const CFailureTypeParameterBase* failureTypeParameterBase) = 0;
 
   private:
-    ICreateElementValueSet(const ICreateElementValueSet& rhs);
-    ICreateElementValueSet& operator = (const ICreateElementValueSet& rhs);
+  ICreateElementValueSet(const ICreateElementValueSet& rhs);
+  ICreateElementValueSet& operator = (const ICreateElementValueSet& rhs);
 };
 
 typedef QSharedPointer <ICreateElementValueSet> TCreateElementValueSetBase;

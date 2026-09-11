@@ -141,72 +141,72 @@ void gnomonCB( void *userData, SoAction *action )
   // Don't do anything if this is not a render traversal
   if (action->isOfType(SoGLRenderAction::getClassTypeId())) {
 
-    // Suppress auto-caching above the callback node to ensure
-    // that this code will actually be traversed on every render.
-    //
-    // The gnomon geometry itself is under a Separator, which
-    // should be cached, so there is no performance penalty.
-    SoState *state = action->getState();
-    SoGLCacheContextElement::shouldAutoCache(state,SoGLCacheContextElement::DONT_AUTO_CACHE);
+  // Suppress auto-caching above the callback node to ensure
+  // that this code will actually be traversed on every render.
+  //
+  // The gnomon geometry itself is under a Separator, which
+  // should be cached, so there is no performance penalty.
+  SoState *state = action->getState();
+  SoGLCacheContextElement::shouldAutoCache(state,SoGLCacheContextElement::DONT_AUTO_CACHE);
 
-    // Set the OpenGL viewport to position gnomon in the window.
-    //
-    // Note that we modify the Open Inventor traversal state (rather
-    // than calling OpenGL directly) so that any nodes that depend on
-    // knowing the viewport will function correctly.
-    //
-    // This gnomon position is in the lower-left corner.
-    SbViewportRegion vport( GNOMON_WIDTH, GNOMON_HEIGHT );
-    SoViewportRegionElement::set( state, vport );
+  // Set the OpenGL viewport to position gnomon in the window.
+  //
+  // Note that we modify the Open Inventor traversal state (rather
+  // than calling OpenGL directly) so that any nodes that depend on
+  // knowing the viewport will function correctly.
+  //
+  // This gnomon position is in the lower-left corner.
+  SbViewportRegion vport( GNOMON_WIDTH, GNOMON_HEIGHT );
+  SoViewportRegionElement::set( state, vport );
 
-    // Reset depth buffer so gnomon is always "on top of" other geometry.
-    //
-    // Open Inventor does this automatically in a few special cases, but
-    // currently we don't have a public mechanism, so we have to call
-    // OpenGL directly.  It should be safe to do this here because the
-    // gnomon is the last thing in the scene graph.
-    glClear( GL_DEPTH_BUFFER_BIT );
+  // Reset depth buffer so gnomon is always "on top of" other geometry.
+  //
+  // Open Inventor does this automatically in a few special cases, but
+  // currently we don't have a public mechanism, so we have to call
+  // OpenGL directly.  It should be safe to do this here because the
+  // gnomon is the last thing in the scene graph.
+  glClear( GL_DEPTH_BUFFER_BIT );
 
-    // Get the current camera rotation from the viewing matrix.
-    //
-    // Note that the viewing matrix is applied to geometry, so it's
-    // actually the inverse of the matrix we need.  The getTransform
-    // method will return the rotation in variable cameraRotation.
-    //
-    // We could get the camera orientation by hiding a pointer to the 
-    // camera, but this approach is very "fragile".  For example, if the 
-    // user changes the camera type by clicking the viewer button, the
-    // viewer destroys the current camera and creates a new one.
-    SbMatrix viewMat = SoViewingMatrixElement::get( state );
-    SbVec3f tran, scale;
-    SbRotation cameraRotation, orient;
-    viewMat.inverse().getTransform( tran, cameraRotation, scale, orient );
+  // Get the current camera rotation from the viewing matrix.
+  //
+  // Note that the viewing matrix is applied to geometry, so it's
+  // actually the inverse of the matrix we need.  The getTransform
+  // method will return the rotation in variable cameraRotation.
+  //
+  // We could get the camera orientation by hiding a pointer to the 
+  // camera, but this approach is very "fragile".  For example, if the 
+  // user changes the camera type by clicking the viewer button, the
+  // viewer destroys the current camera and creates a new one.
+  SbMatrix viewMat = SoViewingMatrixElement::get( state );
+  SbVec3f tran, scale;
+  SbRotation cameraRotation, orient;
+  viewMat.inverse().getTransform( tran, cameraRotation, scale, orient );
 
-    // Get ptr to the gnomon's camera
-    SoCamera *camera = (SoCamera*)userData;
+  // Get ptr to the gnomon's camera
+  SoCamera *camera = (SoCamera*)userData;
 
-    // Disable notification because we're already traversing
-    camera->enableNotify( FALSE );
+  // Disable notification because we're already traversing
+  camera->enableNotify( FALSE );
 
-    // Set the new orientation for the gnomon camera
-    camera->orientation = cameraRotation;
+  // Set the new orientation for the gnomon camera
+  camera->orientation = cameraRotation;
 
-    // Get the current "focal distance" (distance to pt-of-rotation)
-    float distance = camera->focalDistance.getValue();
+  // Get the current "focal distance" (distance to pt-of-rotation)
+  float distance = camera->focalDistance.getValue();
 
-    // Reposition the camera so it's looking at the pt-of-rotation
-    // (which is the center of the gnomon or 0,0,0 in this case).
-    //
-    // We'll use an algorithm similar to what the examiner viewer uses
-    // to spin the camera around the pt-of-rotation.
-    // First get the rotation as a matrix.  Conveniently SbMatrix has an
-    // assignment operator that takes an SbRotation value.
-    // Next extract the view direction vector from the rotation matrix.
-    // Now move the camera radius units along the direction vector.
-    SbMatrix mx;
-    mx = cameraRotation;
-    SbVec3f direction( -mx[2][0], -mx[2][1], -mx[2][2] );
-    camera->position = SbVec3f(0,0,0) - distance * direction;
+  // Reposition the camera so it's looking at the pt-of-rotation
+  // (which is the center of the gnomon or 0,0,0 in this case).
+  //
+  // We'll use an algorithm similar to what the examiner viewer uses
+  // to spin the camera around the pt-of-rotation.
+  // First get the rotation as a matrix.  Conveniently SbMatrix has an
+  // assignment operator that takes an SbRotation value.
+  // Next extract the view direction vector from the rotation matrix.
+  // Now move the camera radius units along the direction vector.
+  SbMatrix mx;
+  mx = cameraRotation;
+  SbVec3f direction( -mx[2][0], -mx[2][1], -mx[2][2] );
+  camera->position = SbVec3f(0,0,0) - distance * direction;
   }
 }
 
@@ -250,8 +250,8 @@ SoSeparator* makeGnomon()
   SoNode *node;
   SbBool ok = SoDB::read(&in, node);
   if (ok && node != NULL) {
-    pSwitch->addChild(node);
-    pSwitch->whichChild = SO_SWITCH_ALL;
+  pSwitch->addChild(node);
+  pSwitch->whichChild = SO_SWITCH_ALL;
   }
 
   // Reset the bounding box so gnomon geometry will not
@@ -272,15 +272,15 @@ void
 {
   char *filename = "test.iv";
   if (argc > 1)
-    filename = argv[1];
+  filename = argv[1];
 
   FILE *fp = fopen( filename, "r" );
   if (fp == NULL) {
-    printf( "Unable to open '%s'\n", filename );
-    filename = NULL;    // Indicate we do not have a file
+  printf( "Unable to open '%s'\n", filename );
+  filename = NULL;    // Indicate we do not have a file
   }
   else
-    fclose( fp );
+  fclose( fp );
 
   // Initialize Inventor
   HWND myWindow = SoWin::init(argv[0]);
@@ -288,20 +288,20 @@ void
   // If we have an input file, try to read it
   SoSeparator *pScene = NULL;
   if (filename != NULL) {
-    SoInput in;
-    in.openFile( filename );
-    pScene = SoDB::readAll( &in );
-    in.closeFile();
+  SoInput in;
+  in.openFile( filename );
+  pScene = SoDB::readAll( &in );
+  in.closeFile();
   }
   else {
-    // Else create a simple scene graph
-    pScene            = new SoSeparator;
-    SoMaterial *pMatl = new SoMaterial;
-    SoCone     *pCone = new SoCone;
+  // Else create a simple scene graph
+  pScene            = new SoSeparator;
+  SoMaterial *pMatl = new SoMaterial;
+  SoCone     *pCone = new SoCone;
 
-    pMatl->diffuseColor.setValue( 1,0,0 );
-    pScene->addChild( pMatl );
-    pScene->addChild( pCone );
+  pMatl->diffuseColor.setValue( 1,0,0 );
+  pScene->addChild( pMatl );
+  pScene->addChild( pCone );
   }
   pScene->setName( "_3D_Scene" );
 

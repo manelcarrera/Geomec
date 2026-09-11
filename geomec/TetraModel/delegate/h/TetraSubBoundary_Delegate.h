@@ -10,19 +10,19 @@ public:
   class CHorizonPlaceHolder_Delegate : public COpenGLNode_Delegate
   {
   public:
-    CHorizonPlaceHolder_Delegate(
+  CHorizonPlaceHolder_Delegate(
       CTetraSubBoundary::CHorizonPlaceHolder* horizonPlaceHolder);
 
-    virtual void AppendContextMenu(CContextMenuInvoker& invoker);
+  virtual void AppendContextMenu(CContextMenuInvoker& invoker);
 
   private:
-    CHorizonPlaceHolder_Delegate(const CHorizonPlaceHolder_Delegate& rhs);
-    CHorizonPlaceHolder_Delegate& operator = (
+  CHorizonPlaceHolder_Delegate(const CHorizonPlaceHolder_Delegate& rhs);
+  CHorizonPlaceHolder_Delegate& operator = (
       const CHorizonPlaceHolder_Delegate& rhs);
 
-    CTetraSubBoundary::CHorizonPlaceHolder* m_horizonPlaceHolder;
+  CTetraSubBoundary::CHorizonPlaceHolder* m_horizonPlaceHolder;
 
-    REGISTER_DELEGATE(CTetraSubBoundary::CHorizonPlaceHolder,
+  REGISTER_DELEGATE(CTetraSubBoundary::CHorizonPlaceHolder,
       CHorizonPlaceHolder_Delegate);
   };
 
@@ -33,7 +33,7 @@ public:
 private:
   CTetraSubBoundary_Delegate(const CTetraSubBoundary_Delegate& rhs);
   CTetraSubBoundary_Delegate& operator = (
-    const CTetraSubBoundary_Delegate& rhs);
+  const CTetraSubBoundary_Delegate& rhs);
 
   CTetraSubBoundary* m_tetraSubBoundary;
 

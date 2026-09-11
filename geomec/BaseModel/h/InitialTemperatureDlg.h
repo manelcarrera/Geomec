@@ -15,10 +15,10 @@
 class CInitialTemperatureDlg : public CAttriGlobalFormationLoadDlg<CGlobalTemperature>
 {
 public:
-	CInitialTemperatureDlg(CGlobalTemperature& temp, CWnd* pParent = 0);
+  CInitialTemperatureDlg(CGlobalTemperature& temp, CWnd* pParent = 0);
 
 protected:
-	DECLARE_MESSAGE_MAP()
+  DECLARE_MESSAGE_MAP()
 };
 
 #endif // !defined(AFX_INITIALTEMPERATUREDLG_H__C56266FC_C73E_4EE2_93B5_92BC702E19F7__INCLUDED_)

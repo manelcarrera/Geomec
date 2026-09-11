@@ -37,55 +37,55 @@ public:
                          RESCUEINT64 expectedParent,
                          RESCUEINT64 refinedRealloc = DEFAULT_REFINED_REALLOC,
                          RESCUEINT64 parentRealloc = DEFAULT_PARENT_REALLOC);
-                            // The map belongs to the child.
+              // The map belongs to the child.
   ~RescueParametricLGRMap();
-                            // Don't delete the object.  It is deleted
-                            // automatically when you drop the RescueGeometry
-                            // that owns it.  To get rid of an existing
-                            // map use ClearMap().
+              // Don't delete the object.  It is deleted
+              // automatically when you drop the RescueGeometry
+              // that owns it.  To get rid of an existing
+              // map use ClearMap().
   void ClearMap();          // Resets the counts.
 /*********************** Cell at a time *****************************/
   void SetCellToCell(RESCUEINT64 iNdx, RESCUEINT64 jNdx, RESCUEINT64 kNdx, RESCUEINT64 parentCount,
                      RESCUEINT64 *pIndx, RESCUEINT64 *pJndx, RESCUEINT64 *pKndx);
   void SetCellToCell(RESCUEINT32 iNdx, RESCUEINT32 jNdx, RESCUEINT32 kNdx, RESCUEINT32 parentCount,
                      RESCUEINT32 *pIndx, RESCUEINT32 *pJndx, RESCUEINT32 *pKndx);
-                            // Sets the description of one lgr cell
-                            // and one or more parent cells that it
-                            // refines.  It is assumed that the lgr
-                            // cell is not already in the map.  The
-                            // arrays are copied.  Pass jNdx and kNdx
-                            // as -1 if not used.  pJndx and pKndx may
-                            // be passed as 0.
+              // Sets the description of one lgr cell
+              // and one or more parent cells that it
+              // refines.  It is assumed that the lgr
+              // cell is not already in the map.  The
+              // arrays are copied.  Pass jNdx and kNdx
+              // as -1 if not used.  pJndx and pKndx may
+              // be passed as 0.
   RESCUEINT64 ReadLGRCellToCell(RESCUEINT64 iNdx, RESCUEINT64 jNdx, RESCUEINT64 kNdx, RESCUEINT64 allocated,
-                                RESCUEINT64 *pIndx, RESCUEINT64 *pJndx, RESCUEINT64 *pKndx);
+                RESCUEINT64 *pIndx, RESCUEINT64 *pJndx, RESCUEINT64 *pKndx);
   RESCUEINT32 ReadLGRCellToCell(RESCUEINT32 iNdx, RESCUEINT32 jNdx, RESCUEINT32 kNdx, RESCUEINT32 allocated,
-                                RESCUEINT32 *pIndx, RESCUEINT32 *pJndx, RESCUEINT32 *pKndx);
-                            // iNdx, jNdx, kNdx are the index of the LGR
-                            // cell being RESCUEINTerrogated.  The return is
-                            // -1 if the cell is not in the map or the
-                            // number of parent cells that it refines
-                            // if it is in the map.  If nonzero,
-                            // pIndx, pJndx, pKndx are pre-allocated arrays
-                            // RESCUEINTo which the parent cell indexes will
-                            // be written.  allocated is the number of
-                            // parent cell indexes that could be written
-                            // before writing off the end of the arrays.
-                            // Pass jNdx and kNdx as -1 if not used.
+                RESCUEINT32 *pIndx, RESCUEINT32 *pJndx, RESCUEINT32 *pKndx);
+              // iNdx, jNdx, kNdx are the index of the LGR
+              // cell being RESCUEINTerrogated.  The return is
+              // -1 if the cell is not in the map or the
+              // number of parent cells that it refines
+              // if it is in the map.  If nonzero,
+              // pIndx, pJndx, pKndx are pre-allocated arrays
+              // RESCUEINTo which the parent cell indexes will
+              // be written.  allocated is the number of
+              // parent cell indexes that could be written
+              // before writing off the end of the arrays.
+              // Pass jNdx and kNdx as -1 if not used.
   RESCUEINT64 ReadParentCellToCell(RESCUEINT64 iNdx, RESCUEINT64 jNdx, RESCUEINT64 kNdx, RESCUEINT64 allocated,
                                    RESCUEINT64 *cIndx, RESCUEINT64 *cJndx, RESCUEINT64 *cKndx);
   RESCUEINT32 ReadParentCellToCell(RESCUEINT32 iNdx, RESCUEINT32 jNdx, RESCUEINT32 kNdx, RESCUEINT32 allocated,
                                    RESCUEINT32 *cIndx, RESCUEINT32 *cJndx, RESCUEINT32 *cKndx);
-                            // iNdx, jNdx, kNdx are the index of the parent
-                            // cell being RESCUEINTerrogated.  The return is
-                            // -1 if the cell is not in the map or the
-                            // number of child cells that refine it
-                            // if it is in the map.  If nonzero,
-                            // cIndx, cJndx, cKndx are pre-allocated arrays
-                            // RESCUEINTo which the parent cell indexes will
-                            // be written.  allocated is the number of
-                            // child cell indexes that could be written
-                            // before writing off the end of the arrays.
-                            // Pass jNdx and kNdx as -1 if not used.
+              // iNdx, jNdx, kNdx are the index of the parent
+              // cell being RESCUEINTerrogated.  The return is
+              // -1 if the cell is not in the map or the
+              // number of child cells that refine it
+              // if it is in the map.  If nonzero,
+              // cIndx, cJndx, cKndx are pre-allocated arrays
+              // RESCUEINTo which the parent cell indexes will
+              // be written.  allocated is the number of
+              // child cell indexes that could be written
+              // before writing off the end of the arrays.
+              // Pass jNdx and kNdx as -1 if not used.
 /************************** Reading ************************************/
   RESCUEINT64 CellToCellMapCount64() {return cellToCellMapCount;}
   RESCUEINT64 *LGRIndx64() {return lgrIndx;}
@@ -98,9 +98,9 @@ public:
   RESCUEINT64 *ParentJNdx64() {return parentJndx;}
   RESCUEINT64 *ParentKNdx64() {return parentKndx;}
   RESCUEINT64 *LGRNdx64() {return lgrNdx;}
-                            // Access to the entire data structure.  You
-                            // should not write to the arrays via this
-                            // method, though I can't prevent it.
+              // Access to the entire data structure.  You
+              // should not write to the arrays via this
+              // method, though I can't prevent it.
   RESCUEINT32 CellToCellMapCount() {return CellToCellMapCount(false);}
   RESCUEINT32 *LGRIndx() {return LGRIndx(false);}
   RESCUEINT32 *LGRJndx() {return LGRJndx(false);}
@@ -124,39 +124,39 @@ public:
   RESCUEINT32 *ParentJNdx(RESCUEBOOL throwIfTooBig);
   RESCUEINT32 *ParentKNdx(RESCUEBOOL throwIfTooBig);
   RESCUEINT32 *LGRNdx(RESCUEBOOL throwIfTooBig);
-                            // Here I can't really provide equivalent RESCUEINT32
-                            // functionality.  I am returning a copy of the array
-                            // and the consumer must delete it when done.
+              // Here I can't really provide equivalent RESCUEINT32
+              // functionality.  I am returning a copy of the array
+              // and the consumer must delete it when done.
   typedef enum
   {
-    LGR_I_NDX,              // Identifies arrays for CopyArray.
-    LGR_J_NDX,
-    LGR_K_NDX,
-    PARENT_NDX,
-    PARENT_COUNT,
-    PARENT_I_NDX,
-    PARENT_J_NDX,
-    PARENT_K_NDX,
-    LGR_NDX
+  LGR_I_NDX,              // Identifies arrays for CopyArray.
+  LGR_J_NDX,
+  LGR_K_NDX,
+  PARENT_NDX,
+  PARENT_COUNT,
+  PARENT_I_NDX,
+  PARENT_J_NDX,
+  PARENT_K_NDX,
+  LGR_NDX
   } RescuePMLGRArrayName;
   void CopyArray(RescuePMLGRArrayName whichArray, RESCUEINT64 srcLowBound, RESCUEINT64 srcCount,
                  RESCUEINT64 *preAllocated, RESCUEINT64 destOffset);
   void CopyArray(RescuePMLGRArrayName whichArray, RESCUEINT32 srcLowBound, RESCUEINT32 srcCount,
                  RESCUEINT32 *preAllocated, RESCUEINT32 destOffset);
-                            // Copies the named array RESCUEINTo the RESCUEINTeger
-                            // array buffer passed in preAllocated, 
-                            // especially handy for Java developers.
-                            // srcLowBound is the first index to copy
-                            // srcCount is the number to copy
-                            // destOffset is the index of the first copied RESCUEINTeger
-                            // There must be enough spaces in the preAllocated
-                            // array to copy srcCount RESCUEINTegers.
+              // Copies the named array RESCUEINTo the RESCUEINTeger
+              // array buffer passed in preAllocated, 
+              // especially handy for Java developers.
+              // srcLowBound is the first index to copy
+              // srcCount is the number to copy
+              // destOffset is the index of the first copied RESCUEINTeger
+              // There must be enough spaces in the preAllocated
+              // array to copy srcCount RESCUEINTegers.
 /****************************** Writing **********************************/
-                                    // In both methods, arrays which are not
-                                    // needed (such as j and k indexes for
-                                    // unstructured grids) or that are not
-                                    // available (lgrNdx in some cases?)
-                                    // may be passed as zero
+                  // In both methods, arrays which are not
+                  // needed (such as j and k indexes for
+                  // unstructured grids) or that are not
+                  // available (lgrNdx in some cases?)
+                  // may be passed as zero
   void Accept(RESCUEINT64 cellToCellCount,  // Sets the entire map at one go.
               RESCUEINT64 *lgrIndxIn,       // The arrays must have been allocated
               RESCUEINT64 *lgrJndxIn,       // with new RESCUEINT64[].  The array pointers
@@ -219,39 +219,39 @@ private:
   void EnsureParentMapSize(RESCUEINT64 parentCountIn);
 
   RESCUEINT64 refinedReallocFactor; // Number to add to refined side if we run
-                            // out while doing cell by cell writing.
+              // out while doing cell by cell writing.
   RESCUEINT64 refinedAllocated;     // Number of items allocated in the lgrIndx, 
-                            // lgrJndx, lgrKndx, parentNdx, parentCount arrays.
+              // lgrJndx, lgrKndx, parentNdx, parentCount arrays.
   RESCUEINT64 cellToCellMapCount;   // The number of LGR cells that refine at
-                            // least one parent cell.  Also the number
-                            // of valid items in lgrIndx, lgrJndx, 
-                            // lgrKndx, parentNdx, and parentCount.
+              // least one parent cell.  Also the number
+              // of valid items in lgrIndx, lgrJndx, 
+              // lgrKndx, parentNdx, and parentCount.
   RESCUEINT64 *lgrIndx;             // I index of refining cell.
   RESCUEINT64 *lgrJndx;             // J index of refining cell.  Not used for 
-                            // unstructured grids.
+              // unstructured grids.
   RESCUEINT64 *lgrKndx;             // K index of refining cell.  Not used for
-                            // unstructured grids.
+              // unstructured grids.
   RESCUEINT64 *parentNdx;           // Index RESCUEINTo the parentIndx, parentJndx,
-                            // parentKndx arrays for this cell.
+              // parentKndx arrays for this cell.
   RESCUEINT64 *parentCount;         // Number of rows in parentIndx, parentJndx,
-                            // parentKndx which pertain to this refining
-                            // cell.
+              // parentKndx which pertain to this refining
+              // cell.
   /*******************************************************************/
   RESCUEINT64 parentReallocFactor;  // Number to add to the parent side if we
-                            // run out while doing cell by cell writing.
+              // run out while doing cell by cell writing.
   RESCUEINT64 parentAllocated;      // The number of items allocated in the
-                            // parentIndx, parentJndx, parentKndx arrays.
+              // parentIndx, parentJndx, parentKndx arrays.
   RESCUEINT64 parentMapCount;       // The number of valid cells in parentIndx,
-                            // parentJndx, parentKndx.  Also the sum
-                            // of all parentCount entries.
+              // parentJndx, parentKndx.  Also the sum
+              // of all parentCount entries.
   RESCUEINT64 *parentIndx;          // I index of refined cell.
   RESCUEINT64 *parentJndx;          // J index of refined cell.  Not used for
-                            // unstructured grids.
+              // unstructured grids.
   RESCUEINT64 *parentKndx;          // K index of refined cell.  Not used for
-                            // unstructured grids.
+              // unstructured grids.
   RESCUEINT64 *lgrNdx;              // Index RESCUEINTo lgrIndx, lgrJndx, lgrKndx,
-                            // parentNdx, parentCount for this parent
-                            // cell.
+              // parentNdx, parentCount for this parent
+              // cell.
   /*******************************************************************/
   RescueGeometry *lgrGeometry;
   cSetRescueDataContainer *properties;

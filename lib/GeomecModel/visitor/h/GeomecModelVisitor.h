@@ -12,14 +12,14 @@
 #define ACCEPT_GEOMECMODELVISITORS(visit_function)                                  \
   virtual bool Accept(graphnode::IConstVisitor& visitor) const OVERRIDE             \
   {                                                                                 \
-    assert(dynamic_cast<IGeomecModelConstVisitor*>(&visitor));                      \
-    return (static_cast<IGeomecModelConstVisitor&>(visitor)).visit_function(*this); \
+  assert(dynamic_cast<IGeomecModelConstVisitor*>(&visitor));                      \
+  return (static_cast<IGeomecModelConstVisitor&>(visitor)).visit_function(*this); \
   }                                                                                 \
-                                                                                    \
+                                          \
   virtual bool Accept(graphnode::IVisitor& visitor) OVERRIDE                        \
   {                                                                                 \
-    assert(dynamic_cast<IGeomecModelVisitor*>(&visitor));                           \
-    return (static_cast<IGeomecModelVisitor&>(visitor)).visit_function(*this);      \
+  assert(dynamic_cast<IGeomecModelVisitor*>(&visitor));                           \
+  return (static_cast<IGeomecModelVisitor&>(visitor)).visit_function(*this);      \
   }                                                                                 \
 
 

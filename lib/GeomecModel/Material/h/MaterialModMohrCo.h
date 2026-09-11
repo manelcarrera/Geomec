@@ -8,11 +8,11 @@
 class CMaterialModMohrCo : public IMaterialRock
 {
 public:
-	CMaterialModMohrCo(CMaterialEntry &entry, CLibraryMaterial& libmat);
-	CMaterialModMohrCo(const CMaterialModMohrCo &material, CMaterialEntry& entry);
+  CMaterialModMohrCo(CMaterialEntry &entry, CLibraryMaterial& libmat);
+  CMaterialModMohrCo(const CMaterialModMohrCo &material, CMaterialEntry& entry);
 
-	virtual bool Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const;
-	virtual int MaterialModel() const { return MM_MODIFIEDMOHRCOULOMB; }
+  virtual bool Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const;
+  virtual int MaterialModel() const { return MM_MODIFIEDMOHRCOULOMB; }
   virtual long MaterialModelFilter() const { return MLFO_MODIFIEDMOHRCOULOMB; }
 
   // the creator for this material model

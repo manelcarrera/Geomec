@@ -1,10 +1,10 @@
 /*************************************************************************
 
-        cSetRescueTriangleVertex.h
+    cSetRescueTriangleVertex.h
 
  Keeps a list of pointers to some RescueTriangleVertex.
 
-        Rod Hanks              June, 1999
+    Rod Hanks              June, 1999
 
 ****************************************************************************/
 

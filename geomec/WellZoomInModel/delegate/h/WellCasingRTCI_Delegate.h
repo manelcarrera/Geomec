@@ -34,7 +34,7 @@ public:
 private:
   CWellCasingRTCIEntry_Delegate(const CWellCasingRTCIEntry_Delegate& rhs);
   CWellCasingRTCIEntry_Delegate& operator = (
-    const CWellCasingRTCIEntry_Delegate& rhs);
+  const CWellCasingRTCIEntry_Delegate& rhs);
 
   CWellCasingRTCIEntry* m_wellCasingRTCIEntry;
 

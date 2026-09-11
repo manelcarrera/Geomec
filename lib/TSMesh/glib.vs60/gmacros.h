@@ -145,11 +145,11 @@
  * fields through their offsets.
  */
 #define G_STRUCT_OFFSET(struct_type, member)	\
-    ((glong) ((guint8*) &((struct_type*) 0)->member))
+  ((glong) ((guint8*) &((struct_type*) 0)->member))
 #define G_STRUCT_MEMBER_P(struct_p, struct_offset)   \
-    ((gpointer) ((guint8*) (struct_p) + (glong) (struct_offset)))
+  ((gpointer) ((guint8*) (struct_p) + (glong) (struct_offset)))
 #define G_STRUCT_MEMBER(member_type, struct_p, struct_offset)   \
-    (*(member_type*) G_STRUCT_MEMBER_P ((struct_p), (struct_offset)))
+  (*(member_type*) G_STRUCT_MEMBER_P ((struct_p), (struct_offset)))
 
 /* Provide simple macro statement wrappers (adapted from Perl):
  *  G_STMT_START { statements; } G_STMT_END;

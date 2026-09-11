@@ -37,7 +37,7 @@ void RescueTriangleFace::DropSelf()
   RESCUEINT64 loop;
   for (loop = 0; loop < 3; loop++)
   {
-    vertices[loop].obj->RemoveFromFace(this);
+  vertices[loop].obj->RemoveFromFace(this);
   }
 }
 
@@ -46,7 +46,7 @@ RescueTriangleVertex *RescueTriangleFace::NthVertex(RESCUEINT64 ordinal)
   RescueTriangleVertex *myReturn = 0;
   if (ordinal >= 0 && ordinal < 3)
   {
-    myReturn = vertices[ordinal].obj;
+  myReturn = vertices[ordinal].obj;
   }
   return myReturn;
 }
@@ -60,18 +60,18 @@ RescueTriangleFace *RescueTriangleFace::CrossFace(RESCUEINT64 ordinal)
   RESCUEINT64 loop;
   for (loop = 0; loop < howMany && myReturn == 0; loop++)
   {
-    RescueTriangleFace *otherFace = v1->NthFace(loop);
-    if (otherFace != this)
-    {
+  RescueTriangleFace *otherFace = v1->NthFace(loop);
+  if (otherFace != this)
+  {
       RESCUEINT64 corner;
       for (corner = 0; corner < 3 && myReturn == 0; corner++)
       {
-        if (otherFace->vertices[corner].obj == v2)
-        {
+    if (otherFace->vertices[corner].obj == v2)
+    {
           myReturn = otherFace;
-        }
-      }
     }
+      }
+  }
   }
   return myReturn;
 }
@@ -81,20 +81,20 @@ RescueTriangleFace::RescueTriangleFace(RescueContext *context, FILE *archiveFile
   RESCUEINT64 loop;
   for (loop = 0; loop < 3; loop++)
   {
-    RESCUEINT64 id;
-    myfscanf(context, archiveFile, &id);
-    vertices[loop].ndxOrId = (long) id;
+  RESCUEINT64 id;
+  myfscanf(context, archiveFile, &id);
+  vertices[loop].ndxOrId = (long) id;
   }
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -103,18 +103,18 @@ void RescueTriangleFace::Archive(RescueContext *context, FILE *archiveFile)
   RESCUEINT64 loop;
   for (loop = 0; loop < 3; loop++)
   {
-    if (context->FileVersion() >= 23)
-    {
+  if (context->FileVersion() >= 23)
+  {
       myfprintf(context, archiveFile, vertices[loop].obj->ndx);
-    }
-    else
-    {
+  }
+  else
+  {
       myfprintf(context, archiveFile, vertices[loop].obj->Identifier());
-    }
+  }
   }
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -125,18 +125,18 @@ void RescueTriangleFace::Relink(RescueObject *triangulatedSurface)
   RESCUEINT64 loop;
   for (loop = 0; loop < 3; loop++)
   {
-    if (context->ReadFileVersion() < 23)
-    {
+  if (context->ReadFileVersion() < 23)
+  {
       vertices[loop].obj = surfaceRep->TriangleVertexIdentifiedBy((long) vertices[loop].ndxOrId);
-    }
-    else
-    {
+  }
+  else
+  {
       vertices[loop].obj = surfaceRep->NthVertex((long) vertices[loop].ndxOrId);
-    }
+  }
   }
   for (loop = 0; loop < 3; loop++)
   {
-    vertices[loop].obj->AddToFace(this);
+  vertices[loop].obj->AddToFace(this);
   }
 }
 

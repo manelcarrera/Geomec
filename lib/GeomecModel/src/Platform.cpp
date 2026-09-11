@@ -18,14 +18,14 @@ long CPlatform::processMemorySize() const
 
 void CPlatform::trace(const QString& message) const
 {
-	// FIXME
+  // FIXME
 
   /*if(&outstream() != &std::cout)
-    outstream() << message.toStdString() << std::endl;
+  outstream() << message.toStdString() << std::endl;
   else
-    qDebug() << message;*/
+  qDebug() << message;*/
 
-	_m()->msg( message );
+  _m()->msg( message );
 }
 
 CPlatform::CPlatform()

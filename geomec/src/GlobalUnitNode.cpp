@@ -25,7 +25,7 @@ const CUnitNode& CGlobalUnitNode::retrieveGlobalUnitNode()
   position = docTemplate->GetFirstDocPosition();
 
   CFemAppDoc* femAppDoc =
-    dynamic_cast <CFemAppDoc*> (docTemplate->GetNextDoc(position));
+  dynamic_cast <CFemAppDoc*> (docTemplate->GetNextDoc(position));
 
   assert(femAppDoc != 0);
 

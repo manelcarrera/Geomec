@@ -21,66 +21,66 @@ static char THIS_FILE[]=__FILE__;
 //////////////////////////////////////////////////////////////////////
 
 CValueCompositeObserver::CValueCompositeObserver(IValueComposite& node,
-											 	 CTreeNode &parent,
-												 const BOOL rename,
-												 const enum REMOVE_TYPE remove,
-												 HTREEITEM hInsertAfter,
-												 BOOL bInitialUpdate,
-												 BOOL bSortAfterInsertion)
+                       	 CTreeNode &parent,
+                         const BOOL rename,
+                         const enum REMOVE_TYPE remove,
+                         HTREEITEM hInsertAfter,
+                         BOOL bInitialUpdate,
+                         BOOL bSortAfterInsertion)
 :TValueBaseObserver(node, parent, rename, remove, hInsertAfter, FALSE, bSortAfterInsertion), m_uMode(0)
 {
-	Update();
+  Update();
 }
 
 CValueCompositeObserver::CValueCompositeObserver(IValueComposite& node,
-					 							 CTreeCtrl &ctrl,
-												 const BOOL rename,
-												 const enum REMOVE_TYPE remove,
-												 HTREEITEM hParent,
-												 HTREEITEM hInsertAfter,
-												 BOOL bInitialUpdate,
-												 BOOL bSortAfterInsertion)
+           							 CTreeCtrl &ctrl,
+                         const BOOL rename,
+                         const enum REMOVE_TYPE remove,
+                         HTREEITEM hParent,
+                         HTREEITEM hInsertAfter,
+                         BOOL bInitialUpdate,
+                         BOOL bSortAfterInsertion)
 :TValueBaseObserver(node, ctrl, rename, remove, hParent, hInsertAfter, FALSE, bSortAfterInsertion), m_uMode(0)
 {
-	Update();
+  Update();
 }
 
 BOOL CValueCompositeObserver::OnFilter(const CStorageNode& t) const
 {
-	const IValueComponentBase *pComponent = dynamic_cast<const IValueComponentBase*> (&t);
-	if(pComponent)
-	{
-		const IValueComposite *pComposite = dynamic_cast<const IValueComposite*> (&ObservedItem());
-		return pComposite->ComponentSize(m_uMode) > 1;
-	}
+  const IValueComponentBase *pComponent = dynamic_cast<const IValueComponentBase*> (&t);
+  if(pComponent)
+  {
+    const IValueComposite *pComposite = dynamic_cast<const IValueComposite*> (&ObservedItem());
+    return pComposite->ComponentSize(m_uMode) > 1;
+  }
 
-	const CValueType *pValueType = dynamic_cast<const CValueType*> (&t);
-	if(pValueType)
-	{
-		return TRUE;
-	}
+  const CValueType *pValueType = dynamic_cast<const CValueType*> (&t);
+  if(pValueType)
+  {
+    return TRUE;
+  }
 
 
-	return FALSE;
+  return FALSE;
 }
 
 CTreeNode* CValueCompositeObserver::InsertChild(CStorageNode& t)
 {
-	IValueComponentBase *pComponent = dynamic_cast<IValueComponentBase*> (&t);
-	if(pComponent)
-	{
-		return new TValueComponentObserver(*pComponent, *this, FALSE, FIXED_ITEM);
-	}
+  IValueComponentBase *pComponent = dynamic_cast<IValueComponentBase*> (&t);
+  if(pComponent)
+  {
+    return new TValueComponentObserver(*pComponent, *this, FALSE, FIXED_ITEM);
+  }
 
-	CValueType *pValueType = dynamic_cast<CValueType*> (&t);
-	if(pValueType)
-	{
-		return new CValueCompositeObserver(*pValueType, *this, TRUE, UNLINK_ITEM);
-	}
+  CValueType *pValueType = dynamic_cast<CValueType*> (&t);
+  if(pValueType)
+  {
+    return new CValueCompositeObserver(*pValueType, *this, TRUE, UNLINK_ITEM);
+  }
 
-	assert(FALSE);
+  assert(FALSE);
 
-	return 0;
+  return 0;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -115,20 +115,20 @@ CValueReferenceObserver::CValueReferenceObserver(IValueComposite& node,
 BOOL CValueReferenceObserver::OnFilter(const CStorageNode& t) const
 {
   const IValueComponentBase* pComponent =
-    dynamic_cast <const IValueComponentBase*> (&t);
+  dynamic_cast <const IValueComponentBase*> (&t);
 
   if (pComponent)
   {
-    for (size_t r = 0; r < t.referenceSize(); ++r)
-    {
+  for (size_t r = 0; r < t.referenceSize(); ++r)
+  {
       const CRpnValueSet* rpnValueSet =
-        dynamic_cast <const CRpnValueSet*> (&t.referenceAt(r));
+    dynamic_cast <const CRpnValueSet*> (&t.referenceAt(r));
 
       if (rpnValueSet)
       {
-        return TRUE;
+    return TRUE;
       }
-    }
+  }
   }
 
   return CValueCompositeObserver::OnFilter(t);

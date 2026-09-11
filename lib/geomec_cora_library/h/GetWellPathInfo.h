@@ -13,25 +13,25 @@ namespace cora
 class CGetWellPathInfo
 {
   public:
-    static CGetWellPathInfo& instance(const CModelBase* modelBase);
+  static CGetWellPathInfo& instance(const CModelBase* modelBase);
 
-    const TObjects getObjects() const;
+  const TObjects getObjects() const;
 
-    std::ostream& operator () (std::ostream& os) const;
+  std::ostream& operator () (std::ostream& os) const;
 
   private:
-    CGetWellPathInfo(const CModelBase* modelBase);
-    ~CGetWellPathInfo();
+  CGetWellPathInfo(const CModelBase* modelBase);
+  ~CGetWellPathInfo();
 
-    CGetWellPathInfo(const CGetWellPathInfo& rhs);
-    CGetWellPathInfo& operator = (CGetWellPathInfo rhs);
+  CGetWellPathInfo(const CGetWellPathInfo& rhs);
+  CGetWellPathInfo& operator = (CGetWellPathInfo rhs);
 
-    static TObjects getObjects(const CModelBase* modelBase);
-    static void cleanup();
+  static TObjects getObjects(const CModelBase* modelBase);
+  static void cleanup();
 
-    static CGetWellPathInfo* m_getWellPathInfo;
-    const CModelBase* m_modelBase;
-    TObjects m_objects;
+  static CGetWellPathInfo* m_getWellPathInfo;
+  const CModelBase* m_modelBase;
+  TObjects m_objects;
 };
 
 } // namespace cora

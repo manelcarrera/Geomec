@@ -1,10 +1,10 @@
 /*************************************************************************
 
-        cBagRescueSurfaceToGrid.h
+    cBagRescueSurfaceToGrid.h
 
  Keeps a list of pointers to RescueSurfaceToGrid.
 
-        Rod Hanks               December 15th, 1995  / August 1996
+    Rod Hanks               December 15th, 1995  / August 1996
 
 ****************************************************************************/
 

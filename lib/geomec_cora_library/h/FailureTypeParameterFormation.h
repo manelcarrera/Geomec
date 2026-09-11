@@ -17,17 +17,17 @@ namespace cora
 class CFailureTypeParameterFormation : public CFailureTypeParameterBase
 {
   public:
-    static const QString FORMATION;
+  static const QString FORMATION;
 
-    CFailureTypeParameterFormation(CSummaryResultFile& summaryResultFile,
+  CFailureTypeParameterFormation(CSummaryResultFile& summaryResultFile,
       const std::string& object, const std::string& option,
       const std::string& parameter, std::vector <double>& value,
       const CGetModelInfo& modelInfo);
-    virtual ~CFailureTypeParameterFormation();
+  virtual ~CFailureTypeParameterFormation();
 
   private:
-    CFailureTypeParameterFormation(const CFailureTypeParameterFormation& rhs);
-    CFailureTypeParameterFormation& operator = (
+  CFailureTypeParameterFormation(const CFailureTypeParameterFormation& rhs);
+  CFailureTypeParameterFormation& operator = (
       CFailureTypeParameterFormation rhs);
 };
 

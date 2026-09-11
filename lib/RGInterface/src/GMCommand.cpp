@@ -22,12 +22,12 @@ std::string GMCommand::toStringCmd() const
       case typeCommandCalculate:         return "Calculate";
       case typeCommandHibernate:         return "Hibernate";
       case typeCommandListAvailableFailureMechanisms: return "ListAvailableFailureMechanisms";
-	  case typeCommandEvaluateLimitStateFunctions: return "typeCommandEvaluateLimitStateFunctions";
+    case typeCommandEvaluateLimitStateFunctions: return "typeCommandEvaluateLimitStateFunctions";
       case typeCommandQuit:              return "Quit";
       case typeCommandDefineInitialDate: return "DefineInitialDate";
-	  case typeCommandListMonitorableProperties: return "typeCommandListMonitorableProperties";
-	  case typeCommandLoadMonitorPointSets: return "typeCommandLoadMonitorPointSets";
-	  case typeCommandEvaluateMonitorValues: return "typeCommandEvaluateMonitorValues";
+    case typeCommandListMonitorableProperties: return "typeCommandListMonitorableProperties";
+    case typeCommandLoadMonitorPointSets: return "typeCommandLoadMonitorPointSets";
+    case typeCommandEvaluateMonitorValues: return "typeCommandEvaluateMonitorValues";
       case typeCommandLast:         
       default:                           return "Unknown";                                 
    }

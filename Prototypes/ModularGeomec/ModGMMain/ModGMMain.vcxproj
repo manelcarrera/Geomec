@@ -94,7 +94,7 @@
     </Link>
     <QtMoc>
       <Define>UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_DLL;QT_CORE_LIB;QT_GUI_LIB;%(PreprocessorDefinitions)</Define>
-      <IncludePath>.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(MODGM_ROOT)\ModGMBus\h;.\h;$(ALLINCLUDES);$(DIAROOT)\share\src\lb\fw51\GOCADMesh\include;$(PY_INC_ALL);$(DEVELOP)\lib\hdf5\windows\include;$(DEVELOP)\lib\c-blosc-1.9.0\blosc;$(TBBDIR)\include</IncludePath>
+      <IncludePath>.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(MODGM_ROOT)\ModGMBus\h;.\h;$(ALLINCLUDES);$(DIAROOT)\share\src\lb\fw51\GOCADMesh\include;$(PY_INC_ALL);$(DEVELOP)\third_party\hdf5\windows\include;$(DEVELOP)\third_party\c-blosc-1.9.0\blosc;$(TBBDIR)\include</IncludePath>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
     </QtMoc>
@@ -113,7 +113,7 @@
     </Link>
     <QtMoc>
       <Define>UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;%(PreprocessorDefinitions)</Define>
-      <IncludePath>.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(MODGM_ROOT)\ModGMBus\h;.\h;$(ALLINCLUDES);$(DIAROOT)\share\src\lb\fw51\GOCADMesh\include;$(PY_INC_ALL);$(DEVELOP)\lib\hdf5\windows\include;$(DEVELOP)\lib\c-blosc-1.9.0\blosc;$(TBBDIR)\include</IncludePath>
+      <IncludePath>.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(MODGM_ROOT)\ModGMBus\h;.\h;$(ALLINCLUDES);$(DIAROOT)\share\src\lb\fw51\GOCADMesh\include;$(PY_INC_ALL);$(DEVELOP)\third_party\hdf5\windows\include;$(DEVELOP)\third_party\c-blosc-1.9.0\blosc;$(TBBDIR)\include</IncludePath>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
     </QtMoc>
@@ -131,7 +131,7 @@
     </Link>
     <QtMoc>
       <Define>UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;%(PreprocessorDefinitions)</Define>
-      <IncludePath>.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(MODGM_ROOT)\ModGMBus\h;.\h;$(ALLINCLUDES);$(DIAROOT)\share\src\lb\fw51\GOCADMesh\include;$(PY_INC_ALL);$(DEVELOP)\lib\hdf5\windows\include;$(DEVELOP)\lib\c-blosc-1.9.0\blosc;$(TBBDIR)\include</IncludePath>
+      <IncludePath>.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(MODGM_ROOT)\ModGMBus\h;.\h;$(ALLINCLUDES);$(DIAROOT)\share\src\lb\fw51\GOCADMesh\include;$(PY_INC_ALL);$(DEVELOP)\third_party\hdf5\windows\include;$(DEVELOP)\third_party\c-blosc-1.9.0\blosc;$(TBBDIR)\include</IncludePath>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
     </QtMoc>

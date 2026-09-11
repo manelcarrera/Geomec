@@ -21,7 +21,7 @@ public:
 private:
   CTetraFormationVolume_Delegate(const CTetraFormationVolume_Delegate& rhs);
   CTetraFormationVolume_Delegate& operator = (
-    const CTetraFormationVolume_Delegate& rhs);
+  const CTetraFormationVolume_Delegate& rhs);
 
   CTetraFormationVolume* m_tetraFormationVolume;
 
@@ -60,7 +60,7 @@ public:
 private:
   CTetraFormationEntry_Delegate(const CTetraFormationEntry_Delegate& rhs);
   CTetraFormationEntry_Delegate& operator = (
-    const CTetraFormationEntry_Delegate& rhs);
+  const CTetraFormationEntry_Delegate& rhs);
 
   CTetraFormationEntry* m_tetraFormationEntry;
 

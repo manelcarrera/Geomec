@@ -12,7 +12,7 @@ CSaveModel::~CSaveModel()
 {
   if (m_strategy)
   {
-    delete m_strategy;
+  delete m_strategy;
   }
 }
 

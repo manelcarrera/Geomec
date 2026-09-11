@@ -18,26 +18,26 @@ class CLoadCase;
 
 class CFaceEdgeLoad : public IDirectedLoad  
 {
-	const geo::IFace &m_Face;
-	int m_iEdgeIndex;
-	std::vector<geo::CVector> m_vcVectors;
-	void WriteFilos(std::vector<double> vcValues, const geo::IVector &dir) const;
-	char *EdgeName() const;
+  const geo::IFace &m_Face;
+  int m_iEdgeIndex;
+  std::vector<geo::CVector> m_vcVectors;
+  void WriteFilos(std::vector<double> vcValues, const geo::IVector &dir) const;
+  char *EdgeName() const;
 
 public:
-	// the index of the edge is equal to the index of its first point
+  // the index of the edge is equal to the index of its first point
 
-	// single value for entire edge
-	CFaceEdgeLoad(CLoadCase &loadcase, double size, const geo::IVector &vecDirection, const geo::IFace &face, int iEdge);
-	// different values for each node
-	CFaceEdgeLoad(CLoadCase &loadcase, const std::vector<double> &vcValues, const geo::IVector &vecDirection, const geo::IFace &face, int iEdge);
-	// different vectors for each node
-	CFaceEdgeLoad(CLoadCase &loadcase, const std::vector<geo::CVector> &vcVectors, const geo::IFace &face, int iEdge);
-	virtual ~CFaceEdgeLoad();
+  // single value for entire edge
+  CFaceEdgeLoad(CLoadCase &loadcase, double size, const geo::IVector &vecDirection, const geo::IFace &face, int iEdge);
+  // different values for each node
+  CFaceEdgeLoad(CLoadCase &loadcase, const std::vector<double> &vcValues, const geo::IVector &vecDirection, const geo::IFace &face, int iEdge);
+  // different vectors for each node
+  CFaceEdgeLoad(CLoadCase &loadcase, const std::vector<geo::CVector> &vcVectors, const geo::IFace &face, int iEdge);
+  virtual ~CFaceEdgeLoad();
 
-	virtual bool WriteFilos() const;
-	const geo::IFace &Face() const;
-	int EdgeIndex() const;
+  virtual bool WriteFilos() const;
+  const geo::IFace &Face() const;
+  int EdgeIndex() const;
 };
 
 }

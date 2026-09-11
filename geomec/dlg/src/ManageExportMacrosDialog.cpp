@@ -66,15 +66,15 @@ void CManageExportMacrosDialog::OnManageExportMacrosList()
 
   if (index != LB_ERR)
   {
-    size_t s = m_manageExportMacrosList.GetItemData(index);
+  size_t s = m_manageExportMacrosList.GetItemData(index);
 
-    enableEditEntry(TRUE);
+  enableEditEntry(TRUE);
 
-    m_editBrowseFolder.SetWindowText(
+  m_editBrowseFolder.SetWindowText(
       exportMacrosListEntries[s].m_folder.toStdString().c_str());
-    m_editBrowseFile.SetWindowText(
+  m_editBrowseFile.SetWindowText(
       exportMacrosListEntries[s].m_file.toStdString().c_str());
-    m_checkExport.SetCheck(
+  m_checkExport.SetCheck(
       exportMacrosListEntries[s].m_export ? BST_CHECKED : BST_UNCHECKED);
   }
 }
@@ -89,7 +89,7 @@ void CManageExportMacrosDialog::OnBrowseFolder()
 
   if (!newPath.isEmpty() && DirExists(newPath))
   {
-    GetDlgItem(IDC_EDIT_BROWSE_FOLDER)->
+  GetDlgItem(IDC_EDIT_BROWSE_FOLDER)->
       SetWindowText(newPath.toStdString().c_str());
   }
 }
@@ -100,10 +100,10 @@ void CManageExportMacrosDialog::OnCheckExport()
 
   if (index != LB_ERR)
   {
-    int state = ((CButton*) GetDlgItem(IDC_CHECK_EXPORT))->GetCheck();
-    size_t s = m_manageExportMacrosList.GetItemData(index);
+  int state = ((CButton*) GetDlgItem(IDC_CHECK_EXPORT))->GetCheck();
+  size_t s = m_manageExportMacrosList.GetItemData(index);
 
-    exportMacrosListEntries[s].m_export = (state == BST_CHECKED);
+  exportMacrosListEntries[s].m_export = (state == BST_CHECKED);
   }
 }
 
@@ -113,11 +113,11 @@ void CManageExportMacrosDialog::OnEditBrowseFolder()
 
   if (index != LB_ERR)
   {
-    CString folder;
-    size_t s = m_manageExportMacrosList.GetItemData(index);
+  CString folder;
+  size_t s = m_manageExportMacrosList.GetItemData(index);
 
-    GetDlgItem(IDC_EDIT_BROWSE_FOLDER)->GetWindowText(folder);
-    exportMacrosListEntries[s].m_folder = (LPCTSTR) folder;
+  GetDlgItem(IDC_EDIT_BROWSE_FOLDER)->GetWindowText(folder);
+  exportMacrosListEntries[s].m_folder = (LPCTSTR) folder;
   }
 }
 
@@ -127,11 +127,11 @@ void CManageExportMacrosDialog::OnEditBrowseFile()
 
   if (index != LB_ERR)
   {
-    CString file;
-    size_t s = m_manageExportMacrosList.GetItemData(index);
+  CString file;
+  size_t s = m_manageExportMacrosList.GetItemData(index);
 
-    GetDlgItem(IDC_EDIT_BROWSE_FILE)->GetWindowText(file);
-    exportMacrosListEntries[s].m_file = (LPCTSTR) file;
+  GetDlgItem(IDC_EDIT_BROWSE_FILE)->GetWindowText(file);
+  exportMacrosListEntries[s].m_file = (LPCTSTR) file;
   }
 }
 
@@ -140,24 +140,24 @@ BOOL CManageExportMacrosDialog::OnInitDialog()
   CDialog::OnInitDialog();
 
   for (CGraphEntry::TEntryNodeSet::iterator iterator =
-    m_entryNodeSet.begin(); iterator != m_entryNodeSet.end(); ++iterator)
+  m_entryNodeSet.begin(); iterator != m_entryNodeSet.end(); ++iterator)
   {
-    TManageExportMacrosListEntry manageExportMacrosListEntry;
-    CExportResultData* exportResultData = (CExportResultData*) *iterator;
+  TManageExportMacrosListEntry manageExportMacrosListEntry;
+  CExportResultData* exportResultData = (CExportResultData*) *iterator;
 
-    exportResultData->m_settings.bind(*exportResultData);
+  exportResultData->m_settings.bind(*exportResultData);
 
-    manageExportMacrosListEntry.m_folder = exportResultData->m_folder;
-    manageExportMacrosListEntry.m_file = exportResultData->m_file;
-    manageExportMacrosListEntry.m_export = exportResultData->m_export;
-    manageExportMacrosListEntry.m_exportResultData = exportResultData;
+  manageExportMacrosListEntry.m_folder = exportResultData->m_folder;
+  manageExportMacrosListEntry.m_file = exportResultData->m_file;
+  manageExportMacrosListEntry.m_export = exportResultData->m_export;
+  manageExportMacrosListEntry.m_exportResultData = exportResultData;
 
-    int index = m_manageExportMacrosList.AddString(
+  int index = m_manageExportMacrosList.AddString(
       exportResultData->Name().toStdString().c_str());
 
-    exportMacrosListEntries.push_back(manageExportMacrosListEntry);
+  exportMacrosListEntries.push_back(manageExportMacrosListEntry);
 
-    m_manageExportMacrosList.SetItemData(index,
+  m_manageExportMacrosList.SetItemData(index,
       exportMacrosListEntries.size() - 1);
   }
 
@@ -172,18 +172,18 @@ BOOL CManageExportMacrosDialog::OnInitDialog()
 void CManageExportMacrosDialog::OnOK()
 {
   for (std::vector <TManageExportMacrosListEntry> ::const_iterator
-    manageExportMacrosListEntry = exportMacrosListEntries.begin();
-    manageExportMacrosListEntry != exportMacrosListEntries.end();
-    ++manageExportMacrosListEntry)
+  manageExportMacrosListEntry = exportMacrosListEntries.begin();
+  manageExportMacrosListEntry != exportMacrosListEntries.end();
+  ++manageExportMacrosListEntry)
   {
-    (*manageExportMacrosListEntry).m_exportResultData->m_folder =
+  (*manageExportMacrosListEntry).m_exportResultData->m_folder =
       (*manageExportMacrosListEntry).m_folder;
-    (*manageExportMacrosListEntry).m_exportResultData->m_file =
+  (*manageExportMacrosListEntry).m_exportResultData->m_file =
       (*manageExportMacrosListEntry).m_file;
-    (*manageExportMacrosListEntry).m_exportResultData->m_export =
+  (*manageExportMacrosListEntry).m_exportResultData->m_export =
       (*manageExportMacrosListEntry).m_export;
 
-    (*manageExportMacrosListEntry).m_exportResultData->m_settings.unbind(*(*manageExportMacrosListEntry).m_exportResultData, true);
+  (*manageExportMacrosListEntry).m_exportResultData->m_settings.unbind(*(*manageExportMacrosListEntry).m_exportResultData, true);
   }
 
   CDialog::OnOK();

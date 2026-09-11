@@ -10,10 +10,10 @@ class CExportResults
 {
 public:
   CExportResults(const CExportResultData& exportResultData,
-    CModelBase& model);
+  CModelBase& model);
 
   bool onExport(const QString& sFileName, bool bExcel, bool bOld,
-    bool export2LAS = false);
+  bool export2LAS = false);
 
   static bool isInputResult(const IResult* result);
 
@@ -22,10 +22,10 @@ private:
   CExportResults& operator = (const CExportResults& rhs);
 
   void FillResultVector(IExportFormat::TDataVec& vcRet,
-    const CAnalysisType& antype, CQuantity::UNIT unit,
-    const COpenGLNode& node, bool fillInput = false);
+  const CAnalysisType& antype, CQuantity::UNIT unit,
+  const COpenGLNode& node, bool fillInput = false);
   void FillMatResultVector(IExportFormat::TDataVec& vcRet, CQuantity::UNIT unit,
-    const COpenGLNode& node);
+  const COpenGLNode& node);
   std::vector<const IResultExporter*> GetResultExporters();
 
 private:

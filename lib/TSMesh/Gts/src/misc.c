@@ -30,7 +30,7 @@ const guint gts_binary_age = GTS_BINARY_AGE;
 static gboolean char_in_string (char c, const char * s)
 {
   while (*s != '\0')
-    if (*(s++) == c)
+  if (*(s++) == c)
       return TRUE;
   return FALSE;
 }
@@ -49,8 +49,8 @@ static gboolean char_in_string (char c, const char * s)
  * Returns: the last character read from @fptr.
  */
 gint gts_get_token (FILE * fptr, GString * buf, 
-		    const char * delimiters,
-		    const char * comments)
+      const char * delimiters,
+      const char * comments)
 {
   gint c;
   gboolean in_string = FALSE;
@@ -66,15 +66,15 @@ gint gts_get_token (FILE * fptr, GString * buf,
 
   // TNO in below function calls "c" was changed into "(char)c" to prevent warning in compile time....
   while (c != EOF && (!in_string || !char_in_string ((char)c, delimiters))) {
-    if (char_in_string ((char)c, comments))
+  if (char_in_string ((char)c, comments))
       gts_get_newline (fptr);
-    else if (in_string)
+  else if (in_string)
       g_string_append_c (buf, (char)c);
-    else if (!char_in_string ((char)c, delimiters)) {
+  else if (!char_in_string ((char)c, delimiters)) {
       in_string = TRUE;
       g_string_append_c (buf, (char)c);
-    }      
-    c = fgetc (fptr);
+  }      
+  c = fgetc (fptr);
   }
   return c;
 }
@@ -93,7 +93,7 @@ void gts_get_newline (FILE * fptr)
   
   c = fgetc (fptr);
   while (c != EOF && c != '\n')
-    c = fgetc (fptr);
+  c = fgetc (fptr);
 }
 
 #ifdef DEBUG_FUNCTIONS
@@ -123,8 +123,8 @@ void id_remove (gpointer p)
 }
 
 void gts_write_triangle (GtsTriangle * t, 
-			 GtsPoint * o,
-			 FILE * fptr)
+       GtsPoint * o,
+       FILE * fptr)
 {
   gdouble xo = o ? o->x : 0.0;
   gdouble yo = o ? o->y : 0.0;
@@ -134,24 +134,24 @@ void gts_write_triangle (GtsTriangle * t,
 
   fprintf (fptr, "(hdefine geometry \"t%d\" { =\n", id (t));
   fprintf (fptr, "OFF 3 1 0\n"
-	   "%g %g %g\n%g %g %g\n%g %g %g\n3 0 1 2\n})\n"
-	   "(geometry \"t%d\" { : \"t%d\"})\n"
-	   "(normalization \"t%d\" none)\n",
-	   GTS_POINT (GTS_SEGMENT (t->e1)->v1)->x - xo, 
-	   GTS_POINT (GTS_SEGMENT (t->e1)->v1)->y - yo,
-	   GTS_POINT (GTS_SEGMENT (t->e1)->v1)->z - zo,
-	   GTS_POINT (GTS_SEGMENT (t->e1)->v2)->x - xo, 
-	   GTS_POINT (GTS_SEGMENT (t->e1)->v2)->y - yo, 
-	   GTS_POINT (GTS_SEGMENT (t->e1)->v2)->z - zo,
-	   GTS_POINT (gts_triangle_vertex (t))->x - xo,
-	   GTS_POINT (gts_triangle_vertex (t))->y - yo,
-	   GTS_POINT (gts_triangle_vertex (t))->z - zo,
-	   id (t), id (t), id (t));
+     "%g %g %g\n%g %g %g\n%g %g %g\n3 0 1 2\n})\n"
+     "(geometry \"t%d\" { : \"t%d\"})\n"
+     "(normalization \"t%d\" none)\n",
+     GTS_POINT (GTS_SEGMENT (t->e1)->v1)->x - xo, 
+     GTS_POINT (GTS_SEGMENT (t->e1)->v1)->y - yo,
+     GTS_POINT (GTS_SEGMENT (t->e1)->v1)->z - zo,
+     GTS_POINT (GTS_SEGMENT (t->e1)->v2)->x - xo, 
+     GTS_POINT (GTS_SEGMENT (t->e1)->v2)->y - yo, 
+     GTS_POINT (GTS_SEGMENT (t->e1)->v2)->z - zo,
+     GTS_POINT (gts_triangle_vertex (t))->x - xo,
+     GTS_POINT (gts_triangle_vertex (t))->y - yo,
+     GTS_POINT (gts_triangle_vertex (t))->z - zo,
+     id (t), id (t), id (t));
 }
 
 void gts_write_segment (GtsSegment * s, 
-			GtsPoint * o,
-			FILE * fptr)
+      GtsPoint * o,
+      FILE * fptr)
 {
   gdouble xo = o ? o->x : 0.0;
   gdouble yo = o ? o->y : 0.0;
@@ -161,13 +161,13 @@ void gts_write_segment (GtsSegment * s,
 
   fprintf (fptr, "(geometry \"s%d\" { =\n", id (s));
   fprintf (fptr, "VECT 1 2 0 2 0 %g %g %g %g %g %g })\n"
-	   "(normalization \"s%d\" none)\n",
-	   GTS_POINT (s->v1)->x - xo, 
-	   GTS_POINT (s->v1)->y - yo, 
-	   GTS_POINT (s->v1)->z - zo,
-	   GTS_POINT (s->v2)->x - xo, 
-	   GTS_POINT (s->v2)->y - yo, 
-	   GTS_POINT (s->v2)->z - zo,
-	   id (s));
+     "(normalization \"s%d\" none)\n",
+     GTS_POINT (s->v1)->x - xo, 
+     GTS_POINT (s->v1)->y - yo, 
+     GTS_POINT (s->v1)->z - zo,
+     GTS_POINT (s->v2)->x - xo, 
+     GTS_POINT (s->v2)->y - yo, 
+     GTS_POINT (s->v2)->z - zo,
+     id (s));
 }
 #endif /* DEBUG_FUNCTIONS */

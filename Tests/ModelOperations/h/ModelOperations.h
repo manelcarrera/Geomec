@@ -21,11 +21,11 @@ int LibraryLoad_SpecialModelOperations();
 // output: geomec_shell response dumped to std_out to be parsed and evaluated
 //
 void execute_geomec_shell(
-	const char *params, 
-	QString *captureOutput = 0);
+  const char *params, 
+  QString *captureOutput = 0);
 void execute_geomec_cora(
-	const char *params, 
-	QString *captureOutput = 0);
+  const char *params, 
+  QString *captureOutput = 0);
 
 class ModelOperations : public ::testing::Test
 {
@@ -49,8 +49,8 @@ protected:
   QString m_model;
   
   ModelOperationsExport() : 
-	  m_ModelsPath(test_lib::TestLib::ModelPath()),
-	  m_model("ResultsBranched.gm5")
+    m_ModelsPath(test_lib::TestLib::ModelPath()),
+    m_model("ResultsBranched.gm5")
   {}
 };
 
@@ -131,14 +131,14 @@ struct Command
 {
   typedef enum
   {
-    NOP = 0, // params:
-    LOAD,    // m_ModelPath + filename, or if empty load previous path
-    SAVE,    // save to previous path [must be under m_OutputPath]
-    SAVE_AS, // save to m_OutputPath + filename
-    CLOSE,
-    RUN,     // 1 if in steps
-    IMPORT,  // mesh gocad.so | gocad gocad.so # # | petrel petrel.txt U U
-    MESH     // 0 = invalidate, 1 = create, nothing = auto
+  NOP = 0, // params:
+  LOAD,    // m_ModelPath + filename, or if empty load previous path
+  SAVE,    // save to previous path [must be under m_OutputPath]
+  SAVE_AS, // save to m_OutputPath + filename
+  CLOSE,
+  RUN,     // 1 if in steps
+  IMPORT,  // mesh gocad.so | gocad gocad.so # # | petrel petrel.txt U U
+  MESH     // 0 = invalidate, 1 = create, nothing = auto
   } Opcode;
 
   Opcode  opcode;

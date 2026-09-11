@@ -52,9 +52,9 @@ typedef enum
 } GTraverseType;
 
 typedef gboolean	(*GNodeTraverseFunc)	(GNode	       *node,
-						 gpointer	data);
+             gpointer	data);
 typedef void		(*GNodeForeachFunc)	(GNode	       *node,
-						 gpointer	data);
+             gpointer	data);
 
 /* N-way tree implementation
  */
@@ -68,8 +68,8 @@ struct _GNode
 };
 
 #define	 G_NODE_IS_ROOT(node)	(((GNode*) (node))->parent == NULL && \
-				 ((GNode*) (node))->prev == NULL && \
-				 ((GNode*) (node))->next == NULL)
+         ((GNode*) (node))->prev == NULL && \
+         ((GNode*) (node))->next == NULL)
 #define	 G_NODE_IS_LEAF(node)	(((GNode*) (node))->children == NULL)
 
 void     g_node_push_allocator  (GAllocator       *allocator);
@@ -79,26 +79,26 @@ void	 g_node_destroy		(GNode		  *root);
 void	 g_node_unlink		(GNode		  *node);
 GNode*   g_node_copy            (GNode            *node);
 GNode*	 g_node_insert		(GNode		  *parent,
-				 gint		   position,
-				 GNode		  *node);
+         gint		   position,
+         GNode		  *node);
 GNode*	 g_node_insert_before	(GNode		  *parent,
-				 GNode		  *sibling,
-				 GNode		  *node);
+         GNode		  *sibling,
+         GNode		  *node);
 GNode*   g_node_insert_after    (GNode            *parent,
-				 GNode            *sibling,
-				 GNode            *node); 
+         GNode            *sibling,
+         GNode            *node); 
 GNode*	 g_node_prepend		(GNode		  *parent,
-				 GNode		  *node);
+         GNode		  *node);
 guint	 g_node_n_nodes		(GNode		  *root,
-				 GTraverseFlags	   flags);
+         GTraverseFlags	   flags);
 GNode*	 g_node_get_root	(GNode		  *node);
 gboolean g_node_is_ancestor	(GNode		  *node,
-				 GNode		  *descendant);
+         GNode		  *descendant);
 guint	 g_node_depth		(GNode		  *node);
 GNode*	 g_node_find		(GNode		  *root,
-				 GTraverseType	   order,
-				 GTraverseFlags	   flags,
-				 gpointer	   data);
+         GTraverseType	   order,
+         GTraverseFlags	   flags,
+         gpointer	   data);
 
 /* convenience macros */
 #define g_node_append(parent, node)				\
@@ -118,11 +118,11 @@ GNode*	 g_node_find		(GNode		  *root,
  * low level traversal functions, optimized for speed.
  */
 void	 g_node_traverse	(GNode		  *root,
-				 GTraverseType	   order,
-				 GTraverseFlags	   flags,
-				 gint		   max_depth,
-				 GNodeTraverseFunc func,
-				 gpointer	   data);
+         GTraverseType	   order,
+         GTraverseFlags	   flags,
+         gint		   max_depth,
+         GNodeTraverseFunc func,
+         gpointer	   data);
 
 /* return the maximum tree height starting with `node', this is an expensive
  * operation, since we need to visit all nodes. this could be shortened by
@@ -132,31 +132,31 @@ void	 g_node_traverse	(GNode		  *root,
 guint	 g_node_max_height	 (GNode *root);
 
 void	 g_node_children_foreach (GNode		  *node,
-				  GTraverseFlags   flags,
-				  GNodeForeachFunc func,
-				  gpointer	   data);
+          GTraverseFlags   flags,
+          GNodeForeachFunc func,
+          gpointer	   data);
 void	 g_node_reverse_children (GNode		  *node);
 guint	 g_node_n_children	 (GNode		  *node);
 GNode*	 g_node_nth_child	 (GNode		  *node,
-				  guint		   n);
+          guint		   n);
 GNode*	 g_node_last_child	 (GNode		  *node);
 GNode*	 g_node_find_child	 (GNode		  *node,
-				  GTraverseFlags   flags,
-				  gpointer	   data);
+          GTraverseFlags   flags,
+          gpointer	   data);
 gint	 g_node_child_position	 (GNode		  *node,
-				  GNode		  *child);
+          GNode		  *child);
 gint	 g_node_child_index	 (GNode		  *node,
-				  gpointer	   data);
+          gpointer	   data);
 
 GNode*	 g_node_first_sibling	 (GNode		  *node);
 GNode*	 g_node_last_sibling	 (GNode		  *node);
 
 #define	 g_node_prev_sibling(node)	((node) ? \
-					 ((GNode*) (node))->prev : NULL)
+           ((GNode*) (node))->prev : NULL)
 #define	 g_node_next_sibling(node)	((node) ? \
-					 ((GNode*) (node))->next : NULL)
+           ((GNode*) (node))->next : NULL)
 #define	 g_node_first_child(node)	((node) ? \
-					 ((GNode*) (node))->children : NULL)
+           ((GNode*) (node))->children : NULL)
 
 G_END_DECLS
 

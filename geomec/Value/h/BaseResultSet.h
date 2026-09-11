@@ -12,10 +12,10 @@
 class CBaseResultSet  
 {
 public:
-	void LoadResults();
+  void LoadResults();
 
-	CBaseResultSet();
-	virtual ~CBaseResultSet();
+  CBaseResultSet();
+  virtual ~CBaseResultSet();
 };
 
 #endif // !defined(AFX_BASERESULTSET_H__62786FBC_B583_4A78_ABC6_8D1FD4B28716__INCLUDED_)

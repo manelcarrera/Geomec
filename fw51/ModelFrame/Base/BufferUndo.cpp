@@ -55,9 +55,9 @@ void CBufferUndo::undo( CDocumentBase& document )
 IModelStream& CBufferUndo::buffer()
 {
   if ( !m_modelStream ) {
-    assert( !m_writeStream );
-    m_writeStream = new QDataStream( m_bytes, QIODevice::ReadWrite );
-    m_modelStream = new CQtDataStream( *m_writeStream );
+  assert( !m_writeStream );
+  m_writeStream = new QDataStream( m_bytes, QIODevice::ReadWrite );
+  m_modelStream = new CQtDataStream( *m_writeStream );
   }
   return *m_modelStream;
 }

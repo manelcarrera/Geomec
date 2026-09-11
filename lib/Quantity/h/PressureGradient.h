@@ -14,55 +14,55 @@
 class CPressureGradientQuantity : public CDoubleQuantity
 {
 public:
-	CPressureGradientQuantity(const CPressureGradientQuantity &rhs);
-	//##ModelId=3BE7AEB80323
-	CPressureGradientQuantity();
+  CPressureGradientQuantity(const CPressureGradientQuantity &rhs);
+  //##ModelId=3BE7AEB80323
+  CPressureGradientQuantity();
 
-	CPressureGradientQuantity(const double &value, const UNIT unit = SI_UNIT);
+  CPressureGradientQuantity(const double &value, const UNIT unit = SI_UNIT);
 
-	CPressureGradientQuantity(const double& value,const double &min ,const double &max, const UNIT unit = SI_UNIT);
+  CPressureGradientQuantity(const double& value,const double &min ,const double &max, const UNIT unit = SI_UNIT);
 
-	CPressureGradientQuantity(  const double& value,
-						const double &min ,
-						const double &max,
-			            bool bIncludeMin=true,
-			            bool bIncludeMax=true,
-			            const UNIT unit= SI_UNIT);
+  CPressureGradientQuantity(  const double& value,
+            const double &min ,
+            const double &max,
+            bool bIncludeMin=true,
+            bool bIncludeMax=true,
+            const UNIT unit= SI_UNIT);
 
 
-	//##ModelId=3BE7AEB80326
-	virtual double Convert(const double &value, const UNIT out, const UNIT in) const;
-	//##ModelId=3BE7AEB80334
-	virtual std::string QuantityName() const;
-	//##ModelId=3BE7AEB80336
-	virtual std::string UnitName(const UNIT unit = SI_UNIT) const;
+  //##ModelId=3BE7AEB80326
+  virtual double Convert(const double &value, const UNIT out, const UNIT in) const;
+  //##ModelId=3BE7AEB80334
+  virtual std::string QuantityName() const;
+  //##ModelId=3BE7AEB80336
+  virtual std::string UnitName(const UNIT unit = SI_UNIT) const;
 
 };
 
 class CPressureGradient2 : public CDoubleQuantity
 {
 public:
-	CPressureGradient2(const CPressureGradient2 &rhs);
+  CPressureGradient2(const CPressureGradient2 &rhs);
 
-	CPressureGradient2();
+  CPressureGradient2();
 
-	CPressureGradient2(const double &value, const UNIT unit = SI_UNIT);
+  CPressureGradient2(const double &value, const UNIT unit = SI_UNIT);
 
-	CPressureGradient2(const double& value,const double &min ,const double &max, const UNIT unit = SI_UNIT);
+  CPressureGradient2(const double& value,const double &min ,const double &max, const UNIT unit = SI_UNIT);
 
-	CPressureGradient2(  const double& value,
-						const double &min ,
-						const double &max,
-			            bool bIncludeMin=true,
-			            bool bIncludeMax=true,
-			            const UNIT unit= SI_UNIT);
+  CPressureGradient2(  const double& value,
+            const double &min ,
+            const double &max,
+            bool bIncludeMin=true,
+            bool bIncludeMax=true,
+            const UNIT unit= SI_UNIT);
 
 
-	virtual double Convert(const double &value, const UNIT out, const UNIT in) const;
+  virtual double Convert(const double &value, const UNIT out, const UNIT in) const;
 
-	virtual std::string QuantityName() const;
+  virtual std::string QuantityName() const;
 
-	virtual std::string UnitName(const UNIT unit = SI_UNIT) const;
+  virtual std::string UnitName(const UNIT unit = SI_UNIT) const;
 
 };
 

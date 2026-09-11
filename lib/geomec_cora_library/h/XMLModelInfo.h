@@ -13,19 +13,19 @@ namespace cora
 class CXMLModelInfo
 {
   public:
-    CXMLModelInfo(CModelData& modelData, const char* modelInfoFileName);
+  CXMLModelInfo(CModelData& modelData, const char* modelInfoFileName);
 
-    bool operator () () const;
+  bool operator () () const;
 
   private:
-    CXMLModelInfo(const CXMLModelInfo& rhs);
-    CXMLModelInfo& operator = (CXMLModelInfo rhs);
+  CXMLModelInfo(const CXMLModelInfo& rhs);
+  CXMLModelInfo& operator = (CXMLModelInfo rhs);
 
-    bool createModelInfo() const;
+  bool createModelInfo() const;
 
-    CModelData& m_modelData;
-    const char* m_modelInfoFileName;
-    CXMLComponents m_components;
+  CModelData& m_modelData;
+  const char* m_modelInfoFileName;
+  CXMLComponents m_components;
 };
 
 } // namespace cora

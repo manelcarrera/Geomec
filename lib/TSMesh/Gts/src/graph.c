@@ -29,7 +29,7 @@ static void gnode_remove_container (GtsContainee * i, GtsContainer * c)
 {
   (* GTS_CONTAINEE_CLASS (GTS_OBJECT_CLASS (gts_gnode_class ())->parent_class)->remove_container) (i, c);
   if (GTS_SLIST_CONTAINEE (i)->containers == NULL && !gts_allow_floating_gnodes)
-    gts_object_destroy (GTS_OBJECT (i));
+  gts_object_destroy (GTS_OBJECT (i));
 }
 
 static void gnode_class_init (GtsGNodeClass * klass)
@@ -54,7 +54,7 @@ GtsGNodeClass * gts_gnode_class (void)
   static GtsGNodeClass * klass = NULL;
 
   if (klass == NULL) {
-    GtsObjectClassInfo gnode_info = {
+  GtsObjectClassInfo gnode_info = {
       "GtsGNode",
       sizeof (GtsGNode),
       sizeof (GtsGNodeClass),
@@ -62,10 +62,10 @@ GtsGNodeClass * gts_gnode_class (void)
       (GtsObjectInitFunc) gnode_init,
       (GtsArgSetFunc) NULL,
       (GtsArgGetFunc) NULL
-    };
-    klass = 
+  };
+  klass = 
       gts_object_class_new (GTS_OBJECT_CLASS (gts_slist_container_class ()),
-			    &gnode_info);
+        &gnode_info);
   }
 
   return klass;
@@ -97,9 +97,9 @@ GtsGNode * gts_gnode_new (GtsGNodeClass * klass)
  * @g is not %NULL.  
  */
 void gts_gnode_foreach_neighbor (GtsGNode * n, 
-				 GtsGraph * g,
-				 GtsFunc func,
-				 gpointer data)
+         GtsGraph * g,
+         GtsFunc func,
+         gpointer data)
 {
   GSList * i;
 
@@ -108,11 +108,11 @@ void gts_gnode_foreach_neighbor (GtsGNode * n,
 
   i = GTS_SLIST_CONTAINER (n)->items;
   while (i) {
-    GtsGNode * n1 = GTS_GNODE_NEIGHBOR (n, i->data);
-    if (g == NULL || gts_containee_is_contained (GTS_CONTAINEE (n1),
-						 GTS_CONTAINER (g)))
+  GtsGNode * n1 = GTS_GNODE_NEIGHBOR (n, i->data);
+  if (g == NULL || gts_containee_is_contained (GTS_CONTAINEE (n1),
+             GTS_CONTAINER (g)))
       (* func) (n1, data);
-    i = i->next;
+  i = i->next;
   }
 }
 
@@ -127,9 +127,9 @@ void gts_gnode_foreach_neighbor (GtsGNode * n,
  * (belonging to @g if @g is not %NULL.  
  */
 void gts_gnode_foreach_edge (GtsGNode * n, 
-			     GtsGraph * g,
-			     GtsFunc func,
-			     gpointer data)
+           GtsGraph * g,
+           GtsFunc func,
+           gpointer data)
 {
   GSList * i;
 
@@ -138,11 +138,11 @@ void gts_gnode_foreach_edge (GtsGNode * n,
 
   i = GTS_SLIST_CONTAINER (n)->items;
   while (i) {
-    GtsGNode * n1 = GTS_GNODE_NEIGHBOR (n, i->data);
-    if (g == NULL || gts_containee_is_contained (GTS_CONTAINEE (n1),
-						 GTS_CONTAINER (g)))
+  GtsGNode * n1 = GTS_GNODE_NEIGHBOR (n, i->data);
+  if (g == NULL || gts_containee_is_contained (GTS_CONTAINEE (n1),
+             GTS_CONTAINER (g)))
       (* func) (i->data, data);
-    i = i->next;
+  i = i->next;
   }
 }
 
@@ -154,7 +154,7 @@ void gts_gnode_foreach_edge (GtsGNode * n,
  * Returns: the number of neighbors of @n (belonging to @g if @g is not %NULL).
  */
 guint gts_gnode_degree (GtsGNode * n,
-			GtsGraph * g)
+      GtsGraph * g)
 {
   GSList * i;
   guint nn = 0;
@@ -163,11 +163,11 @@ guint gts_gnode_degree (GtsGNode * n,
 
   i = GTS_SLIST_CONTAINER (n)->items;
   while (i) {
-    GtsGNode * n1 = GTS_GNODE_NEIGHBOR (n, i->data);
-    if (g == NULL || gts_containee_is_contained (GTS_CONTAINEE (n1),
-						 GTS_CONTAINER (g)))
+  GtsGNode * n1 = GTS_GNODE_NEIGHBOR (n, i->data);
+  if (g == NULL || gts_containee_is_contained (GTS_CONTAINEE (n1),
+             GTS_CONTAINER (g)))
       nn++;
-    i = i->next;
+  i = i->next;
   }
 
   return nn;
@@ -183,8 +183,8 @@ guint gts_gnode_degree (GtsGNode * n,
  * moving @n from @src to @dst.
  */
 gfloat gts_gnode_move_cost (GtsGNode * n,
-			    GtsGraph * src,
-			    GtsGraph * dst)
+        GtsGraph * src,
+        GtsGraph * dst)
 {
   GSList * i;
   gfloat cost = 0.;
@@ -193,21 +193,21 @@ gfloat gts_gnode_move_cost (GtsGNode * n,
   g_return_val_if_fail (src != NULL, G_MAXFLOAT);
   g_return_val_if_fail (dst != NULL, G_MAXFLOAT);
   g_return_val_if_fail (gts_containee_is_contained (GTS_CONTAINEE (n),
-						    GTS_CONTAINER (src)),
-			G_MAXFLOAT);
+              GTS_CONTAINER (src)),
+      G_MAXFLOAT);
 
   i = GTS_SLIST_CONTAINER (n)->items;
   while (i) {
-    GtsGEdge * ge = i->data;
-    GtsGNode * neighbor = GTS_GNODE_NEIGHBOR (n, ge);
+  GtsGEdge * ge = i->data;
+  GtsGNode * neighbor = GTS_GNODE_NEIGHBOR (n, ge);
 
-    if (gts_containee_is_contained (GTS_CONTAINEE (neighbor), 
-				    GTS_CONTAINER (src)))
+  if (gts_containee_is_contained (GTS_CONTAINEE (neighbor), 
+          GTS_CONTAINER (src)))
       cost += gts_gedge_weight (ge);
-    else if (gts_containee_is_contained (GTS_CONTAINEE (neighbor), 
-					 GTS_CONTAINER (dst)))
+  else if (gts_containee_is_contained (GTS_CONTAINEE (neighbor), 
+           GTS_CONTAINER (dst)))
       cost -= gts_gedge_weight (ge);
-    i = i->next;
+  i = i->next;
   }
   
   return cost;
@@ -225,7 +225,7 @@ gfloat gts_gnode_weight (GtsGNode * n)
   g_return_val_if_fail (n != NULL, 0.);
 
   if (GTS_GNODE_CLASS (GTS_OBJECT (n)->klass)->weight)
-    return (* GTS_GNODE_CLASS (GTS_OBJECT (n)->klass)->weight) (n);
+  return (* GTS_GNODE_CLASS (GTS_OBJECT (n)->klass)->weight) (n);
   return 1.;
 }
 
@@ -246,7 +246,7 @@ GtsNGNodeClass * gts_ngnode_class (void)
   static GtsNGNodeClass * klass = NULL;
 
   if (klass == NULL) {
-    GtsObjectClassInfo ngnode_info = {
+  GtsObjectClassInfo ngnode_info = {
       "GtsNGNode",
       sizeof (GtsNGNode),
       sizeof (GtsNGNodeClass),
@@ -254,9 +254,9 @@ GtsNGNodeClass * gts_ngnode_class (void)
       (GtsObjectInitFunc) ngnode_init,
       (GtsArgSetFunc) NULL,
       (GtsArgGetFunc) NULL
-    };
-    klass = gts_object_class_new (GTS_OBJECT_CLASS (gts_gnode_class ()),
-				  &ngnode_info);
+  };
+  klass = gts_object_class_new (GTS_OBJECT_CLASS (gts_gnode_class ()),
+          &ngnode_info);
   }
 
   return klass;
@@ -269,7 +269,7 @@ GtsNGNodeClass * gts_ngnode_class (void)
  * Returns: a new #GtsNGNode with identity @id.
  */
 GtsNGNode * gts_ngnode_new (GtsNGNodeClass * klass,
-			    guint id)
+        guint id)
 {
   GtsNGNode * n;
 
@@ -306,7 +306,7 @@ GtsWGNodeClass * gts_wgnode_class (void)
   static GtsWGNodeClass * klass = NULL;
 
   if (klass == NULL) {
-    GtsObjectClassInfo wgnode_info = {
+  GtsObjectClassInfo wgnode_info = {
       "GtsWGNode",
       sizeof (GtsWGNode),
       sizeof (GtsWGNodeClass),
@@ -314,9 +314,9 @@ GtsWGNodeClass * gts_wgnode_class (void)
       (GtsObjectInitFunc) wgnode_init,
       (GtsArgSetFunc) NULL,
       (GtsArgGetFunc) NULL
-    };
-    klass = gts_object_class_new (GTS_OBJECT_CLASS (gts_gnode_class ()),
-				  &wgnode_info);
+  };
+  klass = gts_object_class_new (GTS_OBJECT_CLASS (gts_gnode_class ()),
+          &wgnode_info);
   }
 
   return klass;
@@ -330,7 +330,7 @@ GtsWGNodeClass * gts_wgnode_class (void)
  * Returns: a new #GtsWGNode of weight @weight.
  */
 GtsWGNode * gts_wgnode_new (GtsWGNodeClass * klass,
-			    gfloat weight)
+        gfloat weight)
 {
   GtsWGNode * n;
 
@@ -357,7 +357,7 @@ GtsFNodeClass * gts_fnode_class (void)
   static GtsFNodeClass * klass = NULL;
 
   if (klass == NULL) {
-    GtsObjectClassInfo fnode_info = {
+  GtsObjectClassInfo fnode_info = {
       "GtsFNode",
       sizeof (GtsFNode),
       sizeof (GtsFNodeClass),
@@ -365,9 +365,9 @@ GtsFNodeClass * gts_fnode_class (void)
       (GtsObjectInitFunc) fnode_init,
       (GtsArgSetFunc) NULL,
       (GtsArgGetFunc) NULL
-    };
-    klass = gts_object_class_new (GTS_OBJECT_CLASS (gts_gnode_class ()),
-				  &fnode_info);
+  };
+  klass = gts_object_class_new (GTS_OBJECT_CLASS (gts_gnode_class ()),
+          &fnode_info);
   }
 
   return klass;
@@ -399,9 +399,9 @@ static void gedge_destroy (GtsObject * object)
   GtsGEdge * ge = GTS_GEDGE (object);
 
   if (ge->n1)
-    gts_container_remove (GTS_CONTAINER (ge->n1), GTS_CONTAINEE (ge));
+  gts_container_remove (GTS_CONTAINER (ge->n1), GTS_CONTAINEE (ge));
   if (ge->n2)
-    gts_container_remove (GTS_CONTAINER (ge->n2), GTS_CONTAINEE (ge));
+  gts_container_remove (GTS_CONTAINER (ge->n2), GTS_CONTAINEE (ge));
 
   (* GTS_OBJECT_CLASS (gts_gedge_class ())->parent_class->destroy) (object);
 }
@@ -414,15 +414,15 @@ static void gedge_remove_container (GtsContainee * i, GtsContainer * c)
 
   ge->n1 = ge->n2 = NULL;
   if (n1 != NULL && n2 != NULL) {
-    if (GTS_CONTAINER (n1) == c) {
+  if (GTS_CONTAINER (n1) == c) {
       if (n2) gts_container_remove (GTS_CONTAINER (n2), i);
-    }
-    else if (GTS_CONTAINER (n2) == c) {
+  }
+  else if (GTS_CONTAINER (n2) == c) {
       if (n1) gts_container_remove (GTS_CONTAINER (n1), i);
-    }
-    else
+  }
+  else
       g_assert_not_reached ();
-    (* GTS_OBJECT_CLASS (gts_gedge_class ())->parent_class->destroy)
+  (* GTS_OBJECT_CLASS (gts_gedge_class ())->parent_class->destroy)
       (GTS_OBJECT (i));
   }
 }
@@ -432,7 +432,7 @@ static gboolean gedge_is_contained (GtsContainee * i, GtsContainer * c)
   GtsGEdge * ge = GTS_GEDGE (i);
 
   if (GTS_CONTAINER (ge->n1) == c || GTS_CONTAINER (ge->n2) == c)
-    return TRUE;
+  return TRUE;
   return FALSE;
 }
 
@@ -461,7 +461,7 @@ GtsGEdgeClass * gts_gedge_class (void)
   static GtsGEdgeClass * klass = NULL;
 
   if (klass == NULL) {
-    GtsObjectClassInfo gedge_info = {
+  GtsObjectClassInfo gedge_info = {
       "GtsGEdge",
       sizeof (GtsGEdge),
       sizeof (GtsGEdgeClass),
@@ -469,9 +469,9 @@ GtsGEdgeClass * gts_gedge_class (void)
       (GtsObjectInitFunc) gedge_init,
       (GtsArgSetFunc) NULL,
       (GtsArgGetFunc) NULL
-    };
-    klass = gts_object_class_new (GTS_OBJECT_CLASS (gts_containee_class ()),
-				  &gedge_info);
+  };
+  klass = gts_object_class_new (GTS_OBJECT_CLASS (gts_containee_class ()),
+          &gedge_info);
   }
 
   return klass;
@@ -514,7 +514,7 @@ gfloat gts_gedge_weight (GtsGEdge * e)
   g_return_val_if_fail (e != NULL, 0.);
 
   if (GTS_GEDGE_CLASS (GTS_OBJECT (e)->klass)->weight)
-    return (* GTS_GEDGE_CLASS (GTS_OBJECT (e)->klass)->weight) (e);
+  return (* GTS_GEDGE_CLASS (GTS_OBJECT (e)->klass)->weight) (e);
   return 1.;
 }
 
@@ -545,7 +545,7 @@ GtsWGEdgeClass * gts_wgedge_class (void)
   static GtsWGEdgeClass * klass = NULL;
 
   if (klass == NULL) {
-    GtsObjectClassInfo wgedge_info = {
+  GtsObjectClassInfo wgedge_info = {
       "GtsWGEdge",
       sizeof (GtsWGEdge),
       sizeof (GtsWGEdgeClass),
@@ -553,9 +553,9 @@ GtsWGEdgeClass * gts_wgedge_class (void)
       (GtsObjectInitFunc) wgedge_init,
       (GtsArgSetFunc) NULL,
       (GtsArgGetFunc) NULL
-    };
-    klass = gts_object_class_new (GTS_OBJECT_CLASS (gts_gedge_class ()),
-				  &wgedge_info);
+  };
+  klass = gts_object_class_new (GTS_OBJECT_CLASS (gts_gedge_class ()),
+          &wgedge_info);
   }
 
   return klass;
@@ -571,9 +571,9 @@ GtsWGEdgeClass * gts_wgedge_class (void)
  * Returns: a new #GtsWGEdge of weight @weight linking @n1 and @n2.
  */ 
 GtsWGEdge * gts_wgedge_new (GtsWGEdgeClass * klass,
-			    GtsGNode * g1,
-			    GtsGNode * g2,
-			    gfloat weight)
+        GtsGNode * g1,
+        GtsGNode * g2,
+        gfloat weight)
 {
   GtsWGEdge * we;
 
@@ -606,7 +606,7 @@ GtsGraphClass * gts_graph_class (void)
   static GtsGraphClass * klass = NULL;
 
   if (klass == NULL) {
-    GtsObjectClassInfo graph_info = {
+  GtsObjectClassInfo graph_info = {
       "GtsGraph",
       sizeof (GtsGraph),
       sizeof (GtsGraphClass),
@@ -614,9 +614,9 @@ GtsGraphClass * gts_graph_class (void)
       (GtsObjectInitFunc) graph_init,
       (GtsArgSetFunc) NULL,
       (GtsArgGetFunc) NULL
-    };
-    klass = gts_object_class_new (GTS_OBJECT_CLASS (gts_hash_container_class ()),
-				  &graph_info);
+  };
+  klass = gts_object_class_new (GTS_OBJECT_CLASS (gts_hash_container_class ()),
+          &graph_info);
   }
 
   return klass;
@@ -631,8 +631,8 @@ GtsGraphClass * gts_graph_class (void)
  * Returns: a new #GtsGraph using @node_class and @edge_class as node types.
  */
 GtsGraph * gts_graph_new (GtsGraphClass * klass,
-			  GtsGNodeClass * node_class,
-			  GtsGEdgeClass * edge_class)
+        GtsGNodeClass * node_class,
+        GtsGEdgeClass * edge_class)
 {
   GtsGraph * g;
 
@@ -669,8 +669,8 @@ void gts_graph_print_stats (GtsGraph * g, FILE * fp)
   g_return_if_fail (fp != NULL);
 
   fprintf (fp, "# nodes: %lld weight: %g\n", 
-	   gts_container_size (GTS_CONTAINER (g)),
-	   gts_graph_weight (g));
+     gts_container_size (GTS_CONTAINER (g)),
+     gts_graph_weight (g));
   fprintf (fp, "#   degree: ");
   gts_range_init (&degree);
   data[0] = g;
@@ -680,8 +680,8 @@ void gts_graph_print_stats (GtsGraph * g, FILE * fp)
   gts_range_print (&degree, fp);
   fprintf (fp, "\n");
   fprintf (fp, "#   edges cut: %lld edges cut weight: %g\n", 
-	   gts_graph_edges_cut (g),
-	   gts_graph_edges_cut_weight (g));
+     gts_graph_edges_cut (g),
+     gts_graph_edges_cut_weight (g));
 }
 
 struct _GtsGraphTraverse {
@@ -705,9 +705,9 @@ static void reset_level (GtsGNode * n)
  * @g of type @type, starting from @n.  
  */
 GtsGraphTraverse * gts_graph_traverse_new (GtsGraph * g, 
-					   GtsGNode * n,
-					   GtsTraverseType type,
-					   gboolean reinit)
+             GtsGNode * n,
+             GtsTraverseType type,
+             gboolean reinit)
 {
   GtsGraphTraverse * t;
 
@@ -716,11 +716,11 @@ GtsGraphTraverse * gts_graph_traverse_new (GtsGraph * g,
   g_return_val_if_fail (g != NULL, NULL);
   g_return_val_if_fail (n != NULL, NULL);
   g_return_val_if_fail (gts_containee_is_contained (GTS_CONTAINEE (n), 
-						    GTS_CONTAINER (g)), 
-			NULL);
+              GTS_CONTAINER (g)), 
+      NULL);
 
   if (reinit)
-    gts_container_foreach (GTS_CONTAINER (g), (GtsFunc) reset_level, NULL);
+  gts_container_foreach (GTS_CONTAINER (g), (GtsFunc) reset_level, NULL);
 
   t = g_malloc (sizeof (GtsGraphTraverse));
   t->q = gts_fifo_new ();
@@ -737,8 +737,8 @@ static void push_neighbor (GtsGNode * n, gpointer * data)
   GtsGNode * u = data[1];
 
   if (n->level == 0) {
-    n->level = u->level + 1;
-    gts_fifo_push (q, n);
+  n->level = u->level + 1;
+  gts_fifo_push (q, n);
   }
 }
 
@@ -757,11 +757,11 @@ GtsGNode * gts_graph_traverse_next (GtsGraphTraverse * t)
 
   u = gts_fifo_pop (t->q);
   if (u) {
-    gpointer data[2];
+  gpointer data[2];
 
-    data[0] = t->q;
-    data[1] = u;
-    gts_gnode_foreach_neighbor (u, t->g, (GtsFunc) push_neighbor, data);
+  data[0] = t->q;
+  data[1] = u;
+  gts_gnode_foreach_neighbor (u, t->g, (GtsFunc) push_neighbor, data);
   }
   
   return u;
@@ -803,12 +803,12 @@ static void edge_foreach_node (GtsGNode * n, gpointer * info)
   GSList * i = GTS_SLIST_CONTAINER (n)->items;
 
   while (i) {
-    GtsGEdge * e = i->data;
-    if (!g_hash_table_lookup (hash, e)) {
+  GtsGEdge * e = i->data;
+  if (!g_hash_table_lookup (hash, e)) {
       (* func) (e, data);
       g_hash_table_insert (hash, e, e);
-    }
-    i = i->next;
+  }
+  i = i->next;
   }  
 }
 
@@ -847,7 +847,7 @@ gfloat gts_graph_weight (GtsGraph * g)
   g_return_val_if_fail (g != NULL, 0.);
 
   if (GTS_GRAPH_CLASS (GTS_OBJECT (g)->klass)->weight)
-    return (* GTS_GRAPH_CLASS (GTS_OBJECT (g)->klass)->weight) (g);
+  return (* GTS_GRAPH_CLASS (GTS_OBJECT (g)->klass)->weight) (g);
   return (gfloat)gts_container_size (GTS_CONTAINER (g));
 }
 
@@ -870,7 +870,7 @@ guint gts_graph_distance_sum (GtsGraph * g, GtsGNode * center)
 
   t = gts_graph_traverse_new (g, center, GTS_BREADTH_FIRST, TRUE);
   while ((n = gts_graph_traverse_next (t)))
-    sum += n->level - 1;
+  sum += n->level - 1;
   gts_graph_traverse_destroy (t);
 
   return sum;
@@ -896,34 +896,34 @@ GtsGNode * gts_graph_farthest (GtsGraph * g, GSList * gnodes)
   /* initialize traversals */
   i = gnodes;
   while (i) {
-    GTS_OBJECT (i->data)->reserved = 
+  GTS_OBJECT (i->data)->reserved = 
       gts_graph_traverse_new (g, i->data, GTS_BREADTH_FIRST, reinit);
-    reinit = FALSE;
-    i = i->next;
+  reinit = FALSE;
+  i = i->next;
   }
 
   while (changed) {
-    changed = FALSE;
-    i = gnodes;
-    while (i) {
+  changed = FALSE;
+  i = gnodes;
+  while (i) {
       GtsGraphTraverse * t = GTS_OBJECT (i->data)->reserved;
       GtsGNode * n;
       while ((n = gts_graph_traverse_what_next (t)) && n->level == level) {
-	changed = TRUE;
-	farthest = n;
-	gts_graph_traverse_next (t);
+  changed = TRUE;
+  farthest = n;
+  gts_graph_traverse_next (t);
       }
       i = i->next;
-    }
-    level++;
+  }
+  level++;
   }
 
   /* destroy traversals */
   i = gnodes;
   while (i) {
-    gts_graph_traverse_destroy (GTS_OBJECT (i->data)->reserved);
-    GTS_OBJECT (i->data)->reserved = NULL;
-    i = i->next;
+  gts_graph_traverse_destroy (GTS_OBJECT (i->data)->reserved);
+  GTS_OBJECT (i->data)->reserved = NULL;
+  i = i->next;
   }
   return farthest;
 }
@@ -934,7 +934,7 @@ static void neighbor_count (GtsGNode * n, gpointer * data)
   GtsGraph * g = data[1];
   
   if (!gts_containee_is_contained (GTS_CONTAINEE (n), GTS_CONTAINER (g)))
-    (*cuts)++;
+  (*cuts)++;
 }
 
 static void count_edge_cuts (GtsGNode * n, gpointer * data)
@@ -970,10 +970,10 @@ static void sum_edge_cuts_weight (GtsGNode * n, gpointer * data)
   GSList * i = GTS_SLIST_CONTAINER (n)->items;
 
   while (i) {
-    GtsGNode * n1 = GTS_GNODE_NEIGHBOR (n, i->data);
-    if (!gts_containee_is_contained (GTS_CONTAINEE (n1), GTS_CONTAINER (g)))
+  GtsGNode * n1 = GTS_GNODE_NEIGHBOR (n, i->data);
+  if (!gts_containee_is_contained (GTS_CONTAINEE (n1), GTS_CONTAINER (g)))
       *weight += gts_gedge_weight (i->data);
-    i = i->next;
+  i = i->next;
   }
 }
 
@@ -994,7 +994,7 @@ gfloat gts_graph_edges_cut_weight (GtsGraph * g)
   data[0] = &weight;
   data[1] = g;
   gts_container_foreach (GTS_CONTAINER (g), (GtsFunc) sum_edge_cuts_weight, 
-			 data);
+       data);
 
   return weight;
 }
@@ -1027,47 +1027,47 @@ guint gts_graph_read (GtsGraph * g, FILE * fp)
 
   delim = gts_get_token (fp, buf, " \t\n", "");
   if (delim == EOF || delim == '\n') {
-    g_string_free (buf, TRUE);
-    return 1;
+  g_string_free (buf, TRUE);
+  return 1;
   }
   nn = atoi (buf->str);
   delim = gts_get_token (fp, buf, " \t\n", "");
   if (delim == EOF) {
-    g_string_free (buf, TRUE);
-    return 1;
+  g_string_free (buf, TRUE);
+  return 1;
   }
   ne = atoi (buf->str);
   if (delim != '\n')
-    gts_get_newline (fp);
+  gts_get_newline (fp);
   nodes = g_malloc (sizeof (GtsGNode *)*(nn + 1));
 
   n = 0;
   while (n < nn && !syntax_error) {
-    GtsNGNode * node = gts_ngnode_new (gts_ngnode_class (), line_number);
-    
-    nodes[n++] = GTS_GNODE (node);
-    gts_container_add (GTS_CONTAINER (g), GTS_CONTAINEE (node));
-    line_number++;
-    do {
+  GtsNGNode * node = gts_ngnode_new (gts_ngnode_class (), line_number);
+  
+  nodes[n++] = GTS_GNODE (node);
+  gts_container_add (GTS_CONTAINER (g), GTS_CONTAINEE (node));
+  line_number++;
+  do {
       delim = gts_get_token (fp, buf, " \t\n", "");
       if (delim == EOF)
-	syntax_error = TRUE;
+  syntax_error = TRUE;
       else {
-	guint in = atoi (buf->str);
-	if (in > nn || in == n || in == 0)
-	  syntax_error = TRUE;
-	else if (in < n) {
-	  gts_gedge_new (g->edge_class, GTS_GNODE (node), nodes[in - 1]);
-	  ne--;
-	}
+  guint in = atoi (buf->str);
+  if (in > nn || in == n || in == 0)
+    syntax_error = TRUE;
+  else if (in < n) {
+    gts_gedge_new (g->edge_class, GTS_GNODE (node), nodes[in - 1]);
+    ne--;
+  }
       }
-    } while (delim != EOF && delim != '\n' && !syntax_error);
+  } while (delim != EOF && delim != '\n' && !syntax_error);
   }
   g_free (nodes);
   g_string_free (buf, TRUE);
 
   if (n != nn || ne > 0 || syntax_error)
-    return line_number;  
+  return line_number;  
 
   return 0;
 }
@@ -1119,7 +1119,7 @@ GtsWGraphClass * gts_wgraph_class (void)
   static GtsWGraphClass * klass = NULL;
 
   if (klass == NULL) {
-    GtsObjectClassInfo wgraph_info = {
+  GtsObjectClassInfo wgraph_info = {
       "GtsWGraph",
       sizeof (GtsWGraph),
       sizeof (GtsWGraphClass),
@@ -1127,9 +1127,9 @@ GtsWGraphClass * gts_wgraph_class (void)
       (GtsObjectInitFunc) wgraph_init,
       (GtsArgSetFunc) NULL,
       (GtsArgGetFunc) NULL
-    };
-    klass = gts_object_class_new (GTS_OBJECT_CLASS (gts_graph_class ()),
-				  &wgraph_info);
+  };
+  klass = gts_object_class_new (GTS_OBJECT_CLASS (gts_graph_class ()),
+          &wgraph_info);
   }
 
   return klass;
@@ -1140,7 +1140,7 @@ static void weight_max (GtsGNode * n, gfloat * wmax)
   gfloat w = gts_gnode_weight (n);
 
   if (w > *wmax)
-    *wmax = w;
+  *wmax = w;
 }
 
 /**
@@ -1175,19 +1175,19 @@ static void create_edge (GtsEdge * e, GtsSurface * s)
   GSList * i = e->triangles;
   
   while (i) {
-    GtsFace * f = i->data;
-    if (GTS_IS_FACE (f) && gts_face_has_parent_surface (f, s)) {
+  GtsFace * f = i->data;
+  if (GTS_IS_FACE (f) && gts_face_has_parent_surface (f, s)) {
       GSList * j = i->next;
       while (j) {
-	GtsFace * f1 = j->data;
-	if (GTS_IS_FACE (f1) && gts_face_has_parent_surface (f1, s))
-	  gts_gedge_new (gts_gedge_class (), 
-			 GTS_OBJECT (f)->reserved,
-			 GTS_OBJECT (f1)->reserved);
-	j = j->next;
+  GtsFace * f1 = j->data;
+  if (GTS_IS_FACE (f1) && gts_face_has_parent_surface (f1, s))
+    gts_gedge_new (gts_gedge_class (), 
+       GTS_OBJECT (f)->reserved,
+       GTS_OBJECT (f1)->reserved);
+  j = j->next;
       }
-    }
-    i = i->next;
+  }
+  i = i->next;
   }
 }
 
@@ -1201,7 +1201,7 @@ static void create_edge (GtsEdge * e, GtsSurface * s)
  * the dependencies between nodes and faces of @s.  
  */
 GtsGraph * gts_surface_graph_new (GtsGraphClass * klass,
-				  GtsSurface * s)
+          GtsSurface * s)
 {
   GtsGraph * graph;
   
@@ -1219,7 +1219,7 @@ GtsGraph * gts_surface_graph_new (GtsGraphClass * klass,
 static void add_to_surface (GtsGNode * n, GtsSurface * s)
 {
   if (GTS_IS_FNODE (n))
-    gts_surface_add_face (s, GTS_FNODE (n)->f);
+  gts_surface_add_face (s, GTS_FNODE (n)->f);
 }
 
 /**
@@ -1231,7 +1231,7 @@ static void add_to_surface (GtsGNode * n, GtsSurface * s)
  * composed of the faces defined by @surface_graph.
  */
 GtsSurface * gts_surface_graph_surface (GtsGraph * surface_graph,
-					GtsSurface * s)
+          GtsSurface * s)
 {
   GtsSurface * s1;
 
@@ -1239,11 +1239,11 @@ GtsSurface * gts_surface_graph_surface (GtsGraph * surface_graph,
   g_return_val_if_fail (s != NULL, NULL);
   
   s1 = gts_surface_new (GTS_SURFACE_CLASS (GTS_OBJECT (s)->klass),
-			s->face_class,
-			s->edge_class,
-			s->vertex_class);
+      s->face_class,
+      s->edge_class,
+      s->vertex_class);
   gts_container_foreach (GTS_CONTAINER (surface_graph), 
-			 (GtsFunc) add_to_surface, s1);
+       (GtsFunc) add_to_surface, s1);
   return s1;
 }
 

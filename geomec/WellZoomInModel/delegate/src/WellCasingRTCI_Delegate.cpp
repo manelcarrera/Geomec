@@ -32,5 +32,5 @@ void CWellCasingRTCIEntry_Delegate::AppendContextMenu(
   typedef CSingleCommandTemplate <CWellCasingRTCIEntry> TCommand;
 
   invoker.AddCommand("Create RTCI Wire",
-    *new TCommand(*m_wellCasingRTCIEntry, &CWellCasingRTCIEntry::CreateRTCI));
+  *new TCommand(*m_wellCasingRTCIEntry, &CWellCasingRTCIEntry::CreateRTCI));
 }

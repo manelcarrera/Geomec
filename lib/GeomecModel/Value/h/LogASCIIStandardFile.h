@@ -15,105 +15,105 @@ class CLogASCIIStandardFile
 {
   typedef enum
   {
-    SEC_NONE = 0,
-    SEC_UNKNOWN,
-    SEC_VERSION,
-    SEC_WELLINFO,
-    SEC_CURVEINFO,
-    SEC_CURVE
+  SEC_NONE = 0,
+  SEC_UNKNOWN,
+  SEC_VERSION,
+  SEC_WELLINFO,
+  SEC_CURVEINFO,
+  SEC_CURVE
   } TSection;
 
   class CLasDataLine
   {
   public:
-    CLasDataLine(const QString& strLine, int nLineNr);
+  CLasDataLine(const QString& strLine, int nLineNr);
 
-    const QString& Mnemonic() const;
-    const QString& Unit() const;
-    const QString& Data() const;
-    const QString& Description() const;
+  const QString& Mnemonic() const;
+  const QString& Unit() const;
+  const QString& Data() const;
+  const QString& Description() const;
 
   private:
-    QString m_strMnemonic;
-    QString m_strUnit;
-    QString m_strData;
-    QString m_strDescription;
+  QString m_strMnemonic;
+  QString m_strUnit;
+  QString m_strData;
+  QString m_strDescription;
   };
 
   class CCurveDataLine
   {
   public:
-    CCurveDataLine(const QString& strLine, int nLineNr, const CLogASCIIStandardFile& lasFile);
+  CCurveDataLine(const QString& strLine, int nLineNr, const CLogASCIIStandardFile& lasFile);
 
-    const geo::CValue& Value(int nColumn) const;
+  const geo::CValue& Value(int nColumn) const;
 
   private:
-    std::vector<geo::CValue> m_vcValues; // holds the converted (SI) values
+  std::vector<geo::CValue> m_vcValues; // holds the converted (SI) values
   };
 
   class CException
   {
   public:
-    CException(const QString& strError);
-    CException(const QString& strError, int nLine);
-    const QString& Error() const;
+  CException(const QString& strError);
+  CException(const QString& strError, int nLine);
+  const QString& Error() const;
 
   private:
-    QString m_strError;
+  QString m_strError;
   };
 
   class CUnitConverter
   {
   public:
-    CUnitConverter(double dFactor);
-    CUnitConverter(const CUnitConverter& rhs);
-    virtual CUnitConverter* Clone() const = 0;
-    virtual ~CUnitConverter();
-    virtual geo::CValue Convert(double dSourceVal) const = 0;
-    double Factor() const;
+  CUnitConverter(double dFactor);
+  CUnitConverter(const CUnitConverter& rhs);
+  virtual CUnitConverter* Clone() const = 0;
+  virtual ~CUnitConverter();
+  virtual geo::CValue Convert(double dSourceVal) const = 0;
+  double Factor() const;
 
   private:
-    double m_dFactor;
+  double m_dFactor;
   };
 
   // returns Factor() * dSourceVal
   class CProportionalUnitConverter : public CUnitConverter
   {
   public:
-    CProportionalUnitConverter(double dFactor);
-    CProportionalUnitConverter(const CProportionalUnitConverter& rhs);
-    virtual CProportionalUnitConverter* Clone() const;
-    virtual geo::CValue Convert(double dSourceVal) const;
+  CProportionalUnitConverter(double dFactor);
+  CProportionalUnitConverter(const CProportionalUnitConverter& rhs);
+  virtual CProportionalUnitConverter* Clone() const;
+  virtual geo::CValue Convert(double dSourceVal) const;
   };
 
   // returns Factor() / dSourceVal
   class CInverseUnitConverter : public CUnitConverter
   {
   public:
-    CInverseUnitConverter(double dFactor);
-    CInverseUnitConverter(const CInverseUnitConverter& rhs);
-    virtual CInverseUnitConverter* Clone() const;
-    virtual geo::CValue Convert(double dSourceVal) const;
+  CInverseUnitConverter(double dFactor);
+  CInverseUnitConverter(const CInverseUnitConverter& rhs);
+  virtual CInverseUnitConverter* Clone() const;
+  virtual geo::CValue Convert(double dSourceVal) const;
   };
 
   class CColumnDef
   {
   public:
-    // CColumnDef becomes the owner of the unit-converter object (if not NULL)
-    CColumnDef(unsigned int uiValueType, unsigned int uiValueNameID, const QString& strMnemonic, const CUnitConverter* pUnitConverter);
-    CColumnDef(const CColumnDef& rhs);
-    ~CColumnDef(); // deletes the unitconverter!
+  // CColumnDef becomes the owner of the unit-converter object (if not NULL)
+  CColumnDef(unsigned int uiValueType, unsigned int uiValueNameID, const QString& strMnemonic, const CUnitConverter* pUnitConverter);
+  CColumnDef(const CColumnDef& rhs);
+  ~CColumnDef(); // deletes the unitconverter!
 
-    unsigned int ValueTypeID() const;
-    const QString& ValueName() const;
-    const QString& Mnemonic() const;
-    geo::CValue ConvertValue(double dSourceVal) const;
+  unsigned int ValueTypeID() const;
+  const QString& ValueName() const;
+  const QString& Mnemonic() const;
+  geo::CValue ConvertValue(double dSourceVal) const;
 
   private:
-    unsigned int m_uiValueType;
-    QString m_strValueName;
-    QString m_strMnemonic;
-    const CUnitConverter* m_pUnitConverter;
+  unsigned int m_uiValueType;
+  QString m_strValueName;
+  QString m_strMnemonic;
+  const CUnitConverter* m_pUnitConverter;
   };
 
 public:

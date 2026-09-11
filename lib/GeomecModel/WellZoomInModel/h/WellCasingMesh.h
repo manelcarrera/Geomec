@@ -21,10 +21,10 @@ public:
   CWellCasingMesh& operator=(const CWellCasingMesh& rhs);
   bool operator==(const CWellCasingMesh& rhs) const;
 
-	virtual bool CanCreateMesh() const;
-	virtual bool IsMesh() const;
-	virtual void CreateMesh();
-	virtual void InvalidateMesh();
+  virtual bool CanCreateMesh() const;
+  virtual bool IsMesh() const;
+  virtual void CreateMesh();
+  virtual void InvalidateMesh();
 
   double CasingDiameter() const;
   void CasingDiameter(double d);
@@ -84,7 +84,7 @@ public:
   void setInvalidateAfterDlg(bool invalidateAfterDlg);
 
   virtual const CFFMaterial* getCFFMaterial(const geo::IElement& element,
-    const CDepletionStage& depletionStage) const;
+  const CDepletionStage& depletionStage) const;
 
   ACCEPT_GEOMECMODELVISITORS(VisitWellCasingMesh);
 
@@ -96,11 +96,11 @@ protected:
 
 private:
   geo::CHexahedron* createHexaElement(IWellModel::CBoundary& boundary,
-    geo::CBodyGroup* bodyGroup, std::set <const geo::IElement*>* elements,
-    const std::vector <int>& grid1, const std::vector <int>& grid2,
-    const SegmentInfo& segmentinfo, const CFormationBase* formationBase,
-    int firstSpoke, int secondSpoke, bool first, bool last,
-    bool top, bool bottom, bool useActualBodyGroup);
+  geo::CBodyGroup* bodyGroup, std::set <const geo::IElement*>* elements,
+  const std::vector <int>& grid1, const std::vector <int>& grid2,
+  const SegmentInfo& segmentinfo, const CFormationBase* formationBase,
+  int firstSpoke, int secondSpoke, bool first, bool last,
+  bool top, bool bottom, bool useActualBodyGroup);
   virtual bool Create2DGrid(IProgressBase& prog);
   void Destroy2DGrid();
   void SaveBodyGroup(const geo::CBodyGroup& bodygroup, TSTREAM& stream, TPROGRESS& progress);
@@ -109,12 +109,12 @@ private:
   typedef std::pair <geo::CHexahedron*, geo::CBodyGroup*> THexahedronBodyGroupPair;
 
   THexahedronBodyGroupPair CreateHexahedron(const std::vector<int>& vcGrid1,
-                                            const std::vector<int>& vcGrid2,
-                                            int idxStartFirstSpoke,
-                                            int idxStartSecondSpoke,
-                                            std::set<const geo::IElement*>* pstElements,
-                                            geo::CBodyGroup* BodyGroup,
-                                            const CFormationBase* formationBase);
+                      const std::vector<int>& vcGrid2,
+                      int idxStartFirstSpoke,
+                      int idxStartSecondSpoke,
+                      std::set<const geo::IElement*>* pstElements,
+                      geo::CBodyGroup* BodyGroup,
+                      const CFormationBase* formationBase);
   geo::CInterfaceElement& CreateCapInterface(const std::vector<int>& vcGrid1,
                                              const std::vector<int>& vcGrid2,
                                              int idxStartFirstSpoke,
@@ -133,26 +133,26 @@ private:
   void MapNodesToElement(const geo::IElement& element);
   void BuildNodeToElementsMap() const;
   geo::CBodyGroup* findBodyGroupContainingMidPointOfHexahedron(
-    IWellModel& wellModel, geo::CBodyGroup* bodyGroup,
-    const CFormationBase* formation, const geo::CHexahedron* hexahedron);
+  IWellModel& wellModel, geo::CBodyGroup* bodyGroup,
+  const CFormationBase* formation, const geo::CHexahedron* hexahedron);
 
 public:
   typedef enum
   {
-    SS_TOP    = 0,
-    SS_BOTTOM = 1,
-    SS_INNER  = 2,
-    SS_OUTER  = 3
+  SS_TOP    = 0,
+  SS_BOTTOM = 1,
+  SS_INNER  = 2,
+  SS_OUTER  = 3
   } TSideSurface;
 
   typedef enum
   {
-    HS_BOTTOM       = 0,
-    HS_TANGENT_LOW  = 1,
-    HS_OUTER        = 2,
-    HS_TANGENT_HIGH = 3,
-    HS_INNER        = 4,
-    HS_TOP          = 5
+  HS_BOTTOM       = 0,
+  HS_TANGENT_LOW  = 1,
+  HS_OUTER        = 2,
+  HS_TANGENT_HIGH = 3,
+  HS_INNER        = 4,
+  HS_TOP          = 5
   } THexaSurface;
 
 private:

@@ -172,7 +172,7 @@ int main(int argc, char *argv[])
             TCHAR szDir[MAX_PATH];
             WIN32_FIND_DATA ffd;
 
-            StringCchCopy(szDir, MAX_PATH, "..\\src\\3rdParty\\CORA\\CORA*.msi");
+            StringCchCopy(szDir, MAX_PATH, "..\\src\\third_party\\CORA\\CORA*.msi");
             HANDLE hFind = FindFirstFile(szDir, &ffd);
 
             if (hFind != INVALID_HANDLE_VALUE) 

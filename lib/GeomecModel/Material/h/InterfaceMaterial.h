@@ -19,9 +19,9 @@ public:
   virtual unsigned int IconId() const;
   virtual unsigned int TypeId() const;
 
-	virtual double ParameterValue(unsigned int ValueTypeID) const;
-	virtual bool IsParameter(unsigned int ValueTypeID) const;
-	virtual bool Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const;
+  virtual double ParameterValue(unsigned int ValueTypeID) const;
+  virtual bool IsParameter(unsigned int ValueTypeID) const;
+  virtual bool Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const;
 
   double Cohesion() const;
   double Friction() const;
@@ -35,9 +35,9 @@ public:
   bool SetShearStiffness(double dValue);
   bool SetDFlux(double dValue);
 
-	virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-	virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
-	virtual long SavedItems() const;
+  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
+  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  virtual long SavedItems() const;
   virtual bool Empty() const;
 
   virtual bool Less(const CGraphNode& node) const;
@@ -66,9 +66,9 @@ class CInterfaceMaterialEntry : public CGraphEntryTemp<CInterfaceMaterial>
 public:
   CInterfaceMaterialEntry(int nEntryId, CModelBase& model);
 
-	virtual void LoadStream(CFemAppModel& model, TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-	virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
-	virtual long SavedItems() const;
+  virtual void LoadStream(CFemAppModel& model, TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
+  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  virtual long SavedItems() const;
   CInterfaceMaterial& InsertNew();
 
   ACCEPT_GEOMECMODELVISITORS(VisitInterfaceMaterialEntry);

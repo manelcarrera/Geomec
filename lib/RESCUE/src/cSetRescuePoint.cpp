@@ -1,10 +1,10 @@
 /*************************************************************************
 
-        cSetRescuePoint.cpp
+    cSetRescuePoint.cpp
 
  Keeps a list of pointers to some RescuePoint.
 
-        Rod Hanks               Oct 2003
+    Rod Hanks               Oct 2003
 
 ****************************************************************************/
 #include "RescueModel.h"
@@ -27,7 +27,7 @@ cSetRescuePoint::~cSetRescuePoint()
 
   for (loop = 0; loop < count; loop++)
   {
-    delete objects[loop];
+  delete objects[loop];
   }
   free(objects);
 }
@@ -38,7 +38,7 @@ void cSetRescuePoint::Archive(RescueContext *context, FILE *archiveFile)
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    objects[loop]->Archive(context, archiveFile);
+  objects[loop]->Archive(context, archiveFile);
   }
 }
 
@@ -52,8 +52,8 @@ void cSetRescuePoint::UnArchive(RescueContext *context, FILE *archiveFile)
   RESCUEINT64 loop;
   for (loop = 0; loop < newCount; loop++)
   {
-    RescuePoint *newObject = new RescuePoint(context, archiveFile);
-    (*this) += newObject;
+  RescuePoint *newObject = new RescuePoint(context, archiveFile);
+  (*this) += newObject;
   }
 }
 
@@ -63,7 +63,7 @@ void cSetRescuePoint::EmptySelf(void)
  
   for (loop = 0; loop < count; loop++)
   {
-    delete objects[loop];
+  delete objects[loop];
   }
   count = 0;
 }
@@ -72,8 +72,8 @@ void cSetRescuePoint::operator+=(RescuePoint *newObject)
 {
   if (allocated == count)
   {
-    allocated += 10;
-    objects = (RescuePoint **) realloc(objects, sizeof(RescuePoint *) * (size_t) allocated);
+  allocated += 10;
+  objects = (RescuePoint **) realloc(objects, sizeof(RescuePoint *) * (size_t) allocated);
   }
   objects[count++] = newObject;
 }
@@ -84,14 +84,14 @@ RESCUEINT64 cSetRescuePoint::IndexOf(RescuePoint *existingObject)
   RESCUEINT64 ndx = 0;
   while (ndx < count && myReturn < 0)
   {
-    if (existingObject == objects[ndx])
-    {
+  if (existingObject == objects[ndx])
+  {
       myReturn = ndx;
-    }
-    else
-    {
+  }
+  else
+  {
       ndx++;
-    }
+  }
   }
   return myReturn;
 }
@@ -103,25 +103,25 @@ RESCUEBOOL cSetRescuePoint::operator-=(RescuePoint *existingObject)
 
   while (ndx < count && found == FALSE)
   {
-    if (existingObject == objects[ndx])
-    {
+  if (existingObject == objects[ndx])
+  {
       found = TRUE;
-    }
-    else
-    {
+  }
+  else
+  {
       ndx++;
-    }
+  }
   }
   if (found)
   {
-    RESCUEINT64 loop;
+  RESCUEINT64 loop;
 
-    delete objects[ndx];
-    count--;
-    for (loop = ndx; loop < count; loop++)
-    {
+  delete objects[ndx];
+  count--;
+  for (loop = ndx; loop < count; loop++)
+  {
       objects[loop] = objects[loop + 1];
-    }
+  }
   }
   return found;
 }
@@ -130,19 +130,19 @@ RESCUEBOOL cSetRescuePoint::operator-=(RESCUEINT64 ndx)
 {
   if (ndx >= 0 && ndx < count)
   {
-    RESCUEINT64 loop;
+  RESCUEINT64 loop;
 
-    delete objects[ndx];
-    count--;
-    for (loop = ndx; loop < count; loop++)
-    {
+  delete objects[ndx];
+  count--;
+  for (loop = ndx; loop < count; loop++)
+  {
       objects[loop] = objects[loop + 1];
-    }
-    return TRUE;
+  }
+  return TRUE;
   }
   else
   {
-    return FALSE;
+  return FALSE;
   }
 }
 
@@ -150,11 +150,11 @@ RescuePoint *cSetRescuePoint::NthObject(RESCUEINT64 ordinal)
 {
   if (ordinal < 0 || ordinal >= count)
   {
-    return 0;
+  return 0;
   }
   else
   {
-    return objects[ordinal];
+  return objects[ordinal];
   }
 }
 
@@ -172,15 +172,15 @@ RESCUEINT32 cSetRescuePoint::Count(RESCUEBOOL throwIfTrue)
 {
   if (count > 2147483647)
   {
-    if (throwIfTrue)
-    {
+  if (throwIfTrue)
+  {
       throw "Model is too large to be accessed in 32 bit mode.";
-    }
-    return 0;
+  }
+  return 0;
   }
   else
   {
-    return (RESCUEINT32) count;
+  return (RESCUEINT32) count;
   }
 }
 

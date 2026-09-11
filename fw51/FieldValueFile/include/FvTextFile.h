@@ -28,40 +28,40 @@ public:
   typedef QTextStream  TOutputStream;
   
   int lineNr() const;
-    
-    // Construction / destruction
-    CTextFile();
-    virtual ~CTextFile();
+  
+  // Construction / destruction
+  CTextFile();
+  virtual ~CTextFile();
 
-    // End - client interface ...
-    bool Open(const QString &strPath, IProgressBase &progress);
-    
-    bool Save(const QString &strPath, IProgressBase &progress, bool append = false);
-    bool Save(FILE* file, IProgressBase &progress);
+  // End - client interface ...
+  bool Open(const QString &strPath, IProgressBase &progress);
+  
+  bool Save(const QString &strPath, IProgressBase &progress, bool append = false);
+  bool Save(FILE* file, IProgressBase &progress);
 
-    void Close();
+  void Close();
 
-    void ItemSaved();
-    void ItemRead();
+  void ItemSaved();
+  void ItemRead();
 
-	virtual void setUnitType( unitType );
+  virtual void setUnitType( unitType );
 
-    // Path and file name access
-    QString PathName() const;
-    QString FileName() const;
+  // Path and file name access
+  QString PathName() const;
+  QString FileName() const;
 
-    const QString& ErrorMessage() const;
+  const QString& ErrorMessage() const;
 
-    // Clear the token and comments stored in the parser. Always called by the constructor
-    virtual void Clear();
+  // Clear the token and comments stored in the parser. Always called by the constructor
+  virtual void Clear();
 
-    // Function to start the parser
-    bool Parse( TInputStream& stream );
+  // Function to start the parser
+  bool Parse( TInputStream& stream );
 
-    // Functions to define a token or comment in the parser
-    virtual bool DefineToken(CToken &token, bool bAutoDeleteToken = true);
+  // Functions to define a token or comment in the parser
+  virtual bool DefineToken(CToken &token, bool bAutoDeleteToken = true);
 
-    // Functions to read a line in one string or every word in a seperate string
+  // Functions to read a line in one string or every word in a seperate string
 //    std::vector<QString> ReadLineSegmented();
 //    QString ReadLine();
 protected:

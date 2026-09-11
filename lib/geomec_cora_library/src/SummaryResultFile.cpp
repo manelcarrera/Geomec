@@ -24,16 +24,16 @@ CSummaryResultFile::~CSummaryResultFile()
 {
   switch (m_resultValue)
   {
-    case RESULT_VALUE_OK:
+  case RESULT_VALUE_OK:
       m_summaryResultFile << RESULT_OK.toStdString();
       break;
-    case RESULT_VALUE_INCONSISTENT:
+  case RESULT_VALUE_INCONSISTENT:
       m_summaryResultFile << RESULT_INCONSISTENT.toStdString();
       break;
-    case RESULT_VALUE_TOO_MANY:
+  case RESULT_VALUE_TOO_MANY:
       m_summaryResultFile << RESULT_TOO_MANY.toStdString();
       break;
-    case RESULT_VALUE_DIVERGENCE:
+  case RESULT_VALUE_DIVERGENCE:
       m_summaryResultFile << RESULT_DIVERGENCE.toStdString();
       break;
   }

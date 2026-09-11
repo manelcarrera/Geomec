@@ -17,21 +17,21 @@ template<class T, class MODEL_OBJECT = IModelObject>
 class CModelContainer : public MODEL_OBJECT
 {
 public:
-	typedef T TItemType;
-	typedef IModelObject::TStream TStream;
+  typedef T TItemType;
+  typedef IModelObject::TStream TStream;
 
-	CModelContainer();
-	CModelContainer( const QString& name );
+  CModelContainer();
+  CModelContainer( const QString& name );
 
-	int size() const;
-	const T& at( int nIndex ) const;
-	T&       at( int nIndex );
+  int size() const;
+  const T& at( int nIndex ) const;
+  T&       at( int nIndex );
   virtual  bool empty() const;
 };
 
 /*!
-	Default construction of the model container. A load action should follow.
-	\sa IModelObject::create
+  Default construction of the model container. A load action should follow.
+  \sa IModelObject::create
 */
 template<class T, class MODEL_OBJECT>
 CModelContainer<T ,  MODEL_OBJECT>::CModelContainer()
@@ -40,10 +40,10 @@ CModelContainer<T ,  MODEL_OBJECT>::CModelContainer()
 }
 
 /*!
-	Construction of the model container.
-	\param name is the name of the container
-	Construction must be followed by a call to create.
-	\sa IModelObject::create
+  Construction of the model container.
+  \param name is the name of the container
+  Construction must be followed by a call to create.
+  \sa IModelObject::create
 */
 template<class T, class MODEL_OBJECT>
 CModelContainer<T ,  MODEL_OBJECT>::CModelContainer( const QString& name )
@@ -52,25 +52,25 @@ CModelContainer<T ,  MODEL_OBJECT>::CModelContainer( const QString& name )
 }
 
 /*!
-	Return the amount of objects in the container
+  Return the amount of objects in the container
 */
 template<class T, class MODEL_OBJECT>
 int CModelContainer<T ,  MODEL_OBJECT>::size() const
 {
-	return MODEL_OBJECT::childSize();
+  return MODEL_OBJECT::childSize();
 }
 
 /*!
-	Returns the object at a certain position in the container
+  Returns the object at a certain position in the container
 */
 template<class T, class MODEL_OBJECT>
 const T& CModelContainer<T ,  MODEL_OBJECT>::at(int nIndex) const
 {
-	return (const T&)MODEL_OBJECT::childAt(nIndex);
+  return (const T&)MODEL_OBJECT::childAt(nIndex);
 }
 
 /*!
-	Returns the object at a certain position in the container
+  Returns the object at a certain position in the container
 */
 template<class T, class MODEL_OBJECT>
 T& CModelContainer<T ,  MODEL_OBJECT>::at(int nIndex)
@@ -88,18 +88,18 @@ template <typename TContainer>
 QString suggestUniqueName( const TContainer* container, QString format )
 {
   if ( !format.contains( "%1" ) )
-    format += "%1";
+  format += "%1";
 
   QRegExp re = QRegExp( format.arg( "(\\d+)" ) );
 
   // First, find the number of the highest numbered item
   int highest = 0;
   for ( int i = 0; i != container->size(); ++i ) {
-    QString name = container->at(i).text();
-    if ( re.indexIn( name ) != -1 ) { // match found
+  QString name = container->at(i).text();
+  if ( re.indexIn( name ) != -1 ) { // match found
       int value = re.cap( 1 ).toInt();// extract the number
       if ( value > highest ) highest = value;
-    }
+  }
   }
   // We now (should) have a unique name if we increase highest & generate a name
   highest++;

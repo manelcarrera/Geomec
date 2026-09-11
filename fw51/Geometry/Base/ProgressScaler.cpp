@@ -25,20 +25,20 @@ CProgressScaler::~CProgressScaler()
 
 void CProgressScaler::AddSteps(int nSteps)
 {
-	m_nTotalSteps += nSteps;
+  m_nTotalSteps += nSteps;
 }
 
 void CProgressScaler::Step(int nSteps)
 {
-	m_nSteps += nSteps;
-	int nParentSteps = (m_nParentSteps * m_nSteps) / m_nTotalSteps;
-	int nParentStepsToMake = m_nParentSteps - nParentSteps;
-	if(nParentStepsToMake > 0)
-		m_parent.Step(nParentStepsToMake);
-	m_nParentSteps = nParentSteps;
+  m_nSteps += nSteps;
+  int nParentSteps = (m_nParentSteps * m_nSteps) / m_nTotalSteps;
+  int nParentStepsToMake = m_nParentSteps - nParentSteps;
+  if(nParentStepsToMake > 0)
+    m_parent.Step(nParentStepsToMake);
+  m_nParentSteps = nParentSteps;
 }
 
 void CProgressScaler::StatusMessage(const QString& sMessage)
 {
-	m_parent.StatusMessage( sMessage );
+  m_parent.StatusMessage( sMessage );
 }

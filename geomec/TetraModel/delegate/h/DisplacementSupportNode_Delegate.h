@@ -9,10 +9,10 @@ class CDisplacementSupportNode_Delegate : public C3DSupportNode_Delegate
 {
 public:
   CDisplacementSupportNode_Delegate(
-    CDisplacementSupportNode* displacementSupportNode);
+  CDisplacementSupportNode* displacementSupportNode);
 
   virtual bool MouseRelease(TFrame& frame, TKeyboardModifiers state,
-    TMouseButton button, const TScreenPoint& point, const TObjectVec& vcHit);
+  TMouseButton button, const TScreenPoint& point, const TObjectVec& vcHit);
 
   virtual void AppendContextMenu(CContextMenuInvoker& invoker);
 
@@ -24,14 +24,14 @@ protected:
 
 private:
   CDisplacementSupportNode_Delegate(
-    const CDisplacementSupportNode_Delegate& rhs);
+  const CDisplacementSupportNode_Delegate& rhs);
   CDisplacementSupportNode_Delegate& operator = (
-    const CDisplacementSupportNode_Delegate& rhs);
+  const CDisplacementSupportNode_Delegate& rhs);
 
   CDisplacementSupportNode* m_displacementSupportNode;
 
   REGISTER_DELEGATE(CDisplacementSupportNode,
-    CDisplacementSupportNode_Delegate);
+  CDisplacementSupportNode_Delegate);
 };
 
 #endif  // _DisplacementSupportNode_Delegate_h_

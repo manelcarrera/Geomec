@@ -9,13 +9,13 @@ namespace cora
 class CGetEstimatedMemoryUsage
 {
   public:
-    CGetEstimatedMemoryUsage();
+  CGetEstimatedMemoryUsage();
 
-    std::ostream& operator () (std::ostream& os) const;
+  std::ostream& operator () (std::ostream& os) const;
 
   private:
-    CGetEstimatedMemoryUsage(const CGetEstimatedMemoryUsage& rhs);
-    CGetEstimatedMemoryUsage& operator = (CGetEstimatedMemoryUsage rhs);
+  CGetEstimatedMemoryUsage(const CGetEstimatedMemoryUsage& rhs);
+  CGetEstimatedMemoryUsage& operator = (CGetEstimatedMemoryUsage rhs);
 };
 
 } // namespace cora

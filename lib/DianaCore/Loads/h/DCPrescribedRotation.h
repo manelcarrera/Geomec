@@ -20,10 +20,10 @@ class CLoadManager;
 class CPrescribedRotation : public ISupportLoad  
 {
 public:
-	CPrescribedRotation(CLoadCase &loadcase, double size, const geo::IVector &vecDirection, const geo::CRotationSupport &support);
-	virtual ~CPrescribedRotation();
+  CPrescribedRotation(CLoadCase &loadcase, double size, const geo::IVector &vecDirection, const geo::CRotationSupport &support);
+  virtual ~CPrescribedRotation();
 
-	virtual bool WriteFilos() const;
+  virtual bool WriteFilos() const;
 };
 
 }

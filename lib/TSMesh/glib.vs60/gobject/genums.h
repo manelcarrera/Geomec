@@ -80,22 +80,22 @@ struct _GFlagsValue
 
 /* --- prototypes --- */
 GEnumValue*	g_enum_get_value		(GEnumClass	*enum_class,
-						 gint		 value);
+             gint		 value);
 GEnumValue*	g_enum_get_value_by_name	(GEnumClass	*enum_class,
-						 const gchar	*name);
+             const gchar	*name);
 GEnumValue*	g_enum_get_value_by_nick	(GEnumClass	*enum_class,
-						 const gchar	*nick);
+             const gchar	*nick);
 GFlagsValue*	g_flags_get_first_value		(GFlagsClass	*flags_class,
-						 guint		 value);
+             guint		 value);
 GFlagsValue*	g_flags_get_value_by_name	(GFlagsClass	*flags_class,
-						 const gchar	*name);
+             const gchar	*name);
 GFlagsValue*	g_flags_get_value_by_nick	(GFlagsClass	*flags_class,
-						 const gchar	*nick);
+             const gchar	*nick);
 void            g_value_set_enum        	(GValue         *value,
-						 gint            v_enum);
+             gint            v_enum);
 gint            g_value_get_enum        	(const GValue   *value);
 void            g_value_set_flags       	(GValue         *value,
-						 guint           v_flags);
+             guint           v_flags);
 guint           g_value_get_flags       	(const GValue   *value);
 
 
@@ -105,18 +105,18 @@ guint           g_value_get_flags       	(const GValue   *value);
  * values that is taken over!
  */
 GType	g_enum_register_static	   (const gchar	      *name,
-				    const GEnumValue  *const_static_values);
+          const GEnumValue  *const_static_values);
 GType	g_flags_register_static	   (const gchar	      *name,
-				    const GFlagsValue *const_static_values);
+          const GFlagsValue *const_static_values);
 /* functions to complete the type information
  * for enums/flags implemented by plugins
  */
 void	g_enum_complete_type_info  (GType	       g_enum_type,
-				    GTypeInfo	      *info,
-				    const GEnumValue  *const_values);
+          GTypeInfo	      *info,
+          const GEnumValue  *const_values);
 void	g_flags_complete_type_info (GType	       g_flags_type,
-				    GTypeInfo	      *info,
-				    const GFlagsValue *const_values);
+          GTypeInfo	      *info,
+          const GFlagsValue *const_values);
 
 
 

@@ -21,37 +21,37 @@ ICase::ICase(CLoadManager &manager, int index)
 ICase::~ICase()
 {
   for(size_t i = 0; i < m_vcTimeTables.size(); ++i)
-    delete m_vcTimeTables[i];
+  delete m_vcTimeTables[i];
 }
 
 int ICase::Index() const
 {
-	return m_Index;
+  return m_Index;
 }
 
 CLoadManager &ICase::Manager()
 {
-	return m_Manager;
+  return m_Manager;
 }
 
 const CLoadManager &ICase::Manager() const
 {
-	return m_Manager;
+  return m_Manager;
 }
 
 int ICase::LoadSize() const
 {
-	return m_vcLoads.size();
+  return m_vcLoads.size();
 }
 
 const ILoad &ICase::Load(int nLoad) const
 {
-	return *m_vcLoads[nLoad];
+  return *m_vcLoads[nLoad];
 }
 
 void ICase::AddLoad(ILoad &load)
 {
-	m_vcLoads.push_back(&load);
+  m_vcLoads.push_back(&load);
 }
 
 void ICase::AddTimeTable(const ITimeTable& timetable)
@@ -61,57 +61,57 @@ void ICase::AddTimeTable(const ITimeTable& timetable)
 
 bool ICase::WriteFilos() const
 {
-	bool bSuccess = true;
+  bool bSuccess = true;
 
-	if(Active())
-	{
+  if(Active())
+  {
 //		assert(LoadSize());
-		ftn_int_t idx = (ftn_int_t) (Index() + 1);
+    ftn_int_t idx = (ftn_int_t) (Index() + 1);
 
-    std::string sDirName = std::string("/") + FilosDirName() + "/";
+  std::string sDirName = std::string("/") + FilosDirName() + "/";
 
-		if(XistIndexed(sDirName.c_str(), &idx))
+    if(XistIndexed(sDirName.c_str(), &idx))
       RemoveIndexedItem(sDirName.c_str(), &idx);
 
-		PushDir();
+    PushDir();
 
-		ChangeIndexedDir(sDirName.c_str(), &idx);
+    ChangeIndexedDir(sDirName.c_str(), &idx);
 
-		for(int i = 0; i < LoadSize(); i++)
-		{
-			if(!Load(i).WriteFilos())
-			{
-				bSuccess = false;
-				break;
-			}
-		}
-
-		PopDir();
-	}
-
-  if(bSuccess)
-  {
-    for(size_t i = 0; i < m_vcTimeTables.size(); ++i)
+    for(int i = 0; i < LoadSize(); i++)
     {
-      if(!m_vcTimeTables[i]->WriteFilos())
+      if(!Load(i).WriteFilos())
       {
         bSuccess = false;
         break;
       }
     }
+
+    PopDir();
   }
 
-	return bSuccess;
+  if(bSuccess)
+  {
+  for(size_t i = 0; i < m_vcTimeTables.size(); ++i)
+  {
+      if(!m_vcTimeTables[i]->WriteFilos())
+      {
+    bSuccess = false;
+    break;
+      }
+  }
+  }
+
+  return bSuccess;
 }
 
 bool ICase::Active() const
 {
-	return m_bActive;
+  return m_bActive;
 }
 
 void ICase::SetActive(bool bActive)
 {
-	m_bActive = bActive;
+  m_bActive = bActive;
 }
 
 } // namespace dia

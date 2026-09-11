@@ -20,22 +20,22 @@ typedef CMaterialServerParent <COpenGLNode,
 
 class CWellCasingMaterialServer_Delegate :
   public IMaterialServerTempl_Delegate <CWellCasingSteelMaterial,
-    CWellCasingSteelMaterial_Delegate, TWellCasingMaterialServerParent>
+  CWellCasingSteelMaterial_Delegate, TWellCasingMaterialServerParent>
 {
 public:
   CWellCasingMaterialServer_Delegate(
-    CWellCasingMaterialServer* wellCasingMaterialServer);
+  CWellCasingMaterialServer* wellCasingMaterialServer);
 
 private:
   CWellCasingMaterialServer_Delegate(
-    const CWellCasingMaterialServer_Delegate& rhs);
+  const CWellCasingMaterialServer_Delegate& rhs);
   CWellCasingMaterialServer_Delegate& operator = (
-    const CWellCasingMaterialServer_Delegate& rhs);
+  const CWellCasingMaterialServer_Delegate& rhs);
 
   CWellCasingMaterialServer* m_wellCasingMaterialServer;
 
   REGISTER_DELEGATE(CWellCasingMaterialServer,
-    CWellCasingMaterialServer_Delegate);
+  CWellCasingMaterialServer_Delegate);
 };
 
 typedef CMaterialServerParent_Delegate <COpenGLNode_Delegate, COpenGLNode,

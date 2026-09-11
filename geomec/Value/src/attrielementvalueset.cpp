@@ -19,35 +19,35 @@ static char THIS_FILE[] = __FILE__;
 CAttriElementValueSet::CAttriElementValueSet(CElementValueSet& value_set, CWnd* pParent /*=NULL*/)
 : CDialog(CAttriElementValueSet::IDD, pParent), m_value_set(value_set)
 {
-	//{{AFX_DATA_INIT(CAttriElementValueSet)
-	//}}AFX_DATA_INIT
+  //{{AFX_DATA_INIT(CAttriElementValueSet)
+  //}}AFX_DATA_INIT
 }
 
 
 void CAttriElementValueSet::DoDataExchange(CDataExchange* pDX)
 {
-	CString	sName;
+  CString	sName;
 
-	// Let the base class do it's job
-	CDialog::DoDataExchange(pDX);
+  // Let the base class do it's job
+  CDialog::DoDataExchange(pDX);
 
-	if(!pDX->m_bSaveAndValidate)
-		sName = m_value_set.Name().toStdString().c_str();
+  if(!pDX->m_bSaveAndValidate)
+    sName = m_value_set.Name().toStdString().c_str();
 
-	//{{AFX_DATA_MAP(CAttriElementValueSet)
-	//}}AFX_DATA_MAP
+  //{{AFX_DATA_MAP(CAttriElementValueSet)
+  //}}AFX_DATA_MAP
 
-	DDX_Text(pDX, IDC_EB_NAME, sName);
+  DDX_Text(pDX, IDC_EB_NAME, sName);
 
-	if(pDX->m_bSaveAndValidate)
-		m_value_set.Name((LPCSTR) sName);
+  if(pDX->m_bSaveAndValidate)
+    m_value_set.Name((LPCSTR) sName);
 }
 
 
 BEGIN_MESSAGE_MAP(CAttriElementValueSet, CDialog)
-	//{{AFX_MSG_MAP(CAttriElementValueSet)
-		// NOTE: the ClassWizard will add message map macros here
-	//}}AFX_MSG_MAP
+  //{{AFX_MSG_MAP(CAttriElementValueSet)
+    // NOTE: the ClassWizard will add message map macros here
+  //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -56,15 +56,15 @@ END_MESSAGE_MAP()
 
 BOOL CAttriElementValueSet::OnInitDialog()
 {
-	CStatic *pMonth = (CStatic*)(GetDlgItem(IDC_ST_MONTH));
-	pMonth->SetWindowText(m_value_set.Time().Month().toStdString().c_str());
+  CStatic *pMonth = (CStatic*)(GetDlgItem(IDC_ST_MONTH));
+  pMonth->SetWindowText(m_value_set.Time().Month().toStdString().c_str());
 
-	CString year;
-	year.Format("%d", m_value_set.Time().GetYear());
+  CString year;
+  year.Format("%d", m_value_set.Time().GetYear());
 
-	CStatic *pYear = (CStatic*)(GetDlgItem(IDC_ST_YEAR));
-	pYear->SetWindowText(year);
+  CStatic *pYear = (CStatic*)(GetDlgItem(IDC_ST_YEAR));
+  pYear->SetWindowText(year);
 
-	return CDialog::OnInitDialog();
+  return CDialog::OnInitDialog();
 }
 

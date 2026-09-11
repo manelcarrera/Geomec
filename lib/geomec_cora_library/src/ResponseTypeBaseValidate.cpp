@@ -24,15 +24,15 @@ bool CResponseTypeBaseValidate::validateFunctionSize(
 {
   if (function.size() < validFunctionSize)
   {
-    QString message = concatenateFunction(function);
+  QString message = concatenateFunction(function);
 
-    summaryResultFile.setResultValue(
+  summaryResultFile.setResultValue(
       CSummaryResultFile::RESULT_VALUE_INCONSISTENT);
-    message = QString(LSF_DESCRIPTION_DOES_NOT_CONTAIN_ENOUGH_PARAMETERS).
+  message = QString(LSF_DESCRIPTION_DOES_NOT_CONTAIN_ENOUGH_PARAMETERS).
       arg(message).arg(function.size()).arg(validFunctionSize);
-    summaryResultFile.addAdditionalInformation(message);
+  summaryResultFile.addAdditionalInformation(message);
 
-    throw CIncompleteLimitStateFunction(message.toStdString());
+  throw CIncompleteLimitStateFunction(message.toStdString());
   }
 
   return true;
@@ -58,7 +58,7 @@ struct TAccumulate
 {
   QString operator () (const QString& lhs, const QString& rhs)
   {
-    return lhs + (lhs.length() > 0 ? COMMA : EMPTY) + rhs;
+  return lhs + (lhs.length() > 0 ? COMMA : EMPTY) + rhs;
   }
 };
 
@@ -76,7 +76,7 @@ QString CResponseTypeBaseValidate::concatenateFunction(
   */
 
   QString concatenation = std::accumulate(function.begin(), function.end(),
-    QString(), TAccumulate());
+  QString(), TAccumulate());
 
   return concatenation;
 }
@@ -100,15 +100,15 @@ double CResponseTypeBaseValidate::extractValue(
 
   if (!ok)
   {
-    QString message = concatenateFunction(function);
+  QString message = concatenateFunction(function);
 
-    summaryResultFile.setResultValue(
+  summaryResultFile.setResultValue(
       CSummaryResultFile::RESULT_VALUE_INCONSISTENT);
-    message = QString(LSF_CANNOT_CONVERT_2_DOUBLE).arg(message).
+  message = QString(LSF_CANNOT_CONVERT_2_DOUBLE).arg(message).
       arg(function[valuePosition]);
-    summaryResultFile.addAdditionalInformation(message);
+  summaryResultFile.addAdditionalInformation(message);
 
-    throw CIncompleteLimitStateFunction(message.toStdString());
+  throw CIncompleteLimitStateFunction(message.toStdString());
   }
 
   return value;

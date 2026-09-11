@@ -36,7 +36,7 @@ bool CPrescribedPressurePotential::WriteFilos() const
 
   PopDir();
 
-	return true;
+  return true;
 }
 
 } // namespace dia

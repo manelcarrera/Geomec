@@ -12,7 +12,7 @@ CGetSurfaceInfo& CGetSurfaceInfo::instance(const CModelBase* modelBase)
 {
   if (m_getSurfaceInfo == 0)
   {
-    m_getSurfaceInfo = new CGetSurfaceInfo(modelBase);
+  m_getSurfaceInfo = new CGetSurfaceInfo(modelBase);
   }
 
   return *m_getSurfaceInfo;
@@ -53,18 +53,18 @@ TObjects CGetSurfaceInfo::getObjects(const CModelBase* modelBase)
 
   if (modelBase != 0)
   {
-    const CSurfaceEntry* surfaceEntry =
+  const CSurfaceEntry* surfaceEntry =
       dynamic_cast <const CSurfaceEntry*> (
-        modelBase->GraphEntry(MD_BASE_SURFACE));
-    const CSurfaceEntry::TSortedNodeSet entryNodes =
+    modelBase->GraphEntry(MD_BASE_SURFACE));
+  const CSurfaceEntry::TSortedNodeSet entryNodes =
       surfaceEntry->SortedEntryNodes();
 
-    for (CSurfaceEntry::TSortedNodeSet::const_iterator
+  for (CSurfaceEntry::TSortedNodeSet::const_iterator
       entryNode = entryNodes.begin(); entryNode != entryNodes.end();
       ++entryNode)
-    {
+  {
       objects.push_back(TObject(new CObject(CObject::surfaceObject, *entryNode)));
-    }
+  }
   }
 
   return objects;

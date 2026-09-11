@@ -18,11 +18,11 @@ Software Product or documentation licensed under this agreement.
 ****************************************************************************/
 /*************************************************************************
 
-        cSetRescueWellboreSurface.cpp
+    cSetRescueWellboreSurface.cpp
 
  Keeps a list of pointers to some RescueWellboreSurface.
 
-        Rod Hanks               January 18th, 1995  /  August 1996
+    Rod Hanks               January 18th, 1995  /  August 1996
 
 ****************************************************************************/
 #include "RescueModel.h"
@@ -42,7 +42,7 @@ cSetRescueWellboreSurface::~cSetRescueWellboreSurface()
 
   for (loop = 0; loop < count; loop++)
   {
-    delete objects[loop];
+  delete objects[loop];
   }
   free(objects);
 }
@@ -53,7 +53,7 @@ void cSetRescueWellboreSurface::Archive(RescueContext *context, FILE *archiveFil
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    objects[loop]->Archive(archiveFile);
+  objects[loop]->Archive(archiveFile);
   }
 }
 
@@ -62,7 +62,7 @@ void cSetRescueWellboreSurface::Relink(RescueObject *parent)
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    objects[loop]->Relink(parent);
+  objects[loop]->Relink(parent);
   }
 }
 
@@ -76,8 +76,8 @@ void cSetRescueWellboreSurface::UnArchive(RescueContext *context, FILE *archiveF
   RESCUEINT64 loop;
   for (loop = 0; loop < newCount; loop++)
   {
-    RescueWellboreSurface *newObject = new RescueWellboreSurface(context, archiveFile);
-    (*this) += newObject;
+  RescueWellboreSurface *newObject = new RescueWellboreSurface(context, archiveFile);
+  (*this) += newObject;
   }
 }
 
@@ -87,7 +87,7 @@ void cSetRescueWellboreSurface::EmptySelf(void)
  
   for (loop = 0; loop < count; loop++)
   {
-    delete objects[loop];
+  delete objects[loop];
   }
   count = 0;
 }
@@ -96,8 +96,8 @@ void cSetRescueWellboreSurface::operator+=(RescueWellboreSurface *newObject)
 {
   if (allocated == count)
   {
-    allocated += 10;
-    objects = (RescueWellboreSurface **) realloc(objects, sizeof(RescueWellboreSurface *) * (size_t) allocated);
+  allocated += 10;
+  objects = (RescueWellboreSurface **) realloc(objects, sizeof(RescueWellboreSurface *) * (size_t) allocated);
   }
   objects[count++] = newObject;
 }
@@ -109,25 +109,25 @@ RESCUEBOOL cSetRescueWellboreSurface::operator-=(RescueWellboreSurface *existing
 
   while (ndx < count && found == FALSE)
   {
-    if (existingObject == objects[ndx])
-    {
+  if (existingObject == objects[ndx])
+  {
       found = TRUE;
-    }
-    else
-    {
+  }
+  else
+  {
       ndx++;
-    }
+  }
   }
   if (found)
   {
-    RESCUEINT64 loop;
+  RESCUEINT64 loop;
 
-    delete objects[ndx];
-    count--;
-    for (loop = ndx; loop < count; loop++)
-    {
+  delete objects[ndx];
+  count--;
+  for (loop = ndx; loop < count; loop++)
+  {
       objects[loop] = objects[loop + 1];
-    }
+  }
   }
   return found;
 }
@@ -139,22 +139,22 @@ RescueWellboreSurface *cSetRescueWellboreSurface::ObjectNamed(const RESCUECHAR *
 
   while (ndx < count && found == FALSE)
   {
-    if (objects[ndx]->IsNamed(mayBeName))
-    {
-      found = TRUE;
-    }
-    else
-    {
-      ndx++;
-    }
-  }
-  if (found)
+  if (objects[ndx]->IsNamed(mayBeName))
   {
-    return objects[ndx];
+      found = TRUE;
   }
   else
   {
-    return 0;
+      ndx++;
+  }
+  }
+  if (found)
+  {
+  return objects[ndx];
+  }
+  else
+  {
+  return 0;
   }
 }
 
@@ -165,22 +165,22 @@ RescueWellboreSurface *cSetRescueWellboreSurface::ObjectIdentifiedBy(RESCUEINT64
 
   while (ndx < count && found == FALSE)
   {
-    if (objects[ndx]->IsIdentifiedBy(identifier))
-    {
-      found = TRUE;
-    }
-    else
-    {
-      ndx++;
-    }
-  }
-  if (found)
+  if (objects[ndx]->IsIdentifiedBy(identifier))
   {
-    return objects[ndx];
+      found = TRUE;
   }
   else
   {
-    return 0;
+      ndx++;
+  }
+  }
+  if (found)
+  {
+  return objects[ndx];
+  }
+  else
+  {
+  return 0;
   }
 }
 
@@ -188,19 +188,19 @@ RESCUEBOOL cSetRescueWellboreSurface::operator-=(RESCUEINT64 ndx)
 {
   if (ndx >= 0 && ndx < count)
   {
-    RESCUEINT64 loop;
+  RESCUEINT64 loop;
 
-    delete objects[ndx];
-    count--;
-    for (loop = ndx; loop < count; loop++)
-    {
+  delete objects[ndx];
+  count--;
+  for (loop = ndx; loop < count; loop++)
+  {
       objects[loop] = objects[loop + 1];
-    }
-    return TRUE;
+  }
+  return TRUE;
   }
   else
   {
-    return FALSE;
+  return FALSE;
   }
 }
 
@@ -208,11 +208,11 @@ RescueWellboreSurface *cSetRescueWellboreSurface::NthObject(RESCUEINT64 ordinal)
 {
   if (ordinal < 0 || ordinal >= count)
   {
-    return 0;
+  return 0;
   }
   else
   {
-    return objects[ordinal];
+  return objects[ordinal];
   }
 }
 
@@ -230,15 +230,15 @@ RESCUEINT32 cSetRescueWellboreSurface::Count(RESCUEBOOL throwIfTrue)
 {
   if (count > 2147483647)
   {
-    if (throwIfTrue)
-    {
+  if (throwIfTrue)
+  {
       throw "Model is too large to be accessed in 32 bit mode.";
-    }
-    return 0;
+  }
+  return 0;
   }
   else
   {
-    return (RESCUEINT32) count;
+  return (RESCUEINT32) count;
   }
 }
 

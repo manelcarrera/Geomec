@@ -27,7 +27,7 @@ CObjectFormation::~CObjectFormation()
 {
   if (m_owner && (m_elementSet != 0))
   {
-    delete m_elementSet;
+  delete m_elementSet;
   }
 }
 
@@ -80,19 +80,19 @@ const geo::IElement* CObjectFormation::getFirstElement()
 const geo::IElement* CObjectFormation::getNextElement()
 {
   for (; m_sequenceState.first < m_formationBase->ElementSetSize();
-    ++(m_sequenceState.first))
+  ++(m_sequenceState.first))
   {
-    const IFormationElementSet& formationElementSet =
+  const IFormationElementSet& formationElementSet =
       m_formationBase->ElementSet(m_sequenceState.first);
 
-    if (m_sequenceState.second <
+  if (m_sequenceState.second <
       formationElementSet.ElementSet().ElementSize())
-    {
+  {
       return &(formationElementSet.ElementSet().Element(
-        (m_sequenceState.second)++));
-    }
+    (m_sequenceState.second)++));
+  }
 
-    m_sequenceState.second = 0;
+  m_sequenceState.second = 0;
   }
 
   return 0;
@@ -101,12 +101,12 @@ const geo::IElement* CObjectFormation::getNextElement()
 std::ostream& CObjectFormation::operator () (std::ostream& os) const
 {
   os << PREFIX.toStdString() << m_formationBase->Name().toStdString() <<
-    std::endl;
+  std::endl;
   os << m_parameters.size() << std::endl;
 
   for (size_t s = 0; s < m_parameters.size(); ++s)
   {
-    os << m_parameters[s];
+  os << m_parameters[s];
   }
 
   return os;
@@ -134,30 +134,30 @@ void getMaterialParameters(TParameters& parameters,
 
   if (materialRock != 0)
   {
-    CLibraryMaterial& libraryMaterial = materialRock->LibraryMaterial();
-    CGetFormationParameterInfo getFormationParameterInfo(formationBase);
-    CFilterValueTypes filterValueTypes(libraryMaterial.MaterialModel());
+  CLibraryMaterial& libraryMaterial = materialRock->LibraryMaterial();
+  CGetFormationParameterInfo getFormationParameterInfo(formationBase);
+  CFilterValueTypes filterValueTypes(libraryMaterial.MaterialModel());
 
-    for (size_t i = 0; i < libraryMaterial.ParameterSize(); ++i)
-    {
+  for (size_t i = 0; i < libraryMaterial.ParameterSize(); ++i)
+  {
       if (filterValueTypes.isValueTypeAllowed(
-        libraryMaterial.Parameter(i).ValueTypeID()))
+    libraryMaterial.Parameter(i).ValueTypeID()))
       {
-        std::pair <geo::CValue, geo::CValue> range =
+    std::pair <geo::CValue, geo::CValue> range =
           getFormationParameterInfo.getRange(libraryMaterial.Parameter(i),
-            valueTypes);
-        double mean = getFormationParameterInfo.getMean(
+      valueTypes);
+    double mean = getFormationParameterInfo.getMean(
           libraryMaterial.Parameter(i), valueTypes);
-        QString formationParameterName = QString("%1_D%2").arg(
+    QString formationParameterName = QString("%1_D%2").arg(
           valueTypeFactory->getImportTag(libraryMaterial.Parameter(i).
-            ValueTypeID())).arg(depletionStage.Index());
+      ValueTypeID())).arg(depletionStage.Index());
 
-        parameters.push_back(TParameter(new CParameter(
+    parameters.push_back(TParameter(new CParameter(
           CParameter::formationParameter4Material, formationParameterName,
           range.first, range.second, mean, formationBase,
           depletionStage.Index(), libraryMaterial.Parameter(i))));
       }
-    }
+  }
   }
 }
 
@@ -175,17 +175,17 @@ TParameters CObjectFormation::getParameters(CFormationBase* formationBase,
 {
   TParameters parameters;
   CDepletionStageEntry* depletionStages = dynamic_cast <CDepletionStageEntry*> (
-    modelBase->GraphEntry(MD_BASE_DEPLETION_STAGE));
+  modelBase->GraphEntry(MD_BASE_DEPLETION_STAGE));
 
   for (CDepletionStageEntry::iterator depletionStage = depletionStages->begin();
-    depletionStage != depletionStages->LastStage(); ++depletionStage)
+  depletionStage != depletionStages->LastStage(); ++depletionStage)
   {
-    if ((*depletionStage).IsPhaseStartStage())
-    {
+  if ((*depletionStage).IsPhaseStartStage())
+  {
       getMaterialParameters(parameters, formationBase, modelBase,
-        *depletionStage);
+    *depletionStage);
       getPressureParameters <CFormationBase, geo::IElementSet,
-        CParameter::TFormationParameter4Pressure, CPressure> (parameters,
+    CParameter::TFormationParameter4Pressure, CPressure> (parameters,
           modelBase, *depletionStage, formationBase,
           formationBase->ElementSet(FIRST_ELEMENT_SET).ElementSet(),
           CParameter::formationParameter4Pressure, IDT_VALUETYPE_PRESSURE,
@@ -193,15 +193,15 @@ TParameters CObjectFormation::getParameters(CFormationBase* formationBase,
 
       if (!(*depletionStage).IsMarkedAsInitial())
       {
-        getPressureParameters <CFormationBase, geo::IElementSet,
+    getPressureParameters <CFormationBase, geo::IElementSet,
           CParameter::TFormationParameter4PressureChange, CPressure> (
-            parameters, modelBase, *depletionStage, formationBase,
-            formationBase->ElementSet(FIRST_ELEMENT_SET).ElementSet(),
-            CParameter::formationParameter4PressureChange,
-            IDT_VALUETYPE_PRESSURE, IDS_VALUENAME_PRESSURE,
-            PRESSURE_CHANGE_TYPE);
+      parameters, modelBase, *depletionStage, formationBase,
+      formationBase->ElementSet(FIRST_ELEMENT_SET).ElementSet(),
+      CParameter::formationParameter4PressureChange,
+      IDT_VALUETYPE_PRESSURE, IDS_VALUENAME_PRESSURE,
+      PRESSURE_CHANGE_TYPE);
       }
-    }
+  }
   }
 
   return parameters;
@@ -227,46 +227,46 @@ CElementSet* CObjectFormation::createElementSet(bool& owner,
 
   if (elementSet != 0)
   {
-    return elementSet;
+  return elementSet;
   }
 
   std::vector <const geo::IElement*> elements;
 
   for (int s = 0; s < formationBase->ElementSetSize(); ++s)
   {
-    const geo::IElementSet& iElementSet =
+  const geo::IElementSet& iElementSet =
       formationBase->ElementSet(s).ElementSet();
 
-    for (int element = 0; element < iElementSet.ElementSize(); ++element)
-    {
+  for (int element = 0; element < iElementSet.ElementSize(); ++element)
+  {
       elements.push_back(&((static_cast <const geo::IElement&> (
-        iElementSet.Element(element)))));
-    }
+    iElementSet.Element(element)))));
+  }
   }
 
   assert(!elements.empty());
 
   if (elements[FIRST_ELEMENT]->NrOfNodes() == HEXAHEDRON_NODES_COUNT)
   {
-    owner = true;
-    elementSet = new CElementSet(elements, formationBase->Name(),
+  owner = true;
+  elementSet = new CElementSet(elements, formationBase->Name(),
       CElementSet::HEXA, *modelBase);
   }
   else if (elements[FIRST_ELEMENT]->NrOfNodes() == TETRAHEDRON_NODES_COUNT)
   {
-    owner = true;
-    elementSet = new CElementSet(elements, formationBase->Name(),
+  owner = true;
+  elementSet = new CElementSet(elements, formationBase->Name(),
       CElementSet::TETRA, *modelBase);
   }
   else
   {
-    // We do not have always a summary result file to our disposal, hence
-    // throwing an exception.
+  // We do not have always a summary result file to our disposal, hence
+  // throwing an exception.
 
-    QString message =
+  QString message =
       QString(NUMBER_OF_NODES).arg(elements[FIRST_ELEMENT]->NrOfNodes());
 
-    throw std::runtime_error(message.toStdString());
+  throw std::runtime_error(message.toStdString());
   }
 
   return elementSet;
@@ -276,23 +276,23 @@ CElementSet* CObjectFormation::elementSetExists(CModelBase* modelBase,
   CFormationBase* formationBase)
 {
   TPointSetEntry* pointSetEntry =
-    dynamic_cast <TPointSetEntry*> (modelBase->GraphEntry(MD_BASE_POINTSET));
+  dynamic_cast <TPointSetEntry*> (modelBase->GraphEntry(MD_BASE_POINTSET));
   TPointSetEntry::TSortedNodeSet entryNodes = pointSetEntry->SortedEntryNodes();
 
   for (TPointSetEntry::TSortedNodeSet::iterator node = entryNodes.begin();
-    node != entryNodes.end(); ++node)
+  node != entryNodes.end(); ++node)
   {
-    if ((*node)->TypeId() == IDT_ELEMENTSET)
-    {
+  if ((*node)->TypeId() == IDT_ELEMENTSET)
+  {
       CElementSet* elementSet = static_cast <CElementSet*> (*node);
 
       if ((elementSet->Name() == formationBase->Name()) &&
-        ((elementSet->ElementType() == CElementSet::HEXA) ||
-        (elementSet->ElementType() == CElementSet::TETRA)))
+    ((elementSet->ElementType() == CElementSet::HEXA) ||
+    (elementSet->ElementType() == CElementSet::TETRA)))
       {
-        return elementSet;
+    return elementSet;
       }
-    }
+  }
   }
 
   return 0;

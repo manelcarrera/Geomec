@@ -32,16 +32,16 @@ CFileProgressCallBack::~CFileProgressCallBack()
 
 void CFileProgressCallBack::OnOpenFile(const CTextFile &file)
 {
-	m_pProgressDlg->NextJob(CString("Loading ") + CString(file.FileName().c_str())); 
+  m_pProgressDlg->NextJob(CString("Loading ") + CString(file.FileName().c_str())); 
 }
 
 void CFileProgressCallBack::OnSaveFile(const CTextFile &file)
 {
-	m_pProgressDlg->NextJob(CString("Saving ") + CString(file.FileName().c_str())); 
+  m_pProgressDlg->NextJob(CString("Saving ") + CString(file.FileName().c_str())); 
 }
 
 void CFileProgressCallBack::OnProgressUpdate(const int nProgress)
 {
-	if(m_pProgressDlg->OnProgress((WPARAM)(SET_PROGRESS), (LPARAM)(nProgress)) == 0)
-		OnCancel();
+  if(m_pProgressDlg->OnProgress((WPARAM)(SET_PROGRESS), (LPARAM)(nProgress)) == 0)
+    OnCancel();
 }

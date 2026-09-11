@@ -31,10 +31,10 @@ void RescueTimeStepGroup::AddGeometry(RescueGeometry *toAdd)
   RescueGeometry *parentBug = toAdd->ParentBUG();
   if (parentBug != toAdd)
   {
-    if (toAdd->ReferenceID() == 0)
-    {
+  if (toAdd->ReferenceID() == 0)
+  {
       throw("LGRs added to RescueTimeStepGroups need a unique non-zero reference id");
-    }
+  }
   }
 
   (*geometries) += toAdd;
@@ -81,7 +81,7 @@ void RescueTimeStepGroup::AddProperty(RescueProperty *toAdd)
 
   if (group->Container() != toAdd->Container())
   {
-    throw("Property owner is mismatched to container");
+  throw("Property owner is mismatched to container");
   }
 /*
   Works because if neither has anything to do with a container
@@ -98,14 +98,14 @@ RescueProperty *RescueTimeStepGroup::GetProperty(RescueGeometry *geometry, RESCU
   RescueProperty *candidate = properties->NthObject(ndx++);
   while (candidate != 0 && myReturn == 0)
   {
-    if (candidate->Geometry() == geometry)
-    {
+  if (candidate->Geometry() == geometry)
+  {
       if (candidate->IsNamed(propertyName))
       {
-        myReturn = candidate;
+    myReturn = candidate;
       }
-    }
-    candidate = properties->NthObject(ndx++);
+  }
+  candidate = properties->NthObject(ndx++);
   }
   return myReturn;
 }
@@ -130,8 +130,8 @@ void RescueTimeStepGroup::LatentRelink()
 {
   if (relinkingModel != 0)
   {
-    if (propertyID != 0)
-    {
+  if (propertyID != 0)
+  {
       RescueBlockUnit *blockUnit = group->ParentBlockUnit();
       RescueGeobodyPart *bodyPart = group->ParentGeobodyPart();
       RescueSurface *surface = group->ParentSurface();
@@ -142,76 +142,76 @@ void RescueTimeStepGroup::LatentRelink()
       RESCUEINT64 loop;
       for (loop = 0; loop < propertyID->Count64(); loop++)
       {
-        RescueProperty *property = 0;
-        if (blockUnit != 0)
-        {
+    RescueProperty *property = 0;
+    if (blockUnit != 0)
+    {
           property = blockUnit->PropertyIdentifiedBy(propertyID->NthObject(loop));
           if (property == 0)
           {
-            property = relinkingModel->PropertyIdentifiedBy(propertyID->NthObject(loop));
+      property = relinkingModel->PropertyIdentifiedBy(propertyID->NthObject(loop));
           }
-        }
-        else if (bodyPart != 0)
-        {
+    }
+    else if (bodyPart != 0)
+    {
           property = bodyPart->PropertyIdentifiedBy(propertyID->NthObject(loop));
           if (property == 0)
           {
-            property = relinkingModel->PropertyIdentifiedBy(propertyID->NthObject(loop));
+      property = relinkingModel->PropertyIdentifiedBy(propertyID->NthObject(loop));
           }
-        }
-        else if (surface != 0)
-        {
+    }
+    else if (surface != 0)
+    {
           property = surface->PropertyIdentifiedBy(propertyID->NthObject(loop));
           if (property == 0)
           {
-            property = relinkingModel->PropertyIdentifiedBy(propertyID->NthObject(loop));
+      property = relinkingModel->PropertyIdentifiedBy(propertyID->NthObject(loop));
           }
-        }
-        else if (container != 0)
-        {
+    }
+    else if (container != 0)
+    {
           property = container->PropertyIdentifiedBy(propertyID->NthObject(loop));
-        }
-        else
-        {
+    }
+    else
+    {
           property = relinkingModel->PropertyIdentifiedBy(propertyID->NthObject(loop));
-        }
-        if (property != 0)
-        {
+    }
+    if (property != 0)
+    {
           (*properties) += property;
-        }
+    }
       }
       delete propertyID;
       propertyID = 0;
-    }
-    if (geometryID != 0)
-    {
+  }
+  if (geometryID != 0)
+  {
       RESCUEINT64 loop;
       for (loop = 0; loop < geometryID->Count64(); loop += 2)
       {
-        RescueGeometry *geometry = 0;
-        RESCUEINT64 rootID = geometryID->NthObject(loop);
-        RESCUEINT64 lgrRefId = geometryID->NthObject(loop + 1);
-        RescueGeometry *rootGeometry = relinkingModel->GeometryIdentifiedBy(rootID);
-        if (rootGeometry != 0)
-        {
+    RescueGeometry *geometry = 0;
+    RESCUEINT64 rootID = geometryID->NthObject(loop);
+    RESCUEINT64 lgrRefId = geometryID->NthObject(loop + 1);
+    RescueGeometry *rootGeometry = relinkingModel->GeometryIdentifiedBy(rootID);
+    if (rootGeometry != 0)
+    {
           if (lgrRefId == 0)
           {
-            geometry = rootGeometry;
+      geometry = rootGeometry;
           }
           else
           {
-            geometry = rootGeometry->ProgenyHavingID(lgrRefId);
+      geometry = rootGeometry->ProgenyHavingID(lgrRefId);
           }
-        }
-        if (geometry != 0)
-        {
+    }
+    if (geometry != 0)
+    {
           (*geometries) += geometry;
-        }
+    }
       }
       delete geometryID;
       geometryID = 0;
-    }
-    relinkingModel = 0;
+  }
+  relinkingModel = 0;
   }
 }
 
@@ -225,33 +225,33 @@ void RescueTimeStepGroup::Archive(FILE *archiveFile)
   myfprintf(context, archiveFile, timeStepName->String());
   if (context->FileVersion() >= 21)
   {
-    myfprintf(context, archiveFile, isLocked);
+  myfprintf(context, archiveFile, isLocked);
   }
 
   myfprintf(context, archiveFile, (*properties).Count64());
   RESCUEINT64 loop;
   for (loop = 0; loop < (*properties).Count64(); loop++)
   {
-    RescueProperty *property = (RescueProperty *) 
-                            (*properties).NthObject(loop);
-    myfprintf(context, archiveFile, property->Identifier());
+  RescueProperty *property = (RescueProperty *) 
+              (*properties).NthObject(loop);
+  myfprintf(context, archiveFile, property->Identifier());
   }
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "lgrBag");
-    RESCUEINT64 howMany = geometries->Count64();
-    RescueBuffer nameBuf(context, ((howMany * 2) * sizeof(RESCUEUINT64)) + sizeof(RESCUEUINT64));
-    nameBuf << howMany;
-    for (loop = 0; loop < howMany; loop++)
-    {
+  myfprintf(context, archiveFile, "lgrBag");
+  RESCUEINT64 howMany = geometries->Count64();
+  RescueBuffer nameBuf(context, ((howMany * 2) * sizeof(RESCUEUINT64)) + sizeof(RESCUEUINT64));
+  nameBuf << howMany;
+  for (loop = 0; loop < howMany; loop++)
+  {
       RescueGeometry *geometry = (RescueGeometry *) geometries->NthObject(loop);
       RescueGeometry *rootGeometry = geometry->ParentBUG();
       nameBuf << rootGeometry->Identifier();
       nameBuf << geometry->ReferenceID();
-    }
-    nameBuf.Archive(archiveFile);
+  }
+  nameBuf.Archive(archiveFile);
 
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -260,11 +260,11 @@ RESCUEBOOL RescueTimeStepGroup::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueTimeStepGroup)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueHistoryObject::IsOfType(thisType);
+  return RescueHistoryObject::IsOfType(thisType);
   }
 }
 
@@ -272,23 +272,23 @@ RescueTimeStepGroup::~RescueTimeStepGroup()
 {
   if (timeStepName != 0)
   {
-    delete timeStepName;
+  delete timeStepName;
   }
   if (properties != 0)
   {
-    delete properties;
+  delete properties;
   }
   if (geometries != 0)
   {
-    delete geometries;
+  delete geometries;
   }
   if (propertyID != 0)
   {
-    delete propertyID;
+  delete propertyID;
   }
   if (geometryID != 0)
   {
-    delete geometryID;
+  delete geometryID;
   }
 }
 
@@ -318,15 +318,15 @@ void RescueTimeStepGroup::SetLock()
   RESCUEINT64 loop;
   for (loop = 0; loop < (*properties).Count64(); loop++)
   {
-    RescueProperty *property = (RescueProperty *) (*properties).NthObject(loop);
-    property->SetLock();
+  RescueProperty *property = (RescueProperty *) (*properties).NthObject(loop);
+  property->SetLock();
   }
 }
 
 RescueTimeStepGroup::RescueTimeStepGroup
-                                (RescueContext *context, FILE *archiveFile)
-                                :RescueHistoryObject(context)
-                                ,timeStepName(0)
+                (RescueContext *context, FILE *archiveFile)
+                :RescueHistoryObject(context)
+                ,timeStepName(0)
                                ,properties(0)
                                ,isLocked(FALSE)
                                ,propertyID(0)
@@ -343,7 +343,7 @@ RescueTimeStepGroup::RescueTimeStepGroup
   
   if (context->ReadFileVersion() >= 21)
   {
-    myfscanf(context, archiveFile, &isLocked);
+  myfscanf(context, archiveFile, &isLocked);
   }
 
   properties = new cBagRescueProperty();
@@ -351,37 +351,37 @@ RescueTimeStepGroup::RescueTimeStepGroup
   myfscanf(context, archiveFile, &count);
   if (count > 0)
   {
-    propertyID = new cBagInt();
+  propertyID = new cBagInt();
 
-    RESCUEINT64 loop;
-    for (loop = 0; loop < count; loop++)
-    {
+  RESCUEINT64 loop;
+  for (loop = 0; loop < count; loop++)
+  {
       RESCUEINT64 id;
 
       myfscanf(context, archiveFile, &id);
       (*propertyID) += id;
-    }
+  }
   }
   if (context->timeStepGroups != 0)
   {
-    context->timeStepGroups->Add(this);
+  context->timeStepGroups->Add(this);
   }
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       if (strcmp(myString, "lgrBag") == 0)
       {
-        geometryID = new cBagInt();
-        RESCUEINT64 howMany;
-        RescueBuffer buf(context, archiveFile);
-        buf >> howMany;
-        RESCUEINT64 loop;
-        for (loop = 0; loop < howMany; loop++)
-        {
+    geometryID = new cBagInt();
+    RESCUEINT64 howMany;
+    RescueBuffer buf(context, archiveFile);
+    buf >> howMany;
+    RESCUEINT64 loop;
+    for (loop = 0; loop < howMany; loop++)
+    {
           RESCUEINT64 id;
           buf >> id;
           (*geometryID) += id;
@@ -390,14 +390,14 @@ RescueTimeStepGroup::RescueTimeStepGroup
 /*
   For each, we have the root geometry, then the lgr.
 */
-        }
+    }
       }
       else
       {
-        RescueBuffer buf(context, archiveFile);
+    RescueBuffer buf(context, archiveFile);
       }
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 

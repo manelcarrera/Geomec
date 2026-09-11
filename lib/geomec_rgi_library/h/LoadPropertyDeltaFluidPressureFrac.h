@@ -9,21 +9,21 @@ namespace GeomecRGI
 class CLoadPropertyDeltaFluidPressureFrac : public CLoadPropertyPressureBase
 {
   public:
-    CLoadPropertyDeltaFluidPressureFrac(const RGProperty& rgProperty,
+  CLoadPropertyDeltaFluidPressureFrac(const RGProperty& rgProperty,
       RGInterface& rgi, CModelBase& modelBase, CRockMechProcessor& rmp);
-    virtual ~CLoadPropertyDeltaFluidPressureFrac();
+  virtual ~CLoadPropertyDeltaFluidPressureFrac();
 
   protected:
-    virtual bool addDelta(std::vector <geo::CValue>& vcNodalValues,
+  virtual bool addDelta(std::vector <geo::CValue>& vcNodalValues,
       const QString& strPropertyName, const CFormationBase* pFormation,
       const geo::IElement& elm, int nNod) const;
-    virtual IValueDomainScalar::TValueVec addDeltaSpecific(
+  virtual IValueDomainScalar::TValueVec addDeltaSpecific(
       const CDepletionStage& prevstage, const CFormationBase* pFormation,
       const geo::IElement& elm, int nNod) const;
 
   private:
-    CLoadPropertyDeltaFluidPressureFrac(const CLoadPropertyDeltaFluidPressureFrac& rhs);
-    CLoadPropertyDeltaFluidPressureFrac& operator = (
+  CLoadPropertyDeltaFluidPressureFrac(const CLoadPropertyDeltaFluidPressureFrac& rhs);
+  CLoadPropertyDeltaFluidPressureFrac& operator = (
       const CLoadPropertyDeltaFluidPressureFrac& rhs);
 };
 

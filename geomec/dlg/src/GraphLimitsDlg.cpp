@@ -45,17 +45,17 @@ BOOL CGraphLimitsDlg::OnInitDialog()
   CDialog::OnInitDialog();
   if (!m_rangeInterface.HaveAxis(OIV2DRangeInterface::AXIS_TOP))
   {
-    GetDlgItem(IDC_LOW_VALUE_TOP)->EnableWindow(false);
-    GetDlgItem(IDC_HIGH_VALUE_TOP)->EnableWindow(false);
-    GetDlgItem(IDC_CHK_AUTOMATIC_SCALING_TOP)->EnableWindow(false);
-    GetDlgItem(IDC_TICKMARKS_TOP)->EnableWindow(false);
+  GetDlgItem(IDC_LOW_VALUE_TOP)->EnableWindow(false);
+  GetDlgItem(IDC_HIGH_VALUE_TOP)->EnableWindow(false);
+  GetDlgItem(IDC_CHK_AUTOMATIC_SCALING_TOP)->EnableWindow(false);
+  GetDlgItem(IDC_TICKMARKS_TOP)->EnableWindow(false);
   }
   if (!m_rangeInterface.HaveAxis(OIV2DRangeInterface::AXIS_BOTTOM))
   {
-    GetDlgItem(IDC_LOW_VALUE_BOTTOM)->EnableWindow(false);
-    GetDlgItem(IDC_HIGH_VALUE_BOTTOM)->EnableWindow(false);
-    GetDlgItem(IDC_CHK_AUTOMATIC_SCALING_BOTTOM)->EnableWindow(false);
-    GetDlgItem(IDC_TICKMARKS_BOTTOM)->EnableWindow(false);
+  GetDlgItem(IDC_LOW_VALUE_BOTTOM)->EnableWindow(false);
+  GetDlgItem(IDC_HIGH_VALUE_BOTTOM)->EnableWindow(false);
+  GetDlgItem(IDC_CHK_AUTOMATIC_SCALING_BOTTOM)->EnableWindow(false);
+  GetDlgItem(IDC_TICKMARKS_BOTTOM)->EnableWindow(false);
   }
 
   GetDlgItem(IDOK)->SetFocus();
@@ -79,23 +79,23 @@ void CGraphLimitsDlg::DoDataExchange(CDataExchange* pDX)
 
   if (!pDX->m_bSaveAndValidate)
   {
-    m_iAutoLeft = m_rangeInterface.Auto(OIV2DRangeInterface::AXIS_LEFT);
-    m_rangeInterface.GetRangeMinMax(OIV2DRangeInterface::AXIS_LEFT, dMinLeft, dMaxLeft);
-    iTickLeft = m_rangeInterface.Tick(OIV2DRangeInterface::AXIS_LEFT);
+  m_iAutoLeft = m_rangeInterface.Auto(OIV2DRangeInterface::AXIS_LEFT);
+  m_rangeInterface.GetRangeMinMax(OIV2DRangeInterface::AXIS_LEFT, dMinLeft, dMaxLeft);
+  iTickLeft = m_rangeInterface.Tick(OIV2DRangeInterface::AXIS_LEFT);
 
-    if (m_rangeInterface.HaveAxis(OIV2DRangeInterface::AXIS_TOP))
-    {
+  if (m_rangeInterface.HaveAxis(OIV2DRangeInterface::AXIS_TOP))
+  {
       m_iAutoTop = m_rangeInterface.Auto(OIV2DRangeInterface::AXIS_TOP);
       m_rangeInterface.GetRangeMinMax(OIV2DRangeInterface::AXIS_TOP, dMinTop, dMaxTop);
       iTickTop = m_rangeInterface.Tick(OIV2DRangeInterface::AXIS_TOP);
-    }
+  }
 
-    if (m_rangeInterface.HaveAxis(OIV2DRangeInterface::AXIS_BOTTOM))
-    {
+  if (m_rangeInterface.HaveAxis(OIV2DRangeInterface::AXIS_BOTTOM))
+  {
       m_iAutoBottom = m_rangeInterface.Auto(OIV2DRangeInterface::AXIS_BOTTOM);
       m_rangeInterface.GetRangeMinMax(OIV2DRangeInterface::AXIS_BOTTOM, dMinBottom, dMaxBottom);
       iTickBottom = m_rangeInterface.Tick(OIV2DRangeInterface::AXIS_BOTTOM);
-    }
+  }
   }
 
   //{{AFX_DATA_MAP(CGraphLimitsDlg)
@@ -105,18 +105,18 @@ void CGraphLimitsDlg::DoDataExchange(CDataExchange* pDX)
 
   if (m_rangeInterface.HaveAxis(OIV2DRangeInterface::AXIS_TOP))
   {
-    DDX_Check(pDX, IDC_CHK_AUTOMATIC_SCALING_TOP, m_iAutoTop);
-    DDX_Text(pDX, IDC_LOW_VALUE_TOP, dMinTop);
-    DDX_Text(pDX, IDC_HIGH_VALUE_TOP, dMaxTop);
-    DDX_Text(pDX, IDC_TICKMARKS_TOP, iTickTop); // horizontal top: value
+  DDX_Check(pDX, IDC_CHK_AUTOMATIC_SCALING_TOP, m_iAutoTop);
+  DDX_Text(pDX, IDC_LOW_VALUE_TOP, dMinTop);
+  DDX_Text(pDX, IDC_HIGH_VALUE_TOP, dMaxTop);
+  DDX_Text(pDX, IDC_TICKMARKS_TOP, iTickTop); // horizontal top: value
   }
 
   if (m_rangeInterface.HaveAxis(OIV2DRangeInterface::AXIS_BOTTOM))
   {
-    DDX_Check(pDX, IDC_CHK_AUTOMATIC_SCALING_BOTTOM, m_iAutoBottom);
-    DDX_Text(pDX, IDC_LOW_VALUE_BOTTOM, dMinBottom);
-    DDX_Text(pDX, IDC_HIGH_VALUE_BOTTOM, dMaxBottom);
-    DDX_Text(pDX, IDC_TICKMARKS_BOTTOM, iTickBottom); // horizontal bottom: value
+  DDX_Check(pDX, IDC_CHK_AUTOMATIC_SCALING_BOTTOM, m_iAutoBottom);
+  DDX_Text(pDX, IDC_LOW_VALUE_BOTTOM, dMinBottom);
+  DDX_Text(pDX, IDC_HIGH_VALUE_BOTTOM, dMaxBottom);
+  DDX_Text(pDX, IDC_TICKMARKS_BOTTOM, iTickBottom); // horizontal bottom: value
   }
 
   DDX_Check(pDX, IDC_CHK_AUTOMATIC_SCALING_LEFT, m_iAutoLeft);
@@ -125,87 +125,87 @@ void CGraphLimitsDlg::DoDataExchange(CDataExchange* pDX)
 
   if (pDX->m_bSaveAndValidate)
   {
-    QString error;
+  QString error;
 
-    if (dMinLeft >= dMaxLeft)
-    {
+  if (dMinLeft >= dMaxLeft)
+  {
       error += "Left axis: " + ERROR_DEPTH_INVALID;
-    }
-    else if (!m_iAutoLeft && !m_rangeInterface.RangeLargeEnough(OIV2DRangeInterface::AXIS_LEFT, dMinLeft, dMaxLeft))
-    {
+  }
+  else if (!m_iAutoLeft && !m_rangeInterface.RangeLargeEnough(OIV2DRangeInterface::AXIS_LEFT, dMinLeft, dMaxLeft))
+  {
       error += "Left axis: " + ERROR_RANGE_INVALID;
-    }
+  }
 
-    if (m_rangeInterface.HaveAxis(OIV2DRangeInterface::AXIS_TOP))
-    {
+  if (m_rangeInterface.HaveAxis(OIV2DRangeInterface::AXIS_TOP))
+  {
       if (dMinTop >= dMaxTop)
       {
-        if (!error.isEmpty())
+    if (!error.isEmpty())
           error += "\r\n";
-        error += "Top axis: " + ERROR_VALUE_INVALID;
+    error += "Top axis: " + ERROR_VALUE_INVALID;
       }
       else if (!m_iAutoTop && !m_rangeInterface.RangeLargeEnough(OIV2DRangeInterface::AXIS_TOP, dMinTop, dMaxTop))
       {
-        if (!error.isEmpty())
+    if (!error.isEmpty())
           error += "\r\n";
-        error += "Top axis: " + ERROR_RANGE_INVALID;
+    error += "Top axis: " + ERROR_RANGE_INVALID;
       }
-    }
+  }
 
-    if (m_rangeInterface.HaveAxis(OIV2DRangeInterface::AXIS_BOTTOM))
-    {
+  if (m_rangeInterface.HaveAxis(OIV2DRangeInterface::AXIS_BOTTOM))
+  {
       if (dMinBottom >= dMaxBottom)
       {
-        if (!error.isEmpty())
+    if (!error.isEmpty())
           error += "\r\n";
-        error += "Bottom axis: " + ERROR_VALUE_INVALID;
+    error += "Bottom axis: " + ERROR_VALUE_INVALID;
       }
       else if (!m_iAutoBottom && !m_rangeInterface.RangeLargeEnough(OIV2DRangeInterface::AXIS_BOTTOM, dMinBottom, dMaxBottom))
       {
-        if (!error.isEmpty())
-          error += "\r\n";
-        error += "Bottom axis: " + ERROR_RANGE_INVALID;
-      }
-    }
-
     if (!error.isEmpty())
-    {
+          error += "\r\n";
+    error += "Bottom axis: " + ERROR_RANGE_INVALID;
+      }
+  }
+
+  if (!error.isEmpty())
+  {
       _m()->msg(error);
       pDX->Fail();
-    }
+  }
 
-    m_rangeInterface.SetMinMax(OIV2DRangeInterface::AXIS_LEFT, dMinLeft, dMaxLeft);
-    m_rangeInterface.Auto(OIV2DRangeInterface::AXIS_LEFT, m_iAutoLeft);
-    // wjrx mantis 3383
-    //
-    if (iTickLeft < 2) iTickLeft = 2;
-    m_rangeInterface.Tick(OIV2DRangeInterface::AXIS_LEFT, iTickLeft);
+  m_rangeInterface.SetMinMax(OIV2DRangeInterface::AXIS_LEFT, dMinLeft, dMaxLeft);
+  m_rangeInterface.Auto(OIV2DRangeInterface::AXIS_LEFT, m_iAutoLeft);
+  // wjrx mantis 3383
+  //
+  if (iTickLeft < 2) iTickLeft = 2;
+  m_rangeInterface.Tick(OIV2DRangeInterface::AXIS_LEFT, iTickLeft);
 
-    if (m_rangeInterface.HaveAxis(OIV2DRangeInterface::AXIS_TOP))
-    {
+  if (m_rangeInterface.HaveAxis(OIV2DRangeInterface::AXIS_TOP))
+  {
       m_rangeInterface.SetMinMax(OIV2DRangeInterface::AXIS_TOP, dMinTop, dMaxTop);
       m_rangeInterface.Auto(OIV2DRangeInterface::AXIS_TOP, m_iAutoTop);
       if (iTickTop < 2) iTickTop = 2;
       m_rangeInterface.Tick(OIV2DRangeInterface::AXIS_TOP, iTickTop);
-    }
+  }
 
-    if (m_rangeInterface.HaveAxis(OIV2DRangeInterface::AXIS_BOTTOM))
-    {
+  if (m_rangeInterface.HaveAxis(OIV2DRangeInterface::AXIS_BOTTOM))
+  {
       m_rangeInterface.SetMinMax(OIV2DRangeInterface::AXIS_BOTTOM, dMinBottom, dMaxBottom);
       m_rangeInterface.Auto(OIV2DRangeInterface::AXIS_BOTTOM, m_iAutoBottom);
       if (iTickBottom < 2) iTickBottom = 2;
       m_rangeInterface.Tick(OIV2DRangeInterface::AXIS_BOTTOM, iTickBottom);
-    }
+  }
 
-    m_rangeInterface.UpdateGraph();
+  m_rangeInterface.UpdateGraph();
   }
   else
   {
-    // apply correct formatting
-    DisplayLeft(dMinLeft, dMaxLeft);
-    if (m_rangeInterface.HaveAxis(OIV2DRangeInterface::AXIS_TOP))
+  // apply correct formatting
+  DisplayLeft(dMinLeft, dMaxLeft);
+  if (m_rangeInterface.HaveAxis(OIV2DRangeInterface::AXIS_TOP))
       DisplayTop(dMinTop, dMaxTop);
-    if (m_rangeInterface.HaveAxis(OIV2DRangeInterface::AXIS_BOTTOM))
+  if (m_rangeInterface.HaveAxis(OIV2DRangeInterface::AXIS_BOTTOM))
       DisplayBottom(dMinBottom, dMaxBottom);
   }
 }
@@ -220,13 +220,13 @@ void CGraphLimitsDlg::OnChkAutoLeft()
   m_iAutoLeft = !m_iAutoLeft;
   if (m_iAutoLeft)
   {
-    FindExtremesLeft();
-    // Extreme Y values are calculated with respect to the 
-    // current X values.
-    if (m_iAutoTop)
+  FindExtremesLeft();
+  // Extreme Y values are calculated with respect to the 
+  // current X values.
+  if (m_iAutoTop)
       FindExtremesTop();
 
-    if (m_iAutoBottom)
+  if (m_iAutoBottom)
       FindExtremesBottom();
   }
 }
@@ -238,14 +238,14 @@ void CGraphLimitsDlg::OnChkAutoTop()
 {
   m_iAutoTop = !m_iAutoTop;
   if (m_iAutoTop)
-    FindExtremesTop();
+  FindExtremesTop();
 }
 
 void CGraphLimitsDlg::OnChkAutoBottom()
 {
   m_iAutoBottom = !m_iAutoBottom;
   if (m_iAutoBottom)
-    FindExtremesBottom();
+  FindExtremesBottom();
 }
 
 /// \brief Perform actions when edit box for X gets focus
@@ -268,7 +268,7 @@ void CGraphLimitsDlg::OnKillFocusEditLeft()
   // Extreme Y values are calculated with respect to the 
   // current X values.
   if (m_iAutoTop)
-    FindExtremesTop();
+  FindExtremesTop();
 }
 
 /// \brief Perform actions when edit box for Y gets focus
@@ -329,10 +329,10 @@ void CGraphLimitsDlg::FindExtremesLeft()
   // Extreme Y values are calculated with respect to the 
   // current X values.
   if (m_iAutoTop)
-    FindExtremesTop();
+  FindExtremesTop();
 
   if (m_iAutoBottom)
-    FindExtremesBottom();
+  FindExtremesBottom();
 }
 
 /// \brief Find the extreme Y-values
@@ -340,13 +340,13 @@ void CGraphLimitsDlg::FindExtremesTop()
 {
   if (m_rangeInterface.HaveAxis(OIV2DRangeInterface::AXIS_TOP))
   {
-    m_rangeInterface.Auto(OIV2DRangeInterface::AXIS_TOP, m_iAutoTop);
-    m_rangeInterface.ResetMinMax(OIV2DRangeInterface::AXIS_TOP);
-    m_rangeInterface.UpdateGraph();
+  m_rangeInterface.Auto(OIV2DRangeInterface::AXIS_TOP, m_iAutoTop);
+  m_rangeInterface.ResetMinMax(OIV2DRangeInterface::AXIS_TOP);
+  m_rangeInterface.UpdateGraph();
 
-    float min, max;
-    m_rangeInterface.GetRangeMinMax(OIV2DRangeInterface::AXIS_TOP, min, max);
-    DisplayTop(min, max);
+  float min, max;
+  m_rangeInterface.GetRangeMinMax(OIV2DRangeInterface::AXIS_TOP, min, max);
+  DisplayTop(min, max);
   }
 }
 
@@ -354,13 +354,13 @@ void CGraphLimitsDlg::FindExtremesBottom()
 {
   if (m_rangeInterface.HaveAxis(OIV2DRangeInterface::AXIS_BOTTOM))
   {
-    m_rangeInterface.Auto(OIV2DRangeInterface::AXIS_BOTTOM, m_iAutoBottom);
-    m_rangeInterface.ResetMinMax(OIV2DRangeInterface::AXIS_BOTTOM);
-    m_rangeInterface.UpdateGraph();
+  m_rangeInterface.Auto(OIV2DRangeInterface::AXIS_BOTTOM, m_iAutoBottom);
+  m_rangeInterface.ResetMinMax(OIV2DRangeInterface::AXIS_BOTTOM);
+  m_rangeInterface.UpdateGraph();
 
-    float min, max;
-    m_rangeInterface.GetRangeMinMax(OIV2DRangeInterface::AXIS_BOTTOM, min, max);
-    DisplayBottom(min, max);
+  float min, max;
+  m_rangeInterface.GetRangeMinMax(OIV2DRangeInterface::AXIS_BOTTOM, min, max);
+  DisplayBottom(min, max);
   }
 }
 

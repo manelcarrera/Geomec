@@ -16,11 +16,11 @@ RescueCoordinateSystemAxis::~RescueCoordinateSystemAxis()
 {
   if (axisName != 0)
   {
-    delete axisName;
+  delete axisName;
   }
   if (unitOfMeasure != 0)
   {
-    delete unitOfMeasure;
+  delete unitOfMeasure;
   }
 }
 
@@ -53,14 +53,14 @@ RescueCoordinateSystemAxis::RescueCoordinateSystemAxis(RescueContext *context, F
   unitOfMeasure = new RCHString(myString);
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -78,7 +78,7 @@ void RescueCoordinateSystemAxis::Archive(FILE *archiveFile)
   myfprintf(parentCoordinateSystem->Context(), archiveFile, unitOfMeasure->String());
   if (parentCoordinateSystem->Context()->FileVersion() >= 37)
   {
-    myfprintf(parentCoordinateSystem->Context(), archiveFile, "EOD");
+  myfprintf(parentCoordinateSystem->Context(), archiveFile, "EOD");
   }
 }
 
@@ -86,11 +86,11 @@ RESCUEBOOL RescueCoordinateSystemAxis::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueCoordinateSystemAxis)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueObject::IsOfType(thisType);
+  return RescueObject::IsOfType(thisType);
   }
 }
 

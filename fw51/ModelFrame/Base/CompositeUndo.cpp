@@ -32,8 +32,8 @@ CCompositeUndo::~CCompositeUndo()
 void CCompositeUndo::undo( CDocumentBase& document )
 {
   while ( m_stack.size() ) {
-    CUndoOperation* undoOperation = m_stack.pop();
-    undoOperation->undo( document );
-    delete undoOperation;
+  CUndoOperation* undoOperation = m_stack.pop();
+  undoOperation->undo( document );
+  delete undoOperation;
   }
 }

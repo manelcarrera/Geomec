@@ -18,32 +18,32 @@ class CTetraHorizonBase;
 
 class CTetraFormationVolume : public CFormationVolume
 {
-	TGraphNodeSet m_identifier;
+  TGraphNodeSet m_identifier;
 public:
-	// Construction
-	CTetraFormationVolume(CTetraFormation& formation, geo::CBodyGroup& group);
-	CTetraFormationVolume(CTetraFormation& formation);
+  // Construction
+  CTetraFormationVolume(CTetraFormation& formation, geo::CBodyGroup& group);
+  CTetraFormationVolume(CTetraFormation& formation);
 
   virtual bool CanDestroy() const;
 
-	// Default we have automatic remeshing after is mesh invalidates, but not in the
-	// tetra model
-	int DisplayListSize() const;
-	const geo::IObject& DisplayList(int nIndex) const;
+  // Default we have automatic remeshing after is mesh invalidates, but not in the
+  // tetra model
+  int DisplayListSize() const;
+  const geo::IObject& DisplayList(int nIndex) const;
 
-	// Formation volume load
-	virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-	virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
-	virtual long SavedItems() const;
+  // Formation volume load
+  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
+  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  virtual long SavedItems() const;
 
-	virtual void OnNeighbourDeleted(const CGraphNode &item);
+  virtual void OnNeighbourDeleted(const CGraphNode &item);
 
-	void Identifier(const TGraphNodeSet& identifier);
-	virtual TGraphNodeSet Identifier() const;
+  void Identifier(const TGraphNodeSet& identifier);
+  virtual TGraphNodeSet Identifier() const;
 
-	// get a vector of the horizons that enclose (created) this volume
-	typedef std::set<const CTetraHorizonBase*, CGraphNode::CLess> TEnclosingHorizonsSet;
-	TEnclosingHorizonsSet GetEnclosingHorizons() const;
+  // get a vector of the horizons that enclose (created) this volume
+  typedef std::set<const CTetraHorizonBase*, CGraphNode::CLess> TEnclosingHorizonsSet;
+  TEnclosingHorizonsSet GetEnclosingHorizons() const;
 
   typedef std::map<QString, int> TEnclosingSurfacesMap;
   TEnclosingSurfacesMap GetEnclosingSurfaces() const;
@@ -57,34 +57,34 @@ public:
 class CTetraFormation : public C3DFormation  
 {
 private:
-	virtual bool ShowCenterPoints() const;
-	void createInitialOrdering();
+  virtual bool ShowCenterPoints() const;
+  void createInitialOrdering();
 
-	unsigned int m_order;
+  unsigned int m_order;
 
 public:
-	CTetraFormation(const QString &strName, CModelBase& model);
-	CTetraFormation(CFemAppModel& model);
-	CTetraFormation(const CTetraFormation& rhs);
-	virtual ~CTetraFormation();
+  CTetraFormation(const QString &strName, CModelBase& model);
+  CTetraFormation(CFemAppModel& model);
+  CTetraFormation(const CTetraFormation& rhs);
+  virtual ~CTetraFormation();
 
-	bool operator==(const CTetraFormation& rhs) const;
-	CTetraFormation& operator=(const CTetraFormation& rhs);
+  bool operator==(const CTetraFormation& rhs) const;
+  CTetraFormation& operator=(const CTetraFormation& rhs);
 
-	bool canMoveDown() const;
-	bool canMoveUp() const;
+  bool canMoveDown() const;
+  bool canMoveUp() const;
 
-	void moveDown();
-	void moveUp();
+  void moveDown();
+  void moveUp();
   unsigned int Order() const;
   void Order(unsigned int order);
 
-	virtual bool Less(const CGraphNode &node) const;
+  virtual bool Less(const CGraphNode &node) const;
 
-	// Stream
-	virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-	virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
-	virtual long SavedItems() const;
+  // Stream
+  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
+  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  virtual long SavedItems() const;
 
   ACCEPT_GEOMECMODELVISITORS(VisitTetraFormation);
 };
@@ -92,7 +92,7 @@ public:
 class CTetraFormationEntry : public CFormationEntryTempl<CTetraFormation>
 {
 public:
-	CTetraFormationEntry(CTetraModel& model);
+  CTetraFormationEntry(CTetraModel& model);
 
   ACCEPT_GEOMECMODELVISITORS(VisitTetraFormationEntry);
 };

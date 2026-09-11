@@ -26,20 +26,20 @@ class FIELDVALUEFILE_EXPORT CGoCadSurface : public geo::CFaceGroup
   // The face of a gocad surface
   class FIELDVALUEFILE_EXPORT CTriGoCadFace : public geo::ITriangle
   {
-    int m_nodes[3];
-    CGoCadSurface& m_surface;
+  int m_nodes[3];
+  CGoCadSurface& m_surface;
 
   public:
-    CTriGoCadFace(CGoCadSurface& surface, int nPoint1, int nPoint2, int nPoint3);
-    using geo::ITriangle::InterpolateValue;
-    virtual geo::CValue InterpolateValue(const geo::IPoint &point, const std::vector<geo::CValue> &values) const;
-    virtual size_t Order() const { return 1; }
-    virtual int PointIndex(int nIndex) const;
-    virtual size_t NrOfNodes() const;
-    virtual const geo::INode& Node(int nIndex) const;
-    virtual void Node(int nIndex, const geo::IPoint& point);
-    virtual const geo::IElementSet* IndexingElementSet() const;
-    virtual std::string Type() const;
+  CTriGoCadFace(CGoCadSurface& surface, int nPoint1, int nPoint2, int nPoint3);
+  using geo::ITriangle::InterpolateValue;
+  virtual geo::CValue InterpolateValue(const geo::IPoint &point, const std::vector<geo::CValue> &values) const;
+  virtual size_t Order() const { return 1; }
+  virtual int PointIndex(int nIndex) const;
+  virtual size_t NrOfNodes() const;
+  virtual const geo::INode& Node(int nIndex) const;
+  virtual void Node(int nIndex, const geo::IPoint& point);
+  virtual const geo::IElementSet* IndexingElementSet() const;
+  virtual std::string Type() const;
   };
 
   typedef std::map<int, int> TPointMap;

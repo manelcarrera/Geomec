@@ -6,12 +6,12 @@
 
 namespace
 {
-	const char* cmd_cp[]={"NONE","USAGE","ABORT","QUIT","CALCULATE","END","CALCULATE_STEP","SWITCH_INTERFACE","FOR_ME"};
+  const char* cmd_cp[]={"NONE","USAGE","ABORT","QUIT","CALCULATE","END","CALCULATE_STEP","SWITCH_INTERFACE","FOR_ME"};
 }
 
 namespace gm_shell
 {
-	
+  
 
 class CArgumentParser;
 class CInterfaceModelContext;
@@ -48,15 +48,15 @@ protected:
 public:
   typedef enum
   {
-    NONE = 0,
-    USAGE,
-    ABORT,
-    QUIT,
-    CALCULATE,
-	END,
-    CALCULATE_STEP,
-    SWITCH_INTERFACE,
-    FOR_ME
+  NONE = 0,
+  USAGE,
+  ABORT,
+  QUIT,
+  CALCULATE,
+  END,
+  CALCULATE_STEP,
+  SWITCH_INTERFACE,
+  FOR_ME
   } TCommand;
 
   virtual ~IInterfaceBase() {}

@@ -10,23 +10,23 @@ static const UINT ID_MY_TIMER = 1000;
 
 CDatFileDialog::CDatFileDialog(const Data* d)
 : CDatFileDialog(
-	//
-	// CDatFileDialog
-	//
-	d->analysisType,
-	d->writeInputFiles,
-	d->writeQuadDat,
-	d->model,
-	d->timeout,
-	//
-	// CTnoFileDialog
-	//
-	d->bOpenFileDialog, 
-	d->lpszDefExt, 
-	d->lpszFileName, 
-	d->dwFlags, 
-	d->lpszFilter, 
-	d->pParentWnd)
+  //
+  // CDatFileDialog
+  //
+  d->analysisType,
+  d->writeInputFiles,
+  d->writeQuadDat,
+  d->model,
+  d->timeout,
+  //
+  // CTnoFileDialog
+  //
+  d->bOpenFileDialog, 
+  d->lpszDefExt, 
+  d->lpszFileName, 
+  d->dwFlags, 
+  d->lpszFilter, 
+  d->pParentWnd)
 {
 }
 
@@ -34,8 +34,8 @@ CDatFileDialog::CDatFileDialog(CAnalysisType::TAnalysisType analysisType,
                                bool writeInputFiles,
                                bool writeQuadDat,
                                const CModelBase& model,
-							   int timeout,
-							   //
+                 int timeout,
+                 //
                                BOOL bOpenFileDialog, // TRUE for FileOpen, FALSE for FileSaveAs
                                LPCTSTR lpszDefExt,
                                LPCTSTR lpszFileName,
@@ -43,12 +43,12 @@ CDatFileDialog::CDatFileDialog(CAnalysisType::TAnalysisType analysisType,
                                LPCTSTR lpszFilter,
                                CWnd* pParentWnd)
 : CTnoFileDialog(
-	bOpenFileDialog, 
-	lpszDefExt, 
-	lpszFileName, 
-	dwFlags, 
-	lpszFilter, 
-	pParentWnd)
+  bOpenFileDialog, 
+  lpszDefExt, 
+  lpszFileName, 
+  dwFlags, 
+  lpszFilter, 
+  pParentWnd)
 , m_analysisType(analysisType)
 , m_writeInputFiles(writeInputFiles)
 , m_writeQuadDat(writeQuadDat)
@@ -65,12 +65,12 @@ END_MESSAGE_MAP()
 
 BOOL CDatFileDialog::OnInitDialog() 
 {
-	CTnoFileDialog::OnInitDialog();
+  CTnoFileDialog::OnInitDialog();
 
-	if(m_timeout)
-		SetTimer(ID_MY_TIMER, m_timeout, NULL);
-	
-	return TRUE;
+  if(m_timeout)
+    SetTimer(ID_MY_TIMER, m_timeout, NULL);
+  
+  return TRUE;
 }
 
 
@@ -81,18 +81,18 @@ BOOL CDatFileDialog::OnInitDialog()
 //
 void CDatFileDialog::OnTimer(UINT_PTR nIDEvent)
 {
-    if (nIDEvent == ID_MY_TIMER)
-    {
-		KillTimer(ID_MY_TIMER); // only once
-		//
-		// it doesn't work... why?
-		//
-		//this->m_ofn.lpstrFile = _T("my_file_name");
-		//EndDialog(IDOK);						// -> it doesn't work
-        //CTnoFileDialog::EndDialog(IDCANCEL);	// -> it doesn't work
-		CFileDialog::EndDialog(IDCANCEL);		// -> it doesn't work
-		//OnCancel();							// -> it doesn't work
-    }
+  if (nIDEvent == ID_MY_TIMER)
+  {
+    KillTimer(ID_MY_TIMER); // only once
+    //
+    // it doesn't work... why?
+    //
+    //this->m_ofn.lpstrFile = _T("my_file_name");
+    //EndDialog(IDOK);						// -> it doesn't work
+    //CTnoFileDialog::EndDialog(IDCANCEL);	// -> it doesn't work
+    CFileDialog::EndDialog(IDCANCEL);		// -> it doesn't work
+    //OnCancel();							// -> it doesn't work
+  }
 }
 
 //
@@ -103,29 +103,29 @@ BOOL CDatFileDialog::OnFileNameOK()
 {
   if(GetFileName().GetLength() - 4 > MAX_BASENAME_LENGTH)
   {
-    QString strMsg;
-    strMsg = QString("The basename (file name without extension including possibly _Dxxx) can not be longer than %1 characters.\nCurrently the total length is %2 characters").arg(MAX_BASENAME_LENGTH + 5).arg(GetFileName().GetLength() + 1);
-    _m()->msg(strMsg);
-    return 1; // don't allow the dialog to be dismissed
+  QString strMsg;
+  strMsg = QString("The basename (file name without extension including possibly _Dxxx) can not be longer than %1 characters.\nCurrently the total length is %2 characters").arg(MAX_BASENAME_LENGTH + 5).arg(GetFileName().GetLength() + 1);
+  _m()->msg(strMsg);
+  return 1; // don't allow the dialog to be dismissed
   }
 
   if(m_analysisType != CAnalysisType::AT_NONLIN || (!m_writeInputFiles && !m_writeQuadDat))
-    return CTnoFileDialog::OnFileNameOK(); // default behaviour
+  return CTnoFileDialog::OnFileNameOK(); // default behaviour
 
   const CDepletionStage* pStage = fileNames2GenerateExist(".dat");
 
   if (!pStage)
   {
-    pStage = fileNames2GenerateExist(".dcf");
+  pStage = fileNames2GenerateExist(".dcf");
   }
 
   if(pStage)
   {
-    QString strFileName = GetFileName();
-    std::string sModFileName = pStage->ModifiedFileName(strFileName.toStdString());
-    QString strMsg;
-    strMsg = QString("At least one existing file (encountered '%1') will be replaced during the analysis\n\nDo you want to continue?").arg(sModFileName.c_str());
-    if(_m()->msg(strMsg, MB_YESNO) == IDNO)
+  QString strFileName = GetFileName();
+  std::string sModFileName = pStage->ModifiedFileName(strFileName.toStdString());
+  QString strMsg;
+  strMsg = QString("At least one existing file (encountered '%1') will be replaced during the analysis\n\nDo you want to continue?").arg(sModFileName.c_str());
+  if(_m()->msg(strMsg, MB_YESNO) == IDNO)
       return 1; // don't allow the dialog to be dismissed
   }
 
@@ -147,20 +147,20 @@ const CDepletionStage* CDatFileDialog::fileNames2GenerateExist(
   const CDepletionStage* pStage = &m_model.InitialDepletionStage();
   while(pStage)
   {
-    // generate the filename
-    std::string sModFileName = pStage->ModifiedFileName(strPath.toStdString());
+  // generate the filename
+  std::string sModFileName = pStage->ModifiedFileName(strPath.toStdString());
 
-    // see if it exists
-    struct _stat buf;
-    if(_stat(sModFileName.c_str(), &buf) == 0)
-    {
+  // see if it exists
+  struct _stat buf;
+  if(_stat(sModFileName.c_str(), &buf) == 0)
+  {
       break;
-    }
+  }
 
-    pStage = &pStage->GetNextBranchStage(*pStage);
-    if(pStage->Last())
+  pStage = &pStage->GetNextBranchStage(*pStage);
+  if(pStage->Last())
       pStage = 0;
-    else
+  else
       pStage = &pStage->Next();
   }
 
@@ -175,7 +175,7 @@ QString CDatFileDialog::stripExtension(const QString& string,
 
   if (position > 0)
   {
-    strippedString = string.left(position);
+  strippedString = string.left(position);
   }
 
   return strippedString;

@@ -22,17 +22,17 @@ public:
   CModelBase& ChildModel();
   const CModelBase& ChildModel() const;
 
-	virtual int DisplayListSize() const;
-	virtual const geo::IObject& DisplayList(int nIndex) const;
-	virtual TColor Color() const;
+  virtual int DisplayListSize() const;
+  virtual const geo::IObject& DisplayList(int nIndex) const;
+  virtual TColor Color() const;
 
-	virtual unsigned int IconId() const;
-	virtual unsigned int TypeId() const;
+  virtual unsigned int IconId() const;
+  virtual unsigned int TypeId() const;
 
-	virtual bool Empty() const;
-	virtual long SavedItems() const;
-	virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-	virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  virtual bool Empty() const;
+  virtual long SavedItems() const;
+  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
+  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
 
   ACCEPT_GEOMECMODELVISITORS(VisitZoominModelPlaceHolder);
 

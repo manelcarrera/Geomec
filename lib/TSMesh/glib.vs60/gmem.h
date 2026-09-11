@@ -60,9 +60,9 @@ typedef struct _GMemChunk       GMemChunk;
 
 #define g_mem_chunk_create(type, pre_alloc, alloc_type)	( \
   g_mem_chunk_new (#type " mem chunks (" #pre_alloc ")", \
-		   sizeof (type), \
-		   sizeof (type) * (pre_alloc), \
-		   (alloc_type)) \
+       sizeof (type), \
+       sizeof (type) * (pre_alloc), \
+       (alloc_type)) \
 )
 #define g_chunk_new(type, chunk)	( \
   (type *) g_mem_chunk_alloc (chunk) \
@@ -88,7 +88,7 @@ typedef struct _GMemChunk       GMemChunk;
 gpointer g_malloc      (gulong	  size);
 gpointer g_malloc0     (gulong	  size);
 gpointer g_realloc     (gpointer  mem,
-			gulong	  size);
+      gulong	  size);
 void	 g_free	       (gpointer  mem);
 
 #endif /* !USE_DMALLOC */
@@ -99,7 +99,7 @@ void	 g_mem_check   (gpointer  mem);
 /* Generic allocators
  */
 GAllocator* g_allocator_new   (const gchar  *name,
-			       guint         n_preallocs);
+             guint         n_preallocs);
 void        g_allocator_free  (GAllocator   *allocator);
 
 #define	G_ALLOCATOR_LIST	(1)
@@ -129,14 +129,14 @@ void        g_allocator_free  (GAllocator   *allocator);
 #define G_ALLOC_AND_FREE  2
 
 GMemChunk* g_mem_chunk_new     (gchar	  *name,
-				gint	   atom_size,
-				gulong	   area_size,
-				gint	   type);
+        gint	   atom_size,
+        gulong	   area_size,
+        gint	   type);
 void	   g_mem_chunk_destroy (GMemChunk *mem_chunk);
 gpointer   g_mem_chunk_alloc   (GMemChunk *mem_chunk);
 gpointer   g_mem_chunk_alloc0  (GMemChunk *mem_chunk);
 void	   g_mem_chunk_free    (GMemChunk *mem_chunk,
-				gpointer   mem);
+        gpointer   mem);
 void	   g_mem_chunk_clean   (GMemChunk *mem_chunk);
 void	   g_mem_chunk_reset   (GMemChunk *mem_chunk);
 void	   g_mem_chunk_print   (GMemChunk *mem_chunk);

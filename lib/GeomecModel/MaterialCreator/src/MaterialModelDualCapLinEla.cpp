@@ -169,13 +169,13 @@ bool CMaterialDualCapLinElaHardeningCheckStrategy::operator()(double dValue, con
   double dSecHardening = pSecHardening->ValueToUserUnit(nUnitDef);
   if (dValue <= 0)
   {
-    strErrorMsg = QObject::tr("Hardening must be positive.");
-    return false;
+  strErrorMsg = QObject::tr("Hardening must be positive.");
+  return false;
   }
   if (dValue + dSecHardening <= 0)
   {
-    strErrorMsg = QObject::tr("Hardening and Secondary Hardening together must be positive.");
-    return false;
+  strErrorMsg = QObject::tr("Hardening and Secondary Hardening together must be positive.");
+  return false;
   }
 
   return true;
@@ -191,8 +191,8 @@ bool CMaterialDualCapLinElaSecondaryHardeningCheckStrategy::operator()(double dV
   double dHardening = pHardening->ValueToUserUnit(nUnitDef);
   if(dValue + dHardening <= 0)
   {
-    strErrorMsg = QObject::tr("Hardening and Secondary Hardening together must be positive.");
-    return false;
+  strErrorMsg = QObject::tr("Hardening and Secondary Hardening together must be positive.");
+  return false;
   }
 
   return true;

@@ -31,8 +31,8 @@ Value *Factorial(int n) {
   
   value_set_si(*fact,1);
   for (i=1;i<=n;i++) {
-    value_set_si(tmp,i);
-    value_multiply(*fact,*fact,tmp);
+  value_set_si(tmp,i);
+  value_multiply(*fact,*fact,tmp);
   }
   value_clear(tmp);
   return fact;
@@ -50,17 +50,17 @@ Value *Binomial(int n, int p) {
   value_init(*result); value_init(tmp);
   
   if (n-p<p)
-    p=n-p;
+  p=n-p;
   if (p!=0) {
-    value_set_si(*result,(n-p+1));
-    for (i=n-p+2;i<=n;i++) {
+  value_set_si(*result,(n-p+1));
+  for (i=n-p+2;i<=n;i++) {
       value_set_si(tmp,i);    
       value_multiply(*result,*result,tmp);
-    }  
-    value_division(*result,*result,*Factorial(p));
+  }  
+  value_division(*result,*result,*Factorial(p));
   }
   else 
-    value_set_si(*result,1);
+  value_set_si(*result,1);
   value_clear(tmp);
   return result;
 } /* Binomial */
@@ -81,16 +81,16 @@ Value *CNP(int a,int b) {
   
   /* If number of items is less than the number to be choosen, return 1 */
   if(a <= b) {
-    value_clear(tmp);
-    return result;
+  value_clear(tmp);
+  return result;
   }  
   for(i=a;i>b;--i) {
-    value_set_si(tmp,i);
-    value_multiply(*result,*result,tmp);
+  value_set_si(tmp,i);
+  value_multiply(*result,*result,tmp);
   }  
   for(i=1;i<=(a-b);++i) {
-    value_set_si(tmp,i);
-    value_division(*result,*result,tmp);
+  value_set_si(tmp,i);
+  value_division(*result,*result,tmp);
   }
   value_clear(tmp);
   return result;
@@ -108,16 +108,16 @@ Value *Gcd(Value a,Value b) {
   value_init(bcopy);
   result = (Value *)malloc(sizeof(Value));  
   if (!result) {
-    fprintf(stderr,"Not enough memory\n");
-    exit(0);
+  fprintf(stderr,"Not enough memory\n");
+  exit(0);
   }  
   value_init(*result);   
   value_assign(acopy,a);
   value_assign(bcopy,b);
   while(value_notzero_p(acopy)) { 
-    value_modulus(*result,bcopy,acopy);      
-    value_assign(bcopy,acopy);                     
-    value_assign(acopy,*result);                   
+  value_modulus(*result,bcopy,acopy);      
+  value_assign(bcopy,acopy);                     
+  value_assign(acopy,*result);                   
   }
   value_absolute(*result,bcopy);
   value_clear(acopy);
@@ -135,9 +135,9 @@ int First_Non_Zero(Value *p,unsigned length) {
   
   cp = p;
   for (i=0;i<length;i++) {
-    if (value_notzero_p(*cp))
+  if (value_notzero_p(*cp))
       break;
-    cp++;
+  cp++;
   }
   return((i==(int)length) ? -1 : i );
 } /* First_Non_Zero */
@@ -152,18 +152,18 @@ Vector *Vector_Alloc(unsigned length) {
   
   vector = (Vector *)malloc(sizeof(vector));
   if (!vector) {
-    errormsg1("Vector_Alloc", "outofmem", "out of memory space");
-    return 0;
+  errormsg1("Vector_Alloc", "outofmem", "out of memory space");
+  return 0;
   }
   vector->Size=length;
   vector->p=(Value *)malloc(length * sizeof(Value));
   if (!vector->p) {
-    errormsg1("Vector_Alloc", "outofmem", "out of memory space");
-    free(vector);
-    return 0;
+  errormsg1("Vector_Alloc", "outofmem", "out of memory space");
+  free(vector);
+  return 0;
   }
   for(i=0;i<length;i++)
-    value_init(vector->p[i]);
+  value_init(vector->p[i]);
   return vector;
 } /* Vector_Alloc */
 
@@ -176,7 +176,7 @@ void Vector_Free(Vector *vector) {
 
   if (!vector) return;
   for(i=0;i<vector->Size;i++) 
-    value_clear(vector->p[i]);
+  value_clear(vector->p[i]);
   free(vector->p);
   free(vector);
 } /* Vector_Free */
@@ -193,12 +193,12 @@ void Vector_Print(FILE *Dst,char *Format,Vector *vector) {
   fprintf(Dst, "%d\n", length=vector->Size);
   p = vector->p;
   for (i=0;i<length;i++) {
-    if (Format) {
+  if (Format) {
       value_print(Dst,Format,*p++);
-    }  
-    else {      
+  }  
+  else {      
       value_print(Dst,VALUE_FMT,*p++);
-    }  
+  }  
   }
   fprintf(Dst, "\n");
 } /* Vector_Print */
@@ -217,13 +217,13 @@ Vector *Vector_Read() {
   scanf("%d", &length);
   vector = Vector_Alloc(length);
   if (!vector) {
-    errormsg1("Vector_Read", "outofmem", "out of memory space");
-    return 0;
+  errormsg1("Vector_Read", "outofmem", "out of memory space");
+  return 0;
   }
   p = vector->p;
   for (i=0;i<length;i++) {
-    scanf("%s",str);
-    value_read(*(p++),str);
+  scanf("%s",str);
+  value_read(*(p++),str);
   }  
   return vector;
 } /* Vector_Read */
@@ -238,8 +238,8 @@ void Vector_Set(Value *p,int n,unsigned length) {
   
   cp = p; 
   for (i=0;i<length;i++) {
-    value_set_si(*cp,n);
-    cp++;
+  value_set_si(*cp,n);
+  cp++;
   }
   return;
 } /* Vector_Set */
@@ -252,7 +252,7 @@ void Vector_Exchange(Value *p1, Value *p2, unsigned length) {
   int i;
   
   for(i=0;i<length;i++) {
-    value_swap(p1[i],p2[i]);
+  value_swap(p1[i],p2[i]);
   }  
   return;
 }
@@ -269,7 +269,7 @@ void Vector_Copy(Value *p1,Value *p2,unsigned length) {
   cp2 = p2;
   
   for(i=0;i<length;i++) 
-    value_assign(*cp2++,*cp1++);
+  value_assign(*cp2++,*cp1++);
   
   return;
 }
@@ -286,10 +286,10 @@ void Vector_Add(Value *p1,Value *p2,Value *p3,unsigned length) {
   cp2=p2;
   cp3=p3;
   for (i=0;i<length;i++) {
-    
-    /* *cp3++ = *cp1++ + *cp2++ */
-    value_addto(*cp3,*cp1,*cp2);
-    cp1++; cp2++; cp3++;
+  
+  /* *cp3++ = *cp1++ + *cp2++ */
+  value_addto(*cp3,*cp1,*cp2);
+  cp1++; cp2++; cp3++;
   }
 } /* Vector_Add */
 
@@ -305,10 +305,10 @@ void Vector_Sub(Value *p1,Value *p2,Value *p3,unsigned length) {
   cp2=p2;
   cp3=p3;
   for (i=0;i<length;i++) {
-    
-    /* *cp3++= *cp1++ - *cp2++ */
-    value_substract(*cp3,*cp1,*cp2);
-    cp1++; cp2++; cp3++;
+  
+  /* *cp3++= *cp1++ - *cp2++ */
+  value_substract(*cp3,*cp1,*cp2);
+  cp1++; cp2++; cp3++;
   }
 } /* Vector_Sub */
 
@@ -324,10 +324,10 @@ void Vector_Or(Value *p1,Value *p2,Value *p3,unsigned length) {
   cp2=p2;
   cp3=p3;
   for (i=0;i<length;i++) {
-    
-    /* *cp3++=*cp1++ | *cp2++ */
-    value_orto(*cp3,*cp1,*cp2);
-    cp1++; cp2++; cp3++;
+  
+  /* *cp3++=*cp1++ | *cp2++ */
+  value_orto(*cp3,*cp1,*cp2);
+  cp1++; cp2++; cp3++;
   }
 } /* Vector_Or */
 
@@ -342,10 +342,10 @@ void Vector_Scale(Value *p1,Value *p2,Value lambda,unsigned length) {
   cp1=p1;
   cp2=p2;
   for (i=0;i<length;i++) {
-    
-    /* *cp2++=*cp1++ * lambda */
-    value_multiply(*cp2,*cp1,lambda);
-    cp1++; cp2++;
+  
+  /* *cp2++=*cp1++ * lambda */
+  value_multiply(*cp2,*cp1,lambda);
+  cp1++; cp2++;
   }
 } /* Vector_Scale */
 
@@ -360,10 +360,10 @@ void Vector_AntiScale(Value *p1,Value *p2,Value lambda,unsigned length) {
   cp1=p1;
   cp2=p2;
   for (i=0;i<length;i++) {
-    
-    /* *cp2++=*cp1++ / lambda; */
-    value_division(*cp2,*cp1,lambda);
-    cp1++; cp2++;
+  
+  /* *cp2++=*cp1++ / lambda; */
+  value_division(*cp2,*cp1,lambda);
+  cp1++; cp2++;
   }
 } /* Vector_AntiScale */
 
@@ -386,9 +386,9 @@ Value *Inner_Product(Value *p1,Value *p2,unsigned length) {
   value_multiply(*ip,*p1,*p2);
   p1++; p2++;
   for(i=1;i<length;i++) {
-    value_multiply(tmp,*p1,*p2);
-    value_addto(*ip,*ip,tmp);
-    p1++; p2++;
+  value_multiply(tmp,*p1,*p2);
+  value_addto(*ip,*ip,tmp);
+  p1++; p2++;
   }
   value_clear(tmp);
   return ip;
@@ -409,8 +409,8 @@ Value *Vector_Max(Value *p,unsigned length) {
   value_assign(*max,*cp);
   cp++;
   for (i=1;i<length;i++) {
-    value_maximum(*max,*max,*cp);
-    cp++;
+  value_maximum(*max,*max,*cp);
+  cp++;
   }
   return max;
 } /* Vector_Max */
@@ -434,8 +434,8 @@ Value *Vector_Min(Value *p,unsigned length) {
   value_assign(*min,*cp);
   cp++;
   for (i=1;i<length;i++) {
-    value_minimum(*min,*min,*cp);
-    cp++;
+  value_minimum(*min,*min,*cp);
+  cp++;
   }
   return min;
 } /* Vector_Min */
@@ -455,16 +455,16 @@ void  Vector_Combine(Value *p1,Value *p2, Value *p3,Value lambda,Value  mu,unsig
   cp3=p3;
   
   for (i=0;i<length;i++) {
-    
-    /* tmp1 = lambda * *cp1 */
-    value_multiply(tmp1,lambda,*cp1);
-    
-    /* tmp2 = mu * *cp2 */
-    value_multiply(tmp2,mu,*cp2);
-    
-    /* *cp3 = tmp1 + tmp2 */
-    value_addto(*cp3,tmp1,tmp2);
-    cp1++; cp2++; cp3++;
+  
+  /* tmp1 = lambda * *cp1 */
+  value_multiply(tmp1,lambda,*cp1);
+  
+  /* tmp2 = mu * *cp2 */
+  value_multiply(tmp2,mu,*cp2);
+  
+  /* *cp3 = tmp1 + tmp2 */
+  value_addto(*cp3,tmp1,tmp2);
+  cp1++; cp2++; cp3++;
   }
   value_clear(tmp1);
   value_clear(tmp2);
@@ -483,10 +483,10 @@ int Vector_Equal(Value *Vec1,Value *Vec2,unsigned n) {
   p2=Vec2;
   for(i=0;i<n;i++) {
   
-    /* if (*p1++!=*p2++) break; */
-    if (value_ne(*p1,*p2))
+  /* if (*p1++!=*p2++) break; */
+  if (value_ne(*p1,*p2))
       break;
-    p1++; p2++;
+  p1++; p2++;
   }
   return (i==(int)n);
 } /* Vector_Equal */
@@ -506,27 +506,27 @@ Value *Vector_Min_Not_Zero(Value *p,unsigned length,int *index) {
   
   cp=p;
   for(i=0;i<length;i++) {
-    if (value_notzero_p(*cp)) {
+  if (value_notzero_p(*cp)) {
       value_absolute(*min,*cp);
       *index = i;
       break;
-    }
-    ++cp;
+  }
+  ++cp;
   }
   if (i == (int)length) {
-    value_set_si(*min,1);
-    value_clear(aux);
-    cp = NULL;
-    return min;
+  value_set_si(*min,1);
+  value_clear(aux);
+  cp = NULL;
+  return min;
   }
   ++cp;
   for(j=i+1;j<length;j++) {
-    value_absolute(aux,*cp);
-    if (value_lt(aux,*min) && value_notzero_p(aux)) {
+  value_absolute(aux,*cp);
+  if (value_lt(aux,*min) && value_notzero_p(aux)) {
       value_assign(*min,aux);
       *index = j;
-    }  
-    cp++;
+  }  
+  cp++;
   }
   value_clear(aux);
   cp = NULL;
@@ -546,40 +546,40 @@ Value *Vector_Gcd(Value *p,unsigned length) {
 
   /* Initialize all the 'Value' variables */
   for(i=0;i<length;i++)
-    value_init(q[i]);
+  value_init(q[i]);
   value_init(*min); 
   
   /* 'cp' points to vector 'p' and cq points to vector 'q' that holds the */
   /* absolute value of elements of vector 'p'.                            */
   cp=p;
   for (cq = q,i=0;i<length;i++) {
-    value_absolute(*cq,*cp);    
-    cq++;
-    cp++;
+  value_absolute(*cq,*cp);    
+  cq++;
+  cp++;
   }
   do {   
-    min = Vector_Min_Not_Zero(q,length,&Index_Min);     
-    
-    /* if (*min != 1) */
-    if (value_notone_p(*min)) {
+  min = Vector_Min_Not_Zero(q,length,&Index_Min);     
+  
+  /* if (*min != 1) */
+  if (value_notone_p(*min)) {
       
       cq=q;
       Not_Zero=0;
       for (i=0;i<length;i++,cq++)
-        if (i!=Index_Min) {
+    if (i!=Index_Min) {
           
           /* Not_Zero |= (*cq %= *min) */
           value_modulus(*cq,*cq,*min);
           Not_Zero |= value_notzero_p(*cq);
-        }
-    } 
-    else 
+    }
+  } 
+  else 
       break;
   } while (Not_Zero);
   
   /* Clear all the 'Value' variables */
   for(i=0;i<length;i++)
-    value_clear(q[i]);
+  value_clear(q[i]);
   free(q);
   return min;
 } /* Vector_Gcd */
@@ -597,8 +597,8 @@ void Vector_Map(Value *p1,Value *p2,Value *p3,unsigned length,Value *(*f)()) {
   cp2=p2;
   cp3=p3;
   for(i=0;i<length;i++) {
-    value_assign(*cp3,*(*f)(*cp1, *cp2));
-    cp1++; cp2++; cp3++;
+  value_assign(*cp3,*(*f)(*cp1, *cp2));
+  cp1++; cp2++; cp3++;
   }
   return;
 } /* Vector_Map */
@@ -619,13 +619,13 @@ void Vector_Normalize(Value *p,unsigned length) {
   value_set_si(tmp,1);
   
   if (value_gt(*gcd,tmp)) {
-    cp = p;    
-    for (i=0; i<length; i++) { 
+  cp = p;    
+  for (i=0; i<length; i++) { 
       
       /* *cp /= gcd */
       value_division(*cp,*cp,*gcd);
       cp++;
-    }
+  }
   }
   value_clear(tmp);
   value_clear(*gcd);
@@ -644,9 +644,9 @@ void Vector_Normalize_Positive(Value *p,int length,int pos) {
   
   gcd = Vector_Gcd(p,length);   
   if (value_neg_p(p[pos]))
-    value_oppose(*gcd,*gcd);            
+  value_oppose(*gcd,*gcd);            
   if(value_notone_p(*gcd))
-    for(i=0; i<length; i++)
+  for(i=0; i<length; i++)
       value_division(p[i],p[i],*gcd);
   value_clear(*gcd);
   free(gcd);
@@ -667,8 +667,8 @@ Value *Vector_Reduce(Value *p,unsigned length,Value *(*f)()) {
   value_assign(*r,*cp);
   cp++;
   for(i=1;i<length;i++) {
-    value_assign(*r, *(*f)(*r, *cp));
-    cp++;
+  value_assign(*r, *(*f)(*r, *cp));
+  cp++;
   }
   return r;
 } /* Vector_Reduce */
@@ -686,89 +686,89 @@ void Vector_Sort(Value *vector,unsigned n) {
   value_init(temp);
 
   for (i=(n-1)/2;i>=0;i--) { 
-    
-    /* Phase 1 : build the heap */
-    j=i;
-    value_assign(temp,*(vector+i));
-    
-    /* While not a leaf */
-    while (j<=(n-1)/2) {
+  
+  /* Phase 1 : build the heap */
+  j=i;
+  value_assign(temp,*(vector+i));
+  
+  /* While not a leaf */
+  while (j<=(n-1)/2) {
       current_node = vector+j;
       left_son = vector+(j<<1)+1;
 
       /* If only one son */
       if ((j<<1)+2>=n) {
-        if (value_lt(temp,*left_son)) {
+    if (value_lt(temp,*left_son)) {
           value_assign(*current_node,*left_son);
           j=(j<<1)+1;
-        } else {
+    } else {
           break;
-        }
-      } else {  
-        
-        /* If two sons */
-        right_son=left_son+1;
-        if (value_lt(*right_son,*left_son)) {
-          if (value_lt(temp,*left_son)) {
-            value_assign(*current_node,*left_son);
-            j=(j<<1)+1;
-          } else {
-            break;
-          }
-        } else {
-          if (value_lt(temp,*right_son)) {
-            value_assign(*current_node,*right_son );
-            j=(j<<1)+2;
-          } else {
-            break;
-          }
-        }
-      }
     }
-    value_assign(*current_node,temp);
+      } else {  
+    
+    /* If two sons */
+    right_son=left_son+1;
+    if (value_lt(*right_son,*left_son)) {
+          if (value_lt(temp,*left_son)) {
+      value_assign(*current_node,*left_son);
+      j=(j<<1)+1;
+          } else {
+      break;
+          }
+    } else {
+          if (value_lt(temp,*right_son)) {
+      value_assign(*current_node,*right_son );
+      j=(j<<1)+2;
+          } else {
+      break;
+          }
+    }
+      }
+  }
+  value_assign(*current_node,temp);
   }
   for(i=n-1;i>0;i--) { 
-    
-    /* Phase 2 : sort the heap */
-    value_assign(temp, *(vector+i));
-    value_assign(*(vector+i),*vector);
-    j=0;
-    
-    /* While not a leaf */
-    while (j<i/2) {     
+  
+  /* Phase 2 : sort the heap */
+  value_assign(temp, *(vector+i));
+  value_assign(*(vector+i),*vector);
+  j=0;
+  
+  /* While not a leaf */
+  while (j<i/2) {     
       current_node=vector+j;
       left_son=vector+(j<<1)+1;
       
       /* If only one son */
       if ((j<<1)+2>=i) {                
-        if (value_lt(temp,*left_son)) {
+    if (value_lt(temp,*left_son)) {
           value_assign(*current_node,*left_son);
           j=(j<<1)+1;
-        } else {
+    } else {
           break;
-        }
-      } else {
-        
-        /* If two sons */
-        right_son=left_son+1;
-        if (value_lt(*right_son,*left_son)) {
-          if (value_lt(temp,*left_son)) {
-            value_assign(*current_node,*left_son);
-            j=(j<<1)+1;
-          } else {
-            break;
-          }
-        } else {
-          if (value_lt(temp,*right_son)) {
-            value_assign(*current_node,*right_son );
-            j=(j<<1)+2;
-          } else {
-            break;
-          }
-        }
-      }
     }
-    value_assign(*current_node,temp);
+      } else {
+    
+    /* If two sons */
+    right_son=left_son+1;
+    if (value_lt(*right_son,*left_son)) {
+          if (value_lt(temp,*left_son)) {
+      value_assign(*current_node,*left_son);
+      j=(j<<1)+1;
+          } else {
+      break;
+          }
+    } else {
+          if (value_lt(temp,*right_son)) {
+      value_assign(*current_node,*right_son );
+      j=(j<<1)+2;
+          } else {
+      break;
+          }
+    }
+      }
+  }
+  value_assign(*current_node,temp);
   }
   value_clear(temp);
   return;

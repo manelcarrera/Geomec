@@ -58,55 +58,55 @@ void CMaterialHelperFactory::createMatCreators()
 {
 
   m_MatCreator.push_back(new CMaterialLinearCreator);
-	assert(m_MatCreator.size() - 1 == MM_LINEAR);
+  assert(m_MatCreator.size() - 1 == MM_LINEAR);
 
   m_MatCreator.push_back(new CMaterialCamClayCreator);
-	assert(m_MatCreator.size() - 1 == MM_CAMCLAY);
+  assert(m_MatCreator.size() - 1 == MM_CAMCLAY);
 
   m_MatCreator.push_back(new CMaterialMohrCoulombCreator);
   assert(m_MatCreator.size() - 1 == MM_MOHRCOULOMB);
 
   m_MatCreator.push_back(new CMaterialModifiedMohrCoulombCreator);
-	assert(m_MatCreator.size() - 1 == MM_MODIFIEDMOHRCOULOMB);
+  assert(m_MatCreator.size() - 1 == MM_MODIFIEDMOHRCOULOMB);
 
   m_MatCreator.push_back(new CMaterialCreepCreator);
-	assert(m_MatCreator.size() - 1 == MM_CREEP);
+  assert(m_MatCreator.size() - 1 == MM_CREEP);
 
   m_MatCreator.push_back(new CMaterialUndrainedCreator);
-	assert(m_MatCreator.size() - 1 == MM_UNDRAINED);
+  assert(m_MatCreator.size() - 1 == MM_UNDRAINED);
 
   m_MatCreator.push_back(new CMaterialModelMCCohesionHard1Creator);
-	assert(m_MatCreator.size() - 1 == MM_MC_COHESION_HARD1);
+  assert(m_MatCreator.size() - 1 == MM_MC_COHESION_HARD1);
 
   m_MatCreator.push_back(new CMaterialModelMCCohesionHard2Creator);
-	assert(m_MatCreator.size() - 1 == MM_MC_COHESION_HARD2);
+  assert(m_MatCreator.size() - 1 == MM_MC_COHESION_HARD2);
 
   m_MatCreator.push_back(new CMaterialModelMCCohesionHard3Creator);
-	assert(m_MatCreator.size() - 1 == MM_MC_COHESION_HARD3);
+  assert(m_MatCreator.size() - 1 == MM_MC_COHESION_HARD3);
 
   m_MatCreator.push_back(new CMaterialModelMCFrictionHard1Creator);
-	assert(m_MatCreator.size() - 1 == MM_MC_FRICTION_HARD1);
+  assert(m_MatCreator.size() - 1 == MM_MC_FRICTION_HARD1);
 
   m_MatCreator.push_back(new CMaterialModelMCFrictionHard2Creator);
-	assert(m_MatCreator.size() - 1 == MM_MC_FRICTION_HARD2);
+  assert(m_MatCreator.size() - 1 == MM_MC_FRICTION_HARD2);
 
   m_MatCreator.push_back(new CMaterialModelMCFrictionHard3Creator);
-	assert(m_MatCreator.size() - 1 == MM_MC_FRICTION_HARD3);
+  assert(m_MatCreator.size() - 1 == MM_MC_FRICTION_HARD3);
 
   m_MatCreator.push_back(new CMaterialLinearCreator); // not used anymore, Linear as compat in case we read old models
   assert(m_MatCreator.size() - 1 == 12);
 
   m_MatCreator.push_back(new CMaterialRigidityCreator);
-	assert(m_MatCreator.size() - 1 == MM_RIGIDITY);
+  assert(m_MatCreator.size() - 1 == MM_RIGIDITY);
 
   m_MatCreator.push_back(new CMaterialLinearCreator); // not used anymore
-	assert(m_MatCreator.size() - 1 == MM_DUALCAP);
-                                
+  assert(m_MatCreator.size() - 1 == MM_DUALCAP);
+                
   m_MatCreator.push_back(new CMaterialDualCapLinElaCreator);
-	assert(m_MatCreator.size() - 1 == MM_DUALCAP_LINELA);
+  assert(m_MatCreator.size() - 1 == MM_DUALCAP_LINELA);
   
   m_MatCreator.push_back(new CMaterialFractureAnisotropyCreator);
-	assert(m_MatCreator.size() - 1 == MM_FRACTURE_ANISOTROPY);
+  assert(m_MatCreator.size() - 1 == MM_FRACTURE_ANISOTROPY);
   
   m_MatCreator.push_back(new CMaterialUpscaledAnisotropyCreator);
   assert(m_MatCreator.size() - 1 == MM_UPSCALED_ANISOTROPY);
@@ -599,8 +599,8 @@ ml::CMaterial::CCreator *CMaterialHelperFactory::getMatCreator(int material) con
 
   if (material >= 0 && material < m_MatCreator.size())
   {
-    pCreator = m_MatCreator[material];
-    pCreator->Reset();
+  pCreator = m_MatCreator[material];
+  pCreator->Reset();
   }
 
   return pCreator;

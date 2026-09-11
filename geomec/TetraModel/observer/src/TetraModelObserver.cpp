@@ -47,46 +47,46 @@ CTetraSubModelBranch::CTetraSubModelBranch(ITreeObject& parent, CTetraModel& mod
 : TTetraSubModelBranch((TSubModelEntry&)(*model.GraphEntry(MD_TETRA_SUB_ALL)), parent.Ctrl(), FALSE, FIXED_ITEM, parent.Handle(), TVI_LAST, FALSE, FALSE),
   m_model(model)
 {
-	Ctrl().SetItemData(Handle(), (DWORD_PTR)(this));
-	
-	// Create branches
-	typedef COpenGLNodeObserver_Delegate<CSurfaceBase, CSurfaceBase_Delegate, CDummyNode, CDummyObserver, FALSE, FIXED_ITEM> TSurfaceObserver;
-	typedef COpenGLNodeObserver_Delegate<CTetraSubHorizon, CTetraSubHorizon_Delegate, CSurfaceBase, TSurfaceObserver, TRUE, UNLINK_ITEM> TSubHorizonObs;
+  Ctrl().SetItemData(Handle(), (DWORD_PTR)(this));
+  
+  // Create branches
+  typedef COpenGLNodeObserver_Delegate<CSurfaceBase, CSurfaceBase_Delegate, CDummyNode, CDummyObserver, FALSE, FIXED_ITEM> TSurfaceObserver;
+  typedef COpenGLNodeObserver_Delegate<CTetraSubHorizon, CTetraSubHorizon_Delegate, CSurfaceBase, TSurfaceObserver, TRUE, UNLINK_ITEM> TSubHorizonObs;
 //	typedef CStateBranch_Delegate<CTetraSubHorizonEntry, CTetraSubHorizonEntry_Delegate, CHorizonBase, CHorizonObserver<FALSE>, CUndefinedIconProvider, TRUE, DELETE_ITEM> TSubHorizonEntryObs;
-	typedef C3DHorizonEntryObserver<false> TSubHorizonEntryObs_local;
+  typedef C3DHorizonEntryObserver<false> TSubHorizonEntryObs_local;
 
 #ifdef TETRA_FAULTS_KEYFILE
-	const CKeyFile &keyfile = (dynamic_cast<const CGeomecApp *> (AfxGetApp()))->KeyFile();
-	if(keyfile.Unlocked())
-	{
+  const CKeyFile &keyfile = (dynamic_cast<const CGeomecApp *> (AfxGetApp()))->KeyFile();
+  if(keyfile.Unlocked())
+  {
 #endif
 //		new TSubHorizonEntryObs((CTetraSubHorizonEntry&)(*model.GraphEntry(MD_TETRA_SUB_FAULT)),
 //								Ctrl(),
 //								TRUE,
 //								FIXED_ITEM,
 //								Handle());
-		new TSubHorizonEntryObs_local(*model.GraphEntry(MD_TETRA_SUB_FAULT),
-								Ctrl(),
-								TRUE,
-								FIXED_ITEM,
-								Handle());
+    new TSubHorizonEntryObs_local(*model.GraphEntry(MD_TETRA_SUB_FAULT),
+                Ctrl(),
+                TRUE,
+                FIXED_ITEM,
+                Handle());
 #ifdef TETRA_FAULTS_KEYFILE
-	}
+  }
 #endif
 
-	// Horizons
+  // Horizons
 //	new TSubHorizonEntryObs((CTetraSubHorizonEntry&)(*model.GraphEntry(MD_TETRA_SUB_HORIZON)),
 //							Ctrl(),
 //							TRUE,
 //							FIXED_ITEM,
 //							Handle());
-	new TSubHorizonEntryObs_local(*model.GraphEntry(MD_TETRA_SUB_HORIZON),
-							Ctrl(),
-							TRUE,
-							FIXED_ITEM,
-							Handle());
+  new TSubHorizonEntryObs_local(*model.GraphEntry(MD_TETRA_SUB_HORIZON),
+              Ctrl(),
+              TRUE,
+              FIXED_ITEM,
+              Handle());
 //	new CSubHorizonEntryObserver(*this, model);
 //	new CSubFaultEntryObserver(*this, model);
 //	CTetraSubBoundary& boundary = dynamic_cast<CTetraSubBoundary&>(*model.GraphEntry(MD_TETRA_SUB_BOUNDARY));
-	new CTetraSubBoundaryObserver(*this, model.SubBoundary());
+  new CTetraSubBoundaryObserver(*this, model.SubBoundary());
 }

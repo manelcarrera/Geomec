@@ -36,12 +36,12 @@ bool CFilterOutputProperty::isOutputPropertyAllowed(const CObject& object,
 {
   if (object.getObjectType() == CObject::FAULT)
   {
-    return (result == FAULT_SHEAR_FAILURE) || (result == FAULT_TOTAL_SLIP) ||
+  return (result == FAULT_SHEAR_FAILURE) || (result == FAULT_TOTAL_SLIP) ||
       (result == FAULT_PLASTIC_SLIP);
   }
   else if (object.getObjectType() == CObject::FORMATION)
   {
-    return (result == FORMATION_SHEAR_FAILURE) ||
+  return (result == FORMATION_SHEAR_FAILURE) ||
       (result == FORMATION_COMPRESSIVE_FAILURE) ||
       (result == FORMATION_TENSILE_FAILURE) ||
       (result == FORMATION_COMPACTION_FAILURE) ||
@@ -52,12 +52,12 @@ bool CFilterOutputProperty::isOutputPropertyAllowed(const CObject& object,
   }
   else if (object.getObjectType() == CObject::WELL)
   {
-    return (result == WELL_SHEAR_FAILURE) ||
+  return (result == WELL_SHEAR_FAILURE) ||
       (result == WELL_AXIAL_COMPRESSION_EXTENSION);
   }
   else if (object.getObjectType() == CObject::HORIZON)
   {
-    return (result == TOP_SURFACE_SUBSIDENCE_UPHEAVE);
+  return (result == TOP_SURFACE_SUBSIDENCE_UPHEAVE);
   }
 
   return false;

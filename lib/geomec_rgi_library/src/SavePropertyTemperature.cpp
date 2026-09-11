@@ -28,32 +28,32 @@ bool CSavePropertyTemperature::saveProperty(RGInterface& rgi,
   int i;
   for(i = 0; i < modelBase.Mesh().Mesh().ElementSize(); ++i)
   {
-    const geo::IElement& elm = modelBase.Mesh().Mesh().Element(i);
-    IValueDomainScalar::TValueVec vcElementValues;
-    const CFormationBase* pFormation = modelBase.Mesh().Formation(elm);
-    double dResult = RGUtils::nullReal();
-    if(pFormation)
-    {
+  const geo::IElement& elm = modelBase.Mesh().Mesh().Element(i);
+  IValueDomainScalar::TValueVec vcElementValues;
+  const CFormationBase* pFormation = modelBase.Mesh().Formation(elm);
+  double dResult = RGUtils::nullReal();
+  if(pFormation)
+  {
       vcElementValues = pFormation->EffectiveTemperature(stage).Component().ScalarData().ValueElement(elm);
 
       bool bValid = !vcElementValues.empty();
       double dSum = 0;
       for(size_t j = 0; j < vcElementValues.size(); ++j)
       {
-        if(!vcElementValues[j].Valid())
-        {
+    if(!vcElementValues[j].Valid())
+    {
           bValid = false;
           break;
-        }
-        dSum += vcElementValues[j].Value();
+    }
+    dSum += vcElementValues[j].Value();
       }
       if(bValid)
       {
-        dResult = 273.15 + dSum / vcElementValues.size(); // C -> K
+    dResult = 273.15 + dSum / vcElementValues.size(); // C -> K
       }
-    }
+  }
 
-    vcValues[i] = dResult;
+  vcValues[i] = dResult;
   }
 
   rgi.saveProperty(m_RGProperty, vcValues);

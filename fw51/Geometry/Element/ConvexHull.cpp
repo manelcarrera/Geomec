@@ -44,7 +44,7 @@ CConvexHull::CConvexHull(CPtrArray<IPoint> &points)
   m_vcInputPoints(points.Size())
 {
   for(size_t i = 0; i < m_vcInputPoints.size(); i++)
-    m_vcInputPoints[i] = &points.Object(i);
+  m_vcInputPoints[i] = &points.Object(i);
 }
 
 CConvexHull::~CConvexHull()
@@ -84,7 +84,7 @@ long CConvexHull::SaveProgressSize() const
 const IPoint &CConvexHull::Point(int nIndex) const throw (const char *)
 {
   if ( !(nIndex >= 0 && nIndex < m_vcHullPoints.size()))
-    throw( (const char *)("Convex Hull Failed (CConvexHull::Point)"));
+  throw( (const char *)("Convex Hull Failed (CConvexHull::Point)"));
   return m_vcHullPoints[nIndex];
 }
 
@@ -101,7 +101,7 @@ int CConvexHull::NrOfPoints() const
 const IFace &CConvexHull::Face(int nIndex) const throw (const char *)
 {
   if ( !(nIndex >= 0 && nIndex < m_vcHullFaces.size()))
-    throw( (const char *)("Convex Hull Failed (Face)"));
+  throw( (const char *)("Convex Hull Failed (Face)"));
   return m_vcHullFaces[nIndex];
 }
 
@@ -159,18 +159,18 @@ double CConvexHull::Size() const
 
   for (size_t i = 0; i < m_vcHullFaces.size(); ++i)
   {
-    CVector v1,v2,v3,v4;
-    CPoint  p[3];
+  CVector v1,v2,v3,v4;
+  CPoint  p[3];
 
-    for (size_t j = 0; j < 3; ++j)
+  for (size_t j = 0; j < 3; ++j)
       p[j] = m_vcHullFaces[i].Point(j);
 
-    v1 = CVector(p[0]).CrossProduct(CVector(p[1]));
-    v2 = CVector(p[2]).CrossProduct(CVector(p[0]));
-    v3 = CVector(p[1]).CrossProduct(CVector(p[2]));
-    v4 = CVector(p[2]).CrossProduct(CVector(p[0]));
+  v1 = CVector(p[0]).CrossProduct(CVector(p[1]));
+  v2 = CVector(p[2]).CrossProduct(CVector(p[0]));
+  v3 = CVector(p[1]).CrossProduct(CVector(p[2]));
+  v4 = CVector(p[2]).CrossProduct(CVector(p[0]));
 
-    v = v + CVector(p[0]).DotProduct((v1 + v2) + (v3 + v4));
+  v = v + CVector(p[0]).DotProduct((v1 + v2) + (v3 + v4));
   }
   return v/6;
 }
@@ -187,7 +187,7 @@ size_t CConvexHull::Order() const
 bool CConvexHull::Calculate(IProgressBase *progress)
 {
   if (m_vcInputPoints.size() == 0)
-    return true;
+  return true;
 
   bool retval = false;
 
@@ -195,20 +195,20 @@ bool CConvexHull::Calculate(IProgressBase *progress)
 
   if (hullImpl)
   {
-    hullImpl->SetValidDigits(m_validDigits);
-    hullImpl->SetPoints(progress, m_vcInputPoints);
+  hullImpl->SetValidDigits(m_validDigits);
+  hullImpl->SetPoints(progress, m_vcInputPoints);
 
-    if (hullImpl->Calculate(progress))
-    {
+  if (hullImpl->Calculate(progress))
+  {
       m_validDigits = hullImpl->GetValidDigits();
       m_centrePoint = hullImpl->MidPoint();
 
       hullImpl->GetPointsAndFaces(m_vcHullPoints, m_vcHullFaces);
 
       retval = true;
-    }
+  }
 
-    delete hullImpl;
+  delete hullImpl;
   }
 
   return retval;
@@ -254,9 +254,9 @@ double CConvexHull::RoundNumber(double d) const
   int sign = d >=0 ? 1 : -1;
 
   if ( m_validDigits == 1 )
-    return (int )(d+sign*0.5); //faster
+  return (int )(d+sign*0.5); //faster
   else
-    return (int )d+((int )((d -(int )d)/m_validDigits)+sign*0.5)*m_validDigits;
+  return (int )d+((int )((d -(int )d)/m_validDigits)+sign*0.5)*m_validDigits;
 }
 
 int CConvexHull::VolumeSign(const CConvexHullFace& face, const IPoint &point) const
@@ -286,10 +286,10 @@ int CConvexHull::VolumeSign(const CConvexHullFace& face, const IPoint &point) co
 
   if (m_dHullIncrement != 0.0)
   {
-    const CVector& normal = face.Normal();
+  const CVector& normal = face.Normal();
 
-    if (!normal.Empty())
-    {
+  if (!normal.Empty())
+  {
       double delta = normal.X() * m_dHullIncrement;
 
       ax += delta;
@@ -307,7 +307,7 @@ int CConvexHull::VolumeSign(const CConvexHullFace& face, const IPoint &point) co
       az += delta;
       bz += delta;
       cz += delta;
-    }
+  }
   }
 
    /* This is what the KahanSummation does:
@@ -341,80 +341,80 @@ bool CConvexHull::Contains(const IPoint &point, bool bIncludeEdge) const
 
   for (size_t i = 0; i < m_vcHullFaces.size(); ++i)
   {
-    int sign = VolumeSign(m_vcHullFaces[i], point);
+  int sign = VolumeSign(m_vcHullFaces[i], point);
 
-    if (sign < 0)
-    {
+  if (sign < 0)
+  {
       ret = false;
       break;
-    }
-    else if (sign == 0)
-    {
+  }
+  else if (sign == 0)
+  {
       ++NrOfZeroVolume;
-    }
+  }
   }
 
 
   // Check to see if point is at border of the convex element.
   if (ret && !bIncludeEdge)
   {
-    CPoint p = point - m_centrePoint;
-    // should we round here? I think it's not very useful
-    for(size_t i = 0; i < m_vcHullFaces.size(); ++i)
+  CPoint p = point - m_centrePoint;
+  // should we round here? I think it's not very useful
+  for(size_t i = 0; i < m_vcHullFaces.size(); ++i)
       if (m_vcHullFaces[i].Contains(p, true))
       {
-        ret = false;
-        break;
+    ret = false;
+    break;
       }
   }
 
   // keeping this around, for there are invalid hulls stored in models
   if (ret && NrOfZeroVolume > 0 && NrOfZeroVolume == m_vcHullFaces.size()) // See Bug 124671; the pointsets there have #0vol == #faces, but we may fail to catch all errors
   {
-    if (m_min.Empty())
-    {
+  if (m_min.Empty())
+  {
       m_min = m_vcHullPoints[0];
       m_max = m_vcHullPoints[0];
 
       for (size_t i = 1; i < m_vcHullPoints.size(); ++i)
       {
-        m_min = m_min.Min(m_vcHullPoints[i]);
-        m_max = m_max.Max(m_vcHullPoints[i]);
+    m_min = m_min.Min(m_vcHullPoints[i]);
+    m_max = m_max.Max(m_vcHullPoints[i]);
       }
   
       if (m_dHullIncrement > 0)
       {
-        m_min.Set(m_min.X() - m_dHullIncrement, m_min.Y() - m_dHullIncrement, m_min.Z() - m_dHullIncrement);
-        m_max.Set(m_max.X() + m_dHullIncrement, m_max.Y() + m_dHullIncrement, m_max.Z() + m_dHullIncrement);
+    m_min.Set(m_min.X() - m_dHullIncrement, m_min.Y() - m_dHullIncrement, m_min.Z() - m_dHullIncrement);
+    m_max.Set(m_max.X() + m_dHullIncrement, m_max.Y() + m_dHullIncrement, m_max.Z() + m_dHullIncrement);
       }
       else
       {
-        // let's not quibble about precision errors and extend the CH with 1% in each direction (due to the nature of the bug, we expect that this doesn't really matter)
+    // let's not quibble about precision errors and extend the CH with 1% in each direction (due to the nature of the bug, we expect that this doesn't really matter)
 
-        double deltaX = std::abs(m_max.X() - m_min.X()) / 100;
-        double deltaY = std::abs(m_max.Y() - m_min.Y()) / 100;
-        double deltaZ = std::abs(m_max.Z() - m_min.Z()) / 100;
+    double deltaX = std::abs(m_max.X() - m_min.X()) / 100;
+    double deltaY = std::abs(m_max.Y() - m_min.Y()) / 100;
+    double deltaZ = std::abs(m_max.Z() - m_min.Z()) / 100;
 
-        m_min.Set(m_min.X() - deltaX, m_min.Y() - deltaY, m_min.Z() - deltaZ);
-        m_max.Set(m_max.X() + deltaX, m_max.Y() + deltaY, m_max.Z() + deltaZ);
+    m_min.Set(m_min.X() - deltaX, m_min.Y() - deltaY, m_min.Z() - deltaZ);
+    m_max.Set(m_max.X() + deltaX, m_max.Y() + deltaY, m_max.Z() + deltaZ);
       }
-    }
+  }
 
-    CPoint p = point - m_centrePoint;
+  CPoint p = point - m_centrePoint;
 
-    if (p.X() < m_min.X() || p.Y() < m_min.Y() || p.Z() < m_min.Z()
+  if (p.X() < m_min.X() || p.Y() < m_min.Y() || p.Z() < m_min.Z()
       || p.X() > m_max.X() || p.Y() > m_max.Y() || p.Z() > m_max.Z())
-    {
+  {
       if (!m_invalid)
       {
-        m_invalid = true;
-        throw((const char *)("Convex Hull is not consistent and unsuitable to determine containment of points. Using bounding box for now."));
+    m_invalid = true;
+    throw((const char *)("Convex Hull is not consistent and unsuitable to determine containment of points. Using bounding box for now."));
       }
       else
       {
-        ret = false;
+    ret = false;
       }
-    }
+  }
 
   }
 
@@ -458,14 +458,14 @@ const CConvexHull::TIndexVec& CConvexHull::CConvexHullFace::PointIndices() const
 int CConvexHull::CConvexHullFace::PointIndex(int nLocalIndex) const throw (const char *)
 {
   if ( ! (nLocalIndex >= 0 && nLocalIndex < 3) )
-    throw( (const char *)("Convex Hull Failed (PointIndex)"));
+  throw( (const char *)("Convex Hull Failed (PointIndex)"));
   return m_vcPoint[nLocalIndex];
 }
 
 const IPoint &CConvexHull::CConvexHullFace::Point(int nIndex) const throw (const char *)
 {
   if ( ! (nIndex >= 0 && nIndex < NrOfPoints()) )
-    throw( (const char *)("Convex Hull Failed (CConvexHullFace::Point)"));
+  throw( (const char *)("Convex Hull Failed (CConvexHullFace::Point)"));
 
   return m_parent->Point(PointIndex(nIndex));
 }

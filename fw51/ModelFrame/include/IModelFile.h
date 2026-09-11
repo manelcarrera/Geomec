@@ -26,9 +26,9 @@ struct MODELFRAME_EXPORT DianaAssertMessage {
   DianaAssertMessage( const char*  __expr,
                       const char*  __file,
                       unsigned int __line ) {
-    assertion = __expr;
-    file      = __file;
-    line      = __line;
+  assertion = __expr;
+  file      = __file;
+  line      = __line;
   }
 };
 

@@ -13,19 +13,19 @@ class CMaterialServer;
 
 class CRichhInputSummaryDlg : public CDialog
 {
-	DECLARE_DYNAMIC(CRichhInputSummaryDlg)
+  DECLARE_DYNAMIC(CRichhInputSummaryDlg)
 
 public:
-	CRichhInputSummaryDlg(const CModelBase &model, CWnd* pParent = NULL);   // standard constructor
-	virtual ~CRichhInputSummaryDlg();
+  CRichhInputSummaryDlg(const CModelBase &model, CWnd* pParent = NULL);   // standard constructor
+  virtual ~CRichhInputSummaryDlg();
 
 // Dialog Data
-	enum { IDD = IDD_RICH_INPUT_SUMMARY_DIALOG };
+  enum { IDD = IDD_RICH_INPUT_SUMMARY_DIALOG };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
   virtual BOOL OnInitDialog();
-	DECLARE_MESSAGE_MAP()
+  DECLARE_MESSAGE_MAP()
 private:
   static DWORD CALLBACK EditStreamCallback(DWORD_PTR dwCookie, LPBYTE pbBuff, LONG cb, LONG *pcb);
 

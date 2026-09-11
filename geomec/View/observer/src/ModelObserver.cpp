@@ -21,12 +21,12 @@ static char THIS_FILE[]=__FILE__;
 
 //##ModelId=3BC55D610228
 CModelObserver::CModelObserver(CFemAppDoc &doc,
-							   CGraphTreeView &view,
-							   HTREEITEM hParent,
-							   HTREEITEM hInsertAfter)
+                 CGraphTreeView &view,
+                 HTREEITEM hParent,
+                 HTREEITEM hInsertAfter)
 : ITreeObject(view.GetTreeCtrl(), hParent, hInsertAfter), m_document(doc)
 {
-	Ctrl().SetItemData(Handle(), (DWORD_PTR)(this));
+  Ctrl().SetItemData(Handle(), (DWORD_PTR)(this));
 
 }
 
@@ -34,37 +34,37 @@ CModelObserver::CModelObserver(CFemAppDoc &doc,
 //##ModelId=3BC55D61023F
 unsigned int CModelObserver::Icon() const
 {
-	return 0;
+  return 0;
 }
 
 //##ModelId=3BC55D61022D
 void CModelObserver::Delete() 
 {
-	assert(FALSE);
+  assert(FALSE);
 }
 
 //##ModelId=3BC55D61022F
 BOOL CModelObserver::CanDelete() const
 {
-	return FALSE;
+  return FALSE;
 }
 
 //##ModelId=3BC55D610239
 BOOL CModelObserver::CanEditText() const
 {
-	return false;
+  return false;
 }
 /*
 //##ModelId=3BC55D61023B
 const CGraphNode& CModelObserver::ObservedItem() const
 {
-	return *this;
+  return *this;
 }
 
 
 //##ModelId=3BC55D61023D
 CGraphNode& CModelObserver::ObservedItem()
 {
-	return *this;
+  return *this;
 }
 */

@@ -37,8 +37,8 @@
  * Returns: a pointer to the newly created #GtsMatrix.
  */
 GtsMatrix * gts_matrix_new (gdouble a00, gdouble a01, gdouble a02,
-			    gdouble a10, gdouble a11, gdouble a12,
-			    gdouble a20, gdouble a21, gdouble a22)
+        gdouble a10, gdouble a11, gdouble a12,
+        gdouble a20, gdouble a21, gdouble a22)
 {
   GtsMatrix * m;
 
@@ -67,9 +67,9 @@ GtsMatrix * gts_matrix_new (gdouble a00, gdouble a01, gdouble a02,
  * Set values of matrix elements.
  */
 void gts_matrix_assign (GtsMatrix * m,
-			gdouble a00, gdouble a01, gdouble a02,
-			gdouble a10, gdouble a11, gdouble a12,
-			gdouble a20, gdouble a21, gdouble a22)
+      gdouble a00, gdouble a01, gdouble a02,
+      gdouble a10, gdouble a11, gdouble a12,
+      gdouble a20, gdouble a21, gdouble a22)
 {
   g_return_if_fail (m != NULL);
 
@@ -149,8 +149,8 @@ gdouble gts_matrix_determinant (GtsMatrix * m)
   g_return_val_if_fail (m != NULL, 0.0);
 
   return (m[0][0]*(m[1][1]*m[2][2] - m[2][1]*m[1][2]) - 
-	  m[0][1]*(m[1][0]*m[2][2] - m[2][0]*m[1][2]) + 
-	  m[0][2]*(m[1][0]*m[2][1] - m[2][0]*m[1][1]));
+    m[0][1]*(m[1][0]*m[2][2] - m[2][0]*m[1][2]) + 
+    m[0][2]*(m[1][0]*m[2][1] - m[2][0]*m[1][1]));
 }
 
 /**
@@ -169,7 +169,7 @@ GtsMatrix * gts_matrix_inverse (GtsMatrix * m)
   
   det = gts_matrix_determinant (m);
   if (det == 0.0)
-    return NULL;
+  return NULL;
 
   mi = g_malloc (3*sizeof (GtsVector));
 
@@ -199,12 +199,12 @@ void gts_matrix_print (GtsMatrix * m, FILE * fptr)
   g_return_if_fail (fptr != NULL);
 
   fprintf (fptr, 
-	   "[[%15.7g %15.7g %15.7g ]\n"
-	   " [%15.7g %15.7g %15.7g ]\n"
-	   " [%15.7g %15.7g %15.7g ]]\n",
-	   m[0][0], m[0][1], m[0][2],
-	   m[1][0], m[1][1], m[1][2],
-	   m[2][0], m[2][1], m[2][2]);
+     "[[%15.7g %15.7g %15.7g ]\n"
+     " [%15.7g %15.7g %15.7g ]\n"
+     " [%15.7g %15.7g %15.7g ]]\n",
+     m[0][0], m[0][1], m[0][2],
+     m[1][0], m[1][1], m[1][2],
+     m[2][0], m[2][1], m[2][2]);
 }
 
 /**
@@ -219,8 +219,8 @@ void gts_vector_print (GtsVector v, FILE * fptr)
   g_return_if_fail (fptr != NULL);
 
   fprintf (fptr, 
-	   "[%15.7g %15.7g %15.7g ]\n",
-	   v[0], v[1], v[2]);
+     "[%15.7g %15.7g %15.7g ]\n",
+     v[0], v[1], v[2]);
 }
 
 /* [cos(alpha)]^2 */
@@ -244,10 +244,10 @@ void gts_vector_print (GtsVector v, FILE * fptr)
  * Returns: the number of constraints of the resulting system.  
  */
 guint gts_matrix_compatible_row (GtsMatrix * A,
-				 GtsVector b,
-				 guint n,
-				 GtsVector A1,
-				 gdouble b1)
+         GtsVector b,
+         guint n,
+         GtsVector A1,
+         gdouble b1)
 {
   gdouble na1;
   
@@ -255,24 +255,24 @@ guint gts_matrix_compatible_row (GtsMatrix * A,
 
   na1 = gts_vector_scalar (A1, A1);
   if (na1 == 0.0)
-    return n;
+  return n;
 
   /* normalize row */
   na1 = sqrt (na1);
   A1[0] /= na1; A1[1] /= na1; A1[2] /= na1; b1 /= na1;
 
   if (n == 1) {
-    gdouble a0a1 = gts_vector_scalar (A[0], A1);
-    if (a0a1*a0a1 >= COSALPHA2)
+  gdouble a0a1 = gts_vector_scalar (A[0], A1);
+  if (a0a1*a0a1 >= COSALPHA2)
       return 1;
   }
   else if (n == 2) {
-    GtsVector V;
-    gdouble s;
-    
-    gts_vector_cross (V, A[0], A[1]);
-    s = gts_vector_scalar (V, A1);
-    if (s*s <= gts_vector_scalar (V, V)*SINALPHA2)
+  GtsVector V;
+  gdouble s;
+  
+  gts_vector_cross (V, A[0], A[1]);
+  s = gts_vector_scalar (V, A1);
+  if (s*s <= gts_vector_scalar (V, V)*SINALPHA2)
       return 2;
   }
 
@@ -299,10 +299,10 @@ guint gts_matrix_compatible_row (GtsMatrix * A,
  * Returns: the new number of constraints defined by @A and @b.
  */
 guint gts_matrix_quadratic_optimization (GtsMatrix * A,
-					 GtsVector b,
-					 guint n,
-					 GtsMatrix * H,
-					 GtsVector c)
+           GtsVector b,
+           guint n,
+           GtsMatrix * H,
+           GtsVector c)
 {
   g_return_val_if_fail (A != NULL, 0);
   g_return_val_if_fail (b != NULL, 0);
@@ -311,59 +311,59 @@ guint gts_matrix_quadratic_optimization (GtsMatrix * A,
 
   switch (n) {
   case 0: {
-    n = gts_matrix_compatible_row (A, b, n, H[0], - c[0]);
-    n = gts_matrix_compatible_row (A, b, n, H[1], - c[1]);
-    n = gts_matrix_compatible_row (A, b, n, H[2], - c[2]);
-    return n;
+  n = gts_matrix_compatible_row (A, b, n, H[0], - c[0]);
+  n = gts_matrix_compatible_row (A, b, n, H[1], - c[1]);
+  n = gts_matrix_compatible_row (A, b, n, H[2], - c[2]);
+  return n;
   }
   case 1: {
-    GtsVector Q0 = {0., 0., 0.};
-    GtsVector Q1 = {0., 0., 0.};
-    GtsVector A1;
-    gdouble max = A[0][0]*A[0][0];
-    guint d = 0;
+  GtsVector Q0 = {0., 0., 0.};
+  GtsVector Q1 = {0., 0., 0.};
+  GtsVector A1;
+  gdouble max = A[0][0]*A[0][0];
+  guint d = 0;
 
-    /* build a vector orthogonal to the constraint */
-    if (A[0][1]*A[0][1] > max) { max = A[0][1]*A[0][1]; d = 1; }
-    if (A[0][2]*A[0][2] > max) { max = A[0][2]*A[0][2]; d = 2; }
-    switch (d) {
-    case 0: Q0[0] = - A[0][2]/A[0][0]; Q0[2] = 1.0; break;
-    case 1: Q0[1] = - A[0][2]/A[0][1]; Q0[2] = 1.0; break;
-    case 2: Q0[2] = - A[0][0]/A[0][2]; Q0[0] = 1.0; break;
-    }
+  /* build a vector orthogonal to the constraint */
+  if (A[0][1]*A[0][1] > max) { max = A[0][1]*A[0][1]; d = 1; }
+  if (A[0][2]*A[0][2] > max) { max = A[0][2]*A[0][2]; d = 2; }
+  switch (d) {
+  case 0: Q0[0] = - A[0][2]/A[0][0]; Q0[2] = 1.0; break;
+  case 1: Q0[1] = - A[0][2]/A[0][1]; Q0[2] = 1.0; break;
+  case 2: Q0[2] = - A[0][0]/A[0][2]; Q0[0] = 1.0; break;
+  }
 
-    /* build a second vector orthogonal to the first and to the constraint */
-    gts_vector_cross (Q1, A[0], Q0);
+  /* build a second vector orthogonal to the first and to the constraint */
+  gts_vector_cross (Q1, A[0], Q0);
 
-    A1[0] = gts_vector_scalar (Q0, H[0]);
-    A1[1] = gts_vector_scalar (Q0, H[1]);
-    A1[2] = gts_vector_scalar (Q0, H[2]);
+  A1[0] = gts_vector_scalar (Q0, H[0]);
+  A1[1] = gts_vector_scalar (Q0, H[1]);
+  A1[2] = gts_vector_scalar (Q0, H[2]);
 
-    n = gts_matrix_compatible_row (A, b, n, A1, - gts_vector_scalar (Q0, c));
-    
-    A1[0] = gts_vector_scalar (Q1, H[0]);
-    A1[1] = gts_vector_scalar (Q1, H[1]);
-    A1[2] = gts_vector_scalar (Q1, H[2]);
+  n = gts_matrix_compatible_row (A, b, n, A1, - gts_vector_scalar (Q0, c));
+  
+  A1[0] = gts_vector_scalar (Q1, H[0]);
+  A1[1] = gts_vector_scalar (Q1, H[1]);
+  A1[2] = gts_vector_scalar (Q1, H[2]);
 
-    n = gts_matrix_compatible_row (A, b, n, A1, - gts_vector_scalar (Q1, c));
+  n = gts_matrix_compatible_row (A, b, n, A1, - gts_vector_scalar (Q1, c));
 
-    return n;
+  return n;
   }
   case 2: {
-    /* build a vector orthogonal to the two constraints */
-    GtsVector A1, Q;
+  /* build a vector orthogonal to the two constraints */
+  GtsVector A1, Q;
 
-    gts_vector_cross (Q, A[0], A[1]);
-    A1[0] = gts_vector_scalar (Q, H[0]);
-    A1[1] = gts_vector_scalar (Q, H[1]);
-    A1[2] = gts_vector_scalar (Q, H[2]);
-    
-    n = gts_matrix_compatible_row (A, b, n, A1, - gts_vector_scalar (Q, c));
+  gts_vector_cross (Q, A[0], A[1]);
+  A1[0] = gts_vector_scalar (Q, H[0]);
+  A1[1] = gts_vector_scalar (Q, H[1]);
+  A1[2] = gts_vector_scalar (Q, H[2]);
+  
+  n = gts_matrix_compatible_row (A, b, n, A1, - gts_vector_scalar (Q, c));
 
-    return n;
+  return n;
   }
   default:
-    g_assert_not_reached ();
+  g_assert_not_reached ();
   }
   return 0;
 }
@@ -396,10 +396,10 @@ GtsMatrix * gts_matrix_product (GtsMatrix * m1, GtsMatrix * m2)
   g_return_val_if_fail (m1 != m2, NULL);
 
   m = gts_matrix_new (0., 0., 0.,
-		      0., 0., 0.,
-		      0., 0., 0.);
+          0., 0., 0.,
+          0., 0., 0.);
   for (i = 0; i < 3; i++)
-    for (j = 0; j < 3; j++)
+  for (j = 0; j < 3; j++)
       m[i][j] = m1[i][0]*m2[0][j] + m1[i][1]*m2[1][j] + m1[i][2]*m2[2][j];
   return m;
 }

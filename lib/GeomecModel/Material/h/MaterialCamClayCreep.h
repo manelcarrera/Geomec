@@ -8,11 +8,11 @@
 class CMaterialCamClayCreep : public IMaterialRock
 {
 public:
-	CMaterialCamClayCreep(CMaterialEntry &entry, CLibraryMaterial& libmat);
-	CMaterialCamClayCreep(const CMaterialCamClayCreep& material, CMaterialEntry &entry);
+  CMaterialCamClayCreep(CMaterialEntry &entry, CLibraryMaterial& libmat);
+  CMaterialCamClayCreep(const CMaterialCamClayCreep& material, CMaterialEntry &entry);
 
-	virtual bool Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const;
-	virtual int MaterialModel() const { return MM_CAMCLAY_CREEP; }
+  virtual bool Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const;
+  virtual int MaterialModel() const { return MM_CAMCLAY_CREEP; }
   virtual long MaterialModelFilter() const { return MLFO_CAMCLAY_CREEP; }
 
   // the creator for this material model

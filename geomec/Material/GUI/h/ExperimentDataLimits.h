@@ -10,10 +10,10 @@ class CExperimentDataLimits : public CDialog
 
 public:
   CExperimentDataLimits
-    ( CExperimentArray &experimentData
-    , CTabExperiment *tabExperiment = NULL
-    , CWnd* pParent = NULL
-    );
+  ( CExperimentArray &experimentData
+  , CTabExperiment *tabExperiment = NULL
+  , CWnd* pParent = NULL
+  );
   virtual ~CExperimentDataLimits();
 
 // Overrides

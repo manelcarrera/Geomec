@@ -8,7 +8,7 @@
 // DianaX.h : main header file for DIANAX.DLL
 
 #if !defined( __AFXCTL_H__ )
-	#error include 'afxctl.h' before including this file
+  #error include 'afxctl.h' before including this file
 #endif
 
 #include "resource.h"       // main symbols
@@ -19,9 +19,9 @@
 class CDianaXApp : public COleControlModule
 {
 public:
-	BOOL InitInstance();
-	int ExitInstance();
-	DWORD m_dwTlsControlIndex;
+  BOOL InitInstance();
+  int ExitInstance();
+  DWORD m_dwTlsControlIndex;
 };
 
 extern const GUID CDECL _tlid;

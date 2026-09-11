@@ -28,15 +28,15 @@ CGammaRadialView::~CGammaRadialView()
 //wjrx mantis 3167
 double CGammaRadialView::GetStressOrStrain( CStressStrain const &StressStrain ) const
 {
-	return GetStress(StressStrain);
+  return GetStress(StressStrain);
 }
 
 double CGammaRadialView::GetStrain( CStressStrain const &StressStrain ) const
 {
-	return StressStrain.m_dRadialStrain;
+  return StressStrain.m_dRadialStrain;
 }
 
 double CGammaRadialView::GetStress( CStressStrain const &StressStrain ) const
 {
-	return StressStrain.m_dRadialStress;
+  return StressStrain.m_dRadialStress;
 }

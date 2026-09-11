@@ -30,7 +30,7 @@ CNewWellPointValueMap::~CNewWellPointValueMap()
 
 const CDoubleQuantity& CNewWellPointValueMap::QuantityIndicator()
 {
-	return *m_pQuantity;
+  return *m_pQuantity;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -38,32 +38,32 @@ const CDoubleQuantity& CNewWellPointValueMap::QuantityIndicator()
 
 geo::CValue CNewWellPointValueMap::GetItemByTMD(const double & TMD) const
 {
-	CNewWellPoint * StartPoint = NULL;
-	CNewWellPoint * EndPoint = NULL;
-	
-	double Value = 0;
+  CNewWellPoint * StartPoint = NULL;
+  CNewWellPoint * EndPoint = NULL;
+  
+  double Value = 0;
 
-	CNewWellPoint::GetUpperLower ( *m_pList, TMD, StartPoint, EndPoint);
-	
-	if (!StartPoint || !EndPoint)
-		return geo::CValue();
+  CNewWellPoint::GetUpperLower ( *m_pList, TMD, StartPoint, EndPoint);
+  
+  if (!StartPoint || !EndPoint)
+    return geo::CValue();
 
-	if (!GetItem(EndPoint).Valid())
-		return geo::CValue();
+  if (!GetItem(EndPoint).Valid())
+    return geo::CValue();
 
-	if (StartPoint == EndPoint)
-		return geo::CValue(GetItem(EndPoint).Value());
-	
-	double DeltaY = GetItem(EndPoint).Value() - GetItem(StartPoint).Value();
-	double DeltaX = EndPoint->TMD() - StartPoint->TMD();
+  if (StartPoint == EndPoint)
+    return geo::CValue(GetItem(EndPoint).Value());
+  
+  double DeltaY = GetItem(EndPoint).Value() - GetItem(StartPoint).Value();
+  double DeltaX = EndPoint->TMD() - StartPoint->TMD();
 
-	Value = (DeltaY / DeltaX) * (TMD - StartPoint->TMD()) + GetItem(StartPoint).Value();	
+  Value = (DeltaY / DeltaX) * (TMD - StartPoint->TMD()) + GetItem(StartPoint).Value();	
 
-	return geo::CValue(Value);
+  return geo::CValue(Value);
 }
 
 CNewWellPointValueMap& CNewWellPointValueMap::operator=(const CNewWellPointValueMap& rhs)
 {	
-	CNewWellPointMapper<geo::CValue>::operator =(rhs);
-	return *this;
+  CNewWellPointMapper<geo::CValue>::operator =(rhs);
+  return *this;
 }

@@ -15,7 +15,7 @@ COpenGLNode::CDrawDef::CDrawDef(const COpenGLNode &node)
 
 const COpenGLNode& COpenGLNode::CDrawDef::OpenGLNode() const
 {
-	return m_node;
+  return m_node;
 }
 
 COpenGLNode::CDrawDef::DrawDecisionVector
@@ -82,7 +82,7 @@ COpenGLNode::CDrawDef::DrawDecisionInt
 
 bool COpenGLNode::Value() const
 {
-	return TRUE;
+  return TRUE;
 }
 
 COpenGLNode::CDrawDef::DrawDecisionBool
@@ -94,13 +94,13 @@ COpenGLNode::CDrawDef::DrawDecisionBool
 COpenGLNode::CDrawDef::DrawDecisionBool
   COpenGLNode::CDrawDef::IsSelectable(const geo::IObject& object) const
 {
-	for(int i = 0; i < m_node.DisplayListSize(); i++)
-	{
-		if(&m_node.DisplayList(i) == &object)
-			return std::make_pair(true, true);
-	}
+  for(int i = 0; i < m_node.DisplayListSize(); i++)
+  {
+    if(&m_node.DisplayList(i) == &object)
+      return std::make_pair(true, true);
+  }
 
-	return std::make_pair(true, false);
+  return std::make_pair(true, false);
 }
 
 COpenGLNode::CDrawDef::DrawDecisionColor
@@ -218,77 +218,77 @@ COpenGLNode::COpenGLNode(const COpenGLNode &rhs)
 
 geo::CPoint COpenGLNode::Min() const
 {
-	geo::CPoint ret;
-	for(int i = 0; i < DisplayListSize(); i++)
-		ret = ret.Min(DisplayList(i).Min());
+  geo::CPoint ret;
+  for(int i = 0; i < DisplayListSize(); i++)
+    ret = ret.Min(DisplayList(i).Min());
 
-	return ret;
+  return ret;
 }
 
 geo::CPoint COpenGLNode::Max() const
 {
-	geo::CPoint ret;
-	for(int i = 0; i < DisplayListSize(); i++)
-		ret = ret.Max(DisplayList(i).Max());
+  geo::CPoint ret;
+  for(int i = 0; i < DisplayListSize(); i++)
+    ret = ret.Max(DisplayList(i).Max());
 
-	return ret;
+  return ret;
 }
 
 COpenGLNode::CDrawDef* COpenGLNode::OnCreateDrawDef(const geo::IObject& /*object*/) const
 {
-	return new CDrawDef(*this);
+  return new CDrawDef(*this);
 }
 
 std::vector<COpenGLNode::CDrawDef::TColor> COpenGLNode::OnColor(const geo::IObject &object) const
 {
-	const geo::IElement *pElement = dynamic_cast<const geo::IElement*>(&object);
-	const geo::ILine *pLine		  = dynamic_cast<const geo::ILine*>(&object);
-	const geo::IPoint *pPoint	  = dynamic_cast<const geo::IPoint*>(&object);
-	const geo::IConus *pConus = dynamic_cast<const geo::IConus *>(&object);
+  const geo::IElement *pElement = dynamic_cast<const geo::IElement*>(&object);
+  const geo::ILine *pLine		  = dynamic_cast<const geo::ILine*>(&object);
+  const geo::IPoint *pPoint	  = dynamic_cast<const geo::IPoint*>(&object);
+  const geo::IConus *pConus = dynamic_cast<const geo::IConus *>(&object);
 
-	std::vector<CDrawDef::TColor> vcColor;
-	if(pElement)
-	{
-		for(int i = 0; i < pElement->NrOfPoints(); i++)
-		{
-			vcColor.push_back(Color());
-		}
-	}
-	else if(pLine)
-	{
-		vcColor.push_back(Color());
-		vcColor.push_back(Color());
-	}
-	else if( pConus) //wjrx mantis 3185
-	{
-		vcColor.push_back(Color());
-	}
-	else if(pPoint)
-	{
-		vcColor.push_back(Color());
-	}
-	else
-	{
-		assert(false);
-	}
+  std::vector<CDrawDef::TColor> vcColor;
+  if(pElement)
+  {
+    for(int i = 0; i < pElement->NrOfPoints(); i++)
+    {
+      vcColor.push_back(Color());
+    }
+  }
+  else if(pLine)
+  {
+    vcColor.push_back(Color());
+    vcColor.push_back(Color());
+  }
+  else if( pConus) //wjrx mantis 3185
+  {
+    vcColor.push_back(Color());
+  }
+  else if(pPoint)
+  {
+    vcColor.push_back(Color());
+  }
+  else
+  {
+    assert(false);
+  }
 
-	return vcColor;
+  return vcColor;
 }
 
 COpenGLNode& COpenGLNode::operator=(const COpenGLNode &rhs)
 {
-	COpenGLNodeBase::operator=(rhs);
-	return *this;
+  COpenGLNodeBase::operator=(rhs);
+  return *this;
 }
 
 bool COpenGLNode::operator==(const COpenGLNode &rhs) const
 {
-	return COpenGLNodeBase::operator==(rhs);
+  return COpenGLNodeBase::operator==(rhs);
 }
 
 int COpenGLNode::SelectionPriority() const
 {
-	// default priority is 0, use higher or lower priority in derived
+  // default priority is 0, use higher or lower priority in derived
   // classes to tune selection priority in the scene
-	return 0;
+  return 0;
 }

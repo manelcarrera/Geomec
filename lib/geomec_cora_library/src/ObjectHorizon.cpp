@@ -69,7 +69,7 @@ const geo::IElement* CObjectHorizon::getNextElement()
 {
   if (m_sequenceState < m_3DHorizon->BodyFaceSize())
   {
-    return &(m_3DHorizon->BodyFace(m_sequenceState++));
+  return &(m_3DHorizon->BodyFace(m_sequenceState++));
   }
 
   return 0;
@@ -78,7 +78,7 @@ const geo::IElement* CObjectHorizon::getNextElement()
 std::ostream& CObjectHorizon::operator () (std::ostream& os) const
 {
   os << PREFIX.toStdString() << m_3DHorizon->Name().toStdString() <<
-    std::endl;
+  std::endl;
 
   return os;
 }

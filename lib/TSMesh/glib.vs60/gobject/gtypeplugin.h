@@ -43,13 +43,13 @@ typedef struct _GTypePluginClass		   GTypePluginClass;
 typedef void  (*GTypePluginUse)			  (GTypePlugin     *plugin);
 typedef void  (*GTypePluginUnuse)		  (GTypePlugin     *plugin);
 typedef void  (*GTypePluginCompleteTypeInfo)	  (GTypePlugin     *plugin,
-						   GType            g_type,
-						   GTypeInfo       *info,
-						   GTypeValueTable *value_table);
+               GType            g_type,
+               GTypeInfo       *info,
+               GTypeValueTable *value_table);
 typedef void  (*GTypePluginCompleteInterfaceInfo) (GTypePlugin     *plugin,
-						   GType            interface_type,
-						   GType            instance_type,
-						   GInterfaceInfo  *info);
+               GType            interface_type,
+               GType            instance_type,
+               GInterfaceInfo  *info);
 struct _GTypePluginClass
 {
   GTypeInterface		   base_iface;
@@ -66,13 +66,13 @@ GType	g_type_plugin_get_type			(void)	G_GNUC_CONST;
 void	g_type_plugin_use			(GTypePlugin	 *plugin);
 void	g_type_plugin_unuse			(GTypePlugin	 *plugin);
 void	g_type_plugin_complete_type_info	(GTypePlugin     *plugin,
-						 GType            g_type,
-						 GTypeInfo       *info,
-						 GTypeValueTable *value_table);
+             GType            g_type,
+             GTypeInfo       *info,
+             GTypeValueTable *value_table);
 void	g_type_plugin_complete_interface_info	(GTypePlugin     *plugin,
-						 GType            interface_type,
-						 GType            instance_type,
-						 GInterfaceInfo  *info);
+             GType            interface_type,
+             GType            instance_type,
+             GInterfaceInfo  *info);
 
 
 

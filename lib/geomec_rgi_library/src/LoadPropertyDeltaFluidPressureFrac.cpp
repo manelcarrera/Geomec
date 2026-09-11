@@ -35,19 +35,19 @@ IValueDomainScalar::TValueVec
 {
   if (pFormation)
   {
-    if (isFractureApertureModel(*pFormation, prevstage, elm))
-    {
+  if (isFractureApertureModel(*pFormation, prevstage, elm))
+  {
       return pFormation->Pressure(prevstage).Component().ScalarData().ValueElement(elm);
-    }
+  }
   }
   else
   {
-    const CHorizonBase* pFault = m_ModelBase.Mesh().SlipHorizon(elm);
+  const CHorizonBase* pFault = m_ModelBase.Mesh().SlipHorizon(elm);
 
-    if (pFault && pFault->Slip())
-    {
+  if (pFault && pFault->Slip())
+  {
       return pFault->Pressure(prevstage).Component().ScalarData().ValueElement(elm);
-    }
+  }
   }
 
   IValueDomainScalar::TValueVec vcPrevValues(nNod, 0);

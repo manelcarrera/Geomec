@@ -21,7 +21,7 @@ CFailureTypeParameterSurface::CFailureTypeParameterSurface(
 // for now replace 'getSurfaceInfo()' with 'getHorizonInfo()'
 
 : CFailureTypeParameterBase(summaryResultFile, object, option, parameter, value,
-    modelInfo.getHorizonInfo().getObjects(), SURFACE)
+  modelInfo.getHorizonInfo().getObjects(), SURFACE)
 {
 }
 

@@ -45,16 +45,16 @@ CCylindricHull::CCylindricHull(const IPointSet& points, double radius)
   m_origin.reserve(points.size());
   if (points.size() >= 1)
   {
-    m_vector.reserve(points.size() - 1);
-    m_length2.reserve(points.size() - 1);
+  m_vector.reserve(points.size() - 1);
+  m_length2.reserve(points.size() - 1);
 
-    for (size_t i = 0; i < points.size() - 1; ++i)
-    {
+  for (size_t i = 0; i < points.size() - 1; ++i)
+  {
       m_origin.push_back(Vector(*points[i]));
       m_vector.push_back(Vector(*points[i + 1], m_origin[i]));
       m_length2.push_back(length2(m_vector[i].x, m_vector[i].y, m_vector[i].z));
-    }
-    m_origin.push_back(Vector(*points.back()));
+  }
+  m_origin.push_back(Vector(*points.back()));
   }
 
   CalcBB();
@@ -71,13 +71,13 @@ void CCylindricHull::CalcBB()
 
   for (size_t i = 0; i < m_origin.size(); ++i)
   {
-    if (m_origin[i].x < m_min.x) m_min.x = m_origin[i].x;
-    if (m_origin[i].y < m_min.y) m_min.y = m_origin[i].y;
-    if (m_origin[i].z < m_min.z) m_min.z = m_origin[i].z;
+  if (m_origin[i].x < m_min.x) m_min.x = m_origin[i].x;
+  if (m_origin[i].y < m_min.y) m_min.y = m_origin[i].y;
+  if (m_origin[i].z < m_min.z) m_min.z = m_origin[i].z;
 
-    if (m_origin[i].x > m_max.x) m_max.x = m_origin[i].x;
-    if (m_origin[i].y > m_max.y) m_max.y = m_origin[i].y;
-    if (m_origin[i].z > m_max.z) m_max.z = m_origin[i].z;
+  if (m_origin[i].x > m_max.x) m_max.x = m_origin[i].x;
+  if (m_origin[i].y > m_max.y) m_max.y = m_origin[i].y;
+  if (m_origin[i].z > m_max.z) m_max.z = m_origin[i].z;
   }
 
   m_min.x -= m_radius + EPSILON;
@@ -110,42 +110,42 @@ bool CCylindricHull::Contains(const IPoint& point, bool includeEdge) const
   double px = point.X(), py = point.Y(), pz = point.Z(), x, y, z, dot, len2, dis2;
 
   if (px < m_min.x || px > m_max.x)
-    return false;
+  return false;
   if (py < m_min.y || py > m_max.y)
-    return false;
+  return false;
   if (pz < m_min.z || pz > m_max.z)
-    return false;
+  return false;
 
   for (size_t i = 0; i < m_vector.size(); ++i)
   {
-    x = px - m_origin[i].x;
-    y = py - m_origin[i].y;
-    z = pz - m_origin[i].z;
+  x = px - m_origin[i].x;
+  y = py - m_origin[i].y;
+  z = pz - m_origin[i].z;
 
-    dot  = x * m_vector[i].x + y * m_vector[i].y + z * m_vector[i].z;
-    len2 = length2(x, y, z);
+  dot  = x * m_vector[i].x + y * m_vector[i].y + z * m_vector[i].z;
+  len2 = length2(x, y, z);
 
-    // circle
-    checkDistance(len2)
+  // circle
+  checkDistance(len2)
 
-    // cylinder
-    if (dot >= 0 && dot <= m_length2[i])
-    {
+  // cylinder
+  if (dot >= 0 && dot <= m_length2[i])
+  {
       dis2 = len2 - dot * dot / m_length2[i]; // Pythagoras
 
       checkDistance(dis2)
-    }
+  }
   }
 
   if (m_origin.size() > 0) // check last circle
   {
-    x = px - m_origin.back().x;
-    y = py - m_origin.back().y;
-    z = pz - m_origin.back().z;
+  x = px - m_origin.back().x;
+  y = py - m_origin.back().y;
+  z = pz - m_origin.back().z;
 
-    len2 = length2(x, y, z);
+  len2 = length2(x, y, z);
 
-    checkDistance(len2)
+  checkDistance(len2)
   }
 
   return false;

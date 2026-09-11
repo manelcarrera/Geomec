@@ -36,93 +36,93 @@ class IWellPointFactory
 {
 public:
   virtual ~IWellPointFactory();
-	virtual CWellPoint* CreateWellPoint(const CWellPathBase& wellpath,const double& tmd) const = 0;
+  virtual CWellPoint* CreateWellPoint(const CWellPathBase& wellpath,const double& tmd) const = 0;
 };
 
 class CWellPoint : public QObject , public geo::IPoint
 {
-	Q_OBJECT;
+  Q_OBJECT;
 
-	friend class CWellPathBase;
+  friend class CWellPathBase;
 
 public:
 
 signals:
-	void OnTMDChanged();
-	void OnDestroy(const well::CWellPoint& wellpoint);  //use namespace in signals/slots
+  void OnTMDChanged();
+  void OnDestroy(const well::CWellPoint& wellpoint);  //use namespace in signals/slots
 
 public:
-	CWellPoint(const CWellPathBase& WellPath, double TMD );
-	CWellPoint(const CWellPoint &rhs);
+  CWellPoint(const CWellPathBase& WellPath, double TMD );
+  CWellPoint(const CWellPoint &rhs);
 
-	virtual ~CWellPoint();
+  virtual ~CWellPoint();
 
-	// IPoint interface ...
-	virtual const double &X() const;		
-	virtual const double &Y() const;		
-	virtual const double &Z() const;		
+  // IPoint interface ...
+  virtual const double &X() const;		
+  virtual const double &Y() const;		
+  virtual const double &Z() const;		
 
-	//no direct accses to IPoint
-	virtual void X(const double &/*dX*/){assert(false);}		
-	virtual void Y(const double &/*dY*/){assert(false);}				
-	virtual void Z(const double &/*dZ*/){assert(false);}			
+  //no direct accses to IPoint
+  virtual void X(const double &/*dX*/){assert(false);}		
+  virtual void Y(const double &/*dY*/){assert(false);}				
+  virtual void Z(const double &/*dZ*/){assert(false);}			
 
-	virtual void AssertValid()const;
-	virtual bool Empty() const;
-
-
-	const CLengthQuantity& Northing() const;
-	const CLengthQuantity& Easting() const;
-	const CAngleQuantity& Azimuth() const;
-	const CAngleQuantity& Inclination() const;
-	const CLengthQuantity& TVD() const;
-	const CLengthQuantity& TMD() const;
-
-	//only change the TMD the rest is recalculated
-	CLengthQuantity& TMD();
+  virtual void AssertValid()const;
+  virtual bool Empty() const;
 
 
-	CWellPoint& operator=(const CWellPoint &rhs);
+  const CLengthQuantity& Northing() const;
+  const CLengthQuantity& Easting() const;
+  const CAngleQuantity& Azimuth() const;
+  const CAngleQuantity& Inclination() const;
+  const CLengthQuantity& TVD() const;
+  const CLengthQuantity& TMD() const;
 
-	bool operator==(const CWellPoint &rhs) const;
-	bool operator!=(const CWellPoint &rhs) const;
+  //only change the TMD the rest is recalculated
+  CLengthQuantity& TMD();
 
-	bool operator <(const CWellPoint &rhs) const;
-	bool operator >(const CWellPoint &rhs) const;
 
-	virtual bool Defined() const;
-	virtual void Invalidate(); 
+  CWellPoint& operator=(const CWellPoint &rhs);
 
-	CWellPathBase& WellPath();
-	const CWellPathBase& WellPath() const;
+  bool operator==(const CWellPoint &rhs) const;
+  bool operator!=(const CWellPoint &rhs) const;
 
-	//direction vector in this point
-	geo::CVector GetDirection() const;
+  bool operator <(const CWellPoint &rhs) const;
+  bool operator >(const CWellPoint &rhs) const;
+
+  virtual bool Defined() const;
+  virtual void Invalidate(); 
+
+  CWellPathBase& WellPath();
+  const CWellPathBase& WellPath() const;
+
+  //direction vector in this point
+  geo::CVector GetDirection() const;
 
   void addElement(const geo::IElement* pElement);
   void setElements(const std::set<const geo::IElement*>& stElements);
   const std::set<const geo::IElement*>& getElements() const;
 
 private slots:
-	void OnQuantityChanged(const CDoubleQuantity& pQ);
-	void OnWellDefPointsChanged();
+  void OnQuantityChanged(const CDoubleQuantity& pQ);
+  void OnWellDefPointsChanged();
 
 protected:
-	CWellPoint(); //default constructor is only for a wellpath object
+  CWellPoint(); //default constructor is only for a wellpath object
 
 private:
-	void Connect();
-	const CWellPathBase*       m_pWellPath;
-	CLengthQuantity  m_Northing;
-	CLengthQuantity  m_Easting;
-	CAngleQuantity   m_Azimuth;
-	CAngleQuantity   m_Inclination;
-	CLengthQuantity  m_TMD;
-	CLengthQuantity  m_TVD;
+  void Connect();
+  const CWellPathBase*       m_pWellPath;
+  CLengthQuantity  m_Northing;
+  CLengthQuantity  m_Easting;
+  CAngleQuantity   m_Azimuth;
+  CAngleQuantity   m_Inclination;
+  CLengthQuantity  m_TMD;
+  CLengthQuantity  m_TVD;
   std::set<const geo::IElement*> m_stElements;
 
-	//for IPoint interface
-	mutable double m_X,m_Y,m_Z;
+  //for IPoint interface
+  mutable double m_X,m_Y,m_Z;
 };
 
 }

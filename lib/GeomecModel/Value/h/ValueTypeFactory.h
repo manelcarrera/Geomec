@@ -19,25 +19,25 @@
 class CValueTypeBuilder
 {
 public:
-	CValueTypeBuilder() {};
-	virtual ~CValueTypeBuilder() = 0;
-	virtual CValueType* Build(IPointSet &point_set, const QString &sName) = 0;
-	virtual CValueType* Build(IPointSet &point_set, unsigned int uName) = 0;
+  CValueTypeBuilder() {};
+  virtual ~CValueTypeBuilder() = 0;
+  virtual CValueType* Build(IPointSet &point_set, const QString &sName) = 0;
+  virtual CValueType* Build(IPointSet &point_set, unsigned int uName) = 0;
   virtual unsigned int IconID() const = 0;
 };
 
 class CValueTypeFactory  
 {
-	typedef std::pair<CValueTypeBuilder*, unsigned int> TBuilder;
-	typedef std::map<unsigned int, TBuilder> TBuilderMap;
-	typedef std::map<QString, unsigned int, CStringNoCaseLess> TImportMap;
-	TBuilderMap m_mpBuilder;
-	TImportMap m_mpImport;
+  typedef std::pair<CValueTypeBuilder*, unsigned int> TBuilder;
+  typedef std::map<unsigned int, TBuilder> TBuilderMap;
+  typedef std::map<QString, unsigned int, CStringNoCaseLess> TImportMap;
+  TBuilderMap m_mpBuilder;
+  TImportMap m_mpImport;
   typedef std::map <unsigned int, QString> TValueType2ImportTag;
   TValueType2ImportTag m_mpValueType2ImportTag;
 
 // Initialisation 
-	void AppendValueTypeBuilder(unsigned int uValueType, unsigned int uNameId, unsigned int uExportId, CValueTypeBuilder *pBuilder);
+  void AppendValueTypeBuilder(unsigned int uValueType, unsigned int uNameId, unsigned int uExportId, CValueTypeBuilder *pBuilder);
 
   CValueTypeFactory();
   CValueTypeFactory(const CValueTypeFactory&);
@@ -48,18 +48,18 @@ public:
   static void reset();
 
 // Get contents library
-	typedef std::pair<unsigned int, unsigned int> TValueTypeIdNamePair;
-	typedef std::vector<TValueTypeIdNamePair> TValueTypeVec;
-	TValueTypeVec ValueTypes() const;
-	int NameIndex(unsigned int uValueType) const;	// Return -1 when failed else the resource index is returned
+  typedef std::pair<unsigned int, unsigned int> TValueTypeIdNamePair;
+  typedef std::vector<TValueTypeIdNamePair> TValueTypeVec;
+  TValueTypeVec ValueTypes() const;
+  int NameIndex(unsigned int uValueType) const;	// Return -1 when failed else the resource index is returned
   QString getImportTag(unsigned int valueType) const;
 
 // Function to build a quantity
-	bool ValueTypeAvailable(unsigned int uValueType) const;
-	CValueType* BuildValueType(IPointSet &point_set, unsigned int uValueType, unsigned int uName) const;
-	CValueType* BuildValueType(IPointSet &point_set, unsigned int uValueType, const QString &sName) const;
-	CValueType* BuildValueType(IPointSet &point_set, const QString &sFileTag, unsigned int uName) const;
-	CValueType* BuildValueType(IPointSet &point_set, const QString &sFileTag, const QString &sName) const;
+  bool ValueTypeAvailable(unsigned int uValueType) const;
+  CValueType* BuildValueType(IPointSet &point_set, unsigned int uValueType, unsigned int uName) const;
+  CValueType* BuildValueType(IPointSet &point_set, unsigned int uValueType, const QString &sName) const;
+  CValueType* BuildValueType(IPointSet &point_set, const QString &sFileTag, unsigned int uName) const;
+  CValueType* BuildValueType(IPointSet &point_set, const QString &sFileTag, const QString &sName) const;
 
   unsigned int ValueTypeIconID(unsigned int uValueType) const;
 
@@ -70,23 +70,23 @@ template<class T>
 class CValueTypeBuilderTemp : public CValueTypeBuilder
 {
 public:
-	CValueTypeBuilderTemp() {};
-	virtual CValueType* Build(IPointSet &point_set, const QString &sName)
-	{
-		CValueType *pValueType = new T(point_set, sName);
-		return pValueType;
-	}
+  CValueTypeBuilderTemp() {};
+  virtual CValueType* Build(IPointSet &point_set, const QString &sName)
+  {
+    CValueType *pValueType = new T(point_set, sName);
+    return pValueType;
+  }
 
-	virtual CValueType* Build(IPointSet &point_set, unsigned int uName)
-	{
-		QString sName;
-		sName = getStringTableEntry(uName);
-		return Build(point_set, sName);
-	}
+  virtual CValueType* Build(IPointSet &point_set, unsigned int uName)
+  {
+    QString sName;
+    sName = getStringTableEntry(uName);
+    return Build(point_set, sName);
+  }
 
   virtual unsigned int IconID() const
   {
-    return T::icon_id();
+  return T::icon_id();
   }
 };
 
@@ -113,70 +113,70 @@ public:
 
 class CSurfaceValueType : public CValueTypeTemp<IDT_VALUETYPE_SURFACE, IDI_VALUETYPE_SURFACE, IDS_VALUENAME_SURFACE, IDS_ET_SURFACE>
 {
-	typedef CValueTypeTemp<IDT_VALUETYPE_SURFACE, IDI_VALUETYPE_SURFACE, IDS_VALUENAME_SURFACE, IDS_ET_SURFACE> TBaseClass;
-	CSurfaceBase *m_pSurface;
+  typedef CValueTypeTemp<IDT_VALUETYPE_SURFACE, IDI_VALUETYPE_SURFACE, IDS_VALUENAME_SURFACE, IDS_ET_SURFACE> TBaseClass;
+  CSurfaceBase *m_pSurface;
 public:
-	CSurfaceValueType(IPointSet& point_set, const QString &strName);
-	~CSurfaceValueType();
-	virtual const QString& Name() const;
-	virtual void Name(const QString& sName);
-	virtual void OnNeighbourDeleted(const CGraphNode& node);
-	virtual void OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint);
-	const CSurfaceBase& Surface() const;
-	CSurfaceBase& Surface();
-	virtual void Unit(CQuantity::UNIT unit);
-	virtual bool CanDestroy() const;
+  CSurfaceValueType(IPointSet& point_set, const QString &strName);
+  ~CSurfaceValueType();
+  virtual const QString& Name() const;
+  virtual void Name(const QString& sName);
+  virtual void OnNeighbourDeleted(const CGraphNode& node);
+  virtual void OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint);
+  const CSurfaceBase& Surface() const;
+  CSurfaceBase& Surface();
+  virtual void Unit(CQuantity::UNIT unit);
+  virtual bool CanDestroy() const;
 
   ACCEPT_GEOMECMODELVISITORS(VisitSurfaceValueType);
 };
 
 // Template single types
 template<unsigned int uTypeId,
-		 unsigned int uIconId,
-		 unsigned int uExportTagId, 
-		 unsigned int uValueNameId>
+     unsigned int uIconId,
+     unsigned int uExportTagId, 
+     unsigned int uValueNameId>
 class CSingleComponentTemp : public CValueTypeTemp<uTypeId, uIconId, uValueNameId, uExportTagId>
 {
 public:
-	CSingleComponentTemp(IPointSet& point_set, const QString &strName, const Units::CUnitType& unittype, const Ranges::CRangeType& rangetype)
-	: CValueTypeTemp<uTypeId, uIconId, uValueNameId, uExportTagId>(point_set, strName)
-	{
-		new CComponentTemp<IDS_COMPONENT_DEFAULT, 0>(*this, unittype, rangetype);
-	}
+  CSingleComponentTemp(IPointSet& point_set, const QString &strName, const Units::CUnitType& unittype, const Ranges::CRangeType& rangetype)
+  : CValueTypeTemp<uTypeId, uIconId, uValueNameId, uExportTagId>(point_set, strName)
+  {
+    new CComponentTemp<IDS_COMPONENT_DEFAULT, 0>(*this, unittype, rangetype);
+  }
 
-	CSingleComponentTemp(const CValueTypeTemp <uTypeId, uIconId, uValueNameId, uExportTagId> & rhs)
-	: CValueTypeTemp<uTypeId, uIconId, uValueNameId, uExportTagId>(rhs)
-	{
-	}
+  CSingleComponentTemp(const CValueTypeTemp <uTypeId, uIconId, uValueNameId, uExportTagId> & rhs)
+  : CValueTypeTemp<uTypeId, uIconId, uValueNameId, uExportTagId>(rhs)
+  {
+  }
 };
 
 // Template single types
 template<unsigned int uTypeId,
-		 unsigned int uIconId,
-		 unsigned int uExportTagId, 
-		 unsigned int uValueNameId>
+     unsigned int uIconId,
+     unsigned int uExportTagId, 
+     unsigned int uValueNameId>
 class CMaterialComponentTemp : public CSingleComponentTemp<uTypeId, uIconId, uExportTagId, uValueNameId>
 {
 public:
   CMaterialComponentTemp(IPointSet& point_set, const QString &strName, const Units::CUnitType& unittype, const Ranges::CRangeType& rangetype)
-	: CSingleComponentTemp<uTypeId, uIconId, uExportTagId, uValueNameId>(point_set, strName, unittype, rangetype)
-	{
-	}
+  : CSingleComponentTemp<uTypeId, uIconId, uExportTagId, uValueNameId>(point_set, strName, unittype, rangetype)
+  {
+  }
 
-	CMaterialComponentTemp(const CValueTypeTemp <uTypeId, uIconId, uValueNameId, uExportTagId> & rhs)
-	: CSingleComponentTemp<uTypeId, uIconId, uExportTagId, uValueNameId>(rhs)
-	{
-	}
+  CMaterialComponentTemp(const CValueTypeTemp <uTypeId, uIconId, uValueNameId, uExportTagId> & rhs)
+  : CSingleComponentTemp<uTypeId, uIconId, uExportTagId, uValueNameId>(rhs)
+  {
+  }
 
-	virtual bool SingleElementValue() const
-	{
-		return true;
-	}
+  virtual bool SingleElementValue() const
+  {
+    return true;
+  }
 };
 
 // Pressure
 class TPressure : public CSingleComponentTemp<IDT_VALUETYPE_PRESSURE, 
-							                                IDI_COMPONENT_PRESSURE_DISTRIBUTED,
+                              IDI_COMPONENT_PRESSURE_DISTRIBUTED,
                                               IDS_ET_PRESSURE,
                                               IDS_VALUENAME_PRESSURE>
 {
@@ -191,9 +191,9 @@ public:
 
 // Fracture Matrix Pressure
 class TFractureMatrixPressure : public CSingleComponentTemp<IDT_VALUETYPE_FRACTURE_MATRIX_PRESSURE, 
-                                                            IDI_COMPONENT_FRACTURE_MATRIX_PRESSURE_DISTRIBUTED,
-                                                            IDS_ET_FRACTURE_MATRIX_PRESSURE,
-                                                            IDS_VALUENAME_FRACTURE_MATRIX_PRESSURE>
+                              IDI_COMPONENT_FRACTURE_MATRIX_PRESSURE_DISTRIBUTED,
+                              IDS_ET_FRACTURE_MATRIX_PRESSURE,
+                              IDS_VALUENAME_FRACTURE_MATRIX_PRESSURE>
 {
 public:
   TFractureMatrixPressure(IPointSet& point_set, const QString &strName)
@@ -264,9 +264,9 @@ public:
 
 // Cohesion
 class TCohesion : public CMaterialComponentTemp<IDT_VALUETYPE_COHESION,
-                                                IDI_VALUETYPE_COHESION,
-                                                IDS_ET_COHESION,
-                                                IDS_VALUENAME_COHESION>
+                        IDI_VALUETYPE_COHESION,
+                        IDS_ET_COHESION,
+                        IDS_VALUENAME_COHESION>
 {
 public:
   TCohesion(IPointSet& point_set, const QString& strName)
@@ -280,13 +280,13 @@ public:
 // wjrx mantis 2517
 // Bulk Stiffness 
 class TBulkStiffness : public CMaterialComponentTemp<IDT_VALUETYPE_BULKSTIFFNESS,
-						     IDI_VALUETYPE_BULKSTIFFNESS,
-						     IDS_ET_BULKSTIFFNESS,
-						     IDS_VALUENAME_BULKSTIFFNESS>
+                 IDI_VALUETYPE_BULKSTIFFNESS,
+                 IDS_ET_BULKSTIFFNESS,
+                 IDS_VALUENAME_BULKSTIFFNESS>
 {
 public: 
-    // stress, mimimum >= 0.0
-	TBulkStiffness(IPointSet& point_set, const QString& strName)
+  // stress, mimimum >= 0.0
+  TBulkStiffness(IPointSet& point_set, const QString& strName)
   : CMaterialComponentTemp<IDT_VALUETYPE_BULKSTIFFNESS, IDI_VALUETYPE_BULKSTIFFNESS, IDS_ET_BULKSTIFFNESS, IDS_VALUENAME_BULKSTIFFNESS>(point_set, strName, Units::StressUnit, Ranges::CRangeType(true, 0.0, true, false, 0.0, true))
   {
   }
@@ -295,9 +295,9 @@ public:
 };
 
 class TShearModulus : public CMaterialComponentTemp<IDT_VALUETYPE_SHEARMODULUS,
-						     IDI_VALUETYPE_SHEARMODULUS,
-						     IDS_ET_SHEARMODULUS,
-						     IDS_VALUENAME_SHEARMODULUS>
+                 IDI_VALUETYPE_SHEARMODULUS,
+                 IDS_ET_SHEARMODULUS,
+                 IDS_VALUENAME_SHEARMODULUS>
 {
 public:
   TShearModulus(IPointSet& point_set, const QString& strName)
@@ -316,7 +316,7 @@ class TVelocityP : public CMaterialComponentTemp<IDT_VALUETYPE_VELOCITYP,
 {
 public:
   TVelocityP(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_VELOCITYP, IDI_VALUETYPE_VELOCITYP, IDS_ET_VELOCITYP, IDS_VALUENAME_VELOCITYP>(point_set, strName, Units::VelocityUnit, Ranges::CRangeType(true, 0.0, true, false, 0.0, false))
+  : CMaterialComponentTemp<IDT_VALUETYPE_VELOCITYP, IDI_VALUETYPE_VELOCITYP, IDS_ET_VELOCITYP, IDS_VALUENAME_VELOCITYP>(point_set, strName, Units::VelocityUnit, Ranges::CRangeType(true, 0.0, true, false, 0.0, false))
   {
   }
 
@@ -331,7 +331,7 @@ class TVelocityS : public CMaterialComponentTemp<IDT_VALUETYPE_VELOCITYS,
 {
 public:
   TVelocityS(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_VELOCITYS, IDI_VALUETYPE_VELOCITYS, IDS_ET_VELOCITYS, IDS_VALUENAME_VELOCITYS>(point_set, strName, Units::VelocityUnit, Ranges::CRangeType(true, 0.0, true, false, 0.0, false))
+  : CMaterialComponentTemp<IDT_VALUETYPE_VELOCITYS, IDI_VALUETYPE_VELOCITYS, IDS_ET_VELOCITYS, IDS_VALUENAME_VELOCITYS>(point_set, strName, Units::VelocityUnit, Ranges::CRangeType(true, 0.0, true, false, 0.0, false))
   {
   }
 
@@ -355,9 +355,9 @@ public:
 
 // Poissons Ratio
 class TPoissonsRatio : public CMaterialComponentTemp<IDT_VALUETYPE_POISSONS_RATIO,
-							                                       IDI_VALUETYPE_POISSONS_RATIO,
-							                                       IDS_ET_POISSON_RATIO,
-							                                       IDS_VALUENAME_POISSONS_RATIO>
+                                                     IDI_VALUETYPE_POISSONS_RATIO,
+                                                     IDS_ET_POISSON_RATIO,
+                                                     IDS_VALUENAME_POISSONS_RATIO>
 {
 public:
   TPoissonsRatio(IPointSet& point_set, const QString& strName)
@@ -370,9 +370,9 @@ public:
 
 // Youngs Modulus
 class TYoungsModulus : public CMaterialComponentTemp<IDT_VALUETYPE_YOUNGS_MODULUS,
-							                                       IDI_VALUETYPE_YOUNGS_MODULUS,
-							                                       IDS_ET_YOUNG_MODULUS,
-							                                       IDS_VALUENAME_YOUNGS_MODULUS>
+                                                     IDI_VALUETYPE_YOUNGS_MODULUS,
+                                                     IDS_ET_YOUNG_MODULUS,
+                                                     IDS_VALUENAME_YOUNGS_MODULUS>
 {
 public:
   TYoungsModulus(IPointSet& point_set, const QString& strName)
@@ -385,9 +385,9 @@ public:
 
 // Density 
 class TDensity : public CMaterialComponentTemp<IDT_VALUETYPE_RHOB,
-							                                 IDI_VALUETYPE_RHOB,
-							                                 IDS_ET_RHOB, 
-							                                 IDS_VALUENAME_RHOB>
+                                               IDI_VALUETYPE_RHOB,
+                                               IDS_ET_RHOB, 
+                                               IDS_VALUENAME_RHOB>
 {
 public:
   TDensity(IPointSet& point_set, const QString& strName)
@@ -401,9 +401,9 @@ public:
 
 // Porosity 
 class TPorosity : public CMaterialComponentTemp<IDT_VALUETYPE_POROSITY,
-			                                          IDI_VALUETYPE_POROSITY, 
-			                                          IDS_ET_POROSITY, 
-			                                          IDS_VALUENAME_POROSITY>
+                                                IDI_VALUETYPE_POROSITY, 
+                                                IDS_ET_POROSITY, 
+                                                IDS_VALUENAME_POROSITY>
 {
 public:
   TPorosity(IPointSet& point_set, const QString& strName)
@@ -416,9 +416,9 @@ public:
 
 // Initial friction angle
 class TInitFriction : public CMaterialComponentTemp<IDT_VALUETYPE_INITFRICTION,
-							                                      IDI_VALUETYPE_INITFRICTION,
-							                                      IDS_ET_INITFRICTION,
-							                                      IDS_VALUENAME_INITFRICTION>
+                                                    IDI_VALUETYPE_INITFRICTION,
+                                                    IDS_ET_INITFRICTION,
+                                                    IDS_VALUENAME_INITFRICTION>
 {
 public:
   TInitFriction(IPointSet& point_set, const QString& strName)
@@ -431,9 +431,9 @@ public:
 
 // Hardening parameter
 class THardening : public CMaterialComponentTemp<IDT_VALUETYPE_HARDENING,
-							                                   IDI_VALUETYPE_HARDENING,
-							                                   IDS_ET_HARDENING,
-							                                   IDS_VALUENAME_HARDENING>
+                                                 IDI_VALUETYPE_HARDENING,
+                                                 IDS_ET_HARDENING,
+                                                 IDS_VALUENAME_HARDENING>
 {
 public:
   THardening(IPointSet& point_set, const QString& strName)
@@ -446,9 +446,9 @@ public:
 
 // Pre consolidation pressure
 class TPreConsolidation : public CMaterialComponentTemp<IDT_VALUETYPE_PRECONSOLIDATION,
-							                                          IDI_VALUETYPE_PRECONSOLIDATION,
-							                                          IDS_ET_PRECONSOLIDATION,
-							                                          IDS_VALUENAME_PRECONSOLIDATION>
+                                                        IDI_VALUETYPE_PRECONSOLIDATION,
+                                                        IDS_ET_PRECONSOLIDATION,
+                                                        IDS_VALUENAME_PRECONSOLIDATION>
 {
 public:
   TPreConsolidation(IPointSet& point_set, const QString& strName)
@@ -461,9 +461,9 @@ public:
 
 // Cap shape factor
 class TCapShape : public CMaterialComponentTemp<IDT_VALUETYPE_CAPSHAPE,
-						                                    IDI_VALUETYPE_CAPSHAPE,
-						                                    IDS_ET_CAPSHAPE,
-						                                    IDS_VALUENAME_CAPSHAPE>
+                              IDI_VALUETYPE_CAPSHAPE,
+                              IDS_ET_CAPSHAPE,
+                              IDS_VALUENAME_CAPSHAPE>
 {
 public:
   TCapShape(IPointSet& point_set, const QString& strName)
@@ -476,9 +476,9 @@ public:
  
 // Dilatation angle
 class TDilatation : public CMaterialComponentTemp<IDT_VALUETYPE_DILATATION,
-							                                    IDI_VALUETYPE_DILATATION,
-							                                    IDS_ET_DILATATION,
-							                                    IDS_VALUENAME_DILATATION>
+                                IDI_VALUETYPE_DILATATION,
+                                IDS_ET_DILATATION,
+                                IDS_VALUENAME_DILATATION>
 {
 public:
   TDilatation(IPointSet& point_set, const QString& strName)
@@ -491,9 +491,9 @@ public:
 
 // SHtot / Svtot
 class TLatRatioMax : public CMaterialComponentTemp<IDT_VALUETYPE_LATRATIO_MAX,
-							                                     IDI_VALUETYPE_LATRATIO_MAX,
-							                                     IDS_ET_LATRATIO_MAX,
-							                                     IDS_VALUENAME_LATRATIO_MAX>
+                                                   IDI_VALUETYPE_LATRATIO_MAX,
+                                                   IDS_ET_LATRATIO_MAX,
+                                                   IDS_VALUENAME_LATRATIO_MAX>
 {
 public:
   TLatRatioMax(IPointSet& point_set, const QString& strName)
@@ -506,9 +506,9 @@ public:
 
 // Shtot / Svtot
 class TLatRatioMin : public CMaterialComponentTemp<IDT_VALUETYPE_LATRATIO_MIN,
-							                                     IDI_VALUETYPE_LATRATIO_MIN,
-							                                     IDS_ET_LATRATIO_MIN,
-							                                     IDS_VALUENAME_LATRATIO_MIN>
+                                                   IDI_VALUETYPE_LATRATIO_MIN,
+                                                   IDS_ET_LATRATIO_MIN,
+                                                   IDS_VALUENAME_LATRATIO_MIN>
 {
 public:
   TLatRatioMin(IPointSet& point_set, const QString& strName)
@@ -521,9 +521,9 @@ public:
 
 // SHtot Azimuth
 class TAzimuth : public CMaterialComponentTemp<IDT_VALUETYPE_AZIMUTH,
-							                                 IDI_VALUETYPE_AZIMUTH,
-							                                 IDS_ET_AZIMUTH,
-							                                 IDS_VALUENAME_AZIMUTH>
+                                               IDI_VALUETYPE_AZIMUTH,
+                                               IDS_ET_AZIMUTH,
+                                               IDS_VALUENAME_AZIMUTH>
 {
 public:
   TAzimuth(IPointSet& point_set, const QString& strName)
@@ -536,9 +536,9 @@ public:
 
 // A1
 class TCreepA1 : public CMaterialComponentTemp<IDT_VALUETYPE_CREEP_A1,
-							                                 IDI_VALUETYPE_CREEP_A1,
-							                                 IDS_ET_CREEP_A1,
-							                                 IDS_VALUENAME_CREEP_A1>
+                                               IDI_VALUETYPE_CREEP_A1,
+                                               IDS_ET_CREEP_A1,
+                                               IDS_VALUENAME_CREEP_A1>
 {
 public:
   TCreepA1(IPointSet& point_set, const QString& strName)
@@ -551,9 +551,9 @@ public:
 
 // n1
 class TCreepN1 : public CMaterialComponentTemp<IDT_VALUETYPE_CREEP_N1,
-							                                 IDI_VALUETYPE_CREEP_N1,
-							                                 IDS_ET_CREEP_N1,
-							                                 IDS_VALUENAME_CREEP_N1>
+                                               IDI_VALUETYPE_CREEP_N1,
+                                               IDS_ET_CREEP_N1,
+                                               IDS_VALUENAME_CREEP_N1>
 {
 public:
   TCreepN1(IPointSet& point_set, const QString& strName)
@@ -566,9 +566,9 @@ public:
 
 // A2
 class TCreepA2 : public CMaterialComponentTemp<IDT_VALUETYPE_CREEP_A2,
-							                                 IDI_VALUETYPE_CREEP_A2,
-							                                 IDS_ET_CREEP_A2,
-							                                 IDS_VALUENAME_CREEP_A2>
+                                               IDI_VALUETYPE_CREEP_A2,
+                                               IDS_ET_CREEP_A2,
+                                               IDS_VALUENAME_CREEP_A2>
 {
 public:
   TCreepA2(IPointSet& point_set, const QString& strName)
@@ -581,9 +581,9 @@ public:
 
 // n2
 class TCreepN2 : public CMaterialComponentTemp<IDT_VALUETYPE_CREEP_N2,
-							                                 IDI_VALUETYPE_CREEP_N2, 
-							                                 IDS_ET_CREEP_N2, 
-							                                 IDS_VALUENAME_CREEP_N2>
+                                               IDI_VALUETYPE_CREEP_N2, 
+                                               IDS_ET_CREEP_N2, 
+                                               IDS_VALUENAME_CREEP_N2>
 {
 public:
   TCreepN2(IPointSet& point_set, const QString& strName)
@@ -595,9 +595,9 @@ public:
 };
 
 class TFluidBulkModulus : public CMaterialComponentTemp<IDT_VALUETYPE_FLUID_BULK_MOD,
-						                                            IDI_VALUETYPE_FLUID_BULK_MOD,
-						                                            IDS_ET_VALUETYPE_FLUID_SHEAR_MOD,
-						                                            IDS_VALUENAME_FLUID_BULK_MOD>
+                                  IDI_VALUETYPE_FLUID_BULK_MOD,
+                                  IDS_ET_VALUETYPE_FLUID_SHEAR_MOD,
+                                  IDS_VALUENAME_FLUID_BULK_MOD>
 {
 public:
   TFluidBulkModulus(IPointSet& point_set, const QString& strName)
@@ -611,9 +611,9 @@ public:
 
 // Cohesion hardening
 class THardCohesion1 : public CMaterialComponentTemp<IDT_VALUETYPE_HARD_COHESION1,
-							                                       IDI_VALUETYPE_HARD_COHESION1, 
-							                                       IDS_ET_HARD_COHESION1, 
-							                                       IDS_VALUENAME_HARD_COHESION1>
+                                                     IDI_VALUETYPE_HARD_COHESION1, 
+                                                     IDS_ET_HARD_COHESION1, 
+                                                     IDS_VALUENAME_HARD_COHESION1>
 {
 public:
   THardCohesion1(IPointSet& point_set, const QString& strName)
@@ -625,9 +625,9 @@ public:
 };
 
 class THardCohesion2 : public CMaterialComponentTemp<IDT_VALUETYPE_HARD_COHESION2,
-						                                         IDI_VALUETYPE_HARD_COHESION2, 
+                                                     IDI_VALUETYPE_HARD_COHESION2, 
   							                                     IDS_ET_HARD_COHESION2, 
-	  						                                     IDS_VALUENAME_HARD_COHESION2>
+    						                                     IDS_VALUENAME_HARD_COHESION2>
 {
 public:
   THardCohesion2(IPointSet& point_set, const QString& strName)
@@ -639,9 +639,9 @@ public:
 };
 
 class THardCohesion3 : public CMaterialComponentTemp<IDT_VALUETYPE_HARD_COHESION3,
-							                                       IDI_VALUETYPE_HARD_COHESION3, 
-							                                       IDS_ET_HARD_COHESION3,
-							                                       IDS_VALUENAME_HARD_COHESION3>
+                                                     IDI_VALUETYPE_HARD_COHESION3, 
+                                                     IDS_ET_HARD_COHESION3,
+                                                     IDS_VALUENAME_HARD_COHESION3>
 {
 public:
   THardCohesion3(IPointSet& point_set, const QString& strName)
@@ -654,9 +654,9 @@ public:
 
 // Friction Angle hardening
 class THardFriction1 : public CMaterialComponentTemp<IDT_VALUETYPE_HARD_FRICTION1,
-							                                       IDI_VALUETYPE_HARD_FRICTION1, 
-							                                       IDS_ET_HARD_FRICTION1, 
-							                                       IDS_VALUENAME_HARD_FRICTION1>
+                                                     IDI_VALUETYPE_HARD_FRICTION1, 
+                                                     IDS_ET_HARD_FRICTION1, 
+                                                     IDS_VALUENAME_HARD_FRICTION1>
 {
 public:
   THardFriction1(IPointSet& point_set, const QString& strName)
@@ -668,9 +668,9 @@ public:
 };
 
 class THardFriction2 : public CMaterialComponentTemp<IDT_VALUETYPE_HARD_FRICTION2,
-							                                       IDI_VALUETYPE_HARD_FRICTION2, 
-							                                       IDS_ET_HARD_FRICTION2,
-							                                       IDS_VALUENAME_HARD_FRICTION2>
+                                                     IDI_VALUETYPE_HARD_FRICTION2, 
+                                                     IDS_ET_HARD_FRICTION2,
+                                                     IDS_VALUENAME_HARD_FRICTION2>
 {
 public:
   THardFriction2(IPointSet& point_set, const QString& strName)
@@ -682,9 +682,9 @@ public:
 };
 
 class THardFriction3 : public CMaterialComponentTemp<IDT_VALUETYPE_HARD_FRICTION3,
-							                                       IDI_VALUETYPE_HARD_FRICTION3,
-							                                       IDS_ET_HARD_FRICTION3,
-							                                       IDS_VALUENAME_HARD_FRICTION3>
+                                                     IDI_VALUETYPE_HARD_FRICTION3,
+                                                     IDS_ET_HARD_FRICTION3,
+                                                     IDS_VALUENAME_HARD_FRICTION3>
 {
 public:
   THardFriction3(IPointSet& point_set, const QString& strName)
@@ -697,9 +697,9 @@ public:
 
 // Equivalent Plastic Strain
 class TEquivalentPlasticStrain1 : public CMaterialComponentTemp<IDT_VALUETYPE_EQUIV_PLAST_STRAIN1,
-						                                                    IDI_VALUETYPE_EQUIV_PLAST_STRAIN1,
-						                                                    IDS_ET_EQUIV_PLAST_STRAIN1,
-						                                                    IDS_VALUENAME_EQUIV_PLAST_STRAIN1>
+                                      IDI_VALUETYPE_EQUIV_PLAST_STRAIN1,
+                                      IDS_ET_EQUIV_PLAST_STRAIN1,
+                                      IDS_VALUENAME_EQUIV_PLAST_STRAIN1>
 {
 public:
   TEquivalentPlasticStrain1(IPointSet& point_set, const QString& strName)
@@ -711,9 +711,9 @@ public:
 };
 
 class TEquivalentPlasticStrain2 : public CMaterialComponentTemp<IDT_VALUETYPE_EQUIV_PLAST_STRAIN2,
-							                                                  IDI_VALUETYPE_EQUIV_PLAST_STRAIN2,
-							                                                  IDS_ET_EQUIV_PLAST_STRAIN2,
-							                                                  IDS_VALUENAME_EQUIV_PLAST_STRAIN2>
+                                                                IDI_VALUETYPE_EQUIV_PLAST_STRAIN2,
+                                                                IDS_ET_EQUIV_PLAST_STRAIN2,
+                                                                IDS_VALUENAME_EQUIV_PLAST_STRAIN2>
 {
 public:
   TEquivalentPlasticStrain2(IPointSet& point_set, const QString& strName)
@@ -725,9 +725,9 @@ public:
 };
 
 class TEquivalentPlasticStrain3 : public CMaterialComponentTemp<IDT_VALUETYPE_EQUIV_PLAST_STRAIN3,
-							                                                  IDI_VALUETYPE_EQUIV_PLAST_STRAIN3,
-							                                                  IDS_ET_EQUIV_PLAST_STRAIN3,
-							                                                  IDS_VALUENAME_EQUIV_PLAST_STRAIN3>
+                                                                IDI_VALUETYPE_EQUIV_PLAST_STRAIN3,
+                                                                IDS_ET_EQUIV_PLAST_STRAIN3,
+                                                                IDS_VALUENAME_EQUIV_PLAST_STRAIN3>
 {
 public:
   TEquivalentPlasticStrain3(IPointSet& point_set, const QString& strName)
@@ -740,9 +740,9 @@ public:
 
 // Q1/R
 class TCreepQR1 : public CMaterialComponentTemp<IDT_VALUETYPE_CREEP_QR1, 
-					                                      IDI_VALUETYPE_CREEP_QR1,
+                                                IDI_VALUETYPE_CREEP_QR1,
     							                              IDS_ET_CREEP_QR1,
-		    					                              IDS_VALUENAME_CREEP_QR1>
+        					                              IDS_VALUENAME_CREEP_QR1>
 {
 public:
   TCreepQR1(IPointSet& point_set, const QString& strName)
@@ -756,9 +756,9 @@ public:
 
 // Q2/R
 class TCreepQR2 : public CMaterialComponentTemp<IDT_VALUETYPE_CREEP_QR2, 
-					                                      IDI_VALUETYPE_CREEP_QR2,
-						                                    IDS_ET_CREEP_QR2,
-							                                  IDS_VALUENAME_CREEP_QR2>
+                                                IDI_VALUETYPE_CREEP_QR2,
+                              IDS_ET_CREEP_QR2,
+                                                IDS_VALUENAME_CREEP_QR2>
 {
 public:
   TCreepQR2(IPointSet& point_set, const QString& strName)
@@ -785,9 +785,9 @@ public:
 };
 
 class TTensileStretch : public CMaterialComponentTemp<IDT_VALUETYPE_TENSILE_STRETCH, 
-					                                            IDI_VALUETYPE_TENSILE_STRETCH,
-							                                        IDS_ET_TENSILE_STRETCH,
-							                                        IDS_VALUENAME_TENSILE_STRETCH>
+                                IDI_VALUETYPE_TENSILE_STRETCH,
+                                  IDS_ET_TENSILE_STRETCH,
+                                  IDS_VALUENAME_TENSILE_STRETCH>
 {
 public:
   TTensileStretch(IPointSet& point_set, const QString& strName)
@@ -799,9 +799,9 @@ public:
 };
 
 class TThermalExpansion : public CMaterialComponentTemp<IDT_VALUETYPE_THERMAL_EXPANSION,
-							                                          IDI_VALUETYPE_THERMAL_EXPANSION,
-							                                          IDS_ET_THERMAL_EXPANSION,
-							                                          IDS_VALUENAME_THERMAL_EXPANSION>
+                                                        IDI_VALUETYPE_THERMAL_EXPANSION,
+                                                        IDS_ET_THERMAL_EXPANSION,
+                                                        IDS_VALUENAME_THERMAL_EXPANSION>
 {
 public:
   TThermalExpansion(IPointSet& point_set, const QString& strName)
@@ -814,9 +814,9 @@ public:
 
 // Homogenization rigidity parameters
 class TRigidParam1 : public CMaterialComponentTemp<IDT_VALUETYPE_RIGI_PARAM1,
-							                                     IDI_VALUETYPE_RIGID_1,
-							                                     IDS_RIGI_PARAM1,
-							                                     IDS_RIGI_PARAM1>
+                                                   IDI_VALUETYPE_RIGID_1,
+                                                   IDS_RIGI_PARAM1,
+                                                   IDS_RIGI_PARAM1>
 {
 public:
   TRigidParam1(IPointSet& point_set, const QString& strName)
@@ -828,9 +828,9 @@ public:
 };
 
 class TRigidParam2 : public CMaterialComponentTemp<IDT_VALUETYPE_RIGI_PARAM2,
-							                                     IDI_VALUETYPE_RIGID_2,
-							                                     IDS_RIGI_PARAM2,
-							                                     IDS_RIGI_PARAM2>
+                                                   IDI_VALUETYPE_RIGID_2,
+                                                   IDS_RIGI_PARAM2,
+                                                   IDS_RIGI_PARAM2>
 {
 public:
   TRigidParam2(IPointSet& point_set, const QString& strName)
@@ -842,9 +842,9 @@ public:
 };
 
 class TRigidParam3 : public CMaterialComponentTemp<IDT_VALUETYPE_RIGI_PARAM3,
-							                                     IDI_VALUETYPE_RIGID_3,
-							                                     IDS_RIGI_PARAM3,
-							                                     IDS_RIGI_PARAM3>
+                                                   IDI_VALUETYPE_RIGID_3,
+                                                   IDS_RIGI_PARAM3,
+                                                   IDS_RIGI_PARAM3>
 {
 public:
   TRigidParam3(IPointSet& point_set, const QString& strName)
@@ -856,9 +856,9 @@ public:
 };
 
 class TRigidParam4 : public CMaterialComponentTemp<IDT_VALUETYPE_RIGI_PARAM4,
-							                                     IDI_VALUETYPE_RIGID_4,
-							                                     IDS_RIGI_PARAM4,
-							                                     IDS_RIGI_PARAM4>
+                                                   IDI_VALUETYPE_RIGID_4,
+                                                   IDS_RIGI_PARAM4,
+                                                   IDS_RIGI_PARAM4>
 {
 public:
   TRigidParam4(IPointSet& point_set, const QString& strName)
@@ -870,9 +870,9 @@ public:
 };
 
 class TRigidParam5 : public CMaterialComponentTemp<IDT_VALUETYPE_RIGI_PARAM5,
-							                                     IDI_VALUETYPE_RIGID_5,
-							                                     IDS_RIGI_PARAM5,
-							                                     IDS_RIGI_PARAM5>
+                                                   IDI_VALUETYPE_RIGID_5,
+                                                   IDS_RIGI_PARAM5,
+                                                   IDS_RIGI_PARAM5>
 {
 public:
   TRigidParam5(IPointSet& point_set, const QString& strName)
@@ -884,9 +884,9 @@ public:
 };
 
 class TRigidParam6 : public CMaterialComponentTemp<IDT_VALUETYPE_RIGI_PARAM6,
-							                                     IDI_VALUETYPE_RIGID_6,
-							                                     IDS_RIGI_PARAM6,
-							                                     IDS_RIGI_PARAM6>
+                                                   IDI_VALUETYPE_RIGID_6,
+                                                   IDS_RIGI_PARAM6,
+                                                   IDS_RIGI_PARAM6>
 {
 public:
   TRigidParam6(IPointSet& point_set, const QString& strName)
@@ -898,9 +898,9 @@ public:
 };
 
 class TRigidParam7 : public CMaterialComponentTemp<IDT_VALUETYPE_RIGI_PARAM7,
-							                                     IDI_VALUETYPE_RIGID_7,
-							                                     IDS_RIGI_PARAM7,
-							                                     IDS_RIGI_PARAM7>
+                                                   IDI_VALUETYPE_RIGID_7,
+                                                   IDS_RIGI_PARAM7,
+                                                   IDS_RIGI_PARAM7>
 {
 public:
   TRigidParam7(IPointSet& point_set, const QString& strName)
@@ -912,9 +912,9 @@ public:
 };
 
 class TRigidParam8 : public CMaterialComponentTemp<IDT_VALUETYPE_RIGI_PARAM8,
-							                                     IDI_VALUETYPE_RIGID_8,
-							                                     IDS_RIGI_PARAM8,
-							                                     IDS_RIGI_PARAM8>
+                                                   IDI_VALUETYPE_RIGID_8,
+                                                   IDS_RIGI_PARAM8,
+                                                   IDS_RIGI_PARAM8>
 {
 public:
   TRigidParam8(IPointSet& point_set, const QString& strName)
@@ -926,9 +926,9 @@ public:
 };
 
 class TRigidParam9 : public CMaterialComponentTemp<IDT_VALUETYPE_RIGI_PARAM9,
-							                                     IDI_VALUETYPE_RIGID_9,
-							                                     IDS_RIGI_PARAM9,
-							                                     IDS_RIGI_PARAM9>
+                                                   IDI_VALUETYPE_RIGID_9,
+                                                   IDS_RIGI_PARAM9,
+                                                   IDS_RIGI_PARAM9>
 {
 public:
   TRigidParam9(IPointSet& point_set, const QString& strName)
@@ -940,9 +940,9 @@ public:
 };
 
 class TRigidParam10 : public CMaterialComponentTemp<IDT_VALUETYPE_RIGI_PARAM10,
-							                                     IDI_VALUETYPE_RIGID_10,
-							                                     IDS_RIGI_PARAM10,
-							                                     IDS_RIGI_PARAM10>
+                                                   IDI_VALUETYPE_RIGID_10,
+                                                   IDS_RIGI_PARAM10,
+                                                   IDS_RIGI_PARAM10>
 {
 public:
   TRigidParam10(IPointSet& point_set, const QString& strName)
@@ -954,9 +954,9 @@ public:
 };
 
 class TRigidParam11 : public CMaterialComponentTemp<IDT_VALUETYPE_RIGI_PARAM11,
-							                                     IDI_VALUETYPE_RIGID_11,
-							                                     IDS_RIGI_PARAM11,
-							                                     IDS_RIGI_PARAM11>
+                                                   IDI_VALUETYPE_RIGID_11,
+                                                   IDS_RIGI_PARAM11,
+                                                   IDS_RIGI_PARAM11>
 {
 public:
   TRigidParam11(IPointSet& point_set, const QString& strName)
@@ -968,9 +968,9 @@ public:
 };
 
 class TRigidParam12 : public CMaterialComponentTemp<IDT_VALUETYPE_RIGI_PARAM12,
-							                                     IDI_VALUETYPE_RIGID_12,
-							                                     IDS_RIGI_PARAM12,
-							                                     IDS_RIGI_PARAM12>
+                                                   IDI_VALUETYPE_RIGID_12,
+                                                   IDS_RIGI_PARAM12,
+                                                   IDS_RIGI_PARAM12>
 {
 public:
   TRigidParam12(IPointSet& point_set, const QString& strName)
@@ -982,9 +982,9 @@ public:
 };
 
 class TRigidParam13 : public CMaterialComponentTemp<IDT_VALUETYPE_RIGI_PARAM13,
-							                                     IDI_VALUETYPE_RIGID_13,
-							                                     IDS_RIGI_PARAM13,
-							                                     IDS_RIGI_PARAM13>
+                                                   IDI_VALUETYPE_RIGID_13,
+                                                   IDS_RIGI_PARAM13,
+                                                   IDS_RIGI_PARAM13>
 {
 public:
   TRigidParam13(IPointSet& point_set, const QString& strName)
@@ -996,9 +996,9 @@ public:
 };
 
 class TRigidParam14 : public CMaterialComponentTemp<IDT_VALUETYPE_RIGI_PARAM14,
-							                                     IDI_VALUETYPE_RIGID_14,
-							                                     IDS_RIGI_PARAM14,
-							                                     IDS_RIGI_PARAM14>
+                                                   IDI_VALUETYPE_RIGID_14,
+                                                   IDS_RIGI_PARAM14,
+                                                   IDS_RIGI_PARAM14>
 {
 public:
   TRigidParam14(IPointSet& point_set, const QString& strName)
@@ -1010,9 +1010,9 @@ public:
 };
 
 class TRigidParam15 : public CMaterialComponentTemp<IDT_VALUETYPE_RIGI_PARAM15,
-							                                     IDI_VALUETYPE_RIGID_15,
-							                                     IDS_RIGI_PARAM15,
-							                                     IDS_RIGI_PARAM15>
+                                                   IDI_VALUETYPE_RIGID_15,
+                                                   IDS_RIGI_PARAM15,
+                                                   IDS_RIGI_PARAM15>
 {
 public:
   TRigidParam15(IPointSet& point_set, const QString& strName)
@@ -1024,9 +1024,9 @@ public:
 };
 
 class TRigidParam16 : public CMaterialComponentTemp<IDT_VALUETYPE_RIGI_PARAM16,
-							                                     IDI_VALUETYPE_RIGID_16,
-							                                     IDS_RIGI_PARAM16,
-							                                     IDS_RIGI_PARAM16>
+                                                   IDI_VALUETYPE_RIGID_16,
+                                                   IDS_RIGI_PARAM16,
+                                                   IDS_RIGI_PARAM16>
 {
 public:
   TRigidParam16(IPointSet& point_set, const QString& strName)
@@ -1038,9 +1038,9 @@ public:
 };
 
 class TRigidParam17 : public CMaterialComponentTemp<IDT_VALUETYPE_RIGI_PARAM17,
-							                                     IDI_VALUETYPE_RIGID_17,
-							                                     IDS_RIGI_PARAM17,
-							                                     IDS_RIGI_PARAM17>
+                                                   IDI_VALUETYPE_RIGID_17,
+                                                   IDS_RIGI_PARAM17,
+                                                   IDS_RIGI_PARAM17>
 {
 public:
   TRigidParam17(IPointSet& point_set, const QString& strName)
@@ -1052,9 +1052,9 @@ public:
 };
 
 class TRigidParam18 : public CMaterialComponentTemp<IDT_VALUETYPE_RIGI_PARAM18,
-							                                     IDI_VALUETYPE_RIGID_18,
-							                                     IDS_RIGI_PARAM18,
-							                                     IDS_RIGI_PARAM18>
+                                                   IDI_VALUETYPE_RIGID_18,
+                                                   IDS_RIGI_PARAM18,
+                                                   IDS_RIGI_PARAM18>
 {
 public:
   TRigidParam18(IPointSet& point_set, const QString& strName)
@@ -1066,9 +1066,9 @@ public:
 };
 
 class TRigidParam19 : public CMaterialComponentTemp<IDT_VALUETYPE_RIGI_PARAM19,
-							                                     IDI_VALUETYPE_RIGID_19,
-							                                     IDS_RIGI_PARAM19,
-							                                     IDS_RIGI_PARAM19>
+                                                   IDI_VALUETYPE_RIGID_19,
+                                                   IDS_RIGI_PARAM19,
+                                                   IDS_RIGI_PARAM19>
 {
 public:
   TRigidParam19(IPointSet& point_set, const QString& strName)
@@ -1080,9 +1080,9 @@ public:
 };
 
 class TRigidParam20 : public CMaterialComponentTemp<IDT_VALUETYPE_RIGI_PARAM20,
-							                                     IDI_VALUETYPE_RIGID_20,
-							                                     IDS_RIGI_PARAM20,
-							                                     IDS_RIGI_PARAM20>
+                                                   IDI_VALUETYPE_RIGID_20,
+                                                   IDS_RIGI_PARAM20,
+                                                   IDS_RIGI_PARAM20>
 {
 public:
   TRigidParam20(IPointSet& point_set, const QString& strName)
@@ -1094,9 +1094,9 @@ public:
 };
 
 class TRigidParam21 : public CMaterialComponentTemp<IDT_VALUETYPE_RIGI_PARAM21,
-							                                     IDI_VALUETYPE_RIGID_21,
-							                                     IDS_RIGI_PARAM21,
-							                                     IDS_RIGI_PARAM21>
+                                                   IDI_VALUETYPE_RIGID_21,
+                                                   IDS_RIGI_PARAM21,
+                                                   IDS_RIGI_PARAM21>
 {
 public:
   TRigidParam21(IPointSet& point_set, const QString& strName)
@@ -1108,13 +1108,13 @@ public:
 };
 
 class TElasticHardening : public CMaterialComponentTemp<IDT_VALUETYPE_ELASTIC_HARDENING,
-                                                        IDI_VALUETYPE_ELASTIC_HARDENING,
-                                                        IDS_ET_ELASTIC_HARDENING,
-                                                        IDS_VALUENAME_ELASTIC_HARDENING>
+                            IDI_VALUETYPE_ELASTIC_HARDENING,
+                            IDS_ET_ELASTIC_HARDENING,
+                            IDS_VALUENAME_ELASTIC_HARDENING>
 {
 public:
   TElasticHardening(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_ELASTIC_HARDENING, IDI_VALUETYPE_ELASTIC_HARDENING, IDS_ET_ELASTIC_HARDENING, IDS_VALUENAME_ELASTIC_HARDENING>(point_set, strName, Units::DimensionLessUnit, Ranges::CRangeType(true, 0, false, false, 0, false))
+  : CMaterialComponentTemp<IDT_VALUETYPE_ELASTIC_HARDENING, IDI_VALUETYPE_ELASTIC_HARDENING, IDS_ET_ELASTIC_HARDENING, IDS_VALUENAME_ELASTIC_HARDENING>(point_set, strName, Units::DimensionLessUnit, Ranges::CRangeType(true, 0, false, false, 0, false))
   {
   }
 
@@ -1128,7 +1128,7 @@ class TSecondaryPreconsolidation : public CMaterialComponentTemp<IDT_VALUETYPE_S
 {
 public:
   TSecondaryPreconsolidation(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_SEC_PRECON, IDI_VALUETYPE_SEC_PRECON, IDS_ET_SEC_PRECON, IDS_VALUENAME_SEC_PRECON>(point_set, strName, Units::StressUnit, Ranges::CRangeType(true, 0.0, false, false, 0.0, true))
+  : CMaterialComponentTemp<IDT_VALUETYPE_SEC_PRECON, IDI_VALUETYPE_SEC_PRECON, IDS_ET_SEC_PRECON, IDS_VALUENAME_SEC_PRECON>(point_set, strName, Units::StressUnit, Ranges::CRangeType(true, 0.0, false, false, 0.0, true))
   {
   }
 
@@ -1142,7 +1142,7 @@ class TSecondaryHardening : public CMaterialComponentTemp<IDT_VALUETYPE_SEC_HARD
 {
 public:
   TSecondaryHardening(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_SEC_HARDENING, IDI_VALUETYPE_SEC_HARDENING, IDS_ET_SEC_HARDENING, IDS_VALUENAME_SEC_HARDENING>(point_set, strName, Units::DimensionLessUnit, Ranges::CRangeType(true, 0.0, true, true, 1.0, true))
+  : CMaterialComponentTemp<IDT_VALUETYPE_SEC_HARDENING, IDI_VALUETYPE_SEC_HARDENING, IDS_ET_SEC_HARDENING, IDS_VALUENAME_SEC_HARDENING>(point_set, strName, Units::DimensionLessUnit, Ranges::CRangeType(true, 0.0, true, true, 1.0, true))
   {
   }
 
@@ -1156,7 +1156,7 @@ class TUniaxialElasticCompressibility : public CMaterialComponentTemp<IDT_VALUET
 {
 public:
   TUniaxialElasticCompressibility(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_ELASCOMPRES, IDI_VALUETYPE_ELASCOMPRES, IDS_ET_ELASCOMPRES, IDS_VALUENAME_ELASCOMPRES>(point_set, strName, Units::PerStressUnit, Ranges::CRangeType(true, 0, false, false, 0, false))
+  : CMaterialComponentTemp<IDT_VALUETYPE_ELASCOMPRES, IDI_VALUETYPE_ELASCOMPRES, IDS_ET_ELASCOMPRES, IDS_VALUENAME_ELASCOMPRES>(point_set, strName, Units::PerStressUnit, Ranges::CRangeType(true, 0, false, false, 0, false))
   {
   }
 
@@ -1170,7 +1170,7 @@ class TUniaxialPlasticCompressibility : public CMaterialComponentTemp<IDT_VALUET
 {
 public:
   TUniaxialPlasticCompressibility(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_PLASCOMPRES, IDI_VALUETYPE_PLASCOMPRES, IDS_ET_PLASCOMPRES, IDS_VALUENAME_PLASCOMPRES>(point_set, strName, Units::PerStressUnit, Ranges::CRangeType(true, 0, false, false, 0, false))
+  : CMaterialComponentTemp<IDT_VALUETYPE_PLASCOMPRES, IDI_VALUETYPE_PLASCOMPRES, IDS_ET_PLASCOMPRES, IDS_VALUENAME_PLASCOMPRES>(point_set, strName, Units::PerStressUnit, Ranges::CRangeType(true, 0, false, false, 0, false))
   {
   }
 
@@ -1184,7 +1184,7 @@ class TYoungModulusNormal : public CMaterialComponentTemp<IDT_VALUETYPE_YOUNGMOD
 {
 public:
   TYoungModulusNormal(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_YOUNGMODULUS_NORM,
+  : CMaterialComponentTemp<IDT_VALUETYPE_YOUNGMODULUS_NORM,
                              IDI_VALUETYPE_YOUNGMODULUS_NORM,
                              IDS_ET_YOUNGMODULUS_NORM,
                              IDS_VALUENAME_YOUNGMODULUS_NORM>
@@ -1202,7 +1202,7 @@ class TYoungModulusTransverse : public CMaterialComponentTemp<IDT_VALUETYPE_YOUN
 {
 public:
   TYoungModulusTransverse(IPointSet& point_set, const QString& strName) 
-    : CMaterialComponentTemp<IDT_VALUETYPE_YOUNGMODULUS_TRANS,
+  : CMaterialComponentTemp<IDT_VALUETYPE_YOUNGMODULUS_TRANS,
                              IDI_VALUETYPE_YOUNGMODULUS_TRANS,
                              IDS_ET_YOUNGMODULUS_TRANS,
                              IDS_VALUENAME_YOUNGMODULUS_TRANS>
@@ -1220,7 +1220,7 @@ class TPoissonRatioNormal : public CMaterialComponentTemp<IDT_VALUETYPE_POISSONR
 {
 public:
   TPoissonRatioNormal(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_POISSONRATIO_NORM,
+  : CMaterialComponentTemp<IDT_VALUETYPE_POISSONRATIO_NORM,
                              IDI_VALUETYPE_POISSONRATIO_NORM,
                              IDS_ET_POISSONRATIO_NORM,
                              IDS_VALUENAME_POISSONRATIO_NORM>
@@ -1238,7 +1238,7 @@ class TPoissonRatioTransverse : public CMaterialComponentTemp<IDT_VALUETYPE_POIS
 {
 public:
   TPoissonRatioTransverse(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_POISSONRATIO_TRANS,
+  : CMaterialComponentTemp<IDT_VALUETYPE_POISSONRATIO_TRANS,
                              IDI_VALUETYPE_POISSONRATIO_TRANS,
                              IDS_ET_POISSONRATIO_TRANS,
                              IDS_VALUENAME_POISSONRATIO_TRANS>
@@ -1250,17 +1250,17 @@ public:
 };
 
 class TLayerNormalIncl : public CMaterialComponentTemp<IDT_VALUETYPE_LAYER_NORMAL_INCL,
-                                                        IDI_VALUETYPE_LAYER_NORMAL_INCL,
-                                                        IDS_ET_LAYER_NORMAL_INCL,
-                                                        IDS_VALUENAME_LAYER_NORMAL_INCL>
-{
-public:
-  TLayerNormalIncl(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_LAYER_NORMAL_INCL,
                             IDI_VALUETYPE_LAYER_NORMAL_INCL,
                             IDS_ET_LAYER_NORMAL_INCL,
                             IDS_VALUENAME_LAYER_NORMAL_INCL>
-                            (point_set, strName, Units::AngleUnit, Ranges::CRangeType(true, 0.0, true, true, 90.0, true))
+{
+public:
+  TLayerNormalIncl(IPointSet& point_set, const QString& strName)
+  : CMaterialComponentTemp<IDT_VALUETYPE_LAYER_NORMAL_INCL,
+              IDI_VALUETYPE_LAYER_NORMAL_INCL,
+              IDS_ET_LAYER_NORMAL_INCL,
+              IDS_VALUENAME_LAYER_NORMAL_INCL>
+              (point_set, strName, Units::AngleUnit, Ranges::CRangeType(true, 0.0, true, true, 90.0, true))
   {
   }
 
@@ -1268,17 +1268,17 @@ public:
 };
 
 class TLayerNormalAzi : public CMaterialComponentTemp<IDT_VALUETYPE_LAYER_NORMAL_AZI,
-                                                        IDI_VALUETYPE_LAYER_NORMAL_AZI,
-                                                        IDS_ET_LAYER_NORMAL_AZI,
-                                                        IDS_VALUENAME_LAYER_NORMAL_AZI>
-{
-public:
-  TLayerNormalAzi(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_LAYER_NORMAL_AZI,
                             IDI_VALUETYPE_LAYER_NORMAL_AZI,
                             IDS_ET_LAYER_NORMAL_AZI,
                             IDS_VALUENAME_LAYER_NORMAL_AZI>
-                            (point_set, strName, Units::AngleUnit, Ranges::CRangeType(true, 0.0, true, true, 360.0, false))
+{
+public:
+  TLayerNormalAzi(IPointSet& point_set, const QString& strName)
+  : CMaterialComponentTemp<IDT_VALUETYPE_LAYER_NORMAL_AZI,
+              IDI_VALUETYPE_LAYER_NORMAL_AZI,
+              IDS_ET_LAYER_NORMAL_AZI,
+              IDS_VALUENAME_LAYER_NORMAL_AZI>
+              (point_set, strName, Units::AngleUnit, Ranges::CRangeType(true, 0.0, true, true, 360.0, false))
   {
   }
 
@@ -1286,13 +1286,13 @@ public:
 };
 
 class TFractStiffNormal : public CMaterialComponentTemp<IDT_VALUETYPE_FRACT_STIFF_NORMAL,
-                                                        IDI_VALUETYPE_FRACT_STIFF_NORMAL,
-                                                        IDS_ET_FRACT_STIFF_NORMAL,
-                                                        IDS_VALUENAME_FRACT_STIFF_NORMAL>
+                            IDI_VALUETYPE_FRACT_STIFF_NORMAL,
+                            IDS_ET_FRACT_STIFF_NORMAL,
+                            IDS_VALUENAME_FRACT_STIFF_NORMAL>
 {
 public:
   TFractStiffNormal(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_FRACT_STIFF_NORMAL,
+  : CMaterialComponentTemp<IDT_VALUETYPE_FRACT_STIFF_NORMAL,
                               IDI_VALUETYPE_FRACT_STIFF_NORMAL,
                               IDS_ET_FRACT_STIFF_NORMAL,
                               IDS_VALUENAME_FRACT_STIFF_NORMAL>
@@ -1304,13 +1304,13 @@ public:
 };
 
 class TFractStiffShear : public CMaterialComponentTemp<IDT_VALUETYPE_FRACT_STIFF_SHEAR,
-                                                        IDI_VALUETYPE_FRACT_STIFF_SHEAR,
-                                                        IDS_ET_FRACT_STIFF_SHEAR,
-                                                        IDS_VALUENAME_FRACT_STIFF_SHEAR>
+                            IDI_VALUETYPE_FRACT_STIFF_SHEAR,
+                            IDS_ET_FRACT_STIFF_SHEAR,
+                            IDS_VALUENAME_FRACT_STIFF_SHEAR>
 {
 public:
   TFractStiffShear(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_FRACT_STIFF_SHEAR,
+  : CMaterialComponentTemp<IDT_VALUETYPE_FRACT_STIFF_SHEAR,
                               IDI_VALUETYPE_FRACT_STIFF_SHEAR,
                               IDS_ET_FRACT_STIFF_SHEAR,
                               IDS_VALUENAME_FRACT_STIFF_SHEAR>
@@ -1322,17 +1322,17 @@ public:
 };
 
 class TThermLinExpNormal : public CMaterialComponentTemp<IDT_VALUETYPE_THERM_LIN_EXP_NORM,
-                                                        IDI_VALUETYPE_THERM_LIN_EXP_NORM,
-                                                        IDS_ET_THERM_LIN_EXP_NORM,
-                                                        IDS_VALUENAME_THERM_LIN_EXP_NORM>
-{
-public:
-  TThermLinExpNormal(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_THERM_LIN_EXP_NORM,
                             IDI_VALUETYPE_THERM_LIN_EXP_NORM,
                             IDS_ET_THERM_LIN_EXP_NORM,
                             IDS_VALUENAME_THERM_LIN_EXP_NORM>
-                            (point_set, strName, Units::PerTemperUnit, Ranges::CRangeType(true, 0.0, true, true, 1E-3, true))
+{
+public:
+  TThermLinExpNormal(IPointSet& point_set, const QString& strName)
+  : CMaterialComponentTemp<IDT_VALUETYPE_THERM_LIN_EXP_NORM,
+              IDI_VALUETYPE_THERM_LIN_EXP_NORM,
+              IDS_ET_THERM_LIN_EXP_NORM,
+              IDS_VALUENAME_THERM_LIN_EXP_NORM>
+              (point_set, strName, Units::PerTemperUnit, Ranges::CRangeType(true, 0.0, true, true, 1E-3, true))
   {
   }
 
@@ -1340,17 +1340,17 @@ public:
 };
 
 class TThermLinExpLateral : public CMaterialComponentTemp<IDT_VALUETYPE_THERM_LIN_EXP_LAT,
-                                                        IDI_VALUETYPE_THERM_LIN_EXP_LAT,
-                                                        IDS_ET_THERM_LIN_EXP_LAT,
-                                                        IDS_VALUENAME_THERM_LIN_EXP_LAT>
-{
-public:
-  TThermLinExpLateral(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_THERM_LIN_EXP_LAT,
                             IDI_VALUETYPE_THERM_LIN_EXP_LAT,
                             IDS_ET_THERM_LIN_EXP_LAT,
                             IDS_VALUENAME_THERM_LIN_EXP_LAT>
-                            (point_set, strName, Units::PerTemperUnit, Ranges::CRangeType(true, 0.0, true, true, 1E-3, true))
+{
+public:
+  TThermLinExpLateral(IPointSet& point_set, const QString& strName)
+  : CMaterialComponentTemp<IDT_VALUETYPE_THERM_LIN_EXP_LAT,
+              IDI_VALUETYPE_THERM_LIN_EXP_LAT,
+              IDS_ET_THERM_LIN_EXP_LAT,
+              IDS_VALUENAME_THERM_LIN_EXP_LAT>
+              (point_set, strName, Units::PerTemperUnit, Ranges::CRangeType(true, 0.0, true, true, 1E-3, true))
   {
   }
 
@@ -1358,17 +1358,17 @@ public:
 };
 
 class TThermalConductivity : public CMaterialComponentTemp<IDT_VALUETYPE_THERM_CONDUCT,
-                                                        IDI_VALUETYPE_THERM_CONDUCT,
-                                                        IDS_ET_THERM_CONDUCT,
-                                                        IDS_VALUENAME_THERM_CONDUCT>
-{
-public:
-  TThermalConductivity(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_THERM_CONDUCT,
                             IDI_VALUETYPE_THERM_CONDUCT,
                             IDS_ET_THERM_CONDUCT,
                             IDS_VALUENAME_THERM_CONDUCT>
-                            (point_set, strName, Units::ThermalConductUnit, Ranges::CRangeType(true, 0.0, true, false, 0.0, false))
+{
+public:
+  TThermalConductivity(IPointSet& point_set, const QString& strName)
+  : CMaterialComponentTemp<IDT_VALUETYPE_THERM_CONDUCT,
+              IDI_VALUETYPE_THERM_CONDUCT,
+              IDS_ET_THERM_CONDUCT,
+              IDS_VALUENAME_THERM_CONDUCT>
+              (point_set, strName, Units::ThermalConductUnit, Ranges::CRangeType(true, 0.0, true, false, 0.0, false))
   {
   }
 
@@ -1376,17 +1376,17 @@ public:
 };
 
 class TThermalCapacity : public CMaterialComponentTemp<IDT_VALUETYPE_THERM_CAPACI,
-                                                        IDI_VALUETYPE_THERM_CAPACI,
-                                                        IDS_ET_THERM_CAPACI,
-                                                        IDS_VALUENAME_THERM_CAPACI>
-{
-public:
-  TThermalCapacity(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_THERM_CAPACI,
                             IDI_VALUETYPE_THERM_CAPACI,
                             IDS_ET_THERM_CAPACI,
                             IDS_VALUENAME_THERM_CAPACI>
-                            (point_set, strName, Units::ThermalCapaciUnit, Ranges::CRangeType(true, 0.0, true, false, 0.0, false))
+{
+public:
+  TThermalCapacity(IPointSet& point_set, const QString& strName)
+  : CMaterialComponentTemp<IDT_VALUETYPE_THERM_CAPACI,
+              IDI_VALUETYPE_THERM_CAPACI,
+              IDS_ET_THERM_CAPACI,
+              IDS_VALUENAME_THERM_CAPACI>
+              (point_set, strName, Units::ThermalCapaciUnit, Ranges::CRangeType(true, 0.0, true, false, 0.0, false))
   {
   }
 
@@ -1400,11 +1400,11 @@ class THighFractDens : public CMaterialComponentTemp<IDT_VALUETYPE_HIGH_FRACT_DE
 {
 public:
   THighFractDens(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_HIGH_FRACT_DENS,
-                            IDI_VALUETYPE_HIGH_FRACT_DENS,
-                            IDS_ET_HIGH_FRACT_DENS,
-                            IDS_VALUENAME_HIGH_FRACT_DENS>
-                            (point_set, strName, Units::PerLengthUnit, Ranges::CRangeType(true, 0.0, true, false, 0.0, false))
+  : CMaterialComponentTemp<IDT_VALUETYPE_HIGH_FRACT_DENS,
+              IDI_VALUETYPE_HIGH_FRACT_DENS,
+              IDS_ET_HIGH_FRACT_DENS,
+              IDS_VALUENAME_HIGH_FRACT_DENS>
+              (point_set, strName, Units::PerLengthUnit, Ranges::CRangeType(true, 0.0, true, false, 0.0, false))
   {
   }
 
@@ -1418,11 +1418,11 @@ class THighFractDensIncl : public CMaterialComponentTemp<IDT_VALUETYPE_HIGH_FRAC
 {
 public:
   THighFractDensIncl(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_HIGH_FRACT_DENS_INCL,
-                            IDI_VALUETYPE_HIGH_FRACT_DENS_INCL,
-                            IDS_ET_HIGH_FRACT_DENS_INCL,
-                            IDS_VALUENAME_HIGH_FRACT_DENS_INCL>
-                            (point_set, strName, Units::AngleUnit, Ranges::CRangeType(true, 0.0, true, true, 90.0, true))
+  : CMaterialComponentTemp<IDT_VALUETYPE_HIGH_FRACT_DENS_INCL,
+              IDI_VALUETYPE_HIGH_FRACT_DENS_INCL,
+              IDS_ET_HIGH_FRACT_DENS_INCL,
+              IDS_VALUENAME_HIGH_FRACT_DENS_INCL>
+              (point_set, strName, Units::AngleUnit, Ranges::CRangeType(true, 0.0, true, true, 90.0, true))
   {
   }
 
@@ -1436,11 +1436,11 @@ class THighFractDensAzi : public CMaterialComponentTemp<IDT_VALUETYPE_HIGH_FRACT
 {
 public:
   THighFractDensAzi(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_HIGH_FRACT_DENS_AZI,
-                            IDI_VALUETYPE_HIGH_FRACT_DENS_AZI,
-                            IDS_ET_HIGH_FRACT_DENS_AZI,
-                            IDS_VALUENAME_HIGH_FRACT_DENS_AZI>
-                            (point_set, strName, Units::AngleUnit, Ranges::CRangeType(true, 0.0, true, true, 360.0, false))
+  : CMaterialComponentTemp<IDT_VALUETYPE_HIGH_FRACT_DENS_AZI,
+              IDI_VALUETYPE_HIGH_FRACT_DENS_AZI,
+              IDS_ET_HIGH_FRACT_DENS_AZI,
+              IDS_VALUENAME_HIGH_FRACT_DENS_AZI>
+              (point_set, strName, Units::AngleUnit, Ranges::CRangeType(true, 0.0, true, true, 360.0, false))
   {
   }
 
@@ -1454,11 +1454,11 @@ class TLowFractDens : public CMaterialComponentTemp<IDT_VALUETYPE_LOW_FRACT_DENS
 {
 public:
   TLowFractDens(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_LOW_FRACT_DENS,
-                            IDI_VALUETYPE_LOW_FRACT_DENS,
-                            IDS_ET_LOW_FRACT_DENS,
-                            IDS_VALUENAME_LOW_FRACT_DENS>
-                            (point_set, strName, Units::PerLengthUnit, Ranges::CRangeType(true, 0.0, true, false, 0.0, false))
+  : CMaterialComponentTemp<IDT_VALUETYPE_LOW_FRACT_DENS,
+              IDI_VALUETYPE_LOW_FRACT_DENS,
+              IDS_ET_LOW_FRACT_DENS,
+              IDS_VALUENAME_LOW_FRACT_DENS>
+              (point_set, strName, Units::PerLengthUnit, Ranges::CRangeType(true, 0.0, true, false, 0.0, false))
   {
   }
 
@@ -1472,11 +1472,11 @@ class TLowFractDensIncl : public CMaterialComponentTemp<IDT_VALUETYPE_LOW_FRACT_
 {
 public:
   TLowFractDensIncl(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_LOW_FRACT_DENS_INCL,
-                            IDI_VALUETYPE_LOW_FRACT_DENS_INCL,
-                            IDS_ET_LOW_FRACT_DENS_INCL,
-                            IDS_VALUENAME_LOW_FRACT_DENS_INCL>
-                            (point_set, strName, Units::AngleUnit, Ranges::CRangeType(true, 0.0, true, true, 90.0, true))
+  : CMaterialComponentTemp<IDT_VALUETYPE_LOW_FRACT_DENS_INCL,
+              IDI_VALUETYPE_LOW_FRACT_DENS_INCL,
+              IDS_ET_LOW_FRACT_DENS_INCL,
+              IDS_VALUENAME_LOW_FRACT_DENS_INCL>
+              (point_set, strName, Units::AngleUnit, Ranges::CRangeType(true, 0.0, true, true, 90.0, true))
   {
   }
 
@@ -1490,11 +1490,11 @@ class TLowFractDensAzi : public CMaterialComponentTemp<IDT_VALUETYPE_LOW_FRACT_D
 {
 public:
   TLowFractDensAzi(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_LOW_FRACT_DENS_AZI,
-                            IDI_VALUETYPE_LOW_FRACT_DENS_AZI,
-                            IDS_ET_LOW_FRACT_DENS_AZI,
-                            IDS_VALUENAME_LOW_FRACT_DENS_AZI>
-                            (point_set, strName, Units::AngleUnit, Ranges::CRangeType(true, 0.0, true, true, 360.0, false))
+  : CMaterialComponentTemp<IDT_VALUETYPE_LOW_FRACT_DENS_AZI,
+              IDI_VALUETYPE_LOW_FRACT_DENS_AZI,
+              IDS_ET_LOW_FRACT_DENS_AZI,
+              IDS_VALUENAME_LOW_FRACT_DENS_AZI>
+              (point_set, strName, Units::AngleUnit, Ranges::CRangeType(true, 0.0, true, true, 360.0, false))
   {
   }
 
@@ -1508,11 +1508,11 @@ class TInterFractDens : public CMaterialComponentTemp<IDT_VALUETYPE_INTER_FRACT_
 {
 public:
   TInterFractDens(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_INTER_FRACT_DENS,
-                            IDI_VALUETYPE_INT_FRACT_DENS,
-                            IDS_ET_INTER_FRACT_DENS,
-                            IDS_VALUENAME_INTER_FRACT_DENS>
-                            (point_set, strName, Units::PerLengthUnit, Ranges::CRangeType(true, 0.0, true, false, 0.0, false))
+  : CMaterialComponentTemp<IDT_VALUETYPE_INTER_FRACT_DENS,
+              IDI_VALUETYPE_INT_FRACT_DENS,
+              IDS_ET_INTER_FRACT_DENS,
+              IDS_VALUENAME_INTER_FRACT_DENS>
+              (point_set, strName, Units::PerLengthUnit, Ranges::CRangeType(true, 0.0, true, false, 0.0, false))
   {
   }
 
@@ -1520,17 +1520,17 @@ public:
 };
 
 class TPermeability : public CMaterialComponentTemp<IDT_VALUETYPE_PERMEA,
-                                                    IDI_VALUETYPE_PERMEA,
-                                                    IDS_ET_PERMEA,
-                                                    IDS_VALUENAME_PERMEA>
+                          IDI_VALUETYPE_PERMEA,
+                          IDS_ET_PERMEA,
+                          IDS_VALUENAME_PERMEA>
 {
 public:
   TPermeability(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_PERMEA,
-                            IDI_VALUETYPE_PERMEA,
-                            IDS_ET_PERMEA,
-                            IDS_VALUENAME_PERMEA>
-                            (point_set, strName, Units::PermeaUnit, Ranges::CRangeType(true, 0.0, true, false, 0.0, false))
+  : CMaterialComponentTemp<IDT_VALUETYPE_PERMEA,
+              IDI_VALUETYPE_PERMEA,
+              IDS_ET_PERMEA,
+              IDS_VALUENAME_PERMEA>
+              (point_set, strName, Units::PermeaUnit, Ranges::CRangeType(true, 0.0, true, false, 0.0, false))
   {
   }
 
@@ -1544,7 +1544,7 @@ class TViscosity : public CMaterialComponentTemp<IDT_VALUETYPE_VISCOSITY,
 {
 public:
   TViscosity(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_VISCOSITY,
+  : CMaterialComponentTemp<IDT_VALUETYPE_VISCOSITY,
                              IDI_VALUETYPE_VISCOSITY,
                              IDS_ET_VISCOSITY,
                              IDS_VALUENAME_VISCOSITY>
@@ -1556,13 +1556,13 @@ public:
 };
 
 class TYoungsModulusDecompaction : public CMaterialComponentTemp<IDT_VALUETYPE_YOUNG_DECOMP,
-                                                                IDI_VALUETYPE_YOUNG_DECOMP,
-                                                                IDS_ET_YOUNG_DECOMP,
-                                                                IDS_VALUENAME_YOUNG_DECOMP>
+                                IDI_VALUETYPE_YOUNG_DECOMP,
+                                IDS_ET_YOUNG_DECOMP,
+                                IDS_VALUENAME_YOUNG_DECOMP>
 {
 public:
   TYoungsModulusDecompaction(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_YOUNG_DECOMP,
+  : CMaterialComponentTemp<IDT_VALUETYPE_YOUNG_DECOMP,
                              IDI_VALUETYPE_YOUNG_DECOMP,
                              IDS_ET_YOUNG_DECOMP,
                              IDS_VALUENAME_YOUNG_DECOMP>
@@ -1574,13 +1574,13 @@ public:
 };
 
 class TPoissonsRatioDecompaction : public CMaterialComponentTemp<IDT_VALUETYPE_POISSON_DECOMP,
-                                                                IDI_VALUETYPE_POISSON_DECOMP,
-                                                                IDS_ET_POISSON_DECOMP,
-                                                                IDS_VALUENAME_POISSON_DECOMP>
+                                IDI_VALUETYPE_POISSON_DECOMP,
+                                IDS_ET_POISSON_DECOMP,
+                                IDS_VALUENAME_POISSON_DECOMP>
 {
 public:
   TPoissonsRatioDecompaction(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_POISSON_DECOMP,
+  : CMaterialComponentTemp<IDT_VALUETYPE_POISSON_DECOMP,
                              IDI_VALUETYPE_POISSON_DECOMP,
                              IDS_ET_POISSON_DECOMP,
                              IDS_VALUENAME_POISSON_DECOMP>
@@ -1593,9 +1593,9 @@ public:
 
 
 class TFluidThermalExpansionCoefficient : public CMaterialComponentTemp<IDT_VALUETYPE_FLUIDX,
-						                                            IDI_VALUETYPE_CAPSHAPE, // both use the alpha symbol
-						                                            IDS_ET_VALUETYPE_FLUIDX,
-						                                            IDS_VALUENAME_FLUIDX>
+                                  IDI_VALUETYPE_CAPSHAPE, // both use the alpha symbol
+                                  IDS_ET_VALUETYPE_FLUIDX,
+                                  IDS_VALUENAME_FLUIDX>
 {
 public:
   TFluidThermalExpansionCoefficient(IPointSet& point_set, const QString& strName)
@@ -1611,9 +1611,9 @@ public:
 };
 
 class TFluidDensity : public CMaterialComponentTemp<IDT_VALUETYPE_FLUID_DENSITY,
-                                                    IDI_VALUETYPE_FLUID_DENSITY, // both use the rho symbol
-                                                    IDS_ET_VALUETYPE_FLUID_DENSITY,
-                                                    IDS_VALUENAME_FLUID_DENSITY>
+                          IDI_VALUETYPE_FLUID_DENSITY, // both use the rho symbol
+                          IDS_ET_VALUETYPE_FLUID_DENSITY,
+                          IDS_VALUENAME_FLUID_DENSITY>
 {
 public:
   TFluidDensity(IPointSet& point_set, const QString& strName)
@@ -1720,9 +1720,9 @@ public:
 };
 
 class TPoissonRatioNormalDecomp : public CMaterialComponentTemp<IDT_VALUETYPE_POISSONRATIO_NORM_DECOMP,
-                                                                IDI_VALUETYPE_POISSONRATIO_NORM_DECOMP,
-                                                                IDS_ET_VALUETYPE_POISSONRATIO_NORM_DECOMP,
-                                                                IDS_VALUENAME_POISSONRATIO_NORM_DECOMP>
+                                IDI_VALUETYPE_POISSONRATIO_NORM_DECOMP,
+                                IDS_ET_VALUETYPE_POISSONRATIO_NORM_DECOMP,
+                                IDS_VALUENAME_POISSONRATIO_NORM_DECOMP>
 {
 public:
   TPoissonRatioNormalDecomp(IPointSet& point_set, const QString& strName)
@@ -1810,9 +1810,9 @@ public:
 };
 
 class TThomsenGamma : public CMaterialComponentTemp<IDT_VALUETYPE_THOMSEN_GAMMA,
-                                                    IDI_VALUETYPE_THOMSEN_GAMMA,
-                                                    IDS_ET_VALUETYPE_THOMSEN_GAMMA,
-                                                    IDS_VALUENAME_THOMSEN_GAMMA>
+                          IDI_VALUETYPE_THOMSEN_GAMMA,
+                          IDS_ET_VALUETYPE_THOMSEN_GAMMA,
+                          IDS_VALUENAME_THOMSEN_GAMMA>
 {
 public:
   TThomsenGamma(IPointSet& point_set, const QString& strName)
@@ -1864,9 +1864,9 @@ public:
 };
 
 class TInitialFractureApertureInter : public CMaterialComponentTemp<IDT_VALUETYPE_V0_ME,
-                                                                    IDI_VALUETYPE_V0_ME,
-                                                                    IDS_ET_VALUETYPE_V0_ME,
-                                                                    IDS_VALUENAME_V0_ME>
+                                  IDI_VALUETYPE_V0_ME,
+                                  IDS_ET_VALUETYPE_V0_ME,
+                                  IDS_VALUENAME_V0_ME>
 {
 public:
   TInitialFractureApertureInter(IPointSet& point_set, const QString& strName)
@@ -1918,9 +1918,9 @@ public:
 };
 
 class TDynamicUniaxialStiffness : public CMaterialComponentTemp<IDT_VALUETYPE_DYNUNISTIFFNESS,
-                                                                IDI_VALUETYPE_DYNUNISTIFFNESS,
-                                                                IDS_ET_DYNUNISTIFFNESS,
-                                                                IDS_VALUENAME_DYNUNISTIFFNESS>
+                                IDI_VALUETYPE_DYNUNISTIFFNESS,
+                                IDS_ET_DYNUNISTIFFNESS,
+                                IDS_VALUENAME_DYNUNISTIFFNESS>
 {
 public:
   TDynamicUniaxialStiffness(IPointSet& point_set, const QString& strName)
@@ -1961,7 +1961,7 @@ class TNormalStress : public CSingleComponentTemp<IDT_VALUETYPE_NRMSTRESS,
 {
 public:
   TNormalStress(IPointSet& point_set, const QString& strName)
-    : CSingleComponentTemp<IDT_VALUETYPE_NRMSTRESS, IDI_VALUETYPE_NRMSTRESS, IDS_ET_NRMSTRESS, IDS_VALUENAME_NRMSTRESS>(point_set, strName, Units::StressUnit, Ranges::NoRange)
+  : CSingleComponentTemp<IDT_VALUETYPE_NRMSTRESS, IDI_VALUETYPE_NRMSTRESS, IDS_ET_NRMSTRESS, IDS_VALUENAME_NRMSTRESS>(point_set, strName, Units::StressUnit, Ranges::NoRange)
   {
   }
 
@@ -1975,7 +1975,7 @@ class TMeanStress : public CSingleComponentTemp<IDT_VALUETYPE_MEANSTRESS,
 {
 public:
   TMeanStress(IPointSet& point_set, const QString& strName)
-    : CSingleComponentTemp<IDT_VALUETYPE_MEANSTRESS, IDI_VALUETYPE_MEANSTRESS, IDS_ET_MEANSTRESS, IDS_VALUENAME_MEANSTRESS>(point_set, strName, Units::StressUnit, Ranges::NoRange)
+  : CSingleComponentTemp<IDT_VALUETYPE_MEANSTRESS, IDI_VALUETYPE_MEANSTRESS, IDS_ET_MEANSTRESS, IDS_VALUENAME_MEANSTRESS>(point_set, strName, Units::StressUnit, Ranges::NoRange)
   {
   }
 
@@ -1989,7 +1989,7 @@ class TTimeStrain : public CSingleComponentTemp<IDT_VALUETYPE_TIMESTRAIN,
 {
 public:
   TTimeStrain(IPointSet& point_set, const QString& strName)
-    : CSingleComponentTemp<IDT_VALUETYPE_TIMESTRAIN, IDI_VALUETYPE_TIMESTRAIN, IDS_ET_TIMESTRAIN, IDS_VALUENAME_TIMESTRAIN>(point_set, strName, Units::DimensionLessUnit, Ranges::NoRange)
+  : CSingleComponentTemp<IDT_VALUETYPE_TIMESTRAIN, IDI_VALUETYPE_TIMESTRAIN, IDS_ET_TIMESTRAIN, IDS_VALUENAME_TIMESTRAIN>(point_set, strName, Units::DimensionLessUnit, Ranges::NoRange)
   {
   }
 
@@ -2003,7 +2003,7 @@ class TDeltaV : public CSingleComponentTemp<IDT_VALUETYPE_DELTAV,
 {
 public:
   TDeltaV(IPointSet& point_set, const QString& strName)
-    : CSingleComponentTemp<IDT_VALUETYPE_DELTAV, IDI_VALUETYPE_DELTAV, IDS_ET_DELTAV, IDS_VALUENAME_DELTAV>(point_set, strName, Units::VelocityUnit, Ranges::NoRange)
+  : CSingleComponentTemp<IDT_VALUETYPE_DELTAV, IDI_VALUETYPE_DELTAV, IDS_ET_DELTAV, IDS_VALUENAME_DELTAV>(point_set, strName, Units::VelocityUnit, Ranges::NoRange)
   {
   }
 
@@ -2017,7 +2017,7 @@ class TDeltaT : public CSingleComponentTemp<IDT_VALUETYPE_DELTAT,
 {
 public:
   TDeltaT(IPointSet& point_set, const QString& strName)
-    : CSingleComponentTemp<IDT_VALUETYPE_DELTAT, IDI_VALUETYPE_DELTAT, IDS_ET_DELTAT, IDS_VALUENAME_DELTAT>(point_set, strName, Units::TimeUnit, Ranges::NoRange)
+  : CSingleComponentTemp<IDT_VALUETYPE_DELTAT, IDI_VALUETYPE_DELTAT, IDS_ET_DELTAT, IDS_VALUENAME_DELTAT>(point_set, strName, Units::TimeUnit, Ranges::NoRange)
   {
   }
 
@@ -2031,7 +2031,7 @@ class TDisplacementZ : public CSingleComponentTemp<IDT_VALUETYPE_DISPLACEMENTZ,
 {
 public:
   TDisplacementZ(IPointSet& point_set, const QString& strName)
-    : CSingleComponentTemp<IDT_VALUETYPE_DISPLACEMENTZ, IDI_VALUETYPE_DISPLACEMENTZ, IDS_ET_DISPLACEMENTZ, IDS_VALUENAME_DISPLACEMENTZ>(point_set, strName, Units::LengthUnit, Ranges::NoRange)
+  : CSingleComponentTemp<IDT_VALUETYPE_DISPLACEMENTZ, IDI_VALUETYPE_DISPLACEMENTZ, IDS_ET_DISPLACEMENTZ, IDS_VALUENAME_DISPLACEMENTZ>(point_set, strName, Units::LengthUnit, Ranges::NoRange)
   {
   }
 
@@ -2046,7 +2046,7 @@ class TDummyMaterialParameter : public CMaterialComponentTemp<IDT_VALUETYPE_DUMM
 {
 public:
   TDummyMaterialParameter(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_DUMMY, IDI_VALUETYPE_DUMMY, IDS_ET_DUMMY, IDS_VALUENAME_DUMMY>(point_set, strName, Units::DimensionLessUnit, Ranges::CRangeType(false, 0.0, true, false, 0.0, true))
+  : CMaterialComponentTemp<IDT_VALUETYPE_DUMMY, IDI_VALUETYPE_DUMMY, IDS_ET_DUMMY, IDS_VALUENAME_DUMMY>(point_set, strName, Units::DimensionLessUnit, Ranges::CRangeType(false, 0.0, true, false, 0.0, true))
   {
   }
 
@@ -2061,7 +2061,7 @@ class TBoundaryKradMaterialParameter : public CMaterialComponentTemp<IDT_VALUETY
 {
 public:
   TBoundaryKradMaterialParameter(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_KRAD, IDI_VALUETYPE_KRAD, IDS_ET_KRAD, IDS_VALUENAME_KRAD>(point_set, strName, Units::StressGradientUnit, Ranges::CRangeType(false, 0.0, true, false, 0.0, true))
+  : CMaterialComponentTemp<IDT_VALUETYPE_KRAD, IDI_VALUETYPE_KRAD, IDS_ET_KRAD, IDS_VALUENAME_KRAD>(point_set, strName, Units::StressGradientUnit, Ranges::CRangeType(false, 0.0, true, false, 0.0, true))
   {
   }
 
@@ -2075,7 +2075,7 @@ class TBoundaryKtanMaterialParameter : public CMaterialComponentTemp<IDT_VALUETY
 {
 public:
   TBoundaryKtanMaterialParameter(IPointSet& point_set, const QString& strName)
-    : CMaterialComponentTemp<IDT_VALUETYPE_KTAN, IDI_VALUETYPE_KTAN, IDS_ET_KTAN, IDS_VALUENAME_KTAN>(point_set, strName, Units::StressGradientUnit, Ranges::CRangeType(false, 0.0, true, false, 0.0, true))
+  : CMaterialComponentTemp<IDT_VALUETYPE_KTAN, IDI_VALUETYPE_KTAN, IDS_ET_KTAN, IDS_VALUENAME_KTAN>(point_set, strName, Units::StressGradientUnit, Ranges::CRangeType(false, 0.0, true, false, 0.0, true))
   {
   }
 

@@ -61,16 +61,16 @@
 class CKeyFile  
 {
 private:
-	bool m_bUnlocked;
-	bool m_bDCasintUnlocked;
-	bool m_bModel2DUnlocked;
+  bool m_bUnlocked;
+  bool m_bDCasintUnlocked;
+  bool m_bModel2DUnlocked;
 public:
-	CKeyFile();
-	virtual ~CKeyFile();
+  CKeyFile();
+  virtual ~CKeyFile();
 
-	bool Unlocked() const;
-	bool DCasintUnlocked() const;
-	bool Model2DUnlocked() const;
+  bool Unlocked() const;
+  bool DCasintUnlocked() const;
+  bool Model2DUnlocked() const;
 };
 
 #endif // !defined(AFX_KEYFILE_H__C3933D75_2457_4EFF_8745_254A4172235F__INCLUDED_)

@@ -11,7 +11,7 @@ class CExportResultDataEntry_Delegate :
 {
 public:
   CExportResultDataEntry_Delegate(
-    CExportResultDataEntry* exportResultDataEntry);
+  CExportResultDataEntry* exportResultDataEntry);
 
   virtual bool Attributes();
 
@@ -24,7 +24,7 @@ public:
 private:
   CExportResultDataEntry_Delegate(const CExportResultDataEntry_Delegate& rhs);
   CExportResultDataEntry_Delegate& operator = (
-    const CExportResultDataEntry_Delegate& rhs);
+  const CExportResultDataEntry_Delegate& rhs);
 
   CExportResultDataEntry* m_exportResultDataEntry;
 

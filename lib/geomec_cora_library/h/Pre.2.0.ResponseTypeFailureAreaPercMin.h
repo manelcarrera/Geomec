@@ -10,17 +10,17 @@ class CPre20ResponseTypeFailureAreaPercMin :
   public CPre20ResponseTypeBaseWithValue
 {
   public:
-    CPre20ResponseTypeFailureAreaPercMin(CSummaryResultFile& summaryResultFile,
+  CPre20ResponseTypeFailureAreaPercMin(CSummaryResultFile& summaryResultFile,
       const std::vector <QString>& function);
-    virtual ~CPre20ResponseTypeFailureAreaPercMin();
+  virtual ~CPre20ResponseTypeFailureAreaPercMin();
 
-    virtual double calculate(const TObject& object,
+  virtual double calculate(const TObject& object,
       const TFailureMode& failureMode);
 
   private:
-    CPre20ResponseTypeFailureAreaPercMin(
+  CPre20ResponseTypeFailureAreaPercMin(
       const CPre20ResponseTypeFailureAreaPercMin& rhs);
-    CPre20ResponseTypeFailureAreaPercMin& operator = (
+  CPre20ResponseTypeFailureAreaPercMin& operator = (
       CPre20ResponseTypeFailureAreaPercMin rhs);
 };
 

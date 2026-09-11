@@ -21,29 +21,29 @@ class COpenGLDlgView : public COpenGLView
 //	friend CAttriColorGradientDlg;
 //	friend CAttriHotSpotDlg;
 
-	CRect m_rcRect; // for colorgradient dialog...
-	CRect m_rcLeftRect; // only for hotspot dialog...
-	CRect m_rcRightRect; // only for hotspot dialog...
-	bool m_bCenterIsTransparent; // only for hotspot dialog...
-	IColorScaleNode *m_pColorScale;
+  CRect m_rcRect; // for colorgradient dialog...
+  CRect m_rcLeftRect; // only for hotspot dialog...
+  CRect m_rcRightRect; // only for hotspot dialog...
+  bool m_bCenterIsTransparent; // only for hotspot dialog...
+  IColorScaleNode *m_pColorScale;
 public:
-	COpenGLDlgView();
-	virtual ~COpenGLDlgView();
+  COpenGLDlgView();
+  virtual ~COpenGLDlgView();
 
-	void OnCreate(LPCREATESTRUCT lpCreateStruct);
-	void DrawColorScale(IColorScaleNode &colorscale);
-	void ColorScale(IColorScaleNode &colorscale) {m_pColorScale = &colorscale;}
-	void Rect(CRect &rect) {m_rcRect = rect;}
-	void SetHotSpotRects(CRect &LeftRect, CRect &RightRect);
-	void CenterIsTransparent(const bool bNewVal) {m_bCenterIsTransparent = bNewVal;}
-	bool CenterIsTransparent() {return m_bCenterIsTransparent;}
-	void DrawScene();
+  void OnCreate(LPCREATESTRUCT lpCreateStruct);
+  void DrawColorScale(IColorScaleNode &colorscale);
+  void ColorScale(IColorScaleNode &colorscale) {m_pColorScale = &colorscale;}
+  void Rect(CRect &rect) {m_rcRect = rect;}
+  void SetHotSpotRects(CRect &LeftRect, CRect &RightRect);
+  void CenterIsTransparent(const bool bNewVal) {m_bCenterIsTransparent = bNewVal;}
+  bool CenterIsTransparent() {return m_bCenterIsTransparent;}
+  void DrawScene();
 
 protected:
-	
-	int OnMouseActivate( CWnd* pDesktopWnd, unsigned int nHitTest, unsigned int message );
-	////}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+  
+  int OnMouseActivate( CWnd* pDesktopWnd, unsigned int nHitTest, unsigned int message );
+  ////}}AFX_MSG
+  DECLARE_MESSAGE_MAP()
 
 };
 

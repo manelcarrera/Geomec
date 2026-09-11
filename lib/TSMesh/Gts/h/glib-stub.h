@@ -53,9 +53,9 @@ extern "C" {
 
 #define g_mem_chunk_create(type, pre_alloc, alloc_type)	( \
   g_mem_chunk_new (#type " mem chunks (" #pre_alloc ")", \
-		   sizeof (type), \
-		   sizeof (type) * (pre_alloc), \
-		   (alloc_type)) \
+       sizeof (type), \
+       sizeof (type) * (pre_alloc), \
+       (alloc_type)) \
 )
 
 #define g_chunk_new(type, chunk)	( \
@@ -122,8 +122,8 @@ typedef void            (*GHFunc)               (gpointer       key,
                                                  gpointer       value,
                                                  gpointer       user_data);
 typedef gboolean	      (*GHRFunc)		          (gpointer	      key,
-						                                     gpointer	      value,
-						                                     gpointer	      user_data);
+                                                 gpointer	      value,
+                                                 gpointer	      user_data);
 typedef void            (*GFreeFunc)            (gpointer       data);
 
 void g_warning(const char* txt, ...);
@@ -138,9 +138,9 @@ struct _GString
 
 GString*     g_string_new	        (const gchar	 *init);
 gchar*	     g_string_free	        (GString	 *string,
-					 gboolean	  free_segment);
+           gboolean	  free_segment);
 GString*     g_string_append_c          (GString	 *string,
-					 gchar		  c);
+           gchar		  c);
 
 typedef struct _GSList		GSList;
 
@@ -151,28 +151,28 @@ struct _GSList
 };
 
 GSList*  g_slist_append         (GSList           *list,
-				                         gpointer          data);
+                                 gpointer          data);
 GSList*  g_slist_alloc          (void);
 void     g_slist_free           (GSList           *list);
 GSList*  g_slist_remove         (GSList           *list,
-				                         gconstpointer     data);
+                                 gconstpointer     data);
 guint    g_slist_length         (GSList           *list);
 GSList*  g_slist_find           (GSList           *list,
-				 gconstpointer     data);
+         gconstpointer     data);
 GSList*  g_slist_prepend        (GSList           *list,
-				                         gpointer          data);
+                                 gpointer          data);
 void     g_slist_foreach        (GSList           *list,
-				                         GFunc             func,
-				                         gpointer          user_data);
+                                 GFunc             func,
+                                 gpointer          user_data);
 GSList*  g_slist_nth            (GSList           *list,
-				                         guint             n);
+                                 guint             n);
 GSList*  g_slist_concat         (GSList           *list1,
-				                         GSList           *list2);
+                                 GSList           *list2);
 void     g_slist_free_1         (GSList           *list);
 GSList*  g_slist_copy           (GSList           *list);
 GSList*  g_slist_reverse        (GSList           *list);
 GSList*  g_slist_remove_link    (GSList           *list,
-				                         GSList           *link);
+                                 GSList           *link);
 GSList*  g_slist_last           (GSList *list);
 
 typedef struct _GList		GList;
@@ -187,9 +187,9 @@ struct _GList
 void     g_list_free           (GList            *list);
 void     g_list_free_1         (GList            *list);
 GList*   g_list_remove_link    (GList            *list,
-				                        GList            *link);
+                    GList            *link);
 GList*   g_list_prepend        (GList            *list,
-				                        gpointer          data);
+                    gpointer          data);
 guint    g_list_length         (GList            *list);
 
 typedef struct _GNode		GNode;
@@ -204,17 +204,17 @@ struct _GNode
 };
 
 #define	 G_NODE_IS_ROOT(node)	(((GNode*) (node))->parent == NULL && \
-				 ((GNode*) (node))->prev == NULL && \
-				 ((GNode*) (node))->next == NULL)
+         ((GNode*) (node))->prev == NULL && \
+         ((GNode*) (node))->next == NULL)
 
 GNode*	 g_node_new		(gpointer	   data);
 GNode*	 g_node_prepend		(GNode		  *parent,
-				                   GNode		  *node);
+                           GNode		  *node);
 guint	 g_node_depth		(GNode		  *node);
 void	 g_node_destroy		(GNode		  *root);
 GNode* g_node_insert_before (GNode *parent,
-		                         GNode *sibling,
-		                         GNode *node);
+                             GNode *sibling,
+                             GNode *node);
 void g_node_unlink (GNode *node);
 
 typedef struct _GPtrArray	GPtrArray;
@@ -229,13 +229,13 @@ struct _GPtrArray
 
 GPtrArray* g_ptr_array_new                (void);
 gpointer*  g_ptr_array_free               (GPtrArray        *array,
-					                                 gboolean          free_seg);
+                                           gboolean          free_seg);
 void       g_ptr_array_add                (GPtrArray        *array,
-					                                 gpointer          data);
+                                           gpointer          data);
 gpointer   g_ptr_array_remove_index       (GPtrArray        *array,
-					                                 guint             index);
+                                           guint             index);
 void       g_ptr_array_set_size           (GPtrArray        *array,
-					                                 gint              length);
+                                           gint              length);
 
 typedef struct _GArray		GArray;
 
@@ -249,43 +249,43 @@ struct _GArray
 #define g_array_index(a,t,i)      (((t*) (a)->data) [(i)])
 
 GArray* g_array_new               (gboolean          zero_terminated,
-				                           gboolean          clear,
-				                           guint             element_size);
+                                   gboolean          clear,
+                                   guint             element_size);
 GArray* g_array_sized_new         (gboolean          zero_terminated,
-			                             gboolean          clear,
-			                             guint             elt_size,
-			                             guint             reserved_size);
+                                   gboolean          clear,
+                                   guint             elt_size,
+                                   guint             reserved_size);
 gchar*  g_array_free              (GArray           *array,
-				                           gboolean          free_segment);
+                                   gboolean          free_segment);
 GArray* g_array_append_vals       (GArray           *array,
-				                           gconstpointer     data,
-				                           guint             len);
+                                   gconstpointer     data,
+                                   guint             len);
 
 typedef struct _GHashTable	GHashTable;
 
 GHashTable* g_hash_table_new		(GHashFunc	 hash_func,
-					                       GEqualFunc	 key_equal_func);
+                                 GEqualFunc	 key_equal_func);
 GHashTable* g_hash_table_new_full (GHashFunc       hash_func,
-		                               GEqualFunc      key_equal_func,
-		                               GDestroyNotify  key_destroy_func,
-		                               GDestroyNotify  value_destroy_func);
+                                   GEqualFunc      key_equal_func,
+                                   GDestroyNotify  key_destroy_func,
+                                   GDestroyNotify  value_destroy_func);
 void	    g_hash_table_destroy	(GHashTable	*hash_table);
 void    g_hash_table_remove_all (GHashTable *hash_table);
 void   g_hash_table_unref (GHashTable *hash_table);
 void	    g_hash_table_insert		(GHashTable	*hash_table,
-					                       gpointer	 key,
-					                       gpointer	 value);
+                                 gpointer	 key,
+                                 gpointer	 value);
 gboolean    g_hash_table_remove		(GHashTable	*hash_table,
-					                         gconstpointer	 key);
+                                   gconstpointer	 key);
 guint	    g_hash_table_size		(GHashTable	*hash_table);
 void	    g_hash_table_foreach	(GHashTable	*hash_table,
-					                       GHFunc		 func,
-					                       gpointer	 user_data);
+                                 GHFunc		 func,
+                                 gpointer	 user_data);
 gpointer    g_hash_table_lookup		(GHashTable	*hash_table,
-					                         gconstpointer	 key);
+                                   gconstpointer	 key);
 guint	    g_hash_table_foreach_remove	(GHashTable	*hash_table,
-					                             GHRFunc	 func,
-					                             gpointer	 user_data);
+                                       GHRFunc	 func,
+                                       gpointer	 user_data);
 
 guint    g_str_hash  (gconstpointer   v);
 gboolean g_str_equal (gconstpointer   v,
@@ -303,12 +303,12 @@ typedef enum
 typedef struct _GMemChunk       GMemChunk;
 
 GMemChunk* g_mem_chunk_new     (gchar	  *name,
-				                        gint	   atom_size,
-				                        gulong	   area_size,
-				                        gint	   type);
+                    gint	   atom_size,
+                    gulong	   area_size,
+                    gint	   type);
 gpointer   g_mem_chunk_alloc   (GMemChunk *mem_chunk);
 void	   g_mem_chunk_free    (GMemChunk *mem_chunk,
-				                      gpointer   mem);
+                              gpointer   mem);
 void	   g_mem_chunk_destroy (GMemChunk *mem_chunk);
 
 #ifdef __cplusplus

@@ -13,8 +13,8 @@ class DianaBusClient : public ModGMLocalBusClient
 {
   Q_OBJECT
 
-	//std::condition_variable m_cond_var;
-	//std::mutex m_mutex;
+  //std::condition_variable m_cond_var;
+  //std::mutex m_mutex;
 
 public:
   DianaBusClient(const QString& base, const QString& name, QObject *parent = nullptr);
@@ -26,8 +26,8 @@ public:
   void send_keep_alive();
 
 public slots:
-	void read_output();
-	
+  void read_output();
+  
 //public:
 private:
 //public slots:
@@ -38,7 +38,7 @@ private:
   void onReceivedMessage(const ModGMBusMessage& message);
   
 private:
-	QString data();
+  QString data();
 
 private:
   ModGMBusMessage m_msg;
@@ -52,16 +52,16 @@ private:
 
 public:
 
-	void url( const QString& val ){ m_url = val; }
-	const QString& url(){ return m_url; }
+  void url( const QString& val ){ m_url = val; }
+  const QString& url(){ return m_url; }
 
 
 #ifdef kk
 //draft
 private:
-	void get_shared_memory_01();
+  void get_shared_memory_01();
 
-	void run_diana_02();
-	void run_diana_03();
+  void run_diana_02();
+  void run_diana_03();
 #endif
 };

@@ -17,7 +17,7 @@ void RescueWellbore::Dispose()
   wellboreGeometry->RescueDeleteFile();
   if (sampling != 0)
   {
-    sampling->Dispose();
+  sampling->Dispose();
   }
 }
 
@@ -25,27 +25,27 @@ RescueWellbore::~RescueWellbore()
 {
   if (wellboreName != 0)
   {
-    delete wellboreName;
+  delete wellboreName;
   }
   if (sampling != 0)
   {
-    delete sampling;
+  delete sampling;
   }
   if (surfaceIntersections != 0)
   {
-    delete surfaceIntersections;
+  delete surfaceIntersections;
   }
   if (cellIntersections != 0)
   {
-    delete cellIntersections;
+  delete cellIntersections;
   }
   if (wellboreGrid != 0)
   {
-    delete wellboreGrid;
+  delete wellboreGrid;
   }
   if (wellboreGeometry != 0)
   {
-    delete wellboreGeometry;
+  delete wellboreGeometry;
   }
 }
 
@@ -76,7 +76,7 @@ RescueWellbore::RescueWellbore(RescueCoordinateSystem::Orientation orientation,
   (*parentModel->wellbores) += this;
 
   wellboreGeometry = new RescueQuadrupletArray(parentModelIn->Context(),
-                                            WellboreGrid(), missingValue, parentModel);
+                      WellboreGrid(), missingValue, parentModel);
 }
 
 RescueWellbore::RescueWellbore(RescueCoordinateSystem::Orientation orientation,
@@ -102,7 +102,7 @@ RescueWellbore::RescueWellbore(RescueCoordinateSystem::Orientation orientation,
   (*parentModel->wellbores) += this;
 
   wellboreGeometry = new RescueQuadrupletArray(WellboreGrid(), missingValue, quadrupletArray, 
-                                                        parentModel);
+                            parentModel);
 }
 
 RescueWellbore::RescueWellbore(RescueContext *context, FILE *archiveFile)
@@ -129,14 +129,14 @@ RescueWellbore::RescueWellbore(RescueContext *context, FILE *archiveFile)
   surfaceIntersections->UnArchive(context, archiveFile);
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -163,12 +163,12 @@ void RescueWellbore::Archive(FILE *archiveFile)
   surfaceIntersections->Archive(context, archiveFile);
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
 void RescueWellbore::SetOrientation(RescueOrientationLedger *ledger,
-                                    RescueCoordinateSystem::Orientation orientation)
+                  RescueCoordinateSystem::Orientation orientation)
 {
   RescueCoordinateSystem::Orientation oNow = wellboreGrid->DisplayOrientation();
   if (oNow == RescueCoordinateSystem::LUF
@@ -176,20 +176,20 @@ void RescueWellbore::SetOrientation(RescueOrientationLedger *ledger,
   ||  oNow == RescueCoordinateSystem::RUF
   ||  oNow == RescueCoordinateSystem::RUB)
   {
-    if (orientation == RescueCoordinateSystem::LDF
-    ||  orientation == RescueCoordinateSystem::LDB
-    ||  orientation == RescueCoordinateSystem::RDF
-    ||  orientation == RescueCoordinateSystem::RDB)
-    {
+  if (orientation == RescueCoordinateSystem::LDF
+  ||  orientation == RescueCoordinateSystem::LDB
+  ||  orientation == RescueCoordinateSystem::RDF
+  ||  orientation == RescueCoordinateSystem::RDB)
+  {
       SwapAxis();
-    }
+  }
   }
   else if (orientation == RescueCoordinateSystem::LDF
        ||  orientation == RescueCoordinateSystem::LDB
        ||  orientation == RescueCoordinateSystem::RDF
        ||  orientation == RescueCoordinateSystem::RDB)
   {
-    SwapAxis();
+  SwapAxis();
   }
   wellboreGrid->SetOrientation(orientation);
 }
@@ -198,7 +198,7 @@ void RescueWellbore::SwapAxis()
 {
   if (wellboreGeometry->IsLoaded() == FALSE)
   {
-    wellboreGeometry->Load();
+  wellboreGeometry->Load();
   }
   wellboreGrid->Axis(0)->Swap();
   wellboreGeometry->SwapArraysEndForEnd();
@@ -206,8 +206,8 @@ void RescueWellbore::SwapAxis()
   RescueWellboreSampling *sampling = NthRescueWellboreSampling(sOrd++);
   while (sampling != 0)
   {
-    sampling->Swap();
-    sampling = NthRescueWellboreSampling(sOrd++);
+  sampling->Swap();
+  sampling = NthRescueWellboreSampling(sOrd++);
   }
 
   wellboreGeometry->MarkChanged();
@@ -219,7 +219,7 @@ RESCUEBOOL RescueWellbore::AnyFileTruncated()
   RESCUEBOOL myReturn = wellboreGeometry->FileTruncated();
   if (myReturn == FALSE)
   {
-    myReturn = sampling->AnyFileTruncated();
+  myReturn = sampling->AnyFileTruncated();
   }
   return myReturn;
 }
@@ -228,11 +228,11 @@ RESCUEBOOL RescueWellbore::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueWellbore)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueHistoryObject::IsOfType(thisType);
+  return RescueHistoryObject::IsOfType(thisType);
   }
 }
 

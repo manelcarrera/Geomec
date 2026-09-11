@@ -20,7 +20,7 @@ RescueArray2dVector::~RescueArray2dVector()
 {
   if (value != 0)
   {
-    delete [] value;
+  delete [] value;
   }
 }
 
@@ -28,7 +28,7 @@ Rescue2dVector *RescueArray2dVector::DemandValue()
 {
   if (IsLoaded() == FALSE)
   {
-    RescueArray::Load();
+  RescueArray::Load();
   }
   return value;
 }
@@ -37,17 +37,17 @@ void RescueArray2dVector::AllValues(Rescue2dVector *buffer, RESCUEINT64 offset, 
 {
   if (IsLoaded() == FALSE)
   {
-    RescueArray::Load();
+  RescueArray::Load();
   }
   if (value != 0)
   {
-    Rescue2dVector *pos = &buffer[offset];
-    Rescue2dVector *src = value;
-    while (bufferLength > 0)
-    {
+  Rescue2dVector *pos = &buffer[offset];
+  Rescue2dVector *src = value;
+  while (bufferLength > 0)
+  {
       *pos++ = *src++;
       bufferLength--;
-    }
+  }
   }
 /*
   If value == 0, valueLength should be zero too.
@@ -55,34 +55,34 @@ void RescueArray2dVector::AllValues(Rescue2dVector *buffer, RESCUEINT64 offset, 
 }
 
 RescueArray2dVector::RescueArray2dVector(RescueContext *context, FILE *archiveFile)
-                                        :RescueArray(context, archiveFile)
-                                        ,value(0)
-                                        ,valueLength(0)
+                    :RescueArray(context, archiveFile)
+                    ,value(0)
+                    ,valueLength(0)
 {
   isA = R_RescueArray2dVector;
   InitMinMax();
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       if (strcmp(myString, "dirtyMinMax") == 0)
       {
-        RescueBuffer buf(context, archiveFile);
-        buf >> dirtyMinMax;
+    RescueBuffer buf(context, archiveFile);
+    buf >> dirtyMinMax;
       }
       else if (strcmp(myString, "minMax") == 0)
       {
-        ReadMinMax(context, archiveFile);
+    ReadMinMax(context, archiveFile);
       }
       else
       {
-        RescueBuffer buf(context, archiveFile);
+    RescueBuffer buf(context, archiveFile);
       }
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
   myfscanf(context, archiveFile, &nullValue.coord1);
   myfscanf(context, archiveFile, &nullValue.coord2);
@@ -99,62 +99,62 @@ void RescueArray2dVector::CalculateMinMaxData(FILE *fragmentFile, RESCUEINT64 fi
 {
   if (value == 0)
   {
-    bool firstIteration = true;
-    minValue.coord1 = 0;
-    minValue.coord2 = 0;
-    maxValue.coord1 = 0;
-    maxValue.coord2 = 0;
-    if (HasFragments())
-    {
+  bool firstIteration = true;
+  minValue.coord1 = 0;
+  minValue.coord2 = 0;
+  maxValue.coord1 = 0;
+  maxValue.coord2 = 0;
+  if (HasFragments())
+  {
       RESCUEINT64 count = 0;
       if (fragmentFile != 0)
       {
-        myfscanf(ParentModel()->Context(), fragmentFile, &count);
+    myfscanf(ParentModel()->Context(), fragmentFile, &count);
       }
       if (count == 0)
       {
-        count = grid->NodeCount(cellCentered);
+    count = grid->NodeCount(cellCentered);
       }
       if (count != 0)
       {
-        RESCUEINT64 axisDecrement = 0;
-        if (CellCentered())
-        {
+    RESCUEINT64 axisDecrement = 0;
+    if (CellCentered())
+    {
           axisDecrement = 1;
-        }
-        RESCUEINT64 fragCount = fragments->Count64();
+    }
+    RESCUEINT64 fragCount = fragments->Count64();
 
-        RescueGridAxis *axis = grid->Axis(0);
-        RESCUEINT64 origILowBound = axis->LowBound64();
-        RESCUEINT64 origICount = axis->Count64() - axisDecrement;
+    RescueGridAxis *axis = grid->Axis(0);
+    RESCUEINT64 origILowBound = axis->LowBound64();
+    RESCUEINT64 origICount = axis->Count64() - axisDecrement;
 
-        axis = grid->Axis(1);
-        RESCUEINT64 origJLowBound = axis->LowBound64();
-        RESCUEINT64 origJCount = axis->Count64() - axisDecrement;
-        RESCUEINT64 origKLowBound = -1;
-        if (grid->Dimensions() >= 3)
-        {
+    axis = grid->Axis(1);
+    RESCUEINT64 origJLowBound = axis->LowBound64();
+    RESCUEINT64 origJCount = axis->Count64() - axisDecrement;
+    RESCUEINT64 origKLowBound = -1;
+    if (grid->Dimensions() >= 3)
+    {
           axis = grid->Axis(2);
           origKLowBound = axis->LowBound64();
-        }
-        RESCUEINT64 iFollower = 0;
-        RESCUEINT64 jFollower = 0;
-        RESCUEINT64 kFollower = 0;
+    }
+    RESCUEINT64 iFollower = 0;
+    RESCUEINT64 jFollower = 0;
+    RESCUEINT64 kFollower = 0;
 
-        RESCUEINT64 loop;
-        for (loop = 0; loop < count; loop++)
-        {
+    RESCUEINT64 loop;
+    for (loop = 0; loop < count; loop++)
+    {
           Rescue2dVector data = nullValue;
           if (fragmentFile != 0)
           {
-            myfscanf(ParentModel()->Context(), fragmentFile, &data.coord1);
-            myfscanf(ParentModel()->Context(), fragmentFile, &data.coord2);
+      myfscanf(ParentModel()->Context(), fragmentFile, &data.coord1);
+      myfscanf(ParentModel()->Context(), fragmentFile, &data.coord2);
           }
 
           RESCUEINT64 frag;
           for (frag = 0; frag < fragCount; frag++)
           {
-            data = ((RescueArrayFragment2dVector *) 
+      data = ((RescueArrayFragment2dVector *) 
               fragments->NthObject(frag))->Replace(origILowBound + iFollower, 
                                                    origJLowBound + jFollower, 
                                                    origKLowBound + kFollower, data);
@@ -163,87 +163,87 @@ void RescueArray2dVector::CalculateMinMaxData(FILE *fragmentFile, RESCUEINT64 fi
           if (data.coord1 != nullValue.coord1
           ||  data.coord2 != nullValue.coord2)
           {
-            if (firstIteration)
-            {
+      if (firstIteration)
+      {
               minValue = data;
               maxValue = data;
               firstIteration = false;
-            }
-            else
-            {
+      }
+      else
+      {
               if (data.coord1 < minValue.coord1)
               {
-                minValue.coord1 = data.coord1;
+        minValue.coord1 = data.coord1;
               }
               if (data.coord2 < minValue.coord2)
               {
-                minValue.coord2 = data.coord2;
+        minValue.coord2 = data.coord2;
               }
               if (data.coord1 > maxValue.coord1)
               {
-                maxValue.coord1 = data.coord1;
+        maxValue.coord1 = data.coord1;
               }
               if (data.coord2 > maxValue.coord2)
               {
-                maxValue.coord2 = data.coord2;
+        maxValue.coord2 = data.coord2;
               }
-            }
+      }
           }
 
           iFollower++;
           if (iFollower >= origICount)
           {
-            iFollower = 0;
-            jFollower++;
-            if (jFollower >= origJCount)
-            {
+      iFollower = 0;
+      jFollower++;
+      if (jFollower >= origJCount)
+      {
               jFollower = 0;
               kFollower++;
-            }
-          }
-        }
       }
+          }
     }
+      }
+  }
   }
   else
   {
-    RESCUEUINT64 items = (RESCUEUINT64) grid->NodeCount(cellCentered);
-    Rescue2dVector *ptr = value;
-    bool firstIteration = true;
-    while (items > 0)
-    {
+  RESCUEUINT64 items = (RESCUEUINT64) grid->NodeCount(cellCentered);
+  Rescue2dVector *ptr = value;
+  bool firstIteration = true;
+  while (items > 0)
+  {
       if (ptr->coord1 != nullValue.coord1
       ||  ptr->coord2 != nullValue.coord2)
       {
-        if (firstIteration)
-        {
+    if (firstIteration)
+    {
           minValue = *ptr;
           maxValue = *ptr;
           firstIteration = false;
-        }
-        else
-        {
+    }
+    else
+    {
           if (ptr->coord1 < minValue.coord1)
           {
-            minValue.coord1 = ptr->coord1;
+      minValue.coord1 = ptr->coord1;
           }
           if (ptr->coord2 < minValue.coord2)
           {
-            minValue.coord2 = ptr->coord2;
+      minValue.coord2 = ptr->coord2;
           }
           if (ptr->coord1 > maxValue.coord1)
           {
-            maxValue.coord1 = ptr->coord1;
+      maxValue.coord1 = ptr->coord1;
           }
           if (ptr->coord2 > maxValue.coord2)
           {
-            maxValue.coord2 = ptr->coord2;
+      maxValue.coord2 = ptr->coord2;
           }
-        }
+    }
       }
       ptr++;
       items--;
-    }
+  }
   }
 }
 
@@ -278,58 +278,58 @@ void RescueArray2dVector::ArchiveData(FILE *archiveFile, FILE *fragmentFile, RES
 {
   if (value == 0)
   {
-    if (HasFragments())
-    {
+  if (HasFragments())
+  {
       RESCUEINT64 count = 0;
       if (fragmentFile != 0)
       {
-        myfscanf(ParentModel()->Context(), fragmentFile, &count);
+    myfscanf(ParentModel()->Context(), fragmentFile, &count);
       }
       if (count == 0)
       {
-        count = grid->NodeCount(cellCentered);
+    count = grid->NodeCount(cellCentered);
       }
       myfprintf(ParentModel()->Context(), archiveFile, count);
       if (count != 0)
       {
-        RESCUEINT64 axisDecrement = 0;
-        if (CellCentered())
-        {
+    RESCUEINT64 axisDecrement = 0;
+    if (CellCentered())
+    {
           axisDecrement = 1;
-        }
-        RESCUEINT64 fragCount = fragments->Count64();
+    }
+    RESCUEINT64 fragCount = fragments->Count64();
 
-        RescueGridAxis *axis = grid->Axis(0);
-        RESCUEINT64 origILowBound = axis->LowBound64();
-        RESCUEINT64 origICount = axis->Count64() - axisDecrement;
+    RescueGridAxis *axis = grid->Axis(0);
+    RESCUEINT64 origILowBound = axis->LowBound64();
+    RESCUEINT64 origICount = axis->Count64() - axisDecrement;
 
-        axis = grid->Axis(1);
-        RESCUEINT64 origJLowBound = axis->LowBound64();
-        RESCUEINT64 origJCount = axis->Count64() - axisDecrement;
-        RESCUEINT64 origKLowBound = -1;
-        if (grid->Dimensions() >= 3)
-        {
+    axis = grid->Axis(1);
+    RESCUEINT64 origJLowBound = axis->LowBound64();
+    RESCUEINT64 origJCount = axis->Count64() - axisDecrement;
+    RESCUEINT64 origKLowBound = -1;
+    if (grid->Dimensions() >= 3)
+    {
           axis = grid->Axis(2);
           origKLowBound = axis->LowBound64();
-        }
-        RESCUEINT64 iFollower = 0;
-        RESCUEINT64 jFollower = 0;
-        RESCUEINT64 kFollower = 0;
+    }
+    RESCUEINT64 iFollower = 0;
+    RESCUEINT64 jFollower = 0;
+    RESCUEINT64 kFollower = 0;
 
-        RESCUEINT64 loop;
-        for (loop = 0; loop < count; loop++)
-        {
+    RESCUEINT64 loop;
+    for (loop = 0; loop < count; loop++)
+    {
           Rescue2dVector data = nullValue;
           if (fragmentFile != 0)
           {
-            myfscanf(ParentModel()->Context(), fragmentFile, &data.coord1);
-            myfscanf(ParentModel()->Context(), fragmentFile, &data.coord2);
+      myfscanf(ParentModel()->Context(), fragmentFile, &data.coord1);
+      myfscanf(ParentModel()->Context(), fragmentFile, &data.coord2);
           }
 
           RESCUEINT64 frag;
           for (frag = 0; frag < fragCount; frag++)
           {
-            data = ((RescueArrayFragment2dVector *) 
+      data = ((RescueArrayFragment2dVector *) 
               fragments->NthObject(frag))->Replace(origILowBound + iFollower, 
                                                    origJLowBound + jFollower, 
                                                    origKLowBound + kFollower, data);
@@ -339,33 +339,33 @@ void RescueArray2dVector::ArchiveData(FILE *archiveFile, FILE *fragmentFile, RES
           iFollower++;
           if (iFollower >= origICount)
           {
-            iFollower = 0;
-            jFollower++;
-            if (jFollower >= origJCount)
-            {
+      iFollower = 0;
+      jFollower++;
+      if (jFollower >= origJCount)
+      {
               jFollower = 0;
               kFollower++;
-            }
-          }
-        }
       }
+          }
     }
-    else
-    {
-      myfprintf(ParentModel()->Context(), archiveFile, (RESCUEINT64) 0);
-    }
+      }
   }
   else
   {
-    RESCUEINT64 items = grid->NodeCount(cellCentered);
+      myfprintf(ParentModel()->Context(), archiveFile, (RESCUEINT64) 0);
+  }
+  }
+  else
+  {
+  RESCUEINT64 items = grid->NodeCount(cellCentered);
 
-    myfprintf(ParentModel()->Context(), archiveFile, items);
-    RESCUEINT64 loop;
-    for (loop = 0; loop < items; loop++)
-    {
+  myfprintf(ParentModel()->Context(), archiveFile, items);
+  RESCUEINT64 loop;
+  for (loop = 0; loop < items; loop++)
+  {
       myfprintf(ParentModel()->Context(), archiveFile, value[loop].coord1);
       myfprintf(ParentModel()->Context(), archiveFile, value[loop].coord2);
-    }
+  }
   }
 }
 
@@ -374,13 +374,13 @@ void RescueArray2dVector::UnArchiveData(FILE *archiveFile, RESCUEINT64 fileVersi
   myfscanf(ParentModel()->Context(), archiveFile, &valueLength);
   if (valueLength != 0)
   {
-    value = new Rescue2dVector [(int) valueLength];
-    RESCUEINT64 loop;
-    for (loop = 0; loop < valueLength; loop++)
-    {
+  value = new Rescue2dVector [(int) valueLength];
+  RESCUEINT64 loop;
+  for (loop = 0; loop < valueLength; loop++)
+  {
       myfscanf(ParentModel()->Context(), archiveFile, &value[loop].coord1);
       myfscanf(ParentModel()->Context(), archiveFile, &value[loop].coord2);
-    }
+  }
   }
 }
 
@@ -391,7 +391,7 @@ void RescueArray2dVector::SetValue(Rescue2dVector nullValueIn, Rescue2dVector *v
 
   if (value != 0)
   {
-    delete [] value;
+  delete [] value;
   }
   nullValue = nullValueIn;
   value = new Rescue2dVector [(int) valueLength];
@@ -399,7 +399,7 @@ void RescueArray2dVector::SetValue(Rescue2dVector nullValueIn, Rescue2dVector *v
   RESCUEINT64 loop;
   for (loop = 0; loop < valueLength; loop++)
   {
-    value[loop] = valueArray[loop];
+  value[loop] = valueArray[loop];
   }
 }
 
@@ -408,7 +408,7 @@ void RescueArray2dVector::AcceptValue(Rescue2dVector nullValueIn, Rescue2dVector
   DropFragments();
   if (value != 0)
   {
-    delete [] value;
+  delete [] value;
   }
   nullValue = nullValueIn;
   value = valueArray;
@@ -438,14 +438,14 @@ RescueArrayFragment *RescueArray2dVector::CreatePrimitive(RESCUEINT64 iLowBound,
   RescueArrayFragment *myReturn = 0;
   if (grid->Dimensions() == 3)
   {
-    RescueGridAxis *kAxis = grid->Axis(2);
-    myReturn = new RescueArrayFragment2dVector(this, 3, iLowBound, iCount, 
+  RescueGridAxis *kAxis = grid->Axis(2);
+  myReturn = new RescueArrayFragment2dVector(this, 3, iLowBound, iCount, 
                                                      jLowBound, jCount,
                                                      kAxis->LowBound64(), kAxis->Count64());
   }
   else
   {
-    myReturn = new RescueArrayFragment2dVector(this, 2, iLowBound, iCount,
+  myReturn = new RescueArrayFragment2dVector(this, 2, iLowBound, iCount,
                                                      jLowBound, jCount, -1, -1);
   }
   DemandFragments();
@@ -478,16 +478,16 @@ RescueArrayFragment *RescueArray2dVector::CreatePrimitive(RESCUEINT64 iLowBound,
                                               RESCUEINT64 kLowBound, RESCUEINT64 kCount)
 {
   RescueArrayFragment *myReturn = new RescueArrayFragment2dVector(this, 3, iLowBound, iCount, 
-                                                                        jLowBound, jCount,
-                                                                        kLowBound, kCount);
+                                    jLowBound, jCount,
+                                    kLowBound, kCount);
   DemandFragments();
   (*fragments) += myReturn;
   return myReturn;
 }
 
 RescueArrayFragment *RescueArray2dVector::Load(RESCUEINT32 iLowBound, RESCUEINT32 iCount,
-                                            RESCUEINT32 jLowBound, RESCUEINT32 jCount,
-                                            RESCUEINT32 kLowBound, RESCUEINT32 kCount)
+                      RESCUEINT32 jLowBound, RESCUEINT32 jCount,
+                      RESCUEINT32 kLowBound, RESCUEINT32 kCount)
 {
   RescueArrayFragment *myReturn = CreatePrimitive((RESCUEINT64) iLowBound, (RESCUEINT64) iCount, 
                                                   (RESCUEINT64) jLowBound, (RESCUEINT64) jCount,
@@ -497,8 +497,8 @@ RescueArrayFragment *RescueArray2dVector::Load(RESCUEINT32 iLowBound, RESCUEINT3
 }
 
 RescueArrayFragment *RescueArray2dVector::Load(RESCUEINT64 iLowBound, RESCUEINT64 iCount,
-                                            RESCUEINT64 jLowBound, RESCUEINT64 jCount,
-                                            RESCUEINT64 kLowBound, RESCUEINT64 kCount)
+                      RESCUEINT64 jLowBound, RESCUEINT64 jCount,
+                      RESCUEINT64 kLowBound, RESCUEINT64 kCount)
 {
   RescueArrayFragment *myReturn = CreatePrimitive(iLowBound, iCount, jLowBound, jCount, kLowBound, kCount);
   LoadFragment(myReturn);
@@ -506,7 +506,7 @@ RescueArrayFragment *RescueArray2dVector::Load(RESCUEINT64 iLowBound, RESCUEINT6
 }
 
 RescueArrayFragment *RescueArray2dVector::Load(RESCUEINT32 iLowBound, RESCUEINT32 iCount,
-                                            RESCUEINT32 jLowBound, RESCUEINT32 jCount)
+                      RESCUEINT32 jLowBound, RESCUEINT32 jCount)
 {
   RescueArrayFragment *myReturn = CreatePrimitive((RESCUEINT64) iLowBound, (RESCUEINT64) iCount, 
                                                   (RESCUEINT64) jLowBound, (RESCUEINT64) jCount);
@@ -515,7 +515,7 @@ RescueArrayFragment *RescueArray2dVector::Load(RESCUEINT32 iLowBound, RESCUEINT3
 }
 
 RescueArrayFragment *RescueArray2dVector::Load(RESCUEINT64 iLowBound, RESCUEINT64 iCount,
-                                            RESCUEINT64 jLowBound, RESCUEINT64 jCount)
+                      RESCUEINT64 jLowBound, RESCUEINT64 jCount)
 {
   RescueArrayFragment *myReturn = CreatePrimitive(iLowBound, iCount, jLowBound, jCount);
   LoadFragment(myReturn);
@@ -526,85 +526,85 @@ void RescueArray2dVector::LoadAndSwapArray()
 {
   if (IsLoaded() == FALSE)
   {
-    RescueArray::Load();
+  RescueArray::Load();
   }
   RESCUEINT64 fNdx = 0;
   RESCUEINT64 eNdx = valueLength - 1;
   while (fNdx < eNdx)
   {
-    Rescue2dVector temp = value[fNdx];
-    value[fNdx] = value[eNdx];
-    value[eNdx] = temp;
-    fNdx++;
-    eNdx--;
+  Rescue2dVector temp = value[fNdx];
+  value[fNdx] = value[eNdx];
+  value[eNdx] = temp;
+  fNdx++;
+  eNdx--;
   }
   MarkChanged();
   Unload();
 }
   
 void RescueArray2dVector::SwapAxes(bool swapI, RESCUEINT64 iNodes, 
-                                bool swapJ, RESCUEINT64 jNodes,
-                                bool swapK, RESCUEINT64 kNodes)
+                bool swapJ, RESCUEINT64 jNodes,
+                bool swapK, RESCUEINT64 kNodes)
 {
   if (IsLoaded() == FALSE)
   {
-    RescueArray::Load();
+  RescueArray::Load();
   }
   if (swapI)
   {
-    RESCUEINT64 jLoop;
-    for (jLoop = 0; jLoop < jNodes * kNodes; jLoop++)
-    {
+  RESCUEINT64 jLoop;
+  for (jLoop = 0; jLoop < jNodes * kNodes; jLoop++)
+  {
       RESCUEINT64 fNdx = (jLoop * iNodes);
       RESCUEINT64 eNdx = fNdx + (iNodes - 1);
       while (fNdx < eNdx)
       {
-        Rescue2dVector temp = value[fNdx];
-        value[fNdx] = value[eNdx];
-        value[eNdx] = temp;
-        fNdx++;
-        eNdx--;
+    Rescue2dVector temp = value[fNdx];
+    value[fNdx] = value[eNdx];
+    value[eNdx] = temp;
+    fNdx++;
+    eNdx--;
       }
-    }
+  }
   }
   if (swapJ)
   {
-    RESCUEINT64 kLoop;
-    for (kLoop = 0; kLoop < kNodes; kLoop++)
-    {
+  RESCUEINT64 kLoop;
+  for (kLoop = 0; kLoop < kNodes; kLoop++)
+  {
       RESCUEINT64 offset = kLoop * iNodes * jNodes;
       RESCUEINT64 ifNdx = 0;
       RESCUEINT64 efNdx = (jNodes - 1);
       while (ifNdx < efNdx)
       {
-        RESCUEINT64 iLoop;
-        for (iLoop = 0; iLoop < iNodes; iLoop++)
-        {
+    RESCUEINT64 iLoop;
+    for (iLoop = 0; iLoop < iNodes; iLoop++)
+    {
           Rescue2dVector temp = value[offset + (ifNdx * iNodes) + iLoop];
           value[offset + (ifNdx * iNodes) + iLoop] = value[offset + (efNdx * iNodes) + iLoop];
           value[offset + (efNdx * iNodes) + iLoop] = temp;
-        }
-        ifNdx++;
-        efNdx--;
-      }
     }
+    ifNdx++;
+    efNdx--;
+      }
+  }
   }
   if (swapK)
   {
-    RESCUEINT64 kfNdx = 0;
-    RESCUEINT64 keNdx = kNodes - 1;
-    while (kfNdx < keNdx)
-    {
+  RESCUEINT64 kfNdx = 0;
+  RESCUEINT64 keNdx = kNodes - 1;
+  while (kfNdx < keNdx)
+  {
       RESCUEINT64 ijLoop;
       for (ijLoop = 0; ijLoop < iNodes * jNodes; ijLoop++)
       {
-        Rescue2dVector temp = value[(kfNdx * iNodes * jNodes) + ijLoop];
-        value[(kfNdx * iNodes * jNodes) + ijLoop] = value[(keNdx * iNodes * jNodes) + ijLoop];
-        value[(keNdx * iNodes * jNodes) + ijLoop] = temp;
+    Rescue2dVector temp = value[(kfNdx * iNodes * jNodes) + ijLoop];
+    value[(kfNdx * iNodes * jNodes) + ijLoop] = value[(keNdx * iNodes * jNodes) + ijLoop];
+    value[(keNdx * iNodes * jNodes) + ijLoop] = temp;
       }
       kfNdx++;
       keNdx--;
-    }
+  }
   }
   MarkChanged();
   Unload();
@@ -614,41 +614,41 @@ void RescueArray2dVector::SwapAxes(bool swapI, RESCUEINT64 iNodes, bool swapJ, R
 {
   if (IsLoaded() == FALSE)
   {
-    RescueArray::Load();
+  RescueArray::Load();
   }
   if (swapI)
   {
-    RESCUEINT64 jLoop;
-    for (jLoop = 0; jLoop < jNodes; jLoop++)
-    {
+  RESCUEINT64 jLoop;
+  for (jLoop = 0; jLoop < jNodes; jLoop++)
+  {
       RESCUEINT64 fNdx = (jLoop * iNodes);
       RESCUEINT64 eNdx = fNdx + (iNodes - 1);
       while (fNdx < eNdx)
       {
-        Rescue2dVector temp = value[fNdx];
-        value[fNdx] = value[eNdx];
-        value[eNdx] = temp;
-        fNdx++;
-        eNdx--;
+    Rescue2dVector temp = value[fNdx];
+    value[fNdx] = value[eNdx];
+    value[eNdx] = temp;
+    fNdx++;
+    eNdx--;
       }
-    }
+  }
   }
   if (swapJ)
   {
-    RESCUEINT64 ifNdx = 0;
-    RESCUEINT64 efNdx = jNodes - 1;
-    while (ifNdx < efNdx)
-    {
+  RESCUEINT64 ifNdx = 0;
+  RESCUEINT64 efNdx = jNodes - 1;
+  while (ifNdx < efNdx)
+  {
       RESCUEINT64 iLoop;
       for (iLoop = 0; iLoop < iNodes; iLoop++)
       {
-        Rescue2dVector temp = value[(ifNdx * iNodes) + iLoop];
-        value[(ifNdx * iNodes) + iLoop] = value[(efNdx * iNodes) + iLoop];
-        value[(efNdx * iNodes) + iLoop] = temp;
+    Rescue2dVector temp = value[(ifNdx * iNodes) + iLoop];
+    value[(ifNdx * iNodes) + iLoop] = value[(efNdx * iNodes) + iLoop];
+    value[(efNdx * iNodes) + iLoop] = temp;
       }
       ifNdx++;
       efNdx--;
-    }
+  }
   }
   MarkChanged();
   Unload();
@@ -658,11 +658,11 @@ RESCUEBOOL RescueArray2dVector::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueArray2dVector)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueObject::IsOfType(thisType);
+  return RescueObject::IsOfType(thisType);
   }
 }
 

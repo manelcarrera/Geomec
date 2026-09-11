@@ -29,12 +29,12 @@ void AdjustColumnWidth
 
   for (int i = 0; i < nColumnCount; i++)
   {
-    pListCtrl->SetColumnWidth(i, LVSCW_AUTOSIZE);
-    int nColumnWidth = pListCtrl->GetColumnWidth(i);
-    pListCtrl->SetColumnWidth(i, LVSCW_AUTOSIZE_USEHEADER);
-    int nHeaderWidth = pListCtrl->GetColumnWidth(i); 
-    int width= nColumnWidth>nHeaderWidth?nColumnWidth:nHeaderWidth;
-    pListCtrl->SetColumnWidth(i, width);
+  pListCtrl->SetColumnWidth(i, LVSCW_AUTOSIZE);
+  int nColumnWidth = pListCtrl->GetColumnWidth(i);
+  pListCtrl->SetColumnWidth(i, LVSCW_AUTOSIZE_USEHEADER);
+  int nHeaderWidth = pListCtrl->GetColumnWidth(i); 
+  int width= nColumnWidth>nHeaderWidth?nColumnWidth:nHeaderWidth;
+  pListCtrl->SetColumnWidth(i, width);
   }
   wnd->SetRedraw(TRUE);
 } 
@@ -66,19 +66,19 @@ CMatLibListCtrl::~CMatLibListCtrl()
 {
   if (m_toolTipA != 0)
   {
-    delete m_toolTipA;
+  delete m_toolTipA;
   }
 
   if (m_toolTipB != 0)
   {
-    delete m_toolTipB;
+  delete m_toolTipB;
   }
 }
 
 BEGIN_MESSAGE_MAP(CMatLibListCtrl, CListCtrl)
-	//{{AFX_MSG_MAP(CTabModel)
-	ON_WM_LBUTTONDOWN()
-	//}}AFX_MSG_MAP
+  //{{AFX_MSG_MAP(CTabModel)
+  ON_WM_LBUTTONDOWN()
+  //}}AFX_MSG_MAP
   ON_NOTIFY_EX(TTN_NEEDTEXTA, 0, OnToolNeedText)
   ON_NOTIFY_EX(TTN_NEEDTEXTW, 0, OnToolNeedText)
 END_MESSAGE_MAP()
@@ -90,61 +90,61 @@ END_MESSAGE_MAP()
 // col		- to hold the column index
 int CMatLibListCtrl::HitTestEx(CPoint &point, int *col) const
 {
-	int colnum = 0;
-	int row = HitTest( point, NULL );
-	
-	if( col ) *col = 0;
+  int colnum = 0;
+  int row = HitTest( point, NULL );
+  
+  if( col ) *col = 0;
 
-	// Make sure that the ListView is in LVS_REPORT
-	if( (GetWindowLong(m_hWnd, GWL_STYLE) & LVS_TYPEMASK) != LVS_REPORT )
-		return row;
+  // Make sure that the ListView is in LVS_REPORT
+  if( (GetWindowLong(m_hWnd, GWL_STYLE) & LVS_TYPEMASK) != LVS_REPORT )
+    return row;
 
-	// Get the top and bottom row visible
-	row = GetTopIndex();
-	int bottom = row + GetCountPerPage();
-	if( bottom > GetItemCount() )
-		bottom = GetItemCount();
-	
-	// Get the number of columns
-	CHeaderCtrl* pHeader = (CHeaderCtrl*)GetDlgItem(0);
-	int nColumnCount = pHeader->GetItemCount();
+  // Get the top and bottom row visible
+  row = GetTopIndex();
+  int bottom = row + GetCountPerPage();
+  if( bottom > GetItemCount() )
+    bottom = GetItemCount();
+  
+  // Get the number of columns
+  CHeaderCtrl* pHeader = (CHeaderCtrl*)GetDlgItem(0);
+  int nColumnCount = pHeader->GetItemCount();
 
-	// Loop through the visible rows
-	for( ;row <=bottom;row++)
-	{
-		// Get bounding rect of item and check whether point falls in it.
-		CRect rect;
-		GetItemRect( row, &rect, LVIR_BOUNDS );
-		if( rect.PtInRect(point) )
-		{
-			// Now find the column
-			for( colnum = 0; colnum < nColumnCount; colnum++ )
-			{
-				int colwidth = GetColumnWidth(colnum);
-				if( point.x >= rect.left 
-					&& point.x <= (rect.left + colwidth ) )
-				{
-					if( col ) *col = colnum;
+  // Loop through the visible rows
+  for( ;row <=bottom;row++)
+  {
+    // Get bounding rect of item and check whether point falls in it.
+    CRect rect;
+    GetItemRect( row, &rect, LVIR_BOUNDS );
+    if( rect.PtInRect(point) )
+    {
+      // Now find the column
+      for( colnum = 0; colnum < nColumnCount; colnum++ )
+      {
+        int colwidth = GetColumnWidth(colnum);
+        if( point.x >= rect.left 
+          && point.x <= (rect.left + colwidth ) )
+        {
+          if( col ) *col = colnum;
 
           if (colnum == CTabModel::VALUE_COLUMN)
           {
-            int nRow, nCol;
+      int nRow, nCol;
 
-            IconHitTest(point, nRow, nCol);
+      IconHitTest(point, nRow, nCol);
 
-            if ((nRow != -1) && (nCol != -1))
-            {
+      if ((nRow != -1) && (nCol != -1))
+      {
               return -1;
-            }
+      }
           }
 
-					return row;
-				}
-				rect.left += colwidth;
-			}
-		}
-	}
-	return -1;
+          return row;
+        }
+        rect.left += colwidth;
+      }
+    }
+  }
+  return -1;
 }
 
 // EditSubLabel		- Start edit of a sub item label
@@ -153,122 +153,122 @@ int CMatLibListCtrl::HitTestEx(CPoint &point, int *col) const
 // nCol			- The column of the sub item.
 CEdit* CMatLibListCtrl::EditSubLabel( int nItem, int nCol )
 {
-	// The returned pointer should not be saved
+  // The returned pointer should not be saved
 
-	// Make sure that the item is visible
-	if( !EnsureVisible( nItem, TRUE ) ) return NULL;
+  // Make sure that the item is visible
+  if( !EnsureVisible( nItem, TRUE ) ) return NULL;
 
-	// Make sure that nCol is valid
-	CHeaderCtrl* pHeader = (CHeaderCtrl*)GetDlgItem(0);
-	int nColumnCount = pHeader->GetItemCount();
-	if( nCol >= nColumnCount || GetColumnWidth(nCol) < 5 )
-		return NULL;
+  // Make sure that nCol is valid
+  CHeaderCtrl* pHeader = (CHeaderCtrl*)GetDlgItem(0);
+  int nColumnCount = pHeader->GetItemCount();
+  if( nCol >= nColumnCount || GetColumnWidth(nCol) < 5 )
+    return NULL;
 
-	// Get the column offset
-	int offset = 0;
-	for( int i = 0; i < nCol; i++ )
-		offset += GetColumnWidth( i );
+  // Get the column offset
+  int offset = 0;
+  for( int i = 0; i < nCol; i++ )
+    offset += GetColumnWidth( i );
 
-	CRect rect;
-	GetItemRect( nItem, &rect, LVIR_BOUNDS );
+  CRect rect;
+  GetItemRect( nItem, &rect, LVIR_BOUNDS );
 
-	// Now scroll if we need to expose the column
-	CRect rcClient;
-	GetClientRect( &rcClient );
-	if( offset + rect.left < 0 || offset + rect.left > rcClient.right )
-	{
-		CSize size;
-		size.cx = offset + rect.left;
-		size.cy = 0;
-		Scroll( size );
-		rect.left -= size.cx;
-	}
+  // Now scroll if we need to expose the column
+  CRect rcClient;
+  GetClientRect( &rcClient );
+  if( offset + rect.left < 0 || offset + rect.left > rcClient.right )
+  {
+    CSize size;
+    size.cx = offset + rect.left;
+    size.cy = 0;
+    Scroll( size );
+    rect.left -= size.cx;
+  }
 
-	// Get Column alignment
-	LV_COLUMN lvcol;
-	lvcol.mask = LVCF_FMT;
-	GetColumn( nCol, &lvcol );
-	DWORD dwStyle ;
-	if((lvcol.fmt&LVCFMT_JUSTIFYMASK) == LVCFMT_LEFT)
-		dwStyle = ES_LEFT;
-	else if((lvcol.fmt&LVCFMT_JUSTIFYMASK) == LVCFMT_RIGHT)
-		dwStyle = ES_RIGHT;
-	else dwStyle = ES_CENTER;
+  // Get Column alignment
+  LV_COLUMN lvcol;
+  lvcol.mask = LVCF_FMT;
+  GetColumn( nCol, &lvcol );
+  DWORD dwStyle ;
+  if((lvcol.fmt&LVCFMT_JUSTIFYMASK) == LVCFMT_LEFT)
+    dwStyle = ES_LEFT;
+  else if((lvcol.fmt&LVCFMT_JUSTIFYMASK) == LVCFMT_RIGHT)
+    dwStyle = ES_RIGHT;
+  else dwStyle = ES_CENTER;
 
-	rect.left += offset+4;
-	rect.right = rect.left + GetColumnWidth( nCol ) - 3 ;
-	if( rect.right > rcClient.right) rect.right = rcClient.right;
+  rect.left += offset+4;
+  rect.right = rect.left + GetColumnWidth( nCol ) - 3 ;
+  if( rect.right > rcClient.right) rect.right = rcClient.right;
 
-	dwStyle |= WS_BORDER|WS_CHILD|WS_VISIBLE|ES_AUTOHSCROLL;
-	CEdit *pEdit = new CInPlaceEdit(nItem, nCol, GetItemText( nItem, nCol ));
-	pEdit->Create( dwStyle, rect, this, IDC_IPEDIT );
+  dwStyle |= WS_BORDER|WS_CHILD|WS_VISIBLE|ES_AUTOHSCROLL;
+  CEdit *pEdit = new CInPlaceEdit(nItem, nCol, GetItemText( nItem, nCol ));
+  pEdit->Create( dwStyle, rect, this, IDC_IPEDIT );
 
 
-	return pEdit;
+  return pEdit;
 }
 
 void CMatLibListCtrl::OnHScroll(unsigned int nSBCode, unsigned int nPos, CScrollBar* pScrollBar)
 {
-	if( GetFocus() != this ) SetFocus();
-	CListCtrl::OnHScroll(nSBCode, nPos, pScrollBar);
+  if( GetFocus() != this ) SetFocus();
+  CListCtrl::OnHScroll(nSBCode, nPos, pScrollBar);
 }
 
 void CMatLibListCtrl::OnVScroll(unsigned int nSBCode, unsigned int nPos, CScrollBar* pScrollBar)
 {
-	if( GetFocus() != this ) SetFocus();
-	CListCtrl::OnVScroll(nSBCode, nPos, pScrollBar);
+  if( GetFocus() != this ) SetFocus();
+  CListCtrl::OnVScroll(nSBCode, nPos, pScrollBar);
 }
 
 void CMatLibListCtrl::OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 {
-	LV_DISPINFO *plvDispInfo = (LV_DISPINFO *)pNMHDR;
-	LV_ITEM	*plvItem = &plvDispInfo->item;
+  LV_DISPINFO *plvDispInfo = (LV_DISPINFO *)pNMHDR;
+  LV_ITEM	*plvItem = &plvDispInfo->item;
 
-	if (plvItem->pszText != NULL)
-	{
-		SetItemText(plvItem->iItem, plvItem->iSubItem, plvItem->pszText);
-	}
-	*pResult = FALSE;
+  if (plvItem->pszText != NULL)
+  {
+    SetItemText(plvItem->iItem, plvItem->iSubItem, plvItem->pszText);
+  }
+  *pResult = FALSE;
 }
 
 void CMatLibListCtrl::OnLButtonDown(unsigned int nFlags, CPoint point)
 {
-	int index;
-	CListCtrl::OnLButtonDown(nFlags, point);
+  int index;
+  CListCtrl::OnLButtonDown(nFlags, point);
 
-	int colnum;
-	if( ( index = HitTestEx( point, &colnum )) != -1 )
-	{
-		if(colnum == 0 || colnum == 1 || colnum == 3)
-			return;
-
-    CString strName = GetItemText(index, 1);
-    if(IsLockedParameterName(strName))
+  int colnum;
+  if( ( index = HitTestEx( point, &colnum )) != -1 )
+  {
+    if(colnum == 0 || colnum == 1 || colnum == 3)
       return;
 
-		unsigned int flag = LVIS_FOCUSED;
-		if( (GetItemState( index, flag ) & flag) == flag && colnum > 0)
-		{
-			// Add check for LVS_EDITLABELS
-			if( GetWindowLong(m_hWnd, GWL_STYLE) & LVS_EDITLABELS )
-				EditSubLabel( index, colnum );
-		}
-		else
-			SetItemState( index, LVIS_SELECTED | LVIS_FOCUSED ,
-				    	LVIS_SELECTED | LVIS_FOCUSED); 
-	}
+  CString strName = GetItemText(index, 1);
+  if(IsLockedParameterName(strName))
+      return;
+
+    unsigned int flag = LVIS_FOCUSED;
+    if( (GetItemState( index, flag ) & flag) == flag && colnum > 0)
+    {
+      // Add check for LVS_EDITLABELS
+      if( GetWindowLong(m_hWnd, GWL_STYLE) & LVS_EDITLABELS )
+        EditSubLabel( index, colnum );
+    }
+    else
+      SetItemState( index, LVIS_SELECTED | LVIS_FOCUSED ,
+            	LVIS_SELECTED | LVIS_FOCUSED); 
+  }
   else
   {
-    IconHitTest(point, index, colnum);
+  IconHitTest(point, index, colnum);
 
-    if ((index != -1) && (colnum != -1) && (colnum == CTabModel::VALUE_COLUMN))
-    {
+  if ((index != -1) && (colnum != -1) && (colnum == CTabModel::VALUE_COLUMN))
+  {
       if (!(m_tabModel->getMaterialParameterError())[index].isEmpty())
       {
-        _m()->msg((m_tabModel->getMaterialParameterError())[index],
+    _m()->msg((m_tabModel->getMaterialParameterError())[index],
           MB_OK | MB_ICONEXCLAMATION);
       }
-    }
+  }
   }
 }
 
@@ -294,7 +294,7 @@ void CMatLibListCtrl::CellHitTest(const CPoint& pt, int& nRow, int& nCol) const
   nRow = ListView_SubItemHitTest(m_hWnd, &lvhti);	// SubItemHitTest is non-const
   nCol = lvhti.iSubItem;
   if (!(lvhti.flags & LVHT_ONITEM))
-    nRow = -1;
+  nRow = -1;
 }
 
 void CMatLibListCtrl::IconHitTest(const CPoint& pt, int& nRow, int& nCol) const
@@ -307,7 +307,7 @@ void CMatLibListCtrl::IconHitTest(const CPoint& pt, int& nRow, int& nCol) const
   nRow = ListView_SubItemHitTest(m_hWnd, &lvhti);	// SubItemHitTest is non-const
   nCol = lvhti.iSubItem;
   if (!(lvhti.flags & LVHT_ONITEMICON))
-    nRow = -1;
+  nRow = -1;
 }
 
 BOOL CMatLibListCtrl::OnToolNeedText(UINT id, NMHDR* pNMHDR, LRESULT* pResult)
@@ -320,13 +320,13 @@ BOOL CMatLibListCtrl::OnToolNeedText(UINT id, NMHDR* pNMHDR, LRESULT* pResult)
 
   CString tooltip = GetToolTipText(nRow, nCol);
   if (tooltip.IsEmpty())
-    return FALSE;
+  return FALSE;
 
   CToolTipCtrl* pToolTip = AfxGetModuleThreadState()->m_pToolTip;
 
   if (pToolTip)
   {
-    pToolTip->SetMaxTipWidth(SHRT_MAX);
+  pToolTip->SetMaxTipWidth(SHRT_MAX);
   }
 
   // Non-unicode applications can receive requests for tooltip-text in unicode
@@ -335,52 +335,52 @@ BOOL CMatLibListCtrl::OnToolNeedText(UINT id, NMHDR* pNMHDR, LRESULT* pResult)
 #ifndef _UNICODE
   if (pNMHDR->code == TTN_NEEDTEXTA)
   {
-    if (m_toolTipA != 0)
-    {
+  if (m_toolTipA != 0)
+  {
       delete m_toolTipA;
-    }
+  }
 
-    m_toolTipA = new TCHAR[tooltip.GetLength() + 1];
-    lstrcpyn(m_toolTipA, tooltip, tooltip.GetLength());
-    m_toolTipA[tooltip.GetLength()] = 0;
-    pTTTW->lpszText = (WCHAR*) m_toolTipA;
+  m_toolTipA = new TCHAR[tooltip.GetLength() + 1];
+  lstrcpyn(m_toolTipA, tooltip, tooltip.GetLength());
+  m_toolTipA[tooltip.GetLength()] = 0;
+  pTTTW->lpszText = (WCHAR*) m_toolTipA;
   }
   else
   {
-    if (m_toolTipB != 0)
-    {
+  if (m_toolTipB != 0)
+  {
       delete m_toolTipB;
-    }
+  }
 
-    m_toolTipB = new WCHAR[tooltip.GetLength() + 1];
-    mbstowcs(m_toolTipB, tooltip, tooltip.GetLength());
-    m_toolTipB[tooltip.GetLength()] = 0;
-    pTTTW->lpszText = (WCHAR*) m_toolTipB;
+  m_toolTipB = new WCHAR[tooltip.GetLength() + 1];
+  mbstowcs(m_toolTipB, tooltip, tooltip.GetLength());
+  m_toolTipB[tooltip.GetLength()] = 0;
+  pTTTW->lpszText = (WCHAR*) m_toolTipB;
   }
 #else
   if (pNMHDR->code == TTN_NEEDTEXTA)
   {
-    if (m_toolTipA != 0)
-    {
+  if (m_toolTipA != 0)
+  {
       delete m_toolTipA;
-    }
+  }
 
-    m_toolTipA = new TCHAR[tooltip.GetLength() + 1];
-    _wcstombsz(m_toolTipA, tooltip, tooltip.GetLength());
-    m_toolTipA[tooltip.GetLength()] = 0;
-    pTTTW->lpszText = (LPTSTR) m_toolTipA;
+  m_toolTipA = new TCHAR[tooltip.GetLength() + 1];
+  _wcstombsz(m_toolTipA, tooltip, tooltip.GetLength());
+  m_toolTipA[tooltip.GetLength()] = 0;
+  pTTTW->lpszText = (LPTSTR) m_toolTipA;
   }
   else
   {
-    if (m_toolTipB != 0)
-    {
+  if (m_toolTipB != 0)
+  {
       delete m_toolTipB;
-    }
+  }
 
-    m_toolTipB = new WCHAR[tooltip.GetLength() + 1];
-    lstrcpyn(m_toolTipB, tooltip, tooltip.GetLength());
-    m_toolTipB[tooltip.GetLength()] = 0;
-    pTTTW->lpszText = (LPTSTR) m_toolTipB;
+  m_toolTipB = new WCHAR[tooltip.GetLength() + 1];
+  lstrcpyn(m_toolTipB, tooltip, tooltip.GetLength());
+  m_toolTipB[tooltip.GetLength()] = 0;
+  pTTTW->lpszText = (LPTSTR) m_toolTipB;
   }
 #endif
   // If wanting to display a tooltip which is longer than 80 characters,
@@ -397,26 +397,26 @@ bool CMatLibListCtrl::ShowToolTip(const CPoint& pt) const
   CellHitTest(pt, nRow, nCol);
 
   if (nRow != -1 && nCol != -1)
-    return true;
+  return true;
   else
-    return false;
+  return false;
 }
 
 CString CMatLibListCtrl::GetToolTipText(int nRow, int nCol)
 {
   if(nRow != -1 && nCol != -1 && (nCol == CTabModel::VALUE_COLUMN))
   {
-    QString toolTip = (m_tabModel->getMaterialParameterError())[nRow];
+  QString toolTip = (m_tabModel->getMaterialParameterError())[nRow];
 
-    return CString(toolTip.toStdString().c_str());
+  return CString(toolTip.toStdString().c_str());
   }
   else
 #ifdef _DEBUG
   if (nRow != -1 && nCol != -1)
-    return GetItemText(nRow, nCol);	// Cell-ToolTip
+  return GetItemText(nRow, nCol);	// Cell-ToolTip
   else
 #endif  // _DEBUG
-    return CString("");
+  return CString("");
 }
 
 void CMatLibListCtrl::PreSubclassWindow()
@@ -437,7 +437,7 @@ INT_PTR CMatLibListCtrl::OnToolHitTest(CPoint point, TOOLINFO* pTI) const
   CPoint pt(GetMessagePos());
   ScreenToClient(&pt);
   if (!ShowToolTip(pt))
-    return -1;
+  return -1;
 
   int nRow, nCol;
   CellHitTest(pt, nRow, nCol);

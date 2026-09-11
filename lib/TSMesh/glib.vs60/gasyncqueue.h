@@ -60,9 +60,9 @@ void          g_async_queue_unref_and_unlock   (GAsyncQueue *queue);
 
 /* Push data into the async queue. Must not be NULL */
 void          g_async_queue_push               (GAsyncQueue *queue,
-                                                gpointer     data);
+                        gpointer     data);
 void          g_async_queue_push_unlocked      (GAsyncQueue *queue,
-                                                gpointer     data);
+                        gpointer     data);
 
 /* Pop data from the async queue, when no data is there, the thread is blocked
  * until data arrives */
@@ -76,9 +76,9 @@ gpointer      g_async_queue_try_pop_unlocked   (GAsyncQueue *queue);
 /* Wait for data until at maximum until end_time is reached, NULL is returned
  * in case of empty queue*/
 gpointer      g_async_queue_timed_pop          (GAsyncQueue *queue,
-                                                GTimeVal    *end_time);
+                        GTimeVal    *end_time);
 gpointer      g_async_queue_timed_pop_unlocked (GAsyncQueue *queue,
-                                                GTimeVal    *end_time);
+                        GTimeVal    *end_time);
 
 /* Return the length of the queue, negative values mean, that threads
  * are waiting, positve values mean, that there are entries in the

@@ -13,15 +13,15 @@ namespace cora
 class CGetElementSetInfo : public CGetSetInfo
 {
   public:
-    CGetElementSetInfo(const CModelBase* modelBase);
+  CGetElementSetInfo(const CModelBase* modelBase);
 
-    std::ostream& operator () (std::ostream& os) const;
+  std::ostream& operator () (std::ostream& os) const;
 
   private:
-    CGetElementSetInfo(const CGetElementSetInfo& rhs);
-    CGetElementSetInfo& operator = (CGetElementSetInfo rhs);
+  CGetElementSetInfo(const CGetElementSetInfo& rhs);
+  CGetElementSetInfo& operator = (CGetElementSetInfo rhs);
 
-    const CModelBase* m_modelBase;
+  const CModelBase* m_modelBase;
 };
 
 } // namespace cora

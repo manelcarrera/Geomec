@@ -21,41 +21,41 @@ CLoadManager::CLoadManager(const geo::IMesh &mesh, IDianaRunner &runner)
 
 CLoadManager::~CLoadManager()
 {
-	Clear();
+  Clear();
 }
 
 void CLoadManager::Clear()
 {
-	for(std::set<ILoad *>::iterator it = m_stLoads.begin(); it != m_stLoads.end(); it++) delete *it;
-	m_stLoads.clear();
+  for(std::set<ILoad *>::iterator it = m_stLoads.begin(); it != m_stLoads.end(); it++) delete *it;
+  m_stLoads.clear();
 
   for(size_t i = 0; i < m_vcInitialNodalPotentials.size(); ++i)
-    delete m_vcInitialNodalPotentials[i];
+  delete m_vcInitialNodalPotentials[i];
 
   m_vcInitialNodalPotentials.clear();
 }
 
 int CLoadManager::LoadCaseSize() const
 {
-	return m_vcLoadCases.size();
+  return m_vcLoadCases.size();
 }
 
 const CLoadCase &CLoadManager::LoadCase(int nCase) const
 {
-	return *m_vcLoadCases[nCase];
+  return *m_vcLoadCases[nCase];
 }
 
 CLoadCase &CLoadManager::LoadCase(int nCase)
 {
-	return *m_vcLoadCases[nCase];
+  return *m_vcLoadCases[nCase];
 }
 
 CLoadCase &CLoadManager::NewLoadCase()
 {
-	CLoadCase *pNew = new CLoadCase(*this, LoadCaseSize());
-	m_vcLoadCases.push_back(pNew);
+  CLoadCase *pNew = new CLoadCase(*this, LoadCaseSize());
+  m_vcLoadCases.push_back(pNew);
 
-	return *pNew;
+  return *pNew;
 }
 
 int CLoadManager::BoundaCaseSize() const
@@ -89,7 +89,7 @@ int CLoadManager::CaseSize() const
 const ICase& CLoadManager::Case(int nCase) const
 {
   if(nCase < LoadCaseSize())
-    return LoadCase(nCase);
+  return LoadCase(nCase);
 
   return BoundaCase(nCase - LoadCaseSize());
 }
@@ -97,37 +97,37 @@ const ICase& CLoadManager::Case(int nCase) const
 ICase& CLoadManager::Case(int nCase)
 {
   if(nCase < LoadCaseSize())
-    return LoadCase(nCase);
+  return LoadCase(nCase);
 
   return BoundaCase(nCase - LoadCaseSize());
 }
 
 int CLoadManager::LoadCombinationSize() const
 {
-	return m_vcLoadCombinations.size();
+  return m_vcLoadCombinations.size();
 }
 
 const CLoadCombination &CLoadManager::LoadCombination(int nCombination) const
 {
-	return *m_vcLoadCombinations[nCombination];
+  return *m_vcLoadCombinations[nCombination];
 }
 
 CLoadCombination &CLoadManager::LoadCombination(int nCombination)
 {
-	return *m_vcLoadCombinations[nCombination];
+  return *m_vcLoadCombinations[nCombination];
 }
 
 CLoadCombination &CLoadManager::NewLoadCombination()
 {
-	CLoadCombination *pNew = new CLoadCombination(*this, LoadCombinationSize());
-	m_vcLoadCombinations.push_back(pNew);
+  CLoadCombination *pNew = new CLoadCombination(*this, LoadCombinationSize());
+  m_vcLoadCombinations.push_back(pNew);
 
-	return *pNew;
+  return *pNew;
 }
 
 bool CLoadManager::InsertLoad(ILoad &load)
 {
-	return m_stLoads.insert(&load).second;
+  return m_stLoads.insert(&load).second;
 }
 
 // called by constructor of (friend) CInitialNodalPotential, returns the index
@@ -140,30 +140,30 @@ int CLoadManager::InsertInitialNodalPotential(dia::CInitialNodalPotential& poten
 
 bool CLoadManager::WriteFilos() const
 {
-	int i;
+  int i;
 
-	for(i = 0; i < CaseSize(); i++)
-		if(!Case(i).WriteFilos()) return false;
+  for(i = 0; i < CaseSize(); i++)
+    if(!Case(i).WriteFilos()) return false;
 
-	for(i = 0; i < LoadCombinationSize(); i++)
-		if(!LoadCombination(i).WriteFilos()) return false;
+  for(i = 0; i < LoadCombinationSize(); i++)
+    if(!LoadCombination(i).WriteFilos()) return false;
 
-	return true;
+  return true;
 }
 
 const geo::IMesh &CLoadManager::Mesh() const
 {
-	return m_Mesh;
+  return m_Mesh;
 }
 
 const IDianaRunner &CLoadManager::Runner() const
 {
-	return m_Runner;
+  return m_Runner;
 }
 
 IDianaRunner &CLoadManager::Runner()
 {
-	return m_Runner;
+  return m_Runner;
 }
 
 } // namespace dia

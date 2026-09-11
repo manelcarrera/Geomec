@@ -14,42 +14,42 @@ class GEOMETRY_EXPORT  ISpline : public IElement
 {
   class GEOMETRY_EXPORT CSplineFace : public IQuadrilateral
   {
-    const ISpline& m_parent;
-    int m_nIndex;
+  const ISpline& m_parent;
+  int m_nIndex;
 
   public:
-    CSplineFace(const ISpline& parent, int nIndex);
-    ~CSplineFace();
+  CSplineFace(const ISpline& parent, int nIndex);
+  ~CSplineFace();
 
-    const ISpline& Spline() const;
+  const ISpline& Spline() const;
 
-    virtual size_t NrOfNodes() const;
-    virtual const INode &Node(int nIndex) const;
-    virtual void Node(int nIndex, const IPoint &pt);
+  virtual size_t NrOfNodes() const;
+  virtual const INode &Node(int nIndex) const;
+  virtual void Node(int nIndex, const IPoint &pt);
 
-    virtual size_t Order() const;
-    int ParentNodeIndex(int nIndex) const;
+  virtual size_t Order() const;
+  int ParentNodeIndex(int nIndex) const;
 
-    int Index() const;
+  int Index() const;
   };
 
   class GEOMETRY_EXPORT CSplineLine : public ILine
   {
-    const ISpline& m_parent;
-    int m_Nodes[2];
+  const ISpline& m_parent;
+  int m_Nodes[2];
 
   public:
-    CSplineLine(const ISpline& parent, int nFirst, int nSecond);
-    ~CSplineLine();
+  CSplineLine(const ISpline& parent, int nFirst, int nSecond);
+  ~CSplineLine();
 
-    const ISpline& localParent() const;
+  const ISpline& localParent() const;
 
-    virtual size_t NrOfNodes() const;
-    virtual const INode& Node(int nIndex) const;
-    virtual void Node(int nIdex, const IPoint& pt);
+  virtual size_t NrOfNodes() const;
+  virtual const INode& Node(int nIndex) const;
+  virtual void Node(int nIdex, const IPoint& pt);
 
-    virtual size_t Order() const;
-    int ParentNodeIndex(int nIndex) const;
+  virtual size_t Order() const;
+  int ParentNodeIndex(int nIndex) const;
   };
 
   void BuildFaceCache() const;

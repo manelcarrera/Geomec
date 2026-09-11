@@ -19,26 +19,26 @@ namespace cora
 class CFailureTypeParameter
 {
   public:
-    CFailureTypeParameter(CSummaryResultFile& summaryResultFile,
+  CFailureTypeParameter(CSummaryResultFile& summaryResultFile,
       std::istream& stream, const CGetModelInfo& modelInfo);
 
-    void modify(CModelBase* modelBase);
+  void modify(CModelBase* modelBase);
 
-    const TParameter getActualParameter() const;
+  const TParameter getActualParameter() const;
 
   private:
-    CFailureTypeParameter(const CFailureTypeParameter& rhs);
-    CFailureTypeParameter& operator = (CFailureTypeParameter rhs);
+  CFailureTypeParameter(const CFailureTypeParameter& rhs);
+  CFailureTypeParameter& operator = (CFailureTypeParameter rhs);
 
-    static TFailureTypeParameterBase selectFailureType(
+  static TFailureTypeParameterBase selectFailureType(
       CSummaryResultFile& summaryResultFile, std::istream& stream,
       const CGetModelInfo& modelInfo);
-    static TFailureTypeParameterBase selectFailureType(
+  static TFailureTypeParameterBase selectFailureType(
       CSummaryResultFile& summaryResultFile, const std::string& object,
       const std::string& option, const std::string& parameter,
       std::vector <double>& value, const CGetModelInfo& modelInfo);
 
-    TFailureTypeParameterBase m_failureTypeParameterBase;
+  TFailureTypeParameterBase m_failureTypeParameterBase;
 };
 
 typedef QSharedPointer <CFailureTypeParameter> TFailureTypeParameter;

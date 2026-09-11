@@ -20,8 +20,8 @@ void CZoominModelPlaceHolder_Delegate::AppendContextMenu(CContextMenuInvoker& in
 
   typedef CSingleCommandTemplate <CFemAppDoc> TFemAppDocCommand;
   invoker.AddCommand(_T("&Delete"), *(new TFemAppDocCommand(
-    *GetGeomecDoc(), &CFemAppDoc::OnContextDelete,
-    &CFemAppDoc::OnContextCanDelete)));
+  *GetGeomecDoc(), &CFemAppDoc::OnContextDelete,
+  &CFemAppDoc::OnContextCanDelete)));
 
   invoker.AddCommand(QObject::tr("Attributes").toStdString(), *new TGraphNode_DelegateCommand(*this, &CGraphNode_Delegate::Attributes));
 }

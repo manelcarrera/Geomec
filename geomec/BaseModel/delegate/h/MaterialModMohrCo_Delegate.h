@@ -13,7 +13,7 @@ public:
 private:
   CMaterialModMohrCo_Delegate(const CMaterialModMohrCo_Delegate& rhs);
   CMaterialModMohrCo_Delegate& operator = (
-    const CMaterialModMohrCo_Delegate& rhs);
+  const CMaterialModMohrCo_Delegate& rhs);
 
   CMaterialModMohrCo* m_materialModMohrCo;
 

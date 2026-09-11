@@ -35,8 +35,8 @@ CModelOperation::CModelOperation( IModelObject& location, const QString& text )
   setObjectName( "ModelOperation" );
 
   if ( m_document ) {
-    m_stack = &m_document->operationStack();
-    m_stack->beginOperation( *this );
+  m_stack = &m_document->operationStack();
+  m_stack->beginOperation( *this );
   }
 }
 
@@ -48,10 +48,10 @@ CModelOperation::CModelOperation( IModelObject& location, const QString& text )
 CModelOperation::~CModelOperation()
 {
   if ( m_stack ) {
-    m_stack->endOperation( *this );
+  m_stack->endOperation( *this );
   } else {
-    assert( m_localStack.size() == 0 );
-    while( m_localStack.size() ) delete m_localStack.pop();
+  assert( m_localStack.size() == 0 );
+  while( m_localStack.size() ) delete m_localStack.pop();
   }
 }
 
@@ -84,11 +84,11 @@ void CModelOperation::push( CUndoOperation* undo )
 {
   assert( stackEnabled() );
   switch ( m_state ) {
-    case OPERATION_WAIT:
+  case OPERATION_WAIT:
       m_localStack.push( undo );
       if ( m_text.isEmpty() ) m_text = undo->text();
       break;
-    case OPERATION_CANCEL:
+  case OPERATION_CANCEL:
       delete undo;
   }
 }
@@ -102,9 +102,9 @@ void CModelOperation::cancel()
   assert( m_document );
   m_state = OPERATION_CANCEL;
   while ( m_localStack.size() ) {
-    CUndoOperation* undoOperation = m_localStack.pop();
-    undoOperation->undo( *m_document );
-    delete undoOperation;
+  CUndoOperation* undoOperation = m_localStack.pop();
+  undoOperation->undo( *m_document );
+  delete undoOperation;
   }
   m_state = OPERATION_WAIT;
 }
@@ -124,9 +124,9 @@ bool CModelOperation::isEmpty() const
 void CModelOperation::beginOperation( CModelOperation& operation )
 {
   if ( m_pending ) {
-    m_pending->beginOperation( operation );
+  m_pending->beginOperation( operation );
   } else {
-    m_pending = &operation;
+  m_pending = &operation;
   }
 }
 
@@ -138,10 +138,10 @@ void CModelOperation::endOperation( CModelOperation& operation )
 {
   assert( m_pending );
   if ( m_pending != &operation ) {
-    m_pending->endOperation( operation );
+  m_pending->endOperation( operation );
   } else {
-    m_pending = 0;
-    push( operation );
+  m_pending = 0;
+  push( operation );
   }
 }
 
@@ -151,11 +151,11 @@ void CModelOperation::endOperation( CModelOperation& operation )
 void CModelOperation::push( CModelOperation& operation )
 {
   if ( !operation.isEmpty() ) {
-    if ( operation.m_localStack.size() == 1 ) {
+  if ( operation.m_localStack.size() == 1 ) {
       push( operation.m_localStack.pop() ); // remove 1 level
-    } else {
+  } else {
       push( new CCompositeUndo( operation.m_localStack, operation.text() ) );
-    }
+  }
   }
 }
 

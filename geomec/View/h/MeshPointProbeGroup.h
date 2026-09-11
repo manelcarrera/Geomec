@@ -9,26 +9,26 @@ class ValueTracker;
 class GMoMeshPointProbe : public MoMeshPointProbe
 {
 public:
-    GMoMeshPointProbe() : MoMeshPointProbe(), m_tensorSetId(0)
-    {
-    }
+  GMoMeshPointProbe() : MoMeshPointProbe(), m_tensorSetId(0)
+  {
+  }
 
-    virtual void doAction(SoAction *action);
+  virtual void doAction(SoAction *action);
 
-    void setTensorSetId(int id);
+  void setTensorSetId(int id);
 
-    int getTensorSetId ();
+  int getTensorSetId ();
 
 private:
-    int m_tensorSetId;
+  int m_tensorSetId;
 };
 
 
 class MeshPointProbe : public SoSeparator, public MoMeshPointProbe::MoProbeCallback
 {
 public:
-    MeshPointProbe ( const std::string & meshName, const MiVolumeMeshUnstructured * miVolumeMesh, ValueTracker * valueTracker);
-    const MiVolumeMeshUnstructured * getMesh();
+  MeshPointProbe ( const std::string & meshName, const MiVolumeMeshUnstructured * miVolumeMesh, ValueTracker * valueTracker);
+  const MiVolumeMeshUnstructured * getMesh();
 
    virtual void  motionCallback(size_t cellId, const MeXScalardSetI& scalars, const MeXVec3dSetI& vectors);
 
@@ -39,23 +39,23 @@ public:
    void setDefault();
    void setTensorSetId( int tensorSetId );
 private:
-    const std::string m_meshName;
-    const MiVolumeMeshUnstructured * m_miVolumeMesh;
-    GMoMeshPointProbe * m_meshPointProbe;
-    ValueTracker * m_valueTracker;
-    bool m_default;
+  const std::string m_meshName;
+  const MiVolumeMeshUnstructured * m_miVolumeMesh;
+  GMoMeshPointProbe * m_meshPointProbe;
+  ValueTracker * m_valueTracker;
+  bool m_default;
 };
 
 class MeshPointProbeGroup : public SoSwitch
 {
 public:
-    MeshPointProbeGroup();
-    void addProbe (const std::string & meshName, const MiVolumeMeshUnstructured * miVolumeMesh, ValueTracker * valueTracker);
-    void removeProbe (const MiVolumeMeshUnstructured * miVolumeMesh);
-    void enable (bool state);
-    void setScalarSetId( const MiVolumeMeshUnstructured * miVolumeMesh, int scalarSetId );
-    void setVectorSetId( const MiVolumeMeshUnstructured * miVolumeMesh, int vectorSetId );
-    void setTensorSetId( const MiVolumeMeshUnstructured * miVolumeMesh, int tensorSetId );
+  MeshPointProbeGroup();
+  void addProbe (const std::string & meshName, const MiVolumeMeshUnstructured * miVolumeMesh, ValueTracker * valueTracker);
+  void removeProbe (const MiVolumeMeshUnstructured * miVolumeMesh);
+  void enable (bool state);
+  void setScalarSetId( const MiVolumeMeshUnstructured * miVolumeMesh, int scalarSetId );
+  void setVectorSetId( const MiVolumeMeshUnstructured * miVolumeMesh, int vectorSetId );
+  void setTensorSetId( const MiVolumeMeshUnstructured * miVolumeMesh, int tensorSetId );
 private:
 
 };

@@ -14,7 +14,7 @@ COpenGLSceneBase_Delegate::COpenGLSceneBase_Delegate(
 
 bool COpenGLSceneBase_Delegate::Attributes()
 {
-    return false;
+  return false;
 }
 
 void COpenGLSceneBase_Delegate::AppendToMenu(CMenu& menu)

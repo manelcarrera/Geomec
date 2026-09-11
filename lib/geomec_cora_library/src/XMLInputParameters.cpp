@@ -23,15 +23,15 @@ std::ostream& CXMLInputParameters::operator () (std::ostream& stream) const
 {
   if (m_inputParameters.empty())
   {
-    stream << INPUT_PARAMETERS_EMPTY.toStdString() << std::endl;
+  stream << INPUT_PARAMETERS_EMPTY.toStdString() << std::endl;
   }
   else
   {
-    stream << INPUT_PARAMETERS_OPEN.toStdString() << std::endl;
+  stream << INPUT_PARAMETERS_OPEN.toStdString() << std::endl;
 
-    stream << m_inputParameters;
+  stream << m_inputParameters;
 
-    stream << INPUT_PARAMETERS_CLOSE.toStdString() << std::endl;
+  stream << INPUT_PARAMETERS_CLOSE.toStdString() << std::endl;
   }
 
   return stream;
@@ -48,9 +48,9 @@ TXMLInputParameters CXMLInputParameters::createInputParameters(
   const TParameters parameters = object->getParameters();
 
   for (TParameters::const_iterator parameter = parameters.begin();
-    parameter != parameters.end(); ++parameter)
+  parameter != parameters.end(); ++parameter)
   {
-    inputParameters.push_back(TXMLInputParameter(
+  inputParameters.push_back(TXMLInputParameter(
       new CXMLInputParameter(*parameter)));
   }
 

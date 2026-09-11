@@ -23,7 +23,7 @@ public:
   OIV2DHistoryScene* getOIV2DHistoryScene() const;
 
   virtual void LoadScenes(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS& progress, bool bIgnore = false);
-	virtual void SaveScenes(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS& progress);
+  virtual void SaveScenes(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS& progress);
 
 private:
   C3DGUI(const C3DGUI& rhs);

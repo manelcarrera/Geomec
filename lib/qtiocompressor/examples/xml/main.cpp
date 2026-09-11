@@ -52,34 +52,34 @@
 // compressed xml data in a file. 
 int main()
 {
-    // Create some xml.
-    QDomDocument doc("MyML");
-    QDomElement root = doc.createElement("MyML");
-    doc.appendChild(root);
+  // Create some xml.
+  QDomDocument doc("MyML");
+  QDomElement root = doc.createElement("MyML");
+  doc.appendChild(root);
 
-    QDomElement tag = doc.createElement("Greeting");
-    root.appendChild(tag);
+  QDomElement tag = doc.createElement("Greeting");
+  root.appendChild(tag);
 
-    QDomText t = doc.createTextNode("Hello World");
-    tag.appendChild(t);
+  QDomText t = doc.createTextNode("Hello World");
+  tag.appendChild(t);
 
-    // Write it to a compressed file using a QTextStream.
-    QFile file("xmltest");
-    file.open(QIODevice::ReadWrite);
-    QtIOCompressor compressor(&file);
-    compressor.open(QIODevice::WriteOnly);
-    QTextStream textStream(&compressor);
-    const int indent = 0;
-    doc.save(textStream, indent);
+  // Write it to a compressed file using a QTextStream.
+  QFile file("xmltest");
+  file.open(QIODevice::ReadWrite);
+  QtIOCompressor compressor(&file);
+  compressor.open(QIODevice::WriteOnly);
+  QTextStream textStream(&compressor);
+  const int indent = 0;
+  doc.save(textStream, indent);
 
-    // Close the QtIOCompressor and seek to start of file.
-    compressor.close();
-    file.seek(0);
-    
-    // Read compressed xml from file and print it.
-    compressor.open(QIODevice::ReadOnly);
-    QDomDocument readDoc;
-    readDoc.setContent(&compressor);    
-    const QString readXml = readDoc.toString();
-    qDebug() << readXml;
+  // Close the QtIOCompressor and seek to start of file.
+  compressor.close();
+  file.seek(0);
+  
+  // Read compressed xml from file and print it.
+  compressor.open(QIODevice::ReadOnly);
+  QDomDocument readDoc;
+  readDoc.setContent(&compressor);    
+  const QString readXml = readDoc.toString();
+  qDebug() << readXml;
 }

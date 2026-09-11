@@ -84,12 +84,12 @@ struct _GParamSpecClass
 
   /* GParam methods */
   void          (*value_set_default)    (GParamSpec   *pspec,
-					 GValue       *value);
+           GValue       *value);
   gboolean      (*value_validate)       (GParamSpec   *pspec,
-					 GValue       *value);
+           GValue       *value);
   gint          (*values_cmp)           (GParamSpec   *pspec,
-					 const GValue *value1,
-					 const GValue *value2);
+           const GValue *value1,
+           const GValue *value2);
 };
 
 
@@ -98,27 +98,27 @@ GParamSpec*	g_param_spec_ref		(GParamSpec    *pspec);
 void		g_param_spec_unref		(GParamSpec    *pspec);
 void		g_param_spec_sink		(GParamSpec    *pspec);
 gpointer        g_param_spec_get_qdata		(GParamSpec    *pspec,
-						 GQuark         quark);
+             GQuark         quark);
 void            g_param_spec_set_qdata		(GParamSpec    *pspec,
-						 GQuark         quark,
-						 gpointer       data);
+             GQuark         quark,
+             gpointer       data);
 void            g_param_spec_set_qdata_full	(GParamSpec    *pspec,
-						 GQuark         quark,
-						 gpointer       data,
-						 GDestroyNotify destroy);
+             GQuark         quark,
+             gpointer       data,
+             GDestroyNotify destroy);
 gpointer        g_param_spec_steal_qdata	(GParamSpec    *pspec,
-						 GQuark         quark);
+             GQuark         quark);
 void		g_param_value_set_default	(GParamSpec    *pspec,
-						 GValue	       *value);
+             GValue	       *value);
 gboolean	g_param_value_defaults		(GParamSpec    *pspec,
-						 GValue	       *value);
+             GValue	       *value);
 gboolean	g_param_value_validate		(GParamSpec    *pspec,
-						 GValue	       *value);
+             GValue	       *value);
 gint		g_param_values_cmp		(GParamSpec    *pspec,
-						 const GValue  *value1,
-						 const GValue  *value2);
+             const GValue  *value1,
+             const GValue  *value2);
 void            g_value_set_param               (GValue	       *value,
-						 GParamSpec    *param);
+             GParamSpec    *param);
 GParamSpec*     g_value_get_param               (const GValue  *value);
 GParamSpec*     g_value_dup_param               (const GValue  *value);
 
@@ -136,34 +136,34 @@ struct _GParamSpecTypeInfo
   GType           value_type;				       /* obligatory */
   void          (*finalize)             (GParamSpec   *pspec); /* optional */
   void          (*value_set_default)    (GParamSpec   *pspec,  /* recommended */
-					 GValue       *value);
+           GValue       *value);
   gboolean      (*value_validate)       (GParamSpec   *pspec,  /* optional */
-					 GValue       *value);
+           GValue       *value);
   gint          (*values_cmp)           (GParamSpec   *pspec,  /* recommended */
-					 const GValue *value1,
-					 const GValue *value2);
+           const GValue *value1,
+           const GValue *value2);
 };
 GType	g_param_type_register_static	(const gchar		  *name,
-					 const GParamSpecTypeInfo *pspec_info);
+           const GParamSpecTypeInfo *pspec_info);
 
 
 /* --- protected --- */
 gpointer	g_param_spec_internal		(GType	        param_type,
-						 const gchar   *name,
-						 const gchar   *nick,
-						 const gchar   *blurb,
-						 GParamFlags    flags);
+             const gchar   *name,
+             const gchar   *nick,
+             const gchar   *blurb,
+             GParamFlags    flags);
 GParamSpecPool* g_param_spec_pool_new		(gboolean	type_prefixing);
 void		g_param_spec_pool_insert	(GParamSpecPool	*pool,
-						 GParamSpec	*pspec,
-						 GType		 owner_type);
+             GParamSpec	*pspec,
+             GType		 owner_type);
 void		g_param_spec_pool_remove	(GParamSpecPool	*pool,
-						 GParamSpec	*pspec);
+             GParamSpec	*pspec);
 GParamSpec*	g_param_spec_pool_lookup	(GParamSpecPool	*pool,
-						 const gchar	*param_name,
-						 GType		 owner_type,
-						 gboolean	 walk_ancestors,
-						 const gchar   **trailer_p);
+             const gchar	*param_name,
+             GType		 owner_type,
+             gboolean	 walk_ancestors,
+             const gchar   **trailer_p);
 
 
 /* contracts:

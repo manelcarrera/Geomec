@@ -28,8 +28,8 @@ CWellSectionList::~CWellSectionList()
 
 CWellSectionList& CWellSectionList::operator=(const CWellSectionList& rhs)
 {
-	CWellSectionListBase::operator = (rhs);
-	return *this;
+  CWellSectionListBase::operator = (rhs);
+  return *this;
 }
 
 CWellSectionList::CWellSectionList(const CWellSectionList& rhs)
@@ -43,51 +43,51 @@ CWellSectionList::CWellSectionList(const CWellSectionList& rhs)
 int CWellSectionList::AddSection(IWellSection* section)
 {
 
-	assert(&WellPath()==&section->WellPath());
+  assert(&WellPath()==&section->WellPath());
 
-	if(CWellSectionListBase::Exist(section))
-	{
-		return -1;
-	}
+  if(CWellSectionListBase::Exist(section))
+  {
+    return -1;
+  }
 
   Iterator it;
   for(it = begin(); it != end(); ++it)
   {
-    int comp = compareItems(*it, section);
-    if(comp == 0)
+  int comp = compareItems(*it, section);
+  if(comp == 0)
       return -1;
-    if(comp > 0)
+  if(comp > 0)
       break;
   }
   m_lstSections.insert(it, section);
-	return m_lstSections.indexOf(section);
+  return m_lstSections.indexOf(section);
 }
 
 
 IWellSection* CWellSectionList::First() const
 {
   if(m_lstSections.empty())
-    return 0;
+  return 0;
 
-	return m_lstSections.first();
+  return m_lstSections.first();
 }
 
 IWellSection* CWellSectionList::Last() const
 {
   if(m_lstSections.empty())
-    return 0;
+  return 0;
 
   return m_lstSections.last();
 }
 
 void CWellSectionList::RemoveSection(int index)
 {
-	m_lstSections.removeAt(index);
+  m_lstSections.removeAt(index);
 }
 
 void CWellSectionList::RemoveAllSections()
 {
-	clear();
+  clear();
 }
 
 }

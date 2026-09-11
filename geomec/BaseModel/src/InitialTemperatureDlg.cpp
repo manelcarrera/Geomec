@@ -22,6 +22,6 @@ CInitialTemperatureDlg::CInitialTemperatureDlg(CGlobalTemperature& temp, CWnd* p
 }
 
 BEGIN_MESSAGE_MAP(CInitialTemperatureDlg, CAttriGlobalFormationLoadDlg<CGlobalTemperature>)
-	ON_BN_CLICKED(IDC_RD_EXTRA_POLATE, OnExtraPolate)
-	ON_BN_CLICKED(IDC_RD_PRE_DEFINED, OnPreDefined)
+  ON_BN_CLICKED(IDC_RD_EXTRA_POLATE, OnExtraPolate)
+  ON_BN_CLICKED(IDC_RD_PRE_DEFINED, OnPreDefined)
 END_MESSAGE_MAP()

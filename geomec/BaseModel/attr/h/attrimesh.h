@@ -13,32 +13,32 @@
 class CMeshBase;
 class CAttriMesh : public CDialog
 {
-	CMeshBase& m_mesh;
+  CMeshBase& m_mesh;
 // Construction
 public:
-	CAttriMesh(CMeshBase& mesh, CWnd* pParent = NULL);   // standard constructor
+  CAttriMesh(CMeshBase& mesh, CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
-	//{{AFX_DATA(CAttriMesh)
-	enum { IDD = IDD_ATTRI_MESH };
-	//}}AFX_DATA
+  //{{AFX_DATA(CAttriMesh)
+  enum { IDD = IDD_ATTRI_MESH };
+  //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CAttriMesh)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+  // ClassWizard generated virtual function overrides
+  //{{AFX_VIRTUAL(CAttriMesh)
+  protected:
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CAttriMesh)
-		// NOTE: the ClassWizard will add member functions here
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+  // Generated message map functions
+  //{{AFX_MSG(CAttriMesh)
+    // NOTE: the ClassWizard will add member functions here
+  //}}AFX_MSG
+  DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}

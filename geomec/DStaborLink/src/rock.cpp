@@ -13,302 +13,302 @@
 
 double CRock::GetYoung1()
 {
-	double result;
-	GetProperty(0x1, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x1, VT_R8, (void*)&result);
+  return result;
 }
 
 void CRock::SetYoung1(double propVal)
 {
-	SetProperty(0x1, VT_R8, propVal);
+  SetProperty(0x1, VT_R8, propVal);
 }
 
 double CRock::GetYoung2()
 {
-	double result;
-	GetProperty(0x2, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x2, VT_R8, (void*)&result);
+  return result;
 }
 
 void CRock::SetYoung2(double propVal)
 {
-	SetProperty(0x2, VT_R8, propVal);
+  SetProperty(0x2, VT_R8, propVal);
 }
 
 double CRock::GetPoisson()
 {
-	double result;
-	GetProperty(0x5, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x5, VT_R8, (void*)&result);
+  return result;
 }
 
 void CRock::SetPoisson(double propVal)
 {
-	SetProperty(0x5, VT_R8, propVal);
+  SetProperty(0x5, VT_R8, propVal);
 }
 
 double CRock::GetCohesion()
 {
-	double result;
-	GetProperty(0x6, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x6, VT_R8, (void*)&result);
+  return result;
 }
 
 void CRock::SetCohesion(double propVal)
 {
-	SetProperty(0x6, VT_R8, propVal);
+  SetProperty(0x6, VT_R8, propVal);
 }
 
 double CRock::GetFriction()
 {
-	double result;
-	GetProperty(0x7, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x7, VT_R8, (void*)&result);
+  return result;
 }
 
 void CRock::SetFriction(double propVal)
 {
-	SetProperty(0x7, VT_R8, propVal);
+  SetProperty(0x7, VT_R8, propVal);
 }
 
 double CRock::GetDilatation()
 {
-	double result;
-	GetProperty(0x8, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x8, VT_R8, (void*)&result);
+  return result;
 }
 
 void CRock::SetDilatation(double propVal)
 {
-	SetProperty(0x8, VT_R8, propVal);
+  SetProperty(0x8, VT_R8, propVal);
 }
 
 double CRock::GetBulkSolid()
 {
-	double result;
-	GetProperty(0x9, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x9, VT_R8, (void*)&result);
+  return result;
 }
 
 void CRock::SetBulkSolid(double propVal)
 {
-	SetProperty(0x9, VT_R8, propVal);
+  SetProperty(0x9, VT_R8, propVal);
 }
 
 double CRock::GetBulkFluid()
 {
-	double result;
-	GetProperty(0xa, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0xa, VT_R8, (void*)&result);
+  return result;
 }
 
 void CRock::SetBulkFluid(double propVal)
 {
-	SetProperty(0xa, VT_R8, propVal);
+  SetProperty(0xa, VT_R8, propVal);
 }
 
 double CRock::GetPorosity()
 {
-	double result;
-	GetProperty(0xb, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0xb, VT_R8, (void*)&result);
+  return result;
 }
 
 void CRock::SetPorosity(double propVal)
 {
-	SetProperty(0xb, VT_R8, propVal);
+  SetProperty(0xb, VT_R8, propVal);
 }
 
 double CRock::GetPermeability()
 {
-	double result;
-	GetProperty(0xc, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0xc, VT_R8, (void*)&result);
+  return result;
 }
 
 void CRock::SetPermeability(double propVal)
 {
-	SetProperty(0xc, VT_R8, propVal);
+  SetProperty(0xc, VT_R8, propVal);
 }
 
 double CRock::GetViscosity()
 {
-	double result;
-	GetProperty(0xd, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0xd, VT_R8, (void*)&result);
+  return result;
 }
 
 void CRock::SetViscosity(double propVal)
 {
-	SetProperty(0xd, VT_R8, propVal);
+  SetProperty(0xd, VT_R8, propVal);
 }
 
 BOOL CRock::GetIsotropy()
 {
-	BOOL result;
-	GetProperty(0xe, VT_BOOL, (void*)&result);
-	return result;
+  BOOL result;
+  GetProperty(0xe, VT_BOOL, (void*)&result);
+  return result;
 }
 
 void CRock::SetIsotropy(BOOL propVal)
 {
-	SetProperty(0xe, VT_BOOL, propVal);
+  SetProperty(0xe, VT_BOOL, propVal);
 }
 
 double CRock::GetTensileStrength()
 {
-	double result;
-	GetProperty(0xf, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0xf, VT_R8, (void*)&result);
+  return result;
 }
 
 void CRock::SetTensileStrength(double propVal)
 {
-	SetProperty(0xf, VT_R8, propVal);
+  SetProperty(0xf, VT_R8, propVal);
 }
 
 double CRock::GetMudExposureTime()
 {
-	double result;
-	GetProperty(0x10, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x10, VT_R8, (void*)&result);
+  return result;
 }
 
 void CRock::SetMudExposureTime(double propVal)
 {
-	SetProperty(0x10, VT_R8, propVal);
+  SetProperty(0x10, VT_R8, propVal);
 }
 
 double CRock::GetEquilibriumTime()
 {
-	double result;
-	GetProperty(0x11, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x11, VT_R8, (void*)&result);
+  return result;
 }
 
 void CRock::SetEquilibriumTime(double propVal)
 {
-	SetProperty(0x11, VT_R8, propVal);
+  SetProperty(0x11, VT_R8, propVal);
 }
 
 double CRock::GetThermalRockLinearExpansion()
 {
-	double result;
-	GetProperty(0x12, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x12, VT_R8, (void*)&result);
+  return result;
 }
 
 void CRock::SetThermalRockLinearExpansion(double propVal)
 {
-	SetProperty(0x12, VT_R8, propVal);
+  SetProperty(0x12, VT_R8, propVal);
 }
 
 double CRock::GetThermalFluidLinearExpansion()
 {
-	double result;
-	GetProperty(0x13, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x13, VT_R8, (void*)&result);
+  return result;
 }
 
 void CRock::SetThermalFluidLinearExpansion(double propVal)
 {
-	SetProperty(0x13, VT_R8, propVal);
+  SetProperty(0x13, VT_R8, propVal);
 }
 
 double CRock::GetThermalConductivity()
 {
-	double result;
-	GetProperty(0x14, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x14, VT_R8, (void*)&result);
+  return result;
 }
 
 void CRock::SetThermalConductivity(double propVal)
 {
-	SetProperty(0x14, VT_R8, propVal);
+  SetProperty(0x14, VT_R8, propVal);
 }
 
 long CRock::GetHardeningType()
 {
-	long result;
-	GetProperty(0x15, VT_I4, (void*)&result);
-	return result;
+  long result;
+  GetProperty(0x15, VT_I4, (void*)&result);
+  return result;
 }
 
 void CRock::SetHardeningType(long propVal)
 {
-	SetProperty(0x15, VT_I4, propVal);
+  SetProperty(0x15, VT_I4, propVal);
 }
 
 double CRock::GetFractureEnergy()
 {
-	double result;
-	GetProperty(0x16, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x16, VT_R8, (void*)&result);
+  return result;
 }
 
 void CRock::SetFractureEnergy(double propVal)
 {
-	SetProperty(0x16, VT_R8, propVal);
+  SetProperty(0x16, VT_R8, propVal);
 }
 
 double CRock::GetHardeningGradient()
 {
-	double result;
-	GetProperty(0x17, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x17, VT_R8, (void*)&result);
+  return result;
 }
 
 void CRock::SetHardeningGradient(double propVal)
 {
-	SetProperty(0x17, VT_R8, propVal);
+  SetProperty(0x17, VT_R8, propVal);
 }
 
 double CRock::GetDipDirection()
 {
-	double result;
-	GetProperty(0x18, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x18, VT_R8, (void*)&result);
+  return result;
 }
 
 void CRock::SetDipDirection(double propVal)
 {
-	SetProperty(0x18, VT_R8, propVal);
+  SetProperty(0x18, VT_R8, propVal);
 }
 
 double CRock::GetDipAngle()
 {
-	double result;
-	GetProperty(0x19, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x19, VT_R8, (void*)&result);
+  return result;
 }
 
 void CRock::SetDipAngle(double propVal)
 {
-	SetProperty(0x19, VT_R8, propVal);
+  SetProperty(0x19, VT_R8, propVal);
 }
 
 double CRock::GetVolumetricSpecificHeat()
 {
-	double result;
-	GetProperty(0x1a, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x1a, VT_R8, (void*)&result);
+  return result;
 }
 
 void CRock::SetVolumetricSpecificHeat(double propVal)
 {
-	SetProperty(0x1a, VT_R8, propVal);
+  SetProperty(0x1a, VT_R8, propVal);
 }
 
 double CRock::GetCriticalPlasticStrain()
 {
-	double result;
-	GetProperty(0x1b, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x1b, VT_R8, (void*)&result);
+  return result;
 }
 
 void CRock::SetCriticalPlasticStrain(double propVal)
 {
-	SetProperty(0x1b, VT_R8, propVal);
+  SetProperty(0x1b, VT_R8, propVal);
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -15,12 +15,12 @@
 
 void GeomecOIV::init()
 {
-	//Init custom OIV classes
-	MoMeshTensor::initClass();
+  //Init custom OIV classes
+  MoMeshTensor::initClass();
   MoMeshTensorVector::initClass();
-	MoTensorSet::initClass();
-	MoTensorSetElement::initClass();
-	CrossSectionManipulator::initClass();
+  MoTensorSet::initClass();
+  MoTensorSetElement::initClass();
+  CrossSectionManipulator::initClass();
   GeomecPolygonScreenDrawer::initClass();
 
   FormationCrossSection::initClass();
@@ -30,11 +30,11 @@ void GeomecOIV::init()
 
 void GeomecOIV::finish()
 {
-	MoMeshTensor::exitClass();
+  MoMeshTensor::exitClass();
   MoMeshTensorVector::exitClass();
-	MoTensorSet::exitClass();
-	MoTensorSetElement::exitClass();
-	CrossSectionManipulator::exitClass();
+  MoTensorSet::exitClass();
+  MoTensorSetElement::exitClass();
+  CrossSectionManipulator::exitClass();
   GeomecPolygonScreenDrawer::exitClass();
 
   FormationCrossSection::exitClass();

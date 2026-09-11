@@ -13,18 +13,18 @@ CMaterialMCFrictionHard2::CMaterialMCFrictionHard2(CMaterialEntry &entry, CLibra
 
 bool CMaterialMCFrictionHard2::Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const
 {
-	ftn_double_t discoh[6];
+  ftn_double_t discoh[6];
 
-	discoh[0] = 0;
-	discoh[1] = sin( PI * ( ffmat.ParameterValue(IDT_VALUETYPE_FRICTION_ANGLE) ) / 180 );
-	discoh[2] = ffmat.ParameterValue(IDT_VALUETYPE_EQUIV_PLAST_STRAIN1);
-	discoh[3] = sin( PI * ( ffmat.ParameterValue(IDT_VALUETYPE_HARD_FRICTION1) ) / 180 );
-	discoh[4] = ffmat.ParameterValue(IDT_VALUETYPE_EQUIV_PLAST_STRAIN2);
-	discoh[5] = sin( PI * ( ffmat.ParameterValue(IDT_VALUETYPE_HARD_FRICTION2) ) / 180 );
+  discoh[0] = 0;
+  discoh[1] = sin( PI * ( ffmat.ParameterValue(IDT_VALUETYPE_FRICTION_ANGLE) ) / 180 );
+  discoh[2] = ffmat.ParameterValue(IDT_VALUETYPE_EQUIV_PLAST_STRAIN1);
+  discoh[3] = sin( PI * ( ffmat.ParameterValue(IDT_VALUETYPE_HARD_FRICTION1) ) / 180 );
+  discoh[4] = ffmat.ParameterValue(IDT_VALUETYPE_EQUIV_PLAST_STRAIN2);
+  discoh[5] = sin( PI * ( ffmat.ParameterValue(IDT_VALUETYPE_HARD_FRICTION2) ) / 180 );
 
-	PutItemLength("DISCOH", discoh, 6);
+  PutItemLength("DISCOH", discoh, 6);
 
-	return CMaterialMohrCo::Write(ffmat, diarunner);
+  return CMaterialMohrCo::Write(ffmat, diarunner);
 }
 
 // Interface for dia::IElementProperty
@@ -40,9 +40,9 @@ bool CMaterialMCFrictionHard2::WriteFilosParamName(const CFFMaterial &ffmat, dia
 {
   if (i < 6)
   {
-    QString discoh = QString("DISCOH(%1)").arg(i + 1);
-    strncpy(name, discoh.toStdString().c_str(), 10);
-    return true;
+  QString discoh = QString("DISCOH(%1)").arg(i + 1);
+  strncpy(name, discoh.toStdString().c_str(), 10);
+  return true;
   }
   i -= 6;
   return CMaterialMohrCo::WriteFilosParamName(ffmat, diarunner, i, name);

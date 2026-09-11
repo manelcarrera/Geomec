@@ -17,15 +17,15 @@
 class CClipboardText
 {
 public:
-	static BOOL GetText (LPSTR lpszBuffer,
-						 int nBufSize,
-						 HWND hWnd = NULL);
-	
-	static BOOL GetTextLength (unsigned long *pnSize,
-							   HWND hWnd = NULL);
-	
-	static BOOL SetText (LPSTR lpszBuffer,
-						 HWND hWND = NULL);
+  static BOOL GetText (LPSTR lpszBuffer,
+             int nBufSize,
+             HWND hWnd = NULL);
+  
+  static BOOL GetTextLength (unsigned long *pnSize,
+                 HWND hWnd = NULL);
+  
+  static BOOL SetText (LPSTR lpszBuffer,
+             HWND hWND = NULL);
 };
 
 #endif

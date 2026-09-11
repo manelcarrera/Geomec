@@ -28,8 +28,8 @@ public:
                       BOOL bInitialUpdate = TRUE,
                       BOOL bSortAfterInsertion = TRUE);
 
-	virtual BOOL OnFilter(const CGraphNode& t) const;
-	virtual CTreeNode* InsertChild(CGraphNode& t);
+  virtual BOOL OnFilter(const CGraphNode& t) const;
+  virtual CTreeNode* InsertChild(CGraphNode& t);
 };
 
 typedef CStateBranch_Delegate<CUpscalingEntry, CUpscalingEntry_Delegate, CGraphNode, CDummyObserver, CUndefinedIconProvider, TRUE, DELETE_ITEM> TUpscalingBranchBase;
@@ -37,9 +37,9 @@ typedef CStateBranch_Delegate<CUpscalingEntry, CUpscalingEntry_Delegate, CGraphN
 class CUpscalingBranch : public TUpscalingBranchBase
 {
 public:
-	CUpscalingBranch(ITreeObject& parent, CModelBase& model);
-	virtual BOOL OnFilter(const CGraphNode& t) const;
-	virtual CTreeNode* InsertChild(CGraphNode& t);
+  CUpscalingBranch(ITreeObject& parent, CModelBase& model);
+  virtual BOOL OnFilter(const CGraphNode& t) const;
+  virtual CTreeNode* InsertChild(CGraphNode& t);
 };
 
 #endif // _UPSCALINGBRANCHOBSERVER_H_

@@ -34,19 +34,19 @@ public:
   void AddGroup(RescuePropertyGroup *toAdd) {((*groups) += toAdd);}
   RescuePropertyGroup *NthGroup(RESCUEINT64 zeroBasedOrdinal) 
                   {return groups->NthObject(zeroBasedOrdinal);}
-                                    // Do NOT delete the object returned.
+                  // Do NOT delete the object returned.
   RESCUEBOOL RemoveGroup(RescuePropertyGroup *groupToDrop) 
                           {return ((*groups) -= groupToDrop);}
-                                    // This removes the RescuePropertyGroup
-                                    // from this RescueModelPropertyGroup but does
-                                    // not delete the RescuePropertyGroup
-                                    // or affect its accessibility from any other
-                                    // path.
+                  // This removes the RescuePropertyGroup
+                  // from this RescueModelPropertyGroup but does
+                  // not delete the RescuePropertyGroup
+                  // or affect its accessibility from any other
+                  // path.
   RESCUEBOOL TestLock() {return isLocked;}// See Property Locking
-                                    // By convention when you lock a property or group
+                  // By convention when you lock a property or group
   void SetLock();                   // you should create a RescueHistory object with a
   void ResetLock()                  // parsable description containing 'write-lock'
-                {isLocked = FALSE;}
+        {isLocked = FALSE;}
   virtual RESCUEBOOL IsOfType(_RescueObjectType thisType);
      // Returns TRUE if the object is a
      // member of the specified class.

@@ -19,25 +19,25 @@ bool CRpnValueSet_Delegate::Attributes()
 
   if (m_rpnValueSet->getStack() == 0)
   {
-    m_rpnValueSet->setStack(new rpn::CRpnStack());
+  m_rpnValueSet->setStack(new rpn::CRpnStack());
 
-    // Insert X, Y, Z coordinates
+  // Insert X, Y, Z coordinates
 
-    CModelBase& model = dynamic_cast <CModelBase&> (m_rpnValueSet->Model());
+  CModelBase& model = dynamic_cast <CModelBase&> (m_rpnValueSet->Model());
 
-    new CRpnValueSet::CValueSetCoordinateProxy(*m_rpnValueSet,
+  new CRpnValueSet::CValueSetCoordinateProxy(*m_rpnValueSet,
       IDS_RC_NORTHING, *m_rpnValueSet->getStack(),
       CRpnValueSet::CValueSetCoordinateProxy::CO_X);
-    new CRpnValueSet::CValueSetCoordinateProxy(*m_rpnValueSet,
+  new CRpnValueSet::CValueSetCoordinateProxy(*m_rpnValueSet,
       IDS_RC_EASTING, *m_rpnValueSet->getStack(),
       CRpnValueSet::CValueSetCoordinateProxy::CO_Y);
-    new CRpnValueSet::CValueSetCoordinateProxy(*m_rpnValueSet,
+  new CRpnValueSet::CValueSetCoordinateProxy(*m_rpnValueSet,
       IDS_RC_DEPTH, *m_rpnValueSet->getStack(),
       CRpnValueSet::CValueSetCoordinateProxy::CO_Z);
 
-    // Insert an IsReservoir
+  // Insert an IsReservoir
 
-    new CRpnReservoirProxy(model.Mesh(), *m_rpnValueSet->getStack());
+  new CRpnReservoirProxy(model.Mesh(), *m_rpnValueSet->getStack());
   }
 
   m_rpnValueSet->UpdateProxy();
@@ -49,7 +49,7 @@ bool CRpnValueSet_Delegate::Attributes()
 
   if (dlgIsOK)
   {
-    m_rpnValueSet->PointSet().Modified();
+  m_rpnValueSet->PointSet().Modified();
   }
 
   return dlgIsOK;

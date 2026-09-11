@@ -15,24 +15,24 @@
 class CProc : public COleDispatchDriver
 {
 public:
-	CProc() {}		// Calls COleDispatchDriver default constructor
-	CProc(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
-	CProc(const CProc& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
+  CProc() {}		// Calls COleDispatchDriver default constructor
+  CProc(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
+  CProc(const CProc& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
 // Attributes
 public:
-	long GetMaxIter();
-	void SetMaxIter(long);
-	double GetCriterium();
-	void SetCriterium(double);
-	long GetScheme();
-	void SetScheme(long);
-	long GetTypeCrit();
-	void SetTypeCrit(long);
+  long GetMaxIter();
+  void SetMaxIter(long);
+  double GetCriterium();
+  void SetCriterium(double);
+  long GetScheme();
+  void SetScheme(long);
+  long GetTypeCrit();
+  void SetTypeCrit(long);
 
 // Operations
 public:
-	BOOL SetDefault();
+  BOOL SetDefault();
 };
 
 //{{AFX_INSERT_LOCATION}}

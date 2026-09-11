@@ -1,10 +1,10 @@
 /*************************************************************************
 
-        RescueSOctTreeNode.cpp
+    RescueSOctTreeNode.cpp
 
  Node of a tree of RescueOctTreeNodes, used for triangulated surfaces.
 
-        Rod Hanks               January, 2000
+    Rod Hanks               January, 2000
 
 ****************************************************************************/
 #include <stdlib.h>
@@ -33,7 +33,7 @@ void RescueSOctTreeNode::CommonInitialization(RESCUEFLOAT minXin, RESCUEFLOAT ma
   RESCUEINT64 loop;
   for (loop = 0; loop < 8; loop++)
   {
-    leaf[loop] = 0;
+  leaf[loop] = 0;
   }
   vertices = 0;
 }
@@ -52,17 +52,17 @@ RescueSOctTreeNode::RescueSOctTreeNode(RescueTriangulatedSurface *parent,
   RescueTriangleVertex *vertex = parent->NthVertex(ndx++);
   while (vertex != 0)
   {
-    if (vertex->X() >= minX && vertex->X() <= maxX)
-    {
+  if (vertex->X() >= minX && vertex->X() <= maxX)
+  {
       if (vertex->Y() >= minY && vertex->Y() <= maxY)
       {
-        if (vertex->Z() >= minZ && vertex->Z() <= maxZ)
-        {
+    if (vertex->Z() >= minZ && vertex->Z() <= maxZ)
+    {
           (*vertices) += vertex;
-        }
-      }
     }
-    vertex = parent->NthVertex(ndx++);
+      }
+  }
+  vertex = parent->NthVertex(ndx++);
   }
   Split(xDivisions, yDivisions, zDivisions);
 }
@@ -73,64 +73,64 @@ void RescueSOctTreeNode::Split(RESCUEINT64 xDivisions, RESCUEINT64 yDivisions, R
   ||  yDivisions > 1
   ||  zDivisions > 1)
   {
-    RESCUEFLOAT midX = maxX;
-    if (xDivisions > 1)
-    {
+  RESCUEFLOAT midX = maxX;
+  if (xDivisions > 1)
+  {
       midX = (RESCUEFLOAT) ((minX + maxX) / 2.0);
-    }
-    RESCUEFLOAT midY = maxY;
-    if (yDivisions > 1)
-    {
+  }
+  RESCUEFLOAT midY = maxY;
+  if (yDivisions > 1)
+  {
       midY = (RESCUEFLOAT) ((minY + maxY) / 2.0);
-    }
-    RESCUEFLOAT midZ = maxZ;
-    if (zDivisions > 1)
-    {
+  }
+  RESCUEFLOAT midZ = maxZ;
+  if (zDivisions > 1)
+  {
       midZ = (RESCUEFLOAT) ((minZ + maxZ) / 2.0);
-    }
-    xDivisions--;
-    yDivisions--;
-    zDivisions--;
+  }
+  xDivisions--;
+  yDivisions--;
+  zDivisions--;
 
-    leaf[0] = LeafNode(this, minX, midX, minY, midY, minZ, midZ,
+  leaf[0] = LeafNode(this, minX, midX, minY, midY, minZ, midZ,
                                            xDivisions, yDivisions, zDivisions);
-    if (midX < maxX)
-    {
+  if (midX < maxX)
+  {
       leaf[1] = LeafNode(this, midX, maxX, minY, midY, minZ, midZ,
                                            xDivisions, yDivisions, zDivisions);
       if (midY < maxY)
       {
-        leaf[2] = LeafNode(this, midX, maxX, midY, maxY, minZ, midZ,
+    leaf[2] = LeafNode(this, midX, maxX, midY, maxY, minZ, midZ,
                                            xDivisions, yDivisions, zDivisions);
       }
-    }
-    if (midY < maxY)
-    {
+  }
+  if (midY < maxY)
+  {
       leaf[3] = LeafNode(this, minX, midX, midY, maxY, minZ, midZ,
                                            xDivisions, yDivisions, zDivisions);
-    }
-    if (midZ < maxZ)
-    {
+  }
+  if (midZ < maxZ)
+  {
       leaf[4] = LeafNode(this, minX, midX, minY, midY, midZ, maxZ,
                                              xDivisions, yDivisions, zDivisions);
       if (midX < maxX)
       {
-        leaf[5] = LeafNode(this, midX, maxX, minY, midY, midZ, maxZ,
+    leaf[5] = LeafNode(this, midX, maxX, minY, midY, midZ, maxZ,
                                              xDivisions, yDivisions, zDivisions);
-        if (midY < maxY)
-        {
+    if (midY < maxY)
+    {
           leaf[6] = LeafNode(this, midX, maxX, midY, maxY, midZ, maxZ,
                                              xDivisions, yDivisions, zDivisions);
-        }
+    }
       }
       if (midY < maxY)
       {
-        leaf[7] = LeafNode(this, minX, midX, midY, maxY, midZ, maxZ,
+    leaf[7] = LeafNode(this, minX, midX, midY, maxY, midZ, maxZ,
                                              xDivisions, yDivisions, zDivisions);
       }
-    }
-    delete vertices;
-    vertices = 0;
+  }
+  delete vertices;
+  vertices = 0;
   }
 }
 
@@ -165,17 +165,17 @@ RescueSOctTreeNode::RescueSOctTreeNode(RescueSOctTreeNode *parent,
   RescueTriangleVertex *vertex = parent->NthVertex(ndx++);
   while (vertex != 0)
   {
-    if (vertex->X() >= minX && vertex->X() <= maxX)
-    {
+  if (vertex->X() >= minX && vertex->X() <= maxX)
+  {
       if (vertex->Y() >= minY && vertex->Y() <= maxY)
       {
-        if (vertex->Z() >= minZ && vertex->Z() <= maxZ)
-        {
+    if (vertex->Z() >= minZ && vertex->Z() <= maxZ)
+    {
           (*vertices) += vertex;
-        }
-      }
     }
-    vertex = parent->NthVertex(ndx++);
+      }
+  }
+  vertex = parent->NthVertex(ndx++);
   }
   Split(xDivisions, yDivisions, zDivisions);
 }
@@ -194,28 +194,28 @@ RescueSOctTreeNode::RescueSOctTreeNode(FILE *archiveFile, RescueTriangulatedSurf
   myfscanf(context, archiveFile, &flag);
   if (flag == 1)
   {
-    vertices = new cBagRescueTriangleVertex();
-    vertices->UnArchive(context, archiveFile, parentTriangulatedSurface);
+  vertices = new cBagRescueTriangleVertex();
+  vertices->UnArchive(context, archiveFile, parentTriangulatedSurface);
   }
   RESCUEINT64 loop;
   for (loop = 0; loop < 8; loop++)
   {
-    myfscanf(context, archiveFile, &flag);
-    if (flag == 1)
-    {
+  myfscanf(context, archiveFile, &flag);
+  if (flag == 1)
+  {
       leaf[loop] = LeafNode(archiveFile, parentTriangulatedSurface);
-    }
+  }
   }
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -225,10 +225,10 @@ RESCUEBOOL RescueSOctTreeNode::TerminalNode()
   RESCUEINT64 loop;
   for (loop = 0; loop < 8 && myReturn == TRUE; loop++)
   {
-    if (leaf[loop] != 0)
-    {
+  if (leaf[loop] != 0)
+  {
       myReturn = FALSE;
-    }
+  }
   }
   return myReturn;
 }
@@ -243,12 +243,12 @@ void RescueSOctTreeNode::Archive(RescueContext *context, FILE *archiveFile)
   myfprintf(context, archiveFile, maxZ);
   if (vertices == 0)
   {
-    myfprintf(context, archiveFile, (RESCUEINT64) 0);
+  myfprintf(context, archiveFile, (RESCUEINT64) 0);
   }
   else
   {
-    myfprintf(context, archiveFile, (RESCUEINT64) 1);
-    vertices->Archive(context, archiveFile);
+  myfprintf(context, archiveFile, (RESCUEINT64) 1);
+  vertices->Archive(context, archiveFile);
   }
 /*
   The RescueTriangleVertex objects are identified by ndx not id.
@@ -258,19 +258,19 @@ void RescueSOctTreeNode::Archive(RescueContext *context, FILE *archiveFile)
   RESCUEINT64 loop;
   for (loop = 0; loop < 8; loop++)
   {
-    if (leaf[loop] == 0)
-    {
+  if (leaf[loop] == 0)
+  {
       myfprintf(context, archiveFile, (RESCUEINT64) 0);
-    }
-    else
-    {
+  }
+  else
+  {
       myfprintf(context, archiveFile, (RESCUEINT64) 1);
       leaf[loop]->Archive(context, archiveFile);
-    }
+  }
   }
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -278,15 +278,15 @@ RescueSOctTreeNode::~RescueSOctTreeNode()
 {
   if (vertices != 0)
   {
-    delete vertices;
+  delete vertices;
   }
   RESCUEINT64 loop;
   for (loop = 0; loop < 8; loop++)
   {
-    if (leaf[loop] != 0)
-    {
+  if (leaf[loop] != 0)
+  {
       delete leaf[loop];
-    }
+  }
   }
 }
 

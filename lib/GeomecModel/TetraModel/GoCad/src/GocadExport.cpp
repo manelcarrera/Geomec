@@ -51,19 +51,19 @@ bool CGocadExport::CObjectLess<OBJECT>::operator()(const OBJECT* pLhs, const OBJ
 {
   // trivial
   if(pLhs == pRhs)
-    return false;
+  return false;
 
   // try Less methods first
   if(pLhs->Less(*pRhs))
-    return true;
+  return true;
   if(pRhs->Less(*pLhs))
-    return false;
+  return false;
 
   // names
   if(pLhs->Name() < pRhs->Name())
-    return true;
+  return true;
   if(pRhs->Name() < pLhs->Name())
-    return false;
+  return false;
 
   // last resort, pointer values
   return pLhs < pRhs;
@@ -99,12 +99,12 @@ void CGocadExport::CNodeBase::AppendValues(FILE* fp, const TElementValueVec& vcE
 {
   for(size_t i = 0; i < vcElementValues.size(); ++i)
   {
-    const IValueDomainScalar::TValueVec& vcValues = vcElementValues[i];
-    assert(nLocalIndex >= 0 && nLocalIndex < vcValues.size());
+  const IValueDomainScalar::TValueVec& vcValues = vcElementValues[i];
+  assert(nLocalIndex >= 0 && nLocalIndex < vcValues.size());
 
-    const geo::CValue& val = vcValues[nLocalIndex];
-    double dVal = val.Valid() ? val.Value() : -99999;
-    fprintf(fp, " %g", dVal);
+  const geo::CValue& val = vcValues[nLocalIndex];
+  double dVal = val.Valid() ? val.Value() : -99999;
+  fprintf(fp, " %g", dVal);
   }
 }
 
@@ -159,7 +159,7 @@ CGocadExport::CTetra::CTetra(const geo::IElement& element, CNodeBase** pNode)
 {
   int i;
   for(i = 0; i < 4; ++i)
-    m_pNode[i] = pNode[i];
+  m_pNode[i] = pNode[i];
 }
 
 CGocadExport::CTetra::~CTetra()
@@ -172,18 +172,18 @@ void CGocadExport::CTetra::Write(FILE* fp, const IValueDomainScalar::TValueVec& 
 
   for(int i = 0; i < 4; ++i)
   {
-    assert(m_pNode[i]->Id() > 0);
-    fprintf(fp, " %d", m_pNode[i]->Id());
+  assert(m_pNode[i]->Id() > 0);
+  fprintf(fp, " %d", m_pNode[i]->Id());
   }
 
   for(size_t i = 0; i < vcAverageElementValues.size(); ++i)
   {
-    const geo::CValue& val = vcAverageElementValues[i];
-    fprintf(fp, " %g", val.Valid() ? val.Value() : -99999);
+  const geo::CValue& val = vcAverageElementValues[i];
+  fprintf(fp, " %g", val.Valid() ? val.Value() : -99999);
   }
 
   if(pstrFormationName)
-    fprintf(fp, " %s", pstrFormationName->toStdString().c_str());
+  fprintf(fp, " %s", pstrFormationName->toStdString().c_str());
 
   fprintf(fp, "\n");
 }
@@ -200,14 +200,14 @@ CGocadExport::CTrgl::CTrgl(CNodeBase** pNode)
 {
   int i;
   for(i = 0; i < 3; ++i)
-    m_pNode[i] = pNode[i];
+  m_pNode[i] = pNode[i];
 }
 
 CGocadExport::CTrgl::~CTrgl()
 {
   int i;
   for(i = 0; i < 3; ++i)
-    delete m_pNode[i];
+  delete m_pNode[i];
 }
 
 void CGocadExport::CTrgl::Write(FILE* fp) const
@@ -216,15 +216,15 @@ void CGocadExport::CTrgl::Write(FILE* fp) const
   int i;
   for(i = 0; i < 3; ++i)
   {
-    assert(m_pNode[i]->Id() > 0);
-    fprintf(fp, " %d", m_pNode[i]->Id());
+  assert(m_pNode[i]->Id() > 0);
+  fprintf(fp, " %d", m_pNode[i]->Id());
   }
 
   fprintf(fp, "\n");
 }
 
 
-    
+  
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
@@ -244,20 +244,20 @@ CGocadExport::CGocadExport(CModelBase& model)
   m_fp(0),
   m_bFormationNames(false)
 {
-	// Intialize the unit
-	CUnitNode unitNode;
-	switch(unitNode.Unit())
-	{
-	case CQuantity::SI_UNIT:
-		m_iUnit = 0;
-		break;
-	case CQuantity::FIELD_UNIT:
-		m_iUnit = 1;
-		break;
-	case CQuantity::SI_USER_UNIT:
-	case CQuantity::US_UNIT:
-		break;
-	};
+  // Intialize the unit
+  CUnitNode unitNode;
+  switch(unitNode.Unit())
+  {
+  case CQuantity::SI_UNIT:
+    m_iUnit = 0;
+    break;
+  case CQuantity::FIELD_UNIT:
+    m_iUnit = 1;
+    break;
+  case CQuantity::SI_USER_UNIT:
+  case CQuantity::US_UNIT:
+    break;
+  };
 }
 
 CGocadExport::CGocadExport(const CGocadExport& rhs)
@@ -318,23 +318,23 @@ bool CGocadExport::operator==(const CGocadExport& rhs) const
   assert(&m_model == &rhs.m_model);
 
   return (
-    m_stTimeSteps        == rhs.m_stTimeSteps        &&
-    m_stPointSets        == rhs.m_stPointSets        &&
-    m_stFormations       == rhs.m_stFormations       &&
-    m_stHorizons         == rhs.m_stHorizons         &&
-    m_stMaterialParameterComponents == rhs.m_stMaterialParameterComponents &&
-    m_stResultComponents == rhs.m_stResultComponents &&
-    m_bLinear            == rhs.m_bLinear            &&
-    m_bNonLinear         == rhs.m_bNonLinear         &&
-    m_bHeat              == rhs.m_bHeat              &&
-    m_bMixture           == rhs.m_bMixture           &&
-    m_bMixtureContainment == rhs.m_bMixtureContainment &&
-    m_iUnit              == rhs.m_iUnit              &&
-    m_bVectorESize       == rhs.m_bVectorESize       &&
-    m_bTensorESize       == rhs.m_bTensorESize       &&
-    m_bAverage           == rhs.m_bAverage           &&
-    m_bSplitFormations   == rhs.m_bSplitFormations   &&
-    m_bFormationNames    == rhs.m_bFormationNames
+  m_stTimeSteps        == rhs.m_stTimeSteps        &&
+  m_stPointSets        == rhs.m_stPointSets        &&
+  m_stFormations       == rhs.m_stFormations       &&
+  m_stHorizons         == rhs.m_stHorizons         &&
+  m_stMaterialParameterComponents == rhs.m_stMaterialParameterComponents &&
+  m_stResultComponents == rhs.m_stResultComponents &&
+  m_bLinear            == rhs.m_bLinear            &&
+  m_bNonLinear         == rhs.m_bNonLinear         &&
+  m_bHeat              == rhs.m_bHeat              &&
+  m_bMixture           == rhs.m_bMixture           &&
+  m_bMixtureContainment == rhs.m_bMixtureContainment &&
+  m_iUnit              == rhs.m_iUnit              &&
+  m_bVectorESize       == rhs.m_bVectorESize       &&
+  m_bTensorESize       == rhs.m_bTensorESize       &&
+  m_bAverage           == rhs.m_bAverage           &&
+  m_bSplitFormations   == rhs.m_bSplitFormations   &&
+  m_bFormationNames    == rhs.m_bFormationNames
   );
 }
 
@@ -343,10 +343,10 @@ void CGocadExport::Export(const QString& sPath, const QString& title)
   m_fp = fopen(sPath.toStdString().c_str(), "w");
   if(!m_fp)
   {
-    QString msg;
-    msg = QString("Failed to open file '%1' for writing").arg(sPath);
-    _m()->msg(msg);
-    return;
+  QString msg;
+  msg = QString("Failed to open file '%1' for writing").arg(sPath);
+  _m()->msg(msg);
+  return;
   }
 
   int nBodies = 0;
@@ -355,30 +355,30 @@ void CGocadExport::Export(const QString& sPath, const QString& title)
 
   for(TFormationSet::iterator it = m_stFormations.begin(); it != m_stFormations.end(); ++it)
   {
-    const C3DFormation& form = (C3DFormation&)(**it);
-    int nVol = form.VolumeSize();
-    int i;
-    for(i = 0; i < nVol; ++i)
-    {
+  const C3DFormation& form = (C3DFormation&)(**it);
+  int nVol = form.VolumeSize();
+  int i;
+  for(i = 0; i < nVol; ++i)
+  {
       const CFormationVolume& vol = form.Volume(i);
       const geo::CBodyGroup& bodies = vol.Volume();
       nBodies += bodies.BodySize();
-    }
+  }
   }
 
   for(THorizonSet::iterator ith = m_stHorizons.begin(); ith != m_stHorizons.end(); ++ith)
   {
-    const CHorizonBase& hor = **ith;
-    assert(hor.Slip()); // should be a fault
-    assert(dynamic_cast<const C3DHorizon*>(&hor));
-    const C3DHorizon& hor3d = static_cast<const C3DHorizon&>(hor);
-    nFaces += 2 * hor3d.BodyFaceSize(); // need two passes per horizon
+  const CHorizonBase& hor = **ith;
+  assert(hor.Slip()); // should be a fault
+  assert(dynamic_cast<const C3DHorizon*>(&hor));
+  const C3DHorizon& hor3d = static_cast<const C3DHorizon&>(hor);
+  nFaces += 2 * hor3d.BodyFaceSize(); // need two passes per horizon
   }
 
   for(TPointSetSet::iterator itp = m_stPointSets.begin(); itp != m_stPointSets.end(); ++itp)
   {
-    const CPointSet &ptSet = **itp;
-    nPoints += ptSet.PointSize();
+  const CPointSet &ptSet = **itp;
+  nPoints += ptSet.PointSize();
   }
 
   std::auto_ptr <IProgressBase> prog(_g->prog()->create(eProgress::Geo, "Exporting GoCad file..."));
@@ -388,46 +388,46 @@ void CGocadExport::Export(const QString& sPath, const QString& title)
 
   try
   {
-    // export solids
-    if(SplitFormations())
-    {
+  // export solids
+  if(SplitFormations())
+  {
       TFormationSet stFormations = m_stFormations;
       try
       {
-        for(TFormationSet::iterator it = stFormations.begin(); it != stFormations.end(); ++it)
-        {
+    for(TFormationSet::iterator it = stFormations.begin(); it != stFormations.end(); ++it)
+    {
           m_stFormations.clear();
           m_stFormations.insert(*it);
           ExportSolid(*prog, title);
-        }
+    }
       }
       catch(CProgressCancel*)
       {
-        m_stFormations = stFormations;
-        throw;
+    m_stFormations = stFormations;
+    throw;
       }
 
       m_stFormations = stFormations;
-    }
-    else
-    {
+  }
+  else
+  {
       if(!m_stFormations.empty())
-        ExportSolid(*prog, title);
-    }
+    ExportSolid(*prog, title);
+  }
 
-    // export surfaces
-    for(THorizonSet::iterator ith = m_stHorizons.begin(); ith != m_stHorizons.end(); ++ith)
-    {
+  // export surfaces
+  for(THorizonSet::iterator ith = m_stHorizons.begin(); ith != m_stHorizons.end(); ++ith)
+  {
       const C3DHorizon& hor = static_cast<const C3DHorizon&>(**ith);
       assert(hor.Slip());
       ExportFault(hor, *prog);
-    }
+  }
 
-    ExportVSets(*prog);
+  ExportVSets(*prog);
   }
   catch(CProgressCancel* c)
   {
-    delete c;
+  delete c;
   }
 
   fclose(m_fp);
@@ -545,7 +545,7 @@ bool CGocadExport::HasFaults() const
   THorizonSet::const_iterator it;
   for(it = m_stHorizons.begin(); it != m_stHorizons.end(); ++it)
   {
-    if((*it)->Slip())
+  if((*it)->Slip())
       return true;
   }
 
@@ -565,11 +565,11 @@ const CHorizonBase& CGocadExport::FirstFault() const
   THorizonSet::const_iterator it;
   for(it = m_stHorizons.begin(); it != m_stHorizons.end(); ++it)
   {
-    if((*it)->Slip())
-    {
+  if((*it)->Slip())
+  {
       pHor = *it;
       break;
-    }
+  }
   }
 
   return *pHor;
@@ -693,7 +693,7 @@ QString CGocadExport::FixName(const QString& name) const
   int i;
   for(i = 0; i < s.length(); ++i)
   {
-    if(s[i] == ' ')
+  if(s[i] == ' ')
       s[i] = '_';
   }
 
@@ -703,12 +703,12 @@ QString CGocadExport::FixName(const QString& name) const
 void CGocadExport::ClearElements()
 {
   for(size_t i = 0; i < m_vcElements.size(); ++i)
-    delete m_vcElements[i];
+  delete m_vcElements[i];
 
   m_vcElements.clear();
 
   for (TNodeMap::iterator it = m_mpNodes.begin(); it != m_mpNodes.end(); ++it)
-    delete it->second;
+  delete it->second;
 
   m_mpNodes.clear();
   m_stUniqueNodes.clear();
@@ -719,9 +719,9 @@ void CGocadExport::WriteAxisUnit()
   assert(m_iUnit == 0 || m_iUnit == 1);
   QString sUnit;
   if(m_iUnit == 0)
-    sUnit = "m";
+  sUnit = "m";
   else
-    sUnit = "ft";
+  sUnit = "ft";
   fprintf(m_fp, "AXIS_UNIT \"%s\" \"%s\" \"%s\"\n", sUnit.toStdString().c_str(), sUnit.toStdString().c_str(), sUnit.toStdString().c_str());
   fprintf(m_fp, "ZPOSITIVE Depth\n");
 }
@@ -748,16 +748,16 @@ void CGocadExport::WriteSolidHeader(const QString& title)
 
   if(m_bSplitFormations)
   {
-    assert(m_stFormations.size() == 1);
-    strTitle = (*m_stFormations.begin())->Name();
+  assert(m_stFormations.size() == 1);
+  strTitle = (*m_stFormations.begin())->Name();
   }
   else
   {
-    if(title.right(4) == ".gm4" || title.right(4) == ".gm5")
+  if(title.right(4) == ".gm4" || title.right(4) == ".gm5")
       strTitle = title.left(title.length() - 4);
-    else if(title.right(3) == ".so")
+  else if(title.right(3) == ".so")
       strTitle = title.left(title.length() - 3);
-    else
+  else
       strTitle = title;
   }
 
@@ -787,332 +787,332 @@ void CGocadExport::WritePropertiesHeader(bool bSolid, const COpenGLNode& object)
   bool bWriteFormationNames = m_bFormationNames && bSolid;
   if(m_stMaterialParameterComponents.size() || m_stResultComponents.size() || m_stFullVectors.size() || m_stFullTensors.size() || bWriteFormationNames)
   {
-    QString strSolidProperties = "TETRA_PROPERTIES";
-    QString strSolidNoDataValues = "TETRA_NO_DATA_VALUES";
-    QString strSolidESizes = "TETRA_ESIZES";
-    bool bAtLeastOneSolidActive = false;
+  QString strSolidProperties = "TETRA_PROPERTIES";
+  QString strSolidNoDataValues = "TETRA_NO_DATA_VALUES";
+  QString strSolidESizes = "TETRA_ESIZES";
+  bool bAtLeastOneSolidActive = false;
 
-    QString strNonSolidProperties = "PROPERTIES";
-    QString strNonSolidNoDataValues = "NO_DATA_VALUES";
-    QString strNonSolidESizes = "ESIZES";
-    bool bAtLeastOneNonSolidActive = false;
+  QString strNonSolidProperties = "PROPERTIES";
+  QString strNonSolidNoDataValues = "NO_DATA_VALUES";
+  QString strNonSolidESizes = "ESIZES";
+  bool bAtLeastOneNonSolidActive = false;
 
-    QString& strProperties   = (bSolid && m_bAverage) ? strSolidProperties     : strNonSolidProperties;
-    QString& strNoDataValues = (bSolid && m_bAverage) ? strSolidNoDataValues   : strNonSolidNoDataValues;
-    QString& strESizes       = (bSolid && m_bAverage) ? strSolidESizes         : strNonSolidESizes;
-    bool& bAtLeastOneActive  = (bSolid && m_bAverage) ? bAtLeastOneSolidActive : bAtLeastOneNonSolidActive;
+  QString& strProperties   = (bSolid && m_bAverage) ? strSolidProperties     : strNonSolidProperties;
+  QString& strNoDataValues = (bSolid && m_bAverage) ? strSolidNoDataValues   : strNonSolidNoDataValues;
+  QString& strESizes       = (bSolid && m_bAverage) ? strSolidESizes         : strNonSolidESizes;
+  bool& bAtLeastOneActive  = (bSolid && m_bAverage) ? bAtLeastOneSolidActive : bAtLeastOneNonSolidActive;
 
-    TResultComponentSet::iterator itr;
-    for(itr = m_stResultComponents.begin(); itr != m_stResultComponents.end(); ++itr)
-    {
+  TResultComponentSet::iterator itr;
+  for(itr = m_stResultComponents.begin(); itr != m_stResultComponents.end(); ++itr)
+  {
       const IResult* pResult = dynamic_cast<const IResult*>((*itr).first);
       if(pResult)
       {
-        const CDepletionStage* pStage = &m_model.InitialDepletionStage();
-        while(pStage)
-        {
+    const CDepletionStage* pStage = &m_model.InitialDepletionStage();
+    while(pStage)
+    {
           if(m_stTimeSteps.find(pStage) != m_stTimeSteps.end())
           {
-            if(m_bLinear)
-            {
+      if(m_bLinear)
+      {
               const IResultComponent* pResultComponent = pResult->ResultComponent(*pStage, CAnalysisType::AT_LINEAR, 0, (*itr).second);
               if(pResultComponent && pResultComponent->CanMap(object))
               {
-                strProperties += " " + FixName(pResultComponent->ExportLabel());
-                strNoDataValues += " -99999";
-                strESizes += " 1";
-                bAtLeastOneActive = true;
-              }
-            }
-
-            if(m_bNonLinear)
-            {
-              const IResultComponent* pResultComponent = pResult->ResultComponent(*pStage, CAnalysisType::AT_NONLIN, 0, (*itr).second);
-              if(pResultComponent && pResultComponent->CanMap(object))
-              {
-                strProperties += " " + FixName(pResultComponent->ExportLabel());
-                strNoDataValues += " -99999";
-                strESizes += " 1";
-                bAtLeastOneActive = true;
-              }
-            }
-
-            if(m_bHeat)
-            {
-              const IResultComponent* pResultComponent = pResult->ResultComponent(*pStage, CAnalysisType::AT_HEAT, 0, (*itr).second);
-              if(pResultComponent && pResultComponent->CanMap(object))
-              {
-                strProperties += " " + FixName(pResultComponent->ExportLabel());
-                strNoDataValues += " -99999";
-                strESizes += " 1";
-                bAtLeastOneActive = true;
-              }
-            }
-
-            if(m_bMixture)
-            {
-              const IResultComponent* pResultComponent = pResult->ResultComponent(*pStage, CAnalysisType::AT_MIXTURE, 0, (*itr).second);
-              if(pResultComponent && pResultComponent->CanMap(object))
-              {
-                strProperties += " " + FixName(pResultComponent->ExportLabel());
-                strNoDataValues += " -99999";
-                strESizes += " 1";
-                bAtLeastOneActive = true;
-              }
-            }
-
-            if(m_bMixtureContainment)
-            {
-              const IResultComponent* pResultComponent = pResult->ResultComponent(*pStage, CAnalysisType::AT_MIXTURE_CONTAINMENT, 0, (*itr).second);
-              if(pResultComponent && pResultComponent->CanMap(object))
-              {
-                strProperties += " " + FixName(pResultComponent->ExportLabel());
-                strNoDataValues += " -99999";
-                strESizes += " 1";
-                bAtLeastOneActive = true;
-              }
-            }
-          }
-
-          if(pStage->Last())
-            pStage = 0;
-          else
-            pStage = &pStage->Next();
-        }
-      }
-      else if((*itr).first->Component((*itr).second).CanMap(object))
-      {
-        strProperties += " " + FixName((*itr).first->Component((*itr).second).ExportLabel());
+        strProperties += " " + FixName(pResultComponent->ExportLabel());
         strNoDataValues += " -99999";
         strESizes += " 1";
         bAtLeastOneActive = true;
+              }
       }
-    }
 
-    for(itr = m_stMaterialParameterComponents.begin(); itr != m_stMaterialParameterComponents.end(); ++itr)
-    {
+      if(m_bNonLinear)
+      {
+              const IResultComponent* pResultComponent = pResult->ResultComponent(*pStage, CAnalysisType::AT_NONLIN, 0, (*itr).second);
+              if(pResultComponent && pResultComponent->CanMap(object))
+              {
+        strProperties += " " + FixName(pResultComponent->ExportLabel());
+        strNoDataValues += " -99999";
+        strESizes += " 1";
+        bAtLeastOneActive = true;
+              }
+      }
+
+      if(m_bHeat)
+      {
+              const IResultComponent* pResultComponent = pResult->ResultComponent(*pStage, CAnalysisType::AT_HEAT, 0, (*itr).second);
+              if(pResultComponent && pResultComponent->CanMap(object))
+              {
+        strProperties += " " + FixName(pResultComponent->ExportLabel());
+        strNoDataValues += " -99999";
+        strESizes += " 1";
+        bAtLeastOneActive = true;
+              }
+      }
+
+      if(m_bMixture)
+      {
+              const IResultComponent* pResultComponent = pResult->ResultComponent(*pStage, CAnalysisType::AT_MIXTURE, 0, (*itr).second);
+              if(pResultComponent && pResultComponent->CanMap(object))
+              {
+        strProperties += " " + FixName(pResultComponent->ExportLabel());
+        strNoDataValues += " -99999";
+        strESizes += " 1";
+        bAtLeastOneActive = true;
+              }
+      }
+
+      if(m_bMixtureContainment)
+      {
+              const IResultComponent* pResultComponent = pResult->ResultComponent(*pStage, CAnalysisType::AT_MIXTURE_CONTAINMENT, 0, (*itr).second);
+              if(pResultComponent && pResultComponent->CanMap(object))
+              {
+        strProperties += " " + FixName(pResultComponent->ExportLabel());
+        strNoDataValues += " -99999";
+        strESizes += " 1";
+        bAtLeastOneActive = true;
+              }
+      }
+          }
+
+          if(pStage->Last())
+      pStage = 0;
+          else
+      pStage = &pStage->Next();
+    }
+      }
+      else if((*itr).first->Component((*itr).second).CanMap(object))
+      {
+    strProperties += " " + FixName((*itr).first->Component((*itr).second).ExportLabel());
+    strNoDataValues += " -99999";
+    strESizes += " 1";
+    bAtLeastOneActive = true;
+      }
+  }
+
+  for(itr = m_stMaterialParameterComponents.begin(); itr != m_stMaterialParameterComponents.end(); ++itr)
+  {
       const IResult* pResult = dynamic_cast<const IResult*>((*itr).first);
       if(pResult)
       {
-        const CDepletionStage* pStage = &m_model.InitialDepletionStage();
-        while(pStage)
-        {
+    const CDepletionStage* pStage = &m_model.InitialDepletionStage();
+    while(pStage)
+    {
           if(m_stTimeSteps.find(pStage) != m_stTimeSteps.end())
           {
-            const IResultComponent* pResultComponent = pResult->ResultComponent(*pStage, CAnalysisType::AT_LINEAR, 0, (*itr).second);
-            if(pResultComponent && pResultComponent->CanMap(object))
-            {
+      const IResultComponent* pResultComponent = pResult->ResultComponent(*pStage, CAnalysisType::AT_LINEAR, 0, (*itr).second);
+      if(pResultComponent && pResultComponent->CanMap(object))
+      {
               strProperties += " " + FixName(pResultComponent->ExportLabel());
               strNoDataValues += " -99999";
               strESizes += " 1";
               bAtLeastOneActive = true;
-            }
+      }
           }
 
           if(pStage->Last())
-            pStage = 0;
+      pStage = 0;
           else
-            pStage = &pStage->Next();
-        }
+      pStage = &pStage->Next();
+    }
       }
       else if((*itr).first->Component((*itr).second).CanMap(object))
       {
-        strProperties += " " + FixName((*itr).first->Component((*itr).second).ExportLabel());
-        strNoDataValues += " -99999";
-        strESizes += " 1";
-        bAtLeastOneActive = true;
+    strProperties += " " + FixName((*itr).first->Component((*itr).second).ExportLabel());
+    strNoDataValues += " -99999";
+    strESizes += " 1";
+    bAtLeastOneActive = true;
       }
-    }
+  }
 
-    TVectorSet::iterator itv;
-    for(itv = m_stFullVectors.begin(); itv != m_stFullVectors.end(); ++itv)
-    {
+  TVectorSet::iterator itv;
+  for(itv = m_stFullVectors.begin(); itv != m_stFullVectors.end(); ++itv)
+  {
       QString strLabel = (*itv)->VectorExportLabel();
       const CDepletionStage* pStage = &m_model.InitialDepletionStage();
       while(pStage)
       {
-        if(m_stTimeSteps.find(pStage) != m_stTimeSteps.end())
-        {
+    if(m_stTimeSteps.find(pStage) != m_stTimeSteps.end())
+    {
           QString strStage;
           strStage = QString("_D%1").arg(pStage->Index());
           if(m_bLinear)
           {
-            const IResultComponent* pResultComponent = (*itv)->ResultComponent(*pStage, CAnalysisType::AT_LINEAR, 0, 0);
-            if(pResultComponent && pResultComponent->CanMap(object))
-            {
+      const IResultComponent* pResultComponent = (*itv)->ResultComponent(*pStage, CAnalysisType::AT_LINEAR, 0, 0);
+      if(pResultComponent && pResultComponent->CanMap(object))
+      {
               strProperties += " " + FixName(strLabel + strStage + "_L");
               strNoDataValues += " -99999";
               strESizes += " 3";
               bAtLeastOneActive = true;
-            }
+      }
           }
 
           if(m_bNonLinear)
           {
-            const IResultComponent* pResultComponent = (*itv)->ResultComponent(*pStage, CAnalysisType::AT_NONLIN, 0, 0);
-            if(pResultComponent && pResultComponent->CanMap(object))
-            {
+      const IResultComponent* pResultComponent = (*itv)->ResultComponent(*pStage, CAnalysisType::AT_NONLIN, 0, 0);
+      if(pResultComponent && pResultComponent->CanMap(object))
+      {
               strProperties += " " + FixName(strLabel + strStage + "_N");
               strNoDataValues += " -99999";
               strESizes += " 3";
               bAtLeastOneActive = true;
-            }
+      }
           }
 
           if(m_bHeat)
           {
-            const IResultComponent* pResultComponent = (*itv)->ResultComponent(*pStage, CAnalysisType::AT_HEAT, 0, 0);
-            if(pResultComponent && pResultComponent->CanMap(object))
-            {
+      const IResultComponent* pResultComponent = (*itv)->ResultComponent(*pStage, CAnalysisType::AT_HEAT, 0, 0);
+      if(pResultComponent && pResultComponent->CanMap(object))
+      {
               strProperties += " " + FixName(strLabel + strStage + "_L");
               strNoDataValues += " -99999";
               strESizes += " 3";
               bAtLeastOneActive = true;
-            }
+      }
           }
 
           if(m_bMixture)
           {
-            const IResultComponent* pResultComponent = (*itv)->ResultComponent(*pStage, CAnalysisType::AT_MIXTURE, 0, 0);
-            if(pResultComponent && pResultComponent->CanMap(object))
-            {
+      const IResultComponent* pResultComponent = (*itv)->ResultComponent(*pStage, CAnalysisType::AT_MIXTURE, 0, 0);
+      if(pResultComponent && pResultComponent->CanMap(object))
+      {
               strProperties += " " + FixName(strLabel + strStage + "_M");
               strNoDataValues += " -99999";
               strESizes += " 3";
               bAtLeastOneActive = true;
-            }
+      }
           }
 
           if(m_bMixtureContainment)
           {
-            const IResultComponent* pResultComponent = (*itv)->ResultComponent(*pStage, CAnalysisType::AT_MIXTURE_CONTAINMENT, 0, 0);
-            if(pResultComponent && pResultComponent->CanMap(object))
-            {
+      const IResultComponent* pResultComponent = (*itv)->ResultComponent(*pStage, CAnalysisType::AT_MIXTURE_CONTAINMENT, 0, 0);
+      if(pResultComponent && pResultComponent->CanMap(object))
+      {
               strProperties += " " + FixName(strLabel + strStage + "_C");
               strNoDataValues += " -99999";
               strESizes += " 3";
               bAtLeastOneActive = true;
-            }
-          }
-        }
-
-        if(pStage->Last())
-          pStage = 0;
-        else
-          pStage = &pStage->Next();
       }
+          }
     }
 
-    TTensorSet::iterator itt;
-    for(itt = m_stFullTensors.begin(); itt != m_stFullTensors.end(); ++itt)
-    {
+    if(pStage->Last())
+          pStage = 0;
+    else
+          pStage = &pStage->Next();
+      }
+  }
+
+  TTensorSet::iterator itt;
+  for(itt = m_stFullTensors.begin(); itt != m_stFullTensors.end(); ++itt)
+  {
       QString strPre;
       QString strMid;
       QString strPost;
       const ITensorGroup* pParent = static_cast<const ITensorGroup*>((*itt)->Parent());
       if(pParent->PreExportNameId())
-        strPre = getStringTableEntry(pParent->PreExportNameId());
+    strPre = getStringTableEntry(pParent->PreExportNameId());
       if(pParent->ExportNameId())
-        strMid = getStringTableEntry(pParent->ExportNameId());
+    strMid = getStringTableEntry(pParent->ExportNameId());
       if(pParent->PostExportNameId())
-        strPost = getStringTableEntry(pParent->PostExportNameId());
+    strPost = getStringTableEntry(pParent->PostExportNameId());
       QString strLabel = strPre + strMid + strPost;
       const CDepletionStage* pStage = &m_model.InitialDepletionStage();
       while(pStage)
       {
-        if(m_stTimeSteps.find(pStage) != m_stTimeSteps.end())
-        {
+    if(m_stTimeSteps.find(pStage) != m_stTimeSteps.end())
+    {
           QString strStage;
           strStage = QString("_D%1").arg(pStage->Index());
           if(m_bLinear)
           {
-            const IResultComponent* pResultComponent = (*itt)->ResultComponent(*pStage, CAnalysisType::AT_LINEAR, 0, 0);
-            if(pResultComponent && pResultComponent->CanMap(object))
-            {
+      const IResultComponent* pResultComponent = (*itt)->ResultComponent(*pStage, CAnalysisType::AT_LINEAR, 0, 0);
+      if(pResultComponent && pResultComponent->CanMap(object))
+      {
               strProperties += " " + FixName(strLabel + strStage + "_L");
               strNoDataValues += " -99999";
               strESizes += " 6";
               bAtLeastOneActive = true;
-            }
+      }
           }
 
           if(m_bNonLinear)
           {
-            const IResultComponent* pResultComponent = (*itt)->ResultComponent(*pStage, CAnalysisType::AT_NONLIN, 0, 0);
-            if(pResultComponent && pResultComponent->CanMap(object))
-            {
+      const IResultComponent* pResultComponent = (*itt)->ResultComponent(*pStage, CAnalysisType::AT_NONLIN, 0, 0);
+      if(pResultComponent && pResultComponent->CanMap(object))
+      {
               strProperties += " " + FixName(strLabel + strStage + "_N");
               strNoDataValues += " -99999";
               strESizes += " 6";
               bAtLeastOneActive = true;
-            }
+      }
           }
 
           if(m_bHeat)
           {
-            const IResultComponent* pResultComponent = (*itt)->ResultComponent(*pStage, CAnalysisType::AT_HEAT, 0, 0);
-            if(pResultComponent && pResultComponent->CanMap(object))
-            {
+      const IResultComponent* pResultComponent = (*itt)->ResultComponent(*pStage, CAnalysisType::AT_HEAT, 0, 0);
+      if(pResultComponent && pResultComponent->CanMap(object))
+      {
               strProperties += " " + FixName(strLabel + strStage + "_L");
               strNoDataValues += " -99999";
               strESizes += " 6";
               bAtLeastOneActive = true;
-            }
+      }
           }
 
           if(m_bMixture)
           {
-            const IResultComponent* pResultComponent = (*itt)->ResultComponent(*pStage, CAnalysisType::AT_MIXTURE, 0, 0);
-            if(pResultComponent && pResultComponent->CanMap(object))
-            {
+      const IResultComponent* pResultComponent = (*itt)->ResultComponent(*pStage, CAnalysisType::AT_MIXTURE, 0, 0);
+      if(pResultComponent && pResultComponent->CanMap(object))
+      {
               strProperties += " " + FixName(strLabel + strStage + "_M");
               strNoDataValues += " -99999";
               strESizes += " 6";
               bAtLeastOneActive = true;
-            }
+      }
           }
 
           if(m_bMixtureContainment)
           {
-            const IResultComponent* pResultComponent = (*itt)->ResultComponent(*pStage, CAnalysisType::AT_MIXTURE_CONTAINMENT, 0, 0);
-            if(pResultComponent && pResultComponent->CanMap(object))
-            {
+      const IResultComponent* pResultComponent = (*itt)->ResultComponent(*pStage, CAnalysisType::AT_MIXTURE_CONTAINMENT, 0, 0);
+      if(pResultComponent && pResultComponent->CanMap(object))
+      {
               strProperties += " " + FixName(strLabel + strStage + "_C");
               strNoDataValues += " -99999";
               strESizes += " 6";
               bAtLeastOneActive = true;
-            }
-          }
-        }
-
-        if(pStage->Last())
-          pStage = 0;
-        else
-          pStage = &pStage->Next();
       }
+          }
     }
 
-    if(bWriteFormationNames)
-    {
+    if(pStage->Last())
+          pStage = 0;
+    else
+          pStage = &pStage->Next();
+      }
+  }
+
+  if(bWriteFormationNames)
+  {
       strSolidProperties += " FormationName";
       strSolidNoDataValues += " -99999";
       strSolidESizes += " 1";
       bAtLeastOneSolidActive = true;
-    }
+  }
 
-    if(bAtLeastOneSolidActive)
-    {
+  if(bAtLeastOneSolidActive)
+  {
       fprintf(m_fp, "%s\n", strSolidProperties.toStdString().c_str());
       fprintf(m_fp, "%s\n", strSolidNoDataValues.toStdString().c_str());
       fprintf(m_fp, "%s\n", strSolidESizes.toStdString().c_str());
-    }
+  }
 
-    if(bAtLeastOneNonSolidActive)
-    {
+  if(bAtLeastOneNonSolidActive)
+  {
       fprintf(m_fp, "%s\n", strNonSolidProperties.toStdString().c_str());
       fprintf(m_fp, "%s\n", strNonSolidNoDataValues.toStdString().c_str());
       fprintf(m_fp, "%s\n", strNonSolidESizes.toStdString().c_str());
-    }
+  }
   }
 }
 
@@ -1121,7 +1121,7 @@ void CGocadExport::WritePointSets(IProgressBase &prog)
   TPointSetSet::iterator it;
   for(it = m_stPointSets.begin(); it != m_stPointSets.end(); ++it)
   {
-    WritePointSet(**it, prog);
+  WritePointSet(**it, prog);
   }
 }
 
@@ -1134,25 +1134,25 @@ void CGocadExport::WritePointSet(const CPointSet &ptSet, IProgressBase &prog)
 
   for(int i = 0; i < ptSet.PointSize(); ++i)
   {
-    const geo::IPoint &pt = ptSet.PointAt(i);
-    IValueDomainScalar::TValueVec values;
-    GetPointValues(pt, values, ptSet);
-    double x = (m_iUnit == 1) ? pt.X() * FF_FACTOR_LENGTH : pt.X();
-    double y = (m_iUnit == 1) ? pt.Y() * FF_FACTOR_LENGTH : pt.Y();
-    double z = (m_iUnit == 1) ? pt.Z() * FF_FACTOR_LENGTH : pt.Z();
-    if(values.size() > 0)
+  const geo::IPoint &pt = ptSet.PointAt(i);
+  IValueDomainScalar::TValueVec values;
+  GetPointValues(pt, values, ptSet);
+  double x = (m_iUnit == 1) ? pt.X() * FF_FACTOR_LENGTH : pt.X();
+  double y = (m_iUnit == 1) ? pt.Y() * FF_FACTOR_LENGTH : pt.Y();
+  double z = (m_iUnit == 1) ? pt.Z() * FF_FACTOR_LENGTH : pt.Z();
+  if(values.size() > 0)
       fprintf(m_fp, "PVRTX %d %f %f %f", i+1, y, x, z); // gocad swaps x and y!
-    else
+  else
       fprintf(m_fp, "VRTX %d %f %f %f", i+1, y, x, z); // gocad swaps x and y!
-    for(size_t j = 0; j < values.size(); ++j)
-    {
+  for(size_t j = 0; j < values.size(); ++j)
+  {
       if(values[j].Valid())
-        fprintf(m_fp, " %g", values[j].Value());
+    fprintf(m_fp, " %g", values[j].Value());
       else
-        fprintf(m_fp, " -99999");
-    }
-    fprintf(m_fp, "\n");
-    prog.Step();
+    fprintf(m_fp, " -99999");
+  }
+  fprintf(m_fp, "\n");
+  prog.Step();
   }
   WriteTrailer();
 }
@@ -1165,9 +1165,9 @@ void CGocadExport::WriteFormations(IProgressBase& prog)
   TFormationSet::iterator it;
   for(it = m_stFormations.begin(); it != m_stFormations.end(); ++it)
   {
-    const C3DFormation& form = (const C3DFormation&)(**it);
+  const C3DFormation& form = (const C3DFormation&)(**it);
 
-    WriteFormation(form, prog);
+  WriteFormation(form, prog);
   }
 }
 
@@ -1184,44 +1184,44 @@ void CGocadExport::WriteFormation(const C3DFormation& form, IProgressBase& prog)
   int nVol = form.VolumeSize();
   for(int i = 0; i < nVol; ++i)
   {
-    const CFormationVolume& vol = form.Volume(i);
-    WriteVolume(vol, prog);
+  const CFormationVolume& vol = form.Volume(i);
+  WriteVolume(vol, prog);
   }
 
   // write elements for this volume
   for(size_t i = nElementStartIndex; i < m_vcElements.size(); ++i)
   {
-    const geo::IElement& element = m_vcElements[i]->Element();
-    IValueDomainScalar::TValueVec vcAverageElementValues;
+  const geo::IElement& element = m_vcElements[i]->Element();
+  IValueDomainScalar::TValueVec vcAverageElementValues;
 
-    if(m_bAverage)
-    {
+  if(m_bAverage)
+  {
       TElementValueVec vcElementValues;
       GetElementValues(element, vcElementValues, form);
 
       for(size_t j = 0; j < vcElementValues.size(); ++j)
       {
-        const IValueDomainScalar::TValueVec& vcValues = vcElementValues[j];
-        assert(vcValues.size() == element.NrOfNodes());
+    const IValueDomainScalar::TValueVec& vcValues = vcElementValues[j];
+    assert(vcValues.size() == element.NrOfNodes());
 
-        double dTotal = 0;
-        bool bValid = true;
-        for(size_t k = 0; k < vcValues.size() && bValid; ++k)
-        {
+    double dTotal = 0;
+    bool bValid = true;
+    for(size_t k = 0; k < vcValues.size() && bValid; ++k)
+    {
           if(vcValues[k].Valid())
-            dTotal += vcValues[k].Value();
+      dTotal += vcValues[k].Value();
           else
-            bValid = false;
-        }
-
-        if(bValid)
-          vcAverageElementValues.push_back(geo::CValue(dTotal / vcValues.size()));
-        else
-          vcAverageElementValues.push_back(geo::CValue());
-      }
+      bValid = false;
     }
 
-    m_vcElements[i]->Write(m_fp, vcAverageElementValues, m_bFormationNames ? &strFixedFormationName : 0);
+    if(bValid)
+          vcAverageElementValues.push_back(geo::CValue(dTotal / vcValues.size()));
+    else
+          vcAverageElementValues.push_back(geo::CValue());
+      }
+  }
+
+  m_vcElements[i]->Write(m_fp, vcAverageElementValues, m_bFormationNames ? &strFixedFormationName : 0);
   }
 
   // contents of m_vcElements is kept until complete mesh is written for the VRTX/ATOM bookkeeping!
@@ -1245,42 +1245,42 @@ void CGocadExport::WriteFault(const C3DHorizon& hor, IProgressBase& prog)
 
   for(int i = 0; i < pInterfaces->ElementSize(); ++i)
   {
-    const geo::IElement& elm = pInterfaces->Element(i);
+  const geo::IElement& elm = pInterfaces->Element(i);
 
-    TElementValueVec vcElementValues;
-    GetElementValues(elm, vcElementValues, hor);
+  TElementValueVec vcElementValues;
+  GetElementValues(elm, vcElementValues, hor);
 
-    int j;
-    assert(elm.NrOfNodes() == 6); // interface: 3 + 3 nodes
-    CNodeBase* nodes[3];
-    for(j = 0; j < 3; ++j)
-    {
+  int j;
+  assert(elm.NrOfNodes() == 6); // interface: 3 + 3 nodes
+  CNodeBase* nodes[3];
+  for(j = 0; j < 3; ++j)
+  {
       const geo::INode& node = elm.Node(j);
       std::pair<TNodeVertexMap::iterator, bool> prInsert = mpNodeVertex.insert(TNodeVertexMap::value_type(&node, (CVertex*)0));
       if(prInsert.second)
       {
-        CVertex* pVertex = new CVertex(node);
-        prInsert.first->second = pVertex;
-        nodes[j] = pVertex;
-        nodes[j]->Id(++nNode);
-        nodes[j]->Write(m_fp, m_iUnit, vcElementValues, j);
+    CVertex* pVertex = new CVertex(node);
+    prInsert.first->second = pVertex;
+    nodes[j] = pVertex;
+    nodes[j]->Id(++nNode);
+    nodes[j]->Write(m_fp, m_iUnit, vcElementValues, j);
       }
       else
       {
-        nodes[j] = new CVertex(*prInsert.first->second);
+    nodes[j] = new CVertex(*prInsert.first->second);
       }
 
-    }
+  }
 
-    vcTriangles[i] = new CTrgl(nodes);
-    prog.Step();
+  vcTriangles[i] = new CTrgl(nodes);
+  prog.Step();
   }
 
   for(size_t i = 0; i < vcTriangles.size(); ++i)
   {
-    vcTriangles[i]->Write(m_fp);
-    delete vcTriangles[i];
-    prog.Step();
+  vcTriangles[i]->Write(m_fp);
+  delete vcTriangles[i];
+  prog.Step();
   }
 }
 
@@ -1288,7 +1288,7 @@ void CGocadExport::AddPointValueFromComponent(const geo::IPoint &point, const IV
 {
   if(comp.CanMap(object))
   {
-    vcPointValues.push_back(comp.ScalarData().ValuePoint(point, m_iUnit == 0 ? IQuantityDouble::SI_UNIT : IQuantityDouble::FIELD_UNIT));
+  vcPointValues.push_back(comp.ScalarData().ValuePoint(point, m_iUnit == 0 ? IQuantityDouble::SI_UNIT : IQuantityDouble::FIELD_UNIT));
   }
 }
 
@@ -1297,61 +1297,61 @@ void CGocadExport::AddPointValuesFromResult(const geo::IPoint &point, const IRes
   const CDepletionStage *pStage = &m_model.InitialDepletionStage();
   while(pStage)
   {
-    if(m_stTimeSteps.find(pStage) != m_stTimeSteps.end())
-    {
+  if(m_stTimeSteps.find(pStage) != m_stTimeSteps.end())
+  {
       if(m_bLinear)
       {
-        for(size_t i = 0; i < indices.size(); ++i)
-        {
+    for(size_t i = 0; i < indices.size(); ++i)
+    {
           const IResultComponent *pResultComponent = result.ResultComponent(*pStage, CAnalysisType::AT_LINEAR, 0, indices[i]);
           if(pResultComponent)
-            AddPointValueFromComponent(point, *pResultComponent, vcPointValues, object);
-        }
+      AddPointValueFromComponent(point, *pResultComponent, vcPointValues, object);
+    }
       }
       
       if(m_bNonLinear)
       {
-        for(size_t i = 0; i < indices.size(); ++i)
-        {
+    for(size_t i = 0; i < indices.size(); ++i)
+    {
           const IResultComponent* pResultComponent = result.ResultComponent(*pStage, CAnalysisType::AT_NONLIN, 0, indices[i]);
           if(pResultComponent)
-            AddPointValueFromComponent(point, *pResultComponent, vcPointValues, object);
-        }
+      AddPointValueFromComponent(point, *pResultComponent, vcPointValues, object);
+    }
       }
       
       if(m_bHeat)
       {
-        for(size_t i = 0; i < indices.size(); ++i)
-        {
+    for(size_t i = 0; i < indices.size(); ++i)
+    {
           const IResultComponent* pResultComponent = result.ResultComponent(*pStage, CAnalysisType::AT_HEAT, 0, indices[i]);
           if(pResultComponent)
-            AddPointValueFromComponent(point, *pResultComponent, vcPointValues, object);
-        }
+      AddPointValueFromComponent(point, *pResultComponent, vcPointValues, object);
+    }
       }
       
       if(m_bMixture)
       {
-        for(size_t i = 0; i < indices.size(); ++i)
-        {
+    for(size_t i = 0; i < indices.size(); ++i)
+    {
           const IResultComponent* pResultComponent = result.ResultComponent(*pStage, CAnalysisType::AT_MIXTURE, 0, indices[i]);
           if(pResultComponent)
-            AddPointValueFromComponent(point, *pResultComponent, vcPointValues, object);
-        }
+      AddPointValueFromComponent(point, *pResultComponent, vcPointValues, object);
+    }
       }
       
       if(m_bMixtureContainment)
       {
-        for(size_t i = 0; i < indices.size(); ++i)
-        {
+    for(size_t i = 0; i < indices.size(); ++i)
+    {
           const IResultComponent* pResultComponent = result.ResultComponent(*pStage, CAnalysisType::AT_MIXTURE_CONTAINMENT, 0, indices[i]);
           if(pResultComponent)
-            AddPointValueFromComponent(point, *pResultComponent, vcPointValues, object);
-        }
-      }
+      AddPointValueFromComponent(point, *pResultComponent, vcPointValues, object);
     }
-    if(pStage->Last())
+      }
+  }
+  if(pStage->Last())
       pStage = 0;
-    else
+  else
       pStage = &pStage->Next();
   }
 }
@@ -1360,8 +1360,8 @@ void CGocadExport::AddElementValuesFromComponent(const geo::IElement& element, c
 {
   if(comp.CanMap(object))
   {
-    IValueDomainScalar::TValueVec vcValues = comp.ScalarData().ValueElement(element, m_iUnit == 0 ? IQuantityDouble::SI_UNIT : IQuantityDouble::FIELD_UNIT);
-    vcElementValues.push_back(vcValues);
+  IValueDomainScalar::TValueVec vcValues = comp.ScalarData().ValueElement(element, m_iUnit == 0 ? IQuantityDouble::SI_UNIT : IQuantityDouble::FIELD_UNIT);
+  vcElementValues.push_back(vcValues);
   }
 }
 
@@ -1370,62 +1370,62 @@ void CGocadExport::AddElementValuesFromResult(const geo::IElement& element, cons
   const CDepletionStage* pStage = &m_model.InitialDepletionStage();
   while(pStage)
   {
-    if(m_stTimeSteps.find(pStage) != m_stTimeSteps.end())
-    {
+  if(m_stTimeSteps.find(pStage) != m_stTimeSteps.end())
+  {
       if(m_bLinear)
       {
-        for(size_t i = 0; i < vcIndices.size(); ++i)
-        {
+    for(size_t i = 0; i < vcIndices.size(); ++i)
+    {
           const IResultComponent* pResultComponent = result.ResultComponent(*pStage, CAnalysisType::AT_LINEAR, 0, vcIndices[i]);
           if(pResultComponent)
-            AddElementValuesFromComponent(element, *pResultComponent, vcElementValues, object);
-        }
+      AddElementValuesFromComponent(element, *pResultComponent, vcElementValues, object);
+    }
       }
 
       if(m_bNonLinear)
       {
-        for(size_t i = 0; i < vcIndices.size(); ++i)
-        {
+    for(size_t i = 0; i < vcIndices.size(); ++i)
+    {
           const IResultComponent* pResultComponent = result.ResultComponent(*pStage, CAnalysisType::AT_NONLIN, 0, vcIndices[i]);
           if(pResultComponent)
-            AddElementValuesFromComponent(element, *pResultComponent, vcElementValues, object);
-        }
+      AddElementValuesFromComponent(element, *pResultComponent, vcElementValues, object);
+    }
       }
 
       if(m_bHeat)
       {
-        for(size_t i = 0; i < vcIndices.size(); ++i)
-        {
+    for(size_t i = 0; i < vcIndices.size(); ++i)
+    {
           const IResultComponent* pResultComponent = result.ResultComponent(*pStage, CAnalysisType::AT_HEAT, 0, vcIndices[i]);
           if(pResultComponent)
-            AddElementValuesFromComponent(element, *pResultComponent, vcElementValues, object);
-        }
+      AddElementValuesFromComponent(element, *pResultComponent, vcElementValues, object);
+    }
       }
 
       if(m_bMixture)
       {
-        for(size_t i = 0; i < vcIndices.size(); ++i)
-        {
+    for(size_t i = 0; i < vcIndices.size(); ++i)
+    {
           const IResultComponent* pResultComponent = result.ResultComponent(*pStage, CAnalysisType::AT_MIXTURE, 0, vcIndices[i]);
           if(pResultComponent)
-            AddElementValuesFromComponent(element, *pResultComponent, vcElementValues, object);
-        }
+      AddElementValuesFromComponent(element, *pResultComponent, vcElementValues, object);
+    }
       }
 
       if(m_bMixtureContainment)
       {
-        for(size_t i = 0; i < vcIndices.size(); ++i)
-        {
+    for(size_t i = 0; i < vcIndices.size(); ++i)
+    {
           const IResultComponent* pResultComponent = result.ResultComponent(*pStage, CAnalysisType::AT_MIXTURE_CONTAINMENT, 0, vcIndices[i]);
           if(pResultComponent)
-            AddElementValuesFromComponent(element, *pResultComponent, vcElementValues, object);
-        }
-      }
+      AddElementValuesFromComponent(element, *pResultComponent, vcElementValues, object);
     }
+      }
+  }
 
-    if(pStage->Last())
+  if(pStage->Last())
       pStage = 0;
-    else
+  else
       pStage = &pStage->Next();
   }
 }
@@ -1435,41 +1435,41 @@ void CGocadExport::GetPointValues(const geo::IPoint &point, IValueDomainScalar::
   TResultComponentSet::const_iterator it;
   for(it = m_stResultComponents.begin(); it != m_stResultComponents.end(); ++it)
   {
-    std::vector<int> indices(1);
-    const IResult *pResult = dynamic_cast<const IResult*>((*it).first);
-    if(pResult)
-    {
+  std::vector<int> indices(1);
+  const IResult *pResult = dynamic_cast<const IResult*>((*it).first);
+  if(pResult)
+  {
       indices[0] = (*it).second;
       AddPointValuesFromResult(point, *pResult, indices, vcPointValues, object);
-    }
-    else
-    {
+  }
+  else
+  {
       const IValueComponentBase& comp = (*it).first->Component((*it).second);
       AddPointValueFromComponent(point, comp, vcPointValues, object);
-    }
+  }
   }
 
   TVectorSet::const_iterator itv;
   for(itv = m_stFullVectors.begin(); itv != m_stFullVectors.end(); ++itv)
   {
-    std::vector<int> indices(3);
-    indices[0] = 1; // swap X and
-    indices[1] = 0; //  Y values
-    indices[2] = 2;
-    AddPointValuesFromResult(point, **itv, indices, vcPointValues, object);
+  std::vector<int> indices(3);
+  indices[0] = 1; // swap X and
+  indices[1] = 0; //  Y values
+  indices[2] = 2;
+  AddPointValuesFromResult(point, **itv, indices, vcPointValues, object);
   }
 
   TTensorSet::const_iterator itt;
   for(itt = m_stFullTensors.begin(); itt != m_stFullTensors.end(); ++itt)
   {
-    std::vector<int> indices(6);
-    indices[0] = 1; // swap XX and
-    indices[1] = 0; //  YY values
-    indices[2] = 2;
-    indices[3] = 3;
-    indices[4] = 5; // swap YZ and
-    indices[5] = 4; //  XZ values
-    AddPointValuesFromResult(point, **itt, indices, vcPointValues, object);
+  std::vector<int> indices(6);
+  indices[0] = 1; // swap XX and
+  indices[1] = 0; //  YY values
+  indices[2] = 2;
+  indices[3] = 3;
+  indices[4] = 5; // swap YZ and
+  indices[5] = 4; //  XZ values
+  AddPointValuesFromResult(point, **itt, indices, vcPointValues, object);
   }
 }
 
@@ -1478,57 +1478,57 @@ void CGocadExport::GetElementValues(const geo::IElement& element, TElementValueV
   TResultComponentSet::const_iterator itr;
   for(itr = m_stResultComponents.begin(); itr != m_stResultComponents.end(); ++itr)
   {
-    std::vector<int> vcIndices(1);
-    const IResult* pResult = dynamic_cast<const IResult*>((*itr).first);
-    if(pResult)
-    {
+  std::vector<int> vcIndices(1);
+  const IResult* pResult = dynamic_cast<const IResult*>((*itr).first);
+  if(pResult)
+  {
       vcIndices[0] = (*itr).second;
       AddElementValuesFromResult(element, *pResult, vcIndices, vcElementValues, object);
-    }
-    else
-    {
+  }
+  else
+  {
       const IValueComponentBase& comp = (*itr).first->Component((*itr).second);
       AddElementValuesFromComponent(element, comp, vcElementValues, object);
-    }
+  }
   }
 
   for(itr = m_stMaterialParameterComponents.begin(); itr != m_stMaterialParameterComponents.end(); ++itr)
   {
-    std::vector<int> vcIndices(1);
-    const IResult* pResult = dynamic_cast<const IResult*>((*itr).first);
-    if(pResult)
-    {
+  std::vector<int> vcIndices(1);
+  const IResult* pResult = dynamic_cast<const IResult*>((*itr).first);
+  if(pResult)
+  {
       vcIndices[0] = (*itr).second;
       AddElementValuesFromResult(element, *pResult, vcIndices, vcElementValues, object);
-    }
-    else
-    {
+  }
+  else
+  {
       const IValueComponentBase& comp = (*itr).first->Component((*itr).second);
       AddElementValuesFromComponent(element, comp, vcElementValues, object);
-    }
+  }
   }
 
   TVectorSet::const_iterator itv;
   for(itv = m_stFullVectors.begin(); itv != m_stFullVectors.end(); ++itv)
   {
-    std::vector<int> vcIndices(3);
-    vcIndices[0] = 1; // swap X and
-    vcIndices[1] = 0; //  Y values
-    vcIndices[2] = 2;
-    AddElementValuesFromResult(element, **itv, vcIndices, vcElementValues, object);
+  std::vector<int> vcIndices(3);
+  vcIndices[0] = 1; // swap X and
+  vcIndices[1] = 0; //  Y values
+  vcIndices[2] = 2;
+  AddElementValuesFromResult(element, **itv, vcIndices, vcElementValues, object);
   }
 
   TTensorSet::const_iterator itt;
   for(itt = m_stFullTensors.begin(); itt != m_stFullTensors.end(); ++itt)
   {
-    std::vector<int> vcIndices(6);
-    vcIndices[0] = 1; // swap XX and
-    vcIndices[1] = 0; //  YY values
-    vcIndices[2] = 2;
-    vcIndices[3] = 3;
-    vcIndices[4] = 5; // swap YZ and
-    vcIndices[5] = 4; //  XZ values
-    AddElementValuesFromResult(element, **itt, vcIndices, vcElementValues, object);
+  std::vector<int> vcIndices(6);
+  vcIndices[0] = 1; // swap XX and
+  vcIndices[1] = 0; //  YY values
+  vcIndices[2] = 2;
+  vcIndices[3] = 3;
+  vcIndices[4] = 5; // swap YZ and
+  vcIndices[5] = 4; //  XZ values
+  AddElementValuesFromResult(element, **itt, vcIndices, vcElementValues, object);
   }
 }
 
@@ -1537,24 +1537,24 @@ void CGocadExport::CreateNodes(const geo::IElement& element, const int* pNodeInd
   int n;
   for(n = 0; n < 4; ++n)
   {
-    const geo::INode& node = element.Node(pNodeIndices[n]);
+  const geo::INode& node = element.Node(pNodeIndices[n]);
 
-    TNodeMap::iterator it = m_mpNodes.find(&node);
-    if(it == m_mpNodes.end()) // create new one
-    {
+  TNodeMap::iterator it = m_mpNodes.find(&node);
+  if(it == m_mpNodes.end()) // create new one
+  {
       CNodeBase *newNode = nullptr;
 
       TUniqueNodeSet::iterator uniq = m_stUniqueNodes.find(&node);
 
       if (uniq == m_stUniqueNodes.end()) // if other node with same coordinates doesn't already exist we create new vertex; otherwise atom
       {
-        newNode = new CVertex(node);
-        m_stUniqueNodes.insert(&node);
+    newNode = new CVertex(node);
+    m_stUniqueNodes.insert(&node);
       }
       else
       {
-        TNodeMap::iterator vertex = m_mpNodes.find(*uniq);
-        newNode = new CAtom(static_cast<const CVertex&>(*vertex->second));
+    TNodeMap::iterator vertex = m_mpNodes.find(*uniq);
+    newNode = new CAtom(static_cast<const CVertex&>(*vertex->second));
       }
 
       TNodeMap::iterator itn = m_mpNodes.insert(TNodeMap::value_type(&node, newNode)).first;
@@ -1563,11 +1563,11 @@ void CGocadExport::CreateNodes(const geo::IElement& element, const int* pNodeInd
       // write the vertex/atom
       pNode[n]->Id(++m_nCurrentId);
       pNode[n]->Write(m_fp, m_iUnit, vcElementValues, n);
-    }
-    else
-    {
+  }
+  else
+  {
       pNode[n] = it->second;
-    }
+  }
   }
 }
 
@@ -1578,65 +1578,65 @@ void CGocadExport::WriteVolume(const CFormationVolume& vol, IProgressBase& prog)
   int i;
   for(i = 0; i < nBodies; ++i)
   {
-    const geo::IBody& body = bodies.Body(i);
-    const geo::ITetrahedron* pTet = dynamic_cast<const geo::ITetrahedron*>(&body);
-    const geo::IHexahedron* pHexa = dynamic_cast<const geo::IHexahedron*> (&body);
+  const geo::IBody& body = bodies.Body(i);
+  const geo::ITetrahedron* pTet = dynamic_cast<const geo::ITetrahedron*>(&body);
+  const geo::IHexahedron* pHexa = dynamic_cast<const geo::IHexahedron*> (&body);
 
-    assert(pTet || pHexa);
+  assert(pTet || pHexa);
 
-    CNodeBase* pNode[4];
+  CNodeBase* pNode[4];
 
-    if(pHexa)
-    {
+  if(pHexa)
+  {
       assert(pHexa->NrOfNodes() == 8);
 
       TElementValueVec vcHexaValues;
 
       if(!m_bAverage)
-        GetElementValues(*pHexa, vcHexaValues, vol.Formation());
+    GetElementValues(*pHexa, vcHexaValues, vol.Formation());
 
       // generate the tetras
       int t;
       for(t = 0; t < 6; ++t)
       {
-        TElementValueVec vcElementValues;
-        if(!m_bAverage)
-        {
+    TElementValueVec vcElementValues;
+    if(!m_bAverage)
+    {
           vcElementValues.resize(vcHexaValues.size());
           for(size_t r = 0; r < vcHexaValues.size(); ++r)
           {
-            // map the hexa values on the tetra
-            int n;
-            for(n = 0; n < 4; ++n)
+      // map the hexa values on the tetra
+      int n;
+      for(n = 0; n < 4; ++n)
               vcElementValues[r].push_back(vcHexaValues[r][hexa_tetra_index[t][n]]);
           }
-        }
-
-        // create the nodes
-        CreateNodes(*pHexa, hexa_tetra_index[t], pNode, vcElementValues);
-
-        // create the tetra
-        m_vcElements.push_back(new CTetra(*pHexa, pNode));
-      }
     }
-    else if(pTet)
-    {
+
+    // create the nodes
+    CreateNodes(*pHexa, hexa_tetra_index[t], pNode, vcElementValues);
+
+    // create the tetra
+    m_vcElements.push_back(new CTetra(*pHexa, pNode));
+      }
+  }
+  else if(pTet)
+  {
       assert(pTet->NrOfNodes() == 4);
 
       TElementValueVec vcElementValues;
       if(!m_bAverage)
       {
-        // get the values for this element
-        GetElementValues(*pTet, vcElementValues, vol.Formation());
+    // get the values for this element
+    GetElementValues(*pTet, vcElementValues, vol.Formation());
       }
 
       CreateNodes(*pTet, tetra_tetra_index, pNode, vcElementValues);
 
       // create the element
       m_vcElements.push_back(new CTetra(*pTet, pNode));
-    }
+  }
 
-    prog.Step();
+  prog.Step();
   }
 }
 
@@ -1644,7 +1644,7 @@ void CGocadExport::WriteSolidSurfaces()
 {
   // skip for horizon models for now...
   if(!dynamic_cast<const geo::CTetMeshBase*>(&Model().Mesh().Mesh()))
-    return;
+  return;
 
   // collect all side surfaces from the selected formations
   typedef std::set<const geo::CBodyGroup::CSideSurface*> TSideSurfaceSet;
@@ -1655,18 +1655,18 @@ void CGocadExport::WriteSolidSurfaces()
 
   for(TFormationSet::iterator it = m_stFormations.begin(); it != m_stFormations.end(); ++it)
   {
-    const CFormationBase& f = **it;
+  const CFormationBase& f = **it;
 
-    for(int i = 0; i < f.ElementSetSize(); ++i)
-    {
+  for(int i = 0; i < f.ElementSetSize(); ++i)
+  {
       const CFormationVolume& fv = static_cast<const CFormationVolume&>(f.ElementSet(i));
 
       for(int j = 0; j < fv.Volume().SideSurfaceSize(); ++j)
       {
-        stSideSurfaces.insert(&fv.Volume().SideSurface(j));
-        mpSurface2Formation.insert(TSurface2FormationMap::value_type(&fv.Volume().SideSurface(j), &f));
+    stSideSurfaces.insert(&fv.Volume().SideSurface(j));
+    mpSurface2Formation.insert(TSurface2FormationMap::value_type(&fv.Volume().SideSurface(j), &f));
       }
-    }
+  }
   }
 
   CGraphEntry& horizon_entry = *Model().GraphEntry(MD_BASE_HORIZON);
@@ -1682,44 +1682,44 @@ void CGocadExport::WriteSolidSurfaces()
   const geo::CTetMeshBase* pTetMesh = dynamic_cast<const geo::CTetMeshBase*>(&Model().Mesh().Mesh());
   if(pTetMesh)
   {
-    // tetra model
-    for(CGraphEntry::TEntryNodeSet::iterator it = stHorizons.begin(); it != stHorizons.end(); ++it)
-    {
+  // tetra model
+  for(CGraphEntry::TEntryNodeSet::iterator it = stHorizons.begin(); it != stHorizons.end(); ++it)
+  {
       const CTetraHorizonBase& hor = static_cast<const CTetraHorizonBase&>(**it);
 
       for(int i = 0; i < hor.OutputSurfaceSize(); ++i)
       {
-        const geo::CSurfaceDesc& surfdesc = hor.OutputSurface(i);
+    const geo::CSurfaceDesc& surfdesc = hor.OutputSurface(i);
  
-        for(int j = 0; j < surfdesc.TetSurfaceSize(); ++j)
-        {
+    for(int j = 0; j < surfdesc.TetSurfaceSize(); ++j)
+    {
           const geo::CTetSurface& tetsurf = surfdesc.TetSurface(j);
 
           // only each first surface of a pair
           if(j % 2 == 0 && stSideSurfaces.find(&tetsurf) != stSideSurfaces.end())
           {
-            if (hor.Slip())
-            {
+      if (hor.Slip())
+      {
               // we want to write faults as a whole; otherwise we might miss parts (TFS 307252)
               // this may give undesirable results when exporting only some formations, as the faults may extend beyond
               // but at least it's complete
               stFaults.insert(&hor);
-            }
-            else
-            {
+      }
+      else
+      {
               THorizonMap::iterator itHor = mpHorizons.insert(THorizonMap::value_type(&hor, TSideSurfaceVec())).first;
               itHor->second.push_back(&tetsurf);
-            }
+      }
           }
 
           stSideSurfaces.erase(&tetsurf);
-        }
-      }
     }
+      }
+  }
   }
   else
   {
-    // hexa model, enumerate horizons
+  // hexa model, enumerate horizons
   }
 
   fprintf(m_fp, "MODEL\n");
@@ -1730,38 +1730,38 @@ void CGocadExport::WriteSolidSurfaces()
   int iTFace = 0;
   for(THorizonMap::iterator ith = mpHorizons.begin(); ith != mpHorizons.end(); ++ith)
   {
-    const C3DHorizon& hor = *ith->first;
-    fprintf(m_fp, "SURFACE %s\n", FixName(hor.Name()).toStdString().c_str());
+  const C3DHorizon& hor = *ith->first;
+  fprintf(m_fp, "SURFACE %s\n", FixName(hor.Name()).toStdString().c_str());
 
-    const TSideSurfaceVec& vcSurfaces = ith->second;
-    for(size_t i = 0; i < vcSurfaces.size(); ++i)
-    {
+  const TSideSurfaceVec& vcSurfaces = ith->second;
+  for(size_t i = 0; i < vcSurfaces.size(); ++i)
+  {
       WriteTFace(*vcSurfaces[i], ++iTFace);
       TSurface2FormationMap::iterator it = mpSurface2Formation.find(vcSurfaces[i]);
       assert(it != mpSurface2Formation.end());
       vcModelRegions.push_back(FixName(it->second->Name()));
-    }
+  }
   }
 
   for (TFaultSet::iterator fault = stFaults.begin(); fault != stFaults.end(); ++fault)
   {
-    const CTetraHorizonBase& hor = **fault;
-    fprintf(m_fp, "SURFACE %s\n", FixName(hor.Name()).toStdString().c_str());
+  const CTetraHorizonBase& hor = **fault;
+  fprintf(m_fp, "SURFACE %s\n", FixName(hor.Name()).toStdString().c_str());
 
-    WriteTFaceFault(hor, ++iTFace);
+  WriteTFaceFault(hor, ++iTFace);
   }
 
   // write remaining surfaces (sides)
   int iSide = 0;
   for(TSideSurfaceSet::iterator its = stSideSurfaces.begin(); its != stSideSurfaces.end(); ++its)
   {
-    fprintf(m_fp, "SURFACE side_%d\n", ++iSide);
-    WriteTFace(**its, ++iTFace);
+  fprintf(m_fp, "SURFACE side_%d\n", ++iSide);
+  WriteTFace(**its, ++iTFace);
   }
 
   // write model regions
   for(int i = 0; i < vcModelRegions.size(); ++i)
-    fprintf(m_fp, "MODEL_REGION %s %d\n", vcModelRegions[i].toStdString().c_str(), -(i+1));
+  fprintf(m_fp, "MODEL_REGION %s %d\n", vcModelRegions[i].toStdString().c_str(), -(i+1));
 }
 
 const CGocadExport::CNodeBase& CGocadExport::Vertex(const geo::INode& node) const
@@ -1777,14 +1777,14 @@ void CGocadExport::WriteTFace(const geo::CBodyGroup::CSideSurface& surface, int 
   int j;
   for(j = 0; j < surface.FaceSize(); ++j)
   {
-    const geo::IFace& face = surface.Face(j);
-    assert(face.NrOfNodes() == 3 || face.NrOfNodes() == 4);
-    if(j == 0)
+  const geo::IFace& face = surface.Face(j);
+  assert(face.NrOfNodes() == 3 || face.NrOfNodes() == 4);
+  if(j == 0)
       fprintf(m_fp, "KEYVERTICES %d %d %d\n", Vertex(face.Node(0)).Id(), Vertex(face.Node(1)).Id(), Vertex(face.Node(2)).Id());
-    fprintf(m_fp, "TRGL %d %d %d\n", Vertex(face.Node(0)).Id(), Vertex(face.Node(1)).Id(), Vertex(face.Node(2)).Id());
+  fprintf(m_fp, "TRGL %d %d %d\n", Vertex(face.Node(0)).Id(), Vertex(face.Node(1)).Id(), Vertex(face.Node(2)).Id());
 /*
-    // quads are separated into two triangles
-    if(face.NrOfNodes() == 4)
+  // quads are separated into two triangles
+  if(face.NrOfNodes() == 4)
       fprintf(m_fp, "TRGL %d %d %d\n", face.Node(0).Index(), face.Node(2).Index(), face.Node(3).Index());
 */
   }
@@ -1800,12 +1800,12 @@ void CGocadExport::WriteTFaceFault(const CTetraHorizonBase& fault, int idx)
 
   for (int i = 0; i < eltGroup->ElementSize(); ++i)
   {
-    const geo::IInterfaceElement& ifElt = static_cast<const geo::IInterfaceElement&>(eltGroup->Element(i));
-    const geo::IElement& front = ifElt.Front();
+  const geo::IInterfaceElement& ifElt = static_cast<const geo::IInterfaceElement&>(eltGroup->Element(i));
+  const geo::IElement& front = ifElt.Front();
 
-    if (i == 0)
-        fprintf(m_fp, "KEYVERTICES %d %d %d\n", Vertex(front.Node(0)).Id(), Vertex(front.Node(1)).Id(), Vertex(front.Node(2)).Id());
-    fprintf(m_fp, "TRGL %d %d %d\n", Vertex(front.Node(0)).Id(), Vertex(front.Node(1)).Id(), Vertex(front.Node(2)).Id());
+  if (i == 0)
+    fprintf(m_fp, "KEYVERTICES %d %d %d\n", Vertex(front.Node(0)).Id(), Vertex(front.Node(1)).Id(), Vertex(front.Node(2)).Id());
+  fprintf(m_fp, "TRGL %d %d %d\n", Vertex(front.Node(0)).Id(), Vertex(front.Node(1)).Id(), Vertex(front.Node(2)).Id());
   }
 }
 
@@ -1825,54 +1825,54 @@ void CGocadExport::FetchComposites(int nComponents, std::set<const COMPOSITE*>& 
   TResultComponentSet::iterator it = m_stResultComponents.begin();
   while(it != m_stResultComponents.end())
   {
-    const IValueComposite* pComposite = (*it).first;
+  const IValueComposite* pComposite = (*it).first;
 
-    const IResult* pResult = dynamic_cast<const IResult*>(pComposite);
-    if(pResult)
-    {
+  const IResult* pResult = dynamic_cast<const IResult*>(pComposite);
+  if(pResult)
+  {
       if((!m_bLinear && !m_bNonLinear && !m_bHeat && !m_bMixture && !m_bMixtureContainment) || m_stTimeSteps.empty())
       {
-        TResultComponentSet::iterator temporary = it++;
+    TResultComponentSet::iterator temporary = it++;
 
-        // can only select result sets when both
-        // - linear or nonlinear or heat or mixture has been selected
-        // - at least one depletion stage has been selected
-        m_stResultComponents.erase(temporary);
-        continue;
+    // can only select result sets when both
+    // - linear or nonlinear or heat or mixture has been selected
+    // - at least one depletion stage has been selected
+    m_stResultComponents.erase(temporary);
+    continue;
       }
-    }
+  }
 
-    // is it a COMPOSITE?
-    const COMPOSITE* pFullComposite = dynamic_cast<const COMPOSITE*>(pComposite);
-    if(pFullComposite)
-    {
+  // is it a COMPOSITE?
+  const COMPOSITE* pFullComposite = dynamic_cast<const COMPOSITE*>(pComposite);
+  if(pFullComposite)
+  {
       // are all components present?
       bool bFound = true;
       int i;
       for(i = 0; i < nComponents && bFound; ++i)
-        bFound = (m_stResultComponents.find(TResultComponent(pComposite, i)) != m_stResultComponents.end());
+    bFound = (m_stResultComponents.find(TResultComponent(pComposite, i)) != m_stResultComponents.end());
 
       if(bFound)
       {
-        // register the full tensor
-        stComposites.insert(pFullComposite);
+    // register the full tensor
+    stComposites.insert(pFullComposite);
 
-        // remove the components from the set
-        for(i = 0; i < nComponents; ++i)
+    // remove the components from the set
+    for(i = 0; i < nComponents; ++i)
           m_stResultComponents.erase(TResultComponent(pComposite, i));
 
-        // reset the iterator
-        it = m_stResultComponents.begin();
+    // reset the iterator
+    it = m_stResultComponents.begin();
       }
       else
       {
-        ++it;
+    ++it;
       }
-    }
-    else
-    {
+  }
+  else
+  {
       ++it;
-    }
+  }
   }
 }
 
@@ -1882,8 +1882,8 @@ void CGocadExport::SortComposites()
   m_stFullVectors.clear();
 
   if(m_bTensorESize)
-    FetchComposites<ITensorGroup::CComponentComposite>(6, m_stFullTensors);
+  FetchComposites<ITensorGroup::CComponentComposite>(6, m_stFullTensors);
 
   if(m_bVectorESize)
-    FetchComposites<IVectorResult>(3, m_stFullVectors);
+  FetchComposites<IVectorResult>(3, m_stFullVectors);
 }

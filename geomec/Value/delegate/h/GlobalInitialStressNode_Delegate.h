@@ -9,20 +9,20 @@ class CGlobalInitialStressNode_Delegate : public CStorageNode_Delegate
 {
 public:
   CGlobalInitialStressNode_Delegate(
-    CGlobalInitialStressNode* globalInitialStressNode);
+  CGlobalInitialStressNode* globalInitialStressNode);
 
   virtual bool Attributes();
 
 private:
   CGlobalInitialStressNode_Delegate(
-    const CGlobalInitialStressNode_Delegate& rhs);
+  const CGlobalInitialStressNode_Delegate& rhs);
   CGlobalInitialStressNode_Delegate& operator = (
-    const CGlobalInitialStressNode_Delegate& rhs);
+  const CGlobalInitialStressNode_Delegate& rhs);
 
   CGlobalInitialStressNode* m_globalInitialStressNode;
 
   REGISTER_DELEGATE(CGlobalInitialStressNode,
-    CGlobalInitialStressNode_Delegate);
+  CGlobalInitialStressNode_Delegate);
 };
 
 #endif  // _GlobalInitialStressNode_Delegate_h_

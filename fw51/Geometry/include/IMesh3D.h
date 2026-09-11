@@ -19,13 +19,13 @@ class IBody;
 class GEOMETRY_EXPORT  CMesh3D  : public CMesh
 {
 public:
-	typedef std::vector<const IBody*> TBodyVec;
+  typedef std::vector<const IBody*> TBodyVec;
 
-	// Construction / Destruction
-	CMesh3D();
-	virtual ~CMesh3D();
+  // Construction / Destruction
+  CMesh3D();
+  virtual ~CMesh3D();
 
-	virtual TBodyVec PointInMesh(const IPoint &point) const;
+  virtual TBodyVec PointInMesh(const IPoint &point) const;
 };
 }
 #endif // !defined(AFX_IMESH3D_H__49599AF9_8E17_4C8F_A617_7D3526C8D526__INCLUDED_)

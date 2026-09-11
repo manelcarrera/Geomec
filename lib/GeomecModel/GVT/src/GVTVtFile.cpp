@@ -56,8 +56,8 @@ int readInt(std::ifstream& stream)
 float readFloat(std::ifstream& stream)
 {
   union {
-    uint32_t input;
-    float output;
+  uint32_t input;
+  float output;
   } data;
   stream.read((char *)&data, 4);
 #ifdef _WIN32
@@ -71,8 +71,8 @@ float readFloat(std::ifstream& stream)
 double readDouble(std::ifstream& stream)
 {
   union {
-    uint64_t input;
-    double output;
+  uint64_t input;
+  double output;
   } data;
   stream.read((char *)&data.input, 8);
 #ifdef _WIN32
@@ -94,28 +94,28 @@ double CGVTVtFileHeader::TimeDepthConversion()
 {
   if (revision_number >= 6)
   {
-    switch (new_time_depth)
-    {
-    case 1:
+  switch (new_time_depth)
+  {
+  case 1:
       return 0.001;
-    case 2:
+  case 2:
       return 0.1;
-    case 3:
+  case 3:
       return 0.01;
-    case 4:
+  case 4:
       return 0.000001;
-    }
+  }
   }
   switch (time_depth)
   {
   case 0:
-    return 0.001;
+  return 0.001;
   case 1:
-    return 0.0001;
+  return 0.0001;
   case 2:
-    return 0.00001;
+  return 0.00001;
   case 3:
-    return 0.000001;
+  return 0.000001;
   }
 
   return -1;
@@ -210,14 +210,14 @@ bool CGVTVtFile::IsBinaryVtFile(const QString& fileName)
 
   if (is.is_open())
   {
-    int t;
-    t = readInt(is);
-    t = readInt(is);
+  int t;
+  t = readInt(is);
+  t = readInt(is);
 
-    if (t == MARKER)
+  if (t == MARKER)
       retval = true;
 
-    is.close();
+  is.close();
   }
 
   return retval;
@@ -254,83 +254,83 @@ bool CGVTVtFile::Import(const QString& fileName, IProgressBase& prog, bool bNoDa
 
   if (m_ifs.is_open())
   {
-    m_ifs.seekg(0, std::ios::end);
-    m_uiRealFileSize = m_ifs.tellg();
-    m_ifs.seekg(0, std::ios::beg);
+  m_ifs.seekg(0, std::ios::end);
+  m_uiRealFileSize = m_ifs.tellg();
+  m_ifs.seekg(0, std::ios::beg);
 
-    if (!ReadSection1())
+  if (!ReadSection1())
       return false;
 
-    if (!ReadArraySize(2, 100))
+  if (!ReadArraySize(2, 100))
       return false;
 
-    if (!ReadSection3())
+  if (!ReadSection3())
       return false;
 
-    if (!ReadArraySize(4, 200))
+  if (!ReadArraySize(4, 200))
       return false;
 
-    if (!ReadSection5())
+  if (!ReadSection5())
       return false;
 
-    if (bNoData)
-    {
+  if (bNoData)
+  {
       m_ifs.close();
       return true; // we're done
-    }
+  }
 
-    if (!ReadArraySize(6, m_check.num_bins * m_check.num_tracks))
+  if (!ReadArraySize(6, m_check.num_bins * m_check.num_tracks))
       return false;
 
-    QString pointsetName = fileName;
-    int pos0 = fileName.lastIndexOf('/');
-    int pos1 = fileName.lastIndexOf('\\');
-    int pos = pos0 < pos1 ? pos1 : pos0;
+  QString pointsetName = fileName;
+  int pos0 = fileName.lastIndexOf('/');
+  int pos1 = fileName.lastIndexOf('\\');
+  int pos = pos0 < pos1 ? pos1 : pos0;
 
-    if (pos > 0)
+  if (pos > 0)
       pointsetName = fileName.right(fileName.length() - pos - 1);
 
-    m_pPointSet = new CPointSet(pointsetName.toStdString().c_str(), m_model, 1, IPointSet::DIM_3D);
-    m_pPointSet->pointSetType(IPointSet::TIME_DEPTH);
-    const CValueTypeFactory *factory = CValueTypeFactory::instance();
-    m_pPointSet->NodalValueSet(3).LinkTo(factory->BuildValueType(*m_pPointSet, IDT_VALUETYPE_DELTAT, "Timeshifts")->Component());
+  m_pPointSet = new CPointSet(pointsetName.toStdString().c_str(), m_model, 1, IPointSet::DIM_3D);
+  m_pPointSet->pointSetType(IPointSet::TIME_DEPTH);
+  const CValueTypeFactory *factory = CValueTypeFactory::instance();
+  m_pPointSet->NodalValueSet(3).LinkTo(factory->BuildValueType(*m_pPointSet, IDT_VALUETYPE_DELTAT, "Timeshifts")->Component());
 
-    if (!ReadSection7(prog))
+  if (!ReadSection7(prog))
       return false;
 
-    TPointSetEntry& psentry = (TPointSetEntry&)(*m_model.GraphEntry(MD_BASE_POINTSET));
-    psentry.ConnectItem(*m_pPointSet);
+  TPointSetEntry& psentry = (TPointSetEntry&)(*m_model.GraphEntry(MD_BASE_POINTSET));
+  psentry.ConnectItem(*m_pPointSet);
 
-    m_pPointSet = 0;
+  m_pPointSet = 0;
 
-    m_ifs.close(); // we expect to be deconstructed soon, but it can't hurt
+  m_ifs.close(); // we expect to be deconstructed soon, but it can't hurt
   }
 
   if (m_emptyTraces || !m_incompleteTraces.empty())
   {
-    QString msg = "Warning: ";
-    QString del = "found ";
-    if (m_emptyTraces)
-    {
+  QString msg = "Warning: ";
+  QString del = "found ";
+  if (m_emptyTraces)
+  {
       msg += del + QString("%1 empty trace(s) (size 0)").arg(m_emptyTraces);
       del = ", and ";
-    }
-    if (!m_incompleteTraces.empty())
-    {
+  }
+  if (!m_incompleteTraces.empty())
+  {
       msg += del + QString("%1 incomplete trace(s) (extending past the end of the file) at address").arg(m_incompleteTraces.size());
       if (m_incompleteTraces.size() > 1)
-        msg += "es";
+    msg += "es";
       msg += ": ";
 
       int i = 1;
       std::set<int>::iterator it = m_incompleteTraces.begin();
       msg += QString::number(*it++);
       for (; it != m_incompleteTraces.end() && i < 20; ++it, ++i)
-        msg += ", " + QString::number(*it);
+    msg += ", " + QString::number(*it);
       if (m_incompleteTraces.size() > i)
-        msg += ", ...";
-    }
-    _m()->msg(msg);
+    msg += ", ...";
+  }
+  _m()->msg(msg);
   }
 
   return true;
@@ -350,16 +350,16 @@ bool CGVTVtFile::ReadArraySize(int section, unsigned int expect)
 
   if (marker != MARKER)
   {
-    _m()->msg(QString("Error while reading section %1: marker not found").arg(section));
-    return false;
+  _m()->msg(QString("Error while reading section %1: marker not found").arg(section));
+  return false;
   }
 
   m_uiArraySize = readInt(m_ifs);
 
   if (m_uiArraySize != expect)
   {
-    _m()->msg(QString("Error while reading section %1: expected size %2, found %3").arg(section).arg(expect).arg(m_uiArraySize));
-    return false;
+  _m()->msg(QString("Error while reading section %1: expected size %2, found %3").arg(section).arg(expect).arg(m_uiArraySize));
+  return false;
   }
 
   return true;
@@ -372,13 +372,13 @@ bool CGVTVtFile::ReadSection1()
 
   if (m_uiFileSize == 0xffffffff)
   {
-    _m()->msg(QString("Error while reading section 1: files > 16Gb not supported yet"));
-    return false;
+  _m()->msg(QString("Error while reading section 1: files > 16Gb not supported yet"));
+  return false;
   }
 
   if (m_uiFileSize * VT_WORD_SIZE != m_uiRealFileSize)
   {
-    _m()->msg(QString("Warning while reading section 1: real file size is %1, but in file it says %2 (* 4 = %3)").arg(m_uiRealFileSize).arg(m_uiFileSize).arg(m_uiFileSize * VT_WORD_SIZE));
+  _m()->msg(QString("Warning while reading section 1: real file size is %1, but in file it says %2 (* 4 = %3)").arg(m_uiRealFileSize).arg(m_uiFileSize).arg(m_uiFileSize * VT_WORD_SIZE));
   }
 
   return true;
@@ -393,8 +393,8 @@ bool CGVTVtFile::ReadSection3()
 
   if (m_header.bits_per_sample != 8 && m_header.bits_per_sample != 16 && m_header.bits_per_sample != 32)
   {
-    _m()->msg(QString("Error while reading section 3: bits per sample is %1, but only 8, 16, and 32 are supported").arg(m_header.bits_per_sample));
-    return false;
+  _m()->msg(QString("Error while reading section 3: bits per sample is %1, but only 8, 16, and 32 are supported").arg(m_header.bits_per_sample));
+  return false;
   }
 
   m_header.amplitude_levels = readInt(m_ifs); // 255/65535/0
@@ -419,18 +419,18 @@ bool CGVTVtFile::ReadSection3()
 
   if (m_header.TimeDepthConversion() < 0)
   {
-    QString msg = "Error while reading section 3: time/depth unit";
-    if (m_header.revision_number >= 6)
+  QString msg = "Error while reading section 3: time/depth unit";
+  if (m_header.revision_number >= 6)
       msg += QString("s %1 and %2 (new) are").arg(m_header.time_depth).arg(m_header.new_time_depth);
-    else
+  else
       msg += QString(" %1 is").arg(m_header.time_depth);
-    msg += " not supported";
-    _m()->msg(msg);
-    return false;
+  msg += " not supported";
+  _m()->msg(msg);
+  return false;
   }
 
   for (unsigned int i = sizeof(CGVTVtFileHeader) / VT_WORD_SIZE; i < m_uiArraySize; ++i)
-    readInt(m_ifs);
+  readInt(m_ifs);
 
   return true;
 }
@@ -439,7 +439,7 @@ bool CGVTVtFile::ReadSection3()
 bool CGVTVtFile::ReadSection5()
 {
   for (unsigned int i = 0; i < 60; ++i)
-    m_check.name[i] = readInt(m_ifs);
+  m_check.name[i] = readInt(m_ifs);
 
   m_check.track_direction = readInt(m_ifs);
   m_check.num_tracks = readInt(m_ifs);
@@ -450,7 +450,7 @@ bool CGVTVtFile::ReadSection5()
   m_check.delta_bin = readInt(m_ifs);
 
   for (int i = 0; i < 6; ++i)
-    m_check.subpoint_code[i] = readInt(m_ifs);
+  m_check.subpoint_code[i] = readInt(m_ifs);
 
   m_check.zero_time = readInt(m_ifs);
   m_check.digi = readInt(m_ifs);
@@ -466,7 +466,7 @@ bool CGVTVtFile::ReadSection5()
   m_check.skew_angle = readDouble(m_ifs);
 
   for (unsigned int i = 90; i < m_uiArraySize; ++i)
-    readInt(m_ifs);
+  readInt(m_ifs);
 
   return true;
 }
@@ -509,20 +509,20 @@ bool CGVTVtFile::ReadSection7(IProgressBase& prog)
 
   for (int row = 0; row < rows; ++row)
   {
-    y = (corner_row + row * delta_row) * delta_easting;
+  y = (corner_row + row * delta_row) * delta_easting;
 
-    for (int col = 0; col < cols; ++col)
-    {
+  for (int col = 0; col < cols; ++col)
+  {
 
       int address = readInt(m_ifs);
       
       if (address == 0)
-        continue;
+    continue;
 
       if (address < valid_address_min || address > valid_address_max)
       {
-        // msg
-        return false;
+    // msg
+    return false;
       }
       
       x = (corner_col + col * delta_col) * delta_northing;
@@ -534,12 +534,12 @@ bool CGVTVtFile::ReadSection7(IProgressBase& prog)
 
       if (!ReadTrace(address, point, min_z, delta_z, conversion))
       {
-        // error msg
-        return false;
+    // error msg
+    return false;
       }
 
       prog.Step();
-    }
+  }
   }
 
   return true;
@@ -555,77 +555,77 @@ bool CGVTVtFile::ReadTrace(int address, geo::CPoint& point, double min_z, double
 
   if (marker != MARKER)
   {
-    _m()->msg(QString("Error while reading section 8: marker not found at address %1 (-1)").arg(address));
-    return false;
+  _m()->msg(QString("Error while reading section 8: marker not found at address %1 (-1)").arg(address));
+  return false;
   }
 
   int size = readInt(m_ifs);
 
   if (size <= 0) // This shouldn't happen, but I know these people!
   {
-    ++m_emptyTraces;
+  ++m_emptyTraces;
   }
   else
   {
 
-    std::vector<double> data(4, 0);
+  std::vector<double> data(4, 0);
 
-    data[0] = point.X();
-    data[1] = point.Y();
+  data[0] = point.X();
+  data[1] = point.Y();
 
-    size_t maxPos = m_uiFileSize * VT_WORD_SIZE - m_header.bits_per_sample / 8; // apparently we have 'empty' traces that aren't completely written
+  size_t maxPos = m_uiFileSize * VT_WORD_SIZE - m_header.bits_per_sample / 8; // apparently we have 'empty' traces that aren't completely written
 
-    switch (m_header.bits_per_sample)
-    {
-    case 8:
+  switch (m_header.bits_per_sample)
+  {
+  case 8:
       for (int i = 0; i < size; ++i)
       {
-        if (m_ifs.tellg() <= maxPos)
-        {
+    if (m_ifs.tellg() <= maxPos)
+    {
           data[2] = min_z + i * delta_z;
           data[3] = readChar(m_ifs) * conversion;
 
           m_pPointSet->PushBack(data);
-        }
-        else
+    }
+    else
           m_incompleteTraces.insert(address);
       }
       break;
 
-    case 16:
+  case 16:
       for (int i = 0; i < size && m_ifs.tellg() <= maxPos; ++i)
       {
-        if (m_ifs.tellg() <= maxPos)
-        {
+    if (m_ifs.tellg() <= maxPos)
+    {
           data[2] = min_z + i * delta_z;
           data[3] = readShort(m_ifs) * conversion;
 
           m_pPointSet->PushBack(data);
-        }
-        else
+    }
+    else
           m_incompleteTraces.insert(address);
       }
       break;
 
-    case 32:
+  case 32:
       for (int i = 0; i < size && m_ifs.tellg() <= maxPos; ++i)
       {
-        if (m_ifs.tellg() <= maxPos)
-        {
+    if (m_ifs.tellg() <= maxPos)
+    {
           data[2] = min_z + i * delta_z;
           data[3] = readFloat(m_ifs) * conversion;
 
           m_pPointSet->PushBack(data);
-        }
-        else
+    }
+    else
           m_incompleteTraces.insert(address);
       }
       break;
 
-    default:
+  default:
       assert(false);
       return false;
-    }
+  }
 
   }
 

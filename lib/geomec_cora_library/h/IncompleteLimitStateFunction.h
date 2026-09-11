@@ -9,7 +9,7 @@ namespace cora
 class CIncompleteLimitStateFunction : public std::runtime_error
 {
   public:
-    CIncompleteLimitStateFunction(const std::string& what);
+  CIncompleteLimitStateFunction(const std::string& what);
 };
 
 } // namespace cora

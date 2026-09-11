@@ -23,48 +23,48 @@ template <class S>
 
   if (unicode)
   {
-    Byte byte = 0xFF;
-    UInt16 uint16 = 0xFFFE;
+  Byte byte = 0xFF;
+  UInt16 uint16 = 0xFFFE;
 
-    archive.write(reinterpret_cast <char*> (&byte), sizeof(Byte));
-    archive.write(reinterpret_cast <char*> (&uint16), sizeof(UInt16));
+  archive.write(reinterpret_cast <char*> (&byte), sizeof(Byte));
+  archive.write(reinterpret_cast <char*> (&uint16), sizeof(UInt16));
   }
 
   if (length < 255)
   {
-    Byte byte = length;
+  Byte byte = length;
 
-    archive.write(reinterpret_cast <char*> (&byte), sizeof(Byte));
+  archive.write(reinterpret_cast <char*> (&byte), sizeof(Byte));
   }
   else if (length < 0xFFFE)
   {
-    Byte byte = 0xFF;
-    UInt16 uint16 = length;
+  Byte byte = 0xFF;
+  UInt16 uint16 = length;
 
-    archive.write(reinterpret_cast <char*> (&byte), sizeof(Byte));
-    archive.write(reinterpret_cast <char*> (&uint16), sizeof(UInt16));
+  archive.write(reinterpret_cast <char*> (&byte), sizeof(Byte));
+  archive.write(reinterpret_cast <char*> (&uint16), sizeof(UInt16));
   }
   else if (length < 0xFFFFFFFF)
   {
-    Byte byte = 0xFF;
-    UInt16 uint16 = 0xFFFF;
-    UInt32 uint32 = length;
+  Byte byte = 0xFF;
+  UInt16 uint16 = 0xFFFF;
+  UInt32 uint32 = length;
 
-    archive.write(reinterpret_cast <char*> (&byte), sizeof(Byte));
-    archive.write(reinterpret_cast <char*> (&uint16), sizeof(UInt16));
-    archive.write(reinterpret_cast <char*> (&uint32), sizeof(UInt32));
+  archive.write(reinterpret_cast <char*> (&byte), sizeof(Byte));
+  archive.write(reinterpret_cast <char*> (&uint16), sizeof(UInt16));
+  archive.write(reinterpret_cast <char*> (&uint32), sizeof(UInt32));
   }
   else
   {
-    Byte byte = 0xFF;
-    UInt16 uint16 = 0xFFFF;
-    UInt32 uint32 = 0xFFFFFFFF;
-    UInt64 uint64 = length;
+  Byte byte = 0xFF;
+  UInt16 uint16 = 0xFFFF;
+  UInt32 uint32 = 0xFFFFFFFF;
+  UInt64 uint64 = length;
 
-    archive.write(reinterpret_cast <char*> (&byte), sizeof(Byte));
-    archive.write(reinterpret_cast <char*> (&uint16), sizeof(UInt16));
-    archive.write(reinterpret_cast <char*> (&uint32), sizeof(UInt32));
-    archive.write(reinterpret_cast <char*> (&uint64), sizeof(UInt64));
+  archive.write(reinterpret_cast <char*> (&byte), sizeof(Byte));
+  archive.write(reinterpret_cast <char*> (&uint16), sizeof(UInt16));
+  archive.write(reinterpret_cast <char*> (&uint32), sizeof(UInt32));
+  archive.write(reinterpret_cast <char*> (&uint64), sizeof(UInt64));
   }
 }
 
@@ -84,7 +84,7 @@ template <class S>
 
   if (byteLength < 0xFF)
   {
-    return byteLength;
+  return byteLength;
   }
 
   // Try a two-byte length
@@ -93,27 +93,27 @@ template <class S>
 
   if (uint16Length == 0xFFFE)
   {
-    // Unicode string. Start over at 1-byte length
+  // Unicode string. Start over at 1-byte length
 
-    charSize = 2;
+  charSize = 2;
 
-    archive.read(reinterpret_cast <char*> (&byteLength), sizeof(Byte));
+  archive.read(reinterpret_cast <char*> (&byteLength), sizeof(Byte));
 
-    if (byteLength < 0xFF)
-    {
+  if (byteLength < 0xFF)
+  {
       return byteLength;
-    }
+  }
 
-    // Two-byte length
+  // Two-byte length
 
-    archive.read(reinterpret_cast <char*> (&uint16Length), sizeof(UInt16));
+  archive.read(reinterpret_cast <char*> (&uint16Length), sizeof(UInt16));
 
-    // Fall through to continue on same branch as ANSI string
+  // Fall through to continue on same branch as ANSI string
   }
 
   if (uint16Length < 0xFFFF)
   {
-    return uint16Length;
+  return uint16Length;
   }
 
   // 4-byte length
@@ -122,7 +122,7 @@ template <class S>
 
   if (uint32Length < 0xFFFFFFFF)
   {
-    return uint32Length;
+  return uint32Length;
   }
 
   // 8-byte length
@@ -135,7 +135,7 @@ template <class S>
   if (uint64Length > UINT_MAX)
 #endif  // (_MSC_VER != 1500)
   {
-    throw "String too long";
+  throw "String too long";
   }
 
   return uint64Length;
@@ -247,8 +247,8 @@ CNewArchiveStdStringStream& CNewArchiveStdStringStream::operator << (const QStri
 
   for (int i = 0; i < length; ++i)
   {
-    t = s[i];
-    archive.write(reinterpret_cast <char*> (&t), sizeof(QChar));
+  t = s[i];
+  archive.write(reinterpret_cast <char*> (&t), sizeof(QChar));
   }
 
   return *this;
@@ -265,8 +265,8 @@ CNewArchiveStdStringStream& CNewArchiveStdStringStream::operator << (
 
   for (int i = 0; i < length; ++i)
   {
-    t = q[i];
-    archive.write(reinterpret_cast <char*> (&t), sizeof(QChar));
+  t = q[i];
+  archive.write(reinterpret_cast <char*> (&t), sizeof(QChar));
   }
 
   return *this;
@@ -390,8 +390,8 @@ CNewArchiveStdStringStream& CNewArchiveStdStringStream::operator >> (QString& s)
 
   for (int i = 0; i < length; ++i)
   {
-    archive.read(reinterpret_cast <char*> (&t), sizeof(QChar));
-    s += t;
+  archive.read(reinterpret_cast <char*> (&t), sizeof(QChar));
+  s += t;
   }
 
   return *this;
@@ -406,8 +406,8 @@ CNewArchiveStdStringStream& CNewArchiveStdStringStream::operator >> (QDateTime& 
 
   for (int i = 0; i < length; ++i)
   {
-    archive.read(reinterpret_cast <char*> (&t), sizeof(QChar));
-    q += t;
+  archive.read(reinterpret_cast <char*> (&t), sizeof(QChar));
+  q += t;
   }
 
   dt = QDateTime::fromString(q);

@@ -17,35 +17,35 @@
 class OPENGLFRAME_EXPORT IValueProxy  
 {
 public:
-	IValueProxy() {};
-	virtual const double &Min() const = 0;
-	virtual const double &Max() const = 0;
-	virtual double Value(const geo::IPoint &pt) const = 0;
+  IValueProxy() {};
+  virtual const double &Min() const = 0;
+  virtual const double &Max() const = 0;
+  virtual double Value(const geo::IPoint &pt) const = 0;
 
 };
 
 class OPENGLFRAME_EXPORT IColorProxy
 {
 public:
-	typedef QRgb TColor;
-	IColorProxy() {};
-	virtual TColor Color(const IValueProxy &value_proxy, const geo::IPoint& pt) const = 0; 
+  typedef QRgb TColor;
+  IColorProxy() {};
+  virtual TColor Color(const IValueProxy &value_proxy, const geo::IPoint& pt) const = 0; 
 };
 
 class OPENGLFRAME_EXPORT CDrawDefProxy: public IDrawDef
 {
-	const IColorProxy*	m_pColor;	// Defines the color
-	const IValueProxy*	m_pValue;	// Defines the value
+  const IColorProxy*	m_pColor;	// Defines the color
+  const IValueProxy*	m_pValue;	// Defines the value
 public:
-	CDrawDefProxy(const IColorProxy& color_proxy, const IValueProxy& value_proxy);
-	const IColorProxy& ColorProxy() const;
-	void ColorProxy(const IColorProxy& color_proxy);
-	const IValueProxy& ValueProxy();
-	void ValueProxy(IValueProxy &proxy);
+  CDrawDefProxy(const IColorProxy& color_proxy, const IValueProxy& value_proxy);
+  const IColorProxy& ColorProxy() const;
+  void ColorProxy(const IColorProxy& color_proxy);
+  const IValueProxy& ValueProxy();
+  void ValueProxy(IValueProxy &proxy);
 
-	// Interface of draw def...
-	virtual TColor Color(const geo::IPoint &pt) const;
-	using IDrawDef::Color;
+  // Interface of draw def...
+  virtual TColor Color(const geo::IPoint &pt) const;
+  using IDrawDef::Color;
 };
 
 

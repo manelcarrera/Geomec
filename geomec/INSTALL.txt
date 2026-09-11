@@ -144,5 +144,5 @@ Environment (for both Debug and Release):
 	PATH=$(PATHPREFIX);$(PATH);$(OIVPATH)
 
 To check that the installation is working properly, compile (making sure the Platform is x64), and
-run. Load a small model, for example Tests\Models\TestLoadAndCalculate.gm4, and try to run a
+run. Load a small model, for example TestData\TestLoadAndCalculate.gm4, and try to run a
 non-linear analysis. This should complete without any warnings, errors, or aborts.

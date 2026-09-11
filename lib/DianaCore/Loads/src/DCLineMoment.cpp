@@ -31,38 +31,38 @@ CLineMoment::~CLineMoment()
 
 const geo::ILine &CLineMoment::Line() const
 {
-	return m_Line;
+  return m_Line;
 }
 
 bool CLineMoment::WriteFilos() const
 {
-	ftn_int_t idxdir = (ftn_int_t) Manager().Runner().AddDirection(Direction());
+  ftn_int_t idxdir = (ftn_int_t) Manager().Runner().AddDirection(Direction());
 
-	ftn_int_t idx = Inquire("ELEMEN", "DIM");
-	if(idx < 0) idx = 0;
-	idx++;
+  ftn_int_t idx = Inquire("ELEMEN", "DIM");
+  if(idx < 0) idx = 0;
+  idx++;
 
-	assert(!XistIndexed("ELEMEN/", &idx));
+  assert(!XistIndexed("ELEMEN/", &idx));
 
-	PushDir();
+  PushDir();
 
-	ChangeIndexedDir("ELEMEN/", &idx);
+  ChangeIndexedDir("ELEMEN/", &idx);
 
-	ftn_int_t idxelm = (ftn_int_t) (Line().Index() + 1);
-	PutItemLength("ELEMEN", &idxelm, 1);
+  ftn_int_t idxelm = (ftn_int_t) (Line().Index() + 1);
+  PutItemLength("ELEMEN", &idxelm, 1);
 
-	ftn_int_t idxcase = (ftn_int_t) (LoadCase().Index() + 1);
-	PutItem("CASE", &idxcase);
+  ftn_int_t idxcase = (ftn_int_t) (LoadCase().Index() + 1);
+  PutItem("CASE", &idxcase);
 
-	PutItem("DIRECT", &idxdir);
+  PutItem("DIRECT", &idxdir);
 
-	PutItemLength("MOMENT", Values(), ValueSize());
+  PutItemLength("MOMENT", Values(), ValueSize());
 
-	SetActive("LINE", FTN_TRUE);
+  SetActive("LINE", FTN_TRUE);
 
-	PopDir();
+  PopDir();
 
-	return true;
+  return true;
 }
 
 } // namespace dia

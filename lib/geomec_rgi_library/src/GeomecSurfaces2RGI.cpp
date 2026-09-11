@@ -51,13 +51,13 @@ void CGeomecSurfaces2RGI::saveSurfaces()
 {
   if (dynamic_cast<const CTetraModel *>(&m_modelBase) || dynamic_cast<const CHexaModel *>(&m_modelBase))
   {
-    saveFaults();
-    saveHorizons();
-    saveSideSurfaces();
+  saveFaults();
+  saveHorizons();
+  saveSideSurfaces();
   }
   else
   {
-    m_rmp.AddLogLine(MODEL_NOT_SUPPORTED);
+  m_rmp.AddLogLine(MODEL_NOT_SUPPORTED);
   }
 }
 
@@ -73,54 +73,54 @@ template <typename S>
 {
   try
   {
-    for (int e = 0; e < surface.ElementSize(); ++e)
-    {
+  for (int e = 0; e < surface.ElementSize(); ++e)
+  {
       const geo::IElement& element = surface.Element(e);
       RGPolygon rgPolygon;
 
       for (int n = 0; n < element.NrOfNodes(); ++n)
       {
-        const geo::INode& node = element.Node(n);
-        RGNode rgNode(node.X(), node.Y(), node.Z());
-        RGNodeId rgNodeId = rgi.addNode(rgNode);
+    const geo::INode& node = element.Node(n);
+    RGNode rgNode(node.X(), node.Y(), node.Z());
+    RGNodeId rgNodeId = rgi.addNode(rgNode);
 
-        rgPolygon.push_back(rgNodeId);
+    rgPolygon.push_back(rgNodeId);
       }
 
       RGPolygonId rgPolygonId = rgi.addPolygon(rgPolygon);
 
       rgSurface.addPolygon(rgPolygonId);
-    }
+  }
   }
 
   catch (const std::bad_cast& b)
   {
-    QString l = CASTING_ERROR.arg(b.what());
+  QString l = CASTING_ERROR.arg(b.what());
 
-    throw std::runtime_error(l.toStdString());
+  throw std::runtime_error(l.toStdString());
   }
 }
 
 class CSurfaceWrapper
 {
   public:
-    enum Side
-    {
+  enum Side
+  {
       FRONT = 1,
       BACK
-    };
+  };
 
-    CSurfaceWrapper(const geo::CElementGroup* elementGroup, Side side);
+  CSurfaceWrapper(const geo::CElementGroup* elementGroup, Side side);
 
-    int ElementSize() const;
-    const geo::IElement& Element(int index) const;
+  int ElementSize() const;
+  const geo::IElement& Element(int index) const;
 
   private:
-    CSurfaceWrapper(const CSurfaceWrapper& rhs);
-    CSurfaceWrapper& operator = (const CSurfaceWrapper& rhs);
+  CSurfaceWrapper(const CSurfaceWrapper& rhs);
+  CSurfaceWrapper& operator = (const CSurfaceWrapper& rhs);
 
-    const geo::CElementGroup* m_elementGroup;
-    Side m_side;
+  const geo::CElementGroup* m_elementGroup;
+  Side m_side;
 };
 
 CSurfaceWrapper::CSurfaceWrapper(const geo::CElementGroup* elementGroup,
@@ -138,16 +138,16 @@ int CSurfaceWrapper::ElementSize() const
 const geo::IElement& CSurfaceWrapper::Element(int index) const
 {
   const geo::IInterfaceElement& interfaceElement =
-    dynamic_cast <const geo::IInterfaceElement&> (
+  dynamic_cast <const geo::IInterfaceElement&> (
       m_elementGroup->Element(index));
 
   if (m_side == FRONT)
   {
-    return interfaceElement.Front();
+  return interfaceElement.Front();
   }
   else  // (m_side == BACK)
   {
-    return interfaceElement.Back();
+  return interfaceElement.Back();
   }
 }
 
@@ -164,12 +164,12 @@ std::vector <int> CGeomecSurfaces2RGI::retrieveSurfaceNodeIndices(
 
   for (int e = 0; e < surface.ElementSize(); ++e)
   {
-    const geo::IElement& element = surface.Element(e);
+  const geo::IElement& element = surface.Element(e);
 
-    for (int n = 0; n < element.NrOfNodes(); ++n)
-    {
+  for (int n = 0; n < element.NrOfNodes(); ++n)
+  {
       surfaceIndices.push_back(element.Node(n).Index());
-    }
+  }
   }
 
   std::sort(surfaceIndices.begin(), surfaceIndices.end());
@@ -183,50 +183,50 @@ void CGeomecSurfaces2RGI::saveFaults()
   if (dynamic_cast<const CTetraBoundary *>(&m_modelBase.Boundary()))
   {
 
-    const THorizonBaseEntry* horizonBaseEntry = dynamic_cast <const THorizonBaseEntry*>(m_modelBase.GraphEntry(MD_BASE_HORIZON));
-    THorizonBaseEntry::TSortedNodeSet stNodes = horizonBaseEntry->SortedEntryNodes();
+  const THorizonBaseEntry* horizonBaseEntry = dynamic_cast <const THorizonBaseEntry*>(m_modelBase.GraphEntry(MD_BASE_HORIZON));
+  THorizonBaseEntry::TSortedNodeSet stNodes = horizonBaseEntry->SortedEntryNodes();
 
-    for (THorizonBaseEntry::TSortedNodeSet::const_iterator horizon = stNodes.begin(); horizon != stNodes.end(); ++horizon)
-    {
+  for (THorizonBaseEntry::TSortedNodeSet::const_iterator horizon = stNodes.begin(); horizon != stNodes.end(); ++horizon)
+  {
       if ((*horizon)->Slip())
       {
-        const geo::CElementGroup* elementGroup = (*horizon)->InterfaceElementGroup();
+    const geo::CElementGroup* elementGroup = (*horizon)->InterfaceElementGroup();
 
-        {
+    {
           RGSurface rgSurface((*horizon)->Name().toStdString() + SPACE +
-            SURFACE_FRONT, RGSurface::FaultFront, RGSurface::Regular);
+      SURFACE_FRONT, RGSurface::FaultFront, RGSurface::Regular);
           CSurfaceWrapper surfaceWrapper(elementGroup, CSurfaceWrapper::FRONT);
 
           createSurface(rgSurface, m_rgi, surfaceWrapper);
 
           m_rgi.addHorizon(rgSurface);
-        }
+    }
 
-        {
+    {
           RGSurface rgSurface((*horizon)->Name().toStdString() + SPACE +
-            SURFACE_BACK, RGSurface::FaultBack, RGSurface::Regular);
+      SURFACE_BACK, RGSurface::FaultBack, RGSurface::Regular);
           CSurfaceWrapper surfaceWrapper(elementGroup, CSurfaceWrapper::BACK);
 
           createSurface(rgSurface, m_rgi, surfaceWrapper);
 
           m_rgi.addHorizon(rgSurface);
-        }
-      }
     }
+      }
+  }
   }
   else
   {
-    assert(dynamic_cast<const CHexaModel *>(&m_modelBase));
-    assert(dynamic_cast<const CHexaBoundary*>(&(m_modelBase.Boundary())) != 0);
+  assert(dynamic_cast<const CHexaModel *>(&m_modelBase));
+  assert(dynamic_cast<const CHexaBoundary*>(&(m_modelBase.Boundary())) != 0);
 
-    const CHexaBoundary& hexaBoundary = static_cast<const CHexaBoundary&>(m_modelBase.Boundary());
+  const CHexaBoundary& hexaBoundary = static_cast<const CHexaBoundary&>(m_modelBase.Boundary());
 
-    const CHexaHorizon& topHorizon = hexaBoundary.GetTopHorizon();
-    const CHexaHorizon& botHorizon = hexaBoundary.GetBottomHorizon();
+  const CHexaHorizon& topHorizon = hexaBoundary.GetTopHorizon();
+  const CHexaHorizon& botHorizon = hexaBoundary.GetBottomHorizon();
 
-    const CHexaFormationEntry* hexaEntry = dynamic_cast<const CHexaFormationEntry *>(m_modelBase.GraphEntry(MD_HEXA_FORMATION));
-    if (hexaEntry)
-    {
+  const CHexaFormationEntry* hexaEntry = dynamic_cast<const CHexaFormationEntry *>(m_modelBase.GraphEntry(MD_HEXA_FORMATION));
+  if (hexaEntry)
+  {
       CHexaFormationEntry::TNodeSet stNodes = hexaEntry->EntryNodes();
 
       //std::vector<CHexaFormation *> formations;
@@ -237,49 +237,49 @@ void CGeomecSurfaces2RGI::saveFaults()
 
       for (CHexaFormationEntry::TNodeSet::iterator it = stNodes.begin(); it != stNodes.end(); ++it)
       {
-        if ((*it)->UpperHorizon() == topHorizon)
+    if ((*it)->UpperHorizon() == topHorizon)
           topFormation = *it;
 
-        if ((*it)->LowerHorizon() == botHorizon)
+    if ((*it)->LowerHorizon() == botHorizon)
           botFormation = *it;
 
-        //if ((*it) != topFormation)
-        //  formations.push_back(*it);
+    //if ((*it) != topFormation)
+    //  formations.push_back(*it);
       }
 
       const CHexaFormation *formation = topFormation->LowerFormation();
 
       while (formation)
       {
-        const CHexaHorizon& horizon = formation->UpperHorizon();
+    const CHexaHorizon& horizon = formation->UpperHorizon();
 
-        if (horizon.Slip())
-        {
+    if (horizon.Slip())
+    {
           const geo::CElementGroup* elementGroup = horizon.InterfaceElementGroup();
 
           {
-            RGSurface rgSurface(horizon.Name().toStdString() + SPACE +
+      RGSurface rgSurface(horizon.Name().toStdString() + SPACE +
               SURFACE_FRONT, RGSurface::FaultFront, RGSurface::Regular);
-            CSurfaceWrapper surfaceWrapper(elementGroup, CSurfaceWrapper::FRONT);
+      CSurfaceWrapper surfaceWrapper(elementGroup, CSurfaceWrapper::FRONT);
 
-            createSurface(rgSurface, m_rgi, surfaceWrapper);
+      createSurface(rgSurface, m_rgi, surfaceWrapper);
 
-            m_rgi.addHorizon(rgSurface);
+      m_rgi.addHorizon(rgSurface);
           }
 
           {
-            RGSurface rgSurface(horizon.Name().toStdString() + SPACE +
+      RGSurface rgSurface(horizon.Name().toStdString() + SPACE +
               SURFACE_BACK, RGSurface::FaultBack, RGSurface::Regular);
-            CSurfaceWrapper surfaceWrapper(elementGroup, CSurfaceWrapper::BACK);
+      CSurfaceWrapper surfaceWrapper(elementGroup, CSurfaceWrapper::BACK);
 
-            createSurface(rgSurface, m_rgi, surfaceWrapper);
+      createSurface(rgSurface, m_rgi, surfaceWrapper);
 
-            m_rgi.addHorizon(rgSurface);
+      m_rgi.addHorizon(rgSurface);
           }
-        }
-        formation = formation->LowerFormation();
-      }
     }
+    formation = formation->LowerFormation();
+      }
+  }
   }
 }
 
@@ -290,20 +290,20 @@ void CGeomecSurfaces2RGI::saveHorizon(const C3DHorizon* horizon,
 
   for (int s = 0; s < horizon->MeshedSurfaceSize(); ++s)
   {
-    const geo::ISurface& surface = horizon->MeshedSurface(s);
-    std::vector <int> meshedSurfaceNodeIndices =
+  const geo::ISurface& surface = horizon->MeshedSurface(s);
+  std::vector <int> meshedSurfaceNodeIndices =
       retrieveSurfaceNodeIndices(surface);
 
-    if (std::find(savedMeshedSurfaces.begin(), savedMeshedSurfaces.end(),
+  if (std::find(savedMeshedSurfaces.begin(), savedMeshedSurfaces.end(),
       meshedSurfaceNodeIndices) == savedMeshedSurfaces.end())
-    {
+  {
       RGSurface rgSurface(horizon->Name().toStdString(), type, attribute);
 
       createSurface(rgSurface, m_rgi, surface);
 
       m_rgi.addHorizon(rgSurface);
       savedMeshedSurfaces.push_back(meshedSurfaceNodeIndices);
-    }
+  }
   }
 }
 
@@ -323,42 +323,42 @@ void CGeomecSurfaces2RGI::saveHorizons()
 {
   if (dynamic_cast<const CTetraBoundary *>(&m_modelBase.Boundary()))
   {
-    const CTetraBoundary& tetraBoundary =
+  const CTetraBoundary& tetraBoundary =
       dynamic_cast <const CTetraBoundary&> (m_modelBase.Boundary());
-    const CTetraHorizonBase* topHorizon = tetraBoundary.TopHorizon();
-    const CTetraHorizonBase* bottomHorizon = tetraBoundary.BottomHorizon();
-    const THorizonBaseEntry* horizonBaseEntry =
+  const CTetraHorizonBase* topHorizon = tetraBoundary.TopHorizon();
+  const CTetraHorizonBase* bottomHorizon = tetraBoundary.BottomHorizon();
+  const THorizonBaseEntry* horizonBaseEntry =
       dynamic_cast <const THorizonBaseEntry*> (
       m_modelBase.GraphEntry(MD_BASE_HORIZON));
 
-    saveHorizon(topHorizon, RGSurface::Horizon, RGSurface::Top);
-    saveHorizon(bottomHorizon, RGSurface::Horizon, RGSurface::Bottom);
+  saveHorizon(topHorizon, RGSurface::Horizon, RGSurface::Top);
+  saveHorizon(bottomHorizon, RGSurface::Horizon, RGSurface::Bottom);
 
-    THorizonBaseEntry::TSortedNodeSet stNodes = horizonBaseEntry->SortedEntryNodes();
+  THorizonBaseEntry::TSortedNodeSet stNodes = horizonBaseEntry->SortedEntryNodes();
 
-    for (THorizonBaseEntry::TNodeSet::const_iterator horizon = stNodes.begin(); horizon != stNodes.end(); ++horizon)
-    {
+  for (THorizonBaseEntry::TNodeSet::const_iterator horizon = stNodes.begin(); horizon != stNodes.end(); ++horizon)
+  {
       if ((*horizon != topHorizon) && (*horizon != bottomHorizon) &&
-        !(*horizon)->Slip())
+    !(*horizon)->Slip())
       {
-        saveHorizon(dynamic_cast <const C3DHorizon*> (*horizon),
+    saveHorizon(dynamic_cast <const C3DHorizon*> (*horizon),
           RGSurface::Horizon, RGSurface::Regular);
       }
-    }
+  }
   }
   else
   {
-    assert(dynamic_cast<const CHexaModel *>(&m_modelBase));
-    assert(dynamic_cast<const CHexaBoundary*>(&(m_modelBase.Boundary())) != 0);
+  assert(dynamic_cast<const CHexaModel *>(&m_modelBase));
+  assert(dynamic_cast<const CHexaBoundary*>(&(m_modelBase.Boundary())) != 0);
 
-    const CHexaBoundary& hexaBoundary = static_cast<const CHexaBoundary&>(m_modelBase.Boundary());
+  const CHexaBoundary& hexaBoundary = static_cast<const CHexaBoundary&>(m_modelBase.Boundary());
 
-    const CHexaHorizon& topHorizon = hexaBoundary.GetTopHorizon();
-    const CHexaHorizon& botHorizon = hexaBoundary.GetBottomHorizon();
+  const CHexaHorizon& topHorizon = hexaBoundary.GetTopHorizon();
+  const CHexaHorizon& botHorizon = hexaBoundary.GetBottomHorizon();
 
-    const CHexaFormationEntry* hexaEntry = dynamic_cast<const CHexaFormationEntry *>(m_modelBase.GraphEntry(MD_HEXA_FORMATION));
-    if (hexaEntry)
-    {
+  const CHexaFormationEntry* hexaEntry = dynamic_cast<const CHexaFormationEntry *>(m_modelBase.GraphEntry(MD_HEXA_FORMATION));
+  if (hexaEntry)
+  {
       CHexaFormationEntry::TNodeSet stNodes = hexaEntry->EntryNodes();
 
       //std::vector<CHexaFormation *> formations;
@@ -369,14 +369,14 @@ void CGeomecSurfaces2RGI::saveHorizons()
 
       for (CHexaFormationEntry::TNodeSet::iterator it = stNodes.begin(); it != stNodes.end(); ++it)
       {
-        if ((*it)->UpperHorizon() == topHorizon)
+    if ((*it)->UpperHorizon() == topHorizon)
           topFormation = *it;
-        
-        if ((*it)->LowerHorizon() == botHorizon)
+    
+    if ((*it)->LowerHorizon() == botHorizon)
           botFormation = *it;
 
-        //if ((*it) != topFormation)
-        //  formations.push_back(*it);
+    //if ((*it) != topFormation)
+    //  formations.push_back(*it);
       }
 
       saveHorizon(&topFormation->UpperHorizon(), topFormation->FormationPlane(CFormationPlane::FP_TOP).data(), RGSurface::Horizon, RGSurface::Top);
@@ -386,13 +386,13 @@ void CGeomecSurfaces2RGI::saveHorizons()
 
       while (formation)
       {
-        if (!formation->UpperHorizon().Slip())
-        {
+    if (!formation->UpperHorizon().Slip())
+    {
           saveHorizon(&formation->UpperHorizon(), formation->FormationPlane(CFormationPlane::FP_TOP).data(), RGSurface::Horizon, RGSurface::Regular);
-        }
-        formation = formation->LowerFormation();
-      }
     }
+    formation = formation->LowerFormation();
+      }
+  }
   }
 }
 
@@ -400,37 +400,37 @@ void CGeomecSurfaces2RGI::saveSideSurfaces()
 {
   if (dynamic_cast<const CTetraBoundary *>(&m_modelBase.Boundary()))
   {
-    const CTetraBoundary& tetraBoundary =
+  const CTetraBoundary& tetraBoundary =
       dynamic_cast <const CTetraBoundary&> (m_modelBase.Boundary());
 
-    for (int s = 0; s < tetraBoundary.SideSurfaceSize(); ++s)
-    {
+  for (int s = 0; s < tetraBoundary.SideSurfaceSize(); ++s)
+  {
       const geo::CSurfaceDesc& surfaceDesc = tetraBoundary.SideSurfaceDesc(s);
 
       for (int t = 0; t < surfaceDesc.TetSurfaceSize(); ++t)
       {
-        const geo::CTetSurface& surface = surfaceDesc.TetSurface(t);
-        std::string surfaceName = (surfaceDesc.TetSurfaceSize() > 1) ?
+    const geo::CTetSurface& surface = surfaceDesc.TetSurface(t);
+    std::string surfaceName = (surfaceDesc.TetSurfaceSize() > 1) ?
           surfaceDesc.Name() + SPACE + lexical_cast <std::string, int> (t) :
           surfaceDesc.Name();
-        RGSurface rgSurface(surfaceName, RGSurface::Horizon, RGSurface::Side);
+    RGSurface rgSurface(surfaceName, RGSurface::Horizon, RGSurface::Side);
 
-        createSurface(rgSurface, m_rgi, surface);
+    createSurface(rgSurface, m_rgi, surface);
 
-        m_rgi.addHorizon(rgSurface);
+    m_rgi.addHorizon(rgSurface);
       }
-    }
+  }
   }
   else
   {
-    assert(dynamic_cast <const CHexaBoundary*> (&(m_modelBase.Boundary())) != 0);
+  assert(dynamic_cast <const CHexaBoundary*> (&(m_modelBase.Boundary())) != 0);
 
-    const CHexaBoundary& hexaBoundary = static_cast<const CHexaBoundary&>(m_modelBase.Boundary());
+  const CHexaBoundary& hexaBoundary = static_cast<const CHexaBoundary&>(m_modelBase.Boundary());
 
-    std::vector<const geo::ISurface*> surfaces = hexaBoundary.GetSideMeshSurfaces();
+  std::vector<const geo::ISurface*> surfaces = hexaBoundary.GetSideMeshSurfaces();
 
-    for (int s = 0; s < surfaces.size(); ++s)
-    {
+  for (int s = 0; s < surfaces.size(); ++s)
+  {
       const geo::ISurface *surface = surfaces[s];
 
       RGSurface rgSurface("Side surface " + lexical_cast <std::string, int> (s), RGSurface::Horizon, RGSurface::Side);
@@ -438,7 +438,7 @@ void CGeomecSurfaces2RGI::saveSideSurfaces()
       createSurface(rgSurface, m_rgi, *surface);
 
       m_rgi.addHorizon(rgSurface);
-    }
+  }
   }
 }
 

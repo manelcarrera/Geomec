@@ -34,9 +34,9 @@ public:
   RESCUEINT64 SurfaceCount64() {return surfaces->Count64();}
   RESCUEINT32 SurfaceCount() {return surfaces->Count();}
   RescueGeobodySurface *NthGeobodySurface(RESCUEINT64 zeroBasedOrdinal)
-                        {return surfaces->NthObject(zeroBasedOrdinal);}
+            {return surfaces->NthObject(zeroBasedOrdinal);}
   RescueGeobodySurface *GeobodySurfaceIdentifiedBy(RESCUEINT64 id)
-                        {return surfaces->ObjectIdentifiedBy(id);}
+            {return surfaces->ObjectIdentifiedBy(id);}
   RescueGeobodyPart *ParentPart() {return parentPart;}
 
   void AddKLayerEdge(RescueEdgeSet *existingEdgeSet);
@@ -68,21 +68,21 @@ private:
   RescueGeobodyPart *parentPart;
   cSetRescueGeobodySurface *surfaces;
   /*
-    boundary surfaces which are marked as SIDE are arranged as nearly as possible 
-    counter-clockwise around the volume they enclose.
+  boundary surfaces which are marked as SIDE are arranged as nearly as possible 
+  counter-clockwise around the volume they enclose.
 
-    Note that section surfaces are ordinarily described with counter-clockwise
-    trim loops, as seen from outside the volume which they enclose.  However,
-    if a section surface is used as the boundary of two adjacent volumes it
-    can only be correctly described in relation to one of them.  Of course, the
-    problem is worse for interior sections, since there is not even a convention
-    for how they are constructed.
-    
-    Therefore, software must examine the trim loops to determine which way round 
-    the description of the surface is built with respect to any particular boundary.
+  Note that section surfaces are ordinarily described with counter-clockwise
+  trim loops, as seen from outside the volume which they enclose.  However,
+  if a section surface is used as the boundary of two adjacent volumes it
+  can only be correctly described in relation to one of them.  Of course, the
+  problem is worse for interior sections, since there is not even a convention
+  for how they are constructed.
+  
+  Therefore, software must examine the trim loops to determine which way round 
+  the description of the surface is built with respect to any particular boundary.
 
-    If this is insufficient, we could include a "normal" point with respect to
-    each surface in RescueSurface.
+  If this is insufficient, we could include a "normal" point with respect to
+  each surface in RescueSurface.
   */
   cSetRescueEdgeSetStub *kLayerEdges;
   /*

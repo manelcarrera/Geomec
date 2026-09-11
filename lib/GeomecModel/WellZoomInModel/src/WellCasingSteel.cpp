@@ -33,7 +33,7 @@ CWellCasingSteel::CWellCasingSteel(CWellCasingModel& model)
 bool CWellCasingSteel::operator==(const CWellCasingSteel& rhs) const
 {
   if(m_color != rhs.m_color)
-    return false;
+  return false;
 
   return TBase::operator==(rhs);
 }
@@ -72,9 +72,9 @@ void CWellCasingSteel::OnNeighbourModified(const CGraphNode& node, enum Modified
 {
   if(&node == &(static_cast<const CModelBase&>(Model())).Mesh() && (uHint == MeshCleared || uHint == MeshCreated))
   {
-    m_centerpoints.Clear();
-    Modified();
-    return;
+  m_centerpoints.Clear();
+  Modified();
+  return;
   }
 
   TBase::OnNeighbourModified(node, uHint);
@@ -94,7 +94,7 @@ int CWellCasingSteel::DisplayListSize() const
 {
   const CWellCasingModel& model = static_cast<const CWellCasingModel&>(Model());
   if(model.Mesh().IsMesh())
-    return 1;
+  return 1;
 
   return 0;
 }
@@ -104,16 +104,16 @@ const geo::IObject& CWellCasingSteel::DisplayList(int /*nIndex*/) const
   const CWellCasingModel& model = static_cast<const CWellCasingModel&>(Model());
   if(model.Mesh().IsMesh())
   {
-    if(m_bShowMidpoints)
-    {
+  if(m_bShowMidpoints)
+  {
       if(m_centerpoints.Empty())
-        m_centerpoints.Create(model.Mesh().SteelElements());
+    m_centerpoints.Create(model.Mesh().SteelElements());
       return m_centerpoints.Get();
-    }
-    else
-    {
+  }
+  else
+  {
       return model.Mesh().SteelElements();
-    }
+  }
   }
 
   assert(FALSE);
@@ -135,8 +135,8 @@ void CWellCasingSteel::OnShowElements()
 {
   if(m_bShowMidpoints)
   {
-    m_bShowMidpoints = false;
-    Modified();
+  m_bShowMidpoints = false;
+  Modified();
   }
 }
 
@@ -144,8 +144,8 @@ void CWellCasingSteel::OnShowMidpoints()
 {
   if(!m_bShowMidpoints)
   {
-    m_bShowMidpoints = true;
-    Modified();
+  m_bShowMidpoints = true;
+  Modified();
   }
 }
 
@@ -174,12 +174,12 @@ const CFFMaterial& CWellCasingMaterialServer::Material(const geo::IElement& elem
   int i;
   for(i = element.Index() + 1; i < model.Mesh().Mesh().ElementSize(); ++i)
   {
-    const geo::IElement& cement_element = model.Mesh().Mesh().Element(i);
-    if(model.Mesh().IsCementElement(cement_element))
-    {
+  const geo::IElement& cement_element = model.Mesh().Mesh().Element(i);
+  if(model.Mesh().IsCementElement(cement_element))
+  {
       pCementElement = &cement_element;
       break;
-    }
+  }
   }
 
   assert(pCementElement);
@@ -187,17 +187,17 @@ const CFFMaterial& CWellCasingMaterialServer::Material(const geo::IElement& elem
 
   if(pCementElement)
   {
-    // get the material for the cement element
-    const CFFMaterial& cement_mat = model.CasingCement().Material(Stage()).Material(*pCementElement);
-    assert(cement_mat.IsParameter(IDT_VALUETYPE_PERMEA));
-    double dPermea = cement_mat.ParameterValue(IDT_VALUETYPE_PERMEA);
-    assert(cement_mat.IsParameter(IDT_VALUETYPE_VISCOSITY));
-    double dVisco = cement_mat.ParameterValue(IDT_VALUETYPE_VISCOSITY);
+  // get the material for the cement element
+  const CFFMaterial& cement_mat = model.CasingCement().Material(Stage()).Material(*pCementElement);
+  assert(cement_mat.IsParameter(IDT_VALUETYPE_PERMEA));
+  double dPermea = cement_mat.ParameterValue(IDT_VALUETYPE_PERMEA);
+  assert(cement_mat.IsParameter(IDT_VALUETYPE_VISCOSITY));
+  double dVisco = cement_mat.ParameterValue(IDT_VALUETYPE_VISCOSITY);
 
-    // map values and force mapping of permeability and viscosity
-    MapValueTypes(element, mpValue);
-    mpValue[IDT_VALUETYPE_PERMEA] = dPermea;
-    mpValue[IDT_VALUETYPE_VISCOSITY] = dVisco;
+  // map values and force mapping of permeability and viscosity
+  MapValueTypes(element, mpValue);
+  mpValue[IDT_VALUETYPE_PERMEA] = dPermea;
+  mpValue[IDT_VALUETYPE_VISCOSITY] = dVisco;
   }
 
   // get the material for this element from base class
@@ -206,7 +206,7 @@ const CFFMaterial& CWellCasingMaterialServer::Material(const geo::IElement& elem
 
 CWellCasingSteelMaterial* CWellCasingMaterialServer::FindIndexInEntry(int nIndex) const
 {
-	CWellCasingSteelMaterialEntry& material_entry = (CWellCasingSteelMaterialEntry&)*((CModelBase&)Model()).GraphEntry(MD_WELLCASING_STEELMATERIAL_ENTRY);
-	assert(material_entry.FindIndex(nIndex));
+  CWellCasingSteelMaterialEntry& material_entry = (CWellCasingSteelMaterialEntry&)*((CModelBase&)Model()).GraphEntry(MD_WELLCASING_STEELMATERIAL_ENTRY);
+  assert(material_entry.FindIndex(nIndex));
   return material_entry.FindIndex(nIndex);
 }

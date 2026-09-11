@@ -18,11 +18,11 @@ Software Product or documentation licensed under this agreement.
 ****************************************************************************/
 /*************************************************************************
 
-        cSetRescueIJSurface.h
+    cSetRescueIJSurface.h
 
  Keeps a list of pointers to some RescueIJSurface.
 
-        Rod Hanks               December, 1999
+    Rod Hanks               December, 1999
 
 ****************************************************************************/
 

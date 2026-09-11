@@ -33,13 +33,13 @@ public:
           // Do not delete these objects.  Use RescueModel::DropRescueEventDescr.
 
   void AddSection(RescueSection *existingSection)
-                        {(*sections) += existingSection;}
+            {(*sections) += existingSection;}
   void DropSection(RescueSection *existingSection)
-                        {(*sections) -= existingSection;}
+            {(*sections) -= existingSection;}
   RESCUEINT64 SectionCount64() {return sections->Count64();}
   RESCUEINT32 SectionCount() {return sections->Count();}
   RescueSection *NthSection(RESCUEINT64 zeroBasedOrdinal) 
-                        {return sections->NthObject(zeroBasedOrdinal);}
+            {return sections->NthObject(zeroBasedOrdinal);}
                   // RescueEventDescr does not "own" RescueSections,
                   // so it does not create or delete them, merely
                   // catalogs relationships to them. 

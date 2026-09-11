@@ -9,7 +9,7 @@ CElementFace::CElementFace(int index0, int index1, int index2, int index3,
   const geo::IElement& element, size_t referenceCount, bool top)
 : m_faceIndices(createFaceIndices(index0, index1, index2, index3))
 , m_element(top ? TElementWrapper(new CElementWrapper(element)) :
-    TElementWrapper(0))
+  TElementWrapper(0))
 , m_referenceCount(referenceCount)
 , m_top(top)
 , m_otherElementFace()

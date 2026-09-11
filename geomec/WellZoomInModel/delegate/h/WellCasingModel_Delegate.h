@@ -27,18 +27,18 @@ class CWellCasingFormationEntry_Delegate : public CWellFormationEntry_Delegate
 {
 public:
   CWellCasingFormationEntry_Delegate(
-    CWellCasingFormationEntry* wellCasingFormationEntry);
+  CWellCasingFormationEntry* wellCasingFormationEntry);
 
 private:
   CWellCasingFormationEntry_Delegate(
-    const CWellCasingFormationEntry_Delegate& rhs);
+  const CWellCasingFormationEntry_Delegate& rhs);
   CWellCasingFormationEntry_Delegate& operator = (
-    const CWellCasingFormationEntry_Delegate& rhs);
+  const CWellCasingFormationEntry_Delegate& rhs);
 
   CWellCasingFormationEntry* m_wellCasingFormationEntry;
 
   REGISTER_DELEGATE(CWellCasingFormationEntry,
-    CWellCasingFormationEntry_Delegate);
+  CWellCasingFormationEntry_Delegate);
 };
 
 #endif  // _WellCasingModel_Delegate_h_

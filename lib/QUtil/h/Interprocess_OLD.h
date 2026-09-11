@@ -13,24 +13,24 @@
 
 enum BusClientCmd // Both request and ack
 {
-	LaunchDiana_Req,
-	RunDiana_Req,
-	StopDiana_Req,
-	DianaHeartbeat,
+  LaunchDiana_Req,
+  RunDiana_Req,
+  StopDiana_Req,
+  DianaHeartbeat,
 
-	LaunchDiana_Ack,
-	RunDiana_Done,
-	StopDiana_Ack,
+  LaunchDiana_Ack,
+  RunDiana_Done,
+  StopDiana_Ack,
 };
 static const std::string g_bus_client_cmd_s[]
 {
-	"LaunchDiana_Req",
-	"RunDiana_Req",
-	"StopDiana_Req",
-	"DianaHeartbeat",
-	"LaunchDiana_Ack",
-	"RunDiana_Done",
-	"StopDiana_Ack",
+  "LaunchDiana_Req",
+  "RunDiana_Req",
+  "StopDiana_Req",
+  "DianaHeartbeat",
+  "LaunchDiana_Ack",
+  "RunDiana_Done",
+  "StopDiana_Ack",
 };
 
 static const QString DIANA_ID		= "Diana";

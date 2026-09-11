@@ -13,19 +13,19 @@ namespace GeomecRGI
 class CGeomecMaterialModel2RGI
 {
   public:
-    CGeomecMaterialModel2RGI(RGInterface& rgi, const CModelBase& modelBase);
-    ~CGeomecMaterialModel2RGI();
+  CGeomecMaterialModel2RGI(RGInterface& rgi, const CModelBase& modelBase);
+  ~CGeomecMaterialModel2RGI();
 
-    std::vector <int> getMaterialTypes() const;
+  std::vector <int> getMaterialTypes() const;
 
   private:
-    CGeomecMaterialModel2RGI(const CGeomecMaterialModel2RGI& rhs);
-    CGeomecMaterialModel2RGI& operator = (const CGeomecMaterialModel2RGI& rhs);
+  CGeomecMaterialModel2RGI(const CGeomecMaterialModel2RGI& rhs);
+  CGeomecMaterialModel2RGI& operator = (const CGeomecMaterialModel2RGI& rhs);
 
-    const CModelBase& m_modelBase;
-    std::vector <CGraphNode*> m_formations;
-    std::vector <int> m_materialModels;
-    std::vector <int> m_materialTypes;
+  const CModelBase& m_modelBase;
+  std::vector <CGraphNode*> m_formations;
+  std::vector <int> m_materialModels;
+  std::vector <int> m_materialTypes;
 };
 
 } // namespace GeomecRGI

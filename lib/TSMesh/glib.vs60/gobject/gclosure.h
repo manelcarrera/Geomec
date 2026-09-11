@@ -40,13 +40,13 @@ typedef struct _GClosure		 GClosure;
 typedef struct _GClosureNotifyData	 GClosureNotifyData;
 typedef	gpointer GCallback;
 typedef void  (*GClosureNotify)		(gpointer	 data,
-					 GClosure	*closure);
+           GClosure	*closure);
 typedef void  (*GClosureMarshal)	(GClosure	*closure,
-					 GValue         *return_value,
-					 guint           n_param_values,
-					 const GValue   *param_values,
-					 gpointer        invocation_hint,
-					 gpointer	 marshal_data);
+           GValue         *return_value,
+           guint           n_param_values,
+           const GValue   *param_values,
+           gpointer        invocation_hint,
+           gpointer	 marshal_data);
 typedef struct _GCClosure		 GCClosure;
 
 
@@ -70,11 +70,11 @@ struct _GClosure
   /*< public >*/	guint	 is_invalid : 1;
 
   /*< private >*/	void   (*marshal)  (GClosure       *closure,
-					    GValue /*out*/ *return_value,
-					    guint           n_param_values,
-					    const GValue   *param_values,
-					    gpointer        invocation_hint,
-					    gpointer	    marshal_data);
+            GValue /*out*/ *return_value,
+            guint           n_param_values,
+            const GValue   *param_values,
+            gpointer        invocation_hint,
+            gpointer	    marshal_data);
   /*< protected >*/	gpointer data;
 
   /*< private >*/	GClosureNotifyData *notifiers;
@@ -101,13 +101,13 @@ struct _GCClosure
 
 /* --- prototypes --- */
 GClosure*	g_cclosure_new			(GCallback	callback_func,
-						 gpointer	user_data,
-						 GClosureNotify destroy_data);
+             gpointer	user_data,
+             GClosureNotify destroy_data);
 GClosure*	g_cclosure_new_swap		(GCallback	callback_func,
-						 gpointer	user_data,
-						 GClosureNotify destroy_data);
+             gpointer	user_data,
+             GClosureNotify destroy_data);
 GClosure*	g_signal_type_cclosure_new	(GType          itype,
-						 guint          struct_offset);
+             guint          struct_offset);
 
 
 /* --- prototypes --- */
@@ -115,35 +115,35 @@ GClosure*	g_closure_ref			(GClosure	*closure);
 void		g_closure_unref			(GClosure	*closure);
 /* intimidating */
 GClosure*	g_closure_new_simple		(guint		 sizeof_closure,
-						 gpointer	 data);
+             gpointer	 data);
 void		g_closure_add_fnotify		(GClosure       *closure,
-						 gpointer	 notify_data,
-						 GClosureNotify	 notify_func);
+             gpointer	 notify_data,
+             GClosureNotify	 notify_func);
 void		g_closure_remove_fnotify	(GClosure       *closure,
-						 gpointer	 notify_data,
-						 GClosureNotify	 notify_func);
+             gpointer	 notify_data,
+             GClosureNotify	 notify_func);
 void		g_closure_add_inotify		(GClosure       *closure,
-						 gpointer	 notify_data,
-						 GClosureNotify	 notify_func);
+             gpointer	 notify_data,
+             GClosureNotify	 notify_func);
 void		g_closure_remove_inotify	(GClosure       *closure,
-						 gpointer	 notify_data,
-						 GClosureNotify	 notify_func);
+             gpointer	 notify_data,
+             GClosureNotify	 notify_func);
 void		g_closure_add_marshal_guards	(GClosure	*closure,
-						 gpointer        pre_marshal_data,
-						 GClosureNotify	 pre_marshal_notify,
-						 gpointer        post_marshal_data,
-						 GClosureNotify	 post_marshal_notify);
+             gpointer        pre_marshal_data,
+             GClosureNotify	 pre_marshal_notify,
+             gpointer        post_marshal_data,
+             GClosureNotify	 post_marshal_notify);
 void		g_closure_set_marshal		(GClosure	*closure,
-						 GClosureMarshal marshal);
+             GClosureMarshal marshal);
 void		g_closure_set_meta_marshal	(GClosure       *closure,
-						 gpointer	 marshal_data,
-						 GClosureMarshal meta_marshal);
+             gpointer	 marshal_data,
+             GClosureMarshal meta_marshal);
 void		g_closure_invalidate		(GClosure	*closure);
 void		g_closure_invoke		(GClosure 	*closure,
-						 GValue	/*out*/	*return_value,
-						 guint		 n_param_values,
-						 const GValue	*param_values,
-						 gpointer	 invocation_hint);
+             GValue	/*out*/	*return_value,
+             guint		 n_param_values,
+             const GValue	*param_values,
+             gpointer	 invocation_hint);
 
 
 /* FIXME:

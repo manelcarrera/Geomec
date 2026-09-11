@@ -45,17 +45,17 @@ public:
                                       // Default DelayedGeometryLoad is TRUE.
   void RescueProgress(const RESCUECHAR *progressDescription);
   RESCUECHAR *GetLock(RESCUECHAR *rescueFileName, RESCUEBOOL needWrite = FALSE, RESCUEBOOL forceLock = FALSE);
-                                    // Returns null if lock is acquired successfully. Otherwise
-                                    // returns a character string (which should be freed by the
-                                    // application) containing owner pid \t date acquired \n of
-                                    // all blocking locks.
-                                    // If forceLock == TRUE, will attempt to override existing
-                                    // lock and return null.  All blocking locks will be lost.
+                  // Returns null if lock is acquired successfully. Otherwise
+                  // returns a character string (which should be freed by the
+                  // application) containing owner pid \t date acquired \n of
+                  // all blocking locks.
+                  // If forceLock == TRUE, will attempt to override existing
+                  // lock and return null.  All blocking locks will be lost.
   void ReleaseLock(RESCUECHAR *rescueFileName);
-                                    // Release lock.  Fails silently if another process has
-                                    // overridden the lock.
+                  // Release lock.  Fails silently if another process has
+                  // overridden the lock.
   RESCUEBOOL CheckLock(RESCUECHAR *rescueFileName);
-                                    // Returns TRUE if the current process is the owner of the lock.
+                  // Returns TRUE if the current process is the owner of the lock.
   void VetFileName(RCHString *fileName, RESCUEBOOL creating, RESCUEBOOL desireBinary);
   RESCUEINT32 FileVersion(RESCUECHAR *pathName);
                                       // Returns the Rescue file version of the

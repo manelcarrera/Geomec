@@ -16,13 +16,13 @@ CMaterialFractAnisotropy::CMaterialFractAnisotropy(CMaterialEntry &entry, CLibra
 
 bool CMaterialFractAnisotropy::Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const
 {
-	ftn_double_t ddum;
+  ftn_double_t ddum;
 
-	ddum = (ftn_double_t) (ffmat.ParameterValue(IDT_VALUETYPE_COHESION) * 1e6);
+  ddum = (ftn_double_t) (ffmat.ParameterValue(IDT_VALUETYPE_COHESION) * 1e6);
   PutItemLength("COHESI", &ddum, 1);
 
-	ddum = (ftn_double_t) (ffmat.ParameterValue(IDT_VALUETYPE_FRICTION_ANGLE) * PI / 180);
-	PutItemLength("PHI", &ddum, 1);
+  ddum = (ftn_double_t) (ffmat.ParameterValue(IDT_VALUETYPE_FRICTION_ANGLE) * PI / 180);
+  PutItemLength("PHI", &ddum, 1);
 
   double En1 = ffmat.ParameterValue(IDT_VALUETYPE_YOUNGMODULUS_NORM);
   double Et1 = ffmat.ParameterValue(IDT_VALUETYPE_YOUNGMODULUS_TRANS);
@@ -31,70 +31,70 @@ bool CMaterialFractAnisotropy::Write(const CFFMaterial &ffmat, dia::IDianaRunner
   double G1 = ffmat.ParameterValue(IDT_VALUETYPE_ANISOTROPIC_SHEARMODULUS);
 
   geo::CMatrix stiffnessMatrix1 = CalculateStiffnessMatrix(ffmat, En1, Et1, Nun1, Nut1, G1);
-	ftn_double_t rigidity[21];
+  ftn_double_t rigidity[21];
 
-	rigidity[0] =  stiffnessMatrix1.Value(1, 1) * 1e6;
-	rigidity[1] =  stiffnessMatrix1.Value(0, 1) * 1e6;;
-	rigidity[2] =  stiffnessMatrix1.Value(1, 2) * 1e6;
-	rigidity[3] =  stiffnessMatrix1.Value(1, 3) * 1e6;
-	rigidity[4] =  stiffnessMatrix1.Value(1, 5) * 1e6;
-	rigidity[5] =  stiffnessMatrix1.Value(1, 4) * 1e6;
-	rigidity[6] =  stiffnessMatrix1.Value(0, 0) * 1e6;
-	rigidity[7] =  stiffnessMatrix1.Value(0, 2) * 1e6;
-	rigidity[8] =  stiffnessMatrix1.Value(0, 3) * 1e6;
-	rigidity[9] =  stiffnessMatrix1.Value(0, 5) * 1e6;
-	rigidity[10] = stiffnessMatrix1.Value(0, 4) * 1e6;
-	rigidity[11] = stiffnessMatrix1.Value(2, 2) * 1e6;
-	rigidity[12] = stiffnessMatrix1.Value(2, 3) * 1e6;
-	rigidity[13] = stiffnessMatrix1.Value(2, 5) * 1e6;
-	rigidity[14] = stiffnessMatrix1.Value(2, 4) * 1e6;
-	rigidity[15] = stiffnessMatrix1.Value(3, 3) * 1e6;
-	rigidity[16] = stiffnessMatrix1.Value(3, 5) * 1e6;
-	rigidity[17] = stiffnessMatrix1.Value(3, 4) * 1e6;
-	rigidity[18] = stiffnessMatrix1.Value(5, 5) * 1e6;
-	rigidity[19] = stiffnessMatrix1.Value(4, 5) * 1e6;
-	rigidity[20] = stiffnessMatrix1.Value(4, 4) * 1e6;
+  rigidity[0] =  stiffnessMatrix1.Value(1, 1) * 1e6;
+  rigidity[1] =  stiffnessMatrix1.Value(0, 1) * 1e6;;
+  rigidity[2] =  stiffnessMatrix1.Value(1, 2) * 1e6;
+  rigidity[3] =  stiffnessMatrix1.Value(1, 3) * 1e6;
+  rigidity[4] =  stiffnessMatrix1.Value(1, 5) * 1e6;
+  rigidity[5] =  stiffnessMatrix1.Value(1, 4) * 1e6;
+  rigidity[6] =  stiffnessMatrix1.Value(0, 0) * 1e6;
+  rigidity[7] =  stiffnessMatrix1.Value(0, 2) * 1e6;
+  rigidity[8] =  stiffnessMatrix1.Value(0, 3) * 1e6;
+  rigidity[9] =  stiffnessMatrix1.Value(0, 5) * 1e6;
+  rigidity[10] = stiffnessMatrix1.Value(0, 4) * 1e6;
+  rigidity[11] = stiffnessMatrix1.Value(2, 2) * 1e6;
+  rigidity[12] = stiffnessMatrix1.Value(2, 3) * 1e6;
+  rigidity[13] = stiffnessMatrix1.Value(2, 5) * 1e6;
+  rigidity[14] = stiffnessMatrix1.Value(2, 4) * 1e6;
+  rigidity[15] = stiffnessMatrix1.Value(3, 3) * 1e6;
+  rigidity[16] = stiffnessMatrix1.Value(3, 5) * 1e6;
+  rigidity[17] = stiffnessMatrix1.Value(3, 4) * 1e6;
+  rigidity[18] = stiffnessMatrix1.Value(5, 5) * 1e6;
+  rigidity[19] = stiffnessMatrix1.Value(4, 5) * 1e6;
+  rigidity[20] = stiffnessMatrix1.Value(4, 4) * 1e6;
 
-	PutItemLength("RIGIDI", rigidity, 21);
+  PutItemLength("RIGIDI", rigidity, 21);
 
   assert(dynamic_cast<CGeomecDianaRunnerBase*>(&diarunner));
   CGeomecDianaRunnerBase& runner = static_cast<CGeomecDianaRunnerBase&>(diarunner);
   if(runner.Model().UseDecompactionParameters())
   {
-    double En2 = ffmat.ParameterValue(IDT_VALUETYPE_YOUNGMODULUS_NORM_DECOMP);
-    double Et2 = ffmat.ParameterValue(IDT_VALUETYPE_YOUNGMODULUS_TRANS_DECOMP);
-    double Nun2 = ffmat.ParameterValue(IDT_VALUETYPE_POISSONRATIO_NORM_DECOMP);
-    double Nut2 = ffmat.ParameterValue(IDT_VALUETYPE_POISSONRATIO_TRANS_DECOMP);
-    double G2 = ffmat.ParameterValue(IDT_VALUETYPE_ANISOTROPIC_SHEARMODULUS_DECOMP);
+  double En2 = ffmat.ParameterValue(IDT_VALUETYPE_YOUNGMODULUS_NORM_DECOMP);
+  double Et2 = ffmat.ParameterValue(IDT_VALUETYPE_YOUNGMODULUS_TRANS_DECOMP);
+  double Nun2 = ffmat.ParameterValue(IDT_VALUETYPE_POISSONRATIO_NORM_DECOMP);
+  double Nut2 = ffmat.ParameterValue(IDT_VALUETYPE_POISSONRATIO_TRANS_DECOMP);
+  double G2 = ffmat.ParameterValue(IDT_VALUETYPE_ANISOTROPIC_SHEARMODULUS_DECOMP);
 
-    geo::CMatrix stiffnessMatrix2 = CalculateStiffnessMatrix(ffmat, En2, Et2, Nun2, Nut2, G2);
-	  ftn_double_t deco21[42];
+  geo::CMatrix stiffnessMatrix2 = CalculateStiffnessMatrix(ffmat, En2, Et2, Nun2, Nut2, G2);
+    ftn_double_t deco21[42];
 
-    memcpy(deco21, rigidity, 21*sizeof(ftn_double_t));
+  memcpy(deco21, rigidity, 21*sizeof(ftn_double_t));
 
-	  deco21[21] =  stiffnessMatrix2.Value(1, 1) * 1e6;
-	  deco21[22] =  stiffnessMatrix2.Value(0, 1) * 1e6;;
-	  deco21[23] =  stiffnessMatrix2.Value(1, 2) * 1e6;
-	  deco21[24] =  stiffnessMatrix2.Value(1, 3) * 1e6;
-	  deco21[25] =  stiffnessMatrix2.Value(1, 5) * 1e6;
-	  deco21[26] =  stiffnessMatrix2.Value(1, 4) * 1e6;
-	  deco21[27] =  stiffnessMatrix2.Value(0, 0) * 1e6;
-	  deco21[28] =  stiffnessMatrix2.Value(0, 2) * 1e6;
-	  deco21[29] =  stiffnessMatrix2.Value(0, 3) * 1e6;
-	  deco21[30] =  stiffnessMatrix2.Value(0, 5) * 1e6;
-	  deco21[31] = stiffnessMatrix2.Value(0, 4) * 1e6;
-	  deco21[32] = stiffnessMatrix2.Value(2, 2) * 1e6;
-	  deco21[33] = stiffnessMatrix2.Value(2, 3) * 1e6;
-	  deco21[34] = stiffnessMatrix2.Value(2, 5) * 1e6;
-	  deco21[35] = stiffnessMatrix2.Value(2, 4) * 1e6;
-	  deco21[36] = stiffnessMatrix2.Value(3, 3) * 1e6;
-	  deco21[37] = stiffnessMatrix2.Value(3, 5) * 1e6;
-	  deco21[38] = stiffnessMatrix2.Value(3, 4) * 1e6;
-	  deco21[39] = stiffnessMatrix2.Value(5, 5) * 1e6;
-	  deco21[40] = stiffnessMatrix2.Value(4, 5) * 1e6;
-	  deco21[41] = stiffnessMatrix2.Value(4, 4) * 1e6;
+    deco21[21] =  stiffnessMatrix2.Value(1, 1) * 1e6;
+    deco21[22] =  stiffnessMatrix2.Value(0, 1) * 1e6;;
+    deco21[23] =  stiffnessMatrix2.Value(1, 2) * 1e6;
+    deco21[24] =  stiffnessMatrix2.Value(1, 3) * 1e6;
+    deco21[25] =  stiffnessMatrix2.Value(1, 5) * 1e6;
+    deco21[26] =  stiffnessMatrix2.Value(1, 4) * 1e6;
+    deco21[27] =  stiffnessMatrix2.Value(0, 0) * 1e6;
+    deco21[28] =  stiffnessMatrix2.Value(0, 2) * 1e6;
+    deco21[29] =  stiffnessMatrix2.Value(0, 3) * 1e6;
+    deco21[30] =  stiffnessMatrix2.Value(0, 5) * 1e6;
+    deco21[31] = stiffnessMatrix2.Value(0, 4) * 1e6;
+    deco21[32] = stiffnessMatrix2.Value(2, 2) * 1e6;
+    deco21[33] = stiffnessMatrix2.Value(2, 3) * 1e6;
+    deco21[34] = stiffnessMatrix2.Value(2, 5) * 1e6;
+    deco21[35] = stiffnessMatrix2.Value(2, 4) * 1e6;
+    deco21[36] = stiffnessMatrix2.Value(3, 3) * 1e6;
+    deco21[37] = stiffnessMatrix2.Value(3, 5) * 1e6;
+    deco21[38] = stiffnessMatrix2.Value(3, 4) * 1e6;
+    deco21[39] = stiffnessMatrix2.Value(5, 5) * 1e6;
+    deco21[40] = stiffnessMatrix2.Value(4, 5) * 1e6;
+    deco21[41] = stiffnessMatrix2.Value(4, 4) * 1e6;
 
-	  PutItemLength("DECO21", deco21, 42);
+    PutItemLength("DECO21", deco21, 42);
   }
 
   // skip CMaterialFractureApertureBase::Write
@@ -102,11 +102,11 @@ bool CMaterialFractAnisotropy::Write(const CFFMaterial &ffmat, dia::IDianaRunner
 }
 
 geo::CMatrix CMaterialFractAnisotropy::CalculateStiffnessMatrix(const CFFMaterial &ffmat,
-                                                                double En,
-                                                                double Et,
-                                                                double Nun,
-                                                                double Nut,
-                                                                double G) const
+                                double En,
+                                double Et,
+                                double Nun,
+                                double Nut,
+                                double G) const
 {
   geo::CMatrix anisoCompMatrix = CalculateAnisotropyComplianceMatrix(ffmat, En, Et, Nun, Nut, G);
   geo::CMatrix fractCompMatrix = CalculateFractureComplianceMatrix(ffmat);
@@ -181,9 +181,9 @@ geo::CMatrix CMaterialFractAnisotropy::CalculateFractureComplianceMatrix(const C
   // mantis 2936 Dip and Azi for low and high fracture densities can not be the same
   if(fabs(maxDip - minDip) < EPS && fabs(maxAzi - minAzi) < EPS)
   { // just make sure that there is a small difference somewhere, else the DIANA will abort
-    if(minDip >= 89.0 * PI /180.0)
+  if(minDip >= 89.0 * PI /180.0)
       minDip -= 0.5;
-    else
+  else
       minDip += 0.5;
   }
   // construct an orthonormal base
@@ -293,7 +293,7 @@ int CMaterialFractAnisotropy::WriteFilosParamSize(const CFFMaterial &ffmat, dia:
   CGeomecDianaRunnerBase& runner = static_cast<CGeomecDianaRunnerBase&>(diarunner);
   if (runner.Model().UseDecompactionParameters())
   {
-    size += 42; // DECO21(42)
+  size += 42; // DECO21(42)
   }
 
   size += IMaterialRock::WriteFilosParamSize(ffmat, diarunner); // skip CMaterialFractureApertureBase
@@ -304,23 +304,23 @@ bool CMaterialFractAnisotropy::WriteFilosParamName(const CFFMaterial &ffmat, dia
 {
   if (i == 0)
   {
-    strncpy(name, "COHESI", 10);
-    return true;
+  strncpy(name, "COHESI", 10);
+  return true;
   }
   --i;
 
   if (i == 0)
   {
-    strncpy(name, "PHI", 10);
-    return true;
+  strncpy(name, "PHI", 10);
+  return true;
   }
   --i;
 
   if (i < 21)
   {
-    QString rigidi = QString("RIGIDI(%1)").arg(i + 1);
-    strncpy(name, rigidi.toStdString().c_str(), 10);
-    return true;
+  QString rigidi = QString("RIGIDI(%1)").arg(i + 1);
+  strncpy(name, rigidi.toStdString().c_str(), 10);
+  return true;
   }
   i -= 21;
 
@@ -328,13 +328,13 @@ bool CMaterialFractAnisotropy::WriteFilosParamName(const CFFMaterial &ffmat, dia
   CGeomecDianaRunnerBase& runner = static_cast<CGeomecDianaRunnerBase&>(diarunner);
   if (runner.Model().UseDecompactionParameters())
   {
-    if (i < 42)
-    {
+  if (i < 42)
+  {
       QString deco21 = QString("DECO21(%1)").arg(i + 1);
       strncpy(name, deco21.toStdString().c_str(), 10);
       return true;
-    }
-    i -= 42;
+  }
+  i -= 42;
   }
    
   return IMaterialRock::WriteFilosParamName(ffmat, diarunner, i, name); // skip CMaterialFractureApertureBase
@@ -381,52 +381,52 @@ void CMaterialFractAnisotropy::WriteFilosParamValues(const CFFMaterial &ffmat, d
 
   for (int i = 0; i < 21; ++i)
   {
-    *values = rigidity[i]; // RIGIDI(i+1)
-    values += stride;
+  *values = rigidity[i]; // RIGIDI(i+1)
+  values += stride;
   }
 
   assert(dynamic_cast<CGeomecDianaRunnerBase*>(&diarunner));
   CGeomecDianaRunnerBase& runner = static_cast<CGeomecDianaRunnerBase&>(diarunner);
   if (runner.Model().UseDecompactionParameters())
   {
-    double En2 = ffmat.ParameterValue(IDT_VALUETYPE_YOUNGMODULUS_NORM_DECOMP);
-    double Et2 = ffmat.ParameterValue(IDT_VALUETYPE_YOUNGMODULUS_TRANS_DECOMP);
-    double Nun2 = ffmat.ParameterValue(IDT_VALUETYPE_POISSONRATIO_NORM_DECOMP);
-    double Nut2 = ffmat.ParameterValue(IDT_VALUETYPE_POISSONRATIO_TRANS_DECOMP);
-    double G2 = ffmat.ParameterValue(IDT_VALUETYPE_ANISOTROPIC_SHEARMODULUS_DECOMP);
+  double En2 = ffmat.ParameterValue(IDT_VALUETYPE_YOUNGMODULUS_NORM_DECOMP);
+  double Et2 = ffmat.ParameterValue(IDT_VALUETYPE_YOUNGMODULUS_TRANS_DECOMP);
+  double Nun2 = ffmat.ParameterValue(IDT_VALUETYPE_POISSONRATIO_NORM_DECOMP);
+  double Nut2 = ffmat.ParameterValue(IDT_VALUETYPE_POISSONRATIO_TRANS_DECOMP);
+  double G2 = ffmat.ParameterValue(IDT_VALUETYPE_ANISOTROPIC_SHEARMODULUS_DECOMP);
 
-    geo::CMatrix stiffnessMatrix2 = CalculateStiffnessMatrix(ffmat, En2, Et2, Nun2, Nut2, G2);
-    ftn_double_t deco21[42];
+  geo::CMatrix stiffnessMatrix2 = CalculateStiffnessMatrix(ffmat, En2, Et2, Nun2, Nut2, G2);
+  ftn_double_t deco21[42];
 
-    memcpy(deco21, rigidity, 21 * sizeof(ftn_double_t));
+  memcpy(deco21, rigidity, 21 * sizeof(ftn_double_t));
 
-    deco21[21] = stiffnessMatrix2.Value(1, 1) * 1e6;
-    deco21[22] = stiffnessMatrix2.Value(0, 1) * 1e6;;
-    deco21[23] = stiffnessMatrix2.Value(1, 2) * 1e6;
-    deco21[24] = stiffnessMatrix2.Value(1, 3) * 1e6;
-    deco21[25] = stiffnessMatrix2.Value(1, 5) * 1e6;
-    deco21[26] = stiffnessMatrix2.Value(1, 4) * 1e6;
-    deco21[27] = stiffnessMatrix2.Value(0, 0) * 1e6;
-    deco21[28] = stiffnessMatrix2.Value(0, 2) * 1e6;
-    deco21[29] = stiffnessMatrix2.Value(0, 3) * 1e6;
-    deco21[30] = stiffnessMatrix2.Value(0, 5) * 1e6;
-    deco21[31] = stiffnessMatrix2.Value(0, 4) * 1e6;
-    deco21[32] = stiffnessMatrix2.Value(2, 2) * 1e6;
-    deco21[33] = stiffnessMatrix2.Value(2, 3) * 1e6;
-    deco21[34] = stiffnessMatrix2.Value(2, 5) * 1e6;
-    deco21[35] = stiffnessMatrix2.Value(2, 4) * 1e6;
-    deco21[36] = stiffnessMatrix2.Value(3, 3) * 1e6;
-    deco21[37] = stiffnessMatrix2.Value(3, 5) * 1e6;
-    deco21[38] = stiffnessMatrix2.Value(3, 4) * 1e6;
-    deco21[39] = stiffnessMatrix2.Value(5, 5) * 1e6;
-    deco21[40] = stiffnessMatrix2.Value(4, 5) * 1e6;
-    deco21[41] = stiffnessMatrix2.Value(4, 4) * 1e6;
+  deco21[21] = stiffnessMatrix2.Value(1, 1) * 1e6;
+  deco21[22] = stiffnessMatrix2.Value(0, 1) * 1e6;;
+  deco21[23] = stiffnessMatrix2.Value(1, 2) * 1e6;
+  deco21[24] = stiffnessMatrix2.Value(1, 3) * 1e6;
+  deco21[25] = stiffnessMatrix2.Value(1, 5) * 1e6;
+  deco21[26] = stiffnessMatrix2.Value(1, 4) * 1e6;
+  deco21[27] = stiffnessMatrix2.Value(0, 0) * 1e6;
+  deco21[28] = stiffnessMatrix2.Value(0, 2) * 1e6;
+  deco21[29] = stiffnessMatrix2.Value(0, 3) * 1e6;
+  deco21[30] = stiffnessMatrix2.Value(0, 5) * 1e6;
+  deco21[31] = stiffnessMatrix2.Value(0, 4) * 1e6;
+  deco21[32] = stiffnessMatrix2.Value(2, 2) * 1e6;
+  deco21[33] = stiffnessMatrix2.Value(2, 3) * 1e6;
+  deco21[34] = stiffnessMatrix2.Value(2, 5) * 1e6;
+  deco21[35] = stiffnessMatrix2.Value(2, 4) * 1e6;
+  deco21[36] = stiffnessMatrix2.Value(3, 3) * 1e6;
+  deco21[37] = stiffnessMatrix2.Value(3, 5) * 1e6;
+  deco21[38] = stiffnessMatrix2.Value(3, 4) * 1e6;
+  deco21[39] = stiffnessMatrix2.Value(5, 5) * 1e6;
+  deco21[40] = stiffnessMatrix2.Value(4, 5) * 1e6;
+  deco21[41] = stiffnessMatrix2.Value(4, 4) * 1e6;
 
-    for (int i = 0; i < 42; ++i)
-    {
+  for (int i = 0; i < 42; ++i)
+  {
       *values = deco21[i]; // DECO21(i+1)
       values += stride;
-    }
+  }
   }
 
   IMaterialRock::WriteFilosParamValues(ffmat, diarunner, values, stride); // skip CMaterialFractureApertureBase

@@ -11,55 +11,55 @@ class SafeQueue
 {
 public:
 
-	SafeQueue(void)
-	: q()
-	, m()
-	, c()
-	{}
+  SafeQueue(void)
+  : q()
+  , m()
+  , c()
+  {}
 
-	~SafeQueue(void)
-	{}
+  ~SafeQueue(void)
+  {}
 
-	// Add an element to the queue.
-	void enqueue(T t)
-	{
-		std::lock_guard<std::mutex> lock(m);
-		q.push(t);
-		c.notify_one();
-	}
+  // Add an element to the queue.
+  void enqueue(T t)
+  {
+    std::lock_guard<std::mutex> lock(m);
+    q.push(t);
+    c.notify_one();
+  }
 
-	// Get the "front"-element.
-	// If the queue is empty, wait till a element is avaiable.
-	T dequeue(void)
-	{
-		std::unique_lock<std::mutex> lock(m);
-		while(q.empty())
-		{
-			// release lock as long as the wait and reaquire it afterwards.
-			c.wait(lock);
-		}
-		T val = q.front();
-		q.pop();
-		return val;
-	}
+  // Get the "front"-element.
+  // If the queue is empty, wait till a element is avaiable.
+  T dequeue(void)
+  {
+    std::unique_lock<std::mutex> lock(m);
+    while(q.empty())
+    {
+      // release lock as long as the wait and reaquire it afterwards.
+      c.wait(lock);
+    }
+    T val = q.front();
+    q.pop();
+    return val;
+  }
 
-	int size()
-	{
-		std::unique_lock<std::mutex> lock(m);
-		return (int)q.size();
-	}
+  int size()
+  {
+    std::unique_lock<std::mutex> lock(m);
+    return (int)q.size();
+  }
 
-	void clear()
-	{
-		std::unique_lock<std::mutex> lock(m);
-		std::queue<T> empty;
-		std::swap( q, empty );
-	}
+  void clear()
+  {
+    std::unique_lock<std::mutex> lock(m);
+    std::queue<T> empty;
+    std::swap( q, empty );
+  }
 
 private:
-	std::queue<T> q;
-	mutable std::mutex m;
-	std::condition_variable c;
+  std::queue<T> q;
+  mutable std::mutex m;
+  std::condition_variable c;
 };
 
 #endif

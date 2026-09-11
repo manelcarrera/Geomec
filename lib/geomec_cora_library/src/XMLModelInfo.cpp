@@ -35,7 +35,7 @@ const QString MODELINFO_CLOSE = "</ModelInfo>";
 bool CXMLModelInfo::createModelInfo() const
 {
   std::ofstream modelInfoFile((QString(m_modelInfoFileName) + ".xml").
-    toStdString().c_str());
+  toStdString().c_str());
 
   modelInfoFile << XML_DECLARATION.toStdString() << std::endl;
   modelInfoFile << MODELINFO_OPEN.toStdString() << std::endl;

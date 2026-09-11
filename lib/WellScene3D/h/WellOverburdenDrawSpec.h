@@ -16,31 +16,31 @@ class CWellSceneInterMed;
 
 class COverburdenSymbol: public ISymbol
 {
-	friend class CWellOverburdenDrawSpec;
+  friend class CWellOverburdenDrawSpec;
 public:
 
-	//ISymbol interface
-	virtual const int NrOfPositions() const;
-	virtual const geo::IPoint& Position(int Index) const;
-	virtual const geo::IArray& Geometry() const;
-	virtual const geo::IPoint& PivotPoint() const;
+  //ISymbol interface
+  virtual const int NrOfPositions() const;
+  virtual const geo::IPoint& Position(int Index) const;
+  virtual const geo::IArray& Geometry() const;
+  virtual const geo::IPoint& PivotPoint() const;
 
-	//IObject interface
-	virtual void Rotate(const geo::IVector &vec, const double &dAngleDeg);
-	virtual void Move(const geo::IVector &vec);
-	virtual void Transform(const geo::IMatrix &matrix);
-	virtual void AssertValid() const;
-	virtual bool Empty() const;
-	virtual geo::CPoint Min() const;
-	virtual geo::CPoint Max() const;
+  //IObject interface
+  virtual void Rotate(const geo::IVector &vec, const double &dAngleDeg);
+  virtual void Move(const geo::IVector &vec);
+  virtual void Transform(const geo::IMatrix &matrix);
+  virtual void AssertValid() const;
+  virtual bool Empty() const;
+  virtual geo::CPoint Min() const;
+  virtual geo::CPoint Max() const;
 
-	virtual ~COverburdenSymbol();
+  virtual ~COverburdenSymbol();
 private:
-	COverburdenSymbol(CWellOverburdenDrawSpec&);
+  COverburdenSymbol(CWellOverburdenDrawSpec&);
 
-	geo::CPoint m_PivotPoint;
-	geo::CPoint m_Position;
-	geo::CPtrArray<geo::IObject> m_Array;
+  geo::CPoint m_PivotPoint;
+  geo::CPoint m_Position;
+  geo::CPtrArray<geo::IObject> m_Array;
 };
 
 
@@ -51,16 +51,16 @@ private:
 class CWellOverburdenDrawSpec : public CWellDrawSpecBase  
 {
 public:
-	friend class CWellSceneInterMed;
+  friend class CWellSceneInterMed;
 
-	virtual ~CWellOverburdenDrawSpec();
+  virtual ~CWellOverburdenDrawSpec();
 
 
 private:
-	virtual void CreateScene();
-	//only CWellSceneInterMed can construct a CWellOverburdenDrawSpec
-	CWellOverburdenDrawSpec(CWellSceneInterMed& WellSceneInterMed);
-	
+  virtual void CreateScene();
+  //only CWellSceneInterMed can construct a CWellOverburdenDrawSpec
+  CWellOverburdenDrawSpec(CWellSceneInterMed& WellSceneInterMed);
+  
 };
 
 #endif // !defined(AFX_WELLOVERBURDENDRAWSPEC_H__63CAF831_A13E_4260_A32F_EFAE1B3EBCBE__INCLUDED_)

@@ -37,11 +37,11 @@ CTetSurface::~CTetSurface()
   // Remove from descriptor and volume
   for(int i = 0; i < m_descriptor.m_vcTetSurface.size(); i++)
   {
-    if(m_descriptor.m_vcTetSurface[i] == this)
-    {
+  if(m_descriptor.m_vcTetSurface[i] == this)
+  {
       m_descriptor.m_vcTetSurface.erase(m_descriptor.m_vcTetSurface.begin() + i);
       break;
-    }
+  }
   }
 
 }
@@ -56,7 +56,7 @@ const IPoint& CTetSurface::Point(int nIndex) const
 
   // Is everthing in place
   if(CSideSurface::FaceSize() == 0)
-    FillFaceVec();
+  FillFaceVec();
 
   return CSideSurface::Point(nIndex);
 }
@@ -71,7 +71,7 @@ int CTetSurface::PointSize() const
 
   // Is everthing in place
   if(CSideSurface::FaceSize() == 0)
-    FillFaceVec();
+  FillFaceVec();
 
   return CSideSurface::PointSize();
 }
@@ -93,7 +93,7 @@ const CPtrArray <IFace> CTetSurface::FacesAtNode(const IPoint &p) const
 {
   // Is everthing in place
   if(CSideSurface::FaceSize() == 0)
-    FillFaceVec();
+  FillFaceVec();
 
   return CSideSurface::FacesAtNode(p);
 }
@@ -105,7 +105,7 @@ const IFace & CTetSurface::Face(int nIndex) const
 {
   // Is everthing in place
   if(CSideSurface::FaceSize() == 0)
-    FillFaceVec();
+  FillFaceVec();
 
   return CSideSurface::Face(nIndex);
 }
@@ -117,7 +117,7 @@ int CTetSurface::FaceSize() const
 {
   // Is everthing in place
   if(CSideSurface::FaceSize() == 0)
-    FillFaceVec();
+  FillFaceVec();
 
   return CSideSurface::FaceSize();
 }
@@ -134,7 +134,7 @@ void CTetSurface::FillFaceVec() const
   tbb::spin_mutex::scoped_lock lock(myGlobalCTetSurfaceMutex[index]);
 
   if (CSideSurface::FaceSize() > 0)
-    return; // some other thread beat us to it
+  return; // some other thread beat us to it
 
   assert(CSideSurface::FaceSize() == 0);
   assert(BodyGroup().BodySize() > 0);
@@ -145,41 +145,41 @@ void CTetSurface::FillFaceVec() const
   TBodyToNodeMap mpBody;
   for(int i = 0; i < m_vcPointIndex.size(); i++)
   {
-    const IElementSet *pElementSet = BodyGroup().Body(0).IndexingElementSet();
-    assert(pElementSet);
-    const IPoint& point = pElementSet->Point(m_vcPointIndex[i]);
-    const std::vector<const IBody*>& vcBody = BodyGroup().PointToBody(point);
-    for(int k = 0; k < vcBody.size(); k++)
-    {
+  const IElementSet *pElementSet = BodyGroup().Body(0).IndexingElementSet();
+  assert(pElementSet);
+  const IPoint& point = pElementSet->Point(m_vcPointIndex[i]);
+  const std::vector<const IBody*>& vcBody = BodyGroup().PointToBody(point);
+  for(int k = 0; k < vcBody.size(); k++)
+  {
       std::pair<TBodyToNodeMap::iterator, bool> ret = mpBody.insert(TBodyToNodeMap::value_type(vcBody[k], TNodeSet()));
       ret.first->second.insert(m_vcPointIndex[i]);
-    }
+  }
   }
 
   //
   for(TBodyToNodeMap::const_iterator it = mpBody.begin(); it != mpBody.end(); it++)
   {
-    const IBody& body = *it->first;
-    if(it->second.size() == 3)
-    {
+  const IBody& body = *it->first;
+  if(it->second.size() == 3)
+  {
       // Find the face from
       for(int nFace = 0; nFace < body.NrOfFaces(); nFace++)
       {
-        bool bFound = true;
-        const IFace& face = body.Face(nFace);
-        std::vector<int> vcFaceNodeIndices = body.FaceNodeIndices(nFace);
+    bool bFound = true;
+    const IFace& face = body.Face(nFace);
+    std::vector<int> vcFaceNodeIndices = body.FaceNodeIndices(nFace);
 
-        for(int nNode = 0; (nNode < face.NrOfNodes()) && (bFound); nNode++)
-        {
+    for(int nNode = 0; (nNode < face.NrOfNodes()) && (bFound); nNode++)
+    {
           int nNodeIndex = body.PointIndex(vcFaceNodeIndices[nNode]);
           if(it->second.find(nNodeIndex) == it->second.end())
-            bFound = false;
-        }
-        CTetSurface *pSurface = (CTetSurface*)(this);
-        if(bFound)
+      bFound = false;
+    }
+    CTetSurface *pSurface = (CTetSurface*)(this);
+    if(bFound)
           pSurface->AddFace(face);
       }
-    }
+  }
   }
 }
 
@@ -190,8 +190,8 @@ int CTetSurface::NrOfNodeIndices() const
 {
   if(m_vcPointIndex.size() == 0)
   {
-    assert(FaceSize() > 0);
-    FillPointIndexVec();
+  assert(FaceSize() > 0);
+  FillPointIndexVec();
   }
 
   return (int)m_vcPointIndex.size();
@@ -205,8 +205,8 @@ int CTetSurface::NodeIndex(int nIndex) const
 {
   if(m_vcPointIndex.size() == 0)
   {
-    assert(FaceSize() > 0);
-    FillPointIndexVec();
+  assert(FaceSize() > 0);
+  FillPointIndexVec();
   }
 
   return m_vcPointIndex[nIndex];
@@ -224,15 +224,15 @@ void CTetSurface::FillPointIndexVec() const
   std::set<int> stPoint;
   for(int nFace = 0; nFace < FaceSize(); nFace++)
   {
-    const geo::IFace& face = Face(nFace);
-    std::vector<int> vcFaceNodeIndices = face.Parent()->FaceNodeIndices(face);
+  const geo::IFace& face = Face(nFace);
+  std::vector<int> vcFaceNodeIndices = face.Parent()->FaceNodeIndices(face);
 
-    for(int i = 0; i < face.NrOfPoints(); i++)
-    {
+  for(int i = 0; i < face.NrOfPoints(); i++)
+  {
       int nPointIndex = face.Parent()->PointIndex(vcFaceNodeIndices[i]);
       if(stPoint.insert(nPointIndex).second)
-        m_vcPointIndex.push_back(nPointIndex);
-    }
+    m_vcPointIndex.push_back(nPointIndex);
+  }
   }
 }
 

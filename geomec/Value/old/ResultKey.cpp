@@ -23,12 +23,12 @@ result_key::result_key()
 : m_pStage(0), m_bLinear(TRUE)
 {
 }
-		
+    
 result_key::result_key(const CDepletionStage& stage, BOOL bLinear)
 : m_pStage(&stage), m_bLinear(bLinear)
 {
 }
-		
+    
 result_key::result_key(const result_key& rhs)
 : m_pStage(rhs.m_pStage), m_bLinear(rhs.m_bLinear)
 {
@@ -36,13 +36,13 @@ result_key::result_key(const result_key& rhs)
 
 bool result_key::operator<(const result_key& rhs) const
 {
-	if(m_pStage < rhs.m_pStage)
-		return true;
-	if(m_pStage == rhs.m_pStage)
-	{
-		if(!m_bLinear && rhs.m_bLinear)
-			return true;
-	}
+  if(m_pStage < rhs.m_pStage)
+    return true;
+  if(m_pStage == rhs.m_pStage)
+  {
+    if(!m_bLinear && rhs.m_bLinear)
+      return true;
+  }
 
-	return false;
+  return false;
 }

@@ -37,7 +37,7 @@ RescueParametricLGRMap::RescueParametricLGRMap(RescueGeometry *lgr,
                                                RESCUEINT64 refinedRealloc,
                                                RESCUEINT64 parentRealloc)
                                                :refinedReallocFactor(refinedRealloc)
-            ,refinedAllocated(expectedRefined)
+      ,refinedAllocated(expectedRefined)
                                                ,cellToCellMapCount(0)
                                                ,lgrIndx(0)
                                                ,lgrJndx(0)
@@ -58,22 +58,22 @@ RescueParametricLGRMap::RescueParametricLGRMap(RescueGeometry *lgr,
   lgr->parametricMap = this;
   if (expectedRefined > 0)
   {
-    lgrIndx = new RESCUEINT64[(size_t) expectedRefined];
-    lgrJndx = new RESCUEINT64[(size_t) expectedRefined];
-    lgrKndx = new RESCUEINT64[(size_t) expectedRefined];
-    parentNdx = new RESCUEINT64[(size_t) expectedRefined];
-    parentCount = new RESCUEINT64[(size_t) expectedRefined];
+  lgrIndx = new RESCUEINT64[(size_t) expectedRefined];
+  lgrJndx = new RESCUEINT64[(size_t) expectedRefined];
+  lgrKndx = new RESCUEINT64[(size_t) expectedRefined];
+  parentNdx = new RESCUEINT64[(size_t) expectedRefined];
+  parentCount = new RESCUEINT64[(size_t) expectedRefined];
   }
   if (expectedParent > 0)
   {
-    parentIndx = new RESCUEINT64[(size_t) parentAllocated];
-    parentJndx = new RESCUEINT64[(size_t) parentAllocated];
-    parentKndx = new RESCUEINT64[(size_t) parentAllocated];
-    lgrNdx = new RESCUEINT64[(size_t) parentAllocated];
+  parentIndx = new RESCUEINT64[(size_t) parentAllocated];
+  parentJndx = new RESCUEINT64[(size_t) parentAllocated];
+  parentKndx = new RESCUEINT64[(size_t) parentAllocated];
+  lgrNdx = new RESCUEINT64[(size_t) parentAllocated];
   }
   if (refinedRealloc < 1 || parentRealloc < 1)
   {
-    throw "reallocation factors cannot be less than one";
+  throw "reallocation factors cannot be less than one";
   }
 }
 
@@ -81,43 +81,43 @@ RescueParametricLGRMap::~RescueParametricLGRMap()
 {
   if (lgrIndx != 0)
   {
-    delete [] lgrIndx;
+  delete [] lgrIndx;
   }
   if (lgrJndx != 0)
   {
-    delete [] lgrJndx;
+  delete [] lgrJndx;
   }
   if (lgrKndx != 0)
   {
-    delete [] lgrKndx;
+  delete [] lgrKndx;
   }
   if (parentNdx != 0)
   {
-    delete [] parentNdx;
+  delete [] parentNdx;
   }
   if (parentCount != 0)
   {
-    delete [] parentCount;
+  delete [] parentCount;
   }
   if (parentIndx != 0)
   {
-    delete [] parentIndx;
+  delete [] parentIndx;
   }
   if (parentJndx != 0)
   {
-    delete [] parentJndx;
+  delete [] parentJndx;
   }
   if (parentKndx != 0)
   {
-    delete [] parentKndx;
+  delete [] parentKndx;
   }
   if (lgrNdx != 0)
   {
-    delete [] lgrNdx;
+  delete [] lgrNdx;
   }
   if (properties != 0)
   {
-    delete properties;
+  delete properties;
   }
 }
 
@@ -131,34 +131,34 @@ void RescueParametricLGRMap::AddRefinedCell()
 {
   if (cellToCellMapCount == refinedAllocated)
   {
-    refinedAllocated += refinedReallocFactor;
-    size_t sizeNow = (size_t) cellToCellMapCount * sizeof(RESCUEINT64);
-    RESCUEINT64 *newLgrIndx = new RESCUEINT64[(size_t) refinedAllocated];
-    memcpy(newLgrIndx, lgrIndx, sizeNow);
-    delete [] lgrIndx;
-    lgrIndx = newLgrIndx;
-    if (lgrJndx != 0)
-    {
+  refinedAllocated += refinedReallocFactor;
+  size_t sizeNow = (size_t) cellToCellMapCount * sizeof(RESCUEINT64);
+  RESCUEINT64 *newLgrIndx = new RESCUEINT64[(size_t) refinedAllocated];
+  memcpy(newLgrIndx, lgrIndx, sizeNow);
+  delete [] lgrIndx;
+  lgrIndx = newLgrIndx;
+  if (lgrJndx != 0)
+  {
       RESCUEINT64 *newLgrJndx = new RESCUEINT64[(size_t) refinedAllocated];
       memcpy(newLgrJndx, lgrJndx, sizeNow);
       delete [] lgrJndx;
       lgrJndx = newLgrJndx;
-    }
-    if (lgrKndx != 0)
-    {
+  }
+  if (lgrKndx != 0)
+  {
       RESCUEINT64 *newLgrKndx = new RESCUEINT64[(size_t) refinedAllocated];
       memcpy(newLgrKndx, lgrKndx, sizeNow);
       delete [] lgrKndx;
       lgrKndx = newLgrKndx;
-    }
-    RESCUEINT64 *newParentNdx = new RESCUEINT64[(size_t) refinedAllocated];
-    memcpy(newParentNdx, parentNdx, sizeNow);
-    delete [] parentNdx;
-    parentNdx = newParentNdx;
-    RESCUEINT64 *newParentCount = new RESCUEINT64[(size_t) refinedAllocated];
-    memcpy(newParentCount, parentCount, sizeNow);
-    delete [] parentCount;
-    parentCount = newParentCount;
+  }
+  RESCUEINT64 *newParentNdx = new RESCUEINT64[(size_t) refinedAllocated];
+  memcpy(newParentNdx, parentNdx, sizeNow);
+  delete [] parentNdx;
+  parentNdx = newParentNdx;
+  RESCUEINT64 *newParentCount = new RESCUEINT64[(size_t) refinedAllocated];
+  memcpy(newParentCount, parentCount, sizeNow);
+  delete [] parentCount;
+  parentCount = newParentCount;
   }
 }
 
@@ -166,33 +166,33 @@ void RescueParametricLGRMap::EnsureParentMapSize(RESCUEINT64 parentCountIn)
 {
   if (parentMapCount + parentCountIn >= parentAllocated)
   {
-    parentAllocated += (parentCountIn > parentReallocFactor) ? parentCountIn : parentReallocFactor;
-    size_t sizeNow = (size_t) parentMapCount * sizeof(RESCUEINT64);
-    RESCUEINT64 *newParentIndx = new RESCUEINT64[(size_t) parentAllocated];
-    memcpy(newParentIndx, parentIndx, sizeNow);
-    delete [] parentIndx;
-    parentIndx = newParentIndx;
-    if (parentJndx != 0)
-    {
+  parentAllocated += (parentCountIn > parentReallocFactor) ? parentCountIn : parentReallocFactor;
+  size_t sizeNow = (size_t) parentMapCount * sizeof(RESCUEINT64);
+  RESCUEINT64 *newParentIndx = new RESCUEINT64[(size_t) parentAllocated];
+  memcpy(newParentIndx, parentIndx, sizeNow);
+  delete [] parentIndx;
+  parentIndx = newParentIndx;
+  if (parentJndx != 0)
+  {
       RESCUEINT64 *newParentJndx = new RESCUEINT64[(size_t) parentAllocated];
       memcpy(newParentJndx, parentJndx, sizeNow);
       delete [] parentJndx;
       parentJndx = newParentJndx;
-    }
-    if (parentKndx != 0)
-    {
+  }
+  if (parentKndx != 0)
+  {
       RESCUEINT64 *newParentKndx = new RESCUEINT64[(size_t) parentAllocated];
       memcpy(newParentKndx, parentKndx, sizeNow);
       delete [] parentKndx;
       parentKndx = newParentKndx;
-    }
-    if (lgrNdx != 0)
-    {
+  }
+  if (lgrNdx != 0)
+  {
       RESCUEINT64 *newLgrNdx = new RESCUEINT64[(size_t) parentAllocated];
       memcpy(newLgrNdx, lgrNdx, sizeNow);
       delete [] lgrNdx;
       lgrNdx = newLgrNdx;
-    }
+  }
   }
 }
 
@@ -205,30 +205,30 @@ void RescueParametricLGRMap::SetCellToCell(RESCUEINT32 iNdx, RESCUEINT32 jNdx, R
   lgrIndx[cellToCellMapCount] = iNdx;
   if (lgrJndx != 0)
   {
-    lgrJndx[cellToCellMapCount] = jNdx;
+  lgrJndx[cellToCellMapCount] = jNdx;
   }
   if (lgrKndx != 0)
   {
-    lgrKndx[cellToCellMapCount] = kNdx;
+  lgrKndx[cellToCellMapCount] = kNdx;
   }
   parentNdx[cellToCellMapCount] = parentMapCount;
   parentCount[cellToCellMapCount] = parentCountIn;
   RESCUEINT32 loop;
   for (loop = 0; loop < parentCountIn; loop++)
   {
-    parentIndx[parentMapCount + (RESCUEINT64) loop] = pIndx[loop];
-    if (parentJndx != 0)
-    {
+  parentIndx[parentMapCount + (RESCUEINT64) loop] = pIndx[loop];
+  if (parentJndx != 0)
+  {
       parentJndx[parentMapCount + (RESCUEINT64) loop] = pJndx[loop];
-    }
-    if (parentKndx != 0)
-    {
+  }
+  if (parentKndx != 0)
+  {
       parentKndx[parentMapCount + (RESCUEINT64) loop] = pKndx[loop];
-    }
-    if (lgrNdx != 0)
-    {
+  }
+  if (lgrNdx != 0)
+  {
       lgrNdx[parentMapCount + (RESCUEINT64) loop] = cellToCellMapCount;
-    }
+  }
   }
   cellToCellMapCount++;
   parentMapCount += parentCountIn;
@@ -243,30 +243,30 @@ void RescueParametricLGRMap::SetCellToCell(RESCUEINT64 iNdx, RESCUEINT64 jNdx, R
   lgrIndx[cellToCellMapCount] = iNdx;
   if (lgrJndx != 0)
   {
-    lgrJndx[cellToCellMapCount] = jNdx;
+  lgrJndx[cellToCellMapCount] = jNdx;
   }
   if (lgrKndx != 0)
   {
-    lgrKndx[cellToCellMapCount] = kNdx;
+  lgrKndx[cellToCellMapCount] = kNdx;
   }
   parentNdx[cellToCellMapCount] = parentMapCount;
   parentCount[cellToCellMapCount] = parentCountIn;
   RESCUEINT64 loop;
   for (loop = 0; loop < parentCountIn; loop++)
   {
-    parentIndx[parentMapCount + loop] = pIndx[loop];
-    if (parentJndx != 0)
-    {
+  parentIndx[parentMapCount + loop] = pIndx[loop];
+  if (parentJndx != 0)
+  {
       parentJndx[parentMapCount + loop] = pJndx[loop];
-    }
-    if (parentKndx != 0)
-    {
+  }
+  if (parentKndx != 0)
+  {
       parentKndx[parentMapCount + loop] = pKndx[loop];
-    }
-    if (lgrNdx != 0)
-    {
+  }
+  if (lgrNdx != 0)
+  {
       lgrNdx[parentMapCount + loop] = cellToCellMapCount;
-    }
+  }
   }
   cellToCellMapCount++;
   parentMapCount += parentCountIn;
@@ -279,44 +279,44 @@ RESCUEINT32 RescueParametricLGRMap::ReadLGRCellToCell(RESCUEINT32 iNdx, RESCUEIN
   RESCUEINT32 loop;
   for (loop = 0; loop < cellToCellMapCount && myReturn < 0; loop++)
   {
-    if (iNdx == lgrIndx[loop]
-    && (jNdx == -1 || ((lgrJndx == 0) ? true : lgrJndx[loop] == jNdx))
-    && (kNdx == -1 || ((lgrKndx == 0) ? true : lgrKndx[loop] == kNdx)))
-    {
+  if (iNdx == lgrIndx[loop]
+  && (jNdx == -1 || ((lgrJndx == 0) ? true : lgrJndx[loop] == jNdx))
+  && (kNdx == -1 || ((lgrKndx == 0) ? true : lgrKndx[loop] == kNdx)))
+  {
       if (parentCount[loop] > 2147483647 || parentCount[loop] < -2147483647)
       {
-        throw "Model is too large to be written in 32 bit mode.";
+    throw "Model is too large to be written in 32 bit mode.";
       }
       myReturn = (RESCUEINT32) parentCount[loop];
       RESCUEINT32 subloop;
       for (subloop = 0; subloop < allocated && subloop < myReturn; subloop++)
       {
-        if (pIndx != 0)
-        {
+    if (pIndx != 0)
+    {
           if (parentIndx[myReturn + subloop] > 2147483647 || parentIndx[myReturn + subloop] < -2147483647)
           {
-            throw "Model is too large to be written in 32 bit mode.";
+      throw "Model is too large to be written in 32 bit mode.";
           }
           pIndx[subloop] = (RESCUEINT32) parentIndx[myReturn + subloop];
-        }
-        if (pJndx != 0 && parentJndx != 0)
-        {
+    }
+    if (pJndx != 0 && parentJndx != 0)
+    {
           if (parentJndx[myReturn + subloop] > 2147483647 || parentJndx[myReturn + subloop] < -2147483647)
           {
-            throw "Model is too large to be written in 32 bit mode.";
+      throw "Model is too large to be written in 32 bit mode.";
           }
           pJndx[subloop] = (RESCUEINT32) parentJndx[myReturn + subloop];
-        }
-        if (pKndx != 0 && parentKndx != 0)
-        {
+    }
+    if (pKndx != 0 && parentKndx != 0)
+    {
           if (parentKndx[myReturn + subloop] > 2147483647 || parentKndx[myReturn + subloop] < -2147483647)
           {
-            throw "Model is too large to be written in 32 bit mode.";
+      throw "Model is too large to be written in 32 bit mode.";
           }
           pKndx[subloop] = (RESCUEINT32) parentKndx[myReturn + subloop];
-        }
-      }
     }
+      }
+  }
   }
   return myReturn;
 }
@@ -328,28 +328,28 @@ RESCUEINT64 RescueParametricLGRMap::ReadLGRCellToCell(RESCUEINT64 iNdx, RESCUEIN
   RESCUEINT64 loop;
   for (loop = 0; loop < cellToCellMapCount && myReturn < 0; loop++)
   {
-    if (iNdx == lgrIndx[loop]
-    && (jNdx == -1 || ((lgrJndx == 0) ? true : lgrJndx[loop] == jNdx))
-    && (kNdx == -1 || ((lgrKndx == 0) ? true : lgrKndx[loop] == kNdx)))
-    {
+  if (iNdx == lgrIndx[loop]
+  && (jNdx == -1 || ((lgrJndx == 0) ? true : lgrJndx[loop] == jNdx))
+  && (kNdx == -1 || ((lgrKndx == 0) ? true : lgrKndx[loop] == kNdx)))
+  {
       myReturn = parentCount[loop];
       RESCUEINT64 subloop;
       for (subloop = 0; subloop < allocated && subloop < myReturn; subloop++)
       {
-        if (pIndx != 0)
-        {
+    if (pIndx != 0)
+    {
           pIndx[subloop] = parentIndx[myReturn + subloop];
-        }
-        if (pJndx != 0 && parentJndx != 0)
-        {
-          pJndx[subloop] = parentJndx[myReturn + subloop];
-        }
-        if (pKndx != 0 && parentKndx != 0)
-        {
-          pKndx[subloop] = parentKndx[myReturn + subloop];
-        }
-      }
     }
+    if (pJndx != 0 && parentJndx != 0)
+    {
+          pJndx[subloop] = parentJndx[myReturn + subloop];
+    }
+    if (pKndx != 0 && parentKndx != 0)
+    {
+          pKndx[subloop] = parentKndx[myReturn + subloop];
+    }
+      }
+  }
   }
   return myReturn;
 }
@@ -361,41 +361,41 @@ RESCUEINT32 RescueParametricLGRMap::ReadParentCellToCell(RESCUEINT32 iNdx, RESCU
   RESCUEINT32 loop;
   for (loop = 0; loop < parentMapCount; loop++)
   {
-    if (iNdx == parentIndx[loop]
-    && (jNdx == -1 || ((parentJndx == 0) ? true : parentJndx[loop] == jNdx))
-    && (kNdx == -1 || ((parentKndx == 0) ? true : parentKndx[loop] == kNdx)))
-    {
+  if (iNdx == parentIndx[loop]
+  && (jNdx == -1 || ((parentJndx == 0) ? true : parentJndx[loop] == jNdx))
+  && (kNdx == -1 || ((parentKndx == 0) ? true : parentKndx[loop] == kNdx)))
+  {
       if (myReturn < 0) myReturn++;
       if (lgrNdx != 0 && allocated > 0)
       {
-        if (cIndx != 0)
-        {
+    if (cIndx != 0)
+    {
           if (lgrIndx[lgrNdx[loop]] > 2147483647 || lgrIndx[lgrNdx[loop]] < -2147483647)
           {
-            throw "Model is too large to be written in 32 bit mode.";
+      throw "Model is too large to be written in 32 bit mode.";
           }
           cIndx[myReturn] = (RESCUEINT32) lgrIndx[lgrNdx[loop]];
-        }
-        if (cJndx != 0 && parentJndx != 0 && lgrJndx != 0)
-        {
+    }
+    if (cJndx != 0 && parentJndx != 0 && lgrJndx != 0)
+    {
           if (lgrJndx[lgrNdx[loop]] > 2147483647 || lgrJndx[lgrNdx[loop]] < -2147483647)
           {
-            throw "Model is too large to be written in 32 bit mode.";
+      throw "Model is too large to be written in 32 bit mode.";
           }
           cJndx[myReturn] = (RESCUEINT32) lgrJndx[lgrNdx[loop]];
-        }
-        if (cKndx != 0 && parentKndx != 0 && lgrKndx != 0)
-        {
+    }
+    if (cKndx != 0 && parentKndx != 0 && lgrKndx != 0)
+    {
           if (lgrKndx[lgrNdx[loop]] > 2147483647 || lgrKndx[lgrNdx[loop]] < -2147483647)
           {
-            throw "Model is too large to be written in 32 bit mode.";
+      throw "Model is too large to be written in 32 bit mode.";
           }
           cKndx[myReturn] = (RESCUEINT32) lgrKndx[lgrNdx[loop]];
-        }
-        allocated--;
+    }
+    allocated--;
       }
       myReturn++;
-    }
+  }
   }
   return myReturn;
 }
@@ -407,29 +407,29 @@ RESCUEINT64 RescueParametricLGRMap::ReadParentCellToCell(RESCUEINT64 iNdx, RESCU
   RESCUEINT64 loop;
   for (loop = 0; loop < parentMapCount; loop++)
   {
-    if (iNdx == parentIndx[loop]
-    && (jNdx == -1 || ((parentJndx == 0) ? true : parentJndx[loop] == jNdx))
-    && (kNdx == -1 || ((parentKndx == 0) ? true : parentKndx[loop] == kNdx)))
-    {
+  if (iNdx == parentIndx[loop]
+  && (jNdx == -1 || ((parentJndx == 0) ? true : parentJndx[loop] == jNdx))
+  && (kNdx == -1 || ((parentKndx == 0) ? true : parentKndx[loop] == kNdx)))
+  {
       if (myReturn < 0) myReturn++;
       if (lgrNdx != 0 && allocated > 0)
       {
-        if (cIndx != 0)
-        {
+    if (cIndx != 0)
+    {
           cIndx[myReturn] = lgrIndx[lgrNdx[loop]];
-        }
-        if (cJndx != 0 && parentJndx != 0 && lgrJndx != 0)
-        {
+    }
+    if (cJndx != 0 && parentJndx != 0 && lgrJndx != 0)
+    {
           cJndx[myReturn] = lgrJndx[lgrNdx[loop]];
-        }
-        if (cKndx != 0 && parentKndx != 0 && lgrKndx != 0)
-        {
+    }
+    if (cKndx != 0 && parentKndx != 0 && lgrKndx != 0)
+    {
           cKndx[myReturn] = lgrKndx[lgrNdx[loop]];
-        }
-        allocated--;
+    }
+    allocated--;
       }
       myReturn++;
-    }
+  }
   }
   return myReturn;
 }
@@ -440,122 +440,122 @@ void RescueParametricLGRMap::CopyArray(RescuePMLGRArrayName whichArray, RESCUEIN
   switch (whichArray)
   {
   case LGR_I_NDX:
-    {
+  {
       RESCUEINT32 loop;
       for (loop = 0; loop < srcCount && srcLowBound + loop < cellToCellMapCount; loop++)
       {
-        if (lgrIndx[srcLowBound + loop] > 2147483647 || lgrIndx[srcLowBound + loop] < -2147483647)
-        {
+    if (lgrIndx[srcLowBound + loop] > 2147483647 || lgrIndx[srcLowBound + loop] < -2147483647)
+    {
           throw "Model is too large to be written in 32 bit mode.";
-        }
-        preAllocated[destOffset + loop] = (RESCUEINT32) lgrIndx[srcLowBound + loop];
-      }
     }
-    break;
+    preAllocated[destOffset + loop] = (RESCUEINT32) lgrIndx[srcLowBound + loop];
+      }
+  }
+  break;
   case LGR_J_NDX:
-    {
+  {
       RESCUEINT32 loop;
       for (loop = 0; loop < srcCount && srcLowBound + loop < cellToCellMapCount; loop++)
       {
-        if (lgrJndx[srcLowBound + loop] > 2147483647 || lgrJndx[srcLowBound + loop] < -2147483647)
-        {
+    if (lgrJndx[srcLowBound + loop] > 2147483647 || lgrJndx[srcLowBound + loop] < -2147483647)
+    {
           throw "Model is too large to be written in 32 bit mode.";
-        }
-        preAllocated[destOffset + loop] = (RESCUEINT32) lgrJndx[srcLowBound + loop];
-      }
     }
-    break;
+    preAllocated[destOffset + loop] = (RESCUEINT32) lgrJndx[srcLowBound + loop];
+      }
+  }
+  break;
   case LGR_K_NDX:
-    {
+  {
       RESCUEINT32 loop;
       for (loop = 0; loop < srcCount && srcLowBound + loop < cellToCellMapCount; loop++)
       {
-        if (lgrKndx[srcLowBound + loop] > 2147483647 || lgrKndx[srcLowBound + loop] < -2147483647)
-        {
+    if (lgrKndx[srcLowBound + loop] > 2147483647 || lgrKndx[srcLowBound + loop] < -2147483647)
+    {
           throw "Model is too large to be written in 32 bit mode.";
-        }
-        preAllocated[destOffset + loop] = (RESCUEINT32) lgrKndx[srcLowBound + loop];
-      }
     }
-    break;
+    preAllocated[destOffset + loop] = (RESCUEINT32) lgrKndx[srcLowBound + loop];
+      }
+  }
+  break;
   case PARENT_NDX:
-    {
+  {
       RESCUEINT32 loop;
       for (loop = 0; loop < srcCount && srcLowBound + loop < cellToCellMapCount; loop++)
       {
-        if (parentNdx[srcLowBound + loop] > 2147483647 || parentNdx[srcLowBound + loop] < -2147483647)
-        {
+    if (parentNdx[srcLowBound + loop] > 2147483647 || parentNdx[srcLowBound + loop] < -2147483647)
+    {
           throw "Model is too large to be written in 32 bit mode.";
-        }
-        preAllocated[destOffset + loop] = (RESCUEINT32) parentNdx[srcLowBound + loop];
-      }
     }
-    break;
+    preAllocated[destOffset + loop] = (RESCUEINT32) parentNdx[srcLowBound + loop];
+      }
+  }
+  break;
   case PARENT_COUNT:
-    {
+  {
       RESCUEINT32 loop;
       for (loop = 0; loop < srcCount && srcLowBound + loop < cellToCellMapCount; loop++)
       {
-        if (parentCount[srcLowBound + loop] > 2147483647 || parentCount[srcLowBound + loop] < -2147483647)
-        {
+    if (parentCount[srcLowBound + loop] > 2147483647 || parentCount[srcLowBound + loop] < -2147483647)
+    {
           throw "Model is too large to be written in 32 bit mode.";
-        }
-        preAllocated[destOffset + loop] = (RESCUEINT32) parentCount[srcLowBound + loop];
-      }
     }
-    break;
+    preAllocated[destOffset + loop] = (RESCUEINT32) parentCount[srcLowBound + loop];
+      }
+  }
+  break;
   case PARENT_I_NDX:
-    {
+  {
       RESCUEINT32 loop;
       for (loop = 0; loop < srcCount && srcLowBound + loop < parentMapCount; loop++)
       {
-        if (parentIndx[srcLowBound + loop] > 2147483647 || parentIndx[srcLowBound + loop] < -2147483647)
-        {
+    if (parentIndx[srcLowBound + loop] > 2147483647 || parentIndx[srcLowBound + loop] < -2147483647)
+    {
           throw "Model is too large to be written in 32 bit mode.";
-        }
-        preAllocated[destOffset + loop] = (RESCUEINT32) parentIndx[srcLowBound + loop];
-      }
     }
-    break;
+    preAllocated[destOffset + loop] = (RESCUEINT32) parentIndx[srcLowBound + loop];
+      }
+  }
+  break;
   case PARENT_J_NDX:
-    {
+  {
       RESCUEINT32 loop;
       for (loop = 0; loop < srcCount && srcLowBound + loop < parentMapCount; loop++)
       {
-        if (parentJndx[srcLowBound + loop] > 2147483647 || parentJndx[srcLowBound + loop] < -2147483647)
-        {
+    if (parentJndx[srcLowBound + loop] > 2147483647 || parentJndx[srcLowBound + loop] < -2147483647)
+    {
           throw "Model is too large to be written in 32 bit mode.";
-        }
-        preAllocated[destOffset + loop] = (RESCUEINT32) parentJndx[srcLowBound + loop];
-      }
     }
-    break;
+    preAllocated[destOffset + loop] = (RESCUEINT32) parentJndx[srcLowBound + loop];
+      }
+  }
+  break;
   case PARENT_K_NDX:
-    {
+  {
       RESCUEINT32 loop;
       for (loop = 0; loop < srcCount && srcLowBound + loop < parentMapCount; loop++)
       {
-        if (parentKndx[srcLowBound + loop] > 2147483647 || parentKndx[srcLowBound + loop] < -2147483647)
-        {
+    if (parentKndx[srcLowBound + loop] > 2147483647 || parentKndx[srcLowBound + loop] < -2147483647)
+    {
           throw "Model is too large to be written in 32 bit mode.";
-        }
-        preAllocated[destOffset + loop] = (RESCUEINT32) parentKndx[srcLowBound + loop];
-      }
     }
-    break;
+    preAllocated[destOffset + loop] = (RESCUEINT32) parentKndx[srcLowBound + loop];
+      }
+  }
+  break;
   case LGR_NDX:
-    {
+  {
       RESCUEINT32 loop;
       for (loop = 0; loop < srcCount && srcLowBound + loop < parentMapCount; loop++)
       {
-        if (lgrNdx[srcLowBound + loop] > 2147483647 || lgrNdx[srcLowBound + loop] < -2147483647)
-        {
+    if (lgrNdx[srcLowBound + loop] > 2147483647 || lgrNdx[srcLowBound + loop] < -2147483647)
+    {
           throw "Model is too large to be written in 32 bit mode.";
-        }
-        preAllocated[destOffset + loop] = (RESCUEINT32) lgrNdx[srcLowBound + loop];
-      }
     }
-    break;
+    preAllocated[destOffset + loop] = (RESCUEINT32) lgrNdx[srcLowBound + loop];
+      }
+  }
+  break;
   }
 }
 
@@ -565,126 +565,126 @@ void RescueParametricLGRMap::CopyArray(RescuePMLGRArrayName whichArray, RESCUEIN
   switch (whichArray)
   {
   case LGR_I_NDX:
-    {
+  {
       RESCUEINT64 loop;
       for (loop = 0; loop < srcCount && srcLowBound + loop < cellToCellMapCount; loop++)
       {
-        preAllocated[destOffset + loop] = lgrIndx[srcLowBound + loop];
+    preAllocated[destOffset + loop] = lgrIndx[srcLowBound + loop];
       }
-    }
-    break;
+  }
+  break;
   case LGR_J_NDX:
-    {
+  {
       RESCUEINT64 loop;
       for (loop = 0; loop < srcCount && srcLowBound + loop < cellToCellMapCount; loop++)
       {
-        preAllocated[destOffset + loop] = lgrJndx[srcLowBound + loop];
+    preAllocated[destOffset + loop] = lgrJndx[srcLowBound + loop];
       }
-    }
-    break;
+  }
+  break;
   case LGR_K_NDX:
-    {
+  {
       RESCUEINT64 loop;
       for (loop = 0; loop < srcCount && srcLowBound + loop < cellToCellMapCount; loop++)
       {
-        preAllocated[destOffset + loop] = lgrKndx[srcLowBound + loop];
+    preAllocated[destOffset + loop] = lgrKndx[srcLowBound + loop];
       }
-    }
-    break;
+  }
+  break;
   case PARENT_NDX:
-    {
+  {
       RESCUEINT64 loop;
       for (loop = 0; loop < srcCount && srcLowBound + loop < cellToCellMapCount; loop++)
       {
-        preAllocated[destOffset + loop] = parentNdx[srcLowBound + loop];
+    preAllocated[destOffset + loop] = parentNdx[srcLowBound + loop];
       }
-    }
-    break;
+  }
+  break;
   case PARENT_COUNT:
-    {
+  {
       RESCUEINT64 loop;
       for (loop = 0; loop < srcCount && srcLowBound + loop < cellToCellMapCount; loop++)
       {
-        preAllocated[destOffset + loop] = parentCount[srcLowBound + loop];
+    preAllocated[destOffset + loop] = parentCount[srcLowBound + loop];
       }
-    }
-    break;
+  }
+  break;
   case PARENT_I_NDX:
-    {
+  {
       RESCUEINT64 loop;
       for (loop = 0; loop < srcCount && srcLowBound + loop < parentMapCount; loop++)
       {
-        preAllocated[destOffset + loop] = parentIndx[srcLowBound + loop];
+    preAllocated[destOffset + loop] = parentIndx[srcLowBound + loop];
       }
-    }
-    break;
+  }
+  break;
   case PARENT_J_NDX:
-    {
+  {
       RESCUEINT64 loop;
       for (loop = 0; loop < srcCount && srcLowBound + loop < parentMapCount; loop++)
       {
-        preAllocated[destOffset + loop] = parentJndx[srcLowBound + loop];
+    preAllocated[destOffset + loop] = parentJndx[srcLowBound + loop];
       }
-    }
-    break;
+  }
+  break;
   case PARENT_K_NDX:
-    {
+  {
       RESCUEINT64 loop;
       for (loop = 0; loop < srcCount && srcLowBound + loop < parentMapCount; loop++)
       {
-        preAllocated[destOffset + loop] = parentKndx[srcLowBound + loop];
+    preAllocated[destOffset + loop] = parentKndx[srcLowBound + loop];
       }
-    }
-    break;
+  }
+  break;
   case LGR_NDX:
-    {
+  {
       RESCUEINT64 loop;
       for (loop = 0; loop < srcCount && srcLowBound + loop < parentMapCount; loop++)
       {
-        preAllocated[destOffset + loop] = lgrNdx[srcLowBound + loop];
+    preAllocated[destOffset + loop] = lgrNdx[srcLowBound + loop];
       }
-    }
-    break;
+  }
+  break;
   }
 }
 
 void RescueParametricLGRMap::Accept(RESCUEINT32 cellToCellCountIn, 
-                                    RESCUEINT32 *lgrIndxIn,
-                                    RESCUEINT32 *lgrJndxIn,
-                                    RESCUEINT32 *lgrKndxIn,
-                                    RESCUEINT32 *parentNdxIn,
-                                    RESCUEINT32 *parentCountIn,
-                                    RESCUEINT32 parentMapCountIn,
-                                    RESCUEINT32 *parentIndxIn,
-                                    RESCUEINT32 *parentJndxIn,
-                                    RESCUEINT32 *parentKndxIn,
-                                    RESCUEINT32 *lgrNdxIn)
+                  RESCUEINT32 *lgrIndxIn,
+                  RESCUEINT32 *lgrJndxIn,
+                  RESCUEINT32 *lgrKndxIn,
+                  RESCUEINT32 *parentNdxIn,
+                  RESCUEINT32 *parentCountIn,
+                  RESCUEINT32 parentMapCountIn,
+                  RESCUEINT32 *parentIndxIn,
+                  RESCUEINT32 *parentJndxIn,
+                  RESCUEINT32 *parentKndxIn,
+                  RESCUEINT32 *lgrNdxIn)
 {
   cellToCellMapCount = cellToCellCountIn;
   refinedAllocated = cellToCellMapCount;
   if (lgrIndx != 0)
   {
-    delete [] lgrIndx;
+  delete [] lgrIndx;
   }
   lgrIndx = RescueContext::Allocate64For32(lgrIndxIn, cellToCellCountIn, true);
   if (lgrJndx != 0)
   {
-    delete [] lgrJndx;
+  delete [] lgrJndx;
   }
   lgrJndx = RescueContext::Allocate64For32(lgrJndxIn, cellToCellCountIn, true);
   if (lgrKndx != 0)
   {
-    delete [] lgrKndx;
+  delete [] lgrKndx;
   }
   lgrKndx = RescueContext::Allocate64For32(lgrKndxIn, cellToCellCountIn, true);
   if (parentNdx != 0)
   {
-    delete [] parentNdx;
+  delete [] parentNdx;
   }
   parentNdx = RescueContext::Allocate64For32(parentNdxIn, cellToCellCountIn, true);
   if (parentCount != 0)
   {
-    delete [] parentCount;
+  delete [] parentCount;
   }
   parentCount = RescueContext::Allocate64For32(parentCountIn, cellToCellCountIn, true);
 
@@ -692,63 +692,63 @@ void RescueParametricLGRMap::Accept(RESCUEINT32 cellToCellCountIn,
   parentAllocated = parentMapCount;
   if (parentIndx != 0)
   {
-    delete [] parentIndx;
+  delete [] parentIndx;
   }
   parentIndx = RescueContext::Allocate64For32(parentIndxIn, parentMapCountIn, true);
   if (parentJndx != 0)
   {
-    delete [] parentJndx;
+  delete [] parentJndx;
   }
   parentJndx = RescueContext::Allocate64For32(parentJndxIn, parentMapCountIn, true);
   if (parentKndx != 0)
   {
-    delete [] parentKndx;
+  delete [] parentKndx;
   }
   parentKndx = RescueContext::Allocate64For32(parentKndxIn, parentMapCountIn, true);
   if (lgrNdx != 0)
   {
-    delete [] lgrNdx;
+  delete [] lgrNdx;
   }
   lgrNdx = RescueContext::Allocate64For32(lgrNdxIn, parentMapCountIn, true);
 }
 
 void RescueParametricLGRMap::Accept(RESCUEINT64 cellToCellCountIn, 
-                                    RESCUEINT64 *lgrIndxIn,
-                                    RESCUEINT64 *lgrJndxIn,
-                                    RESCUEINT64 *lgrKndxIn,
-                                    RESCUEINT64 *parentNdxIn,
-                                    RESCUEINT64 *parentCountIn,
-                                    RESCUEINT64 parentMapCountIn,
-                                    RESCUEINT64 *parentIndxIn,
-                                    RESCUEINT64 *parentJndxIn,
-                                    RESCUEINT64 *parentKndxIn,
-                                    RESCUEINT64 *lgrNdxIn)
+                  RESCUEINT64 *lgrIndxIn,
+                  RESCUEINT64 *lgrJndxIn,
+                  RESCUEINT64 *lgrKndxIn,
+                  RESCUEINT64 *parentNdxIn,
+                  RESCUEINT64 *parentCountIn,
+                  RESCUEINT64 parentMapCountIn,
+                  RESCUEINT64 *parentIndxIn,
+                  RESCUEINT64 *parentJndxIn,
+                  RESCUEINT64 *parentKndxIn,
+                  RESCUEINT64 *lgrNdxIn)
 {
   cellToCellMapCount = cellToCellCountIn;
   refinedAllocated = cellToCellMapCount;
   if (lgrIndx != 0)
   {
-    delete [] lgrIndx;
+  delete [] lgrIndx;
   }
   lgrIndx = lgrIndxIn;
   if (lgrJndx != 0)
   {
-    delete [] lgrJndx;
+  delete [] lgrJndx;
   }
   lgrJndx = lgrJndxIn;
   if (lgrKndx != 0)
   {
-    delete [] lgrKndx;
+  delete [] lgrKndx;
   }
   lgrKndx = lgrKndxIn;
   if (parentNdx != 0)
   {
-    delete [] parentNdx;
+  delete [] parentNdx;
   }
   parentNdx = parentNdxIn;
   if (parentCount != 0)
   {
-    delete [] parentCount;
+  delete [] parentCount;
   }
   parentCount = parentCountIn;
 
@@ -756,22 +756,22 @@ void RescueParametricLGRMap::Accept(RESCUEINT64 cellToCellCountIn,
   parentAllocated = parentMapCount;
   if (parentIndx != 0)
   {
-    delete [] parentIndx;
+  delete [] parentIndx;
   }
   parentIndx = parentIndxIn;
   if (parentJndx != 0)
   {
-    delete [] parentJndx;
+  delete [] parentJndx;
   }
   parentJndx = parentJndxIn;
   if (parentKndx != 0)
   {
-    delete [] parentKndx;
+  delete [] parentKndx;
   }
   parentKndx = parentKndxIn;
   if (lgrNdx != 0)
   {
-    delete [] lgrNdx;
+  delete [] lgrNdx;
   }
   lgrNdx = lgrNdxIn;
 }
@@ -790,96 +790,96 @@ void RescueParametricLGRMap::Set(RESCUEINT32 cellToCellCountIn,
 {
   if (lgrJndxIn == 0 && lgrJndx != 0)
   {
-    delete [] lgrJndx;
-    lgrJndx = 0;
+  delete [] lgrJndx;
+  lgrJndx = 0;
   }
   if (lgrKndxIn == 0 && lgrKndx != 0)
   {
-    delete [] lgrKndx;
-    lgrKndx = 0;
+  delete [] lgrKndx;
+  lgrKndx = 0;
   }
   cellToCellMapCount = cellToCellCountIn;
   if (cellToCellCountIn > refinedAllocated)
   {
-    refinedAllocated = cellToCellCountIn;
-    delete [] lgrIndx;
-    lgrIndx = new RESCUEINT64[(size_t) refinedAllocated];
-    if (lgrJndx != 0)
-    {
+  refinedAllocated = cellToCellCountIn;
+  delete [] lgrIndx;
+  lgrIndx = new RESCUEINT64[(size_t) refinedAllocated];
+  if (lgrJndx != 0)
+  {
       delete [] lgrJndx;
       lgrJndx = 0;
-    }
-    if (lgrJndxIn != 0) lgrJndx = new RESCUEINT64[(size_t) refinedAllocated];
-    if (lgrKndx != 0)
-    {
+  }
+  if (lgrJndxIn != 0) lgrJndx = new RESCUEINT64[(size_t) refinedAllocated];
+  if (lgrKndx != 0)
+  {
       delete [] lgrKndx;
       lgrKndx = 0;
-    }
-    if (lgrKndxIn != 0) lgrKndx = new RESCUEINT64[(size_t) refinedAllocated];
-    delete [] parentNdx;
-    parentNdx = new RESCUEINT64[(size_t) refinedAllocated];
-    delete [] parentCount;
-    parentCount = new RESCUEINT64[(size_t) refinedAllocated];
+  }
+  if (lgrKndxIn != 0) lgrKndx = new RESCUEINT64[(size_t) refinedAllocated];
+  delete [] parentNdx;
+  parentNdx = new RESCUEINT64[(size_t) refinedAllocated];
+  delete [] parentCount;
+  parentCount = new RESCUEINT64[(size_t) refinedAllocated];
   }
   RESCUEINT64 loop;
   for (loop = 0; loop < cellToCellCountIn; loop++)
   {
-    lgrIndx[loop] = lgrIndxIn[loop];
-    if (lgrJndx != 0 && lgrJndxIn != 0)
-    {
+  lgrIndx[loop] = lgrIndxIn[loop];
+  if (lgrJndx != 0 && lgrJndxIn != 0)
+  {
       lgrJndx[loop] = lgrJndxIn[loop];
-    }
-    if (lgrKndx != 0 && lgrKndxIn != 0)
-    {
+  }
+  if (lgrKndx != 0 && lgrKndxIn != 0)
+  {
       lgrKndx[loop] = lgrKndxIn[loop];
-    }
-    parentNdx[loop] = parentNdxIn[loop];
-    parentCount[loop] = parentCountIn[loop];
+  }
+  parentNdx[loop] = parentNdxIn[loop];
+  parentCount[loop] = parentCountIn[loop];
   }
 
   if (parentJndxIn == 0 && parentJndx != 0)
   {
-    delete [] parentJndx;
-    parentJndx = 0;
+  delete [] parentJndx;
+  parentJndx = 0;
   }
   if (parentKndxIn == 0 && parentKndx != 0)
   {
-    delete [] parentKndx;
-    parentKndx = 0;
+  delete [] parentKndx;
+  parentKndx = 0;
   }
   parentMapCount = parentMapCountIn;
   if (parentMapCountIn > parentAllocated)
   {
-    parentAllocated = parentMapCountIn;
-    delete [] parentIndx;
-    parentIndx = new RESCUEINT64[(size_t) parentAllocated];
-    if (parentJndx != 0)
-    {
+  parentAllocated = parentMapCountIn;
+  delete [] parentIndx;
+  parentIndx = new RESCUEINT64[(size_t) parentAllocated];
+  if (parentJndx != 0)
+  {
       delete [] parentJndx;
       parentJndx = 0;
-    }
-    if (parentJndxIn != 0) parentJndx = new RESCUEINT64[(size_t) parentAllocated];
-    if (parentKndx != 0)
-    {
+  }
+  if (parentJndxIn != 0) parentJndx = new RESCUEINT64[(size_t) parentAllocated];
+  if (parentKndx != 0)
+  {
       delete [] parentKndx;
       parentKndx = 0;
-    }
-    if (parentKndxIn != 0) parentKndx = new RESCUEINT64[(size_t) parentAllocated];
-    delete [] lgrNdx;
-    lgrNdx = new RESCUEINT64[(size_t) parentAllocated];
+  }
+  if (parentKndxIn != 0) parentKndx = new RESCUEINT64[(size_t) parentAllocated];
+  delete [] lgrNdx;
+  lgrNdx = new RESCUEINT64[(size_t) parentAllocated];
   }
   for (loop = 0; loop < parentMapCountIn; loop++)
   {
-    parentIndx[loop] = parentIndxIn[loop];
-    if (parentJndx != 0 && parentJndxIn != 0)
-    {
+  parentIndx[loop] = parentIndxIn[loop];
+  if (parentJndx != 0 && parentJndxIn != 0)
+  {
       parentJndx[loop] = parentJndxIn[loop];
-    }
-    if (parentKndx != 0 && parentKndxIn != 0)
-    {
+  }
+  if (parentKndx != 0 && parentKndxIn != 0)
+  {
       parentKndx[loop] = parentKndxIn[loop];
-    }
-    lgrNdx[loop] = lgrNdxIn[loop];
+  }
+  lgrNdx[loop] = lgrNdxIn[loop];
   }
   
 }
@@ -898,96 +898,96 @@ void RescueParametricLGRMap::Set(RESCUEINT64 cellToCellCountIn,
 {
   if (lgrJndxIn == 0 && lgrJndx != 0)
   {
-    delete [] lgrJndx;
-    lgrJndx = 0;
+  delete [] lgrJndx;
+  lgrJndx = 0;
   }
   if (lgrKndxIn == 0 && lgrKndx != 0)
   {
-    delete [] lgrKndx;
-    lgrKndx = 0;
+  delete [] lgrKndx;
+  lgrKndx = 0;
   }
   cellToCellMapCount = cellToCellCountIn;
   if (cellToCellCountIn > refinedAllocated)
   {
-    refinedAllocated = cellToCellCountIn;
-    delete [] lgrIndx;
-    lgrIndx = new RESCUEINT64[(size_t) refinedAllocated];
-    if (lgrJndx != 0)
-    {
+  refinedAllocated = cellToCellCountIn;
+  delete [] lgrIndx;
+  lgrIndx = new RESCUEINT64[(size_t) refinedAllocated];
+  if (lgrJndx != 0)
+  {
       delete [] lgrJndx;
       lgrJndx = 0;
-    }
-    if (lgrJndxIn != 0) lgrJndx = new RESCUEINT64[(size_t) refinedAllocated];
-    if (lgrKndx != 0)
-    {
+  }
+  if (lgrJndxIn != 0) lgrJndx = new RESCUEINT64[(size_t) refinedAllocated];
+  if (lgrKndx != 0)
+  {
       delete [] lgrKndx;
       lgrKndx = 0;
-    }
-    if (lgrKndxIn != 0) lgrKndx = new RESCUEINT64[(size_t) refinedAllocated];
-    delete [] parentNdx;
-    parentNdx = new RESCUEINT64[(size_t) refinedAllocated];
-    delete [] parentCount;
-    parentCount = new RESCUEINT64[(size_t) refinedAllocated];
+  }
+  if (lgrKndxIn != 0) lgrKndx = new RESCUEINT64[(size_t) refinedAllocated];
+  delete [] parentNdx;
+  parentNdx = new RESCUEINT64[(size_t) refinedAllocated];
+  delete [] parentCount;
+  parentCount = new RESCUEINT64[(size_t) refinedAllocated];
   }
   RESCUEINT64 loop;
   for (loop = 0; loop < cellToCellCountIn; loop++)
   {
-    lgrIndx[loop] = lgrIndxIn[loop];
-    if (lgrJndx != 0 && lgrJndxIn != 0)
-    {
+  lgrIndx[loop] = lgrIndxIn[loop];
+  if (lgrJndx != 0 && lgrJndxIn != 0)
+  {
       lgrJndx[loop] = lgrJndxIn[loop];
-    }
-    if (lgrKndx != 0 && lgrKndxIn != 0)
-    {
+  }
+  if (lgrKndx != 0 && lgrKndxIn != 0)
+  {
       lgrKndx[loop] = lgrKndxIn[loop];
-    }
-    parentNdx[loop] = parentNdxIn[loop];
-    parentCount[loop] = parentCountIn[loop];
+  }
+  parentNdx[loop] = parentNdxIn[loop];
+  parentCount[loop] = parentCountIn[loop];
   }
 
   if (parentJndxIn == 0 && parentJndx != 0)
   {
-    delete [] parentJndx;
-    parentJndx = 0;
+  delete [] parentJndx;
+  parentJndx = 0;
   }
   if (parentKndxIn == 0 && parentKndx != 0)
   {
-    delete [] parentKndx;
-    parentKndx = 0;
+  delete [] parentKndx;
+  parentKndx = 0;
   }
   parentMapCount = parentMapCountIn;
   if (parentMapCountIn > parentAllocated)
   {
-    parentAllocated = parentMapCountIn;
-    delete [] parentIndx;
-    parentIndx = new RESCUEINT64[(size_t) parentAllocated];
-    if (parentJndx != 0)
-    {
+  parentAllocated = parentMapCountIn;
+  delete [] parentIndx;
+  parentIndx = new RESCUEINT64[(size_t) parentAllocated];
+  if (parentJndx != 0)
+  {
       delete [] parentJndx;
       parentJndx = 0;
-    }
-    if (parentJndxIn != 0) parentJndx = new RESCUEINT64[(size_t) parentAllocated];
-    if (parentKndx != 0)
-    {
+  }
+  if (parentJndxIn != 0) parentJndx = new RESCUEINT64[(size_t) parentAllocated];
+  if (parentKndx != 0)
+  {
       delete [] parentKndx;
       parentKndx = 0;
-    }
-    if (parentKndxIn != 0) parentKndx = new RESCUEINT64[(size_t) parentAllocated];
-    delete [] lgrNdx;
-    lgrNdx = new RESCUEINT64[(size_t) parentAllocated];
+  }
+  if (parentKndxIn != 0) parentKndx = new RESCUEINT64[(size_t) parentAllocated];
+  delete [] lgrNdx;
+  lgrNdx = new RESCUEINT64[(size_t) parentAllocated];
   }
   for (loop = 0; loop < parentMapCountIn; loop++)
   {
-    parentIndx[loop] = parentIndxIn[loop];
-    if (parentJndx != 0 && parentJndxIn != 0)
-    {
+  parentIndx[loop] = parentIndxIn[loop];
+  if (parentJndx != 0 && parentJndxIn != 0)
+  {
       parentJndx[loop] = parentJndxIn[loop];
-    }
-    if (parentKndx != 0 && parentKndxIn != 0)
-    {
+  }
+  if (parentKndx != 0 && parentKndxIn != 0)
+  {
       parentKndx[loop] = parentKndxIn[loop];
-    }
-    lgrNdx[loop] = lgrNdxIn[loop];
+  }
+  lgrNdx[loop] = lgrNdxIn[loop];
   }
   
 }
@@ -998,21 +998,21 @@ void RescueParametricLGRMap::Archive(RescueContext *context, FILE *archiveFile)
   myfprintf(context, archiveFile, lgrIndx, cellToCellMapCount, FALSE);
   if (lgrJndx == 0)
   {
-    myfprintf(context, archiveFile, (RESCUEINT64) 0);
+  myfprintf(context, archiveFile, (RESCUEINT64) 0);
   }
   else
   {
-    myfprintf(context, archiveFile, (RESCUEINT64) 1);
-    myfprintf(context, archiveFile, lgrJndx, cellToCellMapCount, FALSE);
+  myfprintf(context, archiveFile, (RESCUEINT64) 1);
+  myfprintf(context, archiveFile, lgrJndx, cellToCellMapCount, FALSE);
   }
   if (lgrKndx == 0)
   {
-    myfprintf(context, archiveFile, (RESCUEINT64) 0);
+  myfprintf(context, archiveFile, (RESCUEINT64) 0);
   }
   else
   {
-    myfprintf(context, archiveFile, (RESCUEINT64) 1);
-    myfprintf(context, archiveFile, lgrKndx, cellToCellMapCount, FALSE);
+  myfprintf(context, archiveFile, (RESCUEINT64) 1);
+  myfprintf(context, archiveFile, lgrKndx, cellToCellMapCount, FALSE);
   }
   myfprintf(context, archiveFile, parentNdx, cellToCellMapCount, FALSE);
   myfprintf(context, archiveFile, parentCount, cellToCellMapCount, FALSE);
@@ -1020,56 +1020,56 @@ void RescueParametricLGRMap::Archive(RescueContext *context, FILE *archiveFile)
   myfprintf(context, archiveFile, parentIndx, parentMapCount, FALSE);
   if (parentJndx == 0)
   {
-    myfprintf(context, archiveFile, (RESCUEINT64) 0);
+  myfprintf(context, archiveFile, (RESCUEINT64) 0);
   }
   else
   {
-    myfprintf(context, archiveFile, (RESCUEINT64) 1);
-    myfprintf(context, archiveFile, parentJndx, parentMapCount, FALSE);
+  myfprintf(context, archiveFile, (RESCUEINT64) 1);
+  myfprintf(context, archiveFile, parentJndx, parentMapCount, FALSE);
   }
   if (parentKndx == 0)
   {
-    myfprintf(context, archiveFile, (RESCUEINT64) 0);
+  myfprintf(context, archiveFile, (RESCUEINT64) 0);
   }
   else
   {
-    myfprintf(context, archiveFile, (RESCUEINT64) 1);
-    myfprintf(context, archiveFile, parentKndx, parentMapCount, FALSE);
+  myfprintf(context, archiveFile, (RESCUEINT64) 1);
+  myfprintf(context, archiveFile, parentKndx, parentMapCount, FALSE);
   }
   if (lgrNdx == 0)
   {
-    myfprintf(context, archiveFile, (RESCUEINT64) 0);
+  myfprintf(context, archiveFile, (RESCUEINT64) 0);
   }
   else
   {
-    myfprintf(context, archiveFile, (RESCUEINT64) 1);
-    myfprintf(context, archiveFile, lgrNdx, parentMapCount, FALSE);
+  myfprintf(context, archiveFile, (RESCUEINT64) 1);
+  myfprintf(context, archiveFile, lgrNdx, parentMapCount, FALSE);
   }
   if (context->FileVersion() >= 37)
   {
-    if (properties == 0 
-    &&  propertyContainerId != 0 
-    &&  lgrGeometry->ParentModel()->propertyActionImmediate == TRUE)
-    {
+  if (properties == 0 
+  &&  propertyContainerId != 0 
+  &&  lgrGeometry->ParentModel()->propertyActionImmediate == TRUE)
+  {
       properties = new cSetRescueDataContainer(lgrGeometry->ParentModel(), propertyContainerId);  // Will Read.
-    }
-    if (properties != 0)
-    {
+  }
+  if (properties != 0)
+  {
       myfprintf(context, archiveFile, "properties");
       RescueBuffer buf1(context, 10);
       buf1 << properties->Identifier();
       buf1.Archive(archiveFile);
 
       properties->Archive(); // Goes into it's own file.
-    }
-    else if (properties == 0 && propertyContainerId != 0)
-    {
+  }
+  else if (properties == 0 && propertyContainerId != 0)
+  {
       myfprintf(context, archiveFile, "properties");
       RescueBuffer buf1(context, 10);
       buf1 << propertyContainerId;
       buf1.Archive(archiveFile);
-    }
-    myfprintf(context, archiveFile, "EOD");
+  }
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -1095,14 +1095,14 @@ RescueParametricLGRMap::RescueParametricLGRMap(RescueContext *context, FILE *arc
   myfscanf(context, archiveFile, &flag);
   if (flag == 1)
   {
-    lgrJndx = new RESCUEINT64 [(size_t) refinedAllocated];
-    myfscanf(context, archiveFile, lgrJndx, cellToCellMapCount, FALSE);
+  lgrJndx = new RESCUEINT64 [(size_t) refinedAllocated];
+  myfscanf(context, archiveFile, lgrJndx, cellToCellMapCount, FALSE);
   }
   myfscanf(context, archiveFile, &flag);
   if (flag == 1)
   {
-    lgrKndx = new RESCUEINT64 [(size_t) refinedAllocated];
-    myfscanf(context, archiveFile, lgrKndx, cellToCellMapCount, FALSE);
+  lgrKndx = new RESCUEINT64 [(size_t) refinedAllocated];
+  myfscanf(context, archiveFile, lgrKndx, cellToCellMapCount, FALSE);
   }
   parentNdx = new RESCUEINT64 [(size_t) refinedAllocated];
   myfscanf(context, archiveFile, parentNdx, cellToCellMapCount, FALSE);
@@ -1116,39 +1116,39 @@ RescueParametricLGRMap::RescueParametricLGRMap(RescueContext *context, FILE *arc
   myfscanf(context, archiveFile, &flag);
   if (flag == 1)
   {
-    parentJndx = new RESCUEINT64 [(size_t) parentAllocated];
-    myfscanf(context, archiveFile, parentJndx, parentMapCount, FALSE);
+  parentJndx = new RESCUEINT64 [(size_t) parentAllocated];
+  myfscanf(context, archiveFile, parentJndx, parentMapCount, FALSE);
   }
   myfscanf(context, archiveFile, &flag);
   if (flag == 1)
   {
-    parentKndx = new RESCUEINT64 [(size_t) parentAllocated];
-    myfscanf(context, archiveFile, parentKndx, parentMapCount, FALSE);
+  parentKndx = new RESCUEINT64 [(size_t) parentAllocated];
+  myfscanf(context, archiveFile, parentKndx, parentMapCount, FALSE);
   }
   myfscanf(context, archiveFile, &flag);
   if (flag == 1)
   {
-    lgrNdx = new RESCUEINT64 [(size_t) parentAllocated];
-    myfscanf(context, archiveFile, lgrNdx, parentMapCount, FALSE);
+  lgrNdx = new RESCUEINT64 [(size_t) parentAllocated];
+  myfscanf(context, archiveFile, lgrNdx, parentMapCount, FALSE);
   }
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       if (strcmp(myString, "properties") == 0)
       {
-        RescueBuffer buf(context, archiveFile);
-        buf >> propertyContainerId;
+    RescueBuffer buf(context, archiveFile);
+    buf >> propertyContainerId;
       }
       else
       {
-        RescueBuffer buf(context, archiveFile);
+    RescueBuffer buf(context, archiveFile);
       }
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -1162,11 +1162,11 @@ RESCUEBOOL RescueParametricLGRMap::AnyFileTruncated()
   RESCUEBOOL myReturn = FALSE;
   if (properties == 0 && propertyContainerId != 0)
   {
-    properties = new cSetRescueDataContainer(lgrGeometry->ParentModel(), propertyContainerId);  // Will Read.
+  properties = new cSetRescueDataContainer(lgrGeometry->ParentModel(), propertyContainerId);  // Will Read.
   }
   if (properties != 0)
   {
-    myReturn = properties->AnyFileTruncated();
+  myReturn = properties->AnyFileTruncated();
   }
   return myReturn;
 }
@@ -1175,10 +1175,10 @@ cSetRescueDataContainer *RescueParametricLGRMap::DataContainers()
 {
   if (properties == 0)
   {
-    if (propertyContainerId != 0)
-    {
+  if (propertyContainerId != 0)
+  {
       properties = new cSetRescueDataContainer(lgrGeometry->ParentModel(), propertyContainerId);  // Will Read.
-    }
+  }
   }
   return properties;
 }
@@ -1187,14 +1187,14 @@ cSetRescueDataContainer *RescueParametricLGRMap::DemandDataContainers()
 {
   if (properties == 0)
   {
-    if (propertyContainerId != 0)
-    {
+  if (propertyContainerId != 0)
+  {
       properties = new cSetRescueDataContainer(lgrGeometry->ParentModel(), propertyContainerId);  // Will Read.
-    }
-    else
-    {
+  }
+  else
+  {
       properties = new cSetRescueDataContainer(lgrGeometry->ParentModel());
-    }
+  }
   }
   return properties;
 }
@@ -1204,7 +1204,7 @@ void RescueParametricLGRMap::FindUniquePropertyNames(cSetString *container)
   cSetRescueDataContainer *containers = DataContainers();
   if (containers != 0)
   {
-    containers->FindUniquePropertyNames(container);
+  containers->FindUniquePropertyNames(container);
   }
 }
 
@@ -1213,10 +1213,10 @@ RESCUEINT32 RescueParametricLGRMap::CellToCellMapCount(RESCUEBOOL throwIfTooBig)
   RESCUEINT64 output = CellToCellMapCount64();
   if (throwIfTooBig)
   {
-    if (output > 2147483647 || output < -2147483647)
-    {
+  if (output > 2147483647 || output < -2147483647)
+  {
       throw "Model is too large to be read in 32 bit mode.";
-    }
+  }
   }
   return (RESCUEINT32) output;
 }
@@ -1251,10 +1251,10 @@ RESCUEINT32 RescueParametricLGRMap::ParentMapCount(RESCUEBOOL throwIfTooBig)
   RESCUEINT64 output = ParentMapCount64();
   if (throwIfTooBig)
   {
-    if (output > 2147483647 || output < -2147483647)
-    {
+  if (output > 2147483647 || output < -2147483647)
+  {
       throw "Model is too large to be read in 32 bit mode.";
-    }
+  }
   }
   return (RESCUEINT32) output;
 }

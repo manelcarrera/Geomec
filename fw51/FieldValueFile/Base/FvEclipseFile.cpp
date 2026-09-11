@@ -21,7 +21,7 @@ CEclipseFile::~CEclipseFile()
 {
   // Destroy
   for(size_t nReservoir = 0; nReservoir < m_vcReservoir.size(); nReservoir++)
-    delete m_vcReservoir[nReservoir];
+  delete m_vcReservoir[nReservoir];
 
   m_vcReservoir.clear();
 }
@@ -40,15 +40,15 @@ bool CEclipseFile::ReadSpecGrid(TInputStream& stream, const QString& sToken)
   // Read Number Of reservoirs
   stream.eatwhite();
   if( stream.peek() == '/' ) 
-    nReservoir = 1;
+  nReservoir = 1;
   else
-    stream >> nReservoir;
+  stream >> nReservoir;
 
   // Create Reservoirs
   m_vcReservoir.resize(nReservoir);
 
   for(size_t i = 0; i < m_vcReservoir.size(); i++)
-    m_vcReservoir[i] = &CreateReservoir(x, y);
+  m_vcReservoir[i] = &CreateReservoir(x, y);
 
   // Read Coordinates Format
   stream.eatwhite();
@@ -57,17 +57,17 @@ bool CEclipseFile::ReadSpecGrid(TInputStream& stream, const QString& sToken)
   switch(stream.get())
   {
   case 'F':
-    m_bCartesian = true;
-    break;
+  m_bCartesian = true;
+  break;
   case 'T':
-    m_bCartesian = false;
-    break;
+  m_bCartesian = false;
+  break;
   case '/':
-    m_bCartesian = true;
-    return true;
-    break;
+  m_bCartesian = true;
+  return true;
+  break;
   default:
-    throw CReadException("Illigal definition after keyword " + sToken);
+  throw CReadException("Illigal definition after keyword " + sToken);
   }
 
   // Do we have a delimiter
@@ -82,34 +82,34 @@ bool CEclipseFile::ReadCoordinates(TInputStream& stream, const QString& /*sToken
 
   for(size_t nReservoir = 0; nReservoir < m_vcReservoir.size(); nReservoir++)
   {
-    for(int y = 0; y < (m_vcReservoir[nReservoir]->SizeY() + 1); y++)
-    {
+  for(int y = 0; y < (m_vcReservoir[nReservoir]->SizeY() + 1); y++)
+  {
       for(int x = 0; x < (m_vcReservoir[nReservoir]->SizeX() + 1); x++)
       {
-        CEclipseReservoir* pRes = m_vcReservoir[nReservoir];
+    CEclipseReservoir* pRes = m_vcReservoir[nReservoir];
 
-        // Read Lower Node
-        double dx, dy, dz;
+    // Read Lower Node
+    double dx, dy, dz;
 
-        stream >> dx;
-        stream >> dy;
-        stream >> dz;
+    stream >> dx;
+    stream >> dy;
+    stream >> dz;
 
-        pRes->LowerGrid(x, y, geo::CPoint(dx, dy, dz));
+    pRes->LowerGrid(x, y, geo::CPoint(dx, dy, dz));
 
-        // Read Upper node
-        stream >> dx;
-        stream >> dy;
-        stream >> dz;
+    // Read Upper node
+    stream >> dx;
+    stream >> dy;
+    stream >> dz;
 
-        pRes->UpperGrid(x, y, geo::CPoint(dx, dy, dz));
+    pRes->UpperGrid(x, y, geo::CPoint(dx, dy, dz));
 
-        assert(pRes->LowerGrid(x, y).Z() <= pRes->UpperGrid(x, y).Z());
+    assert(pRes->LowerGrid(x, y).Z() <= pRes->UpperGrid(x, y).Z());
 
-        ItemRead();
+    ItemRead();
 
       } // X Loop
-    } // Y Loop
+  } // Y Loop
   } // Res Loop
 
   stream.checkDelimiter('/');
@@ -121,7 +121,7 @@ bool CEclipseFile::ReadCoordinates(TInputStream& stream, const QString& /*sToken
 void CEclipseFile::Destroy()
 {
   for(size_t i = 0; i < m_vcReservoir.size(); i++)
-    delete m_vcReservoir[i];
+  delete m_vcReservoir[i];
 
   m_vcReservoir.clear();
 }
@@ -130,53 +130,53 @@ bool CEclipseFile::ReadCoordSys(TInputStream& stream, const QString& sToken)
 {
   for(size_t nReservoir = 0; nReservoir < m_vcReservoir.size(); nReservoir++)
   {
-    // Read the reservoir boundaries
-    int nLowerBound, nUpperBound;
+  // Read the reservoir boundaries
+  int nLowerBound, nUpperBound;
 
-    stream >> nLowerBound;
-    stream >> nUpperBound;
+  stream >> nLowerBound;
+  stream >> nUpperBound;
 
-    m_vcReservoir[nReservoir]->Boundary(nLowerBound - 1, nUpperBound - 1);
+  m_vcReservoir[nReservoir]->Boundary(nLowerBound - 1, nUpperBound - 1);
 
 
-    // Read the Comp/Incomp
-    stream.eatwhite();
-    if(stream.peek() != '/') {
+  // Read the Comp/Incomp
+  stream.eatwhite();
+  if(stream.peek() != '/') {
       QString sString;
       stream >> sString;
 
       if(sString.toUpper().contains("INCOMP"))
-        m_vcReservoir[nReservoir]->CircleCompleted(false);
+    m_vcReservoir[nReservoir]->CircleCompleted(false);
       else if(sString.toUpper().contains("COMP"))
-        m_vcReservoir[nReservoir]->CircleCompleted(true);
+    m_vcReservoir[nReservoir]->CircleCompleted(true);
       else
-        throw CReadException("Illigal definition after keyword " + sToken);
-    } else {
+    throw CReadException("Illigal definition after keyword " + sToken);
+  } else {
       m_vcReservoir[nReservoir]->CircleCompleted(false);
-    }
+  }
 
-    stream.eatwhite();
-    if(stream.peek() == '\'') stream.get();
-    stream.eatwhite();
+  stream.eatwhite();
+  if(stream.peek() == '\'') stream.get();
+  stream.eatwhite();
 
-    // Read the Seperate / Join
-    if(stream.peek() != '/'){
+  // Read the Seperate / Join
+  if(stream.peek() != '/'){
       QString sString;
       stream >> sString;
 
       if(sString.toUpper().contains("JOIN"))
-        m_vcReservoir[nReservoir]->Join(true);
+    m_vcReservoir[nReservoir]->Join(true);
       else if(sString.toUpper().contains("SEPARATE"))
-        m_vcReservoir[nReservoir]->Join(false);
+    m_vcReservoir[nReservoir]->Join(false);
       else
-        throw CReadException("Illigal definition after keyword " + sToken);
-    } else {
+    throw CReadException("Illigal definition after keyword " + sToken);
+  } else {
       m_vcReservoir[nReservoir]->Join(false);
-    }
+  }
 
-    stream.eatwhite();
-    if(stream.peek() != '/')
-    {
+  stream.eatwhite();
+  if(stream.peek() != '/')
+  {
       int nLowerIndex, nUpperIndex;
 
       stream >> nLowerIndex;
@@ -184,12 +184,12 @@ bool CEclipseFile::ReadCoordSys(TInputStream& stream, const QString& sToken)
 
       m_vcReservoir[nReservoir]->ReservoirBoundary(*m_vcReservoir[nLowerIndex],
                              *m_vcReservoir[nUpperIndex]);
-    }
-    else
+  }
+  else
       m_vcReservoir[nReservoir]->ReservoirBoundary(*m_vcReservoir[nReservoir],
                              *m_vcReservoir[nReservoir]);
 
-    stream.checkDelimiter('/');
+  stream.checkDelimiter('/');
   }
 
   return true;
@@ -213,9 +213,9 @@ bool CEclipseFile::WriteSpecGrid(TOutputStream& stream)
 
   // Write Coordinate system
   if(m_bCartesian)
-    stream << "F" << " ";
+  stream << "F" << " ";
   else
-    stream << "T" << " ";
+  stream << "T" << " ";
 
   // Write Delimiter
   stream << "/\n";
@@ -230,20 +230,20 @@ bool CEclipseFile::ReadZCoord(TInputStream& stream, const QString& /*sToken*/)
 
   for(int z = 0; z < (m_nDepth * 2); z++)
   {
-    for(int y = 0; y < (m_vcReservoir[0]->SizeY() * 2); y++)
-    {
+  for(int y = 0; y < (m_vcReservoir[0]->SizeY() * 2); y++)
+  {
       for(int x = 0; x < (m_vcReservoir[0]->SizeX() * 2); x++)
       {
-        CEclipseReservoir *pRes = &Reservoir((z-(z%2))/2);
+    CEclipseReservoir *pRes = &Reservoir((z-(z%2))/2);
 
-        // Read the z coordinate
-        stream >> dZ;
+    // Read the z coordinate
+    stream >> dZ;
 
-        pRes->Depth(x, y, z, dZ);
+    pRes->Depth(x, y, z, dZ);
 
-        ItemRead();
+    ItemRead();
       }
-    }
+  }
   }
 
   stream.checkDelimiter('/');
@@ -253,9 +253,9 @@ bool CEclipseFile::ReadZCoord(TInputStream& stream, const QString& /*sToken*/)
 const CEclipseReservoir& CEclipseFile::Reservoir(int nDepth) const
 {
   for(size_t nReservoir = 0; nReservoir < m_vcReservoir.size(); nReservoir++)
-    if((m_vcReservoir[nReservoir]->LowerBoundary() <= nDepth) &&
+  if((m_vcReservoir[nReservoir]->LowerBoundary() <= nDepth) &&
       (nDepth <= m_vcReservoir[nReservoir]->UpperBoundary()))
-    return *m_vcReservoir[nReservoir];
+  return *m_vcReservoir[nReservoir];
 
   assert(false);
 
@@ -265,9 +265,9 @@ const CEclipseReservoir& CEclipseFile::Reservoir(int nDepth) const
 CEclipseReservoir& CEclipseFile::Reservoir(int nDepth)
 {
   for(size_t nReservoir = 0; nReservoir < m_vcReservoir.size(); nReservoir++)
-    if((m_vcReservoir[nReservoir]->LowerBoundary() <= nDepth) &&
+  if((m_vcReservoir[nReservoir]->LowerBoundary() <= nDepth) &&
       (nDepth <= m_vcReservoir[nReservoir]->UpperBoundary()))
-    return *m_vcReservoir[nReservoir];
+  return *m_vcReservoir[nReservoir];
 
   assert(false);
 
@@ -300,26 +300,26 @@ bool CEclipseFile::WriteCoord(TOutputStream& stream)
 
   for(size_t nReservoir = 0; nReservoir < m_vcReservoir.size(); nReservoir++)
   {
-    for(int y = 0; y < (m_vcReservoir[nReservoir]->SizeY() + 1); y++)
-    {
+  for(int y = 0; y < (m_vcReservoir[nReservoir]->SizeY() + 1); y++)
+  {
       for(int x = 0; x < (m_vcReservoir[nReservoir]->SizeX() + 1); x++)
       {
-        CEclipseReservoir* pRes = m_vcReservoir[nReservoir];
+    CEclipseReservoir* pRes = m_vcReservoir[nReservoir];
 
-        stream << pRes->LowerGrid(x, y).X() << " ";
-        stream << pRes->LowerGrid(x, y).Y() << " ";
-        stream << pRes->LowerGrid(x, y).Z() << "\t";
+    stream << pRes->LowerGrid(x, y).X() << " ";
+    stream << pRes->LowerGrid(x, y).Y() << " ";
+    stream << pRes->LowerGrid(x, y).Z() << "\t";
 
-        stream << pRes->UpperGrid(x, y).X() << " ";
-        stream << pRes->UpperGrid(x, y).Y() << " ";
-        stream << pRes->UpperGrid(x, y).Z() << "\n";
+    stream << pRes->UpperGrid(x, y).X() << " ";
+    stream << pRes->UpperGrid(x, y).Y() << " ";
+    stream << pRes->UpperGrid(x, y).Z() << "\n";
 
-        assert(pRes->LowerGrid(x,y).Z() <= pRes->UpperGrid(x, y).Z());
+    assert(pRes->LowerGrid(x,y).Z() <= pRes->UpperGrid(x, y).Z());
 
-        ItemSaved();
+    ItemSaved();
 
       } // X Loop
-    } // Y Loop
+  } // Y Loop
   } // Res Loop
 
   stream << "/\n";
@@ -335,26 +335,26 @@ bool CEclipseFile::WriteZCoord(TOutputStream& stream)
 
   for(int z = 0; z < (m_nDepth * 2); z++)
   {
-    for(int y = 0; y < (m_vcReservoir[0]->SizeY() * 2); y++)
-    {
+  for(int y = 0; y < (m_vcReservoir[0]->SizeY() * 2); y++)
+  {
       for(int x = 0; x < (m_vcReservoir[0]->SizeX() * 2); x++)
       {
-        CEclipseReservoir *pRes = &Reservoir((z-(z%2))/2);
+    CEclipseReservoir *pRes = &Reservoir((z-(z%2))/2);
 
-        // Read the z coordinate
-        stream << pRes->Depth(x, y, z) << " ";
+    // Read the z coordinate
+    stream << pRes->Depth(x, y, z) << " ";
 
-        if(nRep == 5)
-        {
+    if(nRep == 5)
+    {
           nRep = 0;
           stream << "\n";
-        }
-        else
+    }
+    else
           nRep++;
 
-        ItemSaved();
+    ItemSaved();
       }// X Loop
-    }// Y Loop
+  }// Y Loop
   }// Z Loop
 
   stream << "/\n";
@@ -366,7 +366,7 @@ bool CEclipseFile::OnParseFail(TInputStream& stream, const QString& sToken)
 {
   // We must have reservoirs otherwise we have failure
   if(m_vcReservoir.size() == 0)
-    return CTextFile::OnParseFail( stream, sToken );
+  return CTextFile::OnParseFail( stream, sToken );
 
   // When the parser fails it could be a property or a failing
   // keyword (a wrong file)
@@ -376,18 +376,18 @@ bool CEclipseFile::OnParseFail(TInputStream& stream, const QString& sToken)
   // Start reading doubles
   for(int z = 0; z < SizeZ(); z++)
   {
-    for(int y = 0; y < SizeY(); y++)
-    {
+  for(int y = 0; y < SizeY(); y++)
+  {
       for(int x = 0; x < SizeX(); x++)
       {
-        // Read a double
-        double dValue;
-        stream >> dValue;
-        PropertyValue(nIndex, x, y, z, dValue);
+    // Read a double
+    double dValue;
+    stream >> dValue;
+    PropertyValue(nIndex, x, y, z, dValue);
 
-        ItemRead();
+    ItemRead();
       }
-    }
+  }
   }
 
   // When delimiter is available everthing is ok
@@ -416,15 +416,15 @@ bool CEclipseFile::OnEndParseSucceed()
   //for(Zp = 0; Zp < m_vcHorizon.size(); Zp++)
   for(Zp = 0; Zp < m_vcEclipseHorizon.size(); Zp++)
   {
-    // Insert mean points in the current horizon
-    TEclipseHorizon& horizon = m_vcEclipseHorizon[Zp];
-    for(Xp = 0; Xp < horizon.size(); Xp++)
-    {
+  // Insert mean points in the current horizon
+  TEclipseHorizon& horizon = m_vcEclipseHorizon[Zp];
+  for(Xp = 0; Xp < horizon.size(); Xp++)
+  {
       for(Yp = 0; Yp < horizon[Xp].size(); Yp++)
       {
-        horizon[Xp][Yp] = MeanPoint(Xp, Yp, Zp);
+    horizon[Xp][Yp] = MeanPoint(Xp, Yp, Zp);
       }
-    }
+  }
   }
 
 
@@ -436,11 +436,11 @@ geo::CPoint CEclipseFile::MeanPoint(int Xp, int Yp, int Zp) const
   // Calculate mean point
   std::vector<geo::CPoint> vcPoint = AdjacentPoints(Xp, Yp, Zp);
   if(vcPoint.size() == 0)
-    return geo::CPoint();
+  return geo::CPoint();
 
   geo::CPoint ret = vcPoint[0];
   for(size_t i = 1; i < vcPoint.size(); i++)
-    ret = ret + vcPoint[i];
+  ret = ret + vcPoint[i];
 
   return ret / vcPoint.size();
 }
@@ -464,9 +464,9 @@ void CEclipseFile::AddPoint(std::vector<geo::CPoint> &vcPoint, int Xv, int Yv, i
 {
   if((Xv >= 0) && (Yv >= 0) && (Zv >= 0) && (Xv < SizeX()) && (Yv < SizeY()) && (Zv < SizeZ()))
   {
-    // Voxel exists so return the requested point
+  // Voxel exists so return the requested point
 //    if(Reservoir(Zv).CellEnable(Xv, Yv, Zv))
-    vcPoint.push_back(geo::CPoint(Cell(Xv, Yv, Zv).GetAt(px, py, pz)));
+  vcPoint.push_back(geo::CPoint(Cell(Xv, Yv, Zv).GetAt(px, py, pz)));
   }
 }
 
@@ -495,20 +495,20 @@ bool CEclipseFile::ReadCellEnable(TInputStream& stream, const QString& /*sToken*
 
   for(int z = 0; z < SizeZ(); z++)
   {
-    for(int y = 0; y < SizeY(); y++)
-    {
+  for(int y = 0; y < SizeY(); y++)
+  {
       for(int x = 0; x < SizeX(); x++)
       {
-        CEclipseReservoir *pRes = &Reservoir(z);
+    CEclipseReservoir *pRes = &Reservoir(z);
 
-        // Read Enable
-        stream >> bEnable;
+    // Read Enable
+    stream >> bEnable;
 
-        pRes->CellEnable(x, y, z, bEnable);
+    pRes->CellEnable(x, y, z, bEnable);
 
-        ItemRead();
+    ItemRead();
       }
-    }
+  }
   }
 
   stream.checkDelimiter('/');
@@ -524,27 +524,27 @@ bool CEclipseFile::WriteCellEnable(TOutputStream& stream)
 
   for(int z = 0; z < SizeZ(); z++)
   {
-    for(int y = 0; y < SizeY(); y++)
-    {
+  for(int y = 0; y < SizeY(); y++)
+  {
       for(int x = 0; x < SizeX(); x++)
       {
-        CEclipseReservoir *pRes = &Reservoir(z);
+    CEclipseReservoir *pRes = &Reservoir(z);
 
-        // Write Enable
-        stream << pRes->CellEnable(x, y, z) << " ";
+    // Write Enable
+    stream << pRes->CellEnable(x, y, z) << " ";
 
-        if(x == (pRes->SizeX() - 1))
+    if(x == (pRes->SizeX() - 1))
           stream << "\n";
 
-        if((x == (pRes->SizeX() - 1)) && (y == (pRes->SizeY() - 1)))
+    if((x == (pRes->SizeX() - 1)) && (y == (pRes->SizeY() - 1)))
           stream << "\n";
 
 //        if(stream.fail())
 //          return false;
 
-        ItemSaved();
+    ItemSaved();
       }
-    }
+  }
   }
 
   stream << "/\n";
@@ -556,36 +556,36 @@ bool CEclipseFile::WriteProperties(TOutputStream& stream)
 {
   for(size_t i = 0; i < PropertySize(); i++)
   {
-    assert(m_vcReservoir.size() != 0);
+  assert(m_vcReservoir.size() != 0);
 
-    stream << PropertyName(i) << '\n';
+  stream << PropertyName(i) << '\n';
 
-    for(int z = 0; z < SizeZ(); z++)
-    {
+  for(int z = 0; z < SizeZ(); z++)
+  {
       for(int y = 0; y < SizeY(); y++)
       {
-        for(int x = 0; x < SizeX(); x++)
-        {
+    for(int x = 0; x < SizeX(); x++)
+    {
           CEclipseReservoir *pRes = &Reservoir(z);
 
           // Write Enable
           stream << PropertyValue(i, x, y, z) << " ";
 
           if(x == (pRes->SizeX() - 1))
-            stream << "\n";
+      stream << "\n";
 
           if((x == (pRes->SizeX() - 1)) && (y == (pRes->SizeY() - 1)))
-            stream << "\n";
+      stream << "\n";
 
 //          if(stream.fail())
 //            return false;
 
           ItemSaved();
-        }
-      }
     }
+      }
+  }
 
-    stream << "/\n";
+  stream << "/\n";
   }
 
   return true;
@@ -600,34 +600,34 @@ bool CEclipseFile::WriteCoordSys(TOutputStream& stream)
 
   for(size_t nReservoir = 0; nReservoir < m_vcReservoir.size(); nReservoir++)
   {
-    // Write boundary
-    stream << m_vcReservoir[nReservoir]->LowerBoundary() + 1 << " ";
-    stream << m_vcReservoir[nReservoir]->UpperBoundary() + 1 << " ";
+  // Write boundary
+  stream << m_vcReservoir[nReservoir]->LowerBoundary() + 1 << " ";
+  stream << m_vcReservoir[nReservoir]->UpperBoundary() + 1 << " ";
 
-    // Write circle completed
-    if(m_vcReservoir[nReservoir]->CircleCompleted())
+  // Write circle completed
+  if(m_vcReservoir[nReservoir]->CircleCompleted())
       stream << "'COMP' ";
-    else
+  else
       stream << "'INCOMP' ";
 
-    // Write join
-    if(m_vcReservoir[nReservoir]->Join())
+  // Write join
+  if(m_vcReservoir[nReservoir]->Join())
       stream << "'JOIN' ";
-    else
+  else
       stream << "'SEPARATE' ";
 
-    // Write Lower boundary
-    for(size_t nTestRes = 0; nTestRes < m_vcReservoir.size(); nTestRes++)
+  // Write Lower boundary
+  for(size_t nTestRes = 0; nTestRes < m_vcReservoir.size(); nTestRes++)
       if(m_vcReservoir[nTestRes] == &m_vcReservoir[nReservoir]->LowerReservoirBoundary())
-        stream << nTestRes + 1 << " ";
+    stream << nTestRes + 1 << " ";
 
-    // Write Upper boundary
-    for(size_t nTestRes = 0; nTestRes < m_vcReservoir.size(); nTestRes++)
+  // Write Upper boundary
+  for(size_t nTestRes = 0; nTestRes < m_vcReservoir.size(); nTestRes++)
       if(m_vcReservoir[nTestRes] == &m_vcReservoir[nReservoir]->UpperReservoirBoundary())
-        stream << nTestRes + 1 << " ";
+    stream << nTestRes + 1 << " ";
 
-    // Write Delimiter
-    stream << "/\n";
+  // Write Delimiter
+  stream << "/\n";
 
 //    if(stream.fail())
 //      return false;

@@ -9,18 +9,18 @@ class CMaterialFractAnisotropy_Delegate : public IMaterialRock_Delegate
 {
 public:
   CMaterialFractAnisotropy_Delegate(
-    CMaterialFractAnisotropy* materialFractAnisotropy);
+  CMaterialFractAnisotropy* materialFractAnisotropy);
 
 private:
   CMaterialFractAnisotropy_Delegate(
-    const CMaterialFractAnisotropy_Delegate& rhs);
+  const CMaterialFractAnisotropy_Delegate& rhs);
   CMaterialFractAnisotropy_Delegate& operator = (
-    const CMaterialFractAnisotropy_Delegate& rhs);
+  const CMaterialFractAnisotropy_Delegate& rhs);
 
   CMaterialFractAnisotropy* m_materialFractAnisotropy;
 
   REGISTER_DELEGATE(CMaterialFractAnisotropy,
-    CMaterialFractAnisotropy_Delegate);
+  CMaterialFractAnisotropy_Delegate);
 };
 
 #endif  // _MaterialFractAnisotropy_Delegate_h_

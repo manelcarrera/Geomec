@@ -67,39 +67,39 @@ static GtsFace * closest_face (GtsSurface * s, GtsPoint * p)
 
   nt = g_hash_table_size (hash_table);
   if (!nt)
-    return NULL;
+  return NULL;
   ns = (guint)exp(log((gdouble) nt)/3.);
 
   // TNO hash_table->size is cast to guint in order to remove a compile warning...
   for (i = 0, n = 0; i < (guint)(hash_table->size) && n < ns; i++)
-    for (node = hash_table->nodes[i]; node && n < ns; node = node->next, n++) {
+  for (node = hash_table->nodes[i]; node && n < ns; node = node->next, n++) {
       GtsFace * f = node->key;
 
       d = gts_point_distance2 (p, 
-		   GTS_POINT (GTS_SEGMENT (GTS_TRIANGLE (f)->e1)->v1));
+       GTS_POINT (GTS_SEGMENT (GTS_TRIANGLE (f)->e1)->v1));
       if (d < dmin) {
-	dmin = d;
-	closest = f;
+  dmin = d;
+  closest = f;
       }
-    }
+  }
   return closest;
 }
 
 /* returns the face belonging to @surface and neighbor of @f via @e */
 static GtsFace * neighbor (GtsFace * f,
-			   GtsEdge * e,
-			   GtsSurface * surface)
+         GtsEdge * e,
+         GtsSurface * surface)
 {
   GSList * i = e->triangles;
   GtsTriangle * t = GTS_TRIANGLE (f);
 
   while (i) {
-    GtsTriangle * t1 = i->data;
-    if (t1 != t &&
-	GTS_IS_FACE (t1) &&
-	gts_face_has_parent_surface (GTS_FACE (t1), surface))
+  GtsTriangle * t1 = i->data;
+  if (t1 != t &&
+  GTS_IS_FACE (t1) &&
+  gts_face_has_parent_surface (GTS_FACE (t1), surface))
       return GTS_FACE (t1);
-    i = i->next;
+  i = i->next;
   }
   return NULL;
 }
@@ -110,58 +110,58 @@ static GtsFace * neighbor (GtsFace * f,
    contained in @t (on_summit is set to %FALSE) or if s intersects @t 
    exactly on one of its summit (on_summit is set to %TRUE). */
 static GtsEdge * triangle_next_edge (GtsTriangle * t,
-				     GtsPoint * o, GtsPoint * p,
-				     gboolean * on_summit)
+             GtsPoint * o, GtsPoint * p,
+             gboolean * on_summit)
 {
   GtsVertex * v1, * v2, * v3;
   GtsEdge * e1, * e2, * e3;
   gdouble orient = 0.0;
   
   gts_triangle_vertices_edges (t, NULL,
-			       &v1, &v2, &v3, 
-			       &e1, &e2, &e3);
+             &v1, &v2, &v3, 
+             &e1, &e2, &e3);
 
   *on_summit = FALSE;
   orient = gts_point_orientation (o, GTS_POINT (v1), p);
   if (orient > 0.0) {
-    orient = gts_point_orientation (o, GTS_POINT (v2), p);
-    if (orient > 0.0) {
+  orient = gts_point_orientation (o, GTS_POINT (v2), p);
+  if (orient > 0.0) {
       if (gts_point_orientation (GTS_POINT (v2), GTS_POINT (v3), p) >= 0.0)
-	return NULL;
+  return NULL;
       return e2;
-    }
-    if (orient < 0.0) {
+  }
+  if (orient < 0.0) {
       if (gts_point_orientation (GTS_POINT (v1), GTS_POINT (v2), p) >= 0.0)
-	return NULL;
+  return NULL;
       return e1;
-    }
-    if (gts_point_orientation (GTS_POINT (v1), GTS_POINT (v2), p) < 0.0)
+  }
+  if (gts_point_orientation (GTS_POINT (v1), GTS_POINT (v2), p) < 0.0)
       *on_summit = TRUE;
-    return NULL;
+  return NULL;
   }
 
   if (orient < 0.0) {
-    orient = gts_point_orientation (o, GTS_POINT (v3), p);
-    if (orient > 0.0) {
+  orient = gts_point_orientation (o, GTS_POINT (v3), p);
+  if (orient > 0.0) {
       if (gts_point_orientation (GTS_POINT (v3), GTS_POINT (v1), p) >= 0.0)
-	return NULL;
+  return NULL;
       return e3;
-    }
-    if (orient < 0.0) {
+  }
+  if (orient < 0.0) {
       if (gts_point_orientation (GTS_POINT (v2), GTS_POINT (v3), p) >= 0.0)
-	return NULL;
+  return NULL;
       return e2;
-    }
-    if (gts_point_orientation (GTS_POINT (v3), GTS_POINT (v1), p) < 0.0)
+  }
+  if (gts_point_orientation (GTS_POINT (v3), GTS_POINT (v1), p) < 0.0)
       *on_summit = TRUE;
-    return NULL;
+  return NULL;
   }
 
   if (gts_point_orientation (GTS_POINT (v2), GTS_POINT (v3), p) < 0.0)
-    return e2;
+  return e2;
 
   if (gts_point_orientation (GTS_POINT (v1), GTS_POINT (v2), p) < 0.0)
-    *on_summit = TRUE;
+  *on_summit = TRUE;
   return NULL;
 }
 
@@ -169,18 +169,18 @@ static void triangle_barycenter (GtsTriangle * t, GtsPoint * b)
 {
   GtsPoint * p = GTS_POINT (gts_triangle_vertex (t));
   b->x = (p->x + 
-	  GTS_POINT (GTS_SEGMENT(t->e1)->v1)->x +
-	  GTS_POINT (GTS_SEGMENT(t->e1)->v2)->x)/3.;
+    GTS_POINT (GTS_SEGMENT(t->e1)->v1)->x +
+    GTS_POINT (GTS_SEGMENT(t->e1)->v2)->x)/3.;
   b->y = (p->y + 
-	  GTS_POINT (GTS_SEGMENT(t->e1)->v1)->y +
-	  GTS_POINT (GTS_SEGMENT(t->e1)->v2)->y)/3.;
+    GTS_POINT (GTS_SEGMENT(t->e1)->v1)->y +
+    GTS_POINT (GTS_SEGMENT(t->e1)->v2)->y)/3.;
 }
 
 /* wedx 09-06-2008: implemented 'fix' suggested on http://mail.flightgear.org/pipermail/terragear-devel/2003-March/000489.html */
 static GtsFace * point_locate (GtsPoint * o,
-			       GtsPoint * p,
-			       GtsFace * f,
-			       GtsSurface * surface,
+             GtsPoint * p,
+             GtsFace * f,
+             GtsSurface * surface,
              int count)
 {
   GtsEdge * prev;
@@ -191,96 +191,96 @@ static GtsFace * point_locate (GtsPoint * o,
   prev = triangle_next_edge (GTS_TRIANGLE (f), o, p, &on_summit);
 
   if (!prev) {
-    GtsFace * f1;
+  GtsFace * f1;
 
-    if (!on_summit)
+  if (!on_summit)
       return f; /* p is inside f */
 
-    /* s intersects f exactly on a summit: restarts from a neighbor of f */
-    if(count == 0)
-    {
+  /* s intersects f exactly on a summit: restarts from a neighbor of f */
+  if(count == 0)
+  {
       if ((f1 = neighbor (f, GTS_TRIANGLE (f)->e1, surface)) ||
-	        (f1 = neighbor (f, GTS_TRIANGLE (f)->e2, surface)) ||
-	        (f1 = neighbor (f, GTS_TRIANGLE (f)->e3, surface))) {
-        triangle_barycenter (GTS_TRIANGLE (f1), o);
-        return point_locate (o, p, f1, surface, 1);
+      (f1 = neighbor (f, GTS_TRIANGLE (f)->e2, surface)) ||
+      (f1 = neighbor (f, GTS_TRIANGLE (f)->e3, surface))) {
+    triangle_barycenter (GTS_TRIANGLE (f1), o);
+    return point_locate (o, p, f1, surface, 1);
       }
-    }
-    else if(count == 1)
-    {
+  }
+  else if(count == 1)
+  {
       if ((f1 = neighbor (f, GTS_TRIANGLE (f)->e2, surface)) ||
-	        (f1 = neighbor (f, GTS_TRIANGLE (f)->e3, surface)) ||
-	        (f1 = neighbor (f, GTS_TRIANGLE (f)->e1, surface))) {
-        triangle_barycenter (GTS_TRIANGLE (f1), o);
-        return point_locate (o, p, f1, surface, 2);
+      (f1 = neighbor (f, GTS_TRIANGLE (f)->e3, surface)) ||
+      (f1 = neighbor (f, GTS_TRIANGLE (f)->e1, surface))) {
+    triangle_barycenter (GTS_TRIANGLE (f1), o);
+    return point_locate (o, p, f1, surface, 2);
       }
-    }
-    else if(count == 2)
-    {
+  }
+  else if(count == 2)
+  {
       if ((f1 = neighbor (f, GTS_TRIANGLE (f)->e3, surface)) ||
-	        (f1 = neighbor (f, GTS_TRIANGLE (f)->e1, surface)) ||
-	        (f1 = neighbor (f, GTS_TRIANGLE (f)->e2, surface))) {
-        triangle_barycenter (GTS_TRIANGLE (f1), o);
-        return point_locate (o, p, f1, surface, 0);
+      (f1 = neighbor (f, GTS_TRIANGLE (f)->e1, surface)) ||
+      (f1 = neighbor (f, GTS_TRIANGLE (f)->e2, surface))) {
+    triangle_barycenter (GTS_TRIANGLE (f1), o);
+    return point_locate (o, p, f1, surface, 0);
       }
-    }
+  }
 
-    return NULL;
+  return NULL;
   }
   
   f = neighbor (f, prev, surface);
 
   if(f)
-    gts_triangle_vertices_edges (GTS_TRIANGLE (f), prev, 
-		  	       &v1, &v2, &v3, &prev, &e2, &e3);
+  gts_triangle_vertices_edges (GTS_TRIANGLE (f), prev, 
+      	       &v1, &v2, &v3, &prev, &e2, &e3);
 
   while (f) {
-    gdouble orient = gts_point_orientation (o, GTS_POINT (v3), p);
+  gdouble orient = gts_point_orientation (o, GTS_POINT (v3), p);
 
-    if (orient < 0.0) {
+  if (orient < 0.0) {
       if (gts_point_orientation (GTS_POINT (v2), GTS_POINT (v3), p) >= 0.0)
-	return f; /* p is inside f */
+  return f; /* p is inside f */
       f = neighbor (f, e2, surface);
       prev = e2;
       v1 = v3;      
-    }
-    else if (orient > 0.0) {
+  }
+  else if (orient > 0.0) {
       if (gts_point_orientation (GTS_POINT (v3), GTS_POINT (v1), p) >= 0.0)
-	return f; /* p is inside f */
+  return f; /* p is inside f */
       f = neighbor (f, e3, surface);
       prev = e3;
       v2 = v3;
-    }
-    else {
+  }
+  else {
       GtsFace * f1;
 
       if (gts_point_orientation (GTS_POINT (v2), GTS_POINT (v3), p) >= 0.0)
-	return f; /* p is inside f */
+  return f; /* p is inside f */
 
       /* s intersects f exactly on v3: restarts from a neighbor of f */
       if ((f1 = neighbor (f, e2, surface)) ||
-        (f1 = neighbor (f, e3, surface))) {
-        triangle_barycenter (GTS_TRIANGLE (f1), o);
-        return point_locate (o, p, f1, surface, count);
+    (f1 = neighbor (f, e3, surface))) {
+    triangle_barycenter (GTS_TRIANGLE (f1), o);
+    return point_locate (o, p, f1, surface, count);
       }
       return NULL;
-    }
-    /* update e2, e3, v3 for the new triangle */
-    if (f) {
+  }
+  /* update e2, e3, v3 for the new triangle */
+  if (f) {
       if (prev == GTS_TRIANGLE (f)->e1) {
-	e2 = GTS_TRIANGLE (f)->e2; e3 = GTS_TRIANGLE (f)->e3;
+  e2 = GTS_TRIANGLE (f)->e2; e3 = GTS_TRIANGLE (f)->e3;
       }
       else if (prev == GTS_TRIANGLE (f)->e2) {
-	e2 = GTS_TRIANGLE (f)->e3; e3 = GTS_TRIANGLE (f)->e1;
+  e2 = GTS_TRIANGLE (f)->e3; e3 = GTS_TRIANGLE (f)->e1;
       }
       else {
-	e2 = GTS_TRIANGLE (f)->e1; e3 = GTS_TRIANGLE (f)->e2;
+  e2 = GTS_TRIANGLE (f)->e1; e3 = GTS_TRIANGLE (f)->e2;
       }
       if (GTS_SEGMENT (e2)->v1 == v1 || GTS_SEGMENT (e2)->v1 == v2)
-	v3 = GTS_SEGMENT (e2)->v2;
+  v3 = GTS_SEGMENT (e2)->v2;
       else
-	v3 = GTS_SEGMENT (e2)->v1;
-    }
+  v3 = GTS_SEGMENT (e2)->v1;
+  }
   }
   return NULL;
 }
@@ -303,8 +303,8 @@ static GtsFace * point_locate (GtsPoint * o,
  * contained within the boundary of @surface.  
  */
 GtsFace * gts_point_locate (GtsPoint * p, 
-			    GtsSurface * surface,
-			    GtsFace * guess)
+        GtsSurface * surface,
+        GtsFace * guess)
 {
   GtsFace * fr;
   GtsPoint * o;
@@ -312,12 +312,12 @@ GtsFace * gts_point_locate (GtsPoint * p,
   g_return_val_if_fail (p != NULL, NULL);
   g_return_val_if_fail (surface != NULL, NULL);
   g_return_val_if_fail (guess == NULL || 
-			gts_face_has_parent_surface (guess, surface), NULL);
+      gts_face_has_parent_surface (guess, surface), NULL);
 
   if (guess == NULL)
-    guess = closest_face (surface, p);
+  guess = closest_face (surface, p);
   if (guess == NULL)
-    return NULL;
+  return NULL;
 
   o = GTS_POINT (gts_object_new (GTS_OBJECT_CLASS (gts_point_class ())));
   triangle_barycenter (GTS_TRIANGLE (guess), o);
@@ -345,7 +345,7 @@ GtsConstraintClass * gts_constraint_class (void)
   static GtsConstraintClass * klass = NULL;
 
   if (klass == NULL) {
-    GtsObjectClassInfo constraint_info = {
+  GtsObjectClassInfo constraint_info = {
       "GtsConstraint",
       sizeof (GtsConstraint),
       sizeof (GtsConstraintClass),
@@ -353,9 +353,9 @@ GtsConstraintClass * gts_constraint_class (void)
       (GtsObjectInitFunc) NULL,
       (GtsArgSetFunc) NULL,
       (GtsArgGetFunc) NULL
-    };
-    klass = gts_object_class_new (GTS_OBJECT_CLASS (gts_edge_class ()), 
-				  &constraint_info);
+  };
+  klass = gts_object_class_new (GTS_OBJECT_CLASS (gts_edge_class ()), 
+          &constraint_info);
   }
 
   return klass;
@@ -363,58 +363,58 @@ GtsConstraintClass * gts_constraint_class (void)
 
 /* cf. figure misc/swap.fig */
 static void swap_if_in_circle (GtsFace * f1,
-			       GtsVertex * v1, 
-			       GtsVertex * v2, 
-			       GtsVertex * v3,
-			       GtsEdge * e1, 
-			       GtsEdge * e2, 
-			       GtsEdge * e3,
-			       GtsSurface * surface)
+             GtsVertex * v1, 
+             GtsVertex * v2, 
+             GtsVertex * v3,
+             GtsEdge * e1, 
+             GtsEdge * e2, 
+             GtsEdge * e3,
+             GtsSurface * surface)
 {
   GtsFace * f2;
   GtsEdge * e4, *e5;
   GtsVertex * v4;
 
   if (GTS_IS_CONSTRAINT (e1)) /* @e1 is a constraint can not swap */
-    return;
+  return;
 
   f2 = neighbor (f1, e1, surface);
   if (f2 == NULL) /* @e1 is a boundary of @surface */
-    return;
+  return;
 
   if (GTS_TRIANGLE (f2)->e1 == e1) {
-    e4 = GTS_TRIANGLE (f2)->e2; e5 = GTS_TRIANGLE (f2)->e3;
+  e4 = GTS_TRIANGLE (f2)->e2; e5 = GTS_TRIANGLE (f2)->e3;
   }
   else if (GTS_TRIANGLE (f2)->e2 == e1) {
-    e4 = GTS_TRIANGLE (f2)->e3; e5 = GTS_TRIANGLE (f2)->e1;
+  e4 = GTS_TRIANGLE (f2)->e3; e5 = GTS_TRIANGLE (f2)->e1;
   }
   else {
-    e4 = GTS_TRIANGLE (f2)->e1; e5 = GTS_TRIANGLE (f2)->e2;
+  e4 = GTS_TRIANGLE (f2)->e1; e5 = GTS_TRIANGLE (f2)->e2;
   }
   if (GTS_SEGMENT (e4)->v1 == GTS_SEGMENT (e1)->v1 || 
       GTS_SEGMENT (e4)->v1 == GTS_SEGMENT (e1)->v2)
-    v4 = GTS_SEGMENT (e4)->v2;
+  v4 = GTS_SEGMENT (e4)->v2;
   else
-    v4 = GTS_SEGMENT (e4)->v1;
+  v4 = GTS_SEGMENT (e4)->v1;
 
   if (gts_point_in_circle (GTS_POINT (v4), GTS_POINT (v1), 
-			   GTS_POINT (v2), GTS_POINT (v3)) > 0.0) {
-    GtsEdge * en;
-    GtsSegment * sn = gts_vertices_are_connected (v3, v4);
+         GTS_POINT (v2), GTS_POINT (v3)) > 0.0) {
+  GtsEdge * en;
+  GtsSegment * sn = gts_vertices_are_connected (v3, v4);
 
-    if (!GTS_IS_EDGE (sn))
+  if (!GTS_IS_EDGE (sn))
       en = gts_edge_new (surface->edge_class, v3, v4);
-    else
+  else
       en = GTS_EDGE (sn);
 
-    f1 = gts_face_new (surface->face_class, en, e5, e2);
-    gts_surface_add_face (surface, f1);
-    f2 = gts_face_new (surface->face_class, en, e3, e4);
-    gts_surface_add_face (surface, f2);
-    gts_object_destroy (GTS_OBJECT (e1));
+  f1 = gts_face_new (surface->face_class, en, e5, e2);
+  gts_surface_add_face (surface, f1);
+  f2 = gts_face_new (surface->face_class, en, e3, e4);
+  gts_surface_add_face (surface, f2);
+  gts_object_destroy (GTS_OBJECT (e1));
 
-    swap_if_in_circle (f1, v4, v2, v3, e5, e2, en, surface);
-    swap_if_in_circle (f2, v1, v4, v3, e4, en, e3, surface);
+  swap_if_in_circle (f1, v4, v2, v3, e5, e2, en, surface);
+  swap_if_in_circle (f2, v1, v4, v3, e4, en, e3, surface);
   }
 }
 
@@ -432,8 +432,8 @@ static void swap_if_in_circle (GtsFace * f1,
  * y coordinates as @v.  
  */
 GtsVertex * gts_delaunay_add_vertex_to_face (GtsSurface * surface, 
-					     GtsVertex * v,
-					     GtsFace * f)
+               GtsVertex * v,
+               GtsFace * f)
 {
   GtsEdge * e1, * e2, * e3;
   GtsSegment * s4, * s5, * s6;
@@ -446,34 +446,34 @@ GtsVertex * gts_delaunay_add_vertex_to_face (GtsSurface * surface,
   g_return_val_if_fail (f != NULL, v);
 
   gts_triangle_vertices_edges (GTS_TRIANGLE (f), NULL, 
-			       &v1, &v2, &v3, &e1, &e2, &e3);
+             &v1, &v2, &v3, &e1, &e2, &e3);
   if (v == v1 || v == v2 || v == v3) /* v already in @surface */
-    return NULL;
+  return NULL;
   if (GTS_POINT (v)->x == GTS_POINT (v1)->x &&
       GTS_POINT (v)->y == GTS_POINT (v1)->y)
-    return v1;
+  return v1;
   if (GTS_POINT (v)->x == GTS_POINT (v2)->x &&
       GTS_POINT (v)->y == GTS_POINT (v2)->y)
-    return v2;
+  return v2;
   if (GTS_POINT (v)->x == GTS_POINT (v3)->x &&
       GTS_POINT (v)->y == GTS_POINT (v3)->y)
-    return v3;
+  return v3;
 
   s4 = gts_vertices_are_connected (v, v1);
   if (!GTS_IS_EDGE (s4))
-    e4 = gts_edge_new (surface->edge_class, v, v1);
+  e4 = gts_edge_new (surface->edge_class, v, v1);
   else
-    e4 = GTS_EDGE (s4);
+  e4 = GTS_EDGE (s4);
   s5 = gts_vertices_are_connected (v, v2);
   if (!GTS_IS_EDGE (s5))
-    e5 = gts_edge_new (surface->edge_class, v, v2);
+  e5 = gts_edge_new (surface->edge_class, v, v2);
   else
-    e5 = GTS_EDGE (s5);
+  e5 = GTS_EDGE (s5);
   s6 = gts_vertices_are_connected (v, v3);
   if (!GTS_IS_EDGE (s6))
-    e6 = gts_edge_new (surface->edge_class, v, v3);
+  e6 = gts_edge_new (surface->edge_class, v, v3);
   else
-    e6 = GTS_EDGE (s6);
+  e6 = GTS_EDGE (s6);
 
   /* cf. figure misc/swap.fig */
   f1 = gts_face_new (surface->face_class, e4, e1, e5);
@@ -509,8 +509,8 @@ GtsVertex * gts_delaunay_add_vertex_to_face (GtsSurface * surface,
  * y coordinates as @v.  
  */
 GtsVertex * gts_delaunay_add_vertex (GtsSurface * surface, 
-				     GtsVertex * v,
-				     GtsFace * guess)
+             GtsVertex * v,
+             GtsFace * guess)
 {
   GtsFace * f;
 
@@ -518,37 +518,37 @@ GtsVertex * gts_delaunay_add_vertex (GtsSurface * surface,
   g_return_val_if_fail (v != NULL, v);
 
   if (!(f = gts_point_locate (GTS_POINT (v), surface, guess)))
-    return v;
+  return v;
   return gts_delaunay_add_vertex_to_face (surface, v, f);
 }
 
 static gboolean polygon_in_circle (GSList * poly,
-				   GtsPoint * p1, 
-				   GtsPoint * p2,
-				   GtsPoint * p3)
+           GtsPoint * p1, 
+           GtsPoint * p2,
+           GtsPoint * p3)
 {
   GtsVertex * v1 = NULL, * v2 = NULL;
 
   while (poly) {
-    GtsSegment * s = poly->data;
-    GtsVertex * v;
-    v = s->v1;
-    if (v != v1 && v != v2 &&
-	v != GTS_VERTEX (p1) &&
-	v != GTS_VERTEX (p2) &&
-	v != GTS_VERTEX (p3) &&
-	gts_point_in_circle (GTS_POINT (v), p1, p2, p3) > 0.)
+  GtsSegment * s = poly->data;
+  GtsVertex * v;
+  v = s->v1;
+  if (v != v1 && v != v2 &&
+  v != GTS_VERTEX (p1) &&
+  v != GTS_VERTEX (p2) &&
+  v != GTS_VERTEX (p3) &&
+  gts_point_in_circle (GTS_POINT (v), p1, p2, p3) > 0.)
       return TRUE;
-    v = s->v2;
-    if (v != v1 && v != v2 &&
-	v != GTS_VERTEX (p1) &&
-	v != GTS_VERTEX (p2) &&
-	v != GTS_VERTEX (p3) &&
-	gts_point_in_circle (GTS_POINT (v), p1, p2, p3) > 0.)
+  v = s->v2;
+  if (v != v1 && v != v2 &&
+  v != GTS_VERTEX (p1) &&
+  v != GTS_VERTEX (p2) &&
+  v != GTS_VERTEX (p3) &&
+  gts_point_in_circle (GTS_POINT (v), p1, p2, p3) > 0.)
       return TRUE;
-    v1 = s->v1;
-    v2 = s->v2;
-    poly = poly->next;
+  v1 = s->v1;
+  v2 = s->v2;
+  poly = poly->next;
   }
   return FALSE;
 }
@@ -562,73 +562,73 @@ static void triangulate_polygon (GSList * poly, GtsSurface * surface)
   GtsEdge * e1, * e2;
 
   if (poly == NULL || poly->next == NULL) {
-    g_slist_free (poly);
-    return;
+  g_slist_free (poly);
+  return;
   }
 
   s = poly->data;
   s1 = poly->next->data;
   if (s->v1 == s1->v1 || s->v1 == s1->v2) {
-    v1 = s->v2;
-    v2 = s->v1;
+  v1 = s->v2;
+  v2 = s->v1;
   }
   else {
-    g_assert (s->v2 == s1->v1 || s->v2 == s1->v2);
-    v1 = s->v1;
-    v2 = s->v2;
+  g_assert (s->v2 == s1->v1 || s->v2 == s1->v2);
+  v1 = s->v1;
+  v2 = s->v2;
   }
 
   i = poly->next;
   v3 = v2;
   while (i && !found) {
-    s1 = i->data;
-    if (s1->v1 == v3)
+  s1 = i->data;
+  if (s1->v1 == v3)
       v3 = s1->v2;
-    else {
+  else {
       g_assert (s1->v2 == v3);
       v3 = s1->v1;
-    }
-    if (v3 != v1 &&
-	gts_point_orientation (GTS_POINT (v1), 
-			       GTS_POINT (v2), 
-			       GTS_POINT (v3)) >= 0. &&
-	!polygon_in_circle (poly, 
-			    GTS_POINT (v1), 
-			    GTS_POINT (v2), 
-			    GTS_POINT (v3)))
+  }
+  if (v3 != v1 &&
+  gts_point_orientation (GTS_POINT (v1), 
+             GTS_POINT (v2), 
+             GTS_POINT (v3)) >= 0. &&
+  !polygon_in_circle (poly, 
+        GTS_POINT (v1), 
+        GTS_POINT (v2), 
+        GTS_POINT (v3)))
       found = TRUE;
-    else 
+  else 
       i = i->next;
   }
 
   if (!found) {
-    g_slist_free (poly);
-    return;
+  g_slist_free (poly);
+  return;
   }
 
   s1 = gts_vertices_are_connected (v2, v3);
   if (!GTS_IS_EDGE (s1))
-    e1 = gts_edge_new (surface->edge_class, v2, v3);
+  e1 = gts_edge_new (surface->edge_class, v2, v3);
   else
-    e1 = GTS_EDGE (s1);
+  e1 = GTS_EDGE (s1);
   s2 = gts_vertices_are_connected (v3, v1);
   if (!GTS_IS_EDGE (s2))
-    e2 = gts_edge_new (surface->edge_class, v3, v1);
+  e2 = gts_edge_new (surface->edge_class, v3, v1);
   else
-    e2 = GTS_EDGE (s2);
+  e2 = GTS_EDGE (s2);
   gts_surface_add_face (surface,
-	    gts_face_new (surface->face_class, GTS_EDGE (s), e1, e2));
+    gts_face_new (surface->face_class, GTS_EDGE (s), e1, e2));
 
   poly1 = poly->next;
   g_slist_free_1 (poly);
   if (i->next && e2 != i->next->data)
-    poly2 = g_slist_prepend (i->next, e2);
+  poly2 = g_slist_prepend (i->next, e2);
   else
-    poly2 = i->next;
+  poly2 = i->next;
   if (e1 != i->data)
-    i->next = g_slist_prepend (NULL, e1);
+  i->next = g_slist_prepend (NULL, e1);
   else
-    i->next = NULL;
+  i->next = NULL;
 
  triangulate_polygon (poly1, surface);
  triangulate_polygon (poly2, surface);
@@ -655,23 +655,23 @@ void gts_delaunay_remove_vertex (GtsSurface * surface, GtsVertex * v)
 
 #define NEXT_CUT(edge, edge1, list) { next = neighbor (f, edge, surface);\
                                       if (constraint)\
-					destroy_triangles (e);\
-				      else\
-				        gts_object_destroy (GTS_OBJECT (e));\
+          destroy_triangles (e);\
+              else\
+            gts_object_destroy (GTS_OBJECT (e));\
                                       g_assert (next);\
-				      *list = g_slist_prepend (*list, edge1);\
+              *list = g_slist_prepend (*list, edge1);\
                                       return g_slist_concat (constraint,\
-                                        remove_intersected_edge (s, edge,\
-					       next, surface, left, right));\
-                                    }
+                    remove_intersected_edge (s, edge,\
+                 next, surface, left, right));\
+                  }
 
 static void destroy_triangles (GtsEdge * e)
 {
   GSList * i = e->triangles;
   while (i) {
-    GSList * next = i->next;
-    gts_object_destroy (i->data);
-    i = next;
+  GSList * next = i->next;
+  gts_object_destroy (i->data);
+  i = next;
   }
   g_slist_free (e->triangles);
   e->triangles = NULL;
@@ -679,10 +679,10 @@ static void destroy_triangles (GtsEdge * e)
 
 static GSList * 
 remove_intersected_edge (GtsSegment * s,
-			 GtsEdge * e,
-			 GtsFace * f,
-			 GtsSurface * surface,
-			 GSList ** left, GSList ** right)
+       GtsEdge * e,
+       GtsFace * f,
+       GtsSurface * surface,
+       GSList ** left, GSList ** right)
 {
   GtsVertex * v1, * v2, * v3;
   GtsEdge * e1, * e2;
@@ -691,37 +691,37 @@ remove_intersected_edge (GtsSegment * s,
   GSList * constraint = NULL;
 
   if (GTS_IS_CONSTRAINT (e))
-    constraint = g_slist_prepend (NULL, e);
+  constraint = g_slist_prepend (NULL, e);
 
   gts_triangle_vertices_edges (GTS_TRIANGLE (f), e, 
-			       &v1, &v2, &v3, &e, &e1, &e2);
+             &v1, &v2, &v3, &e, &e1, &e2);
   
   o1 = gts_point_orientation (GTS_POINT (v2), GTS_POINT (v3), 
-			      GTS_POINT (s->v2));
+            GTS_POINT (s->v2));
   o2 = gts_point_orientation (GTS_POINT (v3), GTS_POINT (v1), 
-			      GTS_POINT (s->v2));
+            GTS_POINT (s->v2));
 
   if (o1 >= 0.) {
-    if (o2 >= 0.) { /* @s->v2 is inside (or on the edge) of @f */
+  if (o2 >= 0.) { /* @s->v2 is inside (or on the edge) of @f */
       g_assert (o1 == 0. && o2 == 0.);
       if (constraint)
-	destroy_triangles (e);
+  destroy_triangles (e);
       else
-	gts_object_destroy (GTS_OBJECT (e));
+  gts_object_destroy (GTS_OBJECT (e));
       *left = g_slist_prepend (*left, e2);
       *right = g_slist_prepend (*right, e1);
       return constraint;
-    }
-    NEXT_CUT (e2, e1, right)
+  }
+  NEXT_CUT (e2, e1, right)
   }
   else if (o2 >= 0.)
-    NEXT_CUT (e1, e2, left)
+  NEXT_CUT (e1, e2, left)
   else {
-    gdouble o3 = gts_point_orientation (GTS_POINT (s->v1), GTS_POINT (s->v2),
-					GTS_POINT (v3));
-    if (o3 > 0.)
+  gdouble o3 = gts_point_orientation (GTS_POINT (s->v1), GTS_POINT (s->v2),
+          GTS_POINT (v3));
+  if (o3 > 0.)
       NEXT_CUT (e1, e2, left)
-    else
+  else
       NEXT_CUT (e2, e1, right)
   }
   return constraint;
@@ -729,60 +729,60 @@ remove_intersected_edge (GtsSegment * s,
 
 static GSList * 
 remove_intersected_vertex (GtsSegment * s,
-			   GtsVertex * v,
-			   GtsSurface * surface,
-			   GSList ** left,
-			   GSList ** right)
+         GtsVertex * v,
+         GtsSurface * surface,
+         GSList ** left,
+         GSList ** right)
 {
   GSList * triangles = gts_vertex_triangles (v, NULL);
   GSList * i;
 
   i = triangles;
   while (i) {
-    GtsTriangle * t = i->data;
-    if (GTS_IS_FACE (t) && 
-	gts_face_has_parent_surface (GTS_FACE (t), surface)) {
+  GtsTriangle * t = i->data;
+  if (GTS_IS_FACE (t) && 
+  gts_face_has_parent_surface (GTS_FACE (t), surface)) {
       GtsVertex * v1, * v2, * v3;
       gdouble o1, o2;
 
       gts_triangle_vertices (t, &v1, &v2, &v3);
       if (v == v2) {
-	v2 = v3;
-	v3 = v1;
+  v2 = v3;
+  v3 = v1;
       }
       else if (v == v3) {
-	v3 = v2;
-	v2 = v1;	
+  v3 = v2;
+  v2 = v1;	
       }
       else
-	g_assert (v == v1);
+  g_assert (v == v1);
 
       if ((o1 = gts_point_orientation (GTS_POINT (v), GTS_POINT (v2),
-				       GTS_POINT (s->v2))) >= 0. &&
-	  (o2 = gts_point_orientation (GTS_POINT (v3), GTS_POINT (v),
-				       GTS_POINT (s->v2))) >= 0.) {
-	gdouble o3 = gts_point_orientation (GTS_POINT (v2), GTS_POINT (v3),
-					    GTS_POINT (s->v2));
-	GtsEdge * e = gts_triangle_edge_opposite (t, v);
-	GtsEdge * e1, * e2;
-	GtsFace * next = neighbor (GTS_FACE (t), e, surface);
-	
-	gts_triangle_vertices_edges (t, e, &v2, &v3, &v, &e, &e2, &e1);
+               GTS_POINT (s->v2))) >= 0. &&
+    (o2 = gts_point_orientation (GTS_POINT (v3), GTS_POINT (v),
+               GTS_POINT (s->v2))) >= 0.) {
+  gdouble o3 = gts_point_orientation (GTS_POINT (v2), GTS_POINT (v3),
+            GTS_POINT (s->v2));
+  GtsEdge * e = gts_triangle_edge_opposite (t, v);
+  GtsEdge * e1, * e2;
+  GtsFace * next = neighbor (GTS_FACE (t), e, surface);
+  
+  gts_triangle_vertices_edges (t, e, &v2, &v3, &v, &e, &e2, &e1);
 
-	g_slist_free (triangles);
+  g_slist_free (triangles);
 
-	if (o3 >= 0.) /* @s->v2 is inside (or on the edge) of t */
-	  return NULL;
+  if (o3 >= 0.) /* @s->v2 is inside (or on the edge) of t */
+    return NULL;
 
-	gts_object_destroy (GTS_OBJECT (t));
-	*left = g_slist_prepend (*left, e2);
-	*right = g_slist_prepend (*right, e1);
+  gts_object_destroy (GTS_OBJECT (t));
+  *left = g_slist_prepend (*left, e2);
+  *right = g_slist_prepend (*right, e1);
 
-	g_assert (next);
-	return remove_intersected_edge (s, e, next, surface, left, right);
+  g_assert (next);
+  return remove_intersected_edge (s, e, next, surface, left, right);
       }
-    }
-    i = i->next;
+  }
+  i = i->next;
   }
 
   g_assert_not_reached ();
@@ -801,7 +801,7 @@ remove_intersected_vertex (GtsSegment * s,
  * which were removed from @surface.
  */
 GSList * gts_delaunay_add_constraint (GtsSurface * surface,
-				      GtsConstraint * c)
+              GtsConstraint * c)
 {
   GSList * constraints;
   GtsVertex * v1;
@@ -815,7 +815,7 @@ GSList * gts_delaunay_add_constraint (GtsSurface * surface,
   
   gts_allow_floating_edges = TRUE;
   constraints = remove_intersected_vertex (GTS_SEGMENT (c), v1, surface,
-					   &left, &right);
+             &left, &right);
   gts_allow_floating_edges = FALSE;
 #if 1
   triangulate_polygon (g_slist_prepend (g_slist_reverse (right), c), surface);
@@ -824,41 +824,41 @@ GSList * gts_delaunay_add_constraint (GtsSurface * surface,
   right = g_slist_prepend (g_slist_reverse (right), c);
   left = g_slist_prepend (left, c);
   {
-    FILE * fp0 = fopen ("hole", "wt");
-    FILE * fp1 = fopen ("right", "wt");
-    FILE * fp2 = fopen ("left", "wt");
-    GSList * i = left;
+  FILE * fp0 = fopen ("hole", "wt");
+  FILE * fp1 = fopen ("right", "wt");
+  FILE * fp2 = fopen ("left", "wt");
+  GSList * i = left;
 
-    gts_surface_write (surface, fp0);
-    fclose (fp0);
+  gts_surface_write (surface, fp0);
+  fclose (fp0);
  
-    fprintf (fp2, "LIST {\n");
-    while (i) {
+  fprintf (fp2, "LIST {\n");
+  while (i) {
       GtsSegment * s = i->data;
       fprintf (fp2, 
-	       "# %p: %p->%p\n"
-	       "VECT 1 2 0 2 0 %g %g 0 %g %g 0\n",
-	       s, s->v1, s->v2,
-	       GTS_POINT (s->v1)->x, GTS_POINT (s->v1)->y,
-	       GTS_POINT (s->v2)->x, GTS_POINT (s->v2)->y);
+         "# %p: %p->%p\n"
+         "VECT 1 2 0 2 0 %g %g 0 %g %g 0\n",
+         s, s->v1, s->v2,
+         GTS_POINT (s->v1)->x, GTS_POINT (s->v1)->y,
+         GTS_POINT (s->v2)->x, GTS_POINT (s->v2)->y);
       i = i->next;
-    }
-    fprintf (fp2, "}\n");
-    fprintf (fp1, "LIST {\n");
-    i = right;
-    while (i) {
+  }
+  fprintf (fp2, "}\n");
+  fprintf (fp1, "LIST {\n");
+  i = right;
+  while (i) {
       GtsSegment * s = i->data;
       fprintf (fp1, 
-	       "# %p: %p->%p\n"
-	       "VECT 1 2 0 2 0 %g %g 0 %g %g 0\n",
-	       s, s->v1, s->v2,
-	       GTS_POINT (s->v1)->x, GTS_POINT (s->v1)->y,
-	       GTS_POINT (s->v2)->x, GTS_POINT (s->v2)->y);
+         "# %p: %p->%p\n"
+         "VECT 1 2 0 2 0 %g %g 0 %g %g 0\n",
+         s, s->v1, s->v2,
+         GTS_POINT (s->v1)->x, GTS_POINT (s->v1)->y,
+         GTS_POINT (s->v2)->x, GTS_POINT (s->v2)->y);
       i = i->next;
-    }
-    fprintf (fp1, "}\n");
-    fclose (fp1);
-    fclose (fp2);
+  }
+  fprintf (fp1, "}\n");
+  fclose (fp1);
+  fclose (fp2);
   }
   triangulate_polygon (right, surface);
   triangulate_polygon (left, surface);
@@ -872,25 +872,25 @@ static void delaunay_check (GtsTriangle * t, gpointer * data)
   GtsFace ** face = data[1];
 
   if (*face == NULL) {
-    GSList * i, * list;
-    GtsVertex * v1, * v2, * v3;
+  GSList * i, * list;
+  GtsVertex * v1, * v2, * v3;
 
-    gts_triangle_vertices (t, &v1, &v2, &v3);
-    list = gts_vertex_neighbors (v1, NULL, surface);
-    list = gts_vertex_neighbors (v2, list, surface);
-    list = gts_vertex_neighbors (v3, list, surface);
-    i = list;
-    while (i && *face == NULL) {
+  gts_triangle_vertices (t, &v1, &v2, &v3);
+  list = gts_vertex_neighbors (v1, NULL, surface);
+  list = gts_vertex_neighbors (v2, list, surface);
+  list = gts_vertex_neighbors (v3, list, surface);
+  i = list;
+  while (i && *face == NULL) {
       GtsVertex * v = i->data;
       if (v != v1 && v != v2 && v != v3 &&
-	  gts_point_in_circle (GTS_POINT (v), 
-			       GTS_POINT (v1),
-			       GTS_POINT (v2),  
-			       GTS_POINT (v3)) > 0.)
-	*face = GTS_FACE (t);
+    gts_point_in_circle (GTS_POINT (v), 
+             GTS_POINT (v1),
+             GTS_POINT (v2),  
+             GTS_POINT (v3)) > 0.)
+  *face = GTS_FACE (t);
       i = i->next;
-    }
-    g_slist_free (list);
+  }
+  g_slist_free (list);
   }
 }
 
@@ -932,26 +932,26 @@ void gts_delaunay_remove_hull (GtsSurface * surface)
   boundary = gts_surface_boundary (surface);
   gts_allow_floating_edges = TRUE;
   while (boundary) {
-    GSList * i = boundary;
-    GtsEdge * e = i->data;
+  GSList * i = boundary;
+  GtsEdge * e = i->data;
 
-    boundary = i->next;
-    g_slist_free_1 (i);
-    if (!GTS_IS_CONSTRAINT (e)) {
+  boundary = i->next;
+  g_slist_free_1 (i);
+  if (!GTS_IS_CONSTRAINT (e)) {
       GtsTriangle * t = GTS_TRIANGLE (gts_edge_is_boundary (e, surface));
       if (t != NULL) {
-	if (t->e1 != e && !GTS_IS_CONSTRAINT (t->e1) &&
-	    !gts_edge_is_boundary (t->e1, surface))
-	  boundary = g_slist_prepend (boundary, t->e1);
-	if (t->e2 != e && !GTS_IS_CONSTRAINT (t->e2) &&
-	    !gts_edge_is_boundary (t->e2, surface))
-	  boundary = g_slist_prepend (boundary, t->e2);
-	if (t->e3 != e && !GTS_IS_CONSTRAINT (t->e3) &&
-	    !gts_edge_is_boundary (t->e3, surface))
-	  boundary = g_slist_prepend (boundary, t->e3);
+  if (t->e1 != e && !GTS_IS_CONSTRAINT (t->e1) &&
+    !gts_edge_is_boundary (t->e1, surface))
+    boundary = g_slist_prepend (boundary, t->e1);
+  if (t->e2 != e && !GTS_IS_CONSTRAINT (t->e2) &&
+    !gts_edge_is_boundary (t->e2, surface))
+    boundary = g_slist_prepend (boundary, t->e2);
+  if (t->e3 != e && !GTS_IS_CONSTRAINT (t->e3) &&
+    !gts_edge_is_boundary (t->e3, surface))
+    boundary = g_slist_prepend (boundary, t->e3);
       }
       gts_object_destroy (GTS_OBJECT (e));
-    }
+  }
   }
   gts_allow_floating_edges = FALSE;
 }

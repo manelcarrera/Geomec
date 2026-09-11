@@ -24,39 +24,39 @@ BOOL WINAPI CtrlHandler(DWORD fdwCtrlType)
 {
   printf("got %d\n", fdwCtrlType);
   if (procMan)
-    procMan->stop();
+  procMan->stop();
   switch (fdwCtrlType)
   {
-    // Handle the CTRL-C signal. 
+  // Handle the CTRL-C signal. 
   case CTRL_C_EVENT:
-    //printf("Ctrl-C event\n\n");
-    //Beep(750, 300);
-    return TRUE;
+  //printf("Ctrl-C event\n\n");
+  //Beep(750, 300);
+  return TRUE;
 
-    // CTRL-CLOSE: confirm that the user wants to exit. 
+  // CTRL-CLOSE: confirm that the user wants to exit. 
   case CTRL_CLOSE_EVENT:
-    //Beep(600, 200);
-    //printf("Ctrl-Close event\n\n");
-    return TRUE;
+  //Beep(600, 200);
+  //printf("Ctrl-Close event\n\n");
+  return TRUE;
 
-    // Pass other signals to the next handler. 
+  // Pass other signals to the next handler. 
   case CTRL_BREAK_EVENT:
-    //Beep(900, 200);
-    //printf("Ctrl-Break event\n\n");
-    return TRUE;
+  //Beep(900, 200);
+  //printf("Ctrl-Break event\n\n");
+  return TRUE;
 
   case CTRL_LOGOFF_EVENT:
-    //Beep(1000, 200);
-    //printf("Ctrl-Logoff event\n\n");
-    return FALSE;
+  //Beep(1000, 200);
+  //printf("Ctrl-Logoff event\n\n");
+  return FALSE;
 
   case CTRL_SHUTDOWN_EVENT:
-    //Beep(750, 500);
-    //printf("Ctrl-Shutdown event\n\n");
-    return FALSE;
+  //Beep(750, 500);
+  //printf("Ctrl-Shutdown event\n\n");
+  return FALSE;
 
   default:
-    return FALSE;
+  return FALSE;
   }
 }
 #endif
@@ -98,8 +98,8 @@ int main(int argc, char *argv[])
 
   for (int i = 0; i < MAX_BACKEND_PROCESSES; ++i)
   {
-    QString p = QString("ModGMBackend.exe:Bcknd%1").arg(i);
-    procMan->RegisterProcess(p, false);
+  QString p = QString("ModGMBackend.exe:Bcknd%1").arg(i);
+  procMan->RegisterProcess(p, false);
   }
   procMan->RegisterProcess("ModGMGui.exe", true);
 

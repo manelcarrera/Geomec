@@ -21,19 +21,19 @@
 class INTERFACE_RGINTERFACE RGMonitorPointSets
 {
 public:
-	RGMonitorPointSets() { m_totalCount = 0; }
-	void Add(const RGPointSet& pointSet, const std::vector<RGGeneralProperty>& props);
-	const RGPointSet& GetPointSet(int n) const;
-	const std::vector<RGGeneralProperty>& GetProperties(int n) const;
-	size_t GetNumPointSets() const;
-	size_t GetTotalCount() const;
-	void clear();
+  RGMonitorPointSets() { m_totalCount = 0; }
+  void Add(const RGPointSet& pointSet, const std::vector<RGGeneralProperty>& props);
+  const RGPointSet& GetPointSet(int n) const;
+  const std::vector<RGGeneralProperty>& GetProperties(int n) const;
+  size_t GetNumPointSets() const;
+  size_t GetTotalCount() const;
+  void clear();
 
 private:
-	std::vector<std::pair<RGPointSet, std::vector<RGGeneralProperty> > > m_monitorPointSets;
-	
-	//This is required to allocate Rescue Table while both dump and load operations. 
-	size_t m_totalCount; 
+  std::vector<std::pair<RGPointSet, std::vector<RGGeneralProperty> > > m_monitorPointSets;
+  
+  //This is required to allocate Rescue Table while both dump and load operations. 
+  size_t m_totalCount; 
 };
 
 #endif

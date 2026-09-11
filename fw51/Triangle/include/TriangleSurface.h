@@ -162,13 +162,13 @@ public:
   // the nodes of the given element, must be an element from this mesh
   virtual std::vector<int> Nodes(const geo::IElement &element) const;
 
-    // allow insertion of extra points on boundary
-    // default = true
-    void AllowSteinerPointsOnBoundary(bool);
+  // allow insertion of extra points on boundary
+  // default = true
+  void AllowSteinerPointsOnBoundary(bool);
 
-    // For debugging purposes
-    int InternalInputPointSize() const;
-    const double *InternalInputPoint(int index) const;
+  // For debugging purposes
+  int InternalInputPointSize() const;
+  const double *InternalInputPoint(int index) const;
 };
 
 #endif // !defined(AFX_TRIANGLEMESH_H__FA62D08B_FB35_4EB9_9006_BF2D42368C78__INCLUDED_)

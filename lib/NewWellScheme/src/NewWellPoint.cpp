@@ -105,13 +105,13 @@ bool CNewWellPoint::operator==(const CNewWellPoint &rhs) const
   if ( &WellPath() !=  &rhs.WellPath() ) return false;
 
   if(*this < rhs)
-    return false;
+  return false;
 
   if(*this > rhs)
-    return false;
+  return false;
 
   return true;
-	
+  
 }
 
 bool CNewWellPoint::operator!=(const CNewWellPoint &rhs) const
@@ -123,7 +123,7 @@ bool CNewWellPoint::operator!=(const CNewWellPoint &rhs) const
 bool CNewWellPoint::operator <(const CNewWellPoint &rhs) const
 {
   if(m_dTMD - rhs.TMD() < -m_dEpsilon)
-    return true;
+  return true;
 
   return false;
 }
@@ -131,7 +131,7 @@ bool CNewWellPoint::operator <(const CNewWellPoint &rhs) const
 bool CNewWellPoint::operator >(const CNewWellPoint &rhs) const
 {
   if(m_dTMD - rhs.TMD() > m_dEpsilon)
-    return true;
+  return true;
 
   return false;
 
@@ -169,12 +169,12 @@ const double &CNewWellPoint::Z() const
 
 const CNewWellPathBase& CNewWellPoint::WellPath() const
 {
-	return *m_pWellPath;
+  return *m_pWellPath;
 }
 
 CNewWellPathBase& CNewWellPoint::WellPath()
 {
-	return const_cast<CNewWellPathBase&>(*m_pWellPath);
+  return const_cast<CNewWellPathBase&>(*m_pWellPath);
 }
 
 void CNewWellPoint::GetUpperLower
@@ -196,37 +196,37 @@ void CNewWellPoint::GetUpperLower
   //calculate the min max
   if(it != lstPoints.end()) 
   {
-    StartTMD = (*it).TMD();
-    CurrentPoint = &(*it);
+  StartTMD = (*it).TMD();
+  CurrentPoint = &(*it);
   }
 
   while(it != lstPoints.end())
   {
-    CurrentPoint = &(*it);
-    if (fabs(CurrentPoint->TMD() - TMD) < EPS)
-    {
+  CurrentPoint = &(*it);
+  if (fabs(CurrentPoint->TMD() - TMD) < EPS)
+  {
       MinPoint= CurrentPoint;
       MaxPoint= CurrentPoint;
       return;
-    }
+  }
 
-    //calculate the maximum point under this TMD
-    if (CurrentPoint->TMD() < TMD &&  CurrentPoint->TMD() >= StartTMD)
-    {
+  //calculate the maximum point under this TMD
+  if (CurrentPoint->TMD() < TMD &&  CurrentPoint->TMD() >= StartTMD)
+  {
       MinPoint = CurrentPoint;
       StartTMD = CurrentPoint ->TMD();
-    }
+  }
 
-    if (CurrentPoint->TMD() > TMD &&  CurrentPoint->TMD() <= EndTMD)
-    {
+  if (CurrentPoint->TMD() > TMD &&  CurrentPoint->TMD() <= EndTMD)
+  {
       MaxPoint = CurrentPoint;
       EndTMD = CurrentPoint ->TMD();
-    }
+  }
 
-    if(MaxPoint && MinPoint)
-    break;
+  if(MaxPoint && MinPoint)
+  break;
 
-    ++it;	
+  ++it;	
   }
 
   return;
@@ -239,7 +239,7 @@ bool CNewWellPoint::EqualPointExist(const std::list<CNewWellPoint> &list) const
       ; ++it
       )
   {
-    if ( *it == *this ) return true;
+  if ( *it == *this ) return true;
   }
 
   return false;

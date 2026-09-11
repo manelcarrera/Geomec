@@ -24,8 +24,8 @@ class CPlotGrid : public QwtPlotGrid
 public:
   CPlotGrid():QwtPlotGrid()
   {
-    setMajorPen(QPen(Qt::black, 0, Qt::DotLine));
-    setMinorPen(QPen(Qt::gray, 0, Qt::DotLine));
+  setMajorPen(QPen(Qt::black, 0, Qt::DotLine));
+  setMinorPen(QPen(Qt::gray, 0, Qt::DotLine));
   }
 };
 
@@ -34,7 +34,7 @@ class CLegend : public QwtLegend
 public:
   CLegend():QwtLegend()
   {
-    setDefaultItemMode(QwtLegendData::ReadOnly);
+  setDefaultItemMode(QwtLegendData::ReadOnly);
   }
 };
 
@@ -43,9 +43,9 @@ class CPlot : public QwtPlot
 public:
   CPlot(QWidget *w):QwtPlot(w)
   {
-    setCanvasBackground(QColor(Qt::white));
-    insertLegend(m_pLegend= new CLegend, QwtPlot::BottomLegend);
-    setAutoReplot(false); // instead, use replot()
+  setCanvasBackground(QColor(Qt::white));
+  insertLegend(m_pLegend= new CLegend, QwtPlot::BottomLegend);
+  setAutoReplot(false); // instead, use replot()
   }
   CLegend *Legend() {return m_pLegend;}
 
@@ -61,13 +61,13 @@ public:
   , const QColor &color
  ):QwtPlotCurve(title)
   {
-    setYAxis(QwtPlot::yLeft);
-    setStyle(QwtPlotCurve::NoCurve);
-    QwtSymbol *pSym= new QwtSymbol;
-    pSym->setStyle(QwtSymbol::XCross);
-    pSym->setPen(color);
-    pSym->setSize(5);
-    setSymbol(pSym);
+  setYAxis(QwtPlot::yLeft);
+  setStyle(QwtPlotCurve::NoCurve);
+  QwtSymbol *pSym= new QwtSymbol;
+  pSym->setStyle(QwtSymbol::XCross);
+  pSym->setPen(color);
+  pSym->setSize(5);
+  setSymbol(pSym);
   }
 };
 
@@ -80,8 +80,8 @@ public:
   , const QColor &color
  ):QwtPlotCurve(title)
   {
-    setYAxis(QwtPlot::yLeft);
-    setPen(color);
+  setYAxis(QwtPlot::yLeft);
+  setPen(color);
   }
 };
 
@@ -94,10 +94,10 @@ public:
   , const QColor &color
  ):QwtPlotCurve(title)
   {
-    setYAxis(QwtPlot::yLeft);
-    QPen pen(color);
-    pen.setStyle(Qt::DashLine);
-    setPen(pen);
+  setYAxis(QwtPlot::yLeft);
+  QPen pen(color);
+  pen.setStyle(Qt::DashLine);
+  setPen(pen);
   }
 };
 
@@ -107,7 +107,7 @@ public:
 class CGammaView : public CView
 {
 protected:
-	CGammaView();           // protected constructor used by dynamic creation
+  CGammaView();           // protected constructor used by dynamic creation
 //	DECLARE_DYNCREATE(CGammaView)
 
 // Attributes
@@ -116,45 +116,45 @@ protected:
 
 // Operations
 public:
-	BOOL PlotData(const CExperimentArray &aData, const CResultData *pResData, BOOL bIncludeYieldPoint, BOOL bIsTopGraph, mlUnitDef ud,
-		bool useInitialLowerLimit, const std::vector <int>& initialLowerLimit);
-	BOOL PlotPQ(const CExperimentArray &aData, const CResultData *pResData, BOOL bIsTopGraph, const CLibraryMaterial *pMat, mlUnitDef ud);
+  BOOL PlotData(const CExperimentArray &aData, const CResultData *pResData, BOOL bIncludeYieldPoint, BOOL bIsTopGraph, mlUnitDef ud,
+    bool useInitialLowerLimit, const std::vector <int>& initialLowerLimit);
+  BOOL PlotPQ(const CExperimentArray &aData, const CResultData *pResData, BOOL bIsTopGraph, const CLibraryMaterial *pMat, mlUnitDef ud);
 
 protected:
-	// wjrx mantis 3167
-	virtual double GetStressOrStrain(CStressStrain const &StressStrain) const = 0;
-	virtual double GetStrain(CStressStrain const &StressStrain) const = 0;
-	virtual double GetStress(CStressStrain const &StressStrain) const = 0;
-	void SendMessageToDialog(UINT uMsg, WPARAM wParam = 0, LPARAM lParam = 0);
-	CStressStrainArray const &GetStrainSteps(const CExperimentData &Source) const;
-	CStressStrainArray const &GetStrainSteps(const CResultData *pSource, int iSerie) const;
+  // wjrx mantis 3167
+  virtual double GetStressOrStrain(CStressStrain const &StressStrain) const = 0;
+  virtual double GetStrain(CStressStrain const &StressStrain) const = 0;
+  virtual double GetStress(CStressStrain const &StressStrain) const = 0;
+  void SendMessageToDialog(UINT uMsg, WPARAM wParam = 0, LPARAM lParam = 0);
+  CStressStrainArray const &GetStrainSteps(const CExperimentData &Source) const;
+  CStressStrainArray const &GetStrainSteps(const CResultData *pSource, int iSerie) const;
 
-	QWinWidget *m_pWinWidget;
-	CPlot *m_pPlot;
+  QWinWidget *m_pWinWidget;
+  CPlot *m_pPlot;
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CGammaView)
-	protected:
-	virtual void OnDraw(CDC* pDC);      // overridden to draw this view
-	virtual void OnInitialUpdate();     // first time after construct
-	//}}AFX_VIRTUAL
+  // ClassWizard generated virtual function overrides
+  //{{AFX_VIRTUAL(CGammaView)
+  protected:
+  virtual void OnDraw(CDC* pDC);      // overridden to draw this view
+  virtual void OnInitialUpdate();     // first time after construct
+  //}}AFX_VIRTUAL
 
 // Implementation
 protected:
-	virtual ~CGammaView();
+  virtual ~CGammaView();
 #ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
+  virtual void AssertValid() const;
+  virtual void Dump(CDumpContext& dc) const;
 #endif
 
-	// Generated message map functions
-	//{{AFX_MSG(CGammaView)
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	afx_msg void OnDestroy();
-	afx_msg void OnSize(UINT nType, int cx, int cy);
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+  // Generated message map functions
+  //{{AFX_MSG(CGammaView)
+  afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+  afx_msg void OnDestroy();
+  afx_msg void OnSize(UINT nType, int cx, int cy);
+  //}}AFX_MSG
+  DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////

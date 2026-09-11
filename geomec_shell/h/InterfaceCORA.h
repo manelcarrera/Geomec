@@ -23,10 +23,10 @@ class CInterfaceCORA : public CInterfaceBase
 public:
   typedef enum
   {
-    CORA_GETMODELINFO = IInterfaceBase::FOR_ME + 1,
-    CORA_RUNMODEL,
-    CORA_GET_FAILURE_MODES,
-    CORA_EVALUATE_LSF
+  CORA_GETMODELINFO = IInterfaceBase::FOR_ME + 1,
+  CORA_RUNMODEL,
+  CORA_GET_FAILURE_MODES,
+  CORA_EVALUATE_LSF
   } TCoraCommand;
 
   virtual const char *ShortDescription() const;

@@ -13,15 +13,15 @@ CMaterialLinear::CMaterialLinear(CMaterialEntry &entry, CLibraryMaterial& libmat
 
 bool CMaterialLinear::Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const
 {
-	ftn_double_t ddum;
+  ftn_double_t ddum;
 
-	ddum = (ftn_double_t) (ffmat.ParameterValue(IDT_VALUETYPE_COHESION) * 1e6);
+  ddum = (ftn_double_t) (ffmat.ParameterValue(IDT_VALUETYPE_COHESION) * 1e6);
   PutItemLength("COHESI", &ddum, 1);
 
-	ddum = (ftn_double_t) (ffmat.ParameterValue(IDT_VALUETYPE_FRICTION_ANGLE) * PI / 180);
-	PutItemLength("PHI", &ddum, 1);
+  ddum = (ftn_double_t) (ffmat.ParameterValue(IDT_VALUETYPE_FRICTION_ANGLE) * PI / 180);
+  PutItemLength("PHI", &ddum, 1);
 
-	return IMaterial::Write(ffmat, diarunner);
+  return IMaterial::Write(ffmat, diarunner);
 }
 
 int CMaterialLinear::WriteFilosParamSize(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const
@@ -35,15 +35,15 @@ bool CMaterialLinear::WriteFilosParamName(const CFFMaterial &ffmat, dia::IDianaR
 {
   if (i == 0)
   {
-    strncpy(name, "COHESI", 10);
-    return true;
+  strncpy(name, "COHESI", 10);
+  return true;
   }
   --i;
 
   if (i == 0)
   {
-    strncpy(name, "PHI", 10);
-    return true;
+  strncpy(name, "PHI", 10);
+  return true;
   }
   --i;
 

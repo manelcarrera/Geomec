@@ -11,16 +11,20 @@ Geomec/
 |-- geomec/                 Main Windows Geomec application and GUI code
 |-- geomec.pro              Main qmake super-project
 |-- Geomec.sln              Visual Studio solution
-|-- lib/                    Shared Geomec, Diana, FW51, and third-party libraries
+|-- lib/                    First-party Geomec/Diana/FW51 libraries (cross-platform)
+|-- platform/               First-party libraries that currently build on Windows only
+|-- third_party/            Vendored SDKs and installers (HDF5, TBB, zlib, Blosc,
+|                            gmock/gtest, CORA, SVS, .NET, bitmap data)
 |-- fw51/                   Framework 51 geometry, mesh, tensor, and model code
 |-- app/                    Auxiliary applications and legacy application projects
 |-- geomec_shell/           Console/shell executable
 |-- gm_diana_app/           Diana-oriented application
 |-- geomec_cora_wrapper/    CORA integration wrapper
 |-- geomec_selector/        Selector application
-|-- Tests/                  C++ tests and large model/input datasets
-|-- test/                   Script-driven integration-test support
-|-- 3rdParty/               External installers, SDK material, and runtime assets
+|-- Tests/                  C++ test source (TestLib, TestRunner, Fw51, Materials, ...)
+|-- TestData/               Large model/input datasets used by the tests
+|-- IntegrationTests/       Script-driven integration-test support (formerly `test/`)
+|-- archive/                Historical/orphaned code no longer part of any build target
 |-- wix/                    Windows installer projects
 |-- qmake/                  Shared qmake configuration and dependency definitions
 |-- vsprops/                Visual Studio property sheets
@@ -29,7 +33,26 @@ Geomec/
 |-- version/                Version headers and version metadata
 ```
 
-The repository contains both source and prebuilt/runtime material. The `lib/` and `3rdParty/` directories are not just source libraries; they also contain platform-specific binaries, SDK files, installers, and examples.
+`lib/`, `platform/`, and `third_party/` used to be one directory (`lib/`) that mixed
+first-party source with vendored binaries of wildly different sizes. They were split
+so that first-party code (`lib/`, `platform/`) is clearly separate from vendored
+material (`third_party/`) that is not maintained here. `platform/` holds the subset
+of first-party libraries that currently have no qmake (`.pro`) project and therefore
+only build on Windows (e.g. the MFC-based `MfcGuiFrame`/`MfcModelFrame`); everything
+still in `lib/` builds on both platforms from the same source tree. Similarly,
+`Tests/` used to hold both the (tiny) C++ test source and a 400+ MB `Models`
+subdirectory of binary test data; the data now lives in the top-level `TestData/`
+directory. The old, lowercase `test/` directory was renamed to `IntegrationTests/`
+to remove a directory pair that differed only by case (`Tests/` vs `test/`), which is
+a hazard on case-insensitive Windows/macOS checkouts. See `FOLDER_STRUCTURE_PROPOSAL.md`
+for the full rationale. `Prototypes/` was intentionally left in place even though it
+is legacy/experimental, because it is still an active qmake `SUBDIRS` target
+(`ModGMBus`) with depth-sensitive relative include paths; moving it was judged
+higher-risk than its labeling benefit.
+
+The repository contains both source and prebuilt/runtime material. The `third_party/`
+directory is not source Geomec maintains; it contains platform-specific binaries, SDK
+files, installers, and examples vendored from upstream projects.
 
 ## 2. Main Application and Modules
 
@@ -79,7 +102,7 @@ The main library groups listed by `geomec.pro` are:
 - **Geomec integrations:** `geomec_rgi_library`, `geomec_cora_library`, `RGInterface`, `GMSkuaConnector`.
 - **Utilities:** `Util`, `QUtil`, `RPN`, `GeomecStringTable`, `qtiocompressor`.
 - **Mesh/compression/storage:** `TSMesh`, `blosc`, `blosc_filter`, HDF5, zlib, and related support.
-- **Testing:** Google Mock/gtest under `gmock-1.7.0` and test libraries under `Tests/`.
+- **Testing:** Google Mock/gtest under `third_party/gmock-1.7.0` and test libraries under `Tests/`.
 
 The qmake dependency lists are centralized in `qmake/libs.pri`, while include paths and platform paths are assembled by `qmake/all.pri`, `qmake/globals.pri`, and `qmake/basepath.pri`.
 
@@ -114,9 +137,9 @@ The application is tightly coupled to the Diana distribution and its runtime lib
 
 Many of these dependencies are referenced through environment variables rather than downloaded by the build. A successful compile therefore requires matching SDK headers, import/static libraries, runtime DLLs/shared objects, and license files.
 
-### 3.2 Bundled dependencies under `lib/` and `3rdParty/`
+### 3.2 Bundled dependencies under `third_party/`
 
-The repository contains platform-specific copies or build inputs for HDF5, TBB, zlib, Blosc, Google Test/Mock, Qt I/O compression, and other utilities. `3rdParty/` contains CORA, SVS, .NET, point-element bitmap data, and installer/runtime material.
+The repository contains platform-specific copies or build inputs for HDF5, TBB, zlib, Blosc, and Google Test/Mock under `third_party/`. Qt I/O compression (`qtiocompressor`) is a small first-party wrapper and stays under `lib/`. `third_party/` also contains CORA, SVS, .NET, point-element bitmap data, and installer/runtime material (formerly the separate `3rdParty/` directory).
 
 Do not assume that every bundled binary is used by every target. The active dependency set depends on the selected platform, configuration, and executable. The Visual Studio property sheets are the authoritative source for Windows library paths; the qmake `.pri` files are the authoritative source for the qmake/Linux graph.
 
@@ -285,7 +308,7 @@ The Linux configuration is not a portable modern distribution build:
 - `qmake/basepath.pri` contains site-specific paths such as `/glb/data/...` and a RHEL/EasyBuild GLib path.
 - Several variables must be supplied by the local Diana/toolchain installation.
 - The checked-in Linux documentation describes Qt 4.8.5, while parts of the source use Qt modules and project settings associated with newer Qt versions.
-- `test/Tests/make.sh` contains old hard-coded target names and paths and should be treated as a historical helper, not as the primary build entry point.
+- `IntegrationTests/Tests/make.sh` contains old hard-coded target names and paths and should be treated as a historical helper, not as the primary build entry point.
 
 Before attempting a full build, update `qmake/basepath.pri` or provide compatible paths through a local configuration, then verify that the selected Qt, compiler ABI, Diana libraries, HDF5, TBB, Boost, GLib, and Python runtime all match.
 
@@ -314,9 +337,9 @@ Set `LD_LIBRARY_PATH` for the deployed layout, or install the shared libraries i
 
 ## 6. Testing and Smoke Checks
 
-The repository includes unit and integration projects under `Tests/`, plus large model files under `Tests/Models`.
+The repository includes unit and integration projects under `Tests/`, plus large model files under `TestData/`.
 
-For a Windows smoke test, the historical instructions recommend building x64 and running the application with `Tests\\Models\\TestLoadAndCalculate.gm4`, then trying a small nonlinear analysis.
+For a Windows smoke test, the historical instructions recommend building x64 and running the application with `TestData\\TestLoadAndCalculate.gm4`, then trying a small nonlinear analysis.
 
 For Linux, build the relevant test targets from the qmake graph after the libraries are available. Do not assume every test is portable: some tests depend on Diana, licensing, external model files, Python, or platform-specific runtime libraries.
 

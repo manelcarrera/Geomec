@@ -28,7 +28,7 @@ class CFistExport : public CXMLBase
   class CLayer
   {
   public:
-    CLayer(CFistExport& parent,
+  CLayer(CFistExport& parent,
            QDomElement xmlparent,
            const well::CWellPoint& wellpoint,
            double dStartAHD,
@@ -36,34 +36,34 @@ class CFistExport : public CXMLBase
            const CModelBase& model,
            TFormationNameMap& mpFormationNames);
 
-    const well::CWellPoint& WellPoint() const;
-    const CFormationBase& Formation() const;
+  const well::CWellPoint& WellPoint() const;
+  const CFormationBase& Formation() const;
 
-    double StartAHD() const;
-    double EndAHD() const;
+  double StartAHD() const;
+  double EndAHD() const;
 
-    const QString& Name() const;
-
-  private:
-    void FindFormationAndElement();
-    void CreateLayerDirectory(QDomElement xmlparent);
+  const QString& Name() const;
 
   private:
-    CFistExport& m_parent;
-    const well::CWellPoint& m_wellpoint;
-    const CFormationBase* m_pFormation;
-    const geo::IElement* m_pElement;
-    const CModelBase& m_model;
-    TFormationNameMap& m_mpFormationNames;
-    double m_dStartAHD;
-    double m_dEndAHD;
-    QString m_strName;
+  void FindFormationAndElement();
+  void CreateLayerDirectory(QDomElement xmlparent);
+
+  private:
+  CFistExport& m_parent;
+  const well::CWellPoint& m_wellpoint;
+  const CFormationBase* m_pFormation;
+  const geo::IElement* m_pElement;
+  const CModelBase& m_model;
+  TFormationNameMap& m_mpFormationNames;
+  double m_dStartAHD;
+  double m_dEndAHD;
+  QString m_strName;
   }; //CLayer
 
   class CNewLayer //CNewWellPath wjrx mantis 3564
   {
   public:
-    CNewLayer(CFistExport& parent,
+  CNewLayer(CFistExport& parent,
            QDomElement xmlparent,
            const CNewWellPoint& wellpoint,
            double dStartAHD,
@@ -71,28 +71,28 @@ class CFistExport : public CXMLBase
            const CModelBase& model,
            TFormationNameMap& mpFormationNames);
 
-    const CNewWellPoint& WellPoint() const;
-    const CFormationBase& Formation() const;
+  const CNewWellPoint& WellPoint() const;
+  const CFormationBase& Formation() const;
 
-    double StartAHD() const;
-    double EndAHD() const;
+  double StartAHD() const;
+  double EndAHD() const;
 
-    const QString& Name() const;
-
-  private:
-    void FindFormationAndElement();
-    void CreateLayerDirectory(QDomElement xmlparent);
+  const QString& Name() const;
 
   private:
-    CFistExport& m_parent;
-    const CNewWellPoint m_wellpoint;
-    const CFormationBase* m_pFormation;
-    const geo::IElement* m_pElement;
-    const CModelBase& m_model;
-    TFormationNameMap& m_mpFormationNames;
-    double m_dStartAHD;
-    double m_dEndAHD;
-    QString m_strName;
+  void FindFormationAndElement();
+  void CreateLayerDirectory(QDomElement xmlparent);
+
+  private:
+  CFistExport& m_parent;
+  const CNewWellPoint m_wellpoint;
+  const CFormationBase* m_pFormation;
+  const geo::IElement* m_pElement;
+  const CModelBase& m_model;
+  TFormationNameMap& m_mpFormationNames;
+  double m_dStartAHD;
+  double m_dEndAHD;
+  QString m_strName;
   }; //CNewLayer
 
   typedef std::map<const well::CWellPoint*, CLayer> TLayerMap;
@@ -119,8 +119,8 @@ public:
   , const CNewWellPath *pNewWellPath= 0
   , bool bNewWellPaths=false
   );
-	CFistExport(const CModelBase *pModel, const CNewWellPath *pWellPath);
-	virtual ~CFistExport();
+  CFistExport(const CModelBase *pModel, const CNewWellPath *pWellPath);
+  virtual ~CFistExport();
 
 };
 

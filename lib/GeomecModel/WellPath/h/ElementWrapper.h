@@ -16,15 +16,15 @@ namespace WellPath
 class CElementWrapper
 {
   public:
-    CElementWrapper(const geo::IElement& element);
+  CElementWrapper(const geo::IElement& element);
 
-    const geo::IElement& element() const;
+  const geo::IElement& element() const;
 
   private:
-    CElementWrapper(const CElementWrapper& rhs);
-    CElementWrapper& operator = (CElementWrapper rhs);
+  CElementWrapper(const CElementWrapper& rhs);
+  CElementWrapper& operator = (CElementWrapper rhs);
 
-    const geo::IElement& m_element;
+  const geo::IElement& m_element;
 };
 
 typedef QSharedPointer <CElementWrapper> TElementWrapper;

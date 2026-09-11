@@ -53,13 +53,13 @@ int main (int argc, char * argv[])
   /* the previous sum, for machines that round up instead of using exact  */
   /* rounding.  Not that this library will work on such machines anyway). */
   do {
-    lastcheck = check;
-    epsilon *= half;
-    if (every_other) {
+  lastcheck = check;
+  epsilon *= half;
+  if (every_other) {
       splitter *= 2.0;
-    }
-    every_other = !every_other;
-    check = 1.0 + epsilon;
+  }
+  every_other = !every_other;
+  check = 1.0 + epsilon;
   } while ((check != 1.0) && (check != lastcheck));
   splitter += 1.0;
   /* Error bounds for orientation and incircle tests. */
@@ -78,16 +78,16 @@ int main (int argc, char * argv[])
   isperrboundC = (71.0 + 1408.0 * epsilon) * epsilon * epsilon;
 
   puts ("/* This file was generated automatically by predicates_init\n"
-	" *\n"
-	" * This file is free software; you can redistribute it and/or\n"
-	" * modify it under the terms of the GNU Library General Public\n"
-	" * License as published by the Free Software Foundation; either\n"
-	" * version 2 of the License, or (at your option) any later version.\n"
-	" *\n"
-	" * This file is distributed in the hope that it will be useful,\n"
-	" * but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
-	" * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n"
-	" */\n");
+  " *\n"
+  " * This file is free software; you can redistribute it and/or\n"
+  " * modify it under the terms of the GNU Library General Public\n"
+  " * License as published by the Free Software Foundation; either\n"
+  " * version 2 of the License, or (at your option) any later version.\n"
+  " *\n"
+  " * This file is distributed in the hope that it will be useful,\n"
+  " * but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+  " * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n"
+  " */\n");
   printf ("static double splitter = %f;\n", splitter);
   printf ("static double resulterrbound = %.16g;\n", resulterrbound);
   printf ("static double ccwerrboundA = %.16g;\n", ccwerrboundA);

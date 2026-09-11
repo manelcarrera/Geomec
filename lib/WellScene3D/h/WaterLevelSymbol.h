@@ -18,10 +18,10 @@ class CWaterLevelSymbol: public CWellDrawSpecBase
 {
 friend class CWellSceneInterMed;
 public:
-	virtual void CreateScene();
+  virtual void CreateScene();
 private:
-	CWaterLevelSymbol(CWellSceneInterMed& WellSceneInterMed);
-	
+  CWaterLevelSymbol(CWellSceneInterMed& WellSceneInterMed);
+  
 };
 
 

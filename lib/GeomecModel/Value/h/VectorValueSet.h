@@ -20,35 +20,35 @@ class CDepletionStage;
 class CVectorValueSet : public geo::IValueSetTemplate<geo::CVector>
 {
 public:
-    CVectorValueSet(const CResultRegister& parent, 
-		            const CDepletionStage& stage, 
-					const CAnalysisType& antype, 
-					int nStart,
-					bool bShear,
-					bool bInterface,
-					bool bChange);
-	virtual const geo::IElementSet &ElementSet() const;
-	bool ElementValuesAvailable(int nElementIndex ) const;
+  CVectorValueSet(const CResultRegister& parent, 
+          const CDepletionStage& stage, 
+          const CAnalysisType& antype, 
+          int nStart,
+          bool bShear,
+          bool bInterface,
+          bool bChange);
+  virtual const geo::IElementSet &ElementSet() const;
+  bool ElementValuesAvailable(int nElementIndex ) const;
   virtual void ElementValues(TValueVec& values, int iElementIndex, geo::IParallelInitializationCallback *cb) const;
-	typedef CValueType::TMapEnum TMapType;
+  typedef CValueType::TMapEnum TMapType;
   virtual void MapValueElement(const geo::IElement& elm, TValueVec& values, TMapType map_type, geo::IParallelInitializationCallback *cb) const;
-	virtual bool IsEmpty() const;
+  virtual bool IsEmpty() const;
   virtual bool IsValid(const geo::CVector& value) const { return !value.Empty(); }
-	geo::CVector Normal() const;
+  geo::CVector Normal() const;
 protected:
   void FilterElements(std::vector<int> &indices) const;
 private:
   int                    m_nStart;
-	CAnalysisType          m_antype;
-	bool                   m_bShear;
-	bool				           m_bInterface;
-	bool                   m_bChange;
-	const CDepletionStage* m_pStage;
-	const CResultRegister* m_pParent;
-	const double* ValuesFromCache(int nElementIndex,
-		                          const CAnalysisType& antype,
-								  const CDepletionStage& stage,
-								  int nStart) const;
+  CAnalysisType          m_antype;
+  bool                   m_bShear;
+  bool				           m_bInterface;
+  bool                   m_bChange;
+  const CDepletionStage* m_pStage;
+  const CResultRegister* m_pParent;
+  const double* ValuesFromCache(int nElementIndex,
+                              const CAnalysisType& antype,
+                  const CDepletionStage& stage,
+                  int nStart) const;
 };
 
 

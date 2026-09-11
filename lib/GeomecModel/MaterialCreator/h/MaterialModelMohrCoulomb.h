@@ -20,8 +20,8 @@ protected:
 public:
   class CPQPlotter : public IPQPlotter
   {
-    virtual IPQPlotter* Clone() const;
-    virtual void GetPrimaryYieldCurve(const CLibraryMaterial& mat, double dPMin, double dPMax, CStressStrainArray& values) const;
+  virtual IPQPlotter* Clone() const;
+  virtual void GetPrimaryYieldCurve(const CLibraryMaterial& mat, double dPMin, double dPMax, CStressStrainArray& values) const;
   };
 };
 
@@ -40,8 +40,8 @@ protected:
 public:
   class CPQPlotter : public IPQPlotter
   {
-    virtual IPQPlotter* Clone() const;
-    virtual void GetPrimaryYieldCurve(const CLibraryMaterial& mat, double dPMin, double dPMax, CStressStrainArray& values) const;
+  virtual IPQPlotter* Clone() const;
+  virtual void GetPrimaryYieldCurve(const CLibraryMaterial& mat, double dPMin, double dPMax, CStressStrainArray& values) const;
   };
 };
 

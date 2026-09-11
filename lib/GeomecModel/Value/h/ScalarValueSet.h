@@ -20,30 +20,30 @@ class CDepletionStage;
 class CScalarValueSet : public geo::IValueSet  
 {
 public:
-    CScalarValueSet(const CResultRegister& parent, 
-		            const CDepletionStage& stage, 
-					const CAnalysisType& antype, 
-					int nStart,
-					bool bInterface,
-					bool bChange);
-	virtual const geo::IElementSet &ElementSet() const;
-	bool ElementValuesAvailable(int nElementIndex ) const;
+  CScalarValueSet(const CResultRegister& parent, 
+          const CDepletionStage& stage, 
+          const CAnalysisType& antype, 
+          int nStart,
+          bool bInterface,
+          bool bChange);
+  virtual const geo::IElementSet &ElementSet() const;
+  bool ElementValuesAvailable(int nElementIndex ) const;
   virtual void ElementValues(TValueVec& values, int iElementIndex, geo::IParallelInitializationCallback *cb) const;
-	virtual bool IsEmpty() const;
-	virtual void Empty() { assert(false); }
-	virtual int PushBack(const TValueVec &/*values*/) { assert(false); return -1; }
-    virtual bool IsValid(const geo::CVector& value) const { return !value.Empty(); }
+  virtual bool IsEmpty() const;
+  virtual void Empty() { assert(false); }
+  virtual int PushBack(const TValueVec &/*values*/) { assert(false); return -1; }
+  virtual bool IsValid(const geo::CVector& value) const { return !value.Empty(); }
 private:
-    int                    m_nStart;
-	CAnalysisType            m_antype;
-	bool                   m_bChange;
-	bool                   m_bInterface;
-	const CDepletionStage* m_pStage;
-	const CResultRegister* m_pParent;
-	const double* ValuesFromCache(int nElementIndex,
-		                          const CAnalysisType& antype,
-								  const CDepletionStage& stage,
-								  int nStart) const;
+  int                    m_nStart;
+  CAnalysisType            m_antype;
+  bool                   m_bChange;
+  bool                   m_bInterface;
+  const CDepletionStage* m_pStage;
+  const CResultRegister* m_pParent;
+  const double* ValuesFromCache(int nElementIndex,
+                              const CAnalysisType& antype,
+                  const CDepletionStage& stage,
+                  int nStart) const;
 };
 
 

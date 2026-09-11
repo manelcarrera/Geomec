@@ -8,5 +8,5 @@ CRunAnalysis_NonDsa::CRunAnalysis_NonDsa() : CRunAnalysis()
 
 void CRunAnalysis_NonDsa::handle(Cmd cmd)
 {
-	_e->notify(cmd,CEvents::GuiApp_EH);
+  _e->notify(cmd,CEvents::GuiApp_EH);
 }

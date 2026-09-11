@@ -13,7 +13,7 @@ namespace cora
 CParameterModifier::CParameterModifier(CSummaryResultFile& summaryResultFile,
   const QString& option, std::vector <double>& value)
 : m_parameterModifierBase(
-    selectParameterModifier(summaryResultFile, option, value))
+  selectParameterModifier(summaryResultFile, option, value))
 {
 }
 
@@ -21,7 +21,7 @@ geo::CValue CParameterModifier::modify(const geo::CValue& value) const
 {
   if (m_parameterModifierBase != 0)
   {
-    return m_parameterModifierBase->modify(value);
+  return m_parameterModifierBase->modify(value);
   }
 
   return value;
@@ -31,7 +31,7 @@ CParameterModifier::TValueVec CParameterModifier::modify(TValueVec& valueVec)
 {
   if (m_parameterModifierBase != 0)
   {
-    return m_parameterModifierBase->modify(valueVec);
+  return m_parameterModifierBase->modify(valueVec);
   }
 
   return valueVec;
@@ -66,26 +66,26 @@ bool verifyArgumentCount(CSummaryResultFile& summaryResultFile,
   size_t requiredArguments = ZERO_ARGUMENTS;
 
   if ((option == OPTION_FACTOR) || (option == OPTION_SHIFT) ||
-    (option == OPTION_ABSOLUTE))
+  (option == OPTION_ABSOLUTE))
   {
-    requiredArguments = ONE_ARGUMENT;
-    invalidCount = (value.size() != ONE_ARGUMENT);
+  requiredArguments = ONE_ARGUMENT;
+  invalidCount = (value.size() != ONE_ARGUMENT);
   }
   else if ((option == OPTION_FACTOR_SHIFT) ||
-    (option == OPTION_SHIFT_FACTOR))
+  (option == OPTION_SHIFT_FACTOR))
   {
-    requiredArguments = TWO_ARGUMENTS;
-    invalidCount = (value.size() != TWO_ARGUMENTS);
+  requiredArguments = TWO_ARGUMENTS;
+  invalidCount = (value.size() != TWO_ARGUMENTS);
   }
 
   if (invalidCount)
   {
-    QString additionalInformation = QString(ERROR_COUNT).arg(option).
+  QString additionalInformation = QString(ERROR_COUNT).arg(option).
       arg(requiredArguments);
 
-    summaryResultFile.setResultValue(
+  summaryResultFile.setResultValue(
       CSummaryResultFile::RESULT_VALUE_INCONSISTENT);
-    summaryResultFile.addAdditionalInformation(additionalInformation);
+  summaryResultFile.addAdditionalInformation(additionalInformation);
   }
 
   return !invalidCount;
@@ -101,40 +101,40 @@ TParameterModifierBase CParameterModifier::selectParameterModifier(
 
   if (verifyArgumentCount(summaryResultFile, option, value))
   {
-    if (option == OPTION_FACTOR)
-    {
+  if (option == OPTION_FACTOR)
+  {
       parameterModifierBase =
-        TParameterModifierBase(new CParameterModifierFactor(value));
-    }
-    else if (option == OPTION_SHIFT)
-    {
+    TParameterModifierBase(new CParameterModifierFactor(value));
+  }
+  else if (option == OPTION_SHIFT)
+  {
       parameterModifierBase =
-        TParameterModifierBase(new CParameterModifierShift(value));
-    }
-    else if (option == OPTION_ABSOLUTE)
-    {
+    TParameterModifierBase(new CParameterModifierShift(value));
+  }
+  else if (option == OPTION_ABSOLUTE)
+  {
       parameterModifierBase =
-        TParameterModifierBase(new CParameterModifierAbsolute(value));
-    }
-    else if (option == OPTION_FACTOR_SHIFT)
-    {
+    TParameterModifierBase(new CParameterModifierAbsolute(value));
+  }
+  else if (option == OPTION_FACTOR_SHIFT)
+  {
       parameterModifierBase =
-        TParameterModifierBase(new CParameterModifierFactorShift(value));
-    }
-    else if (option == OPTION_SHIFT_FACTOR)
-    {
+    TParameterModifierBase(new CParameterModifierFactorShift(value));
+  }
+  else if (option == OPTION_SHIFT_FACTOR)
+  {
       parameterModifierBase =
-        TParameterModifierBase(new CParameterModifierShiftFactor(value));
-    }
-    else
-    {
+    TParameterModifierBase(new CParameterModifierShiftFactor(value));
+  }
+  else
+  {
       QString additionalInformation = QString(ERROR_MESSAGE).arg(option).
-        arg(OPTION_FACTOR).arg(OPTION_SHIFT).arg(OPTION_ABSOLUTE);
+    arg(OPTION_FACTOR).arg(OPTION_SHIFT).arg(OPTION_ABSOLUTE);
 
       summaryResultFile.setResultValue(
-        CSummaryResultFile::RESULT_VALUE_INCONSISTENT);
+    CSummaryResultFile::RESULT_VALUE_INCONSISTENT);
       summaryResultFile.addAdditionalInformation(additionalInformation);
-    }
+  }
   }
 
   return parameterModifierBase;

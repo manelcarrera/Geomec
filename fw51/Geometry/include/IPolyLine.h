@@ -28,44 +28,44 @@ class IPlane;
 class GEOMETRY_EXPORT  IPolyLine : public IElementSet
 {
 protected:
-	IPolyLine();
+  IPolyLine();
 public:
-	virtual int PointSize() const;
-	virtual const IPoint &Point(int nIndex) const;
+  virtual int PointSize() const;
+  virtual const IPoint &Point(int nIndex) const;
 
-	virtual int ElementSize() const;
-	virtual const IElement& Element(int nIndex) const;
+  virtual int ElementSize() const;
+  virtual const IElement& Element(int nIndex) const;
 
-	virtual int LineSize() const = 0;
-	virtual const ILine& Line(int Index) const = 0;
+  virtual int LineSize() const = 0;
+  virtual const ILine& Line(int Index) const = 0;
 
-	//implemented in this inteface:
-	virtual CArray<CPoint> Intersection(const IPlane &plane) const;
+  //implemented in this inteface:
+  virtual CArray<CPoint> Intersection(const IPlane &plane) const;
 
-	//return the point for the given length
-	virtual CPoint GetPointAtLength(const double& l) const;
+  //return the point for the given length
+  virtual CPoint GetPointAtLength(const double& l) const;
 
-	//return the length above the point at given index
-	virtual double GetLengthAtPoint(int Index) const;
+  //return the length above the point at given index
+  virtual double GetLengthAtPoint(int Index) const;
 
-	//return the interpolated length above the given point 
-	//returns -1 if the point is not on the polyline
-	virtual double GetLengthAtPoint(const IPoint& p) const;
-	
-	//returns the total length of the polyline
-	virtual double GetLength() const;
+  //return the interpolated length above the given point 
+  //returns -1 if the point is not on the polyline
+  virtual double GetLengthAtPoint(const IPoint& p) const;
+  
+  //returns the total length of the polyline
+  virtual double GetLength() const;
 
-	virtual void Swap(int nIndex1, int nIndex2) = 0;
+  virtual void Swap(int nIndex1, int nIndex2) = 0;
 
-	// Project the given point on the polyline.
-	// If pLineIndex is not NULL, it is given the
-	// index of the line that contains the returned point.
-	// The returned point can be empty, if no valid
-	// projection can be found. In that case pLineIndex is
-	// not initialized.
-	CPoint Project(const IPoint& point, int* pLineIndex = 0) const;
+  // Project the given point on the polyline.
+  // If pLineIndex is not NULL, it is given the
+  // index of the line that contains the returned point.
+  // The returned point can be empty, if no valid
+  // projection can be found. In that case pLineIndex is
+  // not initialized.
+  CPoint Project(const IPoint& point, int* pLineIndex = 0) const;
 
-	virtual bool Visit(IVisitor &visitor) { return visitor.HandlePolyLine(*this); }
+  virtual bool Visit(IVisitor &visitor) { return visitor.HandlePolyLine(*this); }
 };
 
 }

@@ -8,5 +8,5 @@ OIV2DHistorySceneWrapper::OIV2DHistorySceneWrapper( OIV2DScene& scene ) : OIV2DS
 
 bool OIV2DHistorySceneWrapper::IsOIV2DHistoryScene() const
 {
-    return true;
+  return true;
 }

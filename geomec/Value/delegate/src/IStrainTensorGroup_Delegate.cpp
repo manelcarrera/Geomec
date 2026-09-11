@@ -5,7 +5,7 @@
 
 IStrainTensorGroup_Delegate::CInvariantComposite_Delegate::
   CInvariantComposite_Delegate(
-    IStrainTensorGroup::CInvariantComposite* invariantComposite)
+  IStrainTensorGroup::CInvariantComposite* invariantComposite)
 : IResult_Delegate(invariantComposite)
 , m_invariantComposite(invariantComposite)
 {
@@ -13,7 +13,7 @@ IStrainTensorGroup_Delegate::CInvariantComposite_Delegate::
 
 IStrainTensorGroup_Delegate::CWellPathAxialStrainComposite_Delegate::
   CWellPathAxialStrainComposite_Delegate(
-    IStrainTensorGroup::CWellPathAxialStrainComposite*
+  IStrainTensorGroup::CWellPathAxialStrainComposite*
       wellPathAxialStrainComposite)
 : IResult_Delegate(wellPathAxialStrainComposite)
 , m_wellPathAxialStrainComposite(wellPathAxialStrainComposite)

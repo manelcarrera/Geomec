@@ -15,9 +15,9 @@ class CMaterial : public IModelObject
   Q_OBJECT
 
 public:
-	CMaterial(QTextStream &os);
-	CMaterial(const QString& sName, QTextStream &os);
-	virtual ~CMaterial();
+  CMaterial(QTextStream &os);
+  CMaterial(const QString& sName, QTextStream &os);
+  virtual ~CMaterial();
 
 };
 

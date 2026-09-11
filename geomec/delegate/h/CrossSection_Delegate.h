@@ -14,43 +14,43 @@ public:
   class CCSObject_Delegate : public COpenGLNode_Delegate
   {
   public:
-    CCSObject_Delegate(CCrossSection::CCSObject* csObject);
+  CCSObject_Delegate(CCrossSection::CCSObject* csObject);
 
   private:
-    CCSObject_Delegate(const CCSObject_Delegate& rhs);
-    CCSObject_Delegate& operator = (const CCSObject_Delegate& rhs);
+  CCSObject_Delegate(const CCSObject_Delegate& rhs);
+  CCSObject_Delegate& operator = (const CCSObject_Delegate& rhs);
 
-    CCrossSection::CCSObject* m_csObject;
+  CCrossSection::CCSObject* m_csObject;
 
-    REGISTER_DELEGATE(CCrossSection::CCSObject, CCSObject_Delegate);
+  REGISTER_DELEGATE(CCrossSection::CCSObject, CCSObject_Delegate);
   };
 
   class CCSFormation_Delegate : public CCSObject_Delegate
   {
   public:
-    CCSFormation_Delegate(CCrossSection::CCSFormation* csFormation);
+  CCSFormation_Delegate(CCrossSection::CCSFormation* csFormation);
 
   private:
-    CCSFormation_Delegate(const CCSFormation_Delegate& rhs);
-    CCSFormation_Delegate& operator = (const CCSFormation_Delegate& rhs);
+  CCSFormation_Delegate(const CCSFormation_Delegate& rhs);
+  CCSFormation_Delegate& operator = (const CCSFormation_Delegate& rhs);
 
-    CCrossSection::CCSFormation* m_csFormation;
+  CCrossSection::CCSFormation* m_csFormation;
 
-    REGISTER_DELEGATE(CCrossSection::CCSFormation, CCSFormation_Delegate);
+  REGISTER_DELEGATE(CCrossSection::CCSFormation, CCSFormation_Delegate);
   };
 
   class CCSWellPath_Delegate : public CCSObject_Delegate
   {
   public:
-    CCSWellPath_Delegate(CCrossSection::CCSWellPath* csWellPath);
+  CCSWellPath_Delegate(CCrossSection::CCSWellPath* csWellPath);
 
   private:
-    CCSWellPath_Delegate(const CCSWellPath_Delegate& rhs);
-    CCSWellPath_Delegate& operator = (const CCSWellPath_Delegate& rhs);
+  CCSWellPath_Delegate(const CCSWellPath_Delegate& rhs);
+  CCSWellPath_Delegate& operator = (const CCSWellPath_Delegate& rhs);
 
-    CCrossSection::CCSWellPath* m_csWellPath;
+  CCrossSection::CCSWellPath* m_csWellPath;
 
-    REGISTER_DELEGATE(CCrossSection::CCSWellPath, CCSWellPath_Delegate);
+  REGISTER_DELEGATE(CCrossSection::CCSWellPath, CCSWellPath_Delegate);
   };
 
   CCrossSection_Delegate(CCrossSection* crossSection);
@@ -84,7 +84,7 @@ public:
 private:
   CCrossSectionEntry_Delegate(const CCrossSectionEntry_Delegate& rhs);
   CCrossSectionEntry_Delegate& operator = (
-    const CCrossSectionEntry_Delegate& rhs);
+  const CCrossSectionEntry_Delegate& rhs);
 
   CCrossSectionEntry* m_crossSectionEntry;
 

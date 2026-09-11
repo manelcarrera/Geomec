@@ -35,9 +35,9 @@ const QString INPUT_PARAMETER = "<InputParameter Name=\"%1\" "
 std::ostream& CXMLInputParameter::operator () (std::ostream& stream) const
 {
   stream << INPUT_PARAMETER.arg(m_inputParameter->name()).
-    arg(m_inputParameter->min()).arg(m_inputParameter->max()).
-    arg(m_inputParameter->mean()).arg(m_inputParameter->lowerLimit()).
-    arg(m_inputParameter->upperLimit()).toStdString() << std::endl;
+  arg(m_inputParameter->min()).arg(m_inputParameter->max()).
+  arg(m_inputParameter->mean()).arg(m_inputParameter->lowerLimit()).
+  arg(m_inputParameter->upperLimit()).toStdString() << std::endl;
 
   return stream;
 }
@@ -64,9 +64,9 @@ std::ostream& operator << (std::ostream& stream,
   const cora::TXMLInputParameters& rhs)
 {
   for (cora::TXMLInputParameters::const_iterator inputParameter = rhs.begin();
-    inputParameter != rhs.end(); ++inputParameter)
+  inputParameter != rhs.end(); ++inputParameter)
   {
-    stream << *inputParameter;
+  stream << *inputParameter;
   }
 
   return stream;

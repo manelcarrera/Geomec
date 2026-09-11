@@ -40,10 +40,10 @@ public:
   ~RescueSurfaceCell();
 private:
   RescueSurfaceCell(RescueGeometry *geometryIn, 
-                    RescueIJSurface *surfaceIn,
-                    RESCUEINT64 cellNumber,
-                    RESCUEINT64 cellFaceNumberIn, SurfaceSide sideIn,
-                    RESCUEFLOAT *uvsIn = 0);
+          RescueIJSurface *surfaceIn,
+          RESCUEINT64 cellNumber,
+          RESCUEINT64 cellFaceNumberIn, SurfaceSide sideIn,
+          RESCUEFLOAT *uvsIn = 0);
                   // use RescueGeometry::SetSurfaceIntersection.
   virtual void Archive(FILE *archiveFile);
   RescueSurfaceCell(RescueContext *context, FILE *archiveFile);

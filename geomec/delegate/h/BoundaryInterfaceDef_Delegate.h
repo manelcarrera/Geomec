@@ -15,7 +15,7 @@ public:
 private:
   CBoundaryInterfaceDef_Delegate(const CBoundaryInterfaceDef_Delegate& rhs);
   CBoundaryInterfaceDef_Delegate& operator = (
-    const CBoundaryInterfaceDef_Delegate& rhs);
+  const CBoundaryInterfaceDef_Delegate& rhs);
 
   CBoundaryInterfaceDef* m_boundaryInterfaceDef;
 

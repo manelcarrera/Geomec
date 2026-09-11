@@ -12,8 +12,8 @@ public:
 protected:
   virtual void DoDataExchange(CDataExchange* pDX);
   virtual BOOL OnInitDialog();
-	virtual void OnOK();
-	virtual void PostNcDestroy();
+  virtual void OnOK();
+  virtual void PostNcDestroy();
 
   afx_msg void OnStartDefault();
   afx_msg void OnStartAHD();

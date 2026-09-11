@@ -27,205 +27,205 @@ IValue::~IValue()
 
 const IValue &IValue::Min(const IValue& rhs) const
 {
-	if(Valid() && rhs.Valid())
-	{
-		if(Value() < rhs.Value())
-			return *this;
-		else
-			return rhs;
-	}
+  if(Valid() && rhs.Valid())
+  {
+    if(Value() < rhs.Value())
+      return *this;
+    else
+      return rhs;
+  }
 
-	if(Valid())
-		return *this;
+  if(Valid())
+    return *this;
 
-	return rhs;
+  return rhs;
 }
 
 const IValue &IValue::Max(const IValue& rhs) const
 {
-	if(Valid() && rhs.Valid())
-	{
-		if(Value() > rhs.Value())
-			return *this;
-		else
-			return rhs;
-	}
+  if(Valid() && rhs.Valid())
+  {
+    if(Value() > rhs.Value())
+      return *this;
+    else
+      return rhs;
+  }
 
-	if(Valid())
-		return *this;
+  if(Valid())
+    return *this;
 
-	return rhs;
+  return rhs;
 }
 
 bool IValue::operator==(const IValue& rhs) const
 {
-	if(Valid() != rhs.Valid())
-		return false;
+  if(Valid() != rhs.Valid())
+    return false;
 
-	if(!Valid()) return true; // both not valid is true (?)
+  if(!Valid()) return true; // both not valid is true (?)
 
-	return (Value() == rhs.Value());
+  return (Value() == rhs.Value());
 }
 
 bool IValue::operator==(const double& rhs) const
 {
-	if(!Valid()) return false;
+  if(!Valid()) return false;
 
-	return Value() == rhs;
+  return Value() == rhs;
 }
 
 CValue IValue::operator+(const IValue &rhs) const
 {
-	assert(Valid());
-	assert(rhs.Valid());
+  assert(Valid());
+  assert(rhs.Valid());
 
-	return CValue(Value() + rhs.Value());
+  return CValue(Value() + rhs.Value());
 }
 
 CValue IValue::operator+(const double &rhs) const
 {
-	assert(Valid());
+  assert(Valid());
 
-	return CValue(Value() + rhs);
+  return CValue(Value() + rhs);
 }
 
 IValue &IValue::operator+=(const IValue &rhs)
 {
-	assert(Valid());
-	assert(rhs.Valid());
+  assert(Valid());
+  assert(rhs.Valid());
 
-	Value(Value() + rhs.Value());
+  Value(Value() + rhs.Value());
 
-	return *this;
+  return *this;
 }
 
 IValue &IValue::operator+=(const double &rhs)
 {
-	assert(Valid());
+  assert(Valid());
 
-	Value(Value() + rhs);
+  Value(Value() + rhs);
 
-	return *this;
+  return *this;
 }
 
 CValue IValue::operator-(const IValue &rhs) const
 {
-	assert(Valid());
-	assert(rhs.Valid());
+  assert(Valid());
+  assert(rhs.Valid());
 
-	return CValue(Value() - rhs.Value());
+  return CValue(Value() - rhs.Value());
 }
 
 CValue IValue::operator-(const double &rhs) const
 {
-	assert(Valid());
+  assert(Valid());
 
-	return CValue(Value() - rhs);
+  return CValue(Value() - rhs);
 }
 
 IValue &IValue::operator-=(const IValue &rhs)
 {
-	assert(Valid());
-	assert(rhs.Valid());
+  assert(Valid());
+  assert(rhs.Valid());
 
-	Value(Value() - rhs.Value());
+  Value(Value() - rhs.Value());
 
-	return *this;
+  return *this;
 }
 
 IValue &IValue::operator-=(const double &rhs)
 {
-	assert(Valid());
+  assert(Valid());
 
-	Value(Value() - rhs);
+  Value(Value() - rhs);
 
-	return *this;
+  return *this;
 }
 
 CValue IValue::operator/(const IValue &rhs) const
 {
-	assert(Valid());
-	assert(rhs.Valid());
-	assert(fabs(rhs.Value()) > EPS);
+  assert(Valid());
+  assert(rhs.Valid());
+  assert(fabs(rhs.Value()) > EPS);
 
-	return CValue(Value() / rhs.Value());
+  return CValue(Value() / rhs.Value());
 }
 
 CValue IValue::operator/(const double &rhs) const
 {
-	assert(Valid());
-	assert(fabs(rhs) > EPS);
+  assert(Valid());
+  assert(fabs(rhs) > EPS);
 
-	return CValue(Value() / rhs);
+  return CValue(Value() / rhs);
 }
 
 IValue &IValue::operator/=(const IValue &rhs)
 {
-	assert(Valid());
-	assert(rhs.Valid());
-	assert(fabs(rhs.Value()) > EPS);
+  assert(Valid());
+  assert(rhs.Valid());
+  assert(fabs(rhs.Value()) > EPS);
 
-	Value(Value() / rhs.Value());
+  Value(Value() / rhs.Value());
 
-	return *this;
+  return *this;
 }
 
 IValue &IValue::operator/=(const double &rhs)
 {
-	assert(Valid());
-	assert(fabs(rhs) > EPS);
+  assert(Valid());
+  assert(fabs(rhs) > EPS);
 
-	Value(Value() / rhs);
+  Value(Value() / rhs);
 
-	return *this;
+  return *this;
 }
 
 CValue IValue::operator*(const IValue &rhs) const
 {
-	assert(Valid());
-	assert(rhs.Valid());
+  assert(Valid());
+  assert(rhs.Valid());
 
-	return CValue(Value() * rhs.Value());
+  return CValue(Value() * rhs.Value());
 }
 
 CValue IValue::operator*(const double &rhs) const
 {
-	assert(Valid());
+  assert(Valid());
 
-	return CValue(Value() * rhs);
+  return CValue(Value() * rhs);
 }
 
 IValue &IValue::operator*=(const IValue &rhs)
 {
-	assert(Valid());
-	assert(rhs.Valid());
+  assert(Valid());
+  assert(rhs.Valid());
 
-	Value(Value() * rhs.Value());
+  Value(Value() * rhs.Value());
 
-	return *this;
+  return *this;
 }
 
 IValue &IValue::operator*=(const double &rhs)
 {
-	assert(Valid());
+  assert(Valid());
 
-	Value(Value() * rhs);
+  Value(Value() * rhs);
 
-	return *this;
+  return *this;
 }
 bool IValue::operator<(const IValue& rhs) const
 {
-	if(Valid())
-	{
-		if(rhs.Valid())
-			return Value() < rhs.Value();
-		return false;
-	}
-	
-	if(rhs.Valid())
-		return true;
+  if(Valid())
+  {
+    if(rhs.Valid())
+      return Value() < rhs.Value();
+    return false;
+  }
+  
+  if(rhs.Valid())
+    return true;
 
-	return false;
+  return false;
 }
 
 }

@@ -39,38 +39,38 @@ class MiDataSetI;
 
 class OIDILineMeshNode : public OIDIMeshNode
 {
-    // Cell shape members
-    SoSwitch*    m_visibilitySwitch;
+  // Cell shape members
+  SoSwitch*    m_visibilitySwitch;
 
-    SoSeparator* m_meshLineSeparator;
-    SoGroup*     m_appearanceGroup;
-    MoDrawStyle* m_meshLineDrawStyle;
-    MoMaterial*  m_meshLineMaterial;
-    SoDrawStyle * m_lineDrawStyle;
-    MoMeshLine * m_outline;
+  SoSeparator* m_meshLineSeparator;
+  SoGroup*     m_appearanceGroup;
+  MoDrawStyle* m_meshLineDrawStyle;
+  MoMaterial*  m_meshLineMaterial;
+  SoDrawStyle * m_lineDrawStyle;
+  MoMeshLine * m_outline;
 
-    void buildSurfaceAppearanceNode();
-    void buildSurfaceNode();
+  void buildSurfaceAppearanceNode();
+  void buildSurfaceNode();
 
 
-    void buildSurfaceMeshNode();
-    void buildNodes();
+  void buildSurfaceMeshNode();
+  void buildNodes();
 
 public:
 
-    explicit OIDILineMeshNode(const OIDIMesh* meshData, OIDIMeshNodeManager * meshNodeManager);
+  explicit OIDILineMeshNode(const OIDIMesh* meshData, OIDIMeshNodeManager * meshNodeManager);
 
-    virtual void updateColorScalarSet();
+  virtual void updateColorScalarSet();
 
-    virtual void updateIsoScalarSet();
+  virtual void updateIsoScalarSet();
 
 
-    virtual void setIsoValues(int isoCount, double min, double max);
-    virtual void setIsoGap(double gap);
+  virtual void setIsoValues(int isoCount, double min, double max);
+  virtual void setIsoGap(double gap);
 
-    virtual void UpdateDisplaySettings(const MeshNodeSettings & meshNodeSettings, bool showColor);
-    virtual void updateGeologyColors();
-    void buildOutlineAppearanceNode();
+  virtual void UpdateDisplaySettings(const MeshNodeSettings & meshNodeSettings, bool showColor);
+  virtual void updateGeologyColors();
+  void buildOutlineAppearanceNode();
 };
 
 #endif

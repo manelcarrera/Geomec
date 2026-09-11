@@ -6,12 +6,12 @@ namespace dia{
 
 namespace ff 
 {
-	void close();
-	void open(const char* fname, int mode);
+  void close();
+  void open(const char* fname, int mode);
 }
 
 namespace util{
-	char *GetCurrentDir();
+  char *GetCurrentDir();
 }
 
 
@@ -19,12 +19,12 @@ namespace util{
 class CFilosFile
 {
 public:
-	CFilosFile(std::string &strFileName, bool bInitFilos);
-	~CFilosFile();
+  CFilosFile(std::string &strFileName, bool bInitFilos);
+  ~CFilosFile();
 
 private:
-	std::string m_old_FF;
-	std::string m_old_FFDIR;
+  std::string m_old_FF;
+  std::string m_old_FFDIR;
 };
 
 }

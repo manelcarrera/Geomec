@@ -9,15 +9,15 @@ namespace GeomecRGI
 class CSavePropertyMaterialType : public CSavePropertyBase
 {
   public:
-    CSavePropertyMaterialType(const RGProperty& rgProperty);
-    virtual ~CSavePropertyMaterialType();
+  CSavePropertyMaterialType(const RGProperty& rgProperty);
+  virtual ~CSavePropertyMaterialType();
 
-    virtual bool saveProperty(RGInterface& rgi, CModelBase& modelBase,
+  virtual bool saveProperty(RGInterface& rgi, CModelBase& modelBase,
       const CRockMechProcessor& rmp);
 
   private:
-    CSavePropertyMaterialType(const CSavePropertyMaterialType& rhs);
-    CSavePropertyMaterialType& operator = (
+  CSavePropertyMaterialType(const CSavePropertyMaterialType& rhs);
+  CSavePropertyMaterialType& operator = (
       const CSavePropertyMaterialType& rhs);
 };
 

@@ -20,13 +20,13 @@ class CSurface;
 class CSurfaceComposite : public CColorNode
 {
 public:
-	//##ModelId=3D633E5002CB
-	virtual ~CSurfaceComposite();
+  //##ModelId=3D633E5002CB
+  virtual ~CSurfaceComposite();
 
-	//##ModelId=3D635C820231
-	typedef std::vector<CSurface*> TSurfaceVec;
-	//##ModelId=3D635C820175
-	TSurfaceVec Surfaces() const;
+  //##ModelId=3D635C820231
+  typedef std::vector<CSurface*> TSurfaceVec;
+  //##ModelId=3D635C820175
+  TSurfaceVec Surfaces() const;
 };
 
 #endif // !defined(AFX_SURFACECOMPOSITE_H__9CF5C694_179D_407F_A564_F5737709948A__INCLUDED_)

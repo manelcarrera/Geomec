@@ -14,7 +14,7 @@ std::vector <int> loadRGIFormationIDs(RGInterface& rgi)
 
   rgi.loadProperty(RGPropertyType::propElementFormation, rgiFormationIDs);
   GeomecRGI::propertyValuesMayNotContainNull(
-    RGPropertyType::propElementFormation, rgiFormationIDs);
+  RGPropertyType::propElementFormation, rgiFormationIDs);
 
   return rgiFormationIDs;
 }
@@ -26,16 +26,16 @@ std::map <int, std::size_t> loadRGIFormation2RGIElementMap(
   std::map <int, std::size_t> rgiFormation2RGIElementMap;
 
   for (std::set <int>::const_iterator id = distinctRGIFormationIDs.begin();
-    id != distinctRGIFormationIDs.end(); ++id)
+  id != distinctRGIFormationIDs.end(); ++id)
   {
-    const std::vector <int>::const_iterator element =
+  const std::vector <int>::const_iterator element =
       std::find(rgiFormationIDs.begin(), rgiFormationIDs.end(), *id);
 
-    assert(element != rgiFormationIDs.end());
+  assert(element != rgiFormationIDs.end());
 
-    size_t offset = std::distance(rgiFormationIDs.begin(), element);
+  size_t offset = std::distance(rgiFormationIDs.begin(), element);
 
-    rgiFormation2RGIElementMap.insert(
+  rgiFormation2RGIElementMap.insert(
       std::map <int, std::size_t>::value_type(*id, offset));
   }
 
@@ -51,7 +51,7 @@ CRGIFormationIDs::CRGIFormationIDs(RGInterface& rgi)
 : m_RGIFormationIDs(loadRGIFormationIDs(rgi))
 , m_DistinctRGIFormationIDs(getDistinctFormationIDs(m_RGIFormationIDs))
 , m_RGIFormation2RGIElementMap(loadRGIFormation2RGIElementMap(
-    m_DistinctRGIFormationIDs, m_RGIFormationIDs))
+  m_DistinctRGIFormationIDs, m_RGIFormationIDs))
 {
 }
 
@@ -72,9 +72,9 @@ std::set <int> CRGIFormationIDs::getDistinctRGIFormationIDs() const
 std::size_t CRGIFormationIDs::mapRGIFormation2RGIElement(int rgiFormation) const
 {
   if (m_RGIFormation2RGIElementMap.find(rgiFormation) !=
-    m_RGIFormation2RGIElementMap.end())
+  m_RGIFormation2RGIElementMap.end())
   {
-    return m_RGIFormation2RGIElementMap.at(rgiFormation);
+  return m_RGIFormation2RGIElementMap.at(rgiFormation);
   }
 
   assert(false);
@@ -91,7 +91,7 @@ std::set <int> CRGIFormationIDs::getDistinctFormationIDs(
 
   for (size_t id = 0; id < formationIDs.size(); ++id)
   {
-    distinctFormationIDs.insert(formationIDs[id]);
+  distinctFormationIDs.insert(formationIDs[id]);
   }
 
   return distinctFormationIDs;

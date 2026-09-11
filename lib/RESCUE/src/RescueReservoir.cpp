@@ -32,11 +32,11 @@ void RescueReservoir::AddUnit(RescueUnit *toAdd)
 {
   if (toAdd != 0)
   {
-    RESCUEINT64 id = toAdd->Identifier();
-    if (unitIds->Contains(id) == FALSE)
-    {
+  RESCUEINT64 id = toAdd->Identifier();
+  if (unitIds->Contains(id) == FALSE)
+  {
       (*unitIds) += id;
-    }
+  }
   }
 }
 
@@ -44,8 +44,8 @@ void RescueReservoir::DeleteUnit(RescueUnit *toDelete)
 {
   if (toDelete != 0)
   {
-    RESCUEINT64 id = toDelete->Identifier();
-    (*unitIds) -= id;
+  RESCUEINT64 id = toDelete->Identifier();
+  (*unitIds) -= id;
   }
 }
 
@@ -55,7 +55,7 @@ RescueUnit *RescueReservoir::NthUnit(RescueModel *model, RESCUEINT64 zeroBasedOr
   RESCUEINT64 id = unitIds->NthObject(zeroBasedOrdinal);
   if (id != 0)
   {
-    myReturn = model->UnitIdentifiedBy(id);
+  myReturn = model->UnitIdentifiedBy(id);
   }
   return myReturn;
 }
@@ -70,12 +70,12 @@ void RescueReservoir::Archive(RescueContext *context, FILE *archiveFile)
   RESCUEINT64 loop;
   for (loop = 0; loop < howMany; loop++)
   {
-    RESCUEINT64 id = unitIds->NthObject(loop);
-    myfprintf(context, archiveFile, id);
+  RESCUEINT64 id = unitIds->NthObject(loop);
+  myfprintf(context, archiveFile, id);
   }
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -91,20 +91,20 @@ RescueReservoir::RescueReservoir(RescueContext *context, FILE *archiveFile)
   RESCUEINT64 loop;
   for (loop = 0; loop < howMany; loop++)
   {
-    RESCUEINT64 id;
-    myfscanf(context, archiveFile, &id);
-    (*unitIds) += id;
+  RESCUEINT64 id;
+  myfscanf(context, archiveFile, &id);
+  (*unitIds) += id;
   }
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -113,11 +113,11 @@ RESCUEBOOL RescueReservoir::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueReservoir)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueObject::IsOfType(thisType);
+  return RescueObject::IsOfType(thisType);
   }
 }
 

@@ -19,8 +19,8 @@ namespace {
 struct compareFormations {
   bool operator()(CGraphNode *a, CGraphNode *b)
   {
-    assert(dynamic_cast<CStorageNode *>(a) && dynamic_cast<CStorageNode *>(b));
-    return static_cast<CStorageNode *>(a)->Index() < static_cast<CStorageNode *>(b)->Index();
+  assert(dynamic_cast<CStorageNode *>(a) && dynamic_cast<CStorageNode *>(b));
+  return static_cast<CStorageNode *>(a)->Index() < static_cast<CStorageNode *>(b)->Index();
   }
 };
 
@@ -34,7 +34,7 @@ std::vector<CFormationBase *> getFormations(const CModelBase& modelBase)
 
   for (TFormationBaseEntry::TEntryNodeSet::const_iterator entryNode = entryNodeSet.begin(); entryNode != entryNodeSet.end(); ++entryNode)
   {
-    formations.push_back(static_cast<CFormationBase *>(*entryNode));
+  formations.push_back(static_cast<CFormationBase *>(*entryNode));
   }
 
   std::sort(formations.begin(), formations.end(), compareFormations());
@@ -50,17 +50,17 @@ std::vector <int> getGeomecFormationIDs(const CModelBase& modelBase, const std::
 
   for (int e = 0; e < elementSize; ++e)
   {
-    const geo::IElement& element = modelBase.Mesh().Mesh().Element(e);
+  const geo::IElement& element = modelBase.Mesh().Mesh().Element(e);
 
-    if (element.IsElement())
-    {
+  if (element.IsElement())
+  {
       const CFormationBase* formationBase = modelBase.Mesh().Formation(element);
       std::vector<CFormationBase *>::const_iterator formation = std::find(formations.begin(), formations.end(), formationBase);
 
       assert(formation != formations.end());
 
       geomecFormationIDs[e] = std::distance(formations.begin(), formation);
-    }
+  }
   }
 
   return geomecFormationIDs;
@@ -98,12 +98,12 @@ void CGeomecFormationIDs2RGI::SetFormations(RGInterface& rgi, const CModelBase& 
 {
   if (rgi.getFormationName(0).empty())
   {
-    std::vector<CFormationBase *> formations = getFormations(modelBase);
+  std::vector<CFormationBase *> formations = getFormations(modelBase);
 
-    for (size_t i = 0; i < formations.size(); ++i)
-    {
+  for (size_t i = 0; i < formations.size(); ++i)
+  {
       rgi.setFormationName((int)i, formations[i]->Name().toStdString());
-    }
+  }
   }
 }
 

@@ -4,15 +4,15 @@
 
 typedef struct
 {
-	void	*pParent;
-	void	**pChildren;
-	int		nChildren;
-	char	*sName;
-	int		iIsDir;
-	int		iIsDefault;
-	int		iBlockFormat;
-	char	**sValue;
-	int		nValues;
+  void	*pParent;
+  void	**pChildren;
+  int		nChildren;
+  char	*sName;
+  int		iIsDir;
+  int		iIsDefault;
+  int		iBlockFormat;
+  char	**sValue;
+  int		nValues;
 } DiSubDirInfo_t;
 
 #ifdef __cplusplus

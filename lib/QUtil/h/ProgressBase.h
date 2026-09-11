@@ -5,13 +5,13 @@
 class CProgressBase : public IProgressBase
 {
   public:
-    CProgressBase();
-    virtual ~CProgressBase();
+  CProgressBase();
+  virtual ~CProgressBase();
 
   protected:
-    static QString getDateTimeStamp();
+  static QString getDateTimeStamp();
 
   private:
-    CProgressBase(const CProgressBase& rhs);
-    CProgressBase& operator = (const CProgressBase& rhs);
+  CProgressBase(const CProgressBase& rhs);
+  CProgressBase& operator = (const CProgressBase& rhs);
 };

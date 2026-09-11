@@ -21,21 +21,21 @@ const std::set<std::string> &CFillMaterialParameterProxies::GetNames
 {
   if (m_stProxyNames.size() == 0)
   {
-    rpn::CRpnStack rpnStack;
-    CFillMaterialParameterProxies
+  rpn::CRpnStack rpnStack;
+  CFillMaterialParameterProxies
       proxies( const_cast<CMeshBase &>(model.Mesh()), rpnStack);
-    std::vector <IRpnMaterialParameterProxy*> vcProxy= 
+  std::vector <IRpnMaterialParameterProxy*> vcProxy= 
       proxies.getMaterialParameterProxies();
 
-    for (int ii= 0; ii< vcProxy.size(); ++ii)
-    {
+  for (int ii= 0; ii< vcProxy.size(); ++ii)
+  {
       m_stProxyNames.insert( vcProxy[ii]->TextTag().toStdString() );
-    }
+  }
 
-    for (int ii= 0; ii< vcProxy.size(); ++ii)
-    {
+  for (int ii= 0; ii< vcProxy.size(); ++ii)
+  {
       delete vcProxy[ii];
-    }
+  }
   }
 
   return m_stProxyNames;
@@ -58,22 +58,22 @@ CFillMaterialParameterProxies::CreateMaterialParameterProxy
        CFillMaterialParameterProxies::GetNames(model).end()
      )
   {
-    proxy= CFillMaterialParameterProxies::CreateMaterialParameterProxy
+  proxy= CFillMaterialParameterProxies::CreateMaterialParameterProxy
       (model, name, 0, rpnStack);
   }
   else if ( SimpleSplitTextTag(name,baseName,timeStep ) && timeStep != -1) // aap_D1 -> aap,1
   {
-    if ( CFillMaterialParameterProxies::GetNames(model).find( baseName) !=
+  if ( CFillMaterialParameterProxies::GetNames(model).find( baseName) !=
          CFillMaterialParameterProxies::GetNames(model).end()
        )
-    {
+  {
       const CDepletionStage *pStage= 
-        model.FindDepletionStage(timeStep);
+    model.FindDepletionStage(timeStep);
 
       assert(pStage); // we checked the user input, it should be there
       proxy= CFillMaterialParameterProxies::CreateMaterialParameterProxy
-        (model, baseName, pStage, rpnStack);
-    }
+    (model, baseName, pStage, rpnStack);
+  }
   }
 
   return proxy;
@@ -89,21 +89,21 @@ CFillMaterialParameterProxies::CreateMaterialParameterProxy
 {
   rpn::CRpnStack newStack;
   CFillMaterialParameterProxies
-    myProxies(const_cast<CMeshBase &>(model.Mesh()), newStack);
+  myProxies(const_cast<CMeshBase &>(model.Mesh()), newStack);
 
   IRpnMaterialParameterProxy *proxy= 0;
   std::vector <IRpnMaterialParameterProxy*> vcProxies= 
-    myProxies.getMaterialParameterProxies();
+  myProxies.getMaterialParameterProxies();
 
   for ( std::vector <IRpnMaterialParameterProxy*>::iterator it=vcProxies.begin()
       ; it<  vcProxies.end()
       ; ++it
       )
   {
-    IRpnMaterialParameterProxy *pr= *it; // assignment for debug
+  IRpnMaterialParameterProxy *pr= *it; // assignment for debug
 
-    if ( pr->TextTag().toStdString() == name )
-    {
+  if ( pr->TextTag().toStdString() == name )
+  {
        proxy=
          dynamic_cast<IRpnMaterialParameterProxy *>(pr->Clone(rpnStack));
 
@@ -114,7 +114,7 @@ CFillMaterialParameterProxies::CreateMaterialParameterProxy
        }
 
        break;
-    }
+  }
   } //for
 
   for (std::vector <IRpnMaterialParameterProxy*>::iterator it= vcProxies.begin()
@@ -122,7 +122,7 @@ CFillMaterialParameterProxies::CreateMaterialParameterProxy
       ; ++it
       )
   {
-    delete *it;
+  delete *it;
   }
 
   return proxy;
@@ -138,7 +138,7 @@ std::vector <IRpnMaterialParameterProxy*>
 //
 std::vector <IRpnMaterialParameterProxy*>
 CFillMaterialParameterProxies::fillMaterialParameterProxies(
-    CMeshBase& mesh, rpn::CRpnStack& rpnStack)
+  CMeshBase& mesh, rpn::CRpnStack& rpnStack)
 {
   std::vector <IRpnMaterialParameterProxy*> materialParameterProxies;
 

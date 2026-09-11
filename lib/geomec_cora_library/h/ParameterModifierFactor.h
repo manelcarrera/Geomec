@@ -17,16 +17,16 @@ namespace cora
 class CParameterModifierFactor : public CParameterModifierBase
 {
   public:
-    CParameterModifierFactor(std::vector <double>& factor);
-    virtual ~CParameterModifierFactor();
+  CParameterModifierFactor(std::vector <double>& factor);
+  virtual ~CParameterModifierFactor();
 
-    virtual geo::CValue modify(const geo::CValue& value) const;
+  virtual geo::CValue modify(const geo::CValue& value) const;
 
   private:
-    CParameterModifierFactor(const CParameterModifierFactor& rhs);
-    CParameterModifierFactor& operator = (CParameterModifierFactor rhs);
+  CParameterModifierFactor(const CParameterModifierFactor& rhs);
+  CParameterModifierFactor& operator = (CParameterModifierFactor rhs);
 
-    const geo::CValue m_factor;
+  const geo::CValue m_factor;
 };
 
 } // namespace cora

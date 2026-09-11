@@ -11,14 +11,14 @@ class CObject;
 class CFilterOutputProperty
 {
   public:
-    CFilterOutputProperty();
+  CFilterOutputProperty();
 
-    bool isOutputPropertyAllowed(const CObject& object, const QString& result)
+  bool isOutputPropertyAllowed(const CObject& object, const QString& result)
       const;
 
   private:
-    CFilterOutputProperty(const CFilterOutputProperty& rhs);
-    CFilterOutputProperty& operator = (CFilterOutputProperty rhs);
+  CFilterOutputProperty(const CFilterOutputProperty& rhs);
+  CFilterOutputProperty& operator = (CFilterOutputProperty rhs);
 };
 
 } // namespace cora

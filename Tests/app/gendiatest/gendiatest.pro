@@ -14,7 +14,7 @@ TARGET = gendiatest
 INCLUDEPATH += ../../lib/GeomecModel/SRC
 INCLUDEPATH += ../../lib/FemAppModel
 INCLUDEPATH += ../../lib/DianaCore/src
-INCLUDEPATH += ../../lib/MfcModelFrame
+INCLUDEPATH += ../../platform/MfcModelFrame
 INCLUDEPATH += ../../fw51/GuiFrame/include
 INCLUDEPATH += ../../fw51/Geometry/include
 INCLUDEPATH += $$DIAINCLUDE
@@ -85,11 +85,11 @@ CONFIG(release, debug|release) {
 LIBS       += -L../../UserDLLs -lblosc
 }
 
-LIBS += -L ../../lib/tbb/linux/lib/intel64/gcc4.7 -ltbb -ltbbmalloc
+LIBS += -L ../../third_party/tbb/linux/lib/intel64/gcc4.7 -ltbb -ltbbmalloc
 unix:LIBS  += -L/usr/lib64 -lglib-2.0
 unix:LIBS  += -L/usr/lib65 -lz
-unix:LIBS  += ../../lib/hdf5/linux/lib/libhdf5_cpp.a ../../lib/hdf5/linux/lib/libhdf5.a
-unix:LIBS  += ../../lib/hdf5/linux/lib/libhdf5_cpp.a ../../lib/hdf5/linux/lib/libhdf5.a
+unix:LIBS  += ../../third_party/hdf5/linux/lib/libhdf5_cpp.a ../../third_party/hdf5/linux/lib/libhdf5.a
+unix:LIBS  += ../../third_party/hdf5/linux/lib/libhdf5_cpp.a ../../third_party/hdf5/linux/lib/libhdf5.a
 unix:LIBS  += -ldl
 
 QT += xml

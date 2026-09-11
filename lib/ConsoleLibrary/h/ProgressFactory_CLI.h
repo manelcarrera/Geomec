@@ -11,15 +11,15 @@ class IProgressBase;
 class CProgressFactory_CLI : public IProgressFactory
 {
 public:
-	IProgressBase* create(
-		eProgress type_,
-		const QString& title="", 
-		bool cancel = true,
-		int jobs=1);
+  IProgressBase* create(
+    eProgress type_,
+    const QString& title="", 
+    bool cancel = true,
+    int jobs=1);
 
   IProgressBase* create_imp(
-    eProgress type_,
-    const QString& title = "",
-    bool cancel = true,
-    int jobs = 1);
+  eProgress type_,
+  const QString& title = "",
+  bool cancel = true,
+  int jobs = 1);
 };

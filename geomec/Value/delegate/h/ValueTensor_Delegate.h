@@ -6,35 +6,35 @@
 #include "ValueTensor.h"
 
 template<unsigned int uComponentName,			// Resource string ID of the component name
-		 unsigned int uComponentIndex>			// Index of the component in the value set
+     unsigned int uComponentIndex>			// Index of the component in the value set
 class CTensorComponentTemp_Delegate :
   public CComponentTemp_Delegate<uComponentName, uComponentIndex>
 {
 public:
   CTensorComponentTemp_Delegate(CTensorComponentTemp<uComponentName,
-    uComponentIndex>* tensorComponentTemp)
-    : CComponentTemp_Delegate<uComponentName,
+  uComponentIndex>* tensorComponentTemp)
+  : CComponentTemp_Delegate<uComponentName,
                               uComponentIndex>(tensorComponentTemp),
       m_tensorComponentTemp(tensorComponentTemp)
   {
-    ACTIVATE_TEMPLATE_DELEGATE(CTensorComponentTempTemplate,
+  ACTIVATE_TEMPLATE_DELEGATE(CTensorComponentTempTemplate,
       CTensorComponentTemp_DelegateTemplate);
   }
 
 private:
   CTensorComponentTemp_Delegate(const CTensorComponentTemp_Delegate& rhs);
   CTensorComponentTemp_Delegate& operator=(
-    const CTensorComponentTemp_Delegate& rhs);
+  const CTensorComponentTemp_Delegate& rhs);
 
   CTensorComponentTemp<uComponentName, uComponentIndex>* m_tensorComponentTemp;
 
   typedef CTensorComponentTemp<uComponentName, uComponentIndex>
-    CTensorComponentTempTemplate;
+  CTensorComponentTempTemplate;
   typedef CTensorComponentTemp_Delegate<uComponentName, uComponentIndex>
-    CTensorComponentTemp_DelegateTemplate;
+  CTensorComponentTemp_DelegateTemplate;
 
   REGISTER_DELEGATE(CTensorComponentTempTemplate,
-    CTensorComponentTemp_DelegateTemplate);
+  CTensorComponentTemp_DelegateTemplate);
 };
 
 template<unsigned int uTypeId, 
@@ -46,32 +46,32 @@ class CValueTensorTemp_Delegate :
 {
 public:
   CValueTensorTemp_Delegate(CValueTensorTemp<uTypeId, uExport, uIconId,
-    uValueNameId>* valueTensorTemp)
-    : CValueTypeTemp_Delegate<uTypeId,
+  uValueNameId>* valueTensorTemp)
+  : CValueTypeTemp_Delegate<uTypeId,
                               uIconId,
                               uValueNameId,
                               uExport>(valueTensorTemp),
       m_valueTensorTemp(valueTensorTemp)
   {
-    ACTIVATE_TEMPLATE_DELEGATE(CValueTensorTempTemplate,
+  ACTIVATE_TEMPLATE_DELEGATE(CValueTensorTempTemplate,
       CValueTensorTemp_DelegateTemplate);
   }
 
 private:
   CValueTensorTemp_Delegate(const CValueTensorTemp_Delegate& rhs);
   CValueTensorTemp_Delegate& operator=(
-    const CValueTensorTemp_Delegate& rhs);
+  const CValueTensorTemp_Delegate& rhs);
 
   CValueTensorTemp<uTypeId, uExport, uIconId, uValueNameId>*
-    m_valueTensorTemp;
+  m_valueTensorTemp;
 
   typedef CValueTensorTemp<uTypeId, uIconId, uValueNameId, uExport>
-    CValueTensorTempTemplate;
+  CValueTensorTempTemplate;
   typedef CValueTensorTemp_Delegate<uTypeId, uIconId, uValueNameId, uExport>
-    CValueTensorTemp_DelegateTemplate;
+  CValueTensorTemp_DelegateTemplate;
 
   REGISTER_DELEGATE(CValueTensorTempTemplate,
-    CValueTensorTemp_DelegateTemplate);
+  CValueTensorTemp_DelegateTemplate);
 };
 
 class TStressTensor_Delegate :

@@ -32,41 +32,41 @@ class CLine;
 
 class GEOMETRY_EXPORT  IVolume : public IElementSet
 {
-	// Mapping van elementen op punten
-	CArray<CPolyLine> ExtractPolyLine(CArray<CLine> &LineArr) const;
-	void GenerateEdgeFaces() const;
-	mutable std::vector<const IFace*> m_vcEdgeFace;
+  // Mapping van elementen op punten
+  CArray<CPolyLine> ExtractPolyLine(CArray<CLine> &LineArr) const;
+  void GenerateEdgeFaces() const;
+  mutable std::vector<const IFace*> m_vcEdgeFace;
 public:
-	IVolume();
-	virtual ~IVolume();
+  IVolume();
+  virtual ~IVolume();
 
 // Cool !!! Interface dual to the ISurface interface ...
-	virtual const IBody &Body(int nIndex) const = 0;
-	virtual int BodySize() const = 0;
+  virtual const IBody &Body(int nIndex) const = 0;
+  virtual int BodySize() const = 0;
 
-	virtual const IPoint &Point(int nIndex) const = 0;
-	virtual int PointSize() const = 0;
+  virtual const IPoint &Point(int nIndex) const = 0;
+  virtual int PointSize() const = 0;
 
-	virtual const IElement &Element(int nIndex) const;
-	virtual int ElementSize() const;
+  virtual const IElement &Element(int nIndex) const;
+  virtual int ElementSize() const;
 
-	const IFace &EdgeFace(int nIndex) const;
-	int EdgeFaceSize() const;
-	
-	virtual bool Contains(const IPoint &point, bool bIncludeEdge = true) const;
-	
-	// Pre	: The volume consists of convex bodies
-	virtual std::vector<CPolygon> Intersection(const IPlane &Plane, IProgressBase* pProgress = 0) const;
-	virtual void Intersection(const ILine &Line, std::set<CPoint> &PointSet) const;
-	virtual void Intersection(const IPolyLine &Line, std::set<CPoint> &PointSet) const;
-	virtual void Intersection(const IPlane &Plane, CArray<CPolygon> &PolArr, std::set<CPoint> *PointSet = 0, IProgressBase* pProgress = 0) const;
-	virtual void IntersectionWithEdgeFaces(const ILine &Line, std::set<CPoint> &PointSet) const;
-	virtual std::vector<const IBody*> PointInVolume(const IPoint &point) const;
+  const IFace &EdgeFace(int nIndex) const;
+  int EdgeFaceSize() const;
+  
+  virtual bool Contains(const IPoint &point, bool bIncludeEdge = true) const;
+  
+  // Pre	: The volume consists of convex bodies
+  virtual std::vector<CPolygon> Intersection(const IPlane &Plane, IProgressBase* pProgress = 0) const;
+  virtual void Intersection(const ILine &Line, std::set<CPoint> &PointSet) const;
+  virtual void Intersection(const IPolyLine &Line, std::set<CPoint> &PointSet) const;
+  virtual void Intersection(const IPlane &Plane, CArray<CPolygon> &PolArr, std::set<CPoint> *PointSet = 0, IProgressBase* pProgress = 0) const;
+  virtual void IntersectionWithEdgeFaces(const ILine &Line, std::set<CPoint> &PointSet) const;
+  virtual std::vector<const IBody*> PointInVolume(const IPoint &point) const;
 
-	virtual bool Visit(IVisitor &visitor) { return visitor.HandleVolume(*this); }
+  virtual bool Visit(IVisitor &visitor) { return visitor.HandleVolume(*this); }
 
 protected:
-	virtual void InvalidateCache();
+  virtual void InvalidateCache();
 };
 
 }

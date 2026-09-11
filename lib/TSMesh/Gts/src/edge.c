@@ -28,9 +28,9 @@ static void edge_destroy (GtsObject * object)
 
   i = edge->triangles;
   while (i) {
-    GSList * next = i->next;
-    gts_object_destroy (i->data);
-    i = next;
+  GSList * next = i->next;
+  gts_object_destroy (i->data);
+  i = next;
   }
   g_assert (edge->triangles == NULL);
 
@@ -40,7 +40,7 @@ static void edge_destroy (GtsObject * object)
 static void edge_clone (GtsObject * clone, GtsObject * object)
 {
   (* GTS_OBJECT_CLASS (gts_edge_class ())->parent_class->clone) (clone,
-								 object);
+                 object);
   GTS_SEGMENT (clone)->v1 = GTS_SEGMENT (clone)->v2 = NULL;
   GTS_EDGE (clone)->triangles = NULL;
 }
@@ -66,7 +66,7 @@ GtsEdgeClass * gts_edge_class (void)
   static GtsEdgeClass * klass = NULL;
 
   if (klass == NULL) {
-    GtsObjectClassInfo edge_info = {
+  GtsObjectClassInfo edge_info = {
       "GtsEdge",
       sizeof (GtsEdge),
       sizeof (GtsEdgeClass),
@@ -74,9 +74,9 @@ GtsEdgeClass * gts_edge_class (void)
       (GtsObjectInitFunc) edge_init,
       (GtsArgSetFunc) NULL,
       (GtsArgGetFunc) NULL
-    };
-    klass = gts_object_class_new (GTS_OBJECT_CLASS (gts_segment_class ()), 
-				  &edge_info);
+  };
+  klass = gts_object_class_new (GTS_OBJECT_CLASS (gts_segment_class ()), 
+          &edge_info);
   }
 
   return klass;
@@ -91,7 +91,7 @@ GtsEdgeClass * gts_edge_class (void)
  * Returns: a new #GtsEdge linking @v1 and @v2.
  */
 GtsEdge * gts_edge_new (GtsEdgeClass * klass,
-			GtsVertex * v1, GtsVertex * v2)
+      GtsVertex * v1, GtsVertex * v2)
 {
   return GTS_EDGE (gts_segment_new (GTS_SEGMENT_CLASS (klass), v1, v2));
 }
@@ -114,13 +114,13 @@ void gts_edge_replace (GtsEdge * e, GtsEdge * with)
 
   i = e->triangles;
   while (i) {
-    GtsTriangle * t = i->data;
-    if (t->e1 == e) t->e1 = with;
-    if (t->e2 == e) t->e2 = with;
-    if (t->e3 == e) t->e3 = with;
-    if (!g_slist_find (with->triangles, t))
+  GtsTriangle * t = i->data;
+  if (t->e1 == e) t->e1 = with;
+  if (t->e2 == e) t->e2 = with;
+  if (t->e3 == e) t->e3 = with;
+  if (!g_slist_find (with->triangles, t))
       with->triangles = g_slist_prepend (with->triangles, t);
-    i = i->next;
+  i = i->next;
   }
   g_slist_free (e->triangles);
   e->triangles = NULL;
@@ -141,10 +141,10 @@ GtsFace * gts_edge_has_parent_surface (GtsEdge * e, GtsSurface * surface)
 
   i = e->triangles;
   while (i) {
-    if (GTS_IS_FACE (i->data) && 
-	gts_face_has_parent_surface (i->data, surface))
+  if (GTS_IS_FACE (i->data) && 
+  gts_face_has_parent_surface (i->data, surface))
       return i->data;
-    i = i->next;
+  i = i->next;
   }
   return NULL;
 }
@@ -165,10 +165,10 @@ GtsFace * gts_edge_has_any_parent_surface (GtsEdge * e)
 
   i = e->triangles;
   while (i) {
-    GtsTriangle * t = i->data;
-    if (GTS_IS_FACE (t) && GTS_FACE (t)->surfaces != NULL)
+  GtsTriangle * t = i->data;
+  if (GTS_IS_FACE (t) && GTS_FACE (t)->surfaces != NULL)
       return GTS_FACE (t);
-    i = i->next;
+  i = i->next;
   }
   return NULL;
 }
@@ -192,14 +192,14 @@ GtsFace * gts_edge_is_boundary (GtsEdge * e, GtsSurface * surface)
   
   i = e->triangles;
   while (i) {
-    if (GTS_IS_FACE (i->data)) {
+  if (GTS_IS_FACE (i->data)) {
       if (!surface || gts_face_has_parent_surface (i->data, surface)) {
-	if (f != NULL)
-	  return NULL;
-	f = i->data;
+  if (f != NULL)
+    return NULL;
+  f = i->data;
       }
-    }
-    i = i->next;    
+  }
+  i = i->next;    
   }
   return f;
 }
@@ -222,18 +222,18 @@ GSList * gts_edges_from_vertices (GSList * vertices, GtsSurface * parent)
   hash = g_hash_table_new (NULL, NULL);
   i = vertices;
   while (i) {
-    GSList * j = GTS_VERTEX (i->data)->segments;
-    while (j) {
+  GSList * j = GTS_VERTEX (i->data)->segments;
+  while (j) {
       GtsSegment * s = j->data;
       if (GTS_IS_EDGE (s) &&
-	  gts_edge_has_parent_surface (GTS_EDGE (s), parent) && 
-	  g_hash_table_lookup (hash, s) == NULL) {
-	edges = g_slist_prepend (edges, s);
-	g_hash_table_insert (hash, s, i);
+    gts_edge_has_parent_surface (GTS_EDGE (s), parent) && 
+    g_hash_table_lookup (hash, s) == NULL) {
+  edges = g_slist_prepend (edges, s);
+  g_hash_table_insert (hash, s, i);
       }
       j = j->next;
-    }
-    i = i->next;
+  }
+  i = i->next;
   }
   g_hash_table_destroy (hash);
   return edges;
@@ -256,10 +256,10 @@ guint gts_edge_face_number (GtsEdge * e, GtsSurface * s)
 
   i = e->triangles;
   while (i) {
-    if (GTS_IS_FACE (i->data) && 
-	gts_face_has_parent_surface (GTS_FACE (i->data), s))
+  if (GTS_IS_FACE (i->data) && 
+  gts_face_has_parent_surface (GTS_FACE (i->data), s))
       nt++;
-    i = i->next;
+  i = i->next;
   }
   return nt;
 }
@@ -281,23 +281,23 @@ GtsEdge * gts_edge_is_duplicate (GtsEdge * e)
   v2 = GTS_SEGMENT (e)->v2;
   i = GTS_SEGMENT (e)->v1->segments;
   if (GTS_SEGMENT (e)->v1 == v2) /* e is degenerate: special treatment */
-    while (i) {
+  while (i) {
       GtsSegment * s = i->data;
       if (s != GTS_SEGMENT (e) &&
-	  GTS_IS_EDGE (s) && 
-	  s->v1 == v2 && s->v2 == v2)
-	return GTS_EDGE (s);
+    GTS_IS_EDGE (s) && 
+    s->v1 == v2 && s->v2 == v2)
+  return GTS_EDGE (s);
       i = i->next;
-    }
+  }
   else /* e is not degenerate */
-    while (i) {
+  while (i) {
       GtsSegment * s = i->data;
       if (s != GTS_SEGMENT (e) &&
-	  GTS_IS_EDGE (s) && 
-	  (s->v1 == v2 || s->v2 == v2))
-	return GTS_EDGE (s);
+    GTS_IS_EDGE (s) && 
+    (s->v1 == v2 || s->v2 == v2))
+  return GTS_EDGE (s);
       i = i->next;
-    }
+  }
   return NULL;
 }
 
@@ -318,17 +318,17 @@ GList * gts_edges_merge (GList * edges)
   /* we want to control edge destruction */
   gts_allow_floating_edges = TRUE;
   while (i) {
-    GtsEdge * e = i->data;
-    GtsEdge * de = gts_edge_is_duplicate (e);
-    if (de) {
+  GtsEdge * e = i->data;
+  GtsEdge * de = gts_edge_is_duplicate (e);
+  if (de) {
       GList * next = i->next;
       edges = g_list_remove_link (edges, i);
       g_list_free_1 (i);
       i = next;
       gts_edge_replace (e, de);
       gts_object_destroy (GTS_OBJECT (e));
-    }
-    else
+  }
+  else
       i = i->next;
   }
   gts_allow_floating_edges = FALSE;;
@@ -337,10 +337,10 @@ GList * gts_edges_merge (GList * edges)
 }
 
 static void triangle_vertices_edges (GtsTriangle * t, 
-				     GtsEdge * e,
-				     GtsVertex ** v,
-				     GtsEdge ** ee1,
-				     GtsEdge ** ee2)
+             GtsEdge * e,
+             GtsVertex ** v,
+             GtsEdge ** ee1,
+             GtsEdge ** ee2)
 {
   GtsEdge * e1 = t->e1, * e2 = t->e2, * e3 = t->e3;
   GtsVertex * v1 = GTS_SEGMENT (e)->v1;
@@ -350,12 +350,12 @@ static void triangle_vertices_edges (GtsTriangle * t,
   else                g_assert (e3 == e);
 
   if (GTS_SEGMENT (e2)->v1 == v1 || GTS_SEGMENT (e2)->v2 == v1) {
-    e3 = e1; e1 = e2; e2 = e3;
+  e3 = e1; e1 = e2; e2 = e3;
   }
   if (GTS_SEGMENT (e1)->v1 == v1)
-    *v = GTS_SEGMENT (e1)->v2;
+  *v = GTS_SEGMENT (e1)->v2;
   else
-    *v = GTS_SEGMENT (e1)->v1;
+  *v = GTS_SEGMENT (e1)->v1;
   *ee1 = e1;
   *ee2 = e2;
 }
@@ -375,11 +375,11 @@ gboolean gts_edge_belongs_to_tetrahedron (GtsEdge * e)
 
   i = e->triangles;
   while (i) {
-    GtsEdge * e1, * e2;
-    GtsVertex * vt1;
-    GSList * j = i->next;
-    triangle_vertices_edges (i->data, e, &vt1, &e1, &e2);
-    while (j) {      
+  GtsEdge * e1, * e2;
+  GtsVertex * vt1;
+  GSList * j = i->next;
+  triangle_vertices_edges (i->data, e, &vt1, &e1, &e2);
+  while (j) {      
       GtsSegment * s5;
       GtsEdge * e3, * e4;
       GtsVertex * vt2;
@@ -387,36 +387,36 @@ gboolean gts_edge_belongs_to_tetrahedron (GtsEdge * e)
       triangle_vertices_edges (j->data, e, &vt2, &e3, &e4);
       s5 = gts_vertices_are_connected (vt1, vt2);
       if (GTS_IS_EDGE (s5) &&
-	  gts_triangle_use_edges (e1, e3, GTS_EDGE (s5)) &&
-	  gts_triangle_use_edges (e2, e4, GTS_EDGE (s5)))
-	return TRUE;
+    gts_triangle_use_edges (e1, e3, GTS_EDGE (s5)) &&
+    gts_triangle_use_edges (e2, e4, GTS_EDGE (s5)))
+  return TRUE;
       j = j->next;
-    }
-    i = i->next;
+  }
+  i = i->next;
   }
 
   return FALSE;
 }
 
 #define edge_use_vertex(e, v) (GTS_SEGMENT(e)->v1 == v ||\
-			       GTS_SEGMENT(e)->v2 == v)
+             GTS_SEGMENT(e)->v2 == v)
 
 static GtsEdge * next_edge (GtsTriangle * t,
-			    GtsEdge * e1,
-			    GtsEdge * e)
+        GtsEdge * e1,
+        GtsEdge * e)
 {
   GtsVertex * v1 = GTS_SEGMENT (e)->v1;
   GtsVertex * v2 = GTS_SEGMENT (e)->v2;
   
   if (t->e1 != e1 && t->e1 != e && 
       (edge_use_vertex (t->e1, v1) || edge_use_vertex (t->e1, v2)))
-    return t->e1;
+  return t->e1;
   else if (t->e2 != e1 && t->e2 != e && 
-	   (edge_use_vertex (t->e2, v1) || edge_use_vertex (t->e2, v2)))
-    return t->e2;
+     (edge_use_vertex (t->e2, v1) || edge_use_vertex (t->e2, v2)))
+  return t->e2;
   else if (t->e3 != e1 && t->e3 != e && 
-	   (edge_use_vertex (t->e3, v1) || edge_use_vertex (t->e3, v2)))
-    return t->e3;
+     (edge_use_vertex (t->e3, v1) || edge_use_vertex (t->e3, v2)))
+  return t->e3;
   g_assert_not_reached ();
   return NULL;
 }
@@ -427,12 +427,12 @@ static void triangle_next (GtsEdge * e1, GtsEdge * e)
 
   i = e1->triangles;
   while (i) {
-    GtsTriangle * t = i->data;
-    if (GTS_OBJECT (t)->reserved) {
+  GtsTriangle * t = i->data;
+  if (GTS_OBJECT (t)->reserved) {
       GTS_OBJECT (t)->reserved = NULL;
       triangle_next (next_edge (t, e1, e), e);
-    }
-    i = i->next;
+  }
+  i = i->next;
   }
 }
 
@@ -453,22 +453,22 @@ guint gts_edge_is_contact (GtsEdge * e)
   triangles = gts_vertex_triangles (GTS_SEGMENT (e)->v1, NULL);
   i = triangles = gts_vertex_triangles (GTS_SEGMENT (e)->v2, triangles);
   while (i) {
-    GTS_OBJECT (i->data)->reserved = i;
-    i = i->next;
+  GTS_OBJECT (i->data)->reserved = i;
+  i = i->next;
   }
 
   i = e->triangles;
   while (i) {
-    GtsTriangle * t = i->data;
-    if (GTS_OBJECT (t)->reserved) {
+  GtsTriangle * t = i->data;
+  if (GTS_OBJECT (t)->reserved) {
       GtsEdge * e1;
       GTS_OBJECT (t)->reserved = NULL;
       e1 = next_edge (t, NULL, e);
       triangle_next (e1, e);
       triangle_next (next_edge (t, e1, e), e);
       ncomponent++;
-    }
-    i = i->next;
+  }
+  i = i->next;
   }
    
   g_slist_foreach (triangles, (GFunc) gts_object_reset_reserved, NULL);

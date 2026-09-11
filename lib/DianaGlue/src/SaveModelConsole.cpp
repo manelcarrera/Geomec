@@ -16,5 +16,5 @@ bool CSaveModelConsole::saveModel(const QString& fileName, bool bSwitch)
 {
   //return IModelLifetimeFacade::SaveMain(CModelBase::CModelLoadSaveDefault(m_sAppVersion), m_model, fileName, bSwitch);
 
-	return true;
+  return true;
 }

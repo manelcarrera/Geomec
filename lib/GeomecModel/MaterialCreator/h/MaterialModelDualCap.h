@@ -10,8 +10,8 @@ public:
   class CPQPlotter : public CMaterialCamClayCreator::CPQPlotter
   {
   private:
-    virtual IPQPlotter* Clone() const;
-    virtual void GetSecondaryYieldCurve(const CLibraryMaterial& mat, double dPMin, double dPMax, CStressStrainArray& values) const;
+  virtual IPQPlotter* Clone() const;
+  virtual void GetSecondaryYieldCurve(const CLibraryMaterial& mat, double dPMin, double dPMax, CStressStrainArray& values) const;
   };
 };
 

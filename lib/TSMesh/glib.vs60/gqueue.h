@@ -45,18 +45,18 @@ struct _GQueue
 GQueue*  g_queue_new            (void);
 void     g_queue_free           (GQueue  *queue);
 void     g_queue_push_head      (GQueue  *queue,
-				 gpointer data);
+         gpointer data);
 void     g_queue_push_tail      (GQueue  *queue,
-				 gpointer data);
+         gpointer data);
 gpointer g_queue_pop_head       (GQueue  *queue);
 gpointer g_queue_pop_tail       (GQueue  *queue);
 gboolean g_queue_is_empty       (GQueue  *queue);
 gpointer g_queue_peek_head      (GQueue  *queue);
 gpointer g_queue_peek_tail      (GQueue  *queue);
 void     g_queue_push_head_link (GQueue  *queue,
-				 GList   *link);
+         GList   *link);
 void     g_queue_push_tail_link (GQueue  *queue,
-				 GList   *link);
+         GList   *link);
 GList*   g_queue_pop_head_link  (GQueue  *queue);
 GList*   g_queue_pop_tail_link  (GQueue  *queue);
 

@@ -20,53 +20,53 @@ class IMesh;
 // Simple 1st order hexahedron
 class GEOMETRY_EXPORT  CHexahedron: public IHexahedron
 {	
-	std::vector<int> m_vcNode;	// Mesh node indices
-	int m_nIndex;				// Element index in the mesh
-	IMesh& m_mesh;				// Reference to mesh
+  std::vector<int> m_vcNode;	// Mesh node indices
+  int m_nIndex;				// Element index in the mesh
+  IMesh& m_mesh;				// Reference to mesh
 
 public:
-	CHexahedron(IMesh& mesh, const std::vector<const IPoint*>& points);
-	CHexahedron(IMesh& mesh, const std::vector<int>& points);
-	~CHexahedron();
+  CHexahedron(IMesh& mesh, const std::vector<const IPoint*>& points);
+  CHexahedron(IMesh& mesh, const std::vector<int>& points);
+  ~CHexahedron();
 
-	CHexahedron& operator=(const CHexahedron& rhs);
-	bool operator==(const CHexahedron& rhs);
+  CHexahedron& operator=(const CHexahedron& rhs);
+  bool operator==(const CHexahedron& rhs);
 
-	// Index and indexing element set
-	virtual const IElementSet* IndexingElementSet() const;
-	virtual int Index() const;
-	virtual int PointIndex(int nIndex) const;
+  // Index and indexing element set
+  virtual const IElementSet* IndexingElementSet() const;
+  virtual int Index() const;
+  virtual int PointIndex(int nIndex) const;
 
-	// Query of points
-	virtual const geo::IPoint &Point(int nIndex) const;
-	virtual void Point(int nIndex, const geo::IPoint &pt);
+  // Query of points
+  virtual const geo::IPoint &Point(int nIndex) const;
+  virtual void Point(int nIndex, const geo::IPoint &pt);
 
-	virtual size_t NrOfNodes() const;
-	virtual const INode& Node(int nIndex) const;
-	virtual void Node(int nIndex, const IPoint& point);
+  virtual size_t NrOfNodes() const;
+  virtual const INode& Node(int nIndex) const;
+  virtual void Node(int nIndex, const IPoint& point);
 
-	virtual size_t Order() const;
-	virtual IElement::TDoubleVec WorldToIso(const geo::IPoint& point) const;
+  virtual size_t Order() const;
+  virtual IElement::TDoubleVec WorldToIso(const geo::IPoint& point) const;
 
-	using IHexahedron::Intersection;
-	virtual std::set<geo::CPoint> Intersection(const geo::IPlane &plane) const; // Only implemented because of pure virtual function, don't use!!
-	//std::set<geo::CPoint> Intersection2(const geo::IPlane &plane, bool bQuads = false) const; // use this one!
+  using IHexahedron::Intersection;
+  virtual std::set<geo::CPoint> Intersection(const geo::IPlane &plane) const; // Only implemented because of pure virtual function, don't use!!
+  //std::set<geo::CPoint> Intersection2(const geo::IPlane &plane, bool bQuads = false) const; // use this one!
 
-	CPtrArray<IPoint> IntersectionPolygon(const CPolygon poly, bool corners /*= true*/);
+  CPtrArray<IPoint> IntersectionPolygon(const CPolygon poly, bool corners /*= true*/);
 
-	virtual void AssertValid() const;
+  virtual void AssertValid() const;
 
-	virtual std::string Type() const;
+  virtual std::string Type() const;
 
-	double InfluenceVolume(int nNode) const;
-	virtual double InfluenceSize(int nNode) const { return InfluenceVolume(nNode); }
+  double InfluenceVolume(int nNode) const;
+  virtual double InfluenceSize(int nNode) const { return InfluenceVolume(nNode); }
 
-	bool Contains(const geo::IPoint &point, bool bIncludeEdge) const;
+  bool Contains(const geo::IPoint &point, bool bIncludeEdge) const;
 
-	virtual const char* FaceName(int nIndex) const;
+  virtual const char* FaceName(int nIndex) const;
 
-	const IMesh& Mesh() const;
-	IMesh& Mesh();
+  const IMesh& Mesh() const;
+  IMesh& Mesh();
 };	
 
 }

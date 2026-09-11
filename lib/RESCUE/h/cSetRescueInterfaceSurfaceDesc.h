@@ -1,10 +1,10 @@
 /*************************************************************************
 
-        cSetRescueInterfaceSurfaceDesc.h
+    cSetRescueInterfaceSurfaceDesc.h
 
  Keeps a list of pointers to RescueInterfaceSurfaceDesc.
 
-        Rod Hanks               June 2003
+    Rod Hanks               June 2003
 
 ****************************************************************************/
 

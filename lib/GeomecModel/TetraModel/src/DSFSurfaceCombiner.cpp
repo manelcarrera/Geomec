@@ -21,10 +21,10 @@ struct PointLess
 {
   bool operator()(const geo::CPoint& lhs, const geo::CPoint& rhs) const
   {
-    if (lhs.Distance(rhs) < 3)
+  if (lhs.Distance(rhs) < 3)
       return false;
 
-    return lhs < rhs;
+  return lhs < rhs;
   }
 };
 
@@ -76,39 +76,39 @@ void DSFSurfaceCombiner::Generate(IntermediateSurfaceInfo& surf_dst, std::vector
 
   if (stitched_0 && !stitched_1)
   {
-    surf_rot_src = &surf_1_rot;
-    surf_flat_src = &surf_1_flat;
-    plane_info_src = &plane_info_1;
-    surf_rot_other = &surf_0_rot;
-    surf_flat_other = &surf_0_flat;
-    plane_info_other = &plane_info_0;
+  surf_rot_src = &surf_1_rot;
+  surf_flat_src = &surf_1_flat;
+  plane_info_src = &plane_info_1;
+  surf_rot_other = &surf_0_rot;
+  surf_flat_other = &surf_0_flat;
+  plane_info_other = &plane_info_0;
   }
   else if (!stitched_0 && stitched_1)
   {
-    surf_rot_src = &surf_0_rot;
-    surf_flat_src = &surf_0_flat;
-    plane_info_src = &plane_info_0;
-    surf_rot_other = &surf_1_rot;
-    surf_flat_other = &surf_1_flat;
-    plane_info_other = &plane_info_1;
+  surf_rot_src = &surf_0_rot;
+  surf_flat_src = &surf_0_flat;
+  plane_info_src = &plane_info_0;
+  surf_rot_other = &surf_1_rot;
+  surf_flat_other = &surf_1_flat;
+  plane_info_other = &plane_info_1;
   }
   else if (plane_info_0.max_area > plane_info_1.max_area)
   {
-    surf_rot_src = &surf_0_rot;
-    surf_flat_src = &surf_0_flat;
-    plane_info_src = &plane_info_0;
-    surf_rot_other = &surf_1_rot;
-    surf_flat_other = &surf_1_flat;
-    plane_info_other = &plane_info_1;
+  surf_rot_src = &surf_0_rot;
+  surf_flat_src = &surf_0_flat;
+  plane_info_src = &plane_info_0;
+  surf_rot_other = &surf_1_rot;
+  surf_flat_other = &surf_1_flat;
+  plane_info_other = &plane_info_1;
   }
   else
   {
-    surf_rot_src = &surf_1_rot;
-    surf_flat_src = &surf_1_flat;
-    plane_info_src = &plane_info_1;
-    surf_rot_other = &surf_0_rot;
-    surf_flat_other = &surf_0_flat;
-    plane_info_other = &plane_info_0;
+  surf_rot_src = &surf_1_rot;
+  surf_flat_src = &surf_1_flat;
+  plane_info_src = &plane_info_1;
+  surf_rot_other = &surf_0_rot;
+  surf_flat_other = &surf_0_flat;
+  plane_info_other = &plane_info_0;
   }
 
   double optimum_size = (((plane_info_0.min_area + plane_info_0.max_area + plane_info_1.min_area + plane_info_1.max_area) / 4) + plane_info_0.avg_area + plane_info_1.avg_area) / 3;
@@ -122,7 +122,7 @@ void DSFSurfaceCombiner::Generate(IntermediateSurfaceInfo& surf_dst, std::vector
   std::vector<int> segment_indices(segments.size());
 
   for (int i = 0; i < segment_indices.size(); ++i)
-    segment_indices[i] = i;
+  segment_indices[i] = i;
 
   // Now mesh
   CTriangleSurface surf;
@@ -140,15 +140,15 @@ void DSFSurfaceCombiner::Generate(IntermediateSurfaceInfo& surf_dst, std::vector
 
   for (int i = 0; i < surf.PointSize(); ++i)
   {
-    mesh_result.points.push_back(geo::CPoint(surf.Point(i).X(), surf.Point(i).Y(), 0));
+  mesh_result.points.push_back(geo::CPoint(surf.Point(i).X(), surf.Point(i).Y(), 0));
 
   }
   for (int i = 0; i < surf.FaceSize(); ++i)
   {
-    std::vector<int> t(3, 0);
-    for (int j = 0; j < 3; ++j)
+  std::vector<int> t(3, 0);
+  for (int j = 0; j < 3; ++j)
       t[j] = surf.Triangle(i).PointIndex(j);
-    mesh_result.triangles.push_back(t);
+  mesh_result.triangles.push_back(t);
   }
 
   // Project it on the flat surface (which is point-tied to the possibly curved rotated surface)
@@ -171,18 +171,18 @@ void DSFSurfaceCombiner::Generate(IntermediateSurfaceInfo& surf_dst, std::vector
   // Map new mesh surface back to the correct place
   for (int i = 0; i < mesh_result.points.size(); ++i)
   {
-    geo::CPoint& p = mesh_result.points[i];
+  geo::CPoint& p = mesh_result.points[i];
 
-    // correction
-    geo::CVector correction(correction_mid - p);
-    double correction_dot = correction.DotProduct(correction_normal);
+  // correction
+  geo::CVector correction(correction_mid - p);
+  double correction_dot = correction.DotProduct(correction_normal);
 
-    p.Z((correction_normal * correction_dot).Z());
+  p.Z((correction_normal * correction_dot).Z());
 
-    // map flat surface back to original shape
-    TyingInfoMap::iterator it = projectBack.find(i);
-    if (it != projectBack.end())
-    {
+  // map flat surface back to original shape
+  TyingInfoMap::iterator it = projectBack.find(i);
+  if (it != projectBack.end())
+  {
       const TyingInfo tying_info = it->second;
       const std::vector<geo::CPoint>& points_rot = surf_rot_src->points;
       const std::vector<int>& tri = surf_flat_src->triangles[tying_info.triangle];
@@ -199,12 +199,12 @@ void DSFSurfaceCombiner::Generate(IntermediateSurfaceInfo& surf_dst, std::vector
       geo::CPoint inter = plane.Intersection(line);
 
       if (!inter.Empty())
-        p.Z(p.Z() + inter.Z());
-    }
+    p.Z(p.Z() + inter.Z());
+  }
 
-    // rotate and translate back to original position
-    p.Rotate(plane_info_src->rot_axis, -plane_info_src->rot_angle);
-    p += plane_info_src->rot_translation;
+  // rotate and translate back to original position
+  p.Rotate(plane_info_src->rot_axis, -plane_info_src->rot_angle);
+  p += plane_info_src->rot_translation;
   }
 
   surf_dst.points.swap(mesh_result.points);
@@ -212,15 +212,15 @@ void DSFSurfaceCombiner::Generate(IntermediateSurfaceInfo& surf_dst, std::vector
 
   if (helpers)
   {
-    helpers->reserve(8);
-    helpers->push_back(surf_0);
-    helpers->push_back(surf_0_rot);
-    helpers->push_back(surf_0_flat);
-    helpers->push_back(surf_rot_src == &surf_0_rot ? correction_src : correction_other);
-    helpers->push_back(surf_1);
-    helpers->push_back(surf_1_rot);
-    helpers->push_back(surf_1_flat);
-    helpers->push_back(surf_rot_src == &surf_0_rot ? correction_other : correction_src);
+  helpers->reserve(8);
+  helpers->push_back(surf_0);
+  helpers->push_back(surf_0_rot);
+  helpers->push_back(surf_0_flat);
+  helpers->push_back(surf_rot_src == &surf_0_rot ? correction_src : correction_other);
+  helpers->push_back(surf_1);
+  helpers->push_back(surf_1_rot);
+  helpers->push_back(surf_1_flat);
+  helpers->push_back(surf_rot_src == &surf_0_rot ? correction_other : correction_src);
   }
 
 #ifdef SHOW_EDGES
@@ -238,7 +238,7 @@ void DSFSurfaceCombiner::Generate(IntermediateSurfaceInfo& surf_dst, std::vector
 
   for (int i = 0; i < segments.size(); ++i)
   {
-    surf_dst.triangles.push_back(std::vector<int>{ (int)segments[i].first, (int)segments[i].second, mid });
+  surf_dst.triangles.push_back(std::vector<int>{ (int)segments[i].first, (int)segments[i].second, mid });
   }
 
 #endif
@@ -256,18 +256,18 @@ void DSFSurfaceCombiner::getSurfaceEdges(const IntermediateSurfaceInfo& surf, st
   // collect all edges of triangles, mapping them to their opposite node of the triangle
   for (int i = 0; i < surf.triangles.size(); ++i)
   {
-    std::vector<int> tri = surf.triangles[i];
+  std::vector<int> tri = surf.triangles[i];
 
-    std::sort(tri.begin(), tri.end());
+  std::sort(tri.begin(), tri.end());
 
-    TEdgeMap::iterator it = edge_map.insert(std::make_pair(std::make_pair(tri[0], tri[1]), std::set<int>())).first;
-    it->second.insert(tri[2]);
+  TEdgeMap::iterator it = edge_map.insert(std::make_pair(std::make_pair(tri[0], tri[1]), std::set<int>())).first;
+  it->second.insert(tri[2]);
 
-    it = edge_map.insert(std::make_pair(std::make_pair(tri[0], tri[2]), std::set<int>())).first;
-    it->second.insert(tri[1]);
+  it = edge_map.insert(std::make_pair(std::make_pair(tri[0], tri[2]), std::set<int>())).first;
+  it->second.insert(tri[1]);
 
-    it = edge_map.insert(std::make_pair(std::make_pair(tri[1], tri[2]), std::set<int>())).first;
-    it->second.insert(tri[0]);
+  it = edge_map.insert(std::make_pair(std::make_pair(tri[1], tri[2]), std::set<int>())).first;
+  it->second.insert(tri[0]);
   }
 
   typedef std::set<TEdge> TEdges;
@@ -278,10 +278,10 @@ void DSFSurfaceCombiner::getSurfaceEdges(const IntermediateSurfaceInfo& surf, st
   // collect all edges with only one triangle attached: surface edges
   for (TEdgeMap::const_iterator it = edge_map.begin(); it != edge_map.end(); ++it)
   {
-    if (it->second.size() == 1)
-    {
+  if (it->second.size() == 1)
+  {
       edges.insert(it->first);
-    }
+  }
   }
 }
 
@@ -298,16 +298,16 @@ void DSFSurfaceCombiner::getOrderedSurfaceEdges(const IntermediateSurfaceInfo & 
 
   for (std::set<std::pair<int, int> >::iterator it = surf_edges.begin(); it != surf_edges.end(); ++it)
   {
-    std::pair<std::map<int, std::pair<int, int> >::iterator, bool> retval = node2neighbors.insert(std::make_pair(it->first, std::pair<int, int>()));
-    if (retval.second)
+  std::pair<std::map<int, std::pair<int, int> >::iterator, bool> retval = node2neighbors.insert(std::make_pair(it->first, std::pair<int, int>()));
+  if (retval.second)
       retval.first->second.first = it->second;
-    else
+  else
       retval.first->second.second = it->second;
 
-    retval = node2neighbors.insert(std::make_pair(it->second, std::pair<int, int>()));
-    if (retval.second)
+  retval = node2neighbors.insert(std::make_pair(it->second, std::pair<int, int>()));
+  if (retval.second)
       retval.first->second.first = it->first;
-    else
+  else
       retval.first->second.second = it->first;
   }
 
@@ -318,23 +318,23 @@ void DSFSurfaceCombiner::getOrderedSurfaceEdges(const IntermediateSurfaceInfo & 
 
   while (ordered_edges.size() < surf_edges.size())
   {
-    std::map<int, std::pair<int, int> >::iterator it = node2neighbors.find(ordered_edges.back().second);
-    if (it == node2neighbors.end())
-    {
+  std::map<int, std::pair<int, int> >::iterator it = node2neighbors.find(ordered_edges.back().second);
+  if (it == node2neighbors.end())
+  {
       break;
-    }
-    int next = (it->second.first == ordered_edges.back().first) ? it->second.second : it->second.first;
+  }
+  int next = (it->second.first == ordered_edges.back().first) ? it->second.second : it->second.first;
 
-    ordered_edges.push_back(std::make_pair(ordered_edges.back().second, next));
+  ordered_edges.push_back(std::make_pair(ordered_edges.back().second, next));
   }
 
   points.push_back(surf.points[ordered_edges[0].first]);
 
   for (int i = 0; i < ordered_edges.size() - 1; ++i)
   {
-    points.push_back(surf.points[ordered_edges[i].second]);
-    ordered_edges[i].first = points.size() - 2;
-    ordered_edges[i].second = points.size() - 1;
+  points.push_back(surf.points[ordered_edges[i].second]);
+  ordered_edges[i].first = points.size() - 2;
+  ordered_edges[i].second = points.size() - 1;
   }
 
   ordered_edges.back().first = points.size() - 1;
@@ -359,18 +359,18 @@ bool DSFSurfaceCombiner::createStitchedCopy(const IntermediateSurfaceInfo& surf,
   // collect all edges of triangles, mapping them to their opposite node of the triangle
   for (int i = 0; i < surf.triangles.size(); ++i)
   {
-    std::vector<int> tri = surf.triangles[i];
+  std::vector<int> tri = surf.triangles[i];
 
-    std::sort(tri.begin(), tri.end());
+  std::sort(tri.begin(), tri.end());
 
-    TEdgeMap::iterator it = edge_map.insert(std::make_pair(std::make_pair(tri[0], tri[1]), std::set<int>())).first;
-    it->second.insert(tri[2]);
+  TEdgeMap::iterator it = edge_map.insert(std::make_pair(std::make_pair(tri[0], tri[1]), std::set<int>())).first;
+  it->second.insert(tri[2]);
 
-    it = edge_map.insert(std::make_pair(std::make_pair(tri[0], tri[2]), std::set<int>())).first;
-    it->second.insert(tri[1]);
+  it = edge_map.insert(std::make_pair(std::make_pair(tri[0], tri[2]), std::set<int>())).first;
+  it->second.insert(tri[1]);
 
-    it = edge_map.insert(std::make_pair(std::make_pair(tri[1], tri[2]), std::set<int>())).first;
-    it->second.insert(tri[0]);
+  it = edge_map.insert(std::make_pair(std::make_pair(tri[1], tri[2]), std::set<int>())).first;
+  it->second.insert(tri[0]);
   }
 
   typedef std::set<TEdge> TEdges;
@@ -381,14 +381,14 @@ bool DSFSurfaceCombiner::createStitchedCopy(const IntermediateSurfaceInfo& surf,
   // collect all edges with only one triangle attached: surface edges
   for (TEdgeMap::const_iterator it = edge_map.begin(); it != edge_map.end(); ++it)
   {
-    if (it->second.size() == 1)
-    {
+  if (it->second.size() == 1)
+  {
       TNodes2EdgesRetval retval = nodes2edges.insert(std::make_pair(it->first.first, TEdges()));
       retval.first->second.insert(it->first);
 
       retval = nodes2edges.insert(std::make_pair(it->first.second, TEdges()));
       retval.first->second.insert(it->first);
-    }
+  }
   }
 
   // copy points and triangles; triangles to final destination, points to intermediate
@@ -406,8 +406,8 @@ bool DSFSurfaceCombiner::createStitchedCopy(const IntermediateSurfaceInfo& surf,
   // collect all surface edge nodes that have duplicates on edges close by (#nodes > 1)
   for (TNodes2Edges::const_iterator it = nodes2edges.begin(); it != nodes2edges.end(); ++it)
   {
-    TPoint2NodesRetval retval = point2nodes.insert(std::make_pair(surf.points[it->first], TNodes()));
-    retval.first->second.insert(it->first);
+  TPoint2NodesRetval retval = point2nodes.insert(std::make_pair(surf.points[it->first], TNodes()));
+  retval.first->second.insert(it->first);
   }
 
   std::vector<bool> use(surf.points.size(), true);
@@ -419,8 +419,8 @@ bool DSFSurfaceCombiner::createStitchedCopy(const IntermediateSurfaceInfo& surf,
 
   for (TPoint2Nodes::const_iterator it = point2nodes.begin(); it != point2nodes.end(); ++it)
   {
-    if (it->second.size() > 1) // we expect 2, but who knows?
-    {
+  if (it->second.size() > 1) // we expect 2, but who knows?
+  {
       int keep = *it->second.begin();
       point.Set(new_points[keep].X(), new_points[keep].Y(), new_points[keep].Z());
       TNodes::iterator jt = ++it->second.begin();
@@ -429,62 +429,62 @@ bool DSFSurfaceCombiner::createStitchedCopy(const IntermediateSurfaceInfo& surf,
 
       for (; jt != it->second.end(); ++jt)
       {
-        TEdge edge(keep, *jt); if (edge.first > edge.second) std::swap(edge.first, edge.second);
-        TEdgeMap::iterator kt = edge_map.find(edge);
+    TEdge edge(keep, *jt); if (edge.first > edge.second) std::swap(edge.first, edge.second);
+    TEdgeMap::iterator kt = edge_map.find(edge);
 
-        if (kt == edge_map.end())
-        {
+    if (kt == edge_map.end())
+    {
           do_reindexing = true;
           use[*jt] = false;
           map_duplicates[*jt] = keep;
           point.Set(point.X() + new_points[*jt].X(), point.Y() + new_points[*jt].Y(), point.Z() + new_points[*jt].Z());
           ++processed;
-        }
+    }
       }
       if (processed > 1)
-        new_points[keep].Set(point.X() / processed, point.Y() / processed, point.Z() / processed); // not really necessary, but this way the non-duplicate node lies in the middle
-    }
+    new_points[keep].Set(point.X() / processed, point.Y() / processed, point.Z() / processed); // not really necessary, but this way the non-duplicate node lies in the middle
+  }
   }
 
 
   if (do_reindexing)
   {
-    std::vector<int> dropped(surf.points.size() + 1, 0);
-    std::vector<int> re_index(surf.points.size());
-    surf_cpy.points.reserve(surf.points.size());
+  std::vector<int> dropped(surf.points.size() + 1, 0);
+  std::vector<int> re_index(surf.points.size());
+  surf_cpy.points.reserve(surf.points.size());
 
-    // re-index points
-    for (int i = 0; i < re_index.size(); ++i)
+  // re-index points
+  for (int i = 0; i < re_index.size(); ++i)
       re_index[i] = i;
 
-    for (int i = 0; i < re_index.size(); ++i)
-    {
+  for (int i = 0; i < re_index.size(); ++i)
+  {
       dropped[i + 1] = dropped[i];
 
       if (use[i])
       {
-        surf_cpy.points.push_back(new_points[i]);
-        re_index[i] = i - dropped[i];
+    surf_cpy.points.push_back(new_points[i]);
+    re_index[i] = i - dropped[i];
       }
       else
       {
-        ++dropped[i + 1];
-        re_index[i] = map_duplicates[i];
+    ++dropped[i + 1];
+    re_index[i] = map_duplicates[i];
       }
-    }
+  }
 
-    // re-index triangles
-    for (int i = 0; i < surf_cpy.triangles.size(); ++i)
-    {
+  // re-index triangles
+  for (int i = 0; i < surf_cpy.triangles.size(); ++i)
+  {
       for (int j = 0; j < 3; ++j)
       {
-        surf_cpy.triangles[i][j] = re_index[surf_cpy.triangles[i][j]];
+    surf_cpy.triangles[i][j] = re_index[surf_cpy.triangles[i][j]];
       }
-    }
+  }
   }
   else // no re-indexing, just use copied points
   {
-    surf_cpy.points.swap(new_points);
+  surf_cpy.points.swap(new_points);
   }
 
   return do_reindexing;
@@ -498,7 +498,7 @@ void DSFSurfaceCombiner::createRotatedCopy(const IntermediateSurfaceInfo& surf, 
   plane_info.mid_point.Set(0, 0, 0);
   for (int i = 0; i < surf.points.size(); ++i)
   {
-    plane_info.mid_point += surf.points[i];
+  plane_info.mid_point += surf.points[i];
   }
 
   plane_info.mid_point = plane_info.mid_point / surf.points.size();
@@ -510,13 +510,13 @@ void DSFSurfaceCombiner::createRotatedCopy(const IntermediateSurfaceInfo& surf, 
 
   for (int i = 0; i < surf.triangles.size(); ++i)
   {
-    const std::vector<int>& face = surf.triangles[i];
-    geo::CTriangle tri(surf.points[face[0]], surf.points[face[1]], surf.points[face[2]]);
-    plane_info.avg_normal += tri.Normal();
-    double area = tri.Area();
-    plane_info.avg_area += area;
-    if (area < plane_info.min_area) plane_info.min_area = area;
-    if (area > plane_info.max_area) plane_info.max_area = area;
+  const std::vector<int>& face = surf.triangles[i];
+  geo::CTriangle tri(surf.points[face[0]], surf.points[face[1]], surf.points[face[2]]);
+  plane_info.avg_normal += tri.Normal();
+  double area = tri.Area();
+  plane_info.avg_area += area;
+  if (area < plane_info.min_area) plane_info.min_area = area;
+  if (area > plane_info.max_area) plane_info.max_area = area;
   }
 
   plane_info.avg_normal = plane_info.avg_normal / surf.triangles.size();
@@ -535,13 +535,13 @@ void DSFSurfaceCombiner::createRotatedCopy(const IntermediateSurfaceInfo& surf, 
 
   for (int i = 0; i < surf_cpy.points.size(); ++i)
   {
-    surf_cpy.points[i] = surf_cpy.points[i] - plane_info.rot_translation;
-    plane_info.rot_mid_point += surf_cpy.points[i];
+  surf_cpy.points[i] = surf_cpy.points[i] - plane_info.rot_translation;
+  plane_info.rot_mid_point += surf_cpy.points[i];
   }
 
   for (int i = 0; i < surf_cpy.points.size(); ++i)
   {
-    surf_cpy.points[i].Rotate(plane_info.rot_axis, plane_info.rot_angle);
+  surf_cpy.points[i].Rotate(plane_info.rot_axis, plane_info.rot_angle);
   }
 
   plane_info.rot_mid_point = plane_info.rot_mid_point / surf_cpy.points.size();
@@ -549,9 +549,9 @@ void DSFSurfaceCombiner::createRotatedCopy(const IntermediateSurfaceInfo& surf, 
   plane_info.rot_avg_normal.Set(0, 0, 0);
   for (int i = 0; i < surf_cpy.triangles.size(); ++i)
   {
-    const std::vector<int>& face = surf_cpy.triangles[i];
-    geo::CTriangle tri(surf_cpy.points[face[0]], surf_cpy.points[face[1]], surf_cpy.points[face[2]]);
-    plane_info.rot_avg_normal += tri.Normal();
+  const std::vector<int>& face = surf_cpy.triangles[i];
+  geo::CTriangle tri(surf_cpy.points[face[0]], surf_cpy.points[face[1]], surf_cpy.points[face[2]]);
+  plane_info.rot_avg_normal += tri.Normal();
   }
   plane_info.rot_avg_normal = plane_info.rot_avg_normal / surf_cpy.triangles.size();
 }
@@ -561,7 +561,7 @@ void DSFSurfaceCombiner::createFlatCopy(const IntermediateSurfaceInfo& surf, Int
   surf_cpy = surf;
 
   for (int i = 0; i < surf_cpy.points.size(); ++i)
-    surf_cpy.points[i].Z(0);
+  surf_cpy.points[i].Z(0);
 }
 
 // Calculate an optimal plane through all the points, by taking the smallest eigen value's vector as normal,
@@ -576,23 +576,23 @@ void DSFSurfaceCombiner::getRotationInfo(const IntermediateSurfaceInfo& surf_0, 
   geo::CPoint mid(0, 0, 0);
 
   for (int i = 0; i < size_0; ++i)
-    mid += surf_0.points[i];
+  mid += surf_0.points[i];
   for (int i = 0; i < size_1; ++i)
-    mid += surf_1.points[i];
+  mid += surf_1.points[i];
 
   mid = mid / (size_0 + size_1);
 
   for (int i = 0; i < size_0; ++i)
   {
-    points.Value(0, i, surf_0.points[i].X() - mid.X());
-    points.Value(1, i, surf_0.points[i].Y() - mid.Y());
-    points.Value(2, i, surf_0.points[i].Z() - mid.Z());
+  points.Value(0, i, surf_0.points[i].X() - mid.X());
+  points.Value(1, i, surf_0.points[i].Y() - mid.Y());
+  points.Value(2, i, surf_0.points[i].Z() - mid.Z());
   }
   for (int i = 0; i < size_1; ++i)
   {
-    points.Value(0, i + size_0, surf_1.points[i].X() - mid.X());
-    points.Value(1, i + size_0, surf_1.points[i].Y() - mid.Y());
-    points.Value(2, i + size_0, surf_1.points[i].Z() - mid.Z());
+  points.Value(0, i + size_0, surf_1.points[i].X() - mid.X());
+  points.Value(1, i + size_0, surf_1.points[i].Y() - mid.Y());
+  points.Value(2, i + size_0, surf_1.points[i].Z() - mid.Z());
   }
 
   geo::CMatrix matrix_3x3 = points * points.GetTransposed();
@@ -615,39 +615,39 @@ void DSFSurfaceCombiner::getCorrectionSurface(const IntermediateSurfaceInfo& sur
 
   for (int i = 0; i < surf_rot_0.points.size(); ++i)
   {
-    const geo::CPoint& p = surf_rot_0.points[i];
+  const geo::CPoint& p = surf_rot_0.points[i];
 
-    double z = 0;
+  double z = 0;
 
-    TyingInfoMap::iterator it = correction_map_0.find(i);
-    if (it != correction_map_0.end())
-    {
+  TyingInfoMap::iterator it = correction_map_0.find(i);
+  if (it != correction_map_0.end())
+  {
       const TyingInfo tying_info = it->second;
 
       if (tying_info.triangle >= 0)
       {
-        const std::vector<geo::CPoint>& points_rot = surf_rot_1.points;
-        const std::vector<int>& tri = surf_rot_1.triangles[tying_info.triangle];
+    const std::vector<geo::CPoint>& points_rot = surf_rot_1.points;
+    const std::vector<int>& tri = surf_rot_1.triangles[tying_info.triangle];
 
-        geo::CTriangle triangle(points_rot[tri[0]], points_rot[tri[1]], points_rot[tri[2]]);
+    geo::CTriangle triangle(points_rot[tri[0]], points_rot[tri[1]], points_rot[tri[2]]);
 
-        geo::CPlane plane(triangle.Line(0).First(), triangle.Normal());
+    geo::CPlane plane(triangle.Line(0).First(), triangle.Normal());
 
-        geo::CPoint pt0(p.X(), p.Y(), -1000);
-        geo::CPoint pt1(p.X(), p.Y(), 10000);
+    geo::CPoint pt0(p.X(), p.Y(), -1000);
+    geo::CPoint pt1(p.X(), p.Y(), 10000);
 
-        geo::CLine line(pt0, pt1);
+    geo::CLine line(pt0, pt1);
 
-        geo::CPoint inter = plane.Intersection(line);
+    geo::CPoint inter = plane.Intersection(line);
 
-        if (!inter.Empty())
-        {
+    if (!inter.Empty())
+    {
           z = sign * (surf_rot_0.points[i].Z() - inter.Z()) / 2;
-        }
-      }
     }
+      }
+  }
 
-    surf_correction_0.points[i].Z(z);
+  surf_correction_0.points[i].Z(z);
   }
 }
 
@@ -667,37 +667,37 @@ double DSFSurfaceCombiner::TriangleInfo::Contains(const geo::IPoint& p) const
 {
   if (SquaredDistance(p) < r2)
   {
-    const std::vector<geo::CPoint>& pts = surf.points;
-    const std::vector<int>& tri = surf.triangles[triangle];
+  const std::vector<geo::CPoint>& pts = surf.points;
+  const std::vector<int>& tri = surf.triangles[triangle];
 
-    geo::CTriangle face(pts[tri[0]], pts[tri[1]], pts[tri[2]]);
+  geo::CTriangle face(pts[tri[0]], pts[tri[1]], pts[tri[2]]);
 
-    geo::CVector normal = face.Normal();
-    double signedDist = face.SignedDistance(p, true);
+  geo::CVector normal = face.Normal();
+  double signedDist = face.SignedDistance(p, true);
 
-    geo::CPoint trans(p.X() - signedDist * normal.X(), p.Y() - signedDist * normal.Y(), p.Z() - signedDist * normal.Z());
+  geo::CPoint trans(p.X() - signedDist * normal.X(), p.Y() - signedDist * normal.Y(), p.Z() - signedDist * normal.Z());
 
-    geo::CVector v(trans, face.MidPoint());
-    //v = v * 0.2;
+  geo::CVector v(trans, face.MidPoint());
+  //v = v * 0.2;
 
-    trans.X(trans.X() + v.X());
-    trans.Y(trans.Y() + v.Y());
-    trans.Z(trans.Z() + v.Z());
+  trans.X(trans.X() + v.X());
+  trans.Y(trans.Y() + v.Y());
+  trans.Z(trans.Z() + v.Z());
 
-    // see IFace's Contains
-    double angle = 0;
+  // see IFace's Contains
+  double angle = 0;
 
-    for (int i = 0; i < 3; ++i)
-    {
+  for (int i = 0; i < 3; ++i)
+  {
       geo::CVector v1(trans, face.Point(i));
       geo::CVector v2(trans, face.Point((i + 1) % 3));
 
       angle += v1.AngleRad(v2);
-    }
+  }
 
-    angle = fabs(fabs(angle) - TWOPI);
+  angle = fabs(fabs(angle) - TWOPI);
 
-    return angle < 0.1;
+  return angle < 0.1;
   }
   return false;
 }
@@ -712,9 +712,9 @@ DSFSurfaceCombiner::TriangleInfo::TriangleInfo(const IntermediateSurfaceInfo& su
 
   for (int i = 0; i < 3; ++i)
   {
-    x += pts[tri[i]].X();
-    y += pts[tri[i]].Y();
-    z += pts[tri[i]].Z();
+  x += pts[tri[i]].X();
+  y += pts[tri[i]].Y();
+  z += pts[tri[i]].Z();
   }
 
   x /= 3;
@@ -723,9 +723,9 @@ DSFSurfaceCombiner::TriangleInfo::TriangleInfo(const IntermediateSurfaceInfo& su
 
   for (int i = 0; i < 3; ++i)
   {
-    double r2candidate = SquaredDistance(pts[tri[i]]) * 1.3;
+  double r2candidate = SquaredDistance(pts[tri[i]]) * 1.3;
 
-    if (r2candidate > r2)
+  if (r2candidate > r2)
       r2 = r2candidate;
   }
 }
@@ -741,7 +741,7 @@ void DSFSurfaceCombiner::getTyingInformation(TyingInfoMap& mpNodeInfo, const Int
 
   for (int i = 0; i < surf_dst_input.triangles.size(); ++i)
   {
-    vcTriangles.push_back(TriangleInfo(surf_dst_input, i));
+  vcTriangles.push_back(TriangleInfo(surf_dst_input, i));
   }
 
   typedef std::map<int, std::vector<int> > TNode2Faces;
@@ -751,34 +751,34 @@ void DSFSurfaceCombiner::getTyingInformation(TyingInfoMap& mpNodeInfo, const Int
 
   for (int i = 0; i < surf_src_input.triangles.size(); ++i)
   {
-    const std::vector<int>& face = surf_src_input.triangles[i];
+  const std::vector<int>& face = surf_src_input.triangles[i];
 
-    for (int m = 0; m < 3; ++m)
-    {
+  for (int m = 0; m < 3; ++m)
+  {
       const geo::IPoint& point = surf_src_input.points[face[m]];
 
       std::pair<TyingInfoMap::iterator, bool> retval = mpNodeInfo.insert(std::make_pair(face[m], TyingInfo()));
       if (retval.second)
       {
-        // find triangle
-        for (int n = 0; n < vcTriangles.size(); ++n)
-        {
+    // find triangle
+    for (int n = 0; n < vcTriangles.size(); ++n)
+    {
           if (vcTriangles[n].Contains(point))
           {
-            const std::vector<geo::CPoint>& pts = surf_dst_input.points;
-            const std::vector<int>& tri = surf_dst_input.triangles[n];
+      const std::vector<geo::CPoint>& pts = surf_dst_input.points;
+      const std::vector<int>& tri = surf_dst_input.triangles[n];
 
-            geo::CTriangle face1(pts[tri[0]], pts[tri[1]], pts[tri[2]]);
+      geo::CTriangle face1(pts[tri[0]], pts[tri[1]], pts[tri[2]]);
 
-            if (face1.Contains(point, true))
-            {
+      if (face1.Contains(point, true))
+      {
               retval.first->second = TyingInfo(n, point);
               break;
-            }
-          }
-        }
       }
+          }
     }
+      }
+  }
   }
 }
 

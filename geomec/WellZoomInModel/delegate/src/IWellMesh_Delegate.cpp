@@ -15,10 +15,10 @@ void IWellMesh_Delegate::AppendContextMenu(CContextMenuInvoker &invoker)
   typedef CSingleCommandTemplate <IWellMesh> TWellMeshCommand;
 
   invoker.AddCommand(_T("Generate"),
-    *new TWellMeshCommand(*m_wellMesh, &IWellMesh::CreateMesh,
+  *new TWellMeshCommand(*m_wellMesh, &IWellMesh::CreateMesh,
       &IWellMesh::CanCreateMesh));
   invoker.AddCommand(_T("Invalidate"),
-    *new TWellMeshCommand(*m_wellMesh, &IWellMesh::InvalidateMesh,
+  *new TWellMeshCommand(*m_wellMesh, &IWellMesh::InvalidateMesh,
       &IWellMesh::IsMesh));
 
   COpenGLNode_Delegate::AppendContextMenu(invoker);

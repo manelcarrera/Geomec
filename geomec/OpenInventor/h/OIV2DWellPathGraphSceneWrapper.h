@@ -8,9 +8,9 @@ class OIV2DWellPathGraphSceneWrapper : public OIV2DSceneWrapper
 
 public:
 
-    explicit OIV2DWellPathGraphSceneWrapper(OIV2DScene& scene);
+  explicit OIV2DWellPathGraphSceneWrapper(OIV2DScene& scene);
 
-    virtual bool IsOIV2DWellPathGraphScene() const;
+  virtual bool IsOIV2DWellPathGraphScene() const;
 };
 
 #endif  // _OIV2DWellPathGraphSceneWrapper_h_

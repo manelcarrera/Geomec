@@ -15,15 +15,15 @@ class CMeasuredTopDisplacementsNode : public CStorageNode
 public:
   CMeasuredTopDisplacementsNode(const QString& sName, C3DModel& model);
 
-	virtual void OnNewNeighbour(const CGraphNode &node);
-	virtual void OnNeighbourDeleted(const CGraphNode &node);
+  virtual void OnNewNeighbour(const CGraphNode &node);
+  virtual void OnNeighbourDeleted(const CGraphNode &node);
   virtual void OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint = Default);
-	virtual unsigned int IconId() const;
-	virtual unsigned int TypeId() const;
+  virtual unsigned int IconId() const;
+  virtual unsigned int TypeId() const;
   virtual bool Empty() const;
-	virtual long SavedItems() const;
-	virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-	virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  virtual long SavedItems() const;
+  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
+  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
 
   virtual bool CanConnectItem(const CGraphNode& item) const;
   virtual bool ConnectItem(const CGraphNode& item);
@@ -48,18 +48,18 @@ public:
   CRpnTopDisplacementProxy(C3DModel& model, rpn::CRpnStack& stack);
   CRpnTopDisplacementProxy(C3DModel& model, rpn::CRpnStack& stack, const QString& sProxyId);
   CRpnTopDisplacementProxy(rpn::CRpnStack& stack, const QString& sProxyId);
-	virtual rpn::CRpnOperand::IValueProxy* Clone(rpn::CRpnStack& NewStack) const;
-	virtual QString TextTag() const;
-	virtual unsigned int IconId() const;
-	virtual bool Recursive(TParentSet stParent) const;
+  virtual rpn::CRpnOperand::IValueProxy* Clone(rpn::CRpnStack& NewStack) const;
+  virtual QString TextTag() const;
+  virtual unsigned int IconId() const;
+  virtual bool Recursive(TParentSet stParent) const;
   virtual int TypeId() const;
   virtual void SaveStream(std::stringstream& stream);
   virtual void LoadStream(std::stringstream& stream, CStreamVersion& version);
   virtual bool Defined() const;
   virtual bool exists() const;
-	virtual TValue Value(const geo::IPoint &pt, UNIT unit) const;
-	virtual TValueVec Value(const geo::IElement &el, UNIT unit) const;
-	virtual void AttachToModel(CFemAppModel& model);
+  virtual TValue Value(const geo::IPoint &pt, UNIT unit) const;
+  virtual TValueVec Value(const geo::IElement &el, UNIT unit) const;
+  virtual void AttachToModel(CFemAppModel& model);
 
   int ComponentNr() const;
 
@@ -147,7 +147,7 @@ IValueDomainScalar::TValue CRpnTopDisplacementProxy<COMPONENT_INDEX, TAG>::Value
 {
   const TDisplacementVector* pVector = m_pModel->MeasuredTopDisplacementsNode().DisplacementVector();
   if(!pVector)
-    return TValue();
+  return TValue();
 
   const IValueComponentBase& comp = pVector->Component(COMPONENT_INDEX);
   return comp.ScalarData().ValuePoint(pt, unit);
@@ -159,7 +159,7 @@ IValueDomainScalar::TValueVec CRpnTopDisplacementProxy<COMPONENT_INDEX, TAG>::Va
   TValueVec vc(el.NrOfNodes());
   const TDisplacementVector* pVector = m_pModel->MeasuredTopDisplacementsNode().DisplacementVector();
   if(!pVector)
-    return vc;
+  return vc;
 
   const IValueComponentBase& comp = pVector->Component(COMPONENT_INDEX);
   return comp.ScalarData().ValueElement(el, unit);
@@ -170,8 +170,8 @@ void CRpnTopDisplacementProxy<COMPONENT_INDEX, TAG>::AttachToModel(CFemAppModel&
 {
   if(!m_pModel)
   {
-    assert(dynamic_cast<C3DModel*>(&model));
-    m_pModel = static_cast<C3DModel*>(&model);
+  assert(dynamic_cast<C3DModel*>(&model));
+  m_pModel = static_cast<C3DModel*>(&model);
   }
 
   assert(&model == m_pModel);

@@ -22,42 +22,42 @@ TGraphNodeSet CWellFormationVolume::Identifier() const
 
 int CWellFormationVolume::DisplayListSize() const
 {
-	int nRet = CFormationVolume::DisplayListSize();
-	if(nRet)
+  int nRet = CFormationVolume::DisplayListSize();
+  if(nRet)
   {
-		const CWellFormationEntry *pEntry = dynamic_cast<const CWellFormationEntry*>(Model().GraphEntry(MD_WELLMODEL_FORMATION));
-		if(pEntry)
-		{
-			if(pEntry->ShowSkin())
-				return 10;
+    const CWellFormationEntry *pEntry = dynamic_cast<const CWellFormationEntry*>(Model().GraphEntry(MD_WELLMODEL_FORMATION));
+    if(pEntry)
+    {
+      if(pEntry->ShowSkin())
+        return 10;
       else if(pEntry->ShowMidpoints())
-        return 1;
-		}
-	}
+    return 1;
+    }
+  }
 
-	return nRet;
+  return nRet;
 }
 
 const geo::IObject& CWellFormationVolume::DisplayList(int nIndex) const
 {
-	const CWellFormationEntry *pEntry = dynamic_cast<const CWellFormationEntry*>(Model().GraphEntry(MD_WELLMODEL_FORMATION));
-	assert(pEntry);
+  const CWellFormationEntry *pEntry = dynamic_cast<const CWellFormationEntry*>(Model().GraphEntry(MD_WELLMODEL_FORMATION));
+  assert(pEntry);
 
-	const CWellZoomInModel& model = static_cast<const CWellZoomInModel&>(Model());
-	assert(model.IsMesh());
-	
-	if(pEntry->ShowSkin())
+  const CWellZoomInModel& model = static_cast<const CWellZoomInModel&>(Model());
+  assert(model.IsMesh());
+  
+  if(pEntry->ShowSkin())
   {
-    const CWellZoomInMesh& mesh = model.Mesh();
-    const CWellFormation& formation = static_cast<const CWellFormation&>(Formation());
-    const IFormationElementSet& volume = mesh.FormationVolume(formation);
-    const geo::CBodyGroup& group = static_cast<const geo::CBodyGroup&>(volume.ElementSet());
-    if(group.SideSurfaceSize() > nIndex)
+  const CWellZoomInMesh& mesh = model.Mesh();
+  const CWellFormation& formation = static_cast<const CWellFormation&>(Formation());
+  const IFormationElementSet& volume = mesh.FormationVolume(formation);
+  const geo::CBodyGroup& group = static_cast<const geo::CBodyGroup&>(volume.ElementSet());
+  if(group.SideSurfaceSize() > nIndex)
       return group.SideSurface(nIndex);
   }
   else if(pEntry->ShowMidpoints())
   {
-    return ElementCenterPoints();
+  return ElementCenterPoints();
   }
 
   return CFormationVolume::DisplayList(nIndex);

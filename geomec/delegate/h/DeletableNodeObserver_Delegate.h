@@ -47,20 +47,20 @@ public:
 
   virtual unsigned int StateIcon() const
   {
-    CGeomecDoc* pDoc = GetGeomecDoc();
+  CGeomecDoc* pDoc = GetGeomecDoc();
 
-    if(pDoc->Model() && pDoc->ChangeMode() && CanDelete())
+  if(pDoc->Model() && pDoc->ChangeMode() && CanDelete())
       return (pDoc->IsChangeSelected(*this) ? IDI_CHANGE_SELECTED : IDI_CHANGE_UNSELECTED);
 
-    return 0;
+  return 0;
   }
 
   virtual void ToggleState()
   {
-    CGeomecDoc* pDoc = GetGeomecDoc();
+  CGeomecDoc* pDoc = GetGeomecDoc();
 
-    pDoc->ToggleChangeState(*this);
-    Update();
+  pDoc->ToggleChangeState(*this);
+  Update();
   }
 };
 

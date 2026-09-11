@@ -17,12 +17,12 @@ CAdvancedConvergenceOptionsDlg::CAdvancedConvergenceOptionsDlg(CModelBase& model
 }
 
 BEGIN_MESSAGE_MAP(CAdvancedConvergenceOptionsDlg, CDialog)
-	//{{AFX_MSG_MAP(CCalculationProperties)
-	ON_BN_CLICKED(IDC_CHECK_CONVERGENCE, OnDisable)
-	ON_BN_CLICKED(IDC_CHECK_ANGLE, OnDisableMinAngle)
-	ON_BN_CLICKED(IDC_CHECK_RATIO, OnDisableMinRatio)
-	ON_BN_CLICKED(IDC_CHECK_VOLUME, OnDisableMinVolume)
-	//}}AFX_MSG_MAP
+  //{{AFX_MSG_MAP(CCalculationProperties)
+  ON_BN_CLICKED(IDC_CHECK_CONVERGENCE, OnDisable)
+  ON_BN_CLICKED(IDC_CHECK_ANGLE, OnDisableMinAngle)
+  ON_BN_CLICKED(IDC_CHECK_RATIO, OnDisableMinRatio)
+  ON_BN_CLICKED(IDC_CHECK_VOLUME, OnDisableMinVolume)
+  //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 BOOL CAdvancedConvergenceOptionsDlg::OnInitDialog()
@@ -43,9 +43,9 @@ void CAdvancedConvergenceOptionsDlg::DoDataExchange(CDataExchange* pDX)
 
   if(!pDX->m_bSaveAndValidate)
   {
-    strUnit = lq.UnitName(unitnode.Unit()).c_str();
-    strUnit += "3";
-    dMinVolume = m_dMinVolume * dFactor * dFactor * dFactor;
+  strUnit = lq.UnitName(unitnode.Unit()).c_str();
+  strUnit += "3";
+  dMinVolume = m_dMinVolume * dFactor * dFactor * dFactor;
   }
 
   DDX_Check(pDX, IDC_CHECK_CONVERGENCE, m_nDisable);
@@ -59,35 +59,35 @@ void CAdvancedConvergenceOptionsDlg::DoDataExchange(CDataExchange* pDX)
 
   if(pDX->m_bSaveAndValidate)
   {
-    if(m_dMinAngle <= 0)
-    {
+  if(m_dMinAngle <= 0)
+  {
       AfxMessageBox("Minimum angle should be greater than 0");
       pDX->PrepareEditCtrl(IDC_EDIT_ANGLE);
       pDX->Fail();
-    }
+  }
 
-    if(m_dMinRatio <= 0)
-    {
+  if(m_dMinRatio <= 0)
+  {
       AfxMessageBox("Minimum ratio should be greater than 0");
       pDX->PrepareEditCtrl(IDC_EDIT_RATIO);
       pDX->Fail();
-    }
+  }
 
-    if(m_dMinVolume <= 0)
-    {
+  if(m_dMinVolume <= 0)
+  {
       AfxMessageBox("Minimum volume should be greater than 0");
       pDX->PrepareEditCtrl(IDC_EDIT_VOLUME);
       pDX->Fail();
-    }
+  }
 
-    m_dMinVolume = dMinVolume / (dFactor * dFactor * dFactor);
+  m_dMinVolume = dMinVolume / (dFactor * dFactor * dFactor);
   }
 }
 
 void CAdvancedConvergenceOptionsDlg::OnOK()
 {
   if(!UpdateData(TRUE))
-    return;
+  return;
 
   m_model.ConvergenceChecks(m_nDisable != 0);
   m_model.ConvergenceMinimumAngleCheck(m_nDisableMinAngle != 0);

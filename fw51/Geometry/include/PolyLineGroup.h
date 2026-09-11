@@ -15,8 +15,8 @@
 class GEOMETRY_EXPORT  CPolyLineGroup  
 {
 public:
-	CPolyLineGroup();
-	virtual ~CPolyLineGroup();
+  CPolyLineGroup();
+  virtual ~CPolyLineGroup();
 
 };
 

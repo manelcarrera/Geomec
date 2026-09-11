@@ -29,7 +29,7 @@ class IRpnMaterialParameterProxy : public rpn::CRpnOperand::IValueProxy
   bool m_bObsolete; // waij TFS 77889
  
 protected:
-	virtual int TypeId() const { return MAT_PARAM_ID; }
+  virtual int TypeId() const { return MAT_PARAM_ID; }
 public:
   IRpnMaterialParameterProxy
   ( CMeshBase& mesh
@@ -71,7 +71,7 @@ public:
   void FixedStage(bool bFixed) { m_bFixedStage = bFixed; }
 
   virtual void AttachToModel(CFemAppModel& model)
-	{ 	CModelBase& base_model = dynamic_cast<CModelBase&>(model); m_pMesh = &base_model.Mesh(); }
+  { 	CModelBase& base_model = dynamic_cast<CModelBase&>(model); m_pMesh = &base_model.Mesh(); }
 
   virtual bool Recursive(TParentSet /*stParent*/) const { return false; }
 
@@ -132,12 +132,12 @@ public:
 
   virtual rpn::CRpnOperand::IValueProxy* Clone(rpn::CRpnStack& NewStack) const
   { 
-    CMeshBase &mesh= const_cast<CMeshBase&>(*Mesh());
-    const CDepletionStage *pTimeStep= TimeStep();
-    QString sProxyId= ProxyId();
-    bool bFixedStage= FixedStage();
+  CMeshBase &mesh= const_cast<CMeshBase&>(*Mesh());
+  const CDepletionStage *pTimeStep= TimeStep();
+  QString sProxyId= ProxyId();
+  bool bFixedStage= FixedStage();
 
-    return new CRpnMaterialParameterProxy
+  return new CRpnMaterialParameterProxy
       ( mesh
       , pTimeStep
       , NewStack
@@ -148,19 +148,19 @@ public:
 
   virtual QString TextTag() const
   { 
-    QString sRet;
-    sRet = getStringTableEntry(T::export_id());
-    if(FixedStage() && TimeStep())
-    {
+  QString sRet;
+  sRet = getStringTableEntry(T::export_id());
+  if(FixedStage() && TimeStep())
+  {
       QString deplName = QString("_D%1").arg(TimeStep()->Index());
       sRet += deplName;
-    }  
-    return sRet; 
+  }  
+  return sRet; 
   }
 
   virtual QString DisplayName() const
   {
-    return getStringTableEntry(T::name_id());
+  return getStringTableEntry(T::name_id());
   }
 
   virtual unsigned int IconId() const { return T::icon_id(); }
@@ -179,89 +179,89 @@ public:
 template< class T >
 IValueDomainScalar::TValue CRpnMaterialParameterProxy<T>::Value(const geo::IPoint &pt, UNIT /*unit*/) const
 {
-	// Do we have a mesh?
-	if(!Mesh()->IsMesh())
-		return TValue();	// No valid mesh, no valid value...
+  // Do we have a mesh?
+  if(!Mesh()->IsMesh())
+    return TValue();	// No valid mesh, no valid value...
 
-	std::vector<int> vcElement = Mesh()->Mesh().ElementsAt(pt);
+  std::vector<int> vcElement = Mesh()->Mesh().ElementsAt(pt);
 
   if (vcElement.size() > 0)
-	{
-		const geo::IElement& element = Mesh()->Mesh().Element(vcElement[0]); 
-    const CFFMaterial &material  = (TimeStep()) ? Mesh()->Formation(element)->Material(*TimeStep()).Material(element) :
+  {
+    const geo::IElement& element = Mesh()->Mesh().Element(vcElement[0]); 
+  const CFFMaterial &material  = (TimeStep()) ? Mesh()->Formation(element)->Material(*TimeStep()).Material(element) :
                                                    Mesh()->Formation(element)->ActiveMaterial().Material(element);
-		assert(	material.IsParameter(T::type_id()) );
-		return TValue( material.ParameterValue(T::type_id()) );
-	}
+    assert(	material.IsParameter(T::type_id()) );
+    return TValue( material.ParameterValue(T::type_id()) );
+  }
 
-	return TValue();
+  return TValue();
 }
 
 template< class T >
 IValueDomainScalar::TValueVec CRpnMaterialParameterProxy<T>::Value(const geo::IElement &el, UNIT unit) const
 {
-	TValueVec ret(el.NrOfPoints());
-	if(Mesh()->IsMesh())
-	{
+  TValueVec ret(el.NrOfPoints());
+  if(Mesh()->IsMesh())
+  {
 
-		// Find mesh element 
-		const geo::IElement* pElement = 0;
-		const geo::IFace* pFace = dynamic_cast<const geo::IFace*>(&el);
-		if(pFace)
-		{
-			if(pFace->Parent()) {
-				if(&Mesh()->Mesh() == pFace->Parent()->IndexingElementSet())
-				  pElement = pFace->Parent();
-			}
-		}
-		
-		if(el.IndexingElementSet() == &Mesh()->Mesh())
-			pElement = &el;
+    // Find mesh element 
+    const geo::IElement* pElement = 0;
+    const geo::IFace* pFace = dynamic_cast<const geo::IFace*>(&el);
+    if(pFace)
+    {
+      if(pFace->Parent()) {
+        if(&Mesh()->Mesh() == pFace->Parent()->IndexingElementSet())
+          pElement = pFace->Parent();
+      }
+    }
+    
+    if(el.IndexingElementSet() == &Mesh()->Mesh())
+      pElement = &el;
 
 
-		if(pElement)
-		{
-			//start wjrx mantis 2545
+    if(pElement)
+    {
+      //start wjrx mantis 2545
     	const geo::CInterfaceElement* pInterface = dynamic_cast<const geo::CInterfaceElement*>(pElement);
-			if ( pInterface )
-			{
+      if ( pInterface )
+      {
   			const CHorizonBase *pHorizon= Mesh()->SlipHorizon(*pElement);
-        const CModelBase& model = static_cast<const CModelBase&>(pHorizon->Model());
-				const dia::IMaterial &mat= pHorizon->InterfaceMaterial(*pElement, model.BranchState().ActiveStage());
-				const CInterfaceElementMaterial &elMat= 
-					dynamic_cast<const CInterfaceElementMaterial &>( mat );
+    const CModelBase& model = static_cast<const CModelBase&>(pHorizon->Model());
+        const dia::IMaterial &mat= pHorizon->InterfaceMaterial(*pElement, model.BranchState().ActiveStage());
+        const CInterfaceElementMaterial &elMat= 
+          dynamic_cast<const CInterfaceElementMaterial &>( mat );
 
-				if ( elMat.ValidParameterValue(T::type_id()) )
-				for(size_t i = 0; i < ret.size(); i++)
-					ret[i]= elMat.ParameterValue(T::type_id());
-			}
-			else
-			//end wjrx mantis 2545
-			{
-        const CModelBase& model = static_cast<const CModelBase&>(Mesh()->Model());
-        if(Mesh()->Formation(*pElement)->Material(model.InitialDepletionStage()).LibraryMaterial() != 0)
-        {
-				  const CFFMaterial &material  = (TimeStep()) ? Mesh()->Formation(*pElement)->Material(*TimeStep()).Material(*pElement) :
+        if ( elMat.ValidParameterValue(T::type_id()) )
+        for(size_t i = 0; i < ret.size(); i++)
+          ret[i]= elMat.ParameterValue(T::type_id());
+      }
+      else
+      //end wjrx mantis 2545
+      {
+    const CModelBase& model = static_cast<const CModelBase&>(Mesh()->Model());
+    if(Mesh()->Formation(*pElement)->Material(model.InitialDepletionStage()).LibraryMaterial() != 0)
+    {
+          const CFFMaterial &material  = (TimeStep()) ? Mesh()->Formation(*pElement)->Material(*TimeStep()).Material(*pElement) :
                                                          Mesh()->Formation(*pElement)->ActiveMaterial().Material(*pElement);
           bool bIsParameter = material.IsParameter(T::type_id());
-				  for(size_t i = 0; i < ret.size(); i++)
+          for(size_t i = 0; i < ret.size(); i++)
           {
-				    if(bIsParameter)
-					    ret[i] = TValue( material.ParameterValue(T::type_id()) );
-            else
+          if(bIsParameter)
+            ret[i] = TValue( material.ParameterValue(T::type_id()) );
+      else
               ret[i] = TValue();
           }
-        }
+    }
       }
-		}
-		else
-		{
-			for(int i = 0; i < el.NrOfPoints(); i++)
-				ret[i] = Value(el.Point(i), unit);
-		}
-	}
-	
-	return ret;
+    }
+    else
+    {
+      for(int i = 0; i < el.NrOfPoints(); i++)
+        ret[i] = Value(el.Point(i), unit);
+    }
+  }
+  
+  return ret;
 }
 
 

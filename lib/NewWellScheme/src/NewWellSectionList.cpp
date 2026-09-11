@@ -14,12 +14,12 @@ std::list <INewWellSection*> CNewWellSectionList::getSections(
   std::list <INewWellSection*>::const_iterator newWellSection;
 
   for (newWellSection = m_newWellSectionList.begin();
-    newWellSection != m_newWellSectionList.end(); ++newWellSection)
+  newWellSection != m_newWellSectionList.end(); ++newWellSection)
   {
-    if ((*newWellSection)->Contains(newWellPoint, includeEdge))
-    {
+  if ((*newWellSection)->Contains(newWellPoint, includeEdge))
+  {
       newWellSectionList.push_back(*newWellSection);
-    }
+  }
   }
 
   return newWellSectionList;

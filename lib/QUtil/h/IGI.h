@@ -9,8 +9,8 @@ class IGI
 
 public:
 
-	IGI(){};
-	~IGI(){};
+  IGI(){};
+  ~IGI(){};
 
-	virtual void push(Cmd cmd)=0;
+  virtual void push(Cmd cmd)=0;
 };

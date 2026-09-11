@@ -17,37 +17,37 @@
 
 class OPENGLFRAME_EXPORT CDragger : public CMouseListener  
 {
-	geo::CPoint		m_ptBeginPoint;			//world coord.
-	geo::CPoint		m_ptCurrentPoint;		//world coord.
-	TScreenPoint	m_ptBeginScreenPoint;	//screen coord.
-	TScreenPoint	m_ptCurrentScreenPoint;	//screen coord.
-	geo::CPlane m_plane;				// The plane the user is dragging on. When the plane is Empty()
-										// only the screen coordinates are used.
+  geo::CPoint		m_ptBeginPoint;			//world coord.
+  geo::CPoint		m_ptCurrentPoint;		//world coord.
+  TScreenPoint	m_ptBeginScreenPoint;	//screen coord.
+  TScreenPoint	m_ptCurrentScreenPoint;	//screen coord.
+  geo::CPlane m_plane;				// The plane the user is dragging on. When the plane is Empty()
+                    // only the screen coordinates are used.
 protected:
-	const geo::IPoint& BeginPoint() const;
-	const geo::IPoint& CurrentPoint() const;
-	const TScreenPoint& BeginScreenPoint() const;
-	const TScreenPoint& CurrentScreenPoint() const;
-	virtual bool ValidatePoint(const geo::IPoint& point) const;
-	const geo::IPlane& Plane() const;
+  const geo::IPoint& BeginPoint() const;
+  const geo::IPoint& CurrentPoint() const;
+  const TScreenPoint& BeginScreenPoint() const;
+  const TScreenPoint& CurrentScreenPoint() const;
+  virtual bool ValidatePoint(const geo::IPoint& point) const;
+  const geo::IPlane& Plane() const;
 public:
-	// Construction destruction 
-	CDragger(TFrame& frame, const geo::IPlane& plane = geo::CPlane());
-	virtual ~CDragger();
-	
-	// CMouseListener interface
-	virtual bool MousePress(TKeyboardModifiers state, TMouseButton button, const TScreenPoint& point);
-	virtual bool MouseRelease(TKeyboardModifiers state, TMouseButton button, const TScreenPoint& point);
-	virtual bool MouseDblClk(TKeyboardModifiers state, TMouseButton button, const TScreenPoint& point);
-	virtual bool MouseWheel(TKeyboardModifiers state, int nDelta, const TScreenPoint& point);
-	virtual bool MouseMove(TKeyboardModifiers state, TMouseButton button, const TScreenPoint& point);
-	virtual void DrawScene() = 0;
+  // Construction destruction 
+  CDragger(TFrame& frame, const geo::IPlane& plane = geo::CPlane());
+  virtual ~CDragger();
+  
+  // CMouseListener interface
+  virtual bool MousePress(TKeyboardModifiers state, TMouseButton button, const TScreenPoint& point);
+  virtual bool MouseRelease(TKeyboardModifiers state, TMouseButton button, const TScreenPoint& point);
+  virtual bool MouseDblClk(TKeyboardModifiers state, TMouseButton button, const TScreenPoint& point);
+  virtual bool MouseWheel(TKeyboardModifiers state, int nDelta, const TScreenPoint& point);
+  virtual bool MouseMove(TKeyboardModifiers state, TMouseButton button, const TScreenPoint& point);
+  virtual void DrawScene() = 0;
 
-	//CDragger interface
-	virtual bool OnCancel();
-	virtual bool OnOK();
+  //CDragger interface
+  virtual bool OnCancel();
+  virtual bool OnOK();
 
-	bool IsDragging() const;
+  bool IsDragging() const;
 
 };
 

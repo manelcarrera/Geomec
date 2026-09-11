@@ -12,18 +12,18 @@ namespace GeomecRGI
 class CCalculateShearModulus : public CLoadPropertyBase
 {
   public:
-    CCalculateShearModulus(const RGProperty& rgProperty, RGInterface& rgi,
+  CCalculateShearModulus(const RGProperty& rgProperty, RGInterface& rgi,
       CModelBase& modelBase, CRockMechProcessor& rmp);
-    virtual ~CCalculateShearModulus();
+  virtual ~CCalculateShearModulus();
 
-    template <typename P, unsigned int VALUE_TYPE, unsigned int NORMAL,
+  template <typename P, unsigned int VALUE_TYPE, unsigned int NORMAL,
       unsigned int TRANSVERSE> bool loadProperty();
 
-    virtual bool enforceUniqueness(unsigned int uValueType) const;
+  virtual bool enforceUniqueness(unsigned int uValueType) const;
 
   private:
-    CCalculateShearModulus(const CCalculateShearModulus& rhs);
-    CCalculateShearModulus& operator = (const CCalculateShearModulus& rhs);
+  CCalculateShearModulus(const CCalculateShearModulus& rhs);
+  CCalculateShearModulus& operator = (const CCalculateShearModulus& rhs);
 };
 
 template <typename P, unsigned int VALUE_TYPE, unsigned int NORMAL,
@@ -33,25 +33,25 @@ template <typename P, unsigned int VALUE_TYPE, unsigned int NORMAL,
 
   if (returnValue && isAnisotropic())
   {
-    P normal(m_RGProperty, m_RGI, m_ModelBase, m_RMP);
-    P transverse(m_RGProperty, m_RGI, m_ModelBase, m_RMP);
+  P normal(m_RGProperty, m_RGI, m_ModelBase, m_RMP);
+  P transverse(m_RGProperty, m_RGI, m_ModelBase, m_RMP);
 
-    returnValue = returnValue && normal.loadProperty(NORMAL) &&
+  returnValue = returnValue && normal.loadProperty(NORMAL) &&
       transverse.loadProperty(TRANSVERSE);
 
-    RGProperty rgProperty(RGPropertyType::propElementShearModulus);
-    CLoadPropertyShearModulus
+  RGProperty rgProperty(RGPropertyType::propElementShearModulus);
+  CLoadPropertyShearModulus
       loadPropertyShearModulus(rgProperty, m_RGI, m_ModelBase, m_RMP);
 
-    if (loadPropertyShearModulus.canCalculatePropertyValues())
-    {
+  if (loadPropertyShearModulus.canCalculatePropertyValues())
+  {
       std::vector <std::vector <geo::CValue> > vcValues =
-        loadPropertyShearModulus.calculatePropertyValues();
+    loadPropertyShearModulus.calculatePropertyValues();
 
       returnValue = returnValue &&
-        loadPropertyShearModulus.loadProperty(vcValues,
+    loadPropertyShearModulus.loadProperty(vcValues,
           m_RMP.PropertyName(rgProperty), IDT_VALUETYPE_SHEARMODULUS);
-    }
+  }
   }
 
   return returnValue;

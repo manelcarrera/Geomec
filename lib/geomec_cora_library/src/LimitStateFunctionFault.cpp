@@ -15,7 +15,7 @@ CLimitStateFunctionFault::CLimitStateFunctionFault(
   CSummaryResultFile& summaryResultFile, std::vector <QString>& function,
   CGetModelInfo& modelInfo, const QString& versionNumber)
 : CLimitStateFunctionBase(summaryResultFile, function, modelInfo, versionNumber,
-    modelInfo.getFaultInfo().getObjects(), FAULT)
+  modelInfo.getFaultInfo().getObjects(), FAULT)
 {
 }
 

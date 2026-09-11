@@ -95,15 +95,15 @@ struct  _GObjectClass
 
   /*< private >*/
   void       (*dispatch_properties_changed) (GObject      *object,
-					     guint	   n_pspecs,
-					     GParamSpec  **pspecs);
+               guint	   n_pspecs,
+               GParamSpec  **pspecs);
 
   /* signals */
   void	     (*properties_changed)	(GObject	*object,
-					 guint		 n_pspecs,
-					 GParamSpec    **pspecs);
+           guint		 n_pspecs,
+           GParamSpec    **pspecs);
   void	     (*notify)			(GObject	*object,
-					 GParamSpec	*pspec);
+           GParamSpec	*pspec);
 };
 struct _GObjectConstructParam
 {
@@ -115,80 +115,80 @@ struct _GObjectConstructParam
 
 /* --- prototypes --- */
 void        g_object_class_install_property   (GObjectClass   *oclass,
-					       guint           property_id,
-					       GParamSpec     *pspec);
+                 guint           property_id,
+                 GParamSpec     *pspec);
 GParamSpec* g_object_class_find_property      (GObjectClass   *oclass,
-					       const gchar    *property_name);
+                 const gchar    *property_name);
 gpointer    g_object_new                      (GType           object_type,
-					       const gchar    *first_property_name,
-					       ...);
+                 const gchar    *first_property_name,
+                 ...);
 gpointer    g_object_new_valist               (GType           object_type,
-					       const gchar    *first_property_name,
-					       va_list         var_args);
+                 const gchar    *first_property_name,
+                 va_list         var_args);
 void        g_object_set                      (gpointer	       object,
-					       const gchar    *first_property_name,
-					       ...);
+                 const gchar    *first_property_name,
+                 ...);
 void        g_object_get                      (gpointer        object,
-					       const gchar    *first_property_name,
-					       ...);
+                 const gchar    *first_property_name,
+                 ...);
 void        g_object_set_valist               (GObject        *object,
-					       const gchar    *first_property_name,
-					       va_list         var_args);
+                 const gchar    *first_property_name,
+                 va_list         var_args);
 void        g_object_get_valist               (GObject        *object,
-					       const gchar    *first_property_name,
-					       va_list         var_args);
+                 const gchar    *first_property_name,
+                 va_list         var_args);
 void        g_object_set_property             (GObject        *object,
-					       const gchar    *property_name,
-					       const GValue   *value);
+                 const gchar    *property_name,
+                 const GValue   *value);
 void        g_object_get_property             (GObject        *object,
-					       const gchar    *property_name,
-					       GValue         *value);
+                 const gchar    *property_name,
+                 GValue         *value);
 void        g_object_freeze_notify            (GObject        *object);
 void        g_object_notify                   (GObject        *object,
-					       const gchar    *property_name);
+                 const gchar    *property_name);
 void        g_object_thaw_notify              (GObject        *object);
 gpointer    g_object_ref                      (gpointer        object);
 void        g_object_unref                    (gpointer        object);
 gpointer    g_object_get_qdata                (GObject        *object,
-					       GQuark          quark);
+                 GQuark          quark);
 void        g_object_set_qdata                (GObject        *object,
-					       GQuark          quark,
-					       gpointer        data);
+                 GQuark          quark,
+                 gpointer        data);
 void        g_object_set_qdata_full           (GObject        *object,
-					       GQuark          quark,
-					       gpointer        data,
-					       GDestroyNotify  destroy);
+                 GQuark          quark,
+                 gpointer        data,
+                 GDestroyNotify  destroy);
 gpointer    g_object_steal_qdata              (GObject        *object,
-					       GQuark          quark);
+                 GQuark          quark);
 gpointer    g_object_get_data                 (GObject        *object,
-					       const gchar    *key);
+                 const gchar    *key);
 void        g_object_set_data                 (GObject        *object,
-					       const gchar    *key,
-					       gpointer        data);
+                 const gchar    *key,
+                 gpointer        data);
 void        g_object_set_data_full            (GObject        *object,
-					       const gchar    *key,
-					       gpointer        data,
-					       GDestroyNotify  destroy);
+                 const gchar    *key,
+                 gpointer        data,
+                 GDestroyNotify  destroy);
 gpointer    g_object_steal_data               (GObject        *object,
-					       const gchar    *key);
+                 const gchar    *key);
 void        g_object_watch_closure            (GObject        *object,
-					       GClosure       *closure);
+                 GClosure       *closure);
 GClosure*   g_cclosure_new_object             (GCallback       callback_func,
-					       gpointer        object);
+                 gpointer        object);
 GClosure*   g_cclosure_new_object_swap        (GCallback       callback_func,
-					       gpointer        object);
+                 gpointer        object);
 GClosure*   g_closure_new_object              (guint           sizeof_closure,
-					       GObject        *object);
+                 GObject        *object);
 void        g_value_set_object                (GValue         *value,
-					       GObject        *v_object);
+                 GObject        *v_object);
 GObject*    g_value_get_object                (const GValue   *value);
 GObject*    g_value_dup_object                (const GValue   *value);
 guint	    g_signal_connect_object           (gpointer	       instance,
-					       const gchar    *detailed_signal,
-					       GCallback       c_handler,
-					       gpointer	       gobject,
-					       gboolean        swapped,
-					       gboolean        after);
+                 const gchar    *detailed_signal,
+                 GCallback       c_handler,
+                 gpointer	       gobject,
+                 gboolean        swapped,
+                 gboolean        after);
 
 
 /* --- implementation macros --- */

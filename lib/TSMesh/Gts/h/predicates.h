@@ -27,20 +27,20 @@
 
 
 double orient2d            (double * pa,
-			    double * pb,
-			    double * pc);
+        double * pb,
+        double * pc);
 double orient3d            (double * pa,
-			    double * pb,
-			    double * pc,
-			    double * pd);
+        double * pb,
+        double * pc,
+        double * pd);
 double incircle            (double * pa,
-			    double * pb,
-			    double * pc,
-			    double * pd);
+        double * pb,
+        double * pc,
+        double * pd);
 double insphere            (double * pa,
-			    double * pb,
-			    double * pc,
-			    double * pd,
-			    double * pe);
+        double * pb,
+        double * pc,
+        double * pd,
+        double * pe);
 
 #endif /* __PREDICATES_H__ */

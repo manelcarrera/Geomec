@@ -18,34 +18,34 @@ static char THIS_FILE[] = __FILE__;
 
 
 CWellPathFileUnitDlg::CWellPathFileUnitDlg(CWnd* pParent /*=NULL*/)
-	: CDialog(CWellPathFileUnitDlg::IDD, pParent)
+  : CDialog(CWellPathFileUnitDlg::IDD, pParent)
   , m_Unit(CQuantity::FIELD_UNIT)
 {
-	//{{AFX_DATA_INIT(CWellPathFileUnitDlg)
-	//}}AFX_DATA_INIT
+  //{{AFX_DATA_INIT(CWellPathFileUnitDlg)
+  //}}AFX_DATA_INIT
 }
 
 CQuantity::UNIT CWellPathFileUnitDlg::Unit()
 {
-	if(m_Unit==0)
-		return CQuantity::FIELD_UNIT;
-	else
-		return CQuantity::SI_UNIT;
+  if(m_Unit==0)
+    return CQuantity::FIELD_UNIT;
+  else
+    return CQuantity::SI_UNIT;
 }
 
 void CWellPathFileUnitDlg::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CWellPathFileUnitDlg)
-	DDX_Radio(pDX, IDC_RADIO_FIELD, m_Unit);
-	//}}AFX_DATA_MAP
+  CDialog::DoDataExchange(pDX);
+  //{{AFX_DATA_MAP(CWellPathFileUnitDlg)
+  DDX_Radio(pDX, IDC_RADIO_FIELD, m_Unit);
+  //}}AFX_DATA_MAP
 }
 
 
 BEGIN_MESSAGE_MAP(CWellPathFileUnitDlg, CDialog)
-	//{{AFX_MSG_MAP(CWellPathFileUnitDlg)
-		// NOTE: the ClassWizard will add message map macros here
-	//}}AFX_MSG_MAP
+  //{{AFX_MSG_MAP(CWellPathFileUnitDlg)
+    // NOTE: the ClassWizard will add message map macros here
+  //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////

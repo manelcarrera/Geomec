@@ -1,10 +1,10 @@
 /*************************************************************************
 
-        cSetRescuePolyLineNodeUVT.h
+    cSetRescuePolyLineNodeUVT.h
 
  Keeps a list of pointers to some RescuePolyLineNodeUVT.
 
-        Rod Hanks               May 2002
+    Rod Hanks               May 2002
 
 ****************************************************************************/
 

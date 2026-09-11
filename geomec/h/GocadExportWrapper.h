@@ -18,7 +18,7 @@ class CResultGroup;
 class CGocadExportWrapper  
 {
 public:
-	CGocadExportWrapper();
+  CGocadExportWrapper();
 
   void Export(CModelBase& model, const CResultGroup* pResultGroup = 0);
 };

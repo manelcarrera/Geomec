@@ -16,54 +16,54 @@ class CWellCasingCementInterface;
 
 typedef CMaterialServerParent <COpenGLNode,
   CWellCasingCementInterfaceMaterialServer>
-    TWellCasingCementInterfaceMaterialServerParent;
+  TWellCasingCementInterfaceMaterialServerParent;
 
 class CWellCasingCementInterfaceMaterialServer_Delegate :
   public IMaterialServerTempl_Delegate <CInterfaceMaterial,
-    CInterfaceMaterial_Delegate,
-    TWellCasingCementInterfaceMaterialServerParent>
+  CInterfaceMaterial_Delegate,
+  TWellCasingCementInterfaceMaterialServerParent>
 {
 public:
   CWellCasingCementInterfaceMaterialServer_Delegate(
-    CWellCasingCementInterfaceMaterialServer*
+  CWellCasingCementInterfaceMaterialServer*
       wellCasingCementInterfaceMaterialServer);
 
 private:
   CWellCasingCementInterfaceMaterialServer_Delegate(
-    const CWellCasingCementInterfaceMaterialServer_Delegate& rhs);
+  const CWellCasingCementInterfaceMaterialServer_Delegate& rhs);
   CWellCasingCementInterfaceMaterialServer_Delegate& operator = (
-    const CWellCasingCementInterfaceMaterialServer_Delegate& rhs);
+  const CWellCasingCementInterfaceMaterialServer_Delegate& rhs);
 
   CWellCasingCementInterfaceMaterialServer*
-    m_wellCasingCementInterfaceMaterialServer;
+  m_wellCasingCementInterfaceMaterialServer;
 
   REGISTER_DELEGATE(CWellCasingCementInterfaceMaterialServer,
-    CWellCasingCementInterfaceMaterialServer_Delegate);
+  CWellCasingCementInterfaceMaterialServer_Delegate);
 };
 
 typedef CMaterialServerParent_Delegate <COpenGLNode_Delegate, COpenGLNode,
   CWellCasingCementInterfaceMaterialServer>
-    TWellCasingCementInterfaceMaterialServerParent_Delegate;
+  TWellCasingCementInterfaceMaterialServerParent_Delegate;
 
 class CWellCasingCementInterface_Delegate :
   public TWellCasingCementInterfaceMaterialServerParent_Delegate
 {
 public:
   CWellCasingCementInterface_Delegate(
-    CWellCasingCementInterface* wellCasingCementInterface);
+  CWellCasingCementInterface* wellCasingCementInterface);
 
   virtual bool Attributes();
 
 private:
   CWellCasingCementInterface_Delegate(
-    const CWellCasingCementInterface_Delegate& rhs);
+  const CWellCasingCementInterface_Delegate& rhs);
   CWellCasingCementInterface_Delegate& operator = (
-    const CWellCasingCementInterface_Delegate& rhs);
+  const CWellCasingCementInterface_Delegate& rhs);
 
   CWellCasingCementInterface* m_wellCasingCementInterface;
 
   REGISTER_DELEGATE(CWellCasingCementInterface,
-    CWellCasingCementInterface_Delegate);
+  CWellCasingCementInterface_Delegate);
 };
 
 #endif  // _WellCasingCementInterface_Delegate_h_

@@ -29,18 +29,18 @@ bool CDerivedResult_Delegate::Attributes()
 
   if (name == "class CDerivedResult::CDerivedResultComponent")
   {
-    CDerivedResult::CDerivedResultComponent& anotherValueComponent =
+  CDerivedResult::CDerivedResultComponent& anotherValueComponent =
       static_cast <CDerivedResult::CDerivedResultComponent&> (valueComponent);
 
-    valueComponent_Delegate = static_cast <
+  valueComponent_Delegate = static_cast <
       CDerivedResult_Delegate::CDerivedResultComponent_Delegate*> (
-        anotherValueComponent.getDelegate());
+    anotherValueComponent.getDelegate());
   }
   else
   {
-    assert(false);
+  assert(false);
 
-    valueComponent_Delegate = static_cast <IValueComponent_Delegate*> (
+  valueComponent_Delegate = static_cast <IValueComponent_Delegate*> (
       valueComponent.getDelegate());
   }
 
@@ -48,7 +48,7 @@ bool CDerivedResult_Delegate::Attributes()
 
   if (bRet && !m_derivedResult->StoreOnFile())
   {
-    m_derivedResult->SaveToRegistry();
+  m_derivedResult->SaveToRegistry();
   }
 
   return bRet;
@@ -59,7 +59,7 @@ void CDerivedResult_Delegate::AppendContextMenu(CContextMenuInvoker &invoker)
   typedef CSingleCommandTemplate <CDerivedResult_Delegate> TCommand;
 
   invoker.AddCommand("&Export results",
-    *(new TCommand(*this, &CDerivedResult_Delegate::Export,
+  *(new TCommand(*this, &CDerivedResult_Delegate::Export,
       &CDerivedResult_Delegate::CanExport)));
   invoker.AddSeparator();
 
@@ -94,106 +94,106 @@ CDerivedResult_Delegate::CDerivedResultComponent_Delegate::
 bool CDerivedResult_Delegate::CDerivedResultComponent_Delegate::Attributes()
 {
   CDerivedResult& result =
-    dynamic_cast <CDerivedResult&> (m_derivedResultComponent->Parent());
+  dynamic_cast <CDerivedResult&> (m_derivedResultComponent->Parent());
 
   // Create index in registry
 
   if (0 > result.Index())
   {
-    if (!result.RegisterResult())
-    {
+  if (!result.RegisterResult())
+  {
       // Failure. Too many registry result
 
       QString sMessage;
 
       if (result.StoreOnFile())
       {
-        sMessage = QString("The maximum of %1 derived results is reached.").arg(COMPOSITE_BASE - DERIVED_RESULT_BASE);
+    sMessage = QString("The maximum of %1 derived results is reached.").arg(COMPOSITE_BASE - DERIVED_RESULT_BASE);
       }
       else
       {
-        sMessage = QString("The maximum of %1 registry results is reached.").arg(DERIVED_RESULT_BASE - REGISTRY_RESULT_BASE);
+    sMessage = QString("The maximum of %1 registry results is reached.").arg(DERIVED_RESULT_BASE - REGISTRY_RESULT_BASE);
       }
 
       _m()->msg(sMessage);
 
       return false;
-    }
+  }
   }
 
   // Do we have a stack?
 
   if (m_derivedResultComponent->Stack() == 0)
   {
-    m_derivedResultComponent->CreateStack();
+  m_derivedResultComponent->CreateStack();
 
-    // Insert X, Y, Z coordinates
+  // Insert X, Y, Z coordinates
 
-    CModelBase& model =
+  CModelBase& model =
       dynamic_cast <CModelBase&> (m_derivedResultComponent->Model());
 
-    new CDerivedResult::CResultCoordinateProxy(IDS_RC_NORTHING,
+  new CDerivedResult::CResultCoordinateProxy(IDS_RC_NORTHING,
       *m_derivedResultComponent->Stack(),
       CDerivedResult::CResultCoordinateProxy::CO_X);
-    new CDerivedResult::CResultCoordinateProxy(IDS_RC_EASTING,
+  new CDerivedResult::CResultCoordinateProxy(IDS_RC_EASTING,
       *m_derivedResultComponent->Stack(),
       CDerivedResult::CResultCoordinateProxy::CO_Y);
-    new CDerivedResult::CResultCoordinateProxy(IDS_RC_DEPTH,
+  new CDerivedResult::CResultCoordinateProxy(IDS_RC_DEPTH,
       *m_derivedResultComponent->Stack(),
       CDerivedResult::CResultCoordinateProxy::CO_Z);
 
-    C3DModel* p3DModel = dynamic_cast <C3DModel*> (&m_derivedResultComponent->Model());
+  C3DModel* p3DModel = dynamic_cast <C3DModel*> (&m_derivedResultComponent->Model());
 
-    if (p3DModel && result.StoreOnFile())
-    {
+  if (p3DModel && result.StoreOnFile())
+  {
       // measured top displacements
 
       new CRpnTopDisplacementProxy <0, IDS_MEASURED_TOP_DISPL_N> (*p3DModel,
-        *m_derivedResultComponent->Stack());
+    *m_derivedResultComponent->Stack());
       new CRpnTopDisplacementProxy <1, IDS_MEASURED_TOP_DISPL_E> (*p3DModel,
-        *m_derivedResultComponent->Stack());
+    *m_derivedResultComponent->Stack());
       new CRpnTopDisplacementProxy <2, IDS_MEASURED_TOP_DISPL_D> (*p3DModel,
-        *m_derivedResultComponent->Stack());
-    }
+    *m_derivedResultComponent->Stack());
+  }
 
-    // Insert an IsReservoir
+  // Insert an IsReservoir
 
-    new CRpnReservoirProxy(model.Mesh(), *m_derivedResultComponent->Stack());
+  new CRpnReservoirProxy(model.Mesh(), *m_derivedResultComponent->Stack());
 
-    if (result.StoreOnFile())
-    {
+  if (result.StoreOnFile())
+  {
       // value sets
 
       const TPointSetEntry& ps_entry = static_cast <const TPointSetEntry&> (
-        *m_derivedResultComponent->Model().GraphEntry(MD_BASE_POINTSET));
+    *m_derivedResultComponent->Model().GraphEntry(MD_BASE_POINTSET));
       const TPointSetEntry::TNodeSet& stPointSetNodes = ps_entry.EntryNodes();
       TPointSetEntry::TNodeSet::const_iterator it;
 
       for (it = stPointSetNodes.begin(); it != stPointSetNodes.end(); ++it)
       {
-        IPointSet& ps = **it;
-        int i;
-        int dim = int(ps.Dimension()); // skip the coordinate values
+    IPointSet& ps = **it;
+    int i;
+    int dim = int(ps.Dimension()); // skip the coordinate values
 
-        for (i = dim; i < ps.ValueSetSize(); ++i)
-        {
+    for (i = dim; i < ps.ValueSetSize(); ++i)
+    {
           IValueSet& vs = ps.ValueSet(i);
 
           if (!vs.Component()) // valueset is not referenced
           {
-            new CRpnValueSet::CValueSetProxy(ps.ValueSet(i),
+      new CRpnValueSet::CValueSetProxy(ps.ValueSet(i),
               *m_derivedResultComponent->Stack());
           }
-        }
-      }
     }
+      }
+  }
   }
 
   // Update the formations
 
   if (result.StoreOnFile())
   {
-    m_derivedResultComponent->UpdateFormations();
+  m_derivedResultComponent->UpdateFormations();
   }
 
   // Do the dialog
@@ -220,7 +220,7 @@ void CDerivedResultGroup_Delegate::AppendContextMenu(CContextMenuInvoker &invoke
   typedef CSingleCommandTemplate <CDerivedResultGroup_Delegate> TCommand;
 
   invoker.AddCommand(_T("&Create result"),
-    *(new TCommand(*this,
+  *(new TCommand(*this,
       &CDerivedResultGroup_Delegate::OnCreateDerivedResult)));
 }
 
@@ -230,13 +230,13 @@ void CDerivedResultGroup_Delegate::OnCreateDerivedResult()
 
   CDerivedResult* pNewResult = new CDerivedResult(*m_derivedResultGroup);
   CDerivedResult_Delegate* pNewResult_Delegate =
-    new CDerivedResult_Delegate(pNewResult);
+  new CDerivedResult_Delegate(pNewResult);
 
   if (!pNewResult_Delegate->Attributes())
   {
-    delete pNewResult_Delegate;
-    delete pNewResult;
-    return;
+  delete pNewResult_Delegate;
+  delete pNewResult;
+  return;
   }
 
   m_derivedResultGroup->Modified();

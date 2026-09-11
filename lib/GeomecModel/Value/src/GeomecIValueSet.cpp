@@ -20,144 +20,144 @@ static char THIS_FILE[]=__FILE__;
 IValueSet::IValueSet(IPointSet& point_set)
 : CStorageNode(point_set.Model()), m_pPointSet(&point_set), m_pComponent(0)
 {
-	assert(!point_set.IsCopy());
-	reParent(&point_set);
-	assert(IsLinkedTo(PointSet()));
+  assert(!point_set.IsCopy());
+  reParent(&point_set);
+  assert(IsLinkedTo(PointSet()));
 }
 
 IValueSet::IValueSet(const QString &sName, CQuantity::UNIT unit, IPointSet& point_set)
 : CStorageNode(sName, point_set.Model()), m_pPointSet(&point_set), m_pComponent(0), m_unit(unit)
 {
-	// Link to the source point always
-	if(point_set.IsCopy())
-		m_pPointSet = (IPointSet*) &point_set.Source();
-	else
-	{
-		m_pPointSet = &point_set;
-		reParent(&point_set);
-		assert(IsLinkedTo(PointSet()));
-	}
+  // Link to the source point always
+  if(point_set.IsCopy())
+    m_pPointSet = (IPointSet*) &point_set.Source();
+  else
+  {
+    m_pPointSet = &point_set;
+    reParent(&point_set);
+    assert(IsLinkedTo(PointSet()));
+  }
 }
 
 IValueSet::IValueSet(const IValueSet& rhs)
 : CStorageNode(rhs), m_pPointSet(rhs.m_pPointSet), m_pComponent(rhs.m_pComponent), m_unit(rhs.m_unit)
 {
-	if(Component())
-	{
-		assert(Component()->IsCopy());
-		assert(IsLinkedTo(*Component()));
-	}
+  if(Component())
+  {
+    assert(Component()->IsCopy());
+    assert(IsLinkedTo(*Component()));
+  }
 
-	assert(PointSet().IsCopy());
-	if(!IsLinkedTo(PointSet()))
-		reParent(&PointSet());
+  assert(PointSet().IsCopy());
+  if(!IsLinkedTo(PointSet()))
+    reParent(&PointSet());
 
-	m_Time.Set(rhs.m_Time.GetYear(), rhs.m_Time.GetMonth());
+  m_Time.Set(rhs.m_Time.GetYear(), rhs.m_Time.GetMonth());
 }
 
 IValueSet::~IValueSet()
 {
-	if(IsCopy())
-	{
-		if(m_pComponent && m_pComponent->IsCopied())
-			delete &m_pComponent->Copy();
+  if(IsCopy())
+  {
+    if(m_pComponent && m_pComponent->IsCopied())
+      delete &m_pComponent->Copy();
 
-		assert(m_pComponent == 0);
-	}
+    assert(m_pComponent == 0);
+  }
 }
 
 void IValueSet::FileIndex(int iIndex)
 { 
-	Index(iIndex);
+  Index(iIndex);
 }
 
 bool IValueSet::operator==(const IValueSet &rhs) const
 {
-	if(!CStorageNode::operator==(rhs))
-		return false;
+  if(!CStorageNode::operator==(rhs))
+    return false;
 
-	return ((m_pComponent == rhs.m_pComponent) &&
-			(m_unit == rhs.m_unit));
+  return ((m_pComponent == rhs.m_pComponent) &&
+      (m_unit == rhs.m_unit));
 }
 
 IValueSet& IValueSet::operator=(const IValueSet& rhs)
 {
-	CStorageNode::operator=(rhs);
+  CStorageNode::operator=(rhs);
 
-	m_unit = rhs.m_unit;
-	m_pComponent = rhs.m_pComponent;
-	m_pPointSet = rhs.m_pPointSet;
+  m_unit = rhs.m_unit;
+  m_pComponent = rhs.m_pComponent;
+  m_pPointSet = rhs.m_pPointSet;
 
-	Modified();
-	return *this;
+  Modified();
+  return *this;
 }
 
 void IValueSet::OnNewNeighbour(const CGraphNode &node)
 {
-	const CValueComponent* pComponent = dynamic_cast<const CValueComponent*>(&node);
-	if(pComponent)
-	{
-		if(m_pComponent)
-			UnLink(*m_pComponent);
-		
-		m_pComponent = const_cast<CValueComponent*>(pComponent);
-	}
+  const CValueComponent* pComponent = dynamic_cast<const CValueComponent*>(&node);
+  if(pComponent)
+  {
+    if(m_pComponent)
+      UnLink(*m_pComponent);
+    
+    m_pComponent = const_cast<CValueComponent*>(pComponent);
+  }
 
-	CStorageNode::OnNewNeighbour(node);
+  CStorageNode::OnNewNeighbour(node);
 }
 
 void IValueSet::OnNeighbourDeleted(const CGraphNode &item) 
 {
-	// Is it an owning type?
-	if(&item == m_pComponent)
-	{
-		m_pComponent = 0;
-	}
+  // Is it an owning type?
+  if(&item == m_pComponent)
+  {
+    m_pComponent = 0;
+  }
 
-	// Is it the vertexset?
-	if((&item == m_pPointSet) && (!IsCopy()))
-	{
-		// Kill your self ...
-		CStorageNode::OnNeighbourDeleted(item);
-		delete this;
-		return;
-	}
+  // Is it the vertexset?
+  if((&item == m_pPointSet) && (!IsCopy()))
+  {
+    // Kill your self ...
+    CStorageNode::OnNeighbourDeleted(item);
+    delete this;
+    return;
+  }
 
-	CStorageNode::OnNeighbourDeleted(item);
+  CStorageNode::OnNeighbourDeleted(item);
 } 
 
 const IPointSet& IValueSet::PointSet() const
 {
-	assert(!m_pPointSet->IsCopy());
-	if(IsCopy() && m_pPointSet->IsCopied())
-		return (const IPointSet&)(m_pPointSet->Copy());
+  assert(!m_pPointSet->IsCopy());
+  if(IsCopy() && m_pPointSet->IsCopied())
+    return (const IPointSet&)(m_pPointSet->Copy());
 
-	return *m_pPointSet;
+  return *m_pPointSet;
 }
 
 IPointSet& IValueSet::PointSet()
 {
-	assert(!m_pPointSet->IsCopy());
-	if(IsCopy() && m_pPointSet->IsCopied())
-		return (IPointSet&)(m_pPointSet->Copy());
+  assert(!m_pPointSet->IsCopy());
+  if(IsCopy() && m_pPointSet->IsCopied())
+    return (IPointSet&)(m_pPointSet->Copy());
 
-	return *m_pPointSet;
+  return *m_pPointSet;
 }
 
 const CValueComponent* IValueSet::Component() const
 {
-	if(m_pComponent && m_pComponent->IsCopied())
-		return (const CValueComponent*) (&m_pComponent->Copy());
+  if(m_pComponent && m_pComponent->IsCopied())
+    return (const CValueComponent*) (&m_pComponent->Copy());
 
-	return m_pComponent;
+  return m_pComponent;
 }
 
 CValueComponent* IValueSet::Component()
 {
-	if(m_pComponent && m_pComponent->IsCopied())
-		return (CValueComponent*) (&m_pComponent->Copy());
+  if(m_pComponent && m_pComponent->IsCopied())
+    return (CValueComponent*) (&m_pComponent->Copy());
 
-	return m_pComponent;
+  return m_pComponent;
 }
 
 CQuantity::UNIT IValueSet::Unit() const
@@ -172,12 +172,12 @@ void IValueSet::Unit(CQuantity::UNIT unit)
 
 bool IValueSet::Empty() const
 {
-	return false;
+  return false;
 }
 /*
 bool IValueSet::PointInConvexHull(const geo::IPoint& pt) const
 {
-	return PointSet().PointInConvexHull(pt);
+  return PointSet().PointInConvexHull(pt);
 }
 
 
@@ -186,6 +186,6 @@ bool IValueSet::PointInConvexHull(const geo::IPoint& pt) const
 bool IValueSet::PrepareMapping(const geo::IElementSet *pElementSet)
 {
   if (!m_pPointSet->PrepareMapping(pElementSet))
-    return false;
+  return false;
   return true;
 }

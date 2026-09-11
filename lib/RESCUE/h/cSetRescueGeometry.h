@@ -18,11 +18,11 @@ Software Product or documentation licensed under this agreement.
 ****************************************************************************/
 /*************************************************************************
 
-        cSetRescueGeometry.h
+    cSetRescueGeometry.h
 
  Keeps a list of pointers to some RescueGeometry.
 
-        Rod Hanks               February, 1999
+    Rod Hanks               February, 1999
 
 ****************************************************************************/
 

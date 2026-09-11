@@ -20,22 +20,22 @@ class IMesh;
 
 class GEOMETRY_EXPORT  CSpringLineElement : public ILine
 {
-	IMesh& m_mesh;
-	int m_nodes[2];
-	int m_nIndex;
+  IMesh& m_mesh;
+  int m_nodes[2];
+  int m_nIndex;
 
 public:
-	CSpringLineElement(IMesh& mesh, int nFirst, int nSecond);
-	CSpringLineElement(IMesh& mesh, const IPoint& first, const IPoint& second, bool bUnique);
-	virtual std::string Type() const;
+  CSpringLineElement(IMesh& mesh, int nFirst, int nSecond);
+  CSpringLineElement(IMesh& mesh, const IPoint& first, const IPoint& second, bool bUnique);
+  virtual std::string Type() const;
 
-	// IElement interface
-	const IElementSet* IndexingElementSet() const;
-	virtual size_t NrOfNodes() const;
-	virtual const INode& Node(int nIndex) const;
-	virtual void Node(int nIndex, const IPoint& point);
-	virtual int PointIndex(int nIndex) const;
-	virtual int Index() const;
+  // IElement interface
+  const IElementSet* IndexingElementSet() const;
+  virtual size_t NrOfNodes() const;
+  virtual const INode& Node(int nIndex) const;
+  virtual void Node(int nIndex, const IPoint& point);
+  virtual int PointIndex(int nIndex) const;
+  virtual int Index() const;
 };
 
 }

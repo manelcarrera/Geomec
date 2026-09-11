@@ -12,21 +12,21 @@
   applied.  Z-values below the datum (normally mean sea level) are
   negative, above the datum are positive.  The logical geometries are:
 
-    VERTICAL: 2 control points and is_vertical = true.  The x and y
+  VERTICAL: 2 control points and is_vertical = true.  The x and y
               of the second control point is not stored.  When reading
               the x and y value of the second control point is set equal
               to the first control point.
-    LINEAR:   2 control points and is_vertical = false.
-    LISTRIC:  3 control points, follows spline curve.
-    CURVED:   5 control points, follows a spline curve.
-    OTHER:    Any number of points can be stored but automatic
+  LINEAR:   2 control points and is_vertical = false.
+  LISTRIC:  3 control points, follows spline curve.
+  CURVED:   5 control points, follows a spline curve.
+  OTHER:    Any number of points can be stored but automatic
               calculation of the geometry is not available.
 
   Truncation:
-    top_truncation:  Is != 0 if the pillar is truncated to top by a
+  top_truncation:  Is != 0 if the pillar is truncated to top by a
                      truncating pillar.  The LAST control point is
                      attached to the truncating pillar.
-    base_truncation: Is != 0 if the pillar is truncated to base by 
+  base_truncation: Is != 0 if the pillar is truncated to base by 
                      a truncating pillar.  The FIRST control point is
                      attached to the truncating pillar.
 
@@ -73,20 +73,20 @@ public:
        RESCUEFLOAT &x, RESCUEFLOAT &y, RESCUEFLOAT &z);
  void Values(RESCUEINT64 k, RESCUEFLOAT &z);
  void Values(RESCUEINT64 k, RESCUEINT64 corner, RESCUEFLOAT &z);
-                                    // Read values, C++.
+                  // Read values, C++.
   RESCUEFLOAT *NodeValues(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k);
   RESCUEINT32 NodeValuesLength() {return 3;}
-                                    // Corresponds to 
-                                    // RESCUEBOOL Values(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k, RESCUEFLOAT &x, RESCUEFLOAT &y, RESCUEFLOAT &z);
-                                    // Returns 0 if the value would have been FALSE.
-                                    // DO delete the returned array.
+                  // Corresponds to 
+                  // RESCUEBOOL Values(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k, RESCUEFLOAT &x, RESCUEFLOAT &y, RESCUEFLOAT &z);
+                  // Returns 0 if the value would have been FALSE.
+                  // DO delete the returned array.
   RESCUEFLOAT KValue(RESCUEINT64 k);              // Corresponds to Values(RESCUEINT64 k, RESCUEFLOAT &z);
   RESCUEFLOAT KValue(RESCUEINT64 k, RESCUEINT64 dir);     // Corresponds to Values(RESCUEINT64 k, RESCUEINT64 dir, RESCUEFLOAT &z);
-                                    // Read values, especially Java.
+                  // Read values, especially Java.
   void ZValue(RESCUEINT64 k, RESCUEFLOAT newZValues);
   void ZStack(RescueGeometry *geometry, RESCUEFLOAT *newZValues);
   void ZStack(RescueGeometry *geometry, RESCUEINT64 direction, RESCUEFLOAT *newZValues);
-                                // Set z values.
+                // Set z values.
   RESCUEBOOL IsSplit() const;
 
   RESCUEBOOL IsVertical() const {return isVertical;}
@@ -94,45 +94,45 @@ public:
   RESCUEBOOL IsTruncated() const;
   RescueTruncation *TopTruncation() {return top_truncation;}
   RescueTruncation *BaseTruncation() {return base_truncation;}
-                                // Don't delete the returned object.
+                // Don't delete the returned object.
   void SetTopTruncation(RescueTruncation *newTop);
   void SetBaseTruncation(RescueTruncation *newBase);
-                                // Don't pass a RescueTruncation that you have
-                                // used anyplace else.  Becomes the property of
-                                // Rescue.  You may pass 0.
+                // Don't pass a RescueTruncation that you have
+                // used anyplace else.  Becomes the property of
+                // Rescue.  You may pass 0.
   void AddControlPoint(RESCUEFLOAT x, RESCUEFLOAT y, RESCUEFLOAT z);
   void rebuildSplineCoeffs();
-                                // After you add no more than 5 control points,
-                                // use rebuildSplineCoeffs() to make the spline
-                                // coefficients.
+                // After you add no more than 5 control points,
+                // use rebuildSplineCoeffs() to make the spline
+                // coefficients.
   void AddControlPoint(RESCUEFLOAT x, RESCUEFLOAT y, RESCUEFLOAT z, 
                        RESCUEFLOAT xb, RESCUEFLOAT xc, RESCUEFLOAT xd,
                        RESCUEFLOAT yb, RESCUEFLOAT yc, RESCUEFLOAT yd);
-                                // Using this method you may add as many
-                                // control points as you wish.  You pass
-                                // both the point and the spline.  DO NOT
-                                // use rebuildSplineCoeffs() with more than
-                                // 5 control points.
-                                //
-                                // The spline coefficients associated with
-                                // the last point probably aren't used, but
-                                // you have to specify something anyway.
+                // Using this method you may add as many
+                // control points as you wish.  You pass
+                // both the point and the spline.  DO NOT
+                // use rebuildSplineCoeffs() with more than
+                // 5 control points.
+                //
+                // The spline coefficients associated with
+                // the last point probably aren't used, but
+                // you have to specify something anyway.
   RescuePoint *getByZ(RESCUEFLOAT z) const;
-                                // Delete the return point when you are done.
+                // Delete the return point when you are done.
   RescuePoint *getMinTangent(); //Get tangent at the base of the pillar, 
-                                //normalized, pointing upwards.
-                                //I realize this is a lot more annoying 
-                                // than returning RescuePoint
-                                // because you have to dispose of
-                                // the RescuePoint but it is necessary for Java.
+                //normalized, pointing upwards.
+                //I realize this is a lot more annoying 
+                // than returning RescuePoint
+                // because you have to dispose of
+                // the RescuePoint but it is necessary for Java.
   RescuePoint *getMaxTangent(); // Delete when you get back.
   RESCUEINT32 getNumCtrlPoints() {return ctrlPoints->Count();}
   RescuePoint *getMinCtrlPoint() const;
   RescuePoint *getMaxCtrlPoint() const;
   RescuePoint *getCtrlPointAt(RESCUEINT64 ndx) const;
-                                // DO NOT delete the points you get back,
-                                // and don't change it unless you want to
-                                // move the line.
+                // DO NOT delete the points you get back,
+                // and don't change it unless you want to
+                // move the line.
   RescueSplineCoef *getXSplineCoefAt(RESCUEINT64 ndx) const;
   RescueSplineCoef *getYSplineCoefAt(RESCUEINT64 ndx) const;
   //<--   More convienient for C++ use -->

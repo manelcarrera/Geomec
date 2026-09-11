@@ -49,16 +49,16 @@ public:
   RescueBlockUnit *BlockUnitIdentifiedBy(RESCUEINT32 identifier) 
                            {return blockUnits->ObjectIdentifiedBy(identifier);}
   RescueBlockUnit *BlockUnitForUnit(RescueUnit *unitToFind);
-                                    // Do NOT delete the object returned.
-                                    // If you want to remove them from the
-                                    // model use the corresponding Drop method.
+                  // Do NOT delete the object returned.
+                  // If you want to remove them from the
+                  // model use the corresponding Drop method.
   RESCUEBOOL DropBlockUnit(RescueBlockUnit *blockUnitToDrop) 
                          {return  ((*blockUnits) -= blockUnitToDrop);}
-                                    // Mustn't drop an owned object directly.
-                                    // Use the owner's drop method instead.
-                                    // These return FALSE if the object passed
-                                    // is not a member of the set (and in that
-                                    // case the object IS NOT dropped.
+                  // Mustn't drop an owned object directly.
+                  // Use the owner's drop method instead.
+                  // These return FALSE if the object passed
+                  // is not a member of the set (and in that
+                  // case the object IS NOT dropped.
   RescueProperty *PropertyIdentifiedBy(RESCUEINT64 id);
   RescueProperty *PropertyIdentifiedBy(RESCUEINT32 id) {return PropertyIdentifiedBy((RESCUEINT64) id);}
   RescueMacroVolume *MacroVolumeIdentifiedBy(RESCUEINT64 id);

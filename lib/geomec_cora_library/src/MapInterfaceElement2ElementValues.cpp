@@ -23,42 +23,42 @@ void CMapInterfaceElement2ElementValues::createElementValueSet(CModelBase* model
   const CFailureTypeParameterBase* failureTypeParameterBase)
 {
   CElementSet* elementSet =
-    failureTypeParameterBase->m_actualObject->getElementSet();
+  failureTypeParameterBase->m_actualObject->getElementSet();
   int set = elementSet->AddElementValueSet();
   CElementValueSet& elementValueSet = elementSet->ElementValueSet(set);
   CHorizonBase* horizonBase = dynamic_cast <CHorizonBase*> (
-    failureTypeParameterBase->m_actualParameter->object());
+  failureTypeParameterBase->m_actualParameter->object());
   const geo::CElementGroup* elementGroup =
-    horizonBase->InterfaceElementGroup();
+  horizonBase->InterfaceElementGroup();
   CFaultPressure& faultPressure = horizonBase->Pressure(modelBase->
-    DepletionStageEntry().StageByIndex(
+  DepletionStageEntry().StageByIndex(
       failureTypeParameterBase->m_actualParameter->depletionStage()));
 
   for (int element = 0; element < elementGroup->ElementSize(); ++element)
   {
-    const geo::CInterfaceElement& interfaceElement =
+  const geo::CInterfaceElement& interfaceElement =
       dynamic_cast <const geo::CInterfaceElement&> (
-        elementGroup->Element(element));
-    IValueDomainScalar::TValueVec newValues(interfaceElement.NrOfNodes() / 2);
-    IValueDomainScalar::TValueVec pressureValues =
+    elementGroup->Element(element));
+  IValueDomainScalar::TValueVec newValues(interfaceElement.NrOfNodes() / 2);
+  IValueDomainScalar::TValueVec pressureValues =
       faultPressure.Component().ScalarData().ValueElement(interfaceElement);
 
-    for (int v = 0; v < newValues.size(); ++v)
-    {
+  for (int v = 0; v < newValues.size(); ++v)
+  {
       int n = interfaceElement.BodyFaceNode(v);
 
       newValues[n] = failureTypeParameterBase->m_parameterModifier->
-        modify(pressureValues[v]).Value();
-    }
+    modify(pressureValues[v]).Value();
+  }
 
-    elementValueSet.PushBack(newValues);
+  elementValueSet.PushBack(newValues);
   }
 
   unsigned int valueTypeID =
-    failureTypeParameterBase->m_actualParameter->valueTypeID();
+  failureTypeParameterBase->m_actualParameter->valueTypeID();
 
   failureTypeParameterBase->createAndLinkValueType(modelBase, elementValueSet,
-    faultPressure, *elementSet, valueTypeID);
+  faultPressure, *elementSet, valueTypeID);
 }
 
 } // namespace cora

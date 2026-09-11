@@ -21,13 +21,13 @@ class CBoundaryInterfaceDef : public CStorageNode
 {
 public:
   enum eIntMatType { G = 0, K, L }; // how is the interface material defined, Shear modulus G or
-                                    // via the Krad and Ktan values
+                  // via the Krad and Ktan values
 
   typedef enum
   {
-    BSURF_TOP = 0,
-    BSURF_SIDE,
-    BSURF_BOTTOM
+  BSURF_TOP = 0,
+  BSURF_SIDE,
+  BSURF_BOTTOM
   } TBoundarySurface;
 
 public:

@@ -1,10 +1,10 @@
 /*************************************************************************
 
-        cSetRescueStairSteppedFault.h
+    cSetRescueStairSteppedFault.h
 
  Keeps a list of pointers to some RescueStairSteppedFault.
 
-        Rod Hanks               June, 1999
+    Rod Hanks               June, 1999
 
 ****************************************************************************/
 

@@ -1,5 +1,5 @@
 class Class01
 {
 public:
-	Class01();
+  Class01();
 };

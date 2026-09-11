@@ -74,50 +74,50 @@ void CGoCadWellFile::ReadHeader(TInputStream& stream)
   int i;
   for(i = 0; i < 4; ++i)
   {
-	if(stream.eof())
-	  throw CReadException("Unexpected end of file found (incomplete header)");
+  if(stream.eof())
+    throw CReadException("Unexpected end of file found (incomplete header)");
 
-	QString sTag;
-	stream >> sTag;
+  QString sTag;
+  stream >> sTag;
 
-	if(stream.line_number() != iLineNr) // end of header
-	  break;
+  if(stream.line_number() != iLineNr) // end of header
+    break;
 
-	// NOTE: gocad has X == Easting and Y == Northing !!
+  // NOTE: gocad has X == Easting and Y == Northing !!
 
-	if     (sTag == "Y" || sTag.toUpper() == "NORTHING") {
-	  if(m_iX != -1)
-		throw CReadException("Header tag 'Y' or 'Northing' appears twice");
-	  m_iX = i;
-	}
-	else if(sTag == "X" || sTag.toUpper() == "EASTING") {
-	  if(m_iY != -1)
-		throw CReadException("Header tag 'X' or 'Easting' appears twice");
-	  m_iY = i;
-	}
-	else if(sTag == "Z" || sTag.toUpper() == "DEPTH") {
-	  if(m_iZ != -1)
-		throw CReadException("Header tag 'Z' or 'Depth' appears twice");
-	  m_iZ = i;
-	}
-	else if(sTag == "MD" || sTag == "TMD" || sTag == "AHD") {
-	  if(m_iMD != -1)
-		throw CReadException("Header tag 'MD' or 'TMD' or 'AHD' appears twice");
-	  m_iMD = i;
-	}
-	else {
-	  throw CReadException(QString("Invalid header tag '%1' found").arg(sTag));
-	}
+  if     (sTag == "Y" || sTag.toUpper() == "NORTHING") {
+    if(m_iX != -1)
+    throw CReadException("Header tag 'Y' or 'Northing' appears twice");
+    m_iX = i;
+  }
+  else if(sTag == "X" || sTag.toUpper() == "EASTING") {
+    if(m_iY != -1)
+    throw CReadException("Header tag 'X' or 'Easting' appears twice");
+    m_iY = i;
+  }
+  else if(sTag == "Z" || sTag.toUpper() == "DEPTH") {
+    if(m_iZ != -1)
+    throw CReadException("Header tag 'Z' or 'Depth' appears twice");
+    m_iZ = i;
+  }
+  else if(sTag == "MD" || sTag == "TMD" || sTag == "AHD") {
+    if(m_iMD != -1)
+    throw CReadException("Header tag 'MD' or 'TMD' or 'AHD' appears twice");
+    m_iMD = i;
+  }
+  else {
+    throw CReadException(QString("Invalid header tag '%1' found").arg(sTag));
+  }
   }
 
   if(m_iX == -1)
-	throw CReadException("Header tag 'Y' or 'Northing' not found");
+  throw CReadException("Header tag 'Y' or 'Northing' not found");
   if(m_iY == -1)
-	throw CReadException("Header tag 'X' or 'Easting' not found");
+  throw CReadException("Header tag 'X' or 'Easting' not found");
   if(m_iZ == -1)
-	throw CReadException("Header tag 'Z' or 'Depth' not found");
+  throw CReadException("Header tag 'Z' or 'Depth' not found");
   if(m_iMD == -1)
-	throw CReadException("Header tag 'MD' or 'TMD' or 'AHD' not found");
+  throw CReadException("Header tag 'MD' or 'TMD' or 'AHD' not found");
 
   m_bHeaderRead = true;
 
@@ -130,37 +130,37 @@ void CGoCadWellFile::ReadHeader(TInputStream& stream)
 */
 bool CGoCadWellFile::OnRead( TInputStream& stream )
 {
-    stream.eatwhite();
-    while( !stream.eof() ) {
+  stream.eatwhite();
+  while( !stream.eof() ) {
       if(!m_bHeaderRead) {
-		// maintain compatibility with older files, allow comment character
-		if(stream.peek() == '#' || stream.peek() == '*')
-		  stream.get();
+    // maintain compatibility with older files, allow comment character
+    if(stream.peek() == '#' || stream.peek() == '*')
+      stream.get();
 
-		QString sHeaderMagic;
-		stream >> sHeaderMagic;
-		if(sHeaderMagic != "WELLNAME")
-		  throw CReadException("'WELLNAME' expected");
-		ReadHeader(stream);
-	  } else {
-	    QString sWellName;
-	    stream >> sWellName;
-	    if( m_vcWell.size() > 0 ) {
-		  if( sWellName.toUpper() != m_vcWell[ m_vcWell.size() - 1 ].first )
-		    m_vcWell.push_back(TWell( sWellName.toUpper(), TWellLocation() ));
-		} else m_vcWell.push_back(TWell( sWellName.toUpper(), TWellLocation() ));
-	    TWellLocation& location = m_vcWell[m_vcWell.size() - 1].second;
+    QString sHeaderMagic;
+    stream >> sHeaderMagic;
+    if(sHeaderMagic != "WELLNAME")
+      throw CReadException("'WELLNAME' expected");
+    ReadHeader(stream);
+    } else {
+    QString sWellName;
+    stream >> sWellName;
+    if( m_vcWell.size() > 0 ) {
+      if( sWellName.toUpper() != m_vcWell[ m_vcWell.size() - 1 ].first )
+      m_vcWell.push_back(TWell( sWellName.toUpper(), TWellLocation() ));
+    } else m_vcWell.push_back(TWell( sWellName.toUpper(), TWellLocation() ));
+    TWellLocation& location = m_vcWell[m_vcWell.size() - 1].second;
   
-	    double vcValue[4];
-	    for(int i = 0; i < 4; i++) {
-		  stream >> vcValue[i];
-		}
-	    geo::CPoint point( vcValue[m_iX], vcValue[m_iY], vcValue[m_iZ] );
-	    location.first.push_back( point );
-	    location.second.push_back( vcValue[m_iMD] );
-	    stream.eatwhite();
-	  }
-    };
-    return true;
+    double vcValue[4];
+    for(int i = 0; i < 4; i++) {
+      stream >> vcValue[i];
+    }
+    geo::CPoint point( vcValue[m_iX], vcValue[m_iY], vcValue[m_iZ] );
+    location.first.push_back( point );
+    location.second.push_back( vcValue[m_iMD] );
+    stream.eatwhite();
+    }
+  };
+  return true;
 }
 

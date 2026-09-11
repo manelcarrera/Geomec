@@ -33,7 +33,7 @@ GtsContaineeClass * gts_containee_class (void)
   static GtsContaineeClass * klass = NULL;
 
   if (klass == NULL) {
-    GtsObjectClassInfo containee_info = {
+  GtsObjectClassInfo containee_info = {
       "GtsContainee",
       sizeof (GtsContainee),
       sizeof (GtsContaineeClass),
@@ -41,9 +41,9 @@ GtsContaineeClass * gts_containee_class (void)
       (GtsObjectInitFunc) NULL,
       (GtsArgSetFunc) NULL,
       (GtsArgGetFunc) NULL
-    };
-    klass = gts_object_class_new (gts_object_class (),
-				  &containee_info);
+  };
+  klass = gts_object_class_new (gts_object_class (),
+          &containee_info);
   }
 
   return klass;
@@ -59,13 +59,13 @@ GtsContainee * gts_containee_new (GtsContaineeClass * klass)
 }
 
 gboolean gts_containee_is_contained (GtsContainee * item,
-				     GtsContainer * c)
+             GtsContainer * c)
 {
   g_return_val_if_fail (item != NULL, FALSE);
   g_return_val_if_fail (c != NULL, FALSE);
 
   if (GTS_CONTAINEE_CLASS (GTS_OBJECT (item)->klass)->is_contained)
-    return
+  return
       (* GTS_CONTAINEE_CLASS (GTS_OBJECT (item)->klass)->is_contained) (item, c);
   return FALSE;
 }
@@ -79,33 +79,33 @@ static void slist_containee_destroy (GtsObject * object)
 
   i = item->containers;
   while (i) {
-    GSList * next = i->next;
-    gts_container_remove (i->data, GTS_CONTAINEE (item));
-    i = next;
+  GSList * next = i->next;
+  gts_container_remove (i->data, GTS_CONTAINEE (item));
+  i = next;
   }
   g_assert (item->containers == NULL);
 
   (* GTS_OBJECT_CLASS (gts_slist_containee_class ())->parent_class->destroy) 
-    (object);
+  (object);
 }
 
 static void slist_containee_remove_container (GtsContainee * i, 
-					      GtsContainer * c)
+                GtsContainer * c)
 {
   GtsSListContainee * item = GTS_SLIST_CONTAINEE (i);
   item->containers = g_slist_remove (item->containers, c);
 }
 
 static void slist_containee_add_container (GtsContainee * i, 
-					   GtsContainer * c)
+             GtsContainer * c)
 {
   GtsSListContainee * item = GTS_SLIST_CONTAINEE (i);
   if (!g_slist_find (item->containers, c))
-    item->containers = g_slist_prepend (item->containers, c);
+  item->containers = g_slist_prepend (item->containers, c);
 }
 
 static gboolean slist_containee_is_contained (GtsContainee * i,
-					      GtsContainer * c)
+                GtsContainer * c)
 {
   return g_slist_find (GTS_SLIST_CONTAINEE (i)->containers, c) ? TRUE : FALSE;
 }
@@ -113,11 +113,11 @@ static gboolean slist_containee_is_contained (GtsContainee * i,
 static void slist_containee_class_init (GtsSListContaineeClass * klass)
 {
   GTS_CONTAINEE_CLASS (klass)->remove_container = 
-    slist_containee_remove_container;
+  slist_containee_remove_container;
   GTS_CONTAINEE_CLASS (klass)->add_container = 
-    slist_containee_add_container;
+  slist_containee_add_container;
  GTS_CONTAINEE_CLASS (klass)->is_contained = 
-    slist_containee_is_contained;
+  slist_containee_is_contained;
 
   GTS_OBJECT_CLASS (klass)->destroy = slist_containee_destroy;
 }
@@ -132,7 +132,7 @@ GtsSListContaineeClass * gts_slist_containee_class (void)
   static GtsSListContaineeClass * klass = NULL;
 
   if (klass == NULL) {
-    GtsObjectClassInfo slist_containee_info = {
+  GtsObjectClassInfo slist_containee_info = {
       "GtsSListContainee",
       sizeof (GtsSListContainee),
       sizeof (GtsSListContaineeClass),
@@ -140,9 +140,9 @@ GtsSListContaineeClass * gts_slist_containee_class (void)
       (GtsObjectInitFunc) slist_containee_init,
       (GtsArgSetFunc) NULL,
       (GtsArgGetFunc) NULL
-    };
-    klass = gts_object_class_new (GTS_OBJECT_CLASS (gts_containee_class ()),
-				  &slist_containee_info);
+  };
+  klass = gts_object_class_new (GTS_OBJECT_CLASS (gts_containee_class ()),
+          &slist_containee_info);
   }
 
   return klass;
@@ -153,7 +153,7 @@ GtsSListContaineeClass * gts_slist_containee_class (void)
 static void remove_container (GtsContainee * item, GtsContainer * c)
 {
   if (GTS_CONTAINEE_CLASS (GTS_OBJECT (item)->klass)->remove_container)
-    (* GTS_CONTAINEE_CLASS (GTS_OBJECT (item)->klass)->remove_container) 
+  (* GTS_CONTAINEE_CLASS (GTS_OBJECT (item)->klass)->remove_container) 
       (item, c);
 }
 
@@ -164,20 +164,20 @@ static void container_destroy (GtsObject * object)
   gts_container_foreach (c, (GtsFunc) remove_container, c);
 
   (* GTS_OBJECT_CLASS (gts_container_class ())->parent_class->destroy) 
-    (object);
+  (object);
 }
 
 static void container_add (GtsContainer * c, GtsContainee * item)
 {
   if (GTS_CONTAINEE_CLASS (GTS_OBJECT (item)->klass)->add_container)
-    (* GTS_CONTAINEE_CLASS (GTS_OBJECT (item)->klass)->add_container)
+  (* GTS_CONTAINEE_CLASS (GTS_OBJECT (item)->klass)->add_container)
       (item, c);
 }
 
 static void container_remove (GtsContainer * c, GtsContainee * item)
 {
   if (GTS_CONTAINEE_CLASS (GTS_OBJECT (item)->klass)->remove_container)
-    (* GTS_CONTAINEE_CLASS (GTS_OBJECT (item)->klass)->remove_container)
+  (* GTS_CONTAINEE_CLASS (GTS_OBJECT (item)->klass)->remove_container)
       (item, c);
 }
 
@@ -190,7 +190,7 @@ static void container_clone (GtsObject * clone, GtsObject * object)
 {
   gts_object_init (clone, object->klass);
   gts_container_foreach (GTS_CONTAINER (object), 
-			 (GtsFunc) container_clone_add, clone);
+       (GtsFunc) container_clone_add, clone);
 }
 
 static void container_class_init (GtsContainerClass * klass)
@@ -209,7 +209,7 @@ GtsContainerClass * gts_container_class (void)
   static GtsContainerClass * klass = NULL;
 
   if (klass == NULL) {
-    GtsObjectClassInfo container_info = {
+  GtsObjectClassInfo container_info = {
       "GtsContainer",
       sizeof (GtsContainer),
       sizeof (GtsContainerClass),
@@ -217,10 +217,10 @@ GtsContainerClass * gts_container_class (void)
       (GtsObjectInitFunc) NULL,
       (GtsArgSetFunc) NULL,
       (GtsArgGetFunc) NULL
-    };
-    klass = 
+  };
+  klass = 
       gts_object_class_new (GTS_OBJECT_CLASS (gts_slist_containee_class ()), 
-			    &container_info);
+        &container_info);
   }
 
   return klass;
@@ -236,7 +236,7 @@ GtsContainer * gts_container_new (GtsContainerClass * klass)
 }
 
 void gts_container_add (GtsContainer * c,
-			GtsContainee * item)
+      GtsContainee * item)
 {
   g_return_if_fail (c != NULL);
   g_return_if_fail (item != NULL);
@@ -246,7 +246,7 @@ void gts_container_add (GtsContainer * c,
 }
 
 void gts_container_remove (GtsContainer * c,
-			   GtsContainee * item)
+         GtsContainee * item)
 {
   g_return_if_fail (c != NULL);
   g_return_if_fail (item != NULL);
@@ -256,14 +256,14 @@ void gts_container_remove (GtsContainer * c,
 }
 
 void gts_container_foreach (GtsContainer * c,
-			    GtsFunc func,
-			    gpointer data)
+        GtsFunc func,
+        gpointer data)
 {
   g_return_if_fail (c != NULL);
   g_return_if_fail (func != NULL);
 
   if (GTS_CONTAINER_CLASS (GTS_OBJECT (c)->klass)->foreach)
-    (* GTS_CONTAINER_CLASS (GTS_OBJECT (c)->klass)->foreach) (c, func, data);
+  (* GTS_CONTAINER_CLASS (GTS_OBJECT (c)->klass)->foreach) (c, func, data);
 }
 
 guint gts_container_size (GtsContainer * c)
@@ -271,7 +271,7 @@ guint gts_container_size (GtsContainer * c)
   g_return_val_if_fail (c != NULL, 0);
 
   if (GTS_CONTAINER_CLASS (GTS_OBJECT (c)->klass)->size)
-    return (* GTS_CONTAINER_CLASS (GTS_OBJECT (c)->klass)->size) (c);
+  return (* GTS_CONTAINER_CLASS (GTS_OBJECT (c)->klass)->size) (c);
   return 0;
 }
 
@@ -282,7 +282,7 @@ static void hash_container_destroy (GtsObject * object)
   GHashTable * items = GTS_HASH_CONTAINER (object)->items;
 
   (* GTS_OBJECT_CLASS (gts_hash_container_class ())->parent_class->destroy) 
-    (object);
+  (object);
 
   g_hash_table_destroy (items);
 }
@@ -306,16 +306,16 @@ static void hash_container_remove (GtsContainer * c, GtsContainee * item)
 }
 
 static void hash_foreach (GtsContainee * item, 
-			  gpointer item_data, 
-			  gpointer * info)
+        gpointer item_data, 
+        gpointer * info)
 {
   UNUSED(item_data);
   (* ((GtsFunc) info[0])) (item, info[1]);
 }
 
 static void hash_container_foreach (GtsContainer * c, 
-				    GtsFunc func, 
-				    gpointer data)
+          GtsFunc func, 
+          gpointer data)
 {
   gpointer info[2];
   
@@ -324,7 +324,7 @@ static void hash_container_foreach (GtsContainer * c,
   /* prevent removing or adding items */
   GTS_HASH_CONTAINER (c)->frozen = TRUE;
   g_hash_table_foreach (GTS_HASH_CONTAINER (c)->items, 
-			(GHFunc) hash_foreach, info);
+      (GHFunc) hash_foreach, info);
   GTS_HASH_CONTAINER (c)->frozen = FALSE;
 }
 
@@ -354,7 +354,7 @@ GtsHashContainerClass * gts_hash_container_class (void)
   static GtsHashContainerClass * klass = NULL;
 
   if (klass == NULL) {
-    GtsObjectClassInfo hash_container_info = {
+  GtsObjectClassInfo hash_container_info = {
       "GtsHashContainer",
       sizeof (GtsHashContainer),
       sizeof (GtsHashContainerClass),
@@ -362,9 +362,9 @@ GtsHashContainerClass * gts_hash_container_class (void)
       (GtsObjectInitFunc) hash_container_init,
       (GtsArgSetFunc) NULL,
       (GtsArgGetFunc) NULL
-    };
-    klass = gts_object_class_new (GTS_OBJECT_CLASS (gts_container_class ()),
-				  &hash_container_info);
+  };
+  klass = gts_object_class_new (GTS_OBJECT_CLASS (gts_container_class ()),
+          &hash_container_info);
   }
 
   return klass;
@@ -377,7 +377,7 @@ static void slist_container_destroy (GtsObject * object)
   GSList * items = GTS_SLIST_CONTAINER (object)->items;
 
   (* GTS_OBJECT_CLASS (gts_slist_container_class ())->parent_class->destroy) 
-    (object);
+  (object);
 
   g_slist_free (items);
 }
@@ -387,7 +387,7 @@ static void slist_container_add (GtsContainer * c, GtsContainee * item)
   g_return_if_fail (GTS_SLIST_CONTAINER (c)->frozen == FALSE);
 
   if (!g_slist_find (GTS_SLIST_CONTAINER (c)->items, item))
-    GTS_SLIST_CONTAINER (c)->items = 
+  GTS_SLIST_CONTAINER (c)->items = 
       g_slist_prepend (GTS_SLIST_CONTAINER (c)->items, item);
 
   (* GTS_CONTAINER_CLASS (GTS_OBJECT_CLASS (gts_slist_container_class ())->parent_class)->add) (c, item);
@@ -404,8 +404,8 @@ static void slist_container_remove (GtsContainer * c, GtsContainee * item)
 }
 
 static void slist_container_foreach (GtsContainer * c, 
-				     GtsFunc func, 
-				     gpointer data)
+             GtsFunc func, 
+             gpointer data)
 {
   /* prevent removing or adding items */
   GTS_SLIST_CONTAINER (c)->frozen = TRUE;
@@ -439,7 +439,7 @@ GtsSListContainerClass * gts_slist_container_class (void)
   static GtsSListContainerClass * klass = NULL;
 
   if (klass == NULL) {
-    GtsObjectClassInfo slist_container_info = {
+  GtsObjectClassInfo slist_container_info = {
       "GtsSListContainer",
       sizeof (GtsSListContainer),
       sizeof (GtsSListContainerClass),
@@ -447,9 +447,9 @@ GtsSListContainerClass * gts_slist_container_class (void)
       (GtsObjectInitFunc) slist_container_init,
       (GtsArgSetFunc) NULL,
       (GtsArgGetFunc) NULL
-    };
-    klass = gts_object_class_new (GTS_OBJECT_CLASS (gts_container_class ()),
-				  &slist_container_info);
+  };
+  klass = gts_object_class_new (GTS_OBJECT_CLASS (gts_container_class ()),
+          &slist_container_info);
   }
 
   return klass;

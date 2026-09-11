@@ -24,9 +24,9 @@ QString CMatParamsTensor::CMatTensorComponent::UnitName(const CQuantity::UNIT un
   QString sRet;
 
   if(unit == CQuantity::SI_UNIT)
-	  sRet = getStringTableEntry(m_UnitType.si_id());
+    sRet = getStringTableEntry(m_UnitType.si_id());
   else
-	  sRet = getStringTableEntry(m_UnitType.field_id());
+    sRet = getStringTableEntry(m_UnitType.field_id());
 
   return sRet;
 }
@@ -51,34 +51,34 @@ bool CMatParamsTensor::CMatTensorComponent::IsInRange(const IValueSet& value_set
   // Check max range
   if(m_RangeType.hasMax())
   {
-	  if(!value_set.Max().Valid())
-		  return false;
-	  if(m_RangeType.MaxInc())
-	  {
-		  if(value_set.Max().Value() > m_RangeType.MaxVal())
-			  return false;
-	  }
-	  else
-	  {
-		  if(value_set.Max().Value() >= m_RangeType.MaxVal())
-			  return false;
-	  }
+    if(!value_set.Max().Valid())
+      return false;
+    if(m_RangeType.MaxInc())
+    {
+      if(value_set.Max().Value() > m_RangeType.MaxVal())
+        return false;
+    }
+    else
+    {
+      if(value_set.Max().Value() >= m_RangeType.MaxVal())
+        return false;
+    }
   }
 
   if(m_RangeType.hasMin())
   {
-	  if(!value_set.Min().Valid())
-		  return false;
-	  if(m_RangeType.MinInc())
-	  {
-		  if(value_set.Min().Value() < m_RangeType.MinVal())
-			  return false;
-	  }
-	  else
-	  {
-		  if(value_set.Min().Value() <= m_RangeType.MinVal())
-			  return false;
-	  }
+    if(!value_set.Min().Valid())
+      return false;
+    if(m_RangeType.MinInc())
+    {
+      if(value_set.Min().Value() < m_RangeType.MinVal())
+        return false;
+    }
+    else
+    {
+      if(value_set.Min().Value() <= m_RangeType.MinVal())
+        return false;
+    }
   }
 
   return true;
@@ -88,9 +88,9 @@ geo::CValue CMatParamsTensor::CMatTensorComponent::RangeMin(const CQuantity::UNI
 {
   if(m_RangeType.hasMin())
   {
-	  if(unit == CQuantity::SI_UNIT)
-		  return geo::CValue(m_RangeType.MinVal() * 1.0);
-	  return geo::CValue(m_RangeType.MinVal() * m_UnitType.field_factor());
+    if(unit == CQuantity::SI_UNIT)
+      return geo::CValue(m_RangeType.MinVal() * 1.0);
+    return geo::CValue(m_RangeType.MinVal() * m_UnitType.field_factor());
   }
   return geo::CValue();
 }
@@ -99,9 +99,9 @@ geo::CValue CMatParamsTensor::CMatTensorComponent::RangeMax(const CQuantity::UNI
 {
   if(m_RangeType.hasMax())
   {
-	  if(unit == CQuantity::SI_UNIT)
-		  return geo::CValue(m_RangeType.MaxVal() * 1.0);
-	  return geo::CValue(m_RangeType.MaxVal() * m_UnitType.field_factor());
+    if(unit == CQuantity::SI_UNIT)
+      return geo::CValue(m_RangeType.MaxVal() * 1.0);
+    return geo::CValue(m_RangeType.MaxVal() * m_UnitType.field_factor());
   }
   return geo::CValue();
 }
@@ -128,7 +128,7 @@ unsigned int CMatParamsTensor::IconId() const
 }
 
 void CMatParamsTensor::AddComponent(unsigned int uComponentName, unsigned int uExportLabel, unsigned int typeID,
-    const Units::CUnitType &unittype, const Ranges::CRangeType &rangetype)
+  const Units::CUnitType &unittype, const Ranges::CRangeType &rangetype)
 {
   new CMatTensorComponent(*this, unittype, rangetype, uComponentName, m_CurrentIndex++, uExportLabel, typeID);
 }
@@ -137,7 +137,7 @@ IValueComponentBase& CMatParamsTensor::Component(unsigned int uComponent, unsign
 {
   if(ModeSize() == 0)
   {
-    AddComponents();
+  AddComponents();
   }
   return CValueType::Component(uComponent, uMode);
 }
@@ -146,8 +146,8 @@ const IValueComponentBase& CMatParamsTensor::Component(unsigned int uComponent, 
 {
   if(ModeSize() == 0)
   {
-    CMatParamsTensor *self = const_cast<CMatParamsTensor*>(this);
-    self->AddComponents();
+  CMatParamsTensor *self = const_cast<CMatParamsTensor*>(this);
+  self->AddComponents();
   }
 
   return CValueType::Component(uComponent, uMode);

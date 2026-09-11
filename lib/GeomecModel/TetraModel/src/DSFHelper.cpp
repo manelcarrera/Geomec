@@ -10,15 +10,15 @@ IntermediateSurfaceInfo& IntermediateSurfaceInfo::operator=(const IntermediateSu
 
   for (size_t i = 0; i < points.size(); ++i)
   {
-    points[i].Set(rhs.points[i].X(), rhs.points[i].Y(), rhs.points[i].Z());
+  points[i].Set(rhs.points[i].X(), rhs.points[i].Y(), rhs.points[i].Z());
   }
 
   triangles.resize(rhs.triangles.size());
 
   for (size_t i = 0; i < triangles.size(); ++i)
   {
-    triangles[i].resize(3);
-    std::copy(rhs.triangles[i].begin(), rhs.triangles[i].end(), triangles[i].begin());
+  triangles[i].resize(3);
+  std::copy(rhs.triangles[i].begin(), rhs.triangles[i].end(), triangles[i].begin());
   }
 
   return *this;

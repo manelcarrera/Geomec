@@ -35,16 +35,16 @@ class CWellPointList;
 class CWellDefinitionPointList :  public CWellPointList  
 {
 public:
-	//returns the number of removed points
-	long RemoveRedundantPoints();
+  //returns the number of removed points
+  long RemoveRedundantPoints();
 
 friend class CWellPathBase;
 
 private:
-	//##ModelId=3F7AA15701DC
-	CWellDefinitionPointList(CWellPathBase& WellPath);
-	//##ModelId=3F7AA15701DE
-	virtual ~CWellDefinitionPointList();
+  //##ModelId=3F7AA15701DC
+  CWellDefinitionPointList(CWellPathBase& WellPath);
+  //##ModelId=3F7AA15701DE
+  virtual ~CWellDefinitionPointList();
 
 
 };

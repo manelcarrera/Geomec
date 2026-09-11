@@ -19,33 +19,33 @@ namespace cora
 class CGetFailureModeInfo
 {
   public:
-    CGetFailureModeInfo(CModelBase* modelBase, bool annotated = false);
+  CGetFailureModeInfo(CModelBase* modelBase, bool annotated = false);
 
-    std::vector <QString> getExportLabels() const;
-    TFailureModes getFailureModes();
+  std::vector <QString> getExportLabels() const;
+  TFailureModes getFailureModes();
 
-    std::ostream& operator () (std::ostream& os) const;
+  std::ostream& operator () (std::ostream& os) const;
 
   private:
-    CGetFailureModeInfo(const CGetFailureModeInfo& rhs);
-    CGetFailureModeInfo& operator = (CGetFailureModeInfo rhs);
+  CGetFailureModeInfo(const CGetFailureModeInfo& rhs);
+  CGetFailureModeInfo& operator = (CGetFailureModeInfo rhs);
 
-    static TFailureModes getFailureModes(std::vector <QString>& exportLabels,
+  static TFailureModes getFailureModes(std::vector <QString>& exportLabels,
       CModelBase* modelBase, bool annotated,
       const CFilterResults& filterResults,
       const CFilterOutputProperty& filterOutputProperty);
-    static void getFailureModes(TFailureModes& failureModes,
+  static void getFailureModes(TFailureModes& failureModes,
       std::vector <QString>& exportLabels, CModelBase* modelBase,
       const IResult* result, bool annotated,
       const CFilterResults& filterResults,
       const CFilterOutputProperty& filterOutputProperty);
 
-    std::vector <QString> m_exportLabels;
-    CFilterResults m_filterResults;
-    CFilterOutputProperty m_filterOutputProperty;
-    TFailureModes m_failureModes;
-    CModelBase* m_modelBase;
-    bool m_annotated;
+  std::vector <QString> m_exportLabels;
+  CFilterResults m_filterResults;
+  CFilterOutputProperty m_filterOutputProperty;
+  TFailureModes m_failureModes;
+  CModelBase* m_modelBase;
+  bool m_annotated;
 };
 
 } // namespace cora

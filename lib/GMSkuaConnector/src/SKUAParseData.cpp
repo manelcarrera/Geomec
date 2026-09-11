@@ -8,14 +8,14 @@ namespace gm_skua
 int SKUAParseData::find_node(int node) const
 {
   if (node >= last_range->start + last_range->offset)
-    return node - last_range->offset;
+  return node - last_range->offset;
 
   for (std::vector<VertexRange>::const_reverse_iterator it = vertex_range.rbegin(); it != vertex_range.rend(); --it)
-    if (node >= it->start + it->offset)
-    {
+  if (node >= it->start + it->offset)
+  {
       last_range = it;
       return node - it->offset;
-    }
+  }
 
   return -1;
 }
@@ -26,9 +26,9 @@ bool SKUAParseData::check_orientation(const Triangle& triangle) const
 
   for (int i = 0; i < 3; ++i)
   {
-    const Vertex& vertex = vertices[triangle.node[i]].link >= 0 ? vertices[vertices[triangle.node[i]].link] : vertices[triangle.node[i]];
+  const Vertex& vertex = vertices[triangle.node[i]].link >= 0 ? vertices[vertices[triangle.node[i]].link] : vertices[triangle.node[i]];
 
-    for (int j = 0; j < 3; ++j)
+  for (int j = 0; j < 3; ++j)
       points[i][j] = vertex.coordinate[j];
   }
 
@@ -43,9 +43,9 @@ bool SKUAParseData::check_orientation(const Tetra& tetra) const
 
   for (int i = 0; i < 4; ++i)
   {
-    const Vertex& vertex = vertices[tetra.node[i]].link >= 0 ? vertices[vertices[tetra.node[i]].link] : vertices[tetra.node[i]];
+  const Vertex& vertex = vertices[tetra.node[i]].link >= 0 ? vertices[vertices[tetra.node[i]].link] : vertices[tetra.node[i]];
 
-    for (int j = 0; j < 3; ++j)
+  for (int j = 0; j < 3; ++j)
       points[i][j] = vertex.coordinate[j];
   }
 
@@ -57,7 +57,7 @@ bool SKUAParseData::check_orientation(const Tetra& tetra) const
   double r = 0;
 
   for (int i = 0; i < 3; ++i)
-    r += cross[i] * points[0][i] - cross[i] * points[2][i];
+  r += cross[i] * points[0][i] - cross[i] * points[2][i];
 
   return r > 0;
 }
@@ -70,23 +70,23 @@ bool SKUAParseData::has_double_sided_faults() const
 void SKUAParseData::add_vertex_ranges()
 {
   if (vertices.empty() || !vertex_range.empty())
-    return;
+  return;
 
   for (int i = 0; i < vertices.size(); ++i)
   {
-    Vertex& vertex = vertices[i];
+  Vertex& vertex = vertices[i];
 
-    if (vertex_range.empty() || vertex.id - vertex_range.back().offset > vertex_range.back().size)
-    {
+  if (vertex_range.empty() || vertex.id - vertex_range.back().offset > vertex_range.back().size)
+  {
       vertex_range.emplace_back(VertexRange(i, 1, vertex.id - i));
       last_range = vertex_range.rbegin();
-    }
-    else
-    {
+  }
+  else
+  {
       ++vertex_range.back().size;
-    }
+  }
 
-    if (vertex.link >= 0)
+  if (vertex.link >= 0)
       vertex.link = find_node(vertex.link);
   }
 }
@@ -103,11 +103,11 @@ template<class T>
 bool compareVector(const std::vector<T>& lhs, const std::vector<T>& rhs)
 {
   if (lhs.size() != rhs.size())
-    return false;
+  return false;
 
   if (lhs.size() > 0)
   {
-    if (std::memcmp(lhs.data(), rhs.data(), lhs.size() * sizeof(T)) != 0)
+  if (std::memcmp(lhs.data(), rhs.data(), lhs.size() * sizeof(T)) != 0)
       return false;
   }
 
@@ -117,10 +117,10 @@ bool compareVector(const std::vector<T>& lhs, const std::vector<T>& rhs)
 bool compareVectorString(const std::vector<SKUAParseData::String>& lhs, const std::vector<SKUAParseData::String>& rhs)
 {
   if (lhs.size() != rhs.size())
-    return false;
+  return false;
 
   for (size_t i = 0; i < lhs.size(); ++i)
-    if (lhs[i] != rhs[i])
+  if (lhs[i] != rhs[i])
       return false;
 
   return true;
@@ -130,10 +130,10 @@ template<class T>
 bool compareVectorVector(const std::vector<std::vector<T> >& lhs, const std::vector<std::vector<T> >& rhs)
 {
   if (lhs.size() != rhs.size())
-    return false;
+  return false;
 
   for (size_t i = 0; i < lhs.size(); ++i)
-    if (!compareVector(lhs[i], rhs[i]))
+  if (!compareVector(lhs[i], rhs[i]))
       return false;
 
   return true;
@@ -142,22 +142,22 @@ bool compareVectorVector(const std::vector<std::vector<T> >& lhs, const std::vec
 bool comparePropertyData(const SKUAParseData::PropertyData& lhs, const SKUAParseData::PropertyData& rhs)
 {
   if (lhs.size != rhs.size)
-    return false;
+  return false;
 
   if (!compareVectorString(lhs.names, rhs.names))
-    return false;
+  return false;
 
   if (!compareVector(lhs.esizes, rhs.esizes))
-    return false;
+  return false;
 
   if (!compareVector(lhs.no_data_values, rhs.no_data_values))
-    return false;
+  return false;
 
   if (!compareVector(lhs.units, rhs.units))
-    return false;
+  return false;
 
   if (!compareVectorVector(lhs.values, rhs.values))
-    return false;
+  return false;
 
   return true;
 }
@@ -168,65 +168,65 @@ bool comparePropertyData(const SKUAParseData::PropertyData& lhs, const SKUAParse
 bool SKUAParseData::operator==(const SKUAParseData& rhs) const
 {
   if (skua_type != rhs.skua_type)
-    return false;
+  return false;
 
   if (name != rhs.name)
-    return false;
+  return false;
 
   for (int i = 0; i < 3; ++i)
-    if (coord_unit[i] != rhs.coord_unit[i])
+  if (coord_unit[i] != rhs.coord_unit[i])
       return false;
 
   if (volume != rhs.volume)
-    return false;
+  return false;
 
   if (!internal::compareVector(vertex_range, rhs.vertex_range))
-    return false;
+  return false;
 
   if (!internal::compareVector(vertices, rhs.vertices))
-    return false;
+  return false;
 
   if (!internal::compareVector(tetras, rhs.tetras))
-    return false;
+  return false;
 
   if (!internal::compareVectorVector(surfaces, rhs.surfaces))
-    return false;
+  return false;
 
   if (!internal::compareVectorVector(surface_faces, rhs.surface_faces))
-    return false;
+  return false;
 
   if (!internal::compareVector(surface_types, rhs.surface_types))
-    return false;
+  return false;
 
   if (!internal::comparePropertyData(vertex_props, rhs.vertex_props))
-    return false;
+  return false;
 
   if (!internal::comparePropertyData(tetra_props, rhs.tetra_props))
-    return false;
+  return false;
 
   if (!internal::compareVectorString(tetra_region_names, rhs.tetra_region_names))
-    return false;
+  return false;
 
   if (!internal::compareVectorString(model_region_names, rhs.model_region_names))
-    return false;
+  return false;
 
   if (!internal::compareVectorString(surface_names, rhs.surface_names))
-    return false;
+  return false;
 
   if (!internal::compareVectorString(face_names, rhs.face_names))
-    return false;
+  return false;
 
   if (!internal::compareVectorVector(volumes, rhs.volumes))
-    return false;
+  return false;
 
   if (!internal::compareVector(volume_types, rhs.volume_types))
-    return false;
+  return false;
 
   if (!internal::compareVectorVector(surfaces_minus, rhs.surfaces_minus))
-    return false;
+  return false;
 
   if (!internal::compareVectorVector(surfaces_plus, rhs.surfaces_plus))
-    return false;
+  return false;
 
   return true;
 }
@@ -249,8 +249,8 @@ void assignVectorVector(std::vector<std::vector<T> >& lhs, const std::vector<std
 
   for (size_t i = 0; i < rhs.size(); ++i)
   {
-    lhs[i].resize(rhs[i].size());
-    std::copy(rhs[i].begin(), rhs[i].end(), lhs[i].begin());
+  lhs[i].resize(rhs[i].size());
+  std::copy(rhs[i].begin(), rhs[i].end(), lhs[i].begin());
   }
 }
 
@@ -274,7 +274,7 @@ SKUAParseData& SKUAParseData::operator=(const SKUAParseData& rhs)
   name = rhs.name;
 
   for (int i = 0; i < 3; ++i)
-    coord_unit[i] = rhs.coord_unit[i];
+  coord_unit[i] = rhs.coord_unit[i];
 
   volume = rhs.volume;
 

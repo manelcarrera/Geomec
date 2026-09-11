@@ -39,12 +39,12 @@ QString stripQuotes(const std::string& string)
 
   if (stripped.startsWith(QChar('\"')) || stripped.startsWith(QChar('\'')))
   {
-    stripped.remove(0, 1);
+  stripped.remove(0, 1);
   }
 
   if (stripped.endsWith(QChar('\"')) || stripped.endsWith(QChar('\'')))
   {
-    stripped.remove(stripped.length() - 1, 1);
+  stripped.remove(stripped.length() - 1, 1);
   }
 
   return stripped;
@@ -57,25 +57,25 @@ int main(int argc, char* argv[])
   ASSERT(argc == 2);
 
   CTestRGInterface0 CTestRGInterface0(
-    QDir::toNativeSeparators(stripQuotes(argv[1]) + '/' + TEST_0));
+  QDir::toNativeSeparators(stripQuotes(argv[1]) + '/' + TEST_0));
   CTestRGInterface1 CTestRGInterface1(
-    QDir::toNativeSeparators(stripQuotes(argv[1]) + '/' + TEST_1));
+  QDir::toNativeSeparators(stripQuotes(argv[1]) + '/' + TEST_1));
   CTestRGInterface2 CTestRGInterface2(
-    QDir::toNativeSeparators(stripQuotes(argv[1]) + '/' + TEST_2));
+  QDir::toNativeSeparators(stripQuotes(argv[1]) + '/' + TEST_2));
   CTestRGInterface3 CTestRGInterface3(
-    QDir::toNativeSeparators(stripQuotes(argv[1]) + '/' + TEST_3));
+  QDir::toNativeSeparators(stripQuotes(argv[1]) + '/' + TEST_3));
   CTestRGInterface4 CTestRGInterface4(
-    QDir::toNativeSeparators(stripQuotes(argv[1]) + '/' + TEST_4));
+  QDir::toNativeSeparators(stripQuotes(argv[1]) + '/' + TEST_4));
   CTestRGInterface5 CTestRGInterface5(
-    QDir::toNativeSeparators(stripQuotes(argv[1]) + '/' + TEST_5));
+  QDir::toNativeSeparators(stripQuotes(argv[1]) + '/' + TEST_5));
   CTestRGInterface6 CTestRGInterface6(
-    QDir::toNativeSeparators(stripQuotes(argv[1]) + '/' + TEST_6));
+  QDir::toNativeSeparators(stripQuotes(argv[1]) + '/' + TEST_6));
   CTestRGInterface7 CTestRGInterface7(
-    QDir::toNativeSeparators(stripQuotes(argv[1]) + '/' + TEST_7));
+  QDir::toNativeSeparators(stripQuotes(argv[1]) + '/' + TEST_7));
   CTestRGInterface8 CTestRGInterface8(
-    QDir::toNativeSeparators(stripQuotes(argv[1]) + '/' + TEST_8));
+  QDir::toNativeSeparators(stripQuotes(argv[1]) + '/' + TEST_8));
   CTestRGInterface9 CTestRGInterface9(
-    QDir::toNativeSeparators(stripQuotes(argv[1]) + '/' + TEST_9));
+  QDir::toNativeSeparators(stripQuotes(argv[1]) + '/' + TEST_9));
 
   return 0;
 }

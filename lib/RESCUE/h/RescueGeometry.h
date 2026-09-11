@@ -59,51 +59,51 @@ public:
 /******************************** Applies to CPG Only ********************************************/
   typedef enum {R_EQUAL_AXIS,        // x, y, z derived from grid origin and step or from reference surfaces.
            R_UNEQUAL_AXIS,       // x and y from origin and step, z is given.
-                R_COORDINATE_LINE,     // straight coordinate line.
+        R_COORDINATE_LINE,     // straight coordinate line.
            R_COORDINATE_POLYLINE,   // piece wise coordinate line.
-                R_SPLIT_LINE,         // split nodes (corner point or multiple coordinate line).
-                R_SPLINE_LINE}             // splined line via RescuePillar.
-            RescueVertexType;     // It makes the most sense to put R_SPLINE_LINE before
+        R_SPLIT_LINE,         // split nodes (corner point or multiple coordinate line).
+        R_SPLINE_LINE}             // splined line via RescuePillar.
+      RescueVertexType;     // It makes the most sense to put R_SPLINE_LINE before
                                            // R_SPLIT_LINE, but that would invalidate older models.
 
   typedef enum {R_ONLAP,                   // Reference surface is ABOVE the grid.
-                R_OFFLAP}                  // Reference surface is BELOW the grid.
+        R_OFFLAP}                  // Reference surface is BELOW the grid.
                       RescueLapType;
 
   typedef enum {R_XY_ORTHOGONAL,           // If VertexIs() == R_UNEQUAL_AXIS  or VertexIs() == R_EQUAL_AXIS
-                R_SQUASHED_ORTHOGONAL,     // If all interior vertexes are R_EQUAL_AXIS or R_UNEQUAL_AXIS but
+        R_SQUASHED_ORTHOGONAL,     // If all interior vertexes are R_EQUAL_AXIS or R_UNEQUAL_AXIS but
                                            // at least some exterior vertexes are R_COORDINATE_LINE or
                                            // R_COORDINATE_POLYLINE.
-                R_CONFORMABLE}             // If neither of the above is TRUE.
+        R_CONFORMABLE}             // If neither of the above is TRUE.
                       RescueGridType;
 
   typedef enum {R_ACTIVE,                  // Cell is completely inside the BUG
-                R_INACTIVE,                // Cell is completely outside the BUG
-                R_TRUNCATED,               // Cell is partially inside and partially outside the BUG
-                R_INACTIVATED_BY_PILLAR}   // Cell is inactivated by a Y Fault.
+        R_INACTIVE,                // Cell is completely outside the BUG
+        R_TRUNCATED,               // Cell is partially inside and partially outside the BUG
+        R_INACTIVATED_BY_PILLAR}   // Cell is inactivated by a Y Fault.
                       RescueCellStatus;
 /********************************** Applies to LGR only ******************************************/
   typedef enum {R_NOT_LGR,
-                R_RULE_BASED,              // Describes the parent/child relationship
-                R_WEIGHT_BASED,            // for an LGR.
-                R_UNCONSTRAINED,
-                R_RULE_BASED_NOSPAN,
-                R_WEIGHT_BASED_NOSPAN}
+        R_RULE_BASED,              // Describes the parent/child relationship
+        R_WEIGHT_BASED,            // for an LGR.
+        R_UNCONSTRAINED,
+        R_RULE_BASED_NOSPAN,
+        R_WEIGHT_BASED_NOSPAN}
                       RescueLGRType;
 
   typedef enum {R_STRUCTURED_CPG,             // The type of LGR grid.
-                R_STRUCTURED_RADIAL,
-                R_UNSTRUCTURED_TETRAHEDRAL,
-                R_UNSTRUCTURED_2D_POLYHEDRAL,
-                R_UNSTRUCTURED_3D_POLYHEDRAL}
+        R_STRUCTURED_RADIAL,
+        R_UNSTRUCTURED_TETRAHEDRAL,
+        R_UNSTRUCTURED_2D_POLYHEDRAL,
+        R_UNSTRUCTURED_3D_POLYHEDRAL}
                       RescueLGRGridType;
 /***************************************************************************************************/
   RescueGeometry(RescueModel *parentModelIn, 
                  RescueGrid *existingGrid, 
                  RESCUEFLOAT missingValueIn);
-                                            // Normal constructor for most block unit grids.
-                                            // x,y,z of vertexes of type R_EQUAL_AXIS are 
-                                            // determined by the grid.
+                      // Normal constructor for most block unit grids.
+                      // x,y,z of vertexes of type R_EQUAL_AXIS are 
+                      // determined by the grid.
   RescueGeometry(RescueModel *parentModelIn, 
                  RescueGrid *existingGrid, 
                  RESCUEFLOAT missingValueIn,
@@ -111,12 +111,12 @@ public:
                  RESCUEFLOAT topOffsetIn,
                  RescueReferenceSurface *bottomSurfaceIn, 
                  RESCUEFLOAT  bottomOffsetIn);
-                                            // Constructor for a grid whose z values are 
-                                            // determined by the reference surfaces and offsets.
-                                            // Each k-layer is proportional to the distance between
-                                            // the top and bottom reference surfaces, after the
-                                            // offsets are applied. This applies only to vertexes
-                                            // of type R_EQUAL_AXIS.
+                      // Constructor for a grid whose z values are 
+                      // determined by the reference surfaces and offsets.
+                      // Each k-layer is proportional to the distance between
+                      // the top and bottom reference surfaces, after the
+                      // offsets are applied. This applies only to vertexes
+                      // of type R_EQUAL_AXIS.
   RescueGeometry(RescueModel *parentModelIn, 
                  RescueGrid *existingGrid, 
                  RESCUEFLOAT missingValueIn,
@@ -124,14 +124,14 @@ public:
                  RESCUEFLOAT referenceOffsetIn, 
                  RESCUEFLOAT thicknessIn, 
                  RescueLapType onOffLapIn);
-                                            // Constructor for a grid whose z values are 
-                                            // determined by the reference surface and offset.
-                                            // Each k-layer is of the same thickness, determined
-                                            // by the thickness argument. This applies only to vertexes
-                                            // of type R_EQUAL_AXIS.
+                      // Constructor for a grid whose z values are 
+                      // determined by the reference surface and offset.
+                      // Each k-layer is of the same thickness, determined
+                      // by the thickness argument. This applies only to vertexes
+                      // of type R_EQUAL_AXIS.
 /****************************************************************************************************
 
-    Constructors for CPG LGRs.
+  Constructors for CPG LGRs.
 
 ******************************************************************************************************/
   RescueGeometry(RescueGeometry *parentGrid, // Constructor for a rule based (implicitly mapped) LGR.
@@ -249,7 +249,7 @@ public:
                                               // Remove any of these with RescueGeometry::DropGeometry
 /****************************************************************************************************
 
-    Constructor for Unstructured LGRs.
+  Constructor for Unstructured LGRs.
 
 ******************************************************************************************************/
   RescueGeometry(RescueGeometry *parentGrid,                    // Can be used for a parent of any type
@@ -286,7 +286,7 @@ public:
                  RESCUEINT64 expectedCellFaceRealloc = 100);
 /****************************************************************************************************
 
-    Constructor for Radial LGRs.
+  Constructor for Radial LGRs.
 
 ******************************************************************************************************/
   RescueGeometry(RescueGeometry *parentGrid,       // Use this constructor when the parent grid
@@ -301,7 +301,7 @@ public:
                  RESCUEINT64 referenceID);
 /******************************************************************************************************
 
-    Methods for manipulating LGRs.  All of these methods can be called WITHOUT loading the geometry.
+  Methods for manipulating LGRs.  All of these methods can be called WITHOUT loading the geometry.
 
 ******************************************************************************************************/
   void SetReferenceID(RESCUEINT64 newId) {referenceID = newId;}
@@ -413,45 +413,45 @@ public:
   RESCUEFLOAT MissingValue() {return missingValue;}
   void SetZValue(RESCUEFLOAT *valueArray);
                   // Sets Z values for all nodes.
-                                    // The array has three dimensions (i,j,k) each       
+                  // The array has three dimensions (i,j,k) each       
                   // sized to the number of nodes in the grid.  No
                   // nodes will be split in the z direction after this.
                   // Promotes to R_UNEQUAL_AXIS.
-                                    // Copies the array.
+                  // Copies the array.
 
  void SetZValue(RESCUEINT64 i, RESCUEINT64 j, RESCUEFLOAT *valueArray);
                   // Sets the z values for a particular ij vertex.
                   // The array is the length of the number of
                   // k layers. i and j are vertex indexes.
                   // Promotes to R_UNEQUAL_AXIS.
-                                    // The array must have been created with new RESCUEFLOAT []
-                                    // and becomes the property of the grid.
+                  // The array must have been created with new RESCUEFLOAT []
+                  // and becomes the property of the grid.
  void SetZValue(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k, RESCUEFLOAT value);
                   // Sets the z value of a particular k layer.  i and j
                   // are vertex indexes.
                   // Promotes to R_UNEQUAL_AXIS.
  void SetCoordinateLine(RESCUEINT64 i, RESCUEINT64 j, RESCUEFLOAT xTop, RESCUEFLOAT yTop, RESCUEFLOAT zTop,
                                       RESCUEFLOAT xBottom, RESCUEFLOAT yBottom, RESCUEFLOAT zBottom,
-                    RESCUEFLOAT *middleZvalues = 0);
+          RESCUEFLOAT *middleZvalues = 0);
                   // Sets a vertex to a coordinate line.  i and j are vertex
                   // indexes.  If middleZvalues is given there are two less
                   // than the number of k layers (since top and bottom are
                   // defined by zTop and zBottom).
                   // Vertex will promote or collapse to R_COORDINATE_LINE.
-                                    // If middleValues is given, it must have been created
-                                    // with new RESCUEFLOAT[] and becomes the property of the grid.
+                  // If middleValues is given, it must have been created
+                  // with new RESCUEFLOAT[] and becomes the property of the grid.
  void SetCoordinatePolyLine(RESCUEINT64 i, RESCUEINT64 j, RESCUEFLOAT *values);
                   // The array contains 2 dimensions.  The first is the k layer,
                   // the second is x = 0, y = 1, z = 2.  i and j are vertex
                   // indexes.  Will promote or collapse to R_COORDINATE_POLYLINE.
-                                    // The array must have been created with new RESCUEFLOAT[].  It becomes
-                                    // the property of the grid.  Do NOT free it.
+                  // The array must have been created with new RESCUEFLOAT[].  It becomes
+                  // the property of the grid.  Do NOT free it.
  void SetCornerNode(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k, RESCUEINT64 corner, RESCUEFLOAT x, RESCUEFLOAT y, RESCUEFLOAT z);
                   // i, j, k define a cell, corner is a corner of that cell (0-8).
                   // x, y, and z is the geometry of that corner. Promotes to
                   // R_SPLIT_LINE.
-                                    // For corners of split nodes that have been truncated away,
-                                    // x, y, and z should be set to FLT_MAX.
+                  // For corners of split nodes that have been truncated away,
+                  // x, y, and z should be set to FLT_MAX.
  void SetXValue(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k, RESCUEINT64 corner, RESCUEFLOAT value);
  void SetYValue(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k, RESCUEINT64 corner, RESCUEFLOAT value);
  void SetZValue(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k, RESCUEINT64 corner, RESCUEFLOAT value);
@@ -488,51 +488,51 @@ public:
                    // Returns node based ijk for cell ijk and corner.
   RescuePillar *DemandPillar(RESCUEINT64 i, RESCUEINT64 j);
   RescuePillar *DemandPillar(RESCUEINT32 i, RESCUEINT32 j) {return DemandPillar((RESCUEINT64) i, (RESCUEINT64) j);}
-                                    // Promotes to R_SPLINE_LINE (if node is not already) and
-                                    // returns a pointer to the new or existing pillar definition.
-                                    // The pillar will initially be undefined, unless the node
-                                    // was already R_SPLINE_LINE.
+                  // Promotes to R_SPLINE_LINE (if node is not already) and
+                  // returns a pointer to the new or existing pillar definition.
+                  // The pillar will initially be undefined, unless the node
+                  // was already R_SPLINE_LINE.
   void UVWValues(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k, RESCUEDOUBLE &uTerm, RESCUEDOUBLE &vTerm, RESCUEDOUBLE &wTerm);
   void UVWValues(RESCUEINT32 i, RESCUEINT32 j, RESCUEINT32 k, RESCUEDOUBLE &uTerm, RESCUEDOUBLE &vTerm, RESCUEDOUBLE &wTerm);
   void UVWValues(RESCUEDOUBLE i, RESCUEDOUBLE j, RESCUEDOUBLE k, RESCUEDOUBLE &uTerm, RESCUEDOUBLE &vTerm, RESCUEDOUBLE &wTerm);
-                                    // Returns i,j,k of rule or weight based LGR (including nospan)
-                                    // as u,v,w of the parent's axes.
+                  // Returns i,j,k of rule or weight based LGR (including nospan)
+                  // as u,v,w of the parent's axes.
   /****************************************************************************************************/
   RESCUEFLOAT *CornerValues(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k, RESCUEINT64 corner);
   RESCUEINT32 CornerValuesLength() {return 3;}
-                                    // Returns x y and z for the geometry of the identified cell corner.
-                                    // Corresponds to 
-                                    // void Values(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k, RESCUEINT64 corner, RESCUEFLOAT &x, RESCUEFLOAT &y, RESCUEFLOAT &z);
-                                    // DO delete the returned array.
+                  // Returns x y and z for the geometry of the identified cell corner.
+                  // Corresponds to 
+                  // void Values(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k, RESCUEINT64 corner, RESCUEFLOAT &x, RESCUEFLOAT &y, RESCUEFLOAT &z);
+                  // DO delete the returned array.
   RESCUEFLOAT *NodeValues(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k);
   RESCUEINT32 NodeValuesLength() {return 3;}
-                                    // Corresponds to 
-                                    // RESCUEBOOL Values(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k, RESCUEFLOAT &x, RESCUEFLOAT &y, RESCUEFLOAT &z);
-                                    // Returns 0 if the value would have been FALSE.
-                                    // DO delete the returned array.
+                  // Corresponds to 
+                  // RESCUEBOOL Values(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k, RESCUEFLOAT &x, RESCUEFLOAT &y, RESCUEFLOAT &z);
+                  // Returns 0 if the value would have been FALSE.
+                  // DO delete the returned array.
   RESCUEFLOAT *UVWNodeValues(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k);
   RESCUEINT32 UVWNodeValuesLength() {return 3;}
-                                    // Corresponds to 
-                                    // RESCUEBOOL UVWValues(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k, RESCUEFLOAT &x, RESCUEFLOAT &y, RESCUEFLOAT &z);
-                                    // Returns 0 if the value would have been FALSE.
-                                    // DO delete the returned array.
+                  // Corresponds to 
+                  // RESCUEBOOL UVWValues(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k, RESCUEFLOAT &x, RESCUEFLOAT &y, RESCUEFLOAT &z);
+                  // Returns 0 if the value would have been FALSE.
+                  // DO delete the returned array.
   RESCUEFLOAT *UVWNodeValues2(RESCUEDOUBLE i, RESCUEDOUBLE j, RESCUEDOUBLE k);
   RESCUEINT32 UVWNodeValues2Length() {return 3;}
-                                    // Corresponds to 
-                                    // RESCUEBOOL UVWValues(RESCUEDOUBLE i, RESCUEDOUBLE j, RESCUEDOUBLE k, RESCUEFLOAT &x, RESCUEFLOAT &y, RESCUEFLOAT &z);
-                                    // Returns 0 if the value would have been FALSE.
-                                    // DO delete the returned array.
+                  // Corresponds to 
+                  // RESCUEBOOL UVWValues(RESCUEDOUBLE i, RESCUEDOUBLE j, RESCUEDOUBLE k, RESCUEFLOAT &x, RESCUEFLOAT &y, RESCUEFLOAT &z);
+                  // Returns 0 if the value would have been FALSE.
+                  // DO delete the returned array.
   RESCUEFLOAT ZValue(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k);// Corresponds to 
-                                    // RESCUEBOOL Values(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k, RESCUEFLOAT &z);
-                                    // Returns FLT_MIN if the return would have been FALSE.
+                  // RESCUEBOOL Values(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k, RESCUEFLOAT &z);
+                  // Returns FLT_MIN if the return would have been FALSE.
   void AllCornerValues(RESCUEFLOAT *buffer, RESCUEINT64 offset, RESCUEINT64 bufferLength);         
-                                    // Returns a floating point buffer with ALL corner values.
+                  // Returns a floating point buffer with ALL corner values.
   RESCUEINT64 AllCornerValuesLength64();      // Length of buffer is (ni - 1)*(nj - 1)*(nk - 1)*8*3.
   RESCUEINT32 AllCornerValuesLength();
   RESCUEINT32 AllCornerValuesLength(RESCUEBOOL throwIfTooBig);  
   void LayerCornerValues(RESCUEINT64 k, RESCUEFLOAT *buffer, RESCUEINT64 offset, RESCUEINT64 bufferLength);  
-                                    // Returns a floating point buffer with all corner values for
-                                    // a particular layer of cells (therefore 0 < k < nk - 1).
+                  // Returns a floating point buffer with all corner values for
+                  // a particular layer of cells (therefore 0 < k < nk - 1).
   RESCUEINT64 LayerCornerValuesLength64();    // Length of buffer is (ni - 1)*(nj - 1)*8*3
   RESCUEINT32 LayerCornerValuesLength();
   /****************************************************************************************************/
@@ -628,8 +628,8 @@ public:
   RescueProperty *PropertyIdentifiedBy(RESCUEINT64 identifier);
   RescueProperty *PropertyNamed(const RESCUECHAR *name) {return properties->ObjectNamed(name);}
                                   // Do NOT delete the object returned.
-                                    // If you want to remove them from the
-                                    // model use the corresponding Drop method.
+                  // If you want to remove them from the
+                  // model use the corresponding Drop method.
   RESCUEBOOL DropRescueProperty(RescueProperty *unitToDrop); 
                                    // The property is automatically dropped from
                                    // any RescueTimeStepGroups of which it was a
@@ -660,20 +660,20 @@ public:
                                        // Routines to return information about constant
                                        // thickness grids.
   RESCUEINT32 Version(RESCUEBOOL reload = FALSE); // These methods return a version number for the file which
-                                    // starts at zero and increments each time the file is
-                                    // written.  Applications can use this as a quick check to
-                                    // see if the file has been updated (by saving the version
-                                    // number AFTER a write operation). If reload is TRUE the library
-                                    // always goes back to the disk to read the version number,
-                                    // in case it has been recently changed.  Therefore, the
-                                    // version number returned is the version which would be
-                                    // available if the data were loaded now, not the version which
-                                    // IS loaded now (if any). If false, the version number returned
-                                    // is the version of the last data loaded (if any).
+                  // starts at zero and increments each time the file is
+                  // written.  Applications can use this as a quick check to
+                  // see if the file has been updated (by saving the version
+                  // number AFTER a write operation). If reload is TRUE the library
+                  // always goes back to the disk to read the version number,
+                  // in case it has been recently changed.  Therefore, the
+                  // version number returned is the version which would be
+                  // available if the data were loaded now, not the version which
+                  // IS loaded now (if any). If false, the version number returned
+                  // is the version of the last data loaded (if any).
 
   void SetCellStatus(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k, RescueCellStatus newStatus = R_ACTIVE);
   RescueCellStatus CellStatus(RESCUEINT64 i, RESCUEINT64 j, RESCUEINT64 k);
-                                    //
+                  //
 /**********************************************************************************/
   virtual RESCUEBOOL IsOfType(_RescueObjectType thisType);
      // Returns TRUE if the object is a
@@ -694,7 +694,7 @@ public:
   static void LoadRefSurface(RescueReferenceSurface *surface);
 /****************************************************************************************
 
-    Methods dealing with RescueDataContainers.
+  Methods dealing with RescueDataContainers.
 
 *******************************************************************************************/
   cSetRescueDataContainer *DataContainers();
@@ -712,9 +712,9 @@ public:
 ************************************************************************************/
   RESCUEINT64 *ObjectCounts();          // Returns an array of four ints where [0] - Count of RescueZStack,
   RESCUEINT32 *ObjectCounts(RESCUEBOOL titb); // [1] - Count of RescueCoordinateLine, 
-                                        // [2] - Count of RescueCoordinatePolyLine,
-                                        // [3] - Count of RescueSplitLine.  Used by Validator.
-                                        // Otherwise useless.  delete[] the array.
+                    // [2] - Count of RescueCoordinatePolyLine,
+                    // [3] - Count of RescueSplitLine.  Used by Validator.
+                    // Otherwise useless.  delete[] the array.
   RESCUEINT32 ObjectCountsLength() {return 4;}
   RESCUEINT64 SurfaceToGridCount64() {return surfaceToGrid->Count64();}
   RESCUEINT32 SurfaceToGridCount() {return surfaceToGrid->Count();}

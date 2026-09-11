@@ -16,7 +16,7 @@ CMaterialExportDialog::CMaterialExportDialog(
   CMaterialEntry* materialEntry, ml::CMaterialLibrary& matlib, int modelfilter,
   CAnalysisLogger& logger, bool bImportMode, UINT nIDTemplate, CWnd* pParent)
 : CMaterialImportDialog(materialEntry_Delegate, materialEntry, matlib,
-    modelfilter, logger, bImportMode, nIDTemplate, pParent)
+  modelfilter, logger, bImportMode, nIDTemplate, pParent)
 {
 }
 
@@ -27,13 +27,13 @@ BOOL CMaterialExportDialog::OnInitDialog()
   SetWindowText(EXPORT_TITLE.toStdString().c_str());
 
   GetDlgItem(IDC_EDIT_MATERIAL_LIBRARY)->SetWindowText(
-    m_materialEntry->GetExternalMatLibFileName().toStdString().c_str());
+  m_materialEntry->GetExternalMatLibFileName().toStdString().c_str());
   GetDlgItem(IDOK)->SetWindowText(EXPORT_LABEL.toStdString().c_str());
 
   GetDlgItem(IDOK)->EnableWindow(TRUE);
 
   return TRUE;  // return TRUE unless you set the focus to a control
-                // EXCEPTION: OCX Property Pages should return FALSE
+        // EXCEPTION: OCX Property Pages should return FALSE
 }
 
 // private

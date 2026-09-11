@@ -5,9 +5,9 @@ class GeomecOIV
 {
 public:
 
-	static void init();
+  static void init();
 
-	static void finish();
+  static void finish();
 };
 
 #endif

@@ -18,35 +18,35 @@ class CLoadCase;
 
 class CLoadCombination  
 {
-	friend class CLoadManager;
+  friend class CLoadManager;
 
-	CLoadManager &m_Manager;
-	typedef std::map<const CLoadCase *, double> TFactorMap;
-	TFactorMap m_Factors;
-	int m_Index;
+  CLoadManager &m_Manager;
+  typedef std::map<const CLoadCase *, double> TFactorMap;
+  TFactorMap m_Factors;
+  int m_Index;
 
-	// only called by (friend) CLoadManager
-	CLoadCombination(CLoadManager &manager, int index);
+  // only called by (friend) CLoadManager
+  CLoadCombination(CLoadManager &manager, int index);
 
 protected:
-	CLoadManager &Manager();
+  CLoadManager &Manager();
 
 public:
-	virtual ~CLoadCombination();
+  virtual ~CLoadCombination();
 
-	int Index() const;
+  int Index() const;
 
-	const CLoadManager &Manager() const;
+  const CLoadManager &Manager() const;
 
-	int LoadCaseSize() const;
-	const CLoadCase &LoadCase(int nIndex) const;
-	CLoadCase &LoadCase(int nIndex);
+  int LoadCaseSize() const;
+  const CLoadCase &LoadCase(int nIndex) const;
+  CLoadCase &LoadCase(int nIndex);
 
-	const double &Factor(const CLoadCase &LoadCase) const;
+  const double &Factor(const CLoadCase &LoadCase) const;
 
-	void InsertLoadCase(const CLoadCase &LoadCase, double dFactor = 1.0);
+  void InsertLoadCase(const CLoadCase &LoadCase, double dFactor = 1.0);
 
-	bool WriteFilos() const;
+  bool WriteFilos() const;
 };
 
 }

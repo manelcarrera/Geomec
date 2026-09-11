@@ -10,15 +10,15 @@ class IProgressBase;
 class CTSSurfaceProgress : public ITSProgressBase
 {
 private:
-	std::auto_ptr <IProgressBase> m_pWaitCursor;
-	std::auto_ptr <IProgressBase> m_progress;
+  std::auto_ptr <IProgressBase> m_pWaitCursor;
+  std::auto_ptr <IProgressBase> m_progress;
 public:
-	CTSSurfaceProgress();
-	virtual ~CTSSurfaceProgress();
+  CTSSurfaceProgress();
+  virtual ~CTSSurfaceProgress();
 
-	virtual void Begin(int nSteps);
-	virtual void End();
-	virtual void Step();
+  virtual void Begin(int nSteps);
+  virtual void End();
+  virtual void Step();
 };
 
 #endif // _TSSURFACEPROGRESS_H_

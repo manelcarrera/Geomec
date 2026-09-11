@@ -23,8 +23,8 @@ CRetrieveDianaFileNamesGUI::~CRetrieveDianaFileNamesGUI()
 }
 
 bool CRetrieveDianaFileNamesGUI::retrieveDianaFileNames(
-	QString& newTitle,
-	const std::string& title) const
+  QString& newTitle,
+  const std::string& title) const
 {
   newTitle = title.c_str();
   newTitle = stripExtension(newTitle, ".gm4");
@@ -35,69 +35,69 @@ bool CRetrieveDianaFileNamesGUI::retrieveDianaFileNames(
 
   if (newTitle.length() > MAX_BASENAME_LENGTH)
   {
-    newTitle = newTitle.left(MAX_BASENAME_LENGTH);
+  newTitle = newTitle.left(MAX_BASENAME_LENGTH);
   }
 
   // ask for file locations if we are writing input files
 
   if (!m_writeQuadDat && !m_writeInputFiles)
   {
-	  newTitle = "";
-	  return true;
+    newTitle = "";
+    return true;
   }
 
-	//
-	// TODO: keep the way before for non-dsa ?
-	//
-	int res=IDCANCEL;
-	std::string pathname;
+  //
+  // TODO: keep the way before for non-dsa ?
+  //
+  int res=IDCANCEL;
+  std::string pathname;
 
-	CDatFileDialog::Data* d = new CDatFileDialog::Data
-	{
-		m_analysisType, 
-		m_writeInputFiles, 
-		m_writeQuadDat,
-		m_model, 
-		0, // timeout
-		//
-		// CTnoFileDialog
-		//
-		FALSE, "",
-		newTitle.toStdString().c_str(), OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
-		"DIANA command/data files (*.dcf;*.dat)|*.dcf;*.dat|"
-		"All Files (*.*)|*.*||", FemAppGetMainWnd()
-	};
+  CDatFileDialog::Data* d = new CDatFileDialog::Data
+  {
+    m_analysisType, 
+    m_writeInputFiles, 
+    m_writeQuadDat,
+    m_model, 
+    0, // timeout
+    //
+    // CTnoFileDialog
+    //
+    FALSE, "",
+    newTitle.toStdString().c_str(), OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
+    "DIANA command/data files (*.dcf;*.dat)|*.dcf;*.dat|"
+    "All Files (*.*)|*.*||", FemAppGetMainWnd()
+  };
 
-	if(_g->dsa())
-	{
-		CQuestionThreadWrapper th(CQuestionThreadWrapper::DatFileDlg,d); // event send to doc / wait for the resposne / blocking
-		th.join();
+  if(_g->dsa())
+  {
+    CQuestionThreadWrapper th(CQuestionThreadWrapper::DatFileDlg,d); // event send to doc / wait for the resposne / blocking
+    th.join();
 
-		res = th.response();
-		pathname = th.response_s();
+    res = th.response();
+    pathname = th.response_s();
 
-		// data deleted at CQuestionThreadWrapper
-	}
-	else
-	{
-		CDatFileDialog dlgdat(d);
+    // data deleted at CQuestionThreadWrapper
+  }
+  else
+  {
+    CDatFileDialog dlgdat(d);
 
-		res = dlgdat.DoModal();
-		if (res == IDOK)
-			pathname = (LPCSTR)dlgdat.GetPathName();
-		delete d;
-	}
-	
+    res = dlgdat.DoModal();
+    if (res == IDOK)
+      pathname = (LPCSTR)dlgdat.GetPathName();
+    delete d;
+  }
+  
 
-	// dat-file
+  // dat-file
 
-	if (res != IDOK)
-		return false;
+  if (res != IDOK)
+    return false;
 
-	newTitle = stripExtension( QString::fromStdString( pathname ), ".dcf"); //dlgdat.GetPathName()
-	newTitle = stripExtension(newTitle, ".dat");
+  newTitle = stripExtension( QString::fromStdString( pathname ), ".dcf"); //dlgdat.GetPathName()
+  newTitle = stripExtension(newTitle, ".dat");
 
-	return true;
+  return true;
 }
 
 // private
@@ -110,7 +110,7 @@ QString CRetrieveDianaFileNamesGUI::stripExtension(const QString& string,
 
   if (position > 0)
   {
-    strippedString = string.left(position);
+  strippedString = string.left(position);
   }
 
   return strippedString;

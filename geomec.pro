@@ -73,7 +73,7 @@ addSubdirs (lib/DianaGlue)
 #addSubdirs (qmake) # MCR
 
 SUBDIRS     += gtest
-gtest.subdir = lib/gmock-1.7.0/gtest
+gtest.subdir = third_party/gmock-1.7.0/gtest
 
 addSubdirs (Tests/SanityChecks)
 addSubdirs (Tests/Fw51)
@@ -318,7 +318,7 @@ test.CONFIG  = recursive
 
 installer.depends = test
 installer.target = installer
-installer.commands = cd test/geomec_rgi && python create_installation.py && cd -
+installer.commands = cd IntegrationTests/geomec_rgi && python create_installation.py && cd -
 
 installer-no-test.depends = release
 installer-no-test.target = installer-no-test

@@ -19,31 +19,31 @@ namespace GeomecRGI
 class CBuildTensor
 {
   public:
-    class CBuildTensorImpl;
+  class CBuildTensorImpl;
 
-    CBuildTensor();
-    ~CBuildTensor();
+  CBuildTensor();
+  ~CBuildTensor();
 
-    bool loadProperty(RGInterface& rgi, CModelBase& modelBase,
+  bool loadProperty(RGInterface& rgi, CModelBase& modelBase,
       CRockMechProcessor& rmp, const RGProperty& rgProperty,
       const ITensorGroup::CComponentComposite::TENSOR_COMPONENT&
-        tensorComponent);
+    tensorComponent);
 
-    bool isTensorComplete() const;
+  bool isTensorComplete() const;
 
   private:
-    CBuildTensor(const CBuildTensor& rhs);
-    CBuildTensor& operator = (const CBuildTensor& rhs);
+  CBuildTensor(const CBuildTensor& rhs);
+  CBuildTensor& operator = (const CBuildTensor& rhs);
 
 #if 0
-    // prevent heap allocation
-    void* operator new (size_t);
-    void* operator new [] (size_t);
+  // prevent heap allocation
+  void* operator new (size_t);
+  void* operator new [] (size_t);
 
-    void operator delete (void*);
-    void operator delete [] (void*);
+  void operator delete (void*);
+  void operator delete [] (void*);
 #endif
-    QSharedPointer <CBuildTensorImpl> m_Tensor;
+  QSharedPointer <CBuildTensorImpl> m_Tensor;
 };
 
 } // namespace GeomecRGI

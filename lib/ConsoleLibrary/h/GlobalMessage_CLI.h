@@ -29,26 +29,26 @@
 
 class GlobalMessage_CLI : virtual public IGlobalMessage
 {
-	std::fstream out_stream;
+  std::fstream out_stream;
 
-	
+  
 public:
-	std::ostream& outstream();
+  std::ostream& outstream();
 
-	bool openlogfile( const std::string& path );
-	bool closelogfile();
+  bool openlogfile( const std::string& path );
+  bool closelogfile();
 
 public:
-	GlobalMessage_CLI(){ m_type = CLI; };
+  GlobalMessage_CLI(){ m_type = CLI; };
 
-	int msg(	
-		const char* message, 
-		unsigned int style = MB_OK,
-		unsigned int contextID = 0);
+  int msg(	
+    const char* message, 
+    unsigned int style = MB_OK,
+    unsigned int contextID = 0);
 
   virtual std::string constructMessage(unsigned int message);
 
-	void status( const QString& message );
+  void status( const QString& message );
 };
 
 
@@ -64,24 +64,24 @@ bool closelogfile();
 std::string constructMessage(const std::vector <std::string>& message);
 
 int _m()->msg(	const QString& message, 
-					unsigned int style = MB_OK,
-					unsigned int contextID = 0);
+          unsigned int style = MB_OK,
+          unsigned int contextID = 0);
 
 int _m()->msg(	const char* message, 
-					unsigned int style = MB_OK,
-					unsigned int contextID = 0);
+          unsigned int style = MB_OK,
+          unsigned int contextID = 0);
 
 int _m()->msg(	unsigned int message, 
-					unsigned int style = MB_OK,
-					unsigned int contextID = 0);
+          unsigned int style = MB_OK,
+          unsigned int contextID = 0);
 
 int _m()->msg(	const std::vector <std::string>& message,
-					unsigned int style = MB_OK, 
-					unsigned int contextID = 0);
+          unsigned int style = MB_OK, 
+          unsigned int contextID = 0);
 
 int globalTetMesherMessage(	const std::vector <std::string>& message,
-							unsigned int style = MB_OK, 
-							unsigned int contextID = 0);
+              unsigned int style = MB_OK, 
+              unsigned int contextID = 0);
 
 void statusMessage(const QString& message);
 

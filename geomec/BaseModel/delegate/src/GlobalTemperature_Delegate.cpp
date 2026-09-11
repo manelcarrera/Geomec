@@ -7,7 +7,7 @@
 CGlobalTemperature_Delegate::CGlobalTemperature_Delegate(
   CGlobalTemperature* globalTemperature)
 : CGlobalFormationLoad_Delegate <TTemperature, CTemperatureGradientComponent> (
-    globalTemperature)
+  globalTemperature)
 , m_globalTemperature(globalTemperature)
 {
 }

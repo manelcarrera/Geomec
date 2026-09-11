@@ -11,7 +11,7 @@ class CPointSet;
 
 class CSampledPointSetDlg : public CDialog
 {
-	DECLARE_DYNAMIC(CSampledPointSetDlg)
+  DECLARE_DYNAMIC(CSampledPointSetDlg)
 
 public:
   CSampledPointSetDlg

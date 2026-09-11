@@ -32,21 +32,21 @@ CCache::CCache(const CMeshDataCacher &cacher, int length)
 
 CCache::~CCache()
 {
-	CCellList *pl = m_first;
-	while(pl && pl->Next())
-	{
-		// list deletes cell
-		assert(pl->Next()->Prev() == pl);
-		pl = pl->Next();
-		delete pl->Prev();
-	}
+  CCellList *pl = m_first;
+  while(pl && pl->Next())
+  {
+    // list deletes cell
+    assert(pl->Next()->Prev() == pl);
+    pl = pl->Next();
+    delete pl->Prev();
+  }
 
-	assert(pl == m_last); // might both be NULL
+  assert(pl == m_last); // might both be NULL
 
   if(m_last)
-	  delete m_last;
+    delete m_last;
 
-	// TODO: clear cache directory
+  // TODO: clear cache directory
 }
 
 int CCache::MaxLength() const
@@ -63,12 +63,12 @@ void CCache::Resize(int length)
 {
   if (length == 0)
   {
-    m_nMaxLength = m_nMaxLengthDefined = 0;
-    return; // we may have cells on disk, but they will be loaded when needed, and never written again
+  m_nMaxLength = m_nMaxLengthDefined = 0;
+  return; // we may have cells on disk, but they will be loaded when needed, and never written again
   }
 
   if (length < 3)
-    length = 3;
+  length = 3;
 
   m_nMaxLength = m_nMaxLengthDefined = length;
 
@@ -76,24 +76,24 @@ void CCache::Resize(int length)
 
   while (bValid && m_nLength > m_nMaxLength)
   {
-	  CCellList *pl = m_last;
+    CCellList *pl = m_last;
 
-    if (pl->Cell().Dirty())
+  if (pl->Cell().Dirty())
       bValid = pl->Cell().WriteData();
 
-    if (bValid)
-    {
+  if (bValid)
+  {
       m_last = m_last->Prev();
 
       pl->Detach();
 
       --m_nLength;
-    }
+  }
   }
 
   if (!bValid)
   {
-    _m()->msg("Failure to (fully) adjust the result cache size. Please check whether the disk is full.");
+  _m()->msg("Failure to (fully) adjust the result cache size. Please check whether the disk is full.");
   }
 }
 
@@ -102,7 +102,7 @@ void CCache::GetChecksum(int nColumn, unsigned char *buffer)
   CDataCell *cell = CellImpl(0, nColumn, true);
 
   if (cell)
-    cell->GetChecksum(buffer);
+  cell->GetChecksum(buffer);
 }
 
 void CCache::SetChecksum(int nColumn, unsigned char *buffer)
@@ -110,7 +110,7 @@ void CCache::SetChecksum(int nColumn, unsigned char *buffer)
   CDataCell *cell = CellImpl(0, nColumn, true);
 
   if (cell)
-    cell->SetChecksum(buffer);
+  cell->SetChecksum(buffer);
 }
 
 bool CCache::ChecksumOK(int nColumn, int *nStatus)
@@ -118,24 +118,24 @@ bool CCache::ChecksumOK(int nColumn, int *nStatus)
   CDataCell *cell = CellImpl(0, nColumn, true);
 
   if (nStatus)
-    *nStatus = -1;
+  *nStatus = -1;
 
   return cell && cell->ChecksumOK(nStatus);
 }
 
 void CCache::Flush()
 {
-	CCellList *pl;
+  CCellList *pl;
   bool bValid = true;
 
-	for (pl = m_first; pl != 0 && bValid; pl = pl->Next())
-	{
-		if (pl->Cell().Dirty())
+  for (pl = m_first; pl != 0 && bValid; pl = pl->Next())
+  {
+    if (pl->Cell().Dirty())
       bValid = pl->Cell().WriteData();
-	}
+  }
   if (!bValid)
   {
-    _m()->msg("Failure to flush the result cache. Please check whether the disk is full.");
+  _m()->msg("Failure to flush the result cache. Please check whether the disk is full.");
   }
 }
 
@@ -151,35 +151,35 @@ void CCache::Flush()
 
 #define ABSENT  (CDataCell *)1
 #define IF_VALID_RETURN(data)     if (nColumn < m_vcCriticalSection.size()) \
-                                    data = m_vcCriticalSection[nColumn]; \
+                  data = m_vcCriticalSection[nColumn]; \
                                   if (data == ABSENT) \
-                                    return 0; \
+                  return 0; \
                                   if (data) \
-                                    return data
+                  return data
 
 CDataCell *CCache::Cell(int nElement, int nColumn, bool bReading)
 {
   if (m_nCriticalSectionSize > 0)
   {
-    tbb::spin_rw_mutex::scoped_lock lock(myGlobalMutex, false);
+  tbb::spin_rw_mutex::scoped_lock lock(myGlobalMutex, false);
 
-    CDataCell *data = 0;
+  CDataCell *data = 0;
 
-    IF_VALID_RETURN(data);
-    
-    if (!lock.upgrade_to_writer()) // re-check conditions as we lost the lock during upgrade
-    {
+  IF_VALID_RETURN(data);
+  
+  if (!lock.upgrade_to_writer()) // re-check conditions as we lost the lock during upgrade
+  {
       IF_VALID_RETURN(data);
-    }
+  }
 
-    StartCriticalSection(nColumn, 1);
+  StartCriticalSection(nColumn, 1);
 
-    data = m_vcCriticalSection[nColumn];
+  data = m_vcCriticalSection[nColumn];
 
-    if (!data)
+  if (!data)
       m_vcCriticalSection[nColumn] = ABSENT;
 
-    return data;
+  return data;
   }
 
   return CellImpl(nElement, nColumn, bReading);
@@ -190,99 +190,99 @@ CDataCell *CCache::CellImpl(int nElement, int nColumn, bool /*bReading*/)
   // try cells in cache first
   CCellList *pFound = 0;
 
-	CCellList *pl;
-	for(pl = m_first; pl != 0; pl = pl->Next())
-	{
-		if(pl->Cell().Contains(nColumn))
-		{
-			pFound = pl;
-			break;
-		}
-	}
-
-	// must read new values from file if none found and reading
-	bool bReread = (pFound == 0);
-	if(!pFound)
-	{
-    bool bValid = true;
-
-    if (m_nLength == m_nMaxLength && m_nMaxLength > 0 && m_last)
+  CCellList *pl;
+  for(pl = m_first; pl != 0; pl = pl->Next())
+  {
+    if(pl->Cell().Contains(nColumn))
     {
-		  // the last cell will fall off, so write it if necessary
+      pFound = pl;
+      break;
+    }
+  }
+
+  // must read new values from file if none found and reading
+  bool bReread = (pFound == 0);
+  if(!pFound)
+  {
+  bool bValid = true;
+
+  if (m_nLength == m_nMaxLength && m_nMaxLength > 0 && m_last)
+  {
+      // the last cell will fall off, so write it if necessary
       if(m_last->Cell().Dirty())
-        bValid = m_last->Cell().WriteData();
+    bValid = m_last->Cell().WriteData();
 
       if (bValid)
       {
-        pFound = m_last; // we will reuse this cell after it's been moved to the first position
+    pFound = m_last; // we will reuse this cell after it's been moved to the first position
 
-        pFound->Cell().ReuseFor(nColumn);
+    pFound->Cell().ReuseFor(nColumn);
 
-        m_nSuccessiveFailedWrites = 0;
+    m_nSuccessiveFailedWrites = 0;
       }
       else
       {
-        ++m_nSuccessiveFailedWrites;
+    ++m_nSuccessiveFailedWrites;
 
-        if (m_nSuccessiveFailedWrites == 1)
+    if (m_nSuccessiveFailedWrites == 1)
           _m()->msg("Failure to write to the result cache; keeping blocks in memory. Please check whether the disk is full.");
-        
-        ++m_nMaxLength;
+    
+    ++m_nMaxLength;
       }
-    }
-    if (!pFound)
-    {
+  }
+  if (!pFound)
+  {
       assert(m_nLength < m_nMaxLength || m_nMaxLength == 0);
       ++m_nLength;
 
       // generate a new cell and prepend it to the list of cells (will be the new first)
-		  CDataCell *pCell = new CDataCell(m_meshdatacacher, nColumn);
-		  CCellList *pList = new CCellList(0, m_first, *pCell);
-		  m_first = pList;
+      CDataCell *pCell = new CDataCell(m_meshdatacacher, nColumn);
+      CCellList *pList = new CCellList(0, m_first, *pCell);
+      m_first = pList;
       if(!m_last)
-        m_last = pList;
+    m_last = pList;
 
       pFound = pList;
-    }
-	}
+  }
+  }
 
-	if(pFound != m_first && m_first != m_last)
-	{
-		// reorganize
-		if(pFound == m_last) m_last = m_last->Prev();
-		pFound->Detach();
+  if(pFound != m_first && m_first != m_last)
+  {
+    // reorganize
+    if(pFound == m_last) m_last = m_last->Prev();
+    pFound->Detach();
 
-		pFound->InsertBefore(m_first);
-		m_first = pFound;
-	}
+    pFound->InsertBefore(m_first);
+    m_first = pFound;
+  }
 
-	if(bReread)
-	{
-		bool bRead = m_first->Cell().ReadData(nElement);
-    if (!bRead)
-    {
+  if(bReread)
+  {
+    bool bRead = m_first->Cell().ReadData(nElement);
+  if (!bRead)
+  {
       _m()->msg("Failed to read from the result cache. Please check your results.");
       return 0;
-    }
-	}
+  }
+  }
 
-	return &m_first->Cell();
+  return &m_first->Cell();
 }
 
 const double *CCache::Value(int nElement, int nColumn, int nNode)
 {
-	CDataCell *pCell = Cell(nElement, nColumn, true);
-	if(!pCell) return 0;
+  CDataCell *pCell = Cell(nElement, nColumn, true);
+  if(!pCell) return 0;
 
-	return pCell->Value(nElement, nNode);
+  return pCell->Value(nElement, nNode);
 }
 
 void CCache::Value(int nElement, int nColumn, int nNode, double val)
 {
-	CDataCell *pCell = Cell(nElement, nColumn, false);
-	assert(pCell != 0);
+  CDataCell *pCell = Cell(nElement, nColumn, false);
+  assert(pCell != 0);
 
-	pCell->Value(nElement, nNode, val);
+  pCell->Value(nElement, nNode, val);
 }
 
 bool CCache::StartCriticalSection(int nColumn, int nNumber)
@@ -290,14 +290,14 @@ bool CCache::StartCriticalSection(int nColumn, int nNumber)
   m_nOldMaxLength = m_nMaxLength;
   if (m_nMaxLength > 0 && m_nMaxLength < nNumber + m_nCriticalSectionSize)
   {
-    m_nMaxLength = nNumber + m_nCriticalSectionSize;
+  m_nMaxLength = nNumber + m_nCriticalSectionSize;
   }
 
   if (m_vcCriticalSection.size() < nColumn + nNumber)
   {
-    if (m_vcCriticalSection.size() == 0)
+  if (m_vcCriticalSection.size() == 0)
       m_vcCriticalSection.reserve(std::max(1024, nColumn + 30));
-    m_vcCriticalSection.resize(nColumn + nNumber, 0);
+  m_vcCriticalSection.resize(nColumn + nNumber, 0);
   }
 
   //int nTempSize = m_nCriticalSectionSize;
@@ -305,14 +305,14 @@ bool CCache::StartCriticalSection(int nColumn, int nNumber)
 
   for (int i = nColumn; i < nColumn + nNumber; ++i)
   {
-    if (m_vcCriticalSection[i] == 0)
-    {
+  if (m_vcCriticalSection[i] == 0)
+  {
       CDataCell *data = CellImpl(0, i, true);
 
       m_vcCriticalSection[i] = data;
 
       ++m_nCriticalSectionSize;
-    }
+  }
   }
 
   //m_nCriticalSectionSize = nTempSize;
@@ -330,58 +330,58 @@ void CCache::EndCriticalSection()
 
 // CCellList implementation
 CCache::CCellList::CCellList(CCellList *prev, CCellList *next, CDataCell &cell) :
-	m_cell(cell),
-	m_prev(prev),
-	m_next(next)
+  m_cell(cell),
+  m_prev(prev),
+  m_next(next)
 {
-	if(prev) prev->m_next = this;
-	if(next) next->m_prev = this;
+  if(prev) prev->m_next = this;
+  if(next) next->m_prev = this;
 }
 
 CCache::CCellList::~CCellList()
 {
-	delete &m_cell;
+  delete &m_cell;
 }
 
 CCache::CCellList *CCache::CCellList::Next()
 {
-	return m_next;
+  return m_next;
 }
 
 CCache::CCellList *CCache::CCellList::Prev()
 {
-	return m_prev;
+  return m_prev;
 }
 
 CDataCell &CCache::CCellList::Cell()
 {
-	return m_cell;
+  return m_cell;
 }
 
 void CCache::CCellList::Detach()
 {
-	if(m_prev) m_prev->m_next = m_next;
-	if(m_next) m_next->m_prev = m_prev;
+  if(m_prev) m_prev->m_next = m_next;
+  if(m_next) m_next->m_prev = m_prev;
 
-	m_prev = 0;
-	m_next = 0;
+  m_prev = 0;
+  m_next = 0;
 }
 
 void CCache::CCellList::InsertBefore(CCellList *list)
 {
-	assert(m_prev == 0); // must detach first
-	assert(m_next == 0); // must detach first
+  assert(m_prev == 0); // must detach first
+  assert(m_next == 0); // must detach first
 
-	m_prev = list->m_prev;
-	list->m_prev = this;
+  m_prev = list->m_prev;
+  list->m_prev = this;
 
-	if(m_prev)
-	{
-		assert(m_prev->Next() == list);
-		m_prev->m_next = this;
-	}
+  if(m_prev)
+  {
+    assert(m_prev->Next() == list);
+    m_prev->m_next = this;
+  }
 
-	m_next = list;
+  m_next = list;
 }
 
 } // namespace mdc

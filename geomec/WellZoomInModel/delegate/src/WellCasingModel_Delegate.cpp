@@ -16,7 +16,7 @@ void CWellCasingModel_Delegate::AppendContextMenu(CContextMenuInvoker &invoker)
   AppendSwitchTo(invoker);
 
   invoker.AddCommand(_T("&Attributes"), *(new TGraphNode_DelegateCommand(
-    *this, &CGraphNode_Delegate::Attributes)));
+  *this, &CGraphNode_Delegate::Attributes)));
 }
 
 CWellCasingFormationEntry_Delegate::CWellCasingFormationEntry_Delegate(

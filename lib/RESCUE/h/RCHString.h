@@ -73,7 +73,7 @@ public:
   RCHString &operator<<(RESCUECHAR more);
   RCHString &operator<<(RESCUEDOUBLE more);
   void tokenize(const RESCUECHAR *delimiters=0, RESCUEBOOL eachIn=FALSE, 
-                                    RESCUEBOOL respectQuotes=FALSE);
+                  RESCUEBOOL respectQuotes=FALSE);
   RESCUEBOOL operator>>(RESCUECHAR *buffer);
   RESCUEBOOL operator>>(RCHString &buffer);
   RESCUEINT64 length64();

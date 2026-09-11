@@ -112,7 +112,7 @@
       <AdditionalOptions>/MP8 %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>$(DIASRCINCLUDE);$(DIAOBJINCLUDE);..\..\lib\QDianaStartUp;$(QTDIR)\include;$(QTDIR)\include\QtCore;../../lib/GlobalMessage;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DIASRCINCLUDE);$(DIAOBJINCLUDE);..\..\lib\QDianaStartUp;$(QTDIR)\include;$(QTDIR)\include\QtCore;../../platform/GlobalMessage;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;QT_DLL;QT_THREAD_SUPPORT;QT4;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -170,7 +170,7 @@
     <ClCompile>
       <AdditionalOptions>/MP8 %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(DIASRCINCLUDE);$(DIAOBJINCLUDE);..\..\lib\QDianaStartUp;$(QTDIR)\include;$(QTDIR)\include\QtCore;../../lib/GlobalMessage;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DIASRCINCLUDE);$(DIAOBJINCLUDE);..\..\lib\QDianaStartUp;$(QTDIR)\include;$(QTDIR)\include\QtCore;../../platform/GlobalMessage;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;QT_DLL;QT_THREAD_SUPPORT;QT4;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -230,7 +230,7 @@
       <AdditionalOptions>/MP8 %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>$(DIAINCLUDE);..\..\lib\QDianaStartUp;$(QTDIR)\include;$(QTDIR)\include\QtCore;../../lib/GlobalMessage;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DIAINCLUDE);..\..\lib\QDianaStartUp;$(QTDIR)\include;$(QTDIR)\include\QtCore;../../platform/GlobalMessage;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN64;NDEBUG;_WINDOWS;_USRDLL;QT_DLL;QT_THREAD_SUPPORT;QT4;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -288,7 +288,7 @@
     <ClCompile>
       <AdditionalOptions>/MP8 %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(DIAINCLUDE);..\..\lib\QDianaStartUp;$(QTDIR)\include;$(QTDIR)\include\QtCore;../../lib/GlobalMessage;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DIAINCLUDE);..\..\lib\QDianaStartUp;$(QTDIR)\include;$(QTDIR)\include\QtCore;../../platform/GlobalMessage;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN64;_DEBUG;_WINDOWS;_USRDLL;QT_DLL;QT_THREAD_SUPPORT;QT4;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -449,7 +449,7 @@
     <ClInclude Include="StdAfx.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\lib\GlobalMessage\GlobalMessage.vcxproj">
+    <ProjectReference Include="..\..\platform\GlobalMessage\GlobalMessage.vcxproj">
       <Project>{37a75a57-73dd-42d4-97af-89a6b535464f}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>

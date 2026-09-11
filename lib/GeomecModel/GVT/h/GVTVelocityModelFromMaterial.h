@@ -11,29 +11,29 @@ namespace GVT
 class CGVTVelocityModelFromMaterial : public CGVTVelocityModelSource
 {
   public:
-    CGVTVelocityModelFromMaterial(CModelBase& modelBase);
-    virtual ~CGVTVelocityModelFromMaterial();
+  CGVTVelocityModelFromMaterial(CModelBase& modelBase);
+  virtual ~CGVTVelocityModelFromMaterial();
 
-    virtual void SetContents(const std::stringstream& buffer);
+  virtual void SetContents(const std::stringstream& buffer);
 
-    virtual const QString& velocityModelFile() const;
-    virtual void velocityModelFile(const QString& velocityModelFile);
+  virtual const QString& velocityModelFile() const;
+  virtual void velocityModelFile(const QString& velocityModelFile);
 
-    virtual bool isVelocityModelFileReady() const;
-    virtual int velocityModelSourceNumerator() const;
+  virtual bool isVelocityModelFileReady() const;
+  virtual int velocityModelSourceNumerator() const;
 
-    virtual void LoadStream(TSTREAM& stream, CStreamVersion& version,
+  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version,
       TPROGRESS& progress);
-    virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
 
   private:
-    CGVTVelocityModelFromMaterial(const CGVTVelocityModelFromMaterial& rhs);
-    CGVTVelocityModelFromMaterial& operator = (
+  CGVTVelocityModelFromMaterial(const CGVTVelocityModelFromMaterial& rhs);
+  CGVTVelocityModelFromMaterial& operator = (
       const CGVTVelocityModelFromMaterial& rhs);
 
-    //static QString createVelocityModelFile(CModelBase& modelBase);
+  //static QString createVelocityModelFile(CModelBase& modelBase);
 
-    const QString m_velocityModelFile;
+  const QString m_velocityModelFile;
 };
 
 } // namespace GVT

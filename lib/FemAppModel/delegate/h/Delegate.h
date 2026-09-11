@@ -21,23 +21,23 @@ public:
   // specific delegate types
 
   template <class NODE_TYPE, class DELEGATE_TYPE>
-    static CDelegate* Create(CGraphNode* node)
+  static CDelegate* Create(CGraphNode* node)
   {
-    assert(dynamic_cast <NODE_TYPE*> (node));
+  assert(dynamic_cast <NODE_TYPE*> (node));
 
-    NODE_TYPE* pNode;
+  NODE_TYPE* pNode;
 
-    try
-    {
+  try
+  {
       pNode = static_cast <NODE_TYPE*> (node);
-    }
+  }
 
-    catch (std::bad_cast&)
-    {
+  catch (std::bad_cast&)
+  {
       assert(false);  // NODE_TYPE is not derived from CGraphNode
       throw;
-    }
-    return new DELEGATE_TYPE(pNode);
+  }
+  return new DELEGATE_TYPE(pNode);
   }
 
 protected:
@@ -45,20 +45,20 @@ protected:
 
 public:
   template <class NODE_TYPE, class DELEGATE_TYPE>
-    class CDelegateTypeInfo
+  class CDelegateTypeInfo
   {
   public:
-    CDelegateTypeInfo()
-    {
+  CDelegateTypeInfo()
+  {
       // initialization of the static variable appears to be necessary,
       // otherwise the variable is not instantiated and the type info not
       // registered in the factory...
 
       NodeTypeName = std::string();
-    }
+  }
 
   public:
-    static std::string NodeTypeName;
+  static std::string NodeTypeName;
   };
 
 private:
@@ -72,7 +72,7 @@ private:
 
 template <class NODE_TYPE, class DELEGATE_TYPE>
   std::string CDelegate::CDelegateTypeInfo <NODE_TYPE, DELEGATE_TYPE> ::
-    NodeTypeName = CGraphNode::Register(typeid(NODE_TYPE),
+  NodeTypeName = CGraphNode::Register(typeid(NODE_TYPE),
       &CDelegate::Create <NODE_TYPE, DELEGATE_TYPE>);
 
 /*!
@@ -82,9 +82,9 @@ template <class NODE_TYPE, class DELEGATE_TYPE>
  */
 #define REGISTER_DELEGATE(node_type, delegate_type)                           \
   class CMyDelegateTypeInfo : public CDelegate::CDelegateTypeInfo <node_type, \
-    delegate_type>                                                            \
+  delegate_type>                                                            \
   {                                                                           \
-    CMyDelegateTypeInfo(){}                                                   \
+  CMyDelegateTypeInfo(){}                                                   \
   }
 
 /*!
@@ -105,9 +105,9 @@ template <class NODE_TYPE, class DELEGATE_TYPE>
  */
 #define ACTIVATE_TEMPLATE_DELEGATE(node_type, delegate_type)      \
   if (CDelegate::CDelegateTypeInfo <node_type, delegate_type > :: \
-    NodeTypeName == "")                                           \
+  NodeTypeName == "")                                           \
   {                                                               \
-    throw("Template not registered");                             \
+  throw("Template not registered");                             \
   }
 
 #endif // _Delegate_h_

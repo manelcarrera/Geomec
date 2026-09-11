@@ -12,8 +12,8 @@ CTiedBodyTriangle::CTiedBodyTriangle(IMesh& mesh, std::vector<int> vcNodes, std:
 {
   for (size_t i = 0; i < 3; ++i)
   {
-    m_nNodes[i] = vcNodes[i];
-    m_pTriangles[i] = vcTriangles[i];
+  m_nNodes[i] = vcNodes[i];
+  m_pTriangles[i] = vcTriangles[i];
   }
 
   m_nIndex = m_mesh.RegisterTiedBodyTriangle(-1, *this);
@@ -25,8 +25,8 @@ CTiedBodyTriangle::CTiedBodyTriangle(IMesh& mesh, int nIndex, std::vector<int> v
 {
   for (size_t i = 0; i < 3; ++i)
   {
-    m_nNodes[i] = vcNodes[i];
-    m_pTriangles[i] = vcTriangles[i];
+  m_nNodes[i] = vcNodes[i];
+  m_pTriangles[i] = vcTriangles[i];
   }
 
   m_mesh.RegisterTiedBodyTriangle(nIndex, *this);

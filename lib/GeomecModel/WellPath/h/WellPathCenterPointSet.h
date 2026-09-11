@@ -9,15 +9,15 @@ namespace WellPath
 class CWellPathCenterPointSet : public CPointSet
 {
   public:
-    CWellPathCenterPointSet(
+  CWellPathCenterPointSet(
       const std::vector <const CFormationBase*>& formations,
       CModelBase& modelBase);
 
   private:
-    CWellPathCenterPointSet(const CWellPathCenterPointSet& rhs);
-    CWellPathCenterPointSet& operator = (const CWellPathCenterPointSet& rhs);
+  CWellPathCenterPointSet(const CWellPathCenterPointSet& rhs);
+  CWellPathCenterPointSet& operator = (const CWellPathCenterPointSet& rhs);
 
-    void populatePointSet(
+  void populatePointSet(
       const std::vector <const CFormationBase*>& formations,
       CModelBase& modelBase);
 };

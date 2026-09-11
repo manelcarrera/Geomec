@@ -21,8 +21,8 @@ void CGocadExportWrapper::Export(CModelBase& model, const CResultGroup* pResultG
 {
   if(!dynamic_cast<const CTetraModel*>(&model))
   {
-    _m()->msg("Gocad export is currently only possible for tetrahedron models");
-    return;
+  _m()->msg("Gocad export is currently only possible for tetrahedron models");
+  return;
   }
 
   CGocadExport ge(model);

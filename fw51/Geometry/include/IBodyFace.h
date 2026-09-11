@@ -20,26 +20,26 @@ class IBody;
 
 class GEOMETRY_EXPORT  IBodyFace : public IFace  
 {
-	std::vector<int> m_vcPoint;
-	const IBody& m_body;
-	const char *m_Name;
+  std::vector<int> m_vcPoint;
+  const IBody& m_body;
+  const char *m_Name;
 
 public:
-	IBodyFace(const IBody& body, const std::vector<int>& vcPoint, const char *name);
-	IBodyFace(const IBody& body, int p0, int p1, int p2, const char *name);
-	IBodyFace(const IBody& body, int p0, int p1, int p2, int p3, const char *name);
+  IBodyFace(const IBody& body, const std::vector<int>& vcPoint, const char *name);
+  IBodyFace(const IBody& body, int p0, int p1, int p2, const char *name);
+  IBodyFace(const IBody& body, int p0, int p1, int p2, int p3, const char *name);
 
-	virtual const IPoint &Point(int nIndex) const;
-	virtual void Point(int nIndex, const IPoint &pt);
-	virtual int NrOfPoints() const;
+  virtual const IPoint &Point(int nIndex) const;
+  virtual void Point(int nIndex, const IPoint &pt);
+  virtual int NrOfPoints() const;
 
-	// returns the 'parent' body
-	virtual const IBody &Body() const;
+  // returns the 'parent' body
+  virtual const IBody &Body() const;
 
-	// given the face's node number, returns the corresponding node number of the parent body
-	virtual int BodyNode(int nIndex) const;
+  // given the face's node number, returns the corresponding node number of the parent body
+  virtual int BodyNode(int nIndex) const;
 
-	const char *Name() const;
+  const char *Name() const;
 };
 
 }

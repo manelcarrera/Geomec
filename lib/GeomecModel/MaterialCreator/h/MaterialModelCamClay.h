@@ -23,12 +23,12 @@ public:
   class CPQPlotter : public IPQPlotter
   {
   protected:
-    void GetYieldCurve(const CLibraryMaterial& mat, double dPrecon, double dPMin, double dPMax, CStressStrainArray& values) const;
+  void GetYieldCurve(const CLibraryMaterial& mat, double dPrecon, double dPMin, double dPMax, CStressStrainArray& values) const;
 
   private:
-    virtual IPQPlotter* Clone() const;
-    virtual void GetPrimaryYieldCurve(const CLibraryMaterial& mat, double dPMin, double dPMax, CStressStrainArray& values) const;
-    double GetCapShapeQ(double m2, double beta2, double p, double a) const;
+  virtual IPQPlotter* Clone() const;
+  virtual void GetPrimaryYieldCurve(const CLibraryMaterial& mat, double dPMin, double dPMax, CStressStrainArray& values) const;
+  double GetCapShapeQ(double m2, double beta2, double p, double a) const;
   };
 };
 
@@ -48,12 +48,12 @@ public:
   class CPQPlotter : public IPQPlotter
   {
   protected:
-    void GetYieldCurve(const CLibraryMaterial& mat, double dPrecon, double dPMin, double dPMax, CStressStrainArray& values) const;
+  void GetYieldCurve(const CLibraryMaterial& mat, double dPrecon, double dPMin, double dPMax, CStressStrainArray& values) const;
 
   private:
-    virtual IPQPlotter* Clone() const;
-    virtual void GetPrimaryYieldCurve(const CLibraryMaterial& mat, double dPMin, double dPMax, CStressStrainArray& values) const;
-    double GetCapShapeQ(double m2, double beta2, double p, double a) const;
+  virtual IPQPlotter* Clone() const;
+  virtual void GetPrimaryYieldCurve(const CLibraryMaterial& mat, double dPMin, double dPMax, CStressStrainArray& values) const;
+  double GetCapShapeQ(double m2, double beta2, double p, double a) const;
   };
 };
 

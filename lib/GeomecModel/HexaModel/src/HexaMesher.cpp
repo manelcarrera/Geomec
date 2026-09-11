@@ -49,7 +49,7 @@ void CHexaMesher::Invalidate()
 bool CHexaMesher::CanCreateMesh()
 {
   if (m_pPoints.size() == 0)
-    return true;
+  return true;
 
   return false;
 }
@@ -61,8 +61,8 @@ void print_grid(QString fn, geo::CArray<geo::CPoint>& grid)
   FILE *fp = fopen(fn.toStdString().c_str(), "w");
   for (int i = 0; i < grid.Size(); ++i)
   {
-    geo::CPoint p = grid.Object(i);
-    fprintf(fp, "%i\t%f\t%f\t%f\n", i, p.X(), p.Y(), p.Z());
+  geo::CPoint p = grid.Object(i);
+  fprintf(fp, "%i\t%f\t%f\t%f\n", i, p.X(), p.Y(), p.Z());
   }
   fclose(fp);
 }
@@ -79,20 +79,20 @@ bool CHexaMesher::CreateMesh(IProgressBase& progress)
 #ifdef DBG_HEXAMESHER
   while (pFormation)
   {
-    CreateHorizonMeshGrid(*pFormation, progress, &errmsg);
+  CreateHorizonMeshGrid(*pFormation, progress, &errmsg);
 
-    print_grid(pFormation->Name(), m_aMeshGrid);
+  print_grid(pFormation->Name(), m_aMeshGrid);
 
-    CHexaHorizon *pHorizon = &pFormation->LowerHorizon();
-    pFormation = pHorizon->LowerFormation();
+  CHexaHorizon *pHorizon = &pFormation->LowerHorizon();
+  pFormation = pHorizon->LowerFormation();
 
   }
 
 #endif
-    if (!CreateHorizonMeshGrid(progress, &errmsg))
+  if (!CreateHorizonMeshGrid(progress, &errmsg))
   {
-    _m()->msg(errmsg);
-    return false;
+  _m()->msg(errmsg);
+  return false;
   }
 #ifdef DBG_HEXAMESHER
   print_grid(QString("total"), m_aMeshGrid); 
@@ -142,7 +142,7 @@ bool CHexaMesher::CreateHorizonMeshGrid(IProgressBase& progress, QString* pErrMs
 
   for (itMeshRegion = stNode.begin(); itMeshRegion != stNode.end(); itMeshRegion++)
   {
-    if ((*itMeshRegion)->Hull().NrOfPoints() < 4)
+  if ((*itMeshRegion)->Hull().NrOfPoints() < 4)
       delete *itMeshRegion;
   }
 
@@ -152,83 +152,83 @@ bool CHexaMesher::CreateHorizonMeshGrid(IProgressBase& progress, QString* pErrMs
   stNode = pEntry->EntryNodes();
   for (itMeshRegion = stNode.begin(); itMeshRegion != stNode.end(); itMeshRegion++)
   {
-    geo::CPoint ptMeshRegionMin = rs.LocalMin((*itMeshRegion)->Hull());
-    geo::CPoint ptMeshRegionMax = rs.LocalMax((*itMeshRegion)->Hull());
-    vcRegsInCurrentReg.clear();
-    if (dynamic_cast<CHexaSubMeshRegion*>(*itMeshRegion))
-    {
+  geo::CPoint ptMeshRegionMin = rs.LocalMin((*itMeshRegion)->Hull());
+  geo::CPoint ptMeshRegionMax = rs.LocalMax((*itMeshRegion)->Hull());
+  vcRegsInCurrentReg.clear();
+  if (dynamic_cast<CHexaSubMeshRegion*>(*itMeshRegion))
+  {
       // only when current meshregion is not the main mesh region.
       for (itRegion = stNode.begin(); itRegion != stNode.end(); itRegion++)
       {
-        if (*itRegion == *itMeshRegion)
+    if (*itRegion == *itMeshRegion)
           continue;
 
-        geo::CPoint ptRegionMin = rs.LocalMin((*itRegion)->Hull());
-        geo::CPoint ptRegionMax = rs.LocalMax((*itRegion)->Hull());
-        bool bInside = (ptRegionMin.X() > ptMeshRegionMin.X() && ptRegionMin.Y() > ptMeshRegionMin.Y() &&
+    geo::CPoint ptRegionMin = rs.LocalMin((*itRegion)->Hull());
+    geo::CPoint ptRegionMax = rs.LocalMax((*itRegion)->Hull());
+    bool bInside = (ptRegionMin.X() > ptMeshRegionMin.X() && ptRegionMin.Y() > ptMeshRegionMin.Y() &&
           ptRegionMax.X() < ptMeshRegionMax.X() && ptRegionMax.Y() < ptMeshRegionMax.Y());
 
-        if (bInside)
-        {
+    if (bInside)
+    {
           // don't allow smaller gridsizes
           if ((*itRegion)->GridSizeX() > (*itMeshRegion)->GridSizeX() || (*itRegion)->GridSizeY() > (*itMeshRegion)->GridSizeY())
           {
-            if (pErrMsg)
-            {
+      if (pErrMsg)
+      {
               pErrMsg->append(QString("The grid of region '%1' is courser than the grid of region '%2', "
-                "but region '%3' is completely inside region '%4'.\nThis is not allowed.\n\nMeshing aborted.").
-                arg((*itRegion)->Name()).arg((*itMeshRegion)->Name()).
-                arg((*itRegion)->Name()).arg((*itMeshRegion)->Name()));
-            }
-            return false;
+        "but region '%3' is completely inside region '%4'.\nThis is not allowed.\n\nMeshing aborted.").
+        arg((*itRegion)->Name()).arg((*itMeshRegion)->Name()).
+        arg((*itRegion)->Name()).arg((*itMeshRegion)->Name()));
+      }
+      return false;
           }
-        }
+    }
 
-        if ((*itRegion)->GridSizeX() > (*itMeshRegion)->GridSizeX() || (*itRegion)->GridSizeY() > (*itMeshRegion)->GridSizeY())
-        {
+    if ((*itRegion)->GridSizeX() > (*itMeshRegion)->GridSizeX() || (*itRegion)->GridSizeY() > (*itMeshRegion)->GridSizeY())
+    {
           if (bInside)
           {
-            vcRegsInCurrentReg.push_back(*itRegion);
+      vcRegsInCurrentReg.push_back(*itRegion);
           }
-        }
+    }
       }
-    }
-    // Create and retrieve all the points for the mesh region.
-    pointszone = (*itMeshRegion)->MeshGrid();
+  }
+  // Create and retrieve all the points for the mesh region.
+  pointszone = (*itMeshRegion)->MeshGrid();
 
-    if (vcRegsInCurrentReg.size() == 0)
-    {
+  if (vcRegsInCurrentReg.size() == 0)
+  {
       for (PtIt = pointszone.begin(); PtIt != pointszone.end(); PtIt++)
-        point_map.insert(TPointMap2D::value_type(rs.ToLocal(*PtIt), *PtIt));
-    }
-    else
-    {
+    point_map.insert(TPointMap2D::value_type(rs.ToLocal(*PtIt), *PtIt));
+  }
+  else
+  {
       for (PtIt = pointszone.begin(); PtIt != pointszone.end(); PtIt++)
       {
-        bool bInARegion = false;
-        for (size_t i = 0; i < vcRegsInCurrentReg.size(); i++)
-        {
+    bool bInARegion = false;
+    for (size_t i = 0; i < vcRegsInCurrentReg.size(); i++)
+    {
           if (vcRegsInCurrentReg[i]->InsideRegion(*PtIt, false))
           {
-            bInARegion = true;
-            break;
+      bInARegion = true;
+      break;
           }
-        }
-        if (!bInARegion)
+    }
+    if (!bInARegion)
           point_map.insert(TPointMap2D::value_type(rs.ToLocal(*PtIt), *PtIt));
       }
-    }
+  }
 
-    m_vcRegions.push_back(*itMeshRegion);
-    count++;
-    progress.Step();
+  m_vcRegions.push_back(*itMeshRegion);
+  count++;
+  progress.Step();
   }
 
   // Copy all the sorted points in the CArray.
   for (TPointMap2D::iterator copyPoint = point_map.begin(); copyPoint != point_map.end(); copyPoint++)
   {
-    geo::CPoint point = copyPoint->second;
-    m_aMeshGrid.PushBack(point);
+  geo::CPoint point = copyPoint->second;
+  m_aMeshGrid.PushBack(point);
   }
 
   return true;
@@ -259,7 +259,7 @@ bool CHexaMesher::CreateHorizonMeshGrid(CHexaFormation& formation, IProgressBase
 
   for (itMeshRegion = stNode.begin(); itMeshRegion != stNode.end(); itMeshRegion++)
   {
-    if ((*itMeshRegion)->Hull().NrOfPoints() < 4)
+  if ((*itMeshRegion)->Hull().NrOfPoints() < 4)
       delete *itMeshRegion;
   }
 
@@ -269,87 +269,87 @@ bool CHexaMesher::CreateHorizonMeshGrid(CHexaFormation& formation, IProgressBase
   stNode = pEntry->EntryNodes();
   for (itMeshRegion = stNode.begin(); itMeshRegion != stNode.end(); itMeshRegion++)
   {
-    CHexaSubMeshRegion *s = dynamic_cast<CHexaSubMeshRegion *>(*itMeshRegion);
-    if (s && s->Formation(formation) == 0)
+  CHexaSubMeshRegion *s = dynamic_cast<CHexaSubMeshRegion *>(*itMeshRegion);
+  if (s && s->Formation(formation) == 0)
       continue;
 
-    geo::CPoint ptMeshRegionMin = rs.LocalMin((*itMeshRegion)->Hull());
-    geo::CPoint ptMeshRegionMax = rs.LocalMax((*itMeshRegion)->Hull());
-    vcRegsInCurrentReg.clear();
-    if (dynamic_cast<CHexaSubMeshRegion*>(*itMeshRegion))
-    {
+  geo::CPoint ptMeshRegionMin = rs.LocalMin((*itMeshRegion)->Hull());
+  geo::CPoint ptMeshRegionMax = rs.LocalMax((*itMeshRegion)->Hull());
+  vcRegsInCurrentReg.clear();
+  if (dynamic_cast<CHexaSubMeshRegion*>(*itMeshRegion))
+  {
       // only when current meshregion is not the main mesh region.
       for (itRegion = stNode.begin(); itRegion != stNode.end(); itRegion++)
       {
-        if (*itRegion == *itMeshRegion)
+    if (*itRegion == *itMeshRegion)
           continue;
 
-        geo::CPoint ptRegionMin = rs.LocalMin((*itRegion)->Hull());
-        geo::CPoint ptRegionMax = rs.LocalMax((*itRegion)->Hull());
-        bool bInside = (ptRegionMin.X() > ptMeshRegionMin.X() && ptRegionMin.Y() > ptMeshRegionMin.Y() &&
+    geo::CPoint ptRegionMin = rs.LocalMin((*itRegion)->Hull());
+    geo::CPoint ptRegionMax = rs.LocalMax((*itRegion)->Hull());
+    bool bInside = (ptRegionMin.X() > ptMeshRegionMin.X() && ptRegionMin.Y() > ptMeshRegionMin.Y() &&
           ptRegionMax.X() < ptMeshRegionMax.X() && ptRegionMax.Y() < ptMeshRegionMax.Y());
 
-        if (bInside)
-        {
+    if (bInside)
+    {
           // don't allow smaller gridsizes
           if ((*itRegion)->GridSizeX() > (*itMeshRegion)->GridSizeX() || (*itRegion)->GridSizeY() > (*itMeshRegion)->GridSizeY())
           {
-            if (pErrMsg)
-            {
+      if (pErrMsg)
+      {
               pErrMsg->append(QString("The grid of region '%1' is courser than the grid of region '%2', "
-                "but region '%3' is completely inside region '%4'.\nThis is not allowed.\n\nMeshing aborted.").
-                arg((*itRegion)->Name()).arg((*itMeshRegion)->Name()).
-                arg((*itRegion)->Name()).arg((*itMeshRegion)->Name()));
-            }
-            return false;
+        "but region '%3' is completely inside region '%4'.\nThis is not allowed.\n\nMeshing aborted.").
+        arg((*itRegion)->Name()).arg((*itMeshRegion)->Name()).
+        arg((*itRegion)->Name()).arg((*itMeshRegion)->Name()));
+      }
+      return false;
           }
-        }
+    }
 
-        if ((*itRegion)->GridSizeX() > (*itMeshRegion)->GridSizeX() || (*itRegion)->GridSizeY() > (*itMeshRegion)->GridSizeY())
-        {
+    if ((*itRegion)->GridSizeX() > (*itMeshRegion)->GridSizeX() || (*itRegion)->GridSizeY() > (*itMeshRegion)->GridSizeY())
+    {
           if (bInside)
           {
-            vcRegsInCurrentReg.push_back(*itRegion);
+      vcRegsInCurrentReg.push_back(*itRegion);
           }
-        }
+    }
       }
-    }
-    // Create and retrieve all the points for the mesh region.
-    pointszone = (*itMeshRegion)->MeshGrid();
+  }
+  // Create and retrieve all the points for the mesh region.
+  pointszone = (*itMeshRegion)->MeshGrid();
 
-    if (vcRegsInCurrentReg.size() == 0)
-    {
+  if (vcRegsInCurrentReg.size() == 0)
+  {
       for (PtIt = pointszone.begin(); PtIt != pointszone.end(); PtIt++)
-        point_map.insert(TPointMap2D::value_type(rs.ToLocal(*PtIt), *PtIt));
-    }
-    else
-    {
+    point_map.insert(TPointMap2D::value_type(rs.ToLocal(*PtIt), *PtIt));
+  }
+  else
+  {
       for (PtIt = pointszone.begin(); PtIt != pointszone.end(); PtIt++)
       {
-        bool bInARegion = false;
-        for (size_t i = 0; i < vcRegsInCurrentReg.size(); i++)
-        {
+    bool bInARegion = false;
+    for (size_t i = 0; i < vcRegsInCurrentReg.size(); i++)
+    {
           if (vcRegsInCurrentReg[i]->InsideRegion(*PtIt, false))
           {
-            bInARegion = true;
-            break;
+      bInARegion = true;
+      break;
           }
-        }
-        if (!bInARegion)
+    }
+    if (!bInARegion)
           point_map.insert(TPointMap2D::value_type(rs.ToLocal(*PtIt), *PtIt));
       }
-    }
+  }
 
-    m_vcRegions.push_back(*itMeshRegion);
-    count++;
-    progress.Step();
+  m_vcRegions.push_back(*itMeshRegion);
+  count++;
+  progress.Step();
   }
 
   // Copy all the sorted points in the CArray.
   for (TPointMap2D::iterator copyPoint = point_map.begin(); copyPoint != point_map.end(); copyPoint++)
   {
-    geo::CPoint point = copyPoint->second;
-    m_aMeshGrid.PushBack(point);
+  geo::CPoint point = copyPoint->second;
+  m_aMeshGrid.PushBack(point);
   }
 
   return true;
@@ -372,61 +372,61 @@ void CHexaMesher::CreateMeshNodes(IProgressBase& progress)
 
   CHexaHorizon *pHorizon = 0;
   if (pFormation != 0)
-    pHorizon = &pFormation->UpperHorizon();
+  pHorizon = &pFormation->UpperHorizon();
 
   CHexaHorizon *pCountHorizon = pHorizon;
   CHexaFormation *pCountFormation = pFormation;
   long count = 0;
   while (pCountHorizon)
   {
-    progress.AddSteps(m_aMeshGrid.Size());
-    if (pCountFormation != 0)
-    {
+  progress.AddSteps(m_aMeshGrid.Size());
+  if (pCountFormation != 0)
+  {
       pCountHorizon = &pCountFormation->LowerHorizon();
       pCountFormation = pCountHorizon->LowerFormation();
-    }
-    else
+  }
+  else
       pCountHorizon = 0;
   }
 
   while (pHorizon != 0)
   {
-    for (geo::CArray<geo::CPoint>::iterator itPoint = m_aMeshGrid.begin(); itPoint != m_aMeshGrid.end(); itPoint++)
-    {
+  for (geo::CArray<geo::CPoint>::iterator itPoint = m_aMeshGrid.begin(); itPoint != m_aMeshGrid.end(); itPoint++)
+  {
       // A horizon with a constant depth. Just create points at this depth.
       geo::CValue dValue;
       if (pHorizon->ConstantDepth())
       {
-        dValue = pHorizon->Depth().Value();
+    dValue = pHorizon->Depth().Value();
       }
       else
       {
-        assert(pHorizon->SurfaceSize() > 0);
-        if (pHorizon->SurfaceSize() > 1)
-        {
+    assert(pHorizon->SurfaceSize() > 0);
+    if (pHorizon->SurfaceSize() > 1)
+    {
           int i = 0;
           while ((i < pHorizon->SurfaceSize()) && !dValue.Valid())
           {
-            dValue = pHorizon->Surface(i).InterpolateDepth(*itPoint, false);
-            i++;
+      dValue = pHorizon->Surface(i).InterpolateDepth(*itPoint, false);
+      i++;
           }
           double dMinDistance = DBL_MAX;
           i = 0;
           while (i < pHorizon->SurfaceSize())
           {
-            const geo::CPoint nearest_point = pHorizon->Surface(0).Surface().NearestXYPoint(*itPoint);
-            geo::CPoint diff = nearest_point - *itPoint;
-            double dDistance = diff.X() * diff.X() + diff.Y() * diff.Y();
-            if (dDistance < dMinDistance)
-            {
+      const geo::CPoint nearest_point = pHorizon->Surface(0).Surface().NearestXYPoint(*itPoint);
+      geo::CPoint diff = nearest_point - *itPoint;
+      double dDistance = diff.X() * diff.X() + diff.Y() * diff.Y();
+      if (dDistance < dMinDistance)
+      {
               dValue = geo::CValue(nearest_point.Z());
               dMinDistance = dDistance;
-            }
-            ++i;
+      }
+      ++i;
           }
           assert(dValue.Valid());
-        }
-        else
+    }
+    else
           dValue = pHorizon->Surface(0).InterpolateDepth(*itPoint, true);
       }
 
@@ -435,14 +435,14 @@ void CHexaMesher::CreateMeshNodes(IProgressBase& progress)
       m_pPoints.push_back(nIndex);
       count++;
       progress.Step();
-    }
+  }
 
-    if (pFormation != 0)
-    {
+  if (pFormation != 0)
+  {
       pHorizon = &pFormation->LowerHorizon();
       pFormation = pHorizon->LowerFormation();
-    }
-    else
+  }
+  else
       pHorizon = 0;
   }
 }
@@ -460,36 +460,36 @@ void CHexaMesher::InsertSlipLayers(IProgressBase& progress)
   CHexaFormation *pFormation = &(Mesh().GetTopFormation());
   while (pFormation != 0)
   {
-    CHexaHorizon *pHor = &pFormation->LowerHorizon();
-    if (pHor->Slip())
-    {
+  CHexaHorizon *pHor = &pFormation->LowerHorizon();
+  if (pHor->Slip())
+  {
       max++;
-    }
+  }
 
-    // Next Formation.
-    pFormation = pHor->LowerFormation();
+  // Next Formation.
+  pFormation = pHor->LowerFormation();
   }
   progress.AddSteps(max*meshsize);
 
   pFormation = &(Mesh().GetTopFormation());
   while (pFormation != 0)
   {
-    CHexaHorizon *pHor = &pFormation->LowerHorizon();
-    if (pHor->Slip())
-    {
+  CHexaHorizon *pHor = &pFormation->LowerHorizon();
+  if (pHor->Slip())
+  {
       for (int i = 0; i < meshsize; i++)
       {
-        // Creation of slip nodes ....
-        int nIndex = Mesh().m_mesh.RegisterNode(Mesh().m_mesh.Point(m_pPoints[iCounter*meshsize + i]), false);
-        m_pSlipPoints.push_back(nIndex);
-        count++;
-        progress.Step();
+    // Creation of slip nodes ....
+    int nIndex = Mesh().m_mesh.RegisterNode(Mesh().m_mesh.Point(m_pPoints[iCounter*meshsize + i]), false);
+    m_pSlipPoints.push_back(nIndex);
+    count++;
+    progress.Step();
       }
-    }
-    iCounter++;
+  }
+  iCounter++;
 
-    // Next Formation.
-    pFormation = pHor->LowerFormation();
+  // Next Formation.
+  pFormation = pHor->LowerFormation();
   }
 }
 // Take a look at the minimum thickness of a formation. If this is smaller than the given value of
@@ -504,23 +504,23 @@ void CHexaMesher::ModifyMeshNodes(IProgressBase& progress)
 
   for (int i = 0; i<iNumOfSets - 1; i++)
   {
-    progress.Step();
-    assert(pFormation);
+  progress.Step();
+  assert(pFormation);
 
-    double dMinThickness = pFormation->MinThickness().Value();
-    for (int j = 0; j<meshsize; j++)
-    {
+  double dMinThickness = pFormation->MinThickness().Value();
+  for (int j = 0; j<meshsize; j++)
+  {
       if (Mesh().m_mesh.Point(m_pPoints[(i + 1)*meshsize + j]).Z() - Mesh().m_mesh.Point(m_pPoints[i*meshsize + j]).Z() < dMinThickness)
       {
-        const geo::IPoint &p_old = Mesh().m_mesh.Point(m_pPoints[(i + 1)*meshsize + j]);
-        Mesh().m_mesh.Node(m_pPoints[(i + 1)*meshsize + j], geo::CPoint(p_old.X(),
+    const geo::IPoint &p_old = Mesh().m_mesh.Point(m_pPoints[(i + 1)*meshsize + j]);
+    Mesh().m_mesh.Node(m_pPoints[(i + 1)*meshsize + j], geo::CPoint(p_old.X(),
           p_old.Y(),
           Mesh().m_mesh.Point(m_pPoints[i*meshsize + j]).Z() + dMinThickness));
       }
-    }
-    // Next Formation.
-    CHexaHorizon *pHor = &pFormation->LowerHorizon();
-    pFormation = pHor->LowerFormation();
+  }
+  // Next Formation.
+  CHexaHorizon *pHor = &pFormation->LowerHorizon();
+  pFormation = pHor->LowerFormation();
   }
 }
 // Create all the points which are in between the horizons. This depends on the 
@@ -538,34 +538,34 @@ void CHexaMesher::InsertMeshNodes(IProgressBase& progress)
   progress.AddSteps(iNumOfSets - 1);
   for (int mesh = 0; mesh < iNumOfSets - 1; mesh++)
   {
-    progress.Step();
-    assert(pFormation);
+  progress.Step();
+  assert(pFormation);
 
-    // Create the number of elements per formation and per node.
-    //		if(pFormation->Depleting() && pFormation->Elements() < 4)
-    //			pFormation->Elements(4); // 4 elements for reservoirs
-    /*		else*/
-    //		if(pFormation->Elements() < 2)
-    //			pFormation->Elements(2); // 2 for non-reservoirs
+  // Create the number of elements per formation and per node.
+  //		if(pFormation->Depleting() && pFormation->Elements() < 4)
+  //			pFormation->Elements(4); // 4 elements for reservoirs
+  /*		else*/
+  //		if(pFormation->Elements() < 2)
+  //			pFormation->Elements(2); // 2 for non-reservoirs
 
-    meshblock = pFormation->Elements();
-    for (int bl = 1; bl < meshblock; bl++)
-    {
+  meshblock = pFormation->Elements();
+  for (int bl = 1; bl < meshblock; bl++)
+  {
       for (int it = 0; it < meshsize; it++)
       {
-        const geo::IPoint& point = Mesh().m_mesh.Point(m_pPoints[it + mesh*meshsize]);
-        const geo::IPoint& point_ref = Mesh().m_mesh.Point(m_pPoints[(mesh + 1)*meshsize + it]);
+    const geo::IPoint& point = Mesh().m_mesh.Point(m_pPoints[it + mesh*meshsize]);
+    const geo::IPoint& point_ref = Mesh().m_mesh.Point(m_pPoints[(mesh + 1)*meshsize + it]);
 
-        // Calculate the distance at the z-axis between the horizon of a formation and
-        // acoording to the number of meshblocks.
-        int nIndex = Mesh().m_mesh.RegisterNode(geo::CPoint(point.X(), point.Y(), point.Z() + bl*((point_ref.Z() - point.Z()) / meshblock)));
-        m_pPointsInternal.push_back(nIndex);
+    // Calculate the distance at the z-axis between the horizon of a formation and
+    // acoording to the number of meshblocks.
+    int nIndex = Mesh().m_mesh.RegisterNode(geo::CPoint(point.X(), point.Y(), point.Z() + bl*((point_ref.Z() - point.Z()) / meshblock)));
+    m_pPointsInternal.push_back(nIndex);
 
       }
-    }
-    // Next Formation.
-    CHexaHorizon *pHor = &pFormation->LowerHorizon();
-    pFormation = pHor->LowerFormation();
+  }
+  // Next Formation.
+  CHexaHorizon *pHor = &pFormation->LowerHorizon();
+  pFormation = pHor->LowerFormation();
   }
 }
 
@@ -612,27 +612,27 @@ void CHexaMesher::CreateHexahedronMesh(IProgressBase& progress)
 
   for (int mesh = 0; mesh < iNumOfSets - 1; mesh++)
   {
-    // The formation should not have a volume. We create a body group with an upper and lower side surface
-    // on the mesh and formation volume.
-    assert(pFormation && (pFormation->VolumeSize() == 1));
-    geo::CBodyGroup *pGroup = new geo::CBodyGroup(Mesh().m_mesh);
-    new geo::CBodyGroup::CSideSurface(*pGroup);	// SideSurface 0 (top)
-    new geo::CBodyGroup::CSideSurface(*pGroup); // SideSurface 1 (bottom)
-    new geo::CBodyGroup::CSideSurface(*pGroup); // SideSurface 2 (front)
-    new geo::CBodyGroup::CSideSurface(*pGroup); // SideSurface 3 (back)
-    new geo::CBodyGroup::CSideSurface(*pGroup); // SideSurface 4 (left)
-    new geo::CBodyGroup::CSideSurface(*pGroup); // SideSurface 5 (right)
-    VERIFY(pFormation->Volume(0).Volume(*pGroup));
-    assert(pFormation->Volume(0).Volume().SideSurfaceSize() == 6);
+  // The formation should not have a volume. We create a body group with an upper and lower side surface
+  // on the mesh and formation volume.
+  assert(pFormation && (pFormation->VolumeSize() == 1));
+  geo::CBodyGroup *pGroup = new geo::CBodyGroup(Mesh().m_mesh);
+  new geo::CBodyGroup::CSideSurface(*pGroup);	// SideSurface 0 (top)
+  new geo::CBodyGroup::CSideSurface(*pGroup); // SideSurface 1 (bottom)
+  new geo::CBodyGroup::CSideSurface(*pGroup); // SideSurface 2 (front)
+  new geo::CBodyGroup::CSideSurface(*pGroup); // SideSurface 3 (back)
+  new geo::CBodyGroup::CSideSurface(*pGroup); // SideSurface 4 (left)
+  new geo::CBodyGroup::CSideSurface(*pGroup); // SideSurface 5 (right)
+  VERIFY(pFormation->Volume(0).Volume(*pGroup));
+  assert(pFormation->Volume(0).Volume().SideSurfaceSize() == 6);
 
-    assert(pHorizon);
+  assert(pHorizon);
 
-    // Reset the counter for counting the number of Hexahedron elements per layer per formation.
-    iNrHexPerLayer = 0;
+  // Reset the counter for counting the number of Hexahedron elements per layer per formation.
+  iNrHexPerLayer = 0;
 
-    iCount = mesh*meshsize;
-    for (it = iCount; it < (mesh*meshsize) + meshsize; it++)
-    {
+  iCount = mesh*meshsize;
+  for (it = iCount; it < (mesh*meshsize) + meshsize; it++)
+  {
       progress.Step();
       found = false;
       if (++iCount >(mesh*meshsize) + meshsize) break;
@@ -640,7 +640,7 @@ void CHexaMesher::CreateHexahedronMesh(IProgressBase& progress)
 
       if (it != 0)
       { // Do not perform the check when this is the first point
-        if (CheckLine.Contains(geo::CPoint(Mesh().m_mesh.Point(p).X(), Mesh().m_mesh.Point(p).Y(), 0), false))
+    if (CheckLine.Contains(geo::CPoint(Mesh().m_mesh.Point(p).X(), Mesh().m_mesh.Point(p).Y(), 0), false))
           continue;
       }
 
@@ -648,56 +648,56 @@ void CHexaMesher::CreateHexahedronMesh(IProgressBase& progress)
       // Search for the next point with at the same x-axis but which also make a square.
       for (next = it + 1; next < (mesh*meshsize) + meshsize; next++)
       {
-        if (++iNextCount >(mesh*meshsize) + meshsize) break;
+    if (++iNextCount >(mesh*meshsize) + meshsize) break;
 
-        n = m_pPoints[next];
-        if (fabs(rs.ToLocal(Mesh().m_mesh.Point(n)).Y() - rs.ToLocal(Mesh().m_mesh.Point(p)).Y()) < EPS)
-        {
+    n = m_pPoints[next];
+    if (fabs(rs.ToLocal(Mesh().m_mesh.Point(n)).Y() - rs.ToLocal(Mesh().m_mesh.Point(p)).Y()) < EPS)
+    {
           // Search for the next point with at the same y-axis but which also make a square.
           int iUpCount = iNextCount;
           for (up = next + 1; up < (mesh*meshsize) + meshsize; up++)
           {
-            if (++iUpCount >(mesh*meshsize) + meshsize) break;
+      if (++iUpCount >(mesh*meshsize) + meshsize) break;
 
-            u = m_pPoints[up];
-            if (fabs(rs.ToLocal(Mesh().m_mesh.Point(u)).X() - rs.ToLocal(Mesh().m_mesh.Point(p)).X()) < EPS)
-            {
+      u = m_pPoints[up];
+      if (fabs(rs.ToLocal(Mesh().m_mesh.Point(u)).X() - rs.ToLocal(Mesh().m_mesh.Point(p)).X()) < EPS)
+      {
               // Search for the last point of the square.
               int iUpNextCount = iUpCount;
               for (upnext = up + 1; upnext < (mesh*meshsize) + meshsize; upnext++)
               {
-                if (++iUpNextCount >(mesh*meshsize) + meshsize) break;
+        if (++iUpNextCount >(mesh*meshsize) + meshsize) break;
 
-                v = m_pPoints[upnext];
-                // Check if it's a rectangle.
-                if ((fabs(rs.ToLocal(Mesh().m_mesh.Point(v)).X() - rs.ToLocal(Mesh().m_mesh.Point(n)).X()) < EPS) &&
+        v = m_pPoints[upnext];
+        // Check if it's a rectangle.
+        if ((fabs(rs.ToLocal(Mesh().m_mesh.Point(v)).X() - rs.ToLocal(Mesh().m_mesh.Point(n)).X()) < EPS) &&
                   (fabs(rs.ToLocal(Mesh().m_mesh.Point(u)).Y() - rs.ToLocal(Mesh().m_mesh.Point(v)).Y()) < EPS))
-                {
+        {
                   geo::CPoint local_p(rs.ToLocal(Mesh().m_mesh.Point(p)));
                   geo::CPoint local_v(rs.ToLocal(Mesh().m_mesh.Point(v)));
 
                   double dXOff = fabs(local_p.X() - local_v.X());
                   double dYOff = fabs(local_p.Y() - local_v.Y());
                   geo::CPoint ptCenter(local_p.X() + (dXOff / 2),
-                    local_p.Y() + (dYOff / 2), 0);
+          local_p.Y() + (dYOff / 2), 0);
 
                   bool bFalseRectangle = false;
                   for (size_t l = 0; l < m_vcRegions.size(); l++)
                   {
-                    CHexaMeshRegionBase *pReg = m_vcRegions[l];
-                    double dDistFromBound = fabs(local_p.Y() - dYbegin);
-                    double dGridsizeX = pReg->GridSizeX();
-                    double dGridsizeY = pReg->GridSizeY();
-                    double dCheck = dDistFromBound + EPS / 2;
-                    double dRest = fmod(dCheck, dGridsizeY);
-                    if (pReg->InsideRegion(rs.ToGlobal(ptCenter), false) && fabs(dXOff - dGridsizeX) < EPS && fabs(dYOff - dGridsizeY) < EPS && dRest < EPS)
+          CHexaMeshRegionBase *pReg = m_vcRegions[l];
+          double dDistFromBound = fabs(local_p.Y() - dYbegin);
+          double dGridsizeX = pReg->GridSizeX();
+          double dGridsizeY = pReg->GridSizeY();
+          double dCheck = dDistFromBound + EPS / 2;
+          double dRest = fmod(dCheck, dGridsizeY);
+          if (pReg->InsideRegion(rs.ToGlobal(ptCenter), false) && fabs(dXOff - dGridsizeX) < EPS && fabs(dYOff - dGridsizeY) < EPS && dRest < EPS)
                       break;
-                    if (l == m_vcRegions.size() - 1)
+          if (l == m_vcRegions.size() - 1)
                       bFalseRectangle = true;
                   }
 
                   if (bFalseRectangle)
-                    continue;
+          continue;
 
                   CheckLine.First(geo::CPoint(Mesh().m_mesh.Point(p).X(), Mesh().m_mesh.Point(p).Y(), 0));
                   CheckLine.Second(geo::CPoint(Mesh().m_mesh.Point(n).X(), Mesh().m_mesh.Point(n).Y(), 0));
@@ -705,127 +705,127 @@ void CHexaMesher::CreateHexahedronMesh(IProgressBase& progress)
                   meshblock = pFormation->Elements();
                   for (int bl = 0; bl < meshblock; bl++)
                   {
-                    std::vector<int> hexpoints;
+          std::vector<int> hexpoints;
 
-                    // Calculate the distance at the z-axis between the horizon of a formation and
-                    // acoording to the number of meshblocks.
-                    if (bl == 0)
-                    {
+          // Calculate the distance at the z-axis between the horizon of a formation and
+          // acoording to the number of meshblocks.
+          if (bl == 0)
+          {
                       // Upper points of formation.
                       if ((pPrevHorizon != 0) && pPrevHorizon->Slip())
                       {
-                        // Use the extra created slippoints.
-                        hexpoints.push_back(m_pSlipPoints[(iCount - 1) - (mesh*meshsize) + (iSlipCounter - 1)*meshsize]);
-                        hexpoints.push_back(m_pSlipPoints[(iNextCount - 1) - (mesh*meshsize) + (iSlipCounter - 1)*meshsize]);
-                        hexpoints.push_back(m_pSlipPoints[(iUpNextCount - 1) - (mesh*meshsize) + (iSlipCounter - 1)*meshsize]);
-                        hexpoints.push_back(m_pSlipPoints[(iUpCount - 1) - (mesh*meshsize) + (iSlipCounter - 1)*meshsize]);
+            // Use the extra created slippoints.
+            hexpoints.push_back(m_pSlipPoints[(iCount - 1) - (mesh*meshsize) + (iSlipCounter - 1)*meshsize]);
+            hexpoints.push_back(m_pSlipPoints[(iNextCount - 1) - (mesh*meshsize) + (iSlipCounter - 1)*meshsize]);
+            hexpoints.push_back(m_pSlipPoints[(iUpNextCount - 1) - (mesh*meshsize) + (iSlipCounter - 1)*meshsize]);
+            hexpoints.push_back(m_pSlipPoints[(iUpCount - 1) - (mesh*meshsize) + (iSlipCounter - 1)*meshsize]);
                       }
                       else
                       {
-                        // Use the regular points.
-                        hexpoints.push_back(p);
-                        hexpoints.push_back(n);
-                        hexpoints.push_back(v);
-                        hexpoints.push_back(u);
+            // Use the regular points.
+            hexpoints.push_back(p);
+            hexpoints.push_back(n);
+            hexpoints.push_back(v);
+            hexpoints.push_back(u);
                       }
                       iNrHexPerLayer++;
-                    }
-                    else
-                    {
+          }
+          else
+          {
                       hexpoints.push_back(m_pPointsInternal[(iInternalCount + bl - 1)*meshsize + (iCount - mesh*meshsize) - 1]);
                       hexpoints.push_back(m_pPointsInternal[(iInternalCount + bl - 1)*meshsize + (iNextCount - mesh*meshsize) - 1]);
                       hexpoints.push_back(m_pPointsInternal[(iInternalCount + bl - 1)*meshsize + (iUpNextCount - mesh*meshsize) - 1]);
                       hexpoints.push_back(m_pPointsInternal[(iInternalCount + bl - 1)*meshsize + (iUpCount - mesh*meshsize) - 1]);
-                    }
+          }
 
-                    if (bl == meshblock - 1)
-                    {
+          if (bl == meshblock - 1)
+          {
                       // Lower points of formation.
                       hexpoints.push_back(m_pPoints[meshsize + iCount - 1]);
                       hexpoints.push_back(m_pPoints[meshsize + iNextCount - 1]);
                       hexpoints.push_back(m_pPoints[meshsize + iUpNextCount - 1]);
                       hexpoints.push_back(m_pPoints[meshsize + iUpCount - 1]);
-                    }
-                    else
-                    {
+          }
+          else
+          {
                       hexpoints.push_back(m_pPointsInternal[(iInternalCount + bl)*meshsize + (iCount - mesh*meshsize) - 1]);
                       hexpoints.push_back(m_pPointsInternal[(iInternalCount + bl)*meshsize + (iNextCount - mesh*meshsize) - 1]);
                       hexpoints.push_back(m_pPointsInternal[(iInternalCount + bl)*meshsize + (iUpNextCount - mesh*meshsize) - 1]);
                       hexpoints.push_back(m_pPointsInternal[(iInternalCount + bl)*meshsize + (iUpCount - mesh*meshsize) - 1]);
-                    }
+          }
 
-                    // Add hexahedron to the vectorlist.
-                    geo::CHexahedron *hex = new geo::CHexahedron(Mesh().Mesh(), hexpoints);
-                    assert(pFormation->VolumeSize() == 1);
-                    assert(pFormation->Volume(0).Volume().SideSurfaceSize() == 6);
-                    pFormation->Volume(0).Volume().AddBody(*hex);
+          // Add hexahedron to the vectorlist.
+          geo::CHexahedron *hex = new geo::CHexahedron(Mesh().Mesh(), hexpoints);
+          assert(pFormation->VolumeSize() == 1);
+          assert(pFormation->Volume(0).Volume().SideSurfaceSize() == 6);
+          pFormation->Volume(0).Volume().AddBody(*hex);
 
-                    // Add the face of the upper hexahedron of the formation to side surface nr. 0 (Upper surface)
-                    if (bl == 0)
-                    {
+          // Add the face of the upper hexahedron of the formation to side surface nr. 0 (Upper surface)
+          if (bl == 0)
+          {
                       // Face to upper surface of formation ...
                       pFormation->Volume(0).Volume().SideSurface(TOP).AddFace(hex->Face(HEXA_UPPERFACE));
-                    }
+          }
 
-                    // Add the face of the lower hexahedron of the formation to side surface nr. 1 (Lower surface)
-                    if (bl == meshblock - 1)
-                    {
+          // Add the face of the lower hexahedron of the formation to side surface nr. 1 (Lower surface)
+          if (bl == meshblock - 1)
+          {
                       pFormation->Volume(0).Volume().SideSurface(BOTTOM).AddFace(hex->Face(HEXA_LOWERFACE));
-                    }
+          }
 
-                    geo::CPoint ptHexLocalMin(rs.LocalMin(*hex));
-                    geo::CPoint ptHexLocalMax(rs.LocalMax(*hex));
+          geo::CPoint ptHexLocalMin(rs.LocalMin(*hex));
+          geo::CPoint ptHexLocalMax(rs.LocalMax(*hex));
 
-                    if (fabs(ptHexLocalMin.X() - ptLocalMin.X()) < EPS)
-                    {
+          if (fabs(ptHexLocalMin.X() - ptLocalMin.X()) < EPS)
+          {
                       pFormation->Volume(0).Volume().SideSurface(LEFT).AddFace(hex->Face(HEXA_LEFTFACE));
-                    }
+          }
 
-                    if (fabs(ptHexLocalMax.X() - ptLocalMax.X()) < EPS)
-                    {
+          if (fabs(ptHexLocalMax.X() - ptLocalMax.X()) < EPS)
+          {
                       pFormation->Volume(0).Volume().SideSurface(RIGHT).AddFace(hex->Face(HEXA_RIGHTFACE));
-                    }
+          }
 
-                    if (fabs(ptHexLocalMin.Y() - ptLocalMin.Y()) < EPS)
-                    {
+          if (fabs(ptHexLocalMin.Y() - ptLocalMin.Y()) < EPS)
+          {
                       pFormation->Volume(0).Volume().SideSurface(FRONT).AddFace(hex->Face(HEXA_FRONTFACE));
-                    }
+          }
 
-                    if (fabs(ptHexLocalMax.Y() - ptLocalMax.Y()) < EPS)
-                    {
+          if (fabs(ptHexLocalMax.Y() - ptLocalMax.Y()) < EPS)
+          {
                       pFormation->Volume(0).Volume().SideSurface(BACK).AddFace(hex->Face(HEXA_BACKFACE));
-                    }
+          }
                   }
 
                   found = true;
                   break;
-                }
+        }
               }
               if (found) break;
-            }
+      }
           }
           if (found) break;
-        }
-      }
     }
+      }
+  }
 
-    // Used as a pointer in the m_pPointsInternal list.
-    iInternalCount += (pFormation->Elements() - 1);
+  // Used as a pointer in the m_pPointsInternal list.
+  iInternalCount += (pFormation->Elements() - 1);
 
-    // Set the number of hexahedron elements per layer per formation.
-    //		pFormation->SetNrHexPerLayer(iNrHexPerLayer);
+  // Set the number of hexahedron elements per layer per formation.
+  //		pFormation->SetNrHexPerLayer(iNrHexPerLayer);
 
-    pPrevHorizon = pHorizon;
-    if ((pPrevHorizon != 0) && pPrevHorizon->Slip()) iSlipCounter++;
+  pPrevHorizon = pHorizon;
+  if ((pPrevHorizon != 0) && pPrevHorizon->Slip()) iSlipCounter++;
 
-    // Next Formation & Horizon.
-    pHorizon = &pFormation->LowerHorizon();
-    pFormation = pHorizon->LowerFormation();
+  // Next Formation & Horizon.
+  pHorizon = &pFormation->LowerHorizon();
+  pFormation = pHorizon->LowerFormation();
 
-    // Get the next lower horizon.
-    if (pFormation != 0) pHorizon = &pFormation->LowerHorizon();
+  // Get the next lower horizon.
+  if (pFormation != 0) pHorizon = &pFormation->LowerHorizon();
 
-    iNrOfHorizons++;
+  iNrOfHorizons++;
   } // Formation
 
 }
@@ -838,26 +838,26 @@ void CHexaMesher::_Tyings_SetupPoints(_TyingsInfo& info)
 
   // add the slip-points first, so the test below for the lowest points (which should not be tied in Z-direction) still works
   for (size_t i = 0; i < m_pSlipPoints.size(); ++i)
-    info.vcPoints[i] = m_pSlipPoints[i];
+  info.vcPoints[i] = m_pSlipPoints[i];
 
   int nOffset = m_pSlipPoints.size();
   for (size_t i = 0; i < m_pPoints.size(); ++i)
-    info.vcPoints[nOffset + i] = m_pPoints[i];
+  info.vcPoints[nOffset + i] = m_pPoints[i];
 
   // Create map for outer points 
   for (size_t i = 0; i < info.vcPoints.size(); i++)
   {
-    TPointMap::value_type value_type(&Mesh().m_mesh.Point(info.vcPoints[i]), std::vector<int>());
-    TPointMap::iterator it = info.mpPoint.insert(value_type).first;
-    it->second.push_back(info.vcPoints[i]);
+  TPointMap::value_type value_type(&Mesh().m_mesh.Point(info.vcPoints[i]), std::vector<int>());
+  TPointMap::iterator it = info.mpPoint.insert(value_type).first;
+  it->second.push_back(info.vcPoints[i]);
   }
 
   // Create a map for inner points
   for (size_t i = 0; i < m_pPointsInternal.size(); i++)
   {
-    TPointMap::value_type value_type(&Mesh().m_mesh.Point(m_pPointsInternal[i]), std::vector<int>());
-    TPointMap::iterator it = info.mpInternalPoint.insert(value_type).first;
-    it->second.push_back(m_pPointsInternal[i]);
+  TPointMap::value_type value_type(&Mesh().m_mesh.Point(m_pPointsInternal[i]), std::vector<int>());
+  TPointMap::iterator it = info.mpInternalPoint.insert(value_type).first;
+  it->second.push_back(m_pPointsInternal[i]);
   }
 
 }
@@ -870,34 +870,34 @@ void _local_Tyings_FindMasterRegion(const geo::IPoint& point, CHexaMeshRegionEnt
 
   for (CHexaMeshRegionEntry::TNodeSet::iterator itTempMeshReg = stNode.begin(); itTempMeshReg != stNode.end(); itTempMeshReg++)
   { // find the regions that contain the point (excluding the edge)
-    if (*itTempMeshReg == *itMeshRegion) continue;
+  if (*itTempMeshReg == *itMeshRegion) continue;
 
-    if ((*itTempMeshReg)->InsideRegion(point, false))
-    {
+  if ((*itTempMeshReg)->InsideRegion(point, false))
+  {
       vcRegions.push_back(*itTempMeshReg);
-    }
+  }
   }
 
   double dMinGrid = 0;
   double dTmpMinGrid = 0;
   for (size_t k = 0; k < vcRegions.size(); k++)
   { // pMasterRegion should be the region with the smallest grid size (either in X or in Y direction)
-    double dXGrid = vcRegions[k]->GridSizeX();
-    double dYGrid = vcRegions[k]->GridSizeY();
+  double dXGrid = vcRegions[k]->GridSizeX();
+  double dYGrid = vcRegions[k]->GridSizeY();
 
-    dTmpMinGrid = (dXGrid < dYGrid) ? dXGrid : dYGrid;
-    if (dMinGrid == 0)
-    {
+  dTmpMinGrid = (dXGrid < dYGrid) ? dXGrid : dYGrid;
+  if (dMinGrid == 0)
+  {
       dMinGrid = dTmpMinGrid;
       *pMasterRegion = vcRegions[k];
       continue;
-    }
+  }
 
-    if (dTmpMinGrid < dMinGrid)
-    {
+  if (dTmpMinGrid < dMinGrid)
+  {
       dMinGrid = dTmpMinGrid;
       *pMasterRegion = vcRegions[k];
-    }
+  }
   }
 
   // Is the node dangling in the pMasterRegion?
@@ -913,14 +913,14 @@ void CHexaMesher::_Tyings_Create(_TyingsInfo& info, int index, int nMaster1, int
   //fclose(fp);
 
   Mesh().m_mesh.CreateTying(index, info.Xaxis, geo::CTying::TR,
-    nMaster1, info.Xaxis, geo::CTying::TR, 1 - calcdist,
-    nMaster2, info.Xaxis, geo::CTying::TR, calcdist);
+  nMaster1, info.Xaxis, geo::CTying::TR, 1 - calcdist,
+  nMaster2, info.Xaxis, geo::CTying::TR, calcdist);
   Mesh().m_mesh.CreateTying(index, info.Yaxis, geo::CTying::TR,
-    nMaster1, info.Yaxis, geo::CTying::TR, 1 - calcdist,
-    nMaster2, info.Yaxis, geo::CTying::TR, calcdist);
+  nMaster1, info.Yaxis, geo::CTying::TR, 1 - calcdist,
+  nMaster2, info.Yaxis, geo::CTying::TR, calcdist);
   if (do_z)
   {
-    Mesh().m_mesh.CreateTying(index, geo::CVector::Zaxis, geo::CTying::TR,
+  Mesh().m_mesh.CreateTying(index, geo::CVector::Zaxis, geo::CTying::TR,
       nMaster1, geo::CVector::Zaxis, geo::CTying::TR, 1 - calcdist,
       nMaster2, geo::CVector::Zaxis, geo::CTying::TR, calcdist);
   }
@@ -935,26 +935,26 @@ void CHexaMesher::_Tyings_CreateForPoints(_TyingsInfo& info, CRotatedSystem& rs,
   // X and Y found, now lets go through all the points (Z differs).
   for (size_t i = 0; i < points.size(); i++)
   {
-    geo::CPoint local = rs.ToLocal(Mesh().m_mesh.Point(points[i]));
-    if ((fabs(local.X() - pp_local.X()) < EPS) && (fabs(local.Y() - pp_local.Y()) < EPS))
-    {
+  geo::CPoint local = rs.ToLocal(Mesh().m_mesh.Point(points[i]));
+  if ((fabs(local.X() - pp_local.X()) < EPS) && (fabs(local.Y() - pp_local.Y()) < EPS))
+  {
       // Create the tying object.
       TTyingMap::iterator itTying = info.mpCreatedTyings.find(points[i]);
       if (itTying == info.mpCreatedTyings.end())
       {
-        // not created yet
-        int nMaster1 = mpPoint[&info.basicpoints->Object(k0)][cnt];
-        int nMaster2 = mpPoint[&info.basicpoints->Object(k1)][cnt];
-        _Tyings_Create(info, points[i], nMaster1, nMaster2, calcdist, force_z || (points.size() - i > m_aMeshGrid.Size()));
+    // not created yet
+    int nMaster1 = mpPoint[&info.basicpoints->Object(k0)][cnt];
+    int nMaster2 = mpPoint[&info.basicpoints->Object(k1)][cnt];
+    _Tyings_Create(info, points[i], nMaster1, nMaster2, calcdist, force_z || (points.size() - i > m_aMeshGrid.Size()));
       }
       else
       {
-        // make sure it's the same
-        assert((mpPoint[&info.basicpoints->Object(k0)][cnt] == itTying->second.first && mpPoint[&info.basicpoints->Object(k1)][cnt] == itTying->second.second) ||
+    // make sure it's the same
+    assert((mpPoint[&info.basicpoints->Object(k0)][cnt] == itTying->second.first && mpPoint[&info.basicpoints->Object(k1)][cnt] == itTying->second.second) ||
           (mpPoint[&info.basicpoints->Object(k1)][cnt] == itTying->second.first && mpPoint[&info.basicpoints->Object(k0)][cnt] == itTying->second.second));
       }
       cnt++;
-    }
+  }
   }
 }
 
@@ -963,24 +963,24 @@ void CHexaMesher::_Tyings_HandleHorizontal(_TyingsInfo& info, CRotatedSystem& rs
   // Search for masternodes at the x-axis.
   for (size_t k = 0; k < info.basicpoints->Size(); k++)
   {
-    geo::CPoint local_0 = rs.ToLocal(info.basicpoints->Object(k));
-    if (fabs(pp_local.Y() - local_0.Y()) < EPS)
-    {
+  geo::CPoint local_0 = rs.ToLocal(info.basicpoints->Object(k));
+  if (fabs(pp_local.Y() - local_0.Y()) < EPS)
+  {
       geo::CPoint local_1 = rs.ToLocal(info.basicpoints->Object(k + 1));
 
       if ((pp_local.X() > local_0.X()) && (pp_local.X() < local_1.X()))
       {
-        double dist = local_1.X() - local_0.X();
-        double calcdist = (pp_local.X() - local_0.X()) / dist;
+    double dist = local_1.X() - local_0.X();
+    double calcdist = (pp_local.X() - local_0.X()) / dist;
 
-        _Tyings_CreateForPoints(info, rs, pp_local, false, info.vcPoints, info.mpPoint, k, k+1, calcdist);
-        _Tyings_CreateForPoints(info, rs, pp_local, true, m_pPointsInternal, info.mpInternalPoint, k, k+1, calcdist);
+    _Tyings_CreateForPoints(info, rs, pp_local, false, info.vcPoints, info.mpPoint, k, k+1, calcdist);
+    _Tyings_CreateForPoints(info, rs, pp_local, true, m_pPointsInternal, info.mpInternalPoint, k, k+1, calcdist);
 
-        break;
+    break;
       }
-    }
-    // We have past the search point so exit the loop.
-    if (local_0.Y() > pp_local.Y() + EPS) break;
+  }
+  // We have past the search point so exit the loop.
+  if (local_0.Y() > pp_local.Y() + EPS) break;
   }
 }
 
@@ -989,14 +989,14 @@ void CHexaMesher::_Tyings_HandleVertical(_TyingsInfo& info, CRotatedSystem& rs, 
   // Search for masternodes at the y-axis.
   for (size_t k = 0; k < info.basicpoints->Size(); k++)
   {
-    geo::CPoint local_0 = rs.ToLocal(info.basicpoints->Object(k));
-    if ((fabs(pp_local.X() - local_0.X()) < EPS) && ((pp_local.Y() - local_0.Y()) < pMasterRegion->GridSizeY()))
-    {
+  geo::CPoint local_0 = rs.ToLocal(info.basicpoints->Object(k));
+  if ((fabs(pp_local.X() - local_0.X()) < EPS) && ((pp_local.Y() - local_0.Y()) < pMasterRegion->GridSizeY()))
+  {
       for (size_t l = k + 1; l < info.basicpoints->Size(); l++)
       {
-        geo::CPoint local_1 = rs.ToLocal(info.basicpoints->Object(l));
-        if ((fabs(pp_local.X() - local_1.X()) < EPS) && ((local_1.Y() - pp_local.Y()) < pMasterRegion->GridSizeY()))
-        {
+    geo::CPoint local_1 = rs.ToLocal(info.basicpoints->Object(l));
+    if ((fabs(pp_local.X() - local_1.X()) < EPS) && ((local_1.Y() - pp_local.Y()) < pMasterRegion->GridSizeY()))
+    {
           double dist = local_1.Y() - local_0.Y();
           double calcdist = (pp_local.Y() - local_0.Y()) / dist;
 
@@ -1004,11 +1004,11 @@ void CHexaMesher::_Tyings_HandleVertical(_TyingsInfo& info, CRotatedSystem& rs, 
           _Tyings_CreateForPoints(info, rs, pp_local, true, m_pPointsInternal, info.mpInternalPoint, k, l, calcdist);
               
           break;
-        }
-      }
     }
-    // We have past the search point so exit the loop.
-    if (local_0.Y() > pp_local.Y() + EPS) break;
+      }
+  }
+  // We have past the search point so exit the loop.
+  if (local_0.Y() > pp_local.Y() + EPS) break;
   }
 }
 
@@ -1041,20 +1041,20 @@ void CHexaMesher::CreateTyings(IProgressBase& progress)
   for (CHexaMeshRegionEntry::TNodeSet::iterator itMeshRegion = stNode.begin(); itMeshRegion != stNode.end(); itMeshRegion++)
   {
 
-    count++;
-    progress.Step();
+  count++;
+  progress.Step();
 
-    // Check if it's not the main mesh region.
-    if (*itMeshRegion != pBasicRegion)
-    {
+  // Check if it's not the main mesh region.
+  if (*itMeshRegion != pBasicRegion)
+  {
       const geo::CArray<geo::CPoint> &pointszone = (*itMeshRegion)->GetMeshRegion();
       for (size_t it = 0; it < pointszone.Size(); it++)
       {
 
-        // Convert point from mesh region to real point.
-        const geo::IPoint *pp = &Mesh().m_mesh.Point(info.mpPoint[&pointszone.Object(it)][0]);
-        if (pp != 0)
-        {
+    // Convert point from mesh region to real point.
+    const geo::IPoint *pp = &Mesh().m_mesh.Point(info.mpPoint[&pointszone.Object(it)][0]);
+    if (pp != 0)
+    {
           int nDanglingType = MESH_NO_DANG;
           CHexaMeshRegionBase* pMasterRegion = 0; // region that will provide the master nodes for the tying
 
@@ -1062,22 +1062,22 @@ void CHexaMesher::CreateTyings(IProgressBase& progress)
 
           if (nDanglingType != MESH_NO_DANG && nDanglingType != MESH_NOT_ON_GRID)
           {
-            geo::CPoint pp_local = rs.ToLocal(*pp);
+      geo::CPoint pp_local = rs.ToLocal(*pp);
 
-            info.basicpoints = &pMasterRegion->GetMeshRegion();
+      info.basicpoints = &pMasterRegion->GetMeshRegion();
 
-            if (nDanglingType == MESH_HOR_DANG)
-            {
+      if (nDanglingType == MESH_HOR_DANG)
+      {
               _Tyings_HandleHorizontal(info, rs, pp_local);
-            }
-            else // nDanglingType == MESH_VER_DANG
-            {
-              _Tyings_HandleVertical(info, rs, pp_local, pMasterRegion);
-            }
-          }
-        }
       }
+      else // nDanglingType == MESH_VER_DANG
+      {
+              _Tyings_HandleVertical(info, rs, pp_local, pMasterRegion);
+      }
+          }
     }
+      }
+  }
   }
 }
 
@@ -1107,12 +1107,12 @@ void CHexaMesher::CreateInterfaceElements(IProgressBase& progress)
   progress.AddSteps(iNumOfSets - 1);
   for (int mesh = 0; mesh < iNumOfSets - 1; mesh++)
   {
-    count++;
-    progress.Step();
-    assert(pFormation);
-    CHexaHorizon *pHorizon = &pFormation->LowerHorizon();
-    if (pHorizon->Slip())
-    {
+  count++;
+  progress.Step();
+  assert(pFormation);
+  CHexaHorizon *pHorizon = &pFormation->LowerHorizon();
+  if (pHorizon->Slip())
+  {
       // Now we're sure this is a slipping horizon.
       iNrHexPerLayer = 0;
 
@@ -1123,48 +1123,48 @@ void CHexaMesher::CreateInterfaceElements(IProgressBase& progress)
       iCount = mesh*meshsize;
       for (it = iCount; it < (mesh*meshsize) + meshsize; it++)
       {
-        found = false;
-        if (++iCount >(mesh*meshsize) + meshsize) break;
-        p = &Mesh().m_mesh.Point(m_pPoints[it]);
-        geo::CPoint local_p(rs.ToLocal(*p));
+    found = false;
+    if (++iCount >(mesh*meshsize) + meshsize) break;
+    p = &Mesh().m_mesh.Point(m_pPoints[it]);
+    geo::CPoint local_p(rs.ToLocal(*p));
 
-        int iNextCount = iCount;
-        // Search for the next point with at the same x-axis but which also make a square.
-        for (next = it + 1; next < (mesh*meshsize) + meshsize; next++)
-        {
+    int iNextCount = iCount;
+    // Search for the next point with at the same x-axis but which also make a square.
+    for (next = it + 1; next < (mesh*meshsize) + meshsize; next++)
+    {
           if (++iNextCount >(mesh*meshsize) + meshsize) break;
           n = &Mesh().m_mesh.Point(m_pPoints[next]);
           geo::CPoint local_n(rs.ToLocal(*n));
           if (fabs(local_n.Y() - local_p.Y()) < EPS)
           {
-            // Search for the next point with at the same y-axis but which also make a square.
-            int iUpCount = iNextCount;
-            for (up = next + 1; up < (mesh*meshsize) + meshsize; up++)
-            {
+      // Search for the next point with at the same y-axis but which also make a square.
+      int iUpCount = iNextCount;
+      for (up = next + 1; up < (mesh*meshsize) + meshsize; up++)
+      {
               if (++iUpCount >(mesh*meshsize) + meshsize) break;
               u = &Mesh().m_mesh.Point(m_pPoints[up]);
               geo::CPoint local_u(rs.ToLocal(*u));
               if (fabs(local_u.X() - local_p.X()) < EPS)
               {
-                // Search for the last point of the square.
-                int iUpNextCount = iUpCount;
-                for (upnext = up + 1; upnext < (mesh*meshsize) + meshsize; upnext++)
-                {
+        // Search for the last point of the square.
+        int iUpNextCount = iUpCount;
+        for (upnext = up + 1; upnext < (mesh*meshsize) + meshsize; upnext++)
+        {
                   if (++iUpNextCount >(mesh*meshsize) + meshsize) break;
                   v = &Mesh().m_mesh.Point(m_pPoints[upnext]);
                   geo::CPoint local_v(rs.ToLocal(*v));
                   // Check if it's square.
                   if ((fabs(local_v.X() - local_n.X()) < EPS) && (fabs(local_u.Y() - local_v.Y()) < EPS))
                   {
-                    double dXOff = fabs(local_p.X() - local_v.X());
-                    double dYOff = fabs(local_p.Y() - local_v.Y());
-                    geo::CPoint ptCenter(local_p.X() + (dXOff / 2),
+          double dXOff = fabs(local_p.X() - local_v.X());
+          double dYOff = fabs(local_p.Y() - local_v.Y());
+          geo::CPoint ptCenter(local_p.X() + (dXOff / 2),
                       local_p.Y() + (dYOff / 2), 0);
 
-                    bool bFalseRectangle = false;
-                    assert(m_vcRegions.size() > 0);
-                    for (size_t l = 0; l < m_vcRegions.size(); l++)
-                    {
+          bool bFalseRectangle = false;
+          assert(m_vcRegions.size() > 0);
+          for (size_t l = 0; l < m_vcRegions.size(); l++)
+          {
                       CHexaMeshRegionBase *pReg = m_vcRegions[l];
                       double dDistFromBound = fabs(local_p.Y() - rs.LocalMin(pModel->Boundary().Box()).Y());
                       double dGridsizeX = pReg->GridSizeX();
@@ -1172,67 +1172,67 @@ void CHexaMesher::CreateInterfaceElements(IProgressBase& progress)
                       double dCheck = dDistFromBound + EPS / 2;
                       double dRest = fmod(dCheck, dGridsizeY);
                       if (pReg->InsideRegion(rs.ToGlobal(ptCenter), false) && fabs(dXOff - dGridsizeX) < EPS && fabs(dYOff - dGridsizeY) < EPS && dRest < EPS)
-                        break;
+            break;
                       if (l == m_vcRegions.size() - 1)
-                        bFalseRectangle = true;
-                    }
+            bFalseRectangle = true;
+          }
 
-                    if (bFalseRectangle)
+          if (bFalseRectangle)
                       continue;
 
-                    iNrHexPerLayer++;
+          iNrHexPerLayer++;
 
-                    std::vector<int> hexpoints;
+          std::vector<int> hexpoints;
 
-                    // The upper points are the same as the points from the upper element.
-                    hexpoints.push_back(m_pPoints[meshsize + iCount - 1]);
-                    hexpoints.push_back(m_pPoints[meshsize + iNextCount - 1]);
-                    hexpoints.push_back(m_pPoints[meshsize + iUpNextCount - 1]);
-                    hexpoints.push_back(m_pPoints[meshsize + iUpCount - 1]);
-                    // The lower points are the smae as the points from the lower element.
-                    hexpoints.push_back(m_pSlipPoints[(iCount - 1) - (mesh*meshsize) + iSlipCounter*meshsize]);
-                    hexpoints.push_back(m_pSlipPoints[(iNextCount - 1) - (mesh*meshsize) + iSlipCounter*meshsize]);
-                    hexpoints.push_back(m_pSlipPoints[(iUpNextCount - 1) - (mesh*meshsize) + iSlipCounter*meshsize]);
-                    hexpoints.push_back(m_pSlipPoints[(iUpCount - 1) - (mesh*meshsize) + iSlipCounter*meshsize]);
+          // The upper points are the same as the points from the upper element.
+          hexpoints.push_back(m_pPoints[meshsize + iCount - 1]);
+          hexpoints.push_back(m_pPoints[meshsize + iNextCount - 1]);
+          hexpoints.push_back(m_pPoints[meshsize + iUpNextCount - 1]);
+          hexpoints.push_back(m_pPoints[meshsize + iUpCount - 1]);
+          // The lower points are the smae as the points from the lower element.
+          hexpoints.push_back(m_pSlipPoints[(iCount - 1) - (mesh*meshsize) + iSlipCounter*meshsize]);
+          hexpoints.push_back(m_pSlipPoints[(iNextCount - 1) - (mesh*meshsize) + iSlipCounter*meshsize]);
+          hexpoints.push_back(m_pSlipPoints[(iUpNextCount - 1) - (mesh*meshsize) + iSlipCounter*meshsize]);
+          hexpoints.push_back(m_pSlipPoints[(iUpCount - 1) - (mesh*meshsize) + iSlipCounter*meshsize]);
 
-                    // Search for body above and below.
-                    assert(pFormation->VolumeSize() == 1);
+          // Search for body above and below.
+          assert(pFormation->VolumeSize() == 1);
 
-                    int nrElements = pFormation->Elements();
-                    const geo::IBody &upper = pFormation->Volume(0).Volume().Body((iNrHexPerLayer - 1)*nrElements + nrElements - 1);
+          int nrElements = pFormation->Elements();
+          const geo::IBody &upper = pFormation->Volume(0).Volume().Body((iNrHexPerLayer - 1)*nrElements + nrElements - 1);
 
-                    CHexaHorizon *pHor = &pFormation->LowerHorizon();
-                    nrElements = pHor->LowerFormation()->Elements();
-                    const geo::IBody &lower = pHor->LowerFormation()->Volume(0).Volume().Body((iNrHexPerLayer - 1)*nrElements);
+          CHexaHorizon *pHor = &pFormation->LowerHorizon();
+          nrElements = pHor->LowerFormation()->Elements();
+          const geo::IBody &lower = pHor->LowerFormation()->Volume(0).Volume().Body((iNrHexPerLayer - 1)*nrElements);
 
-                    const geo::CBodyQuadrilateral& upperface = dynamic_cast<const geo::CBodyQuadrilateral&> (upper.Face(HEXA_LOWERFACE));
-                    const geo::CBodyQuadrilateral& lowerface = dynamic_cast<const geo::CBodyQuadrilateral&> (lower.Face(HEXA_UPPERFACE));
+          const geo::CBodyQuadrilateral& upperface = dynamic_cast<const geo::CBodyQuadrilateral&> (upper.Face(HEXA_LOWERFACE));
+          const geo::CBodyQuadrilateral& lowerface = dynamic_cast<const geo::CBodyQuadrilateral&> (lower.Face(HEXA_UPPERFACE));
 
-                    // Add the interface element to the list.
-                    geo::CInterfaceElement *ptr = new geo::CInterfaceElement(Mesh().m_mesh, &upperface, &lowerface, hexpoints);
-                    pGroup->AddMeshElement(*ptr);
+          // Add the interface element to the list.
+          geo::CInterfaceElement *ptr = new geo::CInterfaceElement(Mesh().m_mesh, &upperface, &lowerface, hexpoints);
+          pGroup->AddMeshElement(*ptr);
 
-                    // Add the interface element to the map
-                    VERIFY(Mesh().m_mpInterfaces.insert(std::make_pair(ptr, pHorizon)).second);
+          // Add the interface element to the map
+          VERIFY(Mesh().m_mpInterfaces.insert(std::make_pair(ptr, pHorizon)).second);
 
-                    assert(pGroup == pHorizon->InterfaceElementGroup());
-                    found = true;
-                    break;
+          assert(pGroup == pHorizon->InterfaceElementGroup());
+          found = true;
+          break;
                   }
-                }
-                if (found) break;
-              }
-            }
-            if (found) break;
-          }
         }
+        if (found) break;
+              }
+      }
+      if (found) break;
+          }
+    }
       }
       iSlipCounter++;
-    }
+  }
 
-    // Next Formation.
-    CHexaHorizon *pHor = &pFormation->LowerHorizon();
-    pFormation = pHor->LowerFormation();
+  // Next Formation.
+  CHexaHorizon *pHor = &pFormation->LowerHorizon();
+  pFormation = pHor->LowerFormation();
   } // Formation
 }
 
@@ -1242,12 +1242,12 @@ bool CHexaMesher::OnGridLine(const geo::IPoint& pt1, const geo::IPoint& pt2) con
   if (fabs(pt1.X() - pt2.X()) < EPS || fabs(pt1.Y() - pt2.Y()) < EPS)
   { // the line is horizontal or vertical. could be exactly on a grid line
 
-    CHexaMeshRegionEntry *pEntry = (CHexaMeshRegionEntry*)(const_cast<CHexaMesher&>(*this).Model().GraphEntry(MD_HEXA_MESH_ZONE));
-    CHexaMeshRegionEntry::TNodeSet stNode = pEntry->EntryNodes();
+  CHexaMeshRegionEntry *pEntry = (CHexaMeshRegionEntry*)(const_cast<CHexaMesher&>(*this).Model().GraphEntry(MD_HEXA_MESH_ZONE));
+  CHexaMeshRegionEntry::TNodeSet stNode = pEntry->EntryNodes();
 
-    CHexaMeshRegionEntry::TNodeSet::iterator itMeshRegion;
-    for (itMeshRegion = stNode.begin(); itMeshRegion != stNode.end(); itMeshRegion++)
-    {
+  CHexaMeshRegionEntry::TNodeSet::iterator itMeshRegion;
+  for (itMeshRegion = stNode.begin(); itMeshRegion != stNode.end(); itMeshRegion++)
+  {
       geo::CPoint Min = (*itMeshRegion)->Min();
       bool bOnHorGridLine1 = fabs(fmod(pt1.X() - Min.X() + EPS / 2, (*itMeshRegion)->GridSizeX())) < EPS;
       bool bOnVerGridLine1 = fabs(fmod(pt1.Y() - Min.Y() + EPS / 2, (*itMeshRegion)->GridSizeY())) < EPS;
@@ -1258,9 +1258,9 @@ bool CHexaMesher::OnGridLine(const geo::IPoint& pt1, const geo::IPoint& pt2) con
       if ((bOnHorGridLine1 && bOnHorGridLine2 && bOnVerGridLine1 && bOnVerGridLine2))
       {
 
-        return true;
+    return true;
       }
-    }
+  }
   }
   return false;
 }
@@ -1274,8 +1274,8 @@ void CHexaMesher::LoadPointIndices(std::vector<int>& vcIndex, CArchiveInterface&
   vcIndex.resize(nSize);
   for (int i = 0; i < nSize; i++)
   {
-    stream >> vcIndex[i];
-    progress.Step();
+  stream >> vcIndex[i];
+  progress.Step();
   }
 }
 
@@ -1286,8 +1286,8 @@ void CHexaMesher::SavePointIndices(const std::vector<int>& vcIndex, CArchiveInte
   stream << nSize;
   for (int i = 0; i < nSize; i++)
   {
-    stream << vcIndex[i];
-    progress.Step();
+  stream << vcIndex[i];
+  progress.Step();
   }
 }
 

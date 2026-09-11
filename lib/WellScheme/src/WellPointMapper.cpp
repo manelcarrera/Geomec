@@ -37,7 +37,7 @@ CWellPointValueMap::~CWellPointValueMap()
 
 const CDoubleQuantity& CWellPointValueMap::QuantityIndicator()
 {
-	return *m_pQuantity;
+  return *m_pQuantity;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -45,39 +45,39 @@ const CDoubleQuantity& CWellPointValueMap::QuantityIndicator()
 
 geo::CValue CWellPointValueMap::GetItemByTMD(const double & TMD) const
 {
-	CWellPoint * StartPoint = NULL;
-	CWellPoint * EndPoint = NULL;
-	
-	double Value = 0;
+  CWellPoint * StartPoint = NULL;
+  CWellPoint * EndPoint = NULL;
+  
+  double Value = 0;
 
-	QList<CWellPoint*> PointList = m_pList->GetUpperLower(TMD);
-	QList<CWellPoint*>::const_iterator it = PointList.begin();
-	
-	StartPoint = (*it);
-	it++;
-	EndPoint = (*it);
+  QList<CWellPoint*> PointList = m_pList->GetUpperLower(TMD);
+  QList<CWellPoint*>::const_iterator it = PointList.begin();
+  
+  StartPoint = (*it);
+  it++;
+  EndPoint = (*it);
 
-	if (!StartPoint || !EndPoint)
-		return geo::CValue();
+  if (!StartPoint || !EndPoint)
+    return geo::CValue();
 
-	if (!GetItem(EndPoint).Valid())
-		return geo::CValue();
+  if (!GetItem(EndPoint).Valid())
+    return geo::CValue();
 
-	if (StartPoint == EndPoint)
-		return geo::CValue(GetItem(EndPoint).Value());
-	
-	double DeltaY = GetItem(EndPoint).Value() - GetItem(StartPoint).Value();
-	double DeltaX = EndPoint->TMD().Value() - StartPoint->TMD().Value();
+  if (StartPoint == EndPoint)
+    return geo::CValue(GetItem(EndPoint).Value());
+  
+  double DeltaY = GetItem(EndPoint).Value() - GetItem(StartPoint).Value();
+  double DeltaX = EndPoint->TMD().Value() - StartPoint->TMD().Value();
 
-	Value = (DeltaY / DeltaX) * (TMD - StartPoint->TMD().Value()) + GetItem(StartPoint).Value();	
+  Value = (DeltaY / DeltaX) * (TMD - StartPoint->TMD().Value()) + GetItem(StartPoint).Value();	
 
-	return geo::CValue(Value);
+  return geo::CValue(Value);
 }
 
 CWellPointValueMap& CWellPointValueMap::operator=(const CWellPointValueMap& rhs)
 {	
-	CWellPointMapper<geo::CValue>::operator =(rhs);
-	return *this;
+  CWellPointMapper<geo::CValue>::operator =(rhs);
+  return *this;
 }
 
 }

@@ -17,19 +17,19 @@ namespace cora
 class CParameterModifierShiftFactor : public CParameterModifierBase
 {
   public:
-    CParameterModifierShiftFactor(std::vector <double>& value);
-    virtual ~CParameterModifierShiftFactor();
+  CParameterModifierShiftFactor(std::vector <double>& value);
+  virtual ~CParameterModifierShiftFactor();
 
-    virtual geo::CValue modify(const geo::CValue& value) const;
+  virtual geo::CValue modify(const geo::CValue& value) const;
 
   private:
-    CParameterModifierShiftFactor(
+  CParameterModifierShiftFactor(
       const CParameterModifierShiftFactor& rhs);
-    CParameterModifierShiftFactor& operator = (
+  CParameterModifierShiftFactor& operator = (
       CParameterModifierShiftFactor rhs);
 
-    const geo::CValue m_value2Shift;
-    const geo::CValue m_factor;
+  const geo::CValue m_value2Shift;
+  const geo::CValue m_factor;
 };
 
 } // namespace cora

@@ -13,38 +13,38 @@
 
 double CWell::GetAzimuth()
 {
-	double result;
-	GetProperty(0x1, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x1, VT_R8, (void*)&result);
+  return result;
 }
 
 void CWell::SetAzimuth(double propVal)
 {
-	SetProperty(0x1, VT_R8, propVal);
+  SetProperty(0x1, VT_R8, propVal);
 }
 
 double CWell::GetInclination()
 {
-	double result;
-	GetProperty(0x2, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x2, VT_R8, (void*)&result);
+  return result;
 }
 
 void CWell::SetInclination(double propVal)
 {
-	SetProperty(0x2, VT_R8, propVal);
+  SetProperty(0x2, VT_R8, propVal);
 }
 
 double CWell::GetVerticalDepth()
 {
-	double result;
-	GetProperty(0x3, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x3, VT_R8, (void*)&result);
+  return result;
 }
 
 void CWell::SetVerticalDepth(double propVal)
 {
-	SetProperty(0x3, VT_R8, propVal);
+  SetProperty(0x3, VT_R8, propVal);
 }
 
 /////////////////////////////////////////////////////////////////////////////

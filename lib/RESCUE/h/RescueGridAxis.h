@@ -38,14 +38,14 @@ public:
   GridNdx AxisIndex(); 
 
   RescueGridAxis(RescueContext *context, RESCUEINT64 lowBoundIn, RESCUEINT64 countIn, RESCUEFLOAT originIn, RESCUEFLOAT stepIn)
-    :RescueObject(context)                      // This public constructor is for use with abstract RescueDataContainer grids.
-    ,parentGrid(0)                              // Model grids are constructed using RescueGrid methods that build axes
-    ,relatedAxis(0)                             // using private constructors.
-    ,lowBound(lowBoundIn)
-    ,count(countIn)
-    ,origin(originIn)
-    ,step(stepIn) {isA = R_RescueGridAxis;}
-    
+  :RescueObject(context)                      // This public constructor is for use with abstract RescueDataContainer grids.
+  ,parentGrid(0)                              // Model grids are constructed using RescueGrid methods that build axes
+  ,relatedAxis(0)                             // using private constructors.
+  ,lowBound(lowBoundIn)
+  ,count(countIn)
+  ,origin(originIn)
+  ,step(stepIn) {isA = R_RescueGridAxis;}
+  
   virtual RESCUEBOOL IsOfType(_RescueObjectType thisType);
      // Returns TRUE if the object is a
      // member of the specified class.
@@ -70,23 +70,23 @@ private:
                  RescueCoordinateSystemAxis *axis, 
                  RESCUEFLOAT originIn, RESCUEFLOAT stepIn,
                  RESCUEINT64 lowBoundIn, RESCUEINT64 countIn)
-                :RescueObject(context)
-                ,parentGrid(parentIn)
-                ,relatedAxis(axis)
-                ,lowBound(lowBoundIn)
-                ,count(countIn)
-                ,origin(originIn)
-                ,step(stepIn) {isA = R_RescueGridAxis;}
+        :RescueObject(context)
+        ,parentGrid(parentIn)
+        ,relatedAxis(axis)
+        ,lowBound(lowBoundIn)
+        ,count(countIn)
+        ,origin(originIn)
+        ,step(stepIn) {isA = R_RescueGridAxis;}
   RescueGridAxis(RescueContext *context, RescueGrid *parentIn, 
                  RESCUEFLOAT originIn, RESCUEFLOAT stepIn,
                  RESCUEINT64 lowBoundIn, RESCUEINT64 countIn)
-                :RescueObject(context)
-                ,parentGrid(parentIn)
-                ,relatedAxis(0)
-                ,lowBound(lowBoundIn)
-                ,count(countIn)
-                ,origin(originIn)
-                ,step(stepIn) {isA = R_RescueGridAxis;}
+        :RescueObject(context)
+        ,parentGrid(parentIn)
+        ,relatedAxis(0)
+        ,lowBound(lowBoundIn)
+        ,count(countIn)
+        ,origin(originIn)
+        ,step(stepIn) {isA = R_RescueGridAxis;}
   
   RescueGrid *parentGrid;
   RescueCoordinateSystemAxis *relatedAxis;

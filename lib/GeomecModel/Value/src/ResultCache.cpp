@@ -57,16 +57,16 @@ public:
 
   void Step(size_t step = 1)
   {
-    try
-    {
+  try
+  {
       m_progress.Step(step);
       m_current += step;
-    }
-    catch (CProgressCancel *e)
-    {
+  }
+  catch (CProgressCancel *e)
+  {
       delete e;
       m_quit = true;
-    }
+  }
   }
 
 };
@@ -129,19 +129,19 @@ public:
   FormationAccessor(const CFormationBase& formation) : m_pFormation(&formation) {}
   virtual const geo::IElement& element(AccessorIterator& accessorIterator) const
   {
-    for (; accessorIterator.setIndex < m_pFormation->ElementSetSize(); ++accessorIterator.setIndex)
+  for (; accessorIterator.setIndex < m_pFormation->ElementSetSize(); ++accessorIterator.setIndex)
       if (accessorIterator.index >= m_pFormation->ElementSet(accessorIterator.setIndex).ElementSet().ElementSize())
-        accessorIterator.index -= m_pFormation->ElementSet(accessorIterator.setIndex).ElementSet().ElementSize();
+    accessorIterator.index -= m_pFormation->ElementSet(accessorIterator.setIndex).ElementSet().ElementSize();
       else
-        break;
-    return m_pFormation->ElementSet(accessorIterator.setIndex).ElementSet().Element(accessorIterator.index);
+    break;
+  return m_pFormation->ElementSet(accessorIterator.setIndex).ElementSet().Element(accessorIterator.index);
   }
   virtual size_t size() const
   {
-    size_t retval = 0;
-    for (size_t i = 0; i < m_pFormation->ElementSetSize(); ++i)
+  size_t retval = 0;
+  for (size_t i = 0; i < m_pFormation->ElementSetSize(); ++i)
       retval += m_pFormation->ElementSet(i).ElementSet().ElementSize();
-    return retval;
+  return retval;
   }
 };
 
@@ -152,11 +152,11 @@ public:
   FaultAccessor(const CHorizonBase& horizon) : m_pHorizon(&horizon) {}
   virtual const geo::IElement& element(AccessorIterator& accessorIterator) const
   {
-    return m_pHorizon->InterfaceElementGroup()->Element(accessorIterator.index);
+  return m_pHorizon->InterfaceElementGroup()->Element(accessorIterator.index);
   }
   virtual size_t size() const
   {
-    return m_pHorizon->InterfaceElementGroup()->ElementSize();
+  return m_pHorizon->InterfaceElementGroup()->ElementSize();
   }
 };
 
@@ -167,11 +167,11 @@ public:
   ElementSetAccessor(const geo::IElementSet& elementSet) : m_pElementSet(&elementSet) {}
   virtual const geo::IElement& element(AccessorIterator& accessorIterator) const
   {
-    return m_pElementSet->Element(accessorIterator.index);
+  return m_pElementSet->Element(accessorIterator.index);
   }
   virtual size_t size() const
   {
-    return m_pElementSet->ElementSize();
+  return m_pElementSet->ElementSize();
   }
 };
 
@@ -182,11 +182,11 @@ public:
   ElementPtrArrayAccessor(const geo::CPtrArray<geo::IElement>& elementPtrArray) : m_pElementPtrArray(&elementPtrArray) {}
   virtual const geo::IElement& element(AccessorIterator& accessorIterator) const
   {
-    return m_pElementPtrArray->Object(accessorIterator.index);
+  return m_pElementPtrArray->Object(accessorIterator.index);
   }
   virtual size_t size() const
   {
-    return m_pElementPtrArray->Size();
+  return m_pElementPtrArray->Size();
   }
 };
 
@@ -206,7 +206,7 @@ struct ConnectionInfo
 
   bool operator<(const ConnectionInfo& rhs) const
   {
-    return *node < *rhs.node;
+  return *node < *rhs.node;
   }
 };
 
@@ -251,22 +251,22 @@ public:
 
   void operator()(const tbb::blocked_range<size_t>& r) const
   {
-    AccessorIterator accessorIterator(r.begin());
+  AccessorIterator accessorIterator(r.begin());
 
-    for (size_t i = r.begin(); i < r.end(); ++i)
-    {
+  for (size_t i = r.begin(); i < r.end(); ++i)
+  {
       const geo::IElement& element = m_object->element(accessorIterator);
       int nNodes = element.NrOfNodes();
       for(int n = 0; n < nNodes; ++n)
       {
-        const geo::INode& node = element.Node(n);
+    const geo::INode& node = element.Node(n);
 
-        m_data.push_back(ConnectionInfo(node, element, n));
+    m_data.push_back(ConnectionInfo(node, element, n));
       }
 
       accessorIterator.advance();
-    }
-    if (m_dispatcher)
+  }
+  if (m_dispatcher)
       m_dispatcher->Step(r.size());
   }
 };
@@ -290,12 +290,12 @@ class TaskAveraging
 public:
 #ifndef FAKE_TBB
   TaskAveraging(tbb::concurrent_vector<ConnectionInfo>& data, tbb::concurrent_vector<ConnectionInfoIndex>& index, CResultCache& cache)
-    : m_data(data), m_index(index), m_cache(cache), m_column(0), m_dispatcher(0) {}
+  : m_data(data), m_index(index), m_cache(cache), m_column(0), m_dispatcher(0) {}
 
   tbb::concurrent_vector<ConnectionInfo>& data() const { return m_data; }
 #else
   TaskAveraging(std::vector<ConnectionInfo>& data, std::vector<ConnectionInfoIndex>& index, CResultCache& cache)
-    : m_data(data), m_index(index), m_cache(cache), m_column(0), m_dispatcher(0) {}
+  : m_data(data), m_index(index), m_cache(cache), m_column(0), m_dispatcher(0) {}
 
   std::vector<ConnectionInfo>& data() const { return m_data; }
 #endif
@@ -308,8 +308,8 @@ public:
 
   void operator()(const tbb::blocked_range<size_t>& r) const
   {
-    for (size_t it = r.begin(); it < r.end(); ++it)
-    {
+  for (size_t it = r.begin(); it < r.end(); ++it)
+  {
       const size_t i = m_index[it].index;
       const size_t j = i + m_index[it].size;
       size_t numbers = 0;
@@ -317,29 +317,29 @@ public:
 
       for (size_t k = i; k < j; ++k)
       {
-        const  geo::IElement& element = *m_data[k].element;
-        size_t index = m_data[k].node_index;
+    const  geo::IElement& element = *m_data[k].element;
+    size_t index = m_data[k].node_index;
 
-        const double *value = m_cache.RawCacher().Value(element.Index(), m_column);
-        if (value)
-        {
+    const double *value = m_cache.RawCacher().Value(element.Index(), m_column);
+    if (value)
+    {
           ++numbers;
           values += value[index];
-        }
+    }
       }
 
       if (numbers > 0)
       {
-        for (size_t k = i; k < j; ++k)
-        {
+    for (size_t k = i; k < j; ++k)
+    {
           const geo::IElement& element = *m_data[k].element;
           size_t index = m_data[k].node_index;
 
           m_cache.AveragedCacher()->Value(element.Index(), m_column, index, values / numbers);
-        }
-      }
     }
-    if (m_dispatcher)
+      }
+  }
+  if (m_dispatcher)
       m_dispatcher->Step(r.size());
   }
 };
@@ -391,7 +391,7 @@ bool CResultAverager::AverageResults(IProgressBase& progdlg, int& /*nCurrentStep
   taskConnectionInfo(tbb::blocked_range<size_t>(0, objectSize));
 
   if (dispatcher.shouldQuit())
-    return false;
+  return false;
 
   std::sort(info.begin(), info.end());
 
@@ -399,27 +399,27 @@ bool CResultAverager::AverageResults(IProgressBase& progdlg, int& /*nCurrentStep
 
   for (size_t i = 0; i < info.size();)
   {
-    const geo::INode& node = *info[i].node;
+  const geo::INode& node = *info[i].node;
 
-    size_t j = i + 1;
-    while (j < info.size() && node == *info[j].node)
+  size_t j = i + 1;
+  while (j < info.size() && node == *info[j].node)
       ++j;
 
-    infoIndex.push_back(ConnectionInfoIndex(i, j - i));
+  infoIndex.push_back(ConnectionInfoIndex(i, j - i));
 
-    i = j;
+  i = j;
   }
 
   for (size_t c = 0; c < m_cache.NumColumns(); ++c)
   {
-    m_cache.RawCacher().Value(0, c);
-    m_cache.AveragedCacher()->Value(0, c);
+  m_cache.RawCacher().Value(0, c);
+  m_cache.AveragedCacher()->Value(0, c);
 
-    taskAveraging.setColumn(c);
+  taskAveraging.setColumn(c);
 
-    taskAveraging(tbb::blocked_range<size_t>(0, info.size()));
+  taskAveraging(tbb::blocked_range<size_t>(0, info.size()));
 
-    if (dispatcher.shouldQuit())
+  if (dispatcher.shouldQuit())
       return false;
   }
 #else
@@ -440,38 +440,38 @@ bool CResultAverager::AverageResults(IProgressBase& progdlg, int& /*nCurrentStep
 
   if (objectSize < 4000) // guess work
   {
-    mp::CKernelSequential<TaskConnectionInfo> ciKernel;
-    mp::CKernelSequential<TaskAveraging> aKernel;
+  mp::CKernelSequential<TaskConnectionInfo> ciKernel;
+  mp::CKernelSequential<TaskAveraging> aKernel;
 
-    mp::IDispatchedTask *disTaskInit1 = NEW_DISPATCH_TASK(mp::CKernelSequential, TaskConnectionInfo)(ciKernel, taskConnectionInfo);
-    dispatcher.launch(progdlg, disTaskInit1);
+  mp::IDispatchedTask *disTaskInit1 = NEW_DISPATCH_TASK(mp::CKernelSequential, TaskConnectionInfo)(ciKernel, taskConnectionInfo);
+  dispatcher.launch(progdlg, disTaskInit1);
 
-    if (dispatcher.Canceled())
+  if (dispatcher.Canceled())
       return false;
 
 
-    std::sort(info.begin(), info.end());
+  std::sort(info.begin(), info.end());
 
 
-    // unfortunately, tbb slows down a lot if we try to adjust for "non-aligned" indices in-situ, so we gather the index info here and feed that to tbb
-    infoIndex.reserve(info.size() / 4);
+  // unfortunately, tbb slows down a lot if we try to adjust for "non-aligned" indices in-situ, so we gather the index info here and feed that to tbb
+  infoIndex.reserve(info.size() / 4);
 
-    for (size_t i = 0; i < info.size();)
-    {
+  for (size_t i = 0; i < info.size();)
+  {
       const geo::INode& node = *info[i].node;
 
       size_t j = i + 1;
       while (j < info.size() && node == *info[j].node)
-        ++j;
+    ++j;
 
       infoIndex.push_back(ConnectionInfoIndex(i, j - i));
 
       i = j;
-    }
+  }
   
 
-    for (size_t c = 0; c < m_cache.NumColumns(); ++c)
-    {
+  for (size_t c = 0; c < m_cache.NumColumns(); ++c)
+  {
       m_cache.RawCacher().Value(0, c);
       m_cache.AveragedCacher()->Value(0, c);
 
@@ -481,42 +481,42 @@ bool CResultAverager::AverageResults(IProgressBase& progdlg, int& /*nCurrentStep
       dispatcher.launch(progdlg, disTaskInit2);
 
       if (dispatcher.Canceled())
-        return false;
-    }
+    return false;
+  }
   }
   else
   {
-    mp::CKernelParallel<TaskConnectionInfo> ciKernel;
-    mp::CKernelParallel<TaskAveraging> aKernel;
+  mp::CKernelParallel<TaskConnectionInfo> ciKernel;
+  mp::CKernelParallel<TaskAveraging> aKernel;
 
-    mp::IDispatchedTask *disTaskInit1 = NEW_DISPATCH_TASK(mp::CKernelParallel, TaskConnectionInfo)(ciKernel, taskConnectionInfo);
-    dispatcher.launch(progdlg, disTaskInit1);
+  mp::IDispatchedTask *disTaskInit1 = NEW_DISPATCH_TASK(mp::CKernelParallel, TaskConnectionInfo)(ciKernel, taskConnectionInfo);
+  dispatcher.launch(progdlg, disTaskInit1);
 
-    if (dispatcher.Canceled())
+  if (dispatcher.Canceled())
       return false;
 
-    tbb::parallel_sort(info.begin(), info.end());
+  tbb::parallel_sort(info.begin(), info.end());
 
 
-    // unfortunately, tbb slows down a lot if we try to adjust for "non-aligned" indices in-situ, so we gather the index info here and feed that to tbb
-    infoIndex.reserve(info.size() / 4);
+  // unfortunately, tbb slows down a lot if we try to adjust for "non-aligned" indices in-situ, so we gather the index info here and feed that to tbb
+  infoIndex.reserve(info.size() / 4);
 
-    for (size_t i = 0; i < info.size();)
-    {
+  for (size_t i = 0; i < info.size();)
+  {
       const geo::INode& node = *info[i].node;
 
       size_t j = i + 1;
       while (j < info.size() && node == *info[j].node)
-        ++j;
+    ++j;
 
       infoIndex.push_back(ConnectionInfoIndex(i, j - i));
 
       i = j;
-    }
+  }
   
 
-    for (size_t c = 0; c < m_cache.NumColumns(); ++c)
-    {
+  for (size_t c = 0; c < m_cache.NumColumns(); ++c)
+  {
       m_cache.RawCacher().Value(0, c);
       m_cache.AveragedCacher()->Value(0, c);
 
@@ -526,8 +526,8 @@ bool CResultAverager::AverageResults(IProgressBase& progdlg, int& /*nCurrentStep
       dispatcher.launch(progdlg, disTaskInit2);
   
       if (dispatcher.Canceled())
-        return false;
-    }
+    return false;
+  }
   }
 #endif
 
@@ -553,11 +553,11 @@ CResultCache::CResultCache(CModelBase& model, const geo::IMesh& mesh, int nColum
   mdc::IStorageInterface *pStorageInterface = model.GetConsistencyGuard()->HDF5StorageInterface(model.Index(), nColumns / 150, 30);
   if (!pStorageInterface)
   {
-    pStorageInterface = new mdc::CStorageInterfaceDefault(tmp.toStdString().c_str());
+  pStorageInterface = new mdc::CStorageInterfaceDefault(tmp.toStdString().c_str());
   }
   else
-    pStorageInterface->Directory(tmp.toStdString().c_str());
-	m_pRawCache = new mdc::CMeshDataCacher(mesh, pStorageInterface, m_nCacheSizeMb);
+  pStorageInterface->Directory(tmp.toStdString().c_str());
+  m_pRawCache = new mdc::CMeshDataCacher(mesh, pStorageInterface, m_nCacheSizeMb);
 }
 
 CResultCache::CResultCache(CModelBase& model, const geo::IMesh& mesh, int nColumns)
@@ -570,7 +570,7 @@ CResultCache::CResultCache(CModelBase& model, const geo::IMesh& mesh, int nColum
   mdc::IStorageInterface *pStorageInterface = model.GetConsistencyGuard()->HDF5StorageInterface(model.Index(), nColumns / 150, 30);
   if (!pStorageInterface)
   {
-    pStorageInterface = new mdc::CStorageInterfaceDefault;
+  pStorageInterface = new mdc::CStorageInterfaceDefault;
   }
   m_pRawCache = new mdc::CMeshDataCacher(mesh, pStorageInterface);
 }
@@ -589,7 +589,7 @@ mdc::CMeshDataCacher& CResultCache::RawCacher()
 mdc::CMeshDataCacher* CResultCache::AveragedCacher()
 {
   if(!m_pAveragedCache)
-    FinalizeStorage();
+  FinalizeStorage();
 
   return m_pAveragedCache;
 }
@@ -598,9 +598,9 @@ mdc::CMeshDataCacher& CResultCache::ActiveCacher()
 {
   if(m_model.AverageResults())
   {
-    if(AveragedCacher())
+  if(AveragedCacher())
       return *AveragedCacher();
-    else
+  else
       m_model.AverageResults(false); // user cancelled averaging operation
   }
 
@@ -627,23 +627,23 @@ void CResultCache::switchRawCacher(bool enableResultCache, int resultCacheSize, 
 {
   if (enableResultCache)
   {
-    m_nCacheSizeMb = bForce ? resultCacheSize : validateCacheSize(resultCacheSize);
+  m_nCacheSizeMb = bForce ? resultCacheSize : validateCacheSize(resultCacheSize);
 
-    QString tmpDir = m_pRawCache->StorageInterface()->Directory() ? QString(m_pRawCache->StorageInterface()->Directory()) : CreateTempDirExt(CTempPath::TEMP_GENERAL);
-    
-    m_pRawCache->Resize(tmpDir.toStdString().c_str(), m_nCacheSizeMb);
+  QString tmpDir = m_pRawCache->StorageInterface()->Directory() ? QString(m_pRawCache->StorageInterface()->Directory()) : CreateTempDirExt(CTempPath::TEMP_GENERAL);
+  
+  m_pRawCache->Resize(tmpDir.toStdString().c_str(), m_nCacheSizeMb);
 
-    if (m_pAveragedCache)
-    {
+  if (m_pAveragedCache)
+  {
       tmpDir = m_pAveragedCache->StorageInterface()->Directory() ? QString(m_pAveragedCache->StorageInterface()->Directory()) : CreateTempDirExt(CTempPath::TEMP_GENERAL);
 
       m_pAveragedCache->Resize(tmpDir.toStdString().c_str(), m_nCacheSizeMb);
-    }
+  }
   }
   else
   {
-    m_pRawCache->Resize(0, m_nCacheSizeMb);
-    if (m_pAveragedCache)
+  m_pRawCache->Resize(0, m_nCacheSizeMb);
+  if (m_pAveragedCache)
       m_pAveragedCache->Resize(0, m_nCacheSizeMb);
   }
 
@@ -661,9 +661,9 @@ void CResultCache::DestroyCache(mdc::CMeshDataCacher* pCacher)
 {
   if(pCacher)
   {
-    if (pCacher->StorageInterface()->Directory())
+  if (pCacher->StorageInterface()->Directory())
       VERIFY(RemoveDir(pCacher->StorageInterface()->Directory()));
-    delete pCacher;
+  delete pCacher;
   }
 }
 
@@ -679,12 +679,12 @@ void CResultCache::FinalizeStorage()
   // the avaraged cache is not going to the HDF5 file; create a disk cache instead
   if (m_pRawCache->StorageInterface()->Directory()) // swapping to disk?
   {
-    QString tmp = CreateTempDirExt(CTempPath::TEMP_GENERAL);
-	  m_pAveragedCache = new mdc::CMeshDataCacher(m_mesh, new mdc::CStorageInterfaceDefault(tmp.toStdString().c_str()), m_nCacheSizeMb);
+  QString tmp = CreateTempDirExt(CTempPath::TEMP_GENERAL);
+    m_pAveragedCache = new mdc::CMeshDataCacher(m_mesh, new mdc::CStorageInterfaceDefault(tmp.toStdString().c_str()), m_nCacheSizeMb);
   }
   else
   {
-    m_pAveragedCache = new mdc::CMeshDataCacher(m_mesh, new mdc::CStorageInterfaceDefault);
+  m_pAveragedCache = new mdc::CMeshDataCacher(m_mesh, new mdc::CStorageInterfaceDefault);
   }
 
   const THorizonBaseEntry& horizon_entry = static_cast<const THorizonBaseEntry&>(*m_model.GraphEntry(MD_BASE_HORIZON));
@@ -697,8 +697,8 @@ void CResultCache::FinalizeStorage()
   // count the total number of progress steps (number of elements)
   for(ithor = stHorizonNodes.begin(); ithor != stHorizonNodes.end(); ++ithor)
   {
-    const CHorizonBase& horizon = **ithor;
-    if(horizon.Slip())
+  const CHorizonBase& horizon = **ithor;
+  if(horizon.Slip())
       nProgressSteps += horizon.InterfaceElementGroup()->ElementSize();
   }
 
@@ -707,18 +707,18 @@ void CResultCache::FinalizeStorage()
   TFormationBaseEntry::TNodeSet::const_iterator itfor;
   for(itfor = stFormationNodes.begin(); itfor != stFormationNodes.end(); ++itfor)
   {
-    const CFormationBase& formation = **itfor;
-    int i;
-    for(i = 0; i < formation.ElementSetSize(); ++i)
+  const CFormationBase& formation = **itfor;
+  int i;
+  for(i = 0; i < formation.ElementSetSize(); ++i)
       nProgressSteps += formation.ElementSet(i).ElementSet().ElementSize();
   }
 
   const CWellCasingModel* pCasingModel = dynamic_cast<const CWellCasingModel*>(&m_model);
   if(pCasingModel)
   {
-    nProgressSteps += pCasingModel->Mesh().SteelElements().ElementSize();
-    nProgressSteps += pCasingModel->Mesh().CementElements().ElementSize();
-    nProgressSteps += pCasingModel->Mesh().CementInterfaceElements().Size();
+  nProgressSteps += pCasingModel->Mesh().SteelElements().ElementSize();
+  nProgressSteps += pCasingModel->Mesh().CementElements().ElementSize();
+  nProgressSteps += pCasingModel->Mesh().CementInterfaceElements().Size();
   }
 
   // there will be two passes over the elements, the first is over the elements once, the second is over the elements times the number of columns
@@ -727,29 +727,29 @@ void CResultCache::FinalizeStorage()
   class CScopeGuard
   {
   public:
-    CScopeGuard(mdc::CMeshDataCacher** ppAveragedCacher, IProgressBase& progdlg)
-    : m_ppAveragedCacher(ppAveragedCacher),
+  CScopeGuard(mdc::CMeshDataCacher** ppAveragedCacher, IProgressBase& progdlg)
+  : m_ppAveragedCacher(ppAveragedCacher),
       m_dlg(progdlg)
-    {
-    }
+  {
+  }
 
-    ~CScopeGuard()
-    {
+  ~CScopeGuard()
+  {
       if(m_ppAveragedCacher)
       {
-        delete *m_ppAveragedCacher;
-        *m_ppAveragedCacher = 0;
+    delete *m_ppAveragedCacher;
+    *m_ppAveragedCacher = 0;
       }
-    }
+  }
 
-    void ReleaseCacher()
-    {
+  void ReleaseCacher()
+  {
       m_ppAveragedCacher = 0;
-    }
+  }
 
   private:
-    mdc::CMeshDataCacher** m_ppAveragedCacher;
-    IProgressBase& m_dlg;
+  mdc::CMeshDataCacher** m_ppAveragedCacher;
+  IProgressBase& m_dlg;
   };
 
   CScopeGuard scopeguard(&m_pAveragedCache, *progdlg);
@@ -758,47 +758,47 @@ void CResultCache::FinalizeStorage()
 
   for(ithor = stHorizonNodes.begin(); ithor != stHorizonNodes.end(); ++ithor)
   {
-    const CHorizonBase& horizon = **ithor;
-    if(horizon.Slip())
-    {
+  const CHorizonBase& horizon = **ithor;
+  if(horizon.Slip())
+  {
       FaultAccessor fa(horizon);
       CResultAverager fault_averager(fa, *this);
       if(!fault_averager.AverageResults(*progdlg, nCurrentStep, nProgressSteps))
-        return;
-    }
+    return;
+  }
   }
 
   for(itfor = stFormationNodes.begin(); itfor != stFormationNodes.end(); ++itfor)
   {
-    const CFormationBase& formation = **itfor;
-    FormationAccessor fa(formation);
-    CResultAverager formation_averager(fa, *this);
-    if(!formation_averager.AverageResults(*progdlg, nCurrentStep, nProgressSteps))
+  const CFormationBase& formation = **itfor;
+  FormationAccessor fa(formation);
+  CResultAverager formation_averager(fa, *this);
+  if(!formation_averager.AverageResults(*progdlg, nCurrentStep, nProgressSteps))
       return;
   }
 
   if(pCasingModel)
   {
-    {
+  {
       ElementSetAccessor esa(pCasingModel->Mesh().SteelElements());
       CResultAverager steel_averager(esa, *this);
       if(!steel_averager.AverageResults(*progdlg, nCurrentStep, nProgressSteps))
-        return;
-    }
+    return;
+  }
 
-    {
+  {
       ElementSetAccessor esa(pCasingModel->Mesh().CementElements());
       CResultAverager cement_averager(esa, *this);
       if(!cement_averager.AverageResults(*progdlg, nCurrentStep, nProgressSteps))
-        return;
-    }
+    return;
+  }
 
-    {
+  {
       ElementPtrArrayAccessor epaa(pCasingModel->Mesh().CementInterfaceElements());
       CResultAverager cementinterface_averager(epaa, *this);
       if(!cementinterface_averager.AverageResults(*progdlg, nCurrentStep, nProgressSteps))
-        return;
-    }
+    return;
+  }
   }
 
   scopeguard.ReleaseCacher();
@@ -809,7 +809,7 @@ int CResultCache::validateCacheSize(int cacheSize)
 {
   // make sure it's not too small
   if(cacheSize < 128)
-    cacheSize = 128;
+  cacheSize = 128;
 
   return cacheSize;
 }

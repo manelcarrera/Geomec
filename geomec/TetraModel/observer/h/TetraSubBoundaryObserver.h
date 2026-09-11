@@ -11,9 +11,9 @@ class CTetraSubBoundaryObserver : public TTetraSubBoundaryObserver
 {
 
 public:
-	CTetraSubBoundaryObserver(CTetraSubModelBranch& model_branch, CTetraSubBoundary& boundary);
+  CTetraSubBoundaryObserver(CTetraSubModelBranch& model_branch, CTetraSubBoundary& boundary);
 
-	virtual BOOL OnSelect();
+  virtual BOOL OnSelect();
 };
 
 #endif  // _TetraSubBoundaryObserver_h_

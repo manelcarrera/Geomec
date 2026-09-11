@@ -134,7 +134,7 @@ public:
                                       // associated class instances).
 
   RCHString *ModelName() {return modelMoniker;}
-                                    // Do NOT drop the object returned.
+                  // Do NOT drop the object returned.
   void SetWriter(const RESCUECHAR *vendorName, const RESCUECHAR *vendorVersion, 
                                          const RESCUECHAR *modelDate, const RESCUECHAR *userName);
   RCHString *VendorName();          // Delete the returned object when thru for these 4.
@@ -144,7 +144,7 @@ public:
 
   void SetIJKPreference(RescueCoordinateSystem::Orientation preferredOrientation);
   RESCUECHAR *IJKPreference();                              // Returns NULL if none was defined.
-                                                            // Delete the returned object.
+                              // Delete the returned object.
   RescueCoordinateSystem::Orientation IJKPreferenceEnum();  // Throws an exception if none was defined.
 
   RESCUEINT64 UnitCount64() {return units->Count64();}
@@ -209,9 +209,9 @@ public:
   RescueFaultIntersection *NthRescueFaultIntersection(RESCUEINT64 zeroBasedOrdinal) {return faultIntersections->NthObject(zeroBasedOrdinal);}
   RescueReservoir *NthRescueReservoir(RESCUEINT64 zeroBasedOrdinal) {return reservoirs->NthObject(zeroBasedOrdinal);}
   RescueWireframe *NthRescueWireframe(RESCUEINT64 zeroBasedOrdinal) {return wireframes->NthObject(zeroBasedOrdinal);}
-                                    // Do NOT delete the object returned.
-                                    // If you want to remove them from the
-                                    // model use the corresponding Drop method.
+                  // Do NOT delete the object returned.
+                  // If you want to remove them from the
+                  // model use the corresponding Drop method.
 
   RESCUEBOOL DropRescueUnit(RescueUnit *unitToDrop) {return ((*units) -= unitToDrop);}
   RESCUEBOOL DropRescueBlock(RescueBlock *blockToDrop) {return ((*blocks) -= blockToDrop);}
@@ -227,11 +227,11 @@ public:
   RESCUEBOOL DropRescueFaultIntersection(RescueFaultIntersection *RESCUEINTersectionToDrop);
   RESCUEBOOL DropRescueReservoir(RescueReservoir *reservoirToDrop);
   RESCUEBOOL DropRescueWireframe(RescueWireframe *wireframeToDrop);
-                                    // Mustn't drop an owned object directly.
-                                    // Use the owner's drop method instead.
-                                    // These return FALSE if the object passed is
-                                    // not a member of the set (and in that case the
-                                    // object IS NOT dropped.
+                  // Mustn't drop an owned object directly.
+                  // Use the owner's drop method instead.
+                  // These return FALSE if the object passed is
+                  // not a member of the set (and in that case the
+                  // object IS NOT dropped.
   RescueUnit *UnitNamed(RESCUECHAR *identifier) {return units->ObjectNamed(identifier);}
   RescueBlock *BlockNamed(RESCUECHAR *identifier) {return blocks->ObjectNamed(identifier);}
   RescueHorizon *HorizonNamed(RESCUECHAR *horizonName) {return horizons->ObjectNamed(horizonName);}
@@ -263,10 +263,10 @@ public:
   RescueProperty *GlobalPropertyIdentifiedBy(RESCUEINT64 identifer);
 
   cSetString *UniquePropertyNames();    // Returns a set of unique property names found in
-                                        // the model.  Geometries, surfaces, and
-                                        // Data containers may be loaded and
-                                        // unloaded by this process.
-                                        // Delete the object returned.
+                    // the model.  Geometries, surfaces, and
+                    // Data containers may be loaded and
+                    // unloaded by this process.
+                    // Delete the object returned.
 /*********************************************************************************
 
   If RescueModel::LoadWireframe() has been called, you can get the wireframe object
@@ -284,19 +284,19 @@ public:
 
  RescueTrimVertex *TrimVertexLocatedBy(RESCUEFLOAT x, RESCUEFLOAT y, RESCUEFLOAT z);
   RescuePolyLine *PolyLineBetween(RescueTrimVertex *end1, RescueTrimVertex *end2);
-                                    // The above only work on loaded wireframe elements.  They
-                                    // do not load unloaded elements.
+                  // The above only work on loaded wireframe elements.  They
+                  // do not load unloaded elements.
   RescueLookup *LookupNamed(const RESCUECHAR *name) {return lookups->ObjectNamed(name);}
   RescueModelPropertyGroup *PropertyGroupNamed(RESCUECHAR *name) {return propertyGroup->ObjectNamed(name);}
-                                    // Do NOT delete the object returned.
-                                    // If you want to remove them from the
-                                    // model use the corresponding Drop method.
+                  // Do NOT delete the object returned.
+                  // If you want to remove them from the
+                  // model use the corresponding Drop method.
   RescueLogicalOrder *LogicalOrder(); // Returns an object that displays the logical ordering
                                       // of Units, Horizons, Unconformities, and Diapirs
                                       // in the model.
   RescueColorTableList *ColorTableList() {return colorTableList;}
-                                    // Return an object used to keep track of color tables defined
-                                    // for specific property types.
+                  // Return an object used to keep track of color tables defined
+                  // for specific property types.
 
   RESCUEFLOAT Rotation() {return rotation;}
   void SetRotation(RESCUEFLOAT rotationIn) {rotation = rotationIn;}
@@ -308,10 +308,10 @@ public:
   RescueDocumentList *Documents();
   bool WriteWITSML(const RESCUECHAR *pathName); // Writes XML for trajectories and logs.
   bool ReadWITSML(const RESCUECHAR *pathName, RescueProgressReporter *loggingObject = 0);  
-                                                // Reads XML for same.  Any errors are
-                                                // written to the loggingObject with
-                                                // a prefix of "ERROR:".  Informational
-                                                // messages go there too.
+                        // Reads XML for same.  Any errors are
+                        // written to the loggingObject with
+                        // a prefix of "ERROR:".  Informational
+                        // messages go there too.
 /***********************************************************************************
 
   The next five methods have to do with loading and unloading the wireframe model
@@ -327,34 +327,34 @@ public:
 /***********************************************************************************/
 
   RescueCoordinateSystem *CoordinateSystem() {return coordinateSystem;}
-                                    // Do NOT delete the returned object.
+                  // Do NOT delete the returned object.
   void SetCoordinateSystem(RescueCoordinateSystem *newCoordinateSystem)
-                            {coordinateSystem = newCoordinateSystem;}
-                                    // Coordinate systems are not considered owned objects.
+              {coordinateSystem = newCoordinateSystem;}
+                  // Coordinate systems are not considered owned objects.
   cNameValuePair *NameValuePairs() {return nameValuePairs;}
-                                    // Interrogate the object returned to manipulate name/value pairs
-                                    // belonging to this model.  DO NOT delete the object, it belongs
-                                    // permanently to the model.
+                  // Interrogate the object returned to manipulate name/value pairs
+                  // belonging to this model.  DO NOT delete the object, it belongs
+                  // permanently to the model.
   RESCUEINT32 Version(RESCUEBOOL reload = FALSE);
   RESCUEINT32 WireframeVersion(RESCUEBOOL reload = FALSE);
-                                    // These methods return a version number for the file which
-                                    // starts at zero and increments each time the file is
-                                    // written.  Applications can use this as a quick check to
-                                    // see if the file has been updated (by saving the version
-                                    // number AFTER a write operation). If reload is TRUE the library
-                                    // always goes back to the disk to read the version number,
-                                    // in case it has been recently changed.  Therefore, the
-                                    // version number returned is the version which would be
-                                    // available if the data were loaded now, not the version which
-                                    // IS loaded now (if any). If false, the version number returned
-                                    // is the version of the last data loaded (if any).
+                  // These methods return a version number for the file which
+                  // starts at zero and increments each time the file is
+                  // written.  Applications can use this as a quick check to
+                  // see if the file has been updated (by saving the version
+                  // number AFTER a write operation). If reload is TRUE the library
+                  // always goes back to the disk to read the version number,
+                  // in case it has been recently changed.  Therefore, the
+                  // version number returned is the version which would be
+                  // available if the data were loaded now, not the version which
+                  // IS loaded now (if any). If false, the version number returned
+                  // is the version of the last data loaded (if any).
 /****************************************************************************************
 
-    Methods dealing with global grid geometries.
+  Methods dealing with global grid geometries.
 
 *******************************************************************************************/
   RescueGeometry *GridGeometry(RESCUEINT64 zeroBasedOrdinal = 0) {return gridGeometries->NthObject(zeroBasedOrdinal);}
-                                    // May return null, even with ordinal = 0.
+                  // May return null, even with ordinal = 0.
   RescueGeometry *GridGeometryIdentifiedBy(RESCUEINT64 identifier) {return gridGeometries->ObjectIdentifiedBy(identifier);}
   RESCUEINT64 GeometryCount64() {return gridGeometries->Count64();}
   RESCUEINT32 GeometryCount() {return gridGeometries->Count();}
@@ -363,7 +363,7 @@ public:
   RescueProperty *PropertyIdentifiedBy(RESCUEINT64 id);
 /****************************************************************************************
 
-    Methods dealing with grouping of properties on global grid geometries.
+  Methods dealing with grouping of properties on global grid geometries.
 
 *******************************************************************************************/
   RESCUEINT64 RescuePropertyGroupCount64() {return localGroups->Count64();}
@@ -373,14 +373,14 @@ public:
   RescuePropertyGroup *PropertyGroupIdentifiedBy(RESCUEINT64 identifier) 
                   {return localGroups->ObjectIdentifiedBy(identifier);}
                                    // Do NOT delete the object returned.
-                                    // If you want to remove them from the
-                                    // model use the corresponding Drop method.
+                  // If you want to remove them from the
+                  // model use the corresponding Drop method.
   RESCUEBOOL DropRescuePropertyGroup(RescuePropertyGroup *unitToDrop) 
                           {return ((*localGroups) -= unitToDrop);}
 
 /****************************************************************************************
 
-    Methods dealing with RescueDataContainers.
+  Methods dealing with RescueDataContainers.
 
 *******************************************************************************************/
   cSetRescueDataContainer *DataContainers();
@@ -398,14 +398,14 @@ public:
      // member of the specified class.
 /****************************************************************************************
 
-    Methods dealing with Orientation.
+  Methods dealing with Orientation.
 
 *******************************************************************************************/
   static int SetOrientation(RescueContext *context, 
-                            char *modelFileName, 
-                            RescueCoordinateSystem::Orientation orientation);
-                                    // Model should not be open.  Model will be re-written as the 
-                                    // new orientation.
+              char *modelFileName, 
+              RescueCoordinateSystem::Orientation orientation);
+                  // Model should not be open.  Model will be re-written as the 
+                  // new orientation.
 private:
   RescueContext *Context(bool setContext);
   RescueModel(RescueContext *context, FILE *archiveFile);

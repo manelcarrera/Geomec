@@ -17,28 +17,28 @@ bool CCLICommandVisitor::VisitHexaFormation(CHexaFormation& formation)
 {
   if(*m_itCommand == "TYPE")
   {
-    TStringList::const_iterator it = m_itCommand;
-    if(++it != m_commands.end())
-    {
+  TStringList::const_iterator it = m_itCommand;
+  if(++it != m_commands.end())
+  {
       if(*it == "NOTSPECIFIED")
-        formation.FormationType(CFormationBase::FT_NOTSPECIFIED);
+    formation.FormationType(CFormationBase::FT_NOTSPECIFIED);
       else if(*it == "SHALE")
-        formation.FormationType(CFormationBase::FT_SHALE);
+    formation.FormationType(CFormationBase::FT_SHALE);
       else if(*it == "SAND")
-        formation.FormationType(CFormationBase::FT_SAND);
+    formation.FormationType(CFormationBase::FT_SAND);
       else if(*it == "CHALK")
-        formation.FormationType(CFormationBase::FT_CHALK);
+    formation.FormationType(CFormationBase::FT_CHALK);
       else if(*it == "SALT")
-        formation.FormationType(CFormationBase::FT_SALT);
+    formation.FormationType(CFormationBase::FT_SALT);
       else if(*it == "LIMESTONE")
-        formation.FormationType(CFormationBase::FT_LIMESTONE);
+    formation.FormationType(CFormationBase::FT_LIMESTONE);
       else if(*it == "SANDSTONE")
-        formation.FormationType(CFormationBase::FT_SANDSTONE);
+    formation.FormationType(CFormationBase::FT_SANDSTONE);
       else
-        return false;
+    return false;
 
       return true;
-    }
+  }
   }
 
   return IGeomecModelVisitor::VisitHexaFormation(formation);

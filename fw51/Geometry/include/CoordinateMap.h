@@ -42,16 +42,16 @@ public:
 
   virtual const key_type& key(const value_type& val) const
   {
-    return val.first;
+  return val.first;
   }
 
   mapped_type& operator[](const key_type& key)
   {
-    iterator it = this->find(key);
-    if(it == COctree <COORD, std::pair <COORD, VALUE>, EPSILON> ::end())
+  iterator it = this->find(key);
+  if(it == COctree <COORD, std::pair <COORD, VALUE>, EPSILON> ::end())
       it = this->insert(value_type(key, mapped_type())).first;
 
-    return it->second;
+  return it->second;
   }
 };
 

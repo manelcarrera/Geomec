@@ -5,7 +5,7 @@
 
 CResultTree_Delegate::CEffectiveStressResult_Delegate::
   CEffectiveStressResult_Delegate(
-    CResultTree::CEffectiveStressResult* effectiveStressResult)
+  CResultTree::CEffectiveStressResult* effectiveStressResult)
 : IStressTensorGroup_Delegate(effectiveStressResult)
 , m_effectiveStressResult(effectiveStressResult)
 {
@@ -13,7 +13,7 @@ CResultTree_Delegate::CEffectiveStressResult_Delegate::
 
 CResultTree_Delegate::CTotalStressResult_Delegate::
   CSurfaceStressComposite_Delegate::CSurfaceStressComposite_Delegate(
-    CResultTree::CTotalStressResult::CSurfaceStressComposite*
+  CResultTree::CTotalStressResult::CSurfaceStressComposite*
       surfaceStressComposite)
 : IResult_Delegate(surfaceStressComposite)
 , m_surfaceStressComposite(surfaceStressComposite)
@@ -36,7 +36,7 @@ CResultTree_Delegate::CTotalStrainResult_Delegate::CTotalStrainResult_Delegate(
 
 CResultTree_Delegate::CPlasticStrainResult_Delegate::
   CPlasticStrainResult_Delegate(CResultTree::CPlasticStrainResult*
-    plasticStrainResult)
+  plasticStrainResult)
 : IStrainTensorGroup_Delegate(plasticStrainResult)
 , m_plasticStrainResult(plasticStrainResult)
 {
@@ -44,7 +44,7 @@ CResultTree_Delegate::CPlasticStrainResult_Delegate::
 
 CResultTree_Delegate::CScalarResult_Delegate::
   CScalarResultComponent_Delegate::CScalarResultComponent_Delegate(
-    CResultTree::CScalarResult::CScalarResultComponent* scalarResultComponent)
+  CResultTree::CScalarResult::CScalarResultComponent* scalarResultComponent)
 : IScalarResultComponent_Delegate(scalarResultComponent)
 , m_scalarResultComponent(scalarResultComponent)
 {
@@ -59,7 +59,7 @@ CResultTree_Delegate::CScalarResult_Delegate::CScalarResult_Delegate(
 
 CResultTree_Delegate::CDisplacementResult_Delegate::
   CDisplacementResult_Delegate(
-    CResultTree::CDisplacementResult* displacementResult)
+  CResultTree::CDisplacementResult* displacementResult)
 : CVectorResult_Delegate(displacementResult)
 , m_displacementResult(displacementResult)
 {
@@ -67,7 +67,7 @@ CResultTree_Delegate::CDisplacementResult_Delegate::
 
 CResultTree_Delegate::CFaultScalarResult_Delegate::
   CFaultScalarResultComponent_Delegate::CFaultScalarResultComponent_Delegate(
-    CResultTree::CFaultScalarResult::CFaultScalarResultComponent*
+  CResultTree::CFaultScalarResult::CFaultScalarResultComponent*
       faultScalarResultComponent)
 : IScalarResultComponent_Delegate(faultScalarResultComponent)
 , m_faultScalarResultComponent(faultScalarResultComponent)
@@ -83,7 +83,7 @@ CResultTree_Delegate::CFaultScalarResult_Delegate::CFaultScalarResult_Delegate(
 
 CResultTree_Delegate::CFaultDisplacementResult_Delegate::
   CFaultDisplacementResult_Delegate(CResultTree::CFaultDisplacementResult*
-    faultDisplacementResult)
+  faultDisplacementResult)
 : CVectorResult_Delegate(faultDisplacementResult)
 , m_faultDisplacementResult(faultDisplacementResult)
 {
@@ -91,7 +91,7 @@ CResultTree_Delegate::CFaultDisplacementResult_Delegate::
 
 CResultTree_Delegate::CFaultPlasticSlipResult_Delegate::
   CFaultPlasticSlipResult_Delegate(CResultTree::CFaultPlasticSlipResult*
-    faultPlasticSlipResult)
+  faultPlasticSlipResult)
 : IVectorResult_Delegate(faultPlasticSlipResult)
 , m_faultPlasticSlipResult(faultPlasticSlipResult)
 {
@@ -113,24 +113,24 @@ CResultTree_Delegate::CFaultShearStress_Delegate::CFaultShearStress_Delegate(
 
 CResultTree_Delegate::CFaultShearStressLengthChangeComposite_Delegate::
   CFaultShearStressLengthChangeComponent_Delegate::
-    CFaultShearStressLengthChangeComponent_Delegate(
+  CFaultShearStressLengthChangeComponent_Delegate(
       CResultTree::CFaultShearStressLengthChangeComposite::
-        CFaultShearStressLengthChangeComponent*
+    CFaultShearStressLengthChangeComponent*
           faultShearStressLengthChangeComponent)
 : IVectorResult_Delegate::CVectorComponent_Delegate(
-    faultShearStressLengthChangeComponent)
+  faultShearStressLengthChangeComponent)
 , m_faultShearStressLengthChangeComponent(
-    faultShearStressLengthChangeComponent)
+  faultShearStressLengthChangeComponent)
 {
 }
 
 CResultTree_Delegate::CFaultShearStressLengthChangeComposite_Delegate::
   CFaultShearStressLengthChangeComposite_Delegate(
-    CResultTree::CFaultShearStressLengthChangeComposite*
+  CResultTree::CFaultShearStressLengthChangeComposite*
       faultShearStressLengthChangeComposite)
 : CVectorResult_Delegate(faultShearStressLengthChangeComposite)
 , m_faultShearStressLengthChangeComposite(
-    faultShearStressLengthChangeComposite)
+  faultShearStressLengthChangeComposite)
 {
 }
 

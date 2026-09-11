@@ -58,7 +58,7 @@ void CDistriMatPropDlg::OnOK()
 void CDistriMatPropDlg::PopulateTree()
 {
   for(size_t i = 0; i < m_vcValueTypes.size(); ++i)
-    new CMatPropObserver(*m_vcValueTypes[i], m_tcProperties, *this);
+  new CMatPropObserver(*m_vcValueTypes[i], m_tcProperties, *this);
 }
 
 // wjrx mantis 3132
@@ -69,9 +69,9 @@ void CDistriMatPropDlg::OnApplyToAll()
 
   for(size_t i = 0; i < m_vcValueTypes.size(); ++i)
   {
-    if (bExtrapolate)
+  if (bExtrapolate)
       m_stCopy.insert(m_vcValueTypes[i]);
-    else
+  else
       m_stCopy.erase(m_vcValueTypes[i]);
   }
 }
@@ -102,14 +102,14 @@ void CDistriMatPropDlg::UpdateRadioButtons()
 
   if(m_pCurrent)
   {
-    bool bExtrapolate = (m_stCopy.find(m_pCurrent) != m_stCopy.end());
-    pRadioExtrapolate->SetCheck(bExtrapolate ? 1 : 0);
-    pRadioMatLibVal->SetCheck(bExtrapolate ? 0 : 1);
+  bool bExtrapolate = (m_stCopy.find(m_pCurrent) != m_stCopy.end());
+  pRadioExtrapolate->SetCheck(bExtrapolate ? 1 : 0);
+  pRadioMatLibVal->SetCheck(bExtrapolate ? 0 : 1);
   }
   else
   {
-    pRadioExtrapolate->SetCheck(0);
-    pRadioMatLibVal->SetCheck(0);
+  pRadioExtrapolate->SetCheck(0);
+  pRadioMatLibVal->SetCheck(0);
   }
 }
 

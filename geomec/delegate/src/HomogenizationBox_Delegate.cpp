@@ -28,8 +28,8 @@ bool CHomogenizationBox_Delegate::Attributes()
 {
   if (!((CModelBase&) m_homogenizationBox->Model()).Mesh().IsMesh())
   {
-    _m()->msg("Please make sure a valid mesh is created");
-    return false;
+  _m()->msg("Please make sure a valid mesh is created");
+  return false;
   }
 
   CHomoBoxAttriDlg dlg(m_homogenizationBox->Model(), *m_homogenizationBox);
@@ -44,10 +44,10 @@ void CHomogenizationBox_Delegate::AppendContextMenu(
 {
   typedef CSingleCommandTemplate <CHomogenizationBox> THomoBoxCommand;
   typedef CSingleCommandTemplate <CHomogenizationBox_Delegate>
-    THomoBoxCommand_Delegate;
+  THomoBoxCommand_Delegate;
 
   invoker.AddCommand(_T("Capture element set"),
-    *(new THomoBoxCommand_Delegate(*this,
+  *(new THomoBoxCommand_Delegate(*this,
       &CHomogenizationBox_Delegate::CaptureElSet,
       &CHomogenizationBox_Delegate::CanCaptureElSet)));
 
@@ -57,20 +57,20 @@ void CHomogenizationBox_Delegate::AppendContextMenu(
   if (pApp->KeyFile().Unlocked())
   {
 #endif
-    invoker.AddCommand(_T("Create zoom-in model"),
+  invoker.AddCommand(_T("Create zoom-in model"),
       *(new THomoBoxCommand_Delegate(*this,
-        &CHomogenizationBox_Delegate::CreateZoomIn)));
-    invoker.AddCommand(_T("Cut surfaces with this box"),
+    &CHomogenizationBox_Delegate::CreateZoomIn)));
+  invoker.AddCommand(_T("Cut surfaces with this box"),
       *(new THomoBoxCommand_Delegate(*this,
-        &CHomogenizationBox_Delegate::CutSurafceInDatastoreWithBox,
-        &CHomogenizationBox_Delegate::CanCutSurafceInDatastoreWithBox)));
+    &CHomogenizationBox_Delegate::CutSurafceInDatastoreWithBox,
+    &CHomogenizationBox_Delegate::CanCutSurafceInDatastoreWithBox)));
 #ifdef ZOOMIN_KEYFILE
   }
 #endif
 
   invoker.AddSeparator();
   invoker.AddCommand(_T("&Delete"),
-    *(new THomoBoxCommand(*m_homogenizationBox,
+  *(new THomoBoxCommand(*m_homogenizationBox,
       &CHomogenizationBox::Destroy)));
 
   CColorNode_Delegate::AppendContextMenu(invoker);
@@ -79,15 +79,15 @@ void CHomogenizationBox_Delegate::AppendContextMenu(
 void CHomogenizationBox_Delegate::CaptureElSet()
 {
   CModelBase& model =
-    dynamic_cast <CModelBase&> (m_homogenizationBox->Model());
+  dynamic_cast <CModelBase&> (m_homogenizationBox->Model());
   CElementSet* pElementSet = m_homogenizationBox->CaptureElementSet(model);
   CElementSet_Delegate* pElementSet_Delegate =
-    new CElementSet_Delegate(pElementSet);
+  new CElementSet_Delegate(pElementSet);
 
   if (!pElementSet_Delegate->Attributes())
   {
-    delete pElementSet_Delegate;
-    delete pElementSet;
+  delete pElementSet_Delegate;
+  delete pElementSet;
   }
 }
 
@@ -116,10 +116,10 @@ bool CHomogenizationBox_Delegate::CanCutSurafceInDatastoreWithBox() const
 void CHomogenizationBox_Delegate::CutSurafceInDatastoreWithBox()
 {
   const CModelBase& model =
-    dynamic_cast <const CModelBase&> (m_homogenizationBox->Model());
+  dynamic_cast <const CModelBase&> (m_homogenizationBox->Model());
   CSurfaceEntry* entry = ((CSurfaceEntry*) model.GraphEntry(MD_BASE_SURFACE));
   CSurfaceEntry_Delegate* entry_Delegate =
-    dynamic_cast <CSurfaceEntry_Delegate*> (entry->getDelegate());
+  dynamic_cast <CSurfaceEntry_Delegate*> (entry->getDelegate());
 
   entry_Delegate->CutSurfacesBB(m_homogenizationBox->Box());
 }
@@ -133,10 +133,10 @@ CHomoBoxEntry_Delegate::CHomoBoxEntry_Delegate(CHomoBoxEntry* homoBoxEntry)
 void CHomoBoxEntry_Delegate::AppendContextMenu(CContextMenuInvoker& invoker)
 {
   typedef CSingleCommandTemplate <CHomoBoxEntry_Delegate>
-    THomoBoxEntry_DelegateCommand;
+  THomoBoxEntry_DelegateCommand;
 
   invoker.AddCommand(_T("New Scaling Box"),
-    *(new THomoBoxEntry_DelegateCommand(*this,
+  *(new THomoBoxEntry_DelegateCommand(*this,
       &CHomoBoxEntry_Delegate::NewBox))); 
 }
 
@@ -150,14 +150,14 @@ const QString DEFAULT_SCALING_BOX_NAME = QObject::tr("Scaling box%1");
 void CHomoBoxEntry_Delegate::NewBox()
 {
   QString name = m_homoBoxEntry->createUniqueName(DEFAULT_SCALING_BOX_NAME,
-    m_homoBoxEntry->GraphEntryNodes().size() + 1);
+  m_homoBoxEntry->GraphEntryNodes().size() + 1);
   CHomogenizationBox* pBox =
-    new CHomogenizationBox(m_homoBoxEntry->Model(), name);
+  new CHomogenizationBox(m_homoBoxEntry->Model(), name);
   CHomoBoxAttriDlg dlg(m_homoBoxEntry->Model(), *pBox);
 
   if (dlg.DoModal() == IDCANCEL)
   {
-    delete pBox;
+  delete pBox;
   }
 
   m_homoBoxEntry->Modified();

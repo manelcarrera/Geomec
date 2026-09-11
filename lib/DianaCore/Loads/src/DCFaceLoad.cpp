@@ -22,7 +22,7 @@ CFaceLoad::~CFaceLoad()
 
 const geo::IFace &CFaceLoad::Face() const
 {
-	return m_Face;
+  return m_Face;
 }
 
 } // namespace dia

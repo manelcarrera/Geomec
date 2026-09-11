@@ -14,13 +14,13 @@ std::list <const CNewFormationSection*> CNewFormationSectionList::getSections(
   std::list <CNewFormationSection>::const_iterator newFormationSection;
 
   for (newFormationSection = m_newFormationSectionList.begin();
-    newFormationSection != m_newFormationSectionList.end();
-    ++newFormationSection)
+  newFormationSection != m_newFormationSectionList.end();
+  ++newFormationSection)
   {
-    if ((*newFormationSection).Contains(newWellPoint, includeEdge))
-    {
+  if ((*newFormationSection).Contains(newWellPoint, includeEdge))
+  {
       newFormationSectionList.push_back(&*newFormationSection);
-    }
+  }
   }
 
   return newFormationSectionList;

@@ -22,13 +22,13 @@ class ISymbol;
 class OPENGLFRAME_EXPORT CDrawVisitorBase : public geo::CDispatchVisitorBase
 {
 protected:
-	CDrawVisitorBase();
+  CDrawVisitorBase();
 
 public:
-	virtual ~CDrawVisitorBase();
+  virtual ~CDrawVisitorBase();
 
-	virtual bool HandleLabelPoint(const CLabelPoint &LabelPoint);
-	virtual bool HandleSymbol(const ISymbol &Symbol);
+  virtual bool HandleLabelPoint(const CLabelPoint &LabelPoint);
+  virtual bool HandleSymbol(const ISymbol &Symbol);
 };
 
 

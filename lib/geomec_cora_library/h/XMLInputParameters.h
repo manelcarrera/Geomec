@@ -14,18 +14,18 @@ namespace cora
 class CXMLInputParameters
 {
   public:
-    CXMLInputParameters(CModelData& modelData, const TObject& object);
+  CXMLInputParameters(CModelData& modelData, const TObject& object);
 
-    std::ostream& operator () (std::ostream& stream) const;
+  std::ostream& operator () (std::ostream& stream) const;
 
   private:
-    CXMLInputParameters(const CXMLInputParameters& rhs);
-    CXMLInputParameters& operator = (CXMLInputParameters rhs);
+  CXMLInputParameters(const CXMLInputParameters& rhs);
+  CXMLInputParameters& operator = (CXMLInputParameters rhs);
 
-    static TXMLInputParameters createInputParameters(CModelData& modelData,
+  static TXMLInputParameters createInputParameters(CModelData& modelData,
       TObject object);
 
-    TXMLInputParameters m_inputParameters;
+  TXMLInputParameters m_inputParameters;
 };
 
 } // namespace cora

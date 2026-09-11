@@ -20,16 +20,16 @@ typedef CStateBranch_Delegate<CWellCasingNode, CWellCasingNode_Delegate, CGraphN
 class CWellCasingNodeObserver : public TWellCasingNodeObserverBase
 {
 public:
-	CWellCasingNodeObserver(CWellCasingNode& node,
-						              CTreeCtrl& ctrl,
-						              const BOOL rename,
-						              const enum REMOVE_TYPE remove,
+  CWellCasingNodeObserver(CWellCasingNode& node,
+                          CTreeCtrl& ctrl,
+                          const BOOL rename,
+                          const enum REMOVE_TYPE remove,
                           HTREEITEM hParent = TVI_LAST,
-						              HTREEITEM hInsertAfter = TVI_LAST,
-						              BOOL bInitialUpdate = TRUE,
-						              BOOL bSortAfterInsertion = TRUE);
+                          HTREEITEM hInsertAfter = TVI_LAST,
+                          BOOL bInitialUpdate = TRUE,
+                          BOOL bSortAfterInsertion = TRUE);
 
-	virtual BOOL OnFilter(const CGraphNode& node) const;
+  virtual BOOL OnFilter(const CGraphNode& node) const;
   virtual CTreeNode* InsertChild(CGraphNode& node);
 };
 

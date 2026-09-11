@@ -37,7 +37,7 @@ public:
   virtual ~CFistPointPickDlg();
 
   virtual CNewWellPoint OnCreateWellPoint
-    ( CNewWellPathBase& wellpath , double tmd, bool &bDefined);
+  ( CNewWellPathBase& wellpath , double tmd, bool &bDefined);
   virtual void OnAddDefault(std::list<CNewWellPoint> &list);
   virtual CString OnOutOfBoundaryMessage();
 

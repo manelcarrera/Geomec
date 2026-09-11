@@ -13,22 +13,22 @@ namespace cora
 class CXMLResponseValueType
 {
   public:
-    static struct TResponseValueTypeSimple {} responseValueTypeSimple;
-    static struct TResponseValueTypeFailureArea {} responseValueTypeFailureArea;
+  static struct TResponseValueTypeSimple {} responseValueTypeSimple;
+  static struct TResponseValueTypeFailureArea {} responseValueTypeFailureArea;
 
-    CXMLResponseValueType(const TResponseValueTypeSimple&,
+  CXMLResponseValueType(const TResponseValueTypeSimple&,
       const QString& responseValueTypeName);
-    CXMLResponseValueType(const TResponseValueTypeFailureArea&,
+  CXMLResponseValueType(const TResponseValueTypeFailureArea&,
       const QString& responseValueTypeName);
 
-    std::ostream& operator () (std::ostream& stream) const;
+  std::ostream& operator () (std::ostream& stream) const;
 
   private:
-    CXMLResponseValueType(const CXMLResponseValueType& rhs);
-    CXMLResponseValueType& operator = (CXMLResponseValueType rhs);
+  CXMLResponseValueType(const CXMLResponseValueType& rhs);
+  CXMLResponseValueType& operator = (CXMLResponseValueType rhs);
 
-    const QString m_responseValueTypeName;
-    const QString m_responseValueTypePostFix;
+  const QString m_responseValueTypeName;
+  const QString m_responseValueTypePostFix;
 };
 
 typedef QSharedPointer <CXMLResponseValueType> TXMLResponseValueType;

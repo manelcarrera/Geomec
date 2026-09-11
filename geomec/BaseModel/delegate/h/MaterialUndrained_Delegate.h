@@ -13,7 +13,7 @@ public:
 private:
   CMaterialUndrained_Delegate(const CMaterialUndrained_Delegate& rhs);
   CMaterialUndrained_Delegate& operator = (
-    const CMaterialUndrained_Delegate& rhs);
+  const CMaterialUndrained_Delegate& rhs);
 
   CMaterialUndrained* m_materialUndrained;
 

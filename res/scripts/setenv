@@ -130,7 +130,7 @@ if [ "$CONF_" == "release" ]; then
 else
 	USRLIB=$ROOT/UserDLLs/debug
 fi
-TBBLIB=$ROOT/lib/tbb/linux/lib/intel64/gcc4.7
+TBBLIB=$ROOT/third_party/tbb/linux/lib/intel64/gcc4.7
 
 
 # no need to add GCC and QT as already done on modules load

@@ -55,7 +55,7 @@ private:
   double m_coor[3];
   bool   m_empty;
 };
-	
+  
 }
 
 #endif // !defined(AFX_POINT_H__A767A583_D0B5_41A1_89BC_2DFB1AE27A26__INCLUDED_)

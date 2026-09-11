@@ -90,7 +90,7 @@ typedef struct DIR DIR;
 
 /* emulation functions */
 extern int	g_win32_ftruncate	(gint		 f,
-					 guint		 size);
+           guint		 size);
 DIR*		g_win32_opendir		(const gchar	*dirname);
 struct dirent*	g_win32_readdir  	(DIR		*dir);
 void		g_win32_rewinddir 	(DIR		*dir);

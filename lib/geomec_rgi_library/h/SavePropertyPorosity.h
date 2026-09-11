@@ -9,15 +9,15 @@ namespace GeomecRGI
 class CSavePropertyPorosity : public CSavePropertyBase
 {
   public:
-    CSavePropertyPorosity(const RGProperty& rgProperty);
-    virtual ~CSavePropertyPorosity();
+  CSavePropertyPorosity(const RGProperty& rgProperty);
+  virtual ~CSavePropertyPorosity();
 
-    virtual bool saveProperty(RGInterface& rgi, CModelBase& modelBase,
+  virtual bool saveProperty(RGInterface& rgi, CModelBase& modelBase,
       const CRockMechProcessor& rmp);
 
   private:
-    CSavePropertyPorosity(const CSavePropertyPorosity& rhs);
-    CSavePropertyPorosity& operator = (const CSavePropertyPorosity& rhs);
+  CSavePropertyPorosity(const CSavePropertyPorosity& rhs);
+  CSavePropertyPorosity& operator = (const CSavePropertyPorosity& rhs);
 };
 
 } // namespace GeomecRGI

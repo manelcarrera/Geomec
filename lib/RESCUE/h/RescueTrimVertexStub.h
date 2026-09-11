@@ -45,7 +45,7 @@ public:
   RescueTrimVertex *TrimVertex(RescueModel *model, RESCUEBOOL loadIfNeeded=TRUE);
 /*****************************************************************
 
-    Normal type-testing method.
+  Normal type-testing method.
 
 *****************************************************************/
   virtual RESCUEBOOL IsOfType(_RescueObjectType thisType);

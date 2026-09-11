@@ -16,11 +16,11 @@
 class CMaterialRigidity : public IMaterialRock
 {
 public:
-	CMaterialRigidity(CMaterialEntry &entry, CLibraryMaterial& libmat);
-	virtual ~CMaterialRigidity();
+  CMaterialRigidity(CMaterialEntry &entry, CLibraryMaterial& libmat);
+  virtual ~CMaterialRigidity();
 
-	virtual bool Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const;
-	virtual int MaterialModel() const;
+  virtual bool Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const;
+  virtual int MaterialModel() const;
   virtual long MaterialModelFilter() const { return MLFO_RIGIDITY; }
 
   // the creator for this material model

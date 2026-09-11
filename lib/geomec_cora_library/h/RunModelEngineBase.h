@@ -22,19 +22,19 @@ namespace cora
 class CRunModelEngineBase
 {
   public:
-    CRunModelEngineBase(CAnalysisType::TAnalysisType analysisType);
-    virtual ~CRunModelEngineBase() = 0;
+  CRunModelEngineBase(CAnalysisType::TAnalysisType analysisType);
+  virtual ~CRunModelEngineBase() = 0;
 
-    virtual bool run(CRunModelData& runModelData, CDianaExecuter& dianaExecuter,
+  virtual bool run(CRunModelData& runModelData, CDianaExecuter& dianaExecuter,
       const QString& modelName, CSaveModelConsole& saveModelConsole,
       CRetrieveDianaFileNamesConsole& retrieveDianaFileNamesConsole) const = 0;
 
   protected:
-    CAnalysisType::TAnalysisType m_analysisType;
+  CAnalysisType::TAnalysisType m_analysisType;
 
   private:
-    CRunModelEngineBase(const CRunModelEngineBase& rhs);
-    CRunModelEngineBase& operator = (const CRunModelEngineBase& rhs);
+  CRunModelEngineBase(const CRunModelEngineBase& rhs);
+  CRunModelEngineBase& operator = (const CRunModelEngineBase& rhs);
 };
 
 typedef QSharedPointer <CRunModelEngineBase> TRunModelEngineBase;

@@ -50,17 +50,17 @@ void input_stream::checkDelimiter(char ch)
   assert(ch != 0);
 
   while( peek() != ch ) {
-    switch( get() ) {
-    case '\t':
-    case '\n':
-    case '\r':
-    case ' ':
+  switch( get() ) {
+  case '\t':
+  case '\n':
+  case '\r':
+  case ' ':
       break; // Ignoring
-    case 0:
+  case 0:
       throw CReadException("Unexpected end of file");
-    default:
+  default:
       throw CReadException(QString("Delimiter %1 expected").arg(ch));
-    }
+  }
   }
   get(); // Eat the delimiter
 }
@@ -71,24 +71,24 @@ void input_stream::checkDelimiter(char ch)
 bool input_stream::eatwhite()
 {
   if(eof())
-    return false;
+  return false;
 
   bool bStop = false;
   while(!eof() && !bStop)
   {
-    char ch = peek();
-    switch(ch)
-    {
-    case '\n':
-    case '\r':
-    case '\t':
-    case ' ':
+  char ch = peek();
+  switch(ch)
+  {
+  case '\n':
+  case '\r':
+  case '\t':
+  case ' ':
       get();
       break;
-    default:
+  default:
       bStop = true;
       break;
-    }
+  }
   };
 
   return bStop && !eof();
@@ -105,20 +105,20 @@ std::string input_stream::read_line()
   std::string sRet;
   if(skip_empty_lines)
   {
-    if(!eatwhite())
+  if(!eatwhite())
       return sRet;
   }
 
   if(m_pBuffer->first->eof())
   {
-    if(!next_line(skip_empty_lines))
+  if(!next_line(skip_empty_lines))
       return sRet;
   }
 
   while(!m_pBuffer->first->eof())
   {
-    char ch = m_pBuffer->first->get();
-    sRet.append(1, ch);
+  char ch = m_pBuffer->first->get();
+  sRet.append(1, ch);
   }
 
   next_line(false);
@@ -138,17 +138,17 @@ input_stream& input_stream::operator>>(bool& bValue)
   QString sValue;
   (*this) >> sValue;
   if( sValue.toUpper() == "FALSE") {
-    bValue = false;
+  bValue = false;
   } else if( sValue.toUpper() == "TRUE") {
-    bValue = true;
+  bValue = true;
   } else {
-    bool bSuccess;
-    int nValue = sValue.toInt( &bSuccess );
-    if( bSuccess && (nValue == 0 || nValue == 1) ) {
+  bool bSuccess;
+  int nValue = sValue.toInt( &bSuccess );
+  if( bSuccess && (nValue == 0 || nValue == 1) ) {
       bValue = nValue == 1;
-    } else {
+  } else {
       throw CReadException("Boolean value expected.");
-    }
+  }
   }
 
   return *this;
@@ -161,7 +161,7 @@ input_stream& input_stream::operator>>(int& nValue)
   bool bSuccess;
   nValue = sValue.toInt( &bSuccess );
   if( !bSuccess ) {
-    throw CReadException("Integer value expected.");
+  throw CReadException("Integer value expected.");
   }
 
   return *this;
@@ -174,7 +174,7 @@ input_stream& input_stream::operator>>(double& dValue)
   bool bSuccess;
   dValue = sValue.toDouble( &bSuccess );
   if( !bSuccess ) {
-    throw CReadException(QString("Double expected instead of %1").arg(sValue));
+  throw CReadException(QString("Double expected instead of %1").arg(sValue));
   }
 
   return *this;
@@ -191,7 +191,7 @@ input_stream& input_stream::operator>>(QString& sValue)
          peek() != '\t' &&
          peek() != '\n' &&
          peek() !=  0 ) {
-    sValue += get();
+  sValue += get();
   }
   
   return *this;
@@ -214,13 +214,13 @@ input_stream& input_stream::operator>>(geo::CValue& value)
   QString sValue;
   (*this) >> sValue;
   if( sValue.toUpper() == "NAN" ) {
-    value = geo::CValue();
+  value = geo::CValue();
   } else {
-    bool bSuccess;
-    value = geo::CValue( sValue.toDouble( &bSuccess ) );
-    if( !bSuccess ) {
+  bool bSuccess;
+  value = geo::CValue( sValue.toDouble( &bSuccess ) );
+  if( !bSuccess ) {
       throw CReadException(QString("Value expected instead of %1").arg(sValue));
-    }
+  }
   }
   return *this;
 }

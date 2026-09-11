@@ -52,29 +52,29 @@ bool IBody::Intersects(const IPlane &plane, bool bIncludeEdge /* = true */) cons
 
   for(i = 0; i < NrOfFaces(); i++)
   {
-    for(j = 0; j < Face(i).NrOfPoints(); j++)
-    {
+  for(j = 0; j < Face(i).NrOfPoints(); j++)
+  {
       distance = plane.SignedDistance(Face(i).Point(j));
       
       if(fabs(distance) < EPS)
       { // point is on plane, plane intersects..
-        return bIncludeEdge;
+    return bIncludeEdge;
       }
 
       if(i == 0 && j == 0)
       { // first point, set the side...
-        side = (distance > 0);
+    side = (distance > 0);
       }
       else
       { // set the bool with which side will be compared...
-        bool comp = (distance > 0);
+    bool comp = (distance > 0);
 
-        if(comp != side)
-        { // point is on other side of plane, plane intersects..
+    if(comp != side)
+    { // point is on other side of plane, plane intersects..
           return true;
-        }
-      }
     }
+      }
+  }
   }
   return false;
 }
@@ -86,42 +86,42 @@ CPolygon IBody::IntersectionConv(const IPlane &plane) const
   CLinkedLine line;
   if(Intersects(plane, true))
   {
-    for(int i = 0; i < NrOfFaces(); i++)
-    {
+  for(int i = 0; i < NrOfFaces(); i++)
+  {
       // We make an intersection and store the intersection in the line map
       IFace::TLineVec vcLine = Face(i).Intersection(plane);
       for(int j = 0; j < vcLine.size(); j++)
       {
-        line.AddLine(vcLine[j].First(), vcLine[j].Second());
-        // assert(Contains(vcLine[j].First(), true));
-        // assert(Contains(vcLine[j].Second(), true));
+    line.AddLine(vcLine[j].First(), vcLine[j].Second());
+    // assert(Contains(vcLine[j].First(), true));
+    // assert(Contains(vcLine[j].Second(), true));
       }
-    }
+  }
 
-    // We fill up the polygon in the right order
-    if(line.Valid())
-    {
+  // We fill up the polygon in the right order
+  if(line.Valid())
+  {
       CPolygon ret;
       double cosalpha =
-        plane.Normal().UnitVector().DotProduct(line.Normal().UnitVector());
+    plane.Normal().UnitVector().DotProduct(line.Normal().UnitVector());
       if(cosalpha > 0)
       {
-        for(int i = 0; i < line.NrOfPoints(); i++)
+    for(int i = 0; i < line.NrOfPoints(); i++)
           ret.PushBack(line.Point(i), true);
 
       }
       else
       {
-        for(int i = 0; i < line.NrOfPoints(); i++)
+    for(int i = 0; i < line.NrOfPoints(); i++)
           ret.PushBack(line.Point(line.NrOfPoints() - i - 1));
       }
       
       // assert(plane.Normal() == ret.Normal());
       assert(ret.NrOfPoints() > 2);
       if(ret.NrOfPoints() > 2)
-        return ret;
+    return ret;
 
-    }
+  }
   }
   return CPolygon();
 }
@@ -133,21 +133,21 @@ void IBody::Intersection(const IPlane &plane, std::set<CLine, ILine::CLineLess> 
 {
   if(Intersects(plane, true))
   {
-    for(int i = 0; i < NrOfFaces(); i++)
-    {
+  for(int i = 0; i < NrOfFaces(); i++)
+  {
       IFace::TLineVec vcLine = Face(i).Intersection(plane);
       for(int j = 0; j < vcLine.size(); j++)
       {
-        LineSet.insert(vcLine[j]);
-        if(PointSet)
-        {
+    LineSet.insert(vcLine[j]);
+    if(PointSet)
+    {
           PointSet->insert(vcLine[j].First());
           PointSet->insert(vcLine[j].Second());
           assert(Contains(vcLine[j].First(), true));
           assert(Contains(vcLine[j].Second(), true));
-        }
-      }
     }
+      }
+  }
   }
   return;
 }
@@ -159,27 +159,27 @@ void IBody::Intersection(const ILine &line, std::set<CPoint> &PointSet) const
   int NrIntersections;
 
   if(bFirstIn && bSecondIn) // line is inside the body
-    return;
+  return;
 
   if(bFirstIn || bSecondIn)
-    NrIntersections = 1;
+  NrIntersections = 1;
   else
-    NrIntersections = 2;
+  NrIntersections = 2;
 
   int Intersections = 0;
   for(int i = 0; i < NrOfFaces(); i++)
   {
-    CPoint pt = Face(i).Intersection(line);
-    if(!pt.Empty())
-    {
+  CPoint pt = Face(i).Intersection(line);
+  if(!pt.Empty())
+  {
       if(line.Contains(pt, true))
       {
-        PointSet.insert(pt);
-        Intersections++;
+    PointSet.insert(pt);
+    Intersections++;
       }
-    }
+  }
 
-    if(Intersections == NrIntersections)
+  if(Intersections == NrIntersections)
       break; // bodies have to be convex, so this means that no more than 2 intersections with a line are possible
   }
 
@@ -194,19 +194,19 @@ bool IBody::Contains(const IPoint &point, bool bIncludeEdge) const
   const IPoint &min = Min();
   const IPoint &max = Max();
   if( ( point.X() < min.X() - compareTolerance() ||
-        point.Y() < min.Y() - compareTolerance() ||
-        point.Z() < min.Z() - compareTolerance()    ) ||
+    point.Y() < min.Y() - compareTolerance() ||
+    point.Z() < min.Z() - compareTolerance()    ) ||
       ( point.X() > max.X() + compareTolerance() ||
-        point.Y() > max.Y() + compareTolerance() ||
-        point.Z() > max.Z() + compareTolerance()    )     )
+    point.Y() > max.Y() + compareTolerance() ||
+    point.Z() > max.Z() + compareTolerance()    )     )
   {
-    return false;
+  return false;
   }
 
   for(int i = 0; i < NrOfFaces(); i++)
   {
-    if(Face(i).Contains(point, true)) return bIncludeEdge;
-    if(Face(i).SignedDistance(point, false) > 0) return false;
+  if(Face(i).Contains(point, true)) return bIncludeEdge;
+  if(Face(i).SignedDistance(point, false) > 0) return false;
   }
   return true;
 }
@@ -215,7 +215,7 @@ int IBody::FaceIndex(const IFace &face) const
 {
   for(int i = 0; i < NrOfFaces(); i++)
   {
-    if(&Face(i) == &face) return i;
+  if(&Face(i) == &face) return i;
   }
 
   assert(false); // does not seem to be a bodyface of this body
@@ -269,22 +269,22 @@ static polylib::Polyhedron *GetPolyhedron(const IBody &body, const geo::IPoint& 
 
   for(i = 0; i < hull.NrOfFaces(); i++)
   {
-    const IFace &Face = hull.Face(i);
-    assert(Face.NrOfPoints() > 2);
+  const IFace &Face = hull.Face(i);
+  assert(Face.NrOfPoints() > 2);
 
-    // use first 3 points for plane definition, assume proper winding order (normal points outward)
-    CPlane pl(Face.Point(0) + ptMid - ptOffset, Face.Point(1) + ptMid - ptOffset, Face.Point(2) + ptMid - ptOffset);
+  // use first 3 points for plane definition, assume proper winding order (normal points outward)
+  CPlane pl(Face.Point(0) + ptMid - ptOffset, Face.Point(1) + ptMid - ptOffset, Face.Point(2) + ptMid - ptOffset);
 
-    // use first point to derive constant
-    double C = pl.Normal().X() * (Face.Point(0).X() + ptMid.X() - ptOffset.X()) +
+  // use first point to derive constant
+  double C = pl.Normal().X() * (Face.Point(0).X() + ptMid.X() - ptOffset.X()) +
                pl.Normal().Y() * (Face.Point(0).Y() + ptMid.Y() - ptOffset.Y()) +
                pl.Normal().Z() * (Face.Point(0).Z() + ptMid.Z() - ptOffset.Z());
 
-    MatConstraint->p[i][0] = 1;
-    MatConstraint->p[i][1] = -pl.Normal().X();
-    MatConstraint->p[i][2] = -pl.Normal().Y();
-    MatConstraint->p[i][3] = -pl.Normal().Z();
-    MatConstraint->p[i][4] = C;
+  MatConstraint->p[i][0] = 1;
+  MatConstraint->p[i][1] = -pl.Normal().X();
+  MatConstraint->p[i][2] = -pl.Normal().Y();
+  MatConstraint->p[i][3] = -pl.Normal().Z();
+  MatConstraint->p[i][4] = C;
   }
 
   polylib::Polyhedron *pRet = polylib::Constraints2Polyhedron(MatConstraint, MAX_RAYS);
@@ -305,9 +305,9 @@ IBody::TIntersection IBody::Intersection(const IBody &rhs) const
      rhs.Max().Y() < Min().Y() ||
      rhs.Max().Z() < Min().Z())
   {
-    // not intersecting
-    ret.first = 0.0;
-    return ret;
+  // not intersecting
+  ret.first = 0.0;
+  return ret;
   }
 
   // offset by midpoint of the two bodies
@@ -329,26 +329,26 @@ IBody::TIntersection IBody::Intersection(const IBody &rhs) const
 
   if(!pVert)
   {
-    ret.first = 0.0;
-    return ret; // not intersecting
+  ret.first = 0.0;
+  return ret; // not intersecting
   }
 
   // generate convex hull of new polygon
   std::vector<const geo::IPoint*> vcPoints;
   while(pVert)
   {
-    polylib::Matrix *MatVert = pVert->Vertex;
-    double dX = MatVert->p[0][0] / MatVert->p[0][1];
-    double dY = MatVert->p[1][0] / MatVert->p[1][1];
-    double dZ = MatVert->p[2][0] / MatVert->p[2][1];
+  polylib::Matrix *MatVert = pVert->Vertex;
+  double dX = MatVert->p[0][0] / MatVert->p[0][1];
+  double dY = MatVert->p[1][0] / MatVert->p[1][1];
+  double dZ = MatVert->p[2][0] / MatVert->p[2][1];
 
-    // these points are only used for the volume calculation, no need to translate to origin
-    vcPoints.push_back(new geo::CPoint(dX, dY, dZ));
+  // these points are only used for the volume calculation, no need to translate to origin
+  vcPoints.push_back(new geo::CPoint(dX, dY, dZ));
 
-    // revert to system origin
-    ret.second.push_back(geo::CPoint(dX + ptCenter.X(), dY + ptCenter.Y(), dZ + ptCenter.Z()));
+  // revert to system origin
+  ret.second.push_back(geo::CPoint(dX + ptCenter.X(), dY + ptCenter.Y(), dZ + ptCenter.Z()));
 
-    pVert = pVert->next;
+  pVert = pVert->next;
   }
 
   // free polyhedron objects
@@ -359,9 +359,9 @@ IBody::TIntersection IBody::Intersection(const IBody &rhs) const
 
   if(vcPoints.size() < 4)
   {
-    // not intersecting
-    ret.first = 0.0;
-    return ret;
+  // not intersecting
+  ret.first = 0.0;
+  return ret;
   }
 
   geo::CConvexHull hull(vcPoints);
@@ -369,24 +369,24 @@ IBody::TIntersection IBody::Intersection(const IBody &rhs) const
   bool bHullOk;
   try
   {
-    bHullOk = hull.Calculate();
+  bHullOk = hull.Calculate();
   }
   catch(const char*)
   {
-    bHullOk = false;
+  bHullOk = false;
   }
 
   if(!bHullOk)
   {
-    ret.first = 0.0;
-    return ret; // not intersecting
+  ret.first = 0.0;
+  return ret; // not intersecting
   }
 
   ret.first = hull.Volume();
 
   for(std::vector<const geo::IPoint*>::iterator it = vcPoints.begin(); it != vcPoints.end(); it++)
   {
-    delete *it;
+  delete *it;
   }
 
   return ret;
@@ -401,10 +401,10 @@ double IBody::RepresentativeLength() const
   double dRet = Point(1).Distance(Point(0));
   if(NrOfPoints() < 2)
   {
-    double vol = Volume();
-    assert(vol >= 0);
+  double vol = Volume();
+  assert(vol >= 0);
 
-    dRet = pow(vol, 1.0 / 3.0);
+  dRet = pow(vol, 1.0 / 3.0);
   }
 
   return dRet;
@@ -415,7 +415,7 @@ const IBody::TIndexVec& IBody::LinePointIndices(const ILine& line) const
   int i;
   for(i = 0; i < NrOfLines(); i++)
   {
-    if(&Line(i) == &line)
+  if(&Line(i) == &line)
       return LinePointIndices(i);
   }
 
@@ -429,7 +429,7 @@ const IBody::TIndexVec& IBody::LineNodeIndices(const ILine &line) const
   int i;
   for(i = 0; i < NrOfLines(); i++)
   {
-    if(&Line(i) == &line)
+  if(&Line(i) == &line)
       return LineNodeIndices(i);
   }
 

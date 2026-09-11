@@ -10,7 +10,7 @@ CGetFormationInfo& CGetFormationInfo::instance(CModelBase* modelBase)
 {
   if (m_getFormationInfo == 0)
   {
-    m_getFormationInfo = new CGetFormationInfo(modelBase);
+  m_getFormationInfo = new CGetFormationInfo(modelBase);
   }
 
   return *m_getFormationInfo;
@@ -51,18 +51,18 @@ TObjects CGetFormationInfo::getObjects(CModelBase* modelBase)
 
   if (modelBase != 0)
   {
-    const TFormationBaseEntry* formationBaseEntry =
+  const TFormationBaseEntry* formationBaseEntry =
       dynamic_cast <const TFormationBaseEntry*> (
-        modelBase->GraphEntry(MD_BASE_FORMATION));
-    const TFormationBaseEntry::TSortedNodeSet entryNodes =
+    modelBase->GraphEntry(MD_BASE_FORMATION));
+  const TFormationBaseEntry::TSortedNodeSet entryNodes =
       formationBaseEntry->SortedEntryNodes();
 
-    for (TFormationBaseEntry::TSortedNodeSet::const_iterator
+  for (TFormationBaseEntry::TSortedNodeSet::const_iterator
       entryNode = entryNodes.begin(); entryNode != entryNodes.end();
       ++entryNode)
-    {
+  {
       getObjects(objects, modelBase, *entryNode);
-    }
+  }
   }
 
   return objects;
@@ -73,7 +73,7 @@ void CGetFormationInfo::getObjects(TObjects& objects, CModelBase* modelBase,
 {
   if (hasElementSet(formationBase))
   {
-    objects.push_back(TObject(new CObject(CObject::formationObject,
+  objects.push_back(TObject(new CObject(CObject::formationObject,
       formationBase, modelBase)));
   }
 }

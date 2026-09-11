@@ -43,8 +43,8 @@ public:
   RescuePropertyGroup *PropertyGroupIdentifiedBy(RESCUEINT64 identifier) 
                   {return groups->ObjectIdentifiedBy(identifier);}
                                    // Do NOT delete the object returned.
-                                    // If you want to remove them from the
-                                    // model use the corresponding Drop method.
+                  // If you want to remove them from the
+                  // model use the corresponding Drop method.
   RESCUEBOOL DropRescuePropertyGroup(RescuePropertyGroup *unitToDrop) 
                           {return ((*groups) -= unitToDrop);}
 

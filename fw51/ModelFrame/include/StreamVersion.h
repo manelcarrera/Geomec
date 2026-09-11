@@ -15,27 +15,27 @@ class MODELFRAME_EXPORT  CStreamVersion
   int m_nMinor;
   int m_nRevision;
 public:
-	CStreamVersion();
-	CStreamVersion(int nMajor, int nMinor, int nRevision);
-	CStreamVersion(int nMajor, int nMinor);
-	virtual ~CStreamVersion();
+  CStreamVersion();
+  CStreamVersion(int nMajor, int nMinor, int nRevision);
+  CStreamVersion(int nMajor, int nMinor);
+  virtual ~CStreamVersion();
 
-	int majorNr() const;
-	int minorNr() const;
-	int revisionNr() const;
+  int majorNr() const;
+  int minorNr() const;
+  int revisionNr() const;
 
-	typedef IModelStream TStream;
-	void restore(TStream& stream);
-	void store(TStream& stream);
+  typedef IModelStream TStream;
+  void restore(TStream& stream);
+  void store(TStream& stream);
 
-	QString GetVersionString() const;
+  QString GetVersionString() const;
 
-	bool operator	!= (const CStreamVersion& rhs) const;
-	bool operator	== (const CStreamVersion& rhs) const;
-	bool operator	>  (const CStreamVersion& rhs) const;
-	bool operator	>= (const CStreamVersion& rhs) const;
-	bool operator	<= (const CStreamVersion& rhs) const;
-	bool operator	<  (const CStreamVersion& rhs) const;
+  bool operator	!= (const CStreamVersion& rhs) const;
+  bool operator	== (const CStreamVersion& rhs) const;
+  bool operator	>  (const CStreamVersion& rhs) const;
+  bool operator	>= (const CStreamVersion& rhs) const;
+  bool operator	<= (const CStreamVersion& rhs) const;
+  bool operator	<  (const CStreamVersion& rhs) const;
 };
 
 #endif  // STREAM_VERSION_H

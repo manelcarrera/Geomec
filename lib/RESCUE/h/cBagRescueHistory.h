@@ -1,10 +1,10 @@
 /*************************************************************************
 
-        cBagRescueHistory.h
+    cBagRescueHistory.h
 
  Keeps a list of pointers to RescueHistory.
 
-        Rod Hanks               May, 1999
+    Rod Hanks               May, 1999
 
 ****************************************************************************/
 

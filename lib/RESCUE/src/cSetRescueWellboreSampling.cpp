@@ -18,11 +18,11 @@ Software Product or documentation licensed under this agreement.
 ****************************************************************************/
 /*************************************************************************
 
-        cSetRescueWellboreSampling.cpp
+    cSetRescueWellboreSampling.cpp
 
  Keeps a list of pointers to some RescueWellboreSampling.
 
-        Rod Hanks               January 18th, 1995  /  August 1996
+    Rod Hanks               January 18th, 1995  /  August 1996
 
 ****************************************************************************/
 #include "RescueModel.h"
@@ -34,7 +34,7 @@ void cSetRescueWellboreSampling::Dispose()
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    objects[loop]->Dispose();
+  objects[loop]->Dispose();
   }
 }
 
@@ -51,7 +51,7 @@ cSetRescueWellboreSampling::~cSetRescueWellboreSampling()
 
   for (loop = 0; loop < count; loop++)
   {
-    delete objects[loop];
+  delete objects[loop];
   }
   free(objects);
 }
@@ -62,7 +62,7 @@ RESCUEBOOL cSetRescueWellboreSampling::AnyFileTruncated()
   RESCUEINT64 loop;
   for (loop = 0; loop < count && myReturn == FALSE; loop++)
   {
-    myReturn = objects[loop]->AnyFileTruncated();
+  myReturn = objects[loop]->AnyFileTruncated();
   }
   return myReturn;
 }
@@ -73,7 +73,7 @@ void cSetRescueWellboreSampling::Archive(RescueContext *context, FILE *archiveFi
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    objects[loop]->Archive(archiveFile);
+  objects[loop]->Archive(archiveFile);
   }
 }
 
@@ -82,7 +82,7 @@ void cSetRescueWellboreSampling::Relink(RescueObject *parent)
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    objects[loop]->Relink(parent);
+  objects[loop]->Relink(parent);
   }
 }
 
@@ -96,8 +96,8 @@ void cSetRescueWellboreSampling::UnArchive(RescueContext *context, FILE *archive
   RESCUEINT64 loop;
   for (loop = 0; loop < newCount; loop++)
   {
-    RescueWellboreSampling *newObject = new RescueWellboreSampling(context, archiveFile);
-    (*this) += newObject;
+  RescueWellboreSampling *newObject = new RescueWellboreSampling(context, archiveFile);
+  (*this) += newObject;
   }
 }
 
@@ -107,7 +107,7 @@ void cSetRescueWellboreSampling::EmptySelf(void)
  
   for (loop = 0; loop < count; loop++)
   {
-    delete objects[loop];
+  delete objects[loop];
   }
   count = 0;
 }
@@ -116,8 +116,8 @@ void cSetRescueWellboreSampling::operator+=(RescueWellboreSampling *newObject)
 {
   if (allocated == count)
   {
-    allocated += 10;
-    objects = (RescueWellboreSampling **) realloc(objects, sizeof(RescueWellboreSampling *) * (size_t) allocated);
+  allocated += 10;
+  objects = (RescueWellboreSampling **) realloc(objects, sizeof(RescueWellboreSampling *) * (size_t) allocated);
   }
   objects[count++] = newObject;
 }
@@ -129,25 +129,25 @@ RESCUEBOOL cSetRescueWellboreSampling::operator-=(RescueWellboreSampling *existi
 
   while (ndx < count && found == FALSE)
   {
-    if (existingObject == objects[ndx])
-    {
+  if (existingObject == objects[ndx])
+  {
       found = TRUE;
-    }
-    else
-    {
+  }
+  else
+  {
       ndx++;
-    }
+  }
   }
   if (found)
   {
-    RESCUEINT64 loop;
+  RESCUEINT64 loop;
 
-    delete objects[ndx];
-    count--;
-    for (loop = ndx; loop < count; loop++)
-    {
+  delete objects[ndx];
+  count--;
+  for (loop = ndx; loop < count; loop++)
+  {
       objects[loop] = objects[loop + 1];
-    }
+  }
   }
   return found;
 }
@@ -159,22 +159,22 @@ RescueWellboreSampling *cSetRescueWellboreSampling::ObjectNamed(const RESCUECHAR
 
   while (ndx < count && found == FALSE)
   {
-    if (objects[ndx]->IsNamed(mayBeName))
-    {
-      found = TRUE;
-    }
-    else
-    {
-      ndx++;
-    }
-  }
-  if (found)
+  if (objects[ndx]->IsNamed(mayBeName))
   {
-    return objects[ndx];
+      found = TRUE;
   }
   else
   {
-    return 0;
+      ndx++;
+  }
+  }
+  if (found)
+  {
+  return objects[ndx];
+  }
+  else
+  {
+  return 0;
   }
 }
 
@@ -185,22 +185,22 @@ RescueWellboreSampling *cSetRescueWellboreSampling::ObjectIdentifiedBy(RESCUEINT
 
   while (ndx < count && found == FALSE)
   {
-    if (objects[ndx]->IsIdentifiedBy(identifier))
-    {
-      found = TRUE;
-    }
-    else
-    {
-      ndx++;
-    }
-  }
-  if (found)
+  if (objects[ndx]->IsIdentifiedBy(identifier))
   {
-    return objects[ndx];
+      found = TRUE;
   }
   else
   {
-    return 0;
+      ndx++;
+  }
+  }
+  if (found)
+  {
+  return objects[ndx];
+  }
+  else
+  {
+  return 0;
   }
 }
 
@@ -208,19 +208,19 @@ RESCUEBOOL cSetRescueWellboreSampling::operator-=(RESCUEINT64 ndx)
 {
   if (ndx >= 0 && ndx < count)
   {
-    RESCUEINT64 loop;
+  RESCUEINT64 loop;
 
-    delete objects[ndx];
-    count--;
-    for (loop = ndx; loop < count; loop++)
-    {
+  delete objects[ndx];
+  count--;
+  for (loop = ndx; loop < count; loop++)
+  {
       objects[loop] = objects[loop + 1];
-    }
-    return TRUE;
+  }
+  return TRUE;
   }
   else
   {
-    return FALSE;
+  return FALSE;
   }
 }
 
@@ -228,11 +228,11 @@ RescueWellboreSampling *cSetRescueWellboreSampling::NthObject(RESCUEINT64 ordina
 {
   if (ordinal < 0 || ordinal >= count)
   {
-    return 0;
+  return 0;
   }
   else
   {
-    return objects[ordinal];
+  return objects[ordinal];
   }
 }
 
@@ -250,15 +250,15 @@ RESCUEINT32 cSetRescueWellboreSampling::Count(RESCUEBOOL throwIfTrue)
 {
   if (count > 2147483647)
   {
-    if (throwIfTrue)
-    {
+  if (throwIfTrue)
+  {
       throw "Model is too large to be accessed in 32 bit mode.";
-    }
-    return 0;
+  }
+  return 0;
   }
   else
   {
-    return (RESCUEINT32) count;
+  return (RESCUEINT32) count;
   }
 }
 

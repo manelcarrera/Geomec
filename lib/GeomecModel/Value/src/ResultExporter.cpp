@@ -40,21 +40,21 @@ CModelBase& IResultExporter::Model() const
 
 template <typename TExportFormat>
   bool IResultExporter::exportExcel(TExportFormat& exportFormat,
-    const QString& sFileName, bool bAppend) const
+  const QString& sFileName, bool bAppend) const
 {
   CElementSetExcelFile file(exportFormat);
   std::auto_ptr <IProgressBase> prog;
 
   try
   {
-    prog.reset(_g->prog()->create(eProgress::Geo, sFileName));
-    file.Write(sFileName, *prog, bAppend);
+  prog.reset(_g->prog()->create(eProgress::Geo, sFileName));
+  file.Write(sFileName, *prog, bAppend);
   }
 
   catch (CProgressCancel* p)
   {
-    delete p;
-    return true;
+  delete p;
+  return true;
   }
 
   return false;
@@ -62,22 +62,22 @@ template <typename TExportFormat>
 
 template <typename TExportFormat>
   bool IResultExporter::exportASCII(TExportFormat& exportFormat,
-    const QString& sFileName, bool bAppend) const
+  const QString& sFileName, bool bAppend) const
 {
   CElementSetFile file(exportFormat);
   std::auto_ptr <IProgressBase> prog;
 
   try
   {
-    prog.reset(_g->prog()->create(eProgress::Geo, sFileName));
-    file.Save(sFileName, *prog, bAppend);
+  prog.reset(_g->prog()->create(eProgress::Geo, sFileName));
+  file.Save(sFileName, *prog, bAppend);
   }
 
   catch (CProgressCancel* p)
   {
-    delete p;
-    file.Close();
-    return true;
+  delete p;
+  file.Close();
+  return true;
   }
 
   return false;
@@ -97,14 +97,14 @@ void CElementSetExporter::ExportExcel(const QString& sFileName,
 {
   for(size_t i = 0; i < m_vcElementset.size(); ++i)
   {
-    CElementSetExportFormat format(*m_vcElementset[i], vcData, arg);
+  CElementSetExportFormat format(*m_vcElementset[i], vcData, arg);
 
-    if (exportExcel(format, sFileName, bAppend))
-    {
+  if (exportExcel(format, sFileName, bAppend))
+  {
       break;
-    }
+  }
 
-    bAppend = true;
+  bAppend = true;
   }
 }
 
@@ -115,14 +115,14 @@ void CElementSetExporter::ExportASCII(const QString& sFileName,
 {
   for(size_t i = 0; i < m_vcElementset.size(); ++i)
   {
-    CElementSetExportFormat format(*m_vcElementset[i], vcData, arg);
+  CElementSetExportFormat format(*m_vcElementset[i], vcData, arg);
 
-    if (exportASCII(format, sFileName, bAppend))
-    {
+  if (exportASCII(format, sFileName, bAppend))
+  {
       break;
-    }
+  }
 
-    bAppend = true;
+  bAppend = true;
   }
 }
 
@@ -145,25 +145,25 @@ void CFormationExporter::ExportExcel(const QString& sFileName,
 {
   if(arg.m_elementCenterPoints == IExportFormat::CENTER_WELL)
   {
-    WellPath::CWellPathCenterPointSet
+  WellPath::CWellPathCenterPointSet
       wellPathCenterPointSet(m_vcFormation, Model());
-    CNodalExportFormat format(wellPathCenterPointSet, vcData, arg);
+  CNodalExportFormat format(wellPathCenterPointSet, vcData, arg);
 
-    exportExcel(format, sFileName, bAppend);
+  exportExcel(format, sFileName, bAppend);
   }
   else if(arg.m_elementCenterPoints == IExportFormat::CENTER_ELEMENT)
   {
-    QSharedPointer <CPointSet> pps =
+  QSharedPointer <CPointSet> pps =
       QSharedPointer <CPointSet> (CreateFormationCenterPointSet(vcData));
-    CNodalExportFormat format(*pps, vcData, arg);
+  CNodalExportFormat format(*pps, vcData, arg);
 
-    exportExcel(format, sFileName, bAppend);
+  exportExcel(format, sFileName, bAppend);
   }
   else if(arg.m_elementCenterPoints == IExportFormat::FULL_ELEMENT)
   {
-    CElementSetExportFormat format(m_vcFormation, IExportFormat::TDataVec(), vcData, arg);
+  CElementSetExportFormat format(m_vcFormation, IExportFormat::TDataVec(), vcData, arg);
 
-    exportExcel(format, sFileName, bAppend);
+  exportExcel(format, sFileName, bAppend);
   }
 }
 
@@ -174,25 +174,25 @@ void CFormationExporter::ExportASCII(const QString& sFileName,
 {
   if(arg.m_elementCenterPoints == IExportFormat::CENTER_WELL)
   {
-    WellPath::CWellPathCenterPointSet
+  WellPath::CWellPathCenterPointSet
       wellPathCenterPointSet(m_vcFormation, Model());
-    CNodalExportFormat format(wellPathCenterPointSet, vcData, arg);
+  CNodalExportFormat format(wellPathCenterPointSet, vcData, arg);
 
-    exportASCII(format, sFileName, bAppend);
+  exportASCII(format, sFileName, bAppend);
   }
   else if(arg.m_elementCenterPoints == IExportFormat::CENTER_ELEMENT)
   {
-    QSharedPointer <CPointSet> pps =
+  QSharedPointer <CPointSet> pps =
       QSharedPointer <CPointSet> (CreateFormationCenterPointSet(vcData));
-    CNodalExportFormat format(*pps, vcData, arg);
+  CNodalExportFormat format(*pps, vcData, arg);
 
-    exportASCII(format, sFileName, bAppend);
+  exportASCII(format, sFileName, bAppend);
   }
   else if(arg.m_elementCenterPoints == IExportFormat::FULL_ELEMENT)
   {
-    CElementSetExportFormat format(m_vcFormation, IExportFormat::TDataVec(), vcData, arg);
+  CElementSetExportFormat format(m_vcFormation, IExportFormat::TDataVec(), vcData, arg);
 
-    exportASCII(format, sFileName, bAppend);
+  exportASCII(format, sFileName, bAppend);
   }
 }
 
@@ -210,18 +210,18 @@ CPointSet* CFormationExporter::CreateFormationCenterPointSet(const IExportFormat
   size_t i;
   for(i = 0; i < m_vcFormation.size(); ++i)
   {
-    const CFormationBase* pForm = m_vcFormation[i];
-    int iES;
-    for(iES = 0; iES < pForm->ElementSetSize(); ++iES)
-    {
+  const CFormationBase* pForm = m_vcFormation[i];
+  int iES;
+  for(iES = 0; iES < pForm->ElementSetSize(); ++iES)
+  {
       int iElm;
       for(iElm = 0; iElm < pForm->ElementSet(iES).ElementSet().ElementSize(); ++iElm)
       {
-        const geo::IElement& elm = pForm->ElementSet(iES).ElementSet().Element(iElm);
-        geo::CElementPoint pt = elm.MidPoint();
-        pps->PushBack(pt, std::vector<double>());
+    const geo::IElement& elm = pForm->ElementSet(iES).ElementSet().Element(iElm);
+    geo::CElementPoint pt = elm.MidPoint();
+    pps->PushBack(pt, std::vector<double>());
       }
-    }
+  }
   }
 
   return pps;
@@ -241,21 +241,21 @@ void CFormationPlaneExporter::ExportExcel(const QString& sFileName,
 {
   if(arg.m_elementCenterPoints == IExportFormat::CENTER_ELEMENT)
   {
-    QSharedPointer <CPointSet> pps =
+  QSharedPointer <CPointSet> pps =
       QSharedPointer <CPointSet> (CreateFormationPlaneCenterPointSet(vcData));
-    CNodalExportFormat format(*pps, vcData, arg);
+  CNodalExportFormat format(*pps, vcData, arg);
 
-    exportExcel(format, sFileName, bAppend);
+  exportExcel(format, sFileName, bAppend);
   }
   else if(arg.m_elementCenterPoints == IExportFormat::FULL_ELEMENT)
   {
-    CElementSetExportFormat format(m_vcFormplane, vcData, arg);
+  CElementSetExportFormat format(m_vcFormplane, vcData, arg);
 
-    exportExcel(format, sFileName, bAppend);
+  exportExcel(format, sFileName, bAppend);
   }
   else if(arg.m_elementCenterPoints == IExportFormat::CENTER_WELL)
   {
-    assert(false);
+  assert(false);
   }
 }
 
@@ -266,21 +266,21 @@ void CFormationPlaneExporter::ExportASCII(const QString& sFileName,
 {
   if(arg.m_elementCenterPoints == IExportFormat::CENTER_ELEMENT)  
   {
-    QSharedPointer <CPointSet> pps =
+  QSharedPointer <CPointSet> pps =
       QSharedPointer <CPointSet> (CreateFormationPlaneCenterPointSet(vcData));
-    CNodalExportFormat format(*pps, vcData, arg);
+  CNodalExportFormat format(*pps, vcData, arg);
 
-    exportASCII(format, sFileName, bAppend);
+  exportASCII(format, sFileName, bAppend);
   }
   else if(arg.m_elementCenterPoints == IExportFormat::FULL_ELEMENT)
   {
-    CElementSetExportFormat format(m_vcFormplane, vcData, arg);
+  CElementSetExportFormat format(m_vcFormplane, vcData, arg);
 
-    exportASCII(format, sFileName, bAppend);
+  exportASCII(format, sFileName, bAppend);
   }
   else if(arg.m_elementCenterPoints == IExportFormat::CENTER_WELL)
   {
-    assert(false);
+  assert(false);
   }
 }
 
@@ -296,15 +296,15 @@ CPointSet* CFormationPlaneExporter::CreateFormationPlaneCenterPointSet(const IEx
 
   for (size_t jj= 0; jj < m_vcFormplane.size(); ++jj)
   {
-    const CFormationPlane* pFormPlane = m_vcFormplane[jj];
+  const CFormationPlane* pFormPlane = m_vcFormplane[jj];
 
-    if(pFormPlane->NrOfFaces() <= 0)
+  if(pFormPlane->NrOfFaces() <= 0)
       continue;
 
-    for(int ii = 0; ii < pFormPlane->PlaneSurface().FaceSize(); ++ii)
-    {
+  for(int ii = 0; ii < pFormPlane->PlaneSurface().FaceSize(); ++ii)
+  {
       const geo::CBodyQuadrilateral& quad= 
-        dynamic_cast<const geo::CBodyQuadrilateral&>(pFormPlane->PlaneSurface().Face(ii));
+    dynamic_cast<const geo::CBodyQuadrilateral&>(pFormPlane->PlaneSurface().Face(ii));
 
       geo::CPoint midPt = quad.MidPoint();
 
@@ -312,15 +312,15 @@ CPointSet* CFormationPlaneExporter::CreateFormationPlaneCenterPointSet(const IEx
       vcPointData[0] = midPt.X();
       vcPointData[1] = midPt.Y();
       if(dim == 3)
-        vcPointData[2] = midPt.Z();
+    vcPointData[2] = midPt.Z();
 
       for(size_t iData = 0; iData < vcData.size(); ++iData)
       {
-        vcPointData[iData + dim] =
+    vcPointData[iData + dim] =
           quad.InterpolateValue(midPt, vcData[iData]->ScalarData().ValueElement(quad));
       }
       pps->PushBack(vcPointData);
-    }
+  }
   }
 
   return pps;
@@ -345,35 +345,35 @@ bool sortFormationPlanesComparison(const CFormationPlane* lhs,
 
 std::vector <const CFormationPlane*> CFormationPlaneExporter::
   sortFormationPlanes(
-    const std::vector <const CFormationPlane*>& formationPlanes)
+  const std::vector <const CFormationPlane*>& formationPlanes)
 {
   std::vector <const CFormationPlane*> sortedFormationPlanes(formationPlanes);
 
   std::sort(sortedFormationPlanes.begin(), sortedFormationPlanes.end(),
-    sortFormationsComparison);
+  sortFormationsComparison);
 
   std::vector <const CFormationPlane*> ::iterator
-    begin = sortedFormationPlanes.begin(), end = sortedFormationPlanes.begin();
+  begin = sortedFormationPlanes.begin(), end = sortedFormationPlanes.begin();
   std::vector <const CFormationPlane*> ::const_iterator
-    start = sortedFormationPlanes.begin(), finish = sortedFormationPlanes.end();
+  start = sortedFormationPlanes.begin(), finish = sortedFormationPlanes.end();
 
   while ((start != finish) || ((start == finish) && (begin != end)))
   {
-    if ((end == finish) ||
+  if ((end == finish) ||
       ((*begin)->Formation().Index() != (*end)->Formation().Index()))
-    {
+  {
       std::sort(begin, end, sortFormationPlanesComparison);
       begin = end;
-    }
-    else
-    {
+  }
+  else
+  {
       ++end;
-    }
+  }
 
-    if (start != finish)
-    {
+  if (start != finish)
+  {
       ++start;
-    }
+  }
   }
 
   return sortedFormationPlanes;
@@ -394,20 +394,20 @@ void CHorizonExporter::ExportExcel(const QString& sFileName,
   if(arg.m_elementCenterPoints == IExportFormat::CENTER_ELEMENT)
   {
   QSharedPointer <CPointSet> pps =
-    QSharedPointer <CPointSet> (CreateHorizonsPointSet(vcData));
+  QSharedPointer <CPointSet> (CreateHorizonsPointSet(vcData));
   CNodalExportFormat format(*pps, vcData, arg);
 
   exportExcel(format, sFileName, bAppend);
 }
   else if(arg.m_elementCenterPoints == IExportFormat::FULL_ELEMENT)
   {
-    CElementSetExportFormat format(m_vcHorizon, IExportFormat::TDataVec(), vcData, arg);
+  CElementSetExportFormat format(m_vcHorizon, IExportFormat::TDataVec(), vcData, arg);
 
-    exportExcel(format, sFileName, bAppend);
+  exportExcel(format, sFileName, bAppend);
   }
   else if(arg.m_elementCenterPoints == IExportFormat::CENTER_WELL)
   {
-    assert(false);
+  assert(false);
   }
 }
 
@@ -418,21 +418,21 @@ void CHorizonExporter::ExportASCII(const QString& sFileName,
 {
   if(arg.m_elementCenterPoints == IExportFormat::CENTER_ELEMENT)
   {
-    QSharedPointer <CPointSet> pps =
+  QSharedPointer <CPointSet> pps =
       QSharedPointer <CPointSet> (CreateHorizonsPointSet(vcData));
-    CNodalExportFormat format(*pps, vcData, arg);
+  CNodalExportFormat format(*pps, vcData, arg);
 
-    exportASCII(format, sFileName, bAppend);
+  exportASCII(format, sFileName, bAppend);
   }
   else if(arg.m_elementCenterPoints == IExportFormat::FULL_ELEMENT)
   {
-    CElementSetExportFormat format(m_vcHorizon, IExportFormat::TDataVec(), vcData, arg);
+  CElementSetExportFormat format(m_vcHorizon, IExportFormat::TDataVec(), vcData, arg);
 
-    exportASCII(format, sFileName, bAppend);
+  exportASCII(format, sFileName, bAppend);
   }
   else if(arg.m_elementCenterPoints == IExportFormat::CENTER_WELL)
   {
-    assert(false);
+  assert(false);
   }
 }
 
@@ -451,47 +451,47 @@ CPointSet* CHorizonExporter::CreateHorizonsPointSet(const IExportFormat::TDataVe
 
   for(size_t i = 0; i < m_vcHorizon.size(); ++i)
   {
-    const CHorizonBase* pHorizon = m_vcHorizon[i];
-    if(pHorizon->Slip())
+  const CHorizonBase* pHorizon = m_vcHorizon[i];
+  if(pHorizon->Slip())
       continue; // we should not get these here.
 
-    const C3DHorizon& hor3D = dynamic_cast<const C3DHorizon&>(*pHorizon);
-    for(int e = 0; e < hor3D.AsElementSet().ElementSize(); ++e)
-    {
+  const C3DHorizon& hor3D = dynamic_cast<const C3DHorizon&>(*pHorizon);
+  for(int e = 0; e < hor3D.AsElementSet().ElementSize(); ++e)
+  {
       const geo::IElement& element= hor3D.AsElementSet().Element(e);
       for(int n = 0; n < element.NrOfPoints(); n++)
       {
-        std::pair<TNodalValuesMap::iterator, bool> pr_insert =
+    std::pair<TNodalValuesMap::iterator, bool> pr_insert =
           mNodalValues.insert(TNodalValuesMap::value_type(element.PointIndex(n),
-            std::vector<geo::CValue>(vcNodalData.size())));
+      std::vector<geo::CValue>(vcNodalData.size())));
 
-        if(pr_insert.second)
-        {
+    if(pr_insert.second)
+    {
           for(size_t ii = 0; ii < vcNodalData.size(); ++ii)
           {
-            pr_insert.first->second[ii] = vcNodalData[ii]->ScalarData().ValuePoint(element.Point(n));
+      pr_insert.first->second[ii] = vcNodalData[ii]->ScalarData().ValuePoint(element.Point(n));
           }
-        }
-      }
     }
+      }
+  }
   }
   TNodalValuesMap::iterator it;
   for(it = mNodalValues.begin(); it != mNodalValues.end(); ++it)
   {
-    std::vector<geo::CValue> vcPointData(vcNodalData.size() + dim);
-    const geo::IPoint &pt = Model().Mesh().Mesh().Point(it->first);
+  std::vector<geo::CValue> vcPointData(vcNodalData.size() + dim);
+  const geo::IPoint &pt = Model().Mesh().Mesh().Point(it->first);
 
-    vcPointData[0] = pt.X();
-    vcPointData[1] = pt.Y();
-    if(dim == 3)
+  vcPointData[0] = pt.X();
+  vcPointData[1] = pt.Y();
+  if(dim == 3)
       vcPointData[2] = pt.Z();
 
-    size_t iData;
-    for(iData = 0; iData < it->second.size(); ++iData)
-    {
+  size_t iData;
+  for(iData = 0; iData < it->second.size(); ++iData)
+  {
       vcPointData[iData + dim] = it->second[iData];
-    }
-    pps->PushBack(vcPointData);
+  }
+  pps->PushBack(vcPointData);
   }
 
   return pps;
@@ -542,13 +542,13 @@ void CPointSetExporter::ExportExcel(const QString& sFileName,
                          bool bAppend) const
 {
   QSharedPointer <CPointSet> pps =
-    QSharedPointer <CPointSet> (CreateCombinedPointSet(vcData));
+  QSharedPointer <CPointSet> (CreateCombinedPointSet(vcData));
 
   if(pps)
   {
-    CNodalExportFormat format(*pps, vcData, arg);
+  CNodalExportFormat format(*pps, vcData, arg);
 
-    exportExcel(format, sFileName, bAppend);
+  exportExcel(format, sFileName, bAppend);
   }
 }
 
@@ -558,13 +558,13 @@ void CPointSetExporter::ExportASCII(const QString& sFileName,
                          bool bAppend) const
 {
   QSharedPointer <CPointSet> pps =
-    QSharedPointer <CPointSet> (CreateCombinedPointSet(vcData));
+  QSharedPointer <CPointSet> (CreateCombinedPointSet(vcData));
 
   if(pps)
   {
-    CNodalExportFormat format(*pps, vcData, arg);
+  CNodalExportFormat format(*pps, vcData, arg);
 
-    exportASCII(format, sFileName, bAppend);
+  exportASCII(format, sFileName, bAppend);
   }
 }
 
@@ -578,7 +578,7 @@ CPointSet* CPointSetExporter::CreateCombinedPointSet(const IExportFormat::TDataV
   unsigned int dim = 0;
   for(size_t ii = 0; ii < m_vcPointset.size(); ++ii)
   {
-    if(dim < m_vcPointset[ii]->Dimension())
+  if(dim < m_vcPointset[ii]->Dimension())
       dim = (unsigned int)m_vcPointset[ii]->Dimension();
   }
 
@@ -591,81 +591,81 @@ CPointSet* CPointSetExporter::CreateCombinedPointSet(const IExportFormat::TDataV
   try
   {
 
-    int nTotalSteps;
-    int nCurrentStep;
+  int nTotalSteps;
+  int nCurrentStep;
 
-    geo::CCoordinateSet<const geo::IPoint*> coordSet;
-    if(m_vcPointset.size() > 1)
-    {
+  geo::CCoordinateSet<const geo::IPoint*> coordSet;
+  if(m_vcPointset.size() > 1)
+  {
       progdlg->NextJob("Merging pointsets");
       nTotalSteps = 0;
       for(size_t i = 0; i < m_vcPointset.size(); ++i)
-        nTotalSteps += m_vcPointset[i]->PointSize();
+    nTotalSteps += m_vcPointset[i]->PointSize();
       nCurrentStep = 0;
       progdlg->AddSteps(nTotalSteps);
 
       for(size_t ii = 0; ii < m_vcPointset.size(); ++ii)
       {
-        for(int jj = 0; jj < m_vcPointset[ii]->PointSize(); ++jj)
-        {
+    for(int jj = 0; jj < m_vcPointset[ii]->PointSize(); ++jj)
+    {
           coordSet.insert(&m_vcPointset[ii]->PointAt(jj));
           progdlg->Step();
           ++nCurrentStep;
-        }
-      }
     }
+      }
+  }
 
-    progdlg->NextJob("Linking points to mesh elements");
-    if(coordSet.empty())
+  progdlg->NextJob("Linking points to mesh elements");
+  if(coordSet.empty())
       progdlg->StatusMessage("Linking points to mesh elements");
-    nTotalSteps = (coordSet.empty() ? m_vcPointset[0]->PointSize() : coordSet.size());
-    progdlg->AddSteps(nTotalSteps);
-    nCurrentStep = 0;
+  nTotalSteps = (coordSet.empty() ? m_vcPointset[0]->PointSize() : coordSet.size());
+  progdlg->AddSteps(nTotalSteps);
+  nCurrentStep = 0;
 
-    geo::CCoordinateSet<const geo::IPoint*>::iterator it;
-    int iPoint;
-    const geo::IPoint* pPoint = 0;
-    if(coordSet.empty())
-    {
+  geo::CCoordinateSet<const geo::IPoint*>::iterator it;
+  int iPoint;
+  const geo::IPoint* pPoint = 0;
+  if(coordSet.empty())
+  {
       if(m_vcPointset[0]->PointSize() == 0)
       {
-        delete pps;
-        return 0;
+    delete pps;
+    return 0;
       }
       iPoint = 0;
       pPoint = &m_vcPointset[0]->PointAt(iPoint);
-    }
-    else
-    {
+  }
+  else
+  {
       iPoint = -1; // not used
       it = coordSet.begin();
       pPoint = *it;
-    }
+  }
 
-    while(pPoint)
-    {
+  while(pPoint)
+  {
       const geo::CElementPoint* pElmPoint = dynamic_cast<const geo::CElementPoint*>(pPoint);
       if(pElmPoint)
       {
-        pps->PushBack(*pElmPoint, std::vector<double>());
+    pps->PushBack(*pElmPoint, std::vector<double>());
       }
       else
       {
-        const geo::IElement* pElement = 0;
-        const std::set<int>& stCandidates = Model().Mesh().Mesh().Candidates(*pPoint);
-        std::set<int>::const_iterator itt;
-        for(itt = stCandidates.begin(); itt != stCandidates.end(); ++itt)
-        {
+    const geo::IElement* pElement = 0;
+    const std::set<int>& stCandidates = Model().Mesh().Mesh().Candidates(*pPoint);
+    std::set<int>::const_iterator itt;
+    for(itt = stCandidates.begin(); itt != stCandidates.end(); ++itt)
+    {
           if(Model().Mesh().Mesh().Element(*itt).Contains(*pPoint, true))
           {
-            pElement = &Model().Mesh().Mesh().Element(*itt);
-            break;
+      pElement = &Model().Mesh().Mesh().Element(*itt);
+      break;
           }
-        }
+    }
 
-        if(pElement)
+    if(pElement)
           pps->PushBack(geo::CElementPoint(*pElement, *pPoint), std::vector<double>());
-        else
+    else
           pps->PushBack(*pPoint, std::vector<double>());
       }
 
@@ -674,31 +674,31 @@ CPointSet* CPointSetExporter::CreateCombinedPointSet(const IExportFormat::TDataV
 
       if(coordSet.empty())
       {
-        if(++iPoint == m_vcPointset[0]->PointSize())
+    if(++iPoint == m_vcPointset[0]->PointSize())
           pPoint = 0;
-        else
+    else
           pPoint = &m_vcPointset[0]->PointAt(iPoint);
       }
       else
       {
-        if(++it == coordSet.end())
+    if(++it == coordSet.end())
           pPoint = 0;
-        else
+    else
           pPoint = *it;
       }
-    }
+  }
 
   }
   catch(CProgressCancel* c)
   {
-    delete c;
-    delete pps;
-    pps = 0;
+  delete c;
+  delete pps;
+  pps = 0;
   }
   catch(CProgressCancel)
   {
-    delete pps;
-    pps = 0;
+  delete pps;
+  pps = 0;
   }
 
   return pps;
@@ -712,9 +712,9 @@ CRTCIExporter::CRTCIExporter(CModelBase& model, const std::vector<const CWellCas
 }
 
 void CRTCIExporter::ExportExcel(const QString& sFileName,
-                                const IExportFormat::TDataVec& vcData,
-                                const IExportFormat::CExportArg arg,
-                                bool bAppend) const
+                const IExportFormat::TDataVec& vcData,
+                const IExportFormat::CExportArg arg,
+                bool bAppend) const
 {
   CElementSetExportFormat format(m_vcRTCI, IExportFormat::TDataVec(), vcData, arg);
 
@@ -722,9 +722,9 @@ void CRTCIExporter::ExportExcel(const QString& sFileName,
 }
 
 void CRTCIExporter::ExportASCII(const QString& sFileName,
-                                const IExportFormat::TDataVec& vcData,
-                                const IExportFormat::CExportArg arg,
-                                bool bAppend) const
+                const IExportFormat::TDataVec& vcData,
+                const IExportFormat::CExportArg arg,
+                bool bAppend) const
 {
   CElementSetExportFormat format(m_vcRTCI, IExportFormat::TDataVec(), vcData, arg);
 
@@ -745,9 +745,9 @@ CNonMeshedSurfaceExporter::CNonMeshedSurfaceExporter(CModelBase& model, const st
 }
 
 void CNonMeshedSurfaceExporter::ExportExcel(const QString& sFileName,
-                                            const IExportFormat::TDataVec& vcData,
-                                            const IExportFormat::CExportArg arg,
-                                            bool bAppend) const
+                      const IExportFormat::TDataVec& vcData,
+                      const IExportFormat::CExportArg arg,
+                      bool bAppend) const
 {
   CElementSetExportFormat format(m_vcSurface, IExportFormat::TDataVec(), vcData, arg);
 
@@ -755,9 +755,9 @@ void CNonMeshedSurfaceExporter::ExportExcel(const QString& sFileName,
 }
 
 void CNonMeshedSurfaceExporter::ExportASCII(const QString& sFileName,
-                                            const IExportFormat::TDataVec& vcData,
-                                            const IExportFormat::CExportArg arg,
-                                            bool bAppend) const
+                      const IExportFormat::TDataVec& vcData,
+                      const IExportFormat::CExportArg arg,
+                      bool bAppend) const
 {
   CElementSetExportFormat format(m_vcSurface, IExportFormat::TDataVec(), vcData, arg);
 
@@ -782,7 +782,7 @@ template<>
 const IResultExporter* CExporterFactory::CreateTypedExporter(const std::vector<const CHorizonBase*>& vcSelection)
 {
   if(vcSelection[0]->Slip())
-    return new CSlipHorizonExporter(m_model, vcSelection);
+  return new CSlipHorizonExporter(m_model, vcSelection);
 
   return new CHorizonExporter(m_model, vcSelection);
 }

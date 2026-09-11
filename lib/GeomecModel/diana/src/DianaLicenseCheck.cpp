@@ -24,8 +24,8 @@ CDianaLicenseCheck::~CDianaLicenseCheck()
 {
   if (m_pModel)
   {
-    m_pModel->setDeleting(true);
-    IModelLifetimeFacade::Close(m_pModel);
+  m_pModel->setDeleting(true);
+  IModelLifetimeFacade::Close(m_pModel);
   }
 }
 
@@ -43,20 +43,20 @@ void CDianaLicenseCheck::Activate()
 bool CDianaLicenseCheck::FoundLicense()
 {
   if (!m_active)
-    return true;
+  return true;
 
   static bool _internal = false;
 
   if (_internal)
-    return true;
+  return true;
 
   _internal = true;
 
   if (m_pModel)
   {
-    if (!m_lastResult || (tbb::tick_count::now() - m_lastCheck).seconds() > 0)
-    {
-	  Printer::instance(Printer::RunA)->info("check license");
+  if (!m_lastResult || (tbb::tick_count::now() - m_lastCheck).seconds() > 0)
+  {
+    Printer::instance(Printer::RunA)->info("check license");
 
       CDianaExecuter diaexec;
       CSaveModelConsole smc(*m_pModel, "");
@@ -64,12 +64,12 @@ bool CDianaLicenseCheck::FoundLicense()
 
       CDianaRunController drc(*m_pModel, CAnalysisType::AT_LINEAR, false, false, false, GetGeomecTempPathExt(CTempPath::TEMP_CALCULATION));
 
-	  dia::IDianaRunner::RunParams p = { m_modelName, "License Check", drc.tmp().toStdString(), &diaexec, &smc, &retr, nullptr, true, _g->dsa() };
-	  drc.params(p);
-	  m_lastResult = drc.run();
+    dia::IDianaRunner::RunParams p = { m_modelName, "License Check", drc.tmp().toStdString(), &diaexec, &smc, &retr, nullptr, true, _g->dsa() };
+    drc.params(p);
+    m_lastResult = drc.run();
 
       m_lastCheck = tbb::tick_count::now();
-    }
+  }
   }
 
   _internal = false;

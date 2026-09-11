@@ -30,13 +30,13 @@ void MoTensorSetElement::init(SoState* state)
   MoTensorSetElement* elt = state->getElement<MoTensorSetElement>();
 
   if(index < 0 || index >= elt->m_tensorSets.getLength())
-    return 0;
+  return 0;
 
   return (MiTensorSetI*)elt->m_tensorSets.get(index);
 }
 
 void MoTensorSetElement::push(SoState* state)
 {
-	MoTensorSetElement* elm = static_cast<MoTensorSetElement*>(getNextInStack());
-	m_tensorSets = elm->m_tensorSets;
+  MoTensorSetElement* elm = static_cast<MoTensorSetElement*>(getNextInStack());
+  m_tensorSets = elm->m_tensorSets;
 }

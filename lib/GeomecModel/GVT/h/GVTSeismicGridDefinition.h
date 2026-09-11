@@ -69,9 +69,9 @@ public:
   void GenerateGrid(CPointSet &grid);
 
   typedef CStorageNode::TSTREAM TSTREAM;
-	typedef CStorageNode::TPROGRESS TPROGRESS;
+  typedef CStorageNode::TPROGRESS TPROGRESS;
   void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-	void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  void SaveStream(TSTREAM& stream, TPROGRESS& progress);
 
   bool FindBinTrack(double Northing, double Easting, int& nBin, int& nTrack);
 

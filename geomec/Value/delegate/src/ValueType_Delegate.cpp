@@ -23,7 +23,7 @@ bool CValueType_Delegate::Attributes()
 void CValueType_Delegate::AppendContextMenu(CContextMenuInvoker &invoker)
 {
   invoker.AddCommand(_T("&Export"),
-    *(new CSingleCommandTemplate <CValueType_Delegate> (*this,
+  *(new CSingleCommandTemplate <CValueType_Delegate> (*this,
       &CValueType_Delegate::Export, &CValueType_Delegate::CanExport)));
   invoker.AddSeparator();
 
@@ -48,5 +48,5 @@ bool CValueType_Delegate::CanExport() const
 void CValueType_Delegate::Export()
 {
   dynamic_cast <IPointSet_Delegate*> (
-    m_valueType->PointSet().getDelegate())->Export();
+  m_valueType->PointSet().getDelegate())->Export();
 }

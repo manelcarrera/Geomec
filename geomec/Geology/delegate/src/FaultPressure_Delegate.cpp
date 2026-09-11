@@ -16,9 +16,9 @@ bool CFaultPressure_Delegate::Attributes()
 
   if (dlg.DoModal() == IDOK)
   {
-    m_faultPressure->Component().Modified();
+  m_faultPressure->Component().Modified();
 
-    return true;
+  return true;
   }
 
   return false;

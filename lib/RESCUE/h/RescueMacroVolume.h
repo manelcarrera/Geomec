@@ -31,17 +31,17 @@ public:
   RescueModel *ParentModel() {return parentBU->Block()->ParentModel();}
   void AddBlockUnitSide(RescueBlockUnitSide *existingSide);
   void DropBlockUnitSide(RescueBlockUnitSide *existingSide)
-                        {(*blockUnitSides) -= existingSide;}
+            {(*blockUnitSides) -= existingSide;}
   RescueBlockUnitSide *NthBlockUnitSide(RESCUEINT64 zeroBasedOrdinal)
-                        {return blockUnitSides->NthObject(zeroBasedOrdinal);}
+            {return blockUnitSides->NthObject(zeroBasedOrdinal);}
   RescueBlockUnitSide *BlockUnitSideIdentifiedBy(RESCUEINT64 id)
                       {return blockUnitSides->ObjectIdentifiedBy(id);}
   void AddInteriorSection(RescueSection *existingSection)
-                        {(*interiorSections) += existingSection;}
+            {(*interiorSections) += existingSection;}
   void DropInteriorSection(RescueSection *existingSection)
-                        {(*interiorSections) -= existingSection;}
+            {(*interiorSections) -= existingSection;}
   RescueSection *NthInteriorSection(RESCUEINT64 zeroBasedOrdinal) 
-                        {return interiorSections->NthObject(zeroBasedOrdinal);}
+            {return interiorSections->NthObject(zeroBasedOrdinal);}
                   // RescueMacroVolume does not "own" RescueSections,
                   // so it does not create or delete them, merely
                   // catalogs relationships to them. However, it does
@@ -72,13 +72,13 @@ public:
   void SetTopEdge(RescueEdgeSet *topEdge);
   void SetBottomEdge(RescueEdgeSet *bottomEdge);
   /*
-    RescueMacroVolume has a curious relationship with its top and bottom RescueEdgeSets.
-    It isn't sure whether it owns them or not.  RescueEdgeSet keeps a usage count.  RescueMacroVolume
-    increments and decrements this count via RescueEdgeSet's RegisterUser and UnregisterUser
-    methods.  UnregisterUser deletes the edge set when the usage falls to zero.
+  RescueMacroVolume has a curious relationship with its top and bottom RescueEdgeSets.
+  It isn't sure whether it owns them or not.  RescueEdgeSet keeps a usage count.  RescueMacroVolume
+  increments and decrements this count via RescueEdgeSet's RegisterUser and UnregisterUser
+  methods.  UnregisterUser deletes the edge set when the usage falls to zero.
 
-    Do not delete RescueEdgeSets.  If you don't want one anymore, simply replace it everyplace
-    it is used with a new one.  It will delete itself.
+  Do not delete RescueEdgeSets.  If you don't want one anymore, simply replace it everyplace
+  it is used with a new one.  It will delete itself.
   */
   RescueEdgeSetStub *TopEdgesObj() {return topEdges;}        // These may return 0.
   RescueEdgeSetStub *BottomEdgesObj() {return bottomEdges;}  //
@@ -110,28 +110,28 @@ private:
   cSetRescueBlockUnitSide *blockUnitSides;
   cBagRescueSection *interiorSections;
   /*
-    boundary sections are arranged as nearly as possible counter-clockwise
-    around the volume they enclose.
+  boundary sections are arranged as nearly as possible counter-clockwise
+  around the volume they enclose.
 
-    Note that section surfaces are ordinarily described with counter-clockwise
-    trim loops, as seen from outside the volume which they enclose.  However,
-    if a section surface is used as the boundary of two adjacent volumes it
-    can only be correctly described in relation to one of them.  Of course, the
-    problem is worse for interior sections, since there is not even a convention
-    for how they are constructed.
-    
-    Therefore, software must examine the trim loops to determine which way round 
-    the description of the surface is built with respect to any particular boundary.
+  Note that section surfaces are ordinarily described with counter-clockwise
+  trim loops, as seen from outside the volume which they enclose.  However,
+  if a section surface is used as the boundary of two adjacent volumes it
+  can only be correctly described in relation to one of them.  Of course, the
+  problem is worse for interior sections, since there is not even a convention
+  for how they are constructed.
+  
+  Therefore, software must examine the trim loops to determine which way round 
+  the description of the surface is built with respect to any particular boundary.
 
-    If this is insufficient, we could include a "normal" point with respect to
-    each surface in RescueSurface.
+  If this is insufficient, we could include a "normal" point with respect to
+  each surface in RescueSurface.
   */
   RescueEdgeSetStub *topEdges;
   RescueEdgeSetStub *bottomEdges;
   /*
-    Trims the intersection between this volume and it's top and bottom RescueBlockUnitHorizonSurface.
-    If the two intersections are trimmed the same, these may point to the same object.  Also, the
-    objects pointed to here may also be pointed to by some other RescueMacroVolume.
+  Trims the intersection between this volume and it's top and bottom RescueBlockUnitHorizonSurface.
+  If the two intersections are trimmed the same, these may point to the same object.  Also, the
+  objects pointed to here may also be pointed to by some other RescueMacroVolume.
   */
   cSetRescueEdgeSetStub *kLayerEdges;
   /*

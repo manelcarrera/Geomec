@@ -10,7 +10,7 @@ CFailureTypeParameterFormation4Pressure::CFailureTypeParameterFormation4Pressure
   const std::string& option, const std::string& parameter,
   std::vector <double>& value, const CGetModelInfo& modelInfo)
 : CFailureTypeParameterFormation(summaryResultFile, object, option, parameter, value,
-    modelInfo)
+  modelInfo)
 {
 }
 
@@ -22,38 +22,38 @@ void CFailureTypeParameterFormation4Pressure::modify(CModelBase* modelBase)
 {
   if (m_actualParameter)
   {
-    CElementSet* elementSet = m_actualObject->getElementSet();
-    int set = elementSet->AddElementValueSet();
-    CElementValueSet& elementValueSet = elementSet->ElementValueSet(set);
-    CFormationBase* formationBase = dynamic_cast <CFormationBase*> (
+  CElementSet* elementSet = m_actualObject->getElementSet();
+  int set = elementSet->AddElementValueSet();
+  CElementValueSet& elementValueSet = elementSet->ElementValueSet(set);
+  CFormationBase* formationBase = dynamic_cast <CFormationBase*> (
       m_actualParameter->object());
-    CPressure& pressure = formationBase->Pressure(modelBase->
+  CPressure& pressure = formationBase->Pressure(modelBase->
       DepletionStageEntry().StageByIndex(m_actualParameter->depletionStage()));
 
-    for (int s = 0; s < formationBase->ElementSetSize(); ++s)
-    {
+  for (int s = 0; s < formationBase->ElementSetSize(); ++s)
+  {
       for (int e = 0;
-        e < formationBase->ElementSet(s).ElementSet().ElementSize(); ++e)
+    e < formationBase->ElementSet(s).ElementSet().ElementSize(); ++e)
       {
-        const geo::IElement& element =
+    const geo::IElement& element =
           formationBase->ElementSet(s).ElementSet().Element(e);
-        IValueDomainScalar::TValueVec newValues(element.NrOfNodes());
-        IValueDomainScalar::TValueVec pressureValues =
+    IValueDomainScalar::TValueVec newValues(element.NrOfNodes());
+    IValueDomainScalar::TValueVec pressureValues =
           pressure.Component().ScalarData().ValueElement(element);
 
-        for (size_t n = 0; n < newValues.size(); ++n)
-        {
+    for (size_t n = 0; n < newValues.size(); ++n)
+    {
           newValues[n] = m_parameterModifier->
-            modify(pressureValues[n]).Value();
-        }
-
-        elementValueSet.PushBack(newValues);
-      }
+      modify(pressureValues[n]).Value();
     }
 
-    unsigned int valueTypeID = m_actualParameter->valueTypeID();
+    elementValueSet.PushBack(newValues);
+      }
+  }
 
-    createAndLinkValueType(modelBase, elementValueSet,
+  unsigned int valueTypeID = m_actualParameter->valueTypeID();
+
+  createAndLinkValueType(modelBase, elementValueSet,
       pressure, *elementSet, valueTypeID);
   }
 }

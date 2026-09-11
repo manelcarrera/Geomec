@@ -20,7 +20,7 @@ bool CSavePropertyTotalStress::saveProperty(RGInterface& rgi,
   CModelBase& modelBase, const CRockMechProcessor& rmp)
 {
   return CSavePropertyTensor::saveProperty(
-    modelBase.ResultTree().TotalStress(), rgi, modelBase, rmp, 1e6);
+  modelBase.ResultTree().TotalStress(), rgi, modelBase, rmp, 1e6);
 }
 
 } // namespace GeomecRGI

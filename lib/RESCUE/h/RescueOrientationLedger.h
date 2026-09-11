@@ -21,53 +21,53 @@ class RescueOrientationLedger
 public:
   RescueOrientationLedger();
   bool GetIJFor(RescueIJSurface *face, 
-                RESCUEINT64 &iLowBound, RESCUEINT64 &iCount, 
-                RESCUEINT64 &jLowBound, RESCUEINT64 &jCount,
-                bool &swapI, bool &swapJ);
+        RESCUEINT64 &iLowBound, RESCUEINT64 &iCount, 
+        RESCUEINT64 &jLowBound, RESCUEINT64 &jCount,
+        bool &swapI, bool &swapJ);
   void SetIJFor(RescueIJSurface *face, 
-                RESCUEINT64 iLowBound, RESCUEINT64 iCount, 
-                RESCUEINT64 jLowBound, RESCUEINT64 jCount,
-                bool swapI, bool swapJ);
+        RESCUEINT64 iLowBound, RESCUEINT64 iCount, 
+        RESCUEINT64 jLowBound, RESCUEINT64 jCount,
+        bool swapI, bool swapJ);
   bool GetKFor(RescueGeometry *geom, 
-                RESCUEINT64 &kLowBound, RESCUEINT64 &kCount, 
-                bool &swapK);
+        RESCUEINT64 &kLowBound, RESCUEINT64 &kCount, 
+        bool &swapK);
   void SetKFor(RescueGeometry *geom,
                RESCUEINT64 kLowBound, RESCUEINT64 kCount, bool swapK);
   ~RescueOrientationLedger();
 private:
   class GeomK
   {
-    RescueGeometry *geom;
-    RESCUEINT64 kLowBound;
-    RESCUEINT64 kCount;
-    bool swapK;
-    GeomK *next;
+  RescueGeometry *geom;
+  RESCUEINT64 kLowBound;
+  RESCUEINT64 kCount;
+  bool swapK;
+  GeomK *next;
 
-    GeomK(RescueGeometry *geom,
+  GeomK(RescueGeometry *geom,
                RESCUEINT64 kLowBound, RESCUEINT64 kCount, bool swapK);
-    ~GeomK();
+  ~GeomK();
 
-    friend class RescueOrientationLedger;
+  friend class RescueOrientationLedger;
   };
 
   class SurfaceIJ
   {
-    RescueIJSurface *face;
-    RESCUEINT64 iLowBound;
-    RESCUEINT64 iCount;
-    bool swapI;
-    RESCUEINT64 jLowBound;
-    RESCUEINT64 jCount;
-    bool swapJ;
-    SurfaceIJ *next;
+  RescueIJSurface *face;
+  RESCUEINT64 iLowBound;
+  RESCUEINT64 iCount;
+  bool swapI;
+  RESCUEINT64 jLowBound;
+  RESCUEINT64 jCount;
+  bool swapJ;
+  SurfaceIJ *next;
 
-    SurfaceIJ(RescueIJSurface *face, 
-                RESCUEINT64 iLowBound, RESCUEINT64 iCount, 
-                RESCUEINT64 jLowBound, RESCUEINT64 jCount,
-                bool swapI, bool swapJ);
-    ~SurfaceIJ();
+  SurfaceIJ(RescueIJSurface *face, 
+        RESCUEINT64 iLowBound, RESCUEINT64 iCount, 
+        RESCUEINT64 jLowBound, RESCUEINT64 jCount,
+        bool swapI, bool swapJ);
+  ~SurfaceIJ();
 
-    friend class RescueOrientationLedger;
+  friend class RescueOrientationLedger;
   };
 
   GeomK *kList;

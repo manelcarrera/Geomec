@@ -12,8 +12,8 @@
 class CTetraBody : public CColorNode  
 {
 public:
-	CTetraBody(CFemAppModel& model);
-	virtual ~CTetraBody();
+  CTetraBody(CFemAppModel& model);
+  virtual ~CTetraBody();
 
 };
 

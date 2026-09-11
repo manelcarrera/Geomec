@@ -26,50 +26,50 @@ class CWellTetraMesher
 {
   struct GridPoint
   {
-    geo::CPoint point;
+  geo::CPoint point;
 
-    int surface;
+  int surface;
 
-    int index;
-    int pointIndex;
+  int index;
+  int pointIndex;
 
-    GridPoint();
-    GridPoint(const geo::CPoint& point, int surface = -1);
+  GridPoint();
+  GridPoint(const geo::CPoint& point, int surface = -1);
   };
 
   struct SurfaceInfo
   {
-    size_t surfaceIndex;
+  size_t surfaceIndex;
 
-    const CHorizonBase *horizon;
-    const CSurfaceBase *surface;
+  const CHorizonBase *horizon;
+  const CSurfaceBase *surface;
 
-    geo::CPoint min;
-    geo::CPoint max;
+  geo::CPoint min;
+  geo::CPoint max;
 
-    std::vector<int> indices;
-    std::set<int> usedIndices;
-    std::vector<std::vector<geo::CPoint> > points;
+  std::vector<int> indices;
+  std::set<int> usedIndices;
+  std::vector<std::vector<geo::CPoint> > points;
 
-    std::vector<GridPoint> surfacePoints;
+  std::vector<GridPoint> surfacePoints;
 
-    std::vector<int> bottomIntersections;
-    std::vector<geo::CPoint> bottomIntersectionPoints;
+  std::vector<int> bottomIntersections;
+  std::vector<geo::CPoint> bottomIntersectionPoints;
 
-    bool empty;
+  bool empty;
 
-    SurfaceInfo(const CHorizonBase *horizon, const CSurfaceBase *surface, const geo::CPoint& restrict_min, const geo::CPoint& restrict_max, int wellSize);
+  SurfaceInfo(const CHorizonBase *horizon, const CSurfaceBase *surface, const geo::CPoint& restrict_min, const geo::CPoint& restrict_max, int wellSize);
 
-    bool continuous() const;
+  bool continuous() const;
   };
 
   struct PointComparer
   {
-    typedef long long TLongLong;
+  typedef long long TLongLong;
   public:
-    PointComparer();
-    bool operator()(const geo::IPoint& p1, const geo::IPoint& p2) const;
-    bool operator()(const CWellTetraMesher::GridPoint& p1, const CWellTetraMesher::GridPoint& p2) const;
+  PointComparer();
+  bool operator()(const geo::IPoint& p1, const geo::IPoint& p2) const;
+  bool operator()(const CWellTetraMesher::GridPoint& p1, const CWellTetraMesher::GridPoint& p2) const;
   };
 
 
@@ -80,10 +80,10 @@ class CWellTetraMesher
 
   struct AdjustmentData
   {
-    geo::CVector line;
-    double length;
-    double length2;
-    double length3;
+  geo::CVector line;
+  double length;
+  double length2;
+  double length3;
   };
   typedef std::vector<AdjustmentData> TAdjustmentLine;
 

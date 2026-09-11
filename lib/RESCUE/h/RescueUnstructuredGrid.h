@@ -18,23 +18,23 @@ class RescueUnstructuredGrid
 {
 public:
   ~RescueUnstructuredGrid();
-                            // Don't delete the object.  It is deleted
-                            // automatically when you drop the RescueGeometry
-                            // that owns it. 
+              // Don't delete the object.  It is deleted
+              // automatically when you drop the RescueGeometry
+              // that owns it. 
 /***********************************  Structure at a time *******************************/
   void AddVertices(RESCUEINT64 count, RESCUEFLOAT *vertexXIn, RESCUEFLOAT *vertexYIn, RESCUEFLOAT *vertexZin);
-                            // Vertices are added to existing.  No checking
-                            // for collisions.
+              // Vertices are added to existing.  No checking
+              // for collisions.
   void AddFace(RESCUEINT64 count, RESCUEINT64 *vertexIndices);
   void AddFace(RESCUEINT32 count, RESCUEINT32 *vertexIndices);
-                            // Add a single face by giving a list of vertices that
-                            // belong to it, as indexes into vertexX,Y,Z.
+              // Add a single face by giving a list of vertices that
+              // belong to it, as indexes into vertexX,Y,Z.
   void AddCell(RESCUEINT64 cellCenterNdxIn, RESCUEINT64 kLayerIn,
                RESCUEINT64 count, RESCUEINT64 *faceIndices);
   void AddCell(RESCUEINT32 cellCenterNdxIn, RESCUEINT32 kLayerIn,
                RESCUEINT32 count, RESCUEINT32 *faceIndices);
-                            // Add a single cell by giving a list of faces that
-                            // belong to it, as indexes into faceVertexNdx,faceVertexCount.
+              // Add a single cell by giving a list of faces that
+              // belong to it, as indexes into faceVertexNdx,faceVertexCount.
 /*********************************** Reading Vertices ***********************************/
   RESCUEINT64 VertexCount64() {return vertexCount;}
   RESCUEINT32 VertexCount() {return (RESCUEINT32) vertexCount;}
@@ -51,30 +51,30 @@ public:
   RESCUEINT32 VerticesYLength() {return ((vertexY == 0) ? 0 : VertexCount());}
   RESCUEINT32 VerticesZLength() {return ((vertexZ == 0) ? 0 : VertexCount());}
   void CopyVertices(RESCUEINT64 lowNdx, RESCUEINT64 count, 
-                    RESCUEFLOAT *preAllocatedX, RESCUEFLOAT *preAllocatedY, RESCUEFLOAT *preAllocatedZ, 
-                    RESCUEINT64 offset);            // Copy X,Y,Z vertices to pre-allocated arrays,
-                                            // which must contain at least "count+offset" items.
-                                            // Begin copying at index "lowNdx"
+          RESCUEFLOAT *preAllocatedX, RESCUEFLOAT *preAllocatedY, RESCUEFLOAT *preAllocatedZ, 
+          RESCUEINT64 offset);            // Copy X,Y,Z vertices to pre-allocated arrays,
+                      // which must contain at least "count+offset" items.
+                      // Begin copying at index "lowNdx"
 /*********************************** Writing Vertices ***********************************/
-                                            // These replace entire contents.
+                      // These replace entire contents.
   void AcceptVertices(RESCUEINT64 count, RESCUEFLOAT *xs, RESCUEFLOAT *ys, RESCUEFLOAT *zs);
-                                            // Arrays must have been allocated with
-                                            // "new RESCUEFLOAT[]".  They become the property
-                                            // of this class.
+                      // Arrays must have been allocated with
+                      // "new RESCUEFLOAT[]".  They become the property
+                      // of this class.
   void SetVertices(RESCUEINT64 count, RESCUEFLOAT *xs, RESCUEFLOAT *ys, RESCUEFLOAT *zs);
-                                            // Arrays are copied.
+                      // Arrays are copied.
 /*********************************** Reading Faces ***********************************/
   RESCUEINT64 FaceCount64() {return faceCount;}
   RESCUEINT32 FaceCount() {return (RESCUEINT32) faceCount;}
   RESCUEINT32 FaceCount(RESCUEBOOL throwIfTooBig);
   RESCUEINT64 NthFace(RESCUEINT64 zeroBasedOrdinal, RESCUEINT64 count, RESCUEINT64 *preAllocated);
   RESCUEINT32 NthFace(RESCUEINT32 zeroBasedOrdinal, RESCUEINT32 count, RESCUEINT32 *preAllocated);
-                                            // Return, for the indicated face, the list
-                                            // of vertices that make up that face.  The
-                                            // RESCUEINT64 return is the count of vertices in the
-                                            // face.  If count and preAllocated are nonzero
-                                            // up to count vertex indices are returned in
-                                            // preAllocated.
+                      // Return, for the indicated face, the list
+                      // of vertices that make up that face.  The
+                      // RESCUEINT64 return is the count of vertices in the
+                      // face.  If count and preAllocated are nonzero
+                      // up to count vertex indices are returned in
+                      // preAllocated.
   RESCUEINT64 *FaceVertexNdx() {return faceVertexNdx;}        // DO NOT delete the array.
   RESCUEINT64 *FaceVertexCount() {return faceVertexCount;}    // DO NOT delete the array.
   RESCUEINT32 *FaceVertexNdx(RESCUEBOOL throwIfTooBig);             // DO delete the array.
@@ -85,11 +85,11 @@ public:
   RESCUEINT32 FaceVertexCountLength() {return ((faceVertexCount == 0) ? 0: FaceCount());}
   void CopyFaces(RESCUEINT64 lowNdx, RESCUEINT64 count, RESCUEINT64 *preAllocatedNdx, RESCUEINT64 *preAllocatedCount, RESCUEINT64 offset);
   void CopyFaces(RESCUEINT32 lowNdx, RESCUEINT32 count, RESCUEINT32 *preAllocatedNdx, RESCUEINT32 *preAllocatedCount, RESCUEINT32 offset);
-                                            // Copy faceVertexNdx and faceVertexCount arrays
-                                            // into pre-allocated arrays, which must be large
-                                            // enough to recieve them.  lowNdx is offset into
-                                            // source arrays, offset is offset into destination
-                                            // arrays.  count is number of items to copy.
+                      // Copy faceVertexNdx and faceVertexCount arrays
+                      // into pre-allocated arrays, which must be large
+                      // enough to recieve them.  lowNdx is offset into
+                      // source arrays, offset is offset into destination
+                      // arrays.  count is number of items to copy.
   RESCUEINT64 FaceVertexTupleCount64() {return faceVertexTupleCount;}
   RESCUEINT32 FaceVertexTupleCount() {return (RESCUEINT32) faceVertexTupleCount;}
   RESCUEINT32 FaceVertexTupleCount(RESCUEBOOL throwIfTooBig);
@@ -104,18 +104,18 @@ public:
                                              // offset into source array, offset is offset into
                                              // destination array.  count is number of items to copy.
 /*********************************** Writing Faces ***********************************/
-                                            // These replace entire contents.
+                      // These replace entire contents.
   void AcceptFaces(RESCUEINT64 faceCountIn, RESCUEINT64 *faceVertexNdxIn, RESCUEINT64 *faceVertexCountIn,
                    RESCUEINT64 faceVertexTupleCountIn, RESCUEINT64 *faceArrayIn);
   void AcceptFaces(RESCUEINT32 faceCountIn, RESCUEINT32 *faceVertexNdxIn, RESCUEINT32 *faceVertexCountIn,
                    RESCUEINT32 faceVertexTupleCountIn, RESCUEINT32 *faceArrayIn);
-                                            // Arrays must have been allocated with new RESCUEINT64[].
-                                            // They become the property of this class.
+                      // Arrays must have been allocated with new RESCUEINT64[].
+                      // They become the property of this class.
   void SetFaces(RESCUEINT64 faceCountIn, RESCUEINT64 *faceVertexNdxIn, RESCUEINT64 *faceVertexCountIn,
                    RESCUEINT64 faceVertexTupleCountIn, RESCUEINT64 *faceArrayIn);
   void SetFaces(RESCUEINT32 faceCountIn, RESCUEINT32 *faceVertexNdxIn, RESCUEINT32 *faceVertexCountIn,
                    RESCUEINT32 faceVertexTupleCountIn, RESCUEINT32 *faceArrayIn);
-                                            // Arrays are copied.
+                      // Arrays are copied.
 /*********************************** Reading Cells ***********************************/
   RESCUEINT64 CellCount64() {return cellCount;}
   RESCUEINT32 CellCount() {return (RESCUEINT32) cellCount;}
@@ -169,18 +169,18 @@ public:
   void CopyCellFaceTuples(RESCUEINT32 lowNdx, RESCUEINT32 count, RESCUEINT32 *faceListArray, RESCUEINT32 offset);
                                               // Copy faceList array into pre-allocated buffers.  As above.
 /*********************************** Writing Cells ***********************************/
-                                            // These replace entire contents.
+                      // These replace entire contents.
   void AcceptCells(RESCUEINT64 cellCountIn, RESCUEINT64 *faceCellNdxIn, RESCUEINT64 *faceCellCountIn, RESCUEINT64 *cellCenterNdxIn,
                    RESCUEINT64 *kLayerIn, RESCUEINT64 faceListCountIn, RESCUEINT64 *faceListIn);
   void AcceptCells(RESCUEINT32 cellCountIn, RESCUEINT32 *faceCellNdxIn, RESCUEINT32 *faceCellCountIn, RESCUEINT32 *cellCenterNdxIn,
                    RESCUEINT32 *kLayerIn, RESCUEINT32 faceListCountIn, RESCUEINT32 *faceListIn);
-                                            // Arrays must have been allocated with new RESCUEINT64[] or RESCUEINT32[].
-                                            // They become the property of this class.
+                      // Arrays must have been allocated with new RESCUEINT64[] or RESCUEINT32[].
+                      // They become the property of this class.
   void SetCells(RESCUEINT64 cellCountIn, RESCUEINT64 *faceCellNdxIn, RESCUEINT64 *faceCellCountIn, RESCUEINT64 *cellCenterNdxIn,
                    RESCUEINT64 *kLayerIn, RESCUEINT64 faceListCountIn, RESCUEINT64 *faceListIn);
   void SetCells(RESCUEINT32 cellCountIn, RESCUEINT32 *faceCellNdxIn, RESCUEINT32 *faceCellCountIn, RESCUEINT32 *cellCenterNdxIn,
                    RESCUEINT32 *kLayerIn, RESCUEINT32 faceListCountIn, RESCUEINT32 *faceListIn);
-                                            // Arrays are copied.
+                      // Arrays are copied.
 /**************************************************************************************/
 private:
   RescueUnstructuredGrid(RescueContext *context, FILE *archiveFile);

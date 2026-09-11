@@ -7,11 +7,11 @@ class LicenseData;
 
 class CLicenseBorrowDlg : public CDialog
 {
-	DECLARE_DYNAMIC(CLicenseBorrowDlg)
+  DECLARE_DYNAMIC(CLicenseBorrowDlg)
 
 public:
-	CLicenseBorrowDlg(CWnd* pParent = NULL);   // standard constructor
-	virtual ~CLicenseBorrowDlg();
+  CLicenseBorrowDlg(CWnd* pParent = NULL);   // standard constructor
+  virtual ~CLicenseBorrowDlg();
 
   virtual BOOL OnInitDialog();
 
@@ -20,12 +20,12 @@ public:
   afx_msg void OnBnClickedBorrowDianaButton();
 
 // Dialog Data
-	enum { IDD = IDD_LICENSE_BORROW_DIALOG };
+  enum { IDD = IDD_LICENSE_BORROW_DIALOG };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-	DECLARE_MESSAGE_MAP()
+  DECLARE_MESSAGE_MAP()
 
 private:
   void fillBorrowList();

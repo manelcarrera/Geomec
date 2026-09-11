@@ -19,9 +19,9 @@ bool CFractureMatrixPressure_Delegate::Attributes()
 
   if (dlg.DoModal() == IDOK)
   {
-    m_fractureMatrixPressure->AssertValid();
+  m_fractureMatrixPressure->AssertValid();
 
-    return true;
+  return true;
   }
 
   return false;

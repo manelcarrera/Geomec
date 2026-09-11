@@ -58,13 +58,13 @@ static void sift_up (GtsHeap * heap, guint i)
 
   child = pdata[i - 1];
   while ((p = PARENT (i))) {
-    parent = pdata[p - 1];
-    if ((*func) (parent, child) > 0) {
+  parent = pdata[p - 1];
+  if ((*func) (parent, child) > 0) {
       pdata[p - 1] = child;
       pdata[i - 1] = parent;
       i = p;
-    }
-    else
+  }
+  else
       i = 0;
   }
 }
@@ -82,7 +82,7 @@ void gts_heap_insert (GtsHeap * heap, gpointer p)
 
   g_ptr_array_add (heap->elts, p);
   if (!heap->frozen)
-    sift_up (heap, heap->elts->len);
+  sift_up (heap, heap->elts->len);
 }
 
 static void sift_down (GtsHeap * heap, guint i)
@@ -100,16 +100,16 @@ static void sift_down (GtsHeap * heap, guint i)
 
   parent = pdata[i - 1];
   while (left_child != NULL) {
-    if (right_child == NULL ||
-	(*func) (left_child, right_child) < 0) {
+  if (right_child == NULL ||
+  (*func) (left_child, right_child) < 0) {
       child = left_child;
       c = lc;
-    }
-    else {
+  }
+  else {
       child = right_child;
       c = rc;
-    }
-    if ((*func) (parent, child) > 0) {
+  }
+  if ((*func) (parent, child) > 0) {
       pdata[i - 1] = child;
       pdata[c - 1] = parent;
       i = c;
@@ -117,8 +117,8 @@ static void sift_down (GtsHeap * heap, guint i)
       rc = RIGHT_CHILD (i);
       left_child = lc <= len ? pdata[lc - 1] : NULL;
       right_child = rc <= len ? pdata[rc - 1] : NULL;      
-    }
-    else
+  }
+  else
       left_child = NULL;
   }
 }
@@ -142,9 +142,9 @@ gpointer gts_heap_remove_top (GtsHeap * heap)
   elts = heap->elts; len = elts->len;
 
   if (len == 0)
-    return NULL;
+  return NULL;
   if (len == 1)
-    return g_ptr_array_remove_index (elts, 0);
+  return g_ptr_array_remove_index (elts, 0);
 
   root = elts->pdata[0];
   elts->pdata[0] = g_ptr_array_remove_index (elts, len - 1);
@@ -168,7 +168,7 @@ gpointer gts_heap_top (GtsHeap * heap)
   elts = heap->elts; 
   len = elts->len;
   if (len == 0)
-    return NULL;
+  return NULL;
   return elts->pdata[0];
 }
 
@@ -200,10 +200,10 @@ void gts_heap_thaw (GtsHeap * heap)
   g_return_if_fail (heap != NULL);
 
   if (!heap->frozen)
-    return;
+  return;
 
   for (i = heap->elts->len/2; i > 0; i--)
-    sift_down (heap, i);
+  sift_down (heap, i);
 
   heap->frozen = FALSE;
 }
@@ -215,8 +215,8 @@ void gts_heap_thaw (GtsHeap * heap)
  * @user_data: to pass to @func.
  */
 void gts_heap_foreach (GtsHeap * heap, 
-		       GFunc func,
-		       gpointer user_data)
+           GFunc func,
+           gpointer user_data)
 {
   guint i;
   GPtrArray * elts;
@@ -226,7 +226,7 @@ void gts_heap_foreach (GtsHeap * heap,
 
   elts = heap->elts;
   for (i = 0; i < elts->len; i++)
-    (*func) (elts->pdata[i], user_data);
+  (*func) (elts->pdata[i], user_data);
 }
 
 /**

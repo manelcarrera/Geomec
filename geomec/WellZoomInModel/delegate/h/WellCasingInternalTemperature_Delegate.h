@@ -11,20 +11,20 @@ class CWellCasingInternalTemperature_Delegate :
 {
 public:
   CWellCasingInternalTemperature_Delegate(
-    CWellCasingInternalTemperature* wellCasingInternalTemperature);
+  CWellCasingInternalTemperature* wellCasingInternalTemperature);
 
   virtual bool Attributes();
 
 private:
   CWellCasingInternalTemperature_Delegate(
-    const CWellCasingInternalTemperature_Delegate& rhs);
+  const CWellCasingInternalTemperature_Delegate& rhs);
   CWellCasingInternalTemperature_Delegate& operator = (
-    const CWellCasingInternalTemperature_Delegate& rhs);
+  const CWellCasingInternalTemperature_Delegate& rhs);
 
   CWellCasingInternalTemperature* m_wellCasingInternalTemperature;
 
   REGISTER_DELEGATE(CWellCasingInternalTemperature,
-    CWellCasingInternalTemperature_Delegate);
+  CWellCasingInternalTemperature_Delegate);
 };
 
 #endif  // _WellCasingInternalTemperature_Delegate_h_

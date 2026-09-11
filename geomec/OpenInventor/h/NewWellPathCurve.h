@@ -7,32 +7,32 @@
 class NewWellPathCurve : public WellPathCurveBase
 {
 private:
-    const CNewWellPath*   m_wellPath;
-    CNewWellPath::TPointValueVector m_wellPointValueVector;
+  const CNewWellPath*   m_wellPath;
+  CNewWellPath::TPointValueVector m_wellPointValueVector;
 
-    void updatePoints();
+  void updatePoints();
 
 protected:
 
-    virtual void onUnitChanged();
+  virtual void onUnitChanged();
 
 public:
 
-    NewWellPathCurve(
-        const CNewWellPath* wellPath, 
-        const IValueComponentBase* valueComponent, 
-        CUnitNode::TUnitType unit,
-        int colorIndex);
+  NewWellPathCurve(
+    const CNewWellPath* wellPath, 
+    const IValueComponentBase* valueComponent, 
+    CUnitNode::TUnitType unit,
+    int colorIndex);
 
-    virtual QString getTextRepresentation() const;
+  virtual QString getTextRepresentation() const;
 
-    static QString getTextRepresentation(std::vector<const NewWellPathCurve *>& curves);
+  static QString getTextRepresentation(std::vector<const NewWellPathCurve *>& curves);
 
-    virtual void refresh();
+  virtual void refresh();
 
-    virtual QString getWellPathName() const;
+  virtual QString getWellPathName() const;
 
-    const CNewWellPath* getWellPath() const;
+  const CNewWellPath* getWellPath() const;
 };
 
 #endif  // _NewWellPathCurve_h_

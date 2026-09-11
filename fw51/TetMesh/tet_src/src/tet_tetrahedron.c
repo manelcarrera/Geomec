@@ -88,8 +88,8 @@ extern void TetrahedronSetPrint(
   const Tetrahedron_t *tet = TetrahedronSetFirst( tetSet, &iter );
   fprintf( fp, "\nTETRAHEDRON-SET: szie=%d\n\n", TetrahedronSetSize( tetSet ) );
   while ( tet ) {
-    TetrahedronPrint( tet, fp );
-    tet = TetrahedronSetNext( tetSet, &iter );
+  TetrahedronPrint( tet, fp );
+  tet = TetrahedronSetNext( tetSet, &iter );
   }
 }
 
@@ -127,10 +127,10 @@ extern TetrahedronSet_t *TetrahedronSetRenumber(
   TetrahedronSet_t *result = TetrahedronSetCreate( );
   const Tetrahedron_t *tet = TetrahedronSetFirst( oldSet, &iter );
   while ( tet ) {
-    int  p0, p1, p2, p3;
-    TetrahedronGet( tet, &p0, &p1, &p2, &p3 );
-    TetrahedronSetAdd( result, old2new[p0], old2new[p1], old2new[p2], old2new[p3] );
-    tet = TetrahedronSetNext( oldSet, &iter );
+  int  p0, p1, p2, p3;
+  TetrahedronGet( tet, &p0, &p1, &p2, &p3 );
+  TetrahedronSetAdd( result, old2new[p0], old2new[p1], old2new[p2], old2new[p3] );
+  tet = TetrahedronSetNext( oldSet, &iter );
   }
   return result;
 }

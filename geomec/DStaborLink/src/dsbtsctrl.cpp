@@ -21,37 +21,37 @@ static char THIS_FILE[] = __FILE__;
 
 void DsbTS::OpenTemplate(LPCTSTR TemplateFileName)
 {
-	static BYTE parms[] =
-		VTS_BSTR;
-	InvokeHelper(0x60030001, DISPATCH_METHOD, VT_EMPTY, NULL, parms,
-		 TemplateFileName);
+  static BYTE parms[] =
+    VTS_BSTR;
+  InvokeHelper(0x60030001, DISPATCH_METHOD, VT_EMPTY, NULL, parms,
+     TemplateFileName);
 }
 
 void DsbTS::WriteLine(long linenr, LPDISPATCH* dsb)
 {
-	static BYTE parms[] =
-		VTS_I4 VTS_PDISPATCH;
-	InvokeHelper(0x60030002, DISPATCH_METHOD, VT_EMPTY, NULL, parms,
-		 linenr, dsb);
+  static BYTE parms[] =
+    VTS_I4 VTS_PDISPATCH;
+  InvokeHelper(0x60030002, DISPATCH_METHOD, VT_EMPTY, NULL, parms,
+     linenr, dsb);
 }
 
 void DsbTS::SaveWorkBook(LPCTSTR filename)
 {
-	static BYTE parms[] =
-		VTS_BSTR;
-	InvokeHelper(0x60030003, DISPATCH_METHOD, VT_EMPTY, NULL, parms,
-		 filename);
+  static BYTE parms[] =
+    VTS_BSTR;
+  InvokeHelper(0x60030003, DISPATCH_METHOD, VT_EMPTY, NULL, parms,
+     filename);
 }
 
 void DsbTS::ShowExcel(LPCTSTR filename)
 {
-	static BYTE parms[] =
-		VTS_BSTR;
-	InvokeHelper(0x60030004, DISPATCH_METHOD, VT_EMPTY, NULL, parms,
-		 filename);
+  static BYTE parms[] =
+    VTS_BSTR;
+  InvokeHelper(0x60030004, DISPATCH_METHOD, VT_EMPTY, NULL, parms,
+     filename);
 }
 
 void DsbTS::CloseTemplate()
 {
-	InvokeHelper(0x60030005, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
+  InvokeHelper(0x60030005, DISPATCH_METHOD, VT_EMPTY, NULL, NULL);
 }

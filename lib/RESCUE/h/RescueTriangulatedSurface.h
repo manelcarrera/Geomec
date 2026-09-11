@@ -86,33 +86,33 @@ public:
   virtual void MarkChanged() {hasChanged = TRUE;}
 /***********************************************************************************/
   virtual RESCUEINT32 Version(RESCUEBOOL reload = FALSE); // These methods return a version number for the file which
-                                    // starts at zero and increments each time the file is
-                                    // written.  Applications can use this as a quick check to
-                                    // see if the file has been updated (by saving the version
-                                    // number AFTER a write operation). If reload is TRUE the library
-                                    // always goes back to the disk to read the version number,
-                                    // in case it has been recently changed.  Therefore, the
-                                    // version number returned is the version which would be
-                                    // available if the data were loaded now, not the version which
-                                    // IS loaded now (if any). If false, the version number returned
-                                    // is the version of the last data loaded (if any).
+                  // starts at zero and increments each time the file is
+                  // written.  Applications can use this as a quick check to
+                  // see if the file has been updated (by saving the version
+                  // number AFTER a write operation). If reload is TRUE the library
+                  // always goes back to the disk to read the version number,
+                  // in case it has been recently changed.  Therefore, the
+                  // version number returned is the version which would be
+                  // available if the data were loaded now, not the version which
+                  // IS loaded now (if any). If false, the version number returned
+                  // is the version of the last data loaded (if any).
 protected:
   RescueTriangulatedSurface(RescueContext *context,
-                            RescueSurface *parentIn, 
-                            cSetRescueTriangleVertex *verticesIn,
-                            cSetRescueTriangleFace *facesIn)
-                            :RescueObject(context)
-                            ,verticesLookups(0)
-                            ,parentSurface(parentIn)
-                            ,vertices(verticesIn)
-                            ,faces(facesIn)
-                            ,octTrees(new cSetRescueSOctTreeNode())
-                            ,faceGrid(0)
-                            ,nodeGrid(0)
-                            ,arrayVersion(0)
-                            ,hasChanged(TRUE)
-                            ,loaded(TRUE)
-                            ,faceStatus(0) {};
+              RescueSurface *parentIn, 
+              cSetRescueTriangleVertex *verticesIn,
+              cSetRescueTriangleFace *facesIn)
+              :RescueObject(context)
+              ,verticesLookups(0)
+              ,parentSurface(parentIn)
+              ,vertices(verticesIn)
+              ,faces(facesIn)
+              ,octTrees(new cSetRescueSOctTreeNode())
+              ,faceGrid(0)
+              ,nodeGrid(0)
+              ,arrayVersion(0)
+              ,hasChanged(TRUE)
+              ,loaded(TRUE)
+              ,faceStatus(0) {};
   RescueTriangulatedSurface(RescueContext *context, FILE *archiveFile);
   virtual void Archive(FILE *archiveFile);
   virtual void Relink(RescueObject *parentModel);

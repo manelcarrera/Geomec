@@ -9,17 +9,17 @@ CGVTVelocityModel::CGVTVelocityModel(eVelocityModel velmod)
   switch(velmod)
   {
   case RFactor:
-    m_ModelName = "R";
-    AddParameter("R_EX", 5.0);
-    AddParameter("R_C", 1.0);
-    break;
+  m_ModelName = "R";
+  AddParameter("R_EX", 5.0);
+  AddParameter("R_C", 1.0);
+  break;
   case SFactor:
-    m_ModelName = "S";
-    AddParameter("S", 0.002);
-    AddParameter("NB", 1.0);
-    break;
+  m_ModelName = "S";
+  AddParameter("S", 0.002);
+  AddParameter("NB", 1.0);
+  break;
   default:
-    assert(false);
+  assert(false);
   }
 }
 
@@ -34,24 +34,24 @@ CGVTVelocityModel::CGVTVelocityModel(const CGVTVelocityModel &rhs)
 void CGVTVelocityModel::ChangeModel(eVelocityModel velmod)
 {
   if(velmod == m_ModelType)
-    return;
+  return;
 
   m_mpParameters.clear();
   m_mpFastParameters.clear();
   switch(velmod)
   {
   case RFactor:
-    m_ModelName = "R";
-    AddParameter("R_EX", 5.0);
-    AddParameter("R_C", 1.0);
-    break;
+  m_ModelName = "R";
+  AddParameter("R_EX", 5.0);
+  AddParameter("R_C", 1.0);
+  break;
   case SFactor:
-    m_ModelName = "S";
-    AddParameter("S", 0.002);
-    AddParameter("NB", 1.0);
-    break;
+  m_ModelName = "S";
+  AddParameter("S", 0.002);
+  AddParameter("NB", 1.0);
+  break;
   default:
-    assert(false);
+  assert(false);
   }
   m_ModelType = velmod;
 }
@@ -69,11 +69,11 @@ eVelocityModel CGVTVelocityModel::ModelType() const
 eVelocityModelParamNames CGVTVelocityModel::NameString2Enum(const QString& name)
 {
   if (name == "R_EX")
-    return RFactor_EX;
+  return RFactor_EX;
   else if (name == "R_C")
-    return RFactor_C;
+  return RFactor_C;
   else if (name == "S")
-    return SFactor_S;
+  return SFactor_S;
 
   assert(name == "NB");
   return SFactor_NB;

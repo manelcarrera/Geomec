@@ -15,29 +15,29 @@
 
 class CReceiver : QObject
 {
-	Q_OBJECT
+  Q_OBJECT
 
-	QTcpServer m_tcp_server;
-    QTcpSocket* m_tcp_server_connection;
+  QTcpServer m_tcp_server;
+  QTcpSocket* m_tcp_server_connection;
 
-	CThread& m_thread;
+  CThread& m_thread;
 
-	//QList< QString > m_cmds;
+  //QList< QString > m_cmds;
 
 public slots:
 
-	void accept_connection();
-	void handle_command();
-	void accept_error( QAbstractSocket::SocketError socketError );
+  void accept_connection();
+  void handle_command();
+  void accept_error( QAbstractSocket::SocketError socketError );
 
 public:
 
 
-	CReceiver( CThread& _thread );
-	virtual ~CReceiver();
+  CReceiver( CThread& _thread );
+  virtual ~CReceiver();
 
 
-	void listen();
+  void listen();
 };
 
 

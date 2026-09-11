@@ -77,17 +77,17 @@ void CInterfaceBase::RegisterSlaveChannel(IChannel *channel)
 {
   if (channel)
   {
-    m_channel = channel;
-    m_channel->RegisterSlave(this);
+  m_channel = channel;
+  m_channel->RegisterSlave(this);
 
-    for (size_t i = 0; i < m_channel->Commands().size(); ++i)
+  for (size_t i = 0; i < m_channel->Commands().size(); ++i)
       m_commands.push(m_channel->Commands()[i]);
 
-    m_commands.push(QUIT);
+  m_commands.push(QUIT);
   }
   else if (IsSlave())
   {
-    m_channel = 0;
+  m_channel = 0;
   }
 }
 
@@ -120,7 +120,7 @@ void CInterfaceBase::Startup()
 {
   if (IsSlave())
   {
-    for (size_t i = 0; i < m_channel->Commands().size(); ++i)
+  for (size_t i = 0; i < m_channel->Commands().size(); ++i)
       m_commands.push(m_channel->Commands()[i]);
   }
 }
@@ -135,17 +135,17 @@ int CInterfaceBase::GetCommand()
 
   if (!m_commands.empty())
   {
-    int tryCommand = m_commands.front();
+  int tryCommand = m_commands.front();
 
-    if (tryCommand < IInterfaceBase::FOR_ME)
-    {
+  if (tryCommand < IInterfaceBase::FOR_ME)
+  {
       m_commands.pop();
       command = tryCommand;
-    }
-    else
-    {
+  }
+  else
+  {
       command = IInterfaceBase::FOR_ME;
-    }
+  }
 
   }
 

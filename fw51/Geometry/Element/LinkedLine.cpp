@@ -31,31 +31,31 @@ bool CLinkedLine::CLinkedPoint::Connect(CLinkedPoint& point)
 
   if((!m_pair.first || !m_pair.second) && (!point.First() || !point.Second()))
   {
-    // don't link to the same point twice
-    if ( m_pair.first == &point || m_pair.second == &point )
+  // don't link to the same point twice
+  if ( m_pair.first == &point || m_pair.second == &point )
       return false;
 
-    // Link our selves to an empty connection
-    // Link the point to ourselves
-    if(point.m_pair.first == 0)
-    {
+  // Link our selves to an empty connection
+  // Link the point to ourselves
+  if(point.m_pair.first == 0)
+  {
       if(m_pair.second)
-        Swap();
+    Swap();
       assert(m_pair.second == 0);
       assert(point.m_pair.first == 0);
       point.m_pair.first = this;
       m_pair.second = &point;
-    }
-    else
-    {
+  }
+  else
+  {
       if(m_pair.first)
-        Swap();
+    Swap();
       assert(m_pair.first == 0);
       assert(point.m_pair.second == 0);
       point.m_pair.second = this;
       m_pair.first = &point ;
-    }
-    return true;
+  }
+  return true;
   }
   return false;
 }
@@ -70,19 +70,19 @@ void CLinkedLine::CLinkedPoint::Swap()
   // More to swap?
   if(m_pair.first)
   {
-    if(m_pair.first->m_pair.second != this)
-    {
+  if(m_pair.first->m_pair.second != this)
+  {
       assert(m_pair.first->m_pair.first == this);
       m_pair.first->Swap();
-    }
+  }
   }
   if(m_pair.second)
   {
-    if(m_pair.second->m_pair.first != this)
-    {
+  if(m_pair.second->m_pair.first != this)
+  {
       assert(m_pair.second->m_pair.second == this);
       m_pair.second->Swap();
-    }
+  }
   }
 }
 
@@ -108,8 +108,8 @@ bool CLinkedLine::AddLine(const IPoint& first, const IPoint& second)
   // When we have no begin initialise
   if(m_pBegin == 0)
   {
-    assert(m_stPoint.size() == 0);
-    m_pBegin = new CLinkedPoint(*this, first);
+  assert(m_stPoint.size() == 0);
+  m_pBegin = new CLinkedPoint(*this, first);
   }
 
   // Create linked points
@@ -118,14 +118,14 @@ bool CLinkedLine::AddLine(const IPoint& first, const IPoint& second)
 
   TPointSet::iterator it = m_stPoint.find((IPoint*)&first);
   if(it == m_stPoint.end())
-    pFirst = new CLinkedPoint(*this, first);
+  pFirst = new CLinkedPoint(*this, first);
   else
-    pFirst = dynamic_cast<CLinkedPoint*>(*it);
+  pFirst = dynamic_cast<CLinkedPoint*>(*it);
   it = m_stPoint.find((IPoint*)&second);
   if(it == m_stPoint.end())
-    pSecond = new CLinkedPoint(*this, second);
+  pSecond = new CLinkedPoint(*this, second);
   else
-    pSecond = dynamic_cast<CLinkedPoint*>(*it);
+  pSecond = dynamic_cast<CLinkedPoint*>(*it);
   assert(pFirst && pSecond);
   return pFirst->Connect(*pSecond);
 }
@@ -133,7 +133,7 @@ bool CLinkedLine::AddLine(const IPoint& first, const IPoint& second)
 void CLinkedLine::Clear()
 {
   for(TPointSet::iterator it = m_stPoint.begin(); it != m_stPoint.end(); it++)
-    delete *it;
+  delete *it;
   m_stPoint.clear();
   m_pBegin = 0;
   m_vcPoint.clear();
@@ -144,38 +144,38 @@ bool CLinkedLine::CreateCache() const
   assert(m_vcPoint.size() == 0);
   
   if(m_pBegin == 0)
-    return false;
+  return false;
 
   // Try to create a circle
   int sz = m_stPoint.size();
   CLinkedPoint *pPoint = m_pBegin;
   while(pPoint)
   {
-    if ( m_vcPoint.size() >= sz )
-    {
+  if ( m_vcPoint.size() >= sz )
+  {
       m_vcPoint.clear();
       return false;
-    }
+  }
 
-    m_vcPoint.push_back(pPoint);
-    pPoint = pPoint->Second();
-    if(pPoint == m_pBegin)
-    {
+  m_vcPoint.push_back(pPoint);
+  pPoint = pPoint->Second();
+  if(pPoint == m_pBegin)
+  {
       // Stop criterium
       if(m_vcPoint.size() > 2)
-        return true;
+    return true;
       else
       {
-        m_vcPoint.clear();
-        return false;
+    m_vcPoint.clear();
+    return false;
       }
-    }
+  }
 
-    if(pPoint == 0)
-    {
+  if(pPoint == 0)
+  {
       m_vcPoint.clear();
       return false;
-    }
+  }
 
   }
   return false;
@@ -184,7 +184,7 @@ bool CLinkedLine::CreateCache() const
 bool CLinkedLine::Valid() const
 {
   if(m_vcPoint.size() > 2)
-    return true;
+  return true;
 
   return CreateCache();
 }
@@ -198,7 +198,7 @@ CValue CLinkedLine::InterpolateValue(const IPoint &/*point*/, const std::vector<
 const IPoint &CLinkedLine::Point(int nIndex) const
 {
   if(m_vcPoint.size() < 3)
-    CreateCache();
+  CreateCache();
   
   return *m_vcPoint[nIndex];
 }
@@ -211,7 +211,7 @@ void CLinkedLine::Point(int /*nIndex*/, const IPoint &/*pt*/)
 int CLinkedLine::NrOfPoints() const
 {
   if(m_vcPoint.size() < 3)
-    CreateCache();
+  CreateCache();
   
   return (int)m_vcPoint.size(); 
 }

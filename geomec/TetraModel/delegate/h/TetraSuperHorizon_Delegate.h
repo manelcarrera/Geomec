@@ -11,14 +11,14 @@ class CTetraSuperHorizon_Delegate : public CTetraHorizonBase_Delegate
 {
 public:
   CTetraSuperHorizon_Delegate(
-    CTetraSuperHorizon* tetraSuperHorizon);
+  CTetraSuperHorizon* tetraSuperHorizon);
 
   virtual bool Attributes();
 
 private:
   CTetraSuperHorizon_Delegate(const CTetraSuperHorizon_Delegate& rhs);
   CTetraSuperHorizon_Delegate& operator = (
-    const CTetraSuperHorizon_Delegate& rhs);
+  const CTetraSuperHorizon_Delegate& rhs);
 
   CTetraSuperHorizon* m_tetraSuperHorizon;
 
@@ -30,7 +30,7 @@ class CTetraSuperHorizonEntry_Delegate :
 {
 public:
   CTetraSuperHorizonEntry_Delegate(
-    CTetraSuperHorizonEntry* tetraSuperHorizonEntry);
+  CTetraSuperHorizonEntry* tetraSuperHorizonEntry);
 
   virtual void AppendContextMenu(CContextMenuInvoker& invoker);
 
@@ -39,9 +39,9 @@ public:
 
 private:
   CTetraSuperHorizonEntry_Delegate(
-    const CTetraSuperHorizonEntry_Delegate& rhs);
+  const CTetraSuperHorizonEntry_Delegate& rhs);
   CTetraSuperHorizonEntry_Delegate& operator = (
-    const CTetraSuperHorizonEntry_Delegate& rhs);
+  const CTetraSuperHorizonEntry_Delegate& rhs);
 
   CTetraSuperHorizonEntry* m_tetraSuperHorizonEntry;
 

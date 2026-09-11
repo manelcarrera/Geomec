@@ -95,26 +95,26 @@ geo::CValue CMaterialResult::CMaterialResultComponent::SingleValueElement(const 
   const CHorizonBase* pHor = 0;
 
   if(dynamic_cast<const geo::IInterfaceElement*>(&elm))
-    pHor = mesh.SlipHorizon(elm);
+  pHor = mesh.SlipHorizon(elm);
   if(pHor)
   {
-    const dia::IMaterial& mat = pHor->InterfaceMaterial(elm, Stage());
-    const CInterfaceElementMaterial* pIfaceMat = dynamic_cast<const CInterfaceElementMaterial*>(&mat);
-    if(pIfaceMat)
-    {
+  const dia::IMaterial& mat = pHor->InterfaceMaterial(elm, Stage());
+  const CInterfaceElementMaterial* pIfaceMat = dynamic_cast<const CInterfaceElementMaterial*>(&mat);
+  if(pIfaceMat)
+  {
       if(pIfaceMat->ValidParameterValue(MaterialResult().TypeId()))
-        return pIfaceMat->ParameterValue(MaterialResult().TypeId()) * MaterialResult().UnitFactor(unit);
-    }
+    return pIfaceMat->ParameterValue(MaterialResult().TypeId()) * MaterialResult().UnitFactor(unit);
+  }
   }
   else
   {
-    const CFFMaterial* material = mesh.getCFFMaterial(elm, Stage());
+  const CFFMaterial* material = mesh.getCFFMaterial(elm, Stage());
 
-    if ((material != 0) && material->IsParameter(MaterialResult().TypeId()))
-    {
+  if ((material != 0) && material->IsParameter(MaterialResult().TypeId()))
+  {
       return material->ParameterValue(MaterialResult().TypeId()) *
-        MaterialResult().UnitFactor(unit);
-    }
+    MaterialResult().UnitFactor(unit);
+  }
   }
 
   return geo::CValue();
@@ -128,13 +128,13 @@ geo::CValue CMaterialResult::CMaterialResultComponent::ValuePoint(const geo::IPo
   std::set<int>::const_iterator it;
   for(it = stCandidates.begin(); it != stCandidates.end(); ++it)
   {
-    const geo::IElement& elm = mesh.Mesh().Element(*it);
-    if(elm.Contains(pt, true))
-    {
+  const geo::IElement& elm = mesh.Mesh().Element(*it);
+  if(elm.Contains(pt, true))
+  {
       geo::CValue val = SingleValueElement(elm, unit);
       if(val.Valid())
-        return val;
-    }
+    return val;
+  }
   }
 
   return geo::CValue();
@@ -157,7 +157,7 @@ QString CMaterialResult::CMaterialResultComponent::ExportLabel() const
 {
   QString s;
   s = QString("%1_D%2").arg(MaterialResult().StoredExportLabel()).arg(
-    Stage().Index());
+  Stage().Index());
   return s;
 }
 
@@ -176,13 +176,13 @@ bool CMaterialResult::CMaterialResultComponent::PrepareMapping(const geo::IEleme
   CValueMapper *vm = CValueMapper::instance();
 
   if (!vm->PrepareMappingElementSet(pElementSet, &mesh.Mesh()))
-    retval = false;
+  retval = false;
 
   if (!vm->PrepareMappingSurfaces(model, pElementSet, Stage()))
-    retval = false;
+  retval = false;
 
   if (!vm->PrepareMappingMaterial(model, pElementSet, Stage()))
-    retval = false;
+  retval = false;
 
   return retval;
 }
@@ -207,21 +207,21 @@ geo::CValue CMaterialResult::CBoundaryMaterialResultComponent::SingleValueElemen
 
   if (ifElt && &ifElt->Front() == &ifElt->Back())
   {
-    const IWellModel::CBoundary *pWellBoundary = dynamic_cast<const IWellModel::CBoundary *>(&static_cast<const CModelBase&>(Model()).Boundary());
+  const IWellModel::CBoundary *pWellBoundary = dynamic_cast<const IWellModel::CBoundary *>(&static_cast<const CModelBase&>(Model()).Boundary());
 
-    if (pWellBoundary)
-    {
+  if (pWellBoundary)
+  {
       const CBoundaryInterfaceMaterial& mat = pWellBoundary->InterfaceMaterial(*ifElt);
       return (m_showRad ? mat.Krad() : mat.Ktan()) / 1e6;
-    }
+  }
 
-    const CInterfaceBoundary* pBoundary = dynamic_cast<const CInterfaceBoundary*>(&static_cast<const CModelBase&>(Model()).Boundary());
-    
-    if (pBoundary)
-    {
+  const CInterfaceBoundary* pBoundary = dynamic_cast<const CInterfaceBoundary*>(&static_cast<const CModelBase&>(Model()).Boundary());
+  
+  if (pBoundary)
+  {
       const CBoundaryInterfaceMaterial& mat = pBoundary->InterfaceMaterial(*ifElt);
       return (m_showRad ? mat.Krad() : mat.Ktan()) / 1e6;
-    }
+  }
   }
  
   return geo::CValue();
@@ -278,7 +278,7 @@ bool CMaterialResult::Less(const CGraphNode &node) const
 {
   const CMaterialResult* pResult = dynamic_cast<const CMaterialResult*>(&node);
   if(pResult)
-    return TypeId() < pResult->TypeId();
+  return TypeId() < pResult->TypeId();
 
   return IValueComposite::Less(node);
 }
@@ -309,11 +309,11 @@ void CMaterialResult::OnNeighbourDeleted(const CGraphNode& node)
   TComponentMap::iterator it;
   for(it = m_mpComponents.begin(); it != m_mpComponents.end(); ++it)
   {
-    if(it->second == &node)
-    {
+  if(it->second == &node)
+  {
       m_mpComponents.erase(it);
       break;
-    }
+  }
   }
 
   IResult::OnNeighbourDeleted(node);
@@ -330,13 +330,13 @@ QString CMaterialResult::UnitName(const UNIT unit) const
   switch(unit)
   {
   case IQuantityDouble::SI_UNIT:
-    s = m_strUnitNameSI;
-    break;
+  s = m_strUnitNameSI;
+  break;
   case IQuantityDouble::FIELD_UNIT:
-    s = m_strUnitNameField;
-    break;
+  s = m_strUnitNameField;
+  break;
   default:
-    assert(FALSE);
+  assert(FALSE);
   }
 
   return s;
@@ -346,7 +346,7 @@ double CMaterialResult::UnitFactor(const UNIT unit) const
 {
   double factor = 1.0;
   if(unit == IQuantityDouble::FIELD_UNIT)
-    factor = m_dFieldFactor;
+  factor = m_dFieldFactor;
 
   return factor;
 }
@@ -357,10 +357,10 @@ void CMaterialResult::BuildComponent(const CDepletionStage& stage, const CAnalys
   int idx = stage.Index();
   TComponentMap::iterator it = m_mpComponents.find(idx);
   if(it == m_mpComponents.end())
-    m_mpComponents.insert(TComponentMap::value_type(idx, new CMaterialResultComponent(Name(), stage, *this, antype, nRegister)));
+  m_mpComponents.insert(TComponentMap::value_type(idx, new CMaterialResultComponent(Name(), stage, *this, antype, nRegister)));
   else
   {
-    RegisterMode(stage, antype, nRegister);
+  RegisterMode(stage, antype, nRegister);
   }
 }
 
@@ -368,7 +368,7 @@ IResultComponent* CMaterialResult::OnGetResultComponent(int nTimeStep, const CAn
 {
   TComponentMap::const_iterator it = m_mpComponents.find(nTimeStep);
   if(it != m_mpComponents.end())
-    return it->second;
+  return it->second;
 
   return 0;
 }
@@ -396,10 +396,10 @@ void CBoundaryMaterialResult::BuildComponent(const CDepletionStage& stage, const
   int idx = stage.Index();
   TComponentMap::iterator it = m_mpComponents.find(idx);
   if (it == m_mpComponents.end())
-    m_mpComponents.insert(TComponentMap::value_type(idx, new CBoundaryMaterialResultComponent(Name(), stage, *this, antype, nRegister, TypeId() == IDT_VALUETYPE_KRAD)));
+  m_mpComponents.insert(TComponentMap::value_type(idx, new CBoundaryMaterialResultComponent(Name(), stage, *this, antype, nRegister, TypeId() == IDT_VALUETYPE_KRAD)));
   else
   {
-    RegisterMode(stage, antype, nRegister);
+  RegisterMode(stage, antype, nRegister);
   }
 }
 

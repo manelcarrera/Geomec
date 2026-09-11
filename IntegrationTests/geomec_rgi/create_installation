@@ -1,0 +1,139 @@
+#! /bin/sh
+
+release_or_debug=release #debug
+
+if [ "$DIAPATH" = "" ]; then
+	echo "DIAPATH not defined"
+	exit 1
+fi
+
+if [ "$DIASRC" = "" ]; then
+	echo "DIASRC not defined"
+	exit 1
+fi
+
+if [ "$INTEL" = "" ]; then
+	echo "INTEL not defined"
+	exit 1
+fi
+
+if [ "$QTLIB" = "" ]; then
+	echo "QTLIB not defined"
+	exit 1
+fi
+
+if [ $# = 0 ]; then
+	echo "create_installation 'path for GCC libraries'"
+	exit 1
+fi
+
+TMP=geomec_rgi_TMP
+
+rm -rf $TMP
+
+mkdir $TMP
+mkdir $TMP/diana
+mkdir $TMP/diana/bin
+mkdir $TMP/diana/binseg
+mkdir $TMP/diana/binseg/ap
+mkdir $TMP/diana/lib
+mkdir $TMP/diana/share
+mkdir $TMP/diana/share/lib
+mkdir $TMP/diana/share/lib/ElmTyp
+mkdir $TMP/diana/share/src
+mkdir $TMP/diana/share/src/ap
+mkdir $TMP/diana/share/src/dc
+mkdir $TMP/diana/share/src/in
+mkdir $TMP/diana/share/src/lb
+mkdir $TMP/diana/share/src/ls
+mkdir $TMP/diana/share/src/nl
+mkdir $TMP/diana/share/src/pf
+mkdir $TMP/diana/share/src/po
+mkdir $TMP/diana/share/src/so
+
+cd $TMP
+ROOT=../../..
+
+cp $DIAPATH/release/bin/* diana/bin/.
+
+cp $DIAPATH/release/binseg/ap/ca40 diana/binseg/ap/.
+cp $DIAPATH/release/binseg/ap/gm42 diana/binseg/ap/.
+cp $DIAPATH/release/binseg/ap/ho40 diana/binseg/ap/.
+cp $DIAPATH/release/binseg/ap/in51 diana/binseg/ap/.
+cp $DIAPATH/release/binseg/ap/mc41 diana/binseg/ap/.
+
+cp $DIAPATH/release/lib/SCHEMA diana/lib/.
+cp $DIAPATH/release/lib/SCHEMA.bin diana/lib/.
+cp $DIAPATH/release/lib/ElmTypes.dat diana/lib/.
+cp $DIAPATH/release/lib/*.so diana/lib/.
+
+cp $ROOT/geomec/keyfile/Linux/diafgv.k72 diana/share/lib/.
+
+cp $DIASRC/../lib/DI_ERROR.DAT diana/share/lib/.
+cp $DIASRC/../lib/femsys.ini diana/share/lib/.
+cp $DIASRC/../lib/filoscap diana/share/lib/.
+cp $DIASRC/../lib/geoclass.res diana/share/lib/.
+cp $DIASRC/../lib/matclass.res diana/share/lib/.
+
+cp $DIASRC/../lib/ElmTyp/* diana/share/lib/ElmTyp/.
+
+cp $DIASRC/../src/ap/*.txt diana/share/src/ap/.
+cp $DIASRC/../src/dc/*.txt diana/share/src/dc/.
+cp $DIASRC/../src/in/*.txt diana/share/src/in/.
+cp $DIASRC/../src/lb/*.txt diana/share/src/lb/.
+cp $DIASRC/../src/ls/*.txt diana/share/src/ls/.
+cp $DIASRC/../src/nl/*.txt diana/share/src/nl/.
+cp $DIASRC/../src/pf/*.txt diana/share/src/pf/.
+cp $DIASRC/../src/po/*.txt diana/share/src/po/.
+cp $DIASRC/../src/so/*.txt diana/share/src/so/.
+
+cp -R $ROOT/UserDLLs .
+
+cp $ROOT/bin/$release_or_debug/geomec_rgi ..
+cp ../installer_run_geomec_rgi ./run_geomec_rgi 
+cp ../installer_test_geomec_rgi  ./test_geomec_rgi 
+cp $ROOT/bin/$release_or_debug/geomec_rgi ../ #FIXME: MCR: Hard-coded
+cp ../geomec_rgi .
+cp $ROOT/bin/$release_or_debug/geomec_shell . #FIXME: NCR: Hard-coded
+cp -R $ROOT/TestData/RGI/D0 .
+
+find ./D0/. -name '.svn' -exec rm -rf {} >& /dev/null \;
+
+mkdir intel
+
+cp -f $INTEL/*.so intel/.
+cp -f $INTEL/*.so.* intel/.
+cp -f $INTEL/*.so intel/.
+
+cp -f $ROOT/third_party/tbb/linux/lib/intel64/gcc4.7/libtbb.so* intel/.
+cp -f $ROOT/third_party/tbb/linux/lib/intel64/gcc4.7/libtbbmalloc.so* intel/.
+
+mkdir Qt
+
+cp $QTLIB/libQt5Core.so* Qt/.
+cp $QTLIB/libQt5Gui.so* Qt/.
+cp $QTLIB/libQt5Widgets.so* Qt/.
+cp $QTLIB/libQt5Xml.so* Qt/.
+
+mkdir GCC
+
+cp -R $1/. GCC/.
+
+tar -cjf ../geomec_rgi.tar.bz2 .
+
+version=`LD_LIBRARY_PATH=GCC:Qt:UserDLLs:intel:diana/lib ./geomec_rgi --version | head -1 | awk '{ print substr($0, 23); }'`
+
+cd ..
+ROOT=../..
+
+rm -rf $TMP
+
+INSTALL_FILES=$ROOT/bin/$release_or_debug/install_files
+
+rm -rf $INSTALL_FILES
+mkdir $INSTALL_FILES
+mv geomec_rgi.tar.bz2 $INSTALL_FILES
+cp README.install $INSTALL_FILES
+cp install $INSTALL_FILES
+echo -n $version > $INSTALL_FILES/VERSION
+

@@ -40,42 +40,42 @@ class MiDataSetI;
 
 class OIDISurfaceMeshNode : public OIDIMeshNode
 {
-    // Cell shape members
-    SoSwitch*    m_surfaceSwitch;
-    SoSeparator* m_surfaceSeparator;
-    SoGroup*     m_surfaceAppearance;
-    MoDrawStyle* m_surfaceDrawStyle;
-    MoMaterial*  m_surfaceMaterial;
-    SoMaterial*  m_soSurfaceMaterial;
-    MoMeshSurface* m_surface;
-    SoSwitch *   m_isolineSwitch;
-    MoMeshAnnotatedIsoline *m_isoline;
+  // Cell shape members
+  SoSwitch*    m_surfaceSwitch;
+  SoSeparator* m_surfaceSeparator;
+  SoGroup*     m_surfaceAppearance;
+  MoDrawStyle* m_surfaceDrawStyle;
+  MoMaterial*  m_surfaceMaterial;
+  SoMaterial*  m_soSurfaceMaterial;
+  MoMeshSurface* m_surface;
+  SoSwitch *   m_isolineSwitch;
+  MoMeshAnnotatedIsoline *m_isoline;
 
-    void buildSurfaceAppearanceNode();
+  void buildSurfaceAppearanceNode();
 
-    bool isPointSetMeshNode();
+  bool isPointSetMeshNode();
 
-    void buildSurfaceNode();
+  void buildSurfaceNode();
 
-    void buildIsolineNode();
+  void buildIsolineNode();
 
-    void buildSurfaceMeshNode();
-    void buildNodes();
+  void buildSurfaceMeshNode();
+  void buildNodes();
 
 public:
 
-    OIDISurfaceMeshNode(const OIDIMesh* meshData, OIDIMeshNodeManager * meshNodeManager);
+  OIDISurfaceMeshNode(const OIDIMesh* meshData, OIDIMeshNodeManager * meshNodeManager);
 
-    virtual void updateColorScalarSet();
+  virtual void updateColorScalarSet();
 
-    virtual void updateIsoScalarSet();
+  virtual void updateIsoScalarSet();
 
 
-    virtual void setIsoValues(int isoCount, double min, double max);
-    virtual void setIsoGap(double gap);
+  virtual void setIsoValues(int isoCount, double min, double max);
+  virtual void setIsoGap(double gap);
 
-    virtual void UpdateDisplaySettings(const MeshNodeSettings & meshNodeSettings, bool showColor);
-    virtual void updateGeologyColors();
+  virtual void UpdateDisplaySettings(const MeshNodeSettings & meshNodeSettings, bool showColor);
+  virtual void updateGeologyColors();
 
 };
 

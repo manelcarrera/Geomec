@@ -26,7 +26,7 @@ void RescueArray::Relink(RescueObject *parent)
   parentModel = (RescueModel *) parent;
   if (parentModel->propertyActionImmediate && IsLoaded() == FALSE)
   {
-    Load();
+  Load();
   }
 }
 
@@ -34,10 +34,10 @@ void RescueArray::LoadFragment(RescueArrayFragment *toLoad)
 {
   if (parentModel->ExistingModel())
   {
-    parentModel->Context()->readFileVersion = parentModel->currentFileVersion; 
-    parentModel->Context()->readFileMainSoftwareVersion = parentModel->readFileMainSoftwareVersion;
-    parentModel->Context()->readFileSubSoftwareVersion = parentModel->readFileSubSoftwareVersion;
-    ReadData(parentModel->currentPathName, FALSE, toLoad);
+  parentModel->Context()->readFileVersion = parentModel->currentFileVersion; 
+  parentModel->Context()->readFileMainSoftwareVersion = parentModel->readFileMainSoftwareVersion;
+  parentModel->Context()->readFileSubSoftwareVersion = parentModel->readFileSubSoftwareVersion;
+  ReadData(parentModel->currentPathName, FALSE, toLoad);
   }
 }
 
@@ -47,18 +47,18 @@ RESCUEBOOL RescueArray::Load()
   RESCUEBOOL myReturn = FALSE;
   if (IsLoaded())
   {
-    DropMemory();
+  DropMemory();
   }
   if (parentModel->ExistingModel())
   {
-    parentModel->Context()->readFileVersion = parentModel->currentFileVersion; 
-    parentModel->Context()->readFileMainSoftwareVersion = parentModel->readFileMainSoftwareVersion;
-    parentModel->Context()->readFileSubSoftwareVersion = parentModel->readFileSubSoftwareVersion;
-    myReturn = ReadData(parentModel->currentPathName);
+  parentModel->Context()->readFileVersion = parentModel->currentFileVersion; 
+  parentModel->Context()->readFileMainSoftwareVersion = parentModel->readFileMainSoftwareVersion;
+  parentModel->Context()->readFileSubSoftwareVersion = parentModel->readFileSubSoftwareVersion;
+  myReturn = ReadData(parentModel->currentPathName);
   }
   if (myReturn == TRUE)
   {
-    hasChanged = FALSE;
+  hasChanged = FALSE;
   }
   return myReturn;
 }
@@ -68,10 +68,10 @@ RESCUEBOOL RescueArray::HasFragments()
   RESCUEBOOL myReturn = FALSE;
   if (fragments != 0)
   {
-    if (fragments->Count64() > 0)
-    {
+  if (fragments->Count64() > 0)
+  {
       myReturn = TRUE;
-    }
+  }
   }
   return myReturn;
 }
@@ -81,18 +81,18 @@ RESCUEBOOL RescueArray::Unload()
   RESCUEBOOL myReturn = FALSE;
   if (hasChanged == FALSE)
   {
-    DropMemory();
-    DropFragments();
-    myReturn = TRUE;
+  DropMemory();
+  DropFragments();
+  myReturn = TRUE;
   }
   else if ((IsLoaded() || HasFragments()) && parentModel->ExistingModel())
   {
-    if (WriteData())
-    {
+  if (WriteData())
+  {
       DropMemory();
       DropFragments();
       myReturn = TRUE;
-    }
+  }
   }
   return myReturn;
 }
@@ -101,18 +101,18 @@ RESCUEINT32 RescueArray::Version(RESCUEBOOL reload)
 {
   if (reload)
   {
-    RESCUEINT32 myReturn = arrayVersion;
-    RESCUEINT32 savedArrayVersion = arrayVersion;
-    if (ReadData(parentModel->currentPathName, TRUE))
-    {
+  RESCUEINT32 myReturn = arrayVersion;
+  RESCUEINT32 savedArrayVersion = arrayVersion;
+  if (ReadData(parentModel->currentPathName, TRUE))
+  {
       myReturn = arrayVersion;
       arrayVersion = savedArrayVersion;
-    }
-    return myReturn;
+  }
+  return myReturn;
   }
   else
   {
-    return arrayVersion;
+  return arrayVersion;
   }
 }
 
@@ -127,90 +127,90 @@ RESCUEBOOL RescueArray::ReadData(RESCUECHAR *basePathName, RESCUEBOOL versionOnl
   FILE *archiveFile = (FILE *) fopen(fileName.String(), "rb");
   if (archiveFile != 0)
   {
-    int fileVersion = getc(archiveFile);
-    if (fileVersion == 'R')
-    {
+  int fileVersion = getc(archiveFile);
+  if (fileVersion == 'R')
+  {
       parentModel->Context()->binaryFlag = FALSE;
       fread(buffer, sizeof(RESCUECHAR), 20, archiveFile);
       if (strncmp(buffer, "escue Property File", 19) == 0)
       {
-        modelFile = TRUE;
+    modelFile = TRUE;
       }
-    }
-    else
-    {
+  }
+  else
+  {
       parentModel->Context()->binaryFlag = TRUE;
       fread(buffer, sizeof(RESCUECHAR), 20, archiveFile);
       if (strncmp(buffer, "Rescue Property File", 20) == 0)
       {
-        modelFile = TRUE;
+    modelFile = TRUE;
       }
-    }
-    fclose(archiveFile);
-    if (modelFile)
-    {
+  }
+  fclose(archiveFile);
+  if (modelFile)
+  {
       RESCUEINT64 fileVersion = 0;
       if (parentModel->Context()->binaryFlag)
       {
-        archiveFile = (FILE *) fopen(fileName.String(), "rb");
-        fileVersion = getc(archiveFile);
-        fseek(archiveFile, 20, SEEK_CUR);
-        if (fileVersion >= 2)
-        {
+    archiveFile = (FILE *) fopen(fileName.String(), "rb");
+    fileVersion = getc(archiveFile);
+    fseek(archiveFile, 20, SEEK_CUR);
+    if (fileVersion >= 2)
+    {
           myfscanf(parentModel->Context(), archiveFile, &arrayVersion);
-        }
-        if (versionOnly == FALSE)
-        {
+    }
+    if (versionOnly == FALSE)
+    {
           if (toLoad == 0)
           {
-            UnArchiveData(archiveFile, fileVersion);
+      UnArchiveData(archiveFile, fileVersion);
           }
           else
           {
-            toLoad->UnArchiveData(archiveFile, fileVersion);
+      toLoad->UnArchiveData(archiveFile, fileVersion);
           }
-        }
-        fclose(archiveFile);
-        myReturn = TRUE;
+    }
+    fclose(archiveFile);
+    myReturn = TRUE;
       }
       else
       {
-        RESCUECHAR myString[255];
+    RESCUECHAR myString[255];
 
-        archiveFile = (FILE *) fopen(fileName.String(), "rt");
-        myfgets(parentModel->Context(), myString, 255, archiveFile);
-        sscanf(myString, "Rescue Property File Version %lld\n", &fileVersion);
-        if (fileVersion >= 2)
-        {
+    archiveFile = (FILE *) fopen(fileName.String(), "rt");
+    myfgets(parentModel->Context(), myString, 255, archiveFile);
+    sscanf(myString, "Rescue Property File Version %lld\n", &fileVersion);
+    if (fileVersion >= 2)
+    {
           myfscanf(parentModel->Context(), archiveFile, &arrayVersion);
-        }
-        if (versionOnly == FALSE)
-        {
+    }
+    if (versionOnly == FALSE)
+    {
           if (toLoad == 0)
           {
-            UnArchiveData(archiveFile, fileVersion);
+      UnArchiveData(archiveFile, fileVersion);
           }
           else
           {
-            toLoad->UnArchiveData(archiveFile, fileVersion);
+      toLoad->UnArchiveData(archiveFile, fileVersion);
           }
-        }
-        fclose(archiveFile);
-        myReturn = TRUE;
+    }
+    fclose(archiveFile);
+    myReturn = TRUE;
       }
-    }
-    else
-    {
-      RCHString message;
-      message << "Not a Rescue Property File: " << fileName.String();
-      parentModel->Context()->SetError(message.NonNullString());
-    }
   }
   else
   {
-    RCHString message;
-    message << "Unable to open " << fileName.String();
-    parentModel->Context()->SetError(message.NonNullString());
+      RCHString message;
+      message << "Not a Rescue Property File: " << fileName.String();
+      parentModel->Context()->SetError(message.NonNullString());
+  }
+  }
+  else
+  {
+  RCHString message;
+  message << "Unable to open " << fileName.String();
+  parentModel->Context()->SetError(message.NonNullString());
   }
   return myReturn;
 }
@@ -235,65 +235,65 @@ RESCUEBOOL RescueArray::WriteData()
 
   if (HasFragments())
   {
-    fragmentFileName = fileName;
-    fragmentFile = fopen(fragmentFileName.String(), "r");
-    if (fragmentFile == 0)
-    {
+  fragmentFileName = fileName;
+  fragmentFile = fopen(fragmentFileName.String(), "r");
+  if (fragmentFile == 0)
+  {
       fragmentFileName << ".bak";
-    }
+  }
 /*
   If the file does not currently exist, we can use the backup file.
   Probably just means this is the first time we have written the
   property in this transaction.
 */
-    else
-    {
+  else
+  {
       if (ferror(fragmentFile) != 0)
       {
-        RCHString message;
-        message << "Error writing fragment file:";
-        message << (RESCUEINT64) ferror(fragmentFile);
-        parentModel->Context()->SetError(message.NonNullString());
+    RCHString message;
+    message << "Error writing fragment file:";
+    message << (RESCUEINT64) ferror(fragmentFile);
+    parentModel->Context()->SetError(message.NonNullString());
       }
       fclose(fragmentFile);
       fragmentFileName << ".tmp";
       remove(fragmentFileName.String());
       rename(fileName.String(), fragmentFileName.String());
-    }
+  }
 /*
   If the file does exist, rename it to ".tmp".  We remove any existing
   file to keep nonsignifigant files in the directory from messing up
   our rename.
 */
-    parentModel->Context()->binaryFlag = parentModel->currentBinary;
-    if (parentModel->Context()->binaryFlag)
-    {
+  parentModel->Context()->binaryFlag = parentModel->currentBinary;
+  if (parentModel->Context()->binaryFlag)
+  {
       fragmentFile = (FILE *) fopen(fragmentFileName.String(), "rb");
       if (fragmentFile != 0)
       {
-        fileVersion = getc(fragmentFile);
-        fseek(fragmentFile, 20, SEEK_CUR);
-        if (fileVersion >= 2)
-        {
-          myfscanf(parentModel->Context(), fragmentFile, &arrayVersion);
-        }
-      }
-    }
-    else
+    fileVersion = getc(fragmentFile);
+    fseek(fragmentFile, 20, SEEK_CUR);
+    if (fileVersion >= 2)
     {
+          myfscanf(parentModel->Context(), fragmentFile, &arrayVersion);
+    }
+      }
+  }
+  else
+  {
       RESCUECHAR myString[255];
 
       fragmentFile = (FILE *) fopen(fragmentFileName.String(), "rt");
       if (fragmentFile != 0)
       {
-        myfgets(parentModel->Context(), myString, 255, fragmentFile);
-        sscanf(myString, "Rescue Property File Version %d\n", &fileVersion);
-        if (fileVersion >= 2)
-        {
+    myfgets(parentModel->Context(), myString, 255, fragmentFile);
+    sscanf(myString, "Rescue Property File Version %d\n", &fileVersion);
+    if (fileVersion >= 2)
+    {
           myfscanf(parentModel->Context(), fragmentFile, &arrayVersion);
-        }
-      }
     }
+      }
+  }
 /*
   If folding in fragments, prepare a file channel we can read to get
   the data not in the fragments.
@@ -302,77 +302,77 @@ RESCUEBOOL RescueArray::WriteData()
 
   if (parentModel->currentBinary)
   {
-    archiveFile = (FILE *) fopen(fileName.String(), "wb");
+  archiveFile = (FILE *) fopen(fileName.String(), "wb");
   }
   else
   {
-    archiveFile = (FILE *) fopen(fileName.String(), "wt");
+  archiveFile = (FILE *) fopen(fileName.String(), "wt");
   }
   if (archiveFile != 0)
   {
-    RescueContext *context = parentModel->Context(true);
-    context->binaryFlag = parentModel->currentBinary;
-    if (context->binaryFlag)
-    {
+  RescueContext *context = parentModel->Context(true);
+  context->binaryFlag = parentModel->currentBinary;
+  if (context->binaryFlag)
+  {
       putc((RESCUEUCHAR) PROPERTY_FILE_VERSION, archiveFile);
       fwrite("Rescue Property File", sizeof(RESCUECHAR), 20, archiveFile);
-    }
-    else
-    {
+  }
+  else
+  {
       fprintf(archiveFile, "Rescue Property File Version %d\n", PROPERTY_FILE_VERSION);
-    }
+  }
 #ifdef TESTING
-    myfprintf(context, archiveFile, arrayVersion);
+  myfprintf(context, archiveFile, arrayVersion);
 #else
-    myfprintf(context, archiveFile, ++arrayVersion);
+  myfprintf(context, archiveFile, ++arrayVersion);
 #endif
-    ArchiveData(archiveFile, fragmentFile, fileVersion);
-    myfprintf(context, archiveFile, "abracadabra jump jump");
-    if (ferror(archiveFile) != 0)
-    {
+  ArchiveData(archiveFile, fragmentFile, fileVersion);
+  myfprintf(context, archiveFile, "abracadabra jump jump");
+  if (ferror(archiveFile) != 0)
+  {
       RCHString message;
       message << "Error writing Rescue Property File:";
       message << (RESCUEINT64) ferror(archiveFile);
       parentModel->Context()->SetError(message.NonNullString());
-    }
-    fclose(archiveFile);
-    if (fragmentFile != 0)
-    {
+  }
+  fclose(archiveFile);
+  if (fragmentFile != 0)
+  {
       if (ferror(fragmentFile) != 0)
       {
-        RCHString message;
-        message << "Error writing Rescue Property Fragment File:";
-        message << (RESCUEINT64) ferror(fragmentFile);
-        context->SetError(message.NonNullString());
+    RCHString message;
+    message << "Error writing Rescue Property Fragment File:";
+    message << (RESCUEINT64) ferror(fragmentFile);
+    context->SetError(message.NonNullString());
       }
       fclose(fragmentFile);
       if (fragmentFileName.EndsWith(".tmp"))
       {
-        remove(fragmentFileName.String());
+    remove(fragmentFileName.String());
       }
-    }
-    myReturn = TRUE;
+  }
+  myReturn = TRUE;
   }
   return myReturn;
 }
 
 RescueArray::RescueArray(const RESCUECHAR *propertyNameIn, 
-    const RESCUECHAR *propertyTypeIn,
-    const RESCUECHAR *unitOfMeasureIn,
-                        RescueGrid *existingGrid, 
-                        RescueModel *parentModelIn,
-                        RESCUEBOOL cellCenteredIn)
-                        :RescueObject(parentModelIn->Context())
-                        ,propertyName(0)
-                        ,propertyType(0)
-                        ,unitOfMeasure(0)
-                        ,grid(existingGrid)
-                        ,cellCentered(cellCenteredIn)
-                        ,hasChanged(TRUE)
-                        ,dirtyMinMax(TRUE)
-                        ,parentModel(parentModelIn)
-                        ,arrayVersion(0)
-                        ,fragments(0)
+  const RESCUECHAR *propertyTypeIn,
+  const RESCUECHAR *unitOfMeasureIn,
+            RescueGrid *existingGrid, 
+            RescueModel *parentModelIn,
+            RESCUEBOOL cellCenteredIn)
+            :RescueObject(parentModelIn->Context())
+            ,propertyName(0)
+            ,propertyType(0)
+            ,unitOfMeasure(0)
+            ,grid(existingGrid)
+            ,cellCentered(cellCenteredIn)
+            ,hasChanged(TRUE)
+            ,dirtyMinMax(TRUE)
+            ,parentModel(parentModelIn)
+            ,arrayVersion(0)
+            ,fragments(0)
 {
   propertyName = new RCHString(propertyNameIn);
   propertyType = new RCHString(propertyTypeIn);
@@ -383,19 +383,19 @@ RescueArray::~RescueArray()
 {
   if (propertyName != 0)
   {
-    delete propertyName;
+  delete propertyName;
   }
   if (propertyType != 0)
   {
-    delete propertyType;
+  delete propertyType;
   }
   if (unitOfMeasure != 0)
   {
-    delete unitOfMeasure;
+  delete unitOfMeasure;
   }
   if (fragments != 0)
   {
-    delete fragments;
+  delete fragments;
   }
 }
 
@@ -403,26 +403,26 @@ void RescueArray::RescueDeleteFile()
 {
   if (parentModel != 0)
   {
-    if (parentModel->currentPathName != 0)
-    {
+  if (parentModel->currentPathName != 0)
+  {
       if (parentModel->currentPathName[0] != 0)
       {
-        RCHString fileName;
-        fileName << parentModel->currentPathName << "." << Identifier();
-        parentModel->ScheduleDeleteFile(fileName.String());
+    RCHString fileName;
+    fileName << parentModel->currentPathName << "." << Identifier();
+    parentModel->ScheduleDeleteFile(fileName.String());
       }
-    }
+  }
   }
 }
 
 RescueArray::RescueArray(RescueContext *context,
                          FILE *archiveFile)
-                            :RescueObject(context)
-                            ,grid(0)
-                            ,hasChanged(FALSE)
-                            ,parentModel(0)
-                            ,arrayVersion(-1)
-                            ,fragments(0)
+              :RescueObject(context)
+              ,grid(0)
+              ,hasChanged(FALSE)
+              ,parentModel(0)
+              ,arrayVersion(-1)
+              ,fragments(0)
 {
   RESCUECHAR myString[255];
 
@@ -435,15 +435,15 @@ RescueArray::RescueArray(RescueContext *context,
   unitOfMeasure = new RCHString(myString);
   if (context->readFileVersion >= 5)
   {
-    myfscanf(context, archiveFile, &cellCentered);
+  myfscanf(context, archiveFile, &cellCentered);
   }
   else
   {
-    cellCentered = FALSE;
+  cellCentered = FALSE;
   }
   if (context->readFileVersion >= 12)
   {
-    ReadId(context, archiveFile);
+  ReadId(context, archiveFile);
   }
   hasChanged = false;
 }
@@ -452,27 +452,27 @@ void RescueArray::CalculateMinMax()
 {
   if (IsLoaded())
   {
-    int fileVersion = PROPERTY_FILE_VERSION;
-    FILE *fragmentFile = 0;
-    if (HasFragments())
-    {
+  int fileVersion = PROPERTY_FILE_VERSION;
+  FILE *fragmentFile = 0;
+  if (HasFragments())
+  {
       RCHString fragmentFileName;
       fragmentFileName << parentModel->currentPathName << "." << Identifier();
       fragmentFile = fopen(fragmentFileName.String(), "r");
       if (fragmentFile == 0)
       {
-        fragmentFileName << ".bak";
+    fragmentFileName << ".bak";
       }
       else
       {
-        if (ferror(fragmentFile) != 0)
-        {
+    if (ferror(fragmentFile) != 0)
+    {
           RCHString message;
           message << "Error writing Rescue Property Fragment File:";
           message << (RESCUEINT64) ferror(fragmentFile);
           parentModel->Context()->SetError(message.NonNullString());
-        }
-        fclose(fragmentFile);
+    }
+    fclose(fragmentFile);
       }
 /*
   If the file does not currently exist, we can use the backup file.
@@ -482,50 +482,50 @@ void RescueArray::CalculateMinMax()
       parentModel->Context()->binaryFlag = parentModel->currentBinary;
       if (parentModel->Context()->binaryFlag)
       {
-        fragmentFile = (FILE *) fopen(fragmentFileName.String(), "rb");
-        if (fragmentFile != 0)
-        {
+    fragmentFile = (FILE *) fopen(fragmentFileName.String(), "rb");
+    if (fragmentFile != 0)
+    {
           fileVersion = getc(fragmentFile);
           fseek(fragmentFile, 20, SEEK_CUR);
           if (fileVersion >= 2)
           {
-            myfscanf(parentModel->Context(), fragmentFile, &arrayVersion);
+      myfscanf(parentModel->Context(), fragmentFile, &arrayVersion);
           }
-        }
+    }
       }
       else
       {
-        RESCUECHAR myString[255];
+    RESCUECHAR myString[255];
 
-        fragmentFile = (FILE *) fopen(fragmentFileName.String(), "rt");
-        if (fragmentFile != 0)
-        {
+    fragmentFile = (FILE *) fopen(fragmentFileName.String(), "rt");
+    if (fragmentFile != 0)
+    {
           myfgets(parentModel->Context(), myString, 255, fragmentFile);
           sscanf(myString, "Rescue Property File Version %d\n", &fileVersion);
           if (fileVersion >= 2)
           {
-            myfscanf(parentModel->Context(), fragmentFile, &arrayVersion);
+      myfscanf(parentModel->Context(), fragmentFile, &arrayVersion);
           }
-        }
+    }
       }
 /*
   If folding in fragments, prepare a file channel we can read to get
   the data not in the fragments.
 */
-    }
-    CalculateMinMaxData(fragmentFile, fileVersion);
-    if (fragmentFile != 0)
-    {
+  }
+  CalculateMinMaxData(fragmentFile, fileVersion);
+  if (fragmentFile != 0)
+  {
       if (ferror(fragmentFile) != 0)
       {
-        RCHString message;
-        message << "Error writing Rescue Property Fragment File:";
-        message << (RESCUEINT64) ferror(fragmentFile);
-        parentModel->Context()->SetError(message.NonNullString());
+    RCHString message;
+    message << "Error writing Rescue Property Fragment File:";
+    message << (RESCUEINT64) ferror(fragmentFile);
+    parentModel->Context()->SetError(message.NonNullString());
       }
       fclose(fragmentFile);
-    }
-    dirtyMinMax = FALSE;
+  }
+  dirtyMinMax = FALSE;
   }
 }
 
@@ -537,9 +537,9 @@ void RescueArray::Archive(FILE *archiveFile)
   myfprintf(parentModel->Context(), archiveFile, cellCentered);
   if (parentModel->Context()->fileVersion > 9)
   {
-    myfprintf(parentModel->Context(), archiveFile, Identifier());
-    if (parentModel->Context()->fileVersion >= 37)
-    {
+  myfprintf(parentModel->Context(), archiveFile, Identifier());
+  if (parentModel->Context()->fileVersion >= 37)
+  {
       myfprintf(parentModel->Context(), archiveFile, "dirtyMinMax");
       RescueBuffer buf(parentModel->Context(), sizeof(dirtyMinMax) + 5);
       buf << dirtyMinMax;
@@ -547,25 +547,25 @@ void RescueArray::Archive(FILE *archiveFile)
       myfprintf(parentModel->Context(), archiveFile, "minMax");
       WriteMinMax(parentModel->Context(), archiveFile);
       myfprintf(parentModel->Context(), archiveFile, "EOD");
-    }
-    if (IsLoaded())
-    {
+  }
+  if (IsLoaded())
+  {
       if (parentModel->Context()->delayedPropertyLoad == FALSE
       ||  hasChanged == TRUE
       ||  parentModel->propertyActionImmediate == TRUE)
       {
-        WriteData();
+    WriteData();
       }
-    }
-    else if (parentModel->propertyActionImmediate)
-    {
+  }
+  else if (parentModel->propertyActionImmediate)
+  {
       if (ReadData(parentModel->oldPathName))
       {
-        WriteData();
-        DropMemory();
-        DropFragments();
+    WriteData();
+    DropMemory();
+    DropFragments();
       }
-    }
+  }
   }
 }
 
@@ -573,8 +573,8 @@ void RescueArray::DropFragments()
 {
   if (fragments != 0)
   {
-    delete fragments;
-    fragments = 0;
+  delete fragments;
+  fragments = 0;
   }
 }
 
@@ -582,7 +582,7 @@ void RescueArray::DemandFragments()
 {
   if (fragments == 0)
   {
-    fragments = new cSetRescueArrayFragment();
+  fragments = new cSetRescueArrayFragment();
   }
 }
 
@@ -590,11 +590,11 @@ RESCUEBOOL RescueArray::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueArray)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueObject::IsOfType(thisType);
+  return RescueObject::IsOfType(thisType);
   }
 }
 

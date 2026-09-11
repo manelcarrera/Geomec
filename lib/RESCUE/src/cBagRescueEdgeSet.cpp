@@ -18,11 +18,11 @@ Software Product or documentation licensed under this agreement.
 ****************************************************************************/
 /*************************************************************************
 
-        cBagRescueEdgeSet.h
+    cBagRescueEdgeSet.h
 
  Keeps a list of pointers to RescueEdgeSet.
 
-        Rod Hanks               December 15th, 1995  / August 1996
+    Rod Hanks               December 15th, 1995  / August 1996
 
 ****************************************************************************/
 #include "myHeaders.h"
@@ -59,15 +59,15 @@ RESCUEINT32 cBagRescueEdgeSet::Count(RESCUEBOOL throwIfTrue)
 {
   if (tree->Count() > 2147483647)
   {
-    if (throwIfTrue)
-    {
+  if (throwIfTrue)
+  {
       throw "Model is too large to be accessed in 32 bit mode.";
-    }
-    return 0;
+  }
+  return 0;
   }
   else
   {
-    return (RESCUEINT32) tree->Count();
+  return (RESCUEINT32) tree->Count();
   }
 }
 

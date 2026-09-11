@@ -34,23 +34,23 @@ class CWellPathBase;
 class CWellSectionList : public  CWellSectionListBase
 {
 
-	Q_OBJECT;
+  Q_OBJECT;
 
 public:
 
-	CWellSectionList(const CWellPathBase& WellPath,  bool bAutoDelete=true);
-	virtual ~CWellSectionList();
-	CWellSectionList& operator=(const CWellSectionList& rhs);
-	CWellSectionList(const CWellSectionList& rhs);
-		
-	virtual int AddSection(IWellSection* section);
+  CWellSectionList(const CWellPathBase& WellPath,  bool bAutoDelete=true);
+  virtual ~CWellSectionList();
+  CWellSectionList& operator=(const CWellSectionList& rhs);
+  CWellSectionList(const CWellSectionList& rhs);
+    
+  virtual int AddSection(IWellSection* section);
 
-	IWellSection*	First() const;
-	IWellSection*	Last() const;
+  IWellSection*	First() const;
+  IWellSection*	Last() const;
 
 public slots:
-	void RemoveSection(int index);
-	void RemoveAllSections();
+  void RemoveSection(int index);
+  void RemoveAllSections();
 
 };
 

@@ -16,44 +16,44 @@
 //  This is a simple interface class for a box, that is a cube
 class IScalingBox : public CColorNode
 {
-	geo::CBox m_box;
-	double m_dSideX;
-	double m_dSideY;
-	double m_dSideZ;
-	double m_dAzimuth;
-	geo::CPoint m_ptCenter;
+  geo::CBox m_box;
+  double m_dSideX;
+  double m_dSideY;
+  double m_dSideZ;
+  double m_dAzimuth;
+  geo::CPoint m_ptCenter;
 //	geo::CPoint m_Min;
 //	geo::CPoint m_Max;
 protected:
-	void UpdateBox();
+  void UpdateBox();
 
 public:
-	IScalingBox(CFemAppModel &model);
-	IScalingBox(CFemAppModel &model, const QString &strName);
-	IScalingBox(CFemAppModel &model, const geo::IPoint &center, const double side);
-	IScalingBox(CFemAppModel& model, const geo::IPoint& center, const double& sideX,
-				const double& sideY, const double& sideZ, const double& azimuth);
-	IScalingBox(const IScalingBox &rhs);
-	virtual ~IScalingBox();
+  IScalingBox(CFemAppModel &model);
+  IScalingBox(CFemAppModel &model, const QString &strName);
+  IScalingBox(CFemAppModel &model, const geo::IPoint &center, const double side);
+  IScalingBox(CFemAppModel& model, const geo::IPoint& center, const double& sideX,
+        const double& sideY, const double& sideZ, const double& azimuth);
+  IScalingBox(const IScalingBox &rhs);
+  virtual ~IScalingBox();
 
-	void Side(const double &dSide, bool bUpdate = false);
-	void SideX(const double &dSide, bool bUpdate = false);
-	void SideY(const double &dSide, bool bUpdate = false);
-	void SideZ(const double &dSide, bool bUpdate = false);
-	const double& SideX() const;
-	const double& SideY() const;
-	const double& SideZ() const;
-	void Azimuth(const double& azimuth, bool bUpdate = false);
-	const double& Azimuth() const;
-	void Center(const geo::IPoint &center, bool bUpdate = false);
-	const geo::IPoint &Center() const;
+  void Side(const double &dSide, bool bUpdate = false);
+  void SideX(const double &dSide, bool bUpdate = false);
+  void SideY(const double &dSide, bool bUpdate = false);
+  void SideZ(const double &dSide, bool bUpdate = false);
+  const double& SideX() const;
+  const double& SideY() const;
+  const double& SideZ() const;
+  void Azimuth(const double& azimuth, bool bUpdate = false);
+  const double& Azimuth() const;
+  void Center(const geo::IPoint &center, bool bUpdate = false);
+  const geo::IPoint &Center() const;
 
-	virtual int DisplayListSize() const;
-	virtual const geo::IObject& DisplayList(int nIndex) const;
+  virtual int DisplayListSize() const;
+  virtual const geo::IObject& DisplayList(int nIndex) const;
 
-	virtual IScalingBox& operator=(const IScalingBox &rhs);
+  virtual IScalingBox& operator=(const IScalingBox &rhs);
 
-	const geo::CBox& Box() const { return m_box; }
+  const geo::CBox& Box() const { return m_box; }
 
   ACCEPT_GEOMECMODELVISITORS(VisitIScalingBox);
 

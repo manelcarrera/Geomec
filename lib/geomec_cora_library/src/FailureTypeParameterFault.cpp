@@ -16,7 +16,7 @@ CFailureTypeParameterFault::CFailureTypeParameterFault(
   const std::string& option, const std::string& parameter,
   std::vector <double>& value, const CGetModelInfo& modelInfo)
 : CFailureTypeParameterBase(summaryResultFile, object, option, parameter, value,
-    modelInfo.getFaultInfo().getObjects(), FAULT)
+  modelInfo.getFaultInfo().getObjects(), FAULT)
 , m_createElementValueSet(selectElementValueSetCreator(m_actualParameter))
 {
 }
@@ -29,7 +29,7 @@ void CFailureTypeParameterFault::modify(CModelBase* modelBase)
 {
   if (m_actualParameter)
   {
-    m_createElementValueSet->createElementValueSet(modelBase, this);
+  m_createElementValueSet->createElementValueSet(modelBase, this);
   }
 }
 
@@ -44,23 +44,23 @@ TCreateElementValueSet CFailureTypeParameterFault::selectElementValueSetCreator(
 
   if (m_actualParameter != 0)
   {
-    switch (m_actualParameter->valueTypeID())
-    {
+  switch (m_actualParameter->valueTypeID())
+  {
       case IDT_VALUETYPE_COHESION:
       case IDT_VALUETYPE_FRICTION_ANGLE:
-        elementValueSetCreator = TCreateElementValueSet(
+    elementValueSetCreator = TCreateElementValueSet(
           new CCreateElementValueSet(
-            CCreateElementValueSet::mapSingleValue2ElementValues));
-        break;
+      CCreateElementValueSet::mapSingleValue2ElementValues));
+    break;
       case IDT_VALUETYPE_PRESSURE:
-        elementValueSetCreator = TCreateElementValueSet(
+    elementValueSetCreator = TCreateElementValueSet(
           new CCreateElementValueSet(
-            CCreateElementValueSet::mapInterfaceElement2ElementValues));
-        break;
+      CCreateElementValueSet::mapInterfaceElement2ElementValues));
+    break;
       default:
-        assert(false);
-        break;
-    }
+    assert(false);
+    break;
+  }
   }
 
   return elementValueSetCreator;

@@ -23,25 +23,25 @@ CHexahedron::CHexahedron( IMesh& mesh,
  : m_vcNode(points.size()),
    m_mesh(mesh)
 {
-	assert(points.size() == 8);
+  assert(points.size() == 8);
 
-	// Register nodes
-	for(int i = 0; i < m_vcNode.size(); i++)
-		m_vcNode[i] = m_mesh.RegisterNode(*points[i]);
+  // Register nodes
+  for(int i = 0; i < m_vcNode.size(); i++)
+    m_vcNode[i] = m_mesh.RegisterNode(*points[i]);
 
-	// Register element
-	m_nIndex = m_mesh.RegisterElement(*this);
+  // Register element
+  m_nIndex = m_mesh.RegisterElement(*this);
 
-	AssertValid();
+  AssertValid();
 }
 
 CHexahedron::CHexahedron( IMesh& mesh, const std::vector<int>& points )
  : m_vcNode(points), m_mesh(mesh)
 {
-	assert(points.size() == 8);
+  assert(points.size() == 8);
 
-	// Nodes are already registered in the mesh. We only have to register the element
-	m_nIndex = m_mesh.RegisterElement(*this);
+  // Nodes are already registered in the mesh. We only have to register the element
+  m_nIndex = m_mesh.RegisterElement(*this);
 
   AssertValid();
 }
@@ -52,22 +52,22 @@ CHexahedron::~CHexahedron()
 
 const IElementSet* CHexahedron::IndexingElementSet() const
 {
-	return &m_mesh;
+  return &m_mesh;
 }
 
 int CHexahedron::Index() const
 {
-	return m_nIndex;
+  return m_nIndex;
 }
 
 int CHexahedron::PointIndex(int nIndex) const
 {
-	return m_vcNode[nIndex];
+  return m_vcNode[nIndex];
 }
 
 const geo::IPoint &CHexahedron::Point(int nIndex) const
 {
-	return m_mesh.Point(m_vcNode[nIndex]);
+  return m_mesh.Point(m_vcNode[nIndex]);
 }
 
 void CHexahedron::Point(int nIndex, const geo::IPoint &pt)
@@ -80,7 +80,7 @@ void CHexahedron::Point(int nIndex, const geo::IPoint &pt)
 
 size_t CHexahedron::NrOfNodes() const
 {
-	return 8;
+  return 8;
 }
 
 const INode& CHexahedron::Node(int nIndex) const
@@ -97,26 +97,26 @@ void CHexahedron::Node(int nIndex, const IPoint& point)
 
 size_t CHexahedron::Order() const
 {
-	return 1;
+  return 1;
 }
 
 IElement::TDoubleVec CHexahedron::WorldToIso(const geo::IPoint& point) const
 {
-    // currently only implemented for hexahedrons with vertical boundaries
-    // and rectangular top views
-    geo::CVector v1(Point(1) - Point(0));
-    geo::CVector v2(Point(2) - Point(1));
-    geo::CVector v3(Point(3) - Point(2));
-    geo::CVector v4(Point(0) - Point(3));
-    v1.Z(0);
-    v2.Z(0);
-    v3.Z(0);
-    v4.Z(0);
+  // currently only implemented for hexahedrons with vertical boundaries
+  // and rectangular top views
+  geo::CVector v1(Point(1) - Point(0));
+  geo::CVector v2(Point(2) - Point(1));
+  geo::CVector v3(Point(3) - Point(2));
+  geo::CVector v4(Point(0) - Point(3));
+  v1.Z(0);
+  v2.Z(0);
+  v3.Z(0);
+  v4.Z(0);
 
-    geo::CVector vp(point - Point(0));
-    vp.Z(0);
+  geo::CVector vp(point - Point(0));
+  vp.Z(0);
 
-    bool bCanUseSimpleImplementation = 
+  bool bCanUseSimpleImplementation = 
       // make sure top view angles are 90 degrees
       (v1.DotProduct(v2) < EPS) &&
       (v2.DotProduct(v3) < EPS) &&
@@ -127,40 +127,40 @@ IElement::TDoubleVec CHexahedron::WorldToIso(const geo::IPoint& point) const
       (CVector(Point(6) - Point(2)).UnitVector() == CVector::Zaxis) &&
       (CVector(Point(7) - Point(3)).UnitVector() == CVector::Zaxis);
 
-    if(!bCanUseSimpleImplementation)
+  if(!bCanUseSimpleImplementation)
       return IHexahedron::WorldToIso(point);
 
-    IElement::TDoubleVec vcRet(3);
+  IElement::TDoubleVec vcRet(3);
 
-    // xi
-    vcRet[0] = (2.0 * vp.DotProduct(v1) / (v1.Length() * v1.Length())) - 1.0;
+  // xi
+  vcRet[0] = (2.0 * vp.DotProduct(v1) / (v1.Length() * v1.Length())) - 1.0;
 
-    // eta
-    v4.Flip();
-    vcRet[1] = (2.0 * vp.DotProduct(v4) / (v4.Length() * v4.Length())) - 1.0;
+  // eta
+  v4.Flip();
+  vcRet[1] = (2.0 * vp.DotProduct(v4) / (v4.Length() * v4.Length())) - 1.0;
 
-    double Ep = vcRet[0];
-    double Np = vcRet[1];
+  double Ep = vcRet[0];
+  double Np = vcRet[1];
 
-    double Zt;
-    double Zb;
+  double Zt;
+  double Zb;
 
-    // the z top coordinate
-    Zt = Point(4).Z() * 0.25 * (1-Ep) * (1-Np) +
+  // the z top coordinate
+  Zt = Point(4).Z() * 0.25 * (1-Ep) * (1-Np) +
          Point(5).Z() * 0.25 * (1+Ep) * (1-Np) +
          Point(6).Z() * 0.25 * (1+Ep) * (1+Np) +
          Point(7).Z() * 0.25 * (1-Ep) * (1+Np);
 
-    // the z bottom coordinate
-    Zb = Point(0).Z() * 0.25 * (1-Ep) * (1-Np) +
+  // the z bottom coordinate
+  Zb = Point(0).Z() * 0.25 * (1-Ep) * (1-Np) +
          Point(1).Z() * 0.25 * (1+Ep) * (1-Np) +
          Point(2).Z() * 0.25 * (1+Ep) * (1+Np) +
          Point(3).Z() * 0.25 * (1-Ep) * (1+Np);
 
-    // zeta
-    vcRet[2] = (2 * (point.Z() - Zb) / (Zt - Zb)) - 1.0;
+  // zeta
+  vcRet[2] = (2 * (point.Z() - Zb) / (Zt - Zb)) - 1.0;
 
-    return vcRet;
+  return vcRet;
 }
 
 bool CHexahedron::Contains(const geo::IPoint &point, bool bIncludeEdge) const
@@ -176,65 +176,65 @@ bool CHexahedron::Contains(const geo::IPoint &point, bool bIncludeEdge) const
        point.Y() > max.Y() + compareTolerance() ||
        point.Z() > max.Z() + compareTolerance()))
   {
-    return false;
+  return false;
   }
 
-	IElement::TDoubleVec vcRet = WorldToIso(point);
+  IElement::TDoubleVec vcRet = WorldToIso(point);
   for(int i = 0; i < 3; i++){
-		if((vcRet[i] + EPS) < -1.0 || (vcRet[i] - EPS) > 1.0)
-			return false;
-	}
+    if((vcRet[i] + EPS) < -1.0 || (vcRet[i] - EPS) > 1.0)
+      return false;
+  }
 
-	// Check to see if point is at the border of the hexahedron element.
-    if (!bIncludeEdge) {
-		for (int i = 0; i < NrOfFaces(); i++)
-			if(Face(i).Contains(point, true))
-				return false;
-	}
+  // Check to see if point is at the border of the hexahedron element.
+  if (!bIncludeEdge) {
+    for (int i = 0; i < NrOfFaces(); i++)
+      if(Face(i).Contains(point, true))
+        return false;
+  }
 
-	return true;
+  return true;
 }
 
 std::set<CPoint> CHexahedron::Intersection(const IPlane &/*plane*/) const
 {
-	assert(false);
-	std::set<geo::CPoint> retset;
-	return retset;
+  assert(false);
+  std::set<geo::CPoint> retset;
+  return retset;
 }
 
 CPtrArray<IPoint> CHexahedron::IntersectionPolygon(const CPolygon poly, bool corners /*= true*/)
 {
-	CPtrArray<IPoint> result;
+  CPtrArray<IPoint> result;
 
-	for (int i=0; i<NrOfFaces(); i++)
-	{
-		const IFace *face = &Face(i);
+  for (int i=0; i<NrOfFaces(); i++)
+  {
+    const IFace *face = &Face(i);
 
-		int j;
-		for (j=0; j<poly.NrOfPoints(); j++)
-		{
-			int n = j+1;
-			if (n > poly.NrOfPoints()-1) n=0;
-			CLine line(poly.Point(j), poly.Point(n));
-			CPoint pt = face->Intersection(line);
-			if (!pt.Empty() && face->Contains(pt, true) && line.Contains(pt, true))
-				result.PushBack(*(new CPoint(pt)));
-		}
+    int j;
+    for (j=0; j<poly.NrOfPoints(); j++)
+    {
+      int n = j+1;
+      if (n > poly.NrOfPoints()-1) n=0;
+      CLine line(poly.Point(j), poly.Point(n));
+      CPoint pt = face->Intersection(line);
+      if (!pt.Empty() && face->Contains(pt, true) && line.Contains(pt, true))
+        result.PushBack(*(new CPoint(pt)));
+    }
 
-		for (j=0; j<face->NrOfPoints(); j++)
-		{
-			int n = j+1;
-			if (n > (face->NrOfPoints()-1)) n = 0;
-			CLine line(face->Point(j), face->Point(n));
-			CPoint pt = poly.Intersection(line);
-			if (!pt.Empty() && poly.Contains(pt, true) && line.Contains(pt, true))
-				result.PushBack(*(new CPoint(pt)));
-		}
-	}
+    for (j=0; j<face->NrOfPoints(); j++)
+    {
+      int n = j+1;
+      if (n > (face->NrOfPoints()-1)) n = 0;
+      CLine line(face->Point(j), face->Point(n));
+      CPoint pt = poly.Intersection(line);
+      if (!pt.Empty() && poly.Contains(pt, true) && line.Contains(pt, true))
+        result.PushBack(*(new CPoint(pt)));
+    }
+  }
 
-	if (corners) InsertCorners(poly, result);
+  if (corners) InsertCorners(poly, result);
 
-	return result;
+  return result;
 }
 
 static bool Valid(const CHexahedron& h)
@@ -252,60 +252,60 @@ void CHexahedron::AssertValid() const
   // make sure code is only executed in debug context
   assert(Valid(*this));
 
-	// Call base-class
-	IHexahedron::AssertValid();
+  // Call base-class
+  IHexahedron::AssertValid();
 }
 
 std::string CHexahedron::Type() const
 {
-	return std::string("HX24L");
+  return std::string("HX24L");
 }
 
 double CHexahedron::InfluenceVolume(int /*nNode*/) const
 {
-	// This function return the influence volume for a node.
-	// at the moment simply 1/8 of the volume is returned, but this is too simple.
-	return (1.0 / 8.0) * Volume();
+  // This function return the influence volume for a node.
+  // at the moment simply 1/8 of the volume is returned, but this is too simple.
+  return (1.0 / 8.0) * Volume();
 }
 
 const IMesh& CHexahedron::Mesh() const
 {
-	return m_mesh;
+  return m_mesh;
 }
 
 IMesh& CHexahedron::Mesh()
 {
-	return m_mesh;
+  return m_mesh;
 }
 
 const char* CHexahedron::FaceName(int nIndex) const
 {
-	const char* ret = 0;
-	switch(nIndex)
-	{
-	case 0:
-		ret = sZETA1;
-		break;
-	case 1:
-		ret = sETA1;
-		break;
-	case 2:
-		ret = sKSI2;
-		break;
-	case 3:
-		ret = sETA2;
-		break;
-	case 4:
-		ret = sKSI1;
-		break;
-	case 5:
-		ret = sZETA2;
-		break;
-	default:
-		assert(false);
-	}
+  const char* ret = 0;
+  switch(nIndex)
+  {
+  case 0:
+    ret = sZETA1;
+    break;
+  case 1:
+    ret = sETA1;
+    break;
+  case 2:
+    ret = sKSI2;
+    break;
+  case 3:
+    ret = sETA2;
+    break;
+  case 4:
+    ret = sKSI1;
+    break;
+  case 5:
+    ret = sZETA2;
+    break;
+  default:
+    assert(false);
+  }
 
-	return ret;
+  return ret;
 }
 
 }

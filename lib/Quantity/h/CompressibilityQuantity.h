@@ -14,25 +14,25 @@
 class CCompressibilityQuantity : public CDoubleQuantity
 {
 public:
-	CCompressibilityQuantity();
+  CCompressibilityQuantity();
 
-	CCompressibilityQuantity(const double &value, const UNIT unit = SI_UNIT);
-	
-    CCompressibilityQuantity(const double& value,const double &min ,const double &max, const UNIT unit = SI_UNIT);
+  CCompressibilityQuantity(const double &value, const UNIT unit = SI_UNIT);
+  
+  CCompressibilityQuantity(const double& value,const double &min ,const double &max, const UNIT unit = SI_UNIT);
 
-	
-	CCompressibilityQuantity(const double& value,
-							 const double &min ,
-							 const double &max,
-							 bool bIncludeMin=true,
-							 bool bIncludeMax=true,
-							 const UNIT unit= SI_UNIT);
+  
+  CCompressibilityQuantity(const double& value,
+               const double &min ,
+               const double &max,
+               bool bIncludeMin=true,
+               bool bIncludeMax=true,
+               const UNIT unit= SI_UNIT);
 
-	CCompressibilityQuantity(const CCompressibilityQuantity& rhs);
-	
-	virtual double Convert(const double &value, const UNIT out, const UNIT in) const;
-	virtual std::string	QuantityName() const;
-	virtual	std::string UnitName(const UNIT unit = SI_UNIT) const;	
+  CCompressibilityQuantity(const CCompressibilityQuantity& rhs);
+  
+  virtual double Convert(const double &value, const UNIT out, const UNIT in) const;
+  virtual std::string	QuantityName() const;
+  virtual	std::string UnitName(const UNIT unit = SI_UNIT) const;	
 };
 
 

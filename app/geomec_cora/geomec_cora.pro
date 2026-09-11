@@ -39,7 +39,7 @@ unix {
 
 # Unit test
 # release
-test.commands = cd ../../test/geomec_cora && python ./test_cora.py && cd -
+test.commands = cd ../../IntegrationTests/geomec_cora && python ./test_cora.py && cd -
 
 #message( test.commands = \"$$test.commands\" )
 

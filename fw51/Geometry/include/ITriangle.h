@@ -21,43 +21,43 @@ class GEOMETRY_EXPORT  ITriangle : public IFace
 {
 
 public:
-	ITriangle();
+  ITriangle();
 
-	enum eLineName { L1 = 1, L2 = 2, L3 = 0 };
+  enum eLineName { L1 = 1, L2 = 2, L3 = 0 };
 
-	virtual int NrOfLines() const { return 3; }
+  virtual int NrOfLines() const { return 3; }
 
-	virtual int NrOfPoints() const;
-	virtual const IPoint &Point(int nIndex) const;
-	virtual void Point(int nIndex, const IPoint &pt);
-	virtual IElement::TDoubleVec WorldToIso(const geo::IPoint& point) const;
+  virtual int NrOfPoints() const;
+  virtual const IPoint &Point(int nIndex) const;
+  virtual void Point(int nIndex, const IPoint &pt);
+  virtual IElement::TDoubleVec WorldToIso(const geo::IPoint& point) const;
 
-	//a quick contains function for triangles
-	virtual bool IsSelfIntersecting() const {return false;}
-	virtual bool IsConvex() const {return true;}
-	virtual CVector Normal() const;
-	virtual bool IsPlanar() const {return true;}
-	virtual IElement::TDoubleVec ShapeFunction(const IElement::TDoubleVec& isocoords) const;
+  //a quick contains function for triangles
+  virtual bool IsSelfIntersecting() const {return false;}
+  virtual bool IsConvex() const {return true;}
+  virtual CVector Normal() const;
+  virtual bool IsPlanar() const {return true;}
+  virtual IElement::TDoubleVec ShapeFunction(const IElement::TDoubleVec& isocoords) const;
 
-	virtual CMatrix ShapeFunctionDerived(const IElement::TDoubleVec& isocoords) const;
-	virtual std::vector<IElement::TDoubleVec> IsoCoordinates() const;
+  virtual CMatrix ShapeFunctionDerived(const IElement::TDoubleVec& isocoords) const;
+  virtual std::vector<IElement::TDoubleVec> IsoCoordinates() const;
 
-	// integration points
-	virtual int IntegrationPointSize() const;
-	virtual const TDoubleVec& IntegrationPointCoords(int nIndex) const;
-	virtual const double& IntegrationPointWeight(int nIndex) const;
+  // integration points
+  virtual int IntegrationPointSize() const;
+  virtual const TDoubleVec& IntegrationPointCoords(int nIndex) const;
+  virtual const double& IntegrationPointWeight(int nIndex) const;
 
-	virtual bool Visit(IVisitor &visitor) { return visitor.HandleTriangle(*this); }
+  virtual bool Visit(IVisitor &visitor) { return visitor.HandleTriangle(*this); }
 
   static void PrepareMapping();
 
 private:
-    static void BuildIntegrationPoints(IElement::TIntPtVec& vec, int numint);
-    static const TIntPtVec& IntegrationPoints( int order );
-    const TIntPtVec& IntegrationPoints() const;
+  static void BuildIntegrationPoints(IElement::TIntPtVec& vec, int numint);
+  static const TIntPtVec& IntegrationPoints( int order );
+  const TIntPtVec& IntegrationPoints() const;
 
-    void Swap(const double** d1, const double** d2) const;
-    IElement::TDoubleVec WorldToIso1stOrder(const IPoint& point) const;
+  void Swap(const double** d1, const double** d2) const;
+  IElement::TDoubleVec WorldToIso1stOrder(const IPoint& point) const;
 
 };
 

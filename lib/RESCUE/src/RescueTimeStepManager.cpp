@@ -80,10 +80,10 @@ RescueTimeStepGroup *RescueTimeStepManager::GroupForTime(RESCUECHAR *timeToFind)
   int loop;
   for (loop = 0; loop < count && myReturn == 0; loop++)
   {
-    if (strcmp(timeStepNames[loop], timeToFind) == 0)
-    {
+  if (strcmp(timeStepNames[loop], timeToFind) == 0)
+  {
       myReturn = steps[loop];
-    }
+  }
   }
   return myReturn;
 }
@@ -93,8 +93,8 @@ RescueTimeStepManager::~RescueTimeStepManager()
   int loop;
   for (loop = 0; loop < count; loop++)
   {
-    free(timeStepNames[loop]);
-    delete steps[loop];
+  free(timeStepNames[loop]);
+  delete steps[loop];
   }
   free(timeStepNames);
   free(steps);
@@ -106,8 +106,8 @@ void RescueTimeStepManager::AddPropertyGroup(RescuePropertyGroup *toAdd)
   RescueTimeStepGroup *tsg = toAdd->NthTimeStepGroup(ndx++);
   while (tsg != 0)
   {
-    AddTimeStep(tsg->TimeStepName()->NonNullString(), tsg);
-    tsg = toAdd->NthTimeStepGroup(ndx++);
+  AddTimeStep(tsg->TimeStepName()->NonNullString(), tsg);
+  tsg = toAdd->NthTimeStepGroup(ndx++);
   }
 }
 
@@ -135,40 +135,40 @@ RescueTimeStepGroup *RescueTimeStepManager::MakeTimeStepGroup(const RESCUECHAR *
   RescueTimeStepGroup *myReturn = 0;
   if (strcmp(timeName, "Default Group") == 0)
   {
-    myReturn = new RescueTimeStepGroup(timeName, ownerGroup);
+  myReturn = new RescueTimeStepGroup(timeName, ownerGroup);
   }
   else
   {
-    int month;
-    int day;
-    int year;
-    int hour;
-    int minute;
-    int second;
-    int howMany = sscanf(timeName, "%d-%d-%dT%d:%d:%d Z", &year, &month, &day, &hour, &minute, &second);
-    if (howMany == 6)
-    {
+  int month;
+  int day;
+  int year;
+  int hour;
+  int minute;
+  int second;
+  int howMany = sscanf(timeName, "%d-%d-%dT%d:%d:%d Z", &year, &month, &day, &hour, &minute, &second);
+  if (howMany == 6)
+  {
       if (month >= 1 && month <= 12)
       {
-        if (day >= 1 && day <= 31) //Okay it's a lazy check.
-        {
+    if (day >= 1 && day <= 31) //Okay it's a lazy check.
+    {
           if (hour >= 0 && hour <= 24)
           {
-            if (minute >= 0 && hour <= 60)
-            {
+      if (minute >= 0 && hour <= 60)
+      {
               if (second >= 0 && second <= 60)
               {
-                myReturn = new RescueTimeStepGroup(timeName, ownerGroup);
+        myReturn = new RescueTimeStepGroup(timeName, ownerGroup);
               }
-            }
-          }
-        }
       }
+          }
     }
+      }
+  }
   }
   if (myReturn != 0)
   {
-    AddTimeStep(timeName, myReturn);
+  AddTimeStep(timeName, myReturn);
   }
   return myReturn;
 }
@@ -179,13 +179,13 @@ cSetString *RescueTimeStepManager::UniqueTimestepNames(RESCUECHAR *from, RESCUEC
   int ndx;
   for (ndx = 0; ndx < count; ndx++)
   {
-    if (strcmp(timeStepNames[ndx], from) >= 0)
-    {
+  if (strcmp(timeStepNames[ndx], from) >= 0)
+  {
       if (strcmp(timeStepNames[ndx], to) <= 0)
       {
-        (*myReturn) += new RCHString(timeStepNames[ndx]);
+    (*myReturn) += new RCHString(timeStepNames[ndx]);
       }
-    }
+  }
   }
   return myReturn;
 }
@@ -196,56 +196,56 @@ void RescueTimeStepManager::AddTimeStep(const char *timeStepName, RescueTimeStep
   RESCUEBOOL handled = FALSE;
   if (ndx >= 0 && ndx < count)
   {
-    if (strcmp(timeStepNames[ndx], timeStepName) == 0)
-    {
+  if (strcmp(timeStepNames[ndx], timeStepName) == 0)
+  {
       handled = TRUE;  // Ignore subsequent group with same name.
-    }
+  }
   }
   if (handled == FALSE)
   {
-    if (count == allocated)
-    {
+  if (count == allocated)
+  {
       allocated += count / 2;
       timeStepNames = (RESCUECHAR **) realloc(timeStepNames, sizeof(RESCUECHAR *) * allocated);
       steps = (RescueTimeStepGroup **) realloc(steps, sizeof(RescueTimeStepGroup *) * allocated);
-    }
-    if (ndx < count)
-    {
+  }
+  if (ndx < count)
+  {
       RESCUEINT64 loop;
       for (loop = count; loop > ndx; loop--)
       {
-        timeStepNames[loop] = timeStepNames[loop - 1];
-        steps[loop] = steps[loop - 1];
+    timeStepNames[loop] = timeStepNames[loop - 1];
+    steps[loop] = steps[loop - 1];
       }
-    }
-    timeStepNames[ndx] = _strdup(timeStepName);
-    steps[ndx] = toAdd;
-    count++;
+  }
+  timeStepNames[ndx] = _strdup(timeStepName);
+  steps[ndx] = toAdd;
+  count++;
   }
 
   int pNdx = 0;
   RescueProperty *property = toAdd->NthRescueProperty(pNdx++);
   while (property != 0)
   {
-    bool found = false;
-    int loop;
-    for (loop = 0; loop < pCount && found == false; loop++)
-    {
+  bool found = false;
+  int loop;
+  for (loop = 0; loop < pCount && found == false; loop++)
+  {
       if (strcmp(propertyNames[loop], property->Data()->PropertyName()->NonNullString()) == 0)
       {
-        found = true;
+    found = true;
       }
-    }
-    if (found == false)
-    {
+  }
+  if (found == false)
+  {
       if (pCount == pAllocated)
       {
-        pAllocated += pCount / 2;
-        propertyNames = (RESCUECHAR **) realloc(propertyNames, sizeof(RESCUECHAR *) * pAllocated);
+    pAllocated += pCount / 2;
+    propertyNames = (RESCUECHAR **) realloc(propertyNames, sizeof(RESCUECHAR *) * pAllocated);
       }
       propertyNames[pCount++] = _strdup(property->Data()->PropertyName()->NonNullString());
-    }
-    property = toAdd->NthRescueProperty(pNdx++);
+  }
+  property = toAdd->NthRescueProperty(pNdx++);
   }
 }
 
@@ -258,20 +258,20 @@ RESCUEINT32 RescueTimeStepManager::NdxOf(const RESCUECHAR *timeStepName)
 
   while ((upperLimit - lowerLimit) > 1  && result != 0)
   {
-    ndx = (lowerLimit + upperLimit) >> 1;
-    result = CompareRow(ndx, timeStepName);
-    if (result < 0)
-    {
+  ndx = (lowerLimit + upperLimit) >> 1;
+  result = CompareRow(ndx, timeStepName);
+  if (result < 0)
+  {
       upperLimit = ndx;
-    }
-    else if (result > 0)
-    {
+  }
+  else if (result > 0)
+  {
       lowerLimit = ndx;
-    }
+  }
   }
   if (result > 0)
   {
-    ndx++;
+  ndx++;
   }
   return ndx;
 }
@@ -281,41 +281,41 @@ RESCUEINT32 RescueTimeStepManager::CompareRow(RESCUEINT64 ndx, const RESCUECHAR 
   RESCUEINT32 myReturn = 0;
   if (strcmp(timeStepName, "Default Group") == 0)
   {
-    if (strcmp(timeStepNames[ndx], "Default Group") == 0)
-    {
+  if (strcmp(timeStepNames[ndx], "Default Group") == 0)
+  {
       myReturn = 0;
-    }
-    else
-    {
-      myReturn = -1;
-    }
-  }
-  else if (strcmp(timeStepNames[ndx], "Default Group") == 0)
-  {
-    myReturn = 1;
-  }
-  else if (strcmp(timeStepName, "Initialization Group") == 0)
-  {
-    if (strcmp(timeStepNames[ndx], "Initialization Group") == 0)
-    {
-      myReturn = 0;
-    }
-    else if (strcmp(timeStepNames[ndx], "Default Group") == 0)
-    {
-      myReturn = 1;
-    }
-    else
-    {
-      myReturn = -1;
-    }
-  }
-  else if (strcmp(timeStepNames[ndx], "Initialization Group") == 0)
-  {
-    myReturn = 1;
   }
   else
   {
-    myReturn = strcmp(timeStepName, timeStepNames[ndx]);
+      myReturn = -1;
+  }
+  }
+  else if (strcmp(timeStepNames[ndx], "Default Group") == 0)
+  {
+  myReturn = 1;
+  }
+  else if (strcmp(timeStepName, "Initialization Group") == 0)
+  {
+  if (strcmp(timeStepNames[ndx], "Initialization Group") == 0)
+  {
+      myReturn = 0;
+  }
+  else if (strcmp(timeStepNames[ndx], "Default Group") == 0)
+  {
+      myReturn = 1;
+  }
+  else
+  {
+      myReturn = -1;
+  }
+  }
+  else if (strcmp(timeStepNames[ndx], "Initialization Group") == 0)
+  {
+  myReturn = 1;
+  }
+  else
+  {
+  myReturn = strcmp(timeStepName, timeStepNames[ndx]);
   }
   return myReturn;
 }

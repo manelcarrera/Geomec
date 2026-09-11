@@ -18,7 +18,7 @@ const dia::IMaterial& CWellCasingHeatFlowDianaRunner::Material(const geo::IEleme
   CWellCasingDianaRunnerHelper helper(CasingModel(), Controller(), ParentLinearResults());
   const dia::IMaterial* pMat = helper.Material(element);
   if(pMat)
-    return *pMat;
+  return *pMat;
 
   return CGeomecHeatFlowDianaRunner::Material(element);
 }
@@ -63,34 +63,34 @@ void CWellCasingHeatFlowDianaRunner::WriteModelSpecificLoads(IProgressBase& prog
   int n;
   for(n = 0; n < nGrids; ++n)
   {
-    bool bCap = (n == 0 || n == nGrids - 1);
+  bool bCap = (n == 0 || n == nGrids - 1);
 
-    // loop over the spokes
-    int i;
-    for(i = 0; i < nSpokes; ++i)
-    {
+  // loop over the spokes
+  int i;
+  for(i = 0; i < nSpokes; ++i)
+  {
       const geo::INode& node = mesh.Node(nNode);
 
       CDepletionStageEntry::const_iterator it;
       for(it = Model().DepletionStageEntry().begin(); it != Model().DepletionStageEntry().end(); ++it)
       {
-        const CDepletionStage& stage = *it;
-        TStageMap::const_iterator its = mpStages.find(&stage);
-        assert(its != mpStages.end());
-        dia::CBoundaCase& bcase = *its->second;
-        if(bcase.Active())
-        {
+    const CDepletionStage& stage = *it;
+    TStageMap::const_iterator its = mpStages.find(&stage);
+    assert(its != mpStages.end());
+    dia::CBoundaCase& bcase = *its->second;
+    if(bcase.Active())
+    {
           const CWellCasingInternalTemperature& internalTemper = CasingModel().CasingNode().InternalTemperature(stage);
           double dTemper = internalTemper.Component().ScalarData().ValuePoint(node).Value();
           if(fabs(dTemper) > EPS)
-            new dia::CNodalTemperature(bcase, dTemper + 273.15, node);
-        }
+      new dia::CNodalTemperature(bcase, dTemper + 273.15, node);
+    }
       }
 
       nNode += (bCap ? 2 * nNodesPerSpoke : nNodesPerSpoke);
 
       progress.Step();
-    }
+  }
   }
 }
 

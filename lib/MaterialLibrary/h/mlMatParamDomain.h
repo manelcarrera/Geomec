@@ -19,7 +19,7 @@ public:
 #ifdef TEST_MATERIALS
   bool operator==(const CMatParamDomain& rhs) const
   {
-    return m_bMinIsInf == rhs.m_bMinIsInf
+  return m_bMinIsInf == rhs.m_bMinIsInf
       && m_dMin == rhs.m_dMin
       && m_bIncludeMin == rhs.m_bIncludeMin
       && m_bMaxIsInf == rhs.m_bMaxIsInf

@@ -25,18 +25,18 @@ double CResponseTypeMin::calculate(const TObject& object,
 
   if (element != 0)
   {
-    min = std::numeric_limits <double> ::max();
+  min = std::numeric_limits <double> ::max();
 
-    while (element != 0)
-    {
+  while (element != 0)
+  {
       const IValueDomainScalar::TValueVec valueVec =
-        failureMode->getResultComponent()->ValueElement(*element);
+    failureMode->getResultComponent()->ValueElement(*element);
 
       verifyResponseType(valueVec);
 
       min = std::min(min, CUtilities4ValueVector::calculateAverage(valueVec));
       element = object->getNextElement();
-    }
+  }
   }
 
   return min;

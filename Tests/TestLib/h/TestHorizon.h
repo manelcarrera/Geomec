@@ -15,9 +15,9 @@ class CHorizon : public IModelObject
   Q_OBJECT
 
 public:
-	CHorizon(QTextStream &os);
-	CHorizon(const QString& sName, QTextStream &os);
-	virtual ~CHorizon();
+  CHorizon(QTextStream &os);
+  CHorizon(const QString& sName, QTextStream &os);
+  virtual ~CHorizon();
 
 };
 
@@ -26,8 +26,8 @@ class CHorizonContainer : public CModelContainer<CHorizon>
   Q_OBJECT
 
 public:
-    CHorizonContainer(QTextStream &os);
-    CHorizonContainer( const QString& text, QTextStream &os );
+  CHorizonContainer(QTextStream &os);
+  CHorizonContainer( const QString& text, QTextStream &os );
 };
 
 

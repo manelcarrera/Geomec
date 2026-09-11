@@ -16,27 +16,27 @@ class IRpnMaterialParameterProxy;
 
 class CResultMaterialSelectDlg : public CDialog
 {
-	DECLARE_DYNAMIC(CResultMaterialSelectDlg)
+  DECLARE_DYNAMIC(CResultMaterialSelectDlg)
   CDepletionStage *m_pTimeStep;
   CModelBase &m_Model;
   std::vector <IRpnMaterialParameterProxy*> m_pSelectedProxies;
   const std::vector<IRpnMaterialParameterProxy*> &m_vcMaterialProxies;
 public:
-	
+  
   CResultMaterialSelectDlg(CModelBase& model, const std::vector<IRpnMaterialParameterProxy*> &materialProxies, CWnd* pParent = NULL);   // standard constructor
-	virtual ~CResultMaterialSelectDlg();
+  virtual ~CResultMaterialSelectDlg();
 
 
 // Dialog Data
-	enum { IDD = IDD_SELECT_MATERIAL_RESULT };
+  enum { IDD = IDD_SELECT_MATERIAL_RESULT };
 
   std::vector <IRpnMaterialParameterProxy*> SelectedProxies() { return m_pSelectedProxies; }
   const CDepletionStage *TimeStep() const { return m_pTimeStep; }
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-	DECLARE_MESSAGE_MAP()
+  DECLARE_MESSAGE_MAP()
 private:
 
   afx_msg void OnCbnSelchangeTimeStep();

@@ -26,7 +26,7 @@ bool CMaterialEntry_Delegate::Attributes()
   CModelBase& model = static_cast <CModelBase&> (m_materialEntry->Model());
 
   CDerivedMatLibDlg dlg(this, m_materialEntry->MaterialLibrary(),
-    m_materialEntry->MaterialModelFilter(), model.Logger());
+  m_materialEntry->MaterialModelFilter(), model.Logger());
 
   dlg.DoModal();
 
@@ -48,34 +48,34 @@ void CMaterialEntry_Delegate::ImportFromMatLib()
 {
   if (m_materialEntry->GetExternalMatLibFileName().isEmpty())
   {
-    SelectMatLib();
+  SelectMatLib();
 
-    if (m_materialEntry->GetExternalMatLibFileName().isEmpty())
-    {
+  if (m_materialEntry->GetExternalMatLibFileName().isEmpty())
+  {
       return;
-    }
+  }
   }
 
   CModelBase& model = static_cast <CModelBase&> (m_materialEntry->Model());
 
   CMaterialImportDialog dlg(this, m_materialEntry,
-    m_materialEntry->ExternalLibrary(), m_materialEntry->MaterialModelFilter(),
-    model.Logger(), true);
+  m_materialEntry->ExternalLibrary(), m_materialEntry->MaterialModelFilter(),
+  model.Logger(), true);
 
   if(dlg.DoModal() == IDOK)
   {
-    std::vector<ml::CMaterial*> vcSelected = dlg.SelectedMaterials();
-    bool bInvalidFound = false;
-    for(size_t i = 0; i < vcSelected.size(); ++i)
-    {
+  std::vector<ml::CMaterial*> vcSelected = dlg.SelectedMaterials();
+  bool bInvalidFound = false;
+  for(size_t i = 0; i < vcSelected.size(); ++i)
+  {
       CLibraryMaterial* pLibMat = dynamic_cast<CLibraryMaterial*>(vcSelected[i]);
       if(pLibMat)
-        m_materialEntry->ImportFromMatLib(*pLibMat);
+    m_materialEntry->ImportFromMatLib(*pLibMat);
       else
-        bInvalidFound = true;
-    }
+    bInvalidFound = true;
+  }
 
-    if(bInvalidFound)
+  if(bInvalidFound)
       _m()->msg("At least one selected material cannot be used by GEOMEC, it was not imported");
   }
 
@@ -91,7 +91,7 @@ void CMaterialEntry_Delegate::SelectMatLib()
 
   if (dlg.DoModal() != IDOK)
   {
-    return;
+  return;
   }
 
   ISettings::instance()->writeProfileString("Settings", "XMLMatLib", (LPCSTR)dlg.GetPathName());
@@ -104,33 +104,33 @@ void CMaterialEntry_Delegate::ExportToMatLib(
 {
   if (m_materialEntry->GetExternalMatLibFileName().isEmpty())
   {
-    SelectMatLib();
+  SelectMatLib();
 
-    if (m_materialEntry->GetExternalMatLibFileName().isEmpty())
-    {
+  if (m_materialEntry->GetExternalMatLibFileName().isEmpty())
+  {
       return;
-    }
+  }
   }
 
   CModelBase& model = static_cast <CModelBase&> (m_materialEntry->Model());
 
   CMaterialExportDialog dlg(this, m_materialEntry,
-    m_materialEntry->ExternalLibrary(), m_materialEntry->MaterialModelFilter(),
-    model.Logger(), true);
+  m_materialEntry->ExternalLibrary(), m_materialEntry->MaterialModelFilter(),
+  model.Logger(), true);
 
   if(dlg.DoModal() == IDOK)
   {
-    bool bInvalidFound = false;
-    for(size_t i = 0; i < selection.size(); ++i)
-    {
+  bool bInvalidFound = false;
+  for(size_t i = 0; i < selection.size(); ++i)
+  {
       CLibraryMaterial* pLibMat = dynamic_cast<CLibraryMaterial*>(selection[i]);
       if(pLibMat)
-        m_materialEntry->ExportToMatLib(*pLibMat);
+    m_materialEntry->ExportToMatLib(*pLibMat);
       else
-        bInvalidFound = true;
-    }
+    bInvalidFound = true;
+  }
 
-    if(bInvalidFound)
+  if(bInvalidFound)
       _m()->msg("At least one selected material cannot be used by GEOMEC, it was not exported");
   }
 
@@ -140,11 +140,11 @@ void CMaterialEntry_Delegate::ExportToMatLib(
 
 void CMaterialEntry_Delegate::CreateMatLib()
 {
-	CTnoFileDialog dlg(FALSE, "mlx", NULL, OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, "XML Material Libraries (*.mlx)|*.mlx||");
-	if(dlg.DoModal() != IDOK)
-    return;
+  CTnoFileDialog dlg(FALSE, "mlx", NULL, OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, "XML Material Libraries (*.mlx)|*.mlx||");
+  if(dlg.DoModal() != IDOK)
+  return;
 
-	ISettings::instance()->writeProfileString("Settings", "XMLMatLib", (LPCSTR)dlg.GetPathName());
+  ISettings::instance()->writeProfileString("Settings", "XMLMatLib", (LPCSTR)dlg.GetPathName());
 
   m_materialEntry->SetExternalMatLibFileName((LPCSTR)dlg.GetPathName(), false);
 }

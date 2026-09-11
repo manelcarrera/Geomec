@@ -15,39 +15,39 @@ class CModelBase;
 
 class CModelGeologyPg : public CPropertyPage
 {
-	CModelBase &m_model;
+  CModelBase &m_model;
 // Construction
 public:
-	CQuantity::UNIT Unit() const;
-	//##ModelId=3BC55D610259
-	CModelGeologyPg(CModelBase &model);
-	//##ModelId=3BC55D61025A
-	~CModelGeologyPg();
+  CQuantity::UNIT Unit() const;
+  //##ModelId=3BC55D610259
+  CModelGeologyPg(CModelBase &model);
+  //##ModelId=3BC55D61025A
+  ~CModelGeologyPg();
 
 // Dialog Data
-	//{{AFX_DATA(CModelGeologyPg)
-	enum { IDD = IDD_ATTRI_MODEL_GEOLOGY };
-	CString	m_faults;
-	CString	m_formations;
-	//}}AFX_DATA
+  //{{AFX_DATA(CModelGeologyPg)
+  enum { IDD = IDD_ATTRI_MODEL_GEOLOGY };
+  CString	m_faults;
+  CString	m_formations;
+  //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generate virtual function overrides
-	//{{AFX_VIRTUAL(CModelGeologyPg)
-	protected:
-	//##ModelId=3BC55D61025B
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+  // ClassWizard generate virtual function overrides
+  //{{AFX_VIRTUAL(CModelGeologyPg)
+  protected:
+  //##ModelId=3BC55D61025B
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  //}}AFX_VIRTUAL
 
 // Implementation
 protected:
-	// Generated message map functions
-	//{{AFX_MSG(CModelGeologyPg)
-	virtual BOOL OnInitDialog();
-	afx_msg void OnChangeGravity();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+  // Generated message map functions
+  //{{AFX_MSG(CModelGeologyPg)
+  virtual BOOL OnInitDialog();
+  afx_msg void OnChangeGravity();
+  //}}AFX_MSG
+  DECLARE_MESSAGE_MAP()
 
 };
 

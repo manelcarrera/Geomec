@@ -56,9 +56,9 @@ private:
 
   struct ServerKeyMaterial
   {
-    const IMaterialServerBase *server;
-    CMaterialKey         key;
-    CFFMaterial         *material;
+  const IMaterialServerBase *server;
+  CMaterialKey         key;
+  CFFMaterial         *material;
   };
 
   bool m_bUseCache;

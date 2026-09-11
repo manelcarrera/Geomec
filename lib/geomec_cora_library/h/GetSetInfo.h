@@ -9,13 +9,13 @@ namespace cora
 class CGetSetInfo
 {
   public:
-    CGetSetInfo();
+  CGetSetInfo();
 
-    bool isElementSet(const IPointSet& pointSet) const;
+  bool isElementSet(const IPointSet& pointSet) const;
 
   private:
-    CGetSetInfo(const CGetSetInfo& rhs);
-    CGetSetInfo& operator = (CGetSetInfo rhs);
+  CGetSetInfo(const CGetSetInfo& rhs);
+  CGetSetInfo& operator = (CGetSetInfo rhs);
 };
 
 } // namespace cora

@@ -10,18 +10,18 @@ class CFailureTypeParameterFormation4Pressure :
   public CFailureTypeParameterFormation
 {
   public:
-    CFailureTypeParameterFormation4Pressure(
+  CFailureTypeParameterFormation4Pressure(
       CSummaryResultFile& summaryResultFile, const std::string& object,
       const std::string& option, const std::string& parameter,
       std::vector <double>& value, const CGetModelInfo& modelInfo);
-    virtual ~CFailureTypeParameterFormation4Pressure();
+  virtual ~CFailureTypeParameterFormation4Pressure();
 
-    virtual void modify(CModelBase* modelBase);
+  virtual void modify(CModelBase* modelBase);
 
   private:
-    CFailureTypeParameterFormation4Pressure(
+  CFailureTypeParameterFormation4Pressure(
       const CFailureTypeParameterFormation4Pressure& rhs);
-    CFailureTypeParameterFormation4Pressure& operator = (
+  CFailureTypeParameterFormation4Pressure& operator = (
       CFailureTypeParameterFormation4Pressure rhs);
 };
 

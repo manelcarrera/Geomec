@@ -9,7 +9,7 @@
 CAttriTetraVolume::CSurfaceListObject::CSurfaceListObject(CListCtrl &ctrl, QString sName, int nIconId)
   : IListObject(ctrl), m_sName(sName), m_nIconId(nIconId)
 {
-	ctrl.SetItemData(ctrl.GetItemCount() - 1, (DWORD_PTR)this);
+  ctrl.SetItemData(ctrl.GetItemCount() - 1, (DWORD_PTR)this);
 }
 
 CAttriTetraVolume::CSurfaceListObject::~CSurfaceListObject()
@@ -18,12 +18,12 @@ CAttriTetraVolume::CSurfaceListObject::~CSurfaceListObject()
 
 QString CAttriTetraVolume::CSurfaceListObject::Text() const
 {
-	return m_sName;
+  return m_sName;
 }
 
 unsigned int CAttriTetraVolume::CSurfaceListObject::Icon() const
 {
-	return m_nIconId;
+  return m_nIconId;
 }
 
 
@@ -36,18 +36,18 @@ CAttriTetraVolume::CAttriTetraVolume(CTetraFormationVolume& volume, CWnd* pParen
 
 BOOL CAttriTetraVolume::OnInitDialog()
 {
-	CAttriFormationElementSet<CTetraFormationVolume>::OnInitDialog();
+  CAttriFormationElementSet<CTetraFormationVolume>::OnInitDialog();
 
   m_lbSurfaces.InsertColumn(0, _T("Name"), LVCFMT_LEFT, -1, 0);
-	OnUpdateLb();
+  OnUpdateLb();
   m_lbSurfaces.SetColumnWidth(0, LVSCW_AUTOSIZE);
 
-	return TRUE;
+  return TRUE;
 }
 
 void CAttriTetraVolume::DoDataExchange(CDataExchange* pDX)
 {
-	CAttriFormationElementSet<CTetraFormationVolume>::DoDataExchange(pDX);
+  CAttriFormationElementSet<CTetraFormationVolume>::DoDataExchange(pDX);
 
   DDX_Control(pDX, IDC_LC_SURFACES, m_lbSurfaces);
 }
@@ -56,13 +56,13 @@ void CAttriTetraVolume::OnUpdateLb()
 {
   m_lbSurfaces.DeleteAllItems();
 
-	CTetraFormationVolume::TEnclosingSurfacesMap mpSurfaces = Copy().GetEnclosingSurfaces();
+  CTetraFormationVolume::TEnclosingSurfacesMap mpSurfaces = Copy().GetEnclosingSurfaces();
 
   CTetraFormationVolume::TEnclosingSurfacesMap::iterator it;
   for (it = mpSurfaces.begin(); it != mpSurfaces.end(); ++it)
-    new CSurfaceListObject(m_lbSurfaces, it->first, it->second);
+  new CSurfaceListObject(m_lbSurfaces, it->first, it->second);
 
-	const CModelBase& model = static_cast<const CModelBase&>(Copy().Model());
+  const CModelBase& model = static_cast<const CModelBase&>(Copy().Model());
   GetDlgItem(IDC_LC_SURFACES)->EnableWindow(model.Mesh().IsMesh());
 }
 

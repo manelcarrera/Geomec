@@ -28,68 +28,68 @@ class CColorScale;
 
 class CWellSectionDrawSpec : public CWellDrawSpecBase
 {
-	Q_OBJECT
+  Q_OBJECT
 
 friend class CWellSceneInterMed;
 
 public:
 
 
-	enum TYPE
-	{
-		LINE,
-		SQUARE,
-		ARROW,
-		GRADIENT
-	};
+  enum TYPE
+  {
+    LINE,
+    SQUARE,
+    ARROW,
+    GRADIENT
+  };
 
-	enum GRADIENT_TYPE
-	{
-		TVD,
-		TMD
-	};
+  enum GRADIENT_TYPE
+  {
+    TVD,
+    TMD
+  };
 
-	void SetArrowDistanceLevel(int level);
-	int GetArrowDistanceLevel();
+  void SetArrowDistanceLevel(int level);
+  int GetArrowDistanceLevel();
 
-	void SetArrowLineAngle(double);
+  void SetArrowLineAngle(double);
 
-	TYPE GetType() const;
-	void SetType(TYPE type);
+  TYPE GetType() const;
+  void SetType(TYPE type);
 
-	void SetColorScaleForGradient(const CColorScale& cs);
-	void SetGradientType(GRADIENT_TYPE type);
+  void SetColorScaleForGradient(const CColorScale& cs);
+  void SetGradientType(GRADIENT_TYPE type);
 
-	virtual ~CWellSectionDrawSpec();
+  virtual ~CWellSectionDrawSpec();
 
-	//returns a new created wellpoint depending on selected objects in vec
-	//if no selection then return null
-	//caller is responsible for deleting return point
-	well::CWellPoint* ProcessNewPointSelection(std::vector<const geo::IObject*>& vec, const geo::CLine& selection_line );
+  //returns a new created wellpoint depending on selected objects in vec
+  //if no selection then return null
+  //caller is responsible for deleting return point
+  well::CWellPoint* ProcessNewPointSelection(std::vector<const geo::IObject*>& vec, const geo::CLine& selection_line );
 
 
 private slots:
-	void OnSectionDestroyed(const well::IWellSection& section);
+  void OnSectionDestroyed(const well::IWellSection& section);
 
 private:
-	virtual void CreateScene();
+  virtual void CreateScene();
 
-	void CreateLines();
-	void CreateSquares();
-	void CreateArrow();
-	void CreateGradient();
+  void CreateLines();
+  void CreateSquares();
+  void CreateArrow();
+  void CreateGradient();
 
-	CWellSectionDrawSpec(CWellSceneInterMed& WellSceneInterMed, well::IWellSection& WellSection, TYPE type = LINE);
-	
-	well::IWellSection* m_pWellSection;
-	
+  CWellSectionDrawSpec(CWellSceneInterMed& WellSceneInterMed, well::IWellSection& WellSection, TYPE type = LINE);
+  
+  well::IWellSection* m_pWellSection;
+  
 
-	double m_ArrowLineAngle;
-	int m_ArrowDistanceLevel;
-		
-	CColorScale* m_ColorScale;
-	TYPE m_Type;
-	GRADIENT_TYPE m_GradientType;
+  double m_ArrowLineAngle;
+  int m_ArrowDistanceLevel;
+    
+  CColorScale* m_ColorScale;
+  TYPE m_Type;
+  GRADIENT_TYPE m_GradientType;
 
 };
 

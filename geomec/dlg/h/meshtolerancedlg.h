@@ -11,39 +11,39 @@
 // CMeshToleranceDlg dialog
 
 namespace geo {
-	class CTetMeshBase;
+  class CTetMeshBase;
 }
 
 class CMeshToleranceDlg : public CDialog
 {
-	double m_dTolerance;
-	geo::CTetMeshBase &m_mesh;
+  double m_dTolerance;
+  geo::CTetMeshBase &m_mesh;
 // Construction
 public:
-	CMeshToleranceDlg(geo::CTetMeshBase &mesh, CWnd* pParent = NULL);   // standard constructor
+  CMeshToleranceDlg(geo::CTetMeshBase &mesh, CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
-	//{{AFX_DATA(CMeshToleranceDlg)
-	enum { IDD = IDD_MESH_TOLERANCE_DLG };
-		// NOTE: the ClassWizard will add data members here
-	//}}AFX_DATA
+  //{{AFX_DATA(CMeshToleranceDlg)
+  enum { IDD = IDD_MESH_TOLERANCE_DLG };
+    // NOTE: the ClassWizard will add data members here
+  //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CMeshToleranceDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+  // ClassWizard generated virtual function overrides
+  //{{AFX_VIRTUAL(CMeshToleranceDlg)
+  protected:
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CMeshToleranceDlg)
-	virtual void OnOK();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+  // Generated message map functions
+  //{{AFX_MSG(CMeshToleranceDlg)
+  virtual void OnOK();
+  //}}AFX_MSG
+  DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}

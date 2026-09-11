@@ -104,12 +104,12 @@ public:
                   RESCUEFLOAT missingValue,
                   RescueReferenceSurface *topSurfaceIn, RESCUEFLOAT topOffsetIn,
                   RescueReferenceSurface *bottomSurfaceIn, RESCUEFLOAT  bottomOffsetIn);
-                                            // Constructor for a grid whose z values are 
-                                            // determined by the reference surfaces and offsets.
-                                            // Each k-layer is proportional to the distance between
-                                            // the top and bottom reference surfaces, after the
-                                            // offsets are applied. This applies only to vertexes
-                                            // of type R_EQUAL_AXIS.
+                      // Constructor for a grid whose z values are 
+                      // determined by the reference surfaces and offsets.
+                      // Each k-layer is proportional to the distance between
+                      // the top and bottom reference surfaces, after the
+                      // offsets are applied. This applies only to vertexes
+                      // of type R_EQUAL_AXIS.
   RescueBlockUnit(RescueCoordinateSystem::Orientation orientation,
                   RescueBlock *parentBlock,
                   RescueUnit *parentUnit,
@@ -132,11 +132,11 @@ public:
                   RESCUEFLOAT missingValue,
                   RescueReferenceSurface *referenceSurfaceIn, RESCUEFLOAT referenceOffsetIn, 
                   RESCUEFLOAT thicknessIn, RescueGeometry::RescueLapType onOffLapIn);
-                                            // Constructor for a grid whose z values are 
-                                            // determined by the reference surface and offset.
-                                            // Each k-layer is of the same thickness, determined
-                                            // by the thickness argument. This applies only to vertexes
-                                            // of type R_EQUAL_AXIS.
+                      // Constructor for a grid whose z values are 
+                      // determined by the reference surface and offset.
+                      // Each k-layer is of the same thickness, determined
+                      // by the thickness argument. This applies only to vertexes
+                      // of type R_EQUAL_AXIS.
   virtual ~RescueBlockUnit();
 
   RescueUnit *Unit() {return unit;}
@@ -153,11 +153,11 @@ public:
   RescueMacroVolume *AddMacroVolume();
   void DropMacroVolume(RescueMacroVolume *existingVolume);
   RescueMacroVolume *NthMacroVolume(RESCUEINT64 zeroBasedOrdinal)
-                        {return (*macroVolumes).NthObject(zeroBasedOrdinal);}
+            {return (*macroVolumes).NthObject(zeroBasedOrdinal);}
   RescueMacroVolume *NthMacroVolume(RESCUEINT32 zeroBasedOrdinal)
-                        {return (*macroVolumes).NthObject(zeroBasedOrdinal);}
+            {return (*macroVolumes).NthObject(zeroBasedOrdinal);}
   RescueMacroVolume *MacroVolumeIdentifiedBy(RESCUEINT64 id)
-                        {return (*macroVolumes).ObjectIdentifiedBy(id);}
+            {return (*macroVolumes).ObjectIdentifiedBy(id);}
   RescueBlockUnitSide *BlockUnitSideIdentifiedBy(RESCUEINT64 id);
   RescueBlockUnitSide *BlockUnitSideIdentifiedBy(RESCUEINT32 id) {return BlockUnitSideIdentifiedBy((RESCUEINT64) id);}
 
@@ -202,7 +202,7 @@ public:
   RESCUEINT32 CountOfGeobodies(RESCUEBOOL throwIfTooBig);
 
   RescueGeobodyPart *NthPart(RESCUEINT64 zeroBasedOrdinal) {return geobodyParts->NthObject(zeroBasedOrdinal);}
-                                    // The relationship is maintained on the RescueGeobodyPart end.
+                  // The relationship is maintained on the RescueGeobodyPart end.
 
   RescueGeometry *GeometryIdentifiedBy(RESCUEINT64 identifier) 
                                       {return gridGeometries->ObjectIdentifiedBy(identifier);}

@@ -89,7 +89,7 @@ bool DSFIntermediateSurfaceGenerator::GenerateIntermediateSurface(const QString&
   TSurface intermediate_surface(tempSurf.FaceSize());
 
   for (int i = 0; i < tempSurf.FaceSize(); ++i)
-    intermediate_surface[i] = &tempSurf.Face(i);
+  intermediate_surface[i] = &tempSurf.Face(i);
 
   // here we create the actual tying info from our new surface back to the original ones (same routine, different direction)
   mpMinus.clear();
@@ -130,32 +130,32 @@ double DSFIntermediateSurfaceGenerator::TriangleInfo::Contains(const geo::IPoint
 {
   if (SquaredDistance(p) < r2)
   {
-    geo::CVector normal = triangle->Normal();
-    double signedDist = triangle->SignedDistance(p, true);
+  geo::CVector normal = triangle->Normal();
+  double signedDist = triangle->SignedDistance(p, true);
 
-    geo::CPoint trans(p.X() - signedDist * normal.X(), p.Y() - signedDist * normal.Y(), p.Z() - signedDist * normal.Z());
+  geo::CPoint trans(p.X() - signedDist * normal.X(), p.Y() - signedDist * normal.Y(), p.Z() - signedDist * normal.Z());
 
-    geo::CVector v(trans, triangle->MidPoint());
-    v = v * 0.2;
+  geo::CVector v(trans, triangle->MidPoint());
+  v = v * 0.2;
 
-    trans.X(trans.X() + v.X());
-    trans.Y(trans.Y() + v.Y());
-    trans.Z(trans.Z() + v.Z());
+  trans.X(trans.X() + v.X());
+  trans.Y(trans.Y() + v.Y());
+  trans.Z(trans.Z() + v.Z());
 
-    // see IFace's Contains
-    double angle = 0;
+  // see IFace's Contains
+  double angle = 0;
 
-    for (int i = 0; i < 3; ++i)
-    {
+  for (int i = 0; i < 3; ++i)
+  {
       geo::CVector v1(trans, triangle->Point(i));
       geo::CVector v2(trans, triangle->Point((i + 1) % 3));
 
       angle += v1.AngleRad(v2);
-    }
+  }
 
-    angle = fabs(fabs(angle) - TWOPI);
+  angle = fabs(fabs(angle) - TWOPI);
 
-    return angle < 0.1;
+  return angle < 0.1;
   }
   return false;
 }
@@ -164,9 +164,9 @@ DSFIntermediateSurfaceGenerator::TriangleInfo::TriangleInfo(const geo::IFace *tr
 {
   for (int i = 0; i < 3; ++i)
   {
-    double r2candidate = SquaredDistance(triangle->Point(i)) * 1.3;
+  double r2candidate = SquaredDistance(triangle->Point(i)) * 1.3;
 
-    if (r2candidate > r2)
+  if (r2candidate > r2)
       r2 = r2candidate;
   }
 }
@@ -174,11 +174,11 @@ DSFIntermediateSurfaceGenerator::TriangleInfo::TriangleInfo(const geo::IFace *tr
 void DSFIntermediateSurfaceGenerator::TNodeInfo::add(const geo::IPoint & point, const geo::IFace * face, bool precise)
 {
   if (precise)
-    tmp_tying_infos.push_back(TyingInfo(point, face));
+  tmp_tying_infos.push_back(TyingInfo(point, face));
   else
   {
-    tying_info.point_dst.Set(point.X(), point.Y(), point.Z());
-    tying_info.face_dst = face;
+  tying_info.point_dst.Set(point.X(), point.Y(), point.Z());
+  tying_info.face_dst = face;
   }
 }
 
@@ -186,26 +186,26 @@ void DSFIntermediateSurfaceGenerator::TNodeInfo::process()
 {
   if (!tmp_tying_infos.empty())
   {
-    for (size_t i = 0; i < tmp_tying_infos.size(); ++i)
+  for (size_t i = 0; i < tmp_tying_infos.size(); ++i)
       tying_info.point_dst += tmp_tying_infos[i].point_dst;
-    tying_info.point_dst.Set(tying_info.point_dst.X() / tmp_tying_infos.size(), tying_info.point_dst.Y() / tmp_tying_infos.size(), tying_info.point_dst.Z() / tmp_tying_infos.size());
+  tying_info.point_dst.Set(tying_info.point_dst.X() / tmp_tying_infos.size(), tying_info.point_dst.Y() / tmp_tying_infos.size(), tying_info.point_dst.Z() / tmp_tying_infos.size());
 
-    for (size_t i = 0; i < tmp_tying_infos.size(); ++i)
-    {
+  for (size_t i = 0; i < tmp_tying_infos.size(); ++i)
+  {
       if (tmp_tying_infos[i].face_dst->Contains(tying_info.point_dst, true))
       {
-        tying_info.face_dst = tmp_tying_infos[i].face_dst;
-        break;
+    tying_info.face_dst = tmp_tying_infos[i].face_dst;
+    break;
       }
-    }
-    if (!tying_info.face_dst)
-    {
+  }
+  if (!tying_info.face_dst)
+  {
       tying_info.point_dst = tmp_tying_infos.front().point_dst;
       tying_info.face_dst = tmp_tying_infos.front().face_dst;
-    }
+  }
 
-    if (tmp_reverse_tying_info.face_dst && tying_info.face_dst)
-    {
+  if (tmp_reverse_tying_info.face_dst && tying_info.face_dst)
+  {
       geo::CPoint dest = (tmp_reverse_tying_info.point_dst + tying_info.point_dst) / 2;
       geo::CVector n = dest - tmp_reverse_point_src;
       geo::CLine line(tmp_reverse_point_src - dest * 100, tmp_reverse_point_src + dest * 100);
@@ -213,16 +213,16 @@ void DSFIntermediateSurfaceGenerator::TNodeInfo::process()
       geo::CPoint inter = tmp_reverse_tying_info.face_dst->Intersection(line);
       if (!inter.Empty() && tmp_reverse_tying_info.face_dst->Contains(inter, true))
       {
-        tying_info.point_dst.Set(inter.X(), inter.Y(), inter.Z());
-        tying_info.face_dst = tmp_reverse_tying_info.face_dst;
+    tying_info.point_dst.Set(inter.X(), inter.Y(), inter.Z());
+    tying_info.face_dst = tmp_reverse_tying_info.face_dst;
       }
       else
       {
-        inter = tying_info.face_dst->Intersection(line);
-        if (!inter.Empty() && tying_info.face_dst->Contains(inter, true))
+    inter = tying_info.face_dst->Intersection(line);
+    if (!inter.Empty() && tying_info.face_dst->Contains(inter, true))
           tying_info.point_dst.Set(inter.X(), inter.Y(), inter.Z());
       }
-    }
+  }
   }
 }
 
@@ -241,7 +241,7 @@ void DSFIntermediateSurfaceGenerator::getTyingInformation(TNodeInfoMap & mpNodeI
 
   for (int i = 0; i < surf_dst.size(); ++i)
   {
-    vcTriangles.push_back(TriangleInfo(surf_dst[i]));
+  vcTriangles.push_back(TriangleInfo(surf_dst[i]));
   }
 
   typedef std::map<int, std::vector<int> > TNode2Faces;
@@ -251,96 +251,96 @@ void DSFIntermediateSurfaceGenerator::getTyingInformation(TNodeInfoMap & mpNodeI
 
   if (precise)
   {
-    normals.reserve(surf_src.size());
-    for (int i = 0; i < surf_src.size(); ++i)
+  normals.reserve(surf_src.size());
+  for (int i = 0; i < surf_src.size(); ++i)
       normals.push_back(surf_src[i]->Normal());
 
-    for (int i = 0; i < surf_src.size(); ++i)
-    {
+  for (int i = 0; i < surf_src.size(); ++i)
+  {
       const geo::IFace *face = surf_src[i];
       for (int j = 0; j < 3; ++j)
       {
-        std::pair<TNode2Faces::iterator, bool> retval = node2Faces.insert(std::make_pair(face->PointIndex(j), std::vector<int>()));
-        if (retval.second)
+    std::pair<TNode2Faces::iterator, bool> retval = node2Faces.insert(std::make_pair(face->PointIndex(j), std::vector<int>()));
+    if (retval.second)
           retval.first->second.reserve(6);
-        retval.first->second.push_back(i);
+    retval.first->second.push_back(i);
       }
-    }
+  }
   }
 
   for (int i = 0; i < surf_src.size(); ++i)
   {
-    const geo::IFace* face1 = surf_src[i];
+  const geo::IFace* face1 = surf_src[i];
 
-    for (int m = 0; m < face1->NrOfPoints(); ++m)
-    {
+  for (int m = 0; m < face1->NrOfPoints(); ++m)
+  {
       const geo::IPoint& point = face1->Point(m);
 
       std::pair<TNodeInfoMap::iterator, bool> retval = mpNodeInfo.insert(std::make_pair(face1->PointIndex(m), TNodeInfo()));
       if (retval.second)
       {
-        // find triangle
-        for (int n = 0; n < vcTriangles.size(); ++n)
-        {
+    // find triangle
+    for (int n = 0; n < vcTriangles.size(); ++n)
+    {
           if (vcTriangles[n].Contains(point))
           {
-            std::vector<double> isoPt = vcTriangles[n].triangle->WorldToIso(point);
-            if (isoPt[0] < max_eps && isoPt[0] > min_eps && isoPt[1] < max_eps && isoPt[1] > min_eps)
-            {
+      std::vector<double> isoPt = vcTriangles[n].triangle->WorldToIso(point);
+      if (isoPt[0] < max_eps && isoPt[0] > min_eps && isoPt[1] < max_eps && isoPt[1] > min_eps)
+      {
               geo::CPlane plane(vcTriangles[n].triangle->Line(0).First(), vcTriangles[n].triangle->Normal());
 
               retval.first->second.add(plane.Project(point), vcTriangles[n].triangle, precise);
 
               if (!precise)
-                break;
-            }
+        break;
+      }
           }
-        }
+    }
 
-        if (precise)
-        {
+    if (precise)
+    {
           TNode2Faces::iterator it = node2Faces.find(face1->PointIndex(m));
 
           if (it != node2Faces.end())
           {
-            geo::CVector normal(0, 0, 0);
+      geo::CVector normal(0, 0, 0);
 
-            for (int j = 0; j < it->second.size(); ++j)
+      for (int j = 0; j < it->second.size(); ++j)
               normal += normals[it->second[j]];
 
-            normal = normal / it->second.size();
+      normal = normal / it->second.size();
 
-            geo::CLine line(point + normal * 100, point - normal * 100);
+      geo::CLine line(point + normal * 100, point - normal * 100);
 
-            normal = point + normal;
+      normal = point + normal;
 
-            for (int j = 0; j < retval.first->second.tmp_tying_infos.size(); ++j)
-            {
+      for (int j = 0; j < retval.first->second.tmp_tying_infos.size(); ++j)
+      {
               geo::CPoint inter = retval.first->second.tmp_tying_infos[j].face_dst->Intersection(line);
 
               if (!inter.Empty() && retval.first->second.tmp_tying_infos[j].face_dst->Contains(inter, true))
               {
-                retval.first->second.tmp_reverse_tying_info.point_dst = inter;
-                retval.first->second.tmp_reverse_tying_info.face_dst = retval.first->second.tmp_tying_infos[j].face_dst;
-                retval.first->second.tmp_reverse_point_src.Set(point.X(), point.Y(), point.Z());
-                break;
+        retval.first->second.tmp_reverse_tying_info.point_dst = inter;
+        retval.first->second.tmp_reverse_tying_info.face_dst = retval.first->second.tmp_tying_infos[j].face_dst;
+        retval.first->second.tmp_reverse_point_src.Set(point.X(), point.Y(), point.Z());
+        break;
               }
-            }
-
-            if (!retval.first->second.tmp_reverse_tying_info.face_dst)
-            {
-              // try all triangles
-            }
-          }
-        }
-
-        assert(retval.first->second.tying_info.face_dst || (precise && !retval.first->second.tmp_tying_infos.empty()));
       }
+
+      if (!retval.first->second.tmp_reverse_tying_info.face_dst)
+      {
+              // try all triangles
+      }
+          }
     }
+
+    assert(retval.first->second.tying_info.face_dst || (precise && !retval.first->second.tmp_tying_infos.empty()));
+      }
+  }
   }
 
   for (TNodeInfoMap::iterator it = mpNodeInfo.begin(); it != mpNodeInfo.end(); ++it)
-    it->second.process();
+  it->second.process();
 }
 
 // Create a new intermediate surface based on duplication of the surface surf_src.
@@ -355,31 +355,31 @@ void DSFIntermediateSurfaceGenerator::getIntermediateSurfaceInfo(IntermediateSur
 
   for (int i = 0; i < surf_src.size(); ++i)
   {
-    const geo::IFace *face_src = surf_src[i];
+  const geo::IFace *face_src = surf_src[i];
 
-    for (int j = 0; j < face_src->NrOfPoints(); ++j)
-    {
+  for (int j = 0; j < face_src->NrOfPoints(); ++j)
+  {
       std::map<int, int>::iterator it = mpPointsNew.find(face_src->PointIndex(j));
       if (it == mpPointsNew.end())
       {
-        geo::CPoint point_src = face_src->Point(j);
+    geo::CPoint point_src = face_src->Point(j);
 
-        TNodeInfoMap::const_iterator nodeInfo = mpNodeInfo_dst.find(face_src->PointIndex(j));
+    TNodeInfoMap::const_iterator nodeInfo = mpNodeInfo_dst.find(face_src->PointIndex(j));
 
-        assert(nodeInfo != mpNodeInfo_dst.end());
+    assert(nodeInfo != mpNodeInfo_dst.end());
 
-        const geo::IFace *face_dst = nodeInfo->second.tying_info.face_dst;
+    const geo::IFace *face_dst = nodeInfo->second.tying_info.face_dst;
 
-        mpPointsNew[face_src->PointIndex(j)] = surf_new.points.size();
+    mpPointsNew[face_src->PointIndex(j)] = surf_new.points.size();
 
-        triangle_new[j] = (int)surf_new.points.size();
+    triangle_new[j] = (int)surf_new.points.size();
 
-        surf_new.points.push_back(/* point_new = */(point_src + nodeInfo->second.tying_info.point_dst) * distance);
+    surf_new.points.push_back(/* point_new = */(point_src + nodeInfo->second.tying_info.point_dst) * distance);
       }
       else
-        triangle_new[j] = it->second;
-    }
-    surf_new.triangles.push_back(triangle_new);
+    triangle_new[j] = it->second;
+  }
+  surf_new.triangles.push_back(triangle_new);
   }
 }
 
@@ -388,16 +388,16 @@ void DSFIntermediateSurfaceGenerator::selectIntermediateSurfaceInfo(Intermediate
 {
   if (!precise)
   {
-    // Select plus or minus based on size: the larger one is the outersurface in a curved fault in our examples; THIS IS NOT A GOOD TEST!
-    if (surf_plus.triangles.size() > surf_minus.triangles.size())
+  // Select plus or minus based on size: the larger one is the outersurface in a curved fault in our examples; THIS IS NOT A GOOD TEST!
+  if (surf_plus.triangles.size() > surf_minus.triangles.size())
       surf_select = surf_minus;
-    else
+  else
       surf_select = surf_plus;
   }
   else
   {
-    DSFSurfaceCombiner combiner(surf_minus, surf_plus);
-    combiner.Generate(surf_select);
+  DSFSurfaceCombiner combiner(surf_minus, surf_plus);
+  combiner.Generate(surf_select);
   }
 }
 
@@ -406,19 +406,19 @@ void DSFIntermediateSurfaceGenerator::selectIntermediateSurfaceInfo(const QStrin
 {
   if (!precise)
   {
-    selectIntermediateSurfaceInfo(surf_minus, surf_plus, surf_select, precise);
+  selectIntermediateSurfaceInfo(surf_minus, surf_plus, surf_select, precise);
   }
   else
   {
-    DSFSurfaceCombiner combiner(surf_minus, surf_plus);
+  DSFSurfaceCombiner combiner(surf_minus, surf_plus);
 
-    std::vector<IntermediateSurfaceInfo> helpers;
-    combiner.Generate(surf_select, &helpers);
+  std::vector<IntermediateSurfaceInfo> helpers;
+  combiner.Generate(surf_select, &helpers);
 
-    for (int i = 0; i < helpers.size(); ++i)
-    {
+  for (int i = 0; i < helpers.size(); ++i)
+  {
       createSurface(QString("%1_helper_%2").arg(name).arg(i), helpers[i]);
-    }
+  }
   }
 }
 
@@ -451,7 +451,7 @@ void DSFIntermediateSurfaceGenerator::duplicateNodes(TNodeInfoMap& mpNodeInfo, c
 
   for (TNodeInfoMap::iterator it = mpNodeInfo.begin(); it != mpNodeInfo.end(); ++it)
   {
-    it->second.duplicate_node = mesh.RegisterNode(set.Point(it->first), false);
+  it->second.duplicate_node = mesh.RegisterNode(set.Point(it->first), false);
   }
 }
 
@@ -476,29 +476,29 @@ void DSFIntermediateSurfaceGenerator::createIFElements(TNodeInfoMap& mpMinus, TN
 
   for (int i = 0; i < surface.size(); ++i)
   {
-    const geo::IFace& face = *surface[i];
+  const geo::IFace& face = *surface[i];
 
-    for (int k = 0; k < face.NrOfPoints(); ++k)
-    {
+  for (int k = 0; k < face.NrOfPoints(); ++k)
+  {
       nodes_front[k] = mpMinus[face.PointIndex(k)].duplicate_node;
       triangles_front[k] = static_cast<const geo::CBodyTriangle *>(mpMinus[face.PointIndex(k)].tying_info.face_dst);
-    }
+  }
 
-    const geo::IFace *face1 = new geo::CTiedBodyTriangle(TetMesh(), nodes_front, triangles_front);
+  const geo::IFace *face1 = new geo::CTiedBodyTriangle(TetMesh(), nodes_front, triangles_front);
 
-    for (int k = 0; k < face.NrOfPoints(); ++k)
-    {
+  for (int k = 0; k < face.NrOfPoints(); ++k)
+  {
       nodes_back[k] = mpPlus[face.PointIndex(k)].duplicate_node;
       triangles_back[k] = static_cast<const geo::CBodyTriangle *>(mpPlus[face.PointIndex(k)].tying_info.face_dst);
-    }
+  }
 
-    const geo::IFace *face2 = new geo::CTiedBodyTriangle(TetMesh(), nodes_back, triangles_back);
+  const geo::IFace *face2 = new geo::CTiedBodyTriangle(TetMesh(), nodes_back, triangles_back);
 
-    const geo::IInterfaceElement *if_elt = TetMesh().AddInterfaceElement(surf_desc, face1, face2);
+  const geo::IInterfaceElement *if_elt = TetMesh().AddInterfaceElement(surf_desc, face1, face2);
 
-    if_info.front.push_back(face1);
-    if_info.back.push_back(face2);
-    if_info.if_elts.push_back(if_elt);
+  if_info.front.push_back(face1);
+  if_info.back.push_back(face2);
+  if_info.if_elts.push_back(if_elt);
   }
 }
 
@@ -515,38 +515,38 @@ void DSFIntermediateSurfaceGenerator::createResultTyings(const InterfaceInfo& if
   // minus / front
   for (int i = 0; i < surf_front_src.size(); ++i)
   {
-    const geo::IFace* face1 = surf_front_src[i];
+  const geo::IFace* face1 = surf_front_src[i];
 
-    for (int m = 0; m < face1->NrOfPoints(); ++m)
-    {
+  for (int m = 0; m < face1->NrOfPoints(); ++m)
+  {
       const geo::IPoint& point = face1->Point(m);
 
       std::pair<TDone::iterator, bool> result = done.insert(std::make_pair(face1->PointIndex(m), std::make_pair(0, geo::CPoint())));
 
       if (result.second)
       {
-        for (int n = 0; n < if_info.front.size(); ++n)
-        {
+    for (int n = 0; n < if_info.front.size(); ++n)
+    {
           if (if_info.front[n].Contains(point))
           {
-            std::vector<double> isoPt = if_info.front[n].triangle->WorldToIso(point);
-            if (isoPt[0] < max_eps && isoPt[0] > min_eps && isoPt[1] < max_eps && isoPt[1] > min_eps)
-            {
+      std::vector<double> isoPt = if_info.front[n].triangle->WorldToIso(point);
+      if (isoPt[0] < max_eps && isoPt[0] > min_eps && isoPt[1] < max_eps && isoPt[1] > min_eps)
+      {
               geo::CPlane plane(if_info.front[n].triangle->Line(0).First(), if_info.front[n].triangle->Normal());
 
               static_cast<geo::CTiedPointBodyTriangle *>(const_cast<geo::IFace *>(face1))->AddTying(m, *if_info.if_elts[n], plane.Project(point), 0);
               result.first->second.first = n;
               result.first->second.second.Set(point.X(), point.Y(), point.Z());
               break;
-            }
+      }
           }
-        }
+    }
       }
       else
       {
-        static_cast<geo::CTiedPointBodyTriangle *>(const_cast<geo::IFace *>(face1))->AddTying(m, *if_info.if_elts[result.first->second.first], result.first->second.second, 0);
+    static_cast<geo::CTiedPointBodyTriangle *>(const_cast<geo::IFace *>(face1))->AddTying(m, *if_info.if_elts[result.first->second.first], result.first->second.second, 0);
       }
-    }
+  }
   }
 
   done.clear();
@@ -554,38 +554,38 @@ void DSFIntermediateSurfaceGenerator::createResultTyings(const InterfaceInfo& if
   // plus / back
   for (int i = 0; i < surf_back_src.size(); ++i)
   {
-    const geo::IFace* face1 = surf_back_src[i];
+  const geo::IFace* face1 = surf_back_src[i];
 
-    for (int m = 0; m < face1->NrOfPoints(); ++m)
-    {
+  for (int m = 0; m < face1->NrOfPoints(); ++m)
+  {
       const geo::IPoint& point = face1->Point(m);
 
       std::pair<TDone::iterator, bool> result = done.insert(std::make_pair(face1->PointIndex(m), std::make_pair(0, geo::CPoint())));
 
       if (result.second)
       {
-        for (int n = 0; n < if_info.back.size(); ++n)
-        {
+    for (int n = 0; n < if_info.back.size(); ++n)
+    {
           if (if_info.back[n].Contains(point))
           {
-            std::vector<double> isoPt = if_info.back[n].triangle->WorldToIso(point);
-            if (isoPt[0] < max_eps && isoPt[0] > min_eps && isoPt[1] < max_eps && isoPt[1] > min_eps)
-            {
+      std::vector<double> isoPt = if_info.back[n].triangle->WorldToIso(point);
+      if (isoPt[0] < max_eps && isoPt[0] > min_eps && isoPt[1] < max_eps && isoPt[1] > min_eps)
+      {
               geo::CPlane plane(if_info.back[n].triangle->Line(0).First(), if_info.back[n].triangle->Normal());
 
               static_cast<geo::CTiedPointBodyTriangle *>(const_cast<geo::IFace *>(face1))->AddTying(m, *if_info.if_elts[n], plane.Project(point), 0);
               result.first->second.first = n;
               result.first->second.second.Set(point.X(), point.Y(), point.Z());
               break;
-            }
+      }
           }
-        }
+    }
       }
       else
       {
-        static_cast<geo::CTiedPointBodyTriangle *>(const_cast<geo::IFace *>(face1))->AddTying(m, *if_info.if_elts[result.first->second.first], result.first->second.second, 0);
+    static_cast<geo::CTiedPointBodyTriangle *>(const_cast<geo::IFace *>(face1))->AddTying(m, *if_info.if_elts[result.first->second.first], result.first->second.second, 0);
       }
-    }
+  }
   }
 
 }
@@ -607,31 +607,31 @@ void DSFIntermediateSurfaceGenerator::createTyings(const TNodeInfoMap& mpNodeInf
 
   for (TNodeInfoMap::const_iterator it = mpNodeInfo.begin(); it != mpNodeInfo.end(); ++it)
   {
-    int nIndex = it->second.duplicate_node;
-    const geo::IPoint& point = TetMesh().Node(nIndex);
-    const geo::IFace *triangle = it->second.tying_info.face_dst;
+  int nIndex = it->second.duplicate_node;
+  const geo::IPoint& point = TetMesh().Node(nIndex);
+  const geo::IFace *triangle = it->second.tying_info.face_dst;
 
-    if (!triangle)
+  if (!triangle)
       continue;
 
-    geo::CTriangle localTriangle(rs.ToLocal(triangle->Point(0)), rs.ToLocal(triangle->Point(1)), rs.ToLocal(triangle->Point(2)));
+  geo::CTriangle localTriangle(rs.ToLocal(triangle->Point(0)), rs.ToLocal(triangle->Point(1)), rs.ToLocal(triangle->Point(2)));
 
-    std::vector<double> isoPt = localTriangle.WorldToIso(rs.ToLocal(point));
-    isoPt.push_back(1 - isoPt[0] - isoPt[1]);
+  std::vector<double> isoPt = localTriangle.WorldToIso(rs.ToLocal(point));
+  isoPt.push_back(1 - isoPt[0] - isoPt[1]);
 
-    std::vector<geo::CTying::TMasterDef> vcMasters(3);
+  std::vector<geo::CTying::TMasterDef> vcMasters(3);
 
-    for (int axisIndex = 0; axisIndex < 3; ++axisIndex) // three axes
-    {
+  for (int axisIndex = 0; axisIndex < 3; ++axisIndex) // three axes
+  {
       for (int pointIndex = 0; pointIndex < 3; ++pointIndex) // isoparametric factor for three points
       {
-        vcMasters[pointIndex].direction = &rsNormal[axisIndex];
-        vcMasters[pointIndex].node = triangle->PointIndex(pointIndex);
-        vcMasters[pointIndex].type = geo::CTying::TR;
-        vcMasters[pointIndex].factor = isoPt[pointIndex];
+    vcMasters[pointIndex].direction = &rsNormal[axisIndex];
+    vcMasters[pointIndex].node = triangle->PointIndex(pointIndex);
+    vcMasters[pointIndex].type = geo::CTying::TR;
+    vcMasters[pointIndex].factor = isoPt[pointIndex];
       }
       TetMesh().CreateTying(nIndex, rsNormal[axisIndex], geo::CTying::TR, vcMasters);
-    }
+  }
   }
 }
 

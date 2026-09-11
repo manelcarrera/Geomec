@@ -102,47 +102,47 @@ IPQPlotter* CMaterialModifiedMohrCoulombCreatorV2::CPQPlotter::Clone() const
 void CMaterialModifiedMohrCoulombCreatorV2::CPQPlotter::GetPrimaryYieldCurve(const CLibraryMaterial &mat, double /*dPMin*/, double dPMax, CStressStrainArray &values) const
 {
   const ml::CMatParam *pPhi      = mat.Parameter(MLD_FRICTIONANGLE);
-	const ml::CMatParam *pCohesion = mat.Parameter(MLD_COHESION);
-	const ml::CMatParam *pPreConso = mat.Parameter(MLD_PRECONSOLIDATION);
-	const ml::CMatParam *pCapShape = mat.Parameter(MLD_CAPSHAPEPARAM);
+  const ml::CMatParam *pCohesion = mat.Parameter(MLD_COHESION);
+  const ml::CMatParam *pPreConso = mat.Parameter(MLD_PRECONSOLIDATION);
+  const ml::CMatParam *pCapShape = mat.Parameter(MLD_CAPSHAPEPARAM);
 
-	double dPhi      = pPhi->Value() * PI / 180; // phi in radians
-	double dCohesion = pCohesion->Value();
-	double dPreConso = pPreConso->Value();
-	double dDeltaP   = dCohesion / tan(dPhi);
-	double dCapShape = pCapShape->Value();
+  double dPhi      = pPhi->Value() * PI / 180; // phi in radians
+  double dCohesion = pCohesion->Value();
+  double dPreConso = pPreConso->Value();
+  double dDeltaP   = dCohesion / tan(dPhi);
+  double dCapShape = pCapShape->Value();
 
-	double k = 6 * dCohesion * cos(dPhi) / (3 - sin(dPhi));
-	double m = 6 * sin(dPhi) / (3 - sin(dPhi));
+  double k = 6 * dCohesion * cos(dPhi) / (3 - sin(dPhi));
+  double m = 6 * sin(dPhi) / (3 - sin(dPhi));
 
-	// intersection point of line and circle segment
-	double dPInt = ((-dDeltaP / dCapShape) - k * m + sqrt(pow((dDeltaP / dCapShape) + k * m, 2) - (m*m + 1/dCapShape) * (k*k + (dDeltaP*dDeltaP)/dCapShape - (dPreConso*dPreConso)/dCapShape))) /
-		(m*m + 1/dCapShape);
+  // intersection point of line and circle segment
+  double dPInt = ((-dDeltaP / dCapShape) - k * m + sqrt(pow((dDeltaP / dCapShape) + k * m, 2) - (m*m + 1/dCapShape) * (k*k + (dDeltaP*dDeltaP)/dCapShape - (dPreConso*dPreConso)/dCapShape))) /
+    (m*m + 1/dCapShape);
 
   double dPEnd = std::min(dPMax, dPInt);
-	double dQEnd = k + m * dPEnd;
+  double dQEnd = k + m * dPEnd;
 
-	CStressStrain pt1(-dDeltaP, 0);
-	CStressStrain pt2(dPEnd, dQEnd);
-	values.push_back(pt1);
-	values.push_back(pt2);
+  CStressStrain pt1(-dDeltaP, 0);
+  CStressStrain pt2(dPEnd, dQEnd);
+  values.push_back(pt1);
+  values.push_back(pt2);
 
-	if(dPInt < dPMax)
-	{
-    dPEnd = std::min(dPMax, dPreConso - dDeltaP);
-		for(int i=0; i<NUM_PQ_STEPS; i++)
-		{
-			double p = (double) i / NUM_PQ_STEPS * (dPEnd - dPInt) + dPInt;
-			double q = sqrt((dPreConso*dPreConso - (p + dDeltaP)*(p + dDeltaP))/dCapShape);
-			CStressStrain pt(p, q);
-			values.push_back(pt);
-		}
+  if(dPInt < dPMax)
+  {
+  dPEnd = std::min(dPMax, dPreConso - dDeltaP);
+    for(int i=0; i<NUM_PQ_STEPS; i++)
+    {
+      double p = (double) i / NUM_PQ_STEPS * (dPEnd - dPInt) + dPInt;
+      double q = sqrt((dPreConso*dPreConso - (p + dDeltaP)*(p + dDeltaP))/dCapShape);
+      CStressStrain pt(p, q);
+      values.push_back(pt);
+    }
 
-		double p = dPEnd;
-		double q = sqrt((dPreConso*dPreConso - (p + dDeltaP)*(p + dDeltaP))/dCapShape);
-		CStressStrain pt(p, q);
-		values.push_back(pt);
-	}
+    double p = dPEnd;
+    double q = sqrt((dPreConso*dPreConso - (p + dDeltaP)*(p + dDeltaP))/dCapShape);
+    CStressStrain pt(p, q);
+    values.push_back(pt);
+  }
 }
 
 
@@ -216,45 +216,45 @@ IPQPlotter* CMaterialModifiedMohrCoulombCreatorDEPRECATED::CPQPlotter::Clone() c
 void CMaterialModifiedMohrCoulombCreatorDEPRECATED::CPQPlotter::GetPrimaryYieldCurve(const CLibraryMaterial &mat, double /*dPMin*/, double dPMax, CStressStrainArray &values) const
 {
   const ml::CMatParam *pPhi      = mat.Parameter(MLD_FRICTIONANGLE);
-	const ml::CMatParam *pCohesion = mat.Parameter(MLD_COHESION);
-	const ml::CMatParam *pPreConso = mat.Parameter(MLD_PRECONSOLIDATION);
-	const ml::CMatParam *pCapShape = mat.Parameter(MLD_CAPSHAPEPARAM);
+  const ml::CMatParam *pCohesion = mat.Parameter(MLD_COHESION);
+  const ml::CMatParam *pPreConso = mat.Parameter(MLD_PRECONSOLIDATION);
+  const ml::CMatParam *pCapShape = mat.Parameter(MLD_CAPSHAPEPARAM);
 
-	double dPhi      = pPhi->Value() * PI / 180; // phi in radians
-	double dCohesion = pCohesion->Value();
-	double dPreConso = pPreConso->Value();
-	double dDeltaP   = dCohesion / tan(dPhi);
-	double dCapShape = pCapShape->Value();
+  double dPhi      = pPhi->Value() * PI / 180; // phi in radians
+  double dCohesion = pCohesion->Value();
+  double dPreConso = pPreConso->Value();
+  double dDeltaP   = dCohesion / tan(dPhi);
+  double dCapShape = pCapShape->Value();
 
-	double k = 6 * dCohesion * cos(dPhi) / (3 - sin(dPhi));
-	double m = 6 * sin(dPhi) / (3 - sin(dPhi));
+  double k = 6 * dCohesion * cos(dPhi) / (3 - sin(dPhi));
+  double m = 6 * sin(dPhi) / (3 - sin(dPhi));
 
-	// intersection point of line and circle segment
-	double dPInt = ((-dDeltaP / dCapShape) - k * m + sqrt(pow((dDeltaP / dCapShape) + k * m, 2) - (m*m + 1/dCapShape) * (k*k + (dDeltaP*dDeltaP)/dCapShape - (dPreConso*dPreConso)/dCapShape))) /
-		(m*m + 1/dCapShape);
+  // intersection point of line and circle segment
+  double dPInt = ((-dDeltaP / dCapShape) - k * m + sqrt(pow((dDeltaP / dCapShape) + k * m, 2) - (m*m + 1/dCapShape) * (k*k + (dDeltaP*dDeltaP)/dCapShape - (dPreConso*dPreConso)/dCapShape))) /
+    (m*m + 1/dCapShape);
 
   double dPEnd = std::min(dPMax, dPInt);
-	double dQEnd = k + m * dPEnd;
+  double dQEnd = k + m * dPEnd;
 
-	CStressStrain pt1(-dDeltaP, 0);
-	CStressStrain pt2(dPEnd, dQEnd);
-	values.push_back(pt1);
-	values.push_back(pt2);
+  CStressStrain pt1(-dDeltaP, 0);
+  CStressStrain pt2(dPEnd, dQEnd);
+  values.push_back(pt1);
+  values.push_back(pt2);
 
-	if(dPInt < dPMax)
-	{
-    dPEnd = std::min(dPMax, dPreConso - dDeltaP);
-		for(int i=0; i<NUM_PQ_STEPS; i++)
-		{
-			double p = (double) i / NUM_PQ_STEPS * (dPEnd - dPInt) + dPInt;
-			double q = sqrt((dPreConso*dPreConso - (p + dDeltaP)*(p + dDeltaP))/dCapShape);
-			CStressStrain pt(p, q);
-			values.push_back(pt);
-		}
+  if(dPInt < dPMax)
+  {
+  dPEnd = std::min(dPMax, dPreConso - dDeltaP);
+    for(int i=0; i<NUM_PQ_STEPS; i++)
+    {
+      double p = (double) i / NUM_PQ_STEPS * (dPEnd - dPInt) + dPInt;
+      double q = sqrt((dPreConso*dPreConso - (p + dDeltaP)*(p + dDeltaP))/dCapShape);
+      CStressStrain pt(p, q);
+      values.push_back(pt);
+    }
 
-		double p = dPEnd;
-		double q = sqrt((dPreConso*dPreConso - (p + dDeltaP)*(p + dDeltaP))/dCapShape);
-		CStressStrain pt(p, q);
-		values.push_back(pt);
-	}
+    double p = dPEnd;
+    double q = sqrt((dPreConso*dPreConso - (p + dDeltaP)*(p + dDeltaP))/dCapShape);
+    CStressStrain pt(p, q);
+    values.push_back(pt);
+  }
 }

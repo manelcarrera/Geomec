@@ -32,43 +32,43 @@ bool ISupportLoad::WriteFilos(const std::string& sType) const
 {
   for(size_t i = 0; i < m_support.DirectionSize(); ++i)
   {
-    const geo::IVector& vecComponent = m_support.Direction(i);
-    assert(fabs(vecComponent.Length() - 1) < EPS);
+  const geo::IVector& vecComponent = m_support.Direction(i);
+  assert(fabs(vecComponent.Length() - 1) < EPS);
 
-    // project the load vector onto the component
-    assert(ValueSize() == 1);
-    geo::CVector vecLoad = Direction().UnitVector() * double(Values()[0]);
-    geo::CVector vecLoadComponent = vecComponent * vecLoad.DotProduct(vecComponent);
+  // project the load vector onto the component
+  assert(ValueSize() == 1);
+  geo::CVector vecLoad = Direction().UnitVector() * double(Values()[0]);
+  geo::CVector vecLoadComponent = vecComponent * vecLoad.DotProduct(vecComponent);
 
-    if(vecLoadComponent.Length() > EPS)
-    {
-	    ftn_int_t idxdir = (ftn_int_t) Manager().Runner().AddDirection(vecLoadComponent);
+  if(vecLoadComponent.Length() > EPS)
+  {
+    ftn_int_t idxdir = (ftn_int_t) Manager().Runner().AddDirection(vecLoadComponent);
 
-	    ftn_int_t idx = Inquire("DEFORM", "DIM");
-	    if(idx < 0) idx = 0;
-	    ++idx;
+    ftn_int_t idx = Inquire("DEFORM", "DIM");
+    if(idx < 0) idx = 0;
+    ++idx;
 
-	    assert(!XistIndexed("DEFORM/", &idx));
+    assert(!XistIndexed("DEFORM/", &idx));
 
-	    PushDir();
+    PushDir();
 
-	    ChangeIndexedDir("DEFORM/", &idx);
+    ChangeIndexedDir("DEFORM/", &idx);
 
-	    PutItem("DIR", &idxdir);
+    PutItem("DIR", &idxdir);
 
-	    ftn_int_t nodenr = (ftn_int_t) Support().NodeIndex() + 1;
-	    PutItemLength("NODES", &nodenr, 1);
+    ftn_int_t nodenr = (ftn_int_t) Support().NodeIndex() + 1;
+    PutItemLength("NODES", &nodenr, 1);
 
-	    PutCharItem("TYPE", sType.c_str());
+    PutCharItem("TYPE", sType.c_str());
 
       ftn_double_t dValue = ftn_double_t(vecLoadComponent.Length());
-	    PutItemLength("VALUES", &dValue, 1);
+    PutItemLength("VALUES", &dValue, 1);
 
-	    PopDir();
-    }
+    PopDir();
+  }
   }
 
-	return true;
+  return true;
 }
 
 } // namespace dia

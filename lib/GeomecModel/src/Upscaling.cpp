@@ -147,13 +147,13 @@ IUpscalingNodeBase* CUpscalingNodeFactory::Create(int nType)
   switch(nType)
   {
   case FACTORYTYPE_THINLAYERUPSCALING:
-    p = new CThinLayerUpscalingNode(m_model);
-    break;
+  p = new CThinLayerUpscalingNode(m_model);
+  break;
   case FACTORYTYPE_CAMCLAYUPSCALING:
-    p = new CCamClayUpscalingNode(m_model);
-    break;
+  p = new CCamClayUpscalingNode(m_model);
+  break;
   default:
-    assert(false);
+  assert(false);
   }
 
   return p;
@@ -173,7 +173,7 @@ long CUpscalingEntry::SavedItems() const
 
   const TNodeSet& stNodes = EntryNodes();
   for(TNodeSet::const_iterator it = stNodes.begin(); it != stNodes.end(); ++it)
-    lRet += (*it)->SavedItems();
+  lRet += (*it)->SavedItems();
 
   return lRet;
 }
@@ -184,8 +184,8 @@ void CUpscalingEntry::SaveStream(CStorageNode::TSTREAM& stream, CStorageNode::TP
   stream << int(stNodes.size());
   for(TNodeSet::const_iterator it = stNodes.begin(); it != stNodes.end(); ++it)
   {
-    stream << (*it)->FactoryType();
-    (*it)->SaveStream(stream, progress);
+  stream << (*it)->FactoryType();
+  (*it)->SaveStream(stream, progress);
   }
 }
 
@@ -198,10 +198,10 @@ void CUpscalingEntry::LoadStream(CStorageNode::TSTREAM& stream, CStorageNode::TS
   stream >> nNodes;
   for(int i = 0; i < nNodes; ++i)
   {
-    int nFactoryType;
-    stream >> nFactoryType;
-    IUpscalingNodeBase* pNode = factory.Create(nFactoryType);
-    pNode->LoadStream(stream, version, progress);
+  int nFactoryType;
+  stream >> nFactoryType;
+  IUpscalingNodeBase* pNode = factory.Create(nFactoryType);
+  pNode->LoadStream(stream, version, progress);
   }
 }
 
@@ -217,7 +217,7 @@ const size_t DEFAULT_INITIAL_NUMBER = 1;
 void CUpscalingEntry::CreateThinLayerUpscaling()
 {
   QString strName = createUniqueName(DEFAULT_THIN_LAYER_UPSCALING_NAME,
-    DEFAULT_INITIAL_NUMBER);
+  DEFAULT_INITIAL_NUMBER);
   new CThinLayerUpscalingNode(strName.toStdString().c_str(), static_cast<C3DModel&>(Model()));
 }
 
@@ -232,7 +232,7 @@ const QString DEFAULT_CAMCLAY_UPSCALING_NAME =
 void CUpscalingEntry::CreateCamClayUpscaling()
 {
   QString strName = createUniqueName(DEFAULT_CAMCLAY_UPSCALING_NAME,
-    DEFAULT_INITIAL_NUMBER);
+  DEFAULT_INITIAL_NUMBER);
   new CCamClayUpscalingNode(strName.toStdString().c_str(), static_cast<C3DModel&>(Model()));
 }
 
@@ -278,26 +278,26 @@ bool CUpscalingFormationsBranch::CanConnectItem(const CGraphNode &item) const
 {
   const CFormationBase* pForm = dynamic_cast<const CFormationBase*>(&item);
   const CDepletionStageEntry& depletionStageEntry =
-    static_cast <const CModelBase&> (Model()).DepletionStageEntry();
+  static_cast <const CModelBase&> (Model()).DepletionStageEntry();
   bool fractureApertureModel = false;
 
   for (CDepletionStageEntry::const_iterator
-    depletionStage = depletionStageEntry.begin(); (pForm != 0) &&
-    (depletionStage != depletionStageEntry.end()) && !fractureApertureModel;
-    ++depletionStage)
+  depletionStage = depletionStageEntry.begin(); (pForm != 0) &&
+  (depletionStage != depletionStageEntry.end()) && !fractureApertureModel;
+  ++depletionStage)
   {
-    const CMaterialServer& materialServer = pForm->Material(*depletionStage);
-    const IMaterialRock* libraryMaterial = materialServer.LibraryMaterial();
-    int materialModel = (libraryMaterial == 0 ? MM_LINEAR :
+  const CMaterialServer& materialServer = pForm->Material(*depletionStage);
+  const IMaterialRock* libraryMaterial = materialServer.LibraryMaterial();
+  int materialModel = (libraryMaterial == 0 ? MM_LINEAR :
       materialServer.MaterialModel());
 
-    fractureApertureModel = fractureApertureModel ||
+  fractureApertureModel = fractureApertureModel ||
       (materialModel == MM_FRACTURE_APERTURE) ||
       (materialModel == MM_FRACTURE_APERTURE2);
   }
 
   return !fractureApertureModel && (pForm != 0) &&
-    (m_stFormations.find(pForm) == m_stFormations.end());
+  (m_stFormations.find(pForm) == m_stFormations.end());
 }
 
 bool CUpscalingFormationsBranch::Empty() const
@@ -314,7 +314,7 @@ void CUpscalingFormationsBranch::SaveStream(TSTREAM& stream, TPROGRESS& progress
 {
   stream << int(m_stFormations.size());
   for(TFormationsSet::const_iterator it = m_stFormations.begin(); it != m_stFormations.end(); ++it)
-    stream << (*it)->Index();
+  stream << (*it)->Index();
 
   progress.Step();
 
@@ -327,10 +327,10 @@ void CUpscalingFormationsBranch::LoadStream(TSTREAM& stream, CStreamVersion& ver
   stream >> nFormations;
   for(int i = 0; i < nFormations; ++i)
   {
-    int idx;
-    stream >> idx;
-    CFormationBase* pForm = static_cast<TFormationBaseEntry*>(Model().GraphEntry(MD_BASE_FORMATION))->FindIndex(idx);
-    LinkTo(*pForm);
+  int idx;
+  stream >> idx;
+  CFormationBase* pForm = static_cast<TFormationBaseEntry*>(Model().GraphEntry(MD_BASE_FORMATION))->FindIndex(idx);
+  LinkTo(*pForm);
   }
 
   progress.Step();
@@ -355,7 +355,7 @@ int CUpscalingFormationsBranch::DisplayListSize() const
   int sz = 0;
   TFormationsSet::const_iterator it;
   for(it = m_stFormations.begin(); it != m_stFormations.end(); ++it)
-    sz += (*it)->DisplayListSize();
+  sz += (*it)->DisplayListSize();
 
   return sz;
 }
@@ -367,14 +367,14 @@ const geo::IObject& CUpscalingFormationsBranch::DisplayList(int nIndex) const
   TFormationsSet::const_iterator it;
   for(it = m_stFormations.begin(); it != m_stFormations.end(); ++it)
   {
-    int sz = (*it)->DisplayListSize();
-    if(nIndex < sz)
-    {
+  int sz = (*it)->DisplayListSize();
+  if(nIndex < sz)
+  {
       pObject = &(*it)->DisplayList(nIndex);
       break;
-    }
+  }
 
-    nIndex -= sz;
+  nIndex -= sz;
   }
 
   assert(pObject);
@@ -386,13 +386,13 @@ COpenGLNode::CDrawDef* CUpscalingFormationsBranch::OnCreateDrawDef(const geo::IO
   TFormationsSet::const_iterator it;
   for(it = m_stFormations.begin(); it != m_stFormations.end(); ++it)
   {
-    int sz = (*it)->DisplayListSize();
-    int i;
-    for(i = 0; i < sz; ++i)
-    {
+  int sz = (*it)->DisplayListSize();
+  int i;
+  for(i = 0; i < sz; ++i)
+  {
       if(&(*it)->DisplayList(i) == &object)
-        return new CFormationDrawDef(**it);
-    }
+    return new CFormationDrawDef(**it);
+  }
   }
 
   assert(false);
@@ -408,7 +408,7 @@ CUpscalingFormationsBranch::TColor CUpscalingFormationsBranch::Color() const
 bool CUpscalingFormationsBranch::IsInRange(const geo::IBody& body) const
 {
   if(m_stFormations.empty())
-    return true;
+  return true;
 
   const CModelBase& model = static_cast<const CModelBase&>(Model());
   const CFormationBase& formation = *model.Mesh().Formation(body);
@@ -421,8 +421,8 @@ void CUpscalingFormationsBranch::OnNewNeighbour(const CGraphNode &node)
   const CFormationBase* pForm = dynamic_cast<const CFormationBase*>(&node);
   if(pForm)
   {
-    VERIFY(m_stFormations.insert(pForm).second);
-    Modified();
+  VERIFY(m_stFormations.insert(pForm).second);
+  Modified();
   }
 }
 
@@ -431,8 +431,8 @@ void CUpscalingFormationsBranch::OnNeighbourDeleted(const CGraphNode &node)
   TFormationsSet::iterator it = m_stFormations.find((CFormationBase*)(&node));
   if(it != m_stFormations.end())
   {
-    m_stFormations.erase(it);
-    Modified();
+  m_stFormations.erase(it);
+  Modified();
   }
 }
 
@@ -440,7 +440,7 @@ void CUpscalingFormationsBranch::OnNeighbourModified(const CGraphNode& node, enu
 {
   const CFormationBase* pForm = dynamic_cast<const CFormationBase*>(&node);
   if(pForm && m_stFormations.find(pForm) != m_stFormations.end())
-    Modified();
+  Modified();
 }
 
 
@@ -535,7 +535,7 @@ void CUpscalingPointsetRangesBranch::SaveStream(TSTREAM& stream, TPROGRESS& prog
 {
   stream << int(m_stPointsets.size());
   for(TPointsetSet::const_iterator it = m_stPointsets.begin(); it != m_stPointsets.end(); ++it)
-    stream << (*it)->Index();
+  stream << (*it)->Index();
 
   stream << int(m_bAllPointsets ? 1 : 0);
 
@@ -550,10 +550,10 @@ void CUpscalingPointsetRangesBranch::LoadStream(TSTREAM& stream, CStreamVersion&
   stream >> nPointsets;
   for(int i = 0; i < nPointsets; ++i)
   {
-    int idx;
-    stream >> idx;
-    IPointSet* pPointset = static_cast<TPointSetEntry*>(Model().GraphEntry(MD_BASE_POINTSET))->FindIndex(idx);
-    LinkTo(*pPointset);
+  int idx;
+  stream >> idx;
+  IPointSet* pPointset = static_cast<TPointSetEntry*>(Model().GraphEntry(MD_BASE_POINTSET))->FindIndex(idx);
+  LinkTo(*pPointset);
   }
 
   int nAllPointsets;
@@ -582,7 +582,7 @@ int CUpscalingPointsetRangesBranch::DisplayListSize() const
   int sz = 0;
   TPointsetSet::const_iterator it;
   for(it = m_stPointsets.begin(); it != m_stPointsets.end(); ++it)
-    sz += (*it)->DisplayListSize();
+  sz += (*it)->DisplayListSize();
 
   return sz;
 }
@@ -594,14 +594,14 @@ const geo::IObject& CUpscalingPointsetRangesBranch::DisplayList(int nIndex) cons
   TPointsetSet::const_iterator it;
   for(it = m_stPointsets.begin(); it != m_stPointsets.end(); ++it)
   {
-    int sz = (*it)->DisplayListSize();
-    if(nIndex < sz)
-    {
+  int sz = (*it)->DisplayListSize();
+  if(nIndex < sz)
+  {
       pObject = &(*it)->DisplayList(nIndex);
       break;
-    }
+  }
 
-    nIndex -= sz;
+  nIndex -= sz;
   }
 
   assert(pObject);
@@ -613,13 +613,13 @@ COpenGLNode::CDrawDef* CUpscalingPointsetRangesBranch::OnCreateDrawDef(const geo
   TPointsetSet::const_iterator it;
   for(it = m_stPointsets.begin(); it != m_stPointsets.end(); ++it)
   {
-    int i;
-    int sz = (*it)->DisplayListSize();
-    for(i = 0; i < sz; ++i)
-    {
+  int i;
+  int sz = (*it)->DisplayListSize();
+  for(i = 0; i < sz; ++i)
+  {
       if(&(*it)->DisplayList(i) == &object)
-        return new CPointsetDrawDef(**it);
-    }
+    return new CPointsetDrawDef(**it);
+  }
   }
 
   assert(false);
@@ -639,16 +639,16 @@ void CUpscalingPointsetRangesBranch::UseAllPointsets(bool b)
 bool CUpscalingPointsetRangesBranch::IsInRange(const geo::IPoint& point) const
 {
   if(m_stPointsets.empty())
-    return true;
+  return true;
 
   // check whether the body's mid point is inside any of the pointsets' convex hulls
   CUpscalingPointsetRangesBranch::TPointsetSet::const_iterator it;
   for(it = m_stPointsets.begin(); it != m_stPointsets.end(); ++it)
   {
-    bool bInside = (*it)->PointInConvexHull(point);
-    if(bInside && !m_bAllPointsets)
+  bool bInside = (*it)->PointInConvexHull(point);
+  if(bInside && !m_bAllPointsets)
       return true;
-    else if(!bInside && m_bAllPointsets)
+  else if(!bInside && m_bAllPointsets)
       return false;
   }
 
@@ -660,8 +660,8 @@ void CUpscalingPointsetRangesBranch::OnNewNeighbour(const CGraphNode &node)
   const CPointSet* pPointSet = dynamic_cast<const CPointSet*>(&node);
   if(pPointSet)
   {
-    VERIFY(m_stPointsets.insert(pPointSet).second);
-    Modified();
+  VERIFY(m_stPointsets.insert(pPointSet).second);
+  Modified();
   }
 }
 
@@ -670,10 +670,10 @@ void CUpscalingPointsetRangesBranch::OnNeighbourDeleted(const CGraphNode &node)
   const CPointSet* pPointSet = dynamic_cast<const CPointSet*>(&node);
   if(pPointSet)
   {
-    TPointsetSet::iterator it = m_stPointsets.find(pPointSet);
-    assert(it != m_stPointsets.end());
-    m_stPointsets.erase(it);
-    Modified();
+  TPointsetSet::iterator it = m_stPointsets.find(pPointSet);
+  assert(it != m_stPointsets.end());
+  m_stPointsets.erase(it);
+  Modified();
   }
 }
 
@@ -681,7 +681,7 @@ void CUpscalingPointsetRangesBranch::OnNeighbourModified(const CGraphNode& node,
 {
   const CPointSet* pPointSet = dynamic_cast<const CPointSet*>(&node);
   if(pPointSet && m_stPointsets.find(pPointSet) != m_stPointsets.end())
-    Modified();
+  Modified();
 }
 
 ///// CUpscalingPointsetRangesBranch::CPointsetDrawDef
@@ -725,7 +725,7 @@ CUpscalingTargetPointsetBranch::CUpscalingTargetPointsetBranch(const CUpscalingT
 CUpscalingTargetPointsetBranch::~CUpscalingTargetPointsetBranch()
 {
   if(m_pPillarMap)
-    delete m_pPillarMap;
+  delete m_pPillarMap;
 }
 
 bool CUpscalingTargetPointsetBranch::Empty() const
@@ -743,7 +743,7 @@ void CUpscalingTargetPointsetBranch::SaveStream(TSTREAM& stream, TPROGRESS& prog
 {
   stream << int(m_pPillarMap ? 1 : 0);
   if(m_pPillarMap)
-    m_pPillarMap->SaveStream(stream, progress);
+  m_pPillarMap->SaveStream(stream, progress);
 
   IUpscalingPointsetBranchBase::SaveStream(stream, progress);
 }
@@ -754,9 +754,9 @@ void CUpscalingTargetPointsetBranch::LoadStream(TSTREAM& stream, CStreamVersion&
   stream >> nHasPillarMap;
   if(nHasPillarMap)
   {
-    CPillarMap* pPillarMap = new CPillarMap(Model());
-    pPillarMap->LoadStream(stream, version, progress);
-    LinkTo(*pPillarMap);
+  CPillarMap* pPillarMap = new CPillarMap(Model());
+  pPillarMap->LoadStream(stream, version, progress);
+  LinkTo(*pPillarMap);
   }
 
   IUpscalingPointsetBranchBase::LoadStream(stream, version, progress);
@@ -776,7 +776,7 @@ bool CUpscalingTargetPointsetBranch::CanConnectItem(const CGraphNode& item) cons
 {
   const CPointSet* pPointSet = dynamic_cast<const CPointSet*>(&item);
   if(pPointSet)
-    return (pPointSet->Dimension() == IPointSet::DIM_2D);
+  return (pPointSet->Dimension() == IPointSet::DIM_2D);
 
   const CSurfaceBase* pSurface = dynamic_cast<const CSurfaceBase*>(&item);
   return (pSurface != 0);
@@ -787,26 +787,26 @@ bool CUpscalingTargetPointsetBranch::ConnectItem(const CGraphNode& item)
   const CPointSet* pPointSet = dynamic_cast<const CPointSet*>(&item);
   if(pPointSet)
   {
-    assert(pPointSet->Dimension() == IPointSet::DIM_2D);
-    QString msg = QString("Do you want to generate a target pointset from the 2D pointset '%1'?").arg(pPointSet->Name());
-    if(_m()->msg(msg, MB_YESNO | MB_ICONQUESTION) == IDYES)
-    {
+  assert(pPointSet->Dimension() == IPointSet::DIM_2D);
+  QString msg = QString("Do you want to generate a target pointset from the 2D pointset '%1'?").arg(pPointSet->Name());
+  if(_m()->msg(msg, MB_YESNO | MB_ICONQUESTION) == IDYES)
+  {
       CPointsetSource source(*pPointSet);
       CreateTargetPointset(source);
       return true;
-    }
+  }
   }
 
   const CSurfaceBase* pSurface = dynamic_cast<const CSurfaceBase*>(&item);
   if(pSurface)
   {
-    QString msg = QString("Do you want to generate a target pointset from the surface '%1'?").arg(pSurface->Name());
-    if(_m()->msg(msg, MB_YESNO | MB_ICONQUESTION) == IDYES)
-    {
+  QString msg = QString("Do you want to generate a target pointset from the surface '%1'?").arg(pSurface->Name());
+  if(_m()->msg(msg, MB_YESNO | MB_ICONQUESTION) == IDYES)
+  {
       CPointsetSource source(*pSurface);
       CreateTargetPointset(source);
       return true;
-    }
+  }
   }
 
   return false;
@@ -817,9 +817,9 @@ void CUpscalingTargetPointsetBranch::OnNewNeighbour(const CGraphNode& node)
   const CPillarMap* pPillarMap = dynamic_cast<const CPillarMap*>(&node);
   if(pPillarMap)
   {
-    assert(m_pPillarMap == 0);
-    m_pPillarMap = const_cast<CPillarMap*>(pPillarMap);
-    Modified();
+  assert(m_pPillarMap == 0);
+  m_pPillarMap = const_cast<CPillarMap*>(pPillarMap);
+  Modified();
   }
 }
 
@@ -828,9 +828,9 @@ void CUpscalingTargetPointsetBranch::OnNeighbourModified(const CGraphNode& node,
   const CMeshBase* pMesh = dynamic_cast<const CMeshBase*>(&node);
   if(pMesh && !pMesh->IsMesh())
   {
-    CPillarMap* pMap = m_pPillarMap;
-    m_pPillarMap = 0;
-    delete pMap;
+  CPillarMap* pMap = m_pPillarMap;
+  m_pPillarMap = 0;
+  delete pMap;
   }
 }
 
@@ -838,8 +838,8 @@ void CUpscalingTargetPointsetBranch::OnNeighbourDeleted(const CGraphNode& node)
 {
   if(&node == m_pPillarMap)
   {
-    m_pPillarMap = 0;
-    Modified();
+  m_pPillarMap = 0;
+  Modified();
   }
 }
 
@@ -893,37 +893,37 @@ void CUpscalingTargetPointsetBranch::CopyPillarMapAsPointset(const CPointSet& se
   const CValueTypeFactory *factory = CValueTypeFactory::instance();
   for(int n = 0; n < nValueSetSize; ++n)
   {
-    const CNodalValueSet& nvs = set2d.NodalValueSet(n + 2);
-    std::set<IValueComponentBase*> stComponents = nvs.Links<IValueComponentBase>();
-    assert(stComponents.size() == 1);
-    const CValueType* pVT = dynamic_cast<const CValueType*>(&(*stComponents.begin())->Parent());
-    assert(pVT);
-    pPointset->NodalValueSet(n + 3).LinkTo(factory->BuildValueType(*pPointset, pVT->TypeId(), pVT->Name())->Component());
+  const CNodalValueSet& nvs = set2d.NodalValueSet(n + 2);
+  std::set<IValueComponentBase*> stComponents = nvs.Links<IValueComponentBase>();
+  assert(stComponents.size() == 1);
+  const CValueType* pVT = dynamic_cast<const CValueType*>(&(*stComponents.begin())->Parent());
+  assert(pVT);
+  pPointset->NodalValueSet(n + 3).LinkTo(factory->BuildValueType(*pPointset, pVT->TypeId(), pVT->Name())->Component());
   }
 
   CPillarMap::const_iterator it;
   for(it = begin(); it != end(); ++it)
   {
-    const CPillar& pillar = it->second;
+  const CPillar& pillar = it->second;
 
-    // get the index in the 2D pointset
-    std::vector<int> vcPoints = set2d.PointAt(pillar.Position());
-    assert(vcPoints.size() == 1);
+  // get the index in the 2D pointset
+  std::vector<int> vcPoints = set2d.PointAt(pillar.Position());
+  assert(vcPoints.size() == 1);
 
-    // get the values at that point
-    for(int n = 0; n < nValueSetSize; ++n)
+  // get the values at that point
+  for(int n = 0; n < nValueSetSize; ++n)
       vcRow[3 + n] = set2d.NodalValueSet(n + 2).Value(vcPoints[0]);
 
-    // iterate over the pillar (Z-direction) and add the points
-    CPillar::const_iterator itp;
-    for(itp = pillar.begin(); itp != pillar.end(); ++itp)
-    {
+  // iterate over the pillar (Z-direction) and add the points
+  CPillar::const_iterator itp;
+  for(itp = pillar.begin(); itp != pillar.end(); ++itp)
+  {
       CPillar::CPillarPoint pt = (*itp).first;
       vcRow[0] = pt.X();
       vcRow[1] = pt.Y();
       vcRow[2] = pt.Z();
       pPointset->PushBack(vcRow);
-    }
+  }
   }
 }
 
@@ -931,8 +931,8 @@ void CUpscalingTargetPointsetBranch::CreateFromRegular2DGrid(
   const geo::IPoint& corner1, const geo::IPoint& corner2, int pointsNorthing,
   int pointsEasting)
 {
-    CGridPointsetSource source(corner1, corner2, pointsNorthing, pointsEasting);
-    CreateTargetPointset(source);
+  CGridPointsetSource source(corner1, corner2, pointsNorthing, pointsEasting);
+  CreateTargetPointset(source);
 }
 
 bool CUpscalingTargetPointsetBranch::CanCreateFromRegular2DGrid() const
@@ -942,14 +942,14 @@ bool CUpscalingTargetPointsetBranch::CanCreateFromRegular2DGrid() const
 
 void CUpscalingTargetPointsetBranch::CreateFromExisting2D(const IPointSet& pointSet)
 {
-    CPointsetSource source(pointSet);
-    CreateTargetPointset(source);
+  CPointsetSource source(pointSet);
+  CreateTargetPointset(source);
 }
 
 bool CUpscalingTargetPointsetBranch::CanCreateFromExisting2D() const
 {
   if(HasPointset())
-    return false;
+  return false;
 
   const TPointSetEntry* pEntry = static_cast<const TPointSetEntry*>(Model().GraphEntry(MD_BASE_POINTSET));
   assert(pEntry);
@@ -957,7 +957,7 @@ bool CUpscalingTargetPointsetBranch::CanCreateFromExisting2D() const
   TPointSetEntry::TNodeSet::const_iterator it;
   for(it = stNodes.begin(); it != stNodes.end(); ++it)
   {
-    if((*it)->Dimension() == IPointSet::DIM_2D && dynamic_cast<const CPointSet*>(*it) != 0)
+  if((*it)->Dimension() == IPointSet::DIM_2D && dynamic_cast<const CPointSet*>(*it) != 0)
       return true;
   }
 
@@ -966,14 +966,14 @@ bool CUpscalingTargetPointsetBranch::CanCreateFromExisting2D() const
 
 void CUpscalingTargetPointsetBranch::CreateFromSurfaceNodes(const IPointSet& pointSet)
 {
-    CPointsetSource source(pointSet);
-    CreateTargetPointset(source);
+  CPointsetSource source(pointSet);
+  CreateTargetPointset(source);
 }
 
 bool CUpscalingTargetPointsetBranch::CanCreateFromSurfaceNodes() const
 {
   if(HasPointset())
-    return false;
+  return false;
 
   const CSurfaceEntry* pEntry = static_cast<const CSurfaceEntry*>(Model().GraphEntry(MD_BASE_SURFACE));
   assert(pEntry);

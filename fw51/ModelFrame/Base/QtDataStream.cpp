@@ -73,19 +73,19 @@ IModelStream& CQtDataStream::operator>> ( long & i )
 {
   if ( sizeof( long ) == 8 )
   {
-    qint64 t;
-    m_stream >> t;
-    i = long( t );
+  qint64 t;
+  m_stream >> t;
+  i = long( t );
   }
   else if ( sizeof( long ) == 4 )
   {
-    qint32 t;
-    m_stream >> t;
-    i = long( t );
+  qint32 t;
+  m_stream >> t;
+  i = long( t );
   }
   else
   {
-    qFatal( "can't cope with this word size" );
+  qFatal( "can't cope with this word size" );
   }
   return *this;
 }
@@ -94,19 +94,19 @@ IModelStream& CQtDataStream::operator>> ( ulong & i )
 {
   if ( sizeof( ulong ) == 8 )
   {
-    quint64 t;
-    m_stream >> t;
-    i = ulong( t );
+  quint64 t;
+  m_stream >> t;
+  i = ulong( t );
   }
   else if ( sizeof( long ) == 4 )
   {
-    quint32 t;
-    m_stream >> t;
-    i = ulong( t );
+  quint32 t;
+  m_stream >> t;
+  i = ulong( t );
   }
   else
   {
-    qFatal( "can't cope with this word size" );
+  qFatal( "can't cope with this word size" );
   }
   return *this;
 }
@@ -161,7 +161,7 @@ IModelStream& CQtDataStream::operator>>( TFtnDoubleVec & vec )
   vec.resize( size );
   for ( int i = 0; i < size; ++i )
   {
-    m_stream >> vec[i];
+  m_stream >> vec[i];
   }
   return *this;
 }
@@ -176,7 +176,7 @@ IModelStream &CQtDataStream::operator>> ( TFtnIntVec& vec )
   vec.resize( size );
   for ( int i = 0; i < size; ++i )
   {
-    this->operator >>( vec[i] );
+  this->operator >>( vec[i] );
   }
   return *this;
 }
@@ -308,7 +308,7 @@ IModelStream& CQtDataStream::operator<<( TFtnDoubleVec const& vec )
   m_stream << (int)vec.size();
   for ( int i = 0; i < vec.size(); ++i )
   {
-    m_stream << vec[i];
+  m_stream << vec[i];
   }
   return *this;
 }
@@ -321,7 +321,7 @@ IModelStream &CQtDataStream::operator<<( const TFtnIntVec& vec )
   m_stream << (int)vec.size();
   for ( int i = 0; i < vec.size(); ++i )
   {
-    this->operator <<( vec[i] );
+  this->operator <<( vec[i] );
   }
   return *this;
 }

@@ -29,6 +29,6 @@ private:
   QSharedMemory m_shm;
 
 public:
-	ProcessManager* m_pm;
-	
+  ProcessManager* m_pm;
+  
 };

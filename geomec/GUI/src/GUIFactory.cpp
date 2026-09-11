@@ -28,31 +28,31 @@ CGUIBase* CGUIFactory::createGUI(CFemAppGUI* parentGUI,
 
   switch (model->modelType())
   {
-    case CFemAppModel::eHexaModel:
+  case CFemAppModel::eHexaModel:
       GUIBase = new CHexaGUI(parentGUI,
-        dynamic_cast <CHexaModel*> (model));
+    dynamic_cast <CHexaModel*> (model));
       break;
-    case CFemAppModel::eTetraModel:
+  case CFemAppModel::eTetraModel:
       GUIBase = new CTetraGUI(parentGUI,
-        dynamic_cast <CTetraModel*> (model));
+    dynamic_cast <CTetraModel*> (model));
       break;
-    case CFemAppModel::eEclipseModel:
+  case CFemAppModel::eEclipseModel:
       GUIBase = new CEclipseGUI(parentGUI,
-        dynamic_cast <CEclipseModel*> (model));
+    dynamic_cast <CEclipseModel*> (model));
       break;
-    case CFemAppModel::eGoCadModel:
+  case CFemAppModel::eGoCadModel:
       GUIBase = new CGoCadGUI(parentGUI,
-        dynamic_cast <CGoCadModel*> (model));
+    dynamic_cast <CGoCadModel*> (model));
       break;
-    case CFemAppModel::eWellCasingModel:
+  case CFemAppModel::eWellCasingModel:
       GUIBase = new CWellCasingGUI(parentGUI,
-        dynamic_cast <CWellCasingModel*> (model));
+    dynamic_cast <CWellCasingModel*> (model));
       break;
-    case CFemAppModel::eWellZoomInModel:
+  case CFemAppModel::eWellZoomInModel:
       GUIBase = new CWellZoomInGUI(parentGUI,
-        dynamic_cast <CWellZoomInModel*> (model));
+    dynamic_cast <CWellZoomInModel*> (model));
       break;
-    default:
+  default:
       assert(false);
   }
 

@@ -17,15 +17,15 @@ namespace cora
 class CFailureTypeParameterSurface : public CFailureTypeParameterBase
 {
   public:
-    CFailureTypeParameterSurface(CSummaryResultFile& summaryResultFile,
+  CFailureTypeParameterSurface(CSummaryResultFile& summaryResultFile,
       const std::string& object, const std::string& option,
       const std::string& parameter, std::vector <double>& value,
       const CGetModelInfo& modelInfo);
-    virtual ~CFailureTypeParameterSurface();
+  virtual ~CFailureTypeParameterSurface();
 
   private:
-    CFailureTypeParameterSurface(const CFailureTypeParameterSurface& rhs);
-    CFailureTypeParameterSurface& operator = (CFailureTypeParameterSurface rhs);
+  CFailureTypeParameterSurface(const CFailureTypeParameterSurface& rhs);
+  CFailureTypeParameterSurface& operator = (CFailureTypeParameterSurface rhs);
 };
 
 } // namespace cora

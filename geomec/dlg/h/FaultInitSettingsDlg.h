@@ -6,10 +6,10 @@ class CModelBase;
 class CFaultInitSettingsDlg : public CDialog
 {
 public:
-	CFaultInitSettingsDlg(CModelBase& model, CWnd* pParent = NULL);   // standard constructor
+  CFaultInitSettingsDlg(CModelBase& model, CWnd* pParent = NULL);   // standard constructor
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
   virtual void OnOK();
 
 private:

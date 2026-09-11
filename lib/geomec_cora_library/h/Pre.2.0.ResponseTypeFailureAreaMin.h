@@ -9,17 +9,17 @@ namespace cora
 class CPre20ResponseTypeFailureAreaMin : public CPre20ResponseTypeBaseWithValue
 {
   public:
-    CPre20ResponseTypeFailureAreaMin(CSummaryResultFile& summaryResultFile,
+  CPre20ResponseTypeFailureAreaMin(CSummaryResultFile& summaryResultFile,
       const std::vector <QString>& function);
-    virtual ~CPre20ResponseTypeFailureAreaMin();
+  virtual ~CPre20ResponseTypeFailureAreaMin();
 
-    virtual double calculate(const TObject& object,
+  virtual double calculate(const TObject& object,
       const TFailureMode& failureMode);
 
   private:
-    CPre20ResponseTypeFailureAreaMin(
+  CPre20ResponseTypeFailureAreaMin(
       const CPre20ResponseTypeFailureAreaMin& rhs);
-    CPre20ResponseTypeFailureAreaMin& operator = (
+  CPre20ResponseTypeFailureAreaMin& operator = (
       CPre20ResponseTypeFailureAreaMin rhs);
 };
 

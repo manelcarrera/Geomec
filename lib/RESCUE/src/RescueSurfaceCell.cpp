@@ -31,7 +31,7 @@ RescueSurfaceCell::RescueSurfaceCell(RescueGeometry *geometryIn,
   isA = R_RescueSurfaceCell;
   if (surface != 0)
   {
-    surface->AddSurfaceCell(this);
+  surface->AddSurfaceCell(this);
   }
 }
 
@@ -52,18 +52,18 @@ RescueSurfaceCell::RescueSurfaceCell(RescueContext *context, FILE *archiveFile)
   uvs = new RESCUEFLOAT[8];
   if (looseInteger == 8)
   {
-    myfscanf(context, archiveFile, uvs, 8, FALSE);
+  myfscanf(context, archiveFile, uvs, 8, FALSE);
   }
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -73,12 +73,12 @@ void RescueSurfaceCell::Relink(RescueObject *object)
   RescueContext *context = geometry->ParentModel()->Context();
   if (context->ReadFileVersion() < 23)
   {
-    RescueSurface *parentSurface = geometry->ParentModel()->SurfaceIdentifiedBy(surfaceID);
-    surface = parentSurface->NthIJSurface(0);
+  RescueSurface *parentSurface = geometry->ParentModel()->SurfaceIdentifiedBy(surfaceID);
+  surface = parentSurface->NthIJSurface(0);
   }
   else
   {
-    surface = geometry->ParentModel()->IJSurfaceIdentifiedBy(surfaceID);
+  surface = geometry->ParentModel()->IJSurfaceIdentifiedBy(surfaceID);
   }
   surface->AddSurfaceCell(this);
 }
@@ -89,27 +89,27 @@ void RescueSurfaceCell::Archive(FILE *archiveFile)
   myfprintf(context, archiveFile, "; Surface cell");
   if (context->FileVersion() >= 23)
   {
-    myfprintf(context, archiveFile, surface->Identifier());
+  myfprintf(context, archiveFile, surface->Identifier());
   }
   else
   {
-    myfprintf(context, archiveFile, surface->ParentSurface()->Identifier());
+  myfprintf(context, archiveFile, surface->ParentSurface()->Identifier());
   }
   myfprintf(context, archiveFile, cellNumber);
   myfprintf(context, archiveFile, cellFaceNumber);
   myfprintf(context, archiveFile, (RESCUEINT64) side);
   if (uvs == 0)
   {
-    myfprintf(context, archiveFile, (RESCUEINT64) 0);
+  myfprintf(context, archiveFile, (RESCUEINT64) 0);
   }
   else
   {
-    myfprintf(context, archiveFile, (RESCUEINT64) 8);
-    myfprintf(context, archiveFile, uvs, 8, FALSE);
+  myfprintf(context, archiveFile, (RESCUEINT64) 8);
+  myfprintf(context, archiveFile, uvs, 8, FALSE);
   }
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -117,11 +117,11 @@ RescueSurfaceCell::~RescueSurfaceCell()
 {
   if (uvs != 0)
   {
-    delete [] uvs;
+  delete [] uvs;
   }
   if (surface != 0)
   {
-    surface->DropSurfaceCell(this);
+  surface->DropSurfaceCell(this);
   }
 }
 
@@ -133,15 +133,15 @@ void RescueSurfaceCell::CellIndex(RescueGeometry *geometryIn, RESCUEINT32 *retur
   CellIndex(geometryIn, i, j, k);
   if (arraySize >= 1)
   {
-    returnArray[0] = (RESCUEINT32) i;
+  returnArray[0] = (RESCUEINT32) i;
   }
   if (arraySize >= 2)
   {
-    returnArray[1] = (RESCUEINT32) j;
+  returnArray[1] = (RESCUEINT32) j;
   }
   if (arraySize >= 3)
   {
-    returnArray[2] = (RESCUEINT32) k;
+  returnArray[2] = (RESCUEINT32) k;
   }
 }
 
@@ -153,15 +153,15 @@ void RescueSurfaceCell::CellIndex(RescueGeometry *geometryIn, RESCUEINT64 *retur
   CellIndex(geometryIn, i, j, k);
   if (arraySize >= 1)
   {
-    returnArray[0] = i;
+  returnArray[0] = i;
   }
   if (arraySize >= 2)
   {
-    returnArray[1] = j;
+  returnArray[1] = j;
   }
   if (arraySize >= 3)
   {
-    returnArray[2] = k;
+  returnArray[2] = k;
   }
 }
 
@@ -189,26 +189,26 @@ void RescueSurfaceCell::Swap(bool swapI, RescueGridAxis *iAxis, bool swapJ, Resc
 {
   if (uvs != 0)
   {
-    if (swapI)
-    {
+  if (swapI)
+  {
       RESCUEFLOAT axisBegin = (RESCUEFLOAT) iAxis->LowBound64();
       RESCUEFLOAT axisEnd = (RESCUEFLOAT) iAxis->LowBound64() + (iAxis->Count64() - 1);
       RESCUEINT64 loop;
       for (loop = 0; loop < 4; loop++)
       {
-        uvs[loop] = axisEnd - (uvs[loop] - axisBegin);
+    uvs[loop] = axisEnd - (uvs[loop] - axisBegin);
       }
-    }
-    if (swapJ)
-    {
+  }
+  if (swapJ)
+  {
       RESCUEFLOAT axisBegin = (RESCUEFLOAT) jAxis->LowBound64();
       RESCUEFLOAT axisEnd = (RESCUEFLOAT) jAxis->LowBound64() + (jAxis->Count64() - 1);
       RESCUEINT64 loop;
       for (loop = 0; loop < 4; loop++)
       {
-        uvs[loop + 4] = axisEnd - (uvs[loop + 4] - axisBegin);
+    uvs[loop + 4] = axisEnd - (uvs[loop + 4] - axisBegin);
       }
-    }
+  }
   }
 }
 
@@ -216,11 +216,11 @@ RESCUEBOOL RescueSurfaceCell::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueSurfaceCell)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueObject::IsOfType(thisType);
+  return RescueObject::IsOfType(thisType);
   }
 }
 

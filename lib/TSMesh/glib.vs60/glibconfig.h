@@ -134,12 +134,12 @@ struct _GStaticMutex
 {
   struct _GMutex *runtime_mutex;
   union {
-    /* The size of the pad array should be sizeof (pthread_mutex_t) */
-    /* This value corresponds to the 1999-05-30 version of pthreads-win32 */
-    char   pad[4];
-    double dummy_double;
-    void  *dummy_pointer;
-    long   dummy_long;
+  /* The size of the pad array should be sizeof (pthread_mutex_t) */
+  /* This value corresponds to the 1999-05-30 version of pthreads-win32 */
+  char   pad[4];
+  double dummy_double;
+  void  *dummy_pointer;
+  long   dummy_long;
   } aligned_pad_u;
 };
 /* This should be NULL followed by the bytes in PTHREAD_MUTEX_INITIALIZER */

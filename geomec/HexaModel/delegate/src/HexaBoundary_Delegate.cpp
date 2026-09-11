@@ -9,38 +9,38 @@
 
 template <>
   BOOL EnableBoundarySpecificWindow <CHexaBoundary> (
-    CDialog* dialog, int dialogItem, BOOL bEnable)
+  CDialog* dialog, int dialogItem, BOOL bEnable)
 {
   return dialog->GetDlgItem(dialogItem)->EnableWindow(bEnable);
 }
 
 template <>
   BOOL SetBoundarySpecificReadOnly <CHexaBoundary> (
-    CDialog* dialog, int dialogItem, BOOL bReadOnly)
+  CDialog* dialog, int dialogItem, BOOL bReadOnly)
 {
   return ((CEdit*) dialog->GetDlgItem(dialogItem))->SetReadOnly(bReadOnly);
 }
 
 template <>
   void SetBoundarySpecificWindowText <CHexaBoundary> (
-    CDialog* dialog, int dialogItem, LPCTSTR string)
+  CDialog* dialog, int dialogItem, LPCTSTR string)
 {
   dialog->GetDlgItem(dialogItem)->SetWindowText(string);
 }
 
 template <>
   void BoundarySpecificDDX_Point <CHexaBoundary> (
-    CGeomecAttriTemp <CHexaBoundary>* dialog, CDataExchange* pDX,
-    int nID_X, int nID_Y, int nID_Z, geo::IPoint &point, int nID_UNIT1,
-    int nID_UNIT2, int nID_UNIT3)
+  CGeomecAttriTemp <CHexaBoundary>* dialog, CDataExchange* pDX,
+  int nID_X, int nID_Y, int nID_Z, geo::IPoint &point, int nID_UNIT1,
+  int nID_UNIT2, int nID_UNIT3)
 {
   dialog->
-    DDX_Point(pDX, nID_X, nID_Y, nID_Z, point, nID_UNIT1, nID_UNIT2, nID_UNIT3);
+  DDX_Point(pDX, nID_X, nID_Y, nID_Z, point, nID_UNIT1, nID_UNIT2, nID_UNIT3);
 }
 
 template <>
   void BoundarySpecificDDX_Text <CHexaBoundary> (
-    CDataExchange* pDX, int nIDC, double& value)
+  CDataExchange* pDX, int nIDC, double& value)
 {
   DDX_Text(pDX, nIDC, value);
 }
@@ -54,7 +54,7 @@ CHexaBoundary_Delegate::CHexaBoundary_Delegate(CHexaBoundary* hexaBoundary)
 bool CHexaBoundary_Delegate::Attributes()
 {
   CAttriBoundaryDlg <CHexaBoundary> dlg(*m_hexaBoundary,
-    IDD_ATTRI_HEXA_BOUNDARY);
+  IDD_ATTRI_HEXA_BOUNDARY);
 
   return dlg.DoModal() == IDOK;
 }
@@ -63,17 +63,17 @@ void CHexaBoundary_Delegate::AppendContextMenu(CContextMenuInvoker &invoker)
 {
   typedef CSingleCommandTemplate <CHexaBoundary> TBoundaryCommand;
   typedef CSingleCommandTemplate <CHexaBoundary_Delegate>
-    TBoundaryCommand_Delegate;
+  TBoundaryCommand_Delegate;
 
   if(!m_hexaBoundary->Model().parentModel())
   {
-    invoker.AddCommand(_T("&Apply boundary interfaces"),
+  invoker.AddCommand(_T("&Apply boundary interfaces"),
       *(new TBoundaryCommand(*m_hexaBoundary, &CHexaBoundary::ToggleInterfaces,
-        0, &CHexaBoundary::CreateInterfaces)));
+    0, &CHexaBoundary::CreateInterfaces)));
   }
 
   invoker.AddCommand(_T("&Interface attributes"),
-    *(new TBoundaryCommand_Delegate(*this,
+  *(new TBoundaryCommand_Delegate(*this,
       &CHexaBoundary_Delegate::InterfaceAttributes,
       &CHexaBoundary_Delegate::CanCreateInterfaces)));
   invoker.AddSeparator();
@@ -91,10 +91,10 @@ bool CHexaBoundary_Delegate::CanCreateInterfaces() const
 void CHexaBoundary_Delegate::InterfaceAttributes()
 {
   assert(typeid(m_hexaBoundary->InterfaceDefinition()).name() ==
-    typeid(CBoundaryInterfaceDef).name());
+  typeid(CBoundaryInterfaceDef).name());
 
   CBoundaryInterfaceDef_Delegate* boundaryInterfaceDef_Delegate =
-    static_cast <CBoundaryInterfaceDef_Delegate*> (
+  static_cast <CBoundaryInterfaceDef_Delegate*> (
       m_hexaBoundary->InterfaceDefinition().getDelegate());
 
   boundaryInterfaceDef_Delegate->Attributes();

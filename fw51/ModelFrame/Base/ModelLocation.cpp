@@ -32,14 +32,14 @@ CModelLocation::CModelLocation( const IModelObject& object )
   const IModelObject* child = &object;
   const IModelObject* parent = dynamic_cast<const IModelObject*>(child->parent());
   while ( parent ) {
-    int index = -1;
-    for ( int i = 0; i < parent->childSize(); ++i )
+  int index = -1;
+  for ( int i = 0; i < parent->childSize(); ++i )
       if ( &parent->childAt( i ) == child ) { index = i; break; }
-    assert( index != -1 );
-    
-    m_positions.push( index );
-    child = parent;
-    parent = dynamic_cast<const IModelObject*>(child->parent());
+  assert( index != -1 );
+  
+  m_positions.push( index );
+  child = parent;
+  parent = dynamic_cast<const IModelObject*>(child->parent());
   }
   assert( dynamic_cast<const CDocumentBase*>(child) );
 }
@@ -60,9 +60,9 @@ IModelObject* CModelLocation::getObject( CDocumentBase& document )
   IModelObject* object = &document;
   QStack<int> positions = m_positions;
   while ( positions.size() ) {
-    int index = positions.pop();
+  int index = positions.pop();
    
-    object = &object->childAt( index );
+  object = &object->childAt( index );
   }
   return object;
 }
@@ -72,11 +72,11 @@ IModelObject* CModelLocation::getObject( CDocumentBase& document )
 */
 void CModelLocation::store( TStream& stream ) const
 {
-    stream << (int)m_positions.size();
-    QStack<int>::const_iterator it;
-    for ( it = m_positions.begin(); it != m_positions.end(); ++it ) {
+  stream << (int)m_positions.size();
+  QStack<int>::const_iterator it;
+  for ( it = m_positions.begin(); it != m_positions.end(); ++it ) {
       stream << *it;
-    }
+  }
 }
 
 /*!
@@ -87,9 +87,9 @@ void CModelLocation::restore( TStream& stream, const CStreamVersion& /*streamVer
   int positionSize;
   stream >> positionSize;
   for ( int i = 0; i < positionSize; ++i ) {
-    int pos;
-    stream >> pos;
-    m_positions.push( pos );
+  int pos;
+  stream >> pos;
+  m_positions.push( pos );
   }
 }
 

@@ -25,30 +25,30 @@ void CGetPointSetInfo::listPointSets(std::ostream& os, const QString& preFix,
   IPointSet::DIMENSION dimension) const
 {
   const TPointSetEntry* pointSetEntry = dynamic_cast <const TPointSetEntry*> (
-    m_modelBase->GraphEntry(MD_BASE_POINTSET));
+  m_modelBase->GraphEntry(MD_BASE_POINTSET));
   const TPointSetEntry::TSortedNodeSet
-    pointSets = pointSetEntry->SortedEntryNodes();
+  pointSets = pointSetEntry->SortedEntryNodes();
   size_t pointSetsSize = 0;
 
   for (TPointSetEntry::TSortedNodeSet::const_iterator
-    pointSet = pointSets.begin(); pointSet != pointSets.end(); ++pointSet)
+  pointSet = pointSets.begin(); pointSet != pointSets.end(); ++pointSet)
   {
-    if ((!isElementSet(**pointSet)) && ((*pointSet)->Dimension() == dimension))
-    {
+  if ((!isElementSet(**pointSet)) && ((*pointSet)->Dimension() == dimension))
+  {
       ++pointSetsSize;
-    }
+  }
   }
 
   os << pointSetsSize << std::endl;
 
   for (TPointSetEntry::TSortedNodeSet::const_iterator
-    pointSet = pointSets.begin(); pointSet != pointSets.end(); ++pointSet)
+  pointSet = pointSets.begin(); pointSet != pointSets.end(); ++pointSet)
   {
-    if ((!isElementSet(**pointSet)) && ((*pointSet)->Dimension() == dimension))
-    {
+  if ((!isElementSet(**pointSet)) && ((*pointSet)->Dimension() == dimension))
+  {
       os << preFix.toStdString().c_str() <<
-        (*pointSet)->Name().toStdString().c_str() << std::endl;
-    }
+    (*pointSet)->Name().toStdString().c_str() << std::endl;
+  }
   }
 }
 

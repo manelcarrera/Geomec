@@ -5,7 +5,7 @@ class CWnd;
 class CDialogBase : public CDialog
 {
 public:
-	CDialogBase(UINT nIDTemplate, CWnd* pParentWnd = NULL);
-	virtual ~CDialogBase();
+  CDialogBase(UINT nIDTemplate, CWnd* pParentWnd = NULL);
+  virtual ~CDialogBase();
 };
 

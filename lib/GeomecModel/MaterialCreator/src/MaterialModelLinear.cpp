@@ -134,191 +134,191 @@ void CMaterialLinearYoungSetStrategy::operator()(double dValue, ml::CMatParam& p
 {
   ml::CMaterial& mat = param.ParentMaterial();
 
-	// also need Poisson's ratio and Rho b
+  // also need Poisson's ratio and Rho b
   const ml::CMatParam* pPoisson = mat.MatParameter(MLD_POISSONRATIO);
   assert(pPoisson);
 
   const ml::CMatParam *pRhob = mat.MatParameter(MLD_RHOB);
-	assert(pRhob);
+  assert(pRhob);
 
   ml::CMatParam* pYoungDecomp = mat.MatParameter(MLD_YOUNGMODULUS_DECOMP);
   assert(pYoungDecomp);
 
-	double dRhob = pRhob->Value();
-	double dPoisson = pPoisson->Value();
-	double dYoung = dValue;
+  double dRhob = pRhob->Value();
+  double dPoisson = pPoisson->Value();
+  double dYoung = dValue;
   double dYoungDecomp = pYoungDecomp->Value();
 
-	// calculate other parameters
-	double dBulk = dYoung / ( 3.0 * ( 1 - 2.0 * dPoisson ) );
-	double dShear = dYoung / ( 2.0 * ( 1.0 + dPoisson ) );
-	double dDynUni = dYoung * ( 1.0 - dPoisson ) / ( ( 1.0 + dPoisson ) * ( 1.0 - 2.0 * dPoisson ) );
-	double dDynShear = dYoung / ( 2.0 * ( 1.0 + dPoisson ) );
-	double dVp = sqrt( fabs( dDynUni / dRhob ) ) * 1000;
-	double dVs = sqrt( fabs( dDynShear / dRhob ) ) * 1000;
+  // calculate other parameters
+  double dBulk = dYoung / ( 3.0 * ( 1 - 2.0 * dPoisson ) );
+  double dShear = dYoung / ( 2.0 * ( 1.0 + dPoisson ) );
+  double dDynUni = dYoung * ( 1.0 - dPoisson ) / ( ( 1.0 + dPoisson ) * ( 1.0 - 2.0 * dPoisson ) );
+  double dDynShear = dYoung / ( 2.0 * ( 1.0 + dPoisson ) );
+  double dVp = sqrt( fabs( dDynUni / dRhob ) ) * 1000;
+  double dVs = sqrt( fabs( dDynShear / dRhob ) ) * 1000;
   double dCme = (1+dPoisson)*(1-2*dPoisson) / (dYoung * (1-dPoisson));
 
-	// set the parameters
+  // set the parameters
   ml::CMatParam *pParam;
 
-	if((pParam = mat.MatParameter(MLD_BULKSTIFFNESS)))
-	  SetParamValue(*pParam, dBulk);
+  if((pParam = mat.MatParameter(MLD_BULKSTIFFNESS)))
+    SetParamValue(*pParam, dBulk);
 
-	if((pParam = mat.MatParameter(MLD_SHEARMODULUS)))
-	  SetParamValue(*pParam, dShear);
+  if((pParam = mat.MatParameter(MLD_SHEARMODULUS)))
+    SetParamValue(*pParam, dShear);
 
-	if(!(pParam = mat.MatParameter(MLD_DYNUNISTIFFNESS)))
+  if(!(pParam = mat.MatParameter(MLD_DYNUNISTIFFNESS)))
   	SetParamValue(*pParam, dDynUni);
 
-	if(!(pParam = mat.MatParameter(MLD_DYNSHEARSTIFFNESS)))
-	  SetParamValue(*pParam, dDynShear);
+  if(!(pParam = mat.MatParameter(MLD_DYNSHEARSTIFFNESS)))
+    SetParamValue(*pParam, dDynShear);
 
-	if(!(pParam = mat.MatParameter(MLD_VELOCITYP)))
-	  SetParamValue(*pParam, dVp);
+  if(!(pParam = mat.MatParameter(MLD_VELOCITYP)))
+    SetParamValue(*pParam, dVp);
 
-	if(!(pParam = mat.MatParameter(MLD_VELOCITYS)))
-	  SetParamValue(*pParam, dVs);
+  if(!(pParam = mat.MatParameter(MLD_VELOCITYS)))
+    SetParamValue(*pParam, dVs);
 
   if(!(pParam = mat.MatParameter(MLD_CME)))
-    SetParamValue(*pParam, dCme);
+  SetParamValue(*pParam, dCme);
 
-	SetParamValue(param, dYoung);
+  SetParamValue(param, dYoung);
 
   // decompaction Young's modulus should follow if value is equal to old Young's value
   if(fabs(dYoungDecomp - param.PreviousValue()) < 1e-4)
-    SetParamValue(*pYoungDecomp, dValue);
+  SetParamValue(*pYoungDecomp, dValue);
 }
 
 void CMaterialLinearPoissonSetStrategy::operator()(double dValue, ml::CMatParam& param) const
 {
   ml::CMaterial& mat = param.ParentMaterial();
 
-	// also need Young's modulus and Rho b
+  // also need Young's modulus and Rho b
   const ml::CMatParam* pYoung = mat.MatParameter(MLD_YOUNGMODULUS);
-	assert(pYoung);
+  assert(pYoung);
 
   const ml::CMatParam *pRhob = mat.MatParameter(MLD_RHOB);
-	assert(pRhob);
+  assert(pRhob);
 
   ml::CMatParam* pPoissonDecomp = mat.MatParameter(MLD_POISSONRATIO_DECOMP);
   assert(pPoissonDecomp);
 
-	double dRhob = pRhob->Value();
-	double dYoung = pYoung->Value();
-	double dPoisson = dValue;
+  double dRhob = pRhob->Value();
+  double dYoung = pYoung->Value();
+  double dPoisson = dValue;
   double dPoissonDecomp = pPoissonDecomp->Value();
 
-	// calculate other parameters
-	double dBulk = dYoung / (3.0 * (1 - 2.0 * dPoisson));
-	double dShear = dYoung / (2.0 * (1.0 + dPoisson));
-	double dDynUni = dYoung * (1.0 - dPoisson) / ((1.0 + dPoisson) * (1.0 - 2.0 * dPoisson));
-	double dDynShear = dYoung / (2.0 * (1.0 + dPoisson));
-	double dVp = sqrt(fabs(dDynUni / dRhob)) * 1000;
-	double dVs = sqrt(fabs(dDynShear / dRhob)) * 1000;
+  // calculate other parameters
+  double dBulk = dYoung / (3.0 * (1 - 2.0 * dPoisson));
+  double dShear = dYoung / (2.0 * (1.0 + dPoisson));
+  double dDynUni = dYoung * (1.0 - dPoisson) / ((1.0 + dPoisson) * (1.0 - 2.0 * dPoisson));
+  double dDynShear = dYoung / (2.0 * (1.0 + dPoisson));
+  double dVp = sqrt(fabs(dDynUni / dRhob)) * 1000;
+  double dVs = sqrt(fabs(dDynShear / dRhob)) * 1000;
   double dCme = (1+dPoisson)*(1-2*dPoisson) / (dYoung * (1-dPoisson));
 
-	// set the parameters
+  // set the parameters
   ml::CMatParam *pParam;
 
-	if((pParam = mat.MatParameter(MLD_BULKSTIFFNESS)))
-	  SetParamValue(*pParam, dBulk);
+  if((pParam = mat.MatParameter(MLD_BULKSTIFFNESS)))
+    SetParamValue(*pParam, dBulk);
 
-	if((pParam = mat.MatParameter(MLD_SHEARMODULUS)))
-	  SetParamValue(*pParam, dShear);
+  if((pParam = mat.MatParameter(MLD_SHEARMODULUS)))
+    SetParamValue(*pParam, dShear);
 
-	if((pParam = mat.MatParameter(MLD_DYNUNISTIFFNESS)))
-	  SetParamValue(*pParam, dDynUni);
+  if((pParam = mat.MatParameter(MLD_DYNUNISTIFFNESS)))
+    SetParamValue(*pParam, dDynUni);
 
-	if((pParam = mat.MatParameter(MLD_DYNSHEARSTIFFNESS)))
-	  SetParamValue(*pParam, dDynShear);
+  if((pParam = mat.MatParameter(MLD_DYNSHEARSTIFFNESS)))
+    SetParamValue(*pParam, dDynShear);
 
-	if((pParam = mat.MatParameter(MLD_VELOCITYP)))
-	  SetParamValue(*pParam, dVp);
+  if((pParam = mat.MatParameter(MLD_VELOCITYP)))
+    SetParamValue(*pParam, dVp);
 
-	if((pParam = mat.MatParameter(MLD_VELOCITYS)))
-	  SetParamValue(*pParam, dVs);
+  if((pParam = mat.MatParameter(MLD_VELOCITYS)))
+    SetParamValue(*pParam, dVs);
 
   if((pParam = mat.MatParameter(MLD_CME)))
-    SetParamValue(*pParam, dCme);
+  SetParamValue(*pParam, dCme);
 
-	SetParamValue(param, dPoisson);
+  SetParamValue(param, dPoisson);
 
   // decompaction Poisson ratio should follow if value is equal to old Poisson value
   if(fabs(dPoissonDecomp - param.PreviousValue()) < 1e-6)
-    SetParamValue(*pPoissonDecomp, dValue);
+  SetParamValue(*pPoissonDecomp, dValue);
 }
 
 void CMaterialLinearCMESetStrategy::operator()(double dValue, ml::CMatParam& param) const
 {
   ml::CMaterial& mat = param.ParentMaterial();
 
-	// also need Young's modulus and Rho b and Poisson's ratio
-	ml::CMatParam* pYoung = mat.MatParameter(MLD_YOUNGMODULUS);
-	assert(pYoung);
+  // also need Young's modulus and Rho b and Poisson's ratio
+  ml::CMatParam* pYoung = mat.MatParameter(MLD_YOUNGMODULUS);
+  assert(pYoung);
 
-	const ml::CMatParam* pRhob = mat.MatParameter(MLD_RHOB);
-	assert(pRhob);
+  const ml::CMatParam* pRhob = mat.MatParameter(MLD_RHOB);
+  assert(pRhob);
 
-	const ml::CMatParam* pPoisson = mat.MatParameter(MLD_POISSONRATIO);
-	assert(pPoisson);
+  const ml::CMatParam* pPoisson = mat.MatParameter(MLD_POISSONRATIO);
+  assert(pPoisson);
 
-	double dRhob = pRhob->Value();
-	double dPoisson = pPoisson->Value();
+  double dRhob = pRhob->Value();
+  double dPoisson = pPoisson->Value();
   double dCme = dValue;
 
   // calculate Young's modulus
-	double dYoung = (1-2*dPoisson*dPoisson/(1-dPoisson)) / dCme;
+  double dYoung = (1-2*dPoisson*dPoisson/(1-dPoisson)) / dCme;
   SetParamValue(*pYoung, dYoung);
 
-	// calculate other parameters
-	double dBulk = dYoung / (3.0 * (1 - 2.0 * dPoisson));
-	double dShear = dYoung / (2.0 * (1.0 + dPoisson));
-	double dDynUni = dYoung * (1.0 - dPoisson) / ((1.0 + dPoisson) * (1.0 - 2.0 * dPoisson));
-	double dDynShear = dYoung / (2.0 * (1.0 + dPoisson));
-	double dVp = sqrt(fabs(dDynUni / dRhob)) * 1000;
-	double dVs = sqrt(fabs(dDynShear / dRhob)) * 1000;
+  // calculate other parameters
+  double dBulk = dYoung / (3.0 * (1 - 2.0 * dPoisson));
+  double dShear = dYoung / (2.0 * (1.0 + dPoisson));
+  double dDynUni = dYoung * (1.0 - dPoisson) / ((1.0 + dPoisson) * (1.0 - 2.0 * dPoisson));
+  double dDynShear = dYoung / (2.0 * (1.0 + dPoisson));
+  double dVp = sqrt(fabs(dDynUni / dRhob)) * 1000;
+  double dVs = sqrt(fabs(dDynShear / dRhob)) * 1000;
 
-	// set the parameters
-	ml::CMatParam* pParam;
+  // set the parameters
+  ml::CMatParam* pParam;
 
-	if((pParam = mat.MatParameter(MLD_BULKSTIFFNESS)))
-	  SetParamValue(*pParam, dBulk);
+  if((pParam = mat.MatParameter(MLD_BULKSTIFFNESS)))
+    SetParamValue(*pParam, dBulk);
 
-	if((pParam = mat.MatParameter(MLD_SHEARMODULUS)))
-	  SetParamValue(*pParam, dShear);
+  if((pParam = mat.MatParameter(MLD_SHEARMODULUS)))
+    SetParamValue(*pParam, dShear);
 
-	if((pParam = mat.MatParameter(MLD_DYNUNISTIFFNESS)))
-	  SetParamValue(*pParam, dDynUni);
+  if((pParam = mat.MatParameter(MLD_DYNUNISTIFFNESS)))
+    SetParamValue(*pParam, dDynUni);
 
-	if((pParam = mat.MatParameter(MLD_DYNSHEARSTIFFNESS)))
-	  SetParamValue(*pParam, dDynShear);
+  if((pParam = mat.MatParameter(MLD_DYNSHEARSTIFFNESS)))
+    SetParamValue(*pParam, dDynShear);
 
-	if((pParam = mat.MatParameter(MLD_VELOCITYP)))
-	  SetParamValue(*pParam, dVp);
+  if((pParam = mat.MatParameter(MLD_VELOCITYP)))
+    SetParamValue(*pParam, dVp);
 
-	if((pParam = mat.MatParameter(MLD_VELOCITYS)))
-	  SetParamValue(*pParam, dVs);
+  if((pParam = mat.MatParameter(MLD_VELOCITYS)))
+    SetParamValue(*pParam, dVs);
 
   SetParamValue(param, dCme);
 }
 
 bool CMaterialLinearBulkStiffCheckStrategy::operator()(double dValue, const ml::CMatParam& param, QString& strErrorMsg, int nUnitDef) const
 {
-	// check against shear stiffness
+  // check against shear stiffness
   const ml::CMaterial& mat = param.ParentMaterial();
 
   const ml::CMatParam* pShear = mat.MatParameter(MLD_SHEARMODULUS);
-	assert(pShear);
+  assert(pShear);
 
-	double dShear = pShear->ValueToUserUnit(nUnitDef);
+  double dShear = pShear->ValueToUserUnit(nUnitDef);
 
-	if( dValue < 2.0 / 3.0 * dShear )
-	{
-		strErrorMsg = "Bulk stiffness must be at least 2/3 of shear modulus.";
-		return false;
-	}
+  if( dValue < 2.0 / 3.0 * dShear )
+  {
+    strErrorMsg = "Bulk stiffness must be at least 2/3 of shear modulus.";
+    return false;
+  }
 
-	return true;
+  return true;
 }
 
 void CMaterialLinearBulkStiffSetStrategy::operator()(double dValue, ml::CMatParam& param) const
@@ -326,48 +326,48 @@ void CMaterialLinearBulkStiffSetStrategy::operator()(double dValue, ml::CMatPara
   ml::CMaterial& mat = param.ParentMaterial();
 
   const ml::CMatParam* pShear = mat.MatParameter(MLD_SHEARMODULUS);
-	assert(pShear);
-	double dShear = pShear->Value();
+  assert(pShear);
+  double dShear = pShear->Value();
 
   const ml::CMatParam *pRhob = mat.MatParameter(MLD_RHOB);
-	assert(pRhob);
-	double dRhob = pRhob->Value();
+  assert(pRhob);
+  double dRhob = pRhob->Value();
 
-	double dBulk = dValue;
+  double dBulk = dValue;
 
-	double dYoung = 9.0 * dBulk * dShear / (3.0 * dBulk + dShear);
-	double dPoisson = (3.0 * dBulk - 2.0 * dShear) / (2.0 * (3.0 * dBulk + dShear));
-	double dDynUni = dBulk + 4.0 * dShear / 3.0;
-	double dDynShear = dShear;
-	double dVp = sqrt(fabs(dDynUni / dRhob)) * 1000;
-	double dVs = sqrt(fabs(dDynShear / dRhob)) * 1000;
+  double dYoung = 9.0 * dBulk * dShear / (3.0 * dBulk + dShear);
+  double dPoisson = (3.0 * dBulk - 2.0 * dShear) / (2.0 * (3.0 * dBulk + dShear));
+  double dDynUni = dBulk + 4.0 * dShear / 3.0;
+  double dDynShear = dShear;
+  double dVp = sqrt(fabs(dDynUni / dRhob)) * 1000;
+  double dVs = sqrt(fabs(dDynShear / dRhob)) * 1000;
   double dCme = (1+dPoisson)*(1-2*dPoisson) / (dYoung * (1-dPoisson));
 
-	// set the parameters
+  // set the parameters
   ml::CMatParam *pParam;
 
-	if((pParam = mat.MatParameter(MLD_YOUNGMODULUS)))
-	  SetParamValue(*pParam, dYoung);
+  if((pParam = mat.MatParameter(MLD_YOUNGMODULUS)))
+    SetParamValue(*pParam, dYoung);
 
-	if((pParam = mat.MatParameter(MLD_POISSONRATIO)))
-	  SetParamValue(*pParam, dPoisson);
+  if((pParam = mat.MatParameter(MLD_POISSONRATIO)))
+    SetParamValue(*pParam, dPoisson);
 
-	if((pParam = mat.MatParameter(MLD_DYNUNISTIFFNESS)))
-	  SetParamValue(*pParam, dDynUni);
+  if((pParam = mat.MatParameter(MLD_DYNUNISTIFFNESS)))
+    SetParamValue(*pParam, dDynUni);
 
-	if((pParam = mat.MatParameter(MLD_DYNSHEARSTIFFNESS)))
-	  SetParamValue(*pParam, dDynShear);
+  if((pParam = mat.MatParameter(MLD_DYNSHEARSTIFFNESS)))
+    SetParamValue(*pParam, dDynShear);
 
-	if((pParam = mat.MatParameter(MLD_VELOCITYP)))
-	  SetParamValue(*pParam, dVp);
+  if((pParam = mat.MatParameter(MLD_VELOCITYP)))
+    SetParamValue(*pParam, dVp);
 
-	if((pParam = mat.MatParameter(MLD_VELOCITYS)))
-	  SetParamValue(*pParam, dVs);
+  if((pParam = mat.MatParameter(MLD_VELOCITYS)))
+    SetParamValue(*pParam, dVs);
 
   if((pParam = mat.MatParameter(MLD_CME)))
-    SetParamValue(*pParam, dCme);
+  SetParamValue(*pParam, dCme);
 
-	SetParamValue(param, dBulk);
+  SetParamValue(param, dBulk);
 }
 
 bool CMaterialLinearShearStiffCheckStrategy::operator()(double dValue, const ml::CMatParam& param, QString& strErrorMsg, int nUnitDef) const
@@ -375,64 +375,64 @@ bool CMaterialLinearShearStiffCheckStrategy::operator()(double dValue, const ml:
   const ml::CMaterial& mat = param.ParentMaterial();
 
   const ml::CMatParam* pBulk = mat.MatParameter(MLD_BULKSTIFFNESS);
-	assert(pBulk);
+  assert(pBulk);
 
-	double dBulk = pBulk->ValueToUserUnit(nUnitDef);
+  double dBulk = pBulk->ValueToUserUnit(nUnitDef);
 
-	if(dBulk < 2.0 / 3.0 * dValue || dValue <= 0)
-	{
-		strErrorMsg = "Shear modulus must be greater than zero and at most 1.5 times bulk stiffness.";
-		return false;
-	}
+  if(dBulk < 2.0 / 3.0 * dValue || dValue <= 0)
+  {
+    strErrorMsg = "Shear modulus must be greater than zero and at most 1.5 times bulk stiffness.";
+    return false;
+  }
 
-	return true;
+  return true;
 }
 
 void CMaterialLinearShearStiffSetStrategy::operator()(double dValue, ml::CMatParam& param) const
 {
   ml::CMaterial& mat = param.ParentMaterial();
 
-	ml::CMatParam* pBulk = mat.MatParameter(MLD_BULKSTIFFNESS);
-	assert(pBulk);
-	double dBulk = pBulk->Value();
+  ml::CMatParam* pBulk = mat.MatParameter(MLD_BULKSTIFFNESS);
+  assert(pBulk);
+  double dBulk = pBulk->Value();
 
-	ml::CMatParam* pRhob = mat.MatParameter(MLD_RHOB);
-	assert(pRhob);
-	double dRhob = pRhob->Value();
+  ml::CMatParam* pRhob = mat.MatParameter(MLD_RHOB);
+  assert(pRhob);
+  double dRhob = pRhob->Value();
 
-	double dShear = dValue;
+  double dShear = dValue;
 
-	double dYoung = 9.0 * dBulk * dShear / (3.0 * dBulk + dShear);
-	double dPoisson = (3.0 * dBulk - 2.0 * dShear) / (2.0 * (3.0 * dBulk + dShear));
-	double dDynUni = dBulk + 4.0 * dShear / 3.0;
-	double dDynShear = dShear;
-	double dVp = sqrt(fabs(dDynUni / dRhob)) * 1000;
-	double dVs = sqrt(fabs(dDynShear / dRhob)) * 1000;
+  double dYoung = 9.0 * dBulk * dShear / (3.0 * dBulk + dShear);
+  double dPoisson = (3.0 * dBulk - 2.0 * dShear) / (2.0 * (3.0 * dBulk + dShear));
+  double dDynUni = dBulk + 4.0 * dShear / 3.0;
+  double dDynShear = dShear;
+  double dVp = sqrt(fabs(dDynUni / dRhob)) * 1000;
+  double dVs = sqrt(fabs(dDynShear / dRhob)) * 1000;
   double dCme = (1+dPoisson)*(1-2*dPoisson) / (dYoung * (1-dPoisson));
 
-	// set the parameters
-	ml::CMatParam* pParam;
+  // set the parameters
+  ml::CMatParam* pParam;
 
-	if((pParam = mat.MatParameter(MLD_YOUNGMODULUS)))
-	  SetParamValue(*pParam, dYoung);
+  if((pParam = mat.MatParameter(MLD_YOUNGMODULUS)))
+    SetParamValue(*pParam, dYoung);
 
-	if((pParam = mat.MatParameter(MLD_POISSONRATIO)))
-	  SetParamValue(*pParam, dPoisson);
+  if((pParam = mat.MatParameter(MLD_POISSONRATIO)))
+    SetParamValue(*pParam, dPoisson);
 
-	if((pParam = mat.MatParameter(MLD_DYNUNISTIFFNESS)))
-	  SetParamValue(*pParam, dDynUni);
+  if((pParam = mat.MatParameter(MLD_DYNUNISTIFFNESS)))
+    SetParamValue(*pParam, dDynUni);
 
-	if((pParam = mat.MatParameter(MLD_DYNSHEARSTIFFNESS)))
-	  SetParamValue(*pParam, dDynShear);
+  if((pParam = mat.MatParameter(MLD_DYNSHEARSTIFFNESS)))
+    SetParamValue(*pParam, dDynShear);
 
-	if((pParam = mat.MatParameter(MLD_VELOCITYP)))
-	  SetParamValue(*pParam, dVp);
+  if((pParam = mat.MatParameter(MLD_VELOCITYP)))
+    SetParamValue(*pParam, dVp);
 
-	if((pParam = mat.MatParameter(MLD_VELOCITYS)))
-	  SetParamValue(*pParam, dVs);
+  if((pParam = mat.MatParameter(MLD_VELOCITYS)))
+    SetParamValue(*pParam, dVs);
 
   if((pParam = mat.MatParameter(MLD_CME)))
-    SetParamValue(*pParam, dCme);
+  SetParamValue(*pParam, dCme);
 
   SetParamValue(param, dShear);
 }
@@ -443,17 +443,17 @@ bool CMaterialLinearDynUniCheckStrategy::operator()(double dValue, const ml::CMa
   const ml::CMaterial& mat = param.ParentMaterial();
 
   const ml::CMatParam* pDynShear = mat.MatParameter(MLD_DYNSHEARSTIFFNESS);
-	assert(pDynShear);
+  assert(pDynShear);
 
-	double dDynShear = pDynShear->ValueToUserUnit(nUnitDef);
+  double dDynShear = pDynShear->ValueToUserUnit(nUnitDef);
 
-	if(dValue <= dDynShear || dValue < 2.0 * dDynShear)
-	{
-		strErrorMsg = "Dynamic uniaxial stiffness must be at least twice as large as dynamic shear stiffness.";
-		return false;
-	}
+  if(dValue <= dDynShear || dValue < 2.0 * dDynShear)
+  {
+    strErrorMsg = "Dynamic uniaxial stiffness must be at least twice as large as dynamic shear stiffness.";
+    return false;
+  }
 
-	return true;
+  return true;
 }
 
 
@@ -462,46 +462,46 @@ void CMaterialLinearDynUniSetStrategy::operator()(double dValue, ml::CMatParam& 
   ml::CMaterial& mat = param.ParentMaterial();
 
   const ml::CMatParam* pDynShear = mat.MatParameter(MLD_DYNSHEARSTIFFNESS);
-	assert(pDynShear);
-	double dDynShear = pDynShear->Value();
+  assert(pDynShear);
+  double dDynShear = pDynShear->Value();
 
   const ml::CMatParam* pRhob = mat.MatParameter(MLD_RHOB);
-	assert(pRhob);
-	double dRhob = pRhob->Value();
+  assert(pRhob);
+  double dRhob = pRhob->Value();
 
-	double dDynUni = dValue;
+  double dDynUni = dValue;
 
-	double dYoung = dDynShear * ( 3.0 * dDynUni - 4.0 * dDynShear ) / ( dDynUni - dDynShear );
-	double dPoisson = ( dDynUni - 2.0 * dDynShear ) / ( 2.0 * ( dDynUni - dDynShear ) );
-	double dBulk = dDynUni - 4.0 / 3.0 * dDynShear;
-	double dShear = dDynShear;
-	double dVp = sqrt( fabs( dDynUni / dRhob ) ) * 1000;
-	double dVs = sqrt( fabs( dDynShear / dRhob ) ) * 1000;
+  double dYoung = dDynShear * ( 3.0 * dDynUni - 4.0 * dDynShear ) / ( dDynUni - dDynShear );
+  double dPoisson = ( dDynUni - 2.0 * dDynShear ) / ( 2.0 * ( dDynUni - dDynShear ) );
+  double dBulk = dDynUni - 4.0 / 3.0 * dDynShear;
+  double dShear = dDynShear;
+  double dVp = sqrt( fabs( dDynUni / dRhob ) ) * 1000;
+  double dVs = sqrt( fabs( dDynShear / dRhob ) ) * 1000;
   double dCme = (1+dPoisson)*(1-2*dPoisson) / (dYoung * (1-dPoisson));
 
-	// set the parameters
+  // set the parameters
   ml::CMatParam *pParam;
 
-	if((pParam = mat.MatParameter(MLD_YOUNGMODULUS)))
-	  SetParamValue(*pParam, dYoung);
+  if((pParam = mat.MatParameter(MLD_YOUNGMODULUS)))
+    SetParamValue(*pParam, dYoung);
 
-	if((pParam = mat.MatParameter(MLD_POISSONRATIO)))
-	  SetParamValue(*pParam, dPoisson);
+  if((pParam = mat.MatParameter(MLD_POISSONRATIO)))
+    SetParamValue(*pParam, dPoisson);
 
-	if((pParam = mat.MatParameter(MLD_BULKSTIFFNESS)))
-	  SetParamValue(*pParam, dBulk);
+  if((pParam = mat.MatParameter(MLD_BULKSTIFFNESS)))
+    SetParamValue(*pParam, dBulk);
 
-	if((pParam = mat.MatParameter(MLD_SHEARMODULUS)))
-	  SetParamValue(*pParam, dShear);
+  if((pParam = mat.MatParameter(MLD_SHEARMODULUS)))
+    SetParamValue(*pParam, dShear);
 
-	if((pParam = mat.MatParameter(MLD_VELOCITYP)))
-	  SetParamValue(*pParam, dVp);
+  if((pParam = mat.MatParameter(MLD_VELOCITYP)))
+    SetParamValue(*pParam, dVp);
 
-	if((pParam = mat.MatParameter(MLD_VELOCITYS)))
-	  SetParamValue(*pParam, dVs);
+  if((pParam = mat.MatParameter(MLD_VELOCITYS)))
+    SetParamValue(*pParam, dVs);
 
   if((pParam = mat.MatParameter(MLD_CME)))
-    SetParamValue(*pParam, dCme);
+  SetParamValue(*pParam, dCme);
 
   SetParamValue(param, dDynUni);
 }
@@ -512,63 +512,63 @@ bool CMaterialLinearDynShearCheckStrategy::operator()(double dValue, const ml::C
   const ml::CMaterial& mat = param.ParentMaterial();
 
   const ml::CMatParam* pDynUni = mat.MatParameter(MLD_DYNUNISTIFFNESS);
-	assert(pDynUni);
-	double dDynUni = pDynUni->ValueToUserUnit(nUnitDef);
+  assert(pDynUni);
+  double dDynUni = pDynUni->ValueToUserUnit(nUnitDef);
 
-	if(dDynUni <= dValue || dDynUni < 2.0 * dValue || dValue <= 0)
-	{
-		strErrorMsg = "Dynamic shear stiffness must be greater than zero and smaller than dynamic uniaxial stiffness divided by 2.";
-		return false;
-	}
+  if(dDynUni <= dValue || dDynUni < 2.0 * dValue || dValue <= 0)
+  {
+    strErrorMsg = "Dynamic shear stiffness must be greater than zero and smaller than dynamic uniaxial stiffness divided by 2.";
+    return false;
+  }
 
-	return true;
+  return true;
 }
 
 void CMaterialLinearDynShearSetStrategy::operator()(double dValue, ml::CMatParam& param) const
 {
   ml::CMaterial& mat = param.ParentMaterial();
 
-	ml::CMatParam* pDynUni = mat.MatParameter(MLD_DYNUNISTIFFNESS);
-	assert(pDynUni);
-	double dDynUni = pDynUni->Value();
+  ml::CMatParam* pDynUni = mat.MatParameter(MLD_DYNUNISTIFFNESS);
+  assert(pDynUni);
+  double dDynUni = pDynUni->Value();
 
-	ml::CMatParam* pRhob = mat.MatParameter(MLD_RHOB);
-	assert(pRhob);
-	double dRhob = pRhob->Value();
+  ml::CMatParam* pRhob = mat.MatParameter(MLD_RHOB);
+  assert(pRhob);
+  double dRhob = pRhob->Value();
 
-	double dDynShear = dValue;
+  double dDynShear = dValue;
 
-	double dYoung = dDynShear * (3.0 * dDynUni - 4.0 * dDynShear) / (dDynUni - dDynShear);
-	double dPoisson = (dDynUni - 2.0 * dDynShear) / (2.0 * (dDynUni - dDynShear));
-	double dBulk = dDynUni - 4.0 / 3.0 * dDynShear;
-	double dShear = dDynShear;
-	double dVp = sqrt(fabs(dDynUni / dRhob)) * 1000;
-	double dVs = sqrt(fabs(dDynShear / dRhob)) * 1000;
+  double dYoung = dDynShear * (3.0 * dDynUni - 4.0 * dDynShear) / (dDynUni - dDynShear);
+  double dPoisson = (dDynUni - 2.0 * dDynShear) / (2.0 * (dDynUni - dDynShear));
+  double dBulk = dDynUni - 4.0 / 3.0 * dDynShear;
+  double dShear = dDynShear;
+  double dVp = sqrt(fabs(dDynUni / dRhob)) * 1000;
+  double dVs = sqrt(fabs(dDynShear / dRhob)) * 1000;
   double dCme = (1+dPoisson)*(1-2*dPoisson) / (dYoung * (1-dPoisson));
 
-	// set the parameters
-	ml::CMatParam* pParam;
+  // set the parameters
+  ml::CMatParam* pParam;
 
-	if((pParam = mat.MatParameter(MLD_YOUNGMODULUS)))
-	  SetParamValue(*pParam, dYoung);
+  if((pParam = mat.MatParameter(MLD_YOUNGMODULUS)))
+    SetParamValue(*pParam, dYoung);
 
-	if((pParam = mat.MatParameter(MLD_POISSONRATIO)))
-	  SetParamValue(*pParam, dPoisson);
+  if((pParam = mat.MatParameter(MLD_POISSONRATIO)))
+    SetParamValue(*pParam, dPoisson);
 
-	if((pParam = mat.MatParameter(MLD_BULKSTIFFNESS)))
-	  SetParamValue(*pParam, dBulk);
+  if((pParam = mat.MatParameter(MLD_BULKSTIFFNESS)))
+    SetParamValue(*pParam, dBulk);
 
-	if((pParam = mat.MatParameter(MLD_SHEARMODULUS)))
-	  SetParamValue(*pParam, dShear);
+  if((pParam = mat.MatParameter(MLD_SHEARMODULUS)))
+    SetParamValue(*pParam, dShear);
 
-	if((pParam = mat.MatParameter(MLD_VELOCITYP)))
-	  SetParamValue(*pParam, dVp);
+  if((pParam = mat.MatParameter(MLD_VELOCITYP)))
+    SetParamValue(*pParam, dVp);
 
-	if((pParam = mat.MatParameter(MLD_VELOCITYS)))
-	  SetParamValue(*pParam, dVs);
+  if((pParam = mat.MatParameter(MLD_VELOCITYS)))
+    SetParamValue(*pParam, dVs);
 
   if((pParam = mat.MatParameter(MLD_CME)))
-    SetParamValue(*pParam, dCme);
+  SetParamValue(*pParam, dCme);
 
   SetParamValue(param, dDynShear);
 }
@@ -577,27 +577,27 @@ void CMaterialLinearRhoBSetStrategy::operator()(double dValue, ml::CMatParam& pa
 {
   ml::CMaterial& mat = param.ParentMaterial();
 
-	const ml::CMatParam* pYoung = mat.MatParameter(MLD_YOUNGMODULUS);
-	assert(pYoung);
+  const ml::CMatParam* pYoung = mat.MatParameter(MLD_YOUNGMODULUS);
+  assert(pYoung);
 
-	const ml::CMatParam* pPoisson = mat.MatParameter(MLD_POISSONRATIO);
-	assert(pPoisson);
+  const ml::CMatParam* pPoisson = mat.MatParameter(MLD_POISSONRATIO);
+  assert(pPoisson);
 
-	double dRhob = dValue;
-	double dYoung = pYoung->Value();
-	double dPoisson = pPoisson->Value();
-	double dDynUni = dYoung * (1.0 - dPoisson) / ((1.0 + dPoisson) * (1.0 - 2.0 * dPoisson));
-	double dDynShear = dYoung / (2.0 * (1.0 + dPoisson));
-	double dVp = sqrt(fabs(dDynUni / dRhob)) * 1000;
-	double dVs = sqrt(fabs(dDynShear / dRhob)) * 1000;
+  double dRhob = dValue;
+  double dYoung = pYoung->Value();
+  double dPoisson = pPoisson->Value();
+  double dDynUni = dYoung * (1.0 - dPoisson) / ((1.0 + dPoisson) * (1.0 - 2.0 * dPoisson));
+  double dDynShear = dYoung / (2.0 * (1.0 + dPoisson));
+  double dVp = sqrt(fabs(dDynUni / dRhob)) * 1000;
+  double dVs = sqrt(fabs(dDynShear / dRhob)) * 1000;
 
-	ml::CMatParam* pParam;
+  ml::CMatParam* pParam;
 
-	if((pParam = mat.MatParameter(MLD_VELOCITYP)))
-	  SetParamValue(*pParam, dVp);
+  if((pParam = mat.MatParameter(MLD_VELOCITYP)))
+    SetParamValue(*pParam, dVp);
 
-	if((pParam = mat.MatParameter(MLD_VELOCITYS)))
-	  SetParamValue(*pParam, dVs);
+  if((pParam = mat.MatParameter(MLD_VELOCITYS)))
+    SetParamValue(*pParam, dVs);
 
   SetParamValue(param, dRhob);
 }
@@ -608,17 +608,17 @@ bool CMaterialLinearVelocityPCheckStrategy::operator()(double dValue, const ml::
   const ml::CMaterial& mat = param.ParentMaterial();
 
   const ml::CMatParam* pVs = mat.MatParameter(MLD_VELOCITYS);
-	assert(pVs);
+  assert(pVs);
 
-	double dVs = pVs->Value();
+  double dVs = pVs->Value();
 
-	if(dValue <= 0 || dValue * dValue < 2.0 * dVs * dVs)
-	{
-    strErrorMsg = "Velocity P must be greater than zero.\nThe square of Velocity P must be at least twice as large as the square of Velocity S.";
-		return false;
-	}
+  if(dValue <= 0 || dValue * dValue < 2.0 * dVs * dVs)
+  {
+  strErrorMsg = "Velocity P must be greater than zero.\nThe square of Velocity P must be at least twice as large as the square of Velocity S.";
+    return false;
+  }
 
-	return true;
+  return true;
 }
 
 
@@ -626,46 +626,46 @@ void CMaterialLinearVelocityPSetStrategy::operator()(double dValue, ml::CMatPara
 {
   ml::CMaterial& mat = param.ParentMaterial();
 
-	const ml::CMatParam* pRhob = mat.MatParameter(MLD_RHOB);
-	assert(pRhob);
-	double dRhob = pRhob->Value();
+  const ml::CMatParam* pRhob = mat.MatParameter(MLD_RHOB);
+  assert(pRhob);
+  double dRhob = pRhob->Value();
 
-	const ml::CMatParam* pVs = mat.MatParameter(MLD_VELOCITYS);
-	assert(pVs);
-	double dVs = pVs->Value();
+  const ml::CMatParam* pVs = mat.MatParameter(MLD_VELOCITYS);
+  assert(pVs);
+  double dVs = pVs->Value();
 
-	double dVp = dValue;
+  double dVp = dValue;
 
-	double dDynUni = dRhob * (dVp * dVp / 1000000);
-	double dDynShear = dRhob * (dVs * dVs / 1000000);
-	double dYoung = dDynShear * (3.0 * dDynUni - 4.0 * dDynShear) / (dDynUni - dDynShear);
-	double dPoisson = (dDynUni - 2.0 * dDynShear) / (2.0 * (dDynUni - dDynShear));
-	double dBulk = dDynUni - 4.0 / 3.0 * dDynShear;
-	double dShear = dDynShear;
+  double dDynUni = dRhob * (dVp * dVp / 1000000);
+  double dDynShear = dRhob * (dVs * dVs / 1000000);
+  double dYoung = dDynShear * (3.0 * dDynUni - 4.0 * dDynShear) / (dDynUni - dDynShear);
+  double dPoisson = (dDynUni - 2.0 * dDynShear) / (2.0 * (dDynUni - dDynShear));
+  double dBulk = dDynUni - 4.0 / 3.0 * dDynShear;
+  double dShear = dDynShear;
   double dCme = (1+dPoisson)*(1-2*dPoisson) / (dYoung * (1-dPoisson));
 
-	ml::CMatParam* pParam;
+  ml::CMatParam* pParam;
 
-	if((pParam = mat.MatParameter(MLD_DYNUNISTIFFNESS)))
-	  SetParamValue(*pParam, dDynUni);
+  if((pParam = mat.MatParameter(MLD_DYNUNISTIFFNESS)))
+    SetParamValue(*pParam, dDynUni);
 
-	if((pParam = mat.MatParameter(MLD_DYNSHEARSTIFFNESS)))
-	  SetParamValue(*pParam, dDynShear);
+  if((pParam = mat.MatParameter(MLD_DYNSHEARSTIFFNESS)))
+    SetParamValue(*pParam, dDynShear);
 
-	if((pParam = mat.MatParameter(MLD_YOUNGMODULUS)))
-	  SetParamValue(*pParam, dYoung);
+  if((pParam = mat.MatParameter(MLD_YOUNGMODULUS)))
+    SetParamValue(*pParam, dYoung);
 
-	if((pParam = mat.MatParameter(MLD_POISSONRATIO)))
-	  SetParamValue(*pParam, dPoisson);
+  if((pParam = mat.MatParameter(MLD_POISSONRATIO)))
+    SetParamValue(*pParam, dPoisson);
 
-	if((pParam = mat.MatParameter(MLD_BULKSTIFFNESS)))
-	  SetParamValue(*pParam, dBulk);
+  if((pParam = mat.MatParameter(MLD_BULKSTIFFNESS)))
+    SetParamValue(*pParam, dBulk);
 
-	if((pParam = mat.MatParameter(MLD_SHEARMODULUS)))
-	  SetParamValue(*pParam, dShear);
+  if((pParam = mat.MatParameter(MLD_SHEARMODULUS)))
+    SetParamValue(*pParam, dShear);
 
   if((pParam = mat.MatParameter(MLD_CME)))
-    SetParamValue(*pParam, dCme);
+  SetParamValue(*pParam, dCme);
 
   SetParamValue(param, dVp);
 }
@@ -676,16 +676,16 @@ bool CMaterialLinearVelocitySCheckStrategy::operator()(double dValue, const ml::
   const ml::CMaterial& mat = param.ParentMaterial();
 
   const ml::CMatParam *pVp = mat.MatParameter(MLD_VELOCITYP);
-	assert(pVp);
-	double dVp = pVp->Value();
+  assert(pVp);
+  double dVp = pVp->Value();
 
-	if(dValue <= 0 || dVp * dVp < 2.0 * dValue * dValue)
-	{
-		strErrorMsg = "Velocity S must be greater than zero.\nThe square of Velocity S can be at most half of the square of Velocity P.";
-		return false;
-	}
+  if(dValue <= 0 || dVp * dVp < 2.0 * dValue * dValue)
+  {
+    strErrorMsg = "Velocity S must be greater than zero.\nThe square of Velocity S can be at most half of the square of Velocity P.";
+    return false;
+  }
 
-	return true;
+  return true;
 }
 
 
@@ -693,46 +693,46 @@ void CMaterialLinearVelocitySSetStrategy::operator()(double dValue, ml::CMatPara
 {
   ml::CMaterial& mat = param.ParentMaterial();
 
-	const ml::CMatParam* pRhob = mat.MatParameter(MLD_RHOB);
-	assert(pRhob);
-	double dRhob = pRhob->Value();
+  const ml::CMatParam* pRhob = mat.MatParameter(MLD_RHOB);
+  assert(pRhob);
+  double dRhob = pRhob->Value();
 
-	const ml::CMatParam* pVp = mat.MatParameter(MLD_VELOCITYP);
-	assert(pVp);
-	double dVp = pVp->Value();
+  const ml::CMatParam* pVp = mat.MatParameter(MLD_VELOCITYP);
+  assert(pVp);
+  double dVp = pVp->Value();
 
-	double dVs = dValue;
+  double dVs = dValue;
 
-	double dDynUni = dRhob * (dVp * dVp / 1000000);
-	double dDynShear = dRhob * (dVs * dVs / 1000000);
-	double dYoung = dDynShear * (3.0 * dDynUni - 4.0 * dDynShear) / (dDynUni - dDynShear);
-	double dPoisson = (dDynUni - 2.0 * dDynShear) / (2.0 * (dDynUni - dDynShear));
-	double dBulk = dDynUni - 4.0 / 3.0 * dDynShear;
-	double dShear = dDynShear;
+  double dDynUni = dRhob * (dVp * dVp / 1000000);
+  double dDynShear = dRhob * (dVs * dVs / 1000000);
+  double dYoung = dDynShear * (3.0 * dDynUni - 4.0 * dDynShear) / (dDynUni - dDynShear);
+  double dPoisson = (dDynUni - 2.0 * dDynShear) / (2.0 * (dDynUni - dDynShear));
+  double dBulk = dDynUni - 4.0 / 3.0 * dDynShear;
+  double dShear = dDynShear;
   double dCme = (1+dPoisson)*(1-2*dPoisson) / (dYoung * (1-dPoisson));
 
-	ml::CMatParam* pParam;
+  ml::CMatParam* pParam;
 
-	if((pParam = mat.MatParameter(MLD_DYNUNISTIFFNESS)))
-	  SetParamValue(*pParam, dDynUni);
+  if((pParam = mat.MatParameter(MLD_DYNUNISTIFFNESS)))
+    SetParamValue(*pParam, dDynUni);
 
-	if((pParam = mat.MatParameter(MLD_DYNSHEARSTIFFNESS)))
-	  SetParamValue(*pParam, dDynShear);
+  if((pParam = mat.MatParameter(MLD_DYNSHEARSTIFFNESS)))
+    SetParamValue(*pParam, dDynShear);
 
-	if((pParam = mat.MatParameter(MLD_YOUNGMODULUS)))
-	  SetParamValue(*pParam, dYoung);
+  if((pParam = mat.MatParameter(MLD_YOUNGMODULUS)))
+    SetParamValue(*pParam, dYoung);
 
-	if((pParam = mat.MatParameter(MLD_POISSONRATIO)))
-	  SetParamValue(*pParam, dPoisson);
+  if((pParam = mat.MatParameter(MLD_POISSONRATIO)))
+    SetParamValue(*pParam, dPoisson);
 
-	if((pParam = mat.MatParameter(MLD_BULKSTIFFNESS)))
-	  SetParamValue(*pParam, dBulk);
+  if((pParam = mat.MatParameter(MLD_BULKSTIFFNESS)))
+    SetParamValue(*pParam, dBulk);
 
-	if((pParam = mat.MatParameter(MLD_SHEARMODULUS)))
-	  SetParamValue(*pParam, dShear);
+  if((pParam = mat.MatParameter(MLD_SHEARMODULUS)))
+    SetParamValue(*pParam, dShear);
 
   if((pParam = mat.MatParameter(MLD_CME)))
-    SetParamValue(*pParam, dCme);
+  SetParamValue(*pParam, dCme);
 
   SetParamValue(param, dVs);
 }
@@ -743,16 +743,16 @@ bool CMaterialLinearLatRatioMinCheckStrategy::operator()(double dValue, const ml
   const ml::CMaterial& mat = param.ParentMaterial();
 
   const ml::CMatParam *pMaxHorStressRatio = mat.MatParameter(MLD_LATRATIO_MAX);
-	assert(pMaxHorStressRatio);
+  assert(pMaxHorStressRatio);
 
-	if(dValue < 0 /*|| dValue > dMaxHorStressRatio*/)
-	{
+  if(dValue < 0 /*|| dValue > dMaxHorStressRatio*/)
+  {
 //		strErrorMsg = "Minimum horizontal stress ratio must be greater than 0 and at most equal to the Maximum horizontal stress ratio.";
-		strErrorMsg = "Minimum horizontal stress ratio must be greater than 0.";
-		return false;
-	}
+    strErrorMsg = "Minimum horizontal stress ratio must be greater than 0.";
+    return false;
+  }
 
-	return true;
+  return true;
 }
 
 
@@ -761,15 +761,15 @@ bool CMaterialLinearLatRatioMaxCheckStrategy::operator()(double dValue, const ml
   const ml::CMaterial& mat = param.ParentMaterial();
 
   const ml::CMatParam *pMinHorStressRatio = mat.MatParameter(MLD_LATRATIO_MIN);
-	assert(pMinHorStressRatio);
+  assert(pMinHorStressRatio);
 
 //	if(dValue < dMinHorStressRatio)
-	if(dValue < 0)
-	{
+  if(dValue < 0)
+  {
 //		strErrorMsg = "Maximum horizontal stress ratio must be at least equal to the Minimum horizontal stress ratio.";
-		strErrorMsg = "Maximum horizontal stress ratio must be greater than 0.";
-		return false;
-	}
+    strErrorMsg = "Maximum horizontal stress ratio must be greater than 0.";
+    return false;
+  }
 
-	return true;
+  return true;
 }

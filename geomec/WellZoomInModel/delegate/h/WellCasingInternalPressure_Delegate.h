@@ -11,20 +11,20 @@ class CWellCasingInternalPressure_Delegate :
 {
 public:
   CWellCasingInternalPressure_Delegate(
-    CWellCasingInternalPressure* wellCasingInternalPressure);
+  CWellCasingInternalPressure* wellCasingInternalPressure);
 
   virtual bool Attributes();
 
 private:
   CWellCasingInternalPressure_Delegate(
-    const CWellCasingInternalPressure_Delegate& rhs);
+  const CWellCasingInternalPressure_Delegate& rhs);
   CWellCasingInternalPressure_Delegate& operator = (
-    const CWellCasingInternalPressure_Delegate& rhs);
+  const CWellCasingInternalPressure_Delegate& rhs);
 
   CWellCasingInternalPressure* m_wellCasingInternalPressure;
 
   REGISTER_DELEGATE(CWellCasingInternalPressure,
-    CWellCasingInternalPressure_Delegate);
+  CWellCasingInternalPressure_Delegate);
 };
 
 #endif  // _WellCasingInternalPressure_Delegate_h_

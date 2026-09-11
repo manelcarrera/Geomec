@@ -41,7 +41,7 @@ FW_TRIANGLE			+= $$FWROOT/Triangle/Triangle
 FW_TRIANGLE			+= $$FWROOT/Triangle/include
 
 #TBB
-TBBDIR = $$LBROOT/tbb/linux
+TBBDIR = $$THIRDPARTYROOT/tbb/linux
 
 # QT
 QTINCLUDES += $(QTDIR)/include
@@ -106,15 +106,15 @@ WELLSCHEMEUTILS_BASE 	= $$LBROOT/WellSchemeUtils/h
 WELLSCHEMEUTILS_BASE 	+= $$LBROOT/WellSchemeUtils/dlg/h
 
 GMDATABASE_BASE 	= $$LBROOT/GmDatabase/h
-#HDF5_BASE 			= $$LBROOT/hdf5/windows/include
-HDF5_BASE 			= $$LBROOT/hdf5/linux/include
-BLOSC_BASE 			= $$LBROOT/c-blosc-1.9.0/blosc
+#HDF5_BASE 			= $$THIRDPARTYROOT/hdf5/windows/include
+HDF5_BASE 			= $$THIRDPARTYROOT/hdf5/linux/include
+BLOSC_BASE 			= $$THIRDPARTYROOT/c-blosc-1.9.0/blosc
 BLOSCFILTER_BASE	+= $$LBROOT/blosc_filter/h
-BLOSCSHARED_BASE	+= $$LBROOT/c-blosc-1.9.0/blosc
-BLOSCSHARED_BASE	+= $$LBROOT/c-blosc-1.9.0/internal-complibs/lz4-1.7.2
-BLOSCSHARED_BASE	+= $$LBROOT/c-blosc-1.9.0/internal-complibs/snappy-1.1.1
-BLOSCSHARED_BASE	+= $$LBROOT/c-blosc-1.9.0/internal-complibs/zlib-1.2.8
-BLOSCSHARED_BASE	+= $$LBROOT/c-blosc-1.9.0/build/blosc
+BLOSCSHARED_BASE	+= $$THIRDPARTYROOT/c-blosc-1.9.0/blosc
+BLOSCSHARED_BASE	+= $$THIRDPARTYROOT/c-blosc-1.9.0/internal-complibs/lz4-1.7.2
+BLOSCSHARED_BASE	+= $$THIRDPARTYROOT/c-blosc-1.9.0/internal-complibs/snappy-1.1.1
+BLOSCSHARED_BASE	+= $$THIRDPARTYROOT/c-blosc-1.9.0/internal-complibs/zlib-1.2.8
+BLOSCSHARED_BASE	+= $$THIRDPARTYROOT/c-blosc-1.9.0/build/blosc
 
 CONSOLELIBRARY_BASE = $$LBROOT/ConsoleLibrary/h
 
@@ -141,7 +141,7 @@ GEOMECMODEL_BASE += $$GEOMECMODEL_PATH/WellZoomInModel/h
 GEOMECMODEL_BASE += $$GEOMECMODEL_PATH/Zoomin/h
 
 QTIOCOMPRESSOR_BASE	= $$LBROOT/qtiocompressor/h
-ZLIB_BASE			= $$LBROOT/zlib-1.2.6
+ZLIB_BASE			= $$THIRDPARTYROOT/zlib-1.2.6
 QTWINMIGRATE_BASE	= $$LBROOT/qtwinmigrate/h
 RESCUE_BASE			= $$LBROOT/RESCUE/h
 RPN_BASE			= $$LBROOT/RPN/h
@@ -181,4 +181,4 @@ TESTSMAT_BASE				= $$TESTSLIBROOT/Materials/h
 # other test apps
 TESTSBUILDENVIRONMENT_BASE	= $$TESTSROOT/BuildEnvironment/h
     
-GTEST_BASE = $$LBROOT/gmock-1.7.0/gtest/include
+GTEST_BASE = $$THIRDPARTYROOT/gmock-1.7.0/gtest/include

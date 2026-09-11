@@ -8,7 +8,7 @@ class TPressure;
 
 class CGlobalPressure_Delegate :
   public CGlobalFormationLoad_Delegate <TPressure,
-    CComponentConstant  <TPressure> >
+  CComponentConstant  <TPressure> >
 {
 public:
   CGlobalPressure_Delegate(CGlobalPressure* globalPressure);

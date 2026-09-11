@@ -14,17 +14,17 @@ class COpenInventorEventsHandler;
 class PolyLineScreenDrawerRetainer
 {
 public:
-    PolyLineScreenDrawerRetainer(COpenInventorEventsHandler * eventHandler, SoPolyLineScreenDrawer * drawer);
+  PolyLineScreenDrawerRetainer(COpenInventorEventsHandler * eventHandler, SoPolyLineScreenDrawer * drawer);
 
-    bool CanWork();
+  bool CanWork();
 
-    ~PolyLineScreenDrawerRetainer();
+  ~PolyLineScreenDrawerRetainer();
 
 private:
-    static PolyLineScreenDrawerRetainer * s_activeRetainer;
-    COpenInventorEventsHandler * m_handler;
-    SoPolyLineScreenDrawer * m_drawer;
-    SbVec2f * m_points;
+  static PolyLineScreenDrawerRetainer * s_activeRetainer;
+  COpenInventorEventsHandler * m_handler;
+  SoPolyLineScreenDrawer * m_drawer;
+  SbVec2f * m_points;
 };
 
 #endif  // _PolyLineScreenDrawerRetainer_h_

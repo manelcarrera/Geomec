@@ -50,16 +50,16 @@ public:
 protected:
   RescueArrayFragment(RescueArray *parentArrayIn,
                       RESCUEINT64 dimensionsIn, RESCUEINT64 iLowBoundIn, RESCUEINT64 iCountIn,
-                                        RESCUEINT64 jLowBoundIn, RESCUEINT64 jCountIn,
-                                        RESCUEINT64 kLowBoundIn, RESCUEINT64 kCountIn)
-                                        :parentArray(parentArrayIn)
-                                        ,dimensions(dimensionsIn)
-                                        ,iLowBound(iLowBoundIn)
-                                        ,iCount(iCountIn)
-                                        ,jLowBound(jLowBoundIn)
-                                        ,jCount(jCountIn)
-                                        ,kLowBound(kLowBoundIn)
-                                        ,kCount(kCountIn) {};
+                    RESCUEINT64 jLowBoundIn, RESCUEINT64 jCountIn,
+                    RESCUEINT64 kLowBoundIn, RESCUEINT64 kCountIn)
+                    :parentArray(parentArrayIn)
+                    ,dimensions(dimensionsIn)
+                    ,iLowBound(iLowBoundIn)
+                    ,iCount(iCountIn)
+                    ,jLowBound(jLowBoundIn)
+                    ,jCount(jCountIn)
+                    ,kLowBound(kLowBoundIn)
+                    ,kCount(kCountIn) {};
   virtual void DropMemory()=0;
   virtual void UnArchiveData(FILE *archiveFile, RESCUEINT64 fileVersion)=0;
 

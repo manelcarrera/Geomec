@@ -11,7 +11,7 @@ public:
                                        CDianaRunController& controller);
   virtual ~CGeomecContainmentMixtureDianaRunner();
 
-	virtual const dia::IMaterial& Material(const geo::IElement &element) const;
+  virtual const dia::IMaterial& Material(const geo::IElement &element) const;
 };
 
 #endif // _GEOMECCONTAINMENTMIXTUREDIANARUNNER_H_

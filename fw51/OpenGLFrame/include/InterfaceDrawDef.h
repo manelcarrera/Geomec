@@ -30,7 +30,7 @@ public:
   virtual int DepthFunc() const;
   virtual bool RequireCompile() const;
   virtual long CircleNrOfSegments() const;
-	virtual bool CurvedDraw() const;
+  virtual bool CurvedDraw() const;
 
   //for showing a border on a label
   virtual bool LabelBorder() const;

@@ -12,9 +12,9 @@ class CDerivedMatLibDlg : public CMatLibDlg
 {
 public:
   CDerivedMatLibDlg(CMaterialEntry_Delegate* materialEntry_Delegate,
-    ml::CMaterialLibrary& matlib, int modelfilter, CAnalysisLogger& logger,
-    bool bImportMode = false, UINT nIDTemplate = IDD_DERIVEDMATLIBDLG,
-    CWnd* pParent = 0);
+  ml::CMaterialLibrary& matlib, int modelfilter, CAnalysisLogger& logger,
+  bool bImportMode = false, UINT nIDTemplate = IDD_DERIVEDMATLIBDLG,
+  CWnd* pParent = 0);
 
 protected:
   virtual BOOL OnInitDialog();

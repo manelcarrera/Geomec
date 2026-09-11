@@ -14,7 +14,7 @@ public:
 private:
   CSupportDepletion_Delegate(const CSupportDepletion_Delegate& rhs);
   CSupportDepletion_Delegate& operator = (
-    const CSupportDepletion_Delegate& rhs);
+  const CSupportDepletion_Delegate& rhs);
 
   CSupportDepletion* m_supportDepletion;
 

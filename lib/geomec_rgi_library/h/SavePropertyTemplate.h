@@ -14,25 +14,25 @@ template <unsigned int VALUETYPE>
   class CSavePropertyTemplate : public CSavePropertyBase
 {
   public:
-    CSavePropertyTemplate(const RGProperty& rgProperty);
-    virtual ~CSavePropertyTemplate();
+  CSavePropertyTemplate(const RGProperty& rgProperty);
+  virtual ~CSavePropertyTemplate();
 
-    virtual bool saveProperty(RGInterface& rgi, CModelBase& modelBase,
+  virtual bool saveProperty(RGInterface& rgi, CModelBase& modelBase,
       const CRockMechProcessor& rmp);
 
   protected:
-    void saveProperty(RGInterface& rgi, CModelBase& modelBase,
+  void saveProperty(RGInterface& rgi, CModelBase& modelBase,
       std::vector <double>& values, const CRockMechProcessor& rmp);
 
   private:
-    CSavePropertyTemplate(const CSavePropertyTemplate& rhs);
-    CSavePropertyTemplate& operator = (const CSavePropertyTemplate& rhs);
+  CSavePropertyTemplate(const CSavePropertyTemplate& rhs);
+  CSavePropertyTemplate& operator = (const CSavePropertyTemplate& rhs);
 };
 
 
 template <unsigned int VALUETYPE>
   CSavePropertyTemplate <VALUETYPE> ::CSavePropertyTemplate(
-    const RGProperty& rgProperty)
+  const RGProperty& rgProperty)
   : CSavePropertyBase(rgProperty)
 {
 }
@@ -44,7 +44,7 @@ template <unsigned int VALUETYPE>
 
 template <unsigned int VALUETYPE>
   bool CSavePropertyTemplate <VALUETYPE> ::saveProperty(RGInterface& rgi,
-    CModelBase& modelBase, const CRockMechProcessor& rmp)
+  CModelBase& modelBase, const CRockMechProcessor& rmp)
 {
   std::vector <double> values(modelBase.Mesh().Mesh().ElementSize());
 
@@ -58,30 +58,30 @@ template <unsigned int VALUETYPE>
 
 template <unsigned int VALUETYPE>
   void CSavePropertyTemplate <VALUETYPE> ::saveProperty(RGInterface& rgi,
-    CModelBase& modelBase, std::vector <double>& values,
-    const CRockMechProcessor& /*rmp*/)
+  CModelBase& modelBase, std::vector <double>& values,
+  const CRockMechProcessor& /*rmp*/)
 {
   CDepletionStage& depletionStage =
-    modelBase.DepletionStageEntry().StageByIndex(
+  modelBase.DepletionStageEntry().StageByIndex(
       rgi.getCurrentDepletionStage().getDepletionStage());
 
   std::fill(values.begin(), values.end(), RGUtils::nullReal());
 
   for (int i = 0; i < modelBase.Mesh().Mesh().ElementSize(); ++i)
   {
-    const geo::IElement& element = modelBase.Mesh().Mesh().Element(i);
-    const CFormationBase* formationBase = modelBase.Mesh().Formation(element);
+  const geo::IElement& element = modelBase.Mesh().Mesh().Element(i);
+  const CFormationBase* formationBase = modelBase.Mesh().Formation(element);
 
-    if (formationBase)
-    {
+  if (formationBase)
+  {
       const CFFMaterial& cffMaterial =
-        formationBase->Material(depletionStage).Material(element);
+    formationBase->Material(depletionStage).Material(element);
 
       if (cffMaterial.IsParameter(VALUETYPE))
       {
-        values[i] = cffMaterial.ParameterValue(VALUETYPE);
+    values[i] = cffMaterial.ParameterValue(VALUETYPE);
       }
-    }
+  }
   }
 }
 

@@ -6,18 +6,18 @@
 class CReadOnlyScene : public COpenGLSceneBase
 {
   public:
-    CReadOnlyScene(const QString& type, CFemAppModel& femAppModel);
-    virtual ~CReadOnlyScene();
+  CReadOnlyScene(const QString& type, CFemAppModel& femAppModel);
+  virtual ~CReadOnlyScene();
 
-    virtual void LoadStream(TSTREAM& stream, CStreamVersion &version,
+  virtual void LoadStream(TSTREAM& stream, CStreamVersion &version,
       TPROGRESS& progress);
-    virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
 
   private:
-    CReadOnlyScene(const CReadOnlyScene& rhs);
-    CReadOnlyScene& operator = (const CReadOnlyScene& rhs);
+  CReadOnlyScene(const CReadOnlyScene& rhs);
+  CReadOnlyScene& operator = (const CReadOnlyScene& rhs);
 
-    const QString m_type;
+  const QString m_type;
 };
 
 #endif  // _ReadOnlyScene_h_

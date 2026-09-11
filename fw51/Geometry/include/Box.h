@@ -28,43 +28,43 @@ class CLine;
 // Last review : 27-03-2002 
 class GEOMETRY_EXPORT  CBox : public IBox
 {
-	CArray<CNode> m_Points;
+  CArray<CNode> m_Points;
 public:
-	CBox();
-	CBox(const IPoint &Pos, const IVector &Dir1, const IVector &Dir2, const IVector &Dir3);
-	CBox(const IPoint &MinPoint, const IPoint &MaxPoint);
-	CBox(const CBox &rhs);
-	CBox& operator=(const CBox& rhs);
+  CBox();
+  CBox(const IPoint &Pos, const IVector &Dir1, const IVector &Dir2, const IVector &Dir3);
+  CBox(const IPoint &MinPoint, const IPoint &MaxPoint);
+  CBox(const CBox &rhs);
+  CBox& operator=(const CBox& rhs);
 
-	virtual ~CBox();
-	CArray<CNode> GeneratePoints() const;
-	CArray<CLine>  GenerateLines() const;
+  virtual ~CBox();
+  CArray<CNode> GeneratePoints() const;
+  CArray<CLine>  GenerateLines() const;
 
-	void AssertValid() const;
+  void AssertValid() const;
 
-	//IBox Interface
-	virtual double Width() const;
-	virtual double Depth() const;
-	virtual double Height() const;
+  //IBox Interface
+  virtual double Width() const;
+  virtual double Depth() const;
+  virtual double Height() const;
 
-	//IElement Interface
-	virtual const IPoint &Point( int nIndex ) const;
-	virtual void Point(int nIndex, const IPoint &pt);
-	virtual int NrOfPoints() const;
+  //IElement Interface
+  virtual const IPoint &Point( int nIndex ) const;
+  virtual void Point(int nIndex, const IPoint &pt);
+  virtual int NrOfPoints() const;
 
-	virtual double Size() const;
+  virtual double Size() const;
 
-	virtual CPoint Max() const;
-	virtual CPoint Min() const;
+  virtual CPoint Max() const;
+  virtual CPoint Min() const;
 
-	virtual bool Contains(const IPoint &point, bool bIncludeEdge) const;
+  virtual bool Contains(const IPoint &point, bool bIncludeEdge) const;
 
-	virtual size_t Order() const;
-	virtual const char* FaceName(int /*nIndex*/) const { return 0; }
+  virtual size_t Order() const;
+  virtual const char* FaceName(int /*nIndex*/) const { return 0; }
 
-	virtual size_t NrOfNodes() const;
-	virtual const INode& Node(int nIndex) const;
-	virtual void Node(int nIndex, const IPoint& point);
+  virtual size_t NrOfNodes() const;
+  virtual const INode& Node(int nIndex) const;
+  virtual void Node(int nIndex, const IPoint& point);
 };
 
 }

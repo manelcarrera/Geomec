@@ -33,7 +33,7 @@ public:
 private:
   CGroupNodeEntry_Delegate(const CGroupNodeEntry_Delegate& rhs);
   CGroupNodeEntry_Delegate& operator =
-    (const CGroupNodeEntry_Delegate& rhs);
+  (const CGroupNodeEntry_Delegate& rhs);
 
   REGISTER_DELEGATE(CGroupNodeEntry, CGroupNodeEntry_Delegate);
 };

@@ -16,18 +16,18 @@ namespace cora
 class CGetPointSetInfo : public CGetSetInfo
 {
   public:
-    CGetPointSetInfo(const CModelBase* modelBase);
+  CGetPointSetInfo(const CModelBase* modelBase);
 
-    std::ostream& operator () (std::ostream& os) const;
+  std::ostream& operator () (std::ostream& os) const;
 
   private:
-    CGetPointSetInfo(const CGetPointSetInfo& rhs);
-    CGetPointSetInfo& operator = (CGetPointSetInfo rhs);
+  CGetPointSetInfo(const CGetPointSetInfo& rhs);
+  CGetPointSetInfo& operator = (CGetPointSetInfo rhs);
 
-    void listPointSets(std::ostream& os, const QString& preFix,
+  void listPointSets(std::ostream& os, const QString& preFix,
       IPointSet::DIMENSION dimension) const;
 
-    const CModelBase* m_modelBase;
+  const CModelBase* m_modelBase;
 };
 
 } // namespace cora

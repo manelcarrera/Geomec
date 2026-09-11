@@ -17,16 +17,16 @@ namespace cora
 class CParameterModifierAbsolute : public CParameterModifierBase
 {
   public:
-    CParameterModifierAbsolute(std::vector <double>& absoluteValue);
-    virtual ~CParameterModifierAbsolute();
+  CParameterModifierAbsolute(std::vector <double>& absoluteValue);
+  virtual ~CParameterModifierAbsolute();
 
-    virtual geo::CValue modify(const geo::CValue& value) const;
+  virtual geo::CValue modify(const geo::CValue& value) const;
 
   private:
-    CParameterModifierAbsolute(const CParameterModifierAbsolute& rhs);
-    CParameterModifierAbsolute& operator = (CParameterModifierAbsolute rhs);
+  CParameterModifierAbsolute(const CParameterModifierAbsolute& rhs);
+  CParameterModifierAbsolute& operator = (CParameterModifierAbsolute rhs);
 
-    const geo::CValue m_absoluteValue;
+  const geo::CValue m_absoluteValue;
 };
 
 } // namespace cora

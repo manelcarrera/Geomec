@@ -41,7 +41,7 @@ public:
   // Create a new wellbore.
   // Delete with this->ParentModel()->DropRescueWellbore(this);
   RCHString *WellboreName() {return wellboreName;}
-                                    // Do NOT drop the object returned.
+                  // Do NOT drop the object returned.
   void SetWellboreName(RESCUECHAR *newName);
 
   RescueModel *ParentModel() {return parentModel;}
@@ -54,9 +54,9 @@ public:
                   {return sampling->NthObject(zeroBasedOrdinal);}
   RescueWellboreSampling *WellboreSamplingIdentifiedBy(RESCUEINT64 identifier)
                   {return sampling->ObjectIdentifiedBy(identifier);}
-                                    // Do NOT delete the object returned.
-                                    // If you want to remove them from the
-                                    // model use the corresponding Drop method.
+                  // Do NOT delete the object returned.
+                  // If you want to remove them from the
+                  // model use the corresponding Drop method.
   RESCUEBOOL DropRescueWellboreSampling(RescueWellboreSampling *unitToDrop) 
                           {return ((*sampling) -= unitToDrop);}
 
@@ -64,9 +64,9 @@ public:
   RESCUEINT32 WellboreSurfaceCount() {return surfaceIntersections->Count();}
   RescueWellboreSurface *NthRescueWellboreSurface(RESCUEINT64 zeroBasedOrdinal) 
                   {return surfaceIntersections->NthObject(zeroBasedOrdinal);}
-                                    // Do NOT delete the object returned.
-                                    // If you want to remove them from the
-                                    // model use the corresponding Drop method.
+                  // Do NOT delete the object returned.
+                  // If you want to remove them from the
+                  // model use the corresponding Drop method.
   RESCUEBOOL DropRescueWellboreSurface(RescueWellboreSurface *surfaceToDrop) 
                           {return ((*surfaceIntersections) -= surfaceToDrop);}
   cBagRescueWellboreCell *CellIntersections() {return cellIntersections;}

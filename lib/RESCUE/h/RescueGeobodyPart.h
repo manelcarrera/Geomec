@@ -34,53 +34,53 @@ class RescueGeobodyPart:public RescueHistoryObject
 public:
   RescueGeobodyPart(RescueGeobody *parentBody);   // Structure-only body part, no grid.
   RescueGeobodyPart(RescueCoordinateSystem::Orientation orientation,
-                    RescueGeobody *parentBody,    // Geometry may be regular in all 3 directions.
-                    RESCUEFLOAT i_origin, RESCUEFLOAT i_step,
-                    RESCUEINT64 i_lowbound, RESCUEINT64 i_count,
-                    RESCUEFLOAT j_origin, RESCUEFLOAT j_step,
-                    RESCUEINT64 j_lowbound, RESCUEINT64 j_count,
-                    RESCUEFLOAT k_origin, RESCUEFLOAT k_step,
-                    RESCUEINT64 k_lowbound, RESCUEINT64 k_count,
-                    RESCUEFLOAT missingValue);
+          RescueGeobody *parentBody,    // Geometry may be regular in all 3 directions.
+          RESCUEFLOAT i_origin, RESCUEFLOAT i_step,
+          RESCUEINT64 i_lowbound, RESCUEINT64 i_count,
+          RESCUEFLOAT j_origin, RESCUEFLOAT j_step,
+          RESCUEINT64 j_lowbound, RESCUEINT64 j_count,
+          RESCUEFLOAT k_origin, RESCUEFLOAT k_step,
+          RESCUEINT64 k_lowbound, RESCUEINT64 k_count,
+          RESCUEFLOAT missingValue);
   RescueGeobodyPart(RescueCoordinateSystem::Orientation orientation,
-                    RescueGeobody *parentBody,
-                    RESCUEFLOAT i_origin, RESCUEFLOAT i_step,
-                    RESCUEINT64 i_lowbound, RESCUEINT64 i_count,
-                    RESCUEFLOAT j_origin, RESCUEFLOAT j_step,
-                    RESCUEINT64 j_lowbound, RESCUEINT64 j_count,
-                    RESCUEINT64 k_lowbound, RESCUEINT64 k_count,
-                    RESCUEFLOAT missingValue);
+          RescueGeobody *parentBody,
+          RESCUEFLOAT i_origin, RESCUEFLOAT i_step,
+          RESCUEINT64 i_lowbound, RESCUEINT64 i_count,
+          RESCUEFLOAT j_origin, RESCUEFLOAT j_step,
+          RESCUEINT64 j_lowbound, RESCUEINT64 j_count,
+          RESCUEINT64 k_lowbound, RESCUEINT64 k_count,
+          RESCUEFLOAT missingValue);
   RescueGeobodyPart(RescueCoordinateSystem::Orientation orientation,
-                    RescueGeobody *parentBody,
-                    RESCUEFLOAT i_origin, RESCUEFLOAT i_step,
-                    RESCUEINT64 i_lowbound, RESCUEINT64 i_count,
-                    RESCUEFLOAT j_origin, RESCUEFLOAT j_step,
-                    RESCUEINT64 j_lowbound, RESCUEINT64 j_count,
-                    RESCUEINT64 k_lowbound, RESCUEINT64 k_count,
-                    RESCUEFLOAT missingValue,
-                    RescueReferenceSurface *topSurfaceIn, RESCUEFLOAT topOffsetIn,
-                    RescueReferenceSurface *bottomSurfaceIn, RESCUEFLOAT  bottomOffsetIn);
-                                            // Constructor for a grid whose z values are 
-                                            // determined by the reference surfaces and offsets.
-                                            // Each k-layer is proportional to the distance between
-                                            // the top and bottom reference surfaces, after the
-                                            // offsets are applied. This applies only to vertexes
-                                            // of type R_EQUAL_AXIS.
+          RescueGeobody *parentBody,
+          RESCUEFLOAT i_origin, RESCUEFLOAT i_step,
+          RESCUEINT64 i_lowbound, RESCUEINT64 i_count,
+          RESCUEFLOAT j_origin, RESCUEFLOAT j_step,
+          RESCUEINT64 j_lowbound, RESCUEINT64 j_count,
+          RESCUEINT64 k_lowbound, RESCUEINT64 k_count,
+          RESCUEFLOAT missingValue,
+          RescueReferenceSurface *topSurfaceIn, RESCUEFLOAT topOffsetIn,
+          RescueReferenceSurface *bottomSurfaceIn, RESCUEFLOAT  bottomOffsetIn);
+                      // Constructor for a grid whose z values are 
+                      // determined by the reference surfaces and offsets.
+                      // Each k-layer is proportional to the distance between
+                      // the top and bottom reference surfaces, after the
+                      // offsets are applied. This applies only to vertexes
+                      // of type R_EQUAL_AXIS.
   RescueGeobodyPart(RescueCoordinateSystem::Orientation orientation,
-                    RescueGeobody *parentBody,
-                    RESCUEFLOAT i_origin, RESCUEFLOAT i_step,
-                    RESCUEINT64 i_lowbound, RESCUEINT64 i_count,
-                    RESCUEFLOAT j_origin, RESCUEFLOAT j_step,
-                    RESCUEINT64 j_lowbound, RESCUEINT64 j_count,
-                    RESCUEINT64 k_lowbound, RESCUEINT64 k_count,
-                    RESCUEFLOAT missingValue,
-                    RescueReferenceSurface *referenceSurfaceIn, RESCUEFLOAT referenceOffsetIn, 
-                    RESCUEFLOAT thicknessIn, RescueGeometry::RescueLapType onOffLapIn);
-                                            // Constructor for a grid whose z values are 
-                                            // determined by the reference surface and offset.
-                                            // Each k-layer is of the same thickness, determined
-                                            // by the thickness argument. This applies only to vertexes
-                                            // of type R_EQUAL_AXIS.
+          RescueGeobody *parentBody,
+          RESCUEFLOAT i_origin, RESCUEFLOAT i_step,
+          RESCUEINT64 i_lowbound, RESCUEINT64 i_count,
+          RESCUEFLOAT j_origin, RESCUEFLOAT j_step,
+          RESCUEINT64 j_lowbound, RESCUEINT64 j_count,
+          RESCUEINT64 k_lowbound, RESCUEINT64 k_count,
+          RESCUEFLOAT missingValue,
+          RescueReferenceSurface *referenceSurfaceIn, RESCUEFLOAT referenceOffsetIn, 
+          RESCUEFLOAT thicknessIn, RescueGeometry::RescueLapType onOffLapIn);
+                      // Constructor for a grid whose z values are 
+                      // determined by the reference surface and offset.
+                      // Each k-layer is of the same thickness, determined
+                      // by the thickness argument. This applies only to vertexes
+                      // of type R_EQUAL_AXIS.
   virtual ~RescueGeobodyPart();
 
   RescueGeobody *Body() {return body;}
@@ -88,7 +88,7 @@ public:
   RescueGeobodyVolume *AddGeobodyVolume();
   void DropGeobodyVolume(RescueGeobodyVolume *existingVolume);
   RescueGeobodyVolume *NthGeobodyVolume(RESCUEINT64 zeroBasedOrdinal)
-                        {return (*bodyVolumes).NthObject(zeroBasedOrdinal);}
+            {return (*bodyVolumes).NthObject(zeroBasedOrdinal);}
 
   void AddPropertyGroup(RescuePropertyGroup *existingPropertyGroup)
               {(*propertyGroups) += existingPropertyGroup;} 

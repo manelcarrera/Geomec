@@ -12,25 +12,25 @@
 class CColorScaleEntry;
 class CColorScaleNode : public CStorageNode
 {
-	friend class CColorScaleEntry;
+  friend class CColorScaleEntry;
 protected:
-	COLORREF LoadColor(TSTREAM& stream);
-	void SaveColor(TSTREAM& stream, COLORREF color);
+  COLORREF LoadColor(TSTREAM& stream);
+  void SaveColor(TSTREAM& stream, COLORREF color);
 public:
-	CColorScaleNode(CGraphModel &model);
-	CColorScaleNode(const UINT uName, CGraphModel &model);
-	CColorScaleNode(const CString& strName, CGraphModel &model);
-	CColorScaleNode(const CColorScaleNode &rhs);
+  CColorScaleNode(CGraphModel &model);
+  CColorScaleNode(const UINT uName, CGraphModel &model);
+  CColorScaleNode(const CString& strName, CGraphModel &model);
+  CColorScaleNode(const CColorScaleNode &rhs);
 
-	virtual COLORREF Color(const double &dVal, const IValueComponent::TMinMax &MinMax) const = 0;
+  virtual COLORREF Color(const double &dVal, const IValueComponent::TMinMax &MinMax) const = 0;
 
-	bool operator==(const CColorScaleNode& rhs) const;
-	CColorScaleNode& operator=(const CColorScaleNode& rhs);
+  bool operator==(const CColorScaleNode& rhs) const;
+  CColorScaleNode& operator=(const CColorScaleNode& rhs);
 
-	virtual const IValueComponent::TMinMax& MinMaxValue() const = 0;
-	virtual void SetMinMaxValue(const IValueComponent::TMinMax &min_max) = 0;
+  virtual const IValueComponent::TMinMax& MinMaxValue() const = 0;
+  virtual void SetMinMaxValue(const IValueComponent::TMinMax &min_max) = 0;
 
-	//save and load
+  //save and load
 
 };
 

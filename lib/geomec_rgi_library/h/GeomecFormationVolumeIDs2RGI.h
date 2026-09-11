@@ -14,21 +14,21 @@ namespace GeomecRGI
 class CGeomecFormationVolumeIDs2RGI
 {
   public:
-    CGeomecFormationVolumeIDs2RGI(RGInterface& rgi,
+  CGeomecFormationVolumeIDs2RGI(RGInterface& rgi,
       const CModelBase& modelBase);
-    ~CGeomecFormationVolumeIDs2RGI();
+  ~CGeomecFormationVolumeIDs2RGI();
 
-    std::vector <int> getFormationVolumeIDs() const;
+  std::vector <int> getFormationVolumeIDs() const;
 
   private:
-    CGeomecFormationVolumeIDs2RGI(const CGeomecFormationVolumeIDs2RGI& rhs);
-    CGeomecFormationVolumeIDs2RGI& operator = (
+  CGeomecFormationVolumeIDs2RGI(const CGeomecFormationVolumeIDs2RGI& rhs);
+  CGeomecFormationVolumeIDs2RGI& operator = (
       const CGeomecFormationVolumeIDs2RGI& rhs);
 
-    const CModelBase& m_modelBase;
-    std::vector <CGraphNode*> m_formationVolumes;
-    std::vector <int> m_GeomecFormationVolumeIDs;
-    std::set <int> m_distinctGeomecFormationVolumeIDs;
+  const CModelBase& m_modelBase;
+  std::vector <CGraphNode*> m_formationVolumes;
+  std::vector <int> m_GeomecFormationVolumeIDs;
+  std::set <int> m_distinctGeomecFormationVolumeIDs;
 };
 
 } // namespace GeomecRGI

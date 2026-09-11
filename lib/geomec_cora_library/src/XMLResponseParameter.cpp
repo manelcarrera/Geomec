@@ -22,8 +22,8 @@ const QString RESPONSE_PARAMETER_CLOSE = "</ResponseParameter>";
 std::ostream& CXMLResponseParameter::operator () (std::ostream& stream) const
 {
   stream << RESPONSE_PARAMETER_OPEN.arg(m_failureMode->getFailureModeLabel()).
-    arg(m_failureMode->getResultComponent()->UnitName()).toStdString() <<
-    std::endl;
+  arg(m_failureMode->getResultComponent()->UnitName()).toStdString() <<
+  std::endl;
 
   stream << m_responseValueTypes;
 
@@ -54,10 +54,10 @@ std::ostream& operator << (std::ostream& stream,
   const cora::TXMLResponseParameters& rhs)
 {
   for (cora::TXMLResponseParameters::const_iterator
-    responseParameter = rhs.begin(); responseParameter != rhs.end();
-    ++responseParameter)
+  responseParameter = rhs.begin(); responseParameter != rhs.end();
+  ++responseParameter)
   {
-    stream << *responseParameter;
+  stream << *responseParameter;
   }
 
   return stream;

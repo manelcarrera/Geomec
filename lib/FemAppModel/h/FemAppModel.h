@@ -23,44 +23,44 @@ class CGraphEntry;
 class CGraphNode;
 class CFemAppModel : public CGraphNode, public CDocumentBase
 {
-	typedef std::map<int, CGraphEntry*> CEntryMap;
-	CEntryMap			m_mpEntry;
-	friend class CGraphEntry;
+  typedef std::map<int, CGraphEntry*> CEntryMap;
+  CEntryMap			m_mpEntry;
+  friend class CGraphEntry;
 protected:
-	//##ModelId=3B653D020021
-	CFemAppModel();
-	//##ModelId=3B653D020022
-	virtual bool DeleteEntry(const int nEntryType);
+  //##ModelId=3B653D020021
+  CFemAppModel();
+  //##ModelId=3B653D020022
+  virtual bool DeleteEntry(const int nEntryType);
 public:
   virtual void OnExit();
-	virtual void OnCloseModel();
-	// Model invalidation ...
-	virtual void OnInvalidateStorage();
-	virtual void OnInvalidateCalculation(int nType = RECALCULATE_ALL);
+  virtual void OnCloseModel();
+  // Model invalidation ...
+  virtual void OnInvalidateStorage();
+  virtual void OnInvalidateCalculation(int nType = RECALCULATE_ALL);
 
   virtual void DestroyCaches();
-	virtual void CloseModel();
-	//##ModelId=3B653D020042
-	virtual bool NewModel(bool bAttachToDocument = true);
+  virtual void CloseModel();
+  //##ModelId=3B653D020042
+  virtual bool NewModel(bool bAttachToDocument = true);
 
-	//##ModelId=3B653D020050
-	virtual CGraphEntry* GraphEntry(const int nEntryType);
-	virtual const CGraphEntry* GraphEntry(const int nEntryType) const;
+  //##ModelId=3B653D020050
+  virtual CGraphEntry* GraphEntry(const int nEntryType);
+  virtual const CGraphEntry* GraphEntry(const int nEntryType) const;
 
-	// This routine only creates the entries for the graph
-	virtual void createContainers();
-	// This routine creates all default items we want to have.
-	virtual void createDefaults();
+  // This routine only creates the entries for the graph
+  virtual void createContainers();
+  // This routine creates all default items we want to have.
+  virtual void createDefaults();
 
-	//##ModelId=3B653D020073
-	virtual unsigned int ModelIconId() const = 0;
-	virtual unsigned int IconId() const { return ModelIconId(); }
-	virtual unsigned int TypeId() const { return 0; }
-	//##ModelId=3B653D020081
-	CFemAppModel(CAnalysisLogger& logger);
+  //##ModelId=3B653D020073
+  virtual unsigned int ModelIconId() const = 0;
+  virtual unsigned int IconId() const { return ModelIconId(); }
+  virtual unsigned int TypeId() const { return 0; }
+  //##ModelId=3B653D020081
+  CFemAppModel(CAnalysisLogger& logger);
 
-	//##ModelId=3B653D020083
-	virtual ~CFemAppModel();
+  //##ModelId=3B653D020083
+  virtual ~CFemAppModel();
 
   virtual int childModelSize() const = 0;
   virtual CFemAppModel& childModel(int index) = 0;
@@ -68,17 +68,17 @@ public:
 
   enum ModelType
   {
-    e2DModel,
-    e3DModel,
-    eHexaModel,
-    eGm3HexaModel,
-    eTetraModel,
-    eEclipseModel,
-    eGoCadModel,
-    eWellModel,
-    eWellCasingModel,
-    eWellZoomInModel,
-	eUndefinedModel
+  e2DModel,
+  e3DModel,
+  eHexaModel,
+  eGm3HexaModel,
+  eTetraModel,
+  eEclipseModel,
+  eGoCadModel,
+  eWellModel,
+  eWellCasingModel,
+  eWellZoomInModel,
+  eUndefinedModel
   };
 
   virtual ModelType modelType() const = 0;

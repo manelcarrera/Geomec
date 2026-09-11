@@ -16,16 +16,16 @@ RescueSection::~RescueSection()
 {
   if (sectionName != 0)
   {
-    delete sectionName;
+  delete sectionName;
   }
 }
 RescueSection::RescueSection(RescueCoordinateSystem::Orientation orientation,
-                RESCUECHAR *newSectionName,
-                RescueModel *parentModelIn,
-                RescueSurface::SurfaceType typeIn,
-                RESCUEINT64 i_lowbound, RESCUEINT64 i_count,
-                RESCUEINT64 j_lowbound, RESCUEINT64 j_count,
-                RESCUEFLOAT missingValue)
+        RESCUECHAR *newSectionName,
+        RescueModel *parentModelIn,
+        RescueSurface::SurfaceType typeIn,
+        RESCUEINT64 i_lowbound, RESCUEINT64 i_count,
+        RESCUEINT64 j_lowbound, RESCUEINT64 j_count,
+        RESCUEFLOAT missingValue)
                              :RescueSurface( parentModelIn, 
                                              orientation,
                                              i_lowbound, i_count,
@@ -39,10 +39,10 @@ RescueSection::RescueSection(RescueCoordinateSystem::Orientation orientation,
 }
 
 RescueSection::RescueSection(RescueCoordinateSystem::Orientation orientation,
-                RESCUECHAR *newSectionName,
-                RescueModel *parentModelIn,
-                RescueSurface::SurfaceType typeIn,
-                RESCUEFLOAT missingValue)
+        RESCUECHAR *newSectionName,
+        RescueModel *parentModelIn,
+        RescueSurface::SurfaceType typeIn,
+        RESCUEFLOAT missingValue)
                              :RescueSurface( parentModelIn, 
                                              orientation,
                                              0, 0,
@@ -111,33 +111,33 @@ RescueSection::RescueSection(RescueContext *context, FILE *archiveFile)
   context->RescueProgress(myString);
   if (context->ReadFileVersion() < 6)
   {
-    RESCUEBOOL oldStyleFlag;
-    myfscanf(context, archiveFile, &oldStyleFlag);
-    if (oldStyleFlag)
-    {
+  RESCUEBOOL oldStyleFlag;
+  myfscanf(context, archiveFile, &oldStyleFlag);
+  if (oldStyleFlag)
+  {
       type = FAULT;
-    }
-    else
-    {
+  }
+  else
+  {
       type = LEASE_BOUNDARY;
-    }
+  }
   }
   else if (context->ReadFileVersion() < 10)
   {
-    RESCUEINT64 typeFlag;
-    myfscanf(context, archiveFile, &typeFlag);
-    type = (SurfaceType) typeFlag;
+  RESCUEINT64 typeFlag;
+  myfscanf(context, archiveFile, &typeFlag);
+  type = (SurfaceType) typeFlag;
   }
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -157,11 +157,11 @@ void RescueSection::Archive(FILE *archiveFile)
   myfprintf(context, archiveFile, (*sectionName).String());
   if (context->FileVersion() < 10)
   {
-    myfprintf(context, archiveFile, (RESCUEINT64) type);
+  myfprintf(context, archiveFile, (RESCUEINT64) type);
   }
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -174,11 +174,11 @@ RESCUEBOOL RescueSection::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueSection)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueSurface::IsOfType(thisType);
+  return RescueSurface::IsOfType(thisType);
   }
 }
 

@@ -37,56 +37,56 @@ private:
   class CStressStrainListObject : public IListObject
   {
   public:
-    typedef std::pair<double, double> TStressStrainPair;
+  typedef std::pair<double, double> TStressStrainPair;
 
-    CStressStrainListObject(CListCtrl& ctrl, TStressStrainPair& prStressStrain, CAttriWellCasingMaterialDlg& dlg, CDoubleQuantity::UNIT unit);
-    virtual unsigned int Icon() const;
-    virtual QString Text() const;
-    virtual BOOL CanEditText() const;
-    virtual BOOL EditText(const QString& strText);
-    virtual void OnDoubleClick(int nItemIndex);
-    double Stress() const;
-    double Strain() const;
-    BOOL EditStrainText(const CString& strText);
-    virtual void AppendContextMenu(CContextMenuInvoker& invoker);
-
-  private:
-    void DeleteItem();
+  CStressStrainListObject(CListCtrl& ctrl, TStressStrainPair& prStressStrain, CAttriWellCasingMaterialDlg& dlg, CDoubleQuantity::UNIT unit);
+  virtual unsigned int Icon() const;
+  virtual QString Text() const;
+  virtual BOOL CanEditText() const;
+  virtual BOOL EditText(const QString& strText);
+  virtual void OnDoubleClick(int nItemIndex);
+  double Stress() const;
+  double Strain() const;
+  BOOL EditStrainText(const CString& strText);
+  virtual void AppendContextMenu(CContextMenuInvoker& invoker);
 
   private:
-    TStressStrainPair& m_prStressStrain;
-    CAttriWellCasingMaterialDlg& m_dlg;
-    CDoubleQuantity::UNIT m_unit;
+  void DeleteItem();
+
+  private:
+  TStressStrainPair& m_prStressStrain;
+  CAttriWellCasingMaterialDlg& m_dlg;
+  CDoubleQuantity::UNIT m_unit;
   };
 
   class CStressStrainListSubObject : public ISubListObject
   {
   public:
-    CStressStrainListSubObject(CStressStrainListObject& parent);
-    virtual QString Text() const;
-    virtual BOOL CanEditText() const;
-    virtual BOOL EditText(const QString& strText);
-    virtual void OnDoubleClick(const CPoint& point);
+  CStressStrainListSubObject(CStressStrainListObject& parent);
+  virtual QString Text() const;
+  virtual BOOL CanEditText() const;
+  virtual BOOL EditText(const QString& strText);
+  virtual void OnDoubleClick(const CPoint& point);
   };
 
   class CNewStressStrainListObject : public IListObject
   {
   public:
-    CNewStressStrainListObject(CListCtrl& ctrl, CAttriWellCasingMaterialDlg& dlg);
-    virtual QString Text() const;
-    virtual void OnDoubleClick();
-    virtual unsigned int Icon() const;
+  CNewStressStrainListObject(CListCtrl& ctrl, CAttriWellCasingMaterialDlg& dlg);
+  virtual QString Text() const;
+  virtual void OnDoubleClick();
+  virtual unsigned int Icon() const;
 
   private:
-    CAttriWellCasingMaterialDlg& m_dlg;
+  CAttriWellCasingMaterialDlg& m_dlg;
 
   private:
-    class CDummySubListObject : public ISubListObject
-    {
-    public:
+  class CDummySubListObject : public ISubListObject
+  {
+  public:
       CDummySubListObject(CNewStressStrainListObject& parent);
       virtual QString Text() const;
-    };
+  };
   };
 
 private:

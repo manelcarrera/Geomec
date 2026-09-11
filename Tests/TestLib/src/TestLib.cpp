@@ -59,7 +59,7 @@ extern "C"
 
 namespace
 {
-	Printer* printer = Printer::instance(Printer::Tests);
+  Printer* printer = Printer::instance(Printer::Tests);
 }
 
 namespace test_lib
@@ -92,25 +92,25 @@ std::string &FileCompare::normalizeScientific(std::string &s)
 
   while (i < m)
   {
-    if (s[i] == 'E' || s[i] == 'e')
-    {
+  if (s[i] == 'E' || s[i] == 'e')
+  {
       size_t n = i + 1;
       if (n < m && (s[n] == '-' || s[n] == '+'))
       {
-        s[i] = 'e';
-        
-        ++n;
+    s[i] = 'e';
+    
+    ++n;
 
-        if (n + 2 < m && s[n] == '0' && std::isdigit(s[n+1]) && std::isdigit(s[n+2]))
-        {
+    if (n + 2 < m && s[n] == '0' && std::isdigit(s[n+1]) && std::isdigit(s[n+2]))
+    {
           s.erase(n, 1);
           m = s.size();
           i += 2; // for the two digits
-        }
-        ++i; // for handling the +/-
-      }
     }
-    ++i;
+    ++i; // for handling the +/-
+      }
+  }
+  ++i;
   }
 
   return s;
@@ -132,42 +132,42 @@ bool FileCompare::IdenticalText(std::string file_0, std::string file_1)
   std::ifstream f1(file_1.c_str(), std::ifstream::in);
 
   if (!f0.is_open() || !f1.is_open())
-    return false;
+  return false;
 
   while (!f0.eof() && !f1.eof())
   {
-    std::string s0, s1;
-    
-    std::getline(f0, s0);
-    std::getline(f1, s1);
+  std::string s0, s1;
+  
+  std::getline(f0, s0);
+  std::getline(f1, s1);
 
-    rtrim(s0);
-    rtrim(s1);
+  rtrim(s0);
+  rtrim(s1);
 
-    normalizeScientific(s0);
-    normalizeScientific(s1);
+  normalizeScientific(s0);
+  normalizeScientific(s1);
 
-    if (s0 != s1)
-    {
+  if (s0 != s1)
+  {
 #ifdef DEBUG_FILE_DIFFERENCES
       for (int i = 0; i < s0.size(); ++i)
       {
-        if (i >= s1.size() || s0[i] != s1[i])
-        {
+    if (i >= s1.size() || s0[i] != s1[i])
+    {
           std::cout << i << " 0:" << (int)s0[i] << " ";
           if (i < s1.size())
-            std::cout << i << " 1:" << (int)s1[i] << " ";
-        }
+      std::cout << i << " 1:" << (int)s1[i] << " ";
+    }
 
       }
       std::cout << std::endl;
 #endif
       return false;
-    }
+  }
   }
 
   if (!f0.eof() || !f1.eof())
-    return false;
+  return false;
 
   f0.close();
   f1.close();
@@ -182,14 +182,14 @@ bool FileCompare::IdenticalTokens(std::string file_0, std::string file_1, double
 
   struct printTokens
   {
-    printTokens(std::size_t count, std::string token_0, std::string token_1)
-    {
+  printTokens(std::size_t count, std::string token_0, std::string token_1)
+  {
       std::cout << "TOKENS #" << count << " differ:" << std::endl;
       std::cout << "  Token 0: '" << token_0 << "'" << std::endl;
       std::cout << "  Token 1: '" << token_1 << "'" << std::endl;
-    }
-    printTokens(std::size_t count, std::string token_0, std::string token_1, double d_0, double d_1, double epsilon, double error, double relative_error)
-    {
+  }
+  printTokens(std::size_t count, std::string token_0, std::string token_1, double d_0, double d_1, double epsilon, double error, double relative_error)
+  {
       printTokens(count, token_0, token_1);
 
       std::streamsize precision = std::cout.precision();
@@ -205,76 +205,76 @@ bool FileCompare::IdenticalTokens(std::string file_0, std::string file_1, double
       std::cout.precision(precision);
       std::cout << "    Relative: " << relative_error << " " << std::setprecision(20) << relative_error << std::endl;
       std::cout.precision(precision);
-    }
+  }
   };
 
 
   std::ifstream f0(file_0.c_str(), std::ifstream::in|std::ifstream::binary);
 
   if (!f0.is_open())
-    return false;
+  return false;
 
   std::ifstream f1(file_1.c_str(), std::ifstream::in|std::ifstream::binary);
 
   if (!f1.is_open())
   {
-    f0.close();
-    return false;
+  f0.close();
+  return false;
   }
 
   std::size_t count = 0;
 
   while (!f0.eof() && !f1.eof())
   {
-    std::string token_0;
-    std::string token_1;
+  std::string token_0;
+  std::string token_1;
 
-    ++count;
+  ++count;
 
-    f0 >> token_0;
-    f1 >> token_1;
+  f0 >> token_0;
+  f1 >> token_1;
 
-    if (token_0 != token_1)
-    {
+  if (token_0 != token_1)
+  {
       // let's find out why they differ
 
       if (token_0.find('.') != std::string::npos || token_1.find('.') != std::string::npos || // is one a double? (assume the other is too)
           token_0.find('e') != std::string::npos || token_1.find('e') != std::string::npos ||
           token_0.find('E') != std::string::npos || token_1.find('E') != std::string::npos ) 
       {
-        double d_0 = atof(token_0.c_str());
-        double d_1 = atof(token_1.c_str());
+    double d_0 = atof(token_0.c_str());
+    double d_1 = atof(token_1.c_str());
 
-        double error          = fabs(d_0 - d_1);
-        double relative_error = fabs(error / d_0);
+    double error          = fabs(d_0 - d_1);
+    double relative_error = fabs(error / d_0);
 
-        if (error > epsilon && relative_error > epsilon)
-        {
+    if (error > epsilon && relative_error > epsilon)
+    {
           printTokens(count, token_0, token_1, d_0, d_1, epsilon, error, relative_error);
           return false;
-        }
+    }
       }
       else if (token_0.size() == token_1.size()) // let's try to ignore case
       {
-        for (std::size_t i = 0; i < token_0.size(); ++i)
-        {
+    for (std::size_t i = 0; i < token_0.size(); ++i)
+    {
           if (tolower(token_0[i]) != tolower(token_1[i]))
           {
-            printTokens(count, token_0, token_1);
-            return false;
+      printTokens(count, token_0, token_1);
+      return false;
           }
-        }
+    }
       }
       else
       {
-        printTokens(count, token_0, token_1);
-        return false;
+    printTokens(count, token_0, token_1);
+    return false;
       }
-    }
+  }
   }
 
   if (!f0.eof() || !f1.eof())
-    return false;
+  return false;
 
   f0.close();
   f1.close();
@@ -307,20 +307,20 @@ bool TestLib::setModelPath(const char *model_path)
   memset(test_model_path, 0, sizeof(test_model_path));
 
   if (strlen(model_path) > 255)
-    return false;
+  return false;
 
   memcpy(test_model_path, model_path, strlen(model_path));
 
-	size_t len = strlen(test_model_path);
-	char *last = &test_model_path[len-1];
-	if (*last != '/' && *last != '\\')
-	{
-    if (len > 254)
+  size_t len = strlen(test_model_path);
+  char *last = &test_model_path[len-1];
+  if (*last != '/' && *last != '\\')
+  {
+  if (len > 254)
       return false;
 
-		*++last = '/';
-		*++last = '\0';
-	}
+    *++last = '/';
+    *++last = '\0';
+  }
 
   return true;
 }
@@ -339,7 +339,7 @@ void TestLib::setExecPath(const char *exec_path)
   memcpy(test_exec_path, exec_path, len);
 
   for (int i = (int)len; i >= 0 && test_exec_path[i] != '/' && test_exec_path[i] != '\\'; --i)
-    test_exec_path[i] = '\0';
+  test_exec_path[i] = '\0';
 }
 
 
@@ -367,9 +367,9 @@ QTextStream* TestLib::CurrentOutput()
 void TestLib::CurrentOutput(QTextStream *os)
 {
   if (os)
-    m_osMap[getThreadID()] = os;
+  m_osMap[getThreadID()] = os;
   else
-    m_osMap.erase(getThreadID());
+  m_osMap.erase(getThreadID());
 }
 
 
@@ -398,22 +398,22 @@ std::string TestLib::getDateTimeEx()
 std::string TestLib::getGUID()
 {
 #ifdef WIN32
-    UUID uuid;
-    UuidCreate(&uuid);
+  UUID uuid;
+  UuidCreate(&uuid);
 
-    unsigned char *str;
-    UuidToStringA (&uuid, &str);
+  unsigned char *str;
+  UuidToStringA (&uuid, &str);
 
-    std::string s((char *)str);
+  std::string s((char *)str);
 
-    RpcStringFreeA (&str);
+  RpcStringFreeA (&str);
 #else
-    uuid_t uuid;
-    uuid_generate_random(uuid);
-    char s[37];
-    uuid_unparse (uuid, s);
+  uuid_t uuid;
+  uuid_generate_random(uuid);
+  char s[37];
+  uuid_unparse (uuid, s);
 #endif
-    return s;
+  return s;
 }
 
 
@@ -517,8 +517,8 @@ bool TestLib::saveModel(CModelBase& model, QString sModelFile)
 //
 int TestLib::runModel(CModelBase *pModel, QString sModelFile, CAnalysisType::TAnalysisType anyType, QString sAppVersion)
 {
-	controller::Params p = controller::Params{ *pModel, anyType, false, false, false, GetGeomecTempPathExt( CTempPath::TEMP_CALCULATION ) };
-	return run_model( p, sModelFile,"", sAppVersion );
+  controller::Params p = controller::Params{ *pModel, anyType, false, false, false, GetGeomecTempPathExt( CTempPath::TEMP_CALCULATION ) };
+  return run_model( p, sModelFile,"", sAppVersion );
 }
 
 //
@@ -526,58 +526,58 @@ int TestLib::runModel(CModelBase *pModel, QString sModelFile, CAnalysisType::TAn
 // url_res: export input files generated files: .dcf, .dat
 //
 int TestLib::run_model(	const controller::Params& pp, 
-						const QString& url, 
-						const QString& results_path, 
-						QString app_version )
+            const QString& url, 
+            const QString& results_path, 
+            QString app_version )
 {
-	if(!&pp.model)
-	{
-		std::cerr << "Unable to open modelfile " << url.toStdString().c_str() << std::endl;
-		return 1;
-	}
+  if(!&pp.model)
+  {
+    std::cerr << "Unable to open modelfile " << url.toStdString().c_str() << std::endl;
+    return 1;
+  }
 
-	QString path;
-	QString file;
-	SplitPathAndFileName(url, path, file);
-	QString name = RemoveExtension(file);
+  QString path;
+  QString file;
+  SplitPathAndFileName(url, path, file);
+  QString name = RemoveExtension(file);
 
-	CDianaExecuter diaexec;
-	CSaveModelConsole smc(pp.model, app_version); 
-	//
-	//CSaveModelTest smc(pp.model, sAppVersion);	// this doesn't save the input files
-	//
-	CRetrieveDianaFileNamesConsole retr( results_path );
+  CDianaExecuter diaexec;
+  CSaveModelConsole smc(pp.model, app_version); 
+  //
+  //CSaveModelTest smc(pp.model, sAppVersion);	// this doesn't save the input files
+  //
+  CRetrieveDianaFileNamesConsole retr( results_path );
 
-	CDianaRunController drc( pp );
-	
-	dia::IDianaRunner::RunParams p = { url, name.toStdString(), drc.tmp().toStdString(), &diaexec, &smc, &retr, nullptr, false, _g->dsa() };
-	drc.params(p);
+  CDianaRunController drc( pp );
+  
+  dia::IDianaRunner::RunParams p = { url, name.toStdString(), drc.tmp().toStdString(), &diaexec, &smc, &retr, nullptr, false, _g->dsa() };
+  drc.params(p);
 
-	bool res=false;
+  bool res=false;
 
-	if (p.dsa)
-	{
-		CRunAnalysis_CLI ra(&drc, CDianaRunController::All);
-		ra.wait();
-		res = ra.res(); // true is success
-	}
-	else
-	{
-		res = drc.run(CDianaRunController::All);
-	}
+  if (p.dsa)
+  {
+    CRunAnalysis_CLI ra(&drc, CDianaRunController::All);
+    ra.wait();
+    res = ra.res(); // true is success
+  }
+  else
+  {
+    res = drc.run(CDianaRunController::All);
+  }
 
-	if (!res)
-		return 1;
+  if (!res)
+    return 1;
 
-	return 0; // 0 is success
+  return 0; // 0 is success
 }
 
 int TestLib::runModelWithSave(CModelBase *pModel, QString sModelFile, CAnalysisType::TAnalysisType anyType, QString sAppVersion)
 {
   if (!pModel)
   {
-    std::cerr << "Unable to open modelfile " << sModelFile.toStdString().c_str() << std::endl;
-    return 1;
+  std::cerr << "Unable to open modelfile " << sModelFile.toStdString().c_str() << std::endl;
+  return 1;
   }
 
   QString sModelPath;
@@ -598,17 +598,17 @@ int TestLib::runModelWithSave(CModelBase *pModel, QString sModelFile, CAnalysisT
 
   if (p.dsa)
   {
-    CRunAnalysis_CLI ra(&drc, CDianaRunController::All);
-    ra.wait();
-    res = ra.res(); // true is success
+  CRunAnalysis_CLI ra(&drc, CDianaRunController::All);
+  ra.wait();
+  res = ra.res(); // true is success
   }
   else
   {
-    res = drc.run(CDianaRunController::All);
+  res = drc.run(CDianaRunController::All);
   }
 
   if (!res)
-    return 1;
+  return 1;
 
   return 0; // 0 is success
 }
@@ -622,84 +622,84 @@ int TestLib::runModelWithSave(CModelBase *pModel, QString sModelFile, CAnalysisT
 //
 int TestLib::runStepsModel(CModelBase *pModel, QString sModelFile, QString sAppVersion)
 {
-	if(!pModel)
-	{
-		std::cerr << "Unable to open modelfile " << sModelFile.toStdString().c_str() << std::endl;
-		return 1;
-	}
+  if(!pModel)
+  {
+    std::cerr << "Unable to open modelfile " << sModelFile.toStdString().c_str() << std::endl;
+    return 1;
+  }
 
-	CDepletionStage* depletionStage = &(pModel->DepletionStageEntry().LastStage());
+  CDepletionStage* depletionStage = &(pModel->DepletionStageEntry().LastStage());
 
-	while (depletionStage && !depletionStage->Initial())
-	{
-		depletionStage->setOutputType(CDepletionStage::PHASE);
-		depletionStage = &(depletionStage->Previous());
-	}
+  while (depletionStage && !depletionStage->Initial())
+  {
+    depletionStage->setOutputType(CDepletionStage::PHASE);
+    depletionStage = &(depletionStage->Previous());
+  }
 
-	QString sModelPath;
-	QString sModelFileName;
-	SplitPathAndFileName(sModelFile, sModelPath, sModelFileName);
-	QString sModelName = RemoveExtension(sModelFileName);
+  QString sModelPath;
+  QString sModelFileName;
+  SplitPathAndFileName(sModelFile, sModelPath, sModelFileName);
+  QString sModelName = RemoveExtension(sModelFileName);
 
-	CDianaExecuter diaexec;
-	CSaveModelConsole smc(*pModel, sAppVersion);
-	CRetrieveDianaFileNamesConsole retr;
+  CDianaExecuter diaexec;
+  CSaveModelConsole smc(*pModel, sAppVersion);
+  CRetrieveDianaFileNamesConsole retr;
 
-	CDianaRunController drc(*pModel, CAnalysisType::AT_NONLIN, false, false, false, GetGeomecTempPathExt(CTempPath::TEMP_CALCULATION));
+  CDianaRunController drc(*pModel, CAnalysisType::AT_NONLIN, false, false, false, GetGeomecTempPathExt(CTempPath::TEMP_CALCULATION));
 
-	dia::IDianaRunner::RunParams p = { sModelFile, sModelName.toStdString(), drc.tmp().toStdString(), &diaexec, &smc, &retr, nullptr, false, _g->dsa() };
-	drc.params(p);
+  dia::IDianaRunner::RunParams p = { sModelFile, sModelName.toStdString(), drc.tmp().toStdString(), &diaexec, &smc, &retr, nullptr, false, _g->dsa() };
+  drc.params(p);
 
-	bool res=false;
+  bool res=false;
 
-	if (p.dsa)
-	{
-		CRunAnalysis_CLI ra(&drc, CDianaRunController::First);
-		ra.wait();
-		res = ra.res(); // true is success
-	}
-	else
-	{
-		res = drc.run(CDianaRunController::First);
-	}
+  if (p.dsa)
+  {
+    CRunAnalysis_CLI ra(&drc, CDianaRunController::First);
+    ra.wait();
+    res = ra.res(); // true is success
+  }
+  else
+  {
+    res = drc.run(CDianaRunController::First);
+  }
 
-	if (!res)
-		return 1;
+  if (!res)
+    return 1;
 
-	while (!drc.EndStage().Last())
-	{
-		if (p.dsa)
-		{
-			CRunAnalysis_CLI ra(&drc, CDianaRunController::Next);
-			ra.wait();
-			res = ra.res(); // true is success
-		}
-		else
-		{
-			res = drc.run(CDianaRunController::Next);
-		}
+  while (!drc.EndStage().Last())
+  {
+    if (p.dsa)
+    {
+      CRunAnalysis_CLI ra(&drc, CDianaRunController::Next);
+      ra.wait();
+      res = ra.res(); // true is success
+    }
+    else
+    {
+      res = drc.run(CDianaRunController::Next);
+    }
 
-		if (!res)
-			return 1;
-	}
-	//
-	// TODO: verify if with last updates it's still needed
-	//
-	// this was crashing in ModelOperationsBatch in the test after doing 'run 1'
-	//
+    if (!res)
+      return 1;
+  }
+  //
+  // TODO: verify if with last updates it's still needed
+  //
+  // this was crashing in ModelOperationsBatch in the test after doing 'run 1'
+  //
 
-	//
-	// this releases resources to leave a clean environment for next execution
-	//
-	drc.push_(ClearController);
-	//
-	// FIXME: race condition
-	//
-	std::this_thread::sleep_for(std::chrono::milliseconds(500)); // 200ms., not enough / 300ms. is Ok // 500ms. just in case
-	//
-	//
-	//
-	return 0; // 0 is success
+  //
+  // this releases resources to leave a clean environment for next execution
+  //
+  drc.push_(ClearController);
+  //
+  // FIXME: race condition
+  //
+  std::this_thread::sleep_for(std::chrono::milliseconds(500)); // 200ms., not enough / 300ms. is Ok // 500ms. just in case
+  //
+  //
+  //
+  return 0; // 0 is success
 }
 
 void TestLib::closeModel(CModelBase **pModel)
@@ -716,7 +716,7 @@ const IPointSet *TestLib::getPointSet(const CModelBase *pModel, const QString& p
 
   for (TPointSetEntry::TNodeSet::const_iterator it = stNodes.begin(); it != stNodes.end(); ++it)
   {
-    if ((*it)->Name() == pointset)
+  if ((*it)->Name() == pointset)
       return *it;
   }
 
@@ -730,26 +730,26 @@ void TestLib::importResultMacroLibrary(TMacros& macros, CModelBase *pModel, QStr
 
   if (pExportResultDataEntry)
   {
-    if (!sExportMacroLib.isEmpty())
+  if (!sExportMacroLib.isEmpty())
       pExportResultDataEntry->Import(sExportMacroLib);
 
-    CExportResultDataEntry::TNodeSet stNodes = pExportResultDataEntry->EntryNodes();
+  CExportResultDataEntry::TNodeSet stNodes = pExportResultDataEntry->EntryNodes();
 
-    std::copy(stNodes.begin(), stNodes.end(), std::inserter(macros, macros.begin()));
+  std::copy(stNodes.begin(), stNodes.end(), std::inserter(macros, macros.begin()));
   }
 }
 
 void TestLib::Log(const char * msg )
 {
   // to be implemented
-	//Printer::instance()->debug( "%s", msg );
-	printer->debug("log : test : %s", msg);
+  //Printer::instance()->debug( "%s", msg );
+  printer->debug("log : test : %s", msg);
 }
 
 void TestLib::Log(QString *msg)
 {
   if (msg)
-    Log(msg->toStdString().c_str());
+  Log(msg->toStdString().c_str());
 }
 
 }

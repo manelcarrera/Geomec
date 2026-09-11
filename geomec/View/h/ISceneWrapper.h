@@ -26,41 +26,41 @@ class ISceneWrapper
 
 protected:
 
-    class CDocumentLink : public CGraphNode
+  class CDocumentLink : public CGraphNode
+  {
+    CGeomecDoc *m_pDoc;
+
+  public:
+    CDocumentLink() : CGraphNode(_T("")), m_pDoc(GetGeomecDoc()) {}
+
+    virtual void OnNewNeighbour(const CGraphNode& node)
     {
-        CGeomecDoc *m_pDoc;
-
-    public:
-        CDocumentLink() : CGraphNode(_T("")), m_pDoc(GetGeomecDoc()) {}
-
-        virtual void OnNewNeighbour(const CGraphNode& node)
-        {
-            CGraphNode::OnNewNeighbour(node);
+      CGraphNode::OnNewNeighbour(node);
 #if 0
-            // At this point m_pDoc points to a deleted scene wrapper, here we are in the process of creating a new one!!
-            ISceneWrapper * currentScene = m_pDoc->CurrentScene();
-            int mode = (currentScene && currentScene->OpenInventorScene()) ? SWITCH_TO_OPENINVENTOR : NEW_CURRENT_SCENE;
-            m_pDoc->UpdateAllViews(0, mode, (CObject*)(currentScene));
+      // At this point m_pDoc points to a deleted scene wrapper, here we are in the process of creating a new one!!
+      ISceneWrapper * currentScene = m_pDoc->CurrentScene();
+      int mode = (currentScene && currentScene->OpenInventorScene()) ? SWITCH_TO_OPENINVENTOR : NEW_CURRENT_SCENE;
+      m_pDoc->UpdateAllViews(0, mode, (CObject*)(currentScene));
 #endif
 
-        }
+    }
 
-        virtual void OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint)
-        {
-            CGraphNode::OnNeighbourModified(node, uHint);
-            m_pDoc->UpdateAllViews(0, CURRENT_SCENE_MODIFIED, (CObject*)(m_pDoc->CurrentScene()));
-        }
+    virtual void OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint)
+    {
+      CGraphNode::OnNeighbourModified(node, uHint);
+      m_pDoc->UpdateAllViews(0, CURRENT_SCENE_MODIFIED, (CObject*)(m_pDoc->CurrentScene()));
+    }
 
-        virtual void OnNeighbourDeleted(const CGraphNode& node)
-        {
-            CGraphNode::OnNeighbourDeleted(node);
-            m_pDoc->UpdateAllViews(0, NEW_CURRENT_SCENE, 0);
-        }
+    virtual void OnNeighbourDeleted(const CGraphNode& node)
+    {
+      CGraphNode::OnNeighbourDeleted(node);
+      m_pDoc->UpdateAllViews(0, NEW_CURRENT_SCENE, 0);
+    }
 
-        virtual unsigned int IconId() const { return 0; }
-        virtual unsigned int TypeId() const { return 0; }
+    virtual unsigned int IconId() const { return 0; }
+    virtual unsigned int TypeId() const { return 0; }
 
-    };
+  };
 
   CDocumentLink m_DocLink;
 
@@ -214,11 +214,11 @@ public:
 
   virtual const geo::CVector &DisplacementVector() const = 0;
   virtual void DisplacementVector(const geo::CVector &newval) = 0;
-	virtual const geo::CVector &ModelScaleVector() const = 0;
-	virtual void ModelScaleVector(const geo::CVector &newval) = 0;
+  virtual const geo::CVector &ModelScaleVector() const = 0;
+  virtual void ModelScaleVector(const geo::CVector &newval) = 0;
   virtual const geo::CVector &ScaleVector() const = 0;
   virtual void ScaleVector(const geo::CVector &newVal) = 0;
-	virtual const geo::CVector &RotateLockVector() const = 0;
+  virtual const geo::CVector &RotateLockVector() const = 0;
   virtual void RotateLockVector(const geo::CVector& vec) = 0;
   virtual void LockRotationVector(const geo::IVector& vector) = 0;
   virtual const geo::IVector& LockRotationVector() const = 0;
@@ -236,7 +236,7 @@ public:
   virtual bool Lighting() const = 0;
   virtual bool CanEnableLighting() const = 0;
   virtual void EnableLighting(bool lighting) = 0;
-	virtual bool LightingEnabled() const = 0;
+  virtual bool LightingEnabled() const = 0;
   virtual void OnSize(int cx, int cy) = 0;
 
   virtual void SetVectorScale(float scale) = 0;

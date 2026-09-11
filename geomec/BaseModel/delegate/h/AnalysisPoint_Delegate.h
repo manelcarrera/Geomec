@@ -34,7 +34,7 @@ public:
 private:
   CAnalysisPointEntry_Delegate(const CAnalysisPointEntry_Delegate& rhs);
   CAnalysisPointEntry_Delegate& operator = (
-    const CAnalysisPointEntry_Delegate& rhs);
+  const CAnalysisPointEntry_Delegate& rhs);
 
   CAnalysisPointEntry* m_analysisPointEntry;
 

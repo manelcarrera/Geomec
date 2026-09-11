@@ -8,10 +8,10 @@
 class CMaterialDualCapLinEla : public IMaterialRock
 {
 public:
-	CMaterialDualCapLinEla(CMaterialEntry &entry, CLibraryMaterial& libmat);
+  CMaterialDualCapLinEla(CMaterialEntry &entry, CLibraryMaterial& libmat);
 
-	virtual bool Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const;
-	virtual int MaterialModel() const { return MM_DUALCAP_LINELA; }
+  virtual bool Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const;
+  virtual int MaterialModel() const { return MM_DUALCAP_LINELA; }
   virtual long MaterialModelFilter() const { return MLFO_DUALCAP_LINELA; }
 
   // the creator for this material model

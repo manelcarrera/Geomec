@@ -30,9 +30,9 @@ CWellFormationEntryObserver::CWellFormationEntryObserver(CWellFormationEntry& en
 
 CTreeNode* CWellFormationEntryObserver::InsertChild(CWellFormation& t)
 {
-	typedef CEnumerationBranch<CPressure, CValueCompositeObserver, FALSE, FIXED_ITEM> TPressureEnumerator;
-	typedef CEnumerationBranch<CFractureMatrixPressure, CValueCompositeObserver, FALSE, FIXED_ITEM> TFractureMatrixPressureEnumerator;
-	typedef CEnumerationBranch<CTemperature, CValueCompositeObserver, FALSE, FIXED_ITEM> TTemperatureEnumerator;
+  typedef CEnumerationBranch<CPressure, CValueCompositeObserver, FALSE, FIXED_ITEM> TPressureEnumerator;
+  typedef CEnumerationBranch<CFractureMatrixPressure, CValueCompositeObserver, FALSE, FIXED_ITEM> TFractureMatrixPressureEnumerator;
+  typedef CEnumerationBranch<CTemperature, CValueCompositeObserver, FALSE, FIXED_ITEM> TTemperatureEnumerator;
   typedef CEnumerationBranch<CCalculatedTemperature, CValueCompositeObserver, FALSE, FIXED_ITEM> TCalcTemperEnumerator;
   typedef CEnumerationBranch<CStrainLoad, CValueCompositeObserver, FALSE, FIXED_ITEM> TStrainEnumerator;
   typedef CMaterialServerObserver_Delegate<CMaterialServer, CMaterialServer_Delegate, CValueType, CDistributedMaterialPropertyObserver, FALSE, UNLINK_ITEM> TMaterialObserver;
@@ -40,17 +40,17 @@ CTreeNode* CWellFormationEntryObserver::InsertChild(CWellFormation& t)
 
   CTreeNode* pTreeObserver = CStateBranch_Delegate<CWellFormationEntry, CWellFormationEntry_Delegate, CWellFormation, TWellFormationObserver, CUndefinedIconProvider, TRUE, FIXED_ITEM>::InsertChild(t);
 
-	new TPressureEnumerator(*pTreeObserver,
-						   _T("Pressure"),
-						   IDI_PRESSURES);
+  new TPressureEnumerator(*pTreeObserver,
+               _T("Pressure"),
+               IDI_PRESSURES);
 
-	new TFractureMatrixPressureEnumerator(*pTreeObserver,
-						   _T("Fracture matrix pressure"),
-						   IDI_PRESSURES);
+  new TFractureMatrixPressureEnumerator(*pTreeObserver,
+               _T("Fracture matrix pressure"),
+               IDI_PRESSURES);
 
-	new TTemperatureEnumerator(*pTreeObserver,
-							   _T("Temperature"),
-							   IDI_TEMPERATURES);
+  new TTemperatureEnumerator(*pTreeObserver,
+                 _T("Temperature"),
+                 IDI_TEMPERATURES);
 
   new TCalcTemperEnumerator(*pTreeObserver,
                  _T("Calculated temperatures"),

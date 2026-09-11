@@ -13,7 +13,7 @@ CGetNonMeshedSurfaceInfo& CGetNonMeshedSurfaceInfo::instance(
 {
   if (m_getNonMeshedSurfaceInfo == 0)
   {
-    m_getNonMeshedSurfaceInfo = new CGetNonMeshedSurfaceInfo(modelBase);
+  m_getNonMeshedSurfaceInfo = new CGetNonMeshedSurfaceInfo(modelBase);
   }
 
   return *m_getNonMeshedSurfaceInfo;
@@ -52,19 +52,19 @@ TObjects CGetNonMeshedSurfaceInfo::getObjects(CModelBase* modelBase)
 
   if (modelBase != 0)
   {
-    const CNonMeshedSurfaceEntry* nonMeshedSurfaceEntry =
+  const CNonMeshedSurfaceEntry* nonMeshedSurfaceEntry =
       dynamic_cast <CNonMeshedSurfaceEntry*> (
-        modelBase->GraphEntry(MD_BASE_NONMESHEDSURFACE));
-    const CNonMeshedSurfaceEntry::TEntryNodeSet nonMeshedSurfaces =
+    modelBase->GraphEntry(MD_BASE_NONMESHEDSURFACE));
+  const CNonMeshedSurfaceEntry::TEntryNodeSet nonMeshedSurfaces =
       nonMeshedSurfaceEntry->GraphEntryNodes();
 
-    for (CNonMeshedSurfaceEntry::TEntryNodeSet::const_iterator
+  for (CNonMeshedSurfaceEntry::TEntryNodeSet::const_iterator
       nonMeshedSurface = nonMeshedSurfaces.begin();
       nonMeshedSurface != nonMeshedSurfaces.end(); ++nonMeshedSurface)
-    {
+  {
       objects.push_back(TObject(new CObject(CObject::nonMeshedSurfaceObject,
-        modelBase, dynamic_cast <CNonMeshedSurface*> (*nonMeshedSurface))));
-    }
+    modelBase, dynamic_cast <CNonMeshedSurface*> (*nonMeshedSurface))));
+  }
   }
 
   return objects;

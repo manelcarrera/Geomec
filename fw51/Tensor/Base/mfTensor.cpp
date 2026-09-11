@@ -24,7 +24,7 @@ CTensor::CTensor(const double& dInitVal)
 : m_bEmpty(false)
 {
   for(int i = 0; i < 6; i++)
-    m_pData[i] = dInitVal;
+  m_pData[i] = dInitVal;
 }
 
 //##ModelId=3BC6995B02C6
@@ -99,11 +99,11 @@ CTensor::CTensor(const double& dPrincVal1, const double& dPrincVal2, const doubl
   assert((fabs(rotated.Value(0, 2) - rotated.Value(2, 0)))<EPS);
 
   Set(rotated.Value(0, 0),
-    rotated.Value(1, 1),
-    rotated.Value(2, 2),
-    rotated.Value(1, 0),
-    rotated.Value(1, 2),
-    rotated.Value(0, 2));
+  rotated.Value(1, 1),
+  rotated.Value(2, 2),
+  rotated.Value(1, 0),
+  rotated.Value(1, 2),
+  rotated.Value(0, 2));
 }
 //##ModelId=3BC6995B02D3
 CTensor::~CTensor()
@@ -114,7 +114,7 @@ CTensor::CTensor(const CTensor& rhs)
 : ITensor(rhs), m_bEmpty(rhs.Empty())
 {
   if(!rhs.Empty()) {
-    for(int i = 0; i < 6; i++)
+  for(int i = 0; i < 6; i++)
       m_pData[i] = rhs.m_pData[i];
   }
 }
@@ -124,12 +124,12 @@ CTensor::CTensor(const ITensor& rhs)
 {
   if(!rhs.Empty())
   {
-    m_pData[0] = rhs.XX();
-    m_pData[1] = rhs.YY();
-    m_pData[2] = rhs.ZZ();
-    m_pData[3] = rhs.XY();
-    m_pData[4] = rhs.YZ();
-    m_pData[5] = rhs.XZ();
+  m_pData[0] = rhs.XX();
+  m_pData[1] = rhs.YY();
+  m_pData[2] = rhs.ZZ();
+  m_pData[3] = rhs.XY();
+  m_pData[4] = rhs.YZ();
+  m_pData[5] = rhs.XZ();
   }
 }
 
@@ -137,7 +137,7 @@ CTensor& CTensor::operator=(const CTensor& rhs)
 {
   m_bEmpty = rhs.Empty();
   if(!rhs.Empty()) {
-    for(int i = 0; i < 6; i++)
+  for(int i = 0; i < 6; i++)
       m_pData[i] = rhs.m_pData[i];
   }
 

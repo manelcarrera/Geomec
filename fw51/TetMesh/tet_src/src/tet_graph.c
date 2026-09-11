@@ -157,8 +157,8 @@ static int TetGraphPrepare( TetGraph_t *graph, int **offsetP, int **indxP )
 
 /* Auxilary routine to TetGraphGetConnectivity */
 static int TetGraphGetTrueColor( 
-                const int        *color,
-                const int         node ) 
+        const int        *color,
+        const int         node ) 
 {
    int trueColor = node;
    assert( node >= 0 );
@@ -170,9 +170,9 @@ static int TetGraphGetTrueColor(
 }
 
 static int TetGraphSetTrueColor( 
-                int              *color,
-                const int         trueColor,
-                const int         node ) 
+        int              *color,
+        const int         trueColor,
+        const int         node ) 
 {
    int curColor = color[ node ];
    assert( node >= 0 );
@@ -253,8 +253,8 @@ extern int * TetGraphGetConnectivity( TetGraph_t *graph, int *numColor )
       if (  numNotUsed ) {
          int        n;
          for ( n = 0; n < dim; n++ ) {
-            const int *entry = RBTreeFindGet( graph->activeTree, &n );
-            if ( !entry ) color[n] = -1;
+      const int *entry = RBTreeFindGet( graph->activeTree, &n );
+      if ( !entry ) color[n] = -1;
          }
          UTIL_RESEQUENCE( color, dim );
          UTIL_ARRAY_ADD( color, -1, dim );

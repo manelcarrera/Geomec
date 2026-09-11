@@ -21,7 +21,7 @@ QString Execute(const char *command)
   HANDLE pipeOurEnd, pipeChildEnd;
 
   if (!CreatePipe(&pipeOurEnd, &pipeChildEnd, &sa, 0))
-    return retval;
+  return retval;
 
   STARTUPINFO si = { sizeof(STARTUPINFO) };
   si.dwFlags     = STARTF_USESHOWWINDOW | STARTF_USESTDHANDLES;
@@ -33,9 +33,9 @@ QString Execute(const char *command)
 
   if (!CreateProcess(NULL, (LPSTR)command, NULL, NULL, TRUE, CREATE_NO_WINDOW, NULL, NULL, &si, &pi))
   {
-    CloseHandle(pipeOurEnd);
-    CloseHandle(pipeChildEnd);
-    return retval;
+  CloseHandle(pipeOurEnd);
+  CloseHandle(pipeChildEnd);
+  return retval;
   }
 
   char buffer[4096];
@@ -43,27 +43,27 @@ QString Execute(const char *command)
   
   while (!bFinished)
   {
-    bFinished = WaitForSingleObject(pi.hProcess, 100) == WAIT_OBJECT_0;
+  bFinished = WaitForSingleObject(pi.hProcess, 100) == WAIT_OBJECT_0;
 
-    while (true)
-    {
+  while (true)
+  {
 
       DWORD nRead  = 0;
       DWORD nToRead = 0;
 
       if (!::PeekNamedPipe(pipeOurEnd, NULL, 0, NULL, &nToRead, NULL))
-        break;
+    break;
 
       if (!nToRead)
-        break;
+    break;
 
 
       if (!ReadFile(pipeOurEnd, buffer, min(sizeof(buffer) - 1, nToRead), &nRead, NULL) || !nRead)
-        break;
+    break;
 
       buffer[nRead] = 0;
       retval += buffer;
-    }
+  }
   }
 
   CloseHandle(pipeOurEnd);

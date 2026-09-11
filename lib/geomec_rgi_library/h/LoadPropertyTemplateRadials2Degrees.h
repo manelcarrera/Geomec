@@ -8,34 +8,34 @@ namespace GeomecRGI
 
 template <unsigned int VALUETYPE>
   class CLoadPropertyTemplateRadials2Degrees :
-    public CLoadPropertyTemplate <VALUETYPE>
+  public CLoadPropertyTemplate <VALUETYPE>
 {
   public:
-    CLoadPropertyTemplateRadials2Degrees(const RGProperty& rgProperty,
+  CLoadPropertyTemplateRadials2Degrees(const RGProperty& rgProperty,
       RGInterface& rgi, CModelBase& modelBase, CRockMechProcessor& rmp);
-    virtual ~CLoadPropertyTemplateRadials2Degrees();
+  virtual ~CLoadPropertyTemplateRadials2Degrees();
 
   protected:
-    virtual void convertValue(geo::CValue& dValue) const;
+  virtual void convertValue(geo::CValue& dValue) const;
 
   private:
-    CLoadPropertyTemplateRadials2Degrees(
+  CLoadPropertyTemplateRadials2Degrees(
       const CLoadPropertyTemplateRadials2Degrees& rhs);
-    CLoadPropertyTemplateRadials2Degrees& operator = (
+  CLoadPropertyTemplateRadials2Degrees& operator = (
       const CLoadPropertyTemplateRadials2Degrees& rhs);
 };
 
 template <unsigned int VALUETYPE>
   CLoadPropertyTemplateRadials2Degrees <VALUETYPE> ::
-    CLoadPropertyTemplateRadials2Degrees(const RGProperty& rgProperty,
-    RGInterface& rgi, CModelBase& modelBase, CRockMechProcessor& rmp)
+  CLoadPropertyTemplateRadials2Degrees(const RGProperty& rgProperty,
+  RGInterface& rgi, CModelBase& modelBase, CRockMechProcessor& rmp)
   : CLoadPropertyTemplate <VALUETYPE> (rgProperty, rgi, modelBase, rmp)
 {
 }
 
 template <unsigned int VALUETYPE>
   CLoadPropertyTemplateRadials2Degrees <VALUETYPE> ::
-    ~CLoadPropertyTemplateRadials2Degrees()
+  ~CLoadPropertyTemplateRadials2Degrees()
 {
 }
 
@@ -43,11 +43,11 @@ template <unsigned int VALUETYPE>
 
 template <unsigned int VALUETYPE>
   void CLoadPropertyTemplateRadials2Degrees <VALUETYPE> ::convertValue(
-    geo::CValue& dValue) const
+  geo::CValue& dValue) const
 {
   if (dValue.Valid())
   {
-    dValue.Value(RAD2DEG(dValue.Value()));
+  dValue.Value(RAD2DEG(dValue.Value()));
   }
 }
 

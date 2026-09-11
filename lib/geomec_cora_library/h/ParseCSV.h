@@ -12,23 +12,23 @@ namespace cora
 class CParseCSV
 {
   public:
-    static const char DELIMITER = ',';
-    static const char QUOTE = '"';
-    static const char NEWLINE = '\n';
+  static const char DELIMITER = ',';
+  static const char QUOTE = '"';
+  static const char NEWLINE = '\n';
 
-    CParseCSV(std::ifstream& csvFile, char delimiter = DELIMITER,
+  CParseCSV(std::ifstream& csvFile, char delimiter = DELIMITER,
       char quote = QUOTE, char newline = NEWLINE);
 
-    std::vector <QString> readLine() const;
+  std::vector <QString> readLine() const;
 
   private:
-    CParseCSV(const CParseCSV& rhs);
-    CParseCSV& operator = (CParseCSV rhs);
+  CParseCSV(const CParseCSV& rhs);
+  CParseCSV& operator = (CParseCSV rhs);
 
-    std::ifstream& m_csvFile;
-    char m_delimiter;
-    char m_quote;
-    char m_newline;
+  std::ifstream& m_csvFile;
+  char m_delimiter;
+  char m_quote;
+  char m_newline;
 };
 
 } // namespace cora

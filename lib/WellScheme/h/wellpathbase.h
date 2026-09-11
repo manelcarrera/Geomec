@@ -44,45 +44,45 @@ class CWellPoint;
 
 class CWellDateList : public QObject
 {
-	Q_OBJECT;
+  Q_OBJECT;
 
 public:
 
   typedef QList<QDate*>::iterator Iterator;
 
-	//constructors
-	CWellDateList();
-	virtual ~CWellDateList();
-	CWellDateList& operator=(const CWellDateList& rhs);
-	CWellDateList(const CWellDateList& rhs);
+  //constructors
+  CWellDateList();
+  virtual ~CWellDateList();
+  CWellDateList& operator=(const CWellDateList& rhs);
+  CWellDateList(const CWellDateList& rhs);
 
-	QDate* At(int index);
-	const QDate* At(int index) const;
+  QDate* At(int index);
+  const QDate* At(int index) const;
 
-	//iterators
-	Iterator begin() const;
+  //iterators
+  Iterator begin() const;
   Iterator end() const;
-	Iterator GetIteratorAt(QDate* pDate) const;
+  Iterator GetIteratorAt(QDate* pDate) const;
 
-	int AddDate(QDate *pDate);
-	bool RemoveDate(int nIndex);
-	int Size() const;
+  int AddDate(QDate *pDate);
+  bool RemoveDate(int nIndex);
+  int Size() const;
 
-	QDate *First() const;
-	QDate *Next() const;
+  QDate *First() const;
+  QDate *Next() const;
 
-	void AutoDelete(bool bAutoDelete);
-	void Clear();
+  void AutoDelete(bool bAutoDelete);
+  void Clear();
 
 
 private:
 
-	CWellDateList* This() const;
+  CWellDateList* This() const;
   QList<QDate*> m_lstDates;
   QList<QDate*>::iterator m_iterator;
-	virtual int compareItems( QDate* item1, QDate* item2 );
+  virtual int compareItems( QDate* item1, QDate* item2 );
   bool m_bAutoDelete;
-	
+  
 };
 
 
@@ -91,13 +91,13 @@ private:
 class CWellPathBaseDocument : public CDocumentBase
 {
 public:
-	CWellPathBaseDocument(){}
-	virtual ~CWellPathBaseDocument(){}
+  CWellPathBaseDocument(){}
+  virtual ~CWellPathBaseDocument(){}
 
-	//CDocumentBase interface
-	virtual void createContainers(){}
-	virtual QString documentType() const{return "CWellPathBaseDocument"; }
-	virtual CStreamVersion documentVersion() const {	return CStreamVersion(0,0,0);	}	
+  //CDocumentBase interface
+  virtual void createContainers(){}
+  virtual QString documentType() const{return "CWellPathBaseDocument"; }
+  virtual CStreamVersion documentVersion() const {	return CStreamVersion(0,0,0);	}	
 };
 
 
@@ -109,7 +109,7 @@ public:
 class CWellPathBase : public CCommonWellPath 
 {
 
-	Q_OBJECT;
+  Q_OBJECT;
 
 friend class CWellPoint;
 
@@ -137,226 +137,226 @@ friend class CWellPoint;
 //	virtual void EmitDuringLongJob(long Step);
 //	virtual void EmitFinishedLongJob();
 public:
-	enum LOCATION
-	{
-		ONSHORE,
-		PLATFORM,
-		SUBSEA
-	};
+  enum LOCATION
+  {
+    ONSHORE,
+    PLATFORM,
+    SUBSEA
+  };
 
 public slots:
-	void SetDescription(QString);
-	void SetWellType(QString);
-	void SetFieldName(QString);
-	void SetLocationName(QString);
-	void SetWellName(QString);
-	void SetCountry(QString);
-	void SetSpudDate(const QDate&);
-	void SetBirthDate(const QDate&);
-	void SetLocation(LOCATION location);
+  void SetDescription(QString);
+  void SetWellType(QString);
+  void SetFieldName(QString);
+  void SetLocationName(QString);
+  void SetWellName(QString);
+  void SetCountry(QString);
+  void SetSpudDate(const QDate&);
+  void SetBirthDate(const QDate&);
+  void SetLocation(LOCATION location);
 
-	void SetCustomerName(QString str);
-	void SetCustomerContact(QString str);
-	void SetJobNumber(QString str);
+  void SetCustomerName(QString str);
+  void SetCustomerContact(QString str);
+  void SetJobNumber(QString str);
 
 private slots:
-	void OnQuantityChanged(const CDoubleQuantity& quantity);
+  void OnQuantityChanged(const CDoubleQuantity& quantity);
 
 
 public:
-	static void GetBetweenPosition( const CWellPoint& p1,
-									const CWellPoint& p2,
-									const double& tmd,
-									double& eas,
-									double& nor,
-									double& tvd,
-									double& azi,
-									double& inc);
+  static void GetBetweenPosition( const CWellPoint& p1,
+                  const CWellPoint& p2,
+                  const double& tmd,
+                  double& eas,
+                  double& nor,
+                  double& tvd,
+                  double& azi,
+                  double& inc);
 
 
-	LOCATION GetLocation() const;
-	
+  LOCATION GetLocation() const;
+  
 
-	//construc
-	CWellPathBase();
-	virtual ~CWellPathBase();
-	CWellPathBase(const CWellPathBase& right);
+  //construc
+  CWellPathBase();
+  virtual ~CWellPathBase();
+  CWellPathBase(const CWellPathBase& right);
 
-	CWellPathBase(const QString &new_text); 
+  CWellPathBase(const QString &new_text); 
 
-	virtual void onCreate();
+  virtual void onCreate();
 
-	bool Defined() const;
+  bool Defined() const;
 
-	//pointlist operations/atributes
-	bool AutoDeletePointLists() const;
-	void AutoDeletePointLists(bool autodel);
-	void InsertWellPointList(CWellPointList* pList,int listID);
-	CWellPointList& GetWellPointList(int listID);
-	const CWellPointList& GetWellPointList(int listID) const;
-	void RemoveWellPointList(int listID);
-	void RemoveAllWellPointLists();
-	QList<int> GetAllPointListID() const;
-	bool IsWellPointList(int listID) const;
-	int GetUniqueWellPointListID() const;
+  //pointlist operations/atributes
+  bool AutoDeletePointLists() const;
+  void AutoDeletePointLists(bool autodel);
+  void InsertWellPointList(CWellPointList* pList,int listID);
+  CWellPointList& GetWellPointList(int listID);
+  const CWellPointList& GetWellPointList(int listID) const;
+  void RemoveWellPointList(int listID);
+  void RemoveAllWellPointLists();
+  QList<int> GetAllPointListID() const;
+  bool IsWellPointList(int listID) const;
+  int GetUniqueWellPointListID() const;
 
-	void ChangeGlobalPos(const double& northing,
-						 const double& easting,
-						 const double& tvd);
-
-
-	CLengthQuantity& MeanGroundOrSeabedLevel(); //always
-	CLengthQuantity& MeanSeaLevel();	//PLATFORM and SUBSEA only
-	double HeightOfWaterColumn() const;
-	double DeltaTMD() const;
-	double DeltaTVD() const;
+  void ChangeGlobalPos(const double& northing,
+             const double& easting,
+             const double& tvd);
 
 
-	const CLengthQuantity& GlobalNorthing() const;
-	const CLengthQuantity& GlobalEasting() const;
-	const CLengthQuantity& GlobalTVD() const;
+  CLengthQuantity& MeanGroundOrSeabedLevel(); //always
+  CLengthQuantity& MeanSeaLevel();	//PLATFORM and SUBSEA only
+  double HeightOfWaterColumn() const;
+  double DeltaTMD() const;
+  double DeltaTVD() const;
 
 
-	//SectionList operations/attributes
-	bool AutoDeleteSectionLists() const;
-	void AutoDeleteSectionLists(bool autodel);
-	void InsertWellSectionList(CWellSectionList* pList,int listID);
-	CWellSectionList& GetWellSectionList(int listID);
-	const CWellSectionList& GetWellSectionList(int listID) const;
-	void RemoveWellSectionList(int listID);
-	void RemoveAllWellSectionLists();
+  const CLengthQuantity& GlobalNorthing() const;
+  const CLengthQuantity& GlobalEasting() const;
+  const CLengthQuantity& GlobalTVD() const;
 
-	
-	double GetDogLegSeverity(double tmd) const;
-	QString GetDescription() const;
-	QString GetWellName() const;
-	QString GetFieldName() const;
-	QString GetWellType() const;
-	QString GetLocationName() const;
-	QString GetCountry() const;
 
-	QString GetCustomerName() const;
-	QString GetJobNumber() const;
-	QString GetCustomerContact() const;
+  //SectionList operations/attributes
+  bool AutoDeleteSectionLists() const;
+  void AutoDeleteSectionLists(bool autodel);
+  void InsertWellSectionList(CWellSectionList* pList,int listID);
+  CWellSectionList& GetWellSectionList(int listID);
+  const CWellSectionList& GetWellSectionList(int listID) const;
+  void RemoveWellSectionList(int listID);
+  void RemoveAllWellSectionLists();
 
-	const QDate& GetSpudDate() const;
-	const QDate& GetBirthDate() const;
+  
+  double GetDogLegSeverity(double tmd) const;
+  QString GetDescription() const;
+  QString GetWellName() const;
+  QString GetFieldName() const;
+  QString GetWellType() const;
+  QString GetLocationName() const;
+  QString GetCountry() const;
 
-	double TMD2TVD(double tmd) const;  //unambigus (asserts if not on wellpath)
-	double TVD2TMD(double tvd) const;  //is ambigus return first one (asserts if not on wellpath)
+  QString GetCustomerName() const;
+  QString GetJobNumber() const;
+  QString GetCustomerContact() const;
 
-	//if you clear the defpointlist by calling RemoveAllPoints direct from DefPointList()
-	//no DefPointsChanged() signal is emitted !! (see InvalidateDefPointList());
-	virtual const CWellDefinitionPointList& DefPointList() const;
-	virtual CWellDefinitionPointList& DefPointList();
+  const QDate& GetSpudDate() const;
+  const QDate& GetBirthDate() const;
 
-	//clears the Defpoints and emit DefPointsChanged() signal.
-	void InvalidateDefPointList();
+  double TMD2TVD(double tmd) const;  //unambigus (asserts if not on wellpath)
+  double TVD2TMD(double tvd) const;  //is ambigus return first one (asserts if not on wellpath)
 
-	//clears the Defpoints and emit DefPointsChanged() signal.
-	void HardCopyDefPointList(const CWellPathBase& org_wellpath);
+  //if you clear the defpointlist by calling RemoveAllPoints direct from DefPointList()
+  //no DefPointsChanged() signal is emitted !! (see InvalidateDefPointList());
+  virtual const CWellDefinitionPointList& DefPointList() const;
+  virtual CWellDefinitionPointList& DefPointList();
 
-	//initialization of the definition points with arrays (SI_UNIT)
-	bool InitFromArray_tmd_azi_inc(
-											double global_northing,
-											double global_easting,
-											double global_depth,
-											double start_northing,
-											double start_easting,
-											double start_depth,
-											QVector<double>& tmd,
-											QVector<double>& azi,
-											QVector<double>& inc);
+  //clears the Defpoints and emit DefPointsChanged() signal.
+  void InvalidateDefPointList();
 
-	//initialization of the definition points with arrays uses numerical approx (SI_UNIT)
-	bool InitFromArray_tmd_tvd_azi(
-												double global_northing,
-										 		double global_easting,
-												double global_depth,
-												double start_northing,
-										 		double start_easting,
-												double start_inc,
-												QVector<double>& tmd,
-												QVector<double>& tvd,
-												QVector<double>& azi);
+  //clears the Defpoints and emit DefPointsChanged() signal.
+  void HardCopyDefPointList(const CWellPathBase& org_wellpath);
 
-	//initialization of a vertical wellpath (SI_UNIT)
-	void InitVertical(	double start_northing,
-						double start_easting,
-						double start_depth,
-						double start_tmd,
-						double end_depth);
+  //initialization of the definition points with arrays (SI_UNIT)
+  bool InitFromArray_tmd_azi_inc(
+                      double global_northing,
+                      double global_easting,
+                      double global_depth,
+                      double start_northing,
+                      double start_easting,
+                      double start_depth,
+                      QVector<double>& tmd,
+                      QVector<double>& azi,
+                      QVector<double>& inc);
 
-	bool InitFromPointArray(const QVector<geo::CPoint>& vcPoint);
+  //initialization of the definition points with arrays uses numerical approx (SI_UNIT)
+  bool InitFromArray_tmd_tvd_azi(
+                        double global_northing,
+                     		double global_easting,
+                        double global_depth,
+                        double start_northing,
+                     		double start_easting,
+                        double start_inc,
+                        QVector<double>& tmd,
+                        QVector<double>& tvd,
+                        QVector<double>& azi);
 
-	//initialization of the definition points with mores well report file (SI_UNIT)
-	bool InitFromMWRFile(QString sFileName);
+  //initialization of a vertical wellpath (SI_UNIT)
+  void InitVertical(	double start_northing,
+            double start_easting,
+            double start_depth,
+            double start_tmd,
+            double end_depth);
 
-	//dumps the coordinates of the definition points to a file(for debug and testing)
-	void DumpToFile(QString sFileName) const;
+  bool InitFromPointArray(const QVector<geo::CPoint>& vcPoint);
 
-	//intersection with geometrical objects
-	void CalculateIntersections(const geo::IMesh& mesh, CWellPointList& list) const;
-	void GetIntersectionPointsWithPlane(const geo::CPlane& plane, CWellPointList& list) const;
+  //initialization of the definition points with mores well report file (SI_UNIT)
+  bool InitFromMWRFile(QString sFileName);
 
-	//Attributes
-	virtual bool IsVertical() const; 
-	bool IsSnakeWell() const;
-	bool IsDeviated() const; //== not vertical
-	bool IsStraight() const; //not curved 
+  //dumps the coordinates of the definition points to a file(for debug and testing)
+  void DumpToFile(QString sFileName) const;
 
-	void GetBoundingBox(geo::IPoint& max,geo::IPoint& min) const;
+  //intersection with geometrical objects
+  void CalculateIntersections(const geo::IMesh& mesh, CWellPointList& list) const;
+  void GetIntersectionPointsWithPlane(const geo::CPlane& plane, CWellPointList& list) const;
 
-	int AddDate(QDate *pDate);
-	QDate *GetDate(int nIndex);
+  //Attributes
+  virtual bool IsVertical() const; 
+  bool IsSnakeWell() const;
+  bool IsDeviated() const; //== not vertical
+  bool IsStraight() const; //not curved 
 
-	void GetUpLowDefPoints(double tmd, CWellPoint **pUpper, CWellPoint **pLower) const;
+  void GetBoundingBox(geo::IPoint& max,geo::IPoint& min) const;
+
+  int AddDate(QDate *pDate);
+  QDate *GetDate(int nIndex);
+
+  void GetUpLowDefPoints(double tmd, CWellPoint **pUpper, CWellPoint **pLower) const;
 
 
 
 protected:
-	CWellDefinitionPointList *m_pDefPointList;
-	QString m_WellName;
-	QString m_Description;
-	QString m_WellType;
-	QString m_FieldName;
-	QString m_LocationName;
-	QString m_Country;
+  CWellDefinitionPointList *m_pDefPointList;
+  QString m_WellName;
+  QString m_Description;
+  QString m_WellType;
+  QString m_FieldName;
+  QString m_LocationName;
+  QString m_Country;
 
-	QString m_CustName;
-	QString m_JobNumber;
-	QString m_CustContact;
+  QString m_CustName;
+  QString m_JobNumber;
+  QString m_CustContact;
 
-	QDate m_SpudDate;
-	QDate m_BirthDate;
+  QDate m_SpudDate;
+  QDate m_BirthDate;
 
-	CLengthQuantity m_MeanGroundOrSeabedLevel; //always
-	CLengthQuantity m_MeanSeaLevel;	//PLATFORM and SUBSEA only
+  CLengthQuantity m_MeanGroundOrSeabedLevel; //always
+  CLengthQuantity m_MeanSeaLevel;	//PLATFORM and SUBSEA only
 
 
-	//global position
-	CLengthQuantity m_GlobalNorthing;
-	CLengthQuantity m_GlobalEasting;
-	CLengthQuantity m_GlobalTVD;
+  //global position
+  CLengthQuantity m_GlobalNorthing;
+  CLengthQuantity m_GlobalEasting;
+  CLengthQuantity m_GlobalTVD;
 
-	
-	
+  
+  
 
 
 private:
-	QMap<int,CWellPointList*> m_PointListMap;
-	QMap<int,CWellSectionList*> m_SectionListMap;
-	CWellPathBase* This() const; //no design fault, just handy!!!
+  QMap<int,CWellPointList*> m_PointListMap;
+  QMap<int,CWellSectionList*> m_SectionListMap;
+  CWellPathBase* This() const; //no design fault, just handy!!!
 
-	//initialization of a well_point
-	bool InitWellPoint(CWellPoint& Point) const;
-	bool m_AutoDeletePointLists;
-	bool m_AutoDeleteSectionLists;
-	LOCATION m_Location;
+  //initialization of a well_point
+  bool InitWellPoint(CWellPoint& Point) const;
+  bool m_AutoDeletePointLists;
+  bool m_AutoDeleteSectionLists;
+  LOCATION m_Location;
 
-	// dates of importance
-	CWellDateList m_DateList;
-	void		  Init();
+  // dates of importance
+  CWellDateList m_DateList;
+  void		  Init();
 
 //	void DoGetInterSectionsWithBodyGroup(const geo::CBodyGroup& bodies,CWellPointList& list);	
 };

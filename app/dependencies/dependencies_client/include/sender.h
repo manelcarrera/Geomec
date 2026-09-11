@@ -7,32 +7,32 @@
 
 class CSender : QObject
 {
-	Q_OBJECT
+  Q_OBJECT
 
-    QTcpSocket m_tcp_client;
+  QTcpSocket m_tcp_client;
 
-	QString m_cmd;
+  QString m_cmd;
 
 public slots:
 
-	void handle_reply( qint64 );
-	void display_error( QAbstractSocket::SocketError error_id );
-	void host_found();
-	void _connected();
+  void handle_reply( qint64 );
+  void display_error( QAbstractSocket::SocketError error_id );
+  void host_found();
+  void _connected();
 
 public:
 
 
-	CSender();
-	virtual ~CSender();
+  CSender();
+  virtual ~CSender();
 
 
-	void connect( const QString& cmd );
-	//void send_cmd();
+  void connect( const QString& cmd );
+  //void send_cmd();
 
 
 
-	//void listen();
+  //void listen();
 };
 
 

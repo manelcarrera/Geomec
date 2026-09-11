@@ -10,16 +10,16 @@ class CRetrieveDianaFileNamesGUI : public IRetrieveDianaFileNames
 {
 public:
   CRetrieveDianaFileNamesGUI(CAnalysisType::TAnalysisType analysisType,
-    bool writeInputFiles, bool writeQuadDat, const CModelBase& model);
+  bool writeInputFiles, bool writeQuadDat, const CModelBase& model);
   virtual ~CRetrieveDianaFileNamesGUI();
 
   virtual bool retrieveDianaFileNames(QString& newTitle,
-    const std::string& title) const;
+  const std::string& title) const;
 
 private:
   CRetrieveDianaFileNamesGUI(const CRetrieveDianaFileNamesGUI& rhs);
   CRetrieveDianaFileNamesGUI& operator = (
-    const CRetrieveDianaFileNamesGUI& rhs);
+  const CRetrieveDianaFileNamesGUI& rhs);
 
   QString stripExtension(const QString& string, const QString& extension) const;
 

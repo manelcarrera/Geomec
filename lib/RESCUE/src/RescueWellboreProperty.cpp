@@ -99,44 +99,44 @@ RescueWellboreProperty::RescueWellboreProperty(RescueContext *context, FILE *arc
 {
   if (context->ReadFileVersion() >= 5)
   {
-    RESCUEINT64 flag;
-    if (context->ReadFileVersion() >= 20)
-    {
+  RESCUEINT64 flag;
+  if (context->ReadFileVersion() >= 20)
+  {
       ReadId(context, archiveFile);
-    }
-    myfscanf(context, archiveFile, &flag);
-    switch (flag)
-    {
-    case R_RescueArrayByte:
+  }
+  myfscanf(context, archiveFile, &flag);
+  switch (flag)
+  {
+  case R_RescueArrayByte:
       data = new RescueArrayByte(context, archiveFile);
       break;
-    case R_RescueArrayShort:
+  case R_RescueArrayShort:
       data = new RescueArrayShort(context, archiveFile);
       break;
-    case R_RescueArrayInt:
+  case R_RescueArrayInt:
       data = new RescueArrayInt(context, archiveFile);
       break;
-    default:
+  default:
       data = new RescueArrayFloat(context, archiveFile);
       break;
-    }
+  }
   }
   else
   {
-    data = new RescueArrayFloat(context, archiveFile);
+  data = new RescueArrayFloat(context, archiveFile);
   }
   isA = R_RescueWellboreProperty;
   context->wellboreProperties->Add(this);
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -153,13 +153,13 @@ void RescueWellboreProperty::Archive(FILE *archiveFile)
   myfprintf(context, archiveFile, "; Wellbore Property");
   if (context->FileVersion() >= 20)
   {
-    myfprintf(context, archiveFile, Identifier());
+  myfprintf(context, archiveFile, Identifier());
   }
   myfprintf(context, archiveFile, (RESCUEINT64) data->IsA());
   data->Archive(archiveFile);
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -167,11 +167,11 @@ RESCUEBOOL RescueWellboreProperty::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueWellboreProperty)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueHistoryObject::IsOfType(thisType);
+  return RescueHistoryObject::IsOfType(thisType);
   }
 }
 

@@ -49,8 +49,8 @@ void array_temp<T>::resize(int x, int y, int z)
   m_data.resize(x);
   for(size_t n_x = 0; n_x < m_data.size(); n_x++)
   {
-    m_data[n_x].resize(y);
-    for(size_t n_y = 0; n_y < m_data[n_x].size(); n_y++)
+  m_data[n_x].resize(y);
+  for(size_t n_y = 0; n_y < m_data[n_x].size(); n_y++)
       m_data[n_x][n_y].resize(z);
   }
 }

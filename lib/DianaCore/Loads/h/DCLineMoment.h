@@ -17,14 +17,14 @@ class CLoadManager;
 
 class CLineMoment : public IDirectedLoad  
 {
-	const geo::ILine &m_Line;
+  const geo::ILine &m_Line;
 
 public:
-	CLineMoment(CLoadCase &loadcase, double size, const geo::IVector &vecDirection, const geo::ILine &line);
-	virtual ~CLineMoment();
+  CLineMoment(CLoadCase &loadcase, double size, const geo::IVector &vecDirection, const geo::ILine &line);
+  virtual ~CLineMoment();
 
-	virtual bool WriteFilos() const;
-	const geo::ILine &Line() const;
+  virtual bool WriteFilos() const;
+  const geo::ILine &Line() const;
 };
 
 }

@@ -9,8 +9,8 @@
 
 /*!
 
-	\class CInterfaceElementTempl
-	\brief Template to create an interface element between two interface element parts.
+  \class CInterfaceElementTempl
+  \brief Template to create an interface element between two interface element parts.
   
   It is among others, used by the DiaElementBase to instantiate an interface
   element with two interface element parts which are two IElement
@@ -18,8 +18,8 @@
 
   \sa CInterfaceElementPart
 
-	\author Antoine
-	\date 21 april 2006
+  \author Antoine
+  \date 21 april 2006
 */
 
 namespace geo {
@@ -33,30 +33,30 @@ class CInterfaceElementTempl : public IInterfaceElement
 
 public:
 
-	/*!
-		The default constructor. Front and back side of the element are constructed.
-	*/
-	CInterfaceElementTempl() : m_Front( 0 ), m_Back( 0 )
-	{
-    m_Front = new BASE(*this,0);
-    m_Back  = new BASE(*this, 1);
-	}
+  /*!
+    The default constructor. Front and back side of the element are constructed.
+  */
+  CInterfaceElementTempl() : m_Front( 0 ), m_Back( 0 )
+  {
+  m_Front = new BASE(*this,0);
+  m_Back  = new BASE(*this, 1);
+  }
 
-	/*!
-		Return the Front part of the interface
-	*/
-	virtual const IElement& Front() const
-	{
-		return *m_Front;
-	}
+  /*!
+    Return the Front part of the interface
+  */
+  virtual const IElement& Front() const
+  {
+    return *m_Front;
+  }
 
-	/*!
-		Return the Back part of the interface
-	*/
-	virtual const IElement& Back() const
-	{
-		return *m_Back;
-	}
+  /*!
+    Return the Back part of the interface
+  */
+  virtual const IElement& Back() const
+  {
+    return *m_Back;
+  }
 
 
 };

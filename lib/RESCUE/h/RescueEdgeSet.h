@@ -25,11 +25,11 @@ public:
   void AddBoundaryLoop(RescueTrimLoop *existingLoop);
   void DropBoundaryLoop(RescueTrimLoop *existingLoop);
   RescueTrimLoop *NthBoundaryLoop(RESCUEINT64 zeroBasedOrdinal)
-                        {return (*boundaryLoops).NthObject(zeroBasedOrdinal);}
+            {return (*boundaryLoops).NthObject(zeroBasedOrdinal);}
   void AddInteriorLoop(RescueTrimLoop *existingLoop);
   void DropInteriorLoop(RescueTrimLoop *existingLoop);
   RescueTrimLoop *NthInteriorLoop(RESCUEINT64 zeroBasedOrdinal) 
-                        {return (*interiorLoops).NthObject(zeroBasedOrdinal);}
+            {return (*interiorLoops).NthObject(zeroBasedOrdinal);}
 
   RescueTrimLoop *TrimLoopIdentifiedBy(RESCUEINT64 identifier);
   RescueObject *RescueBusinessOwner(RescueModel *model);  

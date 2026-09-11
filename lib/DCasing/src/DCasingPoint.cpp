@@ -32,69 +32,69 @@ bool CDCasingPoint::Defined()
 //	if (TMD().Undefined())
 //		return false;
 
-	if(ElasticSupportYoungsMod().Undefined())
-		return false;
+  if(ElasticSupportYoungsMod().Undefined())
+    return false;
 
-	if(ElasticSupportPoissonRatio().Undefined())
-		return false;
+  if(ElasticSupportPoissonRatio().Undefined())
+    return false;
 
-	if(InternalPressure().Undefined())
-		return false;
+  if(InternalPressure().Undefined())
+    return false;
 
-	if(ExternalPressure().Undefined())
-		return false;
+  if(ExternalPressure().Undefined())
+    return false;
 
-	if (Epscom().Undefined())
-		return false;
+  if (Epscom().Undefined())
+    return false;
 
-	return true;
+  return true;
 }
 
 //////////////////////////////////////////////////////////////////////
 
 CSinglePressure& CDCasingPoint::ElasticSupportYoungsMod()
 {
-	return m_ElasticSupportYoungsMod;
+  return m_ElasticSupportYoungsMod;
 }
 
 //////////////////////////////////////////////////////////////////////
 
 CNoneQuantity& CDCasingPoint::ElasticSupportPoissonRatio()
 {
-	return m_ElasticSupportPoissonRatio;
+  return m_ElasticSupportPoissonRatio;
 }
 
 //////////////////////////////////////////////////////////////////////
 
 CSinglePressure& CDCasingPoint::InternalPressure()
 {
-	return m_InternalPressure;
+  return m_InternalPressure;
 }
 
 //////////////////////////////////////////////////////////////////////
 
 CSinglePressure& CDCasingPoint::ExternalPressure()
 {
-	return m_ExternalPressure;
+  return m_ExternalPressure;
 }
 
 //////////////////////////////////////////////////////////////////////
 
 CNoneQuantity& CDCasingPoint::Epscom()
 {
-	return m_Epscom;
+  return m_Epscom;
 }
 
 //////////////////////////////////////////////////////////////////////
 
 CDCasingPointResult & CDCasingPoint::GetCDCasingPointResult()
 {
-	return m_CDCasingPointResult;
+  return m_CDCasingPointResult;
 }
 
 //////////////////////////////////////////////////////////////////////
 
 const CDCasingPointResult & CDCasingPoint::GetCDCasingPointResult() const
 {
-	return m_CDCasingPointResult;
+  return m_CDCasingPointResult;
 }

@@ -20,10 +20,10 @@ class CInterfaceGM : public CInterfaceBase
 public:
   typedef enum
   {
-    GM_LIST = IInterfaceBase::FOR_ME + 1,
-    GM_RUN,
-    GM_SAVE,
-    GM_IMPORT
+  GM_LIST = IInterfaceBase::FOR_ME + 1,
+  GM_RUN,
+  GM_SAVE,
+  GM_IMPORT
   } TGMCommand;
 
   virtual bool Expose() const;

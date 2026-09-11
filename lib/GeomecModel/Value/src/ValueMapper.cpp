@@ -94,32 +94,32 @@ void CValueMapper::NextSection()
   // we can only do this after all initialization has been done
   for (TStageInfoMap::iterator stageIt = m_stageInfo.begin(); stageIt != m_stageInfo.end(); ++stageIt)
   {
-    for (TFormationElementMap::iterator it = stageIt->second.mpFormationElement.begin(); it != stageIt->second.mpFormationElement.end(); ++it)
+  for (TFormationElementMap::iterator it = stageIt->second.mpFormationElement.begin(); it != stageIt->second.mpFormationElement.end(); ++it)
       it->second.second = false;
-    for (TCasingModelElementMap::iterator it = stageIt->second.mpCasingModelElement.begin(); it != stageIt->second.mpCasingModelElement.end(); ++it)
+  for (TCasingModelElementMap::iterator it = stageIt->second.mpCasingModelElement.begin(); it != stageIt->second.mpCasingModelElement.end(); ++it)
       it->second.second = false;
-    for (TElementSetMap::iterator it = stageIt->second.mpHandledSets.begin(); it != stageIt->second.mpHandledSets.end(); ++it)
+  for (TElementSetMap::iterator it = stageIt->second.mpHandledSets.begin(); it != stageIt->second.mpHandledSets.end(); ++it)
       it->second = false;
   }
 
   for (size_t i = 0; i < m_vcFormationVolumeThicknessCaches.size(); ++i)
   {
-    m_vcFormationVolumeThicknessCaches[i].first->AddToCache(m_vcFormationVolumeThicknessCaches[i].second);
-    delete m_vcFormationVolumeThicknessCaches[i].second;
+  m_vcFormationVolumeThicknessCaches[i].first->AddToCache(m_vcFormationVolumeThicknessCaches[i].second);
+  delete m_vcFormationVolumeThicknessCaches[i].second;
   }
   m_vcFormationVolumeThicknessCaches.clear();
 
   for (size_t i = 0; i < m_vcResultDisplacementCaches.size(); ++i)
   {
-    m_vcResultDisplacementCaches[i].first->AddToCache(m_vcResultDisplacementCaches[i].second);
-    delete m_vcResultDisplacementCaches[i].second;
+  m_vcResultDisplacementCaches[i].first->AddToCache(m_vcResultDisplacementCaches[i].second);
+  delete m_vcResultDisplacementCaches[i].second;
   }
   m_vcResultDisplacementCaches.clear();
 
   for (size_t i = 0; i < m_vcResultAvgVolumeCaches.size(); ++i)
   {
-    m_vcResultAvgVolumeCaches[i].first->AddToCache(m_vcResultAvgVolumeCaches[i].second);
-    delete m_vcResultAvgVolumeCaches[i].second;
+  m_vcResultAvgVolumeCaches[i].first->AddToCache(m_vcResultAvgVolumeCaches[i].second);
+  delete m_vcResultAvgVolumeCaches[i].second;
   }
   m_vcResultAvgVolumeCaches.clear();
 }
@@ -143,15 +143,15 @@ bool CValueMapper::PrepareMapping(const geo::IElementSet *pElementSet, const IVa
 
   if (valueComponent)
   {
-    retval = const_cast<IValueComponentBase *>(valueComponent)->PrepareMapping(pElementSet);
+  retval = const_cast<IValueComponentBase *>(valueComponent)->PrepareMapping(pElementSet);
 
-    if (dynamic_cast<const IResultComponent *>(valueComponent))
+  if (dynamic_cast<const IResultComponent *>(valueComponent))
       m_pResultRegister = &static_cast<const IResultComponent *>(valueComponent)->ResultRegister();
   }
 
   if (retval)
   {
-    CMaterialMappingCache::instance()->UseCache(true);
+  CMaterialMappingCache::instance()->UseCache(true);
   }
 
   return retval;
@@ -160,7 +160,7 @@ bool CValueMapper::PrepareMapping(const geo::IElementSet *pElementSet, const IVa
 void CValueMapper::FinishMapping()
 {
   if (m_pResultRegister && m_pResultRegister->cacheExists())
-    m_pResultRegister->Cache().ActiveCacher().EndCriticalSection();
+  m_pResultRegister->Cache().ActiveCacher().EndCriticalSection();
 
   CMaterialMappingCache::instance()->UseCache(false);
 }
@@ -192,49 +192,49 @@ void CValueMapper::collectFormationModelElementMaps(const CModelBase& model, con
 
   // check if we already did this
   {
-    std::pair<TElementSetMap::iterator, bool> retval = stageInfo->mpHandledSets.insert(TElementSetMap::value_type(&elementSet, false));
-    if (retval.second)
+  std::pair<TElementSetMap::iterator, bool> retval = stageInfo->mpHandledSets.insert(TElementSetMap::value_type(&elementSet, false));
+  if (retval.second)
       retval.first->second = true;
 
-    if (!retval.first->second)
-    {
+  if (!retval.first->second)
+  {
       if (!bDoWellCasing || stageInfo->mpCasingModelElement.size() > 0) // just to be sure
-        return;
-    }
+    return;
+  }
   }
 
 
   for (int i = 0; i < elementSet.ElementSize(); ++i)
   {
-    if (!elementSet.Element(i).IsInterfaceElement())
-    {
+  if (!elementSet.Element(i).IsInterfaceElement())
+  {
       pElement = &elementSet.Element(i);
       pFormation = model.Mesh().Formation(*pElement);
 
       if (pFormation)
       {
-        std::pair<TFormationElementMap::iterator, bool> retval = stageInfo->mpFormationElement.insert(TFormationElementMap::value_type(pFormation, TElementPair(pElement, false)));
-        if (retval.second)
+    std::pair<TFormationElementMap::iterator, bool> retval = stageInfo->mpFormationElement.insert(TFormationElementMap::value_type(pFormation, TElementPair(pElement, false)));
+    if (retval.second)
           retval.first->second.second = true;
       }
       else if (bDoWellCasing)
       {
-        const CWellCasingModel* pWellCasingModel = dynamic_cast<const CWellCasingModel*>(&model);
-        if (pWellCasingModel)
-        {
+    const CWellCasingModel* pWellCasingModel = dynamic_cast<const CWellCasingModel*>(&model);
+    if (pWellCasingModel)
+    {
           std::pair<TCasingModelElementMap::iterator, bool> retval = stageInfo->mpCasingModelElement.insert(TCasingModelElementMap::value_type(pWellCasingModel, TElementPair(pElement, false)));
           if (retval.second)
-            retval.first->second.second = true;
-        }
-      }
+      retval.first->second.second = true;
     }
+      }
+  }
   }
 }
 
 bool CValueMapper::PrepareMappingMaterial(const CModelBase& model, const geo::IElementSet *pElementSet, const CDepletionStage& stage, int flag)
 {
   if (!pElementSet)
-    pElementSet = &model.Mesh().Mesh();
+  pElementSet = &model.Mesh().Mesh();
 
   collectFormationModelElementMaps(model, *pElementSet, stage, flag & CHECK_CEMENT);
 
@@ -242,42 +242,42 @@ bool CValueMapper::PrepareMappingMaterial(const CModelBase& model, const geo::IE
 
   for (TFormationElementMap::const_iterator it = stageInfo->mpFormationElement.begin(); it != stageInfo->mpFormationElement.end(); ++it)
   {
-    if (!it->second.second)
+  if (!it->second.second)
       continue;
 
-    if (flag & MARKED_AS_INITIAL)
-    {
+  if (flag & MARKED_AS_INITIAL)
+  {
       const CDepletionStage& local_stage = model.ResultRegister().DepletionStageEntry().MarkedAsInitialStage();
 
       {
-        const CMaterialServer& matServer = it->first->Material(local_stage);
-        matServer.Material(*it->second.first);
-        matServer.PrepareMapping(pElementSet);
+    const CMaterialServer& matServer = it->first->Material(local_stage);
+    matServer.Material(*it->second.first);
+    matServer.PrepareMapping(pElementSet);
       }
 
       if (flag & CHECK_MARKED_VS_INITIAL)
       {
-        if (&local_stage != &local_stage.InitialStage())
-        {
+    if (&local_stage != &local_stage.InitialStage())
+    {
           const CMaterialServer& matServer = it->first->Material(local_stage.InitialStage());
           matServer.Material(*it->second.first);
           matServer.PrepareMapping(pElementSet);
-        }
-      }
     }
-    const CMaterialServer& matServer = it->first->Material(stage);
-    matServer.Material(*it->second.first);
-    matServer.PrepareMapping(pElementSet);
+      }
+  }
+  const CMaterialServer& matServer = it->first->Material(stage);
+  matServer.Material(*it->second.first);
+  matServer.PrepareMapping(pElementSet);
   }
 
   for (TCasingModelElementMap::const_iterator it = stageInfo->mpCasingModelElement.begin(); it != stageInfo->mpCasingModelElement.end(); ++it)
   {
-    if (!it->second.second)
+  if (!it->second.second)
       continue;
 
-    const CMaterialServer& matServer = it->first->CasingCement().Material(stage);
-    matServer.Material(*it->second.first);
-    matServer.PrepareMapping(pElementSet);
+  const CMaterialServer& matServer = it->first->CasingCement().Material(stage);
+  matServer.Material(*it->second.first);
+  matServer.PrepareMapping(pElementSet);
   }
 
   return true;
@@ -286,7 +286,7 @@ bool CValueMapper::PrepareMappingMaterial(const CModelBase& model, const geo::IE
 bool CValueMapper::HasUndrainedMaterial(const CModelBase& model, const geo::IElementSet *pElementSet, const CDepletionStage& stage)
 {
   if (!pElementSet)
-    return false;
+  return false;
 
   collectFormationModelElementMaps(model, *pElementSet, stage);
 
@@ -296,7 +296,7 @@ bool CValueMapper::HasUndrainedMaterial(const CModelBase& model, const geo::IEle
 
   for (TFormationElementMap::const_iterator it = stageInfo->mpFormationElement.begin(); it != stageInfo->mpFormationElement.end(); ++it)
   {
-    if (it->first->Material(stage).MaterialModel() == MM_UNDRAINED)
+  if (it->first->Material(stage).MaterialModel() == MM_UNDRAINED)
       retval = true;
   }
 
@@ -306,7 +306,7 @@ bool CValueMapper::HasUndrainedMaterial(const CModelBase& model, const geo::IEle
 bool CValueMapper::PrepareMappingComponent(const CModelBase& model, const geo::IElementSet *pElementSet, const CDepletionStage& stage, TPrepareMappingComponentType type)
 {
   if (!pElementSet)
-    return true;
+  return true;
 
   collectFormationModelElementMaps(model, *pElementSet, stage);
 
@@ -316,28 +316,28 @@ bool CValueMapper::PrepareMappingComponent(const CModelBase& model, const geo::I
 
   for (TFormationElementMap::const_iterator it = stageInfo->mpFormationElement.begin(); it != stageInfo->mpFormationElement.end(); ++it)
   {
-    if (!it->second.second)
+  if (!it->second.second)
       continue;
 
-    switch (type)
-    {
-    case MAP_PRESSURE:
+  switch (type)
+  {
+  case MAP_PRESSURE:
       if (!const_cast<IValueComponentBase&>(it->first->Pressure(stage).Component()).PrepareMapping(pElementSet))
-        retval = false;
+    retval = false;
       break;
-    case MAP_TEMPERATURE:
+  case MAP_TEMPERATURE:
       if (!const_cast<IValueComponentBase&>(it->first->EffectiveTemperature(stage).Component()).PrepareMapping(pElementSet))
-        retval = false;
+    retval = false;
       break;
-    case MAP_TEMPERATURE_HEAT:
+  case MAP_TEMPERATURE_HEAT:
       if (!const_cast<IValueComponentBase&>(it->first->UserTemperature(stage).Component()).PrepareMapping(pElementSet))
-        retval = false;
+    retval = false;
       break;
-    case MAP_VOLUMETRIC_STRAIN:
+  case MAP_VOLUMETRIC_STRAIN:
       if (!const_cast<IValueComponentBase&>(it->first->Strain(stage).Component()).PrepareMapping(pElementSet))
-        retval = false;
+    retval = false;
       break;
-    }
+  }
   }
 
   return retval;
@@ -346,7 +346,7 @@ bool CValueMapper::PrepareMappingComponent(const CModelBase& model, const geo::I
 bool CValueMapper::PrepareMappingSurfaces(const CModelBase& model, const geo::IElementSet *pElementSet, const CDepletionStage& stage)
 {
   if (!pElementSet)
-    return true;
+  return true;
 
   collectFormationModelElementMaps(model, *pElementSet, stage);
 
@@ -358,58 +358,58 @@ bool CValueMapper::PrepareMappingSurfaces(const CModelBase& model, const geo::IE
 
   for (TFormationElementMap::const_iterator it = stageInfo->mpFormationElement.begin(); it != stageInfo->mpFormationElement.end(); ++it)
   {
-    if (!it->second.second)
+  if (!it->second.second)
       continue;
 
-    for (size_t i = 0; i < it->first->ElementSetSize(); ++i)
-    {
+  for (size_t i = 0; i < it->first->ElementSetSize(); ++i)
+  {
       const CFormationVolume *pVolume = dynamic_cast<const CFormationVolume *>(&it->first->ElementSet(i));
       if (pVolume)
       {
-        pVolume->Min();
-        pVolume->Max();
+    pVolume->Min();
+    pVolume->Max();
 #ifdef PRECACHE_LINES_ETC
-        for (size_t j = 0; j < pVolume->Volume().SideSurfaceSize(); ++j)
-        {
+    for (size_t j = 0; j < pVolume->Volume().SideSurfaceSize(); ++j)
+    {
           const geo::CBodyGroup::CSideSurface& surface = pVolume->Volume().SideSurface(j);
           surface.Candidates(it->second.first->Point(0));
 
           for (size_t k = 0; k < surface.FaceSize(); ++k)
           {
-            surface.Face(k).Line(0);
+      surface.Face(k).Line(0);
           }
-        }
+    }
 #endif
       }
-    }
+  }
   }
 
 #ifdef PRECACHE_LINES_ETC
   if (dynamic_cast<const geo::ISurface *>(pElementSet))
   {
-    const geo::ISurface *pSurface = static_cast<const geo::ISurface *>(pElementSet);
+  const geo::ISurface *pSurface = static_cast<const geo::ISurface *>(pElementSet);
 
-    pSurface->Candidates(geo::CPoint(0, 0, 0));
+  pSurface->Candidates(geo::CPoint(0, 0, 0));
 
-    for (size_t k = 0; k < pSurface->FaceSize(); ++k)
-    {
+  for (size_t k = 0; k < pSurface->FaceSize(); ++k)
+  {
       pSurface->Face(k).Line(0);
-    }
+  }
   }
 #endif
 
 #ifdef PRECACHE_LINES_ETC
   if (stageInfo->mpHandledSets.find(pElementSet)->second)
   {
-    for (size_t i = 0; i < pElementSet->ElementSize(); ++i)
-    {
+  for (size_t i = 0; i < pElementSet->ElementSize(); ++i)
+  {
       if (pElementSet->Element(i).IsBody())
       {
-        const geo::IBody& body = static_cast<const geo::IBody&>(pElementSet->Element(i));
-        for (size_t j = 0; j < body.NrOfFaces(); ++j)
+    const geo::IBody& body = static_cast<const geo::IBody&>(pElementSet->Element(i));
+    for (size_t j = 0; j < body.NrOfFaces(); ++j)
           body.Face(j).Line(0);
       }
-    }
+  }
   }
 #endif
 
@@ -430,7 +430,7 @@ public:
 
   MP_DUMMY_DATA
 
-    size_t size() const { return m_pElementSet->ElementSize(); }
+  size_t size() const { return m_pElementSet->ElementSize(); }
 
   void operator()(const tbb::blocked_range<size_t>& r) const;
 };
@@ -440,9 +440,9 @@ void CTaskFillCache<false>::operator()(const tbb::blocked_range<size_t>& r) cons
 {
   for (size_t i = r.begin(); i != r.end(); ++i)
   {
-    m_pElementSet->Element(i).Min();
-    m_pElementSet->Element(i).Max();
-    m_pElementSet->Element(i).MidPoint();
+  m_pElementSet->Element(i).Min();
+  m_pElementSet->Element(i).Max();
+  m_pElementSet->Element(i).MidPoint();
   }
 }
 
@@ -451,12 +451,12 @@ void CTaskFillCache<true>::operator()(const tbb::blocked_range<size_t>& r) const
 {
   for (size_t i = r.begin(); i != r.end(); ++i)
   {
-    if (m_pElementSet->Element(i).IsBody())
-    {
+  if (m_pElementSet->Element(i).IsBody())
+  {
       m_pElementSet->Element(i).Min();
       m_pElementSet->Element(i).Max();
       m_pElementSet->Element(i).MidPoint();
-    }
+  }
   }
 }
 typedef CTaskFillCache<true> CTaskFillCacheCheck;
@@ -467,12 +467,12 @@ typedef CTaskFillCache<false> CTaskFillCacheNoCheck;
 bool CValueMapper::PrepareMappingElementSet(const geo::IElementSet *pElementSet, geo::IMesh *pMesh)
 {
   if (!pElementSet)
-    return true;
+  return true;
 
   for (int i = 0; i < pElementSet->ElementSize(); ++i)
   {
-    if (pElementSet->Element(i).IsBody())
-    {
+  if (pElementSet->Element(i).IsBody())
+  {
       const geo::IBody *pBody = static_cast<const geo::IBody *>(&pElementSet->Element(i));
 
       assert(pBody);
@@ -481,16 +481,16 @@ bool CValueMapper::PrepareMappingElementSet(const geo::IElementSet *pElementSet,
 
       if (pMesh)
       {
-        if (ci.Cached(pMesh))
+    if (ci.Cached(pMesh))
           return true;
 
-        // apparently executed for the side-effects, cached is not used anymore
+    // apparently executed for the side-effects, cached is not used anymore
 
-        /* geo::CElementCacheObject *cached = */ ci.ElementCacheObject(pMesh, pBody);
+    /* geo::CElementCacheObject *cached = */ ci.ElementCacheObject(pMesh, pBody);
       }
 
       break;
-    }
+  }
   }
 
   CTaskFillCacheCheck taskFillCacheCheck(pElementSet);
@@ -501,28 +501,28 @@ bool CValueMapper::PrepareMappingElementSet(const geo::IElementSet *pElementSet,
 
   if (pMesh)
   {
-    CTaskFillCacheNoCheck taskFillCacheNoCheck(pMesh);
+  CTaskFillCacheNoCheck taskFillCacheNoCheck(pMesh);
 
-    mp::CKernelParallel<CTaskFillCacheNoCheck> parKernelNoCheck;
+  mp::CKernelParallel<CTaskFillCacheNoCheck> parKernelNoCheck;
 
-    parKernelNoCheck.execute(taskFillCacheNoCheck);
+  parKernelNoCheck.execute(taskFillCacheNoCheck);
 
 #ifdef PRECACHE_LINES_ETC
-    for (size_t i = 0; i < pMesh->ElementSize(); ++i)
-    {
+  for (size_t i = 0; i < pMesh->ElementSize(); ++i)
+  {
       if (pMesh->Element(i).IsBody())
       {
-        const geo::IBody& body = static_cast<const geo::IBody&>(pMesh->Element(i));
-        for (size_t j = 0; j < body.NrOfFaces(); ++j)
-        {
+    const geo::IBody& body = static_cast<const geo::IBody&>(pMesh->Element(i));
+    for (size_t j = 0; j < body.NrOfFaces(); ++j)
+    {
           const geo::IFace& face = body.Face(j);
           for (size_t k = 0; k < face.NrOfLines(); ++k)
           {
-            face.Line(k).Length();
+      face.Line(k).Length();
           }
-        }
-      }
     }
+      }
+  }
 #endif
   }
 
@@ -540,19 +540,19 @@ bool CValueMapper::PrepareMappingStress(const CModelBase& model, IResultComponen
 
   if (change)
   {
-    int c = resultRegister.ColumnNumber(component.AnalysisType(), resultRegister.DepletionStageEntry().MarkedAsInitialStage().Index(), CI_STRESS_XX);
+  int c = resultRegister.ColumnNumber(component.AnalysisType(), resultRegister.DepletionStageEntry().MarkedAsInitialStage().Index(), CI_STRESS_XX);
 
-    if (!resultRegister.Cache().ActiveCacher().StartCriticalSection(c, 6))
+  if (!resultRegister.Cache().ActiveCacher().StartCriticalSection(c, 6))
       retval = false;
   }
 
   int c = resultRegister.ColumnNumber(component.AnalysisType(), component.Stage().Index(), CI_STRESS_XX);
 
   if (!resultRegister.Cache().ActiveCacher().StartCriticalSection(c, 6))
-    retval = false;
+  retval = false;
 
   if (!PrepareMappingIndex(CI_POREPRES, model, component, resultRegister, change))
-    retval = false;
+  retval = false;
 
   return retval;
 }
@@ -568,15 +568,15 @@ bool CValueMapper::PrepareMappingStrain(const CModelBase& model, IResultComponen
   int c = resultRegister.ColumnNumber(component.AnalysisType(), resultRegister.DepletionStageEntry().MarkedAsInitialStage().Index(), CI_STRAIN_XX);
 
   if (!resultRegister.Cache().ActiveCacher().StartCriticalSection(c, 6))
-    retval = false;
+  retval = false;
 
   c = resultRegister.ColumnNumber(component.AnalysisType(), component.Stage().Index(), CI_STRAIN_XX);
 
   if (!resultRegister.Cache().ActiveCacher().StartCriticalSection(c, 6))
-    retval = false;
+  retval = false;
 
   if (!PrepareMappingIndex(CI_POREPRES, model, component, resultRegister, true))
-    retval = false;
+  retval = false;
 
   return retval;
 }
@@ -589,26 +589,26 @@ bool CValueMapper::PrepareMappingPlasticEnergy(const CModelBase& model, IResultC
 
   while (pStage && !pStage->Initial())
   {
-    int c = resultRegister.ColumnNumber(component.AnalysisType(), pStage->Index(), CI_STRESS_XX);
-    if (!resultRegister.Cache().ActiveCacher().StartCriticalSection(c, 6))
+  int c = resultRegister.ColumnNumber(component.AnalysisType(), pStage->Index(), CI_STRESS_XX);
+  if (!resultRegister.Cache().ActiveCacher().StartCriticalSection(c, 6))
       retval = false;
 
-    c = resultRegister.ColumnNumber(component.AnalysisType(), pStage->Index(), CI_PSTRAIN_XX);
-    if (!resultRegister.Cache().ActiveCacher().StartCriticalSection(c, 6))
+  c = resultRegister.ColumnNumber(component.AnalysisType(), pStage->Index(), CI_PSTRAIN_XX);
+  if (!resultRegister.Cache().ActiveCacher().StartCriticalSection(c, 6))
       retval = false;
 
-    if (!pStage->Initial())
+  if (!pStage->Initial())
       pStage = &pStage->Previous();
-    else
+  else
       pStage = 0;
   }
 
   int c = resultRegister.ColumnNumber(component.AnalysisType(), resultRegister.DepletionStageEntry().MarkedAsInitialStage().Index(), CI_PSTRAIN_XX);
   if (!resultRegister.Cache().ActiveCacher().StartCriticalSection(c, 6))
-    retval = false;
+  retval = false;
 
   if (!PrepareMappingStress(model, component, resultRegister, true))
-    retval = false;
+  retval = false;
 
   return retval;
 }
@@ -618,19 +618,19 @@ bool CValueMapper::PrepareMappingPorePressure(const CModelBase& model, IResultCo
   bool retval = true;
 
   if (!PrepareMappingIndex(CI_POREPRES, model, component, resultRegister, change))
-    retval = false;
+  retval = false;
 
   CValueMapper *vm = CValueMapper::instance();
 
   if (vm->HasUndrainedMaterial(model, pElementSet, component.Stage()))
   {
-    if (!PrepareMappingStress(model, component, resultRegister, true))
+  if (!PrepareMappingStress(model, component, resultRegister, true))
       retval = false;
 
-    if (!PrepareMappingIndex(CI_TEMPERATURE, model, component, resultRegister, true))
+  if (!PrepareMappingIndex(CI_TEMPERATURE, model, component, resultRegister, true))
       retval = false;
 
-    if (!vm->PrepareMappingMaterial(model, pElementSet, component.Stage(), CValueMapper::MARKED_AS_INITIAL))
+  if (!vm->PrepareMappingMaterial(model, pElementSet, component.Stage(), CValueMapper::MARKED_AS_INITIAL))
       retval = false;
   }
 
@@ -642,10 +642,10 @@ bool CValueMapper::PrepareMappingGammaValues(const CModelBase& model, IResultCom
   bool retval = true;
 
   if (!PrepareMappingStress(model, component, resultRegister, true))
-    retval = false;
+  retval = false;
 
   if (!PrepareMappingPorePressure(model, component, resultRegister, pElementSet, true))
-    retval = false;
+  retval = false;
 
   return retval;
 }
@@ -656,16 +656,16 @@ bool CValueMapper::PrepareMappingIndex(int index, const CModelBase& /*model*/, I
 
   if (change)
   {
-    int c = resultRegister.ColumnNumber(component.AnalysisType(), resultRegister.DepletionStageEntry().MarkedAsInitialStage().Index(), index);
+  int c = resultRegister.ColumnNumber(component.AnalysisType(), resultRegister.DepletionStageEntry().MarkedAsInitialStage().Index(), index);
 
-    if (!resultRegister.Cache().ActiveCacher().StartCriticalSection(c, 1))
+  if (!resultRegister.Cache().ActiveCacher().StartCriticalSection(c, 1))
       retval = false;
   }
 
   int c = resultRegister.ColumnNumber(component.AnalysisType(), component.Stage().Index(), index);
 
   if (!resultRegister.Cache().ActiveCacher().StartCriticalSection(c, 1))
-    retval = false;
+  retval = false;
 
   return retval;
 }

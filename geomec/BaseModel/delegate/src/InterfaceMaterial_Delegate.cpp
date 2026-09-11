@@ -36,7 +36,7 @@ void CInterfaceMaterialEntry_Delegate::AppendContextMenu(
   CContextMenuInvoker &invoker)
 {
   invoker.AddCommand("Insert New",
-    *new CSingleCommandTemplate <CInterfaceMaterialEntry_Delegate> (*this,
+  *new CSingleCommandTemplate <CInterfaceMaterialEntry_Delegate> (*this,
       &CInterfaceMaterialEntry_Delegate::InsertNewWithProperties));
 }
 
@@ -44,11 +44,11 @@ void CInterfaceMaterialEntry_Delegate::InsertNewWithProperties()
 {
   CInterfaceMaterial* pMat = &m_interfaceMaterialEntry->InsertNew();
   CInterfaceMaterial_Delegate* pMat_Delegate =
-    new CInterfaceMaterial_Delegate(pMat);
+  new CInterfaceMaterial_Delegate(pMat);
 
   if (!pMat_Delegate->Attributes())
   {
-    delete pMat_Delegate;
-    delete pMat;
+  delete pMat_Delegate;
+  delete pMat;
   }
 }

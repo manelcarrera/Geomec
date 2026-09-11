@@ -75,9 +75,9 @@ void CSampledPointSetDlg::EnableOK()
      && m_dSizeEast>0
      && ( m_dSizeDepth> 0 || m_pointSet.Dimension() != CPointSet::DIM_3D )
      )
-    GetDlgItem(IDOK)->EnableWindow(TRUE);
+  GetDlgItem(IDOK)->EnableWindow(TRUE);
   else
-    GetDlgItem(IDOK)->EnableWindow(FALSE);
+  GetDlgItem(IDOK)->EnableWindow(FALSE);
 }
 
 void CSampledPointSetDlg::OnNameChange()
@@ -110,19 +110,19 @@ BOOL CSampledPointSetDlg::OnInitDialog()
 
   if (m_pointSet.Dimension() == CPointSet::DIM_3D )
   {
-    strText.Format("%.0f", m_dSizeDepth);
-    sizeDepthEdit->SetWindowText(strText);
+  strText.Format("%.0f", m_dSizeDepth);
+  sizeDepthEdit->SetWindowText(strText);
   }
   else
   {
-    strText= "";
-    sizeDepthEdit->SetWindowText(strText);
-    sizeDepthEdit->EnableWindow(FALSE);
+  strText= "";
+  sizeDepthEdit->SetWindowText(strText);
+  sizeDepthEdit->EnableWindow(FALSE);
   }
 
   CLengthQuantity q;
   GetDlgItem(IDC_BLOCK_EDGE_UNIT)->
-    SetWindowText( (LPCSTR)(q.UnitName(m_unit).c_str()) );
+  SetWindowText( (LPCSTR)(q.UnitName(m_unit).c_str()) );
 
   return TRUE;
 }
@@ -143,11 +143,11 @@ double CSampledPointSetDlg::getSizeDepth() const
 {
   if (m_pointSet.Dimension() == CPointSet::DIM_3D )
   {
-    CLengthQuantity q;
-    return q.Convert(m_dSizeDepth, IQuantityDouble::SI_UNIT, m_unit);
+  CLengthQuantity q;
+  return q.Convert(m_dSizeDepth, IQuantityDouble::SI_UNIT, m_unit);
   }
   else
-    return 0.0;
+  return 0.0;
 }
 
 CString CSampledPointSetDlg::getName() const

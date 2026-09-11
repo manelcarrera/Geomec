@@ -36,8 +36,8 @@ typedef int		BOOL;
 #ifndef __cplusplus
 #ifndef FALSE
 enum {
-	FALSE = 0,
-	TRUE  = 1
+  FALSE = 0,
+  TRUE  = 1
 };
 #endif
 #endif /* __cplusplus */

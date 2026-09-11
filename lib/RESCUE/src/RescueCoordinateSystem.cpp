@@ -20,14 +20,14 @@ RescueCoordinateSystemAxis *RescueCoordinateSystem::AxisIdentifiedBy(RESCUEINT64
   RESCUEINT64 ndx = 0;
   while (ndx < 3 && myReturn == 0)
   {
-    if (axes[ndx]->Identifier() == identifier)
-    {
+  if (axes[ndx]->Identifier() == identifier)
+  {
       myReturn = axes[ndx];
-    }
-    else
-    {
+  }
+  else
+  {
       ndx++;
-    }
+  }
   }
   return myReturn;
 }
@@ -36,11 +36,11 @@ RESCUEBOOL RescueCoordinateSystem::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueCoordinateSystem)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueHistoryObject::IsOfType(thisType);
+  return RescueHistoryObject::IsOfType(thisType);
   }
 }
 
@@ -48,9 +48,9 @@ RescueCoordinateSystem::RescueCoordinateSystem(RescueContext *contextIn,
                          RESCUECHAR *name,
                       RescueCoordinateSystem::Orientation displayOrientationIn,
       RescueVertex *vertexIn,
-    const RESCUECHAR *Xproperty, const RESCUECHAR *Xuom,
-    const RESCUECHAR *Yproperty, const RESCUECHAR *Yuom,
-    const RESCUECHAR *Zproperty, const RESCUECHAR *Zuom,
+  const RESCUECHAR *Xproperty, const RESCUECHAR *Xuom,
+  const RESCUECHAR *Yproperty, const RESCUECHAR *Yuom,
+  const RESCUECHAR *Zproperty, const RESCUECHAR *Zuom,
                          RESCUEINT64 insysIn,
                          RESCUEINT64 inzoneIn,
                          RESCUEINT64 inUnitIn,
@@ -104,7 +104,7 @@ RescueCoordinateSystem::RescueCoordinateSystem(RescueContext *contextIn, FILE *a
   isA = R_RescueCoordinateSystem;
   if (context->ReadFileVersion() >= 20)
   {
-    ReadId(context, archiveFile);
+  ReadId(context, archiveFile);
   }
   myfgets(context, name, 255, archiveFile);
   coordinateSystemName = new RCHString(name);
@@ -116,43 +116,43 @@ RescueCoordinateSystem::RescueCoordinateSystem(RescueContext *contextIn, FILE *a
   RESCUEINT64 loop;
   for (loop = 0; loop < 3; loop++)
   {
-    axes[loop] = new RescueCoordinateSystemAxis(context, archiveFile);
-    axes[loop]->Relink(this);
+  axes[loop] = new RescueCoordinateSystemAxis(context, archiveFile);
+  axes[loop]->Relink(this);
   }
   myfscanf(context, archiveFile, &vertexFlag);
   if (vertexFlag == 1)
   {
-    vertex = new RescueVertex(context, archiveFile);
+  vertex = new RescueVertex(context, archiveFile);
   }
   if (context->ReadFileVersion() < 6)
   {
-    insys = 0;
-    inzone = 0;
-    inUnit = 0;
-    insph = 0;
-    semiMajorAxis = 0.0;
-    eccentricity = 0.0;
-    standardLat = 0.0;
-    secondLat = 0.0;
-    centralLong = 0.0;
-    latOrigin = 0.0;
-    FALSEEasting = 0.0;
-    FALSENorthing = 0.0;
+  insys = 0;
+  inzone = 0;
+  inUnit = 0;
+  insph = 0;
+  semiMajorAxis = 0.0;
+  eccentricity = 0.0;
+  standardLat = 0.0;
+  secondLat = 0.0;
+  centralLong = 0.0;
+  latOrigin = 0.0;
+  FALSEEasting = 0.0;
+  FALSENorthing = 0.0;
   }
   else
   {
-    myfscanf(context, archiveFile, &insys);
-    myfscanf(context, archiveFile, &inzone);
-    myfscanf(context, archiveFile, &inUnit);
-    myfscanf(context, archiveFile, &insph);
-    myfscanf(context, archiveFile, &semiMajorAxis);
-    myfscanf(context, archiveFile, &eccentricity);
-    myfscanf(context, archiveFile, &standardLat);
-    myfscanf(context, archiveFile, &secondLat);
-    myfscanf(context, archiveFile, &centralLong);
-    myfscanf(context, archiveFile, &latOrigin);
-    myfscanf(context, archiveFile, &FALSEEasting);
-    myfscanf(context, archiveFile, &FALSENorthing);
+  myfscanf(context, archiveFile, &insys);
+  myfscanf(context, archiveFile, &inzone);
+  myfscanf(context, archiveFile, &inUnit);
+  myfscanf(context, archiveFile, &insph);
+  myfscanf(context, archiveFile, &semiMajorAxis);
+  myfscanf(context, archiveFile, &eccentricity);
+  myfscanf(context, archiveFile, &standardLat);
+  myfscanf(context, archiveFile, &secondLat);
+  myfscanf(context, archiveFile, &centralLong);
+  myfscanf(context, archiveFile, &latOrigin);
+  myfscanf(context, archiveFile, &FALSEEasting);
+  myfscanf(context, archiveFile, &FALSENorthing);
   }
   if (context->ReadFileVersion() >= 37)
   {
@@ -161,16 +161,16 @@ RescueCoordinateSystem::RescueCoordinateSystem(RescueContext *contextIn, FILE *a
       myfgets(context, myString, 255, archiveFile);
       while (strcmp(myString, "EOD") != 0)
       {
-        if (strcmp(myString, "epsgId") == 0)
-        {
+    if (strcmp(myString, "epsgId") == 0)
+    {
           RescueBuffer buf(context, archiveFile);
           buf >> epsgId;
-        }
-        else
-        {
+    }
+    else
+    {
           RescueBuffer buf(context, archiveFile);
-        }
-        myfgets(context, myString, 255, archiveFile);
+    }
+    myfgets(context, myString, 255, archiveFile);
       }
   }
 }
@@ -179,13 +179,13 @@ void RescueCoordinateSystem::RegisterWith(RescueModel *parentModelIn)
 {
   if (parentModel == 0)
   {
-    parentModel = parentModelIn;
-    context = parentModel->Context();
-    parentModel->RegisterObject(this);
-    if (vertex != 0)
-    {
+  parentModel = parentModelIn;
+  context = parentModel->Context();
+  parentModel->RegisterObject(this);
+  if (vertex != 0)
+  {
       vertex->RegisterWith(parentModel);
-    }
+  }
   }
 }
   
@@ -194,7 +194,7 @@ void RescueCoordinateSystem::SetVertex(RescueVertex *vertexIn)
   vertex = vertexIn;
   if (parentModel != 0)
   {
-    vertex->RegisterWith(parentModel);
+  vertex->RegisterWith(parentModel);
   }
 }
 
@@ -202,11 +202,11 @@ RescueCoordinateSystemAxis *RescueCoordinateSystem::Axis(RESCUEINT64 zeroBasedOr
 {
   if (zeroBasedOrdinal < 0 || zeroBasedOrdinal > 2)
   {
-    return 0;
+  return 0;
   }
   else
   {
-    return axes[zeroBasedOrdinal];
+  return axes[zeroBasedOrdinal];
   }
 }
 
@@ -216,10 +216,10 @@ RESCUEINT64 RescueCoordinateSystem::NdxOf(RescueCoordinateSystemAxis *axisIn)
   RESCUEINT64 myReturn = -1;
   for (loop = 0; loop < 3 && myReturn < 0; loop++)
   {
-    if (axisIn == axes[loop])
-    {
+  if (axisIn == axes[loop])
+  {
       myReturn = loop;
-    }
+  }
   }
   return myReturn;
 }
@@ -230,15 +230,15 @@ RescueCoordinateSystem::~RescueCoordinateSystem()
 
   if (coordinateSystemName != 0)
   {
-    delete coordinateSystemName;
+  delete coordinateSystemName;
   }
   for (loop = 0; loop < 3; loop++)
   {
-    delete axes[loop];
+  delete axes[loop];
   }
   if (parentModel != 0)
   {
-    parentModel->UnRegisterObject(this);
+  parentModel->UnRegisterObject(this);
   }
 }
 
@@ -247,23 +247,23 @@ void RescueCoordinateSystem::Archive(FILE *archiveFile)
   myfprintf(context, archiveFile, "; Coordinate System");
   if (context->FileVersion() >= 20)
   {
-    myfprintf(context, archiveFile, Identifier());
+  myfprintf(context, archiveFile, Identifier());
   }
   myfprintf(context, archiveFile, coordinateSystemName->String());
   myfprintf(context, archiveFile, (RESCUEINT64) displayOrientation);
   RESCUEINT64 loop;
   for (loop = 0; loop < 3; loop++)
   {
-    axes[loop]->Archive(archiveFile);
+  axes[loop]->Archive(archiveFile);
   }
   if (vertex == 0)
   {
-    myfprintf(context, archiveFile, (RESCUEINT64) 0);
+  myfprintf(context, archiveFile, (RESCUEINT64) 0);
   }
   else
   {
-    myfprintf(context, archiveFile, (RESCUEINT64) 1);
-    vertex->Archive(context, archiveFile);
+  myfprintf(context, archiveFile, (RESCUEINT64) 1);
+  vertex->Archive(context, archiveFile);
   }
   myfprintf(context, archiveFile, insys);
   myfprintf(context, archiveFile, inzone);
@@ -279,11 +279,11 @@ void RescueCoordinateSystem::Archive(FILE *archiveFile)
   myfprintf(context, archiveFile, FALSENorthing);
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "epsgId");
-    RescueBuffer buf(context, sizeof(RESCUEINT32) + 10);
-    buf << epsgId;
-    buf.Archive(archiveFile);
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "epsgId");
+  RescueBuffer buf(context, sizeof(RESCUEINT32) + 10);
+  buf << epsgId;
+  buf.Archive(archiveFile);
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 

@@ -22,8 +22,8 @@ void FilosFatalHandler::Strategy(IFilosFatalStrategy *strategy)
 {
   if (strategy != nullptr)
   {
-    delete m_strategy;
-    m_strategy = strategy;
+  delete m_strategy;
+  m_strategy = strategy;
   }
 }
 

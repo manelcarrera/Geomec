@@ -33,36 +33,36 @@ namespace well {
 
 class CWellPointDrawSpec  : public CWellDrawSpecBase
 {
-	Q_OBJECT
+  Q_OBJECT
 
 friend class CWellSceneInterMed;
 
 public:
-	enum TYPE
-	{
-		SINGLE_DOT,
-		ARROW
-	};
+  enum TYPE
+  {
+    SINGLE_DOT,
+    ARROW
+  };
 
-	virtual ~CWellPointDrawSpec();
+  virtual ~CWellPointDrawSpec();
 
-	void SetArrowDirection(const geo::CVector& dir);
+  void SetArrowDirection(const geo::CVector& dir);
 private slots:
-	void OnTMDChanged();
-	void OnPointDestroyed(const well::CWellPoint& wellpoint);
+  void OnTMDChanged();
+  void OnPointDestroyed(const well::CWellPoint& wellpoint);
 
 private:
-	virtual void CreateScene();
+  virtual void CreateScene();
 
-	//only CWellSceneInterMed can construct a CWellPointDrawSpec
-	CWellPointDrawSpec(CWellSceneInterMed& WellSceneInterMed, well::CWellPoint& WellPoint,TYPE type = SINGLE_DOT);
-	
-	well::CWellPoint* m_pWellPoint;
+  //only CWellSceneInterMed can construct a CWellPointDrawSpec
+  CWellPointDrawSpec(CWellSceneInterMed& WellSceneInterMed, well::CWellPoint& WellPoint,TYPE type = SINGLE_DOT);
+  
+  well::CWellPoint* m_pWellPoint;
 
-	void			  CreateArrow();
-	void			  CreateDot();
-	TYPE m_Type;
-	geo::CVector m_ArrowDirection;
+  void			  CreateArrow();
+  void			  CreateDot();
+  TYPE m_Type;
+  geo::CVector m_ArrowDirection;
 };
 
 #endif // !defined(AFX_WELLPOINTDRAWSPEC_H__7446DA9C_5000_4003_8B42_140D1B615171__INCLUDED_)

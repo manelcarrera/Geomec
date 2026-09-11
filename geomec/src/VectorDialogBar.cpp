@@ -54,34 +54,34 @@ void CVectorDialogBar::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar
   CRuntimeClass* rtclass = wnd->GetRuntimeClass();
 
   while(wnd && !wnd->IsKindOf(RUNTIME_CLASS(CMainFrame)))
-    wnd = wnd->GetParent();
+  wnd = wnd->GetParent();
 
   if(wnd)
   {
-    CSliderCtrl* slider = reinterpret_cast<CSliderCtrl*>(pScrollBar);
-    int pos = slider->GetPos();
+  CSliderCtrl* slider = reinterpret_cast<CSliderCtrl*>(pScrollBar);
+  int pos = slider->GetPos();
 
-    CGeomecDoc* pDoc = &((CGeomecApp*)AfxGetApp())->GetDoc();
-    CModelView* modelView = pDoc->GetModelView();
+  CGeomecDoc* pDoc = &((CGeomecApp*)AfxGetApp())->GetDoc();
+  CModelView* modelView = pDoc->GetModelView();
 
-    // Convert the slider position to a value between 0.0f and 1.0f
-    int maxval = slider->GetRangeMax();
-    int minval = slider->GetRangeMin();
-    float normalizedPos = (float)(pos - minval) / (float)(maxval - minval);
+  // Convert the slider position to a value between 0.0f and 1.0f
+  int maxval = slider->GetRangeMax();
+  int minval = slider->GetRangeMin();
+  float normalizedPos = (float)(pos - minval) / (float)(maxval - minval);
 
-    if(slider == &m_scaleSlider)
-    {
+  if(slider == &m_scaleSlider)
+  {
       // Map slider position to range [.25, 4.0]
       float scale = powf(2.0f, 4.0f * normalizedPos - 2.0f);
       modelView->SendMessage(WM_SCALE_VECTORS, 0U, *((LPARAM*)&scale));
-    }
-    else // decimate slider
-    {
+  }
+  else // decimate slider
+  {
       // Map slider position to range [1, .01]
       float factor = powf(10.0f, -2.0f * normalizedPos);
 
       modelView->SendMessage(WM_DECIMATE_VECTORS, 0U, *((LPARAM*)&factor));
-    }
+  }
   }
 
   CDialogBar::OnHScroll(nSBCode, nPos, pScrollBar);

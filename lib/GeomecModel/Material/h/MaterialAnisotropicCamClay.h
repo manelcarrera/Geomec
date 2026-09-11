@@ -9,11 +9,11 @@
 class CMaterialAnisotropicCamClay : public IMaterialRock
 {
 public:
-	CMaterialAnisotropicCamClay(CMaterialEntry &entry, CLibraryMaterial& libmat);
-	CMaterialAnisotropicCamClay(const CMaterialAnisotropicCamClay& material, CMaterialEntry &entry);
+  CMaterialAnisotropicCamClay(CMaterialEntry &entry, CLibraryMaterial& libmat);
+  CMaterialAnisotropicCamClay(const CMaterialAnisotropicCamClay& material, CMaterialEntry &entry);
 
-	virtual bool Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const;
-	virtual int MaterialModel() const { return MM_ANISOTROPIC_CAMCLAY; }
+  virtual bool Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const;
+  virtual int MaterialModel() const { return MM_ANISOTROPIC_CAMCLAY; }
   virtual long MaterialModelFilter() const { return MLFO_ANISOTROPIC_CAMCLAY; }
 
   // the creator for this material model

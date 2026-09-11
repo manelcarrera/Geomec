@@ -19,19 +19,19 @@ namespace cora
 
 template <>
   double calculateTotalSize <CFormationBase, geo::IElementSet> (
-    CFormationBase* object, const geo::IElementSet& /*elementSet*/)
+  CFormationBase* object, const geo::IElementSet& /*elementSet*/)
 {
   double totalSize = 0;
 
   for (int s = 0; s < object->ElementSetSize(); ++s)
   {
-    for (int e = 0; e < object->ElementSet(s).ElementSet().ElementSize(); ++e)
-    {
+  for (int e = 0; e < object->ElementSet(s).ElementSet().ElementSize(); ++e)
+  {
       const geo::IElement& element =
-        object->ElementSet(s).ElementSet().Element(e);
+    object->ElementSet(s).ElementSet().Element(e);
 
       totalSize += element.Size();
-    }
+  }
   }
 
   return totalSize;
@@ -39,7 +39,7 @@ template <>
 
 template <>
   void getPressureParameters <CFormationBase, geo::IElementSet,
-    CParameter::TFormationParameter4Pressure, CPressure> (
+  CParameter::TFormationParameter4Pressure, CPressure> (
       TParameters& parameters, CModelBase* /*modelBase*/,
       const CDepletionStage& depletionStage, CFormationBase* object,
       const geo::IElementSet& elementSet,
@@ -50,7 +50,7 @@ template <>
   const CPressure& pressure = object->Pressure(depletionStage);
   const IValueComponentBase& valueComponentBase = pressure.Component();
   const IValueDataInterfaceScalar& valueDataInterfaceScalar =
-    valueComponentBase.ScalarData();
+  valueComponentBase.ScalarData();
   double min = std::numeric_limits <double> ::max();
   double max = -std::numeric_limits <double> ::max();
   double weightedMean = 0;
@@ -58,37 +58,37 @@ template <>
 
   for (int s = 0; s < object->ElementSetSize(); ++s)
   {
-    for (int e = 0; e < object->ElementSet(s).ElementSet().ElementSize(); ++e)
-    {
+  for (int e = 0; e < object->ElementSet(s).ElementSet().ElementSize(); ++e)
+  {
       const geo::IElement& element =
-        object->ElementSet(s).ElementSet().Element(e);
+    object->ElementSet(s).ElementSet().Element(e);
       const IValueDomainScalar::TValueVec scalarValueVector =
-        valueDataInterfaceScalar.ValueElement(element);
+    valueDataInterfaceScalar.ValueElement(element);
       double mean = CUtilities4ValueVector::calculateAverage(scalarValueVector);
 
       CUtilities4ValueVector::
-        verifyValueVector(pressureType, scalarValueVector);
+    verifyValueVector(pressureType, scalarValueVector);
 
       max = std::max(max,
-        CUtilities4ValueVector::calculateAverage(scalarValueVector));
+    CUtilities4ValueVector::calculateAverage(scalarValueVector));
       min = std::min(min,
-        CUtilities4ValueVector::calculateAverage(scalarValueVector));
+    CUtilities4ValueVector::calculateAverage(scalarValueVector));
       weightedMean += mean * (element.Size() / totalSize);
-    }
+  }
   }
 
   std::pair <geo::CValue, geo::CValue> range = std::make_pair(min, max);
 
   parameters.push_back(TParameter(new CParameter(parameterType,
-    QString("%1_D%2").arg(pressure.Component().ExportLabel()).
+  QString("%1_D%2").arg(pressure.Component().ExportLabel()).
       arg(depletionStage.Index()),
-    range.first, range.second, weightedMean, object, depletionStage.Index(),
-    valueTypeID)));
+  range.first, range.second, weightedMean, object, depletionStage.Index(),
+  valueTypeID)));
 }
 
 template <>
   void getPressureParameters <CFormationBase, geo::IElementSet,
-    CParameter::TFormationParameter4PressureChange, CPressure> (
+  CParameter::TFormationParameter4PressureChange, CPressure> (
       TParameters& parameters, CModelBase* /*modelBase*/,
       const CDepletionStage& depletionStage, CFormationBase* object,
       const geo::IElementSet& elementSet,
@@ -97,15 +97,15 @@ template <>
       const QString& pressureType)
 {
   const CPressure& initialPressure =
-    object->Pressure(depletionStage.InitialStage());
+  object->Pressure(depletionStage.InitialStage());
   const CPressure& pressure = object->Pressure(depletionStage);
   const IValueComponentBase& initialValueComponentBase =
-    initialPressure.Component();
+  initialPressure.Component();
   const IValueComponentBase& valueComponentBase = pressure.Component();
   const IValueDataInterfaceScalar& initialValueDataInterfaceScalar =
-    initialValueComponentBase.ScalarData();
+  initialValueComponentBase.ScalarData();
   const IValueDataInterfaceScalar& valueDataInterfaceScalar =
-    valueComponentBase.ScalarData();
+  valueComponentBase.ScalarData();
   double min = std::numeric_limits <double> ::max();
   double max = -std::numeric_limits <double> ::max();
   double weightedMean = 0;
@@ -113,41 +113,41 @@ template <>
 
   for (int s = 0; s < object->ElementSetSize(); ++s)
   {
-    for (int e = 0; e < object->ElementSet(s).ElementSet().ElementSize(); ++e)
-    {
+  for (int e = 0; e < object->ElementSet(s).ElementSet().ElementSize(); ++e)
+  {
       const geo::IElement& element =
-        object->ElementSet(s).ElementSet().Element(e);
+    object->ElementSet(s).ElementSet().Element(e);
       const IValueDomainScalar::TValueVec initialScalarValueVector =
-        initialValueDataInterfaceScalar.ValueElement(element);
+    initialValueDataInterfaceScalar.ValueElement(element);
       const IValueDomainScalar::TValueVec scalarValueVector =
-        valueDataInterfaceScalar.ValueElement(element);
+    valueDataInterfaceScalar.ValueElement(element);
 
       CUtilities4ValueVector::
-        verifyValueVector(pressureType, initialScalarValueVector);
+    verifyValueVector(pressureType, initialScalarValueVector);
       CUtilities4ValueVector::
-        verifyValueVector(pressureType, scalarValueVector);
+    verifyValueVector(pressureType, scalarValueVector);
 
       double initialMean =
-        CUtilities4ValueVector::calculateAverage(initialScalarValueVector);
+    CUtilities4ValueVector::calculateAverage(initialScalarValueVector);
       double mean = CUtilities4ValueVector::calculateAverage(scalarValueVector);
       double initialAverage =
-        CUtilities4ValueVector::calculateAverage(initialScalarValueVector);
+    CUtilities4ValueVector::calculateAverage(initialScalarValueVector);
       double average =
-        CUtilities4ValueVector::calculateAverage(scalarValueVector);
+    CUtilities4ValueVector::calculateAverage(scalarValueVector);
 
       max = std::max(max, (average - initialAverage));
       min = std::min(min, (average - initialAverage));
       weightedMean += (mean - initialMean) * (element.Size() / totalSize);
-    }
+  }
   }
 
   std::pair <geo::CValue, geo::CValue> range = std::make_pair(min, max);
 
   parameters.push_back(TParameter(new CParameter(parameterType,
-    QString("Dlt_%1_D%2").arg(pressure.Component().ExportLabel()).
+  QString("Dlt_%1_D%2").arg(pressure.Component().ExportLabel()).
       arg(depletionStage.Index()),
-    range.first, range.second, weightedMean, object, depletionStage.Index(),
-    valueTypeID)));
+  range.first, range.second, weightedMean, object, depletionStage.Index(),
+  valueTypeID)));
 }
 
 } // namespace cora

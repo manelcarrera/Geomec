@@ -5,86 +5,86 @@
 
 class CNewWellPathInput : public CPointSet
 {
-    bool   m_bIsVertical;
+  bool   m_bIsVertical;
 
-    double m_dApproximateRadius;
+  double m_dApproximateRadius;
 
-    double m_dGlobalNorthing;
-    double m_dGlobalEasting;
-    double m_dGlobalTVD;
+  double m_dGlobalNorthing;
+  double m_dGlobalEasting;
+  double m_dGlobalTVD;
 
-    QDate  m_BirthDate;
+  QDate  m_BirthDate;
 
-    geo::CPoint m_min;
-    geo::CPoint m_max;
+  geo::CPoint m_min;
+  geo::CPoint m_max;
 
   public:
-    CNewWellPathInput(CFemAppModel& model);
-    CNewWellPathInput(const QString &name, CFemAppModel &model);
-    CNewWellPathInput(const QString &name, CFemAppModel &model, const geo::CPoint &BasePoint);
-    CNewWellPathInput(const QString &file, const QString &name, CFemAppModel &model, CQuantity::UNIT unit, IProgressBase &dlg);
-    CNewWellPathInput(const CNewWellPath& wellpath);
-    virtual ~CNewWellPathInput();
+  CNewWellPathInput(CFemAppModel& model);
+  CNewWellPathInput(const QString &name, CFemAppModel &model);
+  CNewWellPathInput(const QString &name, CFemAppModel &model, const geo::CPoint &BasePoint);
+  CNewWellPathInput(const QString &file, const QString &name, CFemAppModel &model, CQuantity::UNIT unit, IProgressBase &dlg);
+  CNewWellPathInput(const CNewWellPath& wellpath);
+  virtual ~CNewWellPathInput();
 
-    static CNewWellPathInput *EnsureUniqueness(CNewWellPathInput *input);
-    static const CNewWellPathInput *FindByIndex(const CModelBase& model, int nIndex);
-    const CNewWellPath *WellPathInModel(const CModelBase& model) const;
-
-
-    static const CNewWellPath *CreateWellPath(CNewWellPathInput *input, const CModelBase& model, std::vector<std::string> *messages = 0);
+  static CNewWellPathInput *EnsureUniqueness(CNewWellPathInput *input);
+  static const CNewWellPathInput *FindByIndex(const CModelBase& model, int nIndex);
+  const CNewWellPath *WellPathInModel(const CModelBase& model) const;
 
 
-    bool IsVertical() const { return m_bIsVertical; }
+  static const CNewWellPath *CreateWellPath(CNewWellPathInput *input, const CModelBase& model, std::vector<std::string> *messages = 0);
 
-    double GlobalNorthing() const { return m_dGlobalNorthing; }
-    double GlobalEasting() const { return m_dGlobalEasting; }
-    double GlobalTVD() const { return m_dGlobalTVD; }
-    double DerElev() const { return GlobalTVD(); }
 
-    void GlobalNorthing(double value) { m_dGlobalNorthing = value; }
-    void GlobalEasting(double value) { m_dGlobalEasting = value; }
-    void GlobalTVD(double value) { m_dGlobalTVD = value; }
-    void DerElev(double value) { GlobalTVD(value); }
+  bool IsVertical() const { return m_bIsVertical; }
 
-    void BirthDate(const QDate& date) { m_BirthDate = date; }
-    const QDate& BirthDate() const { return m_BirthDate; }
+  double GlobalNorthing() const { return m_dGlobalNorthing; }
+  double GlobalEasting() const { return m_dGlobalEasting; }
+  double GlobalTVD() const { return m_dGlobalTVD; }
+  double DerElev() const { return GlobalTVD(); }
 
-    bool operator==(const CNewWellPathInput& rhs) const;
+  void GlobalNorthing(double value) { m_dGlobalNorthing = value; }
+  void GlobalEasting(double value) { m_dGlobalEasting = value; }
+  void GlobalTVD(double value) { m_dGlobalTVD = value; }
+  void DerElev(double value) { GlobalTVD(value); }
 
-    virtual bool CanConnectItem(const CGraphNode& item) const;
-    virtual bool ConnectItem(const CGraphNode& item);
+  void BirthDate(const QDate& date) { m_BirthDate = date; }
+  const QDate& BirthDate() const { return m_BirthDate; }
 
-    virtual void LoadStream(TSTREAM& stream, CStreamVersion &version, TPROGRESS& progress);
-    virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  bool operator==(const CNewWellPathInput& rhs) const;
 
-    void InitFromPointArray(QVector<geo::CPoint>& vcPoint, bool setGlobals = true, QVector<double> *azimuth = 0, QVector<double> *inclination = 0);
+  virtual bool CanConnectItem(const CGraphNode& item) const;
+  virtual bool ConnectItem(const CGraphNode& item);
 
-    void Recalculate(double offset);
-    void Recalculate(const geo::CPoint &point);
-    void Recalculate(double GlobalNorthing, double GlobalEasting, double GlobalTVD);
+  virtual void LoadStream(TSTREAM& stream, CStreamVersion &version, TPROGRESS& progress);
+  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
 
-    void FlipDepth();
+  void InitFromPointArray(QVector<geo::CPoint>& vcPoint, bool setGlobals = true, QVector<double> *azimuth = 0, QVector<double> *inclination = 0);
 
-	geo::CPoint min(){ return m_min; }
-	geo::CPoint max(){ return m_max; }
+  void Recalculate(double offset);
+  void Recalculate(const geo::CPoint &point);
+  void Recalculate(double GlobalNorthing, double GlobalEasting, double GlobalTVD);
+
+  void FlipDepth();
+
+  geo::CPoint min(){ return m_min; }
+  geo::CPoint max(){ return m_max; }
 
   virtual bool CanDestroy() const;
   virtual bool Destroy();
 
 
 private:
-    void Init();
+  void Init();
 
-    void GetInterSectionPointsWithFormationSkin(const geo::ILine& line , std::set<geo::CPoint>& PointSet) const;
-    void InitVerticalWell(bool bResetGlobalTVD);
-    void InitVertical(double start_northing, double start_easting, double start_depth, double start_tmd, double end_depth);
+  void GetInterSectionPointsWithFormationSkin(const geo::ILine& line , std::set<geo::CPoint>& PointSet) const;
+  void InitVerticalWell(bool bResetGlobalTVD);
+  void InitVertical(double start_northing, double start_easting, double start_depth, double start_tmd, double end_depth);
 
-    bool CheckVerticality() const;
+  bool CheckVerticality() const;
 
-    void CalcBB();
+  void CalcBB();
 
-    CNewWellPathInput(const CNewWellPathInput& rhs);
-    CNewWellPathInput& operator=(CNewWellPathInput rhs);
+  CNewWellPathInput(const CNewWellPathInput& rhs);
+  CNewWellPathInput& operator=(CNewWellPathInput rhs);
 };
 
 #endif  // _NewWellPathInput_h_

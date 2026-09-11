@@ -30,34 +30,34 @@ CColorNode::CColorNode(CFemAppModel& model)
 CColorNode::CColorNode(const QString &strName, CFemAppModel& model, COLORREF nColor)
 : COpenGLNode(strName, model), m_nColor(nColor)
 {
-	// Link To the factory
-	assert(Model().GraphEntry(MD_BASE_COLOR_NODE));
-	LinkTo(*Model().GraphEntry(MD_BASE_COLOR_NODE));
+  // Link To the factory
+  assert(Model().GraphEntry(MD_BASE_COLOR_NODE));
+  LinkTo(*Model().GraphEntry(MD_BASE_COLOR_NODE));
 }
 
 CColorNode::CColorNode(const unsigned int uName, CFemAppModel& model, COLORREF nColor)
 : COpenGLNode(uName, model), m_nColor(nColor)
 {
-	// Link To the factory
-	assert(Model().GraphEntry(MD_BASE_COLOR_NODE));
-	LinkTo(*Model().GraphEntry(MD_BASE_COLOR_NODE));
+  // Link To the factory
+  assert(Model().GraphEntry(MD_BASE_COLOR_NODE));
+  LinkTo(*Model().GraphEntry(MD_BASE_COLOR_NODE));
 }
 
 
 CColorNode::CColorNode(const QString &strName, CFemAppModel& model)
 : COpenGLNode(strName, model)
 {
-	CColorEntry *pEntry = (CColorEntry*)(Model().GraphEntry(MD_BASE_COLOR_NODE));
-	m_nColor = pEntry->GetColor();
-	LinkTo(*pEntry);
+  CColorEntry *pEntry = (CColorEntry*)(Model().GraphEntry(MD_BASE_COLOR_NODE));
+  m_nColor = pEntry->GetColor();
+  LinkTo(*pEntry);
 }
 
 CColorNode::CColorNode(const unsigned int uName, CFemAppModel& model)
 : COpenGLNode(uName, model)
 {
-	CColorEntry *pEntry = (CColorEntry*)(Model().GraphEntry(MD_BASE_COLOR_NODE));
-	m_nColor = pEntry->GetColor();
-	LinkTo(*pEntry);
+  CColorEntry *pEntry = (CColorEntry*)(Model().GraphEntry(MD_BASE_COLOR_NODE));
+  m_nColor = pEntry->GetColor();
+  LinkTo(*pEntry);
 }
 
 CColorNode::CColorNode(const CColorNode &rhs)
@@ -68,93 +68,93 @@ CColorNode::CColorNode(const CColorNode &rhs)
 
 CColorNode::~CColorNode()
 {
-	// TODO : Release color factory if any ...
+  // TODO : Release color factory if any ...
 }
-	
+  
 CColorNode::TColor CColorNode::Color() const
 {
-	return m_nColor;
+  return m_nColor;
 }
 
 void CColorNode::Color(TColor nColor)
 {
-	if(m_nColor != nColor)
-	{
-		m_nColor = nColor;
-		Modified(COLOR_CHANGED);
-	}
+  if(m_nColor != nColor)
+  {
+    m_nColor = nColor;
+    Modified(COLOR_CHANGED);
+  }
 
-	// TODO : Release color factory if any ...
+  // TODO : Release color factory if any ...
 }
 
 CColorNode& CColorNode::operator=(const CColorNode &rhs)
 {
-	COpenGLNode::operator=(rhs);
+  COpenGLNode::operator=(rhs);
 
-	m_nColor = rhs.m_nColor;
-	
-	return *this;
+  m_nColor = rhs.m_nColor;
+  
+  return *this;
 }
 
 bool CColorNode::operator==(const CColorNode &rhs) const
 {
-	if(!COpenGLNode::operator==(rhs))
-		return false;
+  if(!COpenGLNode::operator==(rhs))
+    return false;
 
-	return m_nColor == rhs.m_nColor;
+  return m_nColor == rhs.m_nColor;
 }
 
 bool CColorNode::Empty() const
 {
-	CColorEntry *pEntry = (CColorEntry*)(((CFemAppModel&)Model()).GraphEntry(MD_BASE_COLOR_NODE));
-	return !IsLinkedTo(*pEntry);
+  CColorEntry *pEntry = (CColorEntry*)(((CFemAppModel&)Model()).GraphEntry(MD_BASE_COLOR_NODE));
+  return !IsLinkedTo(*pEntry);
 }
 
 void CColorNode::LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress)
 {
-	int iRed, iGreen, iBlue;
+  int iRed, iGreen, iBlue;
 
-	// Load the three color components
-	stream >> iRed;		// Red
-	stream >> iGreen;	// Green 
-	stream >> iBlue;	// Blue
+  // Load the three color components
+  stream >> iRed;		// Red
+  stream >> iGreen;	// Green 
+  stream >> iBlue;	// Blue
 
-	// Update progress
-	progress.Step();
+  // Update progress
+  progress.Step();
 
-	// Set the color
-	m_nColor = qRgb(iRed, iGreen, iBlue);
+  // Set the color
+  m_nColor = qRgb(iRed, iGreen, iBlue);
 
-	// Load base
-	COpenGLNode::LoadStream(stream, version, progress);
+  // Load base
+  COpenGLNode::LoadStream(stream, version, progress);
 
-	// LinkTo 
-	CColorEntry *pEntry = (CColorEntry*)(Model().GraphEntry(MD_BASE_COLOR_NODE));
-	assert(!IsLinkedTo(*pEntry));
-	LinkTo(*pEntry);
+  // LinkTo 
+  CColorEntry *pEntry = (CColorEntry*)(Model().GraphEntry(MD_BASE_COLOR_NODE));
+  assert(!IsLinkedTo(*pEntry));
+  LinkTo(*pEntry);
 }
 
 void CColorNode::SaveStream(TSTREAM& stream, TPROGRESS& progress)
 {
-	int iRed = qRed(m_nColor);
-	int iGreen = qGreen(m_nColor);
-	int iBlue = qBlue(m_nColor);
+  int iRed = qRed(m_nColor);
+  int iGreen = qGreen(m_nColor);
+  int iBlue = qBlue(m_nColor);
 
-	// Save the three color components
-	stream << iRed;
-	stream << iGreen;
-	stream << iBlue;
+  // Save the three color components
+  stream << iRed;
+  stream << iGreen;
+  stream << iBlue;
 
-	// Update progress
-	progress.Step();
+  // Update progress
+  progress.Step();
 
-	// Save the base shit
-	COpenGLNode::SaveStream(stream, progress);
+  // Save the base shit
+  COpenGLNode::SaveStream(stream, progress);
 }
 
 long CColorNode::SavedItems() const
 {
-	// This function should return the number of progress.Step() in the above Save() function....
-	return COpenGLNode::SavedItems() + 1;
+  // This function should return the number of progress.Step() in the above Save() function....
+  return COpenGLNode::SavedItems() + 1;
 }
 

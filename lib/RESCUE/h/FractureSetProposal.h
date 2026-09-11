@@ -1,12 +1,12 @@
 /*************************************************************************
 
-        Fracture representation straw man proposal.
+    Fracture representation straw man proposal.
 
  Based on the work of Miguel Gomez of Golder Associates and
   Jean François Rainaud of IFP, as presented to Rescue in 2006
   and 2007.
 
-        Rod Hanks               January, 2008
+    Rod Hanks               January, 2008
 
 ****************************************************************************/
 
@@ -125,10 +125,10 @@ public:
   ~RescueTesselatedFracture();
   RescueTesselatedFracture();
   typedef enum {GL_TRIANGLES, 
-                GL_QUADS, 
-                GL_TRIANGLE_STRIP, 
-                GL_QUAD_STRIP, 
-                GL_TRIANGLE_FAN} GLMode;
+        GL_QUADS, 
+        GL_TRIANGLE_STRIP, 
+        GL_QUAD_STRIP, 
+        GL_TRIANGLE_FAN} GLMode;
   GLMode Mode();
   void SetMode(GLMode modeIn);
   RESCUEUINT64 VertexCount() {return m_vertexCount;}

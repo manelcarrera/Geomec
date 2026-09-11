@@ -34,31 +34,31 @@ G_BEGIN_DECLS
 typedef struct _GHashTable	GHashTable;
 
 typedef gboolean	(*GHRFunc)		(gpointer	key,
-						 gpointer	value,
-						 gpointer	user_data);
+             gpointer	value,
+             gpointer	user_data);
 
 /* Hash tables
  */
 GHashTable* g_hash_table_new		(GHashFunc	 hash_func,
-					 GEqualFunc	 key_equal_func);
+           GEqualFunc	 key_equal_func);
 void	    g_hash_table_destroy	(GHashTable	*hash_table);
 void	    g_hash_table_insert		(GHashTable	*hash_table,
-					 gpointer	 key,
-					 gpointer	 value);
+           gpointer	 key,
+           gpointer	 value);
 gboolean    g_hash_table_remove		(GHashTable	*hash_table,
-					 gconstpointer	 key);
+           gconstpointer	 key);
 gpointer    g_hash_table_lookup		(GHashTable	*hash_table,
-					 gconstpointer	 key);
+           gconstpointer	 key);
 gboolean    g_hash_table_lookup_extended(GHashTable	*hash_table,
-					 gconstpointer	 lookup_key,
-					 gpointer	*orig_key,
-					 gpointer	*value);
+           gconstpointer	 lookup_key,
+           gpointer	*orig_key,
+           gpointer	*value);
 void	    g_hash_table_foreach	(GHashTable	*hash_table,
-					 GHFunc		 func,
-					 gpointer	 user_data);
+           GHFunc		 func,
+           gpointer	 user_data);
 guint	    g_hash_table_foreach_remove	(GHashTable	*hash_table,
-					 GHRFunc	 func,
-					 gpointer	 user_data);
+           GHRFunc	 func,
+           gpointer	 user_data);
 guint	    g_hash_table_size		(GHashTable	*hash_table);
 
 /* The following two functions are deprecated and will be removed in

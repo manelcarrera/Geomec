@@ -459,31 +459,31 @@ void RGInterface::setLSFEvaluationsInModel(const std::vector<RGLimitStateFunctio
 // Flow reads it
 std::vector<RGGeneralProperty> RGInterface::GetAvailableMonitorableProperties() const
 {
-	return m_pimpl->GetAvailableMonitorableProperties();
+  return m_pimpl->GetAvailableMonitorableProperties();
 }
 
 void RGInterface::SetAvailableMonitorableProperties(const std::vector<RGGeneralProperty> &props)
 {
-	m_pimpl->SetAvailableMonitorableProperties(props);
+  m_pimpl->SetAvailableMonitorableProperties(props);
 }
 
 RGMonitorPointSets RGInterface::GetSelectedMonitoringPointSets() const
 {
-	return m_pimpl->GetSelectedMonitoringPointSets();
+  return m_pimpl->GetSelectedMonitoringPointSets();
 }
 
 void RGInterface::SetSelectedMonitoringPointSets(const RGMonitorPointSets& pointSet)
 {
-	m_pimpl->SetSelectedMonitoringPointSets(pointSet);
+  m_pimpl->SetSelectedMonitoringPointSets(pointSet);
 }
 
 void RGInterface::SetMonitorValues(const RGMonitorValues& monitorValues)
 {
-	m_pimpl->SetMonitorValues(monitorValues);
+  m_pimpl->SetMonitorValues(monitorValues);
 }
 
 RGMonitorValues RGInterface::GetMonitorValues()const
 {
-	return m_pimpl->GetMonitorValues();
+  return m_pimpl->GetMonitorValues();
 }
 

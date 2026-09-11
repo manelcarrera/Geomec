@@ -21,47 +21,47 @@ RescueUnstructuredGrid::~RescueUnstructuredGrid()
 {
   if (vertexX != 0)
   {
-    delete [] vertexX;
+  delete [] vertexX;
   }
   if (vertexY != 0)
   {
-    delete [] vertexY;
+  delete [] vertexY;
   }
   if (vertexZ != 0)
   {
-    delete [] vertexZ;
+  delete [] vertexZ;
   }
   if (faceVertexNdx != 0)
   {
-    delete [] faceVertexNdx;
+  delete [] faceVertexNdx;
   }
   if (faceVertexCount != 0)
   {
-    delete [] faceVertexCount;
+  delete [] faceVertexCount;
   }
   if (faceArray != 0)
   {
-    delete [] faceArray;
+  delete [] faceArray;
   }
   if (faceCellNdx != 0)
   {
-    delete [] faceCellNdx;
+  delete [] faceCellNdx;
   }
   if (faceCellCount != 0)
   {
-    delete [] faceCellCount;
+  delete [] faceCellCount;
   }
   if (cellCenterNdx != 0)
   {
-    delete [] cellCenterNdx;
+  delete [] cellCenterNdx;
   }
   if (kLayer != 0)
   {
-    delete [] kLayer;
+  delete [] kLayer;
   }
   if (faceList != 0)
   {
-    delete [] faceList;
+  delete [] faceList;
   }
 }
 
@@ -69,27 +69,27 @@ void RescueUnstructuredGrid::AddVertices(RESCUEINT64 count, RESCUEFLOAT *vertexX
 {
   if (vertexCount + count > vertexAlloc)
   {
-    vertexAlloc += ((count > vertexRealloc) ? count : vertexRealloc);
-    size_t sizeNow = (size_t) vertexCount * sizeof(RESCUEFLOAT);
-    RESCUEFLOAT *newVertexX = new RESCUEFLOAT[(size_t) vertexAlloc];
-    memcpy(newVertexX, vertexX, sizeNow);
-    delete [] vertexX;
-    vertexX = newVertexX;
-    RESCUEFLOAT *newVertexY = new RESCUEFLOAT[(size_t) vertexAlloc];
-    memcpy(newVertexY, vertexY, sizeNow);
-    delete [] vertexY;
-    vertexY = newVertexY;
-    RESCUEFLOAT *newVertexZ = new RESCUEFLOAT[(size_t) vertexAlloc];
-    memcpy(newVertexZ, vertexZ, sizeNow);
-    delete [] vertexZ;
-    vertexZ = newVertexZ;
+  vertexAlloc += ((count > vertexRealloc) ? count : vertexRealloc);
+  size_t sizeNow = (size_t) vertexCount * sizeof(RESCUEFLOAT);
+  RESCUEFLOAT *newVertexX = new RESCUEFLOAT[(size_t) vertexAlloc];
+  memcpy(newVertexX, vertexX, sizeNow);
+  delete [] vertexX;
+  vertexX = newVertexX;
+  RESCUEFLOAT *newVertexY = new RESCUEFLOAT[(size_t) vertexAlloc];
+  memcpy(newVertexY, vertexY, sizeNow);
+  delete [] vertexY;
+  vertexY = newVertexY;
+  RESCUEFLOAT *newVertexZ = new RESCUEFLOAT[(size_t) vertexAlloc];
+  memcpy(newVertexZ, vertexZ, sizeNow);
+  delete [] vertexZ;
+  vertexZ = newVertexZ;
   }
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    vertexX[loop + vertexCount] = vertexXin[loop];
-    vertexY[loop + vertexCount] = vertexYin[loop];
-    vertexZ[loop + vertexCount] = vertexZin[loop];
+  vertexX[loop + vertexCount] = vertexXin[loop];
+  vertexY[loop + vertexCount] = vertexYin[loop];
+  vertexZ[loop + vertexCount] = vertexZin[loop];
   }
   vertexCount += count;
 }
@@ -98,33 +98,33 @@ void RescueUnstructuredGrid::AddFace(RESCUEINT32 count, RESCUEINT32 *vertexIndic
 {
   if (faceCount + 1 > faceAlloc)
   {
-    faceAlloc += faceRealloc;
-    size_t sizeNow = (size_t) faceCount * sizeof(RESCUEINT64);
-    RESCUEINT64 *newFaceVertexNdx = new RESCUEINT64[(size_t) faceAlloc];
-    memcpy(newFaceVertexNdx, faceVertexNdx, sizeNow);
-    delete [] faceVertexNdx;
-    faceVertexNdx = newFaceVertexNdx;
-    RESCUEINT64 *newFaceVertexCount = new RESCUEINT64[(size_t) faceAlloc];
-    memcpy(newFaceVertexCount, faceVertexCount, sizeNow);
-    delete [] faceVertexCount;
-    faceVertexCount = newFaceVertexCount;
+  faceAlloc += faceRealloc;
+  size_t sizeNow = (size_t) faceCount * sizeof(RESCUEINT64);
+  RESCUEINT64 *newFaceVertexNdx = new RESCUEINT64[(size_t) faceAlloc];
+  memcpy(newFaceVertexNdx, faceVertexNdx, sizeNow);
+  delete [] faceVertexNdx;
+  faceVertexNdx = newFaceVertexNdx;
+  RESCUEINT64 *newFaceVertexCount = new RESCUEINT64[(size_t) faceAlloc];
+  memcpy(newFaceVertexCount, faceVertexCount, sizeNow);
+  delete [] faceVertexCount;
+  faceVertexCount = newFaceVertexCount;
   }
   faceVertexNdx[faceCount] = faceVertexTupleCount;
   faceVertexCount[faceCount++] = count;
 
   if (faceVertexTupleCount + count > faceVertexAlloc)
   {
-    faceVertexAlloc += ((count > faceVertexRealloc) ? count : faceVertexRealloc);
-    size_t sizeNow = (size_t) faceVertexTupleCount * sizeof(RESCUEINT64);
-    RESCUEINT64 *newFaceArray = new RESCUEINT64[(size_t) faceVertexAlloc];
-    memcpy(newFaceArray, faceArray, sizeNow);
-    delete [] faceArray;
-    faceArray = newFaceArray;
+  faceVertexAlloc += ((count > faceVertexRealloc) ? count : faceVertexRealloc);
+  size_t sizeNow = (size_t) faceVertexTupleCount * sizeof(RESCUEINT64);
+  RESCUEINT64 *newFaceArray = new RESCUEINT64[(size_t) faceVertexAlloc];
+  memcpy(newFaceArray, faceArray, sizeNow);
+  delete [] faceArray;
+  faceArray = newFaceArray;
   }
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    faceArray[faceVertexTupleCount + loop] = vertexIndices[loop];
+  faceArray[faceVertexTupleCount + loop] = vertexIndices[loop];
   }
   faceVertexTupleCount += count;
 }
@@ -133,33 +133,33 @@ void RescueUnstructuredGrid::AddFace(RESCUEINT64 count, RESCUEINT64 *vertexIndic
 {
   if (faceCount + 1 > faceAlloc)
   {
-    faceAlloc += faceRealloc;
-    size_t sizeNow = (size_t) faceCount * sizeof(RESCUEINT64);
-    RESCUEINT64 *newFaceVertexNdx = new RESCUEINT64[(size_t) faceAlloc];
-    memcpy(newFaceVertexNdx, faceVertexNdx, sizeNow);
-    delete [] faceVertexNdx;
-    faceVertexNdx = newFaceVertexNdx;
-    RESCUEINT64 *newFaceVertexCount = new RESCUEINT64[(size_t) faceAlloc];
-    memcpy(newFaceVertexCount, faceVertexCount, sizeNow);
-    delete [] faceVertexCount;
-    faceVertexCount = newFaceVertexCount;
+  faceAlloc += faceRealloc;
+  size_t sizeNow = (size_t) faceCount * sizeof(RESCUEINT64);
+  RESCUEINT64 *newFaceVertexNdx = new RESCUEINT64[(size_t) faceAlloc];
+  memcpy(newFaceVertexNdx, faceVertexNdx, sizeNow);
+  delete [] faceVertexNdx;
+  faceVertexNdx = newFaceVertexNdx;
+  RESCUEINT64 *newFaceVertexCount = new RESCUEINT64[(size_t) faceAlloc];
+  memcpy(newFaceVertexCount, faceVertexCount, sizeNow);
+  delete [] faceVertexCount;
+  faceVertexCount = newFaceVertexCount;
   }
   faceVertexNdx[faceCount] = faceVertexTupleCount;
   faceVertexCount[faceCount++] = count;
 
   if (faceVertexTupleCount + count > faceVertexAlloc)
   {
-    faceVertexAlloc += ((count > faceVertexRealloc) ? count : faceVertexRealloc);
-    size_t sizeNow = (size_t) faceVertexTupleCount * sizeof(RESCUEINT64);
-    RESCUEINT64 *newFaceArray = new RESCUEINT64[(size_t) faceVertexAlloc];
-    memcpy(newFaceArray, faceArray, sizeNow);
-    delete [] faceArray;
-    faceArray = newFaceArray;
+  faceVertexAlloc += ((count > faceVertexRealloc) ? count : faceVertexRealloc);
+  size_t sizeNow = (size_t) faceVertexTupleCount * sizeof(RESCUEINT64);
+  RESCUEINT64 *newFaceArray = new RESCUEINT64[(size_t) faceVertexAlloc];
+  memcpy(newFaceArray, faceArray, sizeNow);
+  delete [] faceArray;
+  faceArray = newFaceArray;
   }
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    faceArray[faceVertexTupleCount + loop] = vertexIndices[loop];
+  faceArray[faceVertexTupleCount + loop] = vertexIndices[loop];
   }
   faceVertexTupleCount += count;
 }
@@ -169,24 +169,24 @@ void RescueUnstructuredGrid::AddCell(RESCUEINT32 cellCenterNdxIn, RESCUEINT32 kL
 {
   if (cellCount + 1 > cellAlloc)
   {
-    cellAlloc += cellRealloc;
-    size_t sizeNow = (size_t) cellCount * sizeof(RESCUEINT64);
-    RESCUEINT64 *newNdx = new RESCUEINT64[(size_t) faceAlloc];
-    memcpy(newNdx, faceCellNdx, sizeNow);
-    delete [] faceCellNdx;
-    faceCellNdx = newNdx;
-    newNdx = new RESCUEINT64[(size_t) faceAlloc];
-    memcpy(newNdx, faceCellCount, sizeNow);
-    delete [] faceCellCount;
-    faceCellCount = newNdx;
-    newNdx = new RESCUEINT64[(size_t) faceAlloc];
-    memcpy(newNdx, cellCenterNdx, sizeNow);
-    delete [] cellCenterNdx;
-    cellCenterNdx = newNdx;
-    newNdx = new RESCUEINT64[(size_t) faceAlloc];
-    memcpy(newNdx, kLayer, sizeNow);
-    delete [] kLayer;
-    kLayer = newNdx;
+  cellAlloc += cellRealloc;
+  size_t sizeNow = (size_t) cellCount * sizeof(RESCUEINT64);
+  RESCUEINT64 *newNdx = new RESCUEINT64[(size_t) faceAlloc];
+  memcpy(newNdx, faceCellNdx, sizeNow);
+  delete [] faceCellNdx;
+  faceCellNdx = newNdx;
+  newNdx = new RESCUEINT64[(size_t) faceAlloc];
+  memcpy(newNdx, faceCellCount, sizeNow);
+  delete [] faceCellCount;
+  faceCellCount = newNdx;
+  newNdx = new RESCUEINT64[(size_t) faceAlloc];
+  memcpy(newNdx, cellCenterNdx, sizeNow);
+  delete [] cellCenterNdx;
+  cellCenterNdx = newNdx;
+  newNdx = new RESCUEINT64[(size_t) faceAlloc];
+  memcpy(newNdx, kLayer, sizeNow);
+  delete [] kLayer;
+  kLayer = newNdx;
   }
   faceCellNdx[cellCount] = faceListCount;
   faceCellCount[cellCount] = count;
@@ -195,17 +195,17 @@ void RescueUnstructuredGrid::AddCell(RESCUEINT32 cellCenterNdxIn, RESCUEINT32 kL
 
   if (faceListCount + count > faceListAlloc)
   {
-    faceListAlloc += ((count > faceListRealloc) ? count : faceListRealloc);
-    size_t sizeNow = (size_t) faceListCount * sizeof(RESCUEINT64);
-    RESCUEINT64 *newNdx = new RESCUEINT64[(size_t) faceAlloc];
-    memcpy(newNdx, faceList, sizeNow);
-    delete [] faceList;
-    faceList = newNdx;
+  faceListAlloc += ((count > faceListRealloc) ? count : faceListRealloc);
+  size_t sizeNow = (size_t) faceListCount * sizeof(RESCUEINT64);
+  RESCUEINT64 *newNdx = new RESCUEINT64[(size_t) faceAlloc];
+  memcpy(newNdx, faceList, sizeNow);
+  delete [] faceList;
+  faceList = newNdx;
   }
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    faceList[faceListCount + loop] = faceIndices[loop];
+  faceList[faceListCount + loop] = faceIndices[loop];
   }
   faceListCount += loop;
 }
@@ -215,24 +215,24 @@ void RescueUnstructuredGrid::AddCell(RESCUEINT64 cellCenterNdxIn, RESCUEINT64 kL
 {
   if (cellCount + 1 > cellAlloc)
   {
-    cellAlloc += cellRealloc;
-    size_t sizeNow = (size_t) cellCount * sizeof(RESCUEINT64);
-    RESCUEINT64 *newNdx = new RESCUEINT64[(size_t) faceAlloc];
-    memcpy(newNdx, faceCellNdx, sizeNow);
-    delete [] faceCellNdx;
-    faceCellNdx = newNdx;
-    newNdx = new RESCUEINT64[(size_t) faceAlloc];
-    memcpy(newNdx, faceCellCount, sizeNow);
-    delete [] faceCellCount;
-    faceCellCount = newNdx;
-    newNdx = new RESCUEINT64[(size_t) faceAlloc];
-    memcpy(newNdx, cellCenterNdx, sizeNow);
-    delete [] cellCenterNdx;
-    cellCenterNdx = newNdx;
-    newNdx = new RESCUEINT64[(size_t) faceAlloc];
-    memcpy(newNdx, kLayer, sizeNow);
-    delete [] kLayer;
-    kLayer = newNdx;
+  cellAlloc += cellRealloc;
+  size_t sizeNow = (size_t) cellCount * sizeof(RESCUEINT64);
+  RESCUEINT64 *newNdx = new RESCUEINT64[(size_t) faceAlloc];
+  memcpy(newNdx, faceCellNdx, sizeNow);
+  delete [] faceCellNdx;
+  faceCellNdx = newNdx;
+  newNdx = new RESCUEINT64[(size_t) faceAlloc];
+  memcpy(newNdx, faceCellCount, sizeNow);
+  delete [] faceCellCount;
+  faceCellCount = newNdx;
+  newNdx = new RESCUEINT64[(size_t) faceAlloc];
+  memcpy(newNdx, cellCenterNdx, sizeNow);
+  delete [] cellCenterNdx;
+  cellCenterNdx = newNdx;
+  newNdx = new RESCUEINT64[(size_t) faceAlloc];
+  memcpy(newNdx, kLayer, sizeNow);
+  delete [] kLayer;
+  kLayer = newNdx;
   }
   faceCellNdx[cellCount] = faceListCount;
   faceCellCount[cellCount] = count;
@@ -241,17 +241,17 @@ void RescueUnstructuredGrid::AddCell(RESCUEINT64 cellCenterNdxIn, RESCUEINT64 kL
 
   if (faceListCount + count > faceListAlloc)
   {
-    faceListAlloc += ((count > faceListRealloc) ? count : faceListRealloc);
-    size_t sizeNow = (size_t) faceListCount * sizeof(RESCUEINT64);
-    RESCUEINT64 *newNdx = new RESCUEINT64[(size_t) faceAlloc];
-    memcpy(newNdx, faceList, sizeNow);
-    delete [] faceList;
-    faceList = newNdx;
+  faceListAlloc += ((count > faceListRealloc) ? count : faceListRealloc);
+  size_t sizeNow = (size_t) faceListCount * sizeof(RESCUEINT64);
+  RESCUEINT64 *newNdx = new RESCUEINT64[(size_t) faceAlloc];
+  memcpy(newNdx, faceList, sizeNow);
+  delete [] faceList;
+  faceList = newNdx;
   }
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    faceList[faceListCount + loop] = faceIndices[loop];
+  faceList[faceListCount + loop] = faceIndices[loop];
   }
   faceListCount += loop;
 }
@@ -261,7 +261,7 @@ RESCUEFLOAT RescueUnstructuredGrid::NthVertexX(RESCUEINT64 zeroBasedOrdinal)
   RESCUEFLOAT myReturn = 0;
   if (zeroBasedOrdinal >= 0 && zeroBasedOrdinal < vertexCount)
   {
-    myReturn = vertexX[zeroBasedOrdinal];
+  myReturn = vertexX[zeroBasedOrdinal];
   }
   return myReturn;
 }
@@ -271,7 +271,7 @@ RESCUEFLOAT RescueUnstructuredGrid::NthVertexY(RESCUEINT64 zeroBasedOrdinal)
   RESCUEFLOAT myReturn = 0;
   if (zeroBasedOrdinal >= 0 && zeroBasedOrdinal < vertexCount)
   {
-    myReturn = vertexY[zeroBasedOrdinal];
+  myReturn = vertexY[zeroBasedOrdinal];
   }
   return myReturn;
 }
@@ -281,7 +281,7 @@ RESCUEFLOAT RescueUnstructuredGrid::NthVertexZ(RESCUEINT64 zeroBasedOrdinal)
   RESCUEFLOAT myReturn = 0;
   if (zeroBasedOrdinal >= 0 && zeroBasedOrdinal < vertexCount)
   {
-    myReturn = vertexZ[zeroBasedOrdinal];
+  myReturn = vertexZ[zeroBasedOrdinal];
   }
   return myReturn;
 }
@@ -293,18 +293,18 @@ void RescueUnstructuredGrid::CopyVertices(RESCUEINT64 lowNdx, RESCUEINT64 count,
   RESCUEINT64 loop;
   for (loop = 0; loop < count && lowNdx + loop < vertexCount; loop++)
   {
-    if (preAllocatedX != 0)
-    {
+  if (preAllocatedX != 0)
+  {
       preAllocatedX[offset + loop] = vertexX[lowNdx + loop];
-    }
-    if (preAllocatedY != 0)
-    {
+  }
+  if (preAllocatedY != 0)
+  {
       preAllocatedY[offset + loop] = vertexY[lowNdx + loop];
-    }
-    if (preAllocatedZ != 0)
-    {
+  }
+  if (preAllocatedZ != 0)
+  {
       preAllocatedZ[offset + loop] = vertexZ[lowNdx + loop];
-    }
+  }
   }
 }
 
@@ -324,20 +324,20 @@ void RescueUnstructuredGrid::SetVertices(RESCUEINT64 count, RESCUEFLOAT *xs, RES
 {
   if (count > vertexAlloc)
   {
-    delete [] vertexX;
-    delete [] vertexY;
-    delete [] vertexZ;
-    vertexAlloc = count;
-    vertexX = new RESCUEFLOAT[(size_t) vertexAlloc];
-    vertexY = new RESCUEFLOAT[(size_t) vertexAlloc];
-    vertexZ = new RESCUEFLOAT[(size_t) vertexAlloc];
+  delete [] vertexX;
+  delete [] vertexY;
+  delete [] vertexZ;
+  vertexAlloc = count;
+  vertexX = new RESCUEFLOAT[(size_t) vertexAlloc];
+  vertexY = new RESCUEFLOAT[(size_t) vertexAlloc];
+  vertexZ = new RESCUEFLOAT[(size_t) vertexAlloc];
   }
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    vertexX[loop] = xs[loop];
-    vertexY[loop] = ys[loop];
-    vertexZ[loop] = zs[loop];
+  vertexX[loop] = xs[loop];
+  vertexY[loop] = ys[loop];
+  vertexZ[loop] = zs[loop];
   }
   vertexCount = count;
 }
@@ -347,24 +347,24 @@ RESCUEINT32 RescueUnstructuredGrid::NthFace(RESCUEINT32 zeroBasedOrdinal, RESCUE
   RESCUEINT32 myReturn = 0;
   if (zeroBasedOrdinal >= 0 && zeroBasedOrdinal < faceCount)
   {
-    if (faceVertexCount[zeroBasedOrdinal] > 2147483647 || faceVertexCount[zeroBasedOrdinal] < -2147483647)
-    {
+  if (faceVertexCount[zeroBasedOrdinal] > 2147483647 || faceVertexCount[zeroBasedOrdinal] < -2147483647)
+  {
       throw "Model is too large to be written in 32 bit mode.";
-    }
-    myReturn = (RESCUEINT32) faceVertexCount[zeroBasedOrdinal];
-    if (count > 0 && preAllocated != 0)
-    {
+  }
+  myReturn = (RESCUEINT32) faceVertexCount[zeroBasedOrdinal];
+  if (count > 0 && preAllocated != 0)
+  {
       RESCUEINT64 arrayNdx = faceVertexNdx[zeroBasedOrdinal];
       RESCUEINT64 loop;
       for (loop = 0; loop < count && loop < myReturn; loop++)
       {
-        if (faceArray[arrayNdx] > 2147483647 || faceArray[arrayNdx] < -2147483647)
-        {
+    if (faceArray[arrayNdx] > 2147483647 || faceArray[arrayNdx] < -2147483647)
+    {
           throw "Model is too large to be written in 32 bit mode.";
-        }
-        preAllocated[loop] = (RESCUEINT32) faceArray[arrayNdx++];
-      }
     }
+    preAllocated[loop] = (RESCUEINT32) faceArray[arrayNdx++];
+      }
+  }
   }
   return myReturn;
 }
@@ -374,16 +374,16 @@ RESCUEINT64 RescueUnstructuredGrid::NthFace(RESCUEINT64 zeroBasedOrdinal, RESCUE
   RESCUEINT64 myReturn = 0;
   if (zeroBasedOrdinal >= 0 && zeroBasedOrdinal < faceCount)
   {
-    myReturn = faceVertexCount[zeroBasedOrdinal];
-    if (count > 0 && preAllocated != 0)
-    {
+  myReturn = faceVertexCount[zeroBasedOrdinal];
+  if (count > 0 && preAllocated != 0)
+  {
       RESCUEINT64 arrayNdx = faceVertexNdx[zeroBasedOrdinal];
       RESCUEINT64 loop;
       for (loop = 0; loop < count && loop < myReturn; loop++)
       {
-        preAllocated[loop] = faceArray[arrayNdx++];
+    preAllocated[loop] = faceArray[arrayNdx++];
       }
-    }
+  }
   }
   return myReturn;
 }
@@ -394,22 +394,22 @@ void RescueUnstructuredGrid::CopyFaces(RESCUEINT32 lowNdx, RESCUEINT32 count, RE
   RESCUEINT32 loop;
   for (loop = 0; loop < count && lowNdx + loop < faceCount; loop++)
   {
-    if (preAllocatedNdx != 0)
-    {
+  if (preAllocatedNdx != 0)
+  {
       if (faceVertexNdx[lowNdx + loop] > 2147483647 || faceVertexNdx[lowNdx + loop] < -2147483647)
       {
-        throw "Model is too large to be written in 32 bit mode.";
+    throw "Model is too large to be written in 32 bit mode.";
       }
       preAllocatedNdx[offset + loop] = (RESCUEINT32) faceVertexNdx[lowNdx + loop];
-    }
-    if (preAllocatedCount != 0)
-    {
+  }
+  if (preAllocatedCount != 0)
+  {
       if (faceVertexCount[lowNdx + loop] > 2147483647 || faceVertexCount[lowNdx + loop] < -2147483647)
       {
-        throw "Model is too large to be written in 32 bit mode.";
+    throw "Model is too large to be written in 32 bit mode.";
       }
       preAllocatedCount[offset + loop] = (RESCUEINT32) faceVertexCount[lowNdx + loop];
-    }
+  }
   }
 }
 
@@ -419,14 +419,14 @@ void RescueUnstructuredGrid::CopyFaces(RESCUEINT64 lowNdx, RESCUEINT64 count, RE
   RESCUEINT64 loop;
   for (loop = 0; loop < count && lowNdx + loop < faceCount; loop++)
   {
-    if (preAllocatedNdx != 0)
-    {
+  if (preAllocatedNdx != 0)
+  {
       preAllocatedNdx[offset + loop] = faceVertexNdx[lowNdx + loop];
-    }
-    if (preAllocatedCount != 0)
-    {
+  }
+  if (preAllocatedCount != 0)
+  {
       preAllocatedCount[offset + loop] = faceVertexCount[lowNdx + loop];
-    }
+  }
   }
 }
 
@@ -435,14 +435,14 @@ void RescueUnstructuredGrid::CopyFaceVertexTuples(RESCUEINT32 lowNdx, RESCUEINT3
   RESCUEINT32 loop;
   for (loop = 0; loop < count && lowNdx + loop < faceVertexTupleCount; loop++)
   {
-    if (preAllocatedNdx != 0)
-    {
+  if (preAllocatedNdx != 0)
+  {
       if (faceArray[lowNdx + loop] > 2147483647 || faceArray[lowNdx + loop] < -2147483647)
       {
-        throw "Model is too large to be written in 32 bit mode.";
+    throw "Model is too large to be written in 32 bit mode.";
       }
       preAllocatedNdx[offset + loop] = (RESCUEINT32) faceArray[lowNdx + loop];
-    }
+  }
   }
 }
 
@@ -451,10 +451,10 @@ void RescueUnstructuredGrid::CopyFaceVertexTuples(RESCUEINT64 lowNdx, RESCUEINT6
   RESCUEINT64 loop;
   for (loop = 0; loop < count && lowNdx + loop < faceVertexTupleCount; loop++)
   {
-    if (preAllocatedNdx != 0)
-    {
+  if (preAllocatedNdx != 0)
+  {
       preAllocatedNdx[offset + loop] = faceArray[lowNdx + loop];
-    }
+  }
   }
 }
 
@@ -493,29 +493,29 @@ void RescueUnstructuredGrid::SetFaces(RESCUEINT32 faceCountIn, RESCUEINT32 *face
 {
   if (faceCountIn > faceAlloc)
   {
-    delete [] faceVertexNdx;
-    delete [] faceVertexCount;
-    faceAlloc = faceCountIn;
-    faceVertexNdx = new RESCUEINT64[(size_t) faceAlloc];
-    faceVertexCount = new RESCUEINT64[(size_t) faceAlloc];
+  delete [] faceVertexNdx;
+  delete [] faceVertexCount;
+  faceAlloc = faceCountIn;
+  faceVertexNdx = new RESCUEINT64[(size_t) faceAlloc];
+  faceVertexCount = new RESCUEINT64[(size_t) faceAlloc];
   }
   RESCUEINT64 loop;
   for (loop = 0; loop < faceCountIn; loop++)
   {
-    faceVertexNdx[loop] = faceVertexNdxIn[loop];
-    faceVertexCount[loop] = faceVertexCountIn[loop];
+  faceVertexNdx[loop] = faceVertexNdxIn[loop];
+  faceVertexCount[loop] = faceVertexCountIn[loop];
   }
   faceCount = faceCountIn;
 
   if (faceVertexTupleCountIn > faceVertexAlloc)
   {
-    delete [] faceArray;
-    faceVertexAlloc = faceVertexTupleCountIn;
-    faceArray = new RESCUEINT64[(size_t) faceVertexAlloc];
+  delete [] faceArray;
+  faceVertexAlloc = faceVertexTupleCountIn;
+  faceArray = new RESCUEINT64[(size_t) faceVertexAlloc];
   }
   for (loop = 0; loop < faceVertexTupleCountIn; loop++)
   {
-    faceArray[loop] = faceArrayIn[loop];
+  faceArray[loop] = faceArrayIn[loop];
   }
   faceVertexTupleCount = faceVertexTupleCountIn;
 }
@@ -525,87 +525,87 @@ void RescueUnstructuredGrid::SetFaces(RESCUEINT64 faceCountIn, RESCUEINT64 *face
 {
   if (faceCountIn > faceAlloc)
   {
-    delete [] faceVertexNdx;
-    delete [] faceVertexCount;
-    faceAlloc = faceCountIn;
-    faceVertexNdx = new RESCUEINT64[(size_t) faceAlloc];
-    faceVertexCount = new RESCUEINT64[(size_t) faceAlloc];
+  delete [] faceVertexNdx;
+  delete [] faceVertexCount;
+  faceAlloc = faceCountIn;
+  faceVertexNdx = new RESCUEINT64[(size_t) faceAlloc];
+  faceVertexCount = new RESCUEINT64[(size_t) faceAlloc];
   }
   RESCUEINT64 loop;
   for (loop = 0; loop < faceCountIn; loop++)
   {
-    faceVertexNdx[loop] = faceVertexNdxIn[loop];
-    faceVertexCount[loop] = faceVertexCountIn[loop];
+  faceVertexNdx[loop] = faceVertexNdxIn[loop];
+  faceVertexCount[loop] = faceVertexCountIn[loop];
   }
   faceCount = faceCountIn;
 
   if (faceVertexTupleCountIn > faceVertexAlloc)
   {
-    delete [] faceArray;
-    faceVertexAlloc = faceVertexTupleCountIn;
-    faceArray = new RESCUEINT64[(size_t) faceVertexAlloc];
+  delete [] faceArray;
+  faceVertexAlloc = faceVertexTupleCountIn;
+  faceArray = new RESCUEINT64[(size_t) faceVertexAlloc];
   }
   for (loop = 0; loop < faceVertexTupleCountIn; loop++)
   {
-    faceArray[loop] = faceArrayIn[loop];
+  faceArray[loop] = faceArrayIn[loop];
   }
   faceVertexTupleCount = faceVertexTupleCountIn;
 }
 
 RESCUEINT32 RescueUnstructuredGrid::NthCell(RESCUEINT32 zeroBasedOrdinal, RESCUEFLOAT &x, RESCUEFLOAT &y, RESCUEFLOAT &z, RESCUEINT32 &kLayerIn,
-                                    RESCUEINT32 count, RESCUEINT32 *faceIndices)
+                  RESCUEINT32 count, RESCUEINT32 *faceIndices)
 {
   RESCUEINT32 myReturn = 0;
   if (zeroBasedOrdinal >= 0 && zeroBasedOrdinal < cellCount)
   {
-    if (faceCellCount[zeroBasedOrdinal] > 2147483647 || faceCellCount[zeroBasedOrdinal] < -2147483647)
-    {
+  if (faceCellCount[zeroBasedOrdinal] > 2147483647 || faceCellCount[zeroBasedOrdinal] < -2147483647)
+  {
       throw "Model is too large to be written in 32 bit mode.";
-    }
-    myReturn = (RESCUEINT32) faceCellCount[zeroBasedOrdinal];
-    RESCUEINT64 centerNdx = cellCenterNdx[zeroBasedOrdinal];
-    x = vertexX[centerNdx];
-    y = vertexY[centerNdx];
-    z = vertexZ[centerNdx];
-    if (kLayer[zeroBasedOrdinal] > 2147483647 || kLayer[zeroBasedOrdinal] < -2147483647)
-    {
+  }
+  myReturn = (RESCUEINT32) faceCellCount[zeroBasedOrdinal];
+  RESCUEINT64 centerNdx = cellCenterNdx[zeroBasedOrdinal];
+  x = vertexX[centerNdx];
+  y = vertexY[centerNdx];
+  z = vertexZ[centerNdx];
+  if (kLayer[zeroBasedOrdinal] > 2147483647 || kLayer[zeroBasedOrdinal] < -2147483647)
+  {
       throw "Model is too large to be written in 32 bit mode.";
-    }
-    kLayerIn = (RESCUEINT32) kLayer[zeroBasedOrdinal];
-    RESCUEINT64 faceNdx = faceCellNdx[zeroBasedOrdinal];
+  }
+  kLayerIn = (RESCUEINT32) kLayer[zeroBasedOrdinal];
+  RESCUEINT64 faceNdx = faceCellNdx[zeroBasedOrdinal];
 
-    RESCUEINT64 loop;
-    for (loop = 0; loop < count && loop < myReturn; loop++)
-    {
+  RESCUEINT64 loop;
+  for (loop = 0; loop < count && loop < myReturn; loop++)
+  {
       if (faceList[faceNdx] > 2147483647 || faceList[faceNdx] < -2147483647)
       {
-        throw "Model is too large to be written in 32 bit mode.";
+    throw "Model is too large to be written in 32 bit mode.";
       }
       faceIndices[loop] = (RESCUEINT32) faceList[faceNdx++];
-    }
+  }
   }
   return myReturn;
 }
 
 RESCUEINT64 RescueUnstructuredGrid::NthCell(RESCUEINT64 zeroBasedOrdinal, RESCUEFLOAT &x, RESCUEFLOAT &y, RESCUEFLOAT &z, RESCUEINT64 &kLayerIn,
-                                    RESCUEINT64 count, RESCUEINT64 *faceIndices)
+                  RESCUEINT64 count, RESCUEINT64 *faceIndices)
 {
   RESCUEINT64 myReturn = 0;
   if (zeroBasedOrdinal >= 0 && zeroBasedOrdinal < cellCount)
   {
-    myReturn = faceCellCount[zeroBasedOrdinal];
-    RESCUEINT64 centerNdx = cellCenterNdx[zeroBasedOrdinal];
-    x = vertexX[centerNdx];
-    y = vertexY[centerNdx];
-    z = vertexZ[centerNdx];
-    kLayerIn = kLayer[zeroBasedOrdinal];
-    RESCUEINT64 faceNdx = faceCellNdx[zeroBasedOrdinal];
+  myReturn = faceCellCount[zeroBasedOrdinal];
+  RESCUEINT64 centerNdx = cellCenterNdx[zeroBasedOrdinal];
+  x = vertexX[centerNdx];
+  y = vertexY[centerNdx];
+  z = vertexZ[centerNdx];
+  kLayerIn = kLayer[zeroBasedOrdinal];
+  RESCUEINT64 faceNdx = faceCellNdx[zeroBasedOrdinal];
 
-    RESCUEINT64 loop;
-    for (loop = 0; loop < count && loop < myReturn; loop++)
-    {
+  RESCUEINT64 loop;
+  for (loop = 0; loop < count && loop < myReturn; loop++)
+  {
       faceIndices[loop] = faceList[faceNdx++];
-    }
+  }
   }
   return myReturn;
 }
@@ -618,38 +618,38 @@ void RescueUnstructuredGrid::CopyCells(RESCUEINT32 lowNdx, RESCUEINT32 count,
   RESCUEINT32 loop;
   for (loop = 0; loop < count && lowNdx + loop < cellCount; loop++)
   {
-    if (faceCellNdxArrayIn != 0)
-    {
+  if (faceCellNdxArrayIn != 0)
+  {
       if (faceCellNdx[lowNdx + loop]> 2147483647 || faceCellNdx[lowNdx + loop] < -2147483647)
       {
-        throw "Model is too large to be written in 32 bit mode.";
+    throw "Model is too large to be written in 32 bit mode.";
       }
       faceCellNdxArrayIn[offset + loop] = (RESCUEINT32) faceCellNdx[lowNdx + loop];
-    }
-    if (faceCellCountArrayIn != 0)
-    {
+  }
+  if (faceCellCountArrayIn != 0)
+  {
       if (faceCellCount[lowNdx + loop]> 2147483647 || faceCellCount[lowNdx + loop] < -2147483647)
       {
-        throw "Model is too large to be written in 32 bit mode.";
+    throw "Model is too large to be written in 32 bit mode.";
       }
       faceCellCountArrayIn[offset + loop] = (RESCUEINT32) faceCellCount[lowNdx + loop];
-    }
-    if (cellCenterNdxArrayIn != 0)
-    {
+  }
+  if (cellCenterNdxArrayIn != 0)
+  {
       if (cellCenterNdx[lowNdx + loop]> 2147483647 || cellCenterNdx[lowNdx + loop] < -2147483647)
       {
-        throw "Model is too large to be written in 32 bit mode.";
+    throw "Model is too large to be written in 32 bit mode.";
       }
       cellCenterNdxArrayIn[offset + loop] = (RESCUEINT32) cellCenterNdx[lowNdx + loop];
-    }
-    if (kLayerArrayIn != 0)
-    {
+  }
+  if (kLayerArrayIn != 0)
+  {
       if (kLayer[lowNdx + loop]> 2147483647 || kLayer[lowNdx + loop] < -2147483647)
       {
-        throw "Model is too large to be written in 32 bit mode.";
+    throw "Model is too large to be written in 32 bit mode.";
       }
       kLayerArrayIn[offset + loop] = (RESCUEINT32) kLayer[lowNdx + loop];
-    }
+  }
   }
 }
 
@@ -661,22 +661,22 @@ void RescueUnstructuredGrid::CopyCells(RESCUEINT64 lowNdx, RESCUEINT64 count,
   RESCUEINT64 loop;
   for (loop = 0; loop < count && lowNdx + loop < cellCount; loop++)
   {
-    if (faceCellNdxArrayIn != 0)
-    {
+  if (faceCellNdxArrayIn != 0)
+  {
       faceCellNdxArrayIn[offset + loop] = faceCellNdx[lowNdx + loop];
-    }
-    if (faceCellCountArrayIn != 0)
-    {
+  }
+  if (faceCellCountArrayIn != 0)
+  {
       faceCellCountArrayIn[offset + loop] = faceCellCount[lowNdx + loop];
-    }
-    if (cellCenterNdxArrayIn != 0)
-    {
+  }
+  if (cellCenterNdxArrayIn != 0)
+  {
       cellCenterNdxArrayIn[offset + loop] = cellCenterNdx[lowNdx + loop];
-    }
-    if (kLayerArrayIn != 0)
-    {
+  }
+  if (kLayerArrayIn != 0)
+  {
       kLayerArrayIn[offset + loop] = kLayer[lowNdx + loop];
-    }
+  }
   }
 }
 
@@ -685,14 +685,14 @@ void RescueUnstructuredGrid::CopyCellFaceTuples(RESCUEINT32 lowNdx, RESCUEINT32 
   RESCUEINT32 loop;
   for (loop = 0; loop < count && lowNdx + loop < faceListCount; loop++)
   {
-    if (faceListArray != 0)
-    {
+  if (faceListArray != 0)
+  {
       if (faceList[lowNdx + loop] > 2147483647 || faceList[lowNdx + loop] < -2147483647)
       {
-        throw "Model is too large to be written in 32 bit mode.";
+    throw "Model is too large to be written in 32 bit mode.";
       }
       faceListArray[offset + loop] = (RESCUEINT32) faceList[lowNdx + loop];
-    }
+  }
   }
 }
 
@@ -701,10 +701,10 @@ void RescueUnstructuredGrid::CopyCellFaceTuples(RESCUEINT64 lowNdx, RESCUEINT64 
   RESCUEINT64 loop;
   for (loop = 0; loop < count && lowNdx + loop < faceListCount; loop++)
   {
-    if (faceListArray != 0)
-    {
+  if (faceListArray != 0)
+  {
       faceListArray[offset + loop] = faceList[lowNdx + loop];
-    }
+  }
   }
 }
 
@@ -757,35 +757,35 @@ void RescueUnstructuredGrid::SetCells(RESCUEINT32 cellCountIn, RESCUEINT32 *face
 {
   if (cellCountIn > cellAlloc)
   {
-    delete [] faceCellNdx;
-    delete [] faceCellCount;
-    delete [] cellCenterNdx;
-    delete [] kLayer;
-    cellAlloc = cellCountIn;
-    faceCellNdx = new RESCUEINT64[(size_t) cellAlloc];
-    faceCellCount = new RESCUEINT64[(size_t) cellAlloc];
-    cellCenterNdx = new RESCUEINT64[(size_t) cellAlloc];
-    kLayer = new RESCUEINT64[(size_t) cellAlloc];
+  delete [] faceCellNdx;
+  delete [] faceCellCount;
+  delete [] cellCenterNdx;
+  delete [] kLayer;
+  cellAlloc = cellCountIn;
+  faceCellNdx = new RESCUEINT64[(size_t) cellAlloc];
+  faceCellCount = new RESCUEINT64[(size_t) cellAlloc];
+  cellCenterNdx = new RESCUEINT64[(size_t) cellAlloc];
+  kLayer = new RESCUEINT64[(size_t) cellAlloc];
   }
   RESCUEINT64 loop;
   for (loop = 0; loop < cellCountIn; loop++)
   {
-    faceCellNdx[loop] = faceCellNdxIn[loop];
-    faceCellCount[loop] = faceCellCountIn[loop];
-    cellCenterNdx[loop] = cellCenterNdxIn[loop];
-    kLayer[loop] = kLayerIn[loop];
+  faceCellNdx[loop] = faceCellNdxIn[loop];
+  faceCellCount[loop] = faceCellCountIn[loop];
+  cellCenterNdx[loop] = cellCenterNdxIn[loop];
+  kLayer[loop] = kLayerIn[loop];
   }
   cellCount = cellCountIn;
 
   if (faceListCountIn > faceListAlloc)
   {
-    delete [] faceList;
-    faceListAlloc = faceListCountIn;
-    faceList = new RESCUEINT64[(size_t) faceListAlloc];
+  delete [] faceList;
+  faceListAlloc = faceListCountIn;
+  faceList = new RESCUEINT64[(size_t) faceListAlloc];
   }
   for (loop = 0; loop < faceListCountIn; loop++)
   {
-    faceList[loop] = faceListIn[loop];
+  faceList[loop] = faceListIn[loop];
   }
   faceListCount = faceListCountIn;
 
@@ -797,35 +797,35 @@ void RescueUnstructuredGrid::SetCells(RESCUEINT64 cellCountIn, RESCUEINT64 *face
 {
   if (cellCountIn > cellAlloc)
   {
-    delete [] faceCellNdx;
-    delete [] faceCellCount;
-    delete [] cellCenterNdx;
-    delete [] kLayer;
-    cellAlloc = cellCountIn;
-    faceCellNdx = new RESCUEINT64[(size_t) cellAlloc];
-    faceCellCount = new RESCUEINT64[(size_t) cellAlloc];
-    cellCenterNdx = new RESCUEINT64[(size_t) cellAlloc];
-    kLayer = new RESCUEINT64[(size_t) cellAlloc];
+  delete [] faceCellNdx;
+  delete [] faceCellCount;
+  delete [] cellCenterNdx;
+  delete [] kLayer;
+  cellAlloc = cellCountIn;
+  faceCellNdx = new RESCUEINT64[(size_t) cellAlloc];
+  faceCellCount = new RESCUEINT64[(size_t) cellAlloc];
+  cellCenterNdx = new RESCUEINT64[(size_t) cellAlloc];
+  kLayer = new RESCUEINT64[(size_t) cellAlloc];
   }
   RESCUEINT64 loop;
   for (loop = 0; loop < cellCountIn; loop++)
   {
-    faceCellNdx[loop] = faceCellNdxIn[loop];
-    faceCellCount[loop] = faceCellCountIn[loop];
-    cellCenterNdx[loop] = cellCenterNdxIn[loop];
-    kLayer[loop] = kLayerIn[loop];
+  faceCellNdx[loop] = faceCellNdxIn[loop];
+  faceCellCount[loop] = faceCellCountIn[loop];
+  cellCenterNdx[loop] = cellCenterNdxIn[loop];
+  kLayer[loop] = kLayerIn[loop];
   }
   cellCount = cellCountIn;
 
   if (faceListCountIn > faceListAlloc)
   {
-    delete [] faceList;
-    faceListAlloc = faceListCountIn;
-    faceList = new RESCUEINT64[(size_t) faceListAlloc];
+  delete [] faceList;
+  faceListAlloc = faceListCountIn;
+  faceList = new RESCUEINT64[(size_t) faceListAlloc];
   }
   for (loop = 0; loop < faceListCountIn; loop++)
   {
-    faceList[loop] = faceListIn[loop];
+  faceList[loop] = faceListIn[loop];
   }
   faceListCount = faceListCountIn;
 
@@ -976,66 +976,66 @@ void RescueUnstructuredGrid::CalculateMinMax(RESCUEFLOAT &minX, RESCUEFLOAT &max
   RESCUEINT64 loop;
   for (loop = 0; loop < howMany; loop++)
   {
-    if (vertexX[loop] != missingValue)
-    {
+  if (vertexX[loop] != missingValue)
+  {
       if (firstXIteration)
       {
-        minX = vertexX[loop];
-        maxX = vertexX[loop];
-        firstXIteration = false;
+    minX = vertexX[loop];
+    maxX = vertexX[loop];
+    firstXIteration = false;
       }
       else
       {
-        if (vertexX[loop] < minX)
-        {
-          minX = vertexX[loop];
-        }
-        if (vertexX[loop] > maxX)
-        {
-          maxX = vertexX[loop];
-        }
-      }
-    }
-    if (vertexY[loop] != missingValue)
+    if (vertexX[loop] < minX)
     {
+          minX = vertexX[loop];
+    }
+    if (vertexX[loop] > maxX)
+    {
+          maxX = vertexX[loop];
+    }
+      }
+  }
+  if (vertexY[loop] != missingValue)
+  {
       if (firstYIteration)
       {
-        minY = vertexY[loop];
-        maxY = vertexY[loop];
-        firstYIteration = false;
+    minY = vertexY[loop];
+    maxY = vertexY[loop];
+    firstYIteration = false;
       }
       else
       {
-        if (vertexY[loop] < minY)
-        {
-          minY = vertexY[loop];
-        }
-        if (vertexY[loop] > maxY)
-        {
-          maxY = vertexY[loop];
-        }
-      }
-    }
-    if (vertexZ[loop] != missingValue)
+    if (vertexY[loop] < minY)
     {
+          minY = vertexY[loop];
+    }
+    if (vertexY[loop] > maxY)
+    {
+          maxY = vertexY[loop];
+    }
+      }
+  }
+  if (vertexZ[loop] != missingValue)
+  {
       if (firstZIteration)
       {
-        minZ = vertexZ[loop];
-        maxZ = vertexZ[loop];
-        firstZIteration = false;
+    minZ = vertexZ[loop];
+    maxZ = vertexZ[loop];
+    firstZIteration = false;
       }
       else
       {
-        if (vertexZ[loop] < minZ)
-        {
+    if (vertexZ[loop] < minZ)
+    {
           minZ = vertexZ[loop];
-        }
-        if (vertexZ[loop] > maxZ)
-        {
-          maxZ = vertexZ[loop];
-        }
-      }
     }
+    if (vertexZ[loop] > maxZ)
+    {
+          maxZ = vertexZ[loop];
+    }
+      }
+  }
   }
 }
 
@@ -1044,10 +1044,10 @@ RESCUEINT32 RescueUnstructuredGrid::CellCount(RESCUEBOOL throwIfTooBig)
   RESCUEINT64 output = CellCount64();
   if (throwIfTooBig)
   {
-    if (output > 2147483647 || output < -2147483647)
-    {
+  if (output > 2147483647 || output < -2147483647)
+  {
       throw "Model is too large to be read in 32 bit mode.";
-    }
+  }
   }
   return (RESCUEINT32) output;
 }
@@ -1077,10 +1077,10 @@ RESCUEINT32 RescueUnstructuredGrid::FaceCount(RESCUEBOOL throwIfTooBig)
   RESCUEINT64 output = FaceCount64();
   if (throwIfTooBig)
   {
-    if (output > 2147483647 || output < -2147483647)
-    {
+  if (output > 2147483647 || output < -2147483647)
+  {
       throw "Model is too large to be read in 32 bit mode.";
-    }
+  }
   }
   return (RESCUEINT32) output;
 }
@@ -1100,10 +1100,10 @@ RESCUEINT32 RescueUnstructuredGrid::FaceVertexTupleCount(RESCUEBOOL throwIfTooBi
   RESCUEINT64 output = FaceVertexTupleCount64();
   if (throwIfTooBig)
   {
-    if (output > 2147483647 || output < -2147483647)
-    {
+  if (output > 2147483647 || output < -2147483647)
+  {
       throw "Model is too large to be read in 32 bit mode.";
-    }
+  }
   }
   return (RESCUEINT32) output;
 }
@@ -1118,10 +1118,10 @@ RESCUEINT32 RescueUnstructuredGrid::FaceListCount(RESCUEBOOL throwIfTooBig)
   RESCUEINT64 output = FaceListCount64();
   if (throwIfTooBig)
   {
-    if (output > 2147483647 || output < -2147483647)
-    {
+  if (output > 2147483647 || output < -2147483647)
+  {
       throw "Model is too large to be read in 32 bit mode.";
-    }
+  }
   }
   return (RESCUEINT32) output;
 }

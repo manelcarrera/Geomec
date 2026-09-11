@@ -6,17 +6,17 @@
 
 class WellPathCurveBase : public Curve
 {
-    OIV2DWellPathGraph::DepthAxis m_depthAxis;
+  OIV2DWellPathGraph::DepthAxis m_depthAxis;
 
 public:
 
-    WellPathCurveBase(const IValueComponentBase* valueComponent, CUnitNode::TUnitType unit, int colorIndex);
+  WellPathCurveBase(const IValueComponentBase* valueComponent, CUnitNode::TUnitType unit, int colorIndex);
 
-    OIV2DWellPathGraph::DepthAxis getDepthAxis() const;
+  OIV2DWellPathGraph::DepthAxis getDepthAxis() const;
 
-    void setDepthAxis(OIV2DWellPathGraph::DepthAxis axis);
+  void setDepthAxis(OIV2DWellPathGraph::DepthAxis axis);
 
-    virtual QString getWellPathName() const = 0;
+  virtual QString getWellPathName() const = 0;
 };
 
 #endif  // _WellPathCurveBase_h_

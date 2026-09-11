@@ -30,7 +30,7 @@ public:
 private:
   CDepletionStageEntry_Delegate(const CDepletionStageEntry_Delegate& rhs);
   CDepletionStageEntry_Delegate& operator = (
-    const CDepletionStageEntry_Delegate& rhs);
+  const CDepletionStageEntry_Delegate& rhs);
 
   CDepletionStageEntry* m_depletionStageEntry;
 

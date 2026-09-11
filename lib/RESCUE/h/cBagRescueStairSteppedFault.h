@@ -1,10 +1,10 @@
 /*************************************************************************
 
-        cBagRescueStairSteppedFault.h
+    cBagRescueStairSteppedFault.h
 
  Keeps a list of pointers to RescueStairSteppedFault.
 
-        Rod Hanks               December 15th, 1995  / August 1996
+    Rod Hanks               December 15th, 1995  / August 1996
 
 ****************************************************************************/
 

@@ -13,8 +13,8 @@ class CSelectExportMacroDialog : public CDialog
 
 public:
   CSelectExportMacroDialog(CExportResultData** exportResultData,
-    const CGraphEntry::TEntryNodeSet& entryNodeSet,
-    CWnd* pParent = NULL);   // standard constructor
+  const CGraphEntry::TEntryNodeSet& entryNodeSet,
+  CWnd* pParent = NULL);   // standard constructor
   virtual ~CSelectExportMacroDialog();
 
 // Dialog Data

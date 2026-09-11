@@ -16,7 +16,7 @@ RescueLookupString::~RescueLookupString()
 {
   if (translation != 0)
   {
-    delete translation;
+  delete translation;
   }
 }
 
@@ -35,7 +35,7 @@ void RescueLookupString::Archive(RescueContext *context, FILE *archiveFile)
   myfprintf(context, archiveFile, translation->String());
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -50,14 +50,14 @@ RescueLookupString::RescueLookupString(RescueContext *context, FILE *archiveFile
   translation = new RCHString(myString);
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -65,11 +65,11 @@ RESCUEBOOL RescueLookupString::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueLookupString)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueLookupItem::IsOfType(thisType);
+  return RescueLookupItem::IsOfType(thisType);
   }
 }
 

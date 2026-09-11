@@ -38,8 +38,8 @@ private:
   void CommonInitialization(RescueContext *context, RESCUEINT64 totalElements, RESCUEINT32 bitFieldWidthIn);
   void SwapAxes(bool swapI, RESCUEINT64 iNodes, bool swapJ, RESCUEINT64 jNodes);
   void SwapAxes(bool swapI, RESCUEINT64 iNodes, 
-                bool swapJ, RESCUEINT64 jNodes,
-                bool swapK, RESCUEINT64 kNodes);
+        bool swapJ, RESCUEINT64 jNodes,
+        bool swapK, RESCUEINT64 kNodes);
 
   virtual RESCUEBOOL IsOfType(_RescueObjectType thisType);
      // Returns TRUE if the object is a

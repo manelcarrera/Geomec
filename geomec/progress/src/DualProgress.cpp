@@ -28,7 +28,7 @@ void CDualProgress::AddSteps(int steps)
 
   if (!m_progressDlg.SetProgress(m_totalSteps, m_currentSteps))
   {
-    throw new CProgressCancel;
+  throw new CProgressCancel;
   }
 }
 
@@ -38,7 +38,7 @@ void CDualProgress::Step(int steps)
 
   if (!m_progressDlg.SetProgress(m_totalSteps, m_currentSteps))
   {
-    throw new CProgressCancel;
+  throw new CProgressCancel;
   }
 }
 

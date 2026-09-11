@@ -13,12 +13,12 @@ bool CUtilities4ValueVector::isValueVectorValid(
   const IValueDomainScalar::TValueVec& valueVector)
 {
   for (IValueDomainScalar::TValueVec::const_iterator value =
-    valueVector.begin(); value != valueVector.end(); ++value)
+  valueVector.begin(); value != valueVector.end(); ++value)
   {
-    if (!(*value).Valid())
-    {
+  if (!(*value).Valid())
+  {
       return false;
-    }
+  }
   }
 
   return true;
@@ -38,7 +38,7 @@ double CUtilities4ValueVector::calculateAverage(
   const IValueDomainScalar::TValueVec& valueVector)
 {
   double sum =
-    std::accumulate(valueVector.begin(), valueVector.end(), 0.0, add);
+  std::accumulate(valueVector.begin(), valueVector.end(), 0.0, add);
 
   return sum / valueVector.size();
 }
@@ -48,7 +48,7 @@ void CUtilities4ValueVector::verifyValueVector(const QString& prefix,
 {
   if (!CUtilities4ValueVector::isValueVectorValid(valueVector))
   {
-    throw CUndefinedOrInvalidValueVector(prefix);
+  throw CUndefinedOrInvalidValueVector(prefix);
   }
 }
 

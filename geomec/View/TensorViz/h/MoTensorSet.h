@@ -31,7 +31,7 @@ public:
   virtual void setTensorSet(const MiTensorSetI* tensorSet);
 
   virtual const MiTensorSetI* getTensorSet();
-    
+  
   virtual void reset();
 };
 

@@ -80,9 +80,9 @@ private:
 
   enum eCheckUsed
   {
-    NO_CHECK,
-    USED_IN_MODEL,
-    NOT_USED_IN_MODEL
+  NO_CHECK,
+  USED_IN_MODEL,
+  NOT_USED_IN_MODEL
   };
   void SelectSurfaces(CNamedSurfaces&, eCheckUsed check, const char *caption = 0);
 

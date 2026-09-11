@@ -66,13 +66,13 @@ static const char* ProgName_DEPRECATED(const char* argv0)
 {
   const char* p = strrchr(argv0, '/');
   if(!p)
-    p = strrchr(argv0, '\\');
+  p = strrchr(argv0, '\\');
 
   if(p)
-    ++p;
+  ++p;
 
   if(p && *p)
-    return p;
+  return p;
 
   return argv0;
 }
@@ -99,9 +99,9 @@ static void MakeAbsolutePath_DEPRECATED(QString& strPath)
 {
   if(QDir::isRelativePath(strPath))
   {
-    strPath = QDir::current().absoluteFilePath(strPath);
-    strPath = QDir::current().cleanPath(strPath);
-    strPath = QDir::toNativeSeparators(strPath);
+  strPath = QDir::current().absoluteFilePath(strPath);
+  strPath = QDir::current().cleanPath(strPath);
+  strPath = QDir::toNativeSeparators(strPath);
   }
 }
 
@@ -113,23 +113,23 @@ void copyFile_DEPRECATED(const QString& destination, const QString& source)
 {
   if (source == destination)
   {
-    return;
+  return;
   }
 
   std::ifstream
-    input(source.toStdString().c_str(), std::ios::in | std::ios::binary);
+  input(source.toStdString().c_str(), std::ios::in | std::ios::binary);
   std::ofstream
-    output(destination.toStdString().c_str(), std::ios::out | std::ios::binary | std::ios::trunc);
+  output(destination.toStdString().c_str(), std::ios::out | std::ios::binary | std::ios::trunc);
 
   if (input.fail())
   {
-    throw std::runtime_error((source +
+  throw std::runtime_error((source +
       " could not be opened for reading").toStdString().c_str());
   }
 
   if (output.fail())
   {
-    throw std::runtime_error((destination +
+  throw std::runtime_error((destination +
       " could not be opened for writing").toStdString().c_str());
   }
 
@@ -137,7 +137,7 @@ void copyFile_DEPRECATED(const QString& destination, const QString& source)
 
   if (output.fail())
   {
-    throw std::runtime_error((destination +
+  throw std::runtime_error((destination +
       " could not be written to").toStdString().c_str());
   }
 
@@ -151,14 +151,14 @@ void moveFile_DEPRECATED(const QString& destination, const QString& source)
 {
   if (source == destination)
   {
-    return;
+  return;
   }
 
   copyFile_DEPRECATED(destination, source);
 
   if (remove(source.toStdString().c_str()) != 0)
   {
-    throw std::runtime_error((source +
+  throw std::runtime_error((source +
       " could not be removed").toStdString().c_str());
   }
 }
@@ -184,13 +184,13 @@ static bool RunRockMech_DEPRECATED(CModelBase& model, const QString& sRockMechFi
 
   if (validate)
   {
-    CValidateModel validateModel(&model);
+  CValidateModel validateModel(&model);
 
-    if (!validateModel.checkModel(true))
-    {
+  if (!validateModel.checkModel(true))
+  {
       rmp.AddLogLine(QObject::tr("Invalid Geomec model, not all calculation criteria are met!"));
       return false;
-    }
+  }
   }
 
   int nStage = 0;
@@ -199,7 +199,7 @@ static bool RunRockMech_DEPRECATED(CModelBase& model, const QString& sRockMechFi
 
   QString source = QDir::toNativeSeparators(sModelPath + "/" + sModelFileName);
   QString destination = QDir::toNativeSeparators(
-    (sOutputDir.isEmpty() ? sModelPath : sOutputDir) + "/" + sModelFileName);
+  (sOutputDir.isEmpty() ? sModelPath : sOutputDir) + "/" + sModelFileName);
 
   copyFile_DEPRECATED(destination, source);
 
@@ -209,9 +209,9 @@ static bool RunRockMech_DEPRECATED(CModelBase& model, const QString& sRockMechFi
 
   if(bRet || bSaveModel)
   {
-    QString fileName = rmp.getSaveModelName(sModelFile, nStage, bRet, bAppendStageNumber);
+  QString fileName = rmp.getSaveModelName(sModelFile, nStage, bRet, bAppendStageNumber);
 
-    if(!bRet || nStage == 0)
+  if(!bRet || nStage == 0)
       IModelLifetimeFacade::SaveMain(CModelBase::CModelLoadSaveDefault(APP_VERSION), model, fileName, true);
   }
 
@@ -221,14 +221,14 @@ static bool RunRockMech_DEPRECATED(CModelBase& model, const QString& sRockMechFi
 bool GetParameter_DEPRECATED(const char* arg, const char* magic, const char** value)
 {
   if(strlen(arg) > strlen(magic) &&
-    (QString::compare(QString(arg).left(int(strlen(magic))),
+  (QString::compare(QString(arg).left(int(strlen(magic))),
       magic, Qt::CaseInsensitive) == 0))
   {
-    if(!*value) // only allowed once
-    {
+  if(!*value) // only allowed once
+  {
       *value = arg + strlen(magic);
       return true;
-    }
+  }
   }
 
   return false;
@@ -240,32 +240,32 @@ int main_DEPRECATED(int argc, char* argv[])
   CApplicationInitialization consoleApplicationInitialization;
 
   	Printer::instance()->url( QUtil::url( 
-		QUtil::eUsrDir::Goemec, 
-		"gm_" + CSettingsIni::instance()->version_str().toStdString() + ".log" ) );
-	Printer::instance()->info( "" );
-	Printer::instance()->info( "gm_rgi > main" );
+    QUtil::eUsrDir::Goemec, 
+    "gm_" + CSettingsIni::instance()->version_str().toStdString() + ".log" ) );
+  Printer::instance()->info( "" );
+  Printer::instance()->info( "gm_rgi > main" );
 
-	// Config file
-	CSettingsIni::instance()->init();
-	CSettingsIni::instance()->print_();
+  // Config file
+  CSettingsIni::instance()->init();
+  CSettingsIni::instance()->print_();
 
-	CDianaStartUp* dsu = CDianaStartUp::instance();
+  CDianaStartUp* dsu = CDianaStartUp::instance();
   	dsu->SetDianaEnv(); 
-	dsu->Print_DianaEnv();
+  dsu->Print_DianaEnv();
 
-	_g->prog( new CProgressFactory_CLI );
+  _g->prog( new CProgressFactory_CLI );
 
-	
+  
   // parse arguments
   if (argc < 2)
   {
-    Version_DEPRECATED();
+  Version_DEPRECATED();
 
-    return Usage_DEPRECATED(argv[0]);
+  return Usage_DEPRECATED(argv[0]);
   }
   else if ((argc == 2) && (QString(argv[1]) == "--version"))
   {
-    return Version_DEPRECATED();
+  return Version_DEPRECATED();
   }
 
   const char* sRockMechFile = 0;
@@ -281,43 +281,43 @@ int main_DEPRECATED(int argc, char* argv[])
 
   typedef struct
   {
-    const char*  magic;
-    const char** value;
+  const char*  magic;
+  const char** value;
   } TParameter;
 
   TParameter params[] =
   {
-    { rockmagic, &sRockMechFile },
-    { outputmagic, &sOutputDir },
-    { logmagic, &sLog },
-    { tempmagic, &sTempDir },
-    { 0, 0 }
+  { rockmagic, &sRockMechFile },
+  { outputmagic, &sOutputDir },
+  { logmagic, &sLog },
+  { tempmagic, &sTempDir },
+  { 0, 0 }
   };
 
   for (int i = 1; i < argc; ++i)
   {
-    bool bParamFound = false;
-    for (int j = 0; params[j].magic != 0; ++j)
-    {
+  bool bParamFound = false;
+  for (int j = 0; params[j].magic != 0; ++j)
+  {
       if (GetParameter_DEPRECATED(argv[i], params[j].magic, params[j].value))
       {
-        bParamFound = true;
-        break;
+    bParamFound = true;
+    break;
       }
-    }
+  }
 
-    if (!bParamFound)
-    {
+  if (!bParamFound)
+  {
       // assume model file
       if (sModelFile) // only allowed once
-        return Usage_DEPRECATED(argv[0]);
+    return Usage_DEPRECATED(argv[0]);
       sModelFile = argv[i];
-    }
+  }
   }
 
   // mandatory parameters
   if (!sRockMechFile)
-    return Usage_DEPRECATED(argv[0]);
+  return Usage_DEPRECATED(argv[0]);
 
   // ok, let's give it a try
 
@@ -333,15 +333,15 @@ int main_DEPRECATED(int argc, char* argv[])
   MakeAbsolutePath_DEPRECATED(strTempDir);
 
   if (!strOutputDir.isEmpty())
-    MakeAbsolutePath_DEPRECATED(strOutputDir);
+  MakeAbsolutePath_DEPRECATED(strOutputDir);
 
   if (!strLogFile.isEmpty())
-    MakeAbsolutePath_DEPRECATED(strLogFile);
+  MakeAbsolutePath_DEPRECATED(strLogFile);
 
   if (!strLogFile.isEmpty() && !_m()->openlogfile(strLogFile.toStdString()))
   {
-    fprintf(stderr, "Unable to open log file '%s'\n", strLogFile.toStdString().c_str());
-    return RET_LOGFAIL;
+  fprintf(stderr, "Unable to open log file '%s'\n", strLogFile.toStdString().c_str());
+  return RET_LOGFAIL;
   }
 
   CAnalysisLogger logger;
@@ -352,61 +352,61 @@ int main_DEPRECATED(int argc, char* argv[])
 
   if (sModelFile != 0)
   {
-    pModel = IModelLifetimeFacade::LoadMain(CModelBase::CModelLoadSaveDefault(), strModelFile, logger);
-    validate = true;
+  pModel = IModelLifetimeFacade::LoadMain(CModelBase::CModelLoadSaveDefault(), strModelFile, logger);
+  validate = true;
   }
   else
   {
-    pModel = IModelLifetimeFacade::NewMain(GOCAD_MODEL, logger, versionManager);
-    pModel->Name(strModelFile);
-    pModel->NewModel(false);
+  pModel = IModelLifetimeFacade::NewMain(GOCAD_MODEL, logger, versionManager);
+  pModel->Name(strModelFile);
+  pModel->NewModel(false);
 
-    CTetraSubHorizon* top =
+  CTetraSubHorizon* top =
       new CTetraSubHorizon("Top Horizon", false, *pModel);
-    CTetraSubHorizon* bottom =
+  CTetraSubHorizon* bottom =
       new CTetraSubHorizon("Bottom Horizon", false, *pModel);
-    CTetraSubBoundary& boundary =
+  CTetraSubBoundary& boundary =
       dynamic_cast <CTetraModel*> (pModel)->SubBoundary();
 
-    boundary.TopHorizon().LinkTo(*top);
-    boundary.BottomHorizon().LinkTo(*bottom);
+  boundary.TopHorizon().LinkTo(*top);
+  boundary.BottomHorizon().LinkTo(*bottom);
 
-    strModelFile += ".gm5";
+  strModelFile += ".gm5";
   }
 
   if (!pModel)
   {
-    _m()->outstream() << "Failed to load model '" << strModelFile.toStdString() << "'" << std::endl;
-    return RET_LOADFAIL;
+  _m()->outstream() << "Failed to load model '" << strModelFile.toStdString() << "'" << std::endl;
+  return RET_LOADFAIL;
   }
 
   // force optimization of filos files
   bool bForceCleanup = true;
   const char *option = getenv("RGI_NO_BRANCH_CLEANUP");
   if (option && (option[0] == 'y' || option[0] == 'Y'))
-    bForceCleanup = false;
+  bForceCleanup = false;
 
   pModel->CleanupOldBranchResults(bForceCleanup);
 
   try
   {
-    CValueMapper::instance()->DianaDistributedMapping(false);
-    
-    if (!RunRockMech_DEPRECATED(*pModel, strRockMechFile, strModelFile, strOutputDir,
+  CValueMapper::instance()->DianaDistributedMapping(false);
+  
+  if (!RunRockMech_DEPRECATED(*pModel, strRockMechFile, strModelFile, strOutputDir,
       strTempDir, validate, sModelFile != 0))
-    {
+  {
       _m()->outstream() << "Failed to execute RockMech processing" << std::endl;
       return RET_EXECFAIL;
-    }
+  }
   }
 
   catch (const std::exception& e)
   {
-    _m()->outstream() << e.what() << std::endl;
-    return RET_EXECFAIL;
+  _m()->outstream() << e.what() << std::endl;
+  return RET_EXECFAIL;
   }
 
-	return RET_OK;
+  return RET_OK;
 }
 
 

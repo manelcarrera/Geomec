@@ -12,7 +12,7 @@ IWellGUI::IWellGUI(CFemAppGUI* parentGUI, IWellModel* wellModel)
 , m_wellModel(wellModel)
 {
   m_wellModel->setModelProxy(new CModelProxyGUI(*GetGeomecDoc(),
-    *m_wellModel, *this));
+  *m_wellModel, *this));
 }
 
 void IWellGUI::OnCloseModel()

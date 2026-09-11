@@ -14,11 +14,11 @@ RESCUEBOOL RescueLogicalOrderEntry::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueLogicalOrderEntry)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueHistoryObject::IsOfType(thisType);
+  return RescueHistoryObject::IsOfType(thisType);
   }
 }
 

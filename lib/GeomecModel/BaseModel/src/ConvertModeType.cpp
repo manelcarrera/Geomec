@@ -10,19 +10,19 @@ CFaultPressure::TModeType CConvertModeType::operator () (int index) const
 
   switch (index)
   {
-    case 0:
+  case 0:
       modeType = CFaultPressure::MT_MAXIMUM;
       break;
-    case 1:
+  case 1:
       modeType = CFaultPressure::MT_MINIMUM;
       break;
-    case 2:
+  case 2:
       modeType = CFaultPressure::MT_GRADIENT;
       break;
-    case 3:
+  case 3:
       modeType = CFaultPressure::MT_MAXGRADIENT;
       break;
-    default:
+  default:
       assert(false);
       modeType = CFaultPressure::MT_MAXIMUM;
       break;
@@ -37,19 +37,19 @@ int CConvertModeType::operator () (CFaultPressure::TModeType modeType) const
 
   switch (modeType)
   {
-    case CFaultPressure::MT_MAXIMUM:
+  case CFaultPressure::MT_MAXIMUM:
       index = 0;
       break;
-    case CFaultPressure::MT_MINIMUM:
+  case CFaultPressure::MT_MINIMUM:
       index = 1;
       break;
-    case CFaultPressure::MT_GRADIENT:
+  case CFaultPressure::MT_GRADIENT:
       index = 2;
       break;
-    case CFaultPressure::MT_MAXGRADIENT:
+  case CFaultPressure::MT_MAXGRADIENT:
       index = 3;
       break;
-    default:
+  default:
       assert(false);
       index = 0;
       break;

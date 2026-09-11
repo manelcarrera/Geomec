@@ -35,56 +35,56 @@ CMaterialEntry::CMaterialEntry(int nEntryId, unsigned int uIconId, unsigned int 
 /*
 void CMaterialEntry::SetFilterRockMaterial(CMatLib& library) TODO wedx
 {
-	int nFilter =
-		MLFO_LINEAR              |
-		MLFO_MOHRCOULOMB         |
-		MLFO_MODIFIEDMOHRCOULOMB |
-		MLFO_MC_COHESION_HARD1   |
-		MLFO_MC_COHESION_HARD2   |
-		MLFO_MC_COHESION_HARD3   |
-		MLFO_MC_FRICTION_HARD1   |
-		MLFO_MC_FRICTION_HARD2   |
-		MLFO_MC_FRICTION_HARD3	 |
-		MLFO_RIGIDITY            |
-    MLFO_DUALCAP_LINELA      |
-    MLFO_FRACTURE_ANISOTROPY |
-    MLFO_UPSCALED_ANISOTROPY |
-    MLFO_ANISOTROPIC_CAMCLAY;
+  int nFilter =
+    MLFO_LINEAR              |
+    MLFO_MOHRCOULOMB         |
+    MLFO_MODIFIEDMOHRCOULOMB |
+    MLFO_MC_COHESION_HARD1   |
+    MLFO_MC_COHESION_HARD2   |
+    MLFO_MC_COHESION_HARD3   |
+    MLFO_MC_FRICTION_HARD1   |
+    MLFO_MC_FRICTION_HARD2   |
+    MLFO_MC_FRICTION_HARD3	 |
+    MLFO_RIGIDITY            |
+  MLFO_DUALCAP_LINELA      |
+  MLFO_FRACTURE_ANISOTROPY |
+  MLFO_UPSCALED_ANISOTROPY |
+  MLFO_ANISOTROPIC_CAMCLAY;
 
-	// only allow undrained material model if not 2D (mantis #1442)
-	const C2DModel* p2DModel = dynamic_cast<const C2DModel*> (&Model());
-	if(!p2DModel) nFilter |= MLFO_UNDRAINED;
+  // only allow undrained material model if not 2D (mantis #1442)
+  const C2DModel* p2DModel = dynamic_cast<const C2DModel*> (&Model());
+  if(!p2DModel) nFilter |= MLFO_UNDRAINED;
 
-	CKeyFile keyFile;
+  CKeyFile keyFile;
 
 #ifdef CAMCLAY_KEYFILE
-	if(keyFile.Unlocked())
-	{
+  if(keyFile.Unlocked())
+  {
 #endif
-		nFilter |= MLFO_CAMCLAY;
+    nFilter |= MLFO_CAMCLAY;
 #ifdef CAMCLAY_KEYFILE
-	}
+  }
 #endif
 
 #ifdef FOKKER_KEYFILE
-	if(keyFile.Unlocked())
-	{
+  if(keyFile.Unlocked())
+  {
 #endif
-		nFilter |= MLFO_CREEP;
+    nFilter |= MLFO_CREEP;
 #ifdef FOKKER_KEYFILE
-	}
+  }
 #endif
 
 #ifdef FRACTURE_APERTURE_KEYFILE
   if(keyFile.Unlocked())
   {
 #endif
-    nFilter |= MLFO_FRACTURE_APERTURE;
+  nFilter |= MLFO_FRACTURE_APERTURE;
 #ifdef FRACTURE_APERTURE_KEYFILE
   }
 #endif
 
-	library.SetMaterialModelFilter(nFilter);
+  library.SetMaterialModelFilter(nFilter);
 }
 */
 CMaterialEntry::~CMaterialEntry()
@@ -111,14 +111,14 @@ void CMaterialEntry::SetExternalMatLibFileName(const QString& strFileName, bool 
 {
   m_strExternalLibraryFileName = strFileName;
   if(bImport)
-    ReadExternalMatLib();
+  ReadExternalMatLib();
   else
   {
-    if(!m_pExternalLibrary)
+  if(!m_pExternalLibrary)
       m_pExternalLibrary = new ml::CMaterialLibrary;
-    else
+  else
       m_pExternalLibrary->Clear();
-    UpdateExternalMatLib();
+  UpdateExternalMatLib();
   }
 }
 
@@ -137,19 +137,19 @@ void CMaterialEntry::ReadExternalMatLib()
   assert(!m_strExternalLibraryFileName.isEmpty());
 
   if(!m_pExternalLibrary)
-    m_pExternalLibrary = new ml::CMaterialLibrary;
+  m_pExternalLibrary = new ml::CMaterialLibrary;
 
   m_pExternalLibrary->Clear();
   CMaterialLibraryXML matlibxml(*m_pExternalLibrary);
   try
   {
-    matlibxml.LoadFile(m_strExternalLibraryFileName);
+  matlibxml.LoadFile(m_strExternalLibraryFileName);
   }
   catch(mlxml::CException e)
   {
-    _m()->status(QObject::tr("Unable to load the external material library: %1").arg(e.error()));
-    // not working, reset
-    m_strExternalLibraryFileName.clear();
+  _m()->status(QObject::tr("Unable to load the external material library: %1").arg(e.error()));
+  // not working, reset
+  m_strExternalLibraryFileName.clear();
   }
 }
 
@@ -161,11 +161,11 @@ void CMaterialEntry::UpdateExternalMatLib()
   CMaterialLibraryXML matlibxml(*m_pExternalLibrary);
   try
   {
-    matlibxml.SaveFile(m_strExternalLibraryFileName);
+  matlibxml.SaveFile(m_strExternalLibraryFileName);
   }
   catch(mlxml::CException e)
   {
-    _m()->msg(QObject::tr("Unable to save the external material library:\n\n%1").arg(e.error()));
+  _m()->msg(QObject::tr("Unable to save the external material library:\n\n%1").arg(e.error()));
   }
 }
 
@@ -207,9 +207,9 @@ IMaterial& CMaterialEntry::ConvertMaterial(IMaterial& mat, int iNewMaterialModel
   size_t i;
   for(i = 0; i < libmat.ParameterSize(); ++i)
   {
-    const CLibraryMaterialParameter& oldparam = libmat.Parameter(i);
-    CLibraryMaterialParameter* pNewParam = newlibmat.Parameter(oldparam.Name());
-    if(pNewParam)
+  const CLibraryMaterialParameter& oldparam = libmat.Parameter(i);
+  CLibraryMaterialParameter* pNewParam = newlibmat.Parameter(oldparam.Name());
+  if(pNewParam)
       pNewParam->Value(oldparam.Value());
   }
 
@@ -222,82 +222,82 @@ IMaterial& CMaterialEntry::ConvertMaterial(IMaterial& mat, int iNewMaterialModel
 
 void CMaterialEntry::LoadStream(CFemAppModel& model, TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress)
 {
-	// Get Materials
-	stream.Flush();
+  // Get Materials
+  stream.Flush();
 
-	int nMaterialSize;
-	stream >> nMaterialSize;
+  int nMaterialSize;
+  stream >> nMaterialSize;
 
   bool bLockedFractureApertureMessageShown = false;
 
   const CMaterialHelperFactory *f = CMaterialHelperFactory::Instance();
 
-	for(int i = 0; i < nMaterialSize; i++)
-	{
-		int nMaterialModel;
-		stream >> nMaterialModel;
+  for(int i = 0; i < nMaterialSize; i++)
+  {
+    int nMaterialModel;
+    stream >> nMaterialModel;
 
-		// create new material based on model and load it
-    ml::CMaterial::CCreator* pCreator1 = f->getMatCreator(nMaterialModel);
-    assert(pCreator1);
-    ml::CMaterial& libmat1 = m_pMaterialLibrary->AddMaterial("", *pCreator1);
+    // create new material based on model and load it
+  ml::CMaterial::CCreator* pCreator1 = f->getMatCreator(nMaterialModel);
+  assert(pCreator1);
+  ml::CMaterial& libmat1 = m_pMaterialLibrary->AddMaterial("", *pCreator1);
 
-    assert(dynamic_cast<CLibraryMaterial*>(&libmat1));
-		IMaterial *pMat = CorrespondingMaterial(static_cast<CLibraryMaterial&>(libmat1));
-		assert(pMat);
-    assert(isChild(*pMat) >= 0);
-		pMat->LoadStream(stream, version, progress);
+  assert(dynamic_cast<CLibraryMaterial*>(&libmat1));
+    IMaterial *pMat = CorrespondingMaterial(static_cast<CLibraryMaterial&>(libmat1));
+    assert(pMat);
+  assert(isChild(*pMat) >= 0);
+    pMat->LoadStream(stream, version, progress);
 
-    // dual cap material model has been removed (hidden)
-    if(nMaterialModel == MM_DUALCAP)
-    {
+  // dual cap material model has been removed (hidden)
+  if(nMaterialModel == MM_DUALCAP)
+  {
       m_pMaterialLibrary->DeleteMaterial(libmat1);
-			CModelBase &modelbase = static_cast<CModelBase&>(model);
+      CModelBase &modelbase = static_cast<CModelBase&>(model);
       modelbase.InvalidateResultsAfterLoad();
-    }
+  }
 
-		CKeyFile keyFile;
+    CKeyFile keyFile;
 
 #ifdef CAMCLAY_KEYFILE
-		if(!keyFile.Unlocked() && nMaterialModel == MM_CAMCLAY)
-		{
-			CModelBase &modelbase = dynamic_cast<CModelBase &> (model);
-			if(!bLockedCamClayMessageShown)
-			{
-				_m()->msg(IDP_LOAD_CAMCLAY_LOCKED);
-				bLockedCamClayMessageShown = true;
-			}
+    if(!keyFile.Unlocked() && nMaterialModel == MM_CAMCLAY)
+    {
+      CModelBase &modelbase = dynamic_cast<CModelBase &> (model);
+      if(!bLockedCamClayMessageShown)
+      {
+        _m()->msg(IDP_LOAD_CAMCLAY_LOCKED);
+        bLockedCamClayMessageShown = true;
+      }
 
-			UnLink(*pMat);
-			delete pMat;
-			modelbase.InvalidateResultsAfterLoad();
-		}
+      UnLink(*pMat);
+      delete pMat;
+      modelbase.InvalidateResultsAfterLoad();
+    }
 #endif
 
 #ifdef FOKKER_KEYFILE
-		if(!keyFile.Unlocked() && nMaterialModel == MM_CREEP)
-		{
-			CModelBase &modelbase = dynamic_cast<CModelBase &> (model);
-			if(!bLockedFokkerMessageShown)
-			{
-				_m()->msg(IDP_LOAD_FOKKER_LOCKED);
-				bLockedFokkerMessageShown = true;
-			}
+    if(!keyFile.Unlocked() && nMaterialModel == MM_CREEP)
+    {
+      CModelBase &modelbase = dynamic_cast<CModelBase &> (model);
+      if(!bLockedFokkerMessageShown)
+      {
+        _m()->msg(IDP_LOAD_FOKKER_LOCKED);
+        bLockedFokkerMessageShown = true;
+      }
 
-			UnLink(*pMat);
-			delete pMat;
-			modelbase.InvalidateResultsAfterLoad();
-		}
+      UnLink(*pMat);
+      delete pMat;
+      modelbase.InvalidateResultsAfterLoad();
+    }
 #endif
 
-		if(nMaterialModel == MM_FRACTURE_APERTURE)
-		{
-			CModelBase &modelbase = dynamic_cast<CModelBase &> (model);
-			if(!bLockedFractureApertureMessageShown)
-			{
-				_m()->msg("At least one formation makes use of the obsolete 'Fracture Aperture' material model, these materials have been changed into the new 'Fracture Aperture 2' material model");
-				bLockedFractureApertureMessageShown = true;
-			}
+    if(nMaterialModel == MM_FRACTURE_APERTURE)
+    {
+      CModelBase &modelbase = dynamic_cast<CModelBase &> (model);
+      if(!bLockedFractureApertureMessageShown)
+      {
+        _m()->msg("At least one formation makes use of the obsolete 'Fracture Aperture' material model, these materials have been changed into the new 'Fracture Aperture 2' material model");
+        bLockedFractureApertureMessageShown = true;
+      }
 
       CLibraryMaterial& libmat2 = pMat->LibraryMaterial();
 
@@ -305,39 +305,39 @@ void CMaterialEntry::LoadStream(CFemAppModel& model, TSTREAM& stream, CStreamVer
       ml::CMaterial::CCreator* pCreator2 = f->getMatCreator(MM_FRACTURE_APERTURE2);
       libmat2.SwitchMaterialModel(*pCreator2, true);
 
-			modelbase.InvalidateResultsAfterLoad();
-		}
+      modelbase.InvalidateResultsAfterLoad();
+    }
 
-	}
+  }
 }
 
 void CMaterialEntry::SaveStream(TSTREAM& stream, TPROGRESS& progress)
 {
-	TNodeSet stNodes = EntryNodes();	
-	int nNodeSize = stNodes.size();
-	stream << nNodeSize;
+  TNodeSet stNodes = EntryNodes();	
+  int nNodeSize = stNodes.size();
+  stream << nNodeSize;
 
-	// Store each material
-	int nIndex = 1;
-	for (TNodeSet::const_iterator it = stNodes.begin(); it != stNodes.end(); it++)
-	{
-		// Save material model
-		stream << (*it)->MaterialModel();
-		(*it)->Index(nIndex);
-		(*it)->SaveStream(stream, progress);
-		nIndex++;
-	}
+  // Store each material
+  int nIndex = 1;
+  for (TNodeSet::const_iterator it = stNodes.begin(); it != stNodes.end(); it++)
+  {
+    // Save material model
+    stream << (*it)->MaterialModel();
+    (*it)->Index(nIndex);
+    (*it)->SaveStream(stream, progress);
+    nIndex++;
+  }
 }
 
 long CMaterialEntry::SavedItems() const
 {
-	long lRet = 0;
-	TNodeSet stNode = EntryNodes();
-	for(TNodeSet::iterator it = stNode.begin(); it != stNode.end(); it++)
-	{
-		lRet += (*it)->SavedItems();
-	}
-	return lRet;
+  long lRet = 0;
+  TNodeSet stNode = EntryNodes();
+  for(TNodeSet::iterator it = stNode.begin(); it != stNode.end(); it++)
+  {
+    lRet += (*it)->SavedItems();
+  }
+  return lRet;
 }
 
 int CMaterialEntry::MaterialSize() const
@@ -360,8 +360,8 @@ IMaterial& CMaterialEntry::Material(int i)
 
 bool CMaterialEntry::ReadOnly() const
 {
-	// material is read-only in branch models
-	return (static_cast<const CModelBase&>(Model())).BranchState().IsBranch();
+  // material is read-only in branch models
+  return (static_cast<const CModelBase&>(Model())).BranchState().IsBranch();
 }
 
 ml::CMaterialLibrary& CMaterialEntry::MaterialLibrary()
@@ -374,25 +374,25 @@ int CMaterialEntry::MaterialModelFilter() const
 {
   assert(EntryId() == MD_ROCK_MATERIAL);
   int nFilter =
-    MLFO_LINEAR              |
-    MLFO_CAMCLAY             |
-    MLFO_CREEP               |
-    MLFO_MOHRCOULOMB         |
-    MLFO_MODIFIEDMOHRCOULOMB |
-    MLFO_MC_COHESION_HARD1   |
-    MLFO_MC_COHESION_HARD2   |
-    MLFO_MC_COHESION_HARD3   |
-    MLFO_MC_FRICTION_HARD1   |
-    MLFO_MC_FRICTION_HARD2   |
-    MLFO_MC_FRICTION_HARD3   |
-    MLFO_UNDRAINED           |
-    MLFO_RIGIDITY            |
-    MLFO_DUALCAP_LINELA      |
-    MLFO_FRACTURE_ANISOTROPY |
-    MLFO_UPSCALED_ANISOTROPY |
-    MLFO_ANISOTROPIC_CAMCLAY |
-    MLFO_FRACTURE_APERTURE2  |
-    MLFO_CAMCLAY_CREEP;
+  MLFO_LINEAR              |
+  MLFO_CAMCLAY             |
+  MLFO_CREEP               |
+  MLFO_MOHRCOULOMB         |
+  MLFO_MODIFIEDMOHRCOULOMB |
+  MLFO_MC_COHESION_HARD1   |
+  MLFO_MC_COHESION_HARD2   |
+  MLFO_MC_COHESION_HARD3   |
+  MLFO_MC_FRICTION_HARD1   |
+  MLFO_MC_FRICTION_HARD2   |
+  MLFO_MC_FRICTION_HARD3   |
+  MLFO_UNDRAINED           |
+  MLFO_RIGIDITY            |
+  MLFO_DUALCAP_LINELA      |
+  MLFO_FRACTURE_ANISOTROPY |
+  MLFO_UPSCALED_ANISOTROPY |
+  MLFO_ANISOTROPIC_CAMCLAY |
+  MLFO_FRACTURE_APERTURE2  |
+  MLFO_CAMCLAY_CREEP;
 
   return nFilter;
 }
@@ -408,7 +408,7 @@ void CMaterialEntry::OnLibraryMaterialSwitched(CLibraryMaterial& libmat, IMateri
   // replace entry in map
   TMaterialMap::iterator it = m_mpMaterial.find(&libmat);
   if(it != m_mpMaterial.end())
-    it->second = &mat;
+  it->second = &mat;
 }
 
 void CMaterialEntry::OnLibraryMaterialAdded(CLibraryMaterial& mat)
@@ -425,9 +425,9 @@ void CMaterialEntry::OnDeleteLibraryMaterial(CLibraryMaterial& mat)
   TMaterialMap::iterator it = m_mpMaterial.find(&mat);
   if(it != m_mpMaterial.end())
   {
-    UnLink(*it->second);
-    delete it->second;
-    m_mpMaterial.erase(it);
+  UnLink(*it->second);
+  delete it->second;
+  m_mpMaterial.erase(it);
   }
 }
 
@@ -435,7 +435,7 @@ IMaterial* CMaterialEntry::CorrespondingMaterial(CLibraryMaterial &libmat)
 {
   TMaterialMap::iterator it = m_mpMaterial.find(&libmat);
   if(it != m_mpMaterial.end())
-    return it->second;
+  return it->second;
 
   return 0;
 }
@@ -457,12 +457,12 @@ void CMaterialEntry::CMaterialLibraryObserver::OnMaterialAdded(ml::CMaterial& ma
 {
   CLibraryMaterial* pLibraryMaterial = dynamic_cast<CLibraryMaterial*>(&mat);
   if(pLibraryMaterial)
-    m_entry.OnLibraryMaterialAdded(*pLibraryMaterial);
+  m_entry.OnLibraryMaterialAdded(*pLibraryMaterial);
 }
 
 void CMaterialEntry::CMaterialLibraryObserver::OnDeleteMaterial(ml::CMaterial& mat)
 {
   CLibraryMaterial* pLibraryMaterial = dynamic_cast<CLibraryMaterial*>(&mat);
   if(pLibraryMaterial)
-    m_entry.OnDeleteLibraryMaterial(*pLibraryMaterial);
+  m_entry.OnDeleteLibraryMaterial(*pLibraryMaterial);
 }

@@ -17,20 +17,20 @@ public:
   CWellCasingInternalTemperature& operator=(const CWellCasingInternalTemperature& rhs);
   bool operator==(const CWellCasingInternalTemperature& rhs) const;
 
-	virtual unsigned int IconId() const;
-	virtual unsigned int TypeId() const;
+  virtual unsigned int IconId() const;
+  virtual unsigned int TypeId() const;
   virtual bool Less(const CGraphNode& node) const;
 
   virtual QString LoadName() const;
 
   virtual const CWellCasingInternalTemperature& PreviousStageLoad() const;
   virtual const CWellCasingInternalTemperature& NextStageLoad() const;
-	virtual geo::CPoint Min() const;
-	virtual geo::CPoint Max() const;
+  virtual geo::CPoint Min() const;
+  virtual geo::CPoint Max() const;
   virtual QString TypeName() const;
 
-	virtual bool Empty() const;
-	virtual long SavedItems() const;
+  virtual bool Empty() const;
+  virtual long SavedItems() const;
 
   const CWellCasingInternalTemperatureComponentRepeater& Repeater() const;
   CWellCasingInternalTemperatureComponentRepeater& Repeater();
@@ -48,10 +48,10 @@ private:
   class CWellCasingInternalTemperatureComponentRepeater : public IWellCasingInternalLoadComponentRepeater<TTemperature>
   {
   public:
-    CWellCasingInternalTemperatureComponentRepeater(CWellCasingInternalTemperature& parent);
-    CWellCasingInternalTemperatureComponentRepeater(const CWellCasingInternalTemperatureComponentRepeater& rhs);
-    virtual unsigned int IconId() const;
-    virtual double UnitFactor(CQuantity::UNIT unit) const;
+  CWellCasingInternalTemperatureComponentRepeater(CWellCasingInternalTemperature& parent);
+  CWellCasingInternalTemperatureComponentRepeater(const CWellCasingInternalTemperatureComponentRepeater& rhs);
+  virtual unsigned int IconId() const;
+  virtual double UnitFactor(CQuantity::UNIT unit) const;
   	virtual	QString UnitName(const CQuantity::UNIT unit = CQuantity::SI_UNIT) const;
   	virtual QString ExportLabel() const;
   };
@@ -59,10 +59,10 @@ private:
   class CWellCasingInternalTemperatureComponentGradient : public IWellCasingInternalLoadComponentGradient<TTemperature>
   {
   public:
-    CWellCasingInternalTemperatureComponentGradient(CWellCasingInternalTemperature& parent);
-    CWellCasingInternalTemperatureComponentGradient(const CWellCasingInternalTemperatureComponentGradient& rhs);
-    virtual unsigned int IconId() const;
-    virtual double UnitFactor(CQuantity::UNIT unit) const;
+  CWellCasingInternalTemperatureComponentGradient(CWellCasingInternalTemperature& parent);
+  CWellCasingInternalTemperatureComponentGradient(const CWellCasingInternalTemperatureComponentGradient& rhs);
+  virtual unsigned int IconId() const;
+  virtual double UnitFactor(CQuantity::UNIT unit) const;
   	virtual	QString UnitName(const CQuantity::UNIT unit = CQuantity::SI_UNIT) const;
   	virtual QString ExportLabel() const;
   };

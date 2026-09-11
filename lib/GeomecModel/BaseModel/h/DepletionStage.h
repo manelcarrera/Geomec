@@ -18,160 +18,160 @@ class CDepletionStageEntry;
 class CDepletionStage : public CStorageNode  
 {
 public:
-	enum eConvergenceType	{ FORCE, DISPLACEMENT, ENERGY };			// Is saved ...
-	enum eIterationScheme	{ CONSTANT, LINEAR, REGULAR, MODIFIED, SECANT };	// Is saved ...
-	enum eOutputType		{ NONE, RESULTS, BRANCH, PHASE };					// Is saved ...
+  enum eConvergenceType	{ FORCE, DISPLACEMENT, ENERGY };			// Is saved ...
+  enum eIterationScheme	{ CONSTANT, LINEAR, REGULAR, MODIFIED, SECANT };	// Is saved ...
+  enum eOutputType		{ NONE, RESULTS, BRANCH, PHASE };					// Is saved ...
 
-	static const char* m_output_type_cp[];
+  static const char* m_output_type_cp[];
 
 private:
-	CDepletionStage* m_pPrevious;
-	CDepletionStage* m_pNext;
-	CGeomecTime m_Time;
-	CDepletionStageEntry& m_entry;
+  CDepletionStage* m_pPrevious;
+  CDepletionStage* m_pNext;
+  CGeomecTime m_Time;
+  CDepletionStageEntry& m_entry;
 
-	// marked as initial stage (zero strains and displacements)
-	bool m_bMarkedAsInitial;
+  // marked as initial stage (zero strains and displacements)
+  bool m_bMarkedAsInitial;
 
 // Non-lin parameters
-	int m_nSteps;
+  int m_nSteps;
   double m_dStepScalingFactor;
-	double m_dConvNormVal;
-	int m_nIterationSteps;
-	eConvergenceType m_convergence_type;
-	eIterationScheme m_iteration_scheme;
-	eOutputType m_output_type;
+  double m_dConvNormVal;
+  int m_nIterationSteps;
+  eConvergenceType m_convergence_type;
+  eIterationScheme m_iteration_scheme;
+  eOutputType m_output_type;
   bool m_bAutoStepSizes;
   double m_dMaxAutoStepSize;
 
 public:
-	// Set non-line params
-	void SetNonLinParams(bool bAutoStepSizes,
+  // Set non-line params
+  void SetNonLinParams(bool bAutoStepSizes,
              double dMaxAutoStepSize,
              int nSteps,
              const double& dStepScalingFactor,
-						 const double& dConvNormVal,
-						 int nIterationSteps,
-						 eConvergenceType convergence_type,
-						 eIterationScheme iteration_scheme);
-	void SetDefaultNonLinParams();
-	int NLSteps() const;
+             const double& dConvNormVal,
+             int nIterationSteps,
+             eConvergenceType convergence_type,
+             eIterationScheme iteration_scheme);
+  void SetDefaultNonLinParams();
+  int NLSteps() const;
   const double& NLStepScalingFactor() const;
-	const double& NLConvNormVal() const;
-	int NLIterationSteps() const;
-	eConvergenceType  NLConvergenceType() const;
-	eIterationScheme NLIterationScheme() const;
+  const double& NLConvNormVal() const;
+  int NLIterationSteps() const;
+  eConvergenceType  NLConvergenceType() const;
+  eIterationScheme NLIterationScheme() const;
   void setNLIterationScheme(eIterationScheme itScheme);
   bool AutomaticStepSizes() const;
   double MaxAutomaticStepSize() const;
 
-	void setOutputType(eOutputType output_type);
-	eOutputType OutputType() const;
+  void setOutputType(eOutputType output_type);
+  eOutputType OutputType() const;
   bool IsPhaseStartStage() const; // is the first of a new phase (initial or previous is phase/branch)
 
-	const CGeomecTime &Time() const;
-	void Time(const CGeomecTime &time);
+  const CGeomecTime &Time() const;
+  void Time(const CGeomecTime &time);
 
-	void MarkAsInitial();
-	bool IsMarkedAsInitial() const;
-	bool CanMarkAsInitial() const;
+  void MarkAsInitial();
+  bool IsMarkedAsInitial() const;
+  bool CanMarkAsInitial() const;
 
-	//##ModelId=3BC55D630287
-	virtual unsigned int TypeId() const;
-	CDepletionStage(CDepletionStageEntry& entry);
-	//##ModelId=3BC55D630297
-	CDepletionStage(const QString& strName, 
-					CDepletionStageEntry& entry,
-					int nSteps = 10,
+  //##ModelId=3BC55D630287
+  virtual unsigned int TypeId() const;
+  CDepletionStage(CDepletionStageEntry& entry);
+  //##ModelId=3BC55D630297
+  CDepletionStage(const QString& strName, 
+          CDepletionStageEntry& entry,
+          int nSteps = 10,
           const double& dStepScalingFactor = 1.,
-					const double& dConvNormVal = 0.001,
-					int nIterationSteps = 5,
-					eConvergenceType convergence_type = FORCE,
-					eIterationScheme iteration_scheme = REGULAR,
-					eOutputType output_type = DefaultOutputType(),
+          const double& dConvNormVal = 0.001,
+          int nIterationSteps = 5,
+          eConvergenceType convergence_type = FORCE,
+          eIterationScheme iteration_scheme = REGULAR,
+          eOutputType output_type = DefaultOutputType(),
           bool bAutoStepSizes = false,
           double dMaxAutoStepSize = 0.3);
-	//##ModelId=3BC55D63029A
-	CDepletionStage(const QString& strName, 
-					CDepletionStage& previous, 
-					int nSteps = 10,
+  //##ModelId=3BC55D63029A
+  CDepletionStage(const QString& strName, 
+          CDepletionStage& previous, 
+          int nSteps = 10,
           const double& dStepScalingFactor = 1.,
-					const double& dConvNormVal = 0.001,
-					int nIterationSteps = 5,
-					eConvergenceType convergence_type = FORCE,
-					eIterationScheme iteration_scheme = REGULAR,
-					eOutputType output_type = DefaultOutputType(),
+          const double& dConvNormVal = 0.001,
+          int nIterationSteps = 5,
+          eConvergenceType convergence_type = FORCE,
+          eIterationScheme iteration_scheme = REGULAR,
+          eOutputType output_type = DefaultOutputType(),
           bool bAutoStepSizes = false,
           double dMaxAutoStepSize = 0.3);
   CDepletionStage(const QString& strName, 
-					 CDepletionStage *previous, 
+           CDepletionStage *previous, 
            CDepletionStage *next,
            const CGeomecTime &time,
-					 int nSteps = 10,
+           int nSteps = 10,
            const double& dStepScalingFactor = 1.,
-		       const double& dConvNormVal = 0.001,
-		       int nIterationSteps = 5,
-		       eConvergenceType convergence_type = FORCE,
-		       eIterationScheme iteration_scheme = REGULAR,
-		       eOutputType output_type = DefaultOutputType(),
+           const double& dConvNormVal = 0.001,
+           int nIterationSteps = 5,
+           eConvergenceType convergence_type = FORCE,
+           eIterationScheme iteration_scheme = REGULAR,
+           eOutputType output_type = DefaultOutputType(),
            bool bAutoStepSizes = false,
            double dMaxAutoStepSize = 0.3);
 
-	CDepletionStage(const CDepletionStage& rhs);
-	CDepletionStage& operator=(const CDepletionStage& rhs);
-	bool operator==(const CDepletionStage& rhs) const;
-	
-	//##ModelId=3BC55D6302A8
-	virtual ~CDepletionStage();
-	//##ModelId=3BC55D6302B5
-	virtual unsigned int IconId() const;
-	//##ModelId=3BC55D6302B7
-	const CDepletionStage& Previous() const;
-	//##ModelId=3BC55D6302B9
-	CDepletionStage& Previous();
-	//##ModelId=3BC55D6302BA
-	const CDepletionStage& Next() const;
-	//##ModelId=3BC55D6302BC
-	CDepletionStage& Next();
-	//##ModelId=3BC55D6302C5
-	bool Last() const;
-	//##ModelId=3BC55D6302C7
-	bool Initial() const;
+  CDepletionStage(const CDepletionStage& rhs);
+  CDepletionStage& operator=(const CDepletionStage& rhs);
+  bool operator==(const CDepletionStage& rhs) const;
+  
+  //##ModelId=3BC55D6302A8
+  virtual ~CDepletionStage();
+  //##ModelId=3BC55D6302B5
+  virtual unsigned int IconId() const;
+  //##ModelId=3BC55D6302B7
+  const CDepletionStage& Previous() const;
+  //##ModelId=3BC55D6302B9
+  CDepletionStage& Previous();
+  //##ModelId=3BC55D6302BA
+  const CDepletionStage& Next() const;
+  //##ModelId=3BC55D6302BC
+  CDepletionStage& Next();
+  //##ModelId=3BC55D6302C5
+  bool Last() const;
+  //##ModelId=3BC55D6302C7
+  bool Initial() const;
 
-	const CDepletionStage &InitialStage() const;
-	CDepletionStage &InitialStage();
-	const CDepletionStage &LastStage() const;
-	CDepletionStage &LastStage();
+  const CDepletionStage &InitialStage() const;
+  CDepletionStage &InitialStage();
+  const CDepletionStage &LastStage() const;
+  CDepletionStage &LastStage();
 
-	const CDepletionStageEntry& Entry() const;
-	CDepletionStageEntry& Entry();
+  const CDepletionStageEntry& Entry() const;
+  CDepletionStageEntry& Entry();
 
-	using CStorageNode::Index; // would otherwise be hidden by function below
-	int Index() const; // initial = 0, etc.
+  using CStorageNode::Index; // would otherwise be hidden by function below
+  int Index() const; // initial = 0, etc.
 
-	//##ModelId=3BE7AEC5013D
-	virtual bool Less(const CGraphNode &node) const;
-	// Save and load
-	virtual bool Empty() const;
-	virtual long SavedItems() const;
+  //##ModelId=3BE7AEC5013D
+  virtual bool Less(const CGraphNode &node) const;
+  // Save and load
+  virtual bool Empty() const;
+  virtual long SavedItems() const;
 
-	virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-	virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
+  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
 
-	bool isAfter(const CDepletionStage& other) const;
-	bool isBefore(const CDepletionStage& other) const;
+  bool isAfter(const CDepletionStage& other) const;
+  bool isBefore(const CDepletionStage& other) const;
 
   const CDepletionStage& GetNextBranchStage(const CDepletionStage& stage) const;
   std::string ModifiedFileName(const std::string& fileName) const;
 
-	static std::string IterationSchemeTag(eIterationScheme scheme);
-	static std::string ConvergenceTypeTag(eConvergenceType type);
-	static std::string OutputTypeTag(eOutputType type);
+  static std::string IterationSchemeTag(eIterationScheme scheme);
+  static std::string ConvergenceTypeTag(eConvergenceType type);
+  static std::string OutputTypeTag(eOutputType type);
 
-	static eOutputType DefaultOutputType();
+  static eOutputType DefaultOutputType();
 
-	const CDepletionStage* Next_();
-	const CDepletionStage* Previous_();
+  const CDepletionStage* Next_();
+  const CDepletionStage* Previous_();
 
   ACCEPT_GEOMECMODELVISITORS(VisitDepletionStage);
 };
@@ -219,38 +219,38 @@ public:
 typedef CGraphEntryTemp<CDepletionStage> TDepletionStageEntry;
 class CDepletionStageEntry : public CGraphEntryTemp<CDepletionStage>
 {
-	friend class CDepletionStage;
-	CDepletionStage *m_pFirstStage;
+  friend class CDepletionStage;
+  CDepletionStage *m_pFirstStage;
 
 public:
   /*
-	enum
-	{
-		MarkedAsInitialChanged = 1
-	};
+  enum
+  {
+    MarkedAsInitialChanged = 1
+  };
   */
 
   typedef CConstDepletionStageIterator const_iterator;
   typedef CDepletionStageIterator iterator;
 
-	CDepletionStageEntry(unsigned int uEntryID, CFemAppModel& model);
-	virtual ~CDepletionStageEntry();
+  CDepletionStageEntry(unsigned int uEntryID, CFemAppModel& model);
+  virtual ~CDepletionStageEntry();
 
-	void LoadStream(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& progress);
-	void SaveStream(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS& progress) const;
-	long SavedItems() const;
+  void LoadStream(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& progress);
+  void SaveStream(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS& progress) const;
+  long SavedItems() const;
 
-	const CDepletionStage& InitialStage() const;
-	CDepletionStage& InitialStage();
+  const CDepletionStage& InitialStage() const;
+  CDepletionStage& InitialStage();
 
-	const CDepletionStage &LastStage() const;
-	CDepletionStage &LastStage();
+  const CDepletionStage &LastStage() const;
+  CDepletionStage &LastStage();
 
-	const CDepletionStage& MarkedAsInitialStage() const;
-	CDepletionStage& MarkedAsInitialStage();
+  const CDepletionStage& MarkedAsInitialStage() const;
+  CDepletionStage& MarkedAsInitialStage();
 
-	const CDepletionStage& StageByIndex(int nIndex) const;
-	CDepletionStage& StageByIndex(int nIndex);
+  const CDepletionStage& StageByIndex(int nIndex) const;
+  CDepletionStage& StageByIndex(int nIndex);
 
   const_iterator begin() const;
   const_iterator end() const;

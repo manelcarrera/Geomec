@@ -11,17 +11,17 @@ CFaultFractureList::CFaultFractureList(const CFemAppModel* femAppModel, CDoubleQ
 bool CFaultFractureList::hasFaultFractures(const CFemAppModel* femAppModel)
 {
   THorizonBaseEntry::TEntryNodeSet entryNodeSet =
-    femAppModel->GraphEntry(MD_BASE_HORIZON)->GraphEntryNodes();
+  femAppModel->GraphEntry(MD_BASE_HORIZON)->GraphEntryNodes();
 
   for (THorizonBaseEntry::TEntryNodeSet::const_iterator entryNode =
-    entryNodeSet.begin(); entryNode != entryNodeSet.end(); ++entryNode)
+  entryNodeSet.begin(); entryNode != entryNodeSet.end(); ++entryNode)
   {
-    CHorizonBase* horizonBase = static_cast <CHorizonBase*> (*entryNode);
+  CHorizonBase* horizonBase = static_cast <CHorizonBase*> (*entryNode);
 
-    if (horizonBase->Slip())
-    {
+  if (horizonBase->Slip())
+  {
       return true;
-    }
+  }
   }
   
   return false;
@@ -51,17 +51,17 @@ std::vector <CFaultFracture> CFaultFractureList::retrieveFaultFractureList(const
   std::vector <CFaultFracture> faultFractureList;
 
   THorizonBaseEntry::TEntryNodeSet entryNodeSet =
-    femAppModel->GraphEntry(MD_BASE_HORIZON)->GraphEntryNodes();
+  femAppModel->GraphEntry(MD_BASE_HORIZON)->GraphEntryNodes();
 
   for (THorizonBaseEntry::TEntryNodeSet::const_iterator entryNode =
-    entryNodeSet.begin(); entryNode != entryNodeSet.end(); ++entryNode)
+  entryNodeSet.begin(); entryNode != entryNodeSet.end(); ++entryNode)
   {
-    CHorizonBase* horizonBase = static_cast <CHorizonBase*> (*entryNode);
+  CHorizonBase* horizonBase = static_cast <CHorizonBase*> (*entryNode);
 
-    if (horizonBase->Slip())
-    {
+  if (horizonBase->Slip())
+  {
       faultFractureList.push_back(CFaultFracture(horizonBase, unit));
-    }
+  }
   }
   
   return faultFractureList;

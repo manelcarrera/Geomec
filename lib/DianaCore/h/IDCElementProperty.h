@@ -14,27 +14,27 @@ class IDianaRunner;
 class IElementProperty  
 {
 public:
-	class CElementPropertyLess
-	{
-	public:
-		bool operator()(const IElementProperty *mat1, const IElementProperty *mat2) const
-		{
-			return *mat1 < *mat2;
-		}
-	};
+  class CElementPropertyLess
+  {
+  public:
+    bool operator()(const IElementProperty *mat1, const IElementProperty *mat2) const
+    {
+      return *mat1 < *mat2;
+    }
+  };
 
-	typedef CElementPropertyLess CMaterialLess;
+  typedef CElementPropertyLess CMaterialLess;
 
-	typedef std::map<const IElementProperty *, int, CElementPropertyLess> TElementPropertyMap;
+  typedef std::map<const IElementProperty *, int, CElementPropertyLess> TElementPropertyMap;
   typedef std::map<const IElementProperty *, int> TElementPropertyPointerMap;
 
-	IElementProperty();
-	virtual ~IElementProperty();
+  IElementProperty();
+  virtual ~IElementProperty();
 
-	// write the material assuming the current dir is index of /MATERI or /INPUT/MATERI
-	virtual bool WriteFilos(IDianaRunner& diarunner) const = 0;
+  // write the material assuming the current dir is index of /MATERI or /INPUT/MATERI
+  virtual bool WriteFilos(IDianaRunner& diarunner) const = 0;
 
-	virtual bool operator<(const IElementProperty &rhs) const;
+  virtual bool operator<(const IElementProperty &rhs) const;
 
   // for distributed properties; once subclasses have been implemented, these should be abstract
   // Type should distinguish between different materials, etc

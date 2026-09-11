@@ -7,10 +7,10 @@ class QString;
 class IRetrieveDianaFileNames
 {
 public:
-	IRetrieveDianaFileNames();//{};
-	virtual ~IRetrieveDianaFileNames();//{};
+  IRetrieveDianaFileNames();//{};
+  virtual ~IRetrieveDianaFileNames();//{};
 
-	virtual bool retrieveDianaFileNames(QString& newTitle,
-	const std::string& title) const = 0;
+  virtual bool retrieveDianaFileNames(QString& newTitle,
+  const std::string& title) const = 0;
 };
 

@@ -4,7 +4,7 @@
 
 CMatParamsTensor_Delegate::CMatTensorComponent_Delegate::
   CMatTensorComponent_Delegate(
-    CMatParamsTensor::CMatTensorComponent* matTensorComponent)
+  CMatParamsTensor::CMatTensorComponent* matTensorComponent)
 : CValueComponent_Delegate(matTensorComponent)
 , m_matTensorComponent(matTensorComponent)
 {

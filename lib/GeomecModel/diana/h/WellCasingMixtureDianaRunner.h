@@ -8,13 +8,13 @@ class CWellCasingModel;
 class CWellCasingMixtureDianaRunner : public CGeomecMixtureDianaRunner
 {
 private:
-	typedef std::map<const CDepletionStage*, dia::CLoadCase*> TStageMap;
+  typedef std::map<const CDepletionStage*, dia::CLoadCase*> TStageMap;
 
 public:
   CWellCasingMixtureDianaRunner(CWellCasingModel& model, CDianaRunController& controller);
 
   const dia::IMaterial& Material(const geo::IElement &element) const;
-	virtual const dia::IMaterial* InterfaceMaterial(const geo::IElement &element) const;
+  virtual const dia::IMaterial* InterfaceMaterial(const geo::IElement &element) const;
 
   const CWellCasingModel& CasingModel() const;
   CWellCasingModel& CasingModel();
@@ -30,12 +30,12 @@ public:
 protected:
   virtual void WriteModelSpecificLoads(const TStageMap& mpStages);
   virtual void CreateStrainLoad(const geo::IElement& elm, const CDepletionStage& stage, dia::CLoadCase& lcase);
-	virtual bool IsZoomInModel() const { return true; }
+  virtual bool IsZoomInModel() const { return true; }
   virtual void executeCommandInGeomec() const;
   virtual bool CheckConvergenceMinimumVolume() const { return false; }
 
 private:
-	virtual bool WriteBoundaryLoads(const TStageMap &mpStages);
+  virtual bool WriteBoundaryLoads(const TStageMap &mpStages);
   bool ParentLinearResults() const;
 };
 

@@ -44,8 +44,8 @@ IWellModel::~IWellModel()
 {
   if (m_modelProxy != 0)
   {
-    delete m_modelProxy;
-	m_modelProxy= 0;
+  delete m_modelProxy;
+  m_modelProxy= 0;
   }
 }
 
@@ -53,9 +53,9 @@ IWellModel& IWellModel::operator=(const IWellModel& rhs)
 {
   if(!(*this == rhs))
   {
-    m_dRadius = rhs.m_dRadius;
-    m_StartPosDef = rhs.m_StartPosDef;
-    m_EndPosDef   = rhs.m_EndPosDef;
+  m_dRadius = rhs.m_dRadius;
+  m_StartPosDef = rhs.m_StartPosDef;
+  m_EndPosDef   = rhs.m_EndPosDef;
   }
 
   return *this;
@@ -64,9 +64,9 @@ IWellModel& IWellModel::operator=(const IWellModel& rhs)
 bool IWellModel::operator==(const IWellModel& rhs) const
 {
   return (
-    fabs(m_dRadius - rhs.m_dRadius) < EPS  &&
-    m_StartPosDef == rhs.m_StartPosDef     &&
-    m_EndPosDef   == rhs.m_EndPosDef     );
+  fabs(m_dRadius - rhs.m_dRadius) < EPS  &&
+  m_StartPosDef == rhs.m_StartPosDef     &&
+  m_EndPosDef   == rhs.m_EndPosDef     );
 }
 
 void IWellModel::createDefaults()
@@ -74,13 +74,13 @@ void IWellModel::createDefaults()
   CModelBase::createDefaults();
 
   if(!RootModel().Loading())
-    CreateChildren();
+  CreateChildren();
 
   IWellModel* pParent = dynamic_cast<IWellModel*>(&ParentModel());
   if(pParent)
   {
-    m_StartPosDef.LinkTo(pParent->StartPosition());
-    m_EndPosDef.LinkTo(pParent->EndPosition());
+  m_StartPosDef.LinkTo(pParent->StartPosition());
+  m_EndPosDef.LinkTo(pParent->EndPosition());
   }
 
   Name(documentType());
@@ -120,7 +120,7 @@ const CModelBase& IWellModel::RootModel() const
 {
   const CModelBase* pModel = this;
   while (pModel->parentModel())
-    pModel = pModel->parentModel();
+  pModel = pModel->parentModel();
 
   return *pModel;
 }
@@ -148,13 +148,13 @@ bool IWellModel::CanUseCalculatedTemperatures() const
 void IWellModel::OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint)
 {
   if(RootModel().Loading())
-    return ;
+  return ;
 
   if((uHint == MeshCleared && &node == &ParentModel().Mesh()) ||
      (uHint == PD_POSCHANGED && (&node == &m_StartPosDef || &node == &m_EndPosDef)))
   {
-    ClearFormations();
-    Mesh().InvalidateMesh();
+  ClearFormations();
+  Mesh().InvalidateMesh();
   }
 
   CModelBase::OnNeighbourModified(node, uHint);
@@ -165,7 +165,7 @@ bool IWellModel::OnLoad(CStorageNode::TSTREAM &stream, CStreamVersion &version, 
   stream >> m_dRadius;
 
   if(version < CStreamVersion(4, 1, 0))
-    LoadZoominProperties(stream, version, prog);
+  LoadZoominProperties(stream, version, prog);
 
   CWellFormationEntry& formation_entry = static_cast<CWellFormationEntry&>(*GraphEntry(MD_WELLMODEL_FORMATION));
   assert(formation_entry.EntryNodes().empty());
@@ -178,13 +178,13 @@ bool IWellModel::OnLoad(CStorageNode::TSTREAM &stream, CStreamVersion &version, 
   int i;
   for(i = 0; i < nSize; ++i)
   {
-    int i1, i2;
-    stream >> i1 >> i2;
-    const CFormationBase* pParentForm = parent_formation_entry.FindIndex(i1);
-    assert(pParentForm);
-    CWellFormation* pForm = formation_entry.FindIndex(i2);
-    assert(pForm);
-    m_mpFormations.insert(TFormationMap::value_type(pParentForm, pForm));
+  int i1, i2;
+  stream >> i1 >> i2;
+  const CFormationBase* pParentForm = parent_formation_entry.FindIndex(i1);
+  assert(pParentForm);
+  CWellFormation* pForm = formation_entry.FindIndex(i2);
+  assert(pForm);
+  m_mpFormations.insert(TFormationMap::value_type(pParentForm, pForm));
   }
 
   m_StartPosDef.LoadStream(stream, version, prog);
@@ -192,8 +192,8 @@ bool IWellModel::OnLoad(CStorageNode::TSTREAM &stream, CStreamVersion &version, 
 
   if (version >= CStreamVersion(4, 1, 59))
   {
-    CCrossSectionEntry *pXSecEntry = (CCrossSectionEntry*)GraphEntry(MD_BASE_XSECTION);
-    pXSecEntry->LoadStream(*this, stream, version, prog);
+  CCrossSectionEntry *pXSecEntry = (CCrossSectionEntry*)GraphEntry(MD_BASE_XSECTION);
+  pXSecEntry->LoadStream(*this, stream, version, prog);
   }
 
   return true;
@@ -203,15 +203,15 @@ bool IWellModel::OnSave(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &
 {
   stream << m_dRadius;
 
-	// Save formations
-	CWellFormationEntry& formation_entry = dynamic_cast<CWellFormationEntry&>(*GraphEntry(MD_WELLMODEL_FORMATION));
-	formation_entry.SaveStream(stream, progress);
+  // Save formations
+  CWellFormationEntry& formation_entry = dynamic_cast<CWellFormationEntry&>(*GraphEntry(MD_WELLMODEL_FORMATION));
+  formation_entry.SaveStream(stream, progress);
 
   // save formation map
   stream << int(m_mpFormations.size());
   TFormationMap::iterator it;
   for(it = m_mpFormations.begin(); it != m_mpFormations.end(); ++it)
-    stream << it->first->Index() << it->second->Index();
+  stream << it->first->Index() << it->second->Index();
 
   m_StartPosDef.SaveStream(stream, progress);
   m_EndPosDef.SaveStream(stream, progress);
@@ -274,7 +274,7 @@ CWellFormation* IWellModel::AssociatedFormation(const CFormationBase& formation)
 {
   TFormationMap::iterator it = m_mpFormations.find(&formation);
   if(it != m_mpFormations.end())
-    return it->second;
+  return it->second;
 
   return 0;
 }
@@ -283,7 +283,7 @@ const CWellFormation* IWellModel::AssociatedFormation(const CFormationBase& form
 {
   TFormationMap::const_iterator it = m_mpFormations.find(&formation);
   if(it != m_mpFormations.end())
-    return it->second;
+  return it->second;
 
   return 0;
 }
@@ -312,22 +312,22 @@ double IWellModel::FirstValidAHD() const
 {
   const IWellModel* pParent = dynamic_cast<const IWellModel*>(&ParentModel());
   if(pParent)
-    return pParent->StartPosition().AHD();
+  return pParent->StartPosition().AHD();
 
   if ( WellPath() )
   {
-    const well::CWellPointList& lstFormationPoints =
-        const_cast<CWellPath *>(WellPath())->FormIntersecPoints();
-    well::CWellPoint* pFirst = lstFormationPoints.First();
-    assert(pFirst != 0);
-    return pFirst->TMD();
+  const well::CWellPointList& lstFormationPoints =
+    const_cast<CWellPath *>(WellPath())->FormIntersecPoints();
+  well::CWellPoint* pFirst = lstFormationPoints.First();
+  assert(pFirst != 0);
+  return pFirst->TMD();
   }
   else // wjrx mantis 3401
   {
-    const std::list<CNewGeoWellPoint>& lstFormationPoints =
+  const std::list<CNewGeoWellPoint>& lstFormationPoints =
       const_cast<CNewWellPath *>(NewWellPath())->FormIntersecPoints();
-    assert( lstFormationPoints.size() >= 2 );
-    return lstFormationPoints.front().TMD();
+  assert( lstFormationPoints.size() >= 2 );
+  return lstFormationPoints.front().TMD();
   }
 }
 
@@ -335,22 +335,22 @@ double IWellModel::LastValidAHD() const
 {
   const IWellModel* pParent = dynamic_cast<const IWellModel*>(&ParentModel());
   if(pParent)
-    return pParent->EndPosition().AHD();
+  return pParent->EndPosition().AHD();
 
   if ( WellPath() )
   {
-    const well::CWellPointList& lstFormationPoints =
+  const well::CWellPointList& lstFormationPoints =
       WellPath()->FormIntersecPoints();
-    well::CWellPoint* pLast = lstFormationPoints.Last();
-    assert(pLast != 0);
-    return pLast->TMD();
+  well::CWellPoint* pLast = lstFormationPoints.Last();
+  assert(pLast != 0);
+  return pLast->TMD();
   }
   else // wjrx mantis 3401
   {
-    const std::list<CNewGeoWellPoint>& lstFormationPoints =
+  const std::list<CNewGeoWellPoint>& lstFormationPoints =
       const_cast<CNewWellPath *>(NewWellPath())->FormIntersecPoints();
-    assert( lstFormationPoints.size() >= 2 );
-    return lstFormationPoints.back().TMD();
+  assert( lstFormationPoints.size() >= 2 );
+  return lstFormationPoints.back().TMD();
   }
 }
 
@@ -360,49 +360,49 @@ const CFormationBase* IWellModel::FormationContaining(double dAHD) const
 
   if ( WellPath() )
   {
-    const well::CWellSectionList& sectionlist = WellPath()->FormationSections();
-    well::CWellSectionList::Iterator it = sectionlist.begin();
-    while(it != sectionlist.end())
-    {
+  const well::CWellSectionList& sectionlist = WellPath()->FormationSections();
+  well::CWellSectionList::Iterator it = sectionlist.begin();
+  while(it != sectionlist.end())
+  {
       const well::IWellSection* pSection = *it;
       if(pSection->Contains(dAHD, true))
       {
-        assert(dynamic_cast<const CFormationSection*>(pSection));
-        const CFormationSection* pFormSection = static_cast<const CFormationSection*>(pSection);
-        if(std::find(vcFormations.begin(), vcFormations.end(), pFormSection->Formation()) != vcFormations.end())
-        {
+    assert(dynamic_cast<const CFormationSection*>(pSection));
+    const CFormationSection* pFormSection = static_cast<const CFormationSection*>(pSection);
+    if(std::find(vcFormations.begin(), vcFormations.end(), pFormSection->Formation()) != vcFormations.end())
+    {
           const CFormationBase* pForm = pFormSection->Formation();
           const IWellModel* pParent = dynamic_cast<const IWellModel*>(&ParentModel());
           if(pParent && pForm)
-            return pParent->AssociatedFormation(*pForm);
+      return pParent->AssociatedFormation(*pForm);
           return pForm;
-        }
+    }
       }
       ++it;
-    }
+  }
   }
   else // wjrx mantis 3401
   {
-    const std::list<CNewFormationSection>& sectionList= 
+  const std::list<CNewFormationSection>& sectionList= 
       const_cast<CNewWellPath *>(NewWellPath())->FormationSections();
 
-    std::list<CNewFormationSection>::const_iterator it= sectionList.begin();
-    while(it != sectionList.end())
-    {
+  std::list<CNewFormationSection>::const_iterator it= sectionList.begin();
+  while(it != sectionList.end())
+  {
       const CNewFormationSection* pSection = &(*it);
       if(pSection->Contains(dAHD, true))
       {
-        if(std::find(vcFormations.begin(), vcFormations.end(), pSection->Formation()) != vcFormations.end())
-        {
+    if(std::find(vcFormations.begin(), vcFormations.end(), pSection->Formation()) != vcFormations.end())
+    {
           const CFormationBase* pForm = pSection->Formation();
           const IWellModel* pParent = dynamic_cast<const IWellModel*>(&ParentModel());
           if(pParent && pForm)
-            return pParent->AssociatedFormation(*pForm);
+      return pParent->AssociatedFormation(*pForm);
           return pForm;
-        }
+    }
       }
       ++it;
-    }
+  }
   }
 
   return 0;
@@ -418,12 +418,12 @@ const CFormationSection* IWellModel::FormationSection(const CFormationBase& form
   well::CWellSectionList::Iterator it = sectionlist.begin();
   while(it != sectionlist.end())
   {
-    const well::IWellSection* pSection = *it;
-    assert(dynamic_cast<const CFormationSection*>(pSection));
-    const CFormationSection* pFormSection = static_cast<const CFormationSection*>(pSection);
-    if(pFormSection->Formation() == &formation)
+  const well::IWellSection* pSection = *it;
+  assert(dynamic_cast<const CFormationSection*>(pSection));
+  const CFormationSection* pFormSection = static_cast<const CFormationSection*>(pSection);
+  if(pFormSection->Formation() == &formation)
       return pFormSection;
-    ++it;
+  ++it;
   }
 
   return 0;
@@ -438,13 +438,13 @@ const CNewFormationSection* IWellModel::NewFormationSection
   if ( NewWellPath() == 0 ) return 0;
 
   const std::list<CNewFormationSection>& sectionList= 
-    const_cast<CNewWellPath *>(NewWellPath())->FormationSections();
+  const_cast<CNewWellPath *>(NewWellPath())->FormationSections();
 
   std::list<CNewFormationSection>::const_iterator it= sectionList.begin();
   while(it != sectionList.end())
   {
-    if ( (*it).Formation() == &formation ) return &(*it);
-    ++it;
+  if ( (*it).Formation() == &formation ) return &(*it);
+  ++it;
   }
 
   return 0;
@@ -454,14 +454,14 @@ geo::CValue IWellModel::FormationEntryAHD(const CFormationBase& formation) const
 {
   if ( WellPath() )
   {
-    const CFormationSection* pFormSection = FormationSection(formation);
-    if(pFormSection)
+  const CFormationSection* pFormSection = FormationSection(formation);
+  if(pFormSection)
       return geo::CValue(pFormSection->Top().TMD());
   }
   else // wjrx mantis 3401
   {
-    const CNewFormationSection* pFormSection = NewFormationSection(formation);
-    if(pFormSection)
+  const CNewFormationSection* pFormSection = NewFormationSection(formation);
+  if(pFormSection)
       return geo::CValue(pFormSection->Top().TMD());
   }
 
@@ -472,14 +472,14 @@ geo::CValue IWellModel::FormationExitAHD(const CFormationBase& formation) const
 {
   if ( WellPath() )
   {
-    const CFormationSection* pFormSection = FormationSection(formation);
-    if(pFormSection)
+  const CFormationSection* pFormSection = FormationSection(formation);
+  if(pFormSection)
       return geo::CValue(pFormSection->Bottom().TMD());
   }
   else // wjrx mantis 3401
   {
-    const CNewFormationSection* pFormSection = NewFormationSection(formation);
-    if(pFormSection)
+  const CNewFormationSection* pFormSection = NewFormationSection(formation);
+  if(pFormSection)
       return geo::CValue(pFormSection->Bottom().TMD());
   }
 
@@ -497,16 +497,16 @@ std::vector<const CFormationBase*> IWellModel::ValidFormations() const
   const IWellModel* pParentModel = dynamic_cast<const IWellModel*>(&ParentModel());
   if(pParentModel)
   {
-    valStartAHD = pParentModel->StartPosition().AHD();
-    valEndAHD = pParentModel->EndPosition().AHD();
+  valStartAHD = pParentModel->StartPosition().AHD();
+  valEndAHD = pParentModel->EndPosition().AHD();
   }
 
   if ( WellPath() )
   {
-    const well::CWellSectionList& sectionlist = WellPath()->FormationSections();
-    well::CWellSectionList::Iterator it = sectionlist.begin();
-    while(it != sectionlist.end())
-    {
+  const well::CWellSectionList& sectionlist = WellPath()->FormationSections();
+  well::CWellSectionList::Iterator it = sectionlist.begin();
+  while(it != sectionlist.end())
+  {
       const well::IWellSection* pSection = *it;
       assert(dynamic_cast<const CFormationSection*>(pSection));
       const CFormationSection* pFormSection = static_cast<const CFormationSection*>(pSection);
@@ -514,48 +514,48 @@ std::vector<const CFormationBase*> IWellModel::ValidFormations() const
       const CFormationBase* pFormation = pFormSection->Formation();
       if(pFormation && stProcessed.insert(pFormation).second)
       {
-        bool bInParentModel = true;
-        if(valStartAHD.Valid() && valEndAHD.Valid())
-        {
+    bool bInParentModel = true;
+    if(valStartAHD.Valid() && valEndAHD.Valid())
+    {
           double dSectionStartAHD = pFormSection->Top().TMD();
           double dSectionEndAHD = pFormSection->Bottom().TMD();
           bInParentModel = (!(dSectionEndAHD < valStartAHD.Value() + EPS) && !(dSectionStartAHD > valEndAHD.Value() - EPS));
-        }
+    }
 
-        if(bInParentModel)
+    if(bInParentModel)
           vcRet.push_back(pFormation);
       }
 
       ++it;
-    }
+  }
   }
   else
   {
-    const std::list<CNewFormationSection>& sectionList= 
+  const std::list<CNewFormationSection>& sectionList= 
       const_cast<CNewWellPath *>(NewWellPath())->FormationSections();
 
-    std::list<CNewFormationSection>::const_iterator it= sectionList.begin();
-    while(it != sectionList.end())
-    {
+  std::list<CNewFormationSection>::const_iterator it= sectionList.begin();
+  while(it != sectionList.end())
+  {
       const CNewFormationSection* pFormSection = &(*it);
 
       const CFormationBase* pFormation = pFormSection->Formation();
       if(pFormation && stProcessed.insert(pFormation).second)
       {
-        bool bInParentModel = true;
-        if(valStartAHD.Valid() && valEndAHD.Valid())
-        {
+    bool bInParentModel = true;
+    if(valStartAHD.Valid() && valEndAHD.Valid())
+    {
           double dSectionStartAHD = pFormSection->Top().TMD();
           double dSectionEndAHD = pFormSection->Bottom().TMD();
           bInParentModel = (!(dSectionEndAHD < valStartAHD.Value() + EPS) && !(dSectionStartAHD > valEndAHD.Value() - EPS));
-        }
+    }
 
-        if(bInParentModel)
+    if(bInParentModel)
           vcRet.push_back(pFormation);
       }
 
       ++it;
-    }
+  }
   }
 
   return vcRet;
@@ -572,11 +572,11 @@ bool IWellModel::HasDistributedBoundaryLoads() const
   CDepletionStageEntry::const_iterator it;
   for(it = DepletionStageEntry().begin(); it != DepletionStageEntry().end(); ++it)
   {
-    if(displasup.Distributed(*it) || pressusup.Distributed(*it))
-    {
+  if(displasup.Distributed(*it) || pressusup.Distributed(*it))
+  {
       bDistributed = true;
       break;
-    }
+  }
   }
 
   return bDistributed;
@@ -597,7 +597,7 @@ void IWellModel::setModelProxy(CModelProxy* modelProxy)
 
   if (m_modelProxy != 0)
   {
-    delete m_modelProxy;
+  delete m_modelProxy;
   }
 
   m_modelProxy = modelProxy;
@@ -613,7 +613,7 @@ void IWellModel::SwitchTo(CFemAppModel* currentModel)
   assert(currentModel == this);
 
   if(m_mpFormations.empty())
-    DetectFormations();
+  DetectFormations();
 
   CModelBase::SwitchTo(currentModel);
 }
@@ -624,45 +624,45 @@ void IWellModel::DetectFormations()
 
   if ( WellPath() )
   {
-    const well::CWellSectionList& lstFormationSections = WellPath()->FormationSections();
-    well::CWellSectionList::Iterator its = lstFormationSections.begin();
-    while(its != lstFormationSections.end())
-    {
+  const well::CWellSectionList& lstFormationSections = WellPath()->FormationSections();
+  well::CWellSectionList::Iterator its = lstFormationSections.begin();
+  while(its != lstFormationSections.end())
+  {
       const well::IWellSection* pSection = *its;
       const CFormationSection* pFormSection = static_cast<const CFormationSection*>(pSection);
       const CFormationBase* pForm = pFormSection->Formation();
       const IWellModel* pParent = dynamic_cast<const IWellModel*>(&ParentModel());
       if(pParent && pForm)
-        pForm = pParent->AssociatedFormation(*pForm);
+    pForm = pParent->AssociatedFormation(*pForm);
 
       assert(pForm);
       TFormationMap::iterator it = m_mpFormations.find(pForm);
       if(it == m_mpFormations.end())
-        m_mpFormations.insert(TFormationMap::value_type(pForm, new CWellFormation(*pForm, MD_WELLMODEL_FORMATION, *this)));
+    m_mpFormations.insert(TFormationMap::value_type(pForm, new CWellFormation(*pForm, MD_WELLMODEL_FORMATION, *this)));
 
       ++its;
-    }
+  }
   }
   else // wjrx mantis 3401
   {
-    const std::list<CNewFormationSection>& sectionList= 
+  const std::list<CNewFormationSection>& sectionList= 
       NewWellPath()->FormationSections();
-    std::list<CNewFormationSection>::const_iterator its= sectionList.begin();
-    while( its != sectionList.end() )
-    {
+  std::list<CNewFormationSection>::const_iterator its= sectionList.begin();
+  while( its != sectionList.end() )
+  {
       const CNewFormationSection* pFormSection = &(*its);
       const CFormationBase* pForm = pFormSection->Formation();
       const IWellModel* pParent = dynamic_cast<const IWellModel*>(&ParentModel());
       if(pParent && pForm)
-        pForm = pParent->AssociatedFormation(*pForm);
+    pForm = pParent->AssociatedFormation(*pForm);
 
       assert(pForm);
       TFormationMap::iterator itf = m_mpFormations.find(pForm);
       if(itf == m_mpFormations.end())
-        m_mpFormations.insert(TFormationMap::value_type(pForm, new CWellFormation(*pForm, MD_WELLMODEL_FORMATION, *this)));
+    m_mpFormations.insert(TFormationMap::value_type(pForm, new CWellFormation(*pForm, MD_WELLMODEL_FORMATION, *this)));
 
       ++its;
-    }
+  }
   }
 }
 
@@ -670,7 +670,7 @@ void IWellModel::ClearFormations()
 {
   TFormationMap::iterator it;
   for(it = m_mpFormations.begin(); it != m_mpFormations.end(); ++it)
-    delete it->second;
+  delete it->second;
 
   m_mpFormations.clear();
 }
@@ -678,7 +678,7 @@ void IWellModel::ClearFormations()
 void IWellModel::addFormation(const CFormationBase* formation)
 {
   m_mpFormations.insert(TFormationMap::value_type(formation,
-    new CWellFormation(*formation, MD_WELLMODEL_FORMATION, *this)));
+  new CWellFormation(*formation, MD_WELLMODEL_FORMATION, *this)));
 }
 
 /////
@@ -711,12 +711,12 @@ IWellModel::CPositionDef& IWellModel::CPositionDef::operator=(const CPositionDef
 
   if(!operator==(rhs))
   {
-    m_nMethod    = rhs.m_nMethod;
-    m_dAHD       = rhs.m_dAHD;
-    m_pFormation = rhs.m_pFormation;
-    m_bStart     = rhs.m_bStart;
+  m_nMethod    = rhs.m_nMethod;
+  m_dAHD       = rhs.m_dAHD;
+  m_pFormation = rhs.m_pFormation;
+  m_bStart     = rhs.m_bStart;
 
-    Modified(PD_POSCHANGED);
+  Modified(PD_POSCHANGED);
   }
 
   return *this;
@@ -725,39 +725,39 @@ IWellModel::CPositionDef& IWellModel::CPositionDef::operator=(const CPositionDef
 bool IWellModel::CPositionDef::operator==(const CPositionDef& rhs) const
 {
   return (
-    &m_model     == &rhs.m_model       &&
-    m_nMethod    == rhs.m_nMethod      &&
-    m_dAHD       == rhs.m_dAHD         &&
-    m_bStart     == rhs.m_bStart       &&
-    m_pFormation == rhs.m_pFormation);
+  &m_model     == &rhs.m_model       &&
+  m_nMethod    == rhs.m_nMethod      &&
+  m_dAHD       == rhs.m_dAHD         &&
+  m_bStart     == rhs.m_bStart       &&
+  m_pFormation == rhs.m_pFormation);
 }
 
 void IWellModel::CPositionDef::OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint)
 {
   if(uHint == PD_POSCHANGED)
   {
-    const CPositionDef* pDef = dynamic_cast<const CPositionDef*>(&node);
-    if(pDef && &pDef->m_model == &m_model.ParentModel())
-    {
+  const CPositionDef* pDef = dynamic_cast<const CPositionDef*>(&node);
+  if(pDef && &pDef->m_model == &m_model.ParentModel())
+  {
       if(m_bStart)
       {
-        if(pDef->AHD() > AHD())
-        {
+    if(pDef->AHD() > AHD())
+    {
           SetDefault();
           if(m_model.EndPosition().AHD() <= AHD())
-            m_model.EndPosition().SetDefault();
-        }
+      m_model.EndPosition().SetDefault();
+    }
       }
       else
       {
-        if(pDef->AHD() < AHD())
-        {
+    if(pDef->AHD() < AHD())
+    {
           SetDefault();
           if(m_model.StartPosition().AHD() >= AHD())
-            m_model.StartPosition().SetDefault();
-        }
-      }
+      m_model.StartPosition().SetDefault();
     }
+      }
+  }
   }
 }
 
@@ -787,9 +787,9 @@ void IWellModel::CPositionDef::SetDefault()
   m_nMethod = PDM_DEFAULT;
 
   if(m_bStart)
-    m_dAHD = m_model.FirstValidAHD();
+  m_dAHD = m_model.FirstValidAHD();
   else
-    m_dAHD = m_model.LastValidAHD();
+  m_dAHD = m_model.LastValidAHD();
 
   m_pFormation = m_model.FormationContaining(m_dAHD);
 
@@ -811,9 +811,9 @@ void IWellModel::CPositionDef::SetFormation(const CFormationBase& formation)
   m_pFormation = &formation;
   geo::CValue valAHD;
   if(m_bStart)
-    valAHD = m_model.FormationEntryAHD(formation);
+  valAHD = m_model.FormationEntryAHD(formation);
   else
-    valAHD = m_model.FormationExitAHD(formation);
+  valAHD = m_model.FormationExitAHD(formation);
   assert(valAHD.Valid());
   m_dAHD = valAHD.Value();
   m_nMethod = PDM_FORMATION;
@@ -831,12 +831,12 @@ void IWellModel::CPositionDef::LoadStream(CStorageNode::TSTREAM& stream, CStream
   stream >> nFormIndex;
   if(nFormIndex >= 0)
   {
-    TFormationBaseEntry& form_entry = (TFormationBaseEntry&)(*m_model.ParentModel().GraphEntry(MD_BASE_FORMATION));
-    m_pFormation = form_entry.FindIndex(nFormIndex);
-    assert(!m_model.parentModel()->Mesh().IsMesh() || m_pFormation);
+  TFormationBaseEntry& form_entry = (TFormationBaseEntry&)(*m_model.ParentModel().GraphEntry(MD_BASE_FORMATION));
+  m_pFormation = form_entry.FindIndex(nFormIndex);
+  assert(!m_model.parentModel()->Mesh().IsMesh() || m_pFormation);
   }
   else
-    m_pFormation = 0;
+  m_pFormation = 0;
 
   Modified(PD_POSCHANGED);
 }
@@ -884,12 +884,12 @@ void IWellModel::CBoundary::OnNeighbourModified(const CGraphNode& node, enum Mod
   const CModelBase& model = static_cast<const CModelBase&>(Model());
   if(&node == &model.Mesh() && (uHint == MeshCleared || uHint == MeshCreated))
   {
-    if(uHint == MeshCleared)
+  if(uHint == MeshCleared)
       Clear();
-    else if(uHint == MeshCreated)
+  else if(uHint == MeshCreated)
       OnSet(TMinMax(model.Mesh().Min(), model.Mesh().Max()));
 
-    Modified();
+  Modified();
   }
 }
 
@@ -935,11 +935,11 @@ const CBoundaryInterfaceMaterial& IWellModel::CBoundary::InterfaceMaterial(const
   switch(surfdef)
   {
   case CBoundaryInterfaceDef::BSURF_TOP:
-    return m_pBoundaryInterfaceDef->InterfaceMaterialTop(iface);
+  return m_pBoundaryInterfaceDef->InterfaceMaterialTop(iface);
   case CBoundaryInterfaceDef::BSURF_BOTTOM:
-    return m_pBoundaryInterfaceDef->InterfaceMaterialBottom(iface);
+  return m_pBoundaryInterfaceDef->InterfaceMaterialBottom(iface);
   case CBoundaryInterfaceDef::BSURF_SIDE:
-    break;
+  break;
   }
 
   assert(surfdef == CBoundaryInterfaceDef::BSURF_SIDE);
@@ -955,14 +955,14 @@ void IWellModel::CBoundary::CreateChildren()
 void IWellModel::CBoundary::LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress)
 {
   if(version >= CStreamVersion(3, 7, 9))
-    CBoundaryBase::LoadStream(stream, version, progress);
+  CBoundaryBase::LoadStream(stream, version, progress);
 
   m_pBoundaryInterfaceDef->LoadStream(stream, version, progress);
 
   if(version >= CStreamVersion(3, 7, 15))
   {
-    m_pDisplacementSupport->LoadStream(stream, version, progress);
-    m_pPressureSupport->LoadStream(stream, version, progress);
+  m_pDisplacementSupport->LoadStream(stream, version, progress);
+  m_pPressureSupport->LoadStream(stream, version, progress);
   }
 }
 
@@ -989,23 +989,23 @@ int IWellModel::CBoundary::InterfaceNodeSize() const
 {
   if(m_vcInterfaceNode.empty())
   {
-    std::set<int> stNode;
+  std::set<int> stNode;
 
-    for(size_t i = 0; i < m_arBoundaryElements.Size(); ++i)
-    {
+  for(size_t i = 0; i < m_arBoundaryElements.Size(); ++i)
+  {
       const geo::CInterfaceElement& iface = m_arBoundaryElements.Object(i);
       assert(iface.NrOfNodes() == 8);
       assert(iface.FrontFace() == iface.BackFace());
       int j;
       for(j = 4; j < 8; ++j)
-        stNode.insert(iface.Node(j).Index());
-    }
+    stNode.insert(iface.Node(j).Index());
+  }
 
-    m_vcInterfaceNode.resize(stNode.size());
-    std::set<int>::iterator it;
-    int j;
-    const CModelBase& model = static_cast<const CModelBase&>(Model());
-    for(j = 0, it = stNode.begin(); it != stNode.end(); ++it, ++j)
+  m_vcInterfaceNode.resize(stNode.size());
+  std::set<int>::iterator it;
+  int j;
+  const CModelBase& model = static_cast<const CModelBase&>(Model());
+  for(j = 0, it = stNode.begin(); it != stNode.end(); ++it, ++j)
       m_vcInterfaceNode[j] = &model.Mesh().Mesh().Node(*it);
   }
 
@@ -1081,9 +1081,9 @@ bool IWellModel::CBoundary::CDisplacementSupport::IsValidValueTypeId(unsigned in
 unsigned int IWellModel::CBoundary::CDisplacementSupport::IconId() const
 {
   if (static_cast<const IWellModel&>(Model()).HasDistributedBoundaryLoads())
-    return IDI_NODALSUPPORT;
+  return IDI_NODALSUPPORT;
   else
-    return IDI_NODALSUPPORT_PARENT;
+  return IDI_NODALSUPPORT_PARENT;
 }
 
 
@@ -1102,7 +1102,7 @@ bool IWellModel::CBoundary::CPressureSupport::IsValidValueTypeId(unsigned int uV
 unsigned int IWellModel::CBoundary::CPressureSupport::IconId() const
 {
   if (static_cast<const IWellModel&>(Model()).HasDistributedBoundaryLoads())
-    return IDI_FACESUPPORT;
+  return IDI_FACESUPPORT;
   else
-    return IDI_FACESUPPORT_PARENT;
+  return IDI_FACESUPPORT_PARENT;
 }

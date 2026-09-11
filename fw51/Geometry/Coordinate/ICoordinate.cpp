@@ -21,11 +21,11 @@ void ICoordinate::Set(const double &dX, const double &dY, const double &dZ)
 bool ICoordinate::CloseTo(const ICoordinate& coord, double eps) const
 {
   if (fabs(coord.X() - X()) > eps)
-    return false;
+  return false;
   if (fabs(coord.Y() - Y()) > eps)
-    return false;
+  return false;
   if (fabs(coord.Z() - Z()) > eps)
-    return false;
+  return false;
   return true;
 }
 
@@ -33,7 +33,7 @@ void ICoordinate::Rotate(const IVector &vec, const double &dAngleDeg)
 {
   if(fabs(dAngleDeg) < EPS)
   {
-    return;
+  return;
   }
 
   double AngleRad = dAngleDeg * DEG_TO_RAD;
@@ -91,7 +91,7 @@ void ICoordinate::Transform(const IMatrix &matrix)
 CPoint ICoordinate::Min() const
 {
   if(Empty())
-    return CPoint();
+  return CPoint();
 
   return CPoint(X(), Y(), Z());
 }
@@ -99,7 +99,7 @@ CPoint ICoordinate::Min() const
 CPoint ICoordinate::Max() const
 {
   if(Empty())
-    return CPoint();
+  return CPoint();
 
   return CPoint(X(), Y(), Z());
 }
@@ -131,12 +131,12 @@ bool ICoordinate::operator >(const ICoordinate &rhs) const
 {
   if(*this < rhs)
   {
-    return false;
+  return false;
   }
 
   if(*this == rhs)
   {
-    return false;
+  return false;
   }
 
   return true;
@@ -160,25 +160,25 @@ bool ICoordinate::CCoordinateXYLess::operator()(const geo::ICoordinate *p1, cons
 
   if(m_dEps > 0)
   {
-    TLongLong p1X = TLongLong(p1->X() / m_dEps);
-    TLongLong p1Y = TLongLong(p1->Y() / m_dEps);
-    TLongLong p2X = TLongLong(p2->X() / m_dEps);
-    TLongLong p2Y = TLongLong(p2->Y() / m_dEps);
+  TLongLong p1X = TLongLong(p1->X() / m_dEps);
+  TLongLong p1Y = TLongLong(p1->Y() / m_dEps);
+  TLongLong p2X = TLongLong(p2->X() / m_dEps);
+  TLongLong p2Y = TLongLong(p2->Y() / m_dEps);
 
-    if(p1X < p2X)
+  if(p1X < p2X)
       return true;
 
-    if(p1X > p2X)
+  if(p1X > p2X)
       return false;
 
-    return p1Y < p2Y;
+  return p1Y < p2Y;
   }
   else
   {
-    if(p1->X() < p2->X())
+  if(p1->X() < p2->X())
       return true;
 
-    if(p1->X() > p2->X())
+  if(p1->X() > p2->X())
       return false;
   }
 
@@ -203,39 +203,39 @@ bool ICoordinate::CCoordinateLess::operator()(const geo::ICoordinate *p1, const 
 
   if(m_dEps > 0)
   {
-    TLongLong p1X = TLongLong(p1->X() / m_dEps);
-    TLongLong p1Y = TLongLong(p1->Y() / m_dEps);
-    TLongLong p1Z = TLongLong(p1->Z() / m_dEps);
-    TLongLong p2X = TLongLong(p2->X() / m_dEps);
-    TLongLong p2Y = TLongLong(p2->Y() / m_dEps);
-    TLongLong p2Z = TLongLong(p2->Z() / m_dEps);
+  TLongLong p1X = TLongLong(p1->X() / m_dEps);
+  TLongLong p1Y = TLongLong(p1->Y() / m_dEps);
+  TLongLong p1Z = TLongLong(p1->Z() / m_dEps);
+  TLongLong p2X = TLongLong(p2->X() / m_dEps);
+  TLongLong p2Y = TLongLong(p2->Y() / m_dEps);
+  TLongLong p2Z = TLongLong(p2->Z() / m_dEps);
 
-    if(p1X < p2X)
+  if(p1X < p2X)
       return true;
 
-    if(p1X > p2X)
+  if(p1X > p2X)
       return false;
 
-    if(p1Y < p2Y)
+  if(p1Y < p2Y)
       return true;
 
-    if(p1Y > p2Y)
+  if(p1Y > p2Y)
       return false;
 
-    return p1Z < p2Z;
+  return p1Z < p2Z;
   }
   else
   {
-    if(p1->X() < p2->X())
+  if(p1->X() < p2->X())
       return true;
 
-    if(p1->X() > p2->X())
+  if(p1->X() > p2->X())
       return false;
 
-    if(p1->Y() < p2->Y())
+  if(p1->Y() < p2->Y())
       return true;
 
-    if(p1->Y() > p2->Y())
+  if(p1->Y() > p2->Y())
       return false;
   }
 

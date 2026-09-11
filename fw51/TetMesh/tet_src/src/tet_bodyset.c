@@ -92,7 +92,7 @@ extern void BodySetPrint( BodySet_t *bodySet, FILE *fp )
 
 extern int BodySetSize( const BodySet_t *bodyset )
 {
-	return SetSize(bodyset->body);
+  return SetSize(bodyset->body);
 }
 
 extern BoundBox_t *BodySetBoundBox( 
@@ -163,19 +163,19 @@ static bool_t BodyContainsFullTest(
          BoundBoxLineDataInit( &lineData, center, point );
          BoundBoxTreeFind( intersect, bbTree, &lineData, BoundBoxLineOverlap );
          if ( !SetSize( intersect ) ) {
-            isNested = FALSE;
+      isNested = FALSE;
          } else {
-            /* Full test for line-triangle intersection */
-            bool_t     found = FALSE;
-            const int *triangleId = SetGet( intersect );
-            int        t;
-            for ( t = 0; t < SetSize( intersect ) && !found; t++ ) {
+      /* Full test for line-triangle intersection */
+      bool_t     found = FALSE;
+      const int *triangleId = SetGet( intersect );
+      int        t;
+      for ( t = 0; t < SetSize( intersect ) && !found; t++ ) {
                Triangle_t **outerTriangleP = SetElmGet( outerTriangle, triangleId[t] );
                found = TriangleIntersectLine( *outerTriangleP, pointSet, center, point, smallLength );
-            }
-            if (!found ) { 
+      }
+      if (!found ) { 
                isNested = FALSE;
-            }
+      }
          }
          triangle = SurfaceNext( surf, NULL, &surfIter );
       }
@@ -206,8 +206,8 @@ static Set_t *BodyContainBodies(
       int         n;
       for ( n = 0; n < SetSize( work ); n++ ) {
          if ( ids[n] != bodyId ) {
-            BoundBox_t  bbInnerMem, *bbInner = BoundBoxTreeGet( bbTree, ids[n], &bbInnerMem );
-            if ( BoundBoxContainsBoundBox( bb, bbInner ) ) {
+      BoundBox_t  bbInnerMem, *bbInner = BoundBoxTreeGet( bbTree, ids[n], &bbInnerMem );
+      if ( BoundBoxContainsBoundBox( bb, bbInner ) ) {
                Body_t    *bodyInner = BodySetGet( bodySet, ids[n] );
                /* If in same group never nested ?!?!? */
                if( BodyGroupGet( bodyOuter ) != BodyGroupGet( bodyInner ) ) {
@@ -215,7 +215,7 @@ static Set_t *BodyContainBodies(
                      SetAdd( result, ids+n, 1 );
                   }
                }
-            }
+      }
          }
       }
       SetDelete( work );
@@ -243,20 +243,20 @@ static void GetHierarchy(
          int     n;
          /* Recursively find containment */
          for ( n = 0; n < nContains && !MESH_ERROR( mesh ); n++ ) {
-            if ( contains[n] != outerBodyId ) {
+      if ( contains[n] != outerBodyId ) {
                GetHierarchy( mesh, bodySet, contains[n], bodyId, pointSet, bbTree, bodyDone );
-            } else {
+      } else {
                MeshMessageOpen( mesh, MeshStatusBodyNesting );
                MeshMessageAdd( mesh, "Failed to determine body nesting" );
                MeshMessageClose( mesh );
-            }
+      }
          }
          /* All inner bodies that are not yet in another body, are in this body */
          for ( n = 0; n < nContains && !MESH_ERROR( mesh ); n++ ) {
-            Body_t *containBody = BodySetGet( bodySet, contains[ n ] );
-            if ( !BodyOuterGet( containBody ) ) {
+      Body_t *containBody = BodySetGet( bodySet, contains[ n ] );
+      if ( !BodyOuterGet( containBody ) ) {
                BodyOuterSet( containBody, thisBody );
-            }
+      }
          }
       }
 

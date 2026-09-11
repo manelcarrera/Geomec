@@ -8,13 +8,13 @@
 class CFileCopier
 {
 public:
-	CFileCopier(const QString& strSourcePath, const QString& strTargetPath, const QString& strTitle);
-	bool Copy();
+  CFileCopier(const QString& strSourcePath, const QString& strTargetPath, const QString& strTitle);
+  bool Copy();
 
 private:
-	QString m_strSourcePath;
-	QString m_strTargetPath;
-	QString m_strTitle;
+  QString m_strSourcePath;
+  QString m_strTargetPath;
+  QString m_strTitle;
 };
 
 #endif  // _FileCopier_h

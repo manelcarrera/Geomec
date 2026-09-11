@@ -26,15 +26,15 @@ static void gnode_split_destroy (GtsObject * object)
   GtsGNodeSplit * ns = GTS_GNODE_SPLIT (object);
 
   if (gts_container_size (GTS_CONTAINER (ns->n)) == 0) {
-    g_assert (GTS_SLIST_CONTAINEE (ns->n)->containers == NULL);
-    gts_object_destroy (GTS_OBJECT (ns->n));
+  g_assert (GTS_SLIST_CONTAINEE (ns->n)->containers == NULL);
+  gts_object_destroy (GTS_OBJECT (ns->n));
   }
   else {
-    g_warning ("Memory deallocation for GtsGNodeSplit not fully implemented yet: memory leak!");
+  g_warning ("Memory deallocation for GtsGNodeSplit not fully implemented yet: memory leak!");
   }
 
   (* GTS_OBJECT_CLASS (gts_gnode_split_class ())->parent_class->destroy) 
-    (object);
+  (object);
 }
 
 static void gnode_split_class_init (GtsGNodeSplitClass * klass)
@@ -58,7 +58,7 @@ GtsGNodeSplitClass * gts_gnode_split_class (void)
   static GtsGNodeSplitClass * klass = NULL;
 
   if (klass == NULL) {
-    GtsObjectClassInfo gnode_split_info = {
+  GtsObjectClassInfo gnode_split_info = {
       "GtsGNodeSplit",
       sizeof (GtsGNodeSplit),
       sizeof (GtsGNodeSplitClass),
@@ -66,8 +66,8 @@ GtsGNodeSplitClass * gts_gnode_split_class (void)
       (GtsObjectInitFunc) gnode_split_init,
       (GtsArgSetFunc) NULL,
       (GtsArgGetFunc) NULL
-    };
-    klass = gts_object_class_new (gts_object_class (), &gnode_split_info);
+  };
+  klass = gts_object_class_new (gts_object_class (), &gnode_split_info);
   }
 
   return klass;
@@ -86,9 +86,9 @@ GtsGNodeSplitClass * gts_gnode_split_class (void)
  * Returns: the new #GtsGNodeSplit.
  */
 GtsGNodeSplit * gts_gnode_split_new (GtsGNodeSplitClass * klass,
-				     GtsGNode * n, 
-				     GtsObject * n1,
-				     GtsObject * n2)
+             GtsGNode * n, 
+             GtsObject * n1,
+             GtsObject * n2)
 {
   GtsGNodeSplit * ns;
 
@@ -113,13 +113,13 @@ static void connect_edge (GtsGEdge * e, gpointer * data)
 
   if (GTS_OBJECT (e)->reserved || /* edge is disconnected */
       gts_gedge_connects (e, n1, n2))
-    return;
+  return;
   if (e->n1 == n1 || e->n1 == n2)
-    e->n1 = n;
+  e->n1 = n;
   else if (e->n2 == n1 || e->n2 == n2)
-    e->n2 = n;
+  e->n2 = n;
   else
-    g_assert_not_reached ();
+  g_assert_not_reached ();
   gts_container_add (GTS_CONTAINER (n), GTS_CONTAINEE (e));
 }
 
@@ -133,8 +133,8 @@ static void connect_edge (GtsGEdge * e, gpointer * data)
  * process will be of class @klass.  
  */
 void gts_gnode_split_collapse (GtsGNodeSplit * ns,
-			       GtsGraph * g,
-			       GtsWGEdgeClass * klass)
+             GtsGraph * g,
+             GtsWGEdgeClass * klass)
 {
   GtsGNode * n1, * n2;
   GSList * i;
@@ -150,29 +150,29 @@ void gts_gnode_split_collapse (GtsGNodeSplit * ns,
   /* look for triangles */
   i = GTS_SLIST_CONTAINER (n1)->items;
   while (i) {
-    GtsGEdge * e13 = i->data;
-    GtsGNode * n3 = GTS_GNODE_NEIGHBOR (n1, e13);
-    if (n3 != n2) {
+  GtsGEdge * e13 = i->data;
+  GtsGNode * n3 = GTS_GNODE_NEIGHBOR (n1, e13);
+  if (n3 != n2) {
       GSList * j = GTS_SLIST_CONTAINER (n3)->items;
       while (j) {
-	GtsGEdge * e32 = j->data;
-	GSList * next = j->next;
-	GtsGNode * n4 = GTS_GNODE_NEIGHBOR (n3, e32);
-	if (n4 == n2) { /* found triangle n1 (e13) n3 (e32) n2 */
-	  gts_wgedge_new (klass, ns->n, n3,
-			  gts_gedge_weight (e13) + gts_gedge_weight (e32));
-	  GTS_OBJECT (e13)->reserved = n3;
-	  GTS_OBJECT (e32)->reserved = n3;
-	  GTS_SLIST_CONTAINER (n3)->items = 
-	    g_slist_remove (GTS_SLIST_CONTAINER (n3)->items, e32);
-	}
-	j = next;
+  GtsGEdge * e32 = j->data;
+  GSList * next = j->next;
+  GtsGNode * n4 = GTS_GNODE_NEIGHBOR (n3, e32);
+  if (n4 == n2) { /* found triangle n1 (e13) n3 (e32) n2 */
+    gts_wgedge_new (klass, ns->n, n3,
+        gts_gedge_weight (e13) + gts_gedge_weight (e32));
+    GTS_OBJECT (e13)->reserved = n3;
+    GTS_OBJECT (e32)->reserved = n3;
+    GTS_SLIST_CONTAINER (n3)->items = 
+    g_slist_remove (GTS_SLIST_CONTAINER (n3)->items, e32);
+  }
+  j = next;
       }
       if (GTS_OBJECT (e13)->reserved == n3)
-	GTS_SLIST_CONTAINER (n3)->items = 
-	  g_slist_remove (GTS_SLIST_CONTAINER (n3)->items, e13);
-    }
-    i = i->next;
+  GTS_SLIST_CONTAINER (n3)->items = 
+    g_slist_remove (GTS_SLIST_CONTAINER (n3)->items, e13);
+  }
+  i = i->next;
   }
 
   /* connect edges to new node */
@@ -197,22 +197,22 @@ static void restore_edge (GtsGEdge * e, gpointer * data)
   GtsGNode * n3 = GTS_OBJECT (e)->reserved;
 
   if (n3) { /* e is a disconnected edge */
-    GTS_OBJECT (e)->reserved = NULL;
-    gts_container_add (GTS_CONTAINER (n3), GTS_CONTAINEE (e));
-    return;
+  GTS_OBJECT (e)->reserved = NULL;
+  gts_container_add (GTS_CONTAINER (n3), GTS_CONTAINEE (e));
+  return;
   }
 
   if (gts_gedge_connects (e, n1, n2))
-    return;
+  return;
 
   if (e->n1 == n)
-    e->n1 = n1;
+  e->n1 = n1;
   else if (e->n2 == n)
-    e->n2 = n1;
+  e->n2 = n1;
   else
-    g_assert_not_reached ();
+  g_assert_not_reached ();
   GTS_SLIST_CONTAINER (n)->items = 
-    g_slist_remove (GTS_SLIST_CONTAINER (n)->items, e);
+  g_slist_remove (GTS_SLIST_CONTAINER (n)->items, e);
 }
 
 /**
@@ -223,7 +223,7 @@ static void restore_edge (GtsGEdge * e, gpointer * data)
  * Expands the node split ns adding the new nodes to @g.
  */
 void gts_gnode_split_expand (GtsGNodeSplit * ns,
-			     GtsGraph * g)
+           GtsGraph * g)
 {
   GtsGNode * n1, * n2;
   gpointer data[3];
@@ -232,7 +232,7 @@ void gts_gnode_split_expand (GtsGNodeSplit * ns,
   g_return_if_fail (ns != NULL);
   g_return_if_fail (g != NULL);
   g_return_if_fail (gts_containee_is_contained (GTS_CONTAINEE (ns->n), 
-						GTS_CONTAINER (g)));
+            GTS_CONTAINER (g)));
 
   n1 = GTS_GNODE_SPLIT_N1 (ns);
   n2 = GTS_GNODE_SPLIT_N2 (ns);
@@ -247,9 +247,9 @@ void gts_gnode_split_expand (GtsGNodeSplit * ns,
 
   i = GTS_SLIST_CONTAINER (ns->n)->items;
   while (i) {
-    GSList * next = i->next;
-    gts_container_remove (GTS_CONTAINER (ns->n), GTS_CONTAINEE (i->data));
-    i = next;
+  GSList * next = i->next;
+  gts_container_remove (GTS_CONTAINER (ns->n), GTS_CONTAINEE (i->data));
+  i = next;
   }
   g_assert (gts_container_size (GTS_CONTAINER (ns->n)) == 0);
   
@@ -269,7 +269,7 @@ static void pgraph_destroy (GtsObject * object)
   guint i;
 
   for (i = 0; i < pg->split->len; i++)
-    gts_object_destroy (GTS_OBJECT (g_ptr_array_index (pg->split, i)));
+  gts_object_destroy (GTS_OBJECT (g_ptr_array_index (pg->split, i)));
   g_ptr_array_free (pg->split, TRUE);
   g_array_free (pg->levels, TRUE);
 
@@ -302,7 +302,7 @@ GtsPGraphClass * gts_pgraph_class (void)
   static GtsPGraphClass * klass = NULL;
 
   if (klass == NULL) {
-    GtsObjectClassInfo pgraph_info = {
+  GtsObjectClassInfo pgraph_info = {
       "GtsPGraph",
       sizeof (GtsPGraph),
       sizeof (GtsPGraphClass),
@@ -310,8 +310,8 @@ GtsPGraphClass * gts_pgraph_class (void)
       (GtsObjectInitFunc) pgraph_init,
       (GtsArgSetFunc) NULL,
       (GtsArgGetFunc) NULL
-    };
-    klass = gts_object_class_new (gts_object_class (), &pgraph_info);
+  };
+  klass = gts_object_class_new (gts_object_class (), &pgraph_info);
   }
 
   return klass;
@@ -320,29 +320,29 @@ GtsPGraphClass * gts_pgraph_class (void)
 static void match_neighbor (GtsGNode * n, gpointer * data)
 {
   if (!GTS_OBJECT (n)->reserved) {
-    GtsGraph * g = data[0];
-    GSList ** list = data[1];
-    GSList * i = GTS_SLIST_CONTAINER (n)->items;
-    gfloat wmax = - G_MAXFLOAT;
-    GtsGEdge * emax = NULL;
-    
-    while (i) {
+  GtsGraph * g = data[0];
+  GSList ** list = data[1];
+  GSList * i = GTS_SLIST_CONTAINER (n)->items;
+  gfloat wmax = - G_MAXFLOAT;
+  GtsGEdge * emax = NULL;
+  
+  while (i) {
       GtsGNode * n1 = GTS_GNODE_NEIGHBOR (n, i->data);
       if (!GTS_OBJECT (n1)->reserved &&
-	  gts_gedge_weight (i->data) > wmax &&
-	  gts_containee_is_contained (GTS_CONTAINEE (n1), GTS_CONTAINER (g))) {
-	emax = i->data;
-	wmax = gts_gedge_weight (emax);
+    gts_gedge_weight (i->data) > wmax &&
+    gts_containee_is_contained (GTS_CONTAINEE (n1), GTS_CONTAINER (g))) {
+  emax = i->data;
+  wmax = gts_gedge_weight (emax);
       }
       i = i->next;
-    }
-    if (emax) {
+  }
+  if (emax) {
       GtsGNode * n1 = GTS_GNODE_NEIGHBOR (n, emax);
 
       GTS_OBJECT (n1)->reserved = n;
       GTS_OBJECT (n)->reserved = n1;
       *list = g_slist_prepend (*list, emax);
-    }
+  }
   }
 }
 
@@ -355,8 +355,8 @@ static GSList * maximal_matching (GtsGraph * g)
   data[1] = &list;
   gts_container_foreach (GTS_CONTAINER (g), (GtsFunc) match_neighbor, data);
   gts_container_foreach (GTS_CONTAINER (g), 
-			 (GtsFunc) gts_object_reset_reserved,
-			 NULL);
+       (GtsFunc) gts_object_reset_reserved,
+       NULL);
 
   return list;
 }
@@ -383,11 +383,11 @@ static GSList * maximal_matching (GtsGraph * g)
  * representation of @g.  
  */
 GtsPGraph * gts_pgraph_new (GtsPGraphClass * klass,
-			    GtsGraph * g,
-			    GtsGNodeSplitClass * split_class,
-			    GtsWGNodeClass * node_class,
-			    GtsWGEdgeClass * edge_class,
-			    guint min)
+        GtsGraph * g,
+        GtsGNodeSplitClass * split_class,
+        GtsWGNodeClass * node_class,
+        GtsWGEdgeClass * edge_class,
+        guint min)
 {
   GtsPGraph * pg;
   GSList * matching;
@@ -404,25 +404,25 @@ GtsPGraph * gts_pgraph_new (GtsPGraphClass * klass,
   pg->edge_class = edge_class;
 
   while (gts_container_size (GTS_CONTAINER (g)) > min &&
-	 (matching = maximal_matching (g))) {
-    GSList * i = matching;
-    guint size = gts_container_size (GTS_CONTAINER (g));
+   (matching = maximal_matching (g))) {
+  GSList * i = matching;
+  guint size = gts_container_size (GTS_CONTAINER (g));
 
-    g_array_append_val (pg->levels, size);
+  g_array_append_val (pg->levels, size);
 
-    while (i && gts_container_size (GTS_CONTAINER (g)) > min) {
+  while (i && gts_container_size (GTS_CONTAINER (g)) > min) {
       GtsGEdge * e = i->data;
       GtsGNode * n = GTS_GNODE (gts_wgnode_new (node_class,
-						gts_gnode_weight (e->n1) +
-						gts_gnode_weight (e->n2)));
+            gts_gnode_weight (e->n1) +
+            gts_gnode_weight (e->n2)));
       GtsGNodeSplit * ns = gts_gnode_split_new (split_class, n,
-						GTS_OBJECT (e->n1),
-						GTS_OBJECT (e->n2));
+            GTS_OBJECT (e->n1),
+            GTS_OBJECT (e->n2));
       gts_gnode_split_collapse (ns, g, edge_class);
       g_ptr_array_add (pg->split, ns);
       i = i->next;
-    }
-    g_slist_free (matching);
+  }
+  g_slist_free (matching);
   }
 
   pg->pos = pg->split->len;
@@ -449,7 +449,7 @@ GtsGNodeSplit * gts_pgraph_add_node (GtsPGraph * pg)
   g_return_val_if_fail (pg != NULL, NULL);
 
   if (pg->pos == 0)
-    return NULL;
+  return NULL;
 
   ns = g_ptr_array_index (pg->split, --pg->pos);
   gts_gnode_split_expand (ns, pg->g);
@@ -474,7 +474,7 @@ GtsGNodeSplit * gts_pgraph_remove_node (GtsPGraph * pg)
   g_return_val_if_fail (pg != NULL, NULL);
 
   if (pg->pos == pg->split->len)
-    return NULL;
+  return NULL;
 
   ns = g_ptr_array_index (pg->split, pg->pos++);
   gts_gnode_split_collapse (ns, pg->g, pg->edge_class);
@@ -524,9 +524,9 @@ void gts_pgraph_set_node_number (GtsPGraph * pg, guint n)
 
   n = pg->min + pg->split->len - n;
   while (pg->pos > n && gts_pgraph_add_node (pg))
-    ;
+  ;
   while (pg->pos < n && gts_pgraph_remove_node (pg))
-    ;
+  ;
 }
 
 /**
@@ -558,22 +558,22 @@ guint gts_pgraph_get_node_number (GtsPGraph * pg)
  * otherwise.  
  */
 gboolean gts_pgraph_down (GtsPGraph * pg,
-			  GtsFunc func,
-			  gpointer data)
+        GtsFunc func,
+        gpointer data)
 {
   guint size;
 
   g_return_val_if_fail (pg != NULL, FALSE);
 
   if (pg->level == 0)
-    return FALSE;
+  return FALSE;
 
   size = g_array_index (pg->levels, guint, --(pg->level));
   while (gts_container_size (GTS_CONTAINER (pg->g)) < size) {
-    GtsGNodeSplit * ns = gts_pgraph_add_node (pg);
+  GtsGNodeSplit * ns = gts_pgraph_add_node (pg);
 
-    g_assert (ns);
-    if (func)
+  g_assert (ns);
+  if (func)
       (* func) (ns, data);
   }
   return TRUE;

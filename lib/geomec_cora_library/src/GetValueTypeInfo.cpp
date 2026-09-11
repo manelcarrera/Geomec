@@ -12,7 +12,7 @@ CGetValueTypeInfo& CGetValueTypeInfo::instance(CModelBase* modelBase)
 {
   if (m_getValueTypeInfo == 0)
   {
-    m_getValueTypeInfo = new CGetValueTypeInfo(modelBase);
+  m_getValueTypeInfo = new CGetValueTypeInfo(modelBase);
   }
 
   return *m_getValueTypeInfo;
@@ -30,10 +30,10 @@ std::pair <geo::CValue, geo::CValue> CGetValueTypeInfo::getRange(
 {
   CPointSet pointSet(*m_modelBase);
   QSharedPointer <CValueType> valueType = QSharedPointer <CValueType> (
-    CValueTypeFactory::instance()->BuildValueType(pointSet, valueTypeID, valueTypeName));
+  CValueTypeFactory::instance()->BuildValueType(pointSet, valueTypeID, valueTypeName));
   IValueComponentBase& valueComponent = valueType->Component();
   CValueComponent& component =
-    dynamic_cast <CValueComponent&> (valueComponent);
+  dynamic_cast <CValueComponent&> (valueComponent);
   geo::CValue rangeMin = component.RangeMin();
   geo::CValue rangeMax = component.RangeMax();
 
@@ -44,7 +44,7 @@ std::pair <geo::CValue, geo::CValue> CGetValueTypeInfo::getRange(
   const CLibraryMaterialParameter& libraryMaterialParameter) const
 {
   return getRange(libraryMaterialParameter.ValueTypeID(),
-    libraryMaterialParameter.Name());
+  libraryMaterialParameter.Name());
 }
 
 // private

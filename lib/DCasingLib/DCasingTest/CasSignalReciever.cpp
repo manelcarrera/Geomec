@@ -23,26 +23,26 @@ CCasingSignalReciever::~CCasingSignalReciever()
 
 void CCasingSignalReciever::OnMessage(QString str)
 {
-	if(!str.isEmpty())
-		std::cout << (const char*)str << "\n";
+  if(!str.isEmpty())
+    std::cout << (const char*)str << "\n";
 }
 
 void CCasingSignalReciever::OnError(QString str)
 {
-	if(!str.isEmpty())
-	std::cout << (const char*)str << "\n";
+  if(!str.isEmpty())
+  std::cout << (const char*)str << "\n";
 }
 
 void CCasingSignalReciever::OnWarning(QString str)
 {
-	if(!str.isEmpty())
-	std::cout << (const char*)str;
+  if(!str.isEmpty())
+  std::cout << (const char*)str;
 }
 
 void CCasingSignalReciever::OnFinished()
 {
-	std::cout << "finished" "\n";
+  std::cout << "finished" "\n";
 
-	if (m_obj)
-		m_obj->ReadOutputFile("casing.cao");
+  if (m_obj)
+    m_obj->ReadOutputFile("casing.cao");
 }

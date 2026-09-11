@@ -54,7 +54,7 @@ public:
 ****************************************************************/
 /*****************************************************************
 
-    Normal type-testing method.
+  Normal type-testing method.
 
 *****************************************************************/
   virtual RESCUEBOOL IsOfType(_RescueObjectType thisType);

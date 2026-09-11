@@ -18,13 +18,13 @@
 #ifdef NDEBUG
 #define VERIFY(a)				\
 {								\
-	((a) != 0);		\
+  ((a) != 0);		\
 }
 #else // !NDEBUG
 #define VERIFY(a)				\
 {								\
-	bool chk = ((a) != 0);		\
-	assert(chk);				\
+  bool chk = ((a) != 0);		\
+  assert(chk);				\
 }
 #endif  // NDEBUG
 #endif
@@ -58,73 +58,73 @@ class IPlane;
 class GEOMETRY_EXPORT  IObject  
 {
 protected:
-	IObject(){}
+  IObject(){}
 public:
-	// needed for polymorphic destruction of IObject derived classes
-	// do not remove
-	virtual ~IObject(){}
+  // needed for polymorphic destruction of IObject derived classes
+  // do not remove
+  virtual ~IObject(){}
 
-	//Rotates the object arround the origin 
-	//along a vector with a specified angle
-	//##ModelId=3BC2A45E0081
-	virtual void RotateLine(const ILine &line, const double &dAngleDeg);
-	virtual void Rotate(const IVector &vec, const double &dAngleDeg) = 0;
-	
+  //Rotates the object arround the origin 
+  //along a vector with a specified angle
+  //##ModelId=3BC2A45E0081
+  virtual void RotateLine(const ILine &line, const double &dAngleDeg);
+  virtual void Rotate(const IVector &vec, const double &dAngleDeg) = 0;
+  
 
-	//The move function translates the object along the 
-	//vector.
-	//##ModelId=3BC2A45E0085
-	virtual void Move(const IVector &vec) = 0;
+  //The move function translates the object along the 
+  //vector.
+  //##ModelId=3BC2A45E0085
+  virtual void Move(const IVector &vec) = 0;
 
-	//##ModelId=3BC2A45E0088
-	virtual void Transform(const IMatrix &matrix) = 0;
+  //##ModelId=3BC2A45E0088
+  virtual void Transform(const IMatrix &matrix) = 0;
 
-	//##ModelId=3BC2A45E0091
-	virtual void AssertValid() const = 0;
+  //##ModelId=3BC2A45E0091
+  virtual void AssertValid() const = 0;
 
-	//##ModelId=3BC2A45E0093
-	virtual bool Empty() const = 0;
+  //##ModelId=3BC2A45E0093
+  virtual bool Empty() const = 0;
 
-	//Returns the minimun value of the bounding box. If 
-	//the object is undefined (Empty() == true) the function 
-	//returns an undefined (Empty() == true) vertex.
-	//##ModelId=3BC2A45E0095
-	virtual CPoint Min() const = 0;
+  //Returns the minimun value of the bounding box. If 
+  //the object is undefined (Empty() == true) the function 
+  //returns an undefined (Empty() == true) vertex.
+  //##ModelId=3BC2A45E0095
+  virtual CPoint Min() const = 0;
 
-	//Return the maximum value of the bouding box. If the 
-	//object is undefined (Empty() == true) the function returns 
-	//an undefined (Empty() == true) vertex.
-	//##ModelId=3BC2A45E0097
-	virtual CPoint Max() const = 0;
+  //Return the maximum value of the bouding box. If the 
+  //object is undefined (Empty() == true) the function returns 
+  //an undefined (Empty() == true) vertex.
+  //##ModelId=3BC2A45E0097
+  virtual CPoint Max() const = 0;
 
-	// checks whether the bounding boxes intersect
-	// will return bIncludeEdges if the boxes only "touch"
-	virtual bool BoundingBoxIntersect(const geo::IObject &rhs, bool bIncludeEdges = true) const;
+  // checks whether the bounding boxes intersect
+  // will return bIncludeEdges if the boxes only "touch"
+  virtual bool BoundingBoxIntersect(const geo::IObject &rhs, bool bIncludeEdges = true) const;
 
 
 
-	//check if boxes are exclusive outside each other
-	//touching returns false (htg)
-	bool BoundingBoxOutside(const geo::IObject &rhs) const;
+  //check if boxes are exclusive outside each other
+  //touching returns false (htg)
+  bool BoundingBoxOutside(const geo::IObject &rhs) const;
 
-	//check if rhs is strictly inside this box
-	//touching returns false (htg)
-	bool BBRhsInside(const geo::IObject &rhs) const;
+  //check if rhs is strictly inside this box
+  //touching returns false (htg)
+  bool BBRhsInside(const geo::IObject &rhs) const;
 
-	//check if point is exlusive in this box
-	//boundary return false (htg)
-	bool PointInsideBoundingBox(const geo::IPoint &point) const;
+  //check if point is exlusive in this box
+  //boundary return false (htg)
+  bool PointInsideBoundingBox(const geo::IPoint &point) const;
 
-	//check if point is exlusive outside this box
-	//boundary return false (htg)
-	bool PointOutsideBoundingBox(const geo::IPoint &point) const;
+  //check if point is exlusive outside this box
+  //boundary return false (htg)
+  bool PointOutsideBoundingBox(const geo::IPoint &point) const;
 
-	//check if point is exlusive on the boundary of this box
-	bool PointOnBoundaryOfBoundingBox(const geo::IPoint &point) const;
+  //check if point is exlusive on the boundary of this box
+  bool PointOnBoundaryOfBoundingBox(const geo::IPoint &point) const;
 
-	virtual void Mirror(const geo::IPlane& plane);
+  virtual void Mirror(const geo::IPlane& plane);
 
-	virtual bool Visit(IVisitor &visitor) { return visitor.HandleObject(*this); }
+  virtual bool Visit(IVisitor &visitor) { return visitor.HandleObject(*this); }
 
   virtual bool IsElement() const;
   virtual bool IsInterfaceElement() const;

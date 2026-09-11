@@ -27,7 +27,7 @@ public:
 private:
   IUpscalingNodeBase_Delegate(const IUpscalingNodeBase_Delegate& rhs);
   IUpscalingNodeBase_Delegate& operator = (
-    const IUpscalingNodeBase_Delegate& rhs);
+  const IUpscalingNodeBase_Delegate& rhs);
 
   IUpscalingNodeBase* m_upscalingNodeBase;
 
@@ -55,38 +55,38 @@ class CUpscalingFormationsBranch_Delegate : public COpenGLNode_Delegate
 {
 public:
   CUpscalingFormationsBranch_Delegate(
-    CUpscalingFormationsBranch* upscalingFormationsBranch);
+  CUpscalingFormationsBranch* upscalingFormationsBranch);
 
   virtual bool Attributes();
 
 private:
   CUpscalingFormationsBranch_Delegate(
-    const CUpscalingFormationsBranch_Delegate& rhs);
+  const CUpscalingFormationsBranch_Delegate& rhs);
   CUpscalingFormationsBranch_Delegate& operator = (
-    const CUpscalingFormationsBranch_Delegate& rhs);
+  const CUpscalingFormationsBranch_Delegate& rhs);
 
   CUpscalingFormationsBranch* m_upscalingFormationsBranch;
 
   REGISTER_DELEGATE(CUpscalingFormationsBranch,
-    CUpscalingFormationsBranch_Delegate);
+  CUpscalingFormationsBranch_Delegate);
 };
 
 class IUpscalingPointsetBranchBase_Delegate : public COpenGLNode_Delegate
 {
 public:
   IUpscalingPointsetBranchBase_Delegate(
-    IUpscalingPointsetBranchBase* upscalingPointsetBranchBase);
+  IUpscalingPointsetBranchBase* upscalingPointsetBranchBase);
 
 private:
   IUpscalingPointsetBranchBase_Delegate(
-    const IUpscalingPointsetBranchBase_Delegate& rhs);
+  const IUpscalingPointsetBranchBase_Delegate& rhs);
   IUpscalingPointsetBranchBase_Delegate& operator = (
-    const IUpscalingPointsetBranchBase_Delegate& rhs);
+  const IUpscalingPointsetBranchBase_Delegate& rhs);
 
   IUpscalingPointsetBranchBase* m_upscalingPointsetBranchBase;
 
   REGISTER_DELEGATE(IUpscalingPointsetBranchBase,
-    IUpscalingPointsetBranchBase_Delegate);
+  IUpscalingPointsetBranchBase_Delegate);
 };
 
 class CUpscalingPointsetRangesBranch_Delegate :
@@ -94,27 +94,27 @@ class CUpscalingPointsetRangesBranch_Delegate :
 {
 public:
   CUpscalingPointsetRangesBranch_Delegate(
-    CUpscalingPointsetRangesBranch* upscalingPointsetRangesBranch);
+  CUpscalingPointsetRangesBranch* upscalingPointsetRangesBranch);
 
   virtual bool Attributes();
 
 private:
   CUpscalingPointsetRangesBranch_Delegate(
-    const CUpscalingPointsetRangesBranch_Delegate& rhs);
+  const CUpscalingPointsetRangesBranch_Delegate& rhs);
   CUpscalingPointsetRangesBranch_Delegate& operator = (
-    const CUpscalingPointsetRangesBranch_Delegate& rhs);
+  const CUpscalingPointsetRangesBranch_Delegate& rhs);
 
   CUpscalingPointsetRangesBranch* m_upscalingPointsetRangesBranch;
 
   REGISTER_DELEGATE(CUpscalingPointsetRangesBranch,
-    CUpscalingPointsetRangesBranch_Delegate);
+  CUpscalingPointsetRangesBranch_Delegate);
 };
 
 class CUpscalingTargetPointsetBranch_Delegate : public IUpscalingPointsetBranchBase_Delegate
 {
 public:
   CUpscalingTargetPointsetBranch_Delegate(
-    CUpscalingTargetPointsetBranch* upscalingTargetPointsetBranch);
+  CUpscalingTargetPointsetBranch* upscalingTargetPointsetBranch);
 
   virtual void AppendContextMenu(CContextMenuInvoker& invoker);
 
@@ -127,14 +127,14 @@ public:
 
 private:
   CUpscalingTargetPointsetBranch_Delegate(
-    const CUpscalingTargetPointsetBranch_Delegate& rhs);
+  const CUpscalingTargetPointsetBranch_Delegate& rhs);
   CUpscalingTargetPointsetBranch_Delegate& operator = (
-    const CUpscalingTargetPointsetBranch_Delegate& rhs);
+  const CUpscalingTargetPointsetBranch_Delegate& rhs);
 
   CUpscalingTargetPointsetBranch* m_upscalingTargetPointsetBranch;
 
   REGISTER_DELEGATE(CUpscalingTargetPointsetBranch,
-    CUpscalingTargetPointsetBranch_Delegate);
+  CUpscalingTargetPointsetBranch_Delegate);
 };
 
 #endif  // _Upscaling_Delegate_h_

@@ -14,31 +14,31 @@
 
 void RGMonitorPointSets::Add(const RGPointSet& pointSet, const std::vector<RGGeneralProperty>& props)
 {
-	m_monitorPointSets.emplace_back(std::make_pair(pointSet, props));
-	m_totalCount += (pointSet.GetNumPoints() * props.size());
+  m_monitorPointSets.emplace_back(std::make_pair(pointSet, props));
+  m_totalCount += (pointSet.GetNumPoints() * props.size());
 }
 
 const RGPointSet& RGMonitorPointSets::GetPointSet(int n) const
 {
-	return m_monitorPointSets.at(n).first;
+  return m_monitorPointSets.at(n).first;
 }
 
 const std::vector<RGGeneralProperty>& RGMonitorPointSets::GetProperties(int n) const
 {
-	return m_monitorPointSets.at(n).second;
+  return m_monitorPointSets.at(n).second;
 }
 
 size_t RGMonitorPointSets::GetNumPointSets() const
 {
-	return m_monitorPointSets.size();
+  return m_monitorPointSets.size();
 }
 
 size_t RGMonitorPointSets::GetTotalCount() const
 {
-	return m_totalCount;
+  return m_totalCount;
 }
 
 void RGMonitorPointSets::clear()
 {
-	m_monitorPointSets.clear();
+  m_monitorPointSets.clear();
 }

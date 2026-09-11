@@ -59,31 +59,31 @@ static const geo::CVector vecEmpty;
 static bool CanMapOnVolumeElements(const COpenGLNode& node, int nRegister)
 {
   if(dynamic_cast<const IFormationElementSet*>(&node))
-    return nRegister == PRIMARY_RESULT;
+  return nRegister == PRIMARY_RESULT;
 
   if(dynamic_cast<const CFormationBase*>(&node))
-    return nRegister == PRIMARY_RESULT;
+  return nRegister == PRIMARY_RESULT;
 
   if(dynamic_cast<const CFormationPlane*>(&node))
-    return nRegister == PRIMARY_RESULT;
+  return nRegister == PRIMARY_RESULT;
 
   if(dynamic_cast<const CCrossSection::CCSFormation*>(&node))
-    return nRegister == PRIMARY_RESULT;
+  return nRegister == PRIMARY_RESULT;
 
   if(dynamic_cast<const CNewWellPath*>(&node)) // wjrx mantis 3440
-	return nRegister == PRIMARY_RESULT;
+  return nRegister == PRIMARY_RESULT;
 
   if(dynamic_cast<const IPointSet*>(&node))
-    return nRegister == PRIMARY_RESULT;
+  return nRegister == PRIMARY_RESULT;
 
   if(dynamic_cast<const CWellCasingCement*>(&node))
-    return nRegister == PRIMARY_RESULT;
+  return nRegister == PRIMARY_RESULT;
 
   if(dynamic_cast<const CWellCasingSteel*>(&node))
-    return nRegister == PRIMARY_RESULT;
+  return nRegister == PRIMARY_RESULT;
 
   if(dynamic_cast<const CWellCasingRTCI*>(&node))
-    return nRegister == PRIMARY_RESULT;
+  return nRegister == PRIMARY_RESULT;
 
   if(dynamic_cast<const CTetraSubHorizon*>(&node))
       return nRegister == PRIMARY_RESULT;
@@ -100,7 +100,7 @@ static bool CanMapOnFaultElements(const COpenGLNode& node, int nRegister)
 
   // don't map directly on the 2D faults, but on their interface nodes (see above)
   if(pHorizon)
-    return (pHorizon->Slip() == true) && nRegister == PRIMARY_RESULT;
+  return (pHorizon->Slip() == true) && nRegister == PRIMARY_RESULT;
 
   return (dynamic_cast<const CWellCasingCementInterface*>(&node) != 0);
 }
@@ -150,14 +150,14 @@ bool CResultTree::CEffectiveStressResult::OnBuildComponent(const CDepletionStage
 double CResultTree::CEffectiveStressResult::Convert(const double& dValue, CQuantity::UNIT unit) const
 {
   if(unit == CQuantity::FIELD_UNIT)
-    return dValue * FF_FACTOR_STRESS;
+  return dValue * FF_FACTOR_STRESS;
   return dValue;
 }
 
 unsigned int CResultTree::CEffectiveStressResult::PreExportNameId() const
 {
   if(Change())
-    return IDS_ET_EFFECTIVE_CHANGE;
+  return IDS_ET_EFFECTIVE_CHANGE;
   return IDS_ET_EFFECTIVE;
 }
 
@@ -184,7 +184,7 @@ unsigned int CResultTree::CEffectiveStressResult::PostExportNameId() const
 unsigned int CResultTree::CEffectiveStressResult::ComponentIndex() const
 {
   if(Change())
-    return RC_EFF_STRESS_COMPONENT_CHANGE;
+  return RC_EFF_STRESS_COMPONENT_CHANGE;
   return RC_EFF_STRESS_COMPONENT;
 }
 
@@ -192,27 +192,27 @@ unsigned int CResultTree::CEffectiveStressResult::VectorIndex(CVectorComposite::
 {
   if(Change())
   {
-    switch(direction)
-    {
-    case CVectorComposite::PD_MAX:
+  switch(direction)
+  {
+  case CVectorComposite::PD_MAX:
       return RC_EFF_STRESS_PRINC_MAX_CHANGE;
-    case CVectorComposite::PD_MED:
+  case CVectorComposite::PD_MED:
       return RC_EFF_STRESS_PRINC_MED_CHANGE;
-    case CVectorComposite::PD_MIN:
+  case CVectorComposite::PD_MIN:
       return RC_EFF_STRESS_PRINC_MIN_CHANGE;
-    };
+  };
   }
   else
   {
-    switch(direction)
-    {
-    case CVectorComposite::PD_MAX:
+  switch(direction)
+  {
+  case CVectorComposite::PD_MAX:
       return RC_EFF_STRESS_PRINC_MAX;
-    case CVectorComposite::PD_MED:
+  case CVectorComposite::PD_MED:
       return RC_EFF_STRESS_PRINC_MED;
-    case CVectorComposite::PD_MIN:
+  case CVectorComposite::PD_MIN:
       return RC_EFF_STRESS_PRINC_MIN;
-    };
+  };
   }
   assert(false);
   return 0;
@@ -221,7 +221,7 @@ unsigned int CResultTree::CEffectiveStressResult::VectorIndex(CVectorComposite::
 unsigned int CResultTree::CEffectiveStressResult::InvariantIndex() const
 {
   if(Change())
-    return RC_EFF_STRESS_INVARIANT_CHANGE;
+  return RC_EFF_STRESS_INVARIANT_CHANGE;
   return RC_EFF_STRESS_INVARIANT;
 }
 
@@ -234,7 +234,7 @@ unsigned int CResultTree::CEffectiveStressResult::WellPathStressIndex() const
 {
   if (Change())
   {
-    return RC_EFF_STRESS_WPSTRESS_CHANGE;
+  return RC_EFF_STRESS_WPSTRESS_CHANGE;
   }
 
   return RC_EFF_STRESS_WPSTRESS;
@@ -266,13 +266,13 @@ unsigned int CResultTree::CTotalStressResult::CSurfaceStressComposite::CSurfaceS
 QString CResultTree::CTotalStressResult::CSurfaceStressComposite::CSurfaceStressComponent::UnitName(const UNIT unit) const
 {
   if(unit == CDoubleQuantity::FIELD_UNIT)
-    return "psi";
+  return "psi";
   return "MPa";
 }
 
 bool CResultTree::CTotalStressResult::CSurfaceStressComposite::CSurfaceStressComponent::CanComputeOnPoints() const
 {
-    return false;
+  return false;
 }
 
 geo::CValue CResultTree::CTotalStressResult::CSurfaceStressComposite::CSurfaceStressComponent::ValuePoint(const geo::IPoint& /*pt*/, const UNIT /*unit*/, geo::IParallelInitializationCallback* /*cb*/) const
@@ -295,16 +295,16 @@ void CResultTree::CTotalStressResult::CSurfaceStressComposite::CSurfaceStressCom
   switch(m_comp)
   {
   case SSTC_NORMAL:
-    values = tensor_group.AxialValueElement(elm, map_type, *this, vecNormal, cb);
-    break;
+  values = tensor_group.AxialValueElement(elm, map_type, *this, vecNormal, cb);
+  break;
   case SSTC_SHEAR_PLANE:
-    values = tensor_group.ShearValueInPlaneElement(elm, map_type, *this, vecNormal, cb);
-    break;
+  values = tensor_group.ShearValueInPlaneElement(elm, map_type, *this, vecNormal, cb);
+  break;
   case SSTC_SHEAR_DIP_ANGLE:
-    values = tensor_group.ShearDipAngleInPlaneElement(elm, map_type, *this, vecNormal, cb);
-    break;
+  values = tensor_group.ShearDipAngleInPlaneElement(elm, map_type, *this, vecNormal, cb);
+  break;
   default:
-    assert(false);
+  assert(false);
   }
 }
 
@@ -326,19 +326,19 @@ bool CResultTree::CTotalStressResult::CSurfaceStressComposite::CSurfaceStressCom
 
   int c = ResultRegister().ColumnNumber(AnalysisType(), ResultRegister().DepletionStageEntry().MarkedAsInitialStage().Index(), CI_STRESS_XX);
   if (!ResultRegister().Cache().ActiveCacher().StartCriticalSection(c, 6))
-    retval = false;
+  retval = false;
 
   ResultRegister().ColumnNumber(AnalysisType(), ResultRegister().DepletionStageEntry().MarkedAsInitialStage().Index(), CI_POREPRES);
   if (!ResultRegister().Cache().ActiveCacher().StartCriticalSection(c, 1))
-    retval = false;
+  retval = false;
 
   c = ResultRegister().ColumnNumber(AnalysisType(), Stage().Index(), CI_STRESS_XX);
   if (!ResultRegister().Cache().ActiveCacher().StartCriticalSection(c, 6))
-    retval = false;
+  retval = false;
 
   ResultRegister().ColumnNumber(AnalysisType(), Stage().Index(), CI_POREPRES);
   if (!ResultRegister().Cache().ActiveCacher().StartCriticalSection(c, 1))
-    retval = false;
+  retval = false;
 
   return retval;
 }
@@ -384,27 +384,27 @@ QString CResultTree::CTotalStressResult::CSurfaceStressComposite::ExportLabel(in
   switch(nComponent)
   {
   case CSurfaceStressComponent::SSTC_NORMAL:
-    sCompLabel = "Normal";
-    break;
+  sCompLabel = "Normal";
+  break;
   case CSurfaceStressComponent::SSTC_SHEAR_PLANE:
-    sCompLabel = "ShearPlane";
-    break;
+  sCompLabel = "ShearPlane";
+  break;
   case CSurfaceStressComponent::SSTC_SHEAR_DIP_ANGLE:
-    sCompLabel = "ShearPlaneDipAngle";
-    break;
+  sCompLabel = "ShearPlaneDipAngle";
+  break;
   default:
-    assert(false);
+  assert(false);
   }
 
-	// Fetch names
-	QString sPreName, sName, sPostName;
-	if(m_pTensorGroup->PreExportNameId())
-		sPreName = getStringTableEntry(m_pTensorGroup->PreExportNameId());
-	sName = getStringTableEntry(m_pTensorGroup->ExportNameId());
-	if(m_pTensorGroup->PostExportNameId())
-		sPostName = getStringTableEntry(m_pTensorGroup->PostExportNameId());
+  // Fetch names
+  QString sPreName, sName, sPostName;
+  if(m_pTensorGroup->PreExportNameId())
+    sPreName = getStringTableEntry(m_pTensorGroup->PreExportNameId());
+  sName = getStringTableEntry(m_pTensorGroup->ExportNameId());
+  if(m_pTensorGroup->PostExportNameId())
+    sPostName = getStringTableEntry(m_pTensorGroup->PostExportNameId());
 
-	return sPreName + "Surface" + sName + sCompLabel + sPostName; 
+  return sPreName + "Surface" + sName + sCompLabel + sPostName; 
 }
 
 bool CResultTree::CTotalStressResult::CSurfaceStressComposite::CanMap(const COpenGLNode& node, int /*nRegister*/) const
@@ -420,13 +420,13 @@ bool CResultTree::CTotalStressResult::CSurfaceStressComposite::ValidName
 {
   std::string sPreName, sName;
   if(m_pTensorGroup->PreExportNameId())
-    sPreName = getStringTableEntry(m_pTensorGroup->PreExportNameId());
+  sPreName = getStringTableEntry(m_pTensorGroup->PreExportNameId());
   sName = getStringTableEntry(m_pTensorGroup->ExportNameId());
 
   std::string sCombinedName= sPreName + "Surface"+ sName;
 
   return validateName(resultInfo, name, sCombinedName,
-    SurfaceStressComponentList(), "_L|_M|_C|_N");
+  SurfaceStressComponentList(), "_L|_M|_C|_N");
 }
 
 bool CResultTree::CTotalStressResult::CSurfaceStressComposite::OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister) const
@@ -438,9 +438,9 @@ void CResultTree::CTotalStressResult::CSurfaceStressComposite::BuildComponent(co
 {
   if(OnBuildComponent(stage, antype, nRegister))
   {
-    new CSurfaceStressComponent(IDS_RC_NORMAL, *this, CSurfaceStressComponent::SSTC_NORMAL, stage, antype, nRegister);
-    new CSurfaceStressComponent(IDS_RC_SHEAR_PLANE, *this, CSurfaceStressComponent::SSTC_SHEAR_PLANE, stage, antype, nRegister);
-    new CSurfaceStressComponent(IDS_RC_SHEAR_DIP_ANGLE, *this, CSurfaceStressComponent::SSTC_SHEAR_DIP_ANGLE, stage, antype, nRegister);
+  new CSurfaceStressComponent(IDS_RC_NORMAL, *this, CSurfaceStressComponent::SSTC_NORMAL, stage, antype, nRegister);
+  new CSurfaceStressComponent(IDS_RC_SHEAR_PLANE, *this, CSurfaceStressComponent::SSTC_SHEAR_PLANE, stage, antype, nRegister);
+  new CSurfaceStressComponent(IDS_RC_SHEAR_DIP_ANGLE, *this, CSurfaceStressComponent::SSTC_SHEAR_DIP_ANGLE, stage, antype, nRegister);
   }
 }
 
@@ -470,11 +470,11 @@ void CResultTree::CTotalStressResult::CreateComposite()
 
   if (Change())
   {
-    m_pSurfaceStressComposite = new CSurfaceStressComposite(IDS_RG_SURFACESTRESS, *this, RC_TOTAL_STRESS_SURFACESTRESS_CHANGE);
+  m_pSurfaceStressComposite = new CSurfaceStressComposite(IDS_RG_SURFACESTRESS, *this, RC_TOTAL_STRESS_SURFACESTRESS_CHANGE);
   }
   else
   {
-    m_pSurfaceStressComposite = new CSurfaceStressComposite(IDS_RG_SURFACESTRESS, *this, RC_TOTAL_STRESS_SURFACESTRESS);
+  m_pSurfaceStressComposite = new CSurfaceStressComposite(IDS_RG_SURFACESTRESS, *this, RC_TOTAL_STRESS_SURFACESTRESS);
   }
 }
 
@@ -489,7 +489,7 @@ bool CResultTree::CTotalStressResult::OnBuildComponent(const CDepletionStage& st
 double CResultTree::CTotalStressResult::Convert(const double& dValue, CQuantity::UNIT unit) const
 {
   if(unit == CQuantity::FIELD_UNIT)
-    return dValue * FF_FACTOR_STRESS;
+  return dValue * FF_FACTOR_STRESS;
   return dValue;
 }
 
@@ -501,7 +501,7 @@ bool CResultTree::CTotalStressResult::CanMap(const COpenGLNode& node, int nRegis
 unsigned int CResultTree::CTotalStressResult::PreExportNameId() const
 {
   if(Change())
-    return IDS_ET_CHANGE;
+  return IDS_ET_CHANGE;
   return 0;
 }
 
@@ -528,7 +528,7 @@ unsigned int CResultTree::CTotalStressResult::PostExportNameId() const
 unsigned int CResultTree::CTotalStressResult::ComponentIndex() const
 {
   if(Change())
-    return RC_TOTAL_STRESS_COMPONENT_CHANGE;
+  return RC_TOTAL_STRESS_COMPONENT_CHANGE;
   return RC_TOTAL_STRESS_COMPONENT;
 }
 
@@ -536,27 +536,27 @@ unsigned int CResultTree::CTotalStressResult::VectorIndex(CVectorComposite::PRIN
 {
   if(Change())
   {
-    switch(direction)
-    {
-    case CVectorComposite::PD_MAX:
+  switch(direction)
+  {
+  case CVectorComposite::PD_MAX:
       return RC_TOTAL_STRESS_PRINC_MAX_CHANGE;
-    case CVectorComposite::PD_MED:
+  case CVectorComposite::PD_MED:
       return RC_TOTAL_STRESS_PRINC_MED_CHANGE;
-    case CVectorComposite::PD_MIN:
+  case CVectorComposite::PD_MIN:
       return RC_TOTAL_STRESS_PRINC_MIN_CHANGE;
-    };
+  };
   }
   else
   {
-    switch(direction)
-    {
-    case CVectorComposite::PD_MAX:
+  switch(direction)
+  {
+  case CVectorComposite::PD_MAX:
       return RC_TOTAL_STRESS_PRINC_MAX;
-    case CVectorComposite::PD_MED:
+  case CVectorComposite::PD_MED:
       return RC_TOTAL_STRESS_PRINC_MED;
-    case CVectorComposite::PD_MIN:
+  case CVectorComposite::PD_MIN:
       return RC_TOTAL_STRESS_PRINC_MIN;
-    };
+  };
   }
   assert(false);
   return 0;
@@ -565,7 +565,7 @@ unsigned int CResultTree::CTotalStressResult::VectorIndex(CVectorComposite::PRIN
 unsigned int CResultTree::CTotalStressResult::InvariantIndex() const
 {
   if(Change())
-    return RC_TOTAL_STRESS_INVARIANT_CHANGE;
+  return RC_TOTAL_STRESS_INVARIANT_CHANGE;
   return RC_TOTAL_STRESS_INVARIANT;
 }
 
@@ -573,7 +573,7 @@ unsigned int CResultTree::CTotalStressResult::WellPathStressIndex() const
 {
   if (Change())
   {
-    return RC_TOTAL_STRESS_WPSTRESS_CHANGE;
+  return RC_TOTAL_STRESS_WPSTRESS_CHANGE;
   }
 
   return RC_TOTAL_STRESS_WPSTRESS;
@@ -595,22 +595,22 @@ CResultTree::CParentStressInputResult::CParentStressInputResult(const QString& s
 bool CResultTree::CParentStressInputResult::OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int /*nRegister*/) const
 {
   return antype == CAnalysisType::AT_LINEAR ||
-    antype == CAnalysisType::AT_MIXTURE ||
-    antype == CAnalysisType::AT_MIXTURE_CONTAINMENT ||
-    (antype == CAnalysisType::AT_NONLIN && stage.OutputType() != CDepletionStage::NONE);
+  antype == CAnalysisType::AT_MIXTURE ||
+  antype == CAnalysisType::AT_MIXTURE_CONTAINMENT ||
+  (antype == CAnalysisType::AT_NONLIN && stage.OutputType() != CDepletionStage::NONE);
 }
 
 double CResultTree::CParentStressInputResult::Convert(const double& dValue, CQuantity::UNIT unit) const
 {
   if (unit == CQuantity::FIELD_UNIT)
-    return dValue * FF_FACTOR_STRESS;
+  return dValue * FF_FACTOR_STRESS;
   return dValue;
 }
 
 unsigned int CResultTree::CParentStressInputResult::PreExportNameId() const
 {
   if (Change())
-    return IDS_ET_PARENT_EFFECTIVE_CHANGE;
+  return IDS_ET_PARENT_EFFECTIVE_CHANGE;
   return IDS_ET_PARENT_EFFECTIVE;
 }
 
@@ -640,8 +640,8 @@ bool CResultTree::CParentStressInputResult::OnDefined(const IResultComponent& co
   const IWellModel& model = static_cast<const IWellModel&>(Model());
 
   bool resultsAvailable = model.ParentLinearResults(component.AnalysisType()) ? 
-    model.ParentModel().ResultRegister().Linear() : 
-    model.ParentModel().ResultRegister().NonLinear();
+  model.ParentModel().ResultRegister().Linear() : 
+  model.ParentModel().ResultRegister().NonLinear();
 
   return model.Mesh().IsMesh() && resultsAvailable;
 }
@@ -656,8 +656,8 @@ const ITensor& CResultTree::CParentStressInputResult::TensorPoint(const geo::IPo
   // Is the point in the cache?
   _ResultCache<CStressTensor>& cache = GetCache(component, cb);
   if (!cache.m_element && !cache.m_point.Empty() && point == cache.m_point && cache.m_stage == &stage && bChange == cache.m_bChange) {
-    assert(cache.m_value.size() == 1);
-    return cache.m_value[0];
+  assert(cache.m_value.size() == 1);
+  return cache.m_value[0];
   }
 
   cache.m_element = 0;
@@ -681,8 +681,8 @@ const ITensor& CResultTree::CParentStressInputResult::TensorElement(const geo::I
 
   _ResultCache<CStressTensor>& cache = GetCache(component, cb);
   if ((cache.m_element == &element) && (map_type == cache.m_map_type) && cache.m_point.Empty() && cache.m_stage == &stage && bChange == cache.m_bChange) {
-    assert(cache.m_value.size() == element.NrOfPoints());
-    return cache.m_value[nNodeIndex];
+  assert(cache.m_value.size() == element.NrOfPoints());
+  return cache.m_value[nNodeIndex];
   }
 
   cache.m_element = &element;
@@ -700,18 +700,18 @@ void CResultTree::CParentStressInputResult::TensorElementFromParentModel(_Result
 {
   const IWellModel *model = dynamic_cast<const IWellModel *>(&Model());
   if (!model)
-    return;
+  return;
 
   const geo::IInterfaceElement *ifelt = dynamic_cast<const geo::IInterfaceElement *>(&element);
 
   if (ifelt)
-    return;
+  return;
 
   bool isCasing = dynamic_cast<const CWellCasingModel *>(&Model());
 
   if (isCasing)
   {
-    if (static_cast<const CWellCasingModel &>(Model()).Mesh().IsSteelElement(element))
+  if (static_cast<const CWellCasingModel &>(Model()).Mesh().IsSteelElement(element))
       return;
   }
 
@@ -720,10 +720,10 @@ void CResultTree::CParentStressInputResult::TensorElementFromParentModel(_Result
   const CDepletionStage *initialStage = &stage;
 
   while (!initialStage->IsMarkedAsInitial())
-    initialStage = &initialStage->Previous();
+  initialStage = &initialStage->Previous();
 
   if (initialStage != &stage)
-    return;
+  return;
 
   const CDepletionStage& parentInitialStage = model->ParentEquivalentDepletionStage(*initialStage);
 
@@ -733,25 +733,25 @@ void CResultTree::CParentStressInputResult::TensorElementFromParentModel(_Result
 
   if (isCasing)
   {
-    for (int n = 0; n < element.NrOfNodes(); ++n)
-    {
+  for (int n = 0; n < element.NrOfNodes(); ++n)
+  {
       const geo::INode& node = element.Node(n);
 
       CStressTensor stresstensor = initialStress.ValuePoint(node, geo::IParallelInitializationCallback::Sequential);
 
       cache.m_value[n] = stresstensor;
-    }
+  }
   }
   else
   {
-    geo::CPoint ptSample = element.MidPoint();
+  geo::CPoint ptSample = element.MidPoint();
 
-    CStressTensor stresstensor = initialStress.ValuePoint(ptSample, geo::IParallelInitializationCallback::Sequential);
+  CStressTensor stresstensor = initialStress.ValuePoint(ptSample, geo::IParallelInitializationCallback::Sequential);
 
-    for (int n = 0; n < element.NrOfNodes(); ++n)
-    {
+  for (int n = 0; n < element.NrOfNodes(); ++n)
+  {
       cache.m_value[n] = stresstensor;
-    }
+  }
   }
 }
 
@@ -760,19 +760,19 @@ void CResultTree::CParentStressInputResult::TensorBoundaryElementFromParentModel
 {
   const IWellModel *model = dynamic_cast<const IWellModel *>(&Model());
   if (!model)
-    return;
+  return;
 
   const geo::IInterfaceElement *ifelt = dynamic_cast<const geo::IInterfaceElement *>(&element);
 
   if (!ifelt)
-    return;
+  return;
 
   const CDepletionStage& parentStage = model->ParentEquivalentDepletionStage(stage);
 
   const CDepletionStage *initialStage = &stage;
 
   while (!initialStage->IsMarkedAsInitial())
-    initialStage = &initialStage->Previous();
+  initialStage = &initialStage->Previous();
 
   const CDepletionStage& parentInitialStage = model->ParentEquivalentDepletionStage(*initialStage);
 
@@ -789,11 +789,11 @@ void CResultTree::CParentStressInputResult::TensorBoundaryElementFromParentModel
 
   for (int n = 0; n < bodyface->NrOfNodes(); ++n)
   {
-    const geo::INode& node = bodyface->Node(n);
+  const geo::INode& node = bodyface->Node(n);
 
-    CStressTensor stresstensor = stress.ValuePoint(node, geo::IParallelInitializationCallback::Sequential);
+  CStressTensor stresstensor = stress.ValuePoint(node, geo::IParallelInitializationCallback::Sequential);
 
-    cache.m_value[n] = stresstensor;
+  cache.m_value[n] = stresstensor;
   }
 
 #if 0
@@ -810,9 +810,9 @@ void CResultTree::CParentStressInputResult::TensorBoundaryElementFromParentModel
 
   vcPressureValues[n] = vecPressure.Length();
   if (vecPressureDirection.Empty())
-    vecPressureDirection = vecPressure.UnitVector();
+  vecPressureDirection = vecPressure.UnitVector();
   for (int i = 0; i < element.NrOfNodes(); ++i)
-    cache.m_value[i] = CTensor(.2, .2, .2, 0, 0, 0);
+  cache.m_value[i] = CTensor(.2, .2, .2, 0, 0, 0);
 #endif
 }
 #endif
@@ -829,27 +829,27 @@ unsigned int CResultTree::CBoundaryStressInputResult::VectorIndex(CVectorComposi
 {
   if (Change())
   {
-    switch (direction)
-    {
-    case CVectorComposite::PD_MAX:
+  switch (direction)
+  {
+  case CVectorComposite::PD_MAX:
       return RC_EFF_STRESS_PRINC_MAX_CHANGE;
-    case CVectorComposite::PD_MED:
+  case CVectorComposite::PD_MED:
       return RC_EFF_STRESS_PRINC_MED_CHANGE;
-    case CVectorComposite::PD_MIN:
+  case CVectorComposite::PD_MIN:
       return RC_EFF_STRESS_PRINC_MIN_CHANGE;
-    };
+  };
   }
   else
   {
-    switch (direction)
-    {
-    case CVectorComposite::PD_MAX:
+  switch (direction)
+  {
+  case CVectorComposite::PD_MAX:
       return RC_EFF_STRESS_PRINC_MAX;
-    case CVectorComposite::PD_MED:
+  case CVectorComposite::PD_MED:
       return RC_EFF_STRESS_PRINC_MED;
-    case CVectorComposite::PD_MIN:
+  case CVectorComposite::PD_MIN:
       return RC_EFF_STRESS_PRINC_MIN;
-    };
+  };
   }
   assert(false);
   return 0;
@@ -858,7 +858,7 @@ unsigned int CResultTree::CBoundaryStressInputResult::VectorIndex(CVectorComposi
 unsigned int CResultTree::CBoundaryStressInputResult::InvariantIndex() const
 {
   if (Change())
-    return RC_EFF_STRESS_INVARIANT_CHANGE;
+  return RC_EFF_STRESS_INVARIANT_CHANGE;
   return RC_EFF_STRESS_INVARIANT;
 }
 #endif
@@ -878,7 +878,7 @@ unsigned int CResultTree::CBoundaryStressInputResult::WellPathStressIndex() cons
 {
   if (Change())
   {
-    return RC_EFF_STRESS_WPSTRESS_CHANGE;
+  return RC_EFF_STRESS_WPSTRESS_CHANGE;
   }
 
   return RC_EFF_STRESS_WPSTRESS;
@@ -934,7 +934,7 @@ unsigned int CResultTree::CTotalStrainResult::ComponentIndex() const
 bool CResultTree::CTotalStrainResult::OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int /*nRegister*/) const
 {
   return stage.isAfter(stage.Entry().MarkedAsInitialStage()) &&
-        (antype == CAnalysisType::AT_LINEAR  ||
+    (antype == CAnalysisType::AT_LINEAR  ||
          antype == CAnalysisType::AT_MIXTURE ||
          antype == CAnalysisType::AT_MIXTURE_CONTAINMENT ||
          antype == CAnalysisType::AT_HEAT    ||
@@ -947,11 +947,11 @@ unsigned int CResultTree::CTotalStrainResult::VectorIndex(CVectorComposite::PRIN
   switch(direction)
   {
   case CVectorComposite::PD_MAX:
-    return RC_TOTAL_STRAIN_PRINC_MAX;
+  return RC_TOTAL_STRAIN_PRINC_MAX;
   case CVectorComposite::PD_MED:
-    return RC_TOTAL_STRAIN_PRINC_MED;
+  return RC_TOTAL_STRAIN_PRINC_MED;
   case CVectorComposite::PD_MIN:
-    return RC_TOTAL_STRAIN_PRINC_MIN;
+  return RC_TOTAL_STRAIN_PRINC_MIN;
   };
 
   assert(false);
@@ -971,7 +971,7 @@ unsigned int CResultTree::CTotalStrainResult::InvariantIndex() const
 bool CResultTree::CTotalStrainResult::OnDefined(const IResultComponent& component) const
 {
   if(component.AnalysisType() == CAnalysisType::AT_HEAT)
-    return false;
+  return false;
 
   return IStrainTensorGroup::OnDefined(component);
 }
@@ -1033,11 +1033,11 @@ unsigned int CResultTree::CPlasticStrainResult::VectorIndex(CVectorComposite::PR
   switch(direction)
   {
   case CVectorComposite::PD_MAX:
-    return RC_PLASTIC_STRAIN_PRINC_MAX;
+  return RC_PLASTIC_STRAIN_PRINC_MAX;
   case CVectorComposite::PD_MED:
-    return RC_PLASTIC_STRAIN_PRINC_MED;
+  return RC_PLASTIC_STRAIN_PRINC_MED;
   case CVectorComposite::PD_MIN:
-    return RC_PLASTIC_STRAIN_PRINC_MIN;
+  return RC_PLASTIC_STRAIN_PRINC_MIN;
   };
 
   assert(false);
@@ -1065,19 +1065,19 @@ bool CResultTree::CPlasticStrainResult::PrepareMapping(const geo::IElementSet *,
   int c1 = pRegister->ColumnNumber(pComponent->AnalysisType(), pComponent->Stage().Index(), CI_PSTRAIN_XX);
 
   if (!pRegister->Cache().ActiveCacher().StartCriticalSection(c0, 6))
-    retval = false;
+  retval = false;
 
   if (!pRegister->Cache().ActiveCacher().StartCriticalSection(c1, 6))
-    retval = false;
+  retval = false;
 
   c0 = pRegister->ColumnNumber(pComponent->AnalysisType(), pRegister->DepletionStageEntry().MarkedAsInitialStage().Index(), CI_POREPRES);
   c1 = pRegister->ColumnNumber(pComponent->AnalysisType(), pComponent->Stage().Index(), CI_POREPRES);
 
   if (!pRegister->Cache().ActiveCacher().StartCriticalSection(c0, 1))
-    retval = false;
+  retval = false;
 
   if (!pRegister->Cache().ActiveCacher().StartCriticalSection(c1, 1))
-    retval = false;
+  retval = false;
 
   return retval;
 }
@@ -1111,13 +1111,13 @@ bool CResultTree::CDisplacementResult::ValidName
   std::string label= VectorExportLabel().toStdString();
 
   return validateName(resultInfo, name, label, VectorResultComponentList(),
-    "_L|_M|_C|_N");
+  "_L|_M|_C|_N");
 }
 
 bool CResultTree::CDisplacementResult::OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int /*nRegister*/) const
 {
   return stage.isAfter(stage.Entry().MarkedAsInitialStage()) &&
-        (antype == CAnalysisType::AT_LINEAR  ||
+    (antype == CAnalysisType::AT_LINEAR  ||
          antype == CAnalysisType::AT_MIXTURE ||
          antype == CAnalysisType::AT_MIXTURE_CONTAINMENT ||
          (antype == CAnalysisType::AT_NONLIN && stage.OutputType() != CDepletionStage::NONE));
@@ -1142,7 +1142,7 @@ bool CResultTree::CDisplacementResult::CanMap(const COpenGLNode& node, int nRegi
 {
   const CHorizonBase* pHor = dynamic_cast<const CHorizonBase*>(&node);
   if(pHor)
-    return !pHor->Slip() && nRegister == PRIMARY_RESULT;
+  return !pHor->Slip() && nRegister == PRIMARY_RESULT;
 
   return CanMapOnVolumeElements(node, nRegister);
 }
@@ -1151,9 +1151,9 @@ QString CResultTree::CDisplacementResult::UnitName(UNIT unit) const
 {
   QString sUnit;
   if(unit == CQuantity::SI_UNIT)
-    sUnit = getStringTableEntry(IDS_UNIT_SI_LENGTH);
+  sUnit = getStringTableEntry(IDS_UNIT_SI_LENGTH);
   else
-    sUnit = getStringTableEntry(IDS_UNIT_FIELD_LENGTH);
+  sUnit = getStringTableEntry(IDS_UNIT_FIELD_LENGTH);
   return sUnit;
 }
 
@@ -1168,10 +1168,10 @@ bool CResultTree::CDisplacementResult::PrepareMapping(const geo::IElementSet* /*
   int c1 = pRegister->ColumnNumber(pComponent->AnalysisType(), pComponent->Stage().Index(), CI_DISPLA_X);
 
   if (!pRegister->Cache().ActiveCacher().StartCriticalSection(c0, 3))
-    retval = false;
+  retval = false;
 
   if (!pRegister->Cache().ActiveCacher().StartCriticalSection(c1, 3))
-    retval = false;
+  retval = false;
 
   return retval;
 }
@@ -1196,18 +1196,18 @@ bool CResultTree::CFaultScalarResult::ValidName
   std::string label= ExportLabel(0).toStdString();
 
   return validateName(resultInfo, name, label, TensorResultComponentList(),
-    "_L|_M|_C|_N");
+  "_L|_M|_C|_N");
 }
 
 bool CResultTree::CFaultScalarResult::OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int /*nRegister*/) const
 {
   if((ResultType() == DILATATION || ResultType() == PLASTIC_ENERGY) && !stage.isAfter(stage.Entry().MarkedAsInitialStage()))
-    return false;
+  return false;
 
   if(ResultType() == PLASTIC_ENERGY)
-    return (antype == CAnalysisType::AT_MIXTURE ||
-            antype == CAnalysisType::AT_MIXTURE_CONTAINMENT ||
-            (antype == CAnalysisType::AT_NONLIN && stage.OutputType() != CDepletionStage::NONE));
+  return (antype == CAnalysisType::AT_MIXTURE ||
+      antype == CAnalysisType::AT_MIXTURE_CONTAINMENT ||
+      (antype == CAnalysisType::AT_NONLIN && stage.OutputType() != CDepletionStage::NONE));
 
   return (antype == CAnalysisType::AT_LINEAR  ||
           antype == CAnalysisType::AT_MIXTURE ||
@@ -1236,33 +1236,33 @@ QString CResultTree::CFaultScalarResult::CFaultScalarResultComponent::UnitName(c
   {
   case DILATATION:
   case BOUNDARY_DISPLACEMENT_INPUT:
-    if(unit == CQuantity::SI_UNIT)
+  if(unit == CQuantity::SI_UNIT)
       sUnit = getStringTableEntry(IDS_UNIT_SI_LENGTH);
-    else
+  else
       sUnit = getStringTableEntry(IDS_UNIT_FIELD_LENGTH);
-    break;
+  break;
   case SHEAR_CAPACITY:
-    sUnit = getStringTableEntry(IDS_UNIT_DIMENSIONLESS);
-    break;
+  sUnit = getStringTableEntry(IDS_UNIT_DIMENSIONLESS);
+  break;
   case PORE_PRESSURE:
   case PORE_PRESSURE_CHANGE:
   case PORE_PRESSURE_INPUT:
   case PORE_PRESSURE_CHANGE_INPUT:
   case BOUNDARY_PRESSURE_INPUT:
-    if(unit == CQuantity::SI_UNIT)
+  if(unit == CQuantity::SI_UNIT)
       sUnit = getStringTableEntry(IDS_UNIT_SI_STRESS);
-    else
+  else
       sUnit = getStringTableEntry(IDS_UNIT_FIELD_STRESS);
-    break;
+  break;
   case PLASTIC_ENERGY:
-    if(unit == CQuantity::SI_UNIT)
+  if(unit == CQuantity::SI_UNIT)
       sUnit = getStringTableEntry(IDS_UNIT_SI_FAULT_PLASTIC_ENERGY);
-    else
+  else
       sUnit = getStringTableEntry(IDS_UNIT_FIELD_FAULT_PLASTIC_ENERGY);
-    break;
+  break;
   default:
-    assert(false);
-    break;
+  assert(false);
+  break;
   };
 
   return sUnit;
@@ -1277,17 +1277,17 @@ void CResultTree::CFaultScalarResult::CFaultScalarResultComponent::DilatationVal
   assert(fabs(normal.Length() - 1) < EPS);
 
   for(size_t i = 0; i < values.size(); i++) {
-    if( !vcValue[i].Empty() )
-    {
+  if( !vcValue[i].Empty() )
+  {
       double v = -vcValue[i].DotProduct(normal);
       if(unit == CQuantity::FIELD_UNIT)
-        v *= FF_FACTOR_LENGTH;
+    v *= FF_FACTOR_LENGTH;
       values[i] = v;
-    }
-    else
-    {
+  }
+  else
+  {
       values[i] = geo::CValue();
-    }
+  }
   }
 }
 
@@ -1295,12 +1295,12 @@ void CResultTree::CFaultScalarResult::CFaultScalarResultComponent::PlasticEnergy
 {
   /*
   WI 81410:
-    For Faults: Tau*d_sh   (MJ/m^2)
-    Tau is the resolved shear and d_sh is the plastic displacement in m
+  For Faults: Tau*d_sh   (MJ/m^2)
+  Tau is the resolved shear and d_sh is the plastic displacement in m
 
-    The total energy for a stage is the total energy of the previous stage + the energy of the current stage, which is
+  The total energy for a stage is the total energy of the previous stage + the energy of the current stage, which is
  
-    Tau*Δd_sh
+  Tau*Δd_sh
 
   */
 
@@ -1308,11 +1308,11 @@ void CResultTree::CFaultScalarResult::CFaultScalarResultComponent::PlasticEnergy
 
   if(!stage.Initial() && (&stage.Previous() != &stage.InitialStage()))
   {
-    PlasticEnergy(stage.Previous(), previous_values, element, unit);
+  PlasticEnergy(stage.Previous(), previous_values, element, unit);
   }
   else
   {
-    previous_values.resize(element.NrOfPoints(), 0);
+  previous_values.resize(element.NrOfPoints(), 0);
   }
 
   IValueDomainScalar::TValueVec vcShear;
@@ -1325,42 +1325,42 @@ void CResultTree::CFaultScalarResult::CFaultScalarResultComponent::PlasticEnergy
 
   pComponent = pComposite->ResultComponent(stage, AnalysisType(), RegisterIndex(), IVectorResult::VC_LENGTH);
   if(pComponent)
-    vcShear = pComponent->ValueElement(element, unit);
+  vcShear = pComponent->ValueElement(element, unit);
 
   pComposite = &model.ResultTree().FaultPlasticSlip();
 
   pComponent = pComposite->ResultComponent(stage, AnalysisType(), RegisterIndex(), IVectorResult::VC_LENGTH);
   if(pComponent)
-    vcPlasticDispl = pComponent->ValueElement(element, unit);
+  vcPlasticDispl = pComponent->ValueElement(element, unit);
 
   if(!stage.Initial() && (&stage.Previous() != &stage.InitialStage()))
   {
-    pComponent = pComposite->ResultComponent(stage.Previous(), AnalysisType(), RegisterIndex(), IVectorResult::VC_LENGTH);
-    if(pComponent)
+  pComponent = pComposite->ResultComponent(stage.Previous(), AnalysisType(), RegisterIndex(), IVectorResult::VC_LENGTH);
+  if(pComponent)
       vcPlasticDisplPrev = pComponent->ValueElement(element, unit);
   }
   else
   {
-    vcPlasticDisplPrev.resize(element.NrOfPoints(), 0);
+  vcPlasticDisplPrev.resize(element.NrOfPoints(), 0);
   }
 
   if(vcShear.size()            == element.NrOfPoints() &&
      vcPlasticDispl.size()     == element.NrOfPoints() &&
      vcPlasticDisplPrev.size() == element.NrOfPoints())
   {
-    values.resize(element.NrOfPoints());
-    for(int i = 0; i < element.NrOfPoints(); ++i)
-    {
+  values.resize(element.NrOfPoints());
+  for(int i = 0; i < element.NrOfPoints(); ++i)
+  {
       if(previous_values[i].Valid() &&
          vcShear[i].Valid()         &&
          vcPlasticDispl[i].Valid()  &&
          vcPlasticDisplPrev[i].Valid())
       {
-        double Tau = vcShear[i].Value();
-        double d_sh = vcPlasticDispl[i].Value() - vcPlasticDisplPrev[i].Value();
-        values[i] = Tau * d_sh + previous_values[i].Value();
+    double Tau = vcShear[i].Value();
+    double d_sh = vcPlasticDispl[i].Value() - vcPlasticDisplPrev[i].Value();
+    values[i] = Tau * d_sh + previous_values[i].Value();
       }
-    }
+  }
   }
 }
 
@@ -1370,11 +1370,11 @@ geo::CVector GetDisplacementVectorCasing(const CVectorValueSet& displa, const ge
   const geo::CInterfaceElement* pIface = dynamic_cast<const geo::CInterfaceElement*>(&elm);
   if (pIface)
   {
-    if (pIface->FrontFace())
+  if (pIface->FrontFace())
       return GetDisplacementVectorCasing(displa, *pIface->FrontFace(), ptSample);
 
-    assert(pIface->BackFace());
-    return GetDisplacementVectorCasing(displa, *pIface->BackFace(), ptSample);
+  assert(pIface->BackFace());
+  return GetDisplacementVectorCasing(displa, *pIface->BackFace(), ptSample);
   }
 
   CVectorValueSet::TValueVec values(elm.NrOfNodes());
@@ -1383,21 +1383,21 @@ geo::CVector GetDisplacementVectorCasing(const CVectorValueSet& displa, const ge
   bool bValid = true;
   for (size_t j = 0; j < values.size(); j++)
   {
-    if (!displa.IsValid(values[j]))
-    {
+  if (!displa.IsValid(values[j]))
+  {
       bValid = false;
       break;
-    }
+  }
   }
 
   geo::CVector vecDispla;
   if (bValid)
   {
-    geo::IElement::TDoubleVec vcShape = elm.ShapeFunction(elm.WorldToIso(ptSample));
-    assert(vcShape.size() == values.size());
+  geo::IElement::TDoubleVec vcShape = elm.ShapeFunction(elm.WorldToIso(ptSample));
+  assert(vcShape.size() == values.size());
 
-    vecDispla = values[0] * vcShape[0];
-    for (size_t j = 1; j < values.size(); j++)
+  vecDispla = values[0] * vcShape[0];
+  for (size_t j = 1; j < values.size(); j++)
       vecDispla += values[j] * vcShape[j];
   }
 
@@ -1409,11 +1409,11 @@ geo::CVector GetDisplacementVectorWellZoomIn(const CVectorValueSet& displa, cons
   const geo::CInterfaceElement* pIface = dynamic_cast<const geo::CInterfaceElement*>(&elm);
   if (pIface)
   {
-    if (pIface->FrontFace())
+  if (pIface->FrontFace())
       return GetDisplacementVectorWellZoomIn(displa, *pIface->FrontFace(), ptSample);
 
-    assert(pIface->BackFace());
-    return GetDisplacementVectorWellZoomIn(displa, *pIface->BackFace(), ptSample);
+  assert(pIface->BackFace());
+  return GetDisplacementVectorWellZoomIn(displa, *pIface->BackFace(), ptSample);
   }
 
   CVectorValueSet::TValueVec values(elm.NrOfNodes());
@@ -1422,21 +1422,21 @@ geo::CVector GetDisplacementVectorWellZoomIn(const CVectorValueSet& displa, cons
   bool bValid = true;
   for (size_t j = 0; j < values.size(); j++)
   {
-    if (!displa.IsValid(values[j]))
-    {
+  if (!displa.IsValid(values[j]))
+  {
       bValid = false;
       break;
-    }
+  }
   }
 
   geo::CVector vecDispla;
   if (bValid)
   {
-    geo::IElement::TDoubleVec vcShape = elm.ShapeFunction(elm.WorldToIso(ptSample));
-    assert(vcShape.size() == values.size());
+  geo::IElement::TDoubleVec vcShape = elm.ShapeFunction(elm.WorldToIso(ptSample));
+  assert(vcShape.size() == values.size());
 
-    vecDispla = values[0] * vcShape[0];
-    for (size_t j = 1; j < values.size(); j++)
+  vecDispla = values[0] * vcShape[0];
+  for (size_t j = 1; j < values.size(); j++)
       vecDispla += values[j] * vcShape[j];
   }
 
@@ -1450,7 +1450,7 @@ void CResultTree::CFaultScalarResult::CFaultScalarResultComponent::ElementValues
 {
   const geo::IInterfaceElement* pInterface = dynamic_cast<const geo::IInterfaceElement*>(&mesh_element);
   if(!pInterface)
-    return;
+  return;
 
   assert(values.size() == mesh_element.NrOfPoints());
 
@@ -1462,127 +1462,127 @@ void CResultTree::CFaultScalarResult::CFaultScalarResultComponent::ElementValues
   case DILATATION:
   {
 /*
-    CVectorValueSet::TValueVec vcValue(values.size());
-    ResultRegister().FaultDisplacement(Stage(), Linear(), false).ElementValues(vcValue, mesh_element.Index());
+  CVectorValueSet::TValueVec vcValue(values.size());
+  ResultRegister().FaultDisplacement(Stage(), Linear(), false).ElementValues(vcValue, mesh_element.Index());
 
-    geo::CVector normal = FaultElementNormal(mesh_element);
-    assert(fabs(normal.Length() - 1) < EPS);
+  geo::CVector normal = FaultElementNormal(mesh_element);
+  assert(fabs(normal.Length() - 1) < EPS);
 
-    for(size_t i = 0; i < values.size(); i++) {
+  for(size_t i = 0; i < values.size(); i++) {
       if( !vcValue[i].Empty() ) 
-        values[i] = vcValue[i].DotProduct(normal);
+    values[i] = vcValue[i].DotProduct(normal);
       else
-        values[i] = geo::CValue();
-    }
+    values[i] = geo::CValue();
+  }
 */
-    DilatationValues(Stage(), values, mesh_element, unit);
+  DilatationValues(Stage(), values, mesh_element, unit);
 
-    // subtract values from (marked) initial stage
-    const CDepletionStage& iniStage = Stage().Entry().MarkedAsInitialStage();
-    IValueDomainScalar::TValueVec iniValues(values.size());
-    DilatationValues(iniStage, iniValues, mesh_element, unit);
-    assert(values.size() == iniValues.size());
+  // subtract values from (marked) initial stage
+  const CDepletionStage& iniStage = Stage().Entry().MarkedAsInitialStage();
+  IValueDomainScalar::TValueVec iniValues(values.size());
+  DilatationValues(iniStage, iniValues, mesh_element, unit);
+  assert(values.size() == iniValues.size());
 
-    for(size_t i = 0; i < values.size(); ++i)
-    {
+  for(size_t i = 0; i < values.size(); ++i)
+  {
       if(values[i].Valid() && iniValues[i].Valid())
-        values[i] = values[i].Value() - iniValues[i].Value();
+    values[i] = values[i].Value() - iniValues[i].Value();
       else
-        values[i] = geo::CValue(); // invalidate
-    }
-    break;
+    values[i] = geo::CValue(); // invalidate
+  }
+  break;
   }
   case SHEAR_CAPACITY:
   {
-    const CModelBase &model = (const CModelBase&)(Model());
-    // Retrieve eff stress and normal stress
-    CVectorValueSet::TValueVec eff_stress(mesh_element.NrOfPoints());
+  const CModelBase &model = (const CModelBase&)(Model());
+  // Retrieve eff stress and normal stress
+  CVectorValueSet::TValueVec eff_stress(mesh_element.NrOfPoints());
 // wjrx mantis 2571 ResultRegister().FaultEffectiveStress(Stage(), Linear(), false).ElementValues(eff_stress, mesh_element.Index());
-    ResultRegister().FaultShearStress(Stage(), AnalysisType(), false).ElementValues(eff_stress, mesh_element.Index(), 0); // wjrx mantis 2571
+  ResultRegister().FaultShearStress(Stage(), AnalysisType(), false).ElementValues(eff_stress, mesh_element.Index(), 0); // wjrx mantis 2571
 
-    IValueDomainScalar::TValueVec eff_normal_stress(mesh_element.NrOfPoints());
-    const IScalarResultComponent& normal_component =
+  IValueDomainScalar::TValueVec eff_normal_stress(mesh_element.NrOfPoints());
+  const IScalarResultComponent& normal_component =
       dynamic_cast<const IScalarResultComponent&>(
-        *model.ResultTree().FaultEffectiveNormalStress().ResultComponent(Stage(), AnalysisType(), RegisterIndex()));
-    normal_component.ElementValues(eff_normal_stress, mesh_element, CQuantity::SI_UNIT, 0); // added UNIT wjrx mantis 2571
+    *model.ResultTree().FaultEffectiveNormalStress().ResultComponent(Stage(), AnalysisType(), RegisterIndex()));
+  normal_component.ElementValues(eff_normal_stress, mesh_element, CQuantity::SI_UNIT, 0); // added UNIT wjrx mantis 2571
 
-    double friction = ResultRegister().MaterialParameterValue(mesh_element.Index(), IDT_VALUETYPE_FRICTION_ANGLE, Stage());
-    double cohesion = ResultRegister().MaterialParameterValue(mesh_element.Index(), IDT_VALUETYPE_COHESION, Stage());
-    
-    for(size_t i = 0; i < values.size(); i++) {
+  double friction = ResultRegister().MaterialParameterValue(mesh_element.Index(), IDT_VALUETYPE_FRICTION_ANGLE, Stage());
+  double cohesion = ResultRegister().MaterialParameterValue(mesh_element.Index(), IDT_VALUETYPE_COHESION, Stage());
+  
+  for(size_t i = 0; i < values.size(); i++) {
       if(!eff_stress[i].Empty() && eff_normal_stress[i].Valid()) 
-        values[i] = MF::FaultShearCapacity(eff_stress[i], eff_normal_stress[i].Value(), friction, cohesion, MF::DEG);
+    values[i] = MF::FaultShearCapacity(eff_stress[i], eff_normal_stress[i].Value(), friction, cohesion, MF::DEG);
       else
       values[i] = geo::CValue();
-    }
-    break;
+  }
+  break;
   }
   case PORE_PRESSURE:
   case PORE_PRESSURE_CHANGE:
   {
-    assert(ResultRegister().ResultsAvailable(AnalysisType()));
-    ResultRegister().FaultPorePressure(Stage(), AnalysisType(), pResult->ResultType() == PORE_PRESSURE_CHANGE).ElementValues(values, mesh_element.Index(), 0);
-    break;
+  assert(ResultRegister().ResultsAvailable(AnalysisType()));
+  ResultRegister().FaultPorePressure(Stage(), AnalysisType(), pResult->ResultType() == PORE_PRESSURE_CHANGE).ElementValues(values, mesh_element.Index(), 0);
+  break;
   }
   case PORE_PRESSURE_INPUT:
   case PORE_PRESSURE_CHANGE_INPUT:
   {
-    // get it from input data
-    const CModelBase& model = static_cast<const CModelBase&>(Model());
-    const CHorizonBase* pFault = model.Mesh().SlipHorizon(mesh_element);
-    if(pFault)
-    {
+  // get it from input data
+  const CModelBase& model = static_cast<const CModelBase&>(Model());
+  const CHorizonBase* pFault = model.Mesh().SlipHorizon(mesh_element);
+  if(pFault)
+  {
       values = pFault->Pressure(Stage()).Component().ScalarData().ValueElement(mesh_element);
       if(pResult->ResultType() == PORE_PRESSURE_CHANGE_INPUT)
       {
-        IValueDomainScalar::TValueVec vcIniValues = pFault->Pressure(Stage().InitialStage()).Component().ScalarData().ValueElement(mesh_element);
-        for(size_t i = 0; i < values.size(); ++i)
-        {
+    IValueDomainScalar::TValueVec vcIniValues = pFault->Pressure(Stage().InitialStage()).Component().ScalarData().ValueElement(mesh_element);
+    for(size_t i = 0; i < values.size(); ++i)
+    {
           if(vcIniValues[i].Valid() && values[i].Valid())
-            values[i].Value(values[i].Value() - vcIniValues[i].Value());
+      values[i].Value(values[i].Value() - vcIniValues[i].Value());
           else
-            values[i] = geo::CValue();
-        }
+      values[i] = geo::CValue();
+    }
       }
 
       if(unit != CQuantity::SI_UNIT)
       {
-        for(size_t i = 0; i < values.size(); i++)
+    for(size_t i = 0; i < values.size(); i++)
           if(values[i].Valid()) values[i] *= FF_FACTOR_STRESS;
       }
-    }
-    break;
+  }
+  break;
   }
   case BOUNDARY_PRESSURE_INPUT:
   {
-    const IWellModel *model = dynamic_cast<const IWellModel *>(&Model());
-    if (!model)
+  const IWellModel *model = dynamic_cast<const IWellModel *>(&Model());
+  if (!model)
       return;
 
-    const CDepletionStage& stage = Stage();
+  const CDepletionStage& stage = Stage();
 
-    const CDepletionStage& parentStage = model->ParentEquivalentDepletionStage(stage);
+  const CDepletionStage& parentStage = model->ParentEquivalentDepletionStage(stage);
 
-    //const CDepletionStage *initialStage = &stage;
+  //const CDepletionStage *initialStage = &stage;
 
-    //while (!initialStage->IsMarkedAsInitial())
+  //while (!initialStage->IsMarkedAsInitial())
       //initialStage = &initialStage->Previous();
 
-    //const CDepletionStage& parentInitialStage = model->ParentEquivalentDepletionStage(*initialStage);
+  //const CDepletionStage& parentInitialStage = model->ParentEquivalentDepletionStage(*initialStage);
 
-    const CModelBase& parentModel = model->ParentModel();
+  const CModelBase& parentModel = model->ParentModel();
 
-    //CStressTensorValueSet initialStress = parentModel.ResultRegister().TotalStress(parentInitialStage, model->ParentLinearResults() ? CAnalysisType::AT_LINEAR : CAnalysisType::AT_NONLIN, false);
+  //CStressTensorValueSet initialStress = parentModel.ResultRegister().TotalStress(parentInitialStage, model->ParentLinearResults() ? CAnalysisType::AT_LINEAR : CAnalysisType::AT_NONLIN, false);
 
-    CStressTensorValueSet stress = parentModel.ResultRegister().TotalStress(parentStage, model->ParentLinearResults(AnalysisType()) ? CAnalysisType::AT_LINEAR : CAnalysisType::AT_NONLIN, false);
+  CStressTensorValueSet stress = parentModel.ResultRegister().TotalStress(parentStage, model->ParentLinearResults(AnalysisType()) ? CAnalysisType::AT_LINEAR : CAnalysisType::AT_NONLIN, false);
 
-    const geo::IFace *bodyface = dynamic_cast<const geo::IFace *>(&pInterface->Front());
+  const geo::IFace *bodyface = dynamic_cast<const geo::IFace *>(&pInterface->Front());
 
-    geo::CVector vecPressureDirection; // direction of the bodyface load
-    std::vector<double> vcPressureValues(bodyface->NrOfNodes()); // values of the bodyface load in each node
+  geo::CVector vecPressureDirection; // direction of the bodyface load
+  std::vector<double> vcPressureValues(bodyface->NrOfNodes()); // values of the bodyface load in each node
 
-    for (int n = 0; n < bodyface->NrOfNodes(); ++n)
-    {
+  for (int n = 0; n < bodyface->NrOfNodes(); ++n)
+  {
       const geo::INode& node = bodyface->Node(n);
 
       CStressTensor stresstensor = stress.ValuePoint(node, geo::IParallelInitializationCallback::Sequential);
@@ -1590,99 +1590,99 @@ void CResultTree::CFaultScalarResult::CFaultScalarResultComponent::ElementValues
       geo::CVector vecPressure = -(stresstensor.Matrix() * bodyface->Normal().UnitVector());
 
       values[n] = vecPressure.Length();
-    }
-    break;
+  }
+  break;
   }
   case BOUNDARY_DISPLACEMENT_INPUT:
   {
-    const IWellModel *model = dynamic_cast<const IWellModel *>(&Model());
-    if (!model)
+  const IWellModel *model = dynamic_cast<const IWellModel *>(&Model());
+  if (!model)
       return;
 
-    const CWellZoomInModel *wellModel = dynamic_cast<const CWellZoomInModel *>(&Model());
+  const CWellZoomInModel *wellModel = dynamic_cast<const CWellZoomInModel *>(&Model());
 
-    const CDepletionStage& stage = Stage();
+  const CDepletionStage& stage = Stage();
 
-    const CModelBase& parentModel = model->ParentModel();
-    const geo::IFace *bodyface = dynamic_cast<const geo::IFace *>(&pInterface->Front());
-    //const CDepletionStage *initialStage = &stage;
+  const CModelBase& parentModel = model->ParentModel();
+  const geo::IFace *bodyface = dynamic_cast<const geo::IFace *>(&pInterface->Front());
+  //const CDepletionStage *initialStage = &stage;
 
-    //while (!initialStage->IsMarkedAsInitial())
+  //while (!initialStage->IsMarkedAsInitial())
       //initialStage = &initialStage->Previous();
 
-    const CDepletionStage& parentStage = model->ParentEquivalentDepletionStage(stage);
+  const CDepletionStage& parentStage = model->ParentEquivalentDepletionStage(stage);
 
-    CVectorValueSet displa = parentModel.ResultRegister().Displacement(parentStage,
+  CVectorValueSet displa = parentModel.ResultRegister().Displacement(parentStage,
       model->ParentLinearResults(AnalysisType()) ? CAnalysisType::AT_LINEAR : CAnalysisType::AT_NONLIN, false);
 
-    if (wellModel)
-    {
+  if (wellModel)
+  {
       for (int n = 0; n < bodyface->NrOfNodes(); ++n)
       {
-        const geo::INode& node = bodyface->Node(n);
+    const geo::INode& node = bodyface->Node(n);
 
-        int nBoundaryNode = wellModel->Mesh().MeshNodeToBoundaryNode(node.Index());
+    int nBoundaryNode = wellModel->Mesh().MeshNodeToBoundaryNode(node.Index());
 
-        // get the sample point
-        geo::CPoint ptSample2 = wellModel->Mesh().SamplePosition(node);
+    // get the sample point
+    geo::CPoint ptSample2 = wellModel->Mesh().SamplePosition(node);
 
-        // get the displacement result value for that point
-        geo::CVector vecDispla;
+    // get the displacement result value for that point
+    geo::CVector vecDispla;
 
-        // the elements at the sample position
-        std::vector<int> vcElementIndex = parentModel.Mesh().Mesh().ElementsAt(ptSample2);
-        for (size_t i2 = 0; i2 < vcElementIndex.size(); ++i2)
-        {
+    // the elements at the sample position
+    std::vector<int> vcElementIndex = parentModel.Mesh().Mesh().ElementsAt(ptSample2);
+    for (size_t i2 = 0; i2 < vcElementIndex.size(); ++i2)
+    {
           const geo::IElement& elm = parentModel.Mesh().Mesh().Element(vcElementIndex[i2]);
           vecDispla = GetDisplacementVectorWellZoomIn(displa, elm, ptSample2);
           if (!vecDispla.Empty())
-            break;
-        }
-
-        assert(!vecDispla.Empty());
-        if (!vecDispla.Empty())
-        {
-          values[n] = vecDispla.Length();
-        }
-      }
+      break;
     }
-    else
+
+    assert(!vecDispla.Empty());
+    if (!vecDispla.Empty())
     {
+          values[n] = vecDispla.Length();
+    }
+      }
+  }
+  else
+  {
       for (int n = 0; n < bodyface->NrOfNodes(); ++n)
       {
-        const geo::INode& node = bodyface->Node(n);
+    const geo::INode& node = bodyface->Node(n);
 
-        int nBoundaryNode = node.Index() + 1; // always the next
+    int nBoundaryNode = node.Index() + 1; // always the next
 
-        const geo::CTranslationSupport& support = model->Mesh().Mesh().TranslationSupport(nBoundaryNode);
+    const geo::CTranslationSupport& support = model->Mesh().Mesh().TranslationSupport(nBoundaryNode);
 
-        // get the displacement result value for the node
-        geo::CVector vecDispla;
+    // get the displacement result value for the node
+    geo::CVector vecDispla;
 
-        std::vector<int> vcElementIndex = parentModel.Mesh().Mesh().ElementsAt(node);
-        for (size_t i2 = 0; i2 < vcElementIndex.size(); ++i2)
-        {
+    std::vector<int> vcElementIndex = parentModel.Mesh().Mesh().ElementsAt(node);
+    for (size_t i2 = 0; i2 < vcElementIndex.size(); ++i2)
+    {
           const geo::IElement& elm = parentModel.Mesh().Mesh().Element(vcElementIndex[i2]);
           vecDispla = GetDisplacementVectorCasing(displa, elm, node);
           if (!vecDispla.Empty())
-            break;
-        }
-
-        assert(!vecDispla.Empty());
-        if (!vecDispla.Empty())
-        {
-          values[n] = vecDispla.Length();
-        }
-      }
+      break;
     }
-    break;
+
+    assert(!vecDispla.Empty());
+    if (!vecDispla.Empty())
+    {
+          values[n] = vecDispla.Length();
+    }
+      }
+  }
+  break;
   }
   case PLASTIC_ENERGY:
-    PlasticEnergy(Stage(), values, mesh_element, unit);
-    break;
+  PlasticEnergy(Stage(), values, mesh_element, unit);
+  break;
   default:
-    assert(false);
-    break;
+  assert(false);
+  break;
   };
 }
 
@@ -1691,74 +1691,74 @@ IValueDomainScalar::TValueVec CResultTree::CFaultScalarResult::CFaultScalarResul
   const CNonMeshedSurface::CGeoSurface* pGeoSurface = dynamic_cast<const CNonMeshedSurface::CGeoSurface*>(elm.IndexingElementSet());
   if(pGeoSurface)
   {
-    const CFaultScalarResult *pResult = dynamic_cast<const CFaultScalarResult*>(&Parent());
-    assert(pResult);
-    switch(pResult->ResultType())
-    {
-    case SHEAR_CAPACITY:
+  const CFaultScalarResult *pResult = dynamic_cast<const CFaultScalarResult*>(&Parent());
+  assert(pResult);
+  switch(pResult->ResultType())
+  {
+  case SHEAR_CAPACITY:
       {
-        IValueDomainScalar::TValueVec vcValues(elm.NrOfPoints());
+    IValueDomainScalar::TValueVec vcValues(elm.NrOfPoints());
 
-        CStressTensorValueSet::TValueVec vcElementValues(elm.NrOfPoints());
-        ResultRegister().EffectiveStress(Stage(), AnalysisType(), false).ElementValue(elm, vcElementValues, cb);
-        assert(dynamic_cast<const geo::IFace*>(&elm));
-        const geo::IFace& face = static_cast<const geo::IFace&>(elm);
+    CStressTensorValueSet::TValueVec vcElementValues(elm.NrOfPoints());
+    ResultRegister().EffectiveStress(Stage(), AnalysisType(), false).ElementValue(elm, vcElementValues, cb);
+    assert(dynamic_cast<const geo::IFace*>(&elm));
+    const geo::IFace& face = static_cast<const geo::IFace&>(elm);
 
-	      geo::CVector norm = face.Normal();
-	      geo::CVector tang1 = geo::CVector(face.Point(0), face.Point(1)).UnitVector();
-	      geo::CVector tang2 = norm.CrossProduct(tang1).UnitVector();
+        geo::CVector norm = face.Normal();
+        geo::CVector tang1 = geo::CVector(face.Point(0), face.Point(1)).UnitVector();
+        geo::CVector tang2 = norm.CrossProduct(tang1).UnitVector();
 
-	      geo::CMatrix rotation(3, 3);
-	      rotation.Value(0, 0, norm.X()); rotation.Value(0, 1, tang1.X()); rotation.Value(0, 2, tang2.X());
-	      rotation.Value(1, 0, norm.Y()); rotation.Value(1, 1, tang1.Y()); rotation.Value(1, 2, tang2.Y());
-	      rotation.Value(2, 0, norm.Z()); rotation.Value(2, 1, tang1.Z()); rotation.Value(2, 2, tang2.Z());
+        geo::CMatrix rotation(3, 3);
+        rotation.Value(0, 0, norm.X()); rotation.Value(0, 1, tang1.X()); rotation.Value(0, 2, tang2.X());
+        rotation.Value(1, 0, norm.Y()); rotation.Value(1, 1, tang1.Y()); rotation.Value(1, 2, tang2.Y());
+        rotation.Value(2, 0, norm.Z()); rotation.Value(2, 1, tang1.Z()); rotation.Value(2, 2, tang2.Z());
 
-        std::vector<double> vcCohesion = pGeoSurface->Parent().ParametersNode().Cohesion(face);
-        std::vector<double> vcFriction = pGeoSurface->Parent().ParametersNode().FrictionAngle(face);
+    std::vector<double> vcCohesion = pGeoSurface->Parent().ParametersNode().Cohesion(face);
+    std::vector<double> vcFriction = pGeoSurface->Parent().ParametersNode().FrictionAngle(face);
 
-        for(int i = 0; i < face.NrOfPoints(); ++i)
-        {
+    for(int i = 0; i < face.NrOfPoints(); ++i)
+    {
           CTensor tensor = vcElementValues[i].RotateTensor(rotation);
           double dNormal = tensor.XX();
           geo::CVector vecShear(tensor.XY(), tensor.XZ(), 0);
 
           if(!vecShear.Empty())
-            vcValues[i] = MF::FaultShearCapacity(vecShear, dNormal, vcFriction[i], vcCohesion[i], MF::DEG);
-        }
+      vcValues[i] = MF::FaultShearCapacity(vecShear, dNormal, vcFriction[i], vcCohesion[i], MF::DEG);
+    }
 
-        return vcValues;
+    return vcValues;
       }
       break;
-    case PORE_PRESSURE:
-    case PORE_PRESSURE_INPUT:
+  case PORE_PRESSURE:
+  case PORE_PRESSURE_INPUT:
       {
-        IValueDomainScalar::TValueVec vcValues;
-        const CModelBase& model = static_cast<const CModelBase&>(Model());
+    IValueDomainScalar::TValueVec vcValues;
+    const CModelBase& model = static_cast<const CModelBase&>(Model());
 
-        if(pGeoSurface->Parent().Pressure().ManualValues())
-        {
+    if(pGeoSurface->Parent().Pressure().ManualValues())
+    {
           vcValues = pGeoSurface->Parent().Pressure().Component().ScalarData().ValueElement(elm, unit, cb);
-        }
-        else
-        {
+    }
+    else
+    {
           vcValues = model.ResultTree().PorePressure().ResultComponent(Stage(), AnalysisType())->ScalarData().ValueElement(elm, unit, cb);
-        }
+    }
 
-        return vcValues;
+    return vcValues;
       }
       break;
-    case PORE_PRESSURE_CHANGE:
-    case PORE_PRESSURE_CHANGE_INPUT:
+  case PORE_PRESSURE_CHANGE:
+  case PORE_PRESSURE_CHANGE_INPUT:
       {
-        assert(!Stage().Initial());
-        if(pGeoSurface->Parent().Pressure().ManualValues())
-        {
+    assert(!Stage().Initial());
+    if(pGeoSurface->Parent().Pressure().ManualValues())
+    {
           // zero change...
           IValueDomainScalar::TValueVec vcValues(elm.NrOfPoints(), 0);
           return vcValues;
-        }
-        else
-        {
+    }
+    else
+    {
           const CModelBase& model = static_cast<const CModelBase&>(Model());
           IValueDomainScalar::TValueVec vcValues;
           IValueDomainScalar::TValueVec vcValuesIni;
@@ -1767,24 +1767,24 @@ IValueDomainScalar::TValueVec CResultTree::CFaultScalarResult::CFaultScalarResul
           assert(vcValues.size() == vcValuesIni.size());
           for(size_t i = 0; i < vcValues.size(); ++i)
           {
-            if(vcValues[i].Valid() && vcValuesIni[i].Valid())
+      if(vcValues[i].Valid() && vcValuesIni[i].Valid())
               vcValues[i].Value(vcValues[i].Value() - vcValuesIni[i].Value());
-            else
+      else
               vcValues[i] = geo::CValue();
           }
 
           return vcValues;
-        }
+    }
       }
       break;
-    case BOUNDARY_PRESSURE_INPUT:
+  case BOUNDARY_PRESSURE_INPUT:
       break;
-    case BOUNDARY_DISPLACEMENT_INPUT:
+  case BOUNDARY_DISPLACEMENT_INPUT:
       break;
-    case DILATATION:
-    case PLASTIC_ENERGY:
+  case DILATATION:
+  case PLASTIC_ENERGY:
       break;
-    }
+  }
   }
 
   return IScalarResultComponent::ValueElement(elm, unit, cb);
@@ -1798,25 +1798,25 @@ void CResultTree::CFaultScalarResult::BuildComponent(const CDepletionStage& stag
 {
   if(OnBuildComponent(stage, antype, nRegister))
   {
-    switch(ResultType())
-    {
-    case DILATATION:
-    case SHEAR_CAPACITY:
-    case PORE_PRESSURE:
-    case PORE_PRESSURE_INPUT:
-    case BOUNDARY_PRESSURE_INPUT:
-    case BOUNDARY_DISPLACEMENT_INPUT:
+  switch(ResultType())
+  {
+  case DILATATION:
+  case SHEAR_CAPACITY:
+  case PORE_PRESSURE:
+  case PORE_PRESSURE_INPUT:
+  case BOUNDARY_PRESSURE_INPUT:
+  case BOUNDARY_DISPLACEMENT_INPUT:
       new CFaultScalarResultComponent(*this, stage, antype, nRegister);
       break;
-    case PORE_PRESSURE_CHANGE:
-    case PORE_PRESSURE_CHANGE_INPUT:
-    case PLASTIC_ENERGY:
+  case PORE_PRESSURE_CHANGE:
+  case PORE_PRESSURE_CHANGE_INPUT:
+  case PLASTIC_ENERGY:
       if(!stage.Initial())
-        new CFaultScalarResultComponent(*this, stage, antype, nRegister);
+    new CFaultScalarResultComponent(*this, stage, antype, nRegister);
       break;
-    default:
+  default:
       assert(false);
-    }
+  }
   }
 }
 
@@ -1839,8 +1839,8 @@ void CResultTree::CFaultScalarResult::SetIndex()
   switch(m_result_type)
   {
   case DILATATION:
-    Index(RC_FAULT_DILATATION);
-    break;
+  Index(RC_FAULT_DILATATION);
+  break;
 //  case TOTAL_NORMAL_STRESS:
 //    Index(RC_FAULT_TOTAL_NORMAL_STRESS);
 //    break;
@@ -1848,32 +1848,32 @@ void CResultTree::CFaultScalarResult::SetIndex()
 //    Index(RC_FAULT_EFF_NORMAL_STRESS);
 //    break;
   case SHEAR_CAPACITY:
-    Index(RC_FAULT_SHEAR_CAPACITY);
-    break;
+  Index(RC_FAULT_SHEAR_CAPACITY);
+  break;
   case PORE_PRESSURE:
-    Index(RC_FAULT_PRESSURE);
-    break;
+  Index(RC_FAULT_PRESSURE);
+  break;
   case PORE_PRESSURE_CHANGE:
-    Index(RC_FAULT_PRESSURE_CHANGE);
-    break;
+  Index(RC_FAULT_PRESSURE_CHANGE);
+  break;
   case PLASTIC_ENERGY:
-    Index(RC_FAULT_PLASTIC_ENERGY);
-    break;
+  Index(RC_FAULT_PLASTIC_ENERGY);
+  break;
   case PORE_PRESSURE_INPUT:
-    Index(RC_FAULT_PRESSURE_INPUT);
-    break;
+  Index(RC_FAULT_PRESSURE_INPUT);
+  break;
   case PORE_PRESSURE_CHANGE_INPUT:
-    Index(RC_FAULT_PRESSURE_CHANGE_INPUT);
-    break;
+  Index(RC_FAULT_PRESSURE_CHANGE_INPUT);
+  break;
   case BOUNDARY_PRESSURE_INPUT:
-    Index(RC_BOUNDARY_PRESSURE);
-    break;
+  Index(RC_BOUNDARY_PRESSURE);
+  break;
   case BOUNDARY_DISPLACEMENT_INPUT:
-    Index(RC_BOUNDARY_DISPLACEMENT);
-    break;
+  Index(RC_BOUNDARY_DISPLACEMENT);
+  break;
   default:
-    assert(false);
-    break;
+  assert(false);
+  break;
   };
 }
 
@@ -1892,38 +1892,38 @@ bool CResultTree::CFaultScalarResult::CanMap(const COpenGLNode& node, int nRegis
   switch(m_result_type)
   {
   case SHEAR_CAPACITY: // when a fault is selected that is set to perfect slip, the shear capacity
-    {         // is not allowed to be selected
+  {         // is not allowed to be selected
       const CHorizonBase *pHorizon = dynamic_cast<const CHorizonBase*>(&node);
       if(pHorizon)
       {
-        if(pHorizon->SlipType() == CHorizonBase::SLIP || pHorizon->SlipType() == CHorizonBase::FRACTURE)
+    if(pHorizon->SlipType() == CHorizonBase::SLIP || pHorizon->SlipType() == CHorizonBase::FRACTURE)
           return false;
       }
       else
       {
-        const CNonMeshedSurface* pNMSurface = dynamic_cast<const CNonMeshedSurface*>(&node);
-        if(pNMSurface)
+    const CNonMeshedSurface* pNMSurface = dynamic_cast<const CNonMeshedSurface*>(&node);
+    if(pNMSurface)
           return true;
       }
 
       return CanMapOnFaultElements(node, nRegister);
-    }
-    break;
+  }
+  break;
   case PORE_PRESSURE:
   case PORE_PRESSURE_CHANGE:
   case PORE_PRESSURE_INPUT:
   case PORE_PRESSURE_CHANGE_INPUT:
-    {
+  {
       const CNonMeshedSurface* pNMSurface = dynamic_cast<const CNonMeshedSurface*>(&node);
       if(pNMSurface)
-        return true;
-    }
-    // fall through...
+    return true;
+  }
+  // fall through...
   default:
-    return CanMapOnFaultElements(node, nRegister);
+  return CanMapOnFaultElements(node, nRegister);
   case BOUNDARY_PRESSURE_INPUT:
   case BOUNDARY_DISPLACEMENT_INPUT:
-    return CanMapOnBoundaryElements(node, nRegister);
+  return CanMapOnBoundaryElements(node, nRegister);
   }
 }
 
@@ -1936,19 +1936,19 @@ bool CResultTree::CFaultScalarResult::OnDefined(const IResultComponent& componen
 {
   if((m_result_type == PORE_PRESSURE_INPUT) || (m_result_type == PORE_PRESSURE_CHANGE_INPUT))
   {
-    return true;
+  return true;
   }
 
   if (m_result_type == BOUNDARY_PRESSURE_INPUT || m_result_type == BOUNDARY_DISPLACEMENT_INPUT)
   {
-    assert(dynamic_cast<const IWellModel*>(&Model()));
-    const IWellModel& model = static_cast<const IWellModel&>(Model());
+  assert(dynamic_cast<const IWellModel*>(&Model()));
+  const IWellModel& model = static_cast<const IWellModel&>(Model());
 
-    bool resultsAvailable = model.ParentLinearResults(component.AnalysisType()) ?
+  bool resultsAvailable = model.ParentLinearResults(component.AnalysisType()) ?
       model.ParentModel().ResultRegister().Linear() :
       model.ParentModel().ResultRegister().NonLinear();
 
-    if (!(model.Mesh().IsMesh() && resultsAvailable))
+  if (!(model.Mesh().IsMesh() && resultsAvailable))
       return false;
 
       return m_result_type != BOUNDARY_DISPLACEMENT_INPUT || !component.Stage().IsMarkedAsInitial();
@@ -1988,13 +1988,13 @@ bool CResultTree::CFaultDisplacementResult::ValidName
   std::string label= VectorExportLabel().toStdString();
 
   return validateName(resultInfo, name, label, VectorResultComponentList(),
-    "_L|_M|_C|_N");
+  "_L|_M|_C|_N");
 }
 
 bool CResultTree::CFaultDisplacementResult::OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int /*nRegister*/) const
 {
   return stage.isAfter(stage.Entry().MarkedAsInitialStage()) &&
-        (antype == CAnalysisType::AT_LINEAR  ||
+    (antype == CAnalysisType::AT_LINEAR  ||
          antype == CAnalysisType::AT_MIXTURE ||
          antype == CAnalysisType::AT_MIXTURE_CONTAINMENT ||
          (antype == CAnalysisType::AT_NONLIN && stage.OutputType() != CDepletionStage::NONE));
@@ -2029,9 +2029,9 @@ QString CResultTree::CFaultDisplacementResult::UnitName(UNIT unit) const
 {
   QString sUnit;
   if(unit == CQuantity::SI_UNIT)
-    sUnit = getStringTableEntry(IDS_UNIT_SI_LENGTH);
+  sUnit = getStringTableEntry(IDS_UNIT_SI_LENGTH);
   else
-    sUnit = getStringTableEntry(IDS_UNIT_FIELD_LENGTH);
+  sUnit = getStringTableEntry(IDS_UNIT_FIELD_LENGTH);
   return sUnit;
 }
 
@@ -2044,10 +2044,10 @@ bool CResultTree::CFaultDisplacementResult::PrepareMapping(const geo::IElementSe
   int c1 = pRegister->ColumnNumber(pComponent->AnalysisType(), pComponent->Stage().Index(), CI_STRAIN_XX);
 
   if (!pRegister->Cache().ActiveCacher().StartCriticalSection(c0, 3))
-    return false;
+  return false;
 
   if (!pRegister->Cache().ActiveCacher().StartCriticalSection(c1, 3))
-    return false;
+  return false;
 
   return true;
 }
@@ -2077,8 +2077,8 @@ const geo::IVector& CResultTree::CFaultPlasticSlipResult::VectorPoint(const geo:
      m_cache.antype         == component.AnalysisType().AnalysisType() &&
      m_cache.nRegisterIndex == component.RegisterIndex())
   {
-    assert(m_cache.m_vcValues.size() >= 1);
-    return m_cache.m_vcValues[0];
+  assert(m_cache.m_vcValues.size() >= 1);
+  return m_cache.m_vcValues[0];
   }
 
   const CModelBase& model = static_cast<const CModelBase&>(Model());
@@ -2087,18 +2087,18 @@ const geo::IVector& CResultTree::CFaultPlasticSlipResult::VectorPoint(const geo:
   const geo::IInterfaceElement* pInterface = 0;
   for(it = stElements.begin(); it != stElements.end(); ++it)
   {
-    const geo::IElement& elm = model.Mesh().Mesh().Element(*it);
-    pInterface = dynamic_cast<const geo::IInterfaceElement*>(&elm);
-    if(pInterface)
+  const geo::IElement& elm = model.Mesh().Mesh().Element(*it);
+  pInterface = dynamic_cast<const geo::IInterfaceElement*>(&elm);
+  if(pInterface)
       break;
   }
 
   if(!pInterface)
-    return vecEmpty;
+  return vecEmpty;
 
   const CHorizonBase* pHor = model.Mesh().SlipHorizon(*pInterface);
   if(!pHor)
-    return vecEmpty;
+  return vecEmpty;
 
   double dDStiff = pHor->FaultParameters(component.Stage()).DStiffShear();
 
@@ -2106,36 +2106,36 @@ const geo::IVector& CResultTree::CFaultPlasticSlipResult::VectorPoint(const geo:
 
   pComp = model.ResultTree().FaultDisplacement().ResultComponent(component.Stage(), component.AnalysisType(), component.RegisterIndex(), component.ComponentIndex());
   if(!pComp)
-    return vecEmpty;
+  return vecEmpty;
   geo::CVector vecFaultDisplacement = model.ResultTree().FaultDisplacement().VectorPoint(point, *pComp);
   if(vecFaultDisplacement.Empty())
-    return vecEmpty;
+  return vecEmpty;
 
   geo::CValue valFaultDilatation = model.ResultTree().FaultDilatation().ResultComponent(component.Stage(), component.AnalysisType(), component.RegisterIndex())->ValuePoint(point);
   if(!valFaultDilatation.Valid())
-    return vecEmpty;
+  return vecEmpty;
 
   pComp = model.ResultTree().FaultShearStress().ResultComponent(component.Stage(), component.AnalysisType(), component.RegisterIndex(), component.ComponentIndex());
   if(!pComp)
-    return vecEmpty;
+  return vecEmpty;
   geo::CVector vecFaultShearStress = model.ResultTree().FaultShearStress().VectorPoint(point, *pComp);
   if(vecFaultShearStress.Empty())
-    return vecEmpty;
+  return vecEmpty;
 
   pComp = model.ResultTree().FaultShearStress().ResultComponent(model.DepletionStageEntry().MarkedAsInitialStage(), component.AnalysisType(), component.RegisterIndex(), component.ComponentIndex());
   if(!pComp)
-    return vecEmpty;
+  return vecEmpty;
   geo::CVector vecFaultShearStressIni = model.ResultTree().FaultShearStress().VectorPoint(point, *pComp);
   if(vecFaultShearStressIni.Empty())
-    return vecEmpty;
+  return vecEmpty;
 
   geo::CVector vecPlasticSlip = Calculate(
-    *pInterface,
-    point,
-    vecFaultDisplacement,
-    valFaultDilatation.Value(),
-    vecFaultShearStress - vecFaultShearStressIni,
-    dDStiff);
+  *pInterface,
+  point,
+  vecFaultDisplacement,
+  valFaultDilatation.Value(),
+  vecFaultShearStress - vecFaultShearStressIni,
+  dDStiff);
 
   m_cache.pElement       = 0;
   m_cache.pPoint         = &point;
@@ -2144,16 +2144,16 @@ const geo::IVector& CResultTree::CFaultPlasticSlipResult::VectorPoint(const geo:
   m_cache.nRegisterIndex = component.RegisterIndex();
 
   if(m_cache.m_vcValues.size() < 1)
-    m_cache.m_vcValues.resize(1);
+  m_cache.m_vcValues.resize(1);
 
   m_cache.m_vcValues[0] = vecPlasticSlip;
   return m_cache.m_vcValues[0];
 }
 
 const geo::IVector& CResultTree::CFaultPlasticSlipResult::VectorElement(const geo::IElement& element, 
-                                                                        int nNodeIndex, 
-                                                                        TMapType map_type,
-                                                                        const IResultComponent& component, geo::IParallelInitializationCallback *cb) const
+                                    int nNodeIndex, 
+                                    TMapType map_type,
+                                    const IResultComponent& component, geo::IParallelInitializationCallback *cb) const
 {
   if(m_cache.pElement       == &element                                &&
      m_cache.pStage         == &component.Stage()                      &&
@@ -2161,74 +2161,74 @@ const geo::IVector& CResultTree::CFaultPlasticSlipResult::VectorElement(const ge
      m_cache.nRegisterIndex == component.RegisterIndex()               &&
      m_cache.stNodeIndex.find(nNodeIndex) != m_cache.stNodeIndex.end())
   {
-    assert(m_cache.m_vcValues.size() >= element.NrOfNodes());
-    assert(nNodeIndex < element.NrOfNodes());
-    return m_cache.m_vcValues[nNodeIndex];
+  assert(m_cache.m_vcValues.size() >= element.NrOfNodes());
+  assert(nNodeIndex < element.NrOfNodes());
+  return m_cache.m_vcValues[nNodeIndex];
   }
 
   const geo::IInterfaceElement* pInterface = dynamic_cast<const geo::IInterfaceElement*>(&element);
   if(!pInterface) // should be an interface element
-    return vecEmpty;
+  return vecEmpty;
 
   const CModelBase& model = static_cast<const CModelBase&>(Model());
   double dDStiff;
   const CHorizonBase* pHor = model.Mesh().SlipHorizon(*pInterface);
   if(pHor)
-    dDStiff = pHor->FaultParameters(component.Stage()).DStiffShear();
+  dDStiff = pHor->FaultParameters(component.Stage()).DStiffShear();
   else
   {
-    const CWellCasingModel* pWellCasingModel = dynamic_cast<const CWellCasingModel*>(&Model());
-    if(pWellCasingModel && pWellCasingModel->Mesh().IsCementInterfaceElement(*pInterface))
-    {
+  const CWellCasingModel* pWellCasingModel = dynamic_cast<const CWellCasingModel*>(&Model());
+  if(pWellCasingModel && pWellCasingModel->Mesh().IsCementInterfaceElement(*pInterface))
+  {
       const CInterfaceMaterial* pIfaceMat = pWellCasingModel->CasingNode().CementInterface().Material(component.Stage()).LibraryMaterial();
       if(pIfaceMat)
-        dDStiff = pIfaceMat->ShearStiffness();
+    dDStiff = pIfaceMat->ShearStiffness();
       else
-        return vecEmpty;
-    }
-    else
-    {
+    return vecEmpty;
+  }
+  else
+  {
       return vecEmpty;
-    }
+  }
   }
 
   const IResultComponent* pComp;
 
   pComp = model.ResultTree().FaultDisplacement().ResultComponent(component.Stage(), component.AnalysisType(), component.RegisterIndex(), component.ComponentIndex());
   if(!pComp)
-    return vecEmpty;
+  return vecEmpty;
   geo::CVector vecFaultDisplacement = model.ResultTree().FaultDisplacement().VectorElement(element, nNodeIndex, map_type, *pComp, cb);
   if(vecFaultDisplacement.Empty())
-    return vecEmpty;
+  return vecEmpty;
 
   geo::CValue valFaultDilatation = model.ResultTree().FaultDilatation().ResultComponent(component.Stage(), component.AnalysisType(), component.RegisterIndex())->ValueElement(element, CDoubleQuantity::SI_UNIT, cb)[nNodeIndex];
   if(!valFaultDilatation.Valid())
-    return vecEmpty;
+  return vecEmpty;
 
   pComp = model.ResultTree().FaultShearStress().ResultComponent(component.Stage(), component.AnalysisType(), component.RegisterIndex(), component.ComponentIndex());
   if(!pComp)
-    return vecEmpty;
+  return vecEmpty;
   geo::CVector vecFaultShearStress = model.ResultTree().FaultShearStress().VectorElement(element, nNodeIndex, map_type, *pComp, cb);
   if(vecFaultShearStress.Empty())
-    return vecEmpty;
+  return vecEmpty;
 
   pComp = model.ResultTree().FaultShearStress().ResultComponent(model.DepletionStageEntry().MarkedAsInitialStage(), component.AnalysisType(), component.RegisterIndex(), component.ComponentIndex());
   if(!pComp)
-    return vecEmpty;
+  return vecEmpty;
   geo::CVector vecFaultShearStressIni = model.ResultTree().FaultShearStress().VectorElement(element, nNodeIndex, map_type, *pComp, cb);
   if(vecFaultShearStressIni.Empty())
-    return vecEmpty;
+  return vecEmpty;
 
   geo::CVector vecPlasticSlip = Calculate(
-    *pInterface,
-    element.Node(nNodeIndex),
-    vecFaultDisplacement,
-    valFaultDilatation.Value(),
-    vecFaultShearStress - vecFaultShearStressIni,
-    dDStiff);
+  *pInterface,
+  element.Node(nNodeIndex),
+  vecFaultDisplacement,
+  valFaultDilatation.Value(),
+  vecFaultShearStress - vecFaultShearStressIni,
+  dDStiff);
 
   if(m_cache.pElement != &element)
-    m_cache.stNodeIndex.clear();
+  m_cache.stNodeIndex.clear();
 
   m_cache.pPoint         = 0;
   m_cache.pElement       = &element;
@@ -2238,7 +2238,7 @@ const geo::IVector& CResultTree::CFaultPlasticSlipResult::VectorElement(const ge
   m_cache.stNodeIndex.insert(nNodeIndex);
 
   if(m_cache.m_vcValues.size() < element.NrOfNodes())
-    m_cache.m_vcValues.resize(element.NrOfNodes());
+  m_cache.m_vcValues.resize(element.NrOfNodes());
 
   m_cache.m_vcValues[nNodeIndex] = vecPlasticSlip;
   return m_cache.m_vcValues[nNodeIndex];
@@ -2249,7 +2249,7 @@ bool CResultTree::CFaultPlasticSlipResult::CanMap(const COpenGLNode& node, int n
   // plastic slip result is not available for fractures
   const CHorizonBase *pHorizon = dynamic_cast<const CHorizonBase*>(&node);
   if(pHorizon && pHorizon->SlipType() == CHorizonBase::FRACTURE)
-    return false;
+  return false;
 
   return CanMapOnFaultElements(node, nRegister);
 }
@@ -2278,9 +2278,9 @@ QString CResultTree::CFaultPlasticSlipResult::UnitName(UNIT unit) const
 {
   QString sUnit;
   if(unit == CQuantity::SI_UNIT)
-    sUnit = getStringTableEntry(IDS_UNIT_SI_LENGTH);
+  sUnit = getStringTableEntry(IDS_UNIT_SI_LENGTH);
   else
-    sUnit = getStringTableEntry(IDS_UNIT_FIELD_LENGTH);
+  sUnit = getStringTableEntry(IDS_UNIT_FIELD_LENGTH);
   return sUnit;
 }
 
@@ -2297,14 +2297,14 @@ bool CResultTree::CFaultPlasticSlipResult::ValidName
   std::string label= VectorExportLabel().toStdString();
 
   return validateName(resultInfo, name, label, VectorResultComponentList(),
-    "_L|_M|_C|_N");
+  "_L|_M|_C|_N");
 }
 
 
 bool CResultTree::CFaultPlasticSlipResult::OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int /*nRegister*/) const
 {
   return stage.isAfter(stage.Entry().MarkedAsInitialStage()) &&
-        (antype == CAnalysisType::AT_MIXTURE ||
+    (antype == CAnalysisType::AT_MIXTURE ||
          antype == CAnalysisType::AT_MIXTURE_CONTAINMENT ||
          (antype == CAnalysisType::AT_NONLIN && stage.OutputType() != CDepletionStage::NONE));
 }
@@ -2326,10 +2326,10 @@ geo::CVector CResultTree::CFaultPlasticSlipResult::Calculate(const geo::IInterfa
 
   // make sure elastic values are subtracted
   if(vecNormal.DotProduct(vecDeformation) > 0)
-    vecNormal.Flip();
+  vecNormal.Flip();
 
   if(vecShear.DotProduct(vecDeformation) > 0)
-    vecShear.Flip();
+  vecShear.Flip();
 
   return vecDeformation + vecNormal * fabs(dDilatation) + vecShear / dElasticShearStiffness;
 }
@@ -2339,9 +2339,9 @@ geo::CVector CResultTree::CFaultPlasticSlipResult::Calculate(const geo::IInterfa
 //////////////////////////////////////////////////////////////////////
 
 CResultTree::CFaultNormalStress::CNormalStressComponent::CNormalStressComponent(CFaultNormalStress& parent,    // The tensor composite composite parent
-                                        const CDepletionStage& stage,  // Depletion stage of the component
-                                        const CAnalysisType& antype,
-                                        int nRegister)
+                    const CDepletionStage& stage,  // Depletion stage of the component
+                    const CAnalysisType& antype,
+                    int nRegister)
 : IScalarResultComponent("", parent, stage, antype, nRegister, 0)
 {
 }
@@ -2359,7 +2359,7 @@ unsigned int CResultTree::CFaultNormalStress::CNormalStressComponent::TypeId() c
 QString CResultTree::CFaultNormalStress::CNormalStressComponent::UnitName(const UNIT unit) const
 {
   if(unit == CQuantity::SI_UNIT)
-    return QString("MPa");
+  return QString("MPa");
   return QString("psi");
 }
 
@@ -2375,14 +2375,14 @@ void CResultTree::CFaultNormalStress::CNormalStressComponent::ElementValues(IVal
   ResultRegister().FaultEffectiveStress(Stage(), AnalysisType(), parent.m_bChange).ElementValues(vcValue, mesh_element.Index(), geo::IParallelInitializationCallback::Sequential);
   std::vector<geo::CValue> vcPressure(values.size(), geo::CValue(0));
   if(parent.m_bTotal) {
-    ResultRegister().FaultPorePressure(Stage(), AnalysisType(), parent.m_bChange).ElementValues(vcPressure, mesh_element.Index(), geo::IParallelInitializationCallback::Sequential);
+  ResultRegister().FaultPorePressure(Stage(), AnalysisType(), parent.m_bChange).ElementValues(vcPressure, mesh_element.Index(), geo::IParallelInitializationCallback::Sequential);
   }
 
   for(size_t i = 0; i < vcValue.size(); i++) {
-    if(!vcValue[i].Empty() && vcPressure[i].Valid()) {
+  if(!vcValue[i].Empty() && vcPressure[i].Valid()) {
       values[i] = MF::FaultNormalStress(inf_elm, vcValue[i]) + vcPressure[i];//face.Normal().DotProduct(vCurrent);  
       if(unit != CQuantity::SI_UNIT) values[i] *= FF_FACTOR_STRESS;
-    }
+  }
   }
 }
 
@@ -2392,7 +2392,7 @@ void CResultTree::CFaultNormalStress::CNormalStressComponent::ElementValues(IVal
 /*
 CResultTree::CFaultStressResult::CFaultStressResult(unsigned int uName,
                           unsigned int uShearFileIndex,
-                            unsigned int uShearExportName,
+              unsigned int uShearExportName,
                           unsigned int uNormalFileIndex,
                           unsigned int uNormalExportName,
                           TValueSetFunction function,
@@ -2440,7 +2440,7 @@ bool CResultTree::CFaultNormalStress::OnBuildComponent(const CDepletionStage& st
 void CResultTree::CFaultNormalStress::BuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister)
 {
   if(OnBuildComponent(stage, antype, nRegister))
-    new CNormalStressComponent(*this, stage, antype, nRegister);
+  new CNormalStressComponent(*this, stage, antype, nRegister);
 }
 
 CResultTree::CFaultNormalStress::CFaultNormalStress(unsigned int uFileIndex, unsigned int uName, unsigned int uLabelId, CResultGroup& group, bool bTotal, bool bChange)
@@ -2456,7 +2456,7 @@ QString CResultTree::CFaultNormalStress::ExportLabel(int nComponent) const
   QString sRet;
   sRet = getStringTableEntry(m_uLabel);
   if(m_bChange)
-    sRet = "Dlt_" + sRet;
+  sRet = "Dlt_" + sRet;
   return sRet;
 }
 
@@ -2504,7 +2504,7 @@ bool CResultTree::CScalarResult::CScalarResultComponent::Defined() const
   assert(pResult);
   if((pResult->ResultType() == SHEAR_CAPACITY) &&
      (&ResultRegister().DepletionStageEntry() != Model().GraphEntry(MD_BASE_DEPLETION_STAGE)))
-    return false;
+  return false;
 
   return IResultComponent::Defined();
 }
@@ -2524,17 +2524,17 @@ QString CResultTree::CScalarResult::CScalarResultComponent::UnitName(const UNIT 
   case FRACTURE_MATRIX_PRESSURE_CHANGE:
   case CONSOL:
   case CONSOL_CHANGE:
-    if(unit == CQuantity::SI_UNIT)
+  if(unit == CQuantity::SI_UNIT)
       sUnit = getStringTableEntry(IDS_UNIT_SI_STRESS);
-    else
+  else
       sUnit = getStringTableEntry(IDS_UNIT_FIELD_STRESS);
-    break;
+  break;
   case TEMPERATURE:
   case TEMPERATURE_CHANGE:
   case TEMPERATURE_INPUT:
   case TEMPERATURE_CHANGE_INPUT:
-    sUnit = getStringTableEntry(IDS_UNIT_TEMPERATURE);
-    break;
+  sUnit = getStringTableEntry(IDS_UNIT_TEMPERATURE);
+  break;
   case SHEAR_CAPACITY:
   case COMPACTION_CAPACITY:
   case GAMMA_VERTICAL:
@@ -2555,8 +2555,8 @@ QString CResultTree::CScalarResult::CScalarResultComponent::UnitName(const UNIT 
   case VOLUMETRIC_STRAIN_CHANGE_INPUT:
   case NORMAL_STRAIN_INPUT:
   case LATERAL_STRAIN_INPUT:
-    sUnit = getStringTableEntry(IDS_UNIT_DIMENSIONLESS);
-    break;
+  sUnit = getStringTableEntry(IDS_UNIT_DIMENSIONLESS);
+  break;
   case THICKNESS:
   case THICKNESS_CHANGE:
   case APERTURE_HI:
@@ -2565,37 +2565,37 @@ QString CResultTree::CScalarResult::CScalarResultComponent::UnitName(const UNIT 
   case APERTURE_HI_CHANGE:
   case APERTURE_ME_CHANGE:
   case APERTURE_LO_CHANGE:
-    if(unit == CQuantity::SI_UNIT)
+  if(unit == CQuantity::SI_UNIT)
       sUnit = getStringTableEntry(IDS_UNIT_SI_LENGTH);
-    else
+  else
       sUnit = getStringTableEntry(IDS_UNIT_FIELD_LENGTH);
-    break;
+  break;
   case PLASTIC_ENERGY:
-    if(unit == CQuantity::SI_UNIT)
+  if(unit == CQuantity::SI_UNIT)
       sUnit = getStringTableEntry(IDS_UNIT_SI_ENERGY);
-    else
+  else
       sUnit = getStringTableEntry(IDS_UNIT_FIELD_ENERGY);
-    break;
+  break;
   case PORE_PRESSURE_GRADIENT:
   case PORE_PRESSURE_GRADIENT_INPUT:
-    if(unit == CQuantity::SI_UNIT)
+  if(unit == CQuantity::SI_UNIT)
       sUnit = getStringTableEntry(IDS_UNIT_SI_STRESSGRADIENT);
-    else
+  else
       sUnit = getStringTableEntry(IDS_UNIT_FIELD_STRESSGRADIENT);
-    break;
+  break;
   case TEMPERATURE_GRADIENT:
   case TEMPERATURE_GRADIENT_INPUT:
-    if (unit == CQuantity::SI_UNIT)
+  if (unit == CQuantity::SI_UNIT)
       sUnit = getStringTableEntry(IDS_UNIT_SI_TEMPERATUREGRADIENT);
-    else
+  else
       sUnit = getStringTableEntry(IDS_UNIT_FIELD_TEMPERATUREGRADIENT);
-    break;
+  break;
   default:
   assert(false);
   break;
   };
 
-        return sUnit;
+    return sUnit;
 }
 
 void CResultTree::CScalarResult::CScalarResultComponent::PorePressureUndrained(IValueDomainScalar::TValueVec& values, const geo::IElement& mesh_element, const CDepletionStage& stage, const CFormationBase& formation) const
@@ -2656,8 +2656,8 @@ void CResultTree::CScalarResult::CScalarResultComponent::PorePressureUndrained(I
   int i;
   for(i = 0; i < mesh_element.NrOfNodes(); ++i)
   {
-    if(vcIniPressures[i].Valid() && vcIniStresses[i].Valid() && vcStresses[i].Valid() && vcIniTemper[i].Valid() && vcTemper[i].Valid())
-    {
+  if(vcIniPressures[i].Valid() && vcIniStresses[i].Valid() && vcStresses[i].Valid() && vcIniTemper[i].Valid() && vcTemper[i].Valid())
+  {
       double P0 = vcIniPressures[i].Value();
       double sigma = vcStresses[i].Value();
       double sigma0 = vcIniStresses[i].Value();
@@ -2665,11 +2665,11 @@ void CResultTree::CScalarResult::CScalarResultComponent::PorePressureUndrained(I
       double T0 = vcIniTemper[i].Value();
 
       values[i] = P0 + ((1 / Kb - 1 / Kg) * (sigma - sigma0) + phi * (beta_f - beta_b) * (T - T0)) / (1 / Kb - (phi + 1) / Kg + phi / Kf);
-    }
-    else
-    {
+  }
+  else
+  {
       values[i] = geo::CValue();
-    }
+  }
   }
 }
 
@@ -2680,16 +2680,16 @@ void CResultTree::CScalarResult::CScalarResultComponent::PorePressure(IValueDoma
 
   if(!stage.Initial())
   {
-    const CFormationBase* pFormation = model.Mesh().Formation(mesh_element);
-    if(pFormation)
-    {
+  const CFormationBase* pFormation = model.Mesh().Formation(mesh_element);
+  if(pFormation)
+  {
       const CMaterialServer& mat_server = pFormation->Material(stage);
       if(mat_server.Valid() && mat_server.MaterialModel() == MM_UNDRAINED)
       {
-        PorePressureUndrained(values, mesh_element, stage, *pFormation);
-        return;
+    PorePressureUndrained(values, mesh_element, stage, *pFormation);
+    return;
       }
-    }
+  }
   }
 
   ResultRegister().PorePressure(stage, AnalysisType(), false).ElementValues(values, mesh_element.Index(), geo::IParallelInitializationCallback::Sequential);
@@ -2702,9 +2702,9 @@ void CResultTree::CScalarResult::CScalarResultComponent::PorePressureInput(IValu
   // Get it from the input data
   if(!dynamic_cast<const geo::IInterfaceElement*>(&mesh_element))
   {
-    // formation pressure
-    const CFormationBase *pFormation = model.Mesh().Formation(mesh_element);
-    if(pFormation)
+  // formation pressure
+  const CFormationBase *pFormation = model.Mesh().Formation(mesh_element);
+  if(pFormation)
       values = pFormation->Pressure(stage).Component().ScalarData().ValueElement(mesh_element);
   }
   assert(values.size() == mesh_element.NrOfNodes());
@@ -2719,9 +2719,9 @@ void CResultTree::CScalarResult::CScalarResultComponent::FractureMatrixPressure(
 
   if(!dynamic_cast<const geo::IInterfaceElement*>(&mesh_element))
   {
-    const CFormationBase *pFormation = model.Mesh().Formation(mesh_element);
+  const CFormationBase *pFormation = model.Mesh().Formation(mesh_element);
 
-    if(pFormation)
+  if(pFormation)
       values = pFormation->FractureMatrixPressure(stage).Component().ScalarData().ValueElement(mesh_element);
   }
 
@@ -2740,14 +2740,14 @@ void CResultTree::CScalarResult::CScalarResultComponent::TemperatureInput(IValue
   const CModelBase& model = static_cast<const CModelBase&>(Model());
   if(!dynamic_cast<const geo::IInterfaceElement*>(&mesh_element)) // not for faults
   {
-    const CFormationBase* pFormation = model.Mesh().Formation(mesh_element);
-    if(pFormation)
-    {
+  const CFormationBase* pFormation = model.Mesh().Formation(mesh_element);
+  if(pFormation)
+  {
       if(AnalysisType() == CAnalysisType::AT_HEAT)
-        values = pFormation->UserTemperature(stage).Component().ScalarData().ValueElement(mesh_element);
+    values = pFormation->UserTemperature(stage).Component().ScalarData().ValueElement(mesh_element);
       else
-        values = pFormation->EffectiveTemperature(stage).Component().ScalarData().ValueElement(mesh_element);
-    }
+    values = pFormation->EffectiveTemperature(stage).Component().ScalarData().ValueElement(mesh_element);
+  }
   }
   assert(values.size() == mesh_element.NrOfNodes());
 }
@@ -2757,7 +2757,7 @@ void CResultTree::CScalarResult::CScalarResultComponent::Consolidation(IValueDom
   const CModelBase& model = static_cast<const CModelBase&>(Model());
   const CFormationBase* pFormation = model.Mesh().Formation(mesh_element);
   if(pFormation && pFormation->Material(stage).LibraryMaterial()->IsParameter(IDT_VALUETYPE_PRECONSOLIDATION))
-    ResultRegister().Consolidation(stage, AnalysisType(), false).ElementValues(values, mesh_element.Index(), geo::IParallelInitializationCallback::Sequential);
+  ResultRegister().Consolidation(stage, AnalysisType(), false).ElementValues(values, mesh_element.Index(), geo::IParallelInitializationCallback::Sequential);
 }
 
 void CResultTree::CScalarResult::CScalarResultComponent::Porosity(IValueDomainScalar::TValueVec& values, const geo::IElement& mesh_element, const CDepletionStage& stage, geo::IParallelInitializationCallback* cb) const
@@ -2771,57 +2771,57 @@ void CResultTree::CScalarResult::CScalarResultComponent::Porosity(IValueDomainSc
   const CFormationBase* pFormation = model.Mesh().Formation(mesh_element);
   if(pFormation)
   {
-    pMat = &pFormation->Material(stage).Material(mesh_element);
+  pMat = &pFormation->Material(stage).Material(mesh_element);
   }
   else
   {
-    const CWellCasingModel* pWellCasingModel = dynamic_cast<const CWellCasingModel*>(&model);
-    if(pWellCasingModel && pWellCasingModel->Mesh().IsCementElement(mesh_element))
-    {
+  const CWellCasingModel* pWellCasingModel = dynamic_cast<const CWellCasingModel*>(&model);
+  if(pWellCasingModel && pWellCasingModel->Mesh().IsCementElement(mesh_element))
+  {
       pMat = &pWellCasingModel->CasingCement().Material(stage).Material(mesh_element);
-    }
+  }
   }
 
   if(pMat)
   {
-    if(pMat->IsParameter(IDT_VALUETYPE_POROSITY))
+  if(pMat->IsParameter(IDT_VALUETYPE_POROSITY))
       iValueTypeID = IDT_VALUETYPE_POROSITY;
-    else if(pMat->IsParameter(IDT_VALUETYPE_INIPORO))
+  else if(pMat->IsParameter(IDT_VALUETYPE_INIPORO))
       iValueTypeID = IDT_VALUETYPE_INIPORO;
   }
 
   if(iValueTypeID == 0)
   {
-    // no initial porosity, result is invalid
-    return;
+  // no initial porosity, result is invalid
+  return;
   }
 
   double dIniPoro = pMat->ParameterValue(iValueTypeID);
 
   if(&stage == &stage.Entry().InitialStage())
   {
-    // return input values
-    for(size_t i = 0; i < values.size(); ++i)
+  // return input values
+  for(size_t i = 0; i < values.size(); ++i)
       values[i] = dIniPoro;
   }
 
   // get the total volume strain result values
   const IResultComponent* pCompInvVolStrain =
-    model.ResultTree().TotalStrain().Invariants().ResultComponent(stage, AnalysisType(), RegisterIndex(), IStrainTensorGroup::CInvariantComposite::INV_I1);
+  model.ResultTree().TotalStrain().Invariants().ResultComponent(stage, AnalysisType(), RegisterIndex(), IStrainTensorGroup::CInvariantComposite::INV_I1);
 
   if(!pCompInvVolStrain)
   {
-    // no volumetric strain, result is invalid
-    return;
+  // no volumetric strain, result is invalid
+  return;
   }
 
   values = pCompInvVolStrain->ValueElement(mesh_element, CDoubleQuantity::SI_UNIT, cb);
 
   for(size_t i = 0; i < values.size(); ++i)
   {
-    if(values[i].Valid() && fabs(values[i].Value() - 1) > 1e-10)
+  if(values[i].Valid() && fabs(values[i].Value() - 1) > 1e-10)
       values[i] = (dIniPoro - values[i].Value()) / (1 - values[i].Value());
-    else
+  else
       values[i] = geo::CValue(); // invalidate (division by zero)
   }
 }
@@ -2834,76 +2834,76 @@ void CResultTree::CScalarResult::CScalarResultComponent::GammaValues(IValueDomai
 
   if (pTempPool)
   {
-    CStressTensorValueSet::TValueVec *pVcInitStress = pTempPool->getStressTensorVector(0, mesh_element.NrOfPoints());
-    ResultRegister().EffectiveStress(model.DepletionStageEntry().MarkedAsInitialStage(), AnalysisType(), false).ElementValues(*pVcInitStress, mesh_element.Index(), cb);
+  CStressTensorValueSet::TValueVec *pVcInitStress = pTempPool->getStressTensorVector(0, mesh_element.NrOfPoints());
+  ResultRegister().EffectiveStress(model.DepletionStageEntry().MarkedAsInitialStage(), AnalysisType(), false).ElementValues(*pVcInitStress, mesh_element.Index(), cb);
 
-    CStressTensorValueSet::TValueVec *pVcStress = pTempPool->getStressTensorVector(1, mesh_element.NrOfPoints());
-    ResultRegister().EffectiveStress(Stage(), AnalysisType(), false).ElementValues(*pVcStress, mesh_element.Index(), cb);
+  CStressTensorValueSet::TValueVec *pVcStress = pTempPool->getStressTensorVector(1, mesh_element.NrOfPoints());
+  ResultRegister().EffectiveStress(Stage(), AnalysisType(), false).ElementValues(*pVcStress, mesh_element.Index(), cb);
 
-    IValueDomainScalar::TValueVec *pVcInitPressure = pTempPool->getScalarVector(0, mesh_element.NrOfPoints());
-    PorePressure(*pVcInitPressure, mesh_element, model.DepletionStageEntry().MarkedAsInitialStage());
+  IValueDomainScalar::TValueVec *pVcInitPressure = pTempPool->getScalarVector(0, mesh_element.NrOfPoints());
+  PorePressure(*pVcInitPressure, mesh_element, model.DepletionStageEntry().MarkedAsInitialStage());
 
-    IValueDomainScalar::TValueVec *pVcPressure = pTempPool->getScalarVector(1, mesh_element.NrOfPoints());
-    PorePressure(*pVcPressure, mesh_element, Stage());
+  IValueDomainScalar::TValueVec *pVcPressure = pTempPool->getScalarVector(1, mesh_element.NrOfPoints());
+  PorePressure(*pVcPressure, mesh_element, Stage());
 
-    for (size_t i = 0; i < values.size(); i++) {
+  for (size_t i = 0; i < values.size(); i++) {
       switch (type) {
       case GAMMA_VERTICAL:
-        values[i] = MF::GammaVertical((*pVcInitStress)[i], (*pVcStress)[i], (*pVcInitPressure)[i].Value(), (*pVcPressure)[i].Value(), MF::EFFECTIVE);
-        break;
+    values[i] = MF::GammaVertical((*pVcInitStress)[i], (*pVcStress)[i], (*pVcInitPressure)[i].Value(), (*pVcPressure)[i].Value(), MF::EFFECTIVE);
+    break;
       case GAMMA_MAX:
-        values[i] = MF::GammaMax((*pVcInitStress)[i], (*pVcStress)[i], (*pVcInitPressure)[i].Value(), (*pVcPressure)[i].Value(), MF::EFFECTIVE);
-        break;
+    values[i] = MF::GammaMax((*pVcInitStress)[i], (*pVcStress)[i], (*pVcInitPressure)[i].Value(), (*pVcPressure)[i].Value(), MF::EFFECTIVE);
+    break;
       case GAMMA_MED:
-        values[i] = MF::GammaMed((*pVcInitStress)[i], (*pVcStress)[i], (*pVcInitPressure)[i].Value(), (*pVcPressure)[i].Value(), MF::EFFECTIVE);
-        break;
+    values[i] = MF::GammaMed((*pVcInitStress)[i], (*pVcStress)[i], (*pVcInitPressure)[i].Value(), (*pVcPressure)[i].Value(), MF::EFFECTIVE);
+    break;
       case GAMMA_MIN:
-        values[i] = MF::GammaMin((*pVcInitStress)[i], (*pVcStress)[i], (*pVcInitPressure)[i].Value(), (*pVcPressure)[i].Value(), MF::EFFECTIVE);
-        break;
+    values[i] = MF::GammaMin((*pVcInitStress)[i], (*pVcStress)[i], (*pVcInitPressure)[i].Value(), (*pVcPressure)[i].Value(), MF::EFFECTIVE);
+    break;
       case GAMMA_VOLUME:
-        values[i] = MF::GammaVolume((*pVcInitStress)[i], (*pVcStress)[i], (*pVcInitPressure)[i].Value(), (*pVcPressure)[i].Value(), MF::EFFECTIVE);
-        break;
+    values[i] = MF::GammaVolume((*pVcInitStress)[i], (*pVcStress)[i], (*pVcInitPressure)[i].Value(), (*pVcPressure)[i].Value(), MF::EFFECTIVE);
+    break;
       default:
-        assert(false);
+    assert(false);
       }
-    }
+  }
 
   }
   else // legacy
   {
-    CStressTensorValueSet::TValueVec vcInitStress(mesh_element.NrOfPoints());
-    ResultRegister().EffectiveStress(model.DepletionStageEntry().MarkedAsInitialStage(), AnalysisType(), false).ElementValues(vcInitStress, mesh_element.Index(), cb);
+  CStressTensorValueSet::TValueVec vcInitStress(mesh_element.NrOfPoints());
+  ResultRegister().EffectiveStress(model.DepletionStageEntry().MarkedAsInitialStage(), AnalysisType(), false).ElementValues(vcInitStress, mesh_element.Index(), cb);
 
-    CStressTensorValueSet::TValueVec vcStress(mesh_element.NrOfPoints());
-    ResultRegister().EffectiveStress(Stage(), AnalysisType(), false).ElementValues(vcStress, mesh_element.Index(), cb);
+  CStressTensorValueSet::TValueVec vcStress(mesh_element.NrOfPoints());
+  ResultRegister().EffectiveStress(Stage(), AnalysisType(), false).ElementValues(vcStress, mesh_element.Index(), cb);
 
-    IValueDomainScalar::TValueVec vcInitPressure(mesh_element.NrOfPoints());
-    PorePressure(vcInitPressure, mesh_element, model.DepletionStageEntry().MarkedAsInitialStage());
+  IValueDomainScalar::TValueVec vcInitPressure(mesh_element.NrOfPoints());
+  PorePressure(vcInitPressure, mesh_element, model.DepletionStageEntry().MarkedAsInitialStage());
 
-    IValueDomainScalar::TValueVec vcPressure(mesh_element.NrOfPoints());
-    PorePressure(vcPressure, mesh_element, Stage());
+  IValueDomainScalar::TValueVec vcPressure(mesh_element.NrOfPoints());
+  PorePressure(vcPressure, mesh_element, Stage());
 
-    for (size_t i = 0; i < values.size(); i++) {
+  for (size_t i = 0; i < values.size(); i++) {
       switch (type) {
       case GAMMA_VERTICAL:
-        values[i] = MF::GammaVertical(vcInitStress[i], vcStress[i], vcInitPressure[i].Value(), vcPressure[i].Value(), MF::EFFECTIVE);
-        break;
+    values[i] = MF::GammaVertical(vcInitStress[i], vcStress[i], vcInitPressure[i].Value(), vcPressure[i].Value(), MF::EFFECTIVE);
+    break;
       case GAMMA_MAX:
-        values[i] = MF::GammaMax(vcInitStress[i], vcStress[i], vcInitPressure[i].Value(), vcPressure[i].Value(), MF::EFFECTIVE);
-        break;
+    values[i] = MF::GammaMax(vcInitStress[i], vcStress[i], vcInitPressure[i].Value(), vcPressure[i].Value(), MF::EFFECTIVE);
+    break;
       case GAMMA_MED:
-        values[i] = MF::GammaMed(vcInitStress[i], vcStress[i], vcInitPressure[i].Value(), vcPressure[i].Value(), MF::EFFECTIVE);
-        break;
+    values[i] = MF::GammaMed(vcInitStress[i], vcStress[i], vcInitPressure[i].Value(), vcPressure[i].Value(), MF::EFFECTIVE);
+    break;
       case GAMMA_MIN:
-        values[i] = MF::GammaMin(vcInitStress[i], vcStress[i], vcInitPressure[i].Value(), vcPressure[i].Value(), MF::EFFECTIVE);
-        break;
+    values[i] = MF::GammaMin(vcInitStress[i], vcStress[i], vcInitPressure[i].Value(), vcPressure[i].Value(), MF::EFFECTIVE);
+    break;
       case GAMMA_VOLUME:
-        values[i] = MF::GammaVolume(vcInitStress[i], vcStress[i], vcInitPressure[i].Value(), vcPressure[i].Value(), MF::EFFECTIVE);
-        break;
+    values[i] = MF::GammaVolume(vcInitStress[i], vcStress[i], vcInitPressure[i].Value(), vcPressure[i].Value(), MF::EFFECTIVE);
+    break;
       default:
-        assert(false);
+    assert(false);
       }
-    }
+  }
   }
 }
 
@@ -2916,33 +2916,33 @@ geo::CValue CResultTree::CScalarResult::CScalarResultComponent::FetchDisplacemen
   TDisplacementMap::iterator it = cache->find(pt); // first try to find it in our own cache
   if (it != cache->end())
   {
-    TDisplacementValueMap::iterator itV = it->second.find(std::make_pair(AnalysisType().AnalysisType(), &stage));
-    if (itV != it->second.end())
-    {
+  TDisplacementValueMap::iterator itV = it->second.find(std::make_pair(AnalysisType().AnalysisType(), &stage));
+  if (itV != it->second.end())
+  {
       valRet = itV->second;
       return valRet;
-    }
+  }
   }
 
   if (dynamic_cast<CThicknessParallelInitializationCallback *>(cb)) // else try thread-local cache
   {
-    static_cast<CThicknessParallelInitializationCallback *>(cb)->GetCache(&cache);
+  static_cast<CThicknessParallelInitializationCallback *>(cb)->GetCache(&cache);
 
-    it = cache->find(pt);
-    if (it != cache->end())
-    {
+  it = cache->find(pt);
+  if (it != cache->end())
+  {
       TDisplacementValueMap::iterator itV = it->second.find(std::make_pair(AnalysisType().AnalysisType(), &stage));
       if (itV != it->second.end())
       {
-        valRet = itV->second;
-        return valRet;
+    valRet = itV->second;
+    return valRet;
       }
-    }
+  }
   }
 
   geo::CVector vec = ResultRegister().Displacement(stage, AnalysisType(), false).ValuePoint(pt, cb);
   if(!vec.Empty())
-    valRet = vec.Z();
+  valRet = vec.Z();
   TDisplacementValueMap mpDVM;
   mpDVM.insert(TDisplacementValueMap::value_type(std::make_pair(AnalysisType().AnalysisType(), &stage), valRet));
   cache->insert(TDisplacementMap::value_type(pt, mpDVM));
@@ -2957,28 +2957,28 @@ void CResultTree::CScalarResult::CScalarResultComponent::Thickness(IValueDomainS
   const CFormationBase* pFormation = model.Mesh().Formation(element);
   if(pFormation)
   {
-    int i;
-    for(i = 0; i < element.NrOfNodes(); ++i)
-    {
+  int i;
+  for(i = 0; i < element.NrOfNodes(); ++i)
+  {
       geo::CPoint ptTop;
       geo::CPoint ptBottom;
       values[i] = pFormation->ThicknessAt(element.Node(i), ptTop, ptBottom, cb);
       if(values[i].Valid() && !ptTop.Empty() && !ptBottom.Empty())
       {
-        geo::CValue valTop = FetchDisplacementValueFor(ptTop, stage, cb);
-        geo::CValue valBottom = FetchDisplacementValueFor(ptBottom, stage, cb);
+    geo::CValue valTop = FetchDisplacementValueFor(ptTop, stage, cb);
+    geo::CValue valBottom = FetchDisplacementValueFor(ptBottom, stage, cb);
 
-        if(!valTop.Valid() || !valBottom.Valid())
-        {
+    if(!valTop.Valid() || !valBottom.Valid())
+    {
           values[i] = geo::CValue();
-        }
-        else
-        {
+    }
+    else
+    {
           values[i] -= valTop.Value();
           values[i] += valBottom.Value();
-        }
-      }
     }
+      }
+  }
   }
 }
 
@@ -2994,30 +2994,30 @@ void CResultTree::CScalarResult::CScalarResultComponent::ShearCapacityMC(IValueD
   // get the material model
   int iMatModel = ResultRegister().MaterialModel(element.Index());
   if(iMatModel == -1)
-    return; // result not defined
+  return; // result not defined
 
   // get the friction angle
   if(iMatModel == MM_CAMCLAY)
-    fric = ResultRegister().MaterialParameterValue(element.Index(), IDT_VALUETYPE_INITFRICTION, Stage()) * PI / 180;
+  fric = ResultRegister().MaterialParameterValue(element.Index(), IDT_VALUETYPE_INITFRICTION, Stage()) * PI / 180;
   else
-    fric = ResultRegister().MaterialParameterValue(element.Index(), IDT_VALUETYPE_FRICTION_ANGLE, Stage()) * PI / 180;
+  fric = ResultRegister().MaterialParameterValue(element.Index(), IDT_VALUETYPE_FRICTION_ANGLE, Stage()) * PI / 180;
 
   // get the cohesion
   cohesion = ResultRegister().MaterialParameterValue(element.Index(), IDT_VALUETYPE_COHESION, Stage());
 
   for(size_t i = 0; i < values.size(); i++)
   {
-    if(!vcStress[i].Empty())
-    {
+  if(!vcStress[i].Empty())
+  {
       double sig1 = vcStress[i].PrincMaxLength();
       double sig3 = vcStress[i].PrincMinLength();
 
       values[i] = (0.5 * (sig1 - sig3)) / (0.5 * (sig1 + sig3) * sin(fric) + cohesion * cos(fric));
-    }
-    else
-    {
+  }
+  else
+  {
       values[i] = geo::CValue();
-    }
+  }
   }  
 }
 
@@ -3026,7 +3026,7 @@ void CResultTree::CScalarResult::CScalarResultComponent::CompactionCapacity(IVal
   // get the material model
   int iMatModel = ResultRegister().MaterialModel(element.Index());
   if(iMatModel != MM_CAMCLAY && iMatModel != MM_MODIFIEDMOHRCOULOMB)
-    return; // result not defined
+  return; // result not defined
 
   // get the effective stresses, preconsolidation, friction angle, cap shape, tensile stretch, and cohesion
   CStressTensorValueSet::TValueVec vcStress(element.NrOfPoints());
@@ -3038,19 +3038,19 @@ void CResultTree::CScalarResult::CScalarResultComponent::CompactionCapacity(IVal
   double fric, capShape, cohesion, tensileStretch, M;
 
   if(iMatModel == MM_CAMCLAY)
-    fric = ResultRegister().MaterialParameterValue(element.Index(), IDT_VALUETYPE_INITFRICTION, Stage()) * PI / 180;
+  fric = ResultRegister().MaterialParameterValue(element.Index(), IDT_VALUETYPE_INITFRICTION, Stage()) * PI / 180;
   else
-    fric = ResultRegister().MaterialParameterValue(element.Index(), IDT_VALUETYPE_FRICTION_ANGLE, Stage()) * PI / 180;
+  fric = ResultRegister().MaterialParameterValue(element.Index(), IDT_VALUETYPE_FRICTION_ANGLE, Stage()) * PI / 180;
 
   cohesion = ResultRegister().MaterialParameterValue(element.Index(), IDT_VALUETYPE_COHESION, Stage());
   capShape = ResultRegister().MaterialParameterValue(element.Index(), IDT_VALUETYPE_CAPSHAPE, Stage());
 
   if (capShape == 1)
-    capShape += 0.001;
+  capShape += 0.001;
 
   tensileStretch = ResultRegister().MaterialParameterValue(element.Index(), IDT_VALUETYPE_TENSILE_STRETCH, Stage());
   if (tensileStretch == 1)
-    tensileStretch += 0.001;
+  tensileStretch += 0.001;
 
 
   M = 6.0 * sin(fric) / (3.0 - sin(fric));
@@ -3059,8 +3059,8 @@ void CResultTree::CScalarResult::CScalarResultComponent::CompactionCapacity(IVal
 
   for(size_t i = 0; i < values.size(); ++i)
   {
-    if(!vcStress[i].Empty() && vcPc[i].Valid())
-    {
+  if(!vcStress[i].Empty() && vcPc[i].Valid())
+  {
       geo::CMatrix S = vcStress[i].GetPrincipalStr();
 
       double S_1 = S.Value(0, 0);
@@ -3089,11 +3089,11 @@ void CResultTree::CScalarResult::CScalarResultComponent::CompactionCapacity(IVal
       //assert(CCU > 0);
 
       values[i] = CCU;
-    }
-    else
-    {
+  }
+  else
+  {
       values[i] = geo::CValue();
-    }
+  }
   }  
 }
 
@@ -3103,9 +3103,9 @@ void CResultTree::CScalarResult::CScalarResultComponent::ApertureValues(CScalarR
   const CFormationBase* pFormation = model.Mesh().Formation(mesh_element);
   if(pFormation)
   {
-    const CMaterialServer& mat_server = pFormation->Material(stage);
-    if(mat_server.Valid() && (mat_server.MaterialModel() == MM_FRACTURE_APERTURE || mat_server.MaterialModel() == MM_FRACTURE_APERTURE2))
-    {
+  const CMaterialServer& mat_server = pFormation->Material(stage);
+  if(mat_server.Valid() && (mat_server.MaterialModel() == MM_FRACTURE_APERTURE || mat_server.MaterialModel() == MM_FRACTURE_APERTURE2))
+  {
       const CFFMaterial& ffmat = mat_server.Material(mesh_element);
       assert(dynamic_cast<const CMaterialFractureApertureBase*>(&ffmat.Material()));
       const CMaterialFractureApertureBase& mat = static_cast<const CMaterialFractureApertureBase&>(ffmat.Material());
@@ -3123,29 +3123,29 @@ void CResultTree::CScalarResult::CScalarResultComponent::ApertureValues(CScalarR
       switch(result_type)
       {
       case APERTURE_HI_CHANGE:
-        bDelta = true;
+    bDelta = true;
       case APERTURE_HI:
-        pVecNormal = &vecHigh;
-        pVecTangent = &vecInter;
-        uiValueTypeV0 = IDT_VALUETYPE_V0_HI;
-        break;
+    pVecNormal = &vecHigh;
+    pVecTangent = &vecInter;
+    uiValueTypeV0 = IDT_VALUETYPE_V0_HI;
+    break;
       case APERTURE_ME_CHANGE:
-        bDelta = true;
+    bDelta = true;
       case APERTURE_ME:
-        pVecNormal = &vecInter;
-        pVecTangent = &vecLow;
-        uiValueTypeV0 = IDT_VALUETYPE_V0_ME;
-        break;
+    pVecNormal = &vecInter;
+    pVecTangent = &vecLow;
+    uiValueTypeV0 = IDT_VALUETYPE_V0_ME;
+    break;
       case APERTURE_LO_CHANGE:
-        bDelta = true;
+    bDelta = true;
       case APERTURE_LO:
-        pVecNormal = &vecLow;
-        pVecTangent = &vecHigh;
-        uiValueTypeV0 = IDT_VALUETYPE_V0_LO;
-        break;
+    pVecNormal = &vecLow;
+    pVecTangent = &vecHigh;
+    uiValueTypeV0 = IDT_VALUETYPE_V0_LO;
+    break;
       default:
-        assert(false);
-        return;
+    assert(false);
+    return;
       }
 
       // get effective stress
@@ -3164,77 +3164,77 @@ void CResultTree::CScalarResult::CScalarResultComponent::ApertureValues(CScalarR
 
       IValueDomainScalar::TValueVec vcInitValues(mesh_element.NrOfNodes()); // initial values when 'marked as initial stage' != 'initial stage'
       if(&stage != &inistage && &inistage != &inistage.InitialStage())
-        ApertureValues(result_type, vcInitValues, inistage, mesh_element, CQuantity::SI_UNIT);
+    ApertureValues(result_type, vcInitValues, inistage, mesh_element, CQuantity::SI_UNIT);
 
       for(int i = 0; i < mesh_element.NrOfNodes(); ++i)
       {
-        const CStressTensor& stress = stress_values[i];
-        geo::CVector vecStress = stress.RotateToFace(*pVecNormal, *pVecTangent);
-        double s1 = vecStress.X(); // the effective normal stress
+    const CStressTensor& stress = stress_values[i];
+    geo::CVector vecStress = stress.RotateToFace(*pVecNormal, *pVecTangent);
+    double s1 = vecStress.X(); // the effective normal stress
 
-        const CStressTensor& stress_ini = stress_values_ini[i];
-        vecStress = stress_ini.RotateToFace(*pVecNormal, *pVecTangent);
-        double s0 = vecStress.X(); // the initial effective normal stress
+    const CStressTensor& stress_ini = stress_values_ini[i];
+    vecStress = stress_ini.RotateToFace(*pVecNormal, *pVecTangent);
+    double s0 = vecStress.X(); // the initial effective normal stress
 
-        double sRef = ffmat.ParameterValue(IDT_VALUETYPE_REFERENCESTRESS); // reference stress
-        double a = ffmat.ParameterValue(IDT_VALUETYPE_APERTUREPARAM); // aperture parameter
+    double sRef = ffmat.ParameterValue(IDT_VALUETYPE_REFERENCESTRESS); // reference stress
+    double a = ffmat.ParameterValue(IDT_VALUETYPE_APERTUREPARAM); // aperture parameter
 
-        double DRef;
-        if(ffmat.IsParameter(IDT_VALUETYPE_FRACT_STIFF_NORMAL))
-        {
+    double DRef;
+    if(ffmat.IsParameter(IDT_VALUETYPE_FRACT_STIFF_NORMAL))
+    {
           DRef = ffmat.ParameterValue(IDT_VALUETYPE_FRACT_STIFF_NORMAL); // fracture stiffness
-        }
-        else
-        {
+    }
+    else
+    {
           assert(ffmat.IsParameter(IDT_VALUETYPE_REFERENCE_APERTURE));
           double wref = ffmat.ParameterValue(IDT_VALUETYPE_REFERENCE_APERTURE);
 
           if (a == 0.0)
           {
-            a = 1e-7;
+      a = 1e-7;
           }
 
           if (wref < 1e-6)
           {
-            wref = 1e-6;
+      wref = 1e-6;
           }
 
           DRef = 1 / (a * wref);
-        }
+    }
 
-        /*
-        With reference fracture stiffness D_ref and reference stress s_ref the fracture opening can be computed
-        from the effective normal stress at a stage (say s1 at D1) and initial stress (s0 at D0)
+    /*
+    With reference fracture stiffness D_ref and reference stress s_ref the fracture opening can be computed
+    from the effective normal stress at a stage (say s1 at D1) and initial stress (s0 at D0)
          
-        The aperture increase (opening) is:
+    The aperture increase (opening) is:
           Delta_v=  -1/( a * D_ref) * [  exp (  -a {s1  -  s_ref})  - exp (  -a {s0  -  s_ref}) ]
 
-        The total aperture is hence  v = v0 + Delta_v
+    The total aperture is hence  v = v0 + Delta_v
          
-        If a=0, the equation is not valid.  Use  Delta_v=  -1/( D_ref) * [  s1  -  s0  ]
-        */
+    If a=0, the equation is not valid.  Use  Delta_v=  -1/( D_ref) * [  s1  -  s0  ]
+    */
 
-        double dV;
-        if(fabs(a) > 1e-8)
+    double dV;
+    if(fabs(a) > 1e-8)
           dV = 1 / (a * DRef) * (exp(-a * (s1 - sRef)) - exp(-a * (s0 - sRef)));
-        else
+    else
           dV = -1 / (DRef) * (s1 - s0);
 
-        if(!bDelta)
-        {
+    if(!bDelta)
+    {
           if(&stage != &inistage && &inistage != &inistage.InitialStage())
           {
-            dV += vcInitValues[i].Value();
+      dV += vcInitValues[i].Value();
           }
           else
           {
-            double V0 = 0;
-            if(ffmat.IsParameter(uiValueTypeV0))
-            {
+      double V0 = 0;
+      if(ffmat.IsParameter(uiValueTypeV0))
+      {
               V0 = ffmat.ParameterValue(uiValueTypeV0);
-            }
-            else
-            {
+      }
+      else
+      {
               // Material model fracture aperture 2 computes initial aperture from initial stress:
               // Compute initial fracture aperture (per direction) from the initial (effective) normal stress s'n (hence after D0)
               // wi = wref * exp ( -a (s'n - s'ref))
@@ -3243,34 +3243,34 @@ void CResultTree::CScalarResult::CScalarResultComponent::ApertureValues(CScalarR
 
               if (wref < 1e-6)
               {
-                wref = 1e-6;
+        wref = 1e-6;
               }
 
               V0 = wref * exp(-a * (s0 - sRef));
-            }
-
-            dV += V0;
-          }
-        }
-
-        if(unit == CQuantity::FIELD_UNIT)
-          dV *= FF_FACTOR_LENGTH;
-        values[i] = dV;
       }
+
+      dV += V0;
+          }
     }
+
+    if(unit == CQuantity::FIELD_UNIT)
+          dV *= FF_FACTOR_LENGTH;
+    values[i] = dV;
+      }
+  }
   }
 }
 
 void CResultTree::CScalarResult::CScalarResultComponent::
   apertureValues(IValueDomainScalar::TValueVec& fractureAperture, const geo::IElement& mesh_element,
-    const CDepletionStage& depletionStage, UNIT unit,
-    TResultType resultType) const
+  const CDepletionStage& depletionStage, UNIT unit,
+  TResultType resultType) const
 {
   const CModelBase& model = (const CModelBase&) (Model());
   const IScalarResultComponent* scalarResultComponent =
-    dynamic_cast <const IScalarResultComponent*> (
+  dynamic_cast <const IScalarResultComponent*> (
       model.ResultTree().Aperture(resultType).
-        ResultComponent(depletionStage, AnalysisType(), 0));
+    ResultComponent(depletionStage, AnalysisType(), 0));
 
   assert(scalarResultComponent != 0);
 
@@ -3279,87 +3279,87 @@ void CResultTree::CScalarResult::CScalarResultComponent::
 
 void CResultTree::CScalarResult::CScalarResultComponent::PlasticEnergy(const CDepletionStage& stage, IValueDomainScalar::TValueVec& values, const geo::IElement& element, UNIT unit, geo::IParallelInitializationCallback *cb) const
 {
-	/*
-	WI 81410:
-	Total plastic energy per unit volume is (p'*Eps_vp+q*Eps_qp)   in MJ/m^3
-		p' = isotropic effectieve stress
-		q  =  Von Mises stress
-		Eps_vp  =  plastic volumetric strain
-		Eps_qp  = plastic Von Mises strain
+  /*
+  WI 81410:
+  Total plastic energy per unit volume is (p'*Eps_vp+q*Eps_qp)   in MJ/m^3
+    p' = isotropic effectieve stress
+    q  =  Von Mises stress
+    Eps_vp  =  plastic volumetric strain
+    Eps_qp  = plastic Von Mises strain
 
-    The total energy for a stage is the total energy of the previous stage + the energy of the current stage, which is
+  The total energy for a stage is the total energy of the previous stage + the energy of the current stage, which is
  
-    (p'*ΔEps_vp + q*ΔEps_qp)
-	*/
+  (p'*ΔEps_vp + q*ΔEps_qp)
+  */
   IValueDomainScalar::TValueVec previous_values;
 
   if(!stage.Initial() && (&stage.Previous() != &stage.InitialStage()))
   {
-    PlasticEnergy(stage.Previous(), previous_values, element, unit, cb);
+  PlasticEnergy(stage.Previous(), previous_values, element, unit, cb);
   }
   else
   {
-    previous_values.resize(element.NrOfPoints(), 0);
+  previous_values.resize(element.NrOfPoints(), 0);
   }
 
-	IValueDomainScalar::TValueVec vcIsoEffStress;
-	IValueDomainScalar::TValueVec vcVonMisesStress;
-	IValueDomainScalar::TValueVec vcPlastVolStrain;
+  IValueDomainScalar::TValueVec vcIsoEffStress;
+  IValueDomainScalar::TValueVec vcVonMisesStress;
+  IValueDomainScalar::TValueVec vcPlastVolStrain;
   IValueDomainScalar::TValueVec vcPlastVolStrainPrev;
-	IValueDomainScalar::TValueVec vcPlastVonMisesStrain;
+  IValueDomainScalar::TValueVec vcPlastVonMisesStrain;
   IValueDomainScalar::TValueVec vcPlastVonMisesStrainPrev;
 
-	const CModelBase& model = (const CModelBase&)Model();
+  const CModelBase& model = (const CModelBase&)Model();
   const IResultComponent* pComponent;
-	const IResult* pComposite = model.ResultTree().EffectiveStress().InvariantComposite();
-	if(pComposite)
-	{
-    // isotropic effective stress
-		pComponent = pComposite->ResultComponent(stage, AnalysisType(), RegisterIndex(), CResultTree::CEffectiveStressResult::CInvariantComposite::INV_I1);
-		if(pComponent)
-			vcIsoEffStress = pComponent->ValueElement(element, unit, cb);
-
-    // von mises stress
-		pComponent = pComposite->ResultComponent(stage, AnalysisType(), RegisterIndex(), CResultTree::CEffectiveStressResult::CInvariantComposite::INV_VONMIS);
-		if(pComponent)
-			vcVonMisesStress = pComponent->ValueElement(element, unit, cb);
-	}
-
-	pComposite = &model.ResultTree().PlasticStrain().Invariants();
-	if(pComposite)
-	{
-    // plastic volumetric strain
-		pComponent = pComposite->ResultComponent(stage, AnalysisType(), RegisterIndex(), CResultTree::CPlasticStrainResult::CInvariantComposite::INV_I1);
+  const IResult* pComposite = model.ResultTree().EffectiveStress().InvariantComposite();
+  if(pComposite)
+  {
+  // isotropic effective stress
+    pComponent = pComposite->ResultComponent(stage, AnalysisType(), RegisterIndex(), CResultTree::CEffectiveStressResult::CInvariantComposite::INV_I1);
     if(pComponent)
+      vcIsoEffStress = pComponent->ValueElement(element, unit, cb);
+
+  // von mises stress
+    pComponent = pComposite->ResultComponent(stage, AnalysisType(), RegisterIndex(), CResultTree::CEffectiveStressResult::CInvariantComposite::INV_VONMIS);
+    if(pComponent)
+      vcVonMisesStress = pComponent->ValueElement(element, unit, cb);
+  }
+
+  pComposite = &model.ResultTree().PlasticStrain().Invariants();
+  if(pComposite)
+  {
+  // plastic volumetric strain
+    pComponent = pComposite->ResultComponent(stage, AnalysisType(), RegisterIndex(), CResultTree::CPlasticStrainResult::CInvariantComposite::INV_I1);
+  if(pComponent)
       vcPlastVolStrain = pComponent->ValueElement(element, unit, cb);
 
-    if(!stage.Initial() && (&stage.Previous() != &stage.InitialStage()))
-    {
+  if(!stage.Initial() && (&stage.Previous() != &stage.InitialStage()))
+  {
       pComponent = pComposite->ResultComponent(stage.Previous(), AnalysisType(), RegisterIndex(), CResultTree::CPlasticStrainResult::CInvariantComposite::INV_I1);
       if(pComponent)
-        vcPlastVolStrainPrev = pComponent->ValueElement(element, unit, cb);
-    }
-    else
-    {
+    vcPlastVolStrainPrev = pComponent->ValueElement(element, unit, cb);
+  }
+  else
+  {
       vcPlastVolStrainPrev.resize(element.NrOfPoints(), 0);
-    }
+  }
 
-    // plastic von mises strain
-    pComponent = pComposite->ResultComponent(stage, AnalysisType(), RegisterIndex(), CResultTree::CPlasticStrainResult::CInvariantComposite::INV_VONMIS);
-    if(pComponent)
+  // plastic von mises strain
+  pComponent = pComposite->ResultComponent(stage, AnalysisType(), RegisterIndex(), CResultTree::CPlasticStrainResult::CInvariantComposite::INV_VONMIS);
+  if(pComponent)
       vcPlastVonMisesStrain = pComponent->ValueElement(element, unit, cb);
 
-    if(!stage.Initial() && (&stage.Previous() != &stage.InitialStage()))
-    {
+  if(!stage.Initial() && (&stage.Previous() != &stage.InitialStage()))
+  {
       pComponent = pComposite->ResultComponent(stage.Previous(), AnalysisType(), RegisterIndex(), CResultTree::CPlasticStrainResult::CInvariantComposite::INV_VONMIS);
       if(pComponent)
-        vcPlastVonMisesStrainPrev = pComponent->ValueElement(element, unit, cb);
-    }
-    else
-    {
+    vcPlastVonMisesStrainPrev = pComponent->ValueElement(element, unit, cb);
+  }
+  else
+  {
       vcPlastVonMisesStrainPrev.resize(element.NrOfPoints(), 0);
-    }
-	}
+  }
+  }
 
   if(vcIsoEffStress.size()            == element.NrOfPoints() &&
      vcVonMisesStress.size()          == element.NrOfPoints() &&
@@ -3368,9 +3368,9 @@ void CResultTree::CScalarResult::CScalarResultComponent::PlasticEnergy(const CDe
      vcPlastVonMisesStrain.size()     == element.NrOfPoints() &&
      vcPlastVonMisesStrainPrev.size() == element.NrOfPoints())
   {
-    values.resize(element.NrOfPoints());
-    for(int i = 0; i < element.NrOfPoints(); ++i)
-    {
+  values.resize(element.NrOfPoints());
+  for(int i = 0; i < element.NrOfPoints(); ++i)
+  {
       if(previous_values[i].Valid()       &&
          vcIsoEffStress[i].Valid()        &&
          vcVonMisesStress[i].Valid()      &&
@@ -3379,13 +3379,13 @@ void CResultTree::CScalarResult::CScalarResultComponent::PlasticEnergy(const CDe
          vcPlastVonMisesStrain[i].Valid() &&
          vcPlastVonMisesStrainPrev[i].Valid())
       {
-        double p = vcIsoEffStress[i].Value();
-        double q = vcVonMisesStress[i].Value();
-        double Eps_vp = vcPlastVolStrain[i].Value() - vcPlastVolStrainPrev[i].Value();
-        double Eps_qp = vcPlastVonMisesStrain[i].Value() - vcPlastVonMisesStrainPrev[i].Value();
-        values[i] = p * Eps_vp + q * Eps_qp + previous_values[i].Value();
+    double p = vcIsoEffStress[i].Value();
+    double q = vcVonMisesStress[i].Value();
+    double Eps_vp = vcPlastVolStrain[i].Value() - vcPlastVolStrainPrev[i].Value();
+    double Eps_qp = vcPlastVonMisesStrain[i].Value() - vcPlastVonMisesStrainPrev[i].Value();
+    values[i] = p * Eps_vp + q * Eps_qp + previous_values[i].Value();
       }
-    }
+  }
   }
 }
 
@@ -3398,19 +3398,19 @@ const double MICRO_METRE = 1e-6;
 
 void CResultTree::CScalarResult::CScalarResultComponent::
   permeabilityMultiplierValues(TResultType result_type, IValueDomainScalar::TValueVec& values,
-    const geo::IElement& mesh_element, UNIT unit) const
+  const geo::IElement& mesh_element, UNIT unit) const
 {
   const CModelBase& model = dynamic_cast<const CModelBase&>(Model());
   const CFormationBase* pFormation = model.Mesh().Formation(mesh_element);
   if(!pFormation)
-    return;
+  return;
 
   const CFFMaterial& mat = pFormation->Material(model.DepletionStageEntry().MarkedAsInitialStage()).Material(mesh_element);
 
   if(!mat.IsParameter(IDT_VALUETYPE_HIGH_FRACT_DENS) ||
      !mat.IsParameter(IDT_VALUETYPE_INTER_FRACT_DENS) ||
      !mat.IsParameter(IDT_VALUETYPE_LOW_FRACT_DENS))
-    return;
+  return;
 
   double rho1 = 0;
   double rho2 = 0;
@@ -3422,73 +3422,73 @@ void CResultTree::CScalarResult::CScalarResultComponent::
 
   switch (result_type)
   {
-    case PERMEABILITY_MULTIPLIER_HI:
+  case PERMEABILITY_MULTIPLIER_HI:
       apertureValues(fractureAperture1, mesh_element, Stage(), unit,
-        APERTURE_ME);
+    APERTURE_ME);
       apertureValues(fractureApertureChange1, mesh_element, Stage(), unit,
-        APERTURE_ME_CHANGE);
+    APERTURE_ME_CHANGE);
       apertureValues(fractureAperture2, mesh_element, Stage(), unit,
-        APERTURE_LO);
+    APERTURE_LO);
       apertureValues(fractureApertureChange2, mesh_element, Stage(), unit,
-        APERTURE_LO_CHANGE);
+    APERTURE_LO_CHANGE);
       rho1 = mat.ParameterValue(IDT_VALUETYPE_INTER_FRACT_DENS);
       rho2 = mat.ParameterValue(IDT_VALUETYPE_LOW_FRACT_DENS);
       break;
-    case PERMEABILITY_MULTIPLIER_ME:
+  case PERMEABILITY_MULTIPLIER_ME:
       apertureValues(fractureAperture1, mesh_element, Stage(), unit,
-        APERTURE_LO);
+    APERTURE_LO);
       apertureValues(fractureApertureChange1, mesh_element, Stage(), unit,
-        APERTURE_LO_CHANGE);
+    APERTURE_LO_CHANGE);
       apertureValues(fractureAperture2, mesh_element, Stage(), unit,
-        APERTURE_HI);
+    APERTURE_HI);
       apertureValues(fractureApertureChange2, mesh_element, Stage(), unit,
-        APERTURE_HI_CHANGE);
+    APERTURE_HI_CHANGE);
       rho1 = mat.ParameterValue(IDT_VALUETYPE_LOW_FRACT_DENS);
       rho2 = mat.ParameterValue(IDT_VALUETYPE_HIGH_FRACT_DENS);
       break;
-    case PERMEABILITY_MULTIPLIER_LO:
+  case PERMEABILITY_MULTIPLIER_LO:
       apertureValues(fractureAperture1, mesh_element, Stage(), unit,
-        APERTURE_HI);
+    APERTURE_HI);
       apertureValues(fractureApertureChange1, mesh_element, Stage(), unit,
-        APERTURE_HI_CHANGE);
+    APERTURE_HI_CHANGE);
       apertureValues(fractureAperture2, mesh_element, Stage(), unit,
-        APERTURE_ME);
+    APERTURE_ME);
       apertureValues(fractureApertureChange2, mesh_element, Stage(), unit,
-        APERTURE_ME_CHANGE);
+    APERTURE_ME_CHANGE);
       rho1 = mat.ParameterValue(IDT_VALUETYPE_HIGH_FRACT_DENS);
       rho2 = mat.ParameterValue(IDT_VALUETYPE_INTER_FRACT_DENS);
       break;
-    default:
+  default:
       assert(false);
   }
 
   for (int i = 0; i < mesh_element.NrOfNodes(); ++i)
   {
-    if (fractureApertureChange1[i].Valid() && fractureAperture1[i].Valid() &&
-        fractureApertureChange2[i].Valid() && fractureAperture2[i].Valid())
-    {
+  if (fractureApertureChange1[i].Valid() && fractureAperture1[i].Valid() &&
+    fractureApertureChange2[i].Valid() && fractureAperture2[i].Valid())
+  {
       double w1 = fractureAperture1[i].Value();
       double w2 = fractureAperture2[i].Value();
       double w0_1 = fractureAperture1[i].Value() - fractureApertureChange1[i].Value();
       double w0_2 = fractureAperture2[i].Value() - fractureApertureChange2[i].Value();
 
       if(w0_1 < 0)
-        w0_1 = 0;
+    w0_1 = 0;
       if(w0_2 < 0)
-        w0_2 = 0;
+    w0_2 = 0;
 
       double nom = rho1 * pow(w1, 3)   + rho2 * pow(w2, 3);
       double den = rho1 * pow(w0_1, 3) + rho2 * pow(w0_2, 3);
 
       if(den < 1e-20)
-        values[i] = 1;
+    values[i] = 1;
       else
-        values[i] = nom / den;
-    }
-    else
-    {
+    values[i] = nom / den;
+  }
+  else
+  {
       values[i] = 1;
-    }
+  }
   }
 }
 
@@ -3507,43 +3507,43 @@ void CResultTree::CScalarResult::CScalarResultComponent::calcValues
 {
   if ( sEE.Valid() && sNN.Valid() && sVV.Valid() && sEN.Valid() )
   {
-    double B1= sEE.Value();
-    double B2= sNN.Value();
-    double B3= sVV.Value();
-    double B4= sEN.Value();
+  double B1= sEE.Value();
+  double B2= sNN.Value();
+  double B3= sVV.Value();
+  double B4= sEN.Value();
 
-    double D1= sqrt(B1*B1+4*B4*B4-2*B1*B2+B2*B2);
-    double D2= 0.5*(B1+B2+D1);
-    double D3= 0.5*(B1+B2-D1);
-    double D4= B3;
-    double D5= 0.5*(-B1+B2+D1);
-    double D6= B4;
+  double D1= sqrt(B1*B1+4*B4*B4-2*B1*B2+B2*B2);
+  double D2= 0.5*(B1+B2+D1);
+  double D3= 0.5*(B1+B2-D1);
+  double D4= B3;
+  double D5= 0.5*(-B1+B2+D1);
+  double D6= B4;
 
-    if ( fabs(D5) > EPS )
-    {
+  if ( fabs(D5) > EPS )
+  {
       double D7= 180/PI*atan(D6/D5+0.000001);
       double D8= D7<0 ? D7+360 : D7;
       if ( D8 >= 180 ) D8 -= 180; //wjrx mantis 2977
       SHTotazimuth.Value( D8);
-    }
-    else SHTotazimuth= geo::CValue();
+  }
+  else SHTotazimuth= geo::CValue();
 
-    if ( fabs(D4) > EPS )
-    {
+  if ( fabs(D4) > EPS )
+  {
       SHTot_SvTot.Value( D2/D4 ); //D9
       ShTot_SvTot.Value( D3/D4 ); //D10
-    }
-    else
-    {
-      SHTot_SvTot= geo::CValue();
-      ShTot_SvTot= geo::CValue();
-    }
   }
   else
   {
-    SHTotazimuth= geo::CValue();
-    SHTot_SvTot= geo::CValue();
-    ShTot_SvTot= geo::CValue();
+      SHTot_SvTot= geo::CValue();
+      ShTot_SvTot= geo::CValue();
+  }
+  }
+  else
+  {
+  SHTotazimuth= geo::CValue();
+  SHTot_SvTot= geo::CValue();
+  ShTot_SvTot= geo::CValue();
   }
 }
 
@@ -3554,486 +3554,486 @@ void CResultTree::CScalarResult::CScalarResultComponent::ElementValues(IValueDom
   const CScalarResult *pResult = dynamic_cast<const CScalarResult*>(&Parent());
   assert(pResult);
 
-    switch(pResult->ResultType())
+  switch(pResult->ResultType())
   {
-    case SHTOTAZIMUTH: 
-        {
-    CStressTensorValueSet::TValueVec vcValues( mesh_element.NrOfPoints() );
-    ResultRegister().TotalStress(Stage(), AnalysisType(), false).ElementValues(vcValues, mesh_element.Index(), 0);
-
-    for(size_t i = 0; i < values.size(); i++)
+  case SHTOTAZIMUTH: 
     {
+  CStressTensorValueSet::TValueVec vcValues( mesh_element.NrOfPoints() );
+  ResultRegister().TotalStress(Stage(), AnalysisType(), false).ElementValues(vcValues, mesh_element.Index(), 0);
+
+  for(size_t i = 0; i < values.size(); i++)
+  {
       geo::CValue dummy;
       calcValues( vcValues[i].YY(), vcValues[i].XX(), vcValues[i].ZZ(), vcValues[i].XY(), values[i], dummy, dummy);
-    }
   }
-        break;
-    case SHTOT_SvTOT:
+  }
+    break;
+  case SHTOT_SvTOT:
   {
-    CStressTensorValueSet::TValueVec vcValues( mesh_element.NrOfPoints() );
-    ResultRegister().TotalStress(Stage(), AnalysisType(), false).ElementValues(vcValues, mesh_element.Index(), geo::IParallelInitializationCallback::Sequential);
+  CStressTensorValueSet::TValueVec vcValues( mesh_element.NrOfPoints() );
+  ResultRegister().TotalStress(Stage(), AnalysisType(), false).ElementValues(vcValues, mesh_element.Index(), geo::IParallelInitializationCallback::Sequential);
 
-    for(size_t i = 0; i < values.size(); i++)
-    {
+  for(size_t i = 0; i < values.size(); i++)
+  {
       geo::CValue dummy;
       calcValues( vcValues[i].YY(), vcValues[i].XX(), vcValues[i].ZZ(), vcValues[i].XY(), dummy, values[i], dummy);
-    }
   }
-        break;
-    case ShTOT_SvTOT:
+  }
+    break;
+  case ShTOT_SvTOT:
   {
-    CStressTensorValueSet::TValueVec vcValues( mesh_element.NrOfPoints() );
-    ResultRegister().TotalStress(Stage(), AnalysisType(), false).ElementValues(vcValues, mesh_element.Index(), geo::IParallelInitializationCallback::Sequential);
+  CStressTensorValueSet::TValueVec vcValues( mesh_element.NrOfPoints() );
+  ResultRegister().TotalStress(Stage(), AnalysisType(), false).ElementValues(vcValues, mesh_element.Index(), geo::IParallelInitializationCallback::Sequential);
 
-    for(size_t i = 0; i < values.size(); i++)
-    {
+  for(size_t i = 0; i < values.size(); i++)
+  {
       geo::CValue dummy;
       calcValues( vcValues[i].YY(), vcValues[i].XX(), vcValues[i].ZZ(), vcValues[i].XY(), dummy, dummy, values[i]);
-    }
   }
-        break;
-    case SHEAR_CAPACITY:
-    ShearCapacityMC(values, mesh_element, Stage());
-        break;
-    case  COMPACTION_CAPACITY:
-    CompactionCapacity(values, mesh_element, Stage());
-        break;
-    case PORE_PRESSURE:
-    case PORE_PRESSURE_GRADIENT:
+  }
+    break;
+  case SHEAR_CAPACITY:
+  ShearCapacityMC(values, mesh_element, Stage());
+    break;
+  case  COMPACTION_CAPACITY:
+  CompactionCapacity(values, mesh_element, Stage());
+    break;
+  case PORE_PRESSURE:
+  case PORE_PRESSURE_GRADIENT:
       {
-        PorePressure( values, mesh_element, Stage() );
-        for(size_t i = 0; i < values.size(); i++)
-        {
+    PorePressure( values, mesh_element, Stage() );
+    for(size_t i = 0; i < values.size(); i++)
+    {
            if(unit == CQuantity::FIELD_UNIT && values[i].Valid())
              values[i] *= FF_FACTOR_PRESSURE;
-        }
+    }
       }
       break;
-    case PORE_PRESSURE_CHANGE:
+  case PORE_PRESSURE_CHANGE:
       {
       	IValueDomainScalar::TValueVec vcInitial(values.size());
-        PorePressure( values, mesh_element, Stage() );
-        PorePressure( vcInitial, mesh_element, model.DepletionStageEntry().MarkedAsInitialStage() );
-        for(size_t i = 0; i < values.size(); i++)
-        {
+    PorePressure( values, mesh_element, Stage() );
+    PorePressure( vcInitial, mesh_element, model.DepletionStageEntry().MarkedAsInitialStage() );
+    for(size_t i = 0; i < values.size(); i++)
+    {
           if(values[i].Valid())
           {
-            values[i] -= vcInitial[i];
-            if(unit == CQuantity::FIELD_UNIT && values[i].Valid())
+      values[i] -= vcInitial[i];
+      if(unit == CQuantity::FIELD_UNIT && values[i].Valid())
               values[i] *= FF_FACTOR_PRESSURE;
           }
-        }
+    }
       }
       break;
-    case PORE_PRESSURE_INPUT:
-    case PORE_PRESSURE_GRADIENT_INPUT:
+  case PORE_PRESSURE_INPUT:
+  case PORE_PRESSURE_GRADIENT_INPUT:
       {
-        PorePressureInput( values, mesh_element, Stage() );
-        for(size_t i = 0; i < values.size(); i++)
-        {
+    PorePressureInput( values, mesh_element, Stage() );
+    for(size_t i = 0; i < values.size(); i++)
+    {
            if(unit == CQuantity::FIELD_UNIT && values[i].Valid())
              values[i] *= FF_FACTOR_PRESSURE;
-        }
+    }
       }
       break;
-    case PORE_PRESSURE_CHANGE_INPUT:
+  case PORE_PRESSURE_CHANGE_INPUT:
       {
       	IValueDomainScalar::TValueVec vcInitial(values.size());
-        PorePressureInput( values, mesh_element, Stage() );
-        PorePressureInput( vcInitial, mesh_element, model.DepletionStageEntry().MarkedAsInitialStage() );
-        for(size_t i = 0; i < values.size(); i++)
-        {
+    PorePressureInput( values, mesh_element, Stage() );
+    PorePressureInput( vcInitial, mesh_element, model.DepletionStageEntry().MarkedAsInitialStage() );
+    for(size_t i = 0; i < values.size(); i++)
+    {
           if(values[i].Valid())
           {
-            values[i] -= vcInitial[i];
-            if(unit == CQuantity::FIELD_UNIT && values[i].Valid())
+      values[i] -= vcInitial[i];
+      if(unit == CQuantity::FIELD_UNIT && values[i].Valid())
               values[i] *= FF_FACTOR_PRESSURE;
           }
-        }
+    }
       }
       break;
-    case FRACTURE_MATRIX_PRESSURE:
-        {
-    FractureMatrixPressure( values, mesh_element, Stage() );
-    for(size_t i = 0; i < values.size(); i++) {
-                if(unit == CQuantity::FIELD_UNIT && values[i].Valid()) values[i] *= FF_FACTOR_PRESSURE;
+  case FRACTURE_MATRIX_PRESSURE:
+    {
+  FractureMatrixPressure( values, mesh_element, Stage() );
+  for(size_t i = 0; i < values.size(); i++) {
+        if(unit == CQuantity::FIELD_UNIT && values[i].Valid()) values[i] *= FF_FACTOR_PRESSURE;
+  }
     }
-        }
-        break;
-    case FRACTURE_MATRIX_PRESSURE_CHANGE:
-        {
-	IValueDomainScalar::TValueVec vcInitial(values.size());
-    FractureMatrixPressure( values, mesh_element, Stage() );
-    FractureMatrixPressure( vcInitial, mesh_element, model.DepletionStageEntry().MarkedAsInitialStage() );
-    for(size_t i = 0; i < values.size(); i++) {
+    break;
+  case FRACTURE_MATRIX_PRESSURE_CHANGE:
+    {
+  IValueDomainScalar::TValueVec vcInitial(values.size());
+  FractureMatrixPressure( values, mesh_element, Stage() );
+  FractureMatrixPressure( vcInitial, mesh_element, model.DepletionStageEntry().MarkedAsInitialStage() );
+  for(size_t i = 0; i < values.size(); i++) {
       if(values[i].Valid())
       {
-        values[i] -= vcInitial[i];
-                    if(unit == CQuantity::FIELD_UNIT && values[i].Valid()) values[i] *= FF_FACTOR_PRESSURE;
+    values[i] -= vcInitial[i];
+          if(unit == CQuantity::FIELD_UNIT && values[i].Valid()) values[i] *= FF_FACTOR_PRESSURE;
       }
+  }
     }
-        }
-        break;
-    case TEMPERATURE:
-    case TEMPERATURE_GRADIENT:
+    break;
+  case TEMPERATURE:
+  case TEMPERATURE_GRADIENT:
       {
-        Temperature( values, mesh_element, Stage() );
-        for(size_t i = 0; i < values.size(); ++i)
-        {
-          if(unit == CQuantity::FIELD_UNIT && values[i].Valid())
-            values[i] *= FF_FACTOR_TEMPERATURE;
-        }
-      }
-      break;
-    case TEMPERATURE_CHANGE:
-      {
-	      IValueDomainScalar::TValueVec vcInitial(values.size());
-        Temperature( values, mesh_element, Stage() );
-        Temperature( vcInitial, mesh_element, model.DepletionStageEntry().MarkedAsInitialStage() );
-        for(size_t i = 0; i < values.size(); ++i)
-        {
-          if(values[i].Valid())
-          {
-            values[i] -= vcInitial[i];
-            if(unit == CQuantity::FIELD_UNIT && values[i].Valid())
-              values[i] *= FF_FACTOR_TEMPERATURE;
-          }
-        }
-      }
-      break;
-    case TEMPERATURE_INPUT:
-    case TEMPERATURE_GRADIENT_INPUT:
-      {
-        TemperatureInput( values, mesh_element, Stage() );
-        for(size_t i = 0; i < values.size(); ++i)
-        {
-          if(unit == CQuantity::FIELD_UNIT && values[i].Valid())
-            values[i] *= FF_FACTOR_TEMPERATURE;
-        }
-      }
-      break;
-    case TEMPERATURE_CHANGE_INPUT:
-      {
-	      IValueDomainScalar::TValueVec vcInitial(values.size());
-        TemperatureInput( values, mesh_element, Stage() );
-        TemperatureInput( vcInitial, mesh_element, model.DepletionStageEntry().MarkedAsInitialStage() );
-        for(size_t i = 0; i < values.size(); ++i)
-        {
-          if(values[i].Valid())
-          {
-            values[i] -= vcInitial[i];
-            if(unit == CQuantity::FIELD_UNIT && values[i].Valid())
-              values[i] *= FF_FACTOR_TEMPERATURE;
-          }
-        }
-      }
-      break;
-    case CONSOL:
-        {
-    Consolidation( values, mesh_element, Stage() );
-    for(size_t i = 0; i < values.size(); ++i) {
-                if(unit == CQuantity::FIELD_UNIT && values[i].Valid()) values[i] *= FF_FACTOR_STRESS;
-            }
-    }
-        break;
-    case CONSOL_CHANGE:
-        {
-	IValueDomainScalar::TValueVec vcInitial(values.size());
-    Consolidation( values, mesh_element, Stage() );
-    Consolidation( vcInitial, mesh_element, model.DepletionStageEntry().MarkedAsInitialStage() );
-    for(size_t i = 0; i < values.size(); ++i) {
-      if(values[i].Valid())
-      {
-        values[i] -= vcInitial[i];
-                    if(unit == CQuantity::FIELD_UNIT && values[i].Valid()) values[i] *= FF_FACTOR_STRESS;
-                }
-      }
-    }
-        break;
-    case POROSITY:
-    Porosity( values, mesh_element, Stage(), cb );
-        break;
-    case POROSITY_CHANGE:
-        {
-	IValueDomainScalar::TValueVec vcInitial(values.size());
-    Porosity( values, mesh_element, Stage(), cb );
-    Porosity( vcInitial, mesh_element, model.DepletionStageEntry().MarkedAsInitialStage(), cb );
+    Temperature( values, mesh_element, Stage() );
     for(size_t i = 0; i < values.size(); ++i)
     {
-      if(values[i].Valid() && vcInitial[i].Valid())
-        values[i] -= vcInitial[i];
+          if(unit == CQuantity::FIELD_UNIT && values[i].Valid())
+      values[i] *= FF_FACTOR_TEMPERATURE;
     }
-        } 
-        break;
-    case THICKNESS:
-        {
-    Thickness(values, mesh_element, Stage(), cb);
-    if(unit == CQuantity::FIELD_UNIT)
+      }
+      break;
+  case TEMPERATURE_CHANGE:
+      {
+        IValueDomainScalar::TValueVec vcInitial(values.size());
+    Temperature( values, mesh_element, Stage() );
+    Temperature( vcInitial, mesh_element, model.DepletionStageEntry().MarkedAsInitialStage() );
+    for(size_t i = 0; i < values.size(); ++i)
     {
+          if(values[i].Valid())
+          {
+      values[i] -= vcInitial[i];
+      if(unit == CQuantity::FIELD_UNIT && values[i].Valid())
+              values[i] *= FF_FACTOR_TEMPERATURE;
+          }
+    }
+      }
+      break;
+  case TEMPERATURE_INPUT:
+  case TEMPERATURE_GRADIENT_INPUT:
+      {
+    TemperatureInput( values, mesh_element, Stage() );
+    for(size_t i = 0; i < values.size(); ++i)
+    {
+          if(unit == CQuantity::FIELD_UNIT && values[i].Valid())
+      values[i] *= FF_FACTOR_TEMPERATURE;
+    }
+      }
+      break;
+  case TEMPERATURE_CHANGE_INPUT:
+      {
+        IValueDomainScalar::TValueVec vcInitial(values.size());
+    TemperatureInput( values, mesh_element, Stage() );
+    TemperatureInput( vcInitial, mesh_element, model.DepletionStageEntry().MarkedAsInitialStage() );
+    for(size_t i = 0; i < values.size(); ++i)
+    {
+          if(values[i].Valid())
+          {
+      values[i] -= vcInitial[i];
+      if(unit == CQuantity::FIELD_UNIT && values[i].Valid())
+              values[i] *= FF_FACTOR_TEMPERATURE;
+          }
+    }
+      }
+      break;
+  case CONSOL:
+    {
+  Consolidation( values, mesh_element, Stage() );
+  for(size_t i = 0; i < values.size(); ++i) {
+        if(unit == CQuantity::FIELD_UNIT && values[i].Valid()) values[i] *= FF_FACTOR_STRESS;
+      }
+  }
+    break;
+  case CONSOL_CHANGE:
+    {
+  IValueDomainScalar::TValueVec vcInitial(values.size());
+  Consolidation( values, mesh_element, Stage() );
+  Consolidation( vcInitial, mesh_element, model.DepletionStageEntry().MarkedAsInitialStage() );
+  for(size_t i = 0; i < values.size(); ++i) {
+      if(values[i].Valid())
+      {
+    values[i] -= vcInitial[i];
+          if(unit == CQuantity::FIELD_UNIT && values[i].Valid()) values[i] *= FF_FACTOR_STRESS;
+        }
+      }
+  }
+    break;
+  case POROSITY:
+  Porosity( values, mesh_element, Stage(), cb );
+    break;
+  case POROSITY_CHANGE:
+    {
+  IValueDomainScalar::TValueVec vcInitial(values.size());
+  Porosity( values, mesh_element, Stage(), cb );
+  Porosity( vcInitial, mesh_element, model.DepletionStageEntry().MarkedAsInitialStage(), cb );
+  for(size_t i = 0; i < values.size(); ++i)
+  {
+      if(values[i].Valid() && vcInitial[i].Valid())
+    values[i] -= vcInitial[i];
+  }
+    } 
+    break;
+  case THICKNESS:
+    {
+  Thickness(values, mesh_element, Stage(), cb);
+  if(unit == CQuantity::FIELD_UNIT)
+  {
       for(size_t i = 0; i < values.size(); ++i)
-                    if(values[i].Valid()) values[i] *= FF_FACTOR_LENGTH;
-            }
-    }
-        break;
-    case THICKNESS_CHANGE:
-        {
-    IValueDomainScalar::TValueVec vcInitial(values.size());
-    Thickness(values, mesh_element, Stage(), cb);
-    Thickness(vcInitial, mesh_element, model.DepletionStageEntry().MarkedAsInitialStage(), cb);
-    for(size_t i = 0; i < values.size(); ++i)
+          if(values[i].Valid()) values[i] *= FF_FACTOR_LENGTH;
+      }
+  }
+    break;
+  case THICKNESS_CHANGE:
     {
+  IValueDomainScalar::TValueVec vcInitial(values.size());
+  Thickness(values, mesh_element, Stage(), cb);
+  Thickness(vcInitial, mesh_element, model.DepletionStageEntry().MarkedAsInitialStage(), cb);
+  for(size_t i = 0; i < values.size(); ++i)
+  {
       if(values[i].Valid() && vcInitial[i].Valid())
       {
-        values[i] -= vcInitial[i];
-        if(unit == CQuantity::FIELD_UNIT)
+    values[i] -= vcInitial[i];
+    if(unit == CQuantity::FIELD_UNIT)
           values[i] *= FF_FACTOR_LENGTH;
       }
+  }
     }
-        }
-        break;
-    case VOLUME_AVERAGE:
+    break;
+  case VOLUME_AVERAGE:
       {
-        if (mesh_element.IsInterfaceElement())
+    if (mesh_element.IsInterfaceElement())
           break;
 
-        const CFormationBase &formation = *model.Mesh().Formation(mesh_element);
+    const CFormationBase &formation = *model.Mesh().Formation(mesh_element);
       
-        if (!formation.Depleting())
-        {
+    if (!formation.Depleting())
+    {
           for(size_t i = 0; i < values.size(); ++i)
-            values[i] = geo::CValue();
-        }
+      values[i] = geo::CValue();
+    }
 
-        bool bCached = false;
-        CTensorParallelInitializationCallback *pTempPool = dynamic_cast<CTensorParallelInitializationCallback *>(cb);
+    bool bCached = false;
+    CTensorParallelInitializationCallback *pTempPool = dynamic_cast<CTensorParallelInitializationCallback *>(cb);
 
-        TFormAvgVolMap *cache = &m_mpValues;
+    TFormAvgVolMap *cache = &m_mpValues;
       
-        // Value in cache?
-        TFormAvgVolMap::const_iterator it = cache->find(&formation);
-        if (it != cache->end())
-        {
+    // Value in cache?
+    TFormAvgVolMap::const_iterator it = cache->find(&formation);
+    if (it != cache->end())
+    {
           for (size_t i = 0; i < values.size(); ++i)
           {
-            values[i] = it->second;
+      values[i] = it->second;
           }
           bCached = true;
-        }
+    }
 
-        if (dynamic_cast<CAvgVolumeParallelInitializationCallback *>(cb))
-        {
+    if (dynamic_cast<CAvgVolumeParallelInitializationCallback *>(cb))
+    {
           static_cast<CAvgVolumeParallelInitializationCallback *>(cb)->GetCache(&cache);
 
           if (!bCached)
           {
-            it = cache->find(&formation);
-            if (it != cache->end())
-            {
+      it = cache->find(&formation);
+      if (it != cache->end())
+      {
               for (size_t i = 0; i < values.size(); ++i)
               {
-                values[i] = it->second;
+        values[i] = it->second;
               }
               bCached = true;
-            }
+      }
           }
-        }
-    
-        if (!bCached)
-        {
+    }
+  
+    if (!bCached)
+    {
           // Not in cache calculate for the formation
           double total_volume = 0.0;
           double total_weighted_local = 0.0;
 
           if (pTempPool)
           {
-            for (int i = 0; i < formation.ElementSetSize(); ++i)
-            {
+      for (int i = 0; i < formation.ElementSetSize(); ++i)
+      {
               const geo::IElementSet *element_set = &formation.ElementSet(i).ElementSet();
               for (int j = 0; j < element_set->ElementSize(); ++j)
               {
-                const geo::IElement *element = &element_set->Element(j);
+        const geo::IElement *element = &element_set->Element(j);
 
-                // 0 and 1 are used in GammaValues
-                IValueDomainScalar::TValueVec *gamma_min = pTempPool->getScalarVector(2, element->NrOfPoints());
-                IValueDomainScalar::TValueVec *gamma_med = pTempPool->getScalarVector(3, element->NrOfPoints());
-                IValueDomainScalar::TValueVec *gamma_max = pTempPool->getScalarVector(4, element->NrOfPoints());
-                GammaValues(*gamma_min, *element, GAMMA_MIN, unit, cb);
-                GammaValues(*gamma_med, *element, GAMMA_MED, unit, cb);
-                GammaValues(*gamma_max, *element, GAMMA_MAX, unit, cb);
+        // 0 and 1 are used in GammaValues
+        IValueDomainScalar::TValueVec *gamma_min = pTempPool->getScalarVector(2, element->NrOfPoints());
+        IValueDomainScalar::TValueVec *gamma_med = pTempPool->getScalarVector(3, element->NrOfPoints());
+        IValueDomainScalar::TValueVec *gamma_max = pTempPool->getScalarVector(4, element->NrOfPoints());
+        GammaValues(*gamma_min, *element, GAMMA_MIN, unit, cb);
+        GammaValues(*gamma_med, *element, GAMMA_MED, unit, cb);
+        GammaValues(*gamma_max, *element, GAMMA_MAX, unit, cb);
 
-                for (int k = 0; k < element->NrOfPoints(); ++k)
-                {
+        for (int k = 0; k < element->NrOfPoints(); ++k)
+        {
                   if ((*gamma_min)[k].Valid() && (*gamma_med)[k].Valid() && (*gamma_max)[k].Valid())
                   {
-                    double influence_volume = element->InfluenceSize(k);
-                    total_weighted_local += influence_volume * (1.0 / 3.0) * ((*gamma_min)[k].Value() + (*gamma_med)[k].Value() + (*gamma_max)[k].Value());
-                    total_volume += influence_volume;
+          double influence_volume = element->InfluenceSize(k);
+          total_weighted_local += influence_volume * (1.0 / 3.0) * ((*gamma_min)[k].Value() + (*gamma_med)[k].Value() + (*gamma_max)[k].Value());
+          total_volume += influence_volume;
                   }
-                }
+        }
               }
-            }
+      }
           }
           else // legacy code
           {
-            for (int i = 0; i < formation.ElementSetSize(); ++i)
-            {
+      for (int i = 0; i < formation.ElementSetSize(); ++i)
+      {
               const geo::IElementSet *element_set = &formation.ElementSet(i).ElementSet();
               for (int j = 0; j < element_set->ElementSize(); ++j)
               {
-                const geo::IElement *element = &element_set->Element(j);
+        const geo::IElement *element = &element_set->Element(j);
 
-                IValueDomainScalar::TValueVec gamma_min(element->NrOfPoints());
-                IValueDomainScalar::TValueVec gamma_med(element->NrOfPoints());
-                IValueDomainScalar::TValueVec gamma_max(element->NrOfPoints());
-                GammaValues(gamma_min, *element, GAMMA_MIN, unit, cb);
-                GammaValues(gamma_med, *element, GAMMA_MED, unit, cb);
-                GammaValues(gamma_max, *element, GAMMA_MAX, unit, cb);
+        IValueDomainScalar::TValueVec gamma_min(element->NrOfPoints());
+        IValueDomainScalar::TValueVec gamma_med(element->NrOfPoints());
+        IValueDomainScalar::TValueVec gamma_max(element->NrOfPoints());
+        GammaValues(gamma_min, *element, GAMMA_MIN, unit, cb);
+        GammaValues(gamma_med, *element, GAMMA_MED, unit, cb);
+        GammaValues(gamma_max, *element, GAMMA_MAX, unit, cb);
 
-                for (int k = 0; k < element->NrOfPoints(); ++k)
-                {
+        for (int k = 0; k < element->NrOfPoints(); ++k)
+        {
                   if (gamma_min[k].Valid() && gamma_med[k].Valid() && gamma_max[k].Valid())
                   {
-                    double influence_volume = element->InfluenceSize(k);
-                    total_weighted_local += influence_volume * (1.0 / 3.0) * (gamma_min[k].Value() + gamma_med[k].Value() + gamma_max[k].Value());
-                    total_volume += influence_volume;
+          double influence_volume = element->InfluenceSize(k);
+          total_weighted_local += influence_volume * (1.0 / 3.0) * (gamma_min[k].Value() + gamma_med[k].Value() + gamma_max[k].Value());
+          total_volume += influence_volume;
                   }
-                }
+        }
               }
-            }
+      }
           }
 
           geo::CValue val;
           if(fabs(total_volume) > EPS)
-            val = total_weighted_local / total_volume;
+      val = total_weighted_local / total_volume;
 
           cache->insert(TFormAvgVolMap::value_type(&formation, val));
 
           ElementValues(values, mesh_element, unit, cb); // Get it now... because the value is in the map
-        }
+    }
       }
       break;
-    case APERTURE_HI:
-    case APERTURE_ME:
-    case APERTURE_LO:
-    case APERTURE_HI_CHANGE:
-    case APERTURE_ME_CHANGE:
-    case APERTURE_LO_CHANGE:
-    ApertureValues(pResult->ResultType(), values, Stage(), mesh_element, unit);
-        break;
-    case PERMEABILITY_MULTIPLIER_HI:
-    case PERMEABILITY_MULTIPLIER_ME:
-    case PERMEABILITY_MULTIPLIER_LO:
-    permeabilityMultiplierValues(pResult->ResultType(), values, mesh_element, unit);
+  case APERTURE_HI:
+  case APERTURE_ME:
+  case APERTURE_LO:
+  case APERTURE_HI_CHANGE:
+  case APERTURE_ME_CHANGE:
+  case APERTURE_LO_CHANGE:
+  ApertureValues(pResult->ResultType(), values, Stage(), mesh_element, unit);
     break;
-    case PLASTIC_ENERGY:
-	  PlasticEnergy(Stage(), values, mesh_element, unit, cb);
-    break;
-    case VOLUMETRIC_STRAIN_INPUT:
-    case VOLUMETRIC_STRAIN_CHANGE_INPUT:
+  case PERMEABILITY_MULTIPLIER_HI:
+  case PERMEABILITY_MULTIPLIER_ME:
+  case PERMEABILITY_MULTIPLIER_LO:
+  permeabilityMultiplierValues(pResult->ResultType(), values, mesh_element, unit);
+  break;
+  case PLASTIC_ENERGY:
+    PlasticEnergy(Stage(), values, mesh_element, unit, cb);
+  break;
+  case VOLUMETRIC_STRAIN_INPUT:
+  case VOLUMETRIC_STRAIN_CHANGE_INPUT:
       {
-        const CModelBase& modelBase = dynamic_cast <const CModelBase&> (Model());
+    const CModelBase& modelBase = dynamic_cast <const CModelBase&> (Model());
 
-        if (!mesh_element.IsInterfaceElement())
-        {
+    if (!mesh_element.IsInterfaceElement())
+    {
           const CFormationBase* formationBase = modelBase.Mesh().Formation(mesh_element);
 
           if (formationBase)
           {
-            if(formationBase->Strain(Stage()).IsVolumetric())
-            {
+      if(formationBase->Strain(Stage()).IsVolumetric())
+      {
               values = formationBase->Strain(Stage()).Component().
-                ScalarData().ValueElement(mesh_element);
+        ScalarData().ValueElement(mesh_element);
 
               if(pResult->ResultType() == VOLUMETRIC_STRAIN_CHANGE_INPUT)
               {
-                if(!modelBase.DepletionStageEntry().MarkedAsInitialStage().Initial())
-                {
+        if(!modelBase.DepletionStageEntry().MarkedAsInitialStage().Initial())
+        {
                   const IValueDomainScalar::TValueVec& inivalues = formationBase->Strain(modelBase.DepletionStageEntry().MarkedAsInitialStage()).Component().ScalarData().ValueElement(mesh_element);
                   for(size_t i = 0; i < values.size(); ++i)
                   {
-                    if(values[i].Valid() && inivalues[i].Valid())
+          if(values[i].Valid() && inivalues[i].Valid())
                       values[i] -= inivalues[i];
-                    else
+          else
                       values[i] = geo::CValue();
                   }
-                }
-                else
-                {
+        }
+        else
+        {
                   for(size_t i = 0; i < values.size(); ++i)
-                    values[i] = geo::CValue();
-                }
+          values[i] = geo::CValue();
+        }
               }
-            }
-            else
-            {
+      }
+      else
+      {
               for(size_t i = 0; i < values.size(); ++i)
-                values[i] = geo::CValue();
-            }
+        values[i] = geo::CValue();
+      }
           }
-        }
+    }
       }
       break;
-    case NORMAL_STRAIN_INPUT:
+  case NORMAL_STRAIN_INPUT:
       {
-        const CModelBase& modelBase =
+    const CModelBase& modelBase =
           dynamic_cast <const CModelBase&> (Model());
 
-        if (!mesh_element.IsInterfaceElement())
-        {
+    if (!mesh_element.IsInterfaceElement())
+    {
           const CFormationBase* formationBase =
-            modelBase.Mesh().Formation(mesh_element);
+      modelBase.Mesh().Formation(mesh_element);
 
           if (formationBase)
           {
-            bool bIsTensor;
-            IValueDomainTensor::TValueVec tensors = formationBase->Strain(Stage()).ValueTensor(mesh_element, bIsTensor);
-            assert(values.size() == mesh_element.NrOfPoints());
-            assert(tensors.size() == mesh_element.NrOfPoints());
+      bool bIsTensor;
+      IValueDomainTensor::TValueVec tensors = formationBase->Strain(Stage()).ValueTensor(mesh_element, bIsTensor);
+      assert(values.size() == mesh_element.NrOfPoints());
+      assert(tensors.size() == mesh_element.NrOfPoints());
 
-            if (!bIsTensor)
-            {
+      if (!bIsTensor)
+      {
               for (size_t i = 0; i < tensors.size(); ++i)
-                if (!tensors[i].Empty())
+        if (!tensors[i].Empty())
                   values[i] = tensors[i].ZZ();
-            }
+      }
           }
-        }
+    }
       }
       break;
-    case LATERAL_STRAIN_INPUT:
+  case LATERAL_STRAIN_INPUT:
       {
-        const CModelBase& modelBase =
+    const CModelBase& modelBase =
           dynamic_cast <const CModelBase&> (Model());
 
-        if (!mesh_element.IsInterfaceElement())
-        {
+    if (!mesh_element.IsInterfaceElement())
+    {
           const CFormationBase* formationBase =
-            modelBase.Mesh().Formation(mesh_element);
+      modelBase.Mesh().Formation(mesh_element);
 
           if (formationBase)
           {
-            bool bIsTensor;
-            IValueDomainTensor::TValueVec tensors = formationBase->Strain(Stage()).ValueTensor(mesh_element, bIsTensor);
-            assert(values.size() == mesh_element.NrOfPoints());
-            assert(tensors.size() == mesh_element.NrOfPoints());
+      bool bIsTensor;
+      IValueDomainTensor::TValueVec tensors = formationBase->Strain(Stage()).ValueTensor(mesh_element, bIsTensor);
+      assert(values.size() == mesh_element.NrOfPoints());
+      assert(tensors.size() == mesh_element.NrOfPoints());
 
-            if (!bIsTensor)
-            {
+      if (!bIsTensor)
+      {
               for (size_t i = 0; i < tensors.size(); ++i)
               {
-                if (!tensors[i].Empty())
-                {
+        if (!tensors[i].Empty())
+        {
                   assert(tensors[i].XX() == tensors[i].YY());
                   values[i] = tensors[i].XX();
-                }
-              }
-            }
-          }
         }
+              }
+      }
+          }
+    }
       }
       break;
-    default:
-    // Should be the gamma's
+  default:
+  // Should be the gamma's
       GammaValues(values, mesh_element, pResult->ResultType(), unit, cb);
   }
 }
@@ -4048,7 +4048,7 @@ void CResultTree::CScalarResult::CScalarResultComponent::AddToCache(TDisplacemen
 {
   for (TDisplacementMap::iterator it = cache->begin(); it != cache->end(); ++it)
   {
-    m_mpDisplacementMap.insert(*it);
+  m_mpDisplacementMap.insert(*it);
   }
 }
 
@@ -4056,7 +4056,7 @@ void CResultTree::CScalarResult::CScalarResultComponent::AddToCache(TFormAvgVolM
 {
   for (TFormAvgVolMap::iterator it = cache->begin(); it != cache->end(); ++it)
   {
-    m_mpValues.insert(*it);
+  m_mpValues.insert(*it);
   }
 }
 
@@ -4070,11 +4070,11 @@ geo::IParallelInitializationCallback *CResultTree::CScalarResult::CScalarResultC
   {
   case THICKNESS_CHANGE:
   case THICKNESS:
-    return new CThicknessParallelInitializationCallback(*this);
+  return new CThicknessParallelInitializationCallback(*this);
   case VOLUME_AVERAGE:
-    return new CAvgVolumeParallelInitializationCallback(static_cast<CModelBase&>(Model()), *this);
+  return new CAvgVolumeParallelInitializationCallback(static_cast<CModelBase&>(Model()), *this);
   default:
-    return new CTensorParallelInitializationCallback(static_cast<CModelBase&>(Model()));
+  return new CTensorParallelInitializationCallback(static_cast<CModelBase&>(Model()));
   }
 }
 
@@ -4119,7 +4119,7 @@ bool CResultTree::CScalarResult::OnBuildComponent(const CDepletionStage& stage, 
                                           ResultType() == LATERAL_STRAIN_INPUT ||
                                           ResultType() == VOLUMETRIC_STRAIN_INPUT    ||
                                           ResultType() == VOLUMETRIC_STRAIN_CHANGE_INPUT))
-    return true;
+  return true;
 
   return (antype == CAnalysisType::AT_LINEAR  ||
           antype == CAnalysisType::AT_MIXTURE ||
@@ -4131,74 +4131,74 @@ void CResultTree::CScalarResult::BuildComponent(const CDepletionStage& stage, co
 {
   if(OnBuildComponent(stage, antype, nRegister))
   {
-    switch(ResultType())
-    {
-    case PORE_PRESSURE_CHANGE:
-    case PORE_PRESSURE_CHANGE_INPUT:
-    case FRACTURE_MATRIX_PRESSURE_CHANGE:
-    case TEMPERATURE_CHANGE:
-    case TEMPERATURE_CHANGE_INPUT:
-    case GAMMA_VERTICAL:
-    case GAMMA_MAX:
-    case GAMMA_MED:
-    case GAMMA_MIN:
-    case GAMMA_VOLUME:
-    case POROSITY_CHANGE:
-    case THICKNESS_CHANGE:
-    case APERTURE_HI_CHANGE:
-    case APERTURE_ME_CHANGE:
-    case APERTURE_LO_CHANGE:
-    case PERMEABILITY_MULTIPLIER_HI:
-    case PERMEABILITY_MULTIPLIER_ME:
-    case PERMEABILITY_MULTIPLIER_LO:
+  switch(ResultType())
+  {
+  case PORE_PRESSURE_CHANGE:
+  case PORE_PRESSURE_CHANGE_INPUT:
+  case FRACTURE_MATRIX_PRESSURE_CHANGE:
+  case TEMPERATURE_CHANGE:
+  case TEMPERATURE_CHANGE_INPUT:
+  case GAMMA_VERTICAL:
+  case GAMMA_MAX:
+  case GAMMA_MED:
+  case GAMMA_MIN:
+  case GAMMA_VOLUME:
+  case POROSITY_CHANGE:
+  case THICKNESS_CHANGE:
+  case APERTURE_HI_CHANGE:
+  case APERTURE_ME_CHANGE:
+  case APERTURE_LO_CHANGE:
+  case PERMEABILITY_MULTIPLIER_HI:
+  case PERMEABILITY_MULTIPLIER_ME:
+  case PERMEABILITY_MULTIPLIER_LO:
       if(stage.isAfter(stage.Entry().MarkedAsInitialStage()))
-        new CScalarResultComponent(*this, stage, antype, nRegister);
+    new CScalarResultComponent(*this, stage, antype, nRegister);
       break;
-    case VOLUME_AVERAGE:
+  case VOLUME_AVERAGE:
       if(!stage.Initial())
-        m_pVolumeAverage = new CScalarResultComponent(*this, stage, antype, nRegister);
+    m_pVolumeAverage = new CScalarResultComponent(*this, stage, antype, nRegister);
       break;
-    case CONSOL:
+  case CONSOL:
       if(antype == CAnalysisType::AT_NONLIN || antype == CAnalysisType::AT_MIXTURE || antype == CAnalysisType::AT_MIXTURE_CONTAINMENT)
-        new CScalarResultComponent(*this, stage, antype, nRegister);
+    new CScalarResultComponent(*this, stage, antype, nRegister);
       break;
-    case CONSOL_CHANGE:
+  case CONSOL_CHANGE:
       if((antype == CAnalysisType::AT_NONLIN || antype == CAnalysisType::AT_MIXTURE || antype == CAnalysisType::AT_MIXTURE_CONTAINMENT) &&
          !stage.Initial())
-        new CScalarResultComponent(*this, stage, antype, nRegister);
+    new CScalarResultComponent(*this, stage, antype, nRegister);
       break;
-    case PLASTIC_ENERGY:
+  case PLASTIC_ENERGY:
       if(stage.isAfter(stage.Entry().MarkedAsInitialStage()) &&
          (antype == CAnalysisType::AT_NONLIN || antype == CAnalysisType::AT_MIXTURE || antype == CAnalysisType::AT_MIXTURE_CONTAINMENT) &&
          stage.OutputType() != CDepletionStage::NONE)
-        new CScalarResultComponent(*this, stage, antype, nRegister);
-    case POROSITY:
+    new CScalarResultComponent(*this, stage, antype, nRegister);
+  case POROSITY:
       if(stage.isAfter(stage.Entry().MarkedAsInitialStage()))
-        new CScalarResultComponent(*this, stage, antype, nRegister);
+    new CScalarResultComponent(*this, stage, antype, nRegister);
       break;
-    case VOLUMETRIC_STRAIN_INPUT:
+  case VOLUMETRIC_STRAIN_INPUT:
       if(!stage.Initial())
-        new CScalarResultComponent(*this, stage, antype, nRegister);
+    new CScalarResultComponent(*this, stage, antype, nRegister);
       break;
-    case VOLUMETRIC_STRAIN_CHANGE_INPUT:
+  case VOLUMETRIC_STRAIN_CHANGE_INPUT:
       if(stage.isAfter(stage.Entry().MarkedAsInitialStage()))
-        new CScalarResultComponent(*this, stage, antype, nRegister);
+    new CScalarResultComponent(*this, stage, antype, nRegister);
       break;
-    case NORMAL_STRAIN_INPUT:
-    case LATERAL_STRAIN_INPUT:
+  case NORMAL_STRAIN_INPUT:
+  case LATERAL_STRAIN_INPUT:
       if (!stage.Initial())
-        new CScalarResultComponent(*this, stage, antype, nRegister);
+    new CScalarResultComponent(*this, stage, antype, nRegister);
       break;
-    case APERTURE_HI:
-    case APERTURE_ME:
-    case APERTURE_LO:
-    case SHTOTAZIMUTH: // wjrx mantis 2870
-    case SHTOT_SvTOT: //wjrx mantis 2870
-    case ShTOT_SvTOT: //wjrx mantis 2870
-    default:
-        new CScalarResultComponent(*this, stage, antype, nRegister);
-        break;
-    }
+  case APERTURE_HI:
+  case APERTURE_ME:
+  case APERTURE_LO:
+  case SHTOTAZIMUTH: // wjrx mantis 2870
+  case SHTOT_SvTOT: //wjrx mantis 2870
+  case ShTOT_SvTOT: //wjrx mantis 2870
+  default:
+    new CScalarResultComponent(*this, stage, antype, nRegister);
+    break;
+  }
   }
 }
 
@@ -4221,142 +4221,142 @@ void CResultTree::CScalarResult::SetIndex()
   switch(m_result_type)
   {
   case PORE_PRESSURE:
-    Index( RC_PORE_PRESSURE );
-    break;
+  Index( RC_PORE_PRESSURE );
+  break;
   case PORE_PRESSURE_CHANGE:
-    Index( RC_PORE_PRESSURE_CHANGE );
-    break;
+  Index( RC_PORE_PRESSURE_CHANGE );
+  break;
   case FRACTURE_MATRIX_PRESSURE:
-    Index( RC_FRACTURE_MATRIX_PRESSURE );
-    break;
+  Index( RC_FRACTURE_MATRIX_PRESSURE );
+  break;
   case FRACTURE_MATRIX_PRESSURE_CHANGE:
-    Index( RC_FRACTURE_MATRIX_PRESSURE_CHANGE );
-    break;
+  Index( RC_FRACTURE_MATRIX_PRESSURE_CHANGE );
+  break;
   case SHTOTAZIMUTH: // wjrx mantis 2870
-    Index(RC_SHTOTAZIMUTH);
-    break;
+  Index(RC_SHTOTAZIMUTH);
+  break;
   case SHTOT_SvTOT: // wjrx mantis 2870
-    Index(RC_SHTOT_SvTOT);
-    break;
+  Index(RC_SHTOT_SvTOT);
+  break;
   case ShTOT_SvTOT: // wjrx mantis 2870
-    Index(RC_ShTOT_SvTOT);
-    break;
+  Index(RC_ShTOT_SvTOT);
+  break;
   case TEMPERATURE:
-    Index( RC_TEMPERATURE );
-    break;
+  Index( RC_TEMPERATURE );
+  break;
   case TEMPERATURE_CHANGE:
-    Index( RC_TEMPERATURE_CHANGE );
-    break;
+  Index( RC_TEMPERATURE_CHANGE );
+  break;
   case CONSOL:
-    Index( RC_CONSOL );
-    break;
+  Index( RC_CONSOL );
+  break;
   case CONSOL_CHANGE:
-    Index( RC_CONSOL_CHANGE );
-    break;
+  Index( RC_CONSOL_CHANGE );
+  break;
   case POROSITY:
-    Index( RC_POROSITY );
-    break;
+  Index( RC_POROSITY );
+  break;
   case POROSITY_CHANGE:
-    Index( RC_POROSITY_CHANGE );
-    break;
+  Index( RC_POROSITY_CHANGE );
+  break;
   case SHEAR_CAPACITY:
-    Index(  RC_SHEAR_CAPACITY );
-    break;
+  Index(  RC_SHEAR_CAPACITY );
+  break;
   case COMPACTION_CAPACITY:
-    Index(  RC_COMPACTION_CAPACITY );
+  Index(  RC_COMPACTION_CAPACITY );
   case GAMMA_VERTICAL:
-    Index(  RC_GAMMA_VERTICAL );
-    break;
+  Index(  RC_GAMMA_VERTICAL );
+  break;
   case GAMMA_MAX:
-    Index( RC_GAMMA_MAX );
-    break;
+  Index( RC_GAMMA_MAX );
+  break;
   case GAMMA_MED:
-    Index( RC_GAMMA_MED );
-    break;
+  Index( RC_GAMMA_MED );
+  break;
   case GAMMA_MIN:
-    Index( RC_GAMMA_MIN );
-    break;
+  Index( RC_GAMMA_MIN );
+  break;
   case GAMMA_VOLUME:
-    Index( RC_GAMMA_VOLUME );
-    break;
+  Index( RC_GAMMA_VOLUME );
+  break;
   case VOLUME_AVERAGE:
-    Index( RC_VOLUME_AVERAGE );
-    break;
+  Index( RC_VOLUME_AVERAGE );
+  break;
   case THICKNESS:
-    Index(RC_THICKNESS);
-    break;
+  Index(RC_THICKNESS);
+  break;
   case THICKNESS_CHANGE:
-    Index(RC_THICKNESS_CHANGE);
-    break;
+  Index(RC_THICKNESS_CHANGE);
+  break;
   case APERTURE_HI:
-    Index(RC_APERTURE_HI);
-    break;
+  Index(RC_APERTURE_HI);
+  break;
   case APERTURE_ME:
-    Index(RC_APERTURE_ME);
-    break;
+  Index(RC_APERTURE_ME);
+  break;
   case APERTURE_LO:
-    Index(RC_APERTURE_LO);
-    break;
+  Index(RC_APERTURE_LO);
+  break;
   case APERTURE_HI_CHANGE:
-    Index(RC_APERTURE_HI_CHANGE);
-    break;
+  Index(RC_APERTURE_HI_CHANGE);
+  break;
   case APERTURE_ME_CHANGE:
-    Index(RC_APERTURE_ME_CHANGE);
-    break;
+  Index(RC_APERTURE_ME_CHANGE);
+  break;
   case APERTURE_LO_CHANGE:
-    Index(RC_APERTURE_LO_CHANGE);
-    break;
+  Index(RC_APERTURE_LO_CHANGE);
+  break;
   case PERMEABILITY_MULTIPLIER_HI:
-    Index(RC_PERMEABILITY_MULTIPLIER_HI);
-    break;
+  Index(RC_PERMEABILITY_MULTIPLIER_HI);
+  break;
   case PERMEABILITY_MULTIPLIER_ME:
-    Index(RC_PERMEABILITY_MULTIPLIER_ME);
-    break;
+  Index(RC_PERMEABILITY_MULTIPLIER_ME);
+  break;
   case PERMEABILITY_MULTIPLIER_LO:
-    Index(RC_PERMEABILITY_MULTIPLIER_LO);
-    break;
+  Index(RC_PERMEABILITY_MULTIPLIER_LO);
+  break;
   case PLASTIC_ENERGY:
-    Index(RC_PLASTIC_ENERGY);
-    break;
+  Index(RC_PLASTIC_ENERGY);
+  break;
   case PORE_PRESSURE_GRADIENT:
-    Index(RC_PORE_PRESSURE_GRADIENT);
-    break;
+  Index(RC_PORE_PRESSURE_GRADIENT);
+  break;
   case TEMPERATURE_GRADIENT:
-    Index(RC_TEMPERATURE_GRADIENT);
-    break;
+  Index(RC_TEMPERATURE_GRADIENT);
+  break;
   case PORE_PRESSURE_INPUT:
-    Index(RC_PORE_PRESSURE_INPUT);
-    break;
+  Index(RC_PORE_PRESSURE_INPUT);
+  break;
   case PORE_PRESSURE_CHANGE_INPUT:
-    Index(RC_PORE_PRESSURE_CHANGE_INPUT);
-    break;
+  Index(RC_PORE_PRESSURE_CHANGE_INPUT);
+  break;
   case PORE_PRESSURE_GRADIENT_INPUT:
-    Index(RC_PORE_PRESSURE_GRADIENT_INPUT);
-    break;
+  Index(RC_PORE_PRESSURE_GRADIENT_INPUT);
+  break;
   case TEMPERATURE_INPUT:
-    Index(RC_TEMPERATURE_INPUT);
-    break;
+  Index(RC_TEMPERATURE_INPUT);
+  break;
   case TEMPERATURE_CHANGE_INPUT:
-    Index(RC_TEMPERATURE_CHANGE_INPUT);
-    break;
+  Index(RC_TEMPERATURE_CHANGE_INPUT);
+  break;
   case TEMPERATURE_GRADIENT_INPUT:
-    Index(RC_TEMPERATURE_GRADIENT_INPUT);
-    break;
+  Index(RC_TEMPERATURE_GRADIENT_INPUT);
+  break;
   case VOLUMETRIC_STRAIN_INPUT:
-    Index(RC_VOLUMETRIC_STRAIN_INPUT);
-    break;
+  Index(RC_VOLUMETRIC_STRAIN_INPUT);
+  break;
   case VOLUMETRIC_STRAIN_CHANGE_INPUT:
-    Index(RC_VOLUMETRIC_STRAIN_CHANGE_INPUT);
-    break;
+  Index(RC_VOLUMETRIC_STRAIN_CHANGE_INPUT);
+  break;
   case NORMAL_STRAIN_INPUT:
-    Index(RC_NORMAL_STRAIN_INPUT);
-    break;
+  Index(RC_NORMAL_STRAIN_INPUT);
+  break;
   case LATERAL_STRAIN_INPUT:
-    Index(RC_LATERAL_STRAIN_INPUT);
-    break;
+  Index(RC_LATERAL_STRAIN_INPUT);
+  break;
   default:
-    assert(false);
-    break;
+  assert(false);
+  break;
   };
 }
 
@@ -4377,11 +4377,11 @@ bool CResultTree::CScalarResult::CanMap(const COpenGLNode& node, int nRegister) 
       m_result_type == PORE_PRESSURE_INPUT ||
       m_result_type == PORE_PRESSURE_CHANGE_INPUT))
   {
-    if(dynamic_cast<const CNonMeshedSurface*>(&node))
+  if(dynamic_cast<const CNonMeshedSurface*>(&node))
       return true;
 
-    const CHorizonBase* pFault = dynamic_cast<const CHorizonBase*>(&node);
-    if(pFault && pFault->Slip())
+  const CHorizonBase* pFault = dynamic_cast<const CHorizonBase*>(&node);
+  if(pFault && pFault->Slip())
       return false;
   }
 
@@ -4401,7 +4401,7 @@ bool CResultTree::CScalarResult::OnDefined(const IResultComponent& component) co
      (m_result_type == VOLUMETRIC_STRAIN_INPUT        ) ||
      (m_result_type == VOLUMETRIC_STRAIN_CHANGE_INPUT ))
   {
-    return true;
+  return true;
   }
 
   return IResult::OnDefined(component);
@@ -4410,7 +4410,7 @@ bool CResultTree::CScalarResult::OnDefined(const IResultComponent& component) co
 void CResultTree::CScalarResult::OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint)
 {
   if(m_pVolumeAverage)
-    m_pVolumeAverage->ClearMap();
+  m_pVolumeAverage->ClearMap();
   IResult::OnNeighbourModified(node, uHint);
 }
 
@@ -4422,9 +4422,9 @@ bool CResultTree::CScalarResult::NeedParallelInitializationCallback() const
   case THICKNESS_CHANGE:
   case THICKNESS:
   case VOLUME_AVERAGE:
-    return true;
+  return true;
   default:
-    return m_bNeedTensorParallelInitializationCallback;
+  return m_bNeedTensorParallelInitializationCallback;
   }
 }
 
@@ -4450,178 +4450,178 @@ bool CResultTree::CScalarResult::PrepareMapping(const geo::IElementSet *pElement
   case SHTOTAZIMUTH:
   case SHTOT_SvTOT:
   case ShTOT_SvTOT:
-    // TotalStress
-    // calcValues
-    if (!vm->PrepareMappingStress(*pModel, *pComponent, *pRegister, true))
+  // TotalStress
+  // calcValues
+  if (!vm->PrepareMappingStress(*pModel, *pComponent, *pRegister, true))
       retval = false;
-    break;
+  break;
   case SHEAR_CAPACITY:
-    // ShearCapacityMC
-    if (!vm->PrepareMappingStress(*pModel, *pComponent, *pRegister, false))
+  // ShearCapacityMC
+  if (!vm->PrepareMappingStress(*pModel, *pComponent, *pRegister, false))
       retval = false;
 
-    if (!vm->PrepareMappingMaterial(*pModel, pElementSet, pComponent->Stage(), CValueMapper::CHECK_CEMENT))
+  if (!vm->PrepareMappingMaterial(*pModel, pElementSet, pComponent->Stage(), CValueMapper::CHECK_CEMENT))
       retval = false;
-    break;
+  break;
   case COMPACTION_CAPACITY:
-    // CompactionCapacity
-    if (!vm->PrepareMappingStress(*pModel, *pComponent, *pRegister, false))
+  // CompactionCapacity
+  if (!vm->PrepareMappingStress(*pModel, *pComponent, *pRegister, false))
       retval = false;
 
-    if (!vm->PrepareMappingIndex(CI_PRECON, *pModel, *pComponent, *pRegister, false))
+  if (!vm->PrepareMappingIndex(CI_PRECON, *pModel, *pComponent, *pRegister, false))
       retval = false;
 
-    if (!vm->PrepareMappingMaterial(*pModel, pElementSet, pComponent->Stage(), CValueMapper::CHECK_CEMENT))
+  if (!vm->PrepareMappingMaterial(*pModel, pElementSet, pComponent->Stage(), CValueMapper::CHECK_CEMENT))
       retval = false;
-    break;
+  break;
   case PORE_PRESSURE_CHANGE:
-    // PorePressure Di
-    change = true;
-    /* Fall-through */
+  // PorePressure Di
+  change = true;
+  /* Fall-through */
   case PORE_PRESSURE:
   case PORE_PRESSURE_GRADIENT:
-    // PorePressure
-    if (!vm->PrepareMappingPorePressure(*pModel, *pComponent, *pRegister, pElementSet, change))
+  // PorePressure
+  if (!vm->PrepareMappingPorePressure(*pModel, *pComponent, *pRegister, pElementSet, change))
       retval = false;
-    break;
+  break;
   case PORE_PRESSURE_CHANGE_INPUT:
-    // PorePressureInput Di
-    if (!vm->PrepareMappingComponent(*pModel, pElementSet, pRegister->DepletionStageEntry().MarkedAsInitialStage(), CValueMapper::MAP_PRESSURE))
+  // PorePressureInput Di
+  if (!vm->PrepareMappingComponent(*pModel, pElementSet, pRegister->DepletionStageEntry().MarkedAsInitialStage(), CValueMapper::MAP_PRESSURE))
       retval = false;
-    /* Fall-through */
+  /* Fall-through */
   case PORE_PRESSURE_INPUT:
   case PORE_PRESSURE_GRADIENT_INPUT:
-    // PorePressureInput
-    if (!vm->PrepareMappingComponent(*pModel, pElementSet, pComponent->Stage(), CValueMapper::MAP_PRESSURE))
+  // PorePressureInput
+  if (!vm->PrepareMappingComponent(*pModel, pElementSet, pComponent->Stage(), CValueMapper::MAP_PRESSURE))
       retval = false;
-    break;
+  break;
   case FRACTURE_MATRIX_PRESSURE_CHANGE:
-    // FractureMatrixPressure Di
-    /* Fall-through */
+  // FractureMatrixPressure Di
+  /* Fall-through */
   case FRACTURE_MATRIX_PRESSURE:
-    // FractureMatrixPressure
-    // nothing to do here
-    break;
+  // FractureMatrixPressure
+  // nothing to do here
+  break;
   case TEMPERATURE_CHANGE:
-    // Temperature Di
-    change = true;
-    /* Fall-through */
+  // Temperature Di
+  change = true;
+  /* Fall-through */
   case TEMPERATURE:
   case TEMPERATURE_GRADIENT:
-    // Temperature
-    if (!vm->PrepareMappingIndex(CI_TEMPERATURE, *pModel, *pComponent, *pRegister, change))
+  // Temperature
+  if (!vm->PrepareMappingIndex(CI_TEMPERATURE, *pModel, *pComponent, *pRegister, change))
       retval = false;
-    break;
+  break;
   case TEMPERATURE_CHANGE_INPUT:
-    // TemperatureInput Di
-    if (!vm->PrepareMappingComponent(*pModel, pElementSet, pRegister->DepletionStageEntry().MarkedAsInitialStage(), pComponent->AnalysisType().AnalysisType() != CAnalysisType::AT_HEAT ? CValueMapper::MAP_TEMPERATURE : CValueMapper::MAP_TEMPERATURE_HEAT))
+  // TemperatureInput Di
+  if (!vm->PrepareMappingComponent(*pModel, pElementSet, pRegister->DepletionStageEntry().MarkedAsInitialStage(), pComponent->AnalysisType().AnalysisType() != CAnalysisType::AT_HEAT ? CValueMapper::MAP_TEMPERATURE : CValueMapper::MAP_TEMPERATURE_HEAT))
       retval = false;
-    /* Fall-through */
+  /* Fall-through */
   case TEMPERATURE_INPUT:
   case TEMPERATURE_GRADIENT_INPUT:
-    // TemperatureInput
-    if (!vm->PrepareMappingComponent(*pModel, pElementSet, pComponent->Stage(), pComponent->AnalysisType().AnalysisType() != CAnalysisType::AT_HEAT ? CValueMapper::MAP_TEMPERATURE : CValueMapper::MAP_TEMPERATURE_HEAT))
+  // TemperatureInput
+  if (!vm->PrepareMappingComponent(*pModel, pElementSet, pComponent->Stage(), pComponent->AnalysisType().AnalysisType() != CAnalysisType::AT_HEAT ? CValueMapper::MAP_TEMPERATURE : CValueMapper::MAP_TEMPERATURE_HEAT))
       retval = false;
-    break;
+  break;
   case CONSOL_CHANGE:
-    // Consolidation Di
-    change = true;
-    /* Fall-through */
+  // Consolidation Di
+  change = true;
+  /* Fall-through */
   case CONSOL:
-    // Consolidation
-    if (!vm->PrepareMappingIndex(CI_PRECON, *pModel, *pComponent, *pRegister, change))
+  // Consolidation
+  if (!vm->PrepareMappingIndex(CI_PRECON, *pModel, *pComponent, *pRegister, change))
       retval = false;
-    break;
+  break;
   case POROSITY_CHANGE:
-    // Porosity Di
-    change = true;
-    /* Fall-through */
+  // Porosity Di
+  change = true;
+  /* Fall-through */
   case POROSITY:
-    // Porosity
-    if (!vm->PrepareMappingStress(*pModel, *pComponent, *pRegister, change))
+  // Porosity
+  if (!vm->PrepareMappingStress(*pModel, *pComponent, *pRegister, change))
       retval = false;
 
-    if (!vm->PrepareMappingStrain(*pModel, *pComponent, *pRegister))
+  if (!vm->PrepareMappingStrain(*pModel, *pComponent, *pRegister))
       retval = false;
 
-    if (!vm->PrepareMappingMaterial(*pModel, pElementSet, pComponent->Stage(), CValueMapper::CHECK_CEMENT))
+  if (!vm->PrepareMappingMaterial(*pModel, pElementSet, pComponent->Stage(), CValueMapper::CHECK_CEMENT))
       retval = false;
-    break;
+  break;
   case THICKNESS_CHANGE:
-    // Thickness
-    /* Fall-through */
+  // Thickness
+  /* Fall-through */
   case THICKNESS:
-    // Thickness
-    {
+  // Thickness
+  {
       // Thickness uses the Displacement vectorvalueset, and along the line the existence of results is checked for D0, hence we need it
       int c = pRegister->ColumnNumber(pComponent->AnalysisType(), pRegister->DepletionStageEntry().MarkedAsInitialStage().Index(), CI_DISPLA_X);
 
       if (!pRegister->Cache().ActiveCacher().StartCriticalSection(c, 3))
-        retval = false;
+    retval = false;
  
       c = pRegister->ColumnNumber(pComponent->AnalysisType(), pComponent->Stage().Index(), CI_DISPLA_X);
 
       if (!pRegister->Cache().ActiveCacher().StartCriticalSection(c, 3))
-        retval = false;
+    retval = false;
 
       if (!vm->PrepareMappingSurfaces(*pModel, pElementSet, pComponent->Stage()))
-        retval = false;
-    }
-    break;
+    retval = false;
+  }
+  break;
   case VOLUME_AVERAGE:
-    // GammaValues
-    if (!vm->PrepareMappingGammaValues(*pModel, *pComponent, *pRegister, pElementSet))
+  // GammaValues
+  if (!vm->PrepareMappingGammaValues(*pModel, *pComponent, *pRegister, pElementSet))
       retval = false;
-    break;
+  break;
   case PERMEABILITY_MULTIPLIER_HI:
   case PERMEABILITY_MULTIPLIER_ME:
   case PERMEABILITY_MULTIPLIER_LO:
-    // permeabilityMultiplierValues
-    //if (!vm->PrepareMappingMaterial(*pModel, pElementSet, pRegister->DepletionStageEntry().MarkedAsInitialStage()))
+  // permeabilityMultiplierValues
+  //if (!vm->PrepareMappingMaterial(*pModel, pElementSet, pRegister->DepletionStageEntry().MarkedAsInitialStage()))
       //retval = false;
-    /* Fall-through */
+  /* Fall-through */
   case APERTURE_HI:
   case APERTURE_ME:
   case APERTURE_LO:
   case APERTURE_HI_CHANGE:
   case APERTURE_ME_CHANGE:
   case APERTURE_LO_CHANGE:
-    // ApertureValues
-    if (!vm->PrepareMappingStress(*pModel, *pComponent, *pRegister, false))
+  // ApertureValues
+  if (!vm->PrepareMappingStress(*pModel, *pComponent, *pRegister, false))
       retval = false;
 
-    if (!vm->PrepareMappingStrain(*pModel, *pComponent, *pRegister))
+  if (!vm->PrepareMappingStrain(*pModel, *pComponent, *pRegister))
       retval = false;
 
-    if (!vm->PrepareMappingMaterial(*pModel, pElementSet, pComponent->Stage(), CValueMapper::MARKED_AS_INITIAL | CValueMapper::CHECK_CEMENT | CValueMapper::CHECK_MARKED_VS_INITIAL))
+  if (!vm->PrepareMappingMaterial(*pModel, pElementSet, pComponent->Stage(), CValueMapper::MARKED_AS_INITIAL | CValueMapper::CHECK_CEMENT | CValueMapper::CHECK_MARKED_VS_INITIAL))
       retval = false;
-    break;
+  break;
   case PLASTIC_ENERGY:
-    // PlasticEnergy
-    if(!vm->PrepareMappingPlasticEnergy(*pModel, *pComponent, *pRegister))
+  // PlasticEnergy
+  if(!vm->PrepareMappingPlasticEnergy(*pModel, *pComponent, *pRegister))
       retval = false;
-    break;
+  break;
   case VOLUMETRIC_STRAIN_CHANGE_INPUT:
-    // VolumetricStrain Di
-    if (!pModel->DepletionStageEntry().MarkedAsInitialStage().Initial())
-    {
+  // VolumetricStrain Di
+  if (!pModel->DepletionStageEntry().MarkedAsInitialStage().Initial())
+  {
       if (!vm->PrepareMappingComponent(*pModel, pElementSet, pRegister->DepletionStageEntry().MarkedAsInitialStage(), CValueMapper::MAP_VOLUMETRIC_STRAIN))
-        retval = false;
-    }
-    /* Fall-through */
+    retval = false;
+  }
+  /* Fall-through */
   case VOLUMETRIC_STRAIN_INPUT:
-    // VolumetricStrain
-    if (!vm->PrepareMappingComponent(*pModel, pElementSet, pComponent->Stage(), CValueMapper::MAP_VOLUMETRIC_STRAIN))
+  // VolumetricStrain
+  if (!vm->PrepareMappingComponent(*pModel, pElementSet, pComponent->Stage(), CValueMapper::MAP_VOLUMETRIC_STRAIN))
       retval = false;
-    break;
+  break;
   case NORMAL_STRAIN_INPUT:
   case LATERAL_STRAIN_INPUT:
-    break;
+  break;
   default:
-    // GammaValues
-    if (!vm->PrepareMappingGammaValues(*pModel, *pComponent, *pRegister, pElementSet))
+  // GammaValues
+  if (!vm->PrepareMappingGammaValues(*pModel, *pComponent, *pRegister, pElementSet))
       retval = false;
-    break;
+  break;
   }
 
   m_bNeedTensorParallelInitializationCallback = vm->EncounteredStrainOrStress();
@@ -4638,9 +4638,9 @@ CResultTree::CScalarResult::CTensorParallelInitializationCallback::CTensorParall
   , m_StressTensorVectors(2)
 {
   for (size_t i = 0; i < m_ScalarVectors.size(); ++i)
-    m_ScalarVectors[i].reserve(16);
+  m_ScalarVectors[i].reserve(16);
   for (size_t i = 0; i < m_StressTensorVectors.size(); ++i)
-    m_StressTensorVectors[i].reserve(16);
+  m_StressTensorVectors[i].reserve(16);
 }
  
 CResultTree::CScalarResult::CTensorParallelInitializationCallback::~CTensorParallelInitializationCallback()
@@ -4650,7 +4650,7 @@ CResultTree::CScalarResult::CTensorParallelInitializationCallback::~CTensorParal
 _ITensorResultCache& CResultTree::CScalarResult::CTensorParallelInitializationCallback::GetCache(const ITensorGroup *caller, const IResultComponent& component) const
 {
   if (dynamic_cast<const IStrainTensorGroup *>(caller))
-    return ITensorGroupTemplate<CStrainTensor>::CParallelInitializationCallback::GetCache(caller, component);
+  return ITensorGroupTemplate<CStrainTensor>::CParallelInitializationCallback::GetCache(caller, component);
   return m_cb.GetCache(caller, component);
 }
 
@@ -4658,9 +4658,9 @@ template<class Value>
 void CResultTree::CScalarResult::CTensorParallelInitializationCallback::initVector(std::vector<std::vector<Value> >& vectors, size_t index, size_t size)
 {
   if (size != vectors[index].size())
-    vectors[index].resize(size);
+  vectors[index].resize(size);
   for (size_t i = 0; i < size; ++i)
-    vectors[index][i].Invalidate();
+  vectors[index][i].Invalidate();
 }
 
 IValueDomainScalar::TValueVec *CResultTree::CScalarResult::CTensorParallelInitializationCallback::getScalarVector(size_t index, size_t size)
@@ -4696,7 +4696,7 @@ bool CResultTree::CFaultShearStress::ValidName
   std::string label= VectorExportLabel().toStdString();
 
   return validateName(resultInfo, name, label, VectorResultComponentList(),
-    "_L|_M|_C|_N");
+  "_L|_M|_C|_N");
 }
 
 
@@ -4737,9 +4737,9 @@ QString CResultTree::CFaultShearStress::UnitName(UNIT unit) const
 {
   QString sUnit;
   if(unit == CQuantity::SI_UNIT)
-    sUnit = getStringTableEntry(IDS_UNIT_SI_STRESS);
+  sUnit = getStringTableEntry(IDS_UNIT_SI_STRESS);
   else
-    sUnit = getStringTableEntry(IDS_UNIT_FIELD_STRESS);
+  sUnit = getStringTableEntry(IDS_UNIT_FIELD_STRESS);
   return sUnit;
 }
 
@@ -4754,10 +4754,10 @@ bool CResultTree::CFaultShearStress::PrepareMapping(const geo::IElementSet* /*pE
   int c1 = pRegister->ColumnNumber(pComponent->AnalysisType(), pComponent->Stage().Index(), CI_STRESS_XX);
 
   if (Change() && !pRegister->Cache().ActiveCacher().StartCriticalSection(c0, 3))
-    retval = false;
+  retval = false;
 
   if (!pRegister->Cache().ActiveCacher().StartCriticalSection(c1, 3))
-    retval = false;
+  retval = false;
 
   return retval;
 }
@@ -4786,12 +4786,12 @@ CResultTree::CFaultShearStressLengthChangeComposite::~CFaultShearStressLengthCha
 bool CResultTree::CFaultShearStressLengthChangeComposite::OnDefined(const IResultComponent& component) const
 {
   if(!CVectorResult::OnDefined(component))
-    return false;
+  return false;
 
   if(dynamic_cast<const CFaultShearStressLengthChangeComponent*>(&component))
   {
-    CDepletionStageEntry& dep_entry = (CDepletionStageEntry&)*Model().GraphEntry(MD_BASE_DEPLETION_STAGE);
-    return (component.Stage().Index() > dep_entry.MarkedAsInitialStage().Index());
+  CDepletionStageEntry& dep_entry = (CDepletionStageEntry&)*Model().GraphEntry(MD_BASE_DEPLETION_STAGE);
+  return (component.Stage().Index() > dep_entry.MarkedAsInitialStage().Index());
   }
 
   return true;
@@ -4821,7 +4821,7 @@ bool CResultTree::CFaultShearStressLengthChangeComposite::OnBuildComponent(const
 void CResultTree::CFaultShearStressLengthChangeComposite::BuildComponent(const CDepletionStage &stage, const CAnalysisType& antype, int nRegister)
 {
   if(OnBuildComponent(stage, antype, nRegister))
-    new CFaultShearStressLengthChangeComponent(IDS_RC_LENGTH, *this, stage, antype, nRegister);
+  new CFaultShearStressLengthChangeComponent(IDS_RC_LENGTH, *this, stage, antype, nRegister);
 }
 
 bool CResultTree::CFaultShearStressLengthChangeComposite::CanMap(const COpenGLNode& node, int nRegister) const
@@ -4853,9 +4853,9 @@ QString CResultTree::CFaultShearStressLengthChangeComposite::UnitName(UNIT unit)
 {
   QString sUnit;
   if(unit == CQuantity::SI_UNIT)
-    sUnit = getStringTableEntry(IDS_UNIT_SI_STRESS);
+  sUnit = getStringTableEntry(IDS_UNIT_SI_STRESS);
   else
-    sUnit = getStringTableEntry(IDS_UNIT_FIELD_STRESS);
+  sUnit = getStringTableEntry(IDS_UNIT_FIELD_STRESS);
   return sUnit;
 }
 
@@ -4872,16 +4872,16 @@ bool CResultTree::CFaultShearStressLengthChangeComposite::PrepareMapping(const g
   int d1 = pRegister->ColumnNumber(pComponent->AnalysisType(), pComponent->Stage().Index(), CI_STRAIN_XX);
 
   if (!pRegister->Cache().ActiveCacher().StartCriticalSection(c0, 3))
-    retval = false;
+  retval = false;
 
   if (!pRegister->Cache().ActiveCacher().StartCriticalSection(d0, 3))
-    retval = false;
+  retval = false;
 
   if (!pRegister->Cache().ActiveCacher().StartCriticalSection(c1, 3))
-    retval = false;
+  retval = false;
 
   if (!pRegister->Cache().ActiveCacher().StartCriticalSection(d1, 3))
-    retval = false;
+  retval = false;
 
   return retval;
 }
@@ -4902,7 +4902,7 @@ geo::CValue CResultTree::CFaultShearStressLengthChangeComposite::CFaultShearStre
 {
   TSourceComponentPair prSources = SourceComponents();
   if(prSources.first == 0)
-    return geo::CValue(); // invalid
+  return geo::CValue(); // invalid
 
   const IResultComponent& source_comp = *prSources.first;
   const IResultComponent& ini_source_comp = *prSources.second;
@@ -4915,7 +4915,7 @@ geo::CValue CResultTree::CFaultShearStressLengthChangeComposite::CFaultShearStre
 
   double dValue = vecStage.Length() - vecIni.Length();
   if(unit == IQuantityDouble::FIELD_UNIT)
-    dValue *= FF_FACTOR_STRESS;
+  dValue *= FF_FACTOR_STRESS;
 
   return geo::CValue(dValue);
 }
@@ -4924,7 +4924,7 @@ void CResultTree::CFaultShearStressLengthChangeComposite::CFaultShearStressLengt
 {
   TSourceComponentPair prSources = SourceComponents();
   if(prSources.first == 0)
-    return; // invalid
+  return; // invalid
 
   const IResultComponent& source_comp = *prSources.first;
   const IResultComponent& ini_source_comp = *prSources.second;
@@ -4935,14 +4935,14 @@ void CResultTree::CFaultShearStressLengthChangeComposite::CFaultShearStressLengt
   int i;
   for(i = 0; i < values.size(); ++i)
   {
-    const geo::IVector& vecStage = group.VectorElement(elm, i, map_type, source_comp);
-    const geo::IVector& vecIni   = group.VectorElement(elm, i, map_type, ini_source_comp);
+  const geo::IVector& vecStage = group.VectorElement(elm, i, map_type, source_comp);
+  const geo::IVector& vecIni   = group.VectorElement(elm, i, map_type, ini_source_comp);
 
-    double dValue = vecStage.Length() - vecIni.Length();
-    if(unit == IQuantityDouble::FIELD_UNIT)
+  double dValue = vecStage.Length() - vecIni.Length();
+  if(unit == IQuantityDouble::FIELD_UNIT)
       dValue *= FF_FACTOR_STRESS;
 
-    values[i] = geo::CValue(dValue);
+  values[i] = geo::CValue(dValue);
   }
 }
 
@@ -4963,10 +4963,10 @@ CResultTree::CFaultShearStressLengthChangeComposite::CFaultShearStressLengthChan
 
   if(ini_stage.Index() >= stage.Index())
   {
-    const IResultComponent* lhs = 0;
-    const IResultComponent* rhs = 0;
+  const IResultComponent* lhs = 0;
+  const IResultComponent* rhs = 0;
 
-    return TSourceComponentPair(lhs, rhs); // result invalid
+  return TSourceComponentPair(lhs, rhs); // result invalid
   }
 
   const IResultComponent& source_comp = *source_composite.ResultComponent(stage, AnalysisType(), RegisterIndex(), VC_LENGTH);
@@ -5013,7 +5013,7 @@ bool CResultTree::CRTCIStrainResult::ValidName
 bool CResultTree::CRTCIStrainResult::OnBuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int /*nRegister*/) const
 {
   return stage.isAfter(stage.Entry().MarkedAsInitialStage()) &&
-        (antype == CAnalysisType::AT_LINEAR  ||
+    (antype == CAnalysisType::AT_LINEAR  ||
          antype == CAnalysisType::AT_MIXTURE ||
          antype == CAnalysisType::AT_MIXTURE_CONTAINMENT ||
          (antype == CAnalysisType::AT_NONLIN && stage.OutputType() != CDepletionStage::NONE));
@@ -5022,7 +5022,7 @@ bool CResultTree::CRTCIStrainResult::OnBuildComponent(const CDepletionStage& sta
 void CResultTree::CRTCIStrainResult::BuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister)
 {
   if(OnBuildComponent(stage, antype, nRegister))
-    new CRTCIStrainResultComponent(*this, stage, antype, nRegister);
+  new CRTCIStrainResultComponent(*this, stage, antype, nRegister);
 }
 
 
@@ -5062,8 +5062,8 @@ void CResultTree::CRTCIStrainResult::CRTCIStrainResultComponent::MapValueElement
   const CWellCasingRTCI::CSegmentInfo* pRtciSegment = dynamic_cast<const CWellCasingRTCI::CSegmentInfo*>(&elm);
   if(pRtciSegment)
   {
-    values[0] = pRtciSegment->AxialStrain(pRtciSegment->Point(0), strain);
-    values[1] = pRtciSegment->AxialStrain(pRtciSegment->Point(1), strain);
+  values[0] = pRtciSegment->AxialStrain(pRtciSegment->Point(0), strain);
+  values[1] = pRtciSegment->AxialStrain(pRtciSegment->Point(1), strain);
   }
 }
 
@@ -5074,12 +5074,12 @@ bool CResultTree::CRTCIStrainResult::CRTCIStrainResultComponent::PrepareMapping(
   int c = ResultRegister().ColumnNumber(AnalysisType(), ResultRegister().DepletionStageEntry().MarkedAsInitialStage().Index(), CI_POREPRES);
 
   if (!ResultRegister().Cache().ActiveCacher().StartCriticalSection(c, 13))
-    retval = false;
+  retval = false;
 
   c = ResultRegister().ColumnNumber(AnalysisType(), Stage().Index(), CI_POREPRES);
 
   if (!ResultRegister().Cache().ActiveCacher().StartCriticalSection(c, 13))
-    retval = false;
+  retval = false;
 
   return retval;
 }
@@ -5121,14 +5121,14 @@ CResultTree::CResultTree(CModelBase& model)
   m_pVolumetricStrainChangeInput = new CScalarResult(IDS_RG_CHANGE, IDS_ET_VOLUMETRICSTRAIN_CHANGE, *pVolumetricStrainInput, CScalarResult::VOLUMETRIC_STRAIN_CHANGE_INPUT);
 
   CResultGroup* pNormalStrainInput = new CResultGroup(IDS_VALUENAME_NRMSTRAIN,
-    *pStrainInput);
+  *pStrainInput);
   CResultGroup* pLateralStrainInput = new CResultGroup(IDS_VALUENAME_LATSTRAIN,
-    *pStrainInput);
+  *pStrainInput);
 
   new CScalarResult(IDS_RG_ABSOLUTE, IDS_ET_NRMSTRAIN, *pNormalStrainInput,
-    CScalarResult::NORMAL_STRAIN_INPUT);
+  CScalarResult::NORMAL_STRAIN_INPUT);
   new CScalarResult(IDS_RG_ABSOLUTE, IDS_ET_LATSTRAIN, *pLateralStrainInput,
-    CScalarResult::LATERAL_STRAIN_INPUT);
+  CScalarResult::LATERAL_STRAIN_INPUT);
 
   CResultGroup* pFaultsInput = new CResultGroup(IDS_RG_FAULT, *pInput);
   CResultGroup *pFaultPressureInput = new CResultGroup(IDS_RG_PORE_PRESSURE, *pFaultsInput);
@@ -5137,12 +5137,12 @@ CResultTree::CResultTree(CModelBase& model)
 
   if (isWellModel)
   {
-    CResultGroup *pBoundaryInput = new CResultGroup(IDS_RG_BOUNDARY_INPUT, *pInput);
-    m_pBoundaryPressureInput = new CFaultScalarResult(IDS_RG_BOUNDARY_PRESSURE, IDS_ET_BOUNDARY_PRESSURE, *pBoundaryInput, CFaultScalarResult::BOUNDARY_PRESSURE_INPUT);
-    m_pBoundaryDisplacementInput = new CFaultScalarResult(IDS_RG_BOUNDARY_DISPLACEMENT, IDS_ET_BOUNDARY_DISPLACEMENT, *pBoundaryInput, CFaultScalarResult::BOUNDARY_DISPLACEMENT_INPUT);
+  CResultGroup *pBoundaryInput = new CResultGroup(IDS_RG_BOUNDARY_INPUT, *pInput);
+  m_pBoundaryPressureInput = new CFaultScalarResult(IDS_RG_BOUNDARY_PRESSURE, IDS_ET_BOUNDARY_PRESSURE, *pBoundaryInput, CFaultScalarResult::BOUNDARY_PRESSURE_INPUT);
+  m_pBoundaryDisplacementInput = new CFaultScalarResult(IDS_RG_BOUNDARY_DISPLACEMENT, IDS_ET_BOUNDARY_DISPLACEMENT, *pBoundaryInput, CFaultScalarResult::BOUNDARY_DISPLACEMENT_INPUT);
 
-    m_pParentStressInput = new CParentStressInputResult(IDS_RG_PARENT_STRESS, *pInput);
-    //CResultGroup *pBoundaryInput = new CResultGroup(IDS_RG_BOUNDARY_INPUT, *pInput);
+  m_pParentStressInput = new CParentStressInputResult(IDS_RG_PARENT_STRESS, *pInput);
+  //CResultGroup *pBoundaryInput = new CResultGroup(IDS_RG_BOUNDARY_INPUT, *pInput);
 
   }
 
@@ -5228,41 +5228,41 @@ CResultTree::CResultTree(CModelBase& model)
   
   // Fractures result
   CResultGroup* pFractureAperture =
-    new CResultGroup(IDS_RG_FRACTURE_APERTURE, *pOutput);
+  new CResultGroup(IDS_RG_FRACTURE_APERTURE, *pOutput);
   CResultGroup* pFractureApertureAbs =
-    new CResultGroup(IDS_RG_ABSOLUTE, *pFractureAperture);
+  new CResultGroup(IDS_RG_ABSOLUTE, *pFractureAperture);
   m_pAperture.insert(std::make_pair(CScalarResult::APERTURE_HI,
-    m_pApertureHi= new CScalarResult(IDS_APERTURE_HI, IDS_ET_APERTURE_HI,
+  m_pApertureHi= new CScalarResult(IDS_APERTURE_HI, IDS_ET_APERTURE_HI,
       *pFractureApertureAbs, CScalarResult::APERTURE_HI)));
   m_pAperture.insert(std::make_pair(CScalarResult::APERTURE_ME,
-    m_pApertureMe= new CScalarResult(IDS_APERTURE_ME, IDS_ET_APERTURE_ME,
+  m_pApertureMe= new CScalarResult(IDS_APERTURE_ME, IDS_ET_APERTURE_ME,
       *pFractureApertureAbs, CScalarResult::APERTURE_ME)));
   m_pAperture.insert(std::make_pair(CScalarResult::APERTURE_LO,
-    m_pApertureLo= new CScalarResult(IDS_APERTURE_LO, IDS_ET_APERTURE_LO,
+  m_pApertureLo= new CScalarResult(IDS_APERTURE_LO, IDS_ET_APERTURE_LO,
       *pFractureApertureAbs, CScalarResult::APERTURE_LO)));
   CResultGroup* pFractureApertureChange =
-    new CResultGroup(IDS_RG_CHANGE, *pFractureAperture);
+  new CResultGroup(IDS_RG_CHANGE, *pFractureAperture);
   m_pAperture.insert(std::make_pair(CScalarResult::APERTURE_HI_CHANGE,
-    m_pApertureHiChange= new CScalarResult(IDS_APERTURE_HI, IDS_ET_APERTURE_HI_CHANGE,
+  m_pApertureHiChange= new CScalarResult(IDS_APERTURE_HI, IDS_ET_APERTURE_HI_CHANGE,
       *pFractureApertureChange, CScalarResult::APERTURE_HI_CHANGE)));
   m_pAperture.insert(std::make_pair(CScalarResult::APERTURE_ME_CHANGE,
-    m_pApertureMeChange= new CScalarResult(IDS_APERTURE_ME, IDS_ET_APERTURE_ME_CHANGE,
+  m_pApertureMeChange= new CScalarResult(IDS_APERTURE_ME, IDS_ET_APERTURE_ME_CHANGE,
       *pFractureApertureChange, CScalarResult::APERTURE_ME_CHANGE)));
   m_pAperture.insert(std::make_pair(CScalarResult::APERTURE_LO_CHANGE,
-    m_pApertureLoChange= new CScalarResult(IDS_APERTURE_LO, IDS_ET_APERTURE_LO_CHANGE,
+  m_pApertureLoChange= new CScalarResult(IDS_APERTURE_LO, IDS_ET_APERTURE_LO_CHANGE,
       *pFractureApertureChange, CScalarResult::APERTURE_LO_CHANGE)));
   CResultGroup* pPermeabilityMultiplier =
-    new CResultGroup(IDS_RG_PERMEABILITY_MULTIPLIER, *pFractureAperture);
+  new CResultGroup(IDS_RG_PERMEABILITY_MULTIPLIER, *pFractureAperture);
   m_pAperture.insert(std::make_pair(CScalarResult::PERMEABILITY_MULTIPLIER_HI,
-    m_pPermeabilityMultiplierHi= new CScalarResult(IDS_PERMEABILITY_MULTIPLIER_HI,
+  m_pPermeabilityMultiplierHi= new CScalarResult(IDS_PERMEABILITY_MULTIPLIER_HI,
       IDS_ET_PERMEABILITY_MULTIPLIER_HI, *pPermeabilityMultiplier,
       CScalarResult::PERMEABILITY_MULTIPLIER_HI)));
   m_pAperture.insert(std::make_pair(CScalarResult::PERMEABILITY_MULTIPLIER_ME,
-    m_pPermeabilityMultiplierMe= new CScalarResult(IDS_PERMEABILITY_MULTIPLIER_ME,
+  m_pPermeabilityMultiplierMe= new CScalarResult(IDS_PERMEABILITY_MULTIPLIER_ME,
       IDS_ET_PERMEABILITY_MULTIPLIER_ME, *pPermeabilityMultiplier,
       CScalarResult::PERMEABILITY_MULTIPLIER_ME)));
   m_pAperture.insert(std::make_pair(CScalarResult::PERMEABILITY_MULTIPLIER_LO,
-    m_pPermeabilityMultiplierLo= new CScalarResult(IDS_PERMEABILITY_MULTIPLIER_LO,
+  m_pPermeabilityMultiplierLo= new CScalarResult(IDS_PERMEABILITY_MULTIPLIER_LO,
       IDS_ET_PERMEABILITY_MULTIPLIER_LO, *pPermeabilityMultiplier,
       CScalarResult::PERMEABILITY_MULTIPLIER_LO)));
 
@@ -5292,12 +5292,12 @@ CResultTree::CResultTree(CModelBase& model)
                                  *pFaultAbsolute,
                                  false, false );
   m_pFaultShearStress = new CFaultShearStress(RC_FAULT_SHEAR_STRESS,
-                        IDS_ET_FAULT_SHEAR_STRESS,
-                        *pFaultAbsolute);
+            IDS_ET_FAULT_SHEAR_STRESS,
+            *pFaultAbsolute);
 
   CResultGroup *pFaultChange = new CResultGroup(IDS_RG_CHANGE, *pFaultStress);
   m_pFaultTotalNormalStressChange=
-    new CFaultNormalStress(RC_FAULT_TOTAL_NORMAL_STRESS_CHANGE, 
+  new CFaultNormalStress(RC_FAULT_TOTAL_NORMAL_STRESS_CHANGE, 
                IDS_FAULT_TOTAL_NORMAL_STRESS,
                IDS_ET_FAULT_TOTAL_NORMAL_STRESS,
                *pFaultChange,
@@ -5320,15 +5320,15 @@ CResultTree::CResultTree(CModelBase& model)
 
   if (Model().modelType() == CFemAppModel::eWellCasingModel)
   {
-    CResultGroup* pRTCIGroup = new CResultGroup(IDS_RG_RTCI, *pOutput);
-    m_pRTCIStrain = new CRTCIStrainResult(*pRTCIGroup);
+  CResultGroup* pRTCIGroup = new CResultGroup(IDS_RG_RTCI, *pOutput);
+  m_pRTCIStrain = new CRTCIStrainResult(*pRTCIGroup);
   }
 
   m_pDerivedResults = new CDerivedResultGroup(IDS_RG_FILE_RESULT, *pOutput, true);
   m_pRegistryResults = new CDerivedResultGroup(IDS_RG_REGISTRY_RESULT, *pOutput, false);
 
   for(int nRegister = 0; nRegister < model.ResultRegisterSize(); nRegister++)
-    LinkTo(model.ResultRegister(nRegister));
+  LinkTo(model.ResultRegister(nRegister));
 }
 
 CResultTree::~CResultTree()
@@ -5340,7 +5340,7 @@ void CResultTree::OnNeighbourModified(const CGraphNode& node, enum ModifiedHint 
   CModelBase& model = dynamic_cast<CModelBase&>(Model());
   for(int nRegister = 0; nRegister < model.ResultRegisterSize(); nRegister++)
   {
-    if(&model.ResultRegister(nRegister) == &node)
+  if(&model.ResultRegister(nRegister) == &node)
       Modified();
   }
 
@@ -5383,21 +5383,21 @@ CResultTree::TDataVec CResultTree::BasicResults() const
   assert(pModel);
   bool bHasFault = false;
   for(int i = 0; i < pModel->Mesh().Mesh().ElementSize(); i++) {
-    const geo::CInterfaceElement* pInterface =
+  const geo::CInterfaceElement* pInterface =
       dynamic_cast<const geo::CInterfaceElement*>( &pModel->Mesh().Mesh().Element(i) );
-    if( pInterface ) {
+  if( pInterface ) {
       if( pInterface->BackFace() ) {
-        // Fault element found 
-        bHasFault = true;
-        break;
+    // Fault element found 
+    bHasFault = true;
+    break;
       }
-    }
+  }
   }
      
   if(pModel->ResultRegister().Linear()) 
-    AddBasicResult(ret, true, bHasFault);
+  AddBasicResult(ret, true, bHasFault);
   if(pModel->ResultRegister().NonLinear())
-    AddBasicResult(ret, false, bHasFault);
+  AddBasicResult(ret, false, bHasFault);
 
   return ret;
 }
@@ -5408,48 +5408,48 @@ void CResultTree::AddBasicResult(TDataVec& result, const CAnalysisType& antype, 
   assert(pModel);
   const CDepletionStage* pStage = &pModel->InitialDepletionStage();
   while( pStage ) {
-    // Displacements
-    int i;
-    if( pStage != &pModel->InitialDepletionStage() ) {
+  // Displacements
+  int i;
+  if( pStage != &pModel->InitialDepletionStage() ) {
       result.push_back(m_pDisplacement->ResultComponent(*pStage, bLinear, 0, 0));
       result.push_back(m_pDisplacement->ResultComponent(*pStage, bLinear, 0, 1));
       result.push_back(m_pDisplacement->ResultComponent(*pStage, bLinear, 0, 2));
-    }
-    // Effective stresses
-    for(i = 0; i < 6; i++) {
+  }
+  // Effective stresses
+  for(i = 0; i < 6; i++) {
       result.push_back(m_pEffectiveStress->Components().ResultComponent(*pStage, bLinear, 0, i));
-    }
-    // Strain
-    if( pStage != &pModel->InitialDepletionStage() ) {
+  }
+  // Strain
+  if( pStage != &pModel->InitialDepletionStage() ) {
       for(i = 0; i < 6; i++) {
-        result.push_back(m_pTotalStrain->Components().ResultComponent(*pStage, bLinear, 0, i));
+    result.push_back(m_pTotalStrain->Components().ResultComponent(*pStage, bLinear, 0, i));
       }
-    }
-    if(!bLinear && pStage != &pModel->InitialDepletionStage()) {
+  }
+  if(!bLinear && pStage != &pModel->InitialDepletionStage()) {
       // Plastic strain
       for(i = 0; i < 6; i++) {
-        result.push_back(m_pPlasticStrain->Components().ResultComponent(*pStage, bLinear, 0, i));
+    result.push_back(m_pPlasticStrain->Components().ResultComponent(*pStage, bLinear, 0, i));
       }
       // Creep strain
       for(i = 0; i < 6; i++) {
-        result.push_back(m_pCreepStrain->Components().ResultComponent(*pStage, bLinear, 0, i));
+    result.push_back(m_pCreepStrain->Components().ResultComponent(*pStage, bLinear, 0, i));
       }
-    }
-    // Pore pressure
-    result.push_back(m_pPorePressure->ResultComponent(*pStage, bLinear));
-    if( bHasFault ) {
+  }
+  // Pore pressure
+  result.push_back(m_pPorePressure->ResultComponent(*pStage, bLinear));
+  if( bHasFault ) {
       if( pStage != &pModel->InitialDepletionStage() ) {
-        result.push_back(m_pFaultDisplacement->ResultComponent(*pStage, bLinear, 0, 0));
-        result.push_back(m_pFaultDisplacement->ResultComponent(*pStage, bLinear, 0, 1));
-        result.push_back(m_pFaultDisplacement->ResultComponent(*pStage, bLinear, 0, 2));
+    result.push_back(m_pFaultDisplacement->ResultComponent(*pStage, bLinear, 0, 0));
+    result.push_back(m_pFaultDisplacement->ResultComponent(*pStage, bLinear, 0, 1));
+    result.push_back(m_pFaultDisplacement->ResultComponent(*pStage, bLinear, 0, 2));
       }
       result.push_back(m_pFaultEffectiveStress->ShearStress().ResultComponent(*pStage, bLinear, 0, 0));
       result.push_back(m_pFaultEffectiveStress->ShearStress().ResultComponent(*pStage, bLinear, 0, 1));
       result.push_back(m_pFaultEffectiveStress->ShearStress().ResultComponent(*pStage, bLinear, 0, 2));
-    }
-    if( pStage->Last() ) 
+  }
+  if( pStage->Last() ) 
       pStage = 0;
-    else
+  else
       pStage = &pStage->Next();
   }
 
@@ -5469,7 +5469,7 @@ CThicknessParallelInitializationCallback::~CThicknessParallelInitializationCallb
   // we transfer ownership of the pointers to CValueMapper
   for (TFormationVolumeThicknessCacheMap::iterator it = m_mpFormationVolumeThicknessCache.begin(); it != m_mpFormationVolumeThicknessCache.end(); ++it)
   {
-    vm->Add(it->first, it->second);
+  vm->Add(it->first, it->second);
   }
   vm->Add(&m_parent, m_pmpDisplacementCache);
 }

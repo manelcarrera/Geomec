@@ -36,9 +36,9 @@ protected:
   virtual void childRemoved( IModelObject& origin, IModelObject& child );
 
   typedef IModelObject::TStream TStream;
-	virtual void restore(TStream& stream, const CStreamVersion& file_version, IProgressBase& indicator);
-	virtual void store(TStream& stream, IProgressBase& indicator, bool includeChildren = true ) const;
-	virtual TKEY restoreKey(TStream& stream, const CStreamVersion& file_version, IProgressBase& indicator) = 0;
+  virtual void restore(TStream& stream, const CStreamVersion& file_version, IProgressBase& indicator);
+  virtual void store(TStream& stream, IProgressBase& indicator, bool includeChildren = true ) const;
+  virtual TKEY restoreKey(TStream& stream, const CStreamVersion& file_version, IProgressBase& indicator) = 0;
   virtual void storeKey(TKEY key, TStream& stream, IProgressBase& indicator) const = 0;
 
   virtual QString nameOf( const TITEM* item ) const;
@@ -52,24 +52,24 @@ private:
 /*!
   \class CModelKeyContainer
 
-	A template container for IModelObject derived items, providing
-	access to the items based on a unique key.
+  A template container for IModelObject derived items, providing
+  access to the items based on a unique key.
 
-	- The TITEM type must be derived from IModelObject.
-	- The TKEY type must have an operator< for ordering the keys.
-	
-	The contained items must have a key which is unique in the container.
+  - The TITEM type must be derived from IModelObject.
+  - The TKEY type must have an operator< for ordering the keys.
+  
+  The contained items must have a key which is unique in the container.
 
-	To populate the container, call IModelObject::create() or
-	IModelObject::reParent() for each item, passing this container as
-	parent.
+  To populate the container, call IModelObject::create() or
+  IModelObject::reParent() for each item, passing this container as
+  parent.
 
-	Destruction of an item or reparenting an item automatically removes
-	the item from the container and releases its key.
+  Destruction of an item or reparenting an item automatically removes
+  the item from the container and releases its key.
 
-	Reimplement getKey() to retreive a unique key for an item.
+  Reimplement getKey() to retreive a unique key for an item.
 
-	To retreive contained objects by their key use findKey().
+  To retreive contained objects by their key use findKey().
 
   An additional service provided by the CModelKeyContainer class is unique
   name suggestions. This service is primarily useful in cases where the
@@ -85,12 +85,12 @@ private:
 */
 
 /*!
-	Creates a container for TITEM objects, accessible by a key.
-	
-	\param text User visible name of the container
-	\param icon Icon of the container to be used in gui (optional)
+  Creates a container for TITEM objects, accessible by a key.
+  
+  \param text User visible name of the container
+  \param icon Icon of the container to be used in gui (optional)
 
-	To finalize construction, call create() afterwards.
+  To finalize construction, call create() afterwards.
 */
 template<class TITEM, class TKEY>
 CModelKeyContainer<TITEM,TKEY>::CModelKeyContainer( const QString& text )
@@ -99,8 +99,8 @@ CModelKeyContainer<TITEM,TKEY>::CModelKeyContainer( const QString& text )
 }
 
 /*!
-	Returns the contained TITEM object having the requested key.
-	If no such object is found, a zero is returned.
+  Returns the contained TITEM object having the requested key.
+  If no such object is found, a zero is returned.
 */
 template<class TITEM, class TKEY>
 const TITEM* CModelKeyContainer<TITEM,TKEY>::findKey( TKEY key ) const
@@ -112,8 +112,8 @@ const TITEM* CModelKeyContainer<TITEM,TKEY>::findKey( TKEY key ) const
 }
 
 /*!
-	Returns the contained TITEM object having the requested key.
-	If no such object is found, a zero is returned.
+  Returns the contained TITEM object having the requested key.
+  If no such object is found, a zero is returned.
 */
 template<class TITEM, class TKEY>
 TITEM* CModelKeyContainer<TITEM,TKEY>::findKey( TKEY key )
@@ -134,63 +134,63 @@ template<class TITEM, class TKEY>
 }
 
 /*!
-	Called by the model framework when a child item is inserted.
+  Called by the model framework when a child item is inserted.
 
-	The member is overridden to retreive and store the key of the inserted
-	item. The key must be unique to the container.
-	
-	The creator of the item is responsible for uniqueness of the key.
-	Uniqueness can be checked beforehand with findKey().
+  The member is overridden to retreive and store the key of the inserted
+  item. The key must be unique to the container.
+  
+  The creator of the item is responsible for uniqueness of the key.
+  Uniqueness can be checked beforehand with findKey().
 
-	\sa IModelObject::create, IModelObject::reParent.
+  \sa IModelObject::create, IModelObject::reParent.
 */
 template<class TITEM, class TKEY>
 void CModelKeyContainer<TITEM,TKEY>::childInserted( IModelObject& origin, IModelObject& child )
 {
   if ( &origin == this ) {
-    TITEM* item = dynamic_cast<TITEM*>( &child );
-    if ( item ) {
+  TITEM* item = dynamic_cast<TITEM*>( &child );
+  if ( item ) {
       CModelOperation operation( *this, 0 );
       if ( operation.stackEnabled() )
-        operation.push( new CSimpleUndo( *this, 0 ) );
+    operation.push( new CSimpleUndo( *this, 0 ) );
       TKEY key = getKey( *item );
       // store relation between item and key; key must not exist
       typename TKeyItemMap::iterator it = m_itemKeys.find( key );
       if ( it == m_itemKeys.end() ) {
-        it = m_itemKeys.insert( key, item );
+    it = m_itemKeys.insert( key, item );
       }
       assert( it.value() == item ); // The key must not belong to another child item
-    }
+  }
   }
   CModelContainer<TITEM>::childInserted( origin, child );
 }
 
 /*!
-	Called by the model framework when a child item is removed.
+  Called by the model framework when a child item is removed.
 
-	The member is overridden to retreive and release the key of the
-	removed item.
-	
-	\sa IModelObject::destroy, IModelObject::reParent.
+  The member is overridden to retreive and release the key of the
+  removed item.
+  
+  \sa IModelObject::destroy, IModelObject::reParent.
 */
 template<class TITEM, class TKEY>
 void CModelKeyContainer<TITEM,TKEY>::childRemoved( IModelObject& origin, IModelObject& child )
 {
   if ( &origin == this ) {
-    TITEM* item = dynamic_cast<TITEM*>( &child );
-    if ( item ) {
+  TITEM* item = dynamic_cast<TITEM*>( &child );
+  if ( item ) {
       CModelOperation operation( *this, 0 );
       if ( operation.stackEnabled() )
-        operation.push( new CSimpleUndo( *this, 0 ) );
+    operation.push( new CSimpleUndo( *this, 0 ) );
       TKEY key = getKey( *item );
       // forget relation between item and key
       // key does not need to exist anymore because of ::restore
       typename TKeyItemMap::iterator it = m_itemKeys.find( key );
       if ( it != m_itemKeys.end() ) {
-        assert( it.value() == item ); // The key must not belong to another child item
-        m_itemKeys.erase( it );
+    assert( it.value() == item ); // The key must not belong to another child item
+    m_itemKeys.erase( it );
       }
-    }
+  }
   }
   CModelContainer<TITEM>::childRemoved( origin, child );
 }
@@ -202,27 +202,27 @@ void CModelKeyContainer<TITEM,TKEY>::restore(TStream& stream, const CStreamVersi
 
   CDocumentBase* doc = stream.getModel()->document();
   assert( doc );
-	// Local version for local changes
-	CStreamVersion version;
-	version.restore(stream);
+  // Local version for local changes
+  CStreamVersion version;
+  version.restore(stream);
 
   m_itemKeys.clear();
   int size;
   stream >> size;
   for ( int i = 0; i < size; ++i ) {
-    TKEY key = restoreKey( stream, file_version, indicator );
-    CModelLocation position;
-    position.restore( stream, file_version );
-    IModelObject* object = position.getObject( *doc );
-    TITEM* item = dynamic_cast<TITEM*>( object );
-    assert( item );
-    assert( key == getKey( *item ) );
-    // store relation between item and key; key must not exist
-    typename TKeyItemMap::iterator it = m_itemKeys.find( key );
-    if ( it == m_itemKeys.end() ) {
+  TKEY key = restoreKey( stream, file_version, indicator );
+  CModelLocation position;
+  position.restore( stream, file_version );
+  IModelObject* object = position.getObject( *doc );
+  TITEM* item = dynamic_cast<TITEM*>( object );
+  assert( item );
+  assert( key == getKey( *item ) );
+  // store relation between item and key; key must not exist
+  typename TKeyItemMap::iterator it = m_itemKeys.find( key );
+  if ( it == m_itemKeys.end() ) {
       it = m_itemKeys.insert( key, item );
-    }
-    assert( it.value() == item ); // The key must not belong to another child item
+  }
+  assert( it.value() == item ); // The key must not belong to another child item
   }
 }
 
@@ -238,9 +238,9 @@ void CModelKeyContainer<TITEM,TKEY>::store(TStream& stream, IProgressBase& indic
   stream << (int)m_itemKeys.size();
   typename TKeyItemMap::const_iterator it;
   for ( it = m_itemKeys.begin(); it != m_itemKeys.end(); ++it ) {
-    storeKey( it.key(), stream, indicator );
-    CModelLocation position( *it.value() );
-    position.store( stream );
+  storeKey( it.key(), stream, indicator );
+  CModelLocation position( *it.value() );
+  position.store( stream );
   }
 }
 
@@ -248,7 +248,7 @@ template<class TITEM, class TKEY>
 QString CModelKeyContainer<TITEM, TKEY>::suggestUniqueName( QString format ) const
 {
   if ( !format.contains( "%1" ) )
-    format += "%1";
+  format += "%1";
 
   QRegExp re = QRegExp( format.arg( "(\\d+)" ) );
 
@@ -256,17 +256,17 @@ QString CModelKeyContainer<TITEM, TKEY>::suggestUniqueName( QString format ) con
   int highest = 0;
   typename TKeyItemMap::const_iterator it;
   for ( it = m_itemKeys.begin(); it != m_itemKeys.end(); ++it ) {
-    QString name = nameOf( it.value() );
-    if ( re.indexIn( name ) != -1 ) { // match found
+  QString name = nameOf( it.value() );
+  if ( re.indexIn( name ) != -1 ) { // match found
       int value = re.cap( 1 ).toInt();// extract the number
       if ( value > highest ) highest = value;
-    }
+  }
   }
   // We now (should) have a unique name if we increase highest & generate a name
   QString suggestion = "";
   do {
-    highest++;
-    suggestion = format.arg( highest );
+  highest++;
+  suggestion = format.arg( highest );
   } while ( !isUniqueName( suggestion ) );
 
   return suggestion;
@@ -277,7 +277,7 @@ bool CModelKeyContainer<TITEM, TKEY>::isUniqueName( const QString& name ) const
 {
   typename TKeyItemMap::const_iterator it;
   for ( it = m_itemKeys.begin(); it != m_itemKeys.end(); ++it ) {
-    if ( name == nameOf( it.value() ) )
+  if ( name == nameOf( it.value() ) )
       return false;
   }
   return true;

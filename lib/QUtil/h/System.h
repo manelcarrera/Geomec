@@ -6,11 +6,11 @@ class CSystem
 {
 public:
 
-	static const std::string ERROR_;
-	static const std::string UNPACK_OK;
+  static const std::string ERROR_;
+  static const std::string UNPACK_OK;
 
-	bool unpack( const std::string& package, const std::string& dst_dir, const std::string& files = std::string());
-	std::string exe( const std::string cmd );
+  bool unpack( const std::string& package, const std::string& dst_dir, const std::string& files = std::string());
+  std::string exe( const std::string cmd );
 
-	virtual std::string get_unzip();
+  virtual std::string get_unzip();
 };

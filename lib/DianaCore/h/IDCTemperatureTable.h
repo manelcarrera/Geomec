@@ -16,7 +16,7 @@ namespace dia {
 class ITemperatureTable : public IValueTable
 {
 public:
-	ITemperatureTable(const IDianaRunner &runner);
+  ITemperatureTable(const IDianaRunner &runner);
 
 protected:
   virtual std::string TableName() const;

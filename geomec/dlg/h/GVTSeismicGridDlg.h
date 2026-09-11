@@ -11,7 +11,7 @@ class CGVTSeismicGridDefinition;
 
 class CGVTSeismicGridDlg : public CDialog
 {
-	DECLARE_DYNAMIC(CGVTSeismicGridDlg)
+  DECLARE_DYNAMIC(CGVTSeismicGridDlg)
 
   const CModelBase &m_Model;
   CString m_Name;
@@ -32,18 +32,18 @@ class CGVTSeismicGridDlg : public CDialog
   CGVTSeismicGridDefinition &m_SeismicGridDefinition;
 
 public:
-	CGVTSeismicGridDlg(CGVTSeismicGridDefinition &griddefinition, const CModelBase &model, CWnd* pParent = NULL);   // standard constructor
-	virtual ~CGVTSeismicGridDlg();
+  CGVTSeismicGridDlg(CGVTSeismicGridDefinition &griddefinition, const CModelBase &model, CWnd* pParent = NULL);   // standard constructor
+  virtual ~CGVTSeismicGridDlg();
 
 // Dialog Data
-	enum { IDD = IDD_GVT_SEISMIC_GRID };
+  enum { IDD = IDD_GVT_SEISMIC_GRID };
 
 protected:
  	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
   virtual BOOL OnInitDialog();
   virtual void OnOK();
 
-	DECLARE_MESSAGE_MAP()
+  DECLARE_MESSAGE_MAP()
 public:
   afx_msg void OnBnClickedButtonGvtbrowse();
 

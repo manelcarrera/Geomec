@@ -35,10 +35,10 @@ public:
   RescueBlockUnitHorizonSurface *NthRescueBlockUnitHorizonSurface(RESCUEINT64 zeroBasedOrdinal) 
                   {return (*surfaces).NthObject(zeroBasedOrdinal);}
   RescueBlockUnitHorizonSurface *HorizonSurfaceIdentifiedBy(RESCUEINT64 identifier)
-            {return (*surfaces).ObjectIdentifiedBy(identifier);}
-                                    // Do NOT delete the object returned.
-                                    // If you want to remove them from the
-                                    // model use the corresponding Drop method.
+      {return (*surfaces).ObjectIdentifiedBy(identifier);}
+                  // Do NOT delete the object returned.
+                  // If you want to remove them from the
+                  // model use the corresponding Drop method.
   RescueIJSurface *SurfaceIJIdentifiedBy(RESCUEINT64 identifier);
   RescueTriangulatedSurface *SurfaceTriangulatedIdentifiedBy(RESCUEINT64 identifier);
   RescueProperty *PropertyIdentifiedBy(RESCUEINT64 identifier);

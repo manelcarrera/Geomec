@@ -15,38 +15,38 @@ class CUnitNode;
 class CSetGlobalFaultBehaviour
 {
   public:
-    CSetGlobalFaultBehaviour(CFemAppModel* femAppModel);
+  CSetGlobalFaultBehaviour(CFemAppModel* femAppModel);
 
-    bool canModifyPressure() const;
+  bool canModifyPressure() const;
 
-    enum
-    {
+  enum
+  {
       DEPTH = 0,
       PRESSURE = 1,
       GRADIENT = 2
-    };
+  };
 
-    std::vector <QString> getUnitNames(const CUnitNode& unitNode) const;
-    bool getModeType(CFaultPressure::TModeType& modeType) const;
-    bool getValues(std::vector <double>& values, const CUnitNode& unitNode)
+  std::vector <QString> getUnitNames(const CUnitNode& unitNode) const;
+  bool getModeType(CFaultPressure::TModeType& modeType) const;
+  bool getValues(std::vector <double>& values, const CUnitNode& unitNode)
       const;
 
-    void setGlobalFaultBehaviour(const std::vector <double>& values,
+  void setGlobalFaultBehaviour(const std::vector <double>& values,
       const CUnitNode& unitNode, CFaultPressure::TModeType modeType);
 
   private:
-    CSetGlobalFaultBehaviour(const CSetGlobalFaultBehaviour& rhs);
-    CSetGlobalFaultBehaviour& operator = (const CSetGlobalFaultBehaviour& rhs);
+  CSetGlobalFaultBehaviour(const CSetGlobalFaultBehaviour& rhs);
+  CSetGlobalFaultBehaviour& operator = (const CSetGlobalFaultBehaviour& rhs);
 
-    bool isLocked(const CFaultPressure* faultPressure) const;
-    bool canModifyPressure(const CFaultPressure* faultPressure) const;
+  bool isLocked(const CFaultPressure* faultPressure) const;
+  bool canModifyPressure(const CFaultPressure* faultPressure) const;
 
-    typedef std::vector <CFaultPressure*> TFaultPressures;
+  typedef std::vector <CFaultPressure*> TFaultPressures;
 
-    static TFaultPressures collectFaultPressures(CModelBase* modelBase);
+  static TFaultPressures collectFaultPressures(CModelBase* modelBase);
 
-    CModelBase* m_modelBase;
-    TFaultPressures m_faultPressures;
+  CModelBase* m_modelBase;
+  TFaultPressures m_faultPressures;
 };
 
 #endif  // _SetGlobalFaultBehaviour_h_

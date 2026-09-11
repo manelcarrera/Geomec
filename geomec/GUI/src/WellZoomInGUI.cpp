@@ -23,18 +23,18 @@ CWellZoomInModel* CWellZoomInGUI::model() const
 bool CWellZoomInGUI::LoadPre381Stream(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &prog)
 {
   if(!m_wellZoomInModel->LoadPre(stream, 0, version, prog, false))
-    return false;
+  return false;
 
   if(!m_wellZoomInModel->LoadWellZoomIn1(stream, version, prog))
-    return false;
+  return false;
 
   if (version < CStreamVersion(3, 8, 1))
   {
-    LoadScenes(stream, version, prog);
+  LoadScenes(stream, version, prog);
   }
 
   if(!m_wellZoomInModel->LoadWellZoomIn2(stream, version, prog))
-    return false;
+  return false;
 
   return m_wellZoomInModel->LoadPost(stream, version, prog);
 }

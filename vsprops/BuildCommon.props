@@ -132,7 +132,7 @@
     <CREATEFILOSAPP_BASE>$(DEVELOP)/createfilos_app/h;</CREATEFILOSAPP_BASE>
     <DIANAGLUE_BASE>$(LBROOT)/DianaGlue/h;</DIANAGLUE_BASE>
     <CREATERGIINTERFACETESTS_BASE>$(TESTSROOT)/CreateRGInterfaceTests/h;</CREATERGIINTERFACETESTS_BASE>
-    <MFCMODELFRAME_BASE>$(LBROOT)/MfcModelFrame/h;</MFCMODELFRAME_BASE>
+    <MFCMODELFRAME_BASE>$(PLATFORMROOT)/MfcModelFrame/h;</MFCMODELFRAME_BASE>
     <!-- FW51 -->
     <FW-GEOMETRY_BASE>$(FWROOT)\Geometry\include;</FW-GEOMETRY_BASE>
     <FW-MODELFRAME_BASE>$(FWROOT)\ModelFrame\include;</FW-MODELFRAME_BASE>
@@ -156,9 +156,9 @@
       $(QWTDIR)/src
     </QTINCLUDES>
     <FEMAPPGUI_BASE>
-      $(LBROOT)\FemAppGUI\h;
-      $(LBROOT)\FemAppGUI\observer\h;
-      $(LBROOT)\FemAppGUI\delegate\h;
+      $(PLATFORMROOT)\FemAppGUI\h;
+      $(PLATFORMROOT)\FemAppGUI\observer\h;
+      $(PLATFORMROOT)\FemAppGUI\delegate\h;
     </FEMAPPGUI_BASE>
     <DIANA>
       $(DIAROOT)\share\src\include;
@@ -169,8 +169,8 @@
     <DIANA_GOCAD>$(DIAROOT)\share\src\lb\fw51\GOCADMesh\include;</DIANA_GOCAD>
     <DIANA_GC51>$(DIAROOT)\share\src\lb\gc51\classes\include;</DIANA_GC51>
     <MFCGUIFRAME_BASE>
-      $(LBROOT)/MfcGuiFrame/h;
-      $(LBROOT)/MfcGuiFrame/observer/h;
+      $(PLATFORMROOT)/MfcGuiFrame/h;
+      $(PLATFORMROOT)/MfcGuiFrame/observer/h;
     </MFCGUIFRAME_BASE>
     <CUTSURFACEUTILMODEL_BASE>$(LBROOT)/CutSurfaceUtilModel/h;</CUTSURFACEUTILMODEL_BASE>
     <MATLIB_BASE>$(LBROOT)/MaterialLibrary/h;</MATLIB_BASE>
@@ -182,7 +182,7 @@
     <MESHDATACACHER_BASE>$(LBROOT)/MeshDataCacher/h;</MESHDATACACHER_BASE>
     <DIANASIGNALS_BASE>$(LBROOT)/DianaSignals/h;</DIANASIGNALS_BASE>
     <GEOMECSTRINGTABLE_BASE>$(LBROOT)/GeomecStringTable/h;</GEOMECSTRINGTABLE_BASE>
-    <MPKERNEL_BASE>$(LBROOT)/MPKernel/h;</MPKERNEL_BASE>
+    <MPKERNEL_BASE>$(PLATFORMROOT)/MPKernel/h;</MPKERNEL_BASE>
     <MPKERNELAPP_BASE></MPKERNELAPP_BASE>
     <RPN>$(LBROOT)/RPN/h;</RPN>
     <FEMAPPMODEL_BASE>
@@ -190,10 +190,10 @@
       $(LBROOT)/FemAppModel/diana/h;
       $(LBROOT)/FemAppModel/delegate/h;
     </FEMAPPMODEL_BASE>
-    <DOUBLEEDITLIB_BASE>$(LBROOT)/DoubleEditLib/h;</DOUBLEEDITLIB_BASE>
+    <DOUBLEEDITLIB_BASE>$(PLATFORMROOT)/DoubleEditLib/h;</DOUBLEEDITLIB_BASE>
     <CUTSURFACEUTIL_BASE>
-      $(LBROOT)/CutSurfaceUtil; <!-- resource.h --> 
-      $(LBROOT)/CutSurfaceUtil/h;
+      $(PLATFORMROOT)/CutSurfaceUtil; <!-- resource.h --> 
+      $(PLATFORMROOT)/CutSurfaceUtil/h;
     </CUTSURFACEUTIL_BASE>
     <DIANASTARTUP_BASE>$(LBROOT)/DianaStartUp/h;</DIANASTARTUP_BASE>
     <DIANACORE_BASE>
@@ -209,14 +209,14 @@
     </TSMESH_BASE>
     <WELLSCENE3D_BASE>$(LBROOT)/WellScene3D/h;</WELLSCENE3D_BASE>
     <NEWWELLSCHEME_BASE>$(LBROOT)/NewWellScheme/h;</NEWWELLSCHEME_BASE>
-    <GMDATABASE_BASE>$(LBROOT)/GmDatabase/h;</GMDATABASE_BASE>
+    <GMDATABASE_BASE>$(PLATFORMROOT)/GmDatabase/h;</GMDATABASE_BASE>
     <WELLSCHEMEUTILS_BASE>
-      $(LBROOT)/WellSchemeUtils/h;
-      $(LBROOT)/WellSchemeUtils/dlg/h;
+      $(PLATFORMROOT)/WellSchemeUtils/h;
+      $(PLATFORMROOT)/WellSchemeUtils/dlg/h;
     </WELLSCHEMEUTILS_BASE>
-    <HDF5_BASE>$(LBROOT)/hdf5/windows/include;</HDF5_BASE>
+    <HDF5_BASE>$(THIRDPARTYROOT)/hdf5/windows/include;</HDF5_BASE>
 
-    <BLOSC_PATH>$(LBROOT)/c-blosc-1.9.0</BLOSC_PATH> <!-- not semicolon at the end -->
+    <BLOSC_PATH>$(THIRDPARTYROOT)/c-blosc-1.9.0</BLOSC_PATH> <!-- not semicolon at the end -->
     <BLOSC_BASE>$(BLOSC_PATH)/blosc;</BLOSC_BASE>
     <BLOSCSHARED_BASE>
       $(BLOSC_PATH)/blosc;
@@ -253,11 +253,11 @@
     </GEOMECMODEL_BASE>
 
     <QTIOCOMPRESSOR_BASE>$(LBROOT)/qtiocompressor/h;</QTIOCOMPRESSOR_BASE>
-    <ZLIB_BASE>$(LBROOT)/zlib-1.2.6;</ZLIB_BASE>
-    <QTWINMIGRATE_BASE>$(LBROOT)/qtwinmigrate/h;</QTWINMIGRATE_BASE>
+    <ZLIB_BASE>$(THIRDPARTYROOT)/zlib-1.2.6;</ZLIB_BASE>
+    <QTWINMIGRATE_BASE>$(PLATFORMROOT)/qtwinmigrate/h;</QTWINMIGRATE_BASE>
     <RESCUE_BASE>$(LBROOT)/RESCUE/h;</RESCUE_BASE>
     <RPN_BASE>$(LBROOT)/RPN/h;</RPN_BASE>
-    <OPENINVENTORDATAINTERFACE_BASE>$(LBROOT)/OpenInventorDataInterface/h;</OPENINVENTORDATAINTERFACE_BASE>
+    <OPENINVENTORDATAINTERFACE_BASE>$(PLATFORMROOT)/OpenInventorDataInterface/h;</OPENINVENTORDATAINTERFACE_BASE>
     <!-- <OPENINVENTOR_BASE>$(LBROOT)/OpenInventor/h;</OPENINVENTOR_BASE> -->
     <GEOMECCORA_BASE>$(APP)/geomec_cora/h;</GEOMECCORA_BASE>
     <GEOMECCORAWRAPPER_BASE>$(APP)/geomec_cora_wrapper/h;</GEOMECCORAWRAPPER_BASE>
@@ -267,15 +267,15 @@
     <GEOMECRGILIB_BASE>$(LBROOT)/geomec_rgi_library/h;</GEOMECRGILIB_BASE>
     <GMSKUACONNECTOR_BASE>$(LBROOT)/GMSkuaConnector/h;</GMSKUACONNECTOR_BASE>
     <RGINTERFACE_BASE>$(LBROOT)/RGInterface/h;</RGINTERFACE_BASE>
-    <WINDOWSREGISTRY_BASE>$(LBROOT)/WindowsRegistry/h;</WINDOWSREGISTRY_BASE>
-    <XMLLIB_BASE>$(LBROOT)/XMLLib/h;</XMLLIB_BASE>
+    <WINDOWSREGISTRY_BASE>$(PLATFORMROOT)/WindowsRegistry/h;</WINDOWSREGISTRY_BASE>
+    <XMLLIB_BASE>$(PLATFORMROOT)/XMLLib/h;</XMLLIB_BASE>
     <!-- IT -->
-    <PYLIB_BASE>$(LBROOT)/PyLib/h;</PYLIB_BASE>
+    <PYLIB_BASE>$(PLATFORMROOT)/PyLib/h;</PYLIB_BASE>
     <QUTIL_BASE>$(LBROOT)/QUtil/h;</QUTIL_BASE>
     <UTIL_BASE>$(LBROOT)/Util/h;</UTIL_BASE>
     <!-- in win depends on 'shlwapi.lib -->
-    <PLUGINS_BASE>$(LBROOT)/Plugins/h;</PLUGINS_BASE>
-    <IT_BASE>$(LBROOT)/IT/h;</IT_BASE>
+    <PLUGINS_BASE>$(PLATFORMROOT)/Plugins/h;</PLUGINS_BASE>
+    <IT_BASE>$(PLATFORMROOT)/IT/h;</IT_BASE>
     <!-- TESTS -->
     <!--<TESTSROOT>$(DEVELOP)/Tests</TESTSROOT>-->
     <TESTSMODELOPERATIONS_BASE>$(TESTSROOT)/ModelOperations/h;</TESTSMODELOPERATIONS_BASE>
@@ -285,7 +285,7 @@
     <TESTSFW51_BASE>$(TESTSROOT)/Fw51/h;</TESTSFW51_BASE>
     <TESTSMAT_BASE>$(TESTSROOT)/Materials/h;</TESTSMAT_BASE>
     <TESTSBUILDENVIRONMENT_BASE>$(TESTSROOT)/BuildEnvironment/h;</TESTSBUILDENVIRONMENT_BASE>
-    <GTEST_BASE>$(LBROOT)/gmock-1.7.0/gtest/include;</GTEST_BASE>
+    <GTEST_BASE>$(THIRDPARTYROOT)/gmock-1.7.0/gtest/include;</GTEST_BASE>
     <GEOMECLAUNCHER_BASE>$(DEVELOP)/geomec_launcher/h;</GEOMECLAUNCHER_BASE>
     <GEOMECSELECTOR_BASE>$(DEVELOP)/geomec_selector/h;</GEOMECSELECTOR_BASE>
     <MINIMALAPPQT_BASE>$(DEVELOP)/minimal_app_qt/h;</MINIMALAPPQT_BASE>
@@ -1491,7 +1491,7 @@
     <BOOST_LIBS_D>$(BOOST_DIR)\lib64-msvc-14.0</BOOST_LIBS_D>
     <TBB_LIBS_D>$(TBBDIR)/lib/intel64/vc14</TBB_LIBS_D>
     <FLEX_LIBS_D>$(FLEXLM)/../lib64</FLEX_LIBS_D>
-    <HDF5_LIBS_D>$(DEVELOP)/lib/hdf5/windows/lib</HDF5_LIBS_D>
+    <HDF5_LIBS_D>$(DEVELOP)/third_party/hdf5/windows/lib</HDF5_LIBS_D>
 
     <DIALIB>$(DIAROOT)/$(Configuration)/lib</DIALIB> <!-- FIXME -->
     <DIALIB_RWD>$(DIAROOT)/release/lib</DIALIB_RWD> <!-- RWD: release with debug -->
@@ -1630,20 +1630,20 @@
     <!-- TODO -->
     <LBINCLUDES>
       $(LBROOT)/QUtil/h;
-      $(LBROOT)/Plugins/h;
-      $(LBROOT)/IT/h;
+      $(PLATFORMROOT)/Plugins/h;
+      $(PLATFORMROOT)/IT/h;
       $(LBROOT)/2DWellViewLib;
       $(LBROOT)/ConsoleLibrary;
-      $(LBROOT)/CutSurfaceUtil;
-      $(LBROOT)/CutSurfaceUtil/h;
+      $(PLATFORMROOT)/CutSurfaceUtil;
+      $(PLATFORMROOT)/CutSurfaceUtil/h;
       $(LBROOT)/CutSurfaceUtilModel/h;
       $(LBROOT)/DCasingLib/DCasing/h;
       $(LBROOT)/DianaCore;
       $(LBROOT)/DianaCore/Loads/src;
       $(LBROOT)/DianaCore/src;
       $(LBROOT)/DianaSignals/h;
-      $(LBROOT)/DoubleEditLib;
-      $(LBROOT)/FemAppGUI/h;
+      $(PLATFORMROOT)/DoubleEditLib;
+      $(PLATFORMROOT)/FemAppGUI/h;
       $(LBROOT)/FemAppModel/h;
       <!-- GeomecModel -->
       $(LBROOT)/GeomecModel/CLI/h;
@@ -1663,14 +1663,14 @@
       $(LBROOT)/GeomecModel/Zoomin/h;
 
       $(LBROOT)/GeomecStringTable/h;
-      $(LBROOT)/GlobalMessage/h;
-      $(LBROOT)/GmDatabase/h;
+      $(PLATFORMROOT)/GlobalMessage/h;
+      $(PLATFORMROOT)/GmDatabase/h;
 	  $(LBROOT)/GMSkuaConnector/h;
       $(LBROOT)/MaterialLibrary/h;
       $(LBROOT)/MaterialLibraryXML/h;
       $(LBROOT)/MeshDataCacher/h;
-      $(LBROOT)/MfcGuiFrame/h;
-      $(LBROOT)/MfcModelFrame/h;
+      $(PLATFORMROOT)/MfcGuiFrame/h;
+      $(PLATFORMROOT)/MfcModelFrame/h;
       $(LBROOT)/NewWellScheme/h;
       $(LBROOT)/DianaStartUp/h;
       $(LBROOT)/Quantity/h;
@@ -1684,15 +1684,15 @@
       $(LBROOT)/WellScene3D/h;
       $(LBROOT)/CommonWellScheme;
       $(LBROOT)/WellScheme/h;
-      $(LBROOT)/WellSchemeUtils/h;
-      $(LBROOT)/WindowsRegistry;
-      $(LBROOT)/XMLLib;
+      $(PLATFORMROOT)/WellSchemeUtils/h;
+      $(PLATFORMROOT)/WindowsRegistry;
+      $(PLATFORMROOT)/XMLLib;
       $(LBROOT)/qtiocompressor/h;
-      $(LBROOT)/qtwinmigrate/h;
-      $(LBROOT)/zlib-1.2.6;
+      $(PLATFORMROOT)/qtwinmigrate/h;
+      $(THIRDPARTYROOT)/zlib-1.2.6;
       $(LBROOT)/geomec_rgi_library;
       $(LBROOT)/geomec_cora_library;
-      $(LBROOT)/OpenInventorDataInterface/h;
+      $(PLATFORMROOT)/OpenInventorDataInterface/h;
     </LBINCLUDES>
     <!-- TODO -->
     <FWINCLUDES>

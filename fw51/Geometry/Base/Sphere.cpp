@@ -30,22 +30,22 @@ CSphere::CSphere(const ISphere& rhs)
 
 const double& CSphere::Radius() const
 {
-	return m_radius;
+  return m_radius;
 }
 
 void CSphere::Radius(const double &radius)
 {
-	m_radius = radius;
+  m_radius = radius;
 }
 
 const IPoint& CSphere::MidPoint() const 
 {
-	return m_mid_point;
+  return m_mid_point;
 }
 
 void CSphere::MidPoint(const IPoint& mid_point)
 {
-	m_mid_point = mid_point;
+  m_mid_point = mid_point;
 }
 
 

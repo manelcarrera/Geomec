@@ -34,7 +34,7 @@ public:
 private:
   CWellFormationEntry_Delegate(const CWellFormationEntry_Delegate& rhs);
   CWellFormationEntry_Delegate& operator = (
-    const CWellFormationEntry_Delegate& rhs);
+  const CWellFormationEntry_Delegate& rhs);
 
   CWellFormationEntry* m_wellFormationEntry;
 

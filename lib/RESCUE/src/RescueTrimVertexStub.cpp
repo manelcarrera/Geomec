@@ -21,11 +21,11 @@ RESCUEBOOL RescueTrimVertexStub::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueTrimVertexStub)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueWireframeStub::IsOfType(thisType);
+  return RescueWireframeStub::IsOfType(thisType);
   }
 }
 
@@ -35,7 +35,7 @@ RESCUEBOOL RescueTrimVertexStub::Equals(RescueTrimVertexStub *other)
   if (other->WireframeId() == WireframeId()
   &&  other->ObjectId()    == ObjectId())
   {
-    myReturn = TRUE;
+  myReturn = TRUE;
   }
 /*
   Really should be sufficient just to compare the object ids.
@@ -48,7 +48,7 @@ RESCUEBOOL RescueTrimVertexStub::Equals(RescueTrimVertex *other)
   RESCUEBOOL myReturn = FALSE;
   if (other->Identifier() == ObjectId())
   {
-    myReturn = TRUE;
+  myReturn = TRUE;
   }
   return myReturn;
 }
@@ -77,8 +77,8 @@ RescueTrimVertexStub::RescueTrimVertexStub(RescueTrimVertex *vertexIn)
 }
 
 RescueTrimVertexStub::RescueTrimVertexStub(RescueContext *context, RescueTrimVertexStub *other)
-                        :RescueWireframeStub(context, other->wireframeId, other->objectId)
-                        ,actualVertex(0)
+            :RescueWireframeStub(context, other->wireframeId, other->objectId)
+            ,actualVertex(0)
 {
   isA = R_RescueTrimVertexStub;
 }
@@ -96,45 +96,45 @@ RescueTrimVertex *RescueTrimVertexStub::TrimVertex(RescueModel *model, RESCUEBOO
 {
   if (wireframeObj == 0 && model != 0)
   {
-    wireframeObj = model->WireframeIdentifiedBy(wireframeId);
+  wireframeObj = model->WireframeIdentifiedBy(wireframeId);
   }
   if (wireframeObj != 0)
   {
-    if (wireframeObj->IsWireframeLoaded() == FALSE)
-    {
+  if (wireframeObj->IsWireframeLoaded() == FALSE)
+  {
       actualVertex = 0;
       if (loadIfNeeded)
       {
-        wireframeObj->LoadWireframe();
+    wireframeObj->LoadWireframe();
       }
-    }
+  }
 /*
   If not currently loaded, load it up if the user has given us that discretion.
 */
-    if (actualVertex != 0)
-    {
+  if (actualVertex != 0)
+  {
       if (loadNo != wireframeObj->LoadNo())
       {
-        actualVertex = 0;
+    actualVertex = 0;
       }
-    }
+  }
 /*
   If we have been asked before, we may have a pointer to the object that we want,
   but first we have to check to see if it is stale.
 */
-    if (actualVertex == 0)
-    {
+  if (actualVertex == 0)
+  {
       actualVertex = wireframeObj->TrimVertexIdentifiedBy(objectId);
       loadNo = wireframeObj->LoadNo();
 /*
   If we do hook up to the object, remember which load.  If the reader unloads the
   RescueWireframe and then reloads it our pointer will be stale.
 */
-    }
+  }
   }
   else
   {
-    actualVertex = 0;
+  actualVertex = 0;
   }
   return actualVertex;
 }

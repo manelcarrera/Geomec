@@ -21,38 +21,38 @@ namespace cora
 class CObjectFault : public CObjectBase
 {
   public:
-    CObjectFault(CModelBase* modelBase, CHorizonBase* horizonBase);
-    virtual ~CObjectFault();
+  CObjectFault(CModelBase* modelBase, CHorizonBase* horizonBase);
+  virtual ~CObjectFault();
 
-    virtual const QString& name() const;
-    virtual const TParameters& getParameters() const;
-    virtual const QString& prefix() const;
-    virtual const COpenGLNode* object() const;
-    virtual const QString& typeName() const;
+  virtual const QString& name() const;
+  virtual const TParameters& getParameters() const;
+  virtual const QString& prefix() const;
+  virtual const COpenGLNode* object() const;
+  virtual const QString& typeName() const;
 
-    virtual const geo::IElement* getFirstElement();
-    virtual const geo::IElement* getNextElement();
+  virtual const geo::IElement* getFirstElement();
+  virtual const geo::IElement* getNextElement();
 
-    virtual std::ostream& operator () (std::ostream& os) const;
+  virtual std::ostream& operator () (std::ostream& os) const;
 
-    virtual CElementSet* getElementSet() const;
+  virtual CElementSet* getElementSet() const;
 
   private:
-    CObjectFault(const CObjectFault& rhs);
-    CObjectFault& operator = (CObjectFault rhs);
+  CObjectFault(const CObjectFault& rhs);
+  CObjectFault& operator = (CObjectFault rhs);
 
-    static TParameters getParameters(CModelBase* modelBase,
+  static TParameters getParameters(CModelBase* modelBase,
       CHorizonBase* horizonBase);
-    static CElementSet* createElementSet(bool& owner, CModelBase* modelBase,
+  static CElementSet* createElementSet(bool& owner, CModelBase* modelBase,
       CHorizonBase* horizonBase);
-    static CElementSet* elementSetExists(CModelBase* modelBase,
+  static CElementSet* elementSetExists(CModelBase* modelBase,
       CHorizonBase* horizonBase);
 
-    const CHorizonBase* m_horizonBase;
-    TParameters m_parameters;
-    bool m_owner;
-    CElementSet* m_elementSet;
-    int m_sequenceState;
+  const CHorizonBase* m_horizonBase;
+  TParameters m_parameters;
+  bool m_owner;
+  CElementSet* m_elementSet;
+  int m_sequenceState;
 };
 
 } // namespace cora

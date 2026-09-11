@@ -7,54 +7,54 @@ template <typename C>
   class CHandleFaultFractureBehaviour
 {
   public:
-    CHandleFaultFractureBehaviour(CDialog* dialog);
+  CHandleFaultFractureBehaviour(CDialog* dialog);
 
-    bool onCommand(C& copy, WPARAM wParam, LPARAM lParam);
+  bool onCommand(C& copy, WPARAM wParam, LPARAM lParam);
 
-    void onStick(C& copy);
-    void onSlip(C& copy);
-    void onUserDefined(C& copy);
-    void onFracture(C& copy);
+  void onStick(C& copy);
+  void onSlip(C& copy);
+  void onUserDefined(C& copy);
+  void onFracture(C& copy);
 
-    void enableSlipButtons(bool enable);
+  void enableSlipButtons(bool enable);
 
-    int getSlipType(const C& copy) const;
-    void setSlipType(CDataExchange* pDX, int& slipType);
+  int getSlipType(const C& copy) const;
+  void setSlipType(CDataExchange* pDX, int& slipType);
 
   private:
-    CHandleFaultFractureBehaviour(const CHandleFaultFractureBehaviour& rhs);
-    CHandleFaultFractureBehaviour& operator = (
+  CHandleFaultFractureBehaviour(const CHandleFaultFractureBehaviour& rhs);
+  CHandleFaultFractureBehaviour& operator = (
       const CHandleFaultFractureBehaviour& rhs);
 
-    CDialog* m_dialog;
+  CDialog* m_dialog;
 };
 
 template <typename C>
   CHandleFaultFractureBehaviour <C> ::CHandleFaultFractureBehaviour(
-    CDialog* dialog)
+  CDialog* dialog)
   : m_dialog(dialog)
 {
 }
 
 template <typename C>
   bool CHandleFaultFractureBehaviour <C> ::onCommand(C& copy, WPARAM wParam,
-    LPARAM lParam)
+  LPARAM lParam)
 {
   switch (wParam)
   {
-    case IDC_RADIO_STICK:
+  case IDC_RADIO_STICK:
       onStick(copy);
       return true;
-    case IDC_RADIO_SLIP:
+  case IDC_RADIO_SLIP:
       onSlip(copy);
       return true;
-    case IDC_RADIO_USER:
+  case IDC_RADIO_USER:
       onUserDefined(copy);
       return true;
-    case IDC_RADIO_FRACTURE:
+  case IDC_RADIO_FRACTURE:
       onFracture(copy);
       return true;
-    default:
+  default:
       break;
   }
 
@@ -64,7 +64,7 @@ template <typename C>
 template <typename C>
   void CHandleFaultFractureBehaviour <C> ::onStick(C& copy)
 {
-	copy.SlipType(CHorizonBase::STICK);
+  copy.SlipType(CHorizonBase::STICK);
 }
 
 template <typename C>
@@ -113,7 +113,7 @@ template <typename C>
   case CHorizonBase::FRACTURE:
       slipType = 3;
       break;
-    default:
+  default:
       assert(false);
   }
 
@@ -122,7 +122,7 @@ template <typename C>
 
 template <typename C>
   void CHandleFaultFractureBehaviour <C> ::setSlipType(CDataExchange* pDX,
-    int& slipType)
+  int& slipType)
 {
   DDX_Radio(pDX, IDC_RADIO_SLIP, slipType);
 }

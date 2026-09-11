@@ -11,17 +11,17 @@ namespace cora
 class CXMLResponseValueTypes
 {
   public:
-    CXMLResponseValueTypes();
+  CXMLResponseValueTypes();
 
-    std::ostream& operator () (std::ostream& stream) const;
+  std::ostream& operator () (std::ostream& stream) const;
 
   private:
-    CXMLResponseValueTypes(const CXMLResponseValueTypes& rhs);
-    CXMLResponseValueTypes& operator = (CXMLResponseValueTypes rhs);
+  CXMLResponseValueTypes(const CXMLResponseValueTypes& rhs);
+  CXMLResponseValueTypes& operator = (CXMLResponseValueTypes rhs);
 
-    static TXMLResponseValueTypes createResponseValueTypes();
+  static TXMLResponseValueTypes createResponseValueTypes();
 
-    TXMLResponseValueTypes m_responseValueTypes;
+  TXMLResponseValueTypes m_responseValueTypes;
 };
 
 } // namespace cora

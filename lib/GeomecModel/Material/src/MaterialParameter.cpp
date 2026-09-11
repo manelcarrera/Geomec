@@ -140,15 +140,15 @@ void CMaterialParameter::BuildValueTypeMaps()
 {
   for(int i = 0; s_ParamMap[i].uiValueTypeID; i++)
   {
-    std::pair<unsigned int, QString> vt2str;
-    vt2str.first  = s_ParamMap[i].uiValueTypeID;
-    vt2str.second = s_ParamMap[i].strMatLibXID;
-    m_Vt2Str.insert(vt2str);
+  std::pair<unsigned int, QString> vt2str;
+  vt2str.first  = s_ParamMap[i].uiValueTypeID;
+  vt2str.second = s_ParamMap[i].strMatLibXID;
+  m_Vt2Str.insert(vt2str);
 
-    std::pair<QString, unsigned int> str2vt;
-    str2vt.first  = s_ParamMap[i].strMatLibXID;
-    str2vt.second = s_ParamMap[i].uiValueTypeID;
-    m_Str2Vt.insert(str2vt);
+  std::pair<QString, unsigned int> str2vt;
+  str2vt.first  = s_ParamMap[i].strMatLibXID;
+  str2vt.second = s_ParamMap[i].uiValueTypeID;
+  m_Str2Vt.insert(str2vt);
   }
 }
 
@@ -158,8 +158,8 @@ CMaterialParameter::CMaterialParameter(unsigned int uiValueTypeID, CLibraryMater
   // build static value type maps if they don't exist yet
   if(m_Vt2Str.empty())
   {
-    assert(m_Str2Vt.empty());
-    BuildValueTypeMaps();
+  assert(m_Str2Vt.empty());
+  BuildValueTypeMaps();
   }
 }
 
@@ -192,8 +192,8 @@ bool CMaterialParameter::ValueTypeIDFromMatLibXID(const QString& MatLibXID, unsi
   // build static value type maps if they don't exist yet
   if(m_Vt2Str.empty())
   {
-    assert(m_Str2Vt.empty());
-    BuildValueTypeMaps();
+  assert(m_Str2Vt.empty());
+  BuildValueTypeMaps();
   }
 
   std::map<QString, unsigned int>::iterator it = m_Str2Vt.find(MatLibXID);
@@ -208,8 +208,8 @@ bool CMaterialParameter::MatLibXIDFromValueTypeID(unsigned int ValueTypeID, QStr
   // build static value type maps if they don't exist yet
   if(m_Vt2Str.empty())
   {
-    assert(m_Str2Vt.empty());
-    BuildValueTypeMaps();
+  assert(m_Str2Vt.empty());
+  BuildValueTypeMaps();
   }
 
   std::map<unsigned int, QString>::iterator it = m_Vt2Str.find(ValueTypeID);
@@ -222,7 +222,7 @@ bool CMaterialParameter::MatLibXIDFromValueTypeID(unsigned int ValueTypeID, QStr
 bool CMaterialParameter::operator<(const CMaterialParameter& rhs) const
 {
   return (m_uiValueTypeID < rhs.m_uiValueTypeID ||
-    (!(rhs.m_uiValueTypeID < m_uiValueTypeID) && Value() < rhs.Value())); 
+  (!(rhs.m_uiValueTypeID < m_uiValueTypeID) && Value() < rhs.Value())); 
 } 
 
 long CMaterialParameter::SavedItems() const

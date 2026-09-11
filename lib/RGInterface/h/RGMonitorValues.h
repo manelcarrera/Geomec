@@ -20,22 +20,22 @@
 class INTERFACE_RGINTERFACE RGMonitorValues
 {
 public:
-	RGMonitorValues(){}
-	RGMonitorValues(const RGDepletionStage& depletionStage, const RGMonitorPointSets& pointSets);
-	const RGMonitorPointSets& GetPointSets() const;
-	RGDepletionStage GetDepletionStage() const;
-	void Set(const int& pointSetIndex, const int& pointIndex, const int& propertyIndex, double value);
-	double Get(const int& pointSetIndex, const int& pointIndex, const int& propertyIndex) const;
-	void clear();
+  RGMonitorValues(){}
+  RGMonitorValues(const RGDepletionStage& depletionStage, const RGMonitorPointSets& pointSets);
+  const RGMonitorPointSets& GetPointSets() const;
+  RGDepletionStage GetDepletionStage() const;
+  void Set(const int& pointSetIndex, const int& pointIndex, const int& propertyIndex, double value);
+  double Get(const int& pointSetIndex, const int& pointIndex, const int& propertyIndex) const;
+  void clear();
 
 private:
-	RGDepletionStage m_depletionStage; 
-	RGMonitorPointSets m_pointSets;
+  RGDepletionStage m_depletionStage; 
+  RGMonitorPointSets m_pointSets;
 
-	//This class object will be created and returned to Flow for every depletion stage
-	//3 DIM vector to store monitor value in the below format
-	//m_monitorValues[pointSetIndex][pointIndex][propertyIndex]
-	std::vector<std::vector<std::vector<double>>> m_monitorValues;
+  //This class object will be created and returned to Flow for every depletion stage
+  //3 DIM vector to store monitor value in the below format
+  //m_monitorValues[pointSetIndex][pointIndex][propertyIndex]
+  std::vector<std::vector<std::vector<double>>> m_monitorValues;
 };
 
 #endif

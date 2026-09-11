@@ -30,7 +30,7 @@ static MeshTriangle_t *MeshTriangleClear(
                   MeshTriangle_t             *mt )
 {
   if ( mt ) {
-    mt->triangle = TriangleDelete( mt->triangle );
+  mt->triangle = TriangleDelete( mt->triangle );
   }
   return mt;
 }
@@ -39,8 +39,8 @@ static MeshTriangle_t *MeshTriangleDelete(
                   MeshTriangle_t             *mt )
 {
   if ( mt ) {
-    MeshTriangleClear( mt );
-    DIFREE( mt );
+  MeshTriangleClear( mt );
+  DIFREE( mt );
   }
   return mt;
 }
@@ -54,12 +54,12 @@ extern MeshTriangleSet_t *MeshTriangleSetDelete(
                   MeshTriangleSet_t           *mtSet )
 {
   if ( mtSet ) {
-    Iterator_t       iter;
-    MeshTriangle_t  *mt = RBTreeFirst( mtSet, &iter );
-    while ( mt ) {
+  Iterator_t       iter;
+  MeshTriangle_t  *mt = RBTreeFirst( mtSet, &iter );
+  while ( mt ) {
       MeshTriangleClear( mt );
       mt = RBTreeNext( mtSet, &iter );
-    }
+  }
   }
   return RBTreeDelete( mtSet );
 }
@@ -73,14 +73,14 @@ extern void MeshTriangleSetAdd(
   MeshTriangle_t  *mt = MeshTriangleSetFind( mtSet, p0, p1, p2 );
   UNUSED(tetPoint);
   if ( !mt ) {
-    int              trianglePoints[3];
-    MeshTriangle_t   mtNew;
-    UTIL_ZERO( &mtNew );
-    trianglePoints[ 0 ] = p0;
-    trianglePoints[ 1 ] = p1;
-    trianglePoints[ 2 ] = p2;
-    mtNew.triangle = TriangleCreate( trianglePoints, -1 );
-    mt = RBTreeSearchGet( mtSet, &mtNew );
+  int              trianglePoints[3];
+  MeshTriangle_t   mtNew;
+  UTIL_ZERO( &mtNew );
+  trianglePoints[ 0 ] = p0;
+  trianglePoints[ 1 ] = p1;
+  trianglePoints[ 2 ] = p2;
+  mtNew.triangle = TriangleCreate( trianglePoints, -1 );
+  mt = RBTreeSearchGet( mtSet, &mtNew );
   }
 
   mt->nTetrahedron += 1;

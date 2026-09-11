@@ -35,34 +35,34 @@ struct _GError
 };
 
 GError*  g_error_new           (GQuark         domain,
-                                gint           code,
-                                const gchar   *format,
-                                ...) G_GNUC_PRINTF (3, 4);
+                gint           code,
+                const gchar   *format,
+                ...) G_GNUC_PRINTF (3, 4);
 
 GError*  g_error_new_literal   (GQuark         domain,
-                                gint           code,
-                                const gchar   *message);
+                gint           code,
+                const gchar   *message);
 
 void     g_error_free          (GError        *error);
 GError*  g_error_copy          (const GError  *error);
 
 gboolean g_error_matches       (const GError  *error,
-                                GQuark         domain,
-                                gint           code);
+                GQuark         domain,
+                gint           code);
 
 /* if (err) *err = g_error_new(domain, code, format, ...), also has
  * some sanity checks.
  */
 void     g_set_error           (GError       **err,
-                                GQuark         domain,
-                                gint           code,
-                                const gchar   *format,
-                                ...) G_GNUC_PRINTF (4, 5);
+                GQuark         domain,
+                gint           code,
+                const gchar   *format,
+                ...) G_GNUC_PRINTF (4, 5);
 
 /* if (dest) *dest = src; also has some sanity checks.
  */
 void     g_propagate_error     (GError       **dest,
-				GError        *src);
+        GError        *src);
 
 /* if (err && *err) { g_error_free(*err); *err = NULL; } */
 void     g_clear_error         (GError       **err);

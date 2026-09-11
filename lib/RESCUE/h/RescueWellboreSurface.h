@@ -20,8 +20,8 @@ class RescueWellboreSurface:public RescueObject
 {
 public:
   RescueWellboreSurface(RescueWellbore *wellboreIn, 
-                        RescueIJSurface *surfaceIn,
-                        RESCUEFLOAT uIn, RESCUEFLOAT vIn, RESCUEFLOAT mdIn);
+            RescueIJSurface *surfaceIn,
+            RESCUEFLOAT uIn, RESCUEFLOAT vIn, RESCUEFLOAT mdIn);
   RescueWellbore *Wellbore() {return wellbore;}
   RescueIJSurface *Surface() {return surface;}
   RESCUEFLOAT U() {return u;}

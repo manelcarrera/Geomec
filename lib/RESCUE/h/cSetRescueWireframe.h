@@ -18,11 +18,11 @@ Software Product or documentation licensed under this agreement.
 ****************************************************************************/
 /*************************************************************************
 
-        cSetRescueWireframe.h
+    cSetRescueWireframe.h
 
  Keeps a list of pointers to some RescueWireframe.
 
-        Rod Hanks               January 18th, 1995  /  August 1996
+    Rod Hanks               January 18th, 1995  /  August 1996
 
 ****************************************************************************/
 
@@ -41,9 +41,9 @@ class cSetRescueWireframe
 {
   struct Triplet
   {
-    RescueObject *wireframeObj;
-    RescueObject *userObj;
-    RescueWireframeStub *stub;
+  RescueObject *wireframeObj;
+  RescueObject *userObj;
+  RescueWireframeStub *stub;
   };
 protected:
   Triplet **savedCompatible;

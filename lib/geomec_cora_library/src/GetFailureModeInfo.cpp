@@ -20,7 +20,7 @@ CGetFailureModeInfo::CGetFailureModeInfo(CModelBase* modelBase, bool annotated)
 , m_filterResults()
 , m_filterOutputProperty()
 , m_failureModes(getFailureModes(m_exportLabels, modelBase, annotated,
-    m_filterResults, m_filterOutputProperty))
+  m_filterResults, m_filterOutputProperty))
 , m_modelBase(modelBase)
 , m_annotated(annotated)
 {
@@ -41,7 +41,7 @@ std::vector <QString> CGetFailureModeInfo::getExportLabels() const
 TFailureModes CGetFailureModeInfo::getFailureModes()
 {
   return getFailureModes(m_exportLabels, m_modelBase, m_annotated,
-    m_filterResults, m_filterOutputProperty);
+  m_filterResults, m_filterOutputProperty);
 }
 
 std::ostream& CGetFailureModeInfo::operator () (std::ostream& os) const
@@ -50,7 +50,7 @@ std::ostream& CGetFailureModeInfo::operator () (std::ostream& os) const
 
   for (size_t e = 0; e < m_exportLabels.size(); ++e)
   {
-    os << m_exportLabels[e].toStdString() << std::endl;
+  os << m_exportLabels[e].toStdString() << std::endl;
   }
 
   return os;
@@ -66,7 +66,7 @@ TFailureModes CGetFailureModeInfo::getFailureModes(
   const CFilterOutputProperty& filterOutputProperty)
 {
   const CGraphEntryTemp <IResult>* graphEntryTemp =
-    dynamic_cast <const CGraphEntryTemp <IResult>*> (
+  dynamic_cast <const CGraphEntryTemp <IResult>*> (
       modelBase->GraphEntry(MD_BASE_RESULT));
 
   // TODO investigate dependencies (parents) to resolve ordering.
@@ -74,7 +74,7 @@ TFailureModes CGetFailureModeInfo::getFailureModes(
   // conflicting values ((A < B) && (B < A)).
 
   const CGraphEntryTemp <IResult>::TNodeSet nodeSet =
-    graphEntryTemp->EntryNodes();
+  graphEntryTemp->EntryNodes();
   std::vector <TFailureMode> failureModes;
 
   exportLabels.clear();
@@ -82,13 +82,13 @@ TFailureModes CGetFailureModeInfo::getFailureModes(
   assert(exportLabels.size() == 0);
 
   for (CGraphEntryTemp <IResult>::TNodeSet::const_iterator node =
-    nodeSet.begin(); node != nodeSet.end(); ++node)
+  nodeSet.begin(); node != nodeSet.end(); ++node)
   {
-    if (dynamic_cast <const CMaterialResult*> (*node) == 0)
-    {
+  if (dynamic_cast <const CMaterialResult*> (*node) == 0)
+  {
       getFailureModes(failureModes, exportLabels, modelBase, *node, annotated,
-        filterResults, filterOutputProperty);
-    }
+    filterResults, filterOutputProperty);
+  }
   }
 
   return failureModes;
@@ -104,7 +104,7 @@ QString getName(const CGraphNode* graphNode)
 {
   if (graphNode->parent() != 0)
   {
-    return getName(graphNode->parent()) + COMMA + QUOTE + graphNode->Name() +
+  return getName(graphNode->parent()) + COMMA + QUOTE + graphNode->Name() +
       QUOTE;
   }
 
@@ -123,26 +123,26 @@ void retrieveValidResultComponentObjects(TFailureModes& failureModes,
   const TObject& object, unsigned int componentIndex)
 {
   for (TDepletionStageAnalysisTypeVector::const_iterator
-    depletionStageAnalysisType = depletionStageAnalysisTypeVector.begin();
-    depletionStageAnalysisType != depletionStageAnalysisTypeVector.end();
-    ++depletionStageAnalysisType)
+  depletionStageAnalysisType = depletionStageAnalysisTypeVector.begin();
+  depletionStageAnalysisType != depletionStageAnalysisTypeVector.end();
+  ++depletionStageAnalysisType)
   {
-    const CDepletionStage* depletionStage =
+  const CDepletionStage* depletionStage =
       (*depletionStageAnalysisType).first;
-    const CAnalysisType& analysisType = (*depletionStageAnalysisType).second;
-    const IResultComponent* resultComponent =
+  const CAnalysisType& analysisType = (*depletionStageAnalysisType).second;
+  const IResultComponent* resultComponent =
       result->ResultComponent(*depletionStage, analysisType, 0, componentIndex);
 
-    if (resultComponent != 0)
-    {
+  if (resultComponent != 0)
+  {
       if (resultComponent->CanMap(*(object->object())))
       {
-        validResultComponentObjects.push_back(
+    validResultComponentObjects.push_back(
           TResultComponentObject(resultComponent, object->object()));
-        failureModes.push_back(TFailureMode(new CFailureMode(
+    failureModes.push_back(TFailureMode(new CFailureMode(
           resultComponent->ExportLabel(), resultComponent)));
       }
-    }
+  }
   }
 }
 
@@ -150,18 +150,18 @@ void retrieveAnalysisType(QString analysisType[],
   const TResultComponentObject& validResultComponentObject)
 {
   switch (
-    validResultComponentObject.first->AnalysisType().AnalysisType())
+  validResultComponentObject.first->AnalysisType().AnalysisType())
   {
-    case CAnalysisType::AT_LINEAR:
-    case CAnalysisType::AT_NONLIN:
-    case CAnalysisType::AT_HEAT:
-    case CAnalysisType::AT_MIXTURE:
-    case CAnalysisType::AT_MIXTURE_CONTAINMENT:
+  case CAnalysisType::AT_LINEAR:
+  case CAnalysisType::AT_NONLIN:
+  case CAnalysisType::AT_HEAT:
+  case CAnalysisType::AT_MIXTURE:
+  case CAnalysisType::AT_MIXTURE_CONTAINMENT:
       analysisType[validResultComponentObject.first->AnalysisType().
-        AnalysisType()] = validResultComponentObject.first->
+    AnalysisType()] = validResultComponentObject.first->
           AnalysisType().ExportCharacter();
       break;
-    default:
+  default:
       assert(false);
       break;
   }
@@ -173,14 +173,14 @@ QString retrieveDepletionStage(
   const TResultComponentObject& validResultComponentObject)
 {
   return QString(FORMAT_DEPLETION_STAGE).
-    arg(validResultComponentObject.first->Stage().Index());
+  arg(validResultComponentObject.first->Stage().Index());
 }
 
 QString retrieveFailureModeName(
   const TResultComponentObject& validResultComponentObject)
 {
   return dynamic_cast <const IResult&> (
-    validResultComponentObject.first->Parent()).ExportLabel(
+  validResultComponentObject.first->Parent()).ExportLabel(
       validResultComponentObject.first->ComponentIndex());
 }
 
@@ -196,74 +196,74 @@ void pushFailureModeExportLabel(TFailureModes& failureModes,
 
   for (unsigned int i = 0; i < componentSize; ++i)
   {
-    if (result->Component(i).Type() == IValueComponentBase::SCALAR)
-    {
+  if (result->Component(i).Type() == IValueComponentBase::SCALAR)
+  {
       if (filterResults.isResultAllowed(result->ExportLabel(i)))
       {
-        for (TObjects::const_iterator object = objects.begin();
+    for (TObjects::const_iterator object = objects.begin();
           object != objects.end(); ++object)
-        {
+    {
           if (filterOutputProperty.
-            isOutputPropertyAllowed(*(*object), result->ExportLabel(i)))
+      isOutputPropertyAllowed(*(*object), result->ExportLabel(i)))
           {
-            TResultComponentObjects validResultComponentObjects;
-            std::size_t lastFailureMode = failureModes.size();
+      TResultComponentObjects validResultComponentObjects;
+      std::size_t lastFailureMode = failureModes.size();
 
-            retrieveValidResultComponentObjects(failureModes,
+      retrieveValidResultComponentObjects(failureModes,
               validResultComponentObjects, result,
               depletionStageAnalysisTypeVector, (*object), i);
 
-            QString analysisType[CAnalysisType::AT_LAST + 1];
+      QString analysisType[CAnalysisType::AT_LAST + 1];
 
-            for (TResultComponentObjects::const_iterator
+      for (TResultComponentObjects::const_iterator
               validResultComponentObject = validResultComponentObjects.begin();
               validResultComponentObject != validResultComponentObjects.end();
-            ++validResultComponentObject)
-            {
+      ++validResultComponentObject)
+      {
               retrieveAnalysisType(analysisType, *validResultComponentObject);
-            }
+      }
 
-            QString previousDepletionStage;
-            std::size_t f = lastFailureMode;
+      QString previousDepletionStage;
+      std::size_t f = lastFailureMode;
 
-            assert((failureModes.size() - lastFailureMode) ==
+      assert((failureModes.size() - lastFailureMode) ==
               validResultComponentObjects.size());
 
-            for (TResultComponentObjects::const_iterator
+      for (TResultComponentObjects::const_iterator
               validResultComponentObject = validResultComponentObjects.begin();
               (validResultComponentObject != validResultComponentObjects.end()) &&
               (f < failureModes.size()); ++validResultComponentObject, ++f)
-            {
+      {
               QString depletionStage =
-                retrieveDepletionStage(*validResultComponentObject);
+        retrieveDepletionStage(*validResultComponentObject);
 
               if (depletionStage != previousDepletionStage)
               {
-                QString failureModeName =
+        QString failureModeName =
                   retrieveFailureModeName(*validResultComponentObject);
-                QString failureModeLabel = failureModeName + COMMA +
+        QString failureModeLabel = failureModeName + COMMA +
                   depletionStage + COMMA +
                   analysisType[CAnalysisType::AT_LINEAR] + COMMA +
                   analysisType[CAnalysisType::AT_NONLIN] + COMMA +
                   analysisType[CAnalysisType::AT_MIXTURE] + COMMA +
                   analysisType[CAnalysisType::AT_MIXTURE_CONTAINMENT] + COMMA +
                   analysisType[CAnalysisType::AT_HEAT];
-                QString objectLabel =
+        QString objectLabel =
                   (*object)->prefix() + (*object)->object()->Name();
 
-                exportLabels.
+        exportLabels.
                   push_back(annotation + failureModeLabel + COMMA + objectLabel);
 
-                failureModes[f]->setFailureModeLabel(failureModeLabel);
-                failureModes[f]->setObject(*object);
+        failureModes[f]->setFailureModeLabel(failureModeLabel);
+        failureModes[f]->setObject(*object);
 
-                previousDepletionStage = depletionStage;
+        previousDepletionStage = depletionStage;
               }
-            }
-          }
-        }
       }
+          }
     }
+      }
+  }
   }
 }
 
@@ -287,7 +287,7 @@ void CGetFailureModeInfo::getFailureModes(
   TObjects wellPathObjects = getWellPathInfo.getObjects();
   CDepletionStageAnalysisType depletionStageAnalysisType(modelBase);
   const TDepletionStageAnalysisTypeVector& depletionStageAnalysisTypeVector =
-    depletionStageAnalysisType.getDepletionStageAnalysisType();
+  depletionStageAnalysisType.getDepletionStageAnalysisType();
 
   objects.insert(objects.end(), faultObjects.begin(), faultObjects.end());
 
@@ -301,8 +301,8 @@ void CGetFailureModeInfo::getFailureModes(
   objects.insert(objects.end(), wellPathObjects.begin(), wellPathObjects.end());
 
   pushFailureModeExportLabel(failureModes, exportLabels, result,
-    depletionStageAnalysisTypeVector, objects, annotated, filterResults,
-    filterOutputProperty);
+  depletionStageAnalysisTypeVector, objects, annotated, filterResults,
+  filterOutputProperty);
 }
 
 } // namespace cora

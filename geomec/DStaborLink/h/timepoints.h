@@ -15,30 +15,30 @@
 class CTimePoints : public COleDispatchDriver
 {
 public:
-	CTimePoints() {}		// Calls COleDispatchDriver default constructor
-	CTimePoints(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
-	CTimePoints(const CTimePoints& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
+  CTimePoints() {}		// Calls COleDispatchDriver default constructor
+  CTimePoints(LPDISPATCH pDispatch) : COleDispatchDriver(pDispatch) {}
+  CTimePoints(const CTimePoints& dispatchSrc) : COleDispatchDriver(dispatchSrc) {}
 
 // Attributes
 public:
-	long GetCount();
-	void SetCount(long);
-	double GetMudPressure();
-	void SetMudPressure(double);
-	double GetInstallTime();
-	void SetInstallTime(double);
-	BOOL GetPressureCom();
-	void SetPressureCom(BOOL);
+  long GetCount();
+  void SetCount(long);
+  double GetMudPressure();
+  void SetMudPressure(double);
+  double GetInstallTime();
+  void SetInstallTime(double);
+  BOOL GetPressureCom();
+  void SetPressureCom(BOOL);
 
 // Operations
 public:
-	long Add(double NewValue);
-	double Item(long Index);
-	void Remove(long Index);
-	void Clear();
-	void Sort();
-	BOOL SetDefault();
-	BOOL GetOpenHoleTime(double CriticalPlasticStrain, VARIANT* EpeqResults, double* OpenHoleTime);
+  long Add(double NewValue);
+  double Item(long Index);
+  void Remove(long Index);
+  void Clear();
+  void Sort();
+  BOOL SetDefault();
+  BOOL GetOpenHoleTime(double CriticalPlasticStrain, VARIANT* EpeqResults, double* OpenHoleTime);
 };
 
 //{{AFX_INSERT_LOCATION}}

@@ -18,11 +18,11 @@ Software Product or documentation licensed under this agreement.
 ****************************************************************************/
 /*************************************************************************
 
-        cSetRescueBlockUnit.cpp
+    cSetRescueBlockUnit.cpp
 
  Keeps a list of pointers to some RescueBlockUnit.
 
-        Rod Hanks               January 18th, 1995  /  August 1996
+    Rod Hanks               January 18th, 1995  /  August 1996
 
 ****************************************************************************/
 #include "RescueModel.h"
@@ -42,7 +42,7 @@ cSetRescueBlockUnit::~cSetRescueBlockUnit()
 
   for (loop = 0; loop < count; loop++)
   {
-    delete objects[loop];
+  delete objects[loop];
   }
   free(objects);
 }
@@ -53,7 +53,7 @@ void cSetRescueBlockUnit::PrepareModelDelete()
 
   for (loop = 0; loop < count; loop++)
   {
-    objects[loop]->PrepareModelDelete();
+  objects[loop]->PrepareModelDelete();
   }
 }
 
@@ -63,7 +63,7 @@ void cSetRescueBlockUnit::Archive(RescueContext *context, FILE *archiveFile)
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    objects[loop]->Archive(archiveFile);
+  objects[loop]->Archive(archiveFile);
   }
 }
 
@@ -72,7 +72,7 @@ void cSetRescueBlockUnit::DropWireframeMemory()
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    objects[loop]->DropWireframeMemory();
+  objects[loop]->DropWireframeMemory();
   }
 }
 
@@ -81,7 +81,7 @@ void cSetRescueBlockUnit::UnArchiveWireframeData(RescueModel *model, FILE *archi
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    objects[loop]->UnArchiveWireframeData(model, archiveFile);
+  objects[loop]->UnArchiveWireframeData(model, archiveFile);
   }
 }
 
@@ -90,7 +90,7 @@ void cSetRescueBlockUnit::RelinkWireframeData(RescueObject *parent)
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    objects[loop]->RelinkWireframeData(parent);
+  objects[loop]->RelinkWireframeData(parent);
   }
 }
 
@@ -99,7 +99,7 @@ void cSetRescueBlockUnit::ArchiveWireframeData(FILE *archiveFile)
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    objects[loop]->ArchiveWireframeData(archiveFile);
+  objects[loop]->ArchiveWireframeData(archiveFile);
   }
 }
 
@@ -109,7 +109,7 @@ RESCUEBOOL cSetRescueBlockUnit::AnyFileTruncated()
   RESCUEINT64 loop;
   for (loop = 0; loop < count && myReturn == FALSE; loop++)
   {
-    myReturn = objects[loop]->AnyFileTruncated();
+  myReturn = objects[loop]->AnyFileTruncated();
   }
   return myReturn;
 }
@@ -119,7 +119,7 @@ void cSetRescueBlockUnit::Relink(RescueObject *parent)
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    objects[loop]->Relink(parent);
+  objects[loop]->Relink(parent);
   }
 }
 
@@ -133,8 +133,8 @@ void cSetRescueBlockUnit::UnArchive(RescueContext *context, FILE *archiveFile)
   RESCUEINT64 loop;
   for (loop = 0; loop < newCount; loop++)
   {
-    RescueBlockUnit *newObject = new RescueBlockUnit(context, archiveFile);
-    (*this) += newObject;
+  RescueBlockUnit *newObject = new RescueBlockUnit(context, archiveFile);
+  (*this) += newObject;
   }
 }
 
@@ -144,7 +144,7 @@ void cSetRescueBlockUnit::EmptySelf(void)
  
   for (loop = 0; loop < count; loop++)
   {
-    delete objects[loop];
+  delete objects[loop];
   }
   count = 0;
 }
@@ -153,8 +153,8 @@ void cSetRescueBlockUnit::operator+=(RescueBlockUnit *newObject)
 {
   if (allocated == count)
   {
-    allocated += 10;
-    objects = (RescueBlockUnit **) realloc(objects, sizeof(RescueBlockUnit *) * (size_t) allocated);
+  allocated += 10;
+  objects = (RescueBlockUnit **) realloc(objects, sizeof(RescueBlockUnit *) * (size_t) allocated);
   }
   objects[count++] = newObject;
 }
@@ -166,25 +166,25 @@ RESCUEBOOL cSetRescueBlockUnit::operator-=(RescueBlockUnit *existingObject)
 
   while (ndx < count && found == FALSE)
   {
-    if (existingObject == objects[ndx])
-    {
+  if (existingObject == objects[ndx])
+  {
       found = TRUE;
-    }
-    else
-    {
+  }
+  else
+  {
       ndx++;
-    }
+  }
   }
   if (found)
   {
-    RESCUEINT64 loop;
+  RESCUEINT64 loop;
 
-    delete objects[ndx];
-    count--;
-    for (loop = ndx; loop < count; loop++)
-    {
+  delete objects[ndx];
+  count--;
+  for (loop = ndx; loop < count; loop++)
+  {
       objects[loop] = objects[loop + 1];
-    }
+  }
   }
   return found;
 }
@@ -196,22 +196,22 @@ RescueBlockUnit *cSetRescueBlockUnit::ObjectNamed(const RESCUECHAR *mayBeName)
 
   while (ndx < count && found == FALSE)
   {
-    if (objects[ndx]->IsNamed(mayBeName))
-    {
-      found = TRUE;
-    }
-    else
-    {
-      ndx++;
-    }
-  }
-  if (found)
+  if (objects[ndx]->IsNamed(mayBeName))
   {
-    return objects[ndx];
+      found = TRUE;
   }
   else
   {
-    return 0;
+      ndx++;
+  }
+  }
+  if (found)
+  {
+  return objects[ndx];
+  }
+  else
+  {
+  return 0;
   }
 }
 
@@ -222,22 +222,22 @@ RescueBlockUnit *cSetRescueBlockUnit::ObjectIdentifiedBy(RESCUEINT64 identifier)
 
   while (ndx < count && found == FALSE)
   {
-    if (objects[ndx]->IsIdentifiedBy(identifier))
-    {
-      found = TRUE;
-    }
-    else
-    {
-      ndx++;
-    }
-  }
-  if (found)
+  if (objects[ndx]->IsIdentifiedBy(identifier))
   {
-    return objects[ndx];
+      found = TRUE;
   }
   else
   {
-    return 0;
+      ndx++;
+  }
+  }
+  if (found)
+  {
+  return objects[ndx];
+  }
+  else
+  {
+  return 0;
   }
 }
 
@@ -248,7 +248,7 @@ RescueGeometry *cSetRescueBlockUnit::GeometryIdentifiedBy(RESCUEINT64 identifier
 
   while (ndx < count && myReturn == 0)
   {
-    myReturn = objects[ndx++]->GeometryIdentifiedBy(identifier);
+  myReturn = objects[ndx++]->GeometryIdentifiedBy(identifier);
   }
   return myReturn;
 }
@@ -257,19 +257,19 @@ RESCUEBOOL cSetRescueBlockUnit::operator-=(RESCUEINT64 ndx)
 {
   if (ndx >= 0 && ndx < count)
   {
-    RESCUEINT64 loop;
+  RESCUEINT64 loop;
 
-    delete objects[ndx];
-    count--;
-    for (loop = ndx; loop < count; loop++)
-    {
+  delete objects[ndx];
+  count--;
+  for (loop = ndx; loop < count; loop++)
+  {
       objects[loop] = objects[loop + 1];
-    }
-    return TRUE;
+  }
+  return TRUE;
   }
   else
   {
-    return FALSE;
+  return FALSE;
   }
 }
 
@@ -277,11 +277,11 @@ RescueBlockUnit *cSetRescueBlockUnit::NthObject(RESCUEINT64 ordinal)
 {
   if (ordinal < 0 || ordinal >= count)
   {
-    return 0;
+  return 0;
   }
   else
   {
-    return objects[ordinal];
+  return objects[ordinal];
   }
 }
 
@@ -299,15 +299,15 @@ RESCUEINT32 cSetRescueBlockUnit::Count(RESCUEBOOL throwIfTrue)
 {
   if (count > 2147483647)
   {
-    if (throwIfTrue)
-    {
+  if (throwIfTrue)
+  {
       throw "Model is too large to be accessed in 32 bit mode.";
-    }
-    return 0;
+  }
+  return 0;
   }
   else
   {
-    return (RESCUEINT32) count;
+  return (RESCUEINT32) count;
   }
 }
 

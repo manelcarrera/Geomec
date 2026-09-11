@@ -124,13 +124,13 @@ public:
   virtual void ZoomOut();
   virtual void ZoomReset();
   virtual void DisplacementVector(const geo::CVector &newval);
-	virtual const geo::CVector &DisplacementVector() const;
-	virtual const geo::CVector &ModelScaleVector() const;
-	virtual void ModelScaleVector(const geo::CVector &newval);
+  virtual const geo::CVector &DisplacementVector() const;
+  virtual const geo::CVector &ModelScaleVector() const;
+  virtual void ModelScaleVector(const geo::CVector &newval);
   virtual const geo::CVector &ScaleVector() const;
   virtual void ScaleVector(const geo::CVector &newVal);
   virtual void RotateLockVector(const geo::CVector& vec);
-	virtual const geo::CVector &RotateLockVector() const;
+  virtual const geo::CVector &RotateLockVector() const;
   virtual void LockRotationVector(const geo::IVector& vector);
   virtual const geo::IVector& LockRotationVector() const;
   virtual bool CanLockRotationVector() const;
@@ -151,7 +151,7 @@ public:
   virtual bool Lighting() const;
   virtual bool CanEnableLighting() const;
   virtual void EnableLighting(bool lighting);
-	virtual bool LightingEnabled() const;
+  virtual bool LightingEnabled() const;
   virtual void OnSize(int cx, int cy);
   virtual void ShowValuesPerElement(bool perElement);
   virtual bool ShowValuesPerElement() const;

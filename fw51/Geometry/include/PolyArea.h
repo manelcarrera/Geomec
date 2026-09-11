@@ -33,9 +33,9 @@ extern "C" {
 
 enum
 {
-    err_no_memory = 2,
-    err_bad_parm = 3,
-    err_ok = 0
+  err_no_memory = 2,
+  err_bad_parm = 3,
+  err_ok = 0
 };
 
 #define PLF_STATUS      0x0003
@@ -50,25 +50,25 @@ enum
 typedef struct VNODE VNODE;
 struct VNODE
 {
-    VNODE *next, *prev;
-    unsigned int Flags;
-    Vector point;
-    union
-    {
-        VNODE *link;
-        void *v;
-        int i;
-    } t;
+  VNODE *next, *prev;
+  unsigned int Flags;
+  Vector point;
+  union
+  {
+    VNODE *link;
+    void *v;
+    int i;
+  } t;
 };
 
 typedef struct PLINE PLINE;
 struct PLINE
 {
-    PLINE *next;
-    VNODE head;
-    unsigned int Count;
-	unsigned int Flags;
-    double xmin, ymin, xmax, ymax;
+  PLINE *next;
+  VNODE head;
+  unsigned int Count;
+  unsigned int Flags;
+  double xmin, ymin, xmax, ymax;
 };
 
 PLINE *poly_NewContour(Vector v);
@@ -92,8 +92,8 @@ void poly_ExclVertex(VNODE * node);
 typedef struct POLYAREA POLYAREA;
 struct POLYAREA
 {
-    POLYAREA *f, *b;
-    PLINE *contours;
+  POLYAREA *f, *b;
+  PLINE *contours;
 };
 
 BOOL poly_M_Copy0(POLYAREA ** dst, const POLYAREA * srcfst);
@@ -127,10 +127,10 @@ void poly_Clear(POLYAREA *p);
 BOOL poly_Valid(POLYAREA *p);
 
 enum PolygonBooleanOperation {
-	PBO_UNITE,
-	PBO_ISECT,
-	PBO_SUB,
-	PBO_XOR
+  PBO_UNITE,
+  PBO_ISECT,
+  PBO_SUB,
+  PBO_XOR
 };
 
 int poly_Boolean(const POLYAREA * a, const POLYAREA * b, POLYAREA ** res, int action);

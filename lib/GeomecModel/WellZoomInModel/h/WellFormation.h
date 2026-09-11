@@ -12,12 +12,12 @@ public:
   CWellFormation(const CFormationBase& parent, unsigned int nEntryType, IWellModel& model);
   CWellFormation(CFemAppModel& model);
 
-	virtual bool ShowCenterPoints() const;
-	virtual bool Less(const CGraphNode &node) const;
+  virtual bool ShowCenterPoints() const;
+  virtual bool Less(const CGraphNode &node) const;
 
-	virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-	virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
-	virtual long SavedItems() const;
+  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
+  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  virtual long SavedItems() const;
 
   ACCEPT_GEOMECMODELVISITORS(VisitWellFormation);
 

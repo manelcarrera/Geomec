@@ -38,28 +38,28 @@ static inline bool _isvalid(const double &v)
 CValue::CValue()
 : m_dValue(std::numeric_limits<double>::quiet_NaN())
 {
-	M_BVALID(false);
+  M_BVALID(false);
 }
 
 CValue::CValue(const double &dValue)
 : m_dValue(std::numeric_limits<double>::quiet_NaN())
 {
-	M_BVALID( _isvalid( dValue));
-	if (_isvalid( dValue))
-		m_dValue= dValue;
+  M_BVALID( _isvalid( dValue));
+  if (_isvalid( dValue))
+    m_dValue= dValue;
 }
 
 CValue::CValue(const IValue &value)
 : m_dValue(std::numeric_limits<double>::quiet_NaN())
 {
-	M_BVALID(value.Valid());
-	if(value.Valid())
-		m_dValue = value.Value();
+  M_BVALID(value.Valid());
+  if(value.Valid())
+    m_dValue = value.Value();
 }
 
 bool CValue::Valid() const
 {
-	return _isvalid(m_dValue);
+  return _isvalid(m_dValue);
 }
 
 void CValue::Invalidate()
@@ -70,46 +70,46 @@ void CValue::Invalidate()
 
 const double &CValue::Value() const
 {
-	assert(Valid());
-	return m_dValue;
+  assert(Valid());
+  return m_dValue;
 }
 
 void CValue::Value(const double &dValue)
 {
-	if ( _isvalid(dValue) )
-	{
-		m_dValue = dValue;
-		M_BVALID(true);
-	}
-	else
-	{
-		m_dValue= std::numeric_limits<double>::quiet_NaN();
-		M_BVALID(false);
-	}
+  if ( _isvalid(dValue) )
+  {
+    m_dValue = dValue;
+    M_BVALID(true);
+  }
+  else
+  {
+    m_dValue= std::numeric_limits<double>::quiet_NaN();
+    M_BVALID(false);
+  }
 }
 
 CValue &CValue::operator=(const double &dValue)
 {
-	Value(dValue);
+  Value(dValue);
 
-	return *this;
+  return *this;
 }
 
 CValue& CValue::operator=(const IValue &value)
 {
-	Value( value.Value());
+  Value( value.Value());
 
-	return *this;
+  return *this;
 }
 
 std::string CValue::Representation() const
 {
-	if(!Valid()) return std::string("NaN");
+  if(!Valid()) return std::string("NaN");
 
-    char buf[1024];
-    snprintf(buf, 1023, "%f", Value());
+  char buf[1024];
+  snprintf(buf, 1023, "%f", Value());
 
-    return std::string(buf);
+  return std::string(buf);
 }
 
 }

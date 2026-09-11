@@ -8,9 +8,9 @@ class OIV2DHistorySceneWrapper : public OIV2DSceneWrapper
 
 public:
 
-    explicit OIV2DHistorySceneWrapper(OIV2DScene& scene);
+  explicit OIV2DHistorySceneWrapper(OIV2DScene& scene);
 
-    virtual bool IsOIV2DHistoryScene() const;
+  virtual bool IsOIV2DHistoryScene() const;
 };
 
 #endif  // _OIV2DHistorySceneWrapper_h_

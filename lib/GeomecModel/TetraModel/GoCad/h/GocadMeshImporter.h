@@ -63,9 +63,9 @@ private:
   bool _createFormationsFromVolumes(IProgressBase& progress);
 
   bool _createDataSurfaces(IProgressBase& progress, std::vector<geo::CSurfaceDesc *>& surface_descriptions, const std::vector<int>& re_index_tetras,
-    std::vector<CSurfaceBase *>& mesh_surfaces, std::vector<std::string>& mesh_surface_names, std::vector<std::map<size_t, std::vector<const geo::IFace *> > >& surface2bodies);
+  std::vector<CSurfaceBase *>& mesh_surfaces, std::vector<std::string>& mesh_surface_names, std::vector<std::map<size_t, std::vector<const geo::IFace *> > >& surface2bodies);
   bool _createModelSurfaces(IProgressBase& progress, std::vector<geo::CSurfaceDesc *>& surface_descriptions,
-    std::vector<CSurfaceBase *>& mesh_surfaces, std::vector<std::string>& mesh_surface_names, std::vector<std::map<size_t, std::vector<const geo::IFace *> > >& surface2bodies);
+  std::vector<CSurfaceBase *>& mesh_surfaces, std::vector<std::string>& mesh_surface_names, std::vector<std::map<size_t, std::vector<const geo::IFace *> > >& surface2bodies);
 
   bool canHandleVolume(int type);
 
@@ -74,8 +74,8 @@ public:
   class CPositionTriangle
   {
   public:
-    CPositionTriangle(const geo::IFace& face)
-    {
+  CPositionTriangle(const geo::IFace& face)
+  {
       assert(face.NrOfPoints() == 3);
 
       m_stPoints.insert(face.Point(0));
@@ -83,24 +83,24 @@ public:
       m_stPoints.insert(face.Point(2));
 
       assert(m_stPoints.size() == 3);
-    }
+  }
 
-    CPositionTriangle(const CGocadData::CTriangle& triangle)
-    {
+  CPositionTriangle(const CGocadData::CTriangle& triangle)
+  {
       m_stPoints.insert(Node2Point(triangle.Node(0)));
       m_stPoints.insert(Node2Point(triangle.Node(1)));
       m_stPoints.insert(Node2Point(triangle.Node(2)));
 
       assert(m_stPoints.size() == 3);
-    }
+  }
 
-    bool operator<(const CPositionTriangle& rhs) const
-    {
+  bool operator<(const CPositionTriangle& rhs) const
+  {
       return m_stPoints < rhs.m_stPoints;
-    }
+  }
 
   private:
-    std::set<geo::CPoint> m_stPoints;
+  std::set<geo::CPoint> m_stPoints;
   };
 
   // each face belongs to a bodygroup
@@ -174,16 +174,16 @@ public:
   const geo::CTetMeshBase& TetMesh() const;
   geo::CTetMeshBase& TetMesh();
 
-	void set_formations();
-	int set_points( int iSolid, int iVolume, TVertex2NodeIndexMap& mpVertex2NodeIndex, CProgressBase& progdlg );
-	void set_tetras( int iSolid, int iVolume, TVertex2NodeIndexMap& mpVertex2NodeIndex, std::vector< int >& vol_elems_v, CProgressBase& progdlg );
+  void set_formations();
+  int set_points( int iSolid, int iVolume, TVertex2NodeIndexMap& mpVertex2NodeIndex, CProgressBase& progdlg );
+  void set_tetras( int iSolid, int iVolume, TVertex2NodeIndexMap& mpVertex2NodeIndex, std::vector< int >& vol_elems_v, CProgressBase& progdlg );
   
 
   bool Import();
 
 private:
-	enum eProgress{ Surface, ConnectivityMap, PointsPlusTetras };
-	int get_steps( eProgress type_ );
+  enum eProgress{ Surface, ConnectivityMap, PointsPlusTetras };
+  int get_steps( eProgress type_ );
 
 private:
   std::vector<const CGocadData::CTSolid*> m_vcTSolids;
@@ -193,8 +193,8 @@ public:
   class CPositionTriangle
   {
   public:
-    CPositionTriangle(const geo::IFace& face)
-    {
+  CPositionTriangle(const geo::IFace& face)
+  {
       assert(face.NrOfPoints() == 3);
 
       m_stPoints.insert(face.Point(0));
@@ -202,24 +202,24 @@ public:
       m_stPoints.insert(face.Point(2));
 
       assert(m_stPoints.size() == 3);
-    }
+  }
 
-    CPositionTriangle(const CGocadData::CTriangle& triangle)
-    {
+  CPositionTriangle(const CGocadData::CTriangle& triangle)
+  {
       m_stPoints.insert(Node2Point(triangle.Node(0)));
       m_stPoints.insert(Node2Point(triangle.Node(1)));
       m_stPoints.insert(Node2Point(triangle.Node(2)));
 
       assert(m_stPoints.size() == 3);
-    }
+  }
 
-    bool operator<(const CPositionTriangle& rhs) const
-    {
+  bool operator<(const CPositionTriangle& rhs) const
+  {
       return m_stPoints < rhs.m_stPoints;
-    }
+  }
 
   private:
-    std::set<geo::CPoint> m_stPoints;
+  std::set<geo::CPoint> m_stPoints;
   };
 
   // each face belongs to a bodygroup
@@ -234,108 +234,108 @@ private:
 #if 0
   struct TriangleInfo
   {
-    double x, y, z;
-    double r2;
-    const geo::CBodyTriangle *triangle;
+  double x, y, z;
+  double r2;
+  const geo::CBodyTriangle *triangle;
 
-    double SquaredDistance(const geo::IPoint& p);
-    double Contains(const geo::IPoint& p);
+  double SquaredDistance(const geo::IPoint& p);
+  double Contains(const geo::IPoint& p);
 
-    TriangleInfo(const geo::CBodyTriangle *triangle);
+  TriangleInfo(const geo::CBodyTriangle *triangle);
   };
 #endif
 
   class CGocadSurface
   {
   public:
-    CGocadSurface(const CGocadData::CSurface& gocadsurface);
-    ~CGocadSurface();
+  CGocadSurface(const CGocadData::CSurface& gocadsurface);
+  ~CGocadSurface();
 
-    const CGocadData::CSurface& Surface() const;
+  const CGocadData::CSurface& Surface() const;
 
-    int TFaceSize() const;
-    const CGocadTFace& TFace(int i) const;
-    CGocadTFace& TFace(int i);
+  int TFaceSize() const;
+  const CGocadTFace& TFace(int i) const;
+  CGocadTFace& TFace(int i);
 
-    bool IsFault() const;
+  bool IsFault() const;
 
-    void MarkAsFault();
+  void MarkAsFault();
 
-    void MergeFaces();
+  void MergeFaces();
 
   private:
-    const CGocadData::CSurface& m_surface;
-    std::vector<CGocadTFace*> m_vcTFaces;
-    bool m_bFault;
+  const CGocadData::CSurface& m_surface;
+  std::vector<CGocadTFace*> m_vcTFaces;
+  bool m_bFault;
   };
 
 public:
   class CGocadTFace
   {
   public:
-    CGocadTFace(const CGocadData::CTFace& tface);
+  CGocadTFace(const CGocadData::CTFace& tface);
 
-    // - the front and back groups can be the same, in that case
-    //    this TFace's parent surface MUST be a fault
-    // - the back group can be NULL, then this TFace's parent is a side/top/bottom surface
-    const geo::CBodyGroup* FrontGroup() const;
-    const geo::CBodyGroup* BackGroup() const;
+  // - the front and back groups can be the same, in that case
+  //    this TFace's parent surface MUST be a fault
+  // - the back group can be NULL, then this TFace's parent is a side/top/bottom surface
+  const geo::CBodyGroup* FrontGroup() const;
+  const geo::CBodyGroup* BackGroup() const;
 
-    // opposite faces, first is front, second is back
-    typedef std::pair<const geo::IFace*, const geo::IFace*> TFacePair;
-    int FacePairSize() const;
-    const TFacePair& FacePair(int i) const;
+  // opposite faces, first is front, second is back
+  typedef std::pair<const geo::IFace*, const geo::IFace*> TFacePair;
+  int FacePairSize() const;
+  const TFacePair& FacePair(int i) const;
 
-    bool CollectFaces(const TPositionFacesMap& mpPositionFaces);
+  bool CollectFaces(const TPositionFacesMap& mpPositionFaces);
 
-    void AttachSurface(CSurfaceBase& surface);
-    CSurfaceBase* AttachedSurface();
+  void AttachSurface(CSurfaceBase& surface);
+  CSurfaceBase* AttachedSurface();
 
   private:
-    bool CollectFacesSimple(const TPositionFacesMap& mpPositionFaces, bool bTwoSeparateBodies);
+  bool CollectFacesSimple(const TPositionFacesMap& mpPositionFaces, bool bTwoSeparateBodies);
 
-    const CGocadData::CTFace& m_tface;
-    const geo::CBodyGroup* m_pFrontGroup;
-    const geo::CBodyGroup* m_pBackGroup;
-    std::vector<TFacePair> m_vcFacePairs;
-    CSurfaceBase* m_pSurface;
+  const CGocadData::CTFace& m_tface;
+  const geo::CBodyGroup* m_pFrontGroup;
+  const geo::CBodyGroup* m_pBackGroup;
+  std::vector<TFacePair> m_vcFacePairs;
+  CSurfaceBase* m_pSurface;
   };
 
   	struct TSurfaceDef
 {
   TSurfaceDef(CGocadMeshImporter::CGocadTFace& tface, bool bFrontGroup,
-    bool bFault)
+  bool bFault)
   : m_tface(tface),
-    m_bFrontGroup(bFrontGroup),
-    m_bFault(bFault)
+  m_bFrontGroup(bFrontGroup),
+  m_bFault(bFault)
   {
   }
 
   TSurfaceDef(const TSurfaceDef& rhs)
   : m_tface(rhs.m_tface),
-    m_bFrontGroup(rhs.m_bFrontGroup),
-    m_bFault(rhs.m_bFault)
+  m_bFrontGroup(rhs.m_bFrontGroup),
+  m_bFault(rhs.m_bFault)
   {
   }
 
   TSurfaceDef& operator=(const TSurfaceDef& rhs)
   {
-    assert(&m_tface == &rhs.m_tface);
-    m_bFrontGroup = rhs.m_bFrontGroup;
-    m_bFault = rhs.m_bFault;
+  assert(&m_tface == &rhs.m_tface);
+  m_bFrontGroup = rhs.m_bFrontGroup;
+  m_bFault = rhs.m_bFault;
 
-    return *this;
+  return *this;
   }
 
   CGocadMeshImporter::CGocadTFace& m_tface;
   bool m_bFrontGroup;
   bool m_bFault;
 };
-	
-	// create_gm_objs
-	typedef std::vector<TSurfaceDef> TSurfaceVec;
-	typedef std::map<const geo::CBodyGroup*, TSurfaceVec> TBodyGroup2SurfaceMap;
-	typedef std::map<double, int> TAverageDepthMap;
+  
+  // create_gm_objs
+  typedef std::vector<TSurfaceDef> TSurfaceVec;
+  typedef std::map<const geo::CBodyGroup*, TSurfaceVec> TBodyGroup2SurfaceMap;
+  typedef std::map<double, int> TAverageDepthMap;
 
 private:
   std::vector<CGocadSurface*> m_vcGocadSurfaces;
@@ -343,11 +343,11 @@ private:
   typedef std::set<CPositionTriangle> TPositionTriangleSet;
 
 private:
-	bool set_surfaces(IProgressBase& progdlg);
-	TPositionFacesMap map_position_faces( TPositionTriangleSet& stGocadSurfaceTriangles, CProgressBase& progdlg );
-	CGocadMeshImporter::TPositionTriangleSet gocad_sur_tri_set();
-	bool add_surface( const CGocadData::CSurface& gocadsurface, TPositionFacesMap& mpPositionFaces, CProgressBase& progdlg );
-	void add_to_gocad_sur_tri_set( const CGocadData::CSurface& sur, TPositionTriangleSet& stGocadSurfaceTriangles );
+  bool set_surfaces(IProgressBase& progdlg);
+  TPositionFacesMap map_position_faces( TPositionTriangleSet& stGocadSurfaceTriangles, CProgressBase& progdlg );
+  CGocadMeshImporter::TPositionTriangleSet gocad_sur_tri_set();
+  bool add_surface( const CGocadData::CSurface& gocadsurface, TPositionFacesMap& mpPositionFaces, CProgressBase& progdlg );
+  void add_to_gocad_sur_tri_set( const CGocadData::CSurface& sur, TPositionTriangleSet& stGocadSurfaceTriangles );
 
 
   void DestroyGocadSurfaces();
@@ -361,30 +361,30 @@ private:
   //void CreateInterfaceElementsDSF(IProgressBase& progdlg, TSurface2SurfaceDescMap& mpSurface2SurfaceDesc);
   void CreateIntermediateSurfaces(IProgressBase& progdlg, TSurface2SurfaceDescMap& mpSurface2SurfaceDesc);
 
-	bool create_gm_objs_01( bool& bHaveDoubleSidedFaults, 
-							TAverageDepthMap& mpAverageDepth, 
-							CProgressBase& progdlg );
+  bool create_gm_objs_01( bool& bHaveDoubleSidedFaults, 
+              TAverageDepthMap& mpAverageDepth, 
+              CProgressBase& progdlg );
 
   void create_gm_objs_02(	int iTopSurface, 
-							TSurfaceSourceMap& mpSurfaceSource, 
-							TBodyGroup2SurfaceMap& mpBodyGroup2Surface, 
-							CProgressBase& progdlg ); // top horizon
+              TSurfaceSourceMap& mpSurfaceSource, 
+              TBodyGroup2SurfaceMap& mpBodyGroup2Surface, 
+              CProgressBase& progdlg ); // top horizon
 
   void create_gm_objs_03(	int iBotSurface, 
-							TSurfaceSourceMap& mpSurfaceSource, 
-							TBodyGroup2SurfaceMap& mpBodyGroup2Surface, 
-							CProgressBase& progdlg ); // bottom horizon
+              TSurfaceSourceMap& mpSurfaceSource, 
+              TBodyGroup2SurfaceMap& mpBodyGroup2Surface, 
+              CProgressBase& progdlg ); // bottom horizon
 
   void create_gm_objs_04(	TSurfaceSourceMap& mpSurfaceSource, 
-							TBodyGroup2SurfaceMap& mpBodyGroup2Surface, 
-							int iTopSurface,
-							int iBotSurface,
-							CProgressBase& progdlg );
+              TBodyGroup2SurfaceMap& mpBodyGroup2Surface, 
+              int iTopSurface,
+              int iBotSurface,
+              CProgressBase& progdlg );
 
 void create_gm_objs_05( TSurfaceSourceMap& mpSurfaceSource, 
-						TBodyGroup2SurfaceMap& mpBodyGroup2Surface, 
-						int bHaveDoubleSidedFaults,
-						CProgressBase& progdlg );
+            TBodyGroup2SurfaceMap& mpBodyGroup2Surface, 
+            int bHaveDoubleSidedFaults,
+            CProgressBase& progdlg );
 
 #if 0
   // helper functions

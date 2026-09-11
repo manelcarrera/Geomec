@@ -20,9 +20,9 @@ class RescueLookupTable:public RescueLookupItem
 {
 public:
   RescueLookupTable(RescueContext *context, RESCUEINT64 rowsIn, RESCUEFLOAT *tableIn)
-                            :RescueLookupItem(context)
-                            ,table(tableIn)
-                            ,rows(rowsIn)
+              :RescueLookupItem(context)
+              ,table(tableIn)
+              ,rows(rowsIn)
   {isA = R_RescueLookupTable;}
           // The array must be allocated on the heap and must be
           // rowsIn * 2 floats long.  It becomes the property of

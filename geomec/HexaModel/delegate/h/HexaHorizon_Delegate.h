@@ -40,7 +40,7 @@ public:
 private:
   CHexaHorizonEntry_Delegate(const CHexaHorizonEntry_Delegate& rhs);
   CHexaHorizonEntry_Delegate& operator = (
-    const CHexaHorizonEntry_Delegate& rhs);
+  const CHexaHorizonEntry_Delegate& rhs);
 
   CHexaHorizonEntry* m_hexaHorizonEntry;
 

@@ -18,18 +18,18 @@ class CLoadManager;
 class CTemperatureLoad : public IStructuralLoad  
 {
 public:
-	// same value in all nodes
-	CTemperatureLoad(CLoadCase &loadcase, double size, const geo::IElement &element);
+  // same value in all nodes
+  CTemperatureLoad(CLoadCase &loadcase, double size, const geo::IElement &element);
 
-	// vector of values for each node (vcValues.size() must equal to body.NrOfPoints())
-	CTemperatureLoad(CLoadCase &loadcase, const std::vector<double> &vcValues, const geo::IElement &element);
-	virtual ~CTemperatureLoad();
+  // vector of values for each node (vcValues.size() must equal to body.NrOfPoints())
+  CTemperatureLoad(CLoadCase &loadcase, const std::vector<double> &vcValues, const geo::IElement &element);
+  virtual ~CTemperatureLoad();
 
-	virtual bool WriteFilos() const;
-	const geo::IElement &Element() const;
+  virtual bool WriteFilos() const;
+  const geo::IElement &Element() const;
 
 private:
-	const geo::IElement& m_Element;
+  const geo::IElement& m_Element;
 };
 
 } // namespace dia

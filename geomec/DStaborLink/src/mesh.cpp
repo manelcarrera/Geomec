@@ -13,74 +13,74 @@
 
 double CMesh::GetBoreholeRadius()
 {
-	double result;
-	GetProperty(0x1, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x1, VT_R8, (void*)&result);
+  return result;
 }
 
 void CMesh::SetBoreholeRadius(double propVal)
 {
-	SetProperty(0x1, VT_R8, propVal);
+  SetProperty(0x1, VT_R8, propVal);
 }
 
 double CMesh::GetModelRadius()
 {
-	double result;
-	GetProperty(0x2, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x2, VT_R8, (void*)&result);
+  return result;
 }
 
 void CMesh::SetModelRadius(double propVal)
 {
-	SetProperty(0x2, VT_R8, propVal);
+  SetProperty(0x2, VT_R8, propVal);
 }
 
 long CMesh::GetNrTangential()
 {
-	long result;
-	GetProperty(0x3, VT_I4, (void*)&result);
-	return result;
+  long result;
+  GetProperty(0x3, VT_I4, (void*)&result);
+  return result;
 }
 
 void CMesh::SetNrTangential(long propVal)
 {
-	SetProperty(0x3, VT_I4, propVal);
+  SetProperty(0x3, VT_I4, propVal);
 }
 
 long CMesh::GetNrRadial()
 {
-	long result;
-	GetProperty(0x4, VT_I4, (void*)&result);
-	return result;
+  long result;
+  GetProperty(0x4, VT_I4, (void*)&result);
+  return result;
 }
 
 void CMesh::SetNrRadial(long propVal)
 {
-	SetProperty(0x4, VT_I4, propVal);
+  SetProperty(0x4, VT_I4, propVal);
 }
 
 double CMesh::GetSizeFactor()
 {
-	double result;
-	GetProperty(0x5, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x5, VT_R8, (void*)&result);
+  return result;
 }
 
 void CMesh::SetSizeFactor(double propVal)
 {
-	SetProperty(0x5, VT_R8, propVal);
+  SetProperty(0x5, VT_R8, propVal);
 }
 
 BOOL CMesh::GetQuarterMesh()
 {
-	BOOL result;
-	GetProperty(0x6, VT_BOOL, (void*)&result);
-	return result;
+  BOOL result;
+  GetProperty(0x6, VT_BOOL, (void*)&result);
+  return result;
 }
 
 void CMesh::SetQuarterMesh(BOOL propVal)
 {
-	SetProperty(0x6, VT_BOOL, propVal);
+  SetProperty(0x6, VT_BOOL, propVal);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -88,7 +88,7 @@ void CMesh::SetQuarterMesh(BOOL propVal)
 
 BOOL CMesh::SetDefault()
 {
-	BOOL result;
-	InvokeHelper(0x7, DISPATCH_METHOD, VT_BOOL, (void*)&result, NULL);
-	return result;
+  BOOL result;
+  InvokeHelper(0x7, DISPATCH_METHOD, VT_BOOL, (void*)&result, NULL);
+  return result;
 }

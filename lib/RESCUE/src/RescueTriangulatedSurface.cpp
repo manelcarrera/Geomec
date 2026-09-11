@@ -26,41 +26,41 @@ void RescueTriangulatedSurface::RelinkPropertyGrids()
   RescueGrid *oldNodeGrid = 0;
   if (faceGrid != 0)
   {
-    oldFaceGrid = faceGrid;
-    faceGrid = new RescueGrid(context, RescueCoordinateSystem::LUB, 0, faces->Count64());
+  oldFaceGrid = faceGrid;
+  faceGrid = new RescueGrid(context, RescueCoordinateSystem::LUB, 0, faces->Count64());
   }
   if (nodeGrid != 0)
   {
-    oldNodeGrid = nodeGrid;
-    nodeGrid = new RescueGrid(context, RescueCoordinateSystem::LUB, 0, vertices->Count64());
+  oldNodeGrid = nodeGrid;
+  nodeGrid = new RescueGrid(context, RescueCoordinateSystem::LUB, 0, vertices->Count64());
   }
   if (oldFaceGrid != 0 || oldNodeGrid != 0)
   {
-    RESCUEINT64 ordinal = 0;
-    RescueProperty *property = parentSurface->NthRescueProperty(ordinal++);
-    while (property != 0)
-    {
+  RESCUEINT64 ordinal = 0;
+  RescueProperty *property = parentSurface->NthRescueProperty(ordinal++);
+  while (property != 0)
+  {
       if (property->TriangulatedSurface())
       {
-        if (property->PropertyAttachedTo() == RescueProperty::FACE_CENTERED)
-        {
+    if (property->PropertyAttachedTo() == RescueProperty::FACE_CENTERED)
+    {
           property->Data()->SetGrid(faceGrid);
-        }
-        else
-        {
+    }
+    else
+    {
           property->Data()->SetGrid(nodeGrid);
-        }
+    }
       }
       property = parentSurface->NthRescueProperty(ordinal++);
-    }
-    if (oldFaceGrid != 0)
-    {
+  }
+  if (oldFaceGrid != 0)
+  {
       delete oldFaceGrid;
-    }
-    if (oldNodeGrid != 0)
-    {
+  }
+  if (oldNodeGrid != 0)
+  {
       delete oldNodeGrid;
-    }
+  }
   }
 }
 
@@ -69,19 +69,19 @@ RescueGrid *RescueTriangulatedSurface::Grid(RescueProperty::AttachmentPoint howA
   RescueContext *context = parentSurface->ParentModel()->Context();
   if (howApplies == RescueProperty::FACE_CENTERED)
   {
-    if (faceGrid == 0)
-    {
+  if (faceGrid == 0)
+  {
       faceGrid = new RescueGrid(context, RescueCoordinateSystem::LUB, 0, faces->Count64());
-    }
-    return faceGrid;
+  }
+  return faceGrid;
   }
   else
   {
-    if (nodeGrid == 0)
-    {
+  if (nodeGrid == 0)
+  {
       nodeGrid = new RescueGrid(context, RescueCoordinateSystem::LUB, 0, vertices->Count64());
-    }
-    return nodeGrid;
+  }
+  return nodeGrid;
   }
 }
 
@@ -108,10 +108,10 @@ RESCUEFLOAT *RescueTriangulatedSurface::Vertices(RESCUEINT32 &vertexCount)
   RESCUEINT64 loop;
   for (loop = 0; loop < vertexCount; loop++)
   {
-    RescueTriangleVertex *vertex = vertices->NthObject(loop);
-    myReturn[ndx++] = vertex->X();
-    myReturn[ndx++] = vertex->Y();
-    myReturn[ndx++] = vertex->Z();
+  RescueTriangleVertex *vertex = vertices->NthObject(loop);
+  myReturn[ndx++] = vertex->X();
+  myReturn[ndx++] = vertex->Y();
+  myReturn[ndx++] = vertex->Z();
   }
   return myReturn;
 }
@@ -124,10 +124,10 @@ RESCUEFLOAT *RescueTriangulatedSurface::Vertices(RESCUEINT64 &vertexCount)
   RESCUEINT64 loop;
   for (loop = 0; loop < vertexCount; loop++)
   {
-    RescueTriangleVertex *vertex = vertices->NthObject(loop);
-    myReturn[ndx++] = vertex->X();
-    myReturn[ndx++] = vertex->Y();
-    myReturn[ndx++] = vertex->Z();
+  RescueTriangleVertex *vertex = vertices->NthObject(loop);
+  myReturn[ndx++] = vertex->X();
+  myReturn[ndx++] = vertex->Y();
+  myReturn[ndx++] = vertex->Z();
   }
   return myReturn;
 }
@@ -140,13 +140,13 @@ RESCUEINT32 *RescueTriangulatedSurface::Faces(RESCUEINT32 &faceCount)
   RESCUEINT64 loop;
   for (loop = 0; loop < faceCount; loop++)
   {
-    RescueTriangleFace *face = faces->NthObject(loop);
-    RESCUEINT64 subloop;
-    for (subloop = 0; subloop < 3; subloop++)
-    {
+  RescueTriangleFace *face = faces->NthObject(loop);
+  RESCUEINT64 subloop;
+  for (subloop = 0; subloop < 3; subloop++)
+  {
       RescueTriangleVertex *vertex = face->NthVertex(subloop);
       myReturn[ndx++] = (RESCUEINT32) vertices->IndexOf(vertex);
-    }
+  }
   }
   return myReturn;
 }
@@ -159,13 +159,13 @@ RESCUEINT64 *RescueTriangulatedSurface::Faces(RESCUEINT64 &faceCount)
   RESCUEINT64 loop;
   for (loop = 0; loop < faceCount; loop++)
   {
-    RescueTriangleFace *face = faces->NthObject(loop);
-    RESCUEINT64 subloop;
-    for (subloop = 0; subloop < 3; subloop++)
-    {
+  RescueTriangleFace *face = faces->NthObject(loop);
+  RESCUEINT64 subloop;
+  for (subloop = 0; subloop < 3; subloop++)
+  {
       RescueTriangleVertex *vertex = face->NthVertex(subloop);
       myReturn[ndx++] = vertices->IndexOf(vertex);
-    }
+  }
   }
   return myReturn;
 }
@@ -178,54 +178,54 @@ RescueTriangulatedSurface::~RescueTriangulatedSurface()
   delete faces;
   if (faceGrid != 0)
   {
-    delete faceGrid;
+  delete faceGrid;
   }
   if (nodeGrid != 0)
   {
-    delete nodeGrid;
+  delete nodeGrid;
   }
   if (faceStatus != 0)
   {
-    delete faceStatus;
+  delete faceStatus;
   }
 }
 
 RescueTriangulatedSurface::RescueTriangulatedSurface(RescueContext *context, FILE *archiveFile)
-                                                    :RescueObject(context)
-                                                    ,verticesLookups(0)
-                                                    ,vertices(new cSetRescueTriangleVertex)
-                                                    ,faces(new cSetRescueTriangleFace)
-                                                    ,octTrees(new cSetRescueSOctTreeNode)
-                                                    ,faceGrid(0)
-                                                    ,nodeGrid(0)
-                                                    ,arrayVersion(0)
-                                                    ,hasChanged(FALSE)
-                                                    ,loaded(FALSE)
-                                                    ,faceStatus(0)
+                          :RescueObject(context)
+                          ,verticesLookups(0)
+                          ,vertices(new cSetRescueTriangleVertex)
+                          ,faces(new cSetRescueTriangleFace)
+                          ,octTrees(new cSetRescueSOctTreeNode)
+                          ,faceGrid(0)
+                          ,nodeGrid(0)
+                          ,arrayVersion(0)
+                          ,hasChanged(FALSE)
+                          ,loaded(FALSE)
+                          ,faceStatus(0)
 {
   ReadId(context, archiveFile);
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       if (strcmp(myString, "faceStatus") == 0)
       {
-        RescueBuffer buf(context, archiveFile);
-        if (faceStatus != 0)
-        {
+    RescueBuffer buf(context, archiveFile);
+    if (faceStatus != 0)
+    {
           delete faceStatus;
-        }
-        faceStatus = new RescueBitArray(context, buf);
+    }
+    faceStatus = new RescueBitArray(context, buf);
       }
       else
       {
-        RescueBuffer buf(context, archiveFile);
+    RescueBuffer buf(context, archiveFile);
       }
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -236,31 +236,31 @@ void RescueTriangulatedSurface::Archive(FILE *archiveFile)
   myfprintf(context, archiveFile, Identifier());
   if (context->FileVersion() >= 37)
   {
-    if (faceStatus != 0)
-    {
+  if (faceStatus != 0)
+  {
       myfprintf(context, archiveFile, "faceStatus");
       RescueBuffer buf1(context, 100);
       faceStatus->Archive(buf1);
       buf1.Archive(archiveFile);
-    }
-    myfprintf(context, archiveFile, "EOD");
+  }
+  myfprintf(context, archiveFile, "EOD");
   }
   if (IsLoaded())
   {
-    if (context->delayedGeometryLoad == FALSE
-    ||  hasChanged == TRUE
-    ||  parentSurface->ParentModel()->geometryActionImmediate == TRUE)
-    {
+  if (context->delayedGeometryLoad == FALSE
+  ||  hasChanged == TRUE
+  ||  parentSurface->ParentModel()->geometryActionImmediate == TRUE)
+  {
       WriteData();
-    }
+  }
   }
   else if (parentSurface->ParentModel()->geometryActionImmediate)
   {
-    if (ReadData(parentSurface->ParentModel()->oldPathName))
-    {
+  if (ReadData(parentSurface->ParentModel()->oldPathName))
+  {
       WriteData();
       DropMemory();
-    }
+  }
   }
 }
 
@@ -275,7 +275,7 @@ RESCUEBOOL RescueTriangulatedSurface::Contains(RescueTriangleVertex *vertex)
   RESCUEINT64 ndx = vertices->IndexOf(vertex);
   if (ndx >= 0)
   {
-    myReturn = TRUE;
+  myReturn = TRUE;
   }
   return myReturn;
 }
@@ -285,7 +285,7 @@ RescueTriangleVertex *RescueTriangulatedSurface::TriangleVertexIdentifiedBy(RESC
   RescueTriangleVertex *myReturn = 0;    
   if (verticesLookups != 0)
   {
-    myReturn = (RescueTriangleVertex *) verticesLookups->Find(id);
+  myReturn = (RescueTriangleVertex *) verticesLookups->Find(id);
   }
   return myReturn;
 }
@@ -298,7 +298,7 @@ void RescueTriangulatedSurface::ArchiveData(FILE *archiveFile)
   octTrees->Archive(context, archiveFile);
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -311,28 +311,28 @@ void RescueTriangulatedSurface::UnArchiveData(FILE *archiveFile, RESCUEINT64 fil
   RescueModel *model = parentSurface->ParentModel();
   if (model->IsWireframeLoaded() == FALSE)
   {
-    RESCUECHAR *fileName = (model->oldPathName == 0) ? model->currentPathName : model->oldPathName;
-    if (model->ReadWireframeData(fileName))
-    {
+  RESCUECHAR *fileName = (model->oldPathName == 0) ? model->currentPathName : model->oldPathName;
+  if (model->ReadWireframeData(fileName))
+  {
       model->wireframeHasChanged = FALSE;
-    }
+  }
   }
   if (context->ReadFileVersion() < 23)
   {
-    verticesLookups = new RescueIdTree();
-    RESCUEINT64 loop;
-    RESCUEINT64 howMany = vertices->Count64();
-    for (loop = 0; loop < howMany; loop++)
-    {
+  verticesLookups = new RescueIdTree();
+  RESCUEINT64 loop;
+  RESCUEINT64 howMany = vertices->Count64();
+  for (loop = 0; loop < howMany; loop++)
+  {
       verticesLookups->Add(vertices->NthObject(loop));
-    }
+  }
   }
   vertices->Relink(this);
   faces->Relink(this);
   if (verticesLookups != 0)
   {
-    delete verticesLookups;
-    verticesLookups = 0;
+  delete verticesLookups;
+  verticesLookups = 0;
   }
   loaded = TRUE;
   RelinkPropertyGrids();
@@ -340,14 +340,14 @@ void RescueTriangulatedSurface::UnArchiveData(FILE *archiveFile, RESCUEINT64 fil
   octTrees->UnArchive(context, archiveFile, this);
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -366,18 +366,18 @@ RESCUEBOOL RescueTriangulatedSurface::Load()
   RESCUEBOOL myReturn = FALSE;
   if (IsLoaded())
   {
-    DropMemory();
+  DropMemory();
   }
   if (parentModel->ExistingModel())
   {
-    parentModel->Context()->readFileVersion = parentModel->currentFileVersion;
-    parentModel->Context()->readFileMainSoftwareVersion = parentModel->readFileMainSoftwareVersion;
-    parentModel->Context()->readFileSubSoftwareVersion = parentModel->readFileSubSoftwareVersion;
-    myReturn = ReadData(parentModel->currentPathName);
+  parentModel->Context()->readFileVersion = parentModel->currentFileVersion;
+  parentModel->Context()->readFileMainSoftwareVersion = parentModel->readFileMainSoftwareVersion;
+  parentModel->Context()->readFileSubSoftwareVersion = parentModel->readFileSubSoftwareVersion;
+  myReturn = ReadData(parentModel->currentPathName);
   }
   if (myReturn == TRUE)
   {
-    hasChanged = FALSE;
+  hasChanged = FALSE;
   }
   return myReturn;
 }
@@ -387,18 +387,18 @@ RESCUEINT32 RescueTriangulatedSurface::Version(RESCUEBOOL reload)
   RescueModel *parentModel = parentSurface->ParentModel();
   if (reload)
   {
-    RESCUEINT32 myReturn = arrayVersion;
-    RESCUEINT32 savedArrayVersion = arrayVersion;
-    if (ReadData(parentModel->currentPathName, TRUE))
-    {
+  RESCUEINT32 myReturn = arrayVersion;
+  RESCUEINT32 savedArrayVersion = arrayVersion;
+  if (ReadData(parentModel->currentPathName, TRUE))
+  {
       myReturn = arrayVersion;
       arrayVersion = savedArrayVersion;
-    }
-    return myReturn;
+  }
+  return myReturn;
   }
   else
   {
-    return arrayVersion;
+  return arrayVersion;
   }
 }
 
@@ -408,16 +408,16 @@ RESCUEBOOL RescueTriangulatedSurface::Unload()
   RESCUEBOOL myReturn = FALSE;
   if (hasChanged == FALSE)
   {
-    DropMemory();
-    myReturn = TRUE;
+  DropMemory();
+  myReturn = TRUE;
   }
   else if (IsLoaded() && parentModel->ExistingModel())
   {
-    if (WriteData())
-    {
+  if (WriteData())
+  {
       DropMemory();
       myReturn = TRUE;
-    }
+  }
   }
   return myReturn;
 }
@@ -435,64 +435,64 @@ RESCUEBOOL RescueTriangulatedSurface::ReadData(RESCUECHAR *basePathName, RESCUEB
   FILE *archiveFile = (FILE *) fopen(fileName.String(), "rb");
   if (archiveFile != 0)
   {
-    RESCUEINT64 fileVersion = getc(archiveFile);
-    if (fileVersion == 'R')
-    {
+  RESCUEINT64 fileVersion = getc(archiveFile);
+  if (fileVersion == 'R')
+  {
       context->binaryFlag = FALSE;
       fread(buffer, sizeof(RESCUECHAR), 17, archiveFile);
       if (strncmp(buffer, "escue TSurf File", 16) == 0)
       {
-        modelFile = TRUE;
+    modelFile = TRUE;
       }
-    }
-    else
-    {
+  }
+  else
+  {
       context->binaryFlag = TRUE;
       fread(buffer, sizeof(RESCUECHAR), 17, archiveFile);
       if (strncmp(buffer, "Rescue TSurf File", 17) == 0)
       {
-        modelFile = TRUE;
+    modelFile = TRUE;
       }
-    }
-    fclose(archiveFile);
-    if (modelFile)
-    {
+  }
+  fclose(archiveFile);
+  if (modelFile)
+  {
       int fileVersion = 0;
       if (context->binaryFlag)
       {
-        archiveFile = (FILE *) fopen(fileName.String(), "rb");
-        fileVersion = getc(archiveFile);
-        fseek(archiveFile, 17, SEEK_CUR);
-        myfscanf(context, archiveFile, &arrayVersion);
-        if (versionOnly == FALSE)
-        {
+    archiveFile = (FILE *) fopen(fileName.String(), "rb");
+    fileVersion = getc(archiveFile);
+    fseek(archiveFile, 17, SEEK_CUR);
+    myfscanf(context, archiveFile, &arrayVersion);
+    if (versionOnly == FALSE)
+    {
           UnArchiveData(archiveFile, fileVersion);
-        }
-        fclose(archiveFile);
-        myReturn = TRUE;
+    }
+    fclose(archiveFile);
+    myReturn = TRUE;
       }
       else
       {
-        RESCUECHAR myString[255];
+    RESCUECHAR myString[255];
 
-        archiveFile = (FILE *) fopen(fileName.String(), "rt");
-        myfgets(context, myString, 255, archiveFile);
-        sscanf(myString, "Rescue TSurf File Version %d\n", &fileVersion);
-        myfscanf(context, archiveFile, &arrayVersion);
-        if (versionOnly == FALSE)
-        {
-          UnArchiveData(archiveFile, fileVersion);
-        }
-        fclose(archiveFile);
-        myReturn = TRUE;
-      }
-    }
-    else
+    archiveFile = (FILE *) fopen(fileName.String(), "rt");
+    myfgets(context, myString, 255, archiveFile);
+    sscanf(myString, "Rescue TSurf File Version %d\n", &fileVersion);
+    myfscanf(context, archiveFile, &arrayVersion);
+    if (versionOnly == FALSE)
     {
+          UnArchiveData(archiveFile, fileVersion);
+    }
+    fclose(archiveFile);
+    myReturn = TRUE;
+      }
+  }
+  else
+  {
       RCHString message;
       message << "Not a Rescue TSurf File:" << fileName.NonNullString();
       context->SetError(message.NonNullString());
-    }
+  }
   }
   return myReturn;
 }
@@ -507,34 +507,34 @@ RESCUEBOOL RescueTriangulatedSurface::WriteData()
   FILE *archiveFile;
   if (parentModel->currentBinary)
   {
-    archiveFile = (FILE *) fopen(fileName.String(), "wb");
+  archiveFile = (FILE *) fopen(fileName.String(), "wb");
   }
   else
   {
-    archiveFile = (FILE *) fopen(fileName.String(), "wt");
+  archiveFile = (FILE *) fopen(fileName.String(), "wt");
   }
   if (archiveFile != 0)
   {
-    RescueContext *context = parentModel->Context(true);
-    context->binaryFlag = parentModel->currentBinary;
-    if (context->binaryFlag)
-    {
+  RescueContext *context = parentModel->Context(true);
+  context->binaryFlag = parentModel->currentBinary;
+  if (context->binaryFlag)
+  {
       putc((RESCUEUCHAR) TSURF_FILE_VERSION, archiveFile);
       fwrite("Rescue TSurf File", sizeof(RESCUECHAR), 17, archiveFile);
-    }
-    else
-    {
+  }
+  else
+  {
       fprintf(archiveFile, "Rescue TSurf File Version %d\n", TSURF_FILE_VERSION);
-    }
+  }
 #ifdef TESTING
-    myfprintf(context, archiveFile, arrayVersion);
+  myfprintf(context, archiveFile, arrayVersion);
 #else
-    myfprintf(context, archiveFile, ++arrayVersion);
+  myfprintf(context, archiveFile, ++arrayVersion);
 #endif
-    ArchiveData(archiveFile);
-    myfprintf(context, archiveFile, "abracadabra jump jump");
-    if (ferror(archiveFile) != 0)
-    {
+  ArchiveData(archiveFile);
+  myfprintf(context, archiveFile, "abracadabra jump jump");
+  if (ferror(archiveFile) != 0)
+  {
       RCHString message;
       message << "Error writing to TSurf file:";
       message << fileName.NonNullString();
@@ -542,9 +542,9 @@ RESCUEBOOL RescueTriangulatedSurface::WriteData()
       message << (RESCUEINT64) ferror(archiveFile);
       message << ")";
       context->SetError(message.NonNullString());
-    }
-    fclose(archiveFile);
-    myReturn = TRUE;
+  }
+  fclose(archiveFile);
+  myReturn = TRUE;
   }
   return myReturn;
 }
@@ -553,19 +553,19 @@ void RescueTriangulatedSurface::RescueDeleteFile()
 {
   if (parentSurface != 0)
   {
-    RescueModel *parentModel = parentSurface->ParentModel();
-    if (parentModel != 0)
-    {
+  RescueModel *parentModel = parentSurface->ParentModel();
+  if (parentModel != 0)
+  {
       if (parentModel->currentPathName != 0)
       {
-        if (parentModel->currentPathName[0] != 0)
-        {
+    if (parentModel->currentPathName[0] != 0)
+    {
           RCHString fileName;
           fileName << parentModel->currentPathName << "." << Identifier();
           parentModel->ScheduleDeleteFile(fileName.String());
-        }
-      }
     }
+      }
+  }
   }
 }
 
@@ -580,7 +580,7 @@ void RescueTriangulatedSurface::SetFaceStatus(RESCUEINT64 i, RescueIJSurface::Re
 {
   if (faceStatus == 0)
   {
-    faceStatus = new RescueBitArray(parentSurface->ParentModel()->Context(), faces->Count64(), 2);
+  faceStatus = new RescueBitArray(parentSurface->ParentModel()->Context(), faces->Count64(), 2);
   }
   faceStatus->SetBitField(i, newStatus);
 }
@@ -589,14 +589,14 @@ RescueIJSurface::RescueFaceStatus RescueTriangulatedSurface::FaceStatus(RESCUEIN
 {
   if (faceStatus == 0)
   {
-    return RescueIJSurface::R_FACE_ACTIVE;
+  return RescueIJSurface::R_FACE_ACTIVE;
 /*
   Default value is R_FACE_ACTIVE, and none have been explicitly set yet, so . . .
 */
   }
   else
   {
-    return (RescueIJSurface::RescueFaceStatus) faceStatus->BitField(i);
+  return (RescueIJSurface::RescueFaceStatus) faceStatus->BitField(i);
   }
 }
 
@@ -605,7 +605,7 @@ void RescueTriangulatedSurface::SwapAxes(bool swapI, RescueGridAxis *iAxis,
 {
   if (IsLoaded() == FALSE)
   {
-    Load();
+  Load();
   }
   RESCUEFLOAT iAxisBegin = (RESCUEFLOAT) iAxis->LowBound64();
   RESCUEFLOAT iAxisEnd = (RESCUEFLOAT) iAxis->LowBound64() + (iAxis->Count64() - 1);
@@ -615,15 +615,15 @@ void RescueTriangulatedSurface::SwapAxes(bool swapI, RescueGridAxis *iAxis,
   RescueTriangleVertex *vertex = vertices->NthObject(vOrd++);
   while (vertex != 0)
   {
-    if (swapI)
-    {
+  if (swapI)
+  {
       vertex->u = iAxisEnd - (vertex->u - iAxisBegin);
-    }
-    if (swapJ)
-    {
+  }
+  if (swapJ)
+  {
       vertex->v = jAxisEnd - (vertex->v - jAxisBegin);
-    }
-    vertex = vertices->NthObject(vOrd++);
+  }
+  vertex = vertices->NthObject(vOrd++);
   }
 
   MarkChanged();
@@ -635,10 +635,10 @@ RESCUEINT32 RescueTriangulatedSurface::VertexCount(RESCUEBOOL throwIfTooBig)
   RESCUEINT64 output = VertexCount64();
   if (throwIfTooBig)
   {
-    if (output > 2147483647 || output < -2147483647)
-    {
+  if (output > 2147483647 || output < -2147483647)
+  {
       throw "Model is too large to be read in 32 bit mode.";
-    }
+  }
   }
   return (RESCUEINT32) output;
 }
@@ -648,10 +648,10 @@ RESCUEINT32 RescueTriangulatedSurface::FaceCount(RESCUEBOOL throwIfTooBig)
   RESCUEINT64 output = FaceCount64();
   if (throwIfTooBig)
   {
-    if (output > 2147483647 || output < -2147483647)
-    {
+  if (output > 2147483647 || output < -2147483647)
+  {
       throw "Model is too large to be read in 32 bit mode.";
-    }
+  }
   }
   return (RESCUEINT32) output;
 }
@@ -661,10 +661,10 @@ RESCUEINT32 RescueTriangulatedSurface::OctTreeCount(RESCUEBOOL throwIfTooBig)
   RESCUEINT64 output = OctTreeCount64();
   if (throwIfTooBig)
   {
-    if (output > 2147483647 || output < -2147483647)
-    {
+  if (output > 2147483647 || output < -2147483647)
+  {
       throw "Model is too large to be read in 32 bit mode.";
-    }
+  }
   }
   return (RESCUEINT32) output;
 }

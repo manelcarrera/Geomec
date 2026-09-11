@@ -7,11 +7,11 @@
 class CAttriTemperatureDlg : public CAttriFormationLoadDlg<CTemperature>
 {
 public:
-	CAttriTemperatureDlg(CTemperature& temperature, CWnd* pParent = 0);
+  CAttriTemperatureDlg(CTemperature& temperature, CWnd* pParent = 0);
 
 protected:
   virtual CString UndefinedLabel() const;
-	DECLARE_MESSAGE_MAP()
+  DECLARE_MESSAGE_MAP()
 };
 
 #endif // _ATTRITEMPERATUREDLG_H_

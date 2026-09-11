@@ -15,16 +15,16 @@ namespace cora
 class CXMLResponseParameter
 {
   public:
-    CXMLResponseParameter(TFailureMode& failureMode);
+  CXMLResponseParameter(TFailureMode& failureMode);
 
-    std::ostream& operator () (std::ostream& stream) const;
+  std::ostream& operator () (std::ostream& stream) const;
 
   private:
-    CXMLResponseParameter(const CXMLResponseParameter& rhs);
-    CXMLResponseParameter& operator = (CXMLResponseParameter rhs);
+  CXMLResponseParameter(const CXMLResponseParameter& rhs);
+  CXMLResponseParameter& operator = (CXMLResponseParameter rhs);
 
-    TFailureMode m_failureMode;
-    CXMLResponseValueTypes m_responseValueTypes;
+  TFailureMode m_failureMode;
+  CXMLResponseValueTypes m_responseValueTypes;
 };
 
 typedef QSharedPointer <CXMLResponseParameter> TXMLResponseParameter;

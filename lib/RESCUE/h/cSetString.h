@@ -18,11 +18,11 @@ Software Product or documentation licensed under this agreement.
 ****************************************************************************/
 /*************************************************************************
 
-        cSetString.h
+    cSetString.h
 
  Keeps a list of RCHSTrings.
 
-        Rod Hanks               May 1998
+    Rod Hanks               May 1998
 
 ****************************************************************************/
 

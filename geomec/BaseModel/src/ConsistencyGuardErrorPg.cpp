@@ -33,9 +33,9 @@ void CConsistencyGuardErrorPg::DoDataExchange(CDataExchange* pDX)
   CEdit *canvas = (CEdit *)GetDlgItem(IDC_CG_ERROR_PG_ERRORS);
 
   if (errors.size() > 0)
-    canvas->SetWindowText(errors.join("\r\n").toStdString().c_str());
+  canvas->SetWindowText(errors.join("\r\n").toStdString().c_str());
   else
-    canvas->SetWindowText("No errors");
+  canvas->SetWindowText("No errors");
 }
 
 void CConsistencyGuardErrorPg::OnClearErrors()

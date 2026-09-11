@@ -59,7 +59,7 @@ void CMeshObserver::OnNeighbourModified(const CGraphNode& node, enum ModifiedHin
 {
   if (hint == MeshCleared)
   {
-    m_ValueCache.clearCache();
+  m_ValueCache.clearCache();
   }
 
   CGraphNode::OnNeighbourModified(node, hint);

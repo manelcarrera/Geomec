@@ -11,36 +11,36 @@
 #include "RCH3DArray.h"
 
 RCH3DArray::RCH3DArray(RESCUEINT64 maxIin, RESCUEINT64 maxJin, RESCUEINT64 maxKin, RESCUEFLOAT *valuesIn)
-                            :maxI(maxIin)
-                            ,maxJ(maxJin)
-                            ,maxK(maxKin)
-                            ,values(valuesIn)
+              :maxI(maxIin)
+              ,maxJ(maxJin)
+              ,maxK(maxKin)
+              ,values(valuesIn)
 {
   if (values == 0)
   {
-    values = new RESCUEFLOAT[(size_t) (maxI * maxJ * maxK)];
-    freeValues = TRUE;
+  values = new RESCUEFLOAT[(size_t) (maxI * maxJ * maxK)];
+  freeValues = TRUE;
   }
   else
   {
-    freeValues = FALSE;
+  freeValues = FALSE;
   }
 }
 
 RCH3DArray::RCH3DArray(RESCUEINT32 maxIin, RESCUEINT32 maxJin, RESCUEINT32 maxKin, RESCUEFLOAT *valuesIn)
-                            :maxI((RESCUEINT64) maxIin)
-                            ,maxJ((RESCUEINT64) maxJin)
-                            ,maxK((RESCUEINT64) maxKin)
-                            ,values(valuesIn)
+              :maxI((RESCUEINT64) maxIin)
+              ,maxJ((RESCUEINT64) maxJin)
+              ,maxK((RESCUEINT64) maxKin)
+              ,values(valuesIn)
 {
   if (values == 0)
   {
-    values = new RESCUEFLOAT[(size_t) (maxI * maxJ * maxK)];
-    freeValues = TRUE;
+  values = new RESCUEFLOAT[(size_t) (maxI * maxJ * maxK)];
+  freeValues = TRUE;
   }
   else
   {
-    freeValues = FALSE;
+  freeValues = FALSE;
   }
 }
 
@@ -75,15 +75,15 @@ RESCUEINT32 RCH3DArray::ArrayLength(RESCUEBOOL throwIfTrue)
   RESCUEINT64 count = ArrayLength64();
   if (count > 2147483647)
   {
-    if (throwIfTrue)
-    {
+  if (throwIfTrue)
+  {
       throw "Model is too large to be accessed in 32 bit mode.";
-    }
-    return 0;
+  }
+  return 0;
   }
   else
   {
-    return (RESCUEINT32) count;
+  return (RESCUEINT32) count;
   }
 }
 

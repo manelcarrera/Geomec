@@ -60,9 +60,9 @@ const double &tPointStructure::Z() const
 void tPointStructure::print() const
 {
   if(bDelete)
-	  printf("%d (%f, %f) x\n", vnum, X(), Y());
+    printf("%d (%f, %f) x\n", vnum, X(), Y());
   else
-	  printf("%d (%f, %f)\n", vnum, X(), Y());  
+    printf("%d (%f, %f)\n", vnum, X(), Y());  
 
 }
 
@@ -75,7 +75,7 @@ void print( tPointArray s, int size )
 {
   printf("Structure\n");
   for(int i = 0; i < size; i++) {
-	s[i].print();
+  s[i].print();
 }
 }
 
@@ -98,7 +98,7 @@ CConvexHull_2D::CConvexHull_2D(const std::vector<const geo::IPoint*>& vcPoint, i
 {
   m_aPoint = new tPointStructure[m_size];
   for(int i = 0; i < m_size; i++) {
-    m_aPoint[i] = tPointStructure( *vcPoint[i], i, coor_disabled );
+  m_aPoint[i] = tPointStructure( *vcPoint[i], i, coor_disabled );
   }
   BuildConvexHull();
 }
@@ -108,7 +108,7 @@ CConvexHull_2D::CConvexHull_2D(const CPtrArray<IPoint> &points, int coor_disable
 {
   m_aPoint = new tPointStructure[m_size];
   for(int i = 0; i < m_size; i++) {
-    m_aPoint[i] = tPointStructure( points.Object(i), i, coor_disabled );
+  m_aPoint[i] = tPointStructure( points.Object(i), i, coor_disabled );
   }
   BuildConvexHull();
 }
@@ -122,7 +122,7 @@ void CConvexHull_2D::LoadHull()
 {
   assert(m_vcPoint.size() == m_size);
   for (size_t i = 0; i < m_size; ++i)
-    m_aPoint[i].point(m_vcPoint[i]);
+  m_aPoint[i].point(m_vcPoint[i]);
 }
 
 void CConvexHull_2D::StoreHull()
@@ -130,27 +130,27 @@ void CConvexHull_2D::StoreHull()
   m_vcPoint.resize(m_size);
 
   for (size_t i = 0; i < m_size; ++i)
-    m_vcPoint[i] = m_aPoint[i].originalPoint();
+  m_vcPoint[i] = m_aPoint[i].originalPoint();
 }
 
 void CConvexHull_2D::Point(int /*nIndex*/, const IPoint &/*pt*/)
 {
-	assert(false);
+  assert(false);
 }
 
 const IPoint &CConvexHull_2D::Point(int nIndex) const 
 {
-	return m_aPoint[nIndex].originalPoint();
+  return m_aPoint[nIndex].originalPoint();
 }
 
 int CConvexHull_2D::NrOfPoints() const 
 {
-	return m_size;
+  return m_size;
 }
 
 size_t CConvexHull_2D::Order() const
 {
-	return 1;
+  return 1;
 }
 
 double CConvexHull_2D::Size() const
@@ -229,13 +229,13 @@ extern "C" int CH2D_Compare( const void *tpi, const void *tpj )
 
   ndelcount++;
   if ( (x < 0) || (y < 0) ) {
-    pi->Delete();
-    return -1;
+  pi->Delete();
+  return -1;
   }
 
   if ( (x > 0) || (y > 0) ) {
-    pj->Delete();
-    return 1;
+  pj->Delete();
+  return 1;
   }
 
   /* points are coincident */
@@ -264,38 +264,38 @@ void CConvexHull_2D::BuildConvexHull()
   int lower= 0;
   while( lower< m_size)
   {
-    // Find the range [lower,upper) of identical points 
-    int upper= lower+1;
-    while (  upper< m_size
+  // Find the range [lower,upper) of identical points 
+  int upper= lower+1;
+  while (  upper< m_size
           && m_aPoint[lower].X() == m_aPoint[upper].X()
           && m_aPoint[lower].Y() == m_aPoint[upper].Y()
           )
-    {
+  {
       ++upper;
-    }
+  }
 
-    // In the range of identical points, keep one and Delete() the others.
-    bool deleteAllOthers= false;
-    for (int i= lower; i< upper; ++i)
-    {
+  // In the range of identical points, keep one and Delete() the others.
+  bool deleteAllOthers= false;
+  for (int i= lower; i< upper; ++i)
+  {
       if ( deleteAllOthers == true )
       {
-        m_aPoint[i].Delete();
+    m_aPoint[i].Delete();
       }
       else if ( m_aPoint[i].isDeleted() == false )
       {
-        deleteAllOthers= true;
+    deleteAllOthers= true;
       }
-    }
+  }
 
-    lower= upper;
+  lower= upper;
   }
 
 
   //  print( m_aPoint, m_size );
   if (ndelcount > 0) {
-    Squash();
-    // printf("After squashing:\n");
+  Squash();
+  // printf("After squashing:\n");
   }
   //   print( m_aPoint, m_size );
   Graham();
@@ -347,7 +347,7 @@ Return pointer to new stack top.
 ---------------------------------------------------------------------*/
 tStack   Push( tPoint p, tStack top )
 {
-	/* Get new cell and fill it with point. */
+  /* Get new cell and fill it with point. */
    tStack   s = new tsStack;
  
    s->p = p;
@@ -379,13 +379,13 @@ void CConvexHull_2D::Graham()
       p1 = top->next->p;
       p2 = top->p;
       if ( Left(*p1 , *p2, m_aPoint[i] ) ) 
-	  {
+    {
          top = Push ( &m_aPoint[i], top );
          i++;
       } 
-	  else    
+    else    
          top = Pop( top );
-    }
+  }
 
    // Write Data back from stack
    tPointArray tmp = m_aPoint;
@@ -464,13 +464,13 @@ bool   Left(const geo::IPoint& a, const geo::IPoint& b, const geo::IPoint& c )
 
 int AreaSign(const geo::IPoint& a, const geo::IPoint& b, const geo::IPoint& c )
 {
-    double area2;
+  double area2;
 
-    area2 = Area2(a, b, c);
+  area2 = Area2(a, b, c);
 
-    if      ( area2 >  1e-10 ) return  1;
-    else if ( area2 < -1e-10 ) return -1;
-    return  0;
+  if      ( area2 >  1e-10 ) return  1;
+  else if ( area2 < -1e-10 ) return -1;
+  return  0;
 }
 
 /*! Resize the convex hull by increment in all directions.
@@ -485,7 +485,7 @@ void CConvexHull_2D::ResizeHull(const double& increment)
 
   for(int ii= 0; ii< NrOfPoints(); ++ii)
   {
-    /*
+  /*
      * Outside of hull
      *
      *     ^vn_ab      ^ vn_bc   aa,bb,cc: points on hull
@@ -506,19 +506,19 @@ void CConvexHull_2D::ResizeHull(const double& increment)
      * We want to move hull point bb outward. We do this by translating lines
      * aa to bb and bb to cc outward and calculating the intersection point
      * of the translated lines.
-    */
+  */
        
-    int aa= ii-1; if ( aa < 0 ) aa= NrOfPoints()-1;
-    int bb= ii;
-    int cc= ii+1; if ( cc >= NrOfPoints() ) cc= 0;
-    CVector v_ab( Point(aa), Point(bb) );
-    CVector v_bc( Point(bb), Point(cc) );
-    CVector vn_ab( -v_ab.Y(), v_ab.X() );
-    CVector vn_bc( -v_bc.Y(), v_bc.X() );
-    vn_ab= vn_ab.UnitVector() * increment;
-    vn_bc= vn_bc.UnitVector() * increment;
+  int aa= ii-1; if ( aa < 0 ) aa= NrOfPoints()-1;
+  int bb= ii;
+  int cc= ii+1; if ( cc >= NrOfPoints() ) cc= 0;
+  CVector v_ab( Point(aa), Point(bb) );
+  CVector v_bc( Point(bb), Point(cc) );
+  CVector vn_ab( -v_ab.Y(), v_ab.X() );
+  CVector vn_bc( -v_bc.Y(), v_bc.X() );
+  vn_ab= vn_ab.UnitVector() * increment;
+  vn_bc= vn_bc.UnitVector() * increment;
 
-    /*
+  /*
      *      p1      p2 
      *  ---*--------*           Move aa 'outward' by argument increment
      *     ^vn_ab   
@@ -526,37 +526,37 @@ void CConvexHull_2D::ResizeHull(const double& increment)
      *     |aa      
      *  ...*------->*
      *
-    */
-    CPoint p1= Point(aa) + vn_ab;
-    CPoint p2= Point(bb) + vn_ab;
-    CPoint p3= Point(bb) + vn_bc;
-    CPoint p4= Point(cc) + vn_bc;
+  */
+  CPoint p1= Point(aa) + vn_ab;
+  CPoint p2= Point(bb) + vn_ab;
+  CPoint p3= Point(bb) + vn_bc;
+  CPoint p4= Point(cc) + vn_bc;
 
-    // Determine new position of point bb by intersecting
-    // line from p1 to p2 with line from p3 to p4.
-    //
-    // http://en.wikipedia.org/wiki/Line-line_intersection
-    double x1= p1.X(); double y1= p1.Y();
-    double x2= p2.X(); double y2= p2.Y();
-    double x3= p3.X(); double y3= p3.Y();
-    double x4= p4.X(); double y4= p4.Y();
-    double denom= (x1-x2)*(y3-y4)-(y1-y2)*(x3-x4);
+  // Determine new position of point bb by intersecting
+  // line from p1 to p2 with line from p3 to p4.
+  //
+  // http://en.wikipedia.org/wiki/Line-line_intersection
+  double x1= p1.X(); double y1= p1.Y();
+  double x2= p2.X(); double y2= p2.Y();
+  double x3= p3.X(); double y3= p3.Y();
+  double x4= p4.X(); double y4= p4.Y();
+  double denom= (x1-x2)*(y3-y4)-(y1-y2)*(x3-x4);
 
-    if ( fabs( denom ) >EPS )
-    {
+  if ( fabs( denom ) >EPS )
+  {
       aPoint[ii].point(
-	  CPoint( ((x1*y2-y1*x2)*(x3-x4)-(x1-x2)*(x3*y4-y3*x4))/denom 
-                , ((x1*y2-y1*x2)*(y3-y4)-(y1-y2)*(x3*y4-y3*x4))/denom ));
-    }
-    else
-    {
+    CPoint( ((x1*y2-y1*x2)*(x3-x4)-(x1-x2)*(x3*y4-y3*x4))/denom 
+        , ((x1*y2-y1*x2)*(y3-y4)-(y1-y2)*(x3*y4-y3*x4))/denom ));
+  }
+  else
+  {
       aPoint[ii].point( p2);
-    }
+  }
   }
 
   for(int ii= 0; ii< NrOfPoints(); ++ii)
   {
-    m_aPoint[ii].point( aPoint[ii].originalPoint() );
+  m_aPoint[ii].point( aPoint[ii].originalPoint() );
   }
 
   delete [] aPoint;
@@ -566,43 +566,43 @@ void CConvexHull_2D::ResizeHull(const double& increment)
 
 bool CConvexHull_2D::ContainsXY(const IPoint &p, bool bIncludeEdge) const
 {
-    assert(m_size > 0);
-    tPointStructure point(p, -1, m_aPoint[0].disabledCoordinate());
-	bool c1 = false;
-	bool c2 = false;
+  assert(m_size > 0);
+  tPointStructure point(p, -1, m_aPoint[0].disabledCoordinate());
+  bool c1 = false;
+  bool c2 = false;
 
-	// trace line to the right
-    int i, j;
-	for(i = 0, j = NrOfPoints() - 1; i < NrOfPoints(); j = i++)
-	{
-		if(dblCmpEq(m_aPoint[i].Y(),m_aPoint[j].Y()) && dblCmpEq(point.Y(),m_aPoint[i].Y()) 
-		  && ((dblCmpLE(point.X(),m_aPoint[i].X()) && dblCmpGE(point.X(),m_aPoint[j].X())) || (dblCmpGE(point.X(),m_aPoint[i].X()) && dblCmpLE(point.X(),m_aPoint[j].X()))))
-		{
-			// p is on horizontal line
-			return bIncludeEdge;
-		}
-		if( (((dblCmpLE(m_aPoint[i].Y(),point.Y())) && (dblCmpLt(point.Y(),m_aPoint[j].Y()))) ||
-			((dblCmpLE(m_aPoint[j].Y(),point.Y())) && (dblCmpLt(point.Y(),m_aPoint[i].Y())))) &&
-			(dblCmpLt(point.X(),(m_aPoint[j].X() - m_aPoint[i].X()) * (point.Y() - m_aPoint[i].Y()) / (m_aPoint[j].Y() - m_aPoint[i].Y()) + m_aPoint[i].X())))
-		{
-			c1 = !c1;
-		}
-	}
-	
-	// trace line to the left
-	for(i = 0, j = NrOfPoints() - 1; i < NrOfPoints(); j = i++)
-	{
-		if((((dblCmpLE(m_aPoint[i].Y(),point.Y())) && (dblCmpLt(point.Y(),m_aPoint[j].Y()))) ||
-			((dblCmpLE(m_aPoint[j].Y(),point.Y())) && (dblCmpLt(point.Y(),m_aPoint[i].Y())))) &&
-			(dblCmpGt(point.X(),(m_aPoint[j].X() - m_aPoint[i].X()) * (point.Y() - m_aPoint[i].Y()) / (m_aPoint[j].Y() - m_aPoint[i].Y()) + m_aPoint[i].X())))
+  // trace line to the right
+  int i, j;
+  for(i = 0, j = NrOfPoints() - 1; i < NrOfPoints(); j = i++)
+  {
+    if(dblCmpEq(m_aPoint[i].Y(),m_aPoint[j].Y()) && dblCmpEq(point.Y(),m_aPoint[i].Y()) 
+      && ((dblCmpLE(point.X(),m_aPoint[i].X()) && dblCmpGE(point.X(),m_aPoint[j].X())) || (dblCmpGE(point.X(),m_aPoint[i].X()) && dblCmpLE(point.X(),m_aPoint[j].X()))))
+    {
+      // p is on horizontal line
+      return bIncludeEdge;
+    }
+    if( (((dblCmpLE(m_aPoint[i].Y(),point.Y())) && (dblCmpLt(point.Y(),m_aPoint[j].Y()))) ||
+      ((dblCmpLE(m_aPoint[j].Y(),point.Y())) && (dblCmpLt(point.Y(),m_aPoint[i].Y())))) &&
+      (dblCmpLt(point.X(),(m_aPoint[j].X() - m_aPoint[i].X()) * (point.Y() - m_aPoint[i].Y()) / (m_aPoint[j].Y() - m_aPoint[i].Y()) + m_aPoint[i].X())))
+    {
+      c1 = !c1;
+    }
+  }
+  
+  // trace line to the left
+  for(i = 0, j = NrOfPoints() - 1; i < NrOfPoints(); j = i++)
+  {
+    if((((dblCmpLE(m_aPoint[i].Y(),point.Y())) && (dblCmpLt(point.Y(),m_aPoint[j].Y()))) ||
+      ((dblCmpLE(m_aPoint[j].Y(),point.Y())) && (dblCmpLt(point.Y(),m_aPoint[i].Y())))) &&
+      (dblCmpGt(point.X(),(m_aPoint[j].X() - m_aPoint[i].X()) * (point.Y() - m_aPoint[i].Y()) / (m_aPoint[j].Y() - m_aPoint[i].Y()) + m_aPoint[i].X())))
 
-		c2 = !c2;
-	}
+    c2 = !c2;
+  }
 
 
-	if( c1 != c2 ) return bIncludeEdge; // point is on a line
+  if( c1 != c2 ) return bIncludeEdge; // point is on a line
 
-	return c1;
+  return c1;
 }
 
 }

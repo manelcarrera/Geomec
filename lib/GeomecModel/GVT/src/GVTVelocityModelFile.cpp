@@ -31,11 +31,11 @@ void CGVTVelocityModelFile::tryVelocityFromMaterial()
   // we need CGVTVelocityModelFile to be always valid, so we catch here
   try
   {
-    m_GVTVelocityModelSource = QSharedPointer<CGVTVelocityModelFromMaterial>(new CGVTVelocityModelFromMaterial(m_modelBase));
+  m_GVTVelocityModelSource = QSharedPointer<CGVTVelocityModelFromMaterial>(new CGVTVelocityModelFromMaterial(m_modelBase));
   }
   catch (std::exception&)
   {
-    m_GVTVelocityModelSource = QSharedPointer<CGVTVelocityModelFromFile>(new CGVTVelocityModelFromFile());
+  m_GVTVelocityModelSource = QSharedPointer<CGVTVelocityModelFromFile>(new CGVTVelocityModelFromFile());
   }
 }
 
@@ -85,20 +85,20 @@ void CGVTVelocityModelFile::velocityModelSourceNumerator(
   int velocityModelSourceNumerator)
 {
   if (velocityModelSourceNumerator !=
-    CGVTVelocityModelFile::velocityModelSourceNumerator())
+  CGVTVelocityModelFile::velocityModelSourceNumerator())
   {
-    switch (velocityModelSourceNumerator)
-    {
-    case VELOCITY_FROM_MATERIAL:
+  switch (velocityModelSourceNumerator)
+  {
+  case VELOCITY_FROM_MATERIAL:
       tryVelocityFromMaterial();
       break;
-    case VELOCITY_FROM_FILE:
+  case VELOCITY_FROM_FILE:
       /* Fall-through */
-    default:
+  default:
       m_GVTVelocityModelSource = QSharedPointer <CGVTVelocityModelSource>(
-        new CGVTVelocityModelFromFile());
+    new CGVTVelocityModelFromFile());
       break;
-    }
+  }
   }
 }
 
@@ -107,25 +107,25 @@ void CGVTVelocityModelFile::LoadStream(TSTREAM& stream, CStreamVersion& version,
 {
   if (version < CStreamVersion(4, 1, 31))
   {
-    m_GVTVelocityModelSource = QSharedPointer <CGVTVelocityModelSource> (
+  m_GVTVelocityModelSource = QSharedPointer <CGVTVelocityModelSource> (
       new CGVTVelocityModelFromFile());
   }
   else  // (version >= CStreamVersion(4, 1, 31))
   {
-    int velocitySourceType = 0;
+  int velocitySourceType = 0;
 
-    stream >> velocitySourceType;
+  stream >> velocitySourceType;
 
-    switch (velocitySourceType)
-    {
-    case VELOCITY_FROM_MATERIAL:
+  switch (velocitySourceType)
+  {
+  case VELOCITY_FROM_MATERIAL:
       tryVelocityFromMaterial();
       break;
-    case VELOCITY_FROM_FILE:
+  case VELOCITY_FROM_FILE:
       /* Fall-through */
-    default: // this shouldn't happen, but if it does, it shouldn't break loading
+  default: // this shouldn't happen, but if it does, it shouldn't break loading
       m_GVTVelocityModelSource = QSharedPointer<CGVTVelocityModelSource>(new CGVTVelocityModelFromFile());
-    }
+  }
   }
 
   m_GVTVelocityModelSource->LoadStream(stream, version, progress);
@@ -148,7 +148,7 @@ CGVTVelocityModelFile::TVelocityFromMaterial
 void CGVTVelocityModelFile::swap(CGVTVelocityModelFile& gvtVelocityModelFile)
 {
   QSharedPointer <CGVTVelocityModelSource> temporaryGVTVelocityModelSource =
-    gvtVelocityModelFile.m_GVTVelocityModelSource;
+  gvtVelocityModelFile.m_GVTVelocityModelSource;
 
   // m_modelBase is not swapped since it currently does not have an assignment
   // operator (and both models should be the same, hence the assert - and sadly

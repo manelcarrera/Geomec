@@ -18,22 +18,22 @@ namespace cora
 class CFailureTypeParameterFault : public CFailureTypeParameterBase
 {
   public:
-    CFailureTypeParameterFault(CSummaryResultFile& summaryResultFile,
+  CFailureTypeParameterFault(CSummaryResultFile& summaryResultFile,
       const std::string& object, const std::string& option,
       const std::string& parameter, std::vector <double>& value,
       const CGetModelInfo& modelInfo);
-    virtual ~CFailureTypeParameterFault();
+  virtual ~CFailureTypeParameterFault();
 
-    virtual void modify(CModelBase* modelBase);
+  virtual void modify(CModelBase* modelBase);
 
   private:
-    CFailureTypeParameterFault(const CFailureTypeParameterFault& rhs);
-    CFailureTypeParameterFault& operator = (CFailureTypeParameterFault rhs);
+  CFailureTypeParameterFault(const CFailureTypeParameterFault& rhs);
+  CFailureTypeParameterFault& operator = (CFailureTypeParameterFault rhs);
 
-    static TCreateElementValueSet
+  static TCreateElementValueSet
       selectElementValueSetCreator(TParameter actualParameter);
 
-    TCreateElementValueSet m_createElementValueSet;
+  TCreateElementValueSet m_createElementValueSet;
 };
 
 } // namespace cora

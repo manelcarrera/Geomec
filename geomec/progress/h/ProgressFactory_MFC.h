@@ -9,16 +9,16 @@
 class CProgressFactory_MFC : public CProgressFactory
 {
 public:
-	virtual IProgressBase* create(
-		eProgress type_,
-		const QString& title, 
-		bool cancel,
-		int jobs);
+  virtual IProgressBase* create(
+    eProgress type_,
+    const QString& title, 
+    bool cancel,
+    int jobs);
 
-	virtual IProgressBase* create_imp(
-		eProgress type_,
-		const QString& title,
-		bool cancel,
-		int jobs);
+  virtual IProgressBase* create_imp(
+    eProgress type_,
+    const QString& title,
+    bool cancel,
+    int jobs);
 };
 

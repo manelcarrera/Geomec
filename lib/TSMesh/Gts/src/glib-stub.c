@@ -22,29 +22,29 @@ GString* g_string_new(const gchar	*init)
   string->len = (init != NULL ? (int)strlen(init) : 0);
   if(string->len)
   {
-    string->str = malloc(string->len * sizeof(gchar));
-    strcpy(string->str, init);
+  string->str = malloc(string->len * sizeof(gchar));
+  strcpy(string->str, init);
   }
   else
   {
-    string->str = NULL;
+  string->str = NULL;
   }
 
   return string;
 }
 
 gchar* g_string_free(GString	 *string,
-					           gboolean	  free_segment)
+                     gboolean	  free_segment)
 {
   gchar* ret = NULL;
 
   if(string == NULL)
-    return NULL;
+  return NULL;
 
   if(free_segment)
-    free(string->str);
+  free(string->str);
   else
-    ret = string->str;
+  ret = string->str;
 
   free(string);
 
@@ -52,12 +52,12 @@ gchar* g_string_free(GString	 *string,
 }
 
 GString* g_string_append_c(GString	 *string,
-					                 gchar		  c)
+                           gchar		  c)
 {
   gchar* str;
 
   if(string == NULL)
-    return NULL;
+  return NULL;
 
   str = malloc(string->len + 1);
   strcpy(str, string->str);
@@ -74,14 +74,14 @@ GString* g_string_append_c(GString	 *string,
 // GSList
 
 GSList* g_slist_append(GSList           *list,
-				               gpointer          data)
+                       gpointer          data)
 {
   GSList* l = g_slist_last(list);
   GSList* n = g_slist_alloc();
 
   if(l)
   {
-    l->next = n;
+  l->next = n;
   }
 
   n->data = data;
@@ -102,16 +102,16 @@ void g_slist_free(GSList *list)
 {
   if(list)
   {
-    // The scenario given in Mantis 3255 resulted in a stack overflow,
-    // hence the repetitive solution instead of the recursive one.
+  // The scenario given in Mantis 3255 resulted in a stack overflow,
+  // hence the repetitive solution instead of the recursive one.
 
-    GSList* nextNode = NULL;
+  GSList* nextNode = NULL;
 
-    while (list != NULL) {
+  while (list != NULL) {
       nextNode = list->next;
       g_slist_free_1(list);
       list = nextNode;
-    }
+  }
   }
 }
 
@@ -121,25 +121,25 @@ void g_slist_free_1(GSList           *list)
 }
 
 GSList* g_slist_remove(GSList           *list,
-				               gconstpointer     data)
+                       gconstpointer     data)
 {
   GSList *tmp, *prev = NULL;
 
   tmp = list;
   while (tmp)
   {
-    if (tmp->data == data)
-	  {
-	    if (prev)
-	      prev->next = tmp->next;
-	    else
-	      list = tmp->next;
+  if (tmp->data == data)
+    {
+    if (prev)
+        prev->next = tmp->next;
+    else
+        list = tmp->next;
 
-	    g_slist_free_1(tmp);
-	    break;
-	  }
-    prev = tmp;
-    tmp = prev->next;
+    g_slist_free_1(tmp);
+    break;
+    }
+  prev = tmp;
+  tmp = prev->next;
   }
 
   return list;
@@ -151,29 +151,29 @@ guint g_slist_length(GSList           *list)
 
   length = 0;
   while (list)
-    {
+  {
       length++;
       list = list->next;
-    }
+  }
 
   return length;
 }
 
 GSList* g_slist_find(GSList           *list,
-				             gconstpointer     data)
+                     gconstpointer     data)
 {
   while (list)
   {
-    if (list->data == data)
+  if (list->data == data)
       break;
-    list = list->next;
+  list = list->next;
   }
 
   return list;
 }
 
 GSList* g_slist_prepend(GSList           *list,
-				                gpointer          data)
+                gpointer          data)
 {
   GSList *new_list;
 
@@ -185,34 +185,34 @@ GSList* g_slist_prepend(GSList           *list,
 }
 
 void g_slist_foreach(GSList           *list,
-				             GFunc             func,
-				             gpointer          user_data)
+                     GFunc             func,
+                     gpointer          user_data)
 {
   while (list)
   {
-    GSList *next = list->next;
-    (*func) (list->data, user_data);
-    list = next;
+  GSList *next = list->next;
+  (*func) (list->data, user_data);
+  list = next;
   }
 }
 
 GSList* g_slist_nth(GSList           *list,
-				            guint             n)
+              guint             n)
 {
   while (n-- > 0 && list)
-    list = list->next;
+  list = list->next;
 
   return list;
 }
 
 GSList* g_slist_concat(GSList           *list1,
-				               GSList           *list2)
+                       GSList           *list2)
 {
   if (list2)
   {
-    if (list1)
+  if (list1)
       g_slist_last (list1)->next = list2;
-    else
+  else
       list1 = list2;
   }
 
@@ -225,20 +225,20 @@ GSList* g_slist_copy(GSList           *list)
 
   if (list)
   {
-    GSList *last;
+  GSList *last;
 
-    new_list = g_slist_alloc ();
-    new_list->data = list->data;
-    last = new_list;
-    list = list->next;
-    while (list)
-    {
+  new_list = g_slist_alloc ();
+  new_list->data = list->data;
+  last = new_list;
+  list = list->next;
+  while (list)
+  {
       last->next = g_slist_alloc ();
       last = last->next;
       last->data = list->data;
       list = list->next;
-    }
-    last->next = NULL;
+  }
+  last->next = NULL;
   }
 
   return new_list;
@@ -250,19 +250,19 @@ GSList* g_slist_reverse(GSList           *list)
   
   while (list)
   {
-    GSList *next = list->next;
+  GSList *next = list->next;
 
-    list->next = prev;
-    
-    prev = list;
-    list = next;
+  list->next = prev;
+  
+  prev = list;
+  list = next;
   }
   
   return prev;
 }
 
 GSList* g_slist_remove_link(GSList           *list,
-				                    GSList           *link)
+                  GSList           *link)
 {
   GSList *tmp;
   GSList *prev;
@@ -272,19 +272,19 @@ GSList* g_slist_remove_link(GSList           *list,
 
   while (tmp)
   {
-    if (tmp == link)
-    {
+  if (tmp == link)
+  {
       if (prev)
-        prev->next = tmp->next;
+    prev->next = tmp->next;
       if (list == tmp)
-        list = list->next;
+    list = list->next;
 
       tmp->next = NULL;
       break;
-    }
+  }
 
-    prev = tmp;
-    tmp = tmp->next;
+  prev = tmp;
+  tmp = tmp->next;
   }
 
   return list;
@@ -293,10 +293,10 @@ GSList* g_slist_remove_link(GSList           *list,
 GSList* g_slist_last(GSList *list)
 {
   if (list)
-    {
+  {
       while (list->next)
-	      list = list->next;
-    }
+        list = list->next;
+  }
 
   return list;
 }
@@ -317,10 +317,10 @@ void g_list_free(GList *list)
 {
   if(list)
   {
-    if(list->next)
+  if(list->next)
       g_list_free(list->next);
 
-    g_list_free_1(list);
+  g_list_free_1(list);
   }
 }
 
@@ -330,27 +330,27 @@ void g_list_free_1(GList *list)
 }
 
 GList* g_list_remove_link(GList            *list,
-				                  GList            *link)
+                          GList            *link)
 {
   if (link)
   {
-    if (link->prev)
+  if (link->prev)
       link->prev->next = link->next;
-    if (link->next)
+  if (link->next)
       link->next->prev = link->prev;
-    
-    if (link == list)
+  
+  if (link == list)
       list = list->next;
-    
-    link->next = NULL;
-    link->prev = NULL;
+  
+  link->next = NULL;
+  link->prev = NULL;
   }
   
   return list;
 }
 
 GList* g_list_prepend(GList            *list,
-				              gpointer          data)
+                      gpointer          data)
 {
   GList *new_list;
   
@@ -360,13 +360,13 @@ GList* g_list_prepend(GList            *list,
   
   if (list)
   {
-    new_list->prev = list->prev;
-    if (list->prev)
+  new_list->prev = list->prev;
+  if (list->prev)
       list->prev->next = new_list;
-    list->prev = new_list;
+  list->prev = new_list;
   }
   else
-    new_list->prev = NULL;
+  new_list->prev = NULL;
   
   return new_list;
 }
@@ -378,8 +378,8 @@ guint g_list_length(GList *list)
   length = 0;
   while (list)
   {
-    length++;
-    list = list->next;
+  length++;
+  list = list->next;
   }
   
   return length;
@@ -403,17 +403,17 @@ static void
 g_nodes_free (GNode *node)
 {
   while (node)
-    {
+  {
       GNode *next = node->next;
       if (node->children)
-        g_nodes_free (node->children);
+    g_nodes_free (node->children);
       free(node);
       node = next;
-    }
+  }
 }
 
 GNode* g_node_prepend(GNode		  *parent,
-				              GNode		  *node)
+                      GNode		  *node)
 {
   g_return_val_if_fail (parent != NULL, node);
   
@@ -426,8 +426,8 @@ guint	g_node_depth(GNode *node)
   
   while (node)
   {
-    depth++;
-    node = node->parent;
+  depth++;
+  node = node->parent;
   }
   
   return depth;
@@ -438,50 +438,50 @@ void g_node_destroy(GNode *root)
   g_return_if_fail (root != NULL);
   
   if (!G_NODE_IS_ROOT (root))
-    g_node_unlink (root);
+  g_node_unlink (root);
   
   g_nodes_free (root);
 }
 
 GNode* g_node_insert_before (GNode *parent,
-		                         GNode *sibling,
-		                         GNode *node)
+                             GNode *sibling,
+                             GNode *node)
 {
   g_return_val_if_fail (parent != NULL, node);
   g_return_val_if_fail (node != NULL, node);
   g_return_val_if_fail (G_NODE_IS_ROOT (node), node);
   if (sibling)
-    g_return_val_if_fail (sibling->parent == parent, node);
+  g_return_val_if_fail (sibling->parent == parent, node);
   
   node->parent = parent;
   
   if (sibling)
   {
-    if (sibling->prev)
-	  {
-	    node->prev = sibling->prev;
-	    node->prev->next = node;
-	    node->next = sibling;
-	    sibling->prev = node;
-	  }
-    else
-	  {
-	    node->parent->children = node;
-	    node->next = sibling;
-	    sibling->prev = node;
-	  }
+  if (sibling->prev)
+    {
+    node->prev = sibling->prev;
+    node->prev->next = node;
+    node->next = sibling;
+    sibling->prev = node;
+    }
+  else
+    {
+    node->parent->children = node;
+    node->next = sibling;
+    sibling->prev = node;
+    }
   }
   else
   {
-    if (parent->children)
-    {
+  if (parent->children)
+  {
       sibling = parent->children;
       while (sibling->next)
-        sibling = sibling->next;
+    sibling = sibling->next;
       node->prev = sibling;
       sibling->next = node;
-    }
-    else
+  }
+  else
       node->parent->children = node;
   }
 
@@ -493,15 +493,15 @@ void g_node_unlink (GNode *node)
   g_return_if_fail (node != NULL);
   
   if (node->prev)
-    node->prev->next = node->next;
+  node->prev->next = node->next;
   else if (node->parent)
-    node->parent->children = node->next;
+  node->parent->children = node->next;
   node->parent = NULL;
   if (node->next)
-    {
+  {
       node->next->prev = node->prev;
       node->next = NULL;
-    }
+  }
   node->prev = NULL;
 }
 
@@ -517,7 +517,7 @@ GPtrArray* g_ptr_array_new(void)
 }
 
 gpointer* g_ptr_array_free(GPtrArray        *array,
-					                 gboolean          free_seg)
+                           gboolean          free_seg)
 {
   gpointer pdata;
 
@@ -527,8 +527,8 @@ gpointer* g_ptr_array_free(GPtrArray        *array,
 
   if(free_seg)
   {
-    free(pdata);
-    pdata = NULL;
+  free(pdata);
+  pdata = NULL;
   }
 
   free(array);
@@ -537,14 +537,14 @@ gpointer* g_ptr_array_free(GPtrArray        *array,
 }
 
 void g_ptr_array_add(GPtrArray        *array,
-					           gpointer          data)
+                     gpointer          data)
 {
   g_ptr_array_set_size(array, array->len + 1);
   array->pdata[array->len - 1] = data;
 }
 
 gpointer g_ptr_array_remove_index(GPtrArray        *array,
-					                        guint             index)
+                      guint             index)
 {
   gpointer ret;
   guint i;
@@ -555,7 +555,7 @@ gpointer g_ptr_array_remove_index(GPtrArray        *array,
   ret = array->pdata[index];
 
   for(i = index + 1; i < array->len; ++i)
-    array->pdata[i - 1] = array->pdata[i];
+  array->pdata[i - 1] = array->pdata[i];
 
   array->pdata[--array->len] = NULL;
 
@@ -563,21 +563,21 @@ gpointer g_ptr_array_remove_index(GPtrArray        *array,
 }
 
 void g_ptr_array_set_size(GPtrArray        *array,
-					                gint              length)
+                  gint              length)
 {
   g_return_if_fail(array);
 
   if(length > (gint)array->len)
   {
-    gint i;
-    array->pdata = realloc(array->pdata, length * sizeof(gpointer));
-    for(i = array->len; i < length; ++i)
+  gint i;
+  array->pdata = realloc(array->pdata, length * sizeof(gpointer));
+  for(i = array->len; i < length; ++i)
       array->pdata[i] = NULL;
   }
   else if(length < (gint)array->len)
   {
-    gint i;
-    for(i = length; i < (gint)array->len; ++i)
+  gint i;
+  for(i = length; i < (gint)array->len; ++i)
       array->pdata[i] = NULL;
   }
 
@@ -606,7 +606,7 @@ struct _GRealArray
   (memset (g_array_elt_pos ((array), pos), 0,  g_array_elt_len ((array), len)))
 #define g_array_zero_terminate(array) G_STMT_START{			\
   if ((array)->zero_terminated)						\
-    g_array_elt_zero ((array), (array)->len, 1);			\
+  g_array_elt_zero ((array), (array)->len, 1);			\
 }G_STMT_END
 
 static gint
@@ -615,20 +615,20 @@ g_nearest_pow (gint num)
   gint n = 1;
 
   while (n < num)
-    n <<= 1;
+  n <<= 1;
 
   return n;
 }
 
 static void
 g_array_maybe_expand (GRealArray *array,
-		                  gint        len)
+                      gint        len)
 {
   guint want_alloc = g_array_elt_len (array, array->len + len + 
-				      array->zero_terminated);
+              array->zero_terminated);
 
   if (want_alloc > array->alloc)
-    {
+  {
       want_alloc = g_nearest_pow (want_alloc);
       want_alloc = MAX (want_alloc, MIN_ARRAY_SIZE);
 
@@ -637,20 +637,20 @@ g_array_maybe_expand (GRealArray *array,
       memset (array->data + array->alloc, 0, want_alloc - array->alloc);
 
       array->alloc = want_alloc;
-    }
+  }
 }
 
 GArray* g_array_new(gboolean          zero_terminated,
-				            gboolean          clear,
-				            guint             element_size)
+              gboolean          clear,
+              guint             element_size)
 {
   return (GArray*) g_array_sized_new (zero_terminated, clear, element_size, 0);
 }
 
 GArray* g_array_sized_new (gboolean zero_terminated,
-			   gboolean clear,
-			   guint    elt_size,
-			   guint    reserved_size)
+         gboolean clear,
+         guint    elt_size,
+         guint    reserved_size)
 {
   GRealArray *array = malloc(sizeof(GRealArray));
 
@@ -663,15 +663,15 @@ GArray* g_array_sized_new (gboolean zero_terminated,
 
   if (array->zero_terminated || reserved_size != 0)
   {
-    g_array_maybe_expand (array, reserved_size);
-    g_array_zero_terminate(array);
+  g_array_maybe_expand (array, reserved_size);
+  g_array_zero_terminate(array);
   }
 
   return (GArray*) array;
 }
 
 gchar* g_array_free(GArray           *array,
-				            gboolean          free_segment)
+              gboolean          free_segment)
 {
   gchar* ret;
 
@@ -681,8 +681,8 @@ gchar* g_array_free(GArray           *array,
 
   if(free_segment)
   {
-    free(ret);
-    ret = NULL;
+  free(ret);
+  ret = NULL;
   }
 
   free(array);
@@ -691,15 +691,15 @@ gchar* g_array_free(GArray           *array,
 }
 
 GArray* g_array_append_vals(GArray           *farray,
-				                    gconstpointer     data,
-				                    guint             len)
+                  gconstpointer     data,
+                  guint             len)
 {
   GRealArray *array = (GRealArray*) farray;
 
   g_array_maybe_expand (array, len);
 
   memcpy (g_array_elt_pos (array, array->len), data, 
-	  g_array_elt_len (array, len));
+    g_array_elt_len (array, len));
 
   array->len += len;
 
@@ -736,10 +736,10 @@ struct _GHashTable
 #define G_HASH_TABLE_RESIZE(hash_table)				\
    G_STMT_START {						\
      if ((hash_table->size >= 3 * hash_table->nnodes &&	        \
-	  hash_table->size > HASH_TABLE_MIN_SIZE) ||		\
-	 (3 * hash_table->size <= hash_table->nnodes &&	        \
-	  hash_table->size < HASH_TABLE_MAX_SIZE))		\
-	   g_hash_table_resize (hash_table);			\
+    hash_table->size > HASH_TABLE_MIN_SIZE) ||		\
+   (3 * hash_table->size <= hash_table->nnodes &&	        \
+    hash_table->size < HASH_TABLE_MAX_SIZE))		\
+     g_hash_table_resize (hash_table);			\
    } G_STMT_END
 
 static const guint g_primes[] =
@@ -787,7 +787,7 @@ guint g_spaced_primes_closest (guint num)
   guint i;
 
   for (i = 0; i < g_nprimes; i++)
-    if (g_primes[i] > num)
+  if (g_primes[i] > num)
       return g_primes[i];
 
   return g_primes[g_nprimes - 1];
@@ -799,18 +799,18 @@ static guint g_direct_hash(gconstpointer v)
 }
 
 static void g_hash_nodes_destroy (GHashNode *hash_node,
-		                              GFreeFunc  key_destroy_func,
-		                              GFreeFunc  value_destroy_func)
+                                  GFreeFunc  key_destroy_func,
+                                  GFreeFunc  value_destroy_func)
 {
   while (hash_node)
   {
-    GHashNode *next = hash_node->next;
-    if (key_destroy_func)
+  GHashNode *next = hash_node->next;
+  if (key_destroy_func)
       key_destroy_func (hash_node->key);
-    if (value_destroy_func)
+  if (value_destroy_func)
       value_destroy_func (hash_node->value);
-    free(hash_node);
-    hash_node = next;
+  free(hash_node);
+  hash_node = next;
   }
 }
 
@@ -829,18 +829,18 @@ g_hash_table_resize (GHashTable *hash_table)
  
   new_nodes = malloc(sizeof(GHashNode*) * new_size);
   for(i = 0; i < new_size; ++i)
-    new_nodes[i] = NULL;
+  new_nodes[i] = NULL;
   
   for (i = 0; i < hash_table->size; i++)
-    for (node = hash_table->nodes[i]; node; node = next)
-    {
+  for (node = hash_table->nodes[i]; node; node = next)
+  {
       next = node->next;
 
       hash_val = (* hash_table->hash_func) (node->key) % new_size;
 
       node->next = new_nodes[hash_val];
       new_nodes[hash_val] = node;
-    }
+  }
   
   free(hash_table->nodes);
   hash_table->nodes = new_nodes;
@@ -849,12 +849,12 @@ g_hash_table_resize (GHashTable *hash_table)
 
 static GHashNode**
 g_hash_table_lookup_node (GHashTable	*hash_table,
-			  gconstpointer	 key)
+        gconstpointer	 key)
 {
   GHashNode **node;
   
   node = &hash_table->nodes
-    [(* hash_table->hash_func) (key) % hash_table->size];
+  [(* hash_table->hash_func) (key) % hash_table->size];
   
   /* Hash table lookup needs to be fast.
    *  We therefore remove the extra conditional of testing
@@ -862,10 +862,10 @@ g_hash_table_lookup_node (GHashTable	*hash_table,
    *  the inner loop.
    */
   if (hash_table->key_equal_func)
-    while (*node && !(*hash_table->key_equal_func) ((*node)->key, key))
+  while (*node && !(*hash_table->key_equal_func) ((*node)->key, key))
       node = &(*node)->next;
   else
-    while (*node && (*node)->key != key)
+  while (*node && (*node)->key != key)
       node = &(*node)->next;
   
   return node;
@@ -873,7 +873,7 @@ g_hash_table_lookup_node (GHashTable	*hash_table,
 
 static GHashNode*
 g_hash_node_new (gpointer key,
-		 gpointer value)
+     gpointer value)
 {
   GHashNode *hash_node = malloc(sizeof(GHashNode));
   
@@ -886,13 +886,13 @@ g_hash_node_new (gpointer key,
 
 static void
 g_hash_node_destroy (GHashNode      *hash_node,
-		     GDestroyNotify  key_destroy_func,
-		     GDestroyNotify  value_destroy_func)
+         GDestroyNotify  key_destroy_func,
+         GDestroyNotify  value_destroy_func)
 {
   if (key_destroy_func)
-    key_destroy_func (hash_node->key);
+  key_destroy_func (hash_node->key);
   if (value_destroy_func)
-    value_destroy_func (hash_node->value);
+  value_destroy_func (hash_node->value);
   free(hash_node);
 }
 
@@ -907,38 +907,38 @@ g_hash_table_foreach_remove_or_steal (GHashTable *hash_table,
   guint deleted = 0;
   
   for (i = 0; i < hash_table->size; i++)
-    {
-    restart:
+  {
+  restart:
       
       prev = NULL;
       
       for (node = hash_table->nodes[i]; node; prev = node, node = node->next)
-	{
-	  if ((* func) (node->key, node->value, user_data))
-	    {
-	      deleted += 1;
-	      
-	      hash_table->nnodes -= 1;
-	      
-	      if (prev)
-		{
-		  prev->next = node->next;
-		  g_hash_node_destroy (node,
-				       notify ? hash_table->key_destroy_func : NULL,
-				       notify ? hash_table->value_destroy_func : NULL);
-		  node = prev;
-		}
-	      else
-		{
-		  hash_table->nodes[i] = node->next;
-		  g_hash_node_destroy (node,
-				       notify ? hash_table->key_destroy_func : NULL,
-				       notify ? hash_table->value_destroy_func : NULL);
-		  goto restart;
-		}
-	    }
-	}
+  {
+    if ((* func) (node->key, node->value, user_data))
+    {
+        deleted += 1;
+        
+        hash_table->nnodes -= 1;
+        
+        if (prev)
+    {
+      prev->next = node->next;
+      g_hash_node_destroy (node,
+               notify ? hash_table->key_destroy_func : NULL,
+               notify ? hash_table->value_destroy_func : NULL);
+      node = prev;
     }
+        else
+    {
+      hash_table->nodes[i] = node->next;
+      g_hash_node_destroy (node,
+               notify ? hash_table->key_destroy_func : NULL,
+               notify ? hash_table->value_destroy_func : NULL);
+      goto restart;
+    }
+    }
+  }
+  }
   
   G_HASH_TABLE_RESIZE (hash_table);
   
@@ -946,16 +946,16 @@ g_hash_table_foreach_remove_or_steal (GHashTable *hash_table,
 }
 
 GHashTable* g_hash_table_new(GHashFunc	 hash_func,
-					                   GEqualFunc	 key_equal_func)
+                             GEqualFunc	 key_equal_func)
 {
   return g_hash_table_new_full (hash_func, key_equal_func, NULL, NULL);
 }
 
 GHashTable*
 g_hash_table_new_full (GHashFunc       hash_func,
-		                   GEqualFunc      key_equal_func,
-		                   GDestroyNotify  key_destroy_func,
-		                   GDestroyNotify  value_destroy_func)
+                       GEqualFunc      key_equal_func,
+                       GDestroyNotify  key_destroy_func,
+                       GDestroyNotify  value_destroy_func)
 {
   GHashTable *hash_table;
   int i;
@@ -971,7 +971,7 @@ g_hash_table_new_full (GHashFunc       hash_func,
   hash_table->nodes              = malloc(sizeof(GHashNode*) * hash_table->size);
 
   for(i = 0; i < hash_table->size; ++i)
-    hash_table->nodes[i] = 0;
+  hash_table->nodes[i] = 0;
   
   return hash_table;
 }
@@ -993,10 +993,10 @@ void g_hash_table_remove_all (GHashTable *hash_table)
 
   for (i = 0; i < hash_table->size; i++)
   {
-    g_hash_nodes_destroy (hash_table->nodes[i],
+  g_hash_nodes_destroy (hash_table->nodes[i],
                           hash_table->key_destroy_func,
                           hash_table->value_destroy_func);
-    hash_table->nodes[i] = NULL;
+  hash_table->nodes[i] = NULL;
   }
   hash_table->nnodes = 0;
   
@@ -1010,20 +1010,20 @@ void g_hash_table_unref (GHashTable *hash_table)
 
   if ((hash_table->ref_count - 1) - 1 == 0)
   {
-    gint i;
+  gint i;
 
-    for (i = 0; i < hash_table->size; i++)
+  for (i = 0; i < hash_table->size; i++)
       g_hash_nodes_destroy (hash_table->nodes[i], 
-                            hash_table->key_destroy_func,
-                            hash_table->value_destroy_func);
-    g_free (hash_table->nodes);
-    free(hash_table);
+              hash_table->key_destroy_func,
+              hash_table->value_destroy_func);
+  g_free (hash_table->nodes);
+  free(hash_table);
   }
 }
 
 void g_hash_table_insert(GHashTable	*hash_table,
-					               gpointer	 key,
-					               gpointer	 value)
+                         gpointer	 key,
+                         gpointer	 value)
 {
   GHashNode **node;
   
@@ -1034,30 +1034,30 @@ void g_hash_table_insert(GHashTable	*hash_table,
   
   if (*node)
   {
-    /* do not reset node->key in this place, keeping
+  /* do not reset node->key in this place, keeping
      * the old key is the intended behaviour. 
      * g_hash_table_replace() can be used instead.
      */
 
-    /* free the passed key */
-    if (hash_table->key_destroy_func)
+  /* free the passed key */
+  if (hash_table->key_destroy_func)
       hash_table->key_destroy_func (key);
-    
-    if (hash_table->value_destroy_func)
+  
+  if (hash_table->value_destroy_func)
       hash_table->value_destroy_func ((*node)->value);
 
-    (*node)->value = value;
+  (*node)->value = value;
   }
   else
   {
-    *node = g_hash_node_new (key, value);
-    hash_table->nnodes++;
-    G_HASH_TABLE_RESIZE (hash_table);
+  *node = g_hash_node_new (key, value);
+  hash_table->nnodes++;
+  G_HASH_TABLE_RESIZE (hash_table);
   }
 }
 
 gboolean g_hash_table_remove(GHashTable	*hash_table,
-					                   gconstpointer	 key)
+                             gconstpointer	 key)
 {
   GHashNode **node, *dest;
   
@@ -1066,16 +1066,16 @@ gboolean g_hash_table_remove(GHashTable	*hash_table,
   node = g_hash_table_lookup_node (hash_table, key);
   if (*node)
   {
-    dest = *node;
-    (*node) = dest->next;
-    g_hash_node_destroy (dest, 
-		   hash_table->key_destroy_func,
-		   hash_table->value_destroy_func);
-    hash_table->nnodes--;
+  dest = *node;
+  (*node) = dest->next;
+  g_hash_node_destroy (dest, 
+       hash_table->key_destroy_func,
+       hash_table->value_destroy_func);
+  hash_table->nnodes--;
 
-    G_HASH_TABLE_RESIZE (hash_table);
+  G_HASH_TABLE_RESIZE (hash_table);
 
-    return TRUE;
+  return TRUE;
   }
 
   return FALSE;
@@ -1089,8 +1089,8 @@ guint	g_hash_table_size(GHashTable	*hash_table)
 }
 
 void g_hash_table_foreach(GHashTable	*hash_table,
-					                GHFunc		 func,
-					                gpointer	 user_data)
+                  GHFunc		 func,
+                  gpointer	 user_data)
 {
   GHashNode *node;
   gint i;
@@ -1099,12 +1099,12 @@ void g_hash_table_foreach(GHashTable	*hash_table,
   g_return_if_fail (func != NULL);
   
   for (i = 0; i < hash_table->size; i++)
-    for (node = hash_table->nodes[i]; node; node = node->next)
+  for (node = hash_table->nodes[i]; node; node = node->next)
       (* func) (node->key, node->value, user_data);
 }
 
 gpointer g_hash_table_lookup(GHashTable	*hash_table,
-					                   gconstpointer	 key)
+                             gconstpointer	 key)
 {
   GHashNode *node;
   
@@ -1116,8 +1116,8 @@ gpointer g_hash_table_lookup(GHashTable	*hash_table,
 }
 
 guint	g_hash_table_foreach_remove(GHashTable	*hash_table,
-					                        GHRFunc	 func,
-					                        gpointer	 user_data)
+                      GHRFunc	 func,
+                      gpointer	 user_data)
 {
   g_return_val_if_fail (hash_table != NULL, 0);
   g_return_val_if_fail (func != NULL, 0);
@@ -1132,7 +1132,7 @@ guint g_str_hash(gconstpointer   v)
   guint32 h = *p;
 
   if (h)
-    for (p += 1; *p != '\0'; p++)
+  for (p += 1; *p != '\0'; p++)
       h = (h << 5) - h + *p;
 
   return h;
@@ -1154,9 +1154,9 @@ struct _GMemChunk {
 };
 
 GMemChunk* g_mem_chunk_new(gchar	  *name,
-				                   gint	   atom_size,
-				                   gulong	   area_size,
-				                   gint	   type)
+                           gint	   atom_size,
+                           gulong	   area_size,
+                           gint	   type)
 {
   GMemChunk *mem_chunk;
   g_return_val_if_fail (atom_size > 0, NULL);
@@ -1178,7 +1178,7 @@ gpointer g_mem_chunk_alloc(GMemChunk *mem_chunk)
 }
 
 void g_mem_chunk_free(GMemChunk *mem_chunk,
-				              gpointer   mem)
+                      gpointer   mem)
 {
   g_return_if_fail (mem_chunk != NULL);
   

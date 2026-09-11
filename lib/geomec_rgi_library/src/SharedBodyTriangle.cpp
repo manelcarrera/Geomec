@@ -12,17 +12,17 @@ geo::CBodyGroup& cast2BodyGroup(geo::IElementSet& elementSet)
 
   try
   {
-    return dynamic_cast <geo::CBodyGroup&> (elementSet);
+  return dynamic_cast <geo::CBodyGroup&> (elementSet);
   }
 
   catch (const std::bad_cast&)
   {
-    throw;  // Perhaps a more meaningful message?
+  throw;  // Perhaps a more meaningful message?
   }
 
   catch (...)
   {
-    throw;  // Perhaps a more meaningful message?
+  throw;  // Perhaps a more meaningful message?
   }
 }
 

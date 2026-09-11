@@ -12,28 +12,28 @@ namespace cora
 class CSummaryResultFile
 {
   public:
-    CSummaryResultFile(const QString& fileName);
-    ~CSummaryResultFile();
+  CSummaryResultFile(const QString& fileName);
+  ~CSummaryResultFile();
 
-    enum TResultValue
-    {
+  enum TResultValue
+  {
       RESULT_VALUE_OK,
       RESULT_VALUE_INCONSISTENT,
       RESULT_VALUE_TOO_MANY,
       RESULT_VALUE_DIVERGENCE
-    };
+  };
 
-    TResultValue getResultValue() const;
-    void setResultValue(TResultValue resultValue);
-    void addAdditionalInformation(const QString& additionalInformation);
+  TResultValue getResultValue() const;
+  void setResultValue(TResultValue resultValue);
+  void addAdditionalInformation(const QString& additionalInformation);
 
   private:
-    CSummaryResultFile(const CSummaryResultFile& rhs);
-    CSummaryResultFile& operator = (CSummaryResultFile rhs);
+  CSummaryResultFile(const CSummaryResultFile& rhs);
+  CSummaryResultFile& operator = (CSummaryResultFile rhs);
 
-    std::ofstream m_summaryResultFile;
-    TResultValue m_resultValue;
-    std::ostringstream m_additionalInformation;
+  std::ofstream m_summaryResultFile;
+  TResultValue m_resultValue;
+  std::ostringstream m_additionalInformation;
 };
 
 } // namespace cora

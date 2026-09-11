@@ -19,71 +19,71 @@ namespace geo {
 
 class GEOMETRY_EXPORT  CMesh : public IMesh  
 {
-	class GEOMETRY_EXPORT CNode : public INode
-	{
-		const IMesh& m_mesh;
-		int m_nIndex;
-		double m_coor[3];
-		std::vector<IElement*> m_vcElement;
+  class GEOMETRY_EXPORT CNode : public INode
+  {
+    const IMesh& m_mesh;
+    int m_nIndex;
+    double m_coor[3];
+    std::vector<IElement*> m_vcElement;
 
-	public:
-		CNode(const IMesh &mesh, int nIndex, const IPoint& point, int nElements = 0);
-		virtual ~CNode();
+  public:
+    CNode(const IMesh &mesh, int nIndex, const IPoint& point, int nElements = 0);
+    virtual ~CNode();
 
-		virtual const IMesh &Mesh() const;
-		virtual int Index() const;
-    void Index(int nIndex);
+    virtual const IMesh &Mesh() const;
+    virtual int Index() const;
+  void Index(int nIndex);
 
-		// Coordinate access
-		virtual const double &X() const;
-		virtual const double &Y() const;
-		virtual const double &Z() const;
+    // Coordinate access
+    virtual const double &X() const;
+    virtual const double &Y() const;
+    virtual const double &Z() const;
 
-		// Coordinate modification
-		virtual void X(const double &dX);
-		virtual void Y(const double &dY);
-		virtual void Z(const double &dZ);
+    // Coordinate modification
+    virtual void X(const double &dX);
+    virtual void Y(const double &dY);
+    virtual void Z(const double &dZ);
 
-		virtual void AssertValid() const;
-		virtual bool Empty() const;
+    virtual void AssertValid() const;
+    virtual bool Empty() const;
 
-		// Looping over elements
-		virtual int AttachedElementSize() const;
-		virtual const geo::IElement& AttachedElement(int nIndex) const;
+    // Looping over elements
+    virtual int AttachedElementSize() const;
+    virtual const geo::IElement& AttachedElement(int nIndex) const;
 
-		// Register element
-		virtual int RegisterElement(geo::IElement& element);
-		virtual bool UnregisterElement(geo::IElement& element);
-	};
+    // Register element
+    virtual int RegisterElement(geo::IElement& element);
+    virtual bool UnregisterElement(geo::IElement& element);
+  };
 
-	std::vector<IElement*> m_vcElement;
+  std::vector<IElement*> m_vcElement;
 
   std::vector<const CTiedBodyTriangle *> m_vcTiedBodyTriangle;
 
-	typedef std::map<const IPoint*, TNodeVec, ICoordinate::CCoordinateLess> TPointMap;
-	TPointMap m_mpPoint;
+  typedef std::map<const IPoint*, TNodeVec, ICoordinate::CCoordinateLess> TPointMap;
+  TPointMap m_mpPoint;
 
-	CNearestNeighbour m_vcPoint;
+  CNearestNeighbour m_vcPoint;
 
-	virtual CNode* CreateMeshNode(int nIndex, const IPoint& point, int nElements);
+  virtual CNode* CreateMeshNode(int nIndex, const IPoint& point, int nElements);
 
 protected:
-	TNodeVec NearestPoint(const IPoint& point) const;
+  TNodeVec NearestPoint(const IPoint& point) const;
 
-	// Access to non const point
-	virtual IPoint &PointAt(int nIndex);
+  // Access to non const point
+  virtual IPoint &PointAt(int nIndex);
 
 private:
   void BuildUniqueMap();
 
 public:
-	CMesh();
-	virtual ~CMesh();
+  CMesh();
+  virtual ~CMesh();
 
-	// Registering elements and points in the mesher
-	virtual int RegisterNode(const IPoint& point, bool bUnique = true, int nElements = 0);
+  // Registering elements and points in the mesher
+  virtual int RegisterNode(const IPoint& point, bool bUnique = true, int nElements = 0);
 
-	virtual int RegisterElement(IElement& element);
+  virtual int RegisterElement(IElement& element);
   virtual void reserveElementSize(size_t size);
 
   virtual int RegisterTiedBodyTriangle(int nIndex, const CTiedBodyTriangle& tiedBodyTriangle);
@@ -92,18 +92,18 @@ public:
   virtual void RemoveElement(int nIndex);
   virtual void RemoveNode(int nIndex);
 
-	// Clear the mesh
-	virtual void Clear();
+  // Clear the mesh
+  virtual void Clear();
 
-	// mesh nodes
-	virtual int NodeSize() const;
-	virtual const INode& Node(int nIndex) const;
-	virtual void Node(int nIndex, const IPoint& node);
+  // mesh nodes
+  virtual int NodeSize() const;
+  virtual const INode& Node(int nIndex) const;
+  virtual void Node(int nIndex, const IPoint& node);
 
-	virtual TNodeVec NodeIndex(const IPoint& point);
+  virtual TNodeVec NodeIndex(const IPoint& point);
 
-	virtual const IElement &Element(int nIndex) const;
-	virtual int ElementSize() const;
+  virtual const IElement &Element(int nIndex) const;
+  virtual int ElementSize() const;
 };
 
 }

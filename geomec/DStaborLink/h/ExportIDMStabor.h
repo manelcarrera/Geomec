@@ -106,12 +106,12 @@ public:
   , CModelBase& model
   , CWnd* pParent = NULL
   );   // standard constructor
-	
+  
 protected:
   virtual BOOL OnInitDialog();
   virtual void DoDataExchange(CDataExchange* pDX);
 
-	DECLARE_MESSAGE_MAP()
+  DECLARE_MESSAGE_MAP()
 
 private:
   afx_msg void OnExport();

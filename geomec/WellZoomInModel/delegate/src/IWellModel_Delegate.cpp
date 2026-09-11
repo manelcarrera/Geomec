@@ -16,7 +16,7 @@ IWellModel_Delegate::IWellModel_Delegate(IWellModel* wellModel)
 bool IWellModel_Delegate::Attributes()
 {
   CAttriWellZoomInModelDlg dlg(*m_wellModel,
-    m_wellModel->AttributesDialogCaption().toStdString().c_str(), FemAppGetMainWnd());
+  m_wellModel->AttributesDialogCaption().toStdString().c_str(), FemAppGetMainWnd());
 
   return (dlg.DoModal() == IDOK);
 }
@@ -32,10 +32,10 @@ void IWellModel_Delegate::CBoundary_Delegate::AppendContextMenu(
   CContextMenuInvoker &invoker)
 {
   typedef CSingleCommandTemplate <IWellModel_Delegate::CBoundary_Delegate>
-    TBoundaryCommand;
+  TBoundaryCommand;
 
   invoker.AddCommand(_T("&Interface attributes"),
-    *(new TBoundaryCommand(*this,
+  *(new TBoundaryCommand(*this,
       &IWellModel_Delegate::CBoundary_Delegate::InterfaceAttributes)));
 }
 
@@ -52,19 +52,19 @@ bool IWellModel_Delegate::CBoundary_Delegate::CanModify() const
 void IWellModel_Delegate::CBoundary_Delegate::InterfaceAttributes()
 {
   assert(typeid(m_boundary->InterfaceDefinition()).name() ==
-    typeid(CBoundaryInterfaceDef).name());
+  typeid(CBoundaryInterfaceDef).name());
 
   CBoundaryInterfaceDef_Delegate* boundaryInterfaceDef_Delegate =
-    static_cast <CBoundaryInterfaceDef_Delegate*> (
+  static_cast <CBoundaryInterfaceDef_Delegate*> (
       const_cast <CBoundaryInterfaceDef&> (
-        m_boundary->InterfaceDefinition()).getDelegate());
+    m_boundary->InterfaceDefinition()).getDelegate());
 
   boundaryInterfaceDef_Delegate->Attributes();
 }
 
 IWellModel_Delegate::CBoundary_Delegate::IWellSupportNode_Delegate::
   IWellSupportNode_Delegate(
-    IWellModel::CBoundary::IWellSupportNode* wellSupportNode)
+  IWellModel::CBoundary::IWellSupportNode* wellSupportNode)
 : CBaseSupportNode_Delegate(wellSupportNode)
 , m_wellSupportNode(wellSupportNode)
 {
@@ -72,7 +72,7 @@ IWellModel_Delegate::CBoundary_Delegate::IWellSupportNode_Delegate::
 
 IWellModel_Delegate::CBoundary_Delegate::CDisplacementSupport_Delegate::
   CDisplacementSupport_Delegate(
-    IWellModel::CBoundary::CDisplacementSupport* displacementSupport)
+  IWellModel::CBoundary::CDisplacementSupport* displacementSupport)
 : IWellSupportNode_Delegate(displacementSupport)
 , m_displacementSupport(displacementSupport)
 {
@@ -80,7 +80,7 @@ IWellModel_Delegate::CBoundary_Delegate::CDisplacementSupport_Delegate::
 
 IWellModel_Delegate::CBoundary_Delegate::CPressureSupport_Delegate::
   CPressureSupport_Delegate(
-    IWellModel::CBoundary::CPressureSupport* pressureSupport)
+  IWellModel::CBoundary::CPressureSupport* pressureSupport)
 : IWellSupportNode_Delegate(pressureSupport)
 , m_pressureSupport(pressureSupport)
 {

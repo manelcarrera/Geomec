@@ -18,18 +18,18 @@ public:
   CElementPoint(const IElement& element);
   CElementPoint(const std::set<const IElement*>& stElements);
   CElementPoint(const IElement& element,
-                const double &dX,
-                const double &dY,
-                const double &dZ = 0.0);
+        const double &dX,
+        const double &dY,
+        const double &dZ = 0.0);
   CElementPoint(const std::set<const IElement*>& stElements,
-                const double& dX,
-                const double& dY,
-                const double& dZ = 0.0);
+        const double& dX,
+        const double& dY,
+        const double& dZ = 0.0);
   CElementPoint(const IPoint& pt);
   CElementPoint(const IElement& element,
-                const IPoint& pt);
+        const IPoint& pt);
   CElementPoint(const std::set<const IElement*>& stElements,
-                const IPoint& pt);
+        const IPoint& pt);
   CElementPoint(const CElementPoint &pt);
 
   CElementPoint& operator=(const CElementPoint& rhs);

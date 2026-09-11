@@ -32,7 +32,7 @@ RESCUEINT64 RescueGeobodyPart::PropertyCount64()
   RESCUEINT64 loop;
   for (loop = 0; loop < howMany; loop++)
   {
-    myReturn += gridGeometries->NthObject(loop)->PropertyCount64();
+  myReturn += gridGeometries->NthObject(loop)->PropertyCount64();
   }
   return myReturn;
 }
@@ -43,8 +43,8 @@ RescueGeobodySurface *RescueGeobodyPart::GeobodySurfaceIdentifiedBy(RESCUEINT64 
   RESCUEINT64 loop;
   for (loop = 0; loop < bodyVolumes->Count64() && myReturn == 0; loop++)
   {
-    RescueGeobodyVolume *volume = bodyVolumes->NthObject(loop);
-    myReturn = volume->GeobodySurfaceIdentifiedBy(id);
+  RescueGeobodyVolume *volume = bodyVolumes->NthObject(loop);
+  myReturn = volume->GeobodySurfaceIdentifiedBy(id);
   }
   return myReturn;
 }
@@ -56,8 +56,8 @@ RescueProperty *RescueGeobodyPart::PropertyIdentifiedBy(RESCUEINT64 id)
   RescueGeometry *geometry = GridGeometry(ordinal++);
   while (geometry != 0 && myReturn == 0)
   {
-    myReturn = geometry->PropertyIdentifiedBy(id);
-    geometry = GridGeometry(ordinal++);
+  myReturn = geometry->PropertyIdentifiedBy(id);
+  geometry = GridGeometry(ordinal++);
   }
   return myReturn;
 }
@@ -199,7 +199,7 @@ RescueGeobodyPart::RescueGeobodyPart(RescueCoordinateSystem::Orientation orienta
   (*parentBody->bodyParts) += this;
 
   (*gridGeometries) += new RescueGeometry(parentBody->ParentModel(), blockUnitGrid, missingValue,
-                                    topSurfaceIn, topOffsetIn, bottomSurfaceIn, bottomOffsetIn);
+                  topSurfaceIn, topOffsetIn, bottomSurfaceIn, bottomOffsetIn);
   GridGeometry()->parentGeobodyPart = this;
   isA = R_RescueGeobodyPart;
   AddGeobodyVolume();
@@ -255,30 +255,30 @@ RescueGeobodyPart::~RescueGeobodyPart()
 {
   if (gridGeometries != 0)
   {
-    delete gridGeometries;
+  delete gridGeometries;
   }
   if (bodyVolumes != 0)
   {
-    delete bodyVolumes;
+  delete bodyVolumes;
   }
   if (propertyGroups != 0)
   {
-    delete propertyGroups;
+  delete propertyGroups;
   }
   if (propertyGroupsID != 0)
   {
-    delete propertyGroupsID;
+  delete propertyGroupsID;
   }
   if (blockUnits != 0)
   {
-    RESCUEINT64 howMany = blockUnits->Count64();
-    RESCUEINT64 loop;
-    for (loop = 0; loop < howMany; loop++)
-    {
+  RESCUEINT64 howMany = blockUnits->Count64();
+  RESCUEINT64 loop;
+  for (loop = 0; loop < howMany; loop++)
+  {
       RescueBlockUnit *bu = blockUnits->NthObject(loop);
       (*bu->geobodyParts) -= this;
-    }
-    delete blockUnits;
+  }
+  delete blockUnits;
   }
 }
 
@@ -294,7 +294,7 @@ void RescueGeobodyPart::DropGeobodyVolume(RescueGeobodyVolume *existingVolume)
   (*bodyVolumes) -= existingVolume;
   if ((*bodyVolumes).Count64() == 0)
   {
-    (*bodyVolumes) += new RescueGeobodyVolume(this);
+  (*bodyVolumes) += new RescueGeobodyVolume(this);
   }
 }
 
@@ -314,11 +314,11 @@ RESCUEBOOL RescueGeobodyPart::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueGeobodyPart)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueHistoryObject::IsOfType(thisType);
+  return RescueHistoryObject::IsOfType(thisType);
   }
 }
 RescueGeobodyPart::RescueGeobodyPart(RescueContext *contextIn, FILE *archiveFile)
@@ -347,47 +347,47 @@ RescueGeobodyPart::RescueGeobodyPart(RescueContext *contextIn, FILE *archiveFile
   myfscanf(contextIn, archiveFile, &count);
   if (count > 0)
   {
-    propertyGroupsID = new cBagInt();
+  propertyGroupsID = new cBagInt();
 
-    RESCUEINT64 loop;
-    for (loop = 0; loop < count; loop++)
-    {
+  RESCUEINT64 loop;
+  for (loop = 0; loop < count; loop++)
+  {
       RESCUEINT64 id;
 
       myfscanf(contextIn, archiveFile, &id);
       (*propertyGroupsID) += id;
-    }
+  }
   }
   gridGeometries->UnArchive(contextIn, archiveFile);
   (*bodyVolumes).UnArchive(contextIn, archiveFile);
   if (contextIn->ReadFileVersion() < 28)
   {
-    cSetRescueProperty properties; 
-    properties.UnArchive(contextIn, archiveFile);
-    RESCUEINT64 howMany = properties.Count64();
-    RESCUEINT64 geoCount = gridGeometries->Count64();
-    RESCUEINT64 pOrdinal = 0;
-    while (pOrdinal < howMany)
-    {
+  cSetRescueProperty properties; 
+  properties.UnArchive(contextIn, archiveFile);
+  RESCUEINT64 howMany = properties.Count64();
+  RESCUEINT64 geoCount = gridGeometries->Count64();
+  RESCUEINT64 pOrdinal = 0;
+  while (pOrdinal < howMany)
+  {
       RescueProperty *property = properties.NthObject(pOrdinal);
       RESCUEINT64 subloop;
       RESCUEBOOL found = FALSE;
       for (subloop = 0; subloop < geoCount && found == FALSE; subloop++)
       {
-        RescueGeometry *geometry = gridGeometries->NthObject(subloop);
-        if (geometry->Identifier() == property->geometryId)
-        {
+    RescueGeometry *geometry = gridGeometries->NthObject(subloop);
+    if (geometry->Identifier() == property->geometryId)
+    {
           properties.Relinquish(property);
           (*geometry->properties) += property;
           found = TRUE;
           howMany--;
-        }
+    }
       }
       if (found == FALSE)
       {
-        pOrdinal++;
+    pOrdinal++;
       }
-    }
+  }
 /*
   Those properties that we did not find a home for will be deleted when
   properties goes out of scope.  Hopefully there are none.  This was made
@@ -397,36 +397,36 @@ RescueGeobodyPart::RescueGeobodyPart(RescueContext *contextIn, FILE *archiveFile
   myfscanf(contextIn, archiveFile, &count);
   if (count > 0)
   {
-    blockUnitsID = new cBagInt();
-    RESCUEINT64 loop;
-    for (loop = 0; loop < count; loop++)
-    {
+  blockUnitsID = new cBagInt();
+  RESCUEINT64 loop;
+  for (loop = 0; loop < count; loop++)
+  {
       RESCUEINT64 id;
 
       myfscanf(contextIn, archiveFile, &id);
       (*blockUnitsID) += id;
-    }
+  }
   }
   if (contextIn->ReadFileVersion() >= 22)
   {
-    RESCUEINT64 colorFlag = 0;
-    myfscanf(contextIn, archiveFile, &colorFlag);
-    if (colorFlag == 1)
-    {
+  RESCUEINT64 colorFlag = 0;
+  myfscanf(contextIn, archiveFile, &colorFlag);
+  if (colorFlag == 1)
+  {
       color = new RescueColor(contextIn, archiveFile);
-    }
+  }
   }
   contextIn->geobodyParts->Add(this);
   if (contextIn->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(contextIn, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(contextIn, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(contextIn, archiveFile);
       myfgets(contextIn, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -437,11 +437,11 @@ void RescueGeobodyPart::Archive(FILE *archiveFile)
 
   if (GridGeometry() == 0 && context->FileVersion() < 23)
   {
-    RescueGrid *fakeGrid = new RescueGrid(context, RescueCoordinateSystem::LDF,
+  RescueGrid *fakeGrid = new RescueGrid(context, RescueCoordinateSystem::LDF,
                                           0, 10, 0, 10, 0, 10);
-    RescueGeometry *fakeGeometry = new RescueGeometry(body->ParentModel(), 
+  RescueGeometry *fakeGeometry = new RescueGeometry(body->ParentModel(), 
                                                       fakeGrid, (RESCUEFLOAT) -9999.0);
-    AddGeometry(fakeGeometry);
+  AddGeometry(fakeGeometry);
   }
 /*
   If writing to an older model we must have a BUG of some sort.
@@ -453,46 +453,46 @@ void RescueGeobodyPart::Archive(FILE *archiveFile)
   for (loop = 0; loop < howMany; loop++)
   {
    RescuePropertyGroup *group = (RescuePropertyGroup *) 
-                            (*propertyGroups).NthObject(loop);
+              (*propertyGroups).NthObject(loop);
    myfprintf(context, archiveFile, group->Identifier());
   }
   if (context->FileVersion() >= 15 && context->FileVersion() <= 21)
   {
-    RESCUEINT64 ordinal = 0;
-    RescueGeometry *geometry = gridGeometries->NthObject(ordinal++);
-    while (geometry != 0)
-    {
+  RESCUEINT64 ordinal = 0;
+  RescueGeometry *geometry = gridGeometries->NthObject(ordinal++);
+  while (geometry != 0)
+  {
       if (color == 0)
       {
-        geometry->SetColor(0);
+    geometry->SetColor(0);
       }
       else
       {
-        geometry->SetColor(*color);
+    geometry->SetColor(*color);
       }
       geometry = gridGeometries->NthObject(ordinal++);
-    }
+  }
   }
   gridGeometries->Archive(context, archiveFile);
   bodyVolumes->Archive(context, archiveFile);
   if (context->FileVersion() < 28)
   {
-    cSetRescueProperty properties;
-    RESCUEINT64 gOrdinal = 0;
-    RescueGeometry *geometry = gridGeometries->NthObject(gOrdinal++);
-    while (geometry != 0)
-    {
+  cSetRescueProperty properties;
+  RESCUEINT64 gOrdinal = 0;
+  RescueGeometry *geometry = gridGeometries->NthObject(gOrdinal++);
+  while (geometry != 0)
+  {
       RESCUEINT64 pOrdinal = 0;
       RescueProperty *property = geometry->NthRescueProperty(pOrdinal++);
       while (property != 0)
       {
-        properties += property;
-        property = geometry->NthRescueProperty(pOrdinal++);
+    properties += property;
+    property = geometry->NthRescueProperty(pOrdinal++);
       }
       geometry = gridGeometries->NthObject(gOrdinal++);
-    }
-    properties.Archive(context, archiveFile);
-    properties.RelinquishAll();
+  }
+  properties.Archive(context, archiveFile);
+  properties.RelinquishAll();
   }
   howMany = blockUnits->Count64();
   myfprintf(context, archiveFile, howMany);
@@ -503,19 +503,19 @@ void RescueGeobodyPart::Archive(FILE *archiveFile)
   }
   if (context->FileVersion() >= 22)
   {
-    if (color == 0)
-    {
+  if (color == 0)
+  {
       myfprintf(context, archiveFile, (RESCUEINT64) 0);
-    }
-    else
-    {
+  }
+  else
+  {
       myfprintf(context, archiveFile, (RESCUEINT64) 1);
       color->Archive(context, archiveFile);
-    }
+  }
   }
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -531,45 +531,45 @@ void RescueGeobodyPart::Relink(RescueObject *parent)
   RescueContext *context = body->ParentModel()->Context();
   if (propertyGroupsID != 0)
   {
-    RESCUEINT64 loop;
-    for (loop = 0; loop < propertyGroupsID->Count64(); loop++)
-    {
+  RESCUEINT64 loop;
+  for (loop = 0; loop < propertyGroupsID->Count64(); loop++)
+  {
       RESCUEINT64 groupID = propertyGroupsID->NthObject(loop);
       RescuePropertyGroup *group = 
-        (RescuePropertyGroup *) RescueHistory::FindObject(body->parentModel, 
-                                                                    R_RescuePropertyGroup, 
+    (RescuePropertyGroup *) RescueHistory::FindObject(body->parentModel, 
+                                  R_RescuePropertyGroup, 
                                                                      groupID);
       if (group != 0) 
       {
-        (*propertyGroups) += group;
+    (*propertyGroups) += group;
       }
-    }
-    delete propertyGroupsID;
-    propertyGroupsID = 0;
+  }
+  delete propertyGroupsID;
+  propertyGroupsID = 0;
   }
   (*bodyVolumes).Relink(this);
   gridGeometries->Relink(this);
   if (blockUnitsID != 0)
   {
-    RESCUEINT64 loop;
-    for (loop = 0; loop < blockUnitsID->Count64(); loop++)
-    {
+  RESCUEINT64 loop;
+  for (loop = 0; loop < blockUnitsID->Count64(); loop++)
+  {
       RescueBlockUnit *bu =
-        body->ParentModel()->BlockUnitIdentifiedBy(
-                        blockUnitsID->NthObject(loop));
+    body->ParentModel()->BlockUnitIdentifiedBy(
+            blockUnitsID->NthObject(loop));
       if (bu != 0)
       {
-        AddBlockUnit(bu);
+    AddBlockUnit(bu);
       }
-    }
-    delete blockUnitsID;
-    blockUnitsID = 0;
+  }
+  delete blockUnitsID;
+  blockUnitsID = 0;
   }
   if (context->ReadFileVersion() >= 15 && context->ReadFileVersion() <= 21
   &&  GridGeometry() != 0)
   {
-    color = GridGeometry()->color;
-    GridGeometry()->color = 0;
+  color = GridGeometry()->color;
+  GridGeometry()->color = 0;
   }
 }
 
@@ -592,11 +592,11 @@ RescueGeometry *RescueGeobodyPart::GeometryWithId(RESCUEINT64 id)
   RESCUEINT64 loop;
   for (loop = 0; loop < howMany && myReturn == 0; loop++)
   {
-    RescueGeometry *bug = gridGeometries->NthObject(loop);
-    if (bug->Identifier() == id)
-    {
+  RescueGeometry *bug = gridGeometries->NthObject(loop);
+  if (bug->Identifier() == id)
+  {
       myReturn = bug;
-    }
+  }
   }
   return myReturn;
 }
@@ -605,7 +605,7 @@ void RescueGeobodyPart::Dispose()
 {
   if (gridGeometries != 0)
   {
-    gridGeometries->Dispose();
+  gridGeometries->Dispose();
   }
 }
 
@@ -613,7 +613,7 @@ void RescueGeobodyPart::SetColor(RescueColor *colorIn)
 {
   if (color != 0)
   {
-    delete color;
+  delete color;
   }
   color = colorIn;
 }
@@ -631,8 +631,8 @@ void RescueGeobodyPart::SetOrientation(RescueOrientationLedger *ledger,
   RescueGeometry *geometry = gridGeometries->NthObject(ordinal++);
   while (geometry != 0)
   {
-    geometry->SetOrientation(ledger, orientation);
-    geometry = gridGeometries->NthObject(ordinal++);
+  geometry->SetOrientation(ledger, orientation);
+  geometry = gridGeometries->NthObject(ordinal++);
   }
   ordinal = 0;
 }
@@ -648,10 +648,10 @@ RESCUEINT32 RescueGeobodyPart::GeometryCount(RESCUEBOOL throwIfTooBig)
   RESCUEINT64 output = GeometryCount64();
   if (throwIfTooBig)
   {
-    if (output > 2147483647 || output < -2147483647)
-    {
+  if (output > 2147483647 || output < -2147483647)
+  {
       throw "Model is too large to be read in 32 bit mode.";
-    }
+  }
   }
   return (RESCUEINT32) output;
 }

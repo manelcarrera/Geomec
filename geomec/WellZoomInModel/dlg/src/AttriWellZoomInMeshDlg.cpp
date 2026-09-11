@@ -10,10 +10,10 @@ static bool IsIntValue(const CString& str)
   int i;
   for(i = 0; i < str.GetLength(); ++i)
   {
-    if(!isdigit(str[i]))
-    {
+  if(!isdigit(str[i]))
+  {
       return false;
-    }
+  }
   }
 
   return true;
@@ -46,31 +46,31 @@ void CAttriWellZoomInMeshDlg::DoDataExchange(CDataExchange* pDX)
 
   if(!pDX->m_bSaveAndValidate)
   {
-    nType = Copy().isHexaMesh() ? 0 : 1;
+  nType = Copy().isHexaMesh() ? 0 : 1;
 
-    nNodes = Source().Mesh().NodeSize();
-    nElements = Source().Mesh().ElementSize();
-    BOOL bIsMesh = (Source().IsMesh() != false);
+  nNodes = Source().Mesh().NodeSize();
+  nElements = Source().Mesh().ElementSize();
+  BOOL bIsMesh = (Source().IsMesh() != false);
 
-    GetDlgItem(IDC_FRAME_INFO)->EnableWindow(bIsMesh);
-    GetDlgItem(IDC_LBL_NUM_NODES)->EnableWindow(bIsMesh);
-    GetDlgItem(IDC_VAL_NUM_NODES)->EnableWindow(bIsMesh);
-    GetDlgItem(IDC_LBL_NUM_ELEMENTS)->EnableWindow(bIsMesh);
-    GetDlgItem(IDC_VAL_NUM_ELEMENTS)->EnableWindow(bIsMesh);
+  GetDlgItem(IDC_FRAME_INFO)->EnableWindow(bIsMesh);
+  GetDlgItem(IDC_LBL_NUM_NODES)->EnableWindow(bIsMesh);
+  GetDlgItem(IDC_VAL_NUM_NODES)->EnableWindow(bIsMesh);
+  GetDlgItem(IDC_LBL_NUM_ELEMENTS)->EnableWindow(bIsMesh);
+  GetDlgItem(IDC_VAL_NUM_ELEMENTS)->EnableWindow(bIsMesh);
 
-    nRadialElements = Copy().NrOfRadialElements();
-    dTargetLongElementSize = Copy().TargetLongitudinalElementSize();
-    dRadius = Copy().TetraRadius();
-    dTargetEdgeSize = Copy().TetraIdealElementSize();
+  nRadialElements = Copy().NrOfRadialElements();
+  dTargetLongElementSize = Copy().TargetLongitudinalElementSize();
+  dRadius = Copy().TetraRadius();
+  dTargetEdgeSize = Copy().TetraIdealElementSize();
 
-    if (UnitNode().Unit() == IQuantityDouble::FIELD_UNIT)
-    {
+  if (UnitNode().Unit() == IQuantityDouble::FIELD_UNIT)
+  {
       dTargetLongElementSize *= FF_FACTOR_LENGTH;
       dRadius *= FF_FACTOR_LENGTH;
       dTargetEdgeSize *= FF_FACTOR_LENGTH;
-    }
+  }
 
-    strUnit = CLengthQuantity().UnitName(UnitNode().Unit()).c_str();
+  strUnit = CLengthQuantity().UnitName(UnitNode().Unit()).c_str();
   }
 
   DDX_Text(pDX, IDC_UN_TARGET_LONG_ELEMENT_SIZE, strUnit);
@@ -88,47 +88,47 @@ void CAttriWellZoomInMeshDlg::DoDataExchange(CDataExchange* pDX)
 
   if(pDX->m_bSaveAndValidate)
   {
-    CString str;
-    DDX_Text(pDX, IDC_ED_RADIAL_ELEMENTS, str);
-    if(nRadialElements <= 0 || !IsIntValue(str))
-    {
+  CString str;
+  DDX_Text(pDX, IDC_ED_RADIAL_ELEMENTS, str);
+  if(nRadialElements <= 0 || !IsIntValue(str))
+  {
       pDX->PrepareEditCtrl(IDC_ED_RADIAL_ELEMENTS);
       _m()->msg("The number of radial elements must be an integer value greater than 0");
       pDX->Fail();
-    }
+  }
 
-    if (UnitNode().Unit() == IQuantityDouble::FIELD_UNIT)
-    {
+  if (UnitNode().Unit() == IQuantityDouble::FIELD_UNIT)
+  {
       dTargetLongElementSize /= FF_FACTOR_LENGTH;
       dRadius /= FF_FACTOR_LENGTH;
       dTargetEdgeSize /= FF_FACTOR_LENGTH;
-    }
+  }
 
-    if(dTargetLongElementSize <= 0)
-    {
+  if(dTargetLongElementSize <= 0)
+  {
       pDX->PrepareEditCtrl(IDC_ED_TARGET_LONG_ELEMENT_SIZE);
       _m()->msg("The target longitudinal element size must be greater than 0");
       pDX->Fail();
-    }
+  }
 
-    if (dRadius <= 0)
-    {
+  if (dRadius <= 0)
+  {
       pDX->PrepareEditCtrl(IDC_ED_RADIUS);
       _m()->msg("The radius must be greater than 0");
       pDX->Fail();
-    }
+  }
 
-    if (dTargetEdgeSize <= 0)
-    {
+  if (dTargetEdgeSize <= 0)
+  {
       pDX->PrepareEditCtrl(IDC_ED_TARGET_EDGE_SIZE);
       _m()->msg("The target edge size must be greater than 0");
       pDX->Fail();
-    }
+  }
 
-    Copy().NrOfRadialElements(nRadialElements);
-    Copy().TargetLongitudinalElementSize(dTargetLongElementSize);
-    Copy().TetraRadius(dRadius);
-    Copy().TetraIdealElementSize(dTargetEdgeSize);
+  Copy().NrOfRadialElements(nRadialElements);
+  Copy().TargetLongitudinalElementSize(dTargetLongElementSize);
+  Copy().TetraRadius(dRadius);
+  Copy().TetraIdealElementSize(dTargetEdgeSize);
   }
 }
 

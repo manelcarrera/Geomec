@@ -2,7 +2,7 @@
 #include <QCloseEvent>
 
 ModGMGui::ModGMGui(QWidget *parent)
-    : QMainWindow(parent)
+  : QMainWindow(parent)
 {
   ui.setupUi(this);
 
@@ -25,16 +25,16 @@ void ModGMGui::onReceivedMessage(const ModGMBusMessage& message)
   int old_id = -1;
 
   if (m_ids.contains(from))
-    old_id = m_ids.value(from);
+  old_id = m_ids.value(from);
 
   m_ids.insert(from, id);
 
   ++x;
 
   if (id != old_id + 1)
-    ui.label->setText(QString("lost ") + QString::number(id - old_id + 1));
+  ui.label->setText(QString("lost ") + QString::number(id - old_id + 1));
   else
-    ui.label->setText(QString::number(x));
+  ui.label->setText(QString::number(x));
 }
 
 void ModGMGui::onReceivedError(const QString& error)

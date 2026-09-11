@@ -25,21 +25,21 @@ void RescueColor::CommonInitialization()
 }
 
 RescueColor::RescueColor(RescueColor &otherColor)
-                        :RescueObject(otherColor.context),context(otherColor.context)
+            :RescueObject(otherColor.context),context(otherColor.context)
 {
   CommonInitialization();
   SetColor(otherColor.red, otherColor.green, otherColor.blue, otherColor.colorName->String());
 }
 
 RescueColor::RescueColor(RescueContext *contextIn, int red, int green, int blue, RESCUECHAR *name)
-                        :RescueObject(contextIn),context(contextIn)
+            :RescueObject(contextIn),context(contextIn)
 {
   CommonInitialization();
   SetColor(red, green, blue, name);
 }
 
 RescueColor::RescueColor(RescueContext *contextIn, RESCUEFLOAT red, RESCUEFLOAT green, RESCUEFLOAT blue, RESCUECHAR *name)
-                        :RescueObject(contextIn),context(contextIn)
+            :RescueObject(contextIn),context(contextIn)
 {
   CommonInitialization();
   SetColor(red, green, blue, name);
@@ -65,11 +65,11 @@ void RescueColor::SetColor(RESCUEFLOAT redIn, RESCUEFLOAT greenIn, RESCUEFLOAT b
   blue = blueIn;
   if (name != 0)
   {
-    (*colorName) = name;
+  (*colorName) = name;
   }
   else
   {
-    (*colorName) = "";
+  (*colorName) = "";
   }
 }
 
@@ -91,14 +91,14 @@ void RescueColor::Archive(RescueContext *contextIn, FILE *archiveFile)
 {
   if (contextIn->FileVersion() >= 15)
   {
-    myfprintf(contextIn, archiveFile, (*colorName).String());
-    myfprintf(contextIn, archiveFile, red);
-    myfprintf(contextIn, archiveFile, green);
-    myfprintf(contextIn, archiveFile, blue);
+  myfprintf(contextIn, archiveFile, (*colorName).String());
+  myfprintf(contextIn, archiveFile, red);
+  myfprintf(contextIn, archiveFile, green);
+  myfprintf(contextIn, archiveFile, blue);
   }
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -108,13 +108,13 @@ RescueColor::RescueColor(RescueContext *contextIn, FILE *archiveFile)
   CommonInitialization();
   if (context->ReadFileVersion() >= 15)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    (*colorName) = myString;
-    myfscanf(context, archiveFile, &red);
-    myfscanf(context, archiveFile, &green);
-    myfscanf(context, archiveFile, &blue);
+  myfgets(context, myString, 255, archiveFile);
+  (*colorName) = myString;
+  myfscanf(context, archiveFile, &red);
+  myfscanf(context, archiveFile, &green);
+  myfscanf(context, archiveFile, &blue);
   }
 /*
   Actually we don't get called on earlier files, cause this
@@ -122,14 +122,14 @@ RescueColor::RescueColor(RescueContext *contextIn, FILE *archiveFile)
 */
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -137,11 +137,11 @@ RESCUEBOOL RescueColor::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueColor)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueObject::IsOfType(thisType);
+  return RescueObject::IsOfType(thisType);
   }
 }
 

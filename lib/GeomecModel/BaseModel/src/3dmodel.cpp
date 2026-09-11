@@ -41,7 +41,7 @@ C3DModel::~C3DModel()
 {
   if (m_pTopDisplacementsNode != 0)
   {
-    delete m_pTopDisplacementsNode;
+  delete m_pTopDisplacementsNode;
   }
 }
 
@@ -49,37 +49,37 @@ bool C3DModel::OnLoad(CStorageNode::TSTREAM &stream, CStreamVersion &version, CS
 {
   if(CStreamVersion(3, 0, 114) < version)
   {
-    m_pTopDisplacementsNode->LoadStream(stream, version, prog);
+  m_pTopDisplacementsNode->LoadStream(stream, version, prog);
   }
 
   if(version >= CStreamVersion(3, 7, 1))
   {
-	  CUpscalingEntry &upscalingentry = static_cast<CUpscalingEntry&>(*GraphEntry(MD_BASE_UPSCALING));
-    upscalingentry.LoadStream(stream, version, prog);
+    CUpscalingEntry &upscalingentry = static_cast<CUpscalingEntry&>(*GraphEntry(MD_BASE_UPSCALING));
+  upscalingentry.LoadStream(stream, version, prog);
   }
 
   if(version >= CStreamVersion(4, 1, 21))
   {
-    CNonMeshedSurfaceEntry& nmsEntry = static_cast<CNonMeshedSurfaceEntry&>(*GraphEntry(MD_BASE_NONMESHEDSURFACE));
-    nmsEntry.LoadStream(*this, stream, version, prog);
+  CNonMeshedSurfaceEntry& nmsEntry = static_cast<CNonMeshedSurfaceEntry&>(*GraphEntry(MD_BASE_NONMESHEDSURFACE));
+  nmsEntry.LoadStream(*this, stream, version, prog);
   }
 
   CInterfaceBoundary* pBoundary = dynamic_cast<CInterfaceBoundary*>(&Boundary());
   if(pBoundary && parentModel() && !pBoundary->CreateInterfaces())
   {
-    // force creation of interfaces for imported models that are used for zoomin
-    pBoundary->CreateInterfaces(true);
+  // force creation of interfaces for imported models that are used for zoomin
+  pBoundary->CreateInterfaces(true);
 
-    // and force use of default K values...
-    pBoundary->InterfaceDefinition().IntMatType(CBoundaryInterfaceDef::K);
-    pBoundary->InterfaceDefinition().KradTop(0.001, CDoubleQuantity::SI_UNIT);
-    pBoundary->InterfaceDefinition().KradBottom(100., CDoubleQuantity::SI_UNIT);
-    pBoundary->InterfaceDefinition().KradSides(100., CDoubleQuantity::SI_UNIT);
-    pBoundary->InterfaceDefinition().KtanTop(0.001, CDoubleQuantity::SI_UNIT);
-    pBoundary->InterfaceDefinition().KtanBottom(0.001, CDoubleQuantity::SI_UNIT);
-    pBoundary->InterfaceDefinition().KtanSides(0.001, CDoubleQuantity::SI_UNIT);
+  // and force use of default K values...
+  pBoundary->InterfaceDefinition().IntMatType(CBoundaryInterfaceDef::K);
+  pBoundary->InterfaceDefinition().KradTop(0.001, CDoubleQuantity::SI_UNIT);
+  pBoundary->InterfaceDefinition().KradBottom(100., CDoubleQuantity::SI_UNIT);
+  pBoundary->InterfaceDefinition().KradSides(100., CDoubleQuantity::SI_UNIT);
+  pBoundary->InterfaceDefinition().KtanTop(0.001, CDoubleQuantity::SI_UNIT);
+  pBoundary->InterfaceDefinition().KtanBottom(0.001, CDoubleQuantity::SI_UNIT);
+  pBoundary->InterfaceDefinition().KtanSides(0.001, CDoubleQuantity::SI_UNIT);
 
-    if(Mesh().Locked())
+  if(Mesh().Locked())
       Mesh().InvalidateAtUnLock();
   }
 
@@ -90,7 +90,7 @@ bool C3DModel::OnSave(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS& pr
 {
   m_pTopDisplacementsNode->SaveStream(stream, prog);
 
-	CUpscalingEntry &upscalingentry = static_cast<CUpscalingEntry&>(*GraphEntry(MD_BASE_UPSCALING));
+  CUpscalingEntry &upscalingentry = static_cast<CUpscalingEntry&>(*GraphEntry(MD_BASE_UPSCALING));
   upscalingentry.SaveStream(stream, prog);
 
   CNonMeshedSurfaceEntry& nmsEntry = static_cast<CNonMeshedSurfaceEntry&>(*GraphEntry(MD_BASE_NONMESHEDSURFACE));
@@ -101,27 +101,27 @@ bool C3DModel::OnSave(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS& pr
 
 long C3DModel::SavedItems() const
 {
-	const CUpscalingEntry &upscalingentry = static_cast<const CUpscalingEntry&>(*GraphEntry(MD_BASE_UPSCALING));
+  const CUpscalingEntry &upscalingentry = static_cast<const CUpscalingEntry&>(*GraphEntry(MD_BASE_UPSCALING));
   const CNonMeshedSurfaceEntry& nmsEntry = static_cast<const CNonMeshedSurfaceEntry&>(*GraphEntry(MD_BASE_NONMESHEDSURFACE));
   return m_pTopDisplacementsNode->SavedItems() + upscalingentry.SavedItems() + nmsEntry.SavedItems() + CModelBase::SavedItems();
 }
 
 void C3DModel::createContainers()
 {
-	CModelBase::createContainers();
+  CModelBase::createContainers();
 
-	// We have cross sections, wells and surfaces in 3D
-	new CCrossSectionEntry(*this);
-	new CWellPathEntry(*this);
+  // We have cross sections, wells and surfaces in 3D
+  new CCrossSectionEntry(*this);
+  new CWellPathEntry(*this);
   new CNewWellPathEntry(*this); // wjrx mantis 3185
   new CGroupNodeEntry(*this);
-	new CSurfaceEntry(*this);
-	new CHomoBoxEntry(*this);
+  new CSurfaceEntry(*this);
+  new CHomoBoxEntry(*this);
   new CUpscalingEntry(*this);
 
 #if 1
   if(!parentModel())
-    new CZoominModelEntry(*this);
+  new CZoominModelEntry(*this);
 #endif
 
   new CNonMeshedSurfaceEntry(*this);
@@ -129,7 +129,7 @@ void C3DModel::createContainers()
 
 void C3DModel::createDefaults()
 {
-	CModelBase::createDefaults();
+  CModelBase::createDefaults();
 
   m_pTopDisplacementsNode = new CMeasuredTopDisplacementsNode("Measured top displacements", *this);
 }
@@ -139,30 +139,30 @@ void C3DModel::OnCloseModel()
   VERIFY(DeleteEntry(MD_BASE_NONMESHEDSURFACE));
 
   if(!parentModel())
-    DeleteEntry(MD_BASE_ZOOMIN_MODEL);
+  DeleteEntry(MD_BASE_ZOOMIN_MODEL);
 
   if(parentModel())
   {
-    // unlink the surfaces from the opengl node entry, otherwise they will be deleted
-    CSurfaceEntry* pEntry = (CSurfaceEntry*)GraphEntry(MD_BASE_SURFACE);
-    const CSurfaceEntry::TNodeSet& stNodes = pEntry->EntryNodes();
-    for(CSurfaceEntry::TNodeSet::const_iterator it = stNodes.begin(); it != stNodes.end(); ++it)
-    {
+  // unlink the surfaces from the opengl node entry, otherwise they will be deleted
+  CSurfaceEntry* pEntry = (CSurfaceEntry*)GraphEntry(MD_BASE_SURFACE);
+  const CSurfaceEntry::TNodeSet& stNodes = pEntry->EntryNodes();
+  for(CSurfaceEntry::TNodeSet::const_iterator it = stNodes.begin(); it != stNodes.end(); ++it)
+  {
       if(GraphEntry(MD_BASE_OPENGL_NODE)->IsLinkedTo(**it))
-        GraphEntry(MD_BASE_OPENGL_NODE)->UnLink(**it);
-    }
+    GraphEntry(MD_BASE_OPENGL_NODE)->UnLink(**it);
+  }
   }
 
   VERIFY(DeleteEntry(MD_BASE_UPSCALING));
-	VERIFY(DeleteEntry(MD_BASE_WELLPATH));
-	VERIFY(DeleteEntry(MD_NEW_WELLPATH)); //wjrx mantis 3185
+  VERIFY(DeleteEntry(MD_BASE_WELLPATH));
+  VERIFY(DeleteEntry(MD_NEW_WELLPATH)); //wjrx mantis 3185
   VERIFY(DeleteEntry(MD_BASE_GROUPNODE));
-	VERIFY(DeleteEntry(MD_BASE_SURFACE));
-	VERIFY(DeleteEntry(MD_BASE_XSECTION));
-	VERIFY(DeleteEntry(MD_BASE_HOMO_BOX));
+  VERIFY(DeleteEntry(MD_BASE_SURFACE));
+  VERIFY(DeleteEntry(MD_BASE_XSECTION));
+  VERIFY(DeleteEntry(MD_BASE_HOMO_BOX));
 
 
-	CModelBase::OnCloseModel();
+  CModelBase::OnCloseModel();
 }
 
 CGeomecDianaRunnerBase* C3DModel::OnCreateDianaRunner(CDianaRunController& controller)
@@ -186,8 +186,8 @@ void C3DModel::CollectNodesFromBodyFace(TNodeElementsMap& mpNodeElements, const 
   int j;
   for(j = 0; j < face.NrOfNodes(); ++j)
   {
-    TNodeElementsMap::iterator it = mpNodeElements.insert(TNodeElementsMap::value_type(face.Node(j).Index(), std::set<int>())).first;
-    it->second.insert(pBody->Index());
+  TNodeElementsMap::iterator it = mpNodeElements.insert(TNodeElementsMap::value_type(face.Node(j).Index(), std::set<int>())).first;
+  it->second.insert(pBody->Index());
   }
 }
 
@@ -196,8 +196,8 @@ void C3DModel::CollectBoundaryNodesFromHorizon(TNodeElementsMap& mpNodeElements,
   int i;
   for(i = 0; i < hor.BodyFaceSize(); ++i)
   {
-    const geo::IFace& face = hor.BodyFace(i);
-    CollectNodesFromBodyFace(mpNodeElements, face);
+  const geo::IFace& face = hor.BodyFace(i);
+  CollectNodesFromBodyFace(mpNodeElements, face);
   }
 }
 
@@ -209,9 +209,9 @@ void C3DModel::CollectBoundaryNodes(TNodeElementsMap& mpNodeElements) const
   std::vector<const geo::ISurface*> vcSideSurfaces = Boundary().GetSideMeshSurfaces();
   for(size_t i = 0; i < vcSideSurfaces.size(); ++i)
   {
-    const geo::ISurface& surface = *vcSideSurfaces[i];
-    int j;
-    for(j = 0; j < surface.FaceSize(); ++j)
+  const geo::ISurface& surface = *vcSideSurfaces[i];
+  int j;
+  for(j = 0; j < surface.FaceSize(); ++j)
       CollectNodesFromBodyFace(mpNodeElements, surface.Face(j));
   }
 }

@@ -40,15 +40,15 @@ CInterfaceMaterial& CInterfaceMaterial::operator=(const CInterfaceMaterial& rhs)
 {
   if(!(*this == rhs))
   {
-    IMaterialBase::operator=(rhs);
+  IMaterialBase::operator=(rhs);
 
-    m_dCohesion        = rhs.m_dCohesion;
-    m_dFriction        = rhs.m_dFriction;
-    m_dNormalStiffness = rhs.m_dNormalStiffness;
-    m_dShearStiffness  = rhs.m_dShearStiffness;
-    m_dDFlux           = rhs.m_dDFlux;
+  m_dCohesion        = rhs.m_dCohesion;
+  m_dFriction        = rhs.m_dFriction;
+  m_dNormalStiffness = rhs.m_dNormalStiffness;
+  m_dShearStiffness  = rhs.m_dShearStiffness;
+  m_dDFlux           = rhs.m_dDFlux;
 
-    Modified();
+  Modified();
   }
 
   return *this;
@@ -57,23 +57,23 @@ CInterfaceMaterial& CInterfaceMaterial::operator=(const CInterfaceMaterial& rhs)
 bool CInterfaceMaterial::operator==(const CInterfaceMaterial& rhs) const
 {
   if(!IMaterialBase::operator==(rhs))
-    return false;
+  return false;
 
   return (
-    fabs(m_dCohesion        - rhs.m_dCohesion)        < 1e-6 &&
-    fabs(m_dFriction        - rhs.m_dFriction)        < 1e-6 &&
-    fabs(m_dNormalStiffness - rhs.m_dNormalStiffness) < 1e-6 &&
-    fabs(m_dShearStiffness  - rhs.m_dShearStiffness)  < 1e-6 &&
-    fabs(m_dDFlux           - rhs.m_dDFlux)           < 1e-6);
+  fabs(m_dCohesion        - rhs.m_dCohesion)        < 1e-6 &&
+  fabs(m_dFriction        - rhs.m_dFriction)        < 1e-6 &&
+  fabs(m_dNormalStiffness - rhs.m_dNormalStiffness) < 1e-6 &&
+  fabs(m_dShearStiffness  - rhs.m_dShearStiffness)  < 1e-6 &&
+  fabs(m_dDFlux           - rhs.m_dDFlux)           < 1e-6);
 }
 
 unsigned int CInterfaceMaterial::IconId() const
 {
   // TODO
   if(ReadOnly())
-    return IDI_ROCK_MATERIAL_LOCKED;
+  return IDI_ROCK_MATERIAL_LOCKED;
 
-	return IDI_ROCK_MATERIAL;
+  return IDI_ROCK_MATERIAL;
 }
 
 unsigned int CInterfaceMaterial::TypeId() const
@@ -86,15 +86,15 @@ double CInterfaceMaterial::ParameterValue(unsigned int ValueTypeID) const
   switch(ValueTypeID)
   {
   case IDT_VALUETYPE_COHESION:
-    return m_dCohesion;
+  return m_dCohesion;
   case IDT_VALUETYPE_FRICTION_ANGLE:
-    return m_dFriction;
+  return m_dFriction;
   case IDT_VALUETYPE_DFLUX:
-    return m_dDFlux;
+  return m_dDFlux;
   case IDT_VALUETYPE_NORMALSTIFFNESS:
-    return m_dNormalStiffness;
+  return m_dNormalStiffness;
   case IDT_VALUETYPE_SHEARSTIFFNESS:
-    return m_dShearStiffness;
+  return m_dShearStiffness;
   }
 
   assert(FALSE);
@@ -104,11 +104,11 @@ double CInterfaceMaterial::ParameterValue(unsigned int ValueTypeID) const
 bool CInterfaceMaterial::IsParameter(unsigned int ValueTypeID) const
 {
   return (
-    ValueTypeID == IDT_VALUETYPE_COHESION       ||
-    ValueTypeID == IDT_VALUETYPE_FRICTION_ANGLE ||
-    ValueTypeID == IDT_VALUETYPE_DFLUX          ||
-    ValueTypeID == IDT_VALUETYPE_NORMALSTIFFNESS||
-    ValueTypeID == IDT_VALUETYPE_SHEARSTIFFNESS);
+  ValueTypeID == IDT_VALUETYPE_COHESION       ||
+  ValueTypeID == IDT_VALUETYPE_FRICTION_ANGLE ||
+  ValueTypeID == IDT_VALUETYPE_DFLUX          ||
+  ValueTypeID == IDT_VALUETYPE_NORMALSTIFFNESS||
+  ValueTypeID == IDT_VALUETYPE_SHEARSTIFFNESS);
 }
 
 bool CInterfaceMaterial::Write(const CFFMaterial &ffmat, dia::IDianaRunner& diarunner) const
@@ -117,17 +117,17 @@ bool CInterfaceMaterial::Write(const CFFMaterial &ffmat, dia::IDianaRunner& diar
   if(!ffmat.IsDistributedParameter(IDT_VALUETYPE_NORMALSTIFFNESS) &&
      !ffmat.IsDistributedParameter(IDT_VALUETYPE_SHEARSTIFFNESS))
   {
-    // Write cohesion and friction
-    SetActive("FRICTI", FTN_TRUE);
+  // Write cohesion and friction
+  SetActive("FRICTI", FTN_TRUE);
 
-    ftn_double_t cohesi = ftn_double_t(ffmat.ParameterValue(IDT_VALUETYPE_COHESION) * 1.e6);
-    PutItemLength("COHESI", &cohesi, 1);
+  ftn_double_t cohesi = ftn_double_t(ffmat.ParameterValue(IDT_VALUETYPE_COHESION) * 1.e6);
+  PutItemLength("COHESI", &cohesi, 1);
 
-    ftn_double_t phi = ftn_double_t(ffmat.ParameterValue(IDT_VALUETYPE_FRICTION_ANGLE) * PI / 180);
-    PutItemLength("PHI", &phi, 1);
+  ftn_double_t phi = ftn_double_t(ffmat.ParameterValue(IDT_VALUETYPE_FRICTION_ANGLE) * PI / 180);
+  PutItemLength("PHI", &phi, 1);
 
-    ftn_double_t psi = 0.;
-    PutItem("PSI", &psi);
+  ftn_double_t psi = 0.;
+  PutItem("PSI", &psi);
   }
 
   ftn_double_t dsn = ftn_double_t(ffmat.ParameterValue(IDT_VALUETYPE_NORMALSTIFFNESS) * 1e6);
@@ -143,16 +143,16 @@ bool CInterfaceMaterial::Write(const CFFMaterial &ffmat, dia::IDianaRunner& diar
   if(runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE ||
      runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE_CONTAINMENT)
   {
-    // write very high permeability for faults
-    ftn_double_t k_mod = 1;
-    PutItemLength("DPERME", &k_mod, 1);
+  // write very high permeability for faults
+  ftn_double_t k_mod = 1;
+  PutItemLength("DPERME", &k_mod, 1);
   }
 
   if(runner.Controller().AnalysisType() == CAnalysisType::AT_HEAT)
   {
-    // dflux
-    ftn_double_t dflux = ftn_double_t(ffmat.ParameterValue(IDT_VALUETYPE_DFLUX));
-    PutItemLength("DFLUX", &dflux, 1);
+  // dflux
+  ftn_double_t dflux = ftn_double_t(ffmat.ParameterValue(IDT_VALUETYPE_DFLUX));
+  PutItemLength("DFLUX", &dflux, 1);
   }
 
   return true;
@@ -172,20 +172,20 @@ int CInterfaceMaterial::WriteFilosParamSize(const CFFMaterial &ffmat, dia::IDian
 
   if (!ffmat.IsDistributedParameter(IDT_VALUETYPE_NORMALSTIFFNESS) && !ffmat.IsDistributedParameter(IDT_VALUETYPE_SHEARSTIFFNESS))
   {
-    size += 3; // COHESI/PHI/PSI
+  size += 3; // COHESI/PHI/PSI
   }
 
   size += 3; // DSNZ/DSSX/DSSY
 
   if (runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE ||
-    runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE_CONTAINMENT)
+  runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE_CONTAINMENT)
   {
-    size += 1; // DPERME
+  size += 1; // DPERME
   }
 
   if (runner.Controller().AnalysisType() == CAnalysisType::AT_HEAT)
   {
-    size += 1; // DFLUX
+  size += 1; // DFLUX
   }
 
   return size;
@@ -198,46 +198,46 @@ bool CInterfaceMaterial::WriteFilosParamName(const CFFMaterial &ffmat, dia::IDia
 
   if (!ffmat.IsDistributedParameter(IDT_VALUETYPE_NORMALSTIFFNESS) && !ffmat.IsDistributedParameter(IDT_VALUETYPE_SHEARSTIFFNESS))
   {
-    switch (i)
-    {
-    case 0:
+  switch (i)
+  {
+  case 0:
       strncpy(name, "COHESI", 10);
       return true;
-    case 1:
+  case 1:
       strncpy(name, "PHI", 10);
       return true;
-    case 2:
+  case 2:
       strncpy(name, "PSI", 10);
       return true;
-    }
+  }
 
-    i -= 3;
+  i -= 3;
   }
 
   switch (i)
   {
   case 0:
-    strncpy(name, "DSNZ", 10);
-    return true;
+  strncpy(name, "DSNZ", 10);
+  return true;
   case 1:
-    strncpy(name, "DSSX", 10);
-    return true;
+  strncpy(name, "DSSX", 10);
+  return true;
   case 2:
-    strncpy(name, "DSSY", 10);
-    return true;
+  strncpy(name, "DSSY", 10);
+  return true;
   case 3:
-    if (runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE ||
+  if (runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE ||
       runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE_CONTAINMENT)
-    {
+  {
       strncpy(name, "DPERME", 10);
       return true;
-    }
+  }
 
-    if (runner.Controller().AnalysisType() == CAnalysisType::AT_HEAT)
-    {
+  if (runner.Controller().AnalysisType() == CAnalysisType::AT_HEAT)
+  {
       strncpy(name, "DFLUX", 10);
       return true;
-    }
+  }
   }
 
   return false;
@@ -250,14 +250,14 @@ void CInterfaceMaterial::WriteFilosParamValues(const CFFMaterial &ffmat, dia::ID
 
   if (!ffmat.IsDistributedParameter(IDT_VALUETYPE_NORMALSTIFFNESS) && !ffmat.IsDistributedParameter(IDT_VALUETYPE_SHEARSTIFFNESS))
   {
-    *values = ffmat.ParameterValue(IDT_VALUETYPE_COHESION) * 1.e6;
-    values += stride;
+  *values = ffmat.ParameterValue(IDT_VALUETYPE_COHESION) * 1.e6;
+  values += stride;
 
-    *values = ffmat.ParameterValue(IDT_VALUETYPE_FRICTION_ANGLE) * PI / 180;
-    values += stride;
+  *values = ffmat.ParameterValue(IDT_VALUETYPE_FRICTION_ANGLE) * PI / 180;
+  values += stride;
 
-    *values = 0;
-    values += stride;
+  *values = 0;
+  values += stride;
   }
 
   double dsn = ffmat.ParameterValue(IDT_VALUETYPE_NORMALSTIFFNESS) * 1e6;
@@ -273,16 +273,16 @@ void CInterfaceMaterial::WriteFilosParamValues(const CFFMaterial &ffmat, dia::ID
   values += stride;
 
   if (runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE ||
-    runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE_CONTAINMENT)
+  runner.Controller().AnalysisType() == CAnalysisType::AT_MIXTURE_CONTAINMENT)
   {
-    *values = 1;
-    values += stride;
+  *values = 1;
+  values += stride;
   }
 
   if (runner.Controller().AnalysisType() == CAnalysisType::AT_HEAT)
   {
-    *values = ffmat.ParameterValue(IDT_VALUETYPE_DFLUX);
-    values += stride;
+  *values = ffmat.ParameterValue(IDT_VALUETYPE_DFLUX);
+  values += stride;
   }
 
 }
@@ -316,8 +316,8 @@ bool CInterfaceMaterial::SetCohesion(double dValue)
 {
   if(dValue > 0)
   {
-    m_dCohesion = dValue;
-    return true;
+  m_dCohesion = dValue;
+  return true;
   }
 
   return false;
@@ -327,8 +327,8 @@ bool CInterfaceMaterial::SetFriction(double dValue)
 {
   if(dValue >= 0 && dValue < 90)
   {
-    m_dFriction = dValue;
-    return true;
+  m_dFriction = dValue;
+  return true;
   }
 
   return false;
@@ -338,8 +338,8 @@ bool CInterfaceMaterial::SetNormalStiffness(double dValue)
 {
   if(dValue > 0)
   {
-    m_dNormalStiffness = dValue;
-    return true;
+  m_dNormalStiffness = dValue;
+  return true;
   }
 
   return false;
@@ -349,8 +349,8 @@ bool CInterfaceMaterial::SetShearStiffness(double dValue)
 {
   if(dValue > 0)
   {
-    m_dShearStiffness = dValue;
-    return true;
+  m_dShearStiffness = dValue;
+  return true;
   }
 
   return false;
@@ -360,8 +360,8 @@ bool CInterfaceMaterial::SetDFlux(double dValue)
 {
   if(dValue >= 0)
   {
-    m_dDFlux = dValue;
-    return true;
+  m_dDFlux = dValue;
+  return true;
   }
 
   return false;
@@ -401,19 +401,19 @@ bool CInterfaceMaterial::Less(const CGraphNode& node) const
   const CInterfaceMaterial* pMat = dynamic_cast<const CInterfaceMaterial*>(&node);
   if(pMat)
   {
-    if(m_dCohesion < pMat->m_dCohesion) return true;
-    if(m_dCohesion > pMat->m_dCohesion) return false;
+  if(m_dCohesion < pMat->m_dCohesion) return true;
+  if(m_dCohesion > pMat->m_dCohesion) return false;
 
-    if(m_dFriction < pMat->m_dFriction) return true;
-    if(m_dFriction > pMat->m_dFriction) return false;
+  if(m_dFriction < pMat->m_dFriction) return true;
+  if(m_dFriction > pMat->m_dFriction) return false;
 
-    if(m_dNormalStiffness < pMat->m_dNormalStiffness) return true;
-    if(m_dNormalStiffness > pMat->m_dNormalStiffness) return false;
+  if(m_dNormalStiffness < pMat->m_dNormalStiffness) return true;
+  if(m_dNormalStiffness > pMat->m_dNormalStiffness) return false;
 
-    if(m_dShearStiffness < pMat->m_dShearStiffness) return true;
-    if(m_dShearStiffness > pMat->m_dShearStiffness) return false;
+  if(m_dShearStiffness < pMat->m_dShearStiffness) return true;
+  if(m_dShearStiffness > pMat->m_dShearStiffness) return false;
 
-    return (m_dDFlux < pMat->m_dDFlux);
+  return (m_dDFlux < pMat->m_dDFlux);
   }
 
   return IMaterialBase::Less(node);
@@ -435,8 +435,8 @@ void CInterfaceMaterialEntry::LoadStream(CFemAppModel& /*model*/, TSTREAM& strea
   int i;
   for(i = 0; i < nMat; ++i)
   {
-    CInterfaceMaterial* pMat = new CInterfaceMaterial(*this, QString());
-    pMat->LoadStream(stream, version, progress);
+  CInterfaceMaterial* pMat = new CInterfaceMaterial(*this, QString());
+  pMat->LoadStream(stream, version, progress);
   }
 }
 
@@ -449,8 +449,8 @@ void CInterfaceMaterialEntry::SaveStream(TSTREAM& stream, TPROGRESS& progress)
   TNodeSet::const_iterator it;
   for(it = stNodes.begin(); it != stNodes.end(); ++it)
   {
-    (*it)->Index(++nIndex);
-    (*it)->SaveStream(stream, progress);
+  (*it)->Index(++nIndex);
+  (*it)->SaveStream(stream, progress);
   }
 }
 
@@ -461,7 +461,7 @@ long CInterfaceMaterialEntry::SavedItems() const
   const TNodeSet& stNodes = EntryNodes();
   TNodeSet::const_iterator it;
   for(it = stNodes.begin(); it != stNodes.end(); ++it)
-    lRet += (*it)->SavedItems();
+  lRet += (*it)->SavedItems();
 
   return lRet;
 }
@@ -478,7 +478,7 @@ const size_t DEFAULT_INITIAL_NUMBER = 1;
 CInterfaceMaterial& CInterfaceMaterialEntry::InsertNew()
 {
   QString sName = createUniqueName(DEFAULT_INTERFACE_MATERIAL_NAME,
-    DEFAULT_INITIAL_NUMBER);
+  DEFAULT_INITIAL_NUMBER);
   CInterfaceMaterial* pMat =  new CInterfaceMaterial(*this, sName.toStdString().c_str());
   return *pMat;
 }

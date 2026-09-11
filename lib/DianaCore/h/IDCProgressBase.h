@@ -16,13 +16,13 @@ namespace dia {
 class IProgressBase  
 {
 public:
-	IProgressBase();
-	virtual ~IProgressBase();
+  IProgressBase();
+  virtual ~IProgressBase();
 
-	virtual void Begin(int nSteps) = 0;
-	virtual void End() = 0;
-	virtual void Step(bool &bContinue) = 0;
-	virtual void Text(const std::string &strText) = 0;
+  virtual void Begin(int nSteps) = 0;
+  virtual void End() = 0;
+  virtual void Step(bool &bContinue) = 0;
+  virtual void Text(const std::string &strText) = 0;
 };
 
 }

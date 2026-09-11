@@ -18,9 +18,9 @@ bool CPressure_Delegate::Attributes()
 
   if (dlg.DoModal() == IDOK)
   {
-    m_pressure->AssertValid();
+  m_pressure->AssertValid();
 
-    return true;
+  return true;
   }
 
   return false;

@@ -6,12 +6,12 @@
 class OIV2DGraphValueColorScene : public OIV2DScene
 {
   public:
-    OIV2DGraphValueColorScene(CFemAppModel& model);
-    OIV2DGraphValueColorScene(const QString& name, CFemAppModel& model);
-    OIV2DGraphValueColorScene(unsigned int name, CFemAppModel& model);
+  OIV2DGraphValueColorScene(CFemAppModel& model);
+  OIV2DGraphValueColorScene(const QString& name, CFemAppModel& model);
+  OIV2DGraphValueColorScene(unsigned int name, CFemAppModel& model);
 
-    virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
-    virtual void LoadStream(TSTREAM& stream, CStreamVersion& version,
+  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version,
       TPROGRESS& progress);
 
   private:

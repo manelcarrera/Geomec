@@ -151,13 +151,13 @@ GUnicodeBreakType g_unichar_break_type (gunichar c) G_GNUC_CONST;
    decomposed characters in the string according to their combining
    classes.  See the Unicode manual for more information.  */
 void g_unicode_canonical_ordering (gunichar *string,
-				   size_t   len);
+           size_t   len);
 
 /* Compute canonical decomposition of a character.  Returns g_malloc()d
    string of Unicode characters.  RESULT_LEN is set to the resulting
    length of the string.  */
 gunichar *g_unicode_canonical_decomposition (gunichar  ch,
-					     size_t   *result_len);
+               size_t   *result_len);
 
 /* Array of skip-bytes-per-initial character.
  * We prefix variable declarations so they can
@@ -181,50 +181,50 @@ GLIB_VAR char g_utf8_skip[256];
 
 gunichar g_utf8_get_char          (const gchar *p);
 gchar *  g_utf8_offset_to_pointer  (const gchar *str,
-				    gint         offset);
+          gint         offset);
 gint     g_utf8_pointer_to_offset (const gchar *str,
-				   const gchar *pos);
+           const gchar *pos);
 gchar *  g_utf8_prev_char         (const gchar *p);
 gchar *  g_utf8_find_next_char    (const gchar *p,
-				   const gchar *end);
+           const gchar *end);
 gchar *  g_utf8_find_prev_char    (const gchar *str,
-				   const gchar *p);
+           const gchar *p);
 
 gint g_utf8_strlen (const gchar *p,
-		    gint         max);
+      gint         max);
 
 /* Copies n characters from src to dest */
 gchar *g_utf8_strncpy (gchar       *dest,
-		       const gchar *src,
-		       size_t       n);
+           const gchar *src,
+           size_t       n);
 
 /* Find the UTF-8 character corresponding to ch, in string p. These
    functions are equivalants to strchr and strrchr */
 
 gchar *g_utf8_strchr  (const gchar *p,
-		       gunichar     c);
+           gunichar     c);
 gchar *g_utf8_strrchr (const gchar *p,
-		       gunichar     c);
+           gunichar     c);
 
 gunichar2 *g_utf8_to_utf16 (const gchar     *str,
-			    gint             len);
+        gint             len);
 gunichar * g_utf8_to_ucs4  (const gchar     *str,
-			    gint             len);
+        gint             len);
 gunichar * g_utf16_to_ucs4 (const gunichar2 *str,
-			    gint             len);
+        gint             len);
 gchar *    g_utf16_to_utf8 (const gunichar2 *str,
-			    gint             len);
+        gint             len);
 gunichar * g_ucs4_to_utf16 (const gunichar  *str,
-			    gint             len);
+        gint             len);
 gchar *    g_ucs4_to_utf8  (const gunichar  *str,
-			    gint             len);
+        gint             len);
 
 /* Convert a single character into UTF-8. outbuf must have at
  * least 6 bytes of space. Returns the number of bytes in the
  * result.
  */
 gint      g_unichar_to_utf8 (gunichar    c,
-			     char       *outbuf);
+           char       *outbuf);
 
 /* Validate a UTF8 string, return TRUE if valid, put pointer to
  * first invalid char in **end

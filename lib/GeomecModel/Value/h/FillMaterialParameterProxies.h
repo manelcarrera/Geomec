@@ -42,10 +42,10 @@ public:
 private:
   CFillMaterialParameterProxies(const CFillMaterialParameterProxies& rhs);
   CFillMaterialParameterProxies& operator = (
-    const CFillMaterialParameterProxies& rhs);
+  const CFillMaterialParameterProxies& rhs);
 
   static std::vector <IRpnMaterialParameterProxy*> fillMaterialParameterProxies(
-    CMeshBase& mesh, rpn::CRpnStack& rpnStack);
+  CMeshBase& mesh, rpn::CRpnStack& rpnStack);
 
   std::vector <IRpnMaterialParameterProxy*> m_materialParameterProxies;
   static std::set<std::string> m_stProxyNames;

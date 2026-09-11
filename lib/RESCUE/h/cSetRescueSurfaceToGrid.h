@@ -1,10 +1,10 @@
 /*************************************************************************
 
-        cSetRescueSurfaceToGrid.h
+    cSetRescueSurfaceToGrid.h
 
  Keeps a list of pointers to some RescueSurfaceToGrid.
 
-        Rod Hanks               June, 1999
+    Rod Hanks               June, 1999
 
 ****************************************************************************/
 

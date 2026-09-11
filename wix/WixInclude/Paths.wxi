@@ -6,7 +6,7 @@
 
     <?define MergeModules="$(var.ProgramFiles)\Common Files\Merge Modules" ?>
 
-    <?define 3rdPartyRoot="$(var.DevelopRoot)\3rdParty" ?>
+    <?define 3rdPartyRoot="$(var.DevelopRoot)\third_party" ?>
     <?define GeomecRoot="$(var.DevelopRoot)\geomec" ?>
 
     <?define DIAPATH="$(env.DIAROOT)\release" ?>
@@ -20,7 +20,7 @@
     <?define Intel64="$(env.INTEL)" ?>
     <?define SafeNet="$(var.DIASHARE)\SafeNet" ?>
   
-    <?define TBBBinDir="$(var.DevelopRoot)\lib\tbb\windows\bin\intel64\vc14" ?>
+    <?define TBBBinDir="$(var.DevelopRoot)\third_party\tbb\windows\bin\intel64\vc14" ?>
 
     <?define OIVRoot="$(env.OIVHOME)\arch-Windows-x86_64-msvc14-Release" ?>
 

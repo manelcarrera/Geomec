@@ -10,18 +10,18 @@ class CLoadPropertyPressureBase :
   public CLoadPropertyTemplate <IDT_VALUETYPE_PRESSURE>
 {
   public:
-    CLoadPropertyPressureBase(const RGProperty& rgProperty,
+  CLoadPropertyPressureBase(const RGProperty& rgProperty,
       RGInterface& rgi, CModelBase& modelBase, CRockMechProcessor& rmp);
-    virtual ~CLoadPropertyPressureBase();
+  virtual ~CLoadPropertyPressureBase();
 
   protected:
-    virtual void linkValueTypes(CFormationBase& formation, CValueType* pVT,
+  virtual void linkValueTypes(CFormationBase& formation, CValueType* pVT,
       const CDepletionStage& stage, bool fluidPressureFracDetected) const;
-    virtual void convertValue(geo::CValue& dValue) const;
+  virtual void convertValue(geo::CValue& dValue) const;
 
   private:
-    CLoadPropertyPressureBase(const CLoadPropertyPressureBase& rhs);
-    CLoadPropertyPressureBase& operator = (
+  CLoadPropertyPressureBase(const CLoadPropertyPressureBase& rhs);
+  CLoadPropertyPressureBase& operator = (
       const CLoadPropertyPressureBase& rhs);
 };
 

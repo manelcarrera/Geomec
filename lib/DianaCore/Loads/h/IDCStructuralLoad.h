@@ -8,14 +8,14 @@ namespace dia {
 
 class IStructuralLoad : public ILoad
 {
-	CLoadCase &m_LoadCase;
+  CLoadCase &m_LoadCase;
 
 public:
-	IStructuralLoad(CLoadCase &loadcase, double size);
-	IStructuralLoad(CLoadCase &loadcase, const std::vector<double>& vcValue);
+  IStructuralLoad(CLoadCase &loadcase, double size);
+  IStructuralLoad(CLoadCase &loadcase, const std::vector<double>& vcValue);
 
   virtual const CLoadCase& Case() const;
-	const CLoadCase &LoadCase() const;
+  const CLoadCase &LoadCase() const;
 };
 
 } // namespace dia

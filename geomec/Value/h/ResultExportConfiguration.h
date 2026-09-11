@@ -6,7 +6,7 @@ class CNewWellPath;
 struct TResultExportConfiguration
 {
   TResultExportConfiguration(bool enableAllSelections = true,
-    bool enableExport2LAS = false);
+  bool enableExport2LAS = false);
 
   bool enableSlipHorizonSelection;
   bool enableHorizonSelection;

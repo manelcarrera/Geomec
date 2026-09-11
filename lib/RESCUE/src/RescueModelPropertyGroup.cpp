@@ -35,11 +35,11 @@ RescueModelPropertyGroup::~RescueModelPropertyGroup()
 {
   if (groupName != 0)
   {
-    delete groupName;
+  delete groupName;
   }
   if (groups != 0)
   {
-    delete groups;
+  delete groups;
   }
 }
 
@@ -49,9 +49,9 @@ void RescueModelPropertyGroup::SetLock()
   RESCUEINT64 loop;
   for (loop = 0; loop < (*groups).Count64(); loop++)
   {
-    RescuePropertyGroup *group = (RescuePropertyGroup *) 
-                                                    (*groups).NthObject(loop);
-    group->SetLock();
+  RescuePropertyGroup *group = (RescuePropertyGroup *) 
+                          (*groups).NthObject(loop);
+  group->SetLock();
   }
 }
 
@@ -65,48 +65,48 @@ void RescueModelPropertyGroup::Archive(FILE *archiveFile)
 
   if (context->FileVersion() >= 21)
   {
-    myfprintf(context, archiveFile, isLocked);
+  myfprintf(context, archiveFile, isLocked);
   }
 
   if (context->FileVersion() == 19)
   {
-    RESCUEINT64 howMany = (*groups).Count64();
-    RESCUEINT64 count = 0;
-    RESCUEINT64 loop;
-    for (loop = 0; loop < howMany; loop++)
-    {
+  RESCUEINT64 howMany = (*groups).Count64();
+  RESCUEINT64 count = 0;
+  RESCUEINT64 loop;
+  for (loop = 0; loop < howMany; loop++)
+  {
       RescuePropertyGroup *group = (RescuePropertyGroup *) 
-                                                    (*groups).NthObject(loop);
+                          (*groups).NthObject(loop);
       if (group->ParentBlockUnit() != 0)
       {
-        count++;
+    count++;
       }
-    }
-    myfprintf(context, archiveFile, count);
-    for (loop = 0; loop < howMany; loop++)
-    {
+  }
+  myfprintf(context, archiveFile, count);
+  for (loop = 0; loop < howMany; loop++)
+  {
       RescuePropertyGroup *group = (RescuePropertyGroup *) 
-                                                    (*groups).NthObject(loop);
+                          (*groups).NthObject(loop);
       if (group->ParentBlockUnit() != 0)
       {
-        myfprintf(context, archiveFile, group->Identifier());
+    myfprintf(context, archiveFile, group->Identifier());
       }
-    }
+  }
   }
   else
   {
-    myfprintf(context, archiveFile, (*groups).Count64());
-    RESCUEINT64 loop;
-    for (loop = 0; loop < (*groups).Count64(); loop++)
-    {
+  myfprintf(context, archiveFile, (*groups).Count64());
+  RESCUEINT64 loop;
+  for (loop = 0; loop < (*groups).Count64(); loop++)
+  {
       RescuePropertyGroup *group = (RescuePropertyGroup *) 
                               (*groups).NthObject(loop);
       myfprintf(context, archiveFile, group->Identifier());
-    }
+  }
   }
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -130,34 +130,34 @@ RescueModelPropertyGroup::RescueModelPropertyGroup(RescueContext *context, FILE 
 
   if (context->ReadFileVersion() >= 21)
   {
-    myfscanf(context, archiveFile, &isLocked);
+  myfscanf(context, archiveFile, &isLocked);
   }
 
   myfscanf(context, archiveFile, &count);
   if (count > 0)
   {
-    propertyGroupsID = new cBagInt();
+  propertyGroupsID = new cBagInt();
 
-    RESCUEINT64 loop;
-    for (loop = 0; loop < count; loop++)
-    {
+  RESCUEINT64 loop;
+  for (loop = 0; loop < count; loop++)
+  {
       RESCUEINT64 id;
 
       myfscanf(context, archiveFile, &id);
       (*propertyGroupsID) += id;
-    }
+  }
   }
   context->modelPropertyGroups->Add(this);
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -167,21 +167,21 @@ void RescueModelPropertyGroup::Relink(RescueObject *parent)
   parentModel = (RescueModel *) parent;
   if (propertyGroupsID != 0)
   {
-    RESCUEINT64 loop;
-    for (loop = 0; loop < propertyGroupsID->Count64(); loop++)
-    {
+  RESCUEINT64 loop;
+  for (loop = 0; loop < propertyGroupsID->Count64(); loop++)
+  {
       RESCUEINT64 groupID = propertyGroupsID->NthObject(loop);
       RescuePropertyGroup *group = 
-        (RescuePropertyGroup *) RescueHistory::FindObject(parentModel, 
-                                                                    R_RescuePropertyGroup, 
+    (RescuePropertyGroup *) RescueHistory::FindObject(parentModel, 
+                                  R_RescuePropertyGroup, 
                                                                      groupID);
       if (group != 0) 
       {
-        (*groups) += group;
+    (*groups) += group;
       }
-    }
-    delete propertyGroupsID;
-    propertyGroupsID = 0;
+  }
+  delete propertyGroupsID;
+  propertyGroupsID = 0;
   }
 }
 
@@ -189,11 +189,11 @@ RESCUEBOOL RescueModelPropertyGroup::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueModelPropertyGroup)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueHistoryObject::IsOfType(thisType);
+  return RescueHistoryObject::IsOfType(thisType);
   }
 }
 

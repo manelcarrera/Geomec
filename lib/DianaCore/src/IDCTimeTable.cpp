@@ -42,8 +42,8 @@ bool ITimeTable::WriteFilos() const
   int i;
   for(i = 0, it = m_mpTable.begin(); it != m_mpTable.end(); ++it, ++i)
   {
-    pTimes[i] = it->first;
-    pFactors[i] = it->second;
+  pTimes[i] = it->first;
+  pFactors[i] = it->second;
   }
 
   PutItemLength("TIMES", pTimes, sz);

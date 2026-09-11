@@ -27,18 +27,18 @@ SoNode* OIVWellPath::createWellPathNode(const std::vector<SbVec3f>& points, SbCo
   // set cross section
   size_t m = 16;
   if (radius == 0)
-    radius = 5;
+  radius = 5;
 
   model->crossSection.setNum(m + 1);
 
   SbVec2f* cptr = model->crossSection.startEditing();
   for (size_t i=0; i <= m; ++i, ++cptr)
   {
-    float angle = i * 2 * M_PI / m;
-    float x = radius * cosf(angle);
-    float y = radius * sinf(angle);
+  float angle = i * 2 * M_PI / m;
+  float x = radius * cosf(angle);
+  float y = radius * sinf(angle);
 
-    *cptr = SbVec2f(x, y);
+  *cptr = SbVec2f(x, y);
   }
   model->crossSection.finishEditing();
 
@@ -69,29 +69,29 @@ SoNode* OIVWellPath::createWellPathNode(const CNewWellPath& wellPath)
 
   for (size_t i = 0; i < line.PointSize(); ++i)
   {
-    const geo::IPoint& p = line.Point(i);
+  const geo::IPoint& p = line.Point(i);
 
-    SbVec3f n(p.X() - m_translation[0], p.Y() - m_translation[1], p.Z() - m_translation[2]);
+  SbVec3f n(p.X() - m_translation[0], p.Y() - m_translation[1], p.Z() - m_translation[2]);
 
-    if (coords.back() != n)
+  if (coords.back() != n)
       coords.push_back(n);
   }
 
   float radius = 0;
   if (wellPath.hasZoomInModel())
-    radius = static_cast<float>(wellPath.ZoomInModel().Radius());
+  radius = static_cast<float>(wellPath.ZoomInModel().Radius());
 
   return createWellPathNode(coords, sbcolor, radius);
 }
 
 SoNode* OIVWellPath::createLabelNode(const char* labelText, const SbVec3f& position)
 {
-    SoFont *pFont1 = new SoFont();
-    pFont1->name = "Arial";
-    pFont1->size = 12;
-    pFont1->renderStyle = SoFont::TEXTURE;
-    // SoMaterial *pMatl1 = new SoMaterial();
-    // pMatl1->diffuseColor = SbColor(1,1,1);
+  SoFont *pFont1 = new SoFont();
+  pFont1->name = "Arial";
+  pFont1->size = 12;
+  pFont1->renderStyle = SoFont::TEXTURE;
+  // SoMaterial *pMatl1 = new SoMaterial();
+  // pMatl1->diffuseColor = SbColor(1,1,1);
   SoText2* text = new SoText2;
   text->string = labelText;
 
@@ -110,46 +110,46 @@ SoNode* OIVWellPath::createLabelNode(const char* labelText, const SbVec3f& posit
 
 SoNode* OIVWellPath::createSectionNode(const SbVec3f& top, const SbVec3f& bottom, const char* name)
 {
-    const float width = 600.0f;
-    const SbVec3f offset(width, 0.0f, 0.0f);
+  const float width = 600.0f;
+  const SbVec3f offset(width, 0.0f, 0.0f);
 
-    SbVec3f vertices[] = 
-    {
+  SbVec3f vertices[] = 
+  {
       top,
       top + offset,
       bottom,
       bottom + offset
-    };
-    SoVertexProperty* vertexProperty = new SoVertexProperty;
-    vertexProperty->vertex.setValues(0, 4, vertices);
+  };
+  SoVertexProperty* vertexProperty = new SoVertexProperty;
+  vertexProperty->vertex.setValues(0, 4, vertices);
 
-    SoLineSet* lineSet = new SoLineSet;
-    int lineSizes[] = { 2, 2 };
-    lineSet->numVertices.setValues(0, 2, lineSizes);
-    lineSet->vertexProperty = vertexProperty;
+  SoLineSet* lineSet = new SoLineSet;
+  int lineSizes[] = { 2, 2 };
+  lineSet->numVertices.setValues(0, 2, lineSizes);
+  lineSet->vertexProperty = vertexProperty;
 
-    // Create arrows
-    const SbVec3f arrowOffset(500.0f, 0.0f, 0.0f);
+  // Create arrows
+  const SbVec3f arrowOffset(500.0f, 0.0f, 0.0f);
 
-    float verticalDistance = std::abs(top[2] - bottom[2]);
-    const float arrowHeadWidth = std::min(100.0f, verticalDistance / 3.0f);
-    const float arrowHeadHeight = .6f * arrowHeadWidth;
+  float verticalDistance = std::abs(top[2] - bottom[2]);
+  const float arrowHeadWidth = std::min(100.0f, verticalDistance / 3.0f);
+  const float arrowHeadHeight = .6f * arrowHeadWidth;
 
-    SbVec3f points[2];
-    points[0] = top + arrowOffset;
-    points[1] = bottom + arrowOffset;
-    PoArrow3* arrow = new PoArrow3(2, points, PoArrow3::DIRECT_TRIANGLE, PoArrow3::DIRECT_TRIANGLE, arrowHeadWidth, arrowHeadHeight);
-    
-    // Label
-    SbVec3f position = .5f * (points[0] + points[1]);
-    SoNode* labelNode = createLabelNode(name, position);
+  SbVec3f points[2];
+  points[0] = top + arrowOffset;
+  points[1] = bottom + arrowOffset;
+  PoArrow3* arrow = new PoArrow3(2, points, PoArrow3::DIRECT_TRIANGLE, PoArrow3::DIRECT_TRIANGLE, arrowHeadWidth, arrowHeadHeight);
+  
+  // Label
+  SbVec3f position = .5f * (points[0] + points[1]);
+  SoNode* labelNode = createLabelNode(name, position);
 
-    SoGroup* sectionGroup = new SoGroup;
-    sectionGroup->addChild(lineSet);
-    sectionGroup->addChild(arrow);
-    sectionGroup->addChild(labelNode);
+  SoGroup* sectionGroup = new SoGroup;
+  sectionGroup->addChild(lineSet);
+  sectionGroup->addChild(arrow);
+  sectionGroup->addChild(labelNode);
 
-    return sectionGroup;
+  return sectionGroup;
 }
 
 SoNode* OIVWellPath::createInfoNode(const CNewWellPath& wellPath)
@@ -171,16 +171,16 @@ SoNode* OIVWellPath::createInfoNode(const CNewWellPath& wellPath)
   std::list<CNewFormationSection>::const_iterator e = sections.end();
   for(; i != e; ++i)
   {
-    const CNewWellPoint& top = i->Top();
-    const CNewWellPoint& bottom = i->Bottom();
-    std::string desc = i->GetDescription();
-    const char* name = desc.c_str();
+  const CNewWellPoint& top = i->Top();
+  const CNewWellPoint& bottom = i->Bottom();
+  std::string desc = i->GetDescription();
+  const char* name = desc.c_str();
 
-    infoGroup->addChild(
+  infoGroup->addChild(
       createSectionNode(
-        SbVec3f(top.X() - m_translation[0], top.Y() - m_translation[1], top.Z() - m_translation[2]),
-        SbVec3f(bottom.X() - m_translation[0], bottom.Y() - m_translation[1], bottom.Z() - m_translation[2]),
-        name));
+    SbVec3f(top.X() - m_translation[0], top.Y() - m_translation[1], top.Z() - m_translation[2]),
+    SbVec3f(bottom.X() - m_translation[0], bottom.Y() - m_translation[1], bottom.Z() - m_translation[2]),
+    name));
   }
   return infoGroup;
 }

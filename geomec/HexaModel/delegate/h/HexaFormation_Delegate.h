@@ -33,7 +33,7 @@ public:
 private:
   CHexaFormationEntry_Delegate(const CHexaFormationEntry_Delegate& rhs);
   CHexaFormationEntry_Delegate& operator = (
-    const CHexaFormationEntry_Delegate& rhs);
+  const CHexaFormationEntry_Delegate& rhs);
 
   CHexaFormationEntry* m_hexaFormationEntry;
 

@@ -23,27 +23,27 @@ CTemperatureGradientComponent::CTemperatureGradientComponent(const CTemperatureG
 
 unsigned int CTemperatureGradientComponent::TypeId() const
 {
-	return IDT_COMPONENT_TEMPERATURE_GRADIENT;
+  return IDT_COMPONENT_TEMPERATURE_GRADIENT;
 }
 
 unsigned int CTemperatureGradientComponent::IconId() const
 {
-	return IDI_COMPONENT_TEMPERATURE_GRADIENT;
+  return IDI_COMPONENT_TEMPERATURE_GRADIENT;
 }
 
 QString CTemperatureGradientComponent::TypeName() const
 {
-	return getStringTableEntry(IDS_COMPONENT_TEMPERATURE_GRADIENT);
+  return getStringTableEntry(IDS_COMPONENT_TEMPERATURE_GRADIENT);
 }
 
 QString CTemperatureGradientComponent::UnitName(const CQuantity::UNIT /*unit*/) const
 {
-	return QString::fromLocal8Bit(getStringTableEntry(IDS_UNIT_TEMPERATURE));
+  return QString::fromLocal8Bit(getStringTableEntry(IDS_UNIT_TEMPERATURE));
 }
 
 QString CTemperatureGradientComponent::ExportLabel() const
 {
-	 return getStringTableEntry(IDS_ET_TEMPERATURE);
+   return getStringTableEntry(IDS_ET_TEMPERATURE);
 }
 
 
@@ -52,73 +52,73 @@ QString CTemperatureGradientComponent::ExportLabel() const
 CTemperatureGWCDummyComponent::CTemperatureGWCDummyComponent()
 : IValueComponentBase(*this)
 {
-	assert(false);
+  assert(false);
 }
 
 CTemperatureGWCDummyComponent::CTemperatureGWCDummyComponent(CTemperatureGWCDummyComponent& rhs)
 : IValueComponentBase(rhs)
 {
-	assert(false);
+  assert(false);
 }
 
 const CTemperatureQuantity &CTemperatureGWCDummyComponent::ContactPressure() const
 {
-	assert(false);
-	CTemperatureQuantity* p = 0;
-	return *p;
+  assert(false);
+  CTemperatureQuantity* p = 0;
+  return *p;
 }
 
 const CTemperatureQuantity &CTemperatureGWCDummyComponent::TransitionPressure() const
 {
-	assert(false);
-	CTemperatureQuantity* p = 0;
-	return *p;
+  assert(false);
+  CTemperatureQuantity* p = 0;
+  return *p;
 }
 
 const CLengthQuantity &CTemperatureGWCDummyComponent::ContactDepth() const
 {
-	assert(false);
-	CLengthQuantity* p = 0;
-	return *p;
+  assert(false);
+  CLengthQuantity* p = 0;
+  return *p;
 }
 
 const CLengthQuantity &CTemperatureGWCDummyComponent::TransitionDepth() const
 {
-	assert(false);
-	CLengthQuantity* p = 0;
-	return *p;
+  assert(false);
+  CLengthQuantity* p = 0;
+  return *p;
 }
 
 const CTemperatureGradientQuantity &CTemperatureGWCDummyComponent::UpperGradient() const
 {
-	assert(false);
-	CTemperatureGradientQuantity* p = 0;
-	return *p;
+  assert(false);
+  CTemperatureGradientQuantity* p = 0;
+  return *p;
 }
 
 const CTemperatureGradientQuantity &CTemperatureGWCDummyComponent::LowerGradient() const
 {
-	assert(false);
-	CTemperatureGradientQuantity* p = 0;
-	return *p;
+  assert(false);
+  CTemperatureGradientQuantity* p = 0;
+  return *p;
 }
 
 bool CTemperatureGWCDummyComponent::TransitionFromPrevious() const
 {
-	assert(false);
-	return false;
+  assert(false);
+  return false;
 }
 
 void CTemperatureGWCDummyComponent::Set(const double &/*dContactPressure*/,
-										const double &/*dTransitionPressure*/,
-										const double &/*dContactDepth*/,
-		 								const double &/*dTransitionDepth*/,
-		 								const double &/*dUpperGradient*/,
-		 								const double &/*dLowerGradient*/,
-		 								bool /*bTransitionFromPrevious*/,
-		 								const CQuantity::UNIT /*unit*/)
+                    const double &/*dTransitionPressure*/,
+                    const double &/*dContactDepth*/,
+     								const double &/*dTransitionDepth*/,
+     								const double &/*dUpperGradient*/,
+     								const double &/*dLowerGradient*/,
+     								bool /*bTransitionFromPrevious*/,
+     								const CQuantity::UNIT /*unit*/)
 {
-	assert(false);
+  assert(false);
 }
 
 
@@ -136,131 +136,131 @@ CTemperatureRepeaterComponent::CTemperatureRepeaterComponent(const CTemperatureR
 
 unsigned int CTemperatureRepeaterComponent::TypeId() const
 {
-	const CTemperature *pTemperature = dynamic_cast<const CTemperature*> (&FormationLoadBase());
-	assert(pTemperature);
-	switch(pTemperature->Type())
-	{
-	case CTemperature::CONSTANT_MODE:
-		return pTemperature->Constant().TypeId();
-	case CTemperature::REPEAT_MODE:
-		return IDT_COMPONENT_TEMPERATURE_REPEATER;
-	default:
-		assert(false); // Bogus
-	};
+  const CTemperature *pTemperature = dynamic_cast<const CTemperature*> (&FormationLoadBase());
+  assert(pTemperature);
+  switch(pTemperature->Type())
+  {
+  case CTemperature::CONSTANT_MODE:
+    return pTemperature->Constant().TypeId();
+  case CTemperature::REPEAT_MODE:
+    return IDT_COMPONENT_TEMPERATURE_REPEATER;
+  default:
+    assert(false); // Bogus
+  };
 
-	return 0;
+  return 0;
 }
 
 unsigned int CTemperatureRepeaterComponent::IconId() const
 {
-	const CTemperature *pTemperature = dynamic_cast<const CTemperature*> (&FormationLoadBase());
-	assert(pTemperature);
+  const CTemperature *pTemperature = dynamic_cast<const CTemperature*> (&FormationLoadBase());
+  assert(pTemperature);
 
   const CTemperature *pParentTemperature = pTemperature->ParentTemperature();
 
   bool bSimilarToParent = pParentTemperature && pTemperature->IsSimilar(*pParentTemperature, false);
 
-	switch(pTemperature->Type())
-	{
-	case CTemperature::CONSTANT_MODE:
-    if (bSimilarToParent && pTemperature->Constant() == pParentTemperature->Constant())
+  switch(pTemperature->Type())
+  {
+  case CTemperature::CONSTANT_MODE:
+  if (bSimilarToParent && pTemperature->Constant() == pParentTemperature->Constant())
       return IDI_COMPONENT_TEMPERATURE_PARENT;
-    else
+  else
       return pTemperature->Constant().IconId();
-	case CTemperature::REPEAT_MODE:
-    if (pTemperature->DepletionStage().Initial())
-    {
+  case CTemperature::REPEAT_MODE:
+  if (pTemperature->DepletionStage().Initial())
+  {
       if (bSimilarToParent)
-        return IDI_COMPONENT_TEMPERATURE_PARENT;
+    return IDI_COMPONENT_TEMPERATURE_PARENT;
       else
-        return IDI_INITIAL_TEMPERATURE;
-    }
-		else
-    {
+    return IDI_INITIAL_TEMPERATURE;
+  }
+    else
+  {
       const CTemperature *pPrevTemperature = &pTemperature->Formation()->UserTemperature(pTemperature->DepletionStage().Previous());
-			assert(pPrevTemperature);
+      assert(pPrevTemperature);
 
       if (pTemperature->IsSimilar(*pPrevTemperature))
-        return IDI_COMPONENT_TEMPERATURE_REPEATER;
+    return IDI_COMPONENT_TEMPERATURE_REPEATER;
 
       if (bSimilarToParent)
-        return IDI_COMPONENT_TEMPERATURE_PARENT;
+    return IDI_COMPONENT_TEMPERATURE_PARENT;
 
       return IDI_COMPONENT_TEMPERATURE_REPEATER_CHANGE;
-		}
-	default:
-		assert(false);
-	};
-	
-	return 0;
+    }
+  default:
+    assert(false);
+  };
+  
+  return 0;
 }
 
 QString CTemperatureRepeaterComponent::TypeName() const
 {
-	const CTemperature *pTemperature = dynamic_cast<const CTemperature*> (&FormationLoadBase());
-	assert(pTemperature);
-	switch(pTemperature->Type())
-	{
-	case CTemperature::CONSTANT_MODE:
-		return pTemperature->Constant().TypeName();
-	case CTemperature::REPEAT_MODE:
-		{
-			return getStringTableEntry(IDS_COMPONENT_TEMPERATURE_REPEATER);
-		}
-	default:
-		assert(false); // Bogus
-	};
+  const CTemperature *pTemperature = dynamic_cast<const CTemperature*> (&FormationLoadBase());
+  assert(pTemperature);
+  switch(pTemperature->Type())
+  {
+  case CTemperature::CONSTANT_MODE:
+    return pTemperature->Constant().TypeName();
+  case CTemperature::REPEAT_MODE:
+    {
+      return getStringTableEntry(IDS_COMPONENT_TEMPERATURE_REPEATER);
+    }
+  default:
+    assert(false); // Bogus
+  };
 
-	return QString();
+  return QString();
 }
 
 QString CTemperatureRepeaterComponent::UnitName(const CQuantity::UNIT /*unit*/) const
 {
-	return QString::fromLocal8Bit(getStringTableEntry(IDS_UNIT_TEMPERATURE));
+  return QString::fromLocal8Bit(getStringTableEntry(IDS_UNIT_TEMPERATURE));
 }
 
 QString CTemperatureRepeaterComponent::ExportLabel() const
 {
-	 return getStringTableEntry(IDS_ET_TEMPERATURE);
+   return getStringTableEntry(IDS_ET_TEMPERATURE);
 }
 
 const CTemperatureRepeaterComponent::TFormationLoad& CTemperatureRepeaterComponent::PreviousFormationLoad() const
 {
-	const CTemperature *pTemperature = dynamic_cast<const CTemperature*> (&FormationLoadBase());
-	assert(pTemperature);
-	assert(!pTemperature->DepletionStage().Initial());
-	return pTemperature->Formation()->UserTemperature(pTemperature->DepletionStage().Previous());
+  const CTemperature *pTemperature = dynamic_cast<const CTemperature*> (&FormationLoadBase());
+  assert(pTemperature);
+  assert(!pTemperature->DepletionStage().Initial());
+  return pTemperature->Formation()->UserTemperature(pTemperature->DepletionStage().Previous());
 }
 
 const IValueComponentBase& CTemperatureRepeaterComponent::GlobalValues() const
 {
-	const CModelBase& model = dynamic_cast<const CModelBase&> (Model());
-	return model.InitialTemperature().Component();
+  const CModelBase& model = dynamic_cast<const CModelBase&> (Model());
+  return model.InitialTemperature().Component();
 }
 
 geo::CValue CTemperatureRepeaterComponent::ValuePoint(const geo::IPoint& pt, const CQuantity::UNIT unit, geo::IParallelInitializationCallback *cb) const
 {
-	geo::CValue val =
-		CFormationLoadRepeaterComponent<TTemperature, CTemperatureGradientComponent, CTemperatureRepeaterComponent, CTemperatureGWCDummyComponent>::ValuePoint(pt, unit, cb);
+  geo::CValue val =
+    CFormationLoadRepeaterComponent<TTemperature, CTemperatureGradientComponent, CTemperatureRepeaterComponent, CTemperatureGWCDummyComponent>::ValuePoint(pt, unit, cb);
 
-	if(val.Valid() && val.Value() < -272.15) // prevent values smaller than 1K (-272.15 C)
-		val = -272.15;
+  if(val.Valid() && val.Value() < -272.15) // prevent values smaller than 1K (-272.15 C)
+    val = -272.15;
 
-	return val;
+  return val;
 }
 
 IValueDomainScalar::TValueVec CTemperatureRepeaterComponent::ValueElement(const geo::IElement& elm, const CQuantity::UNIT unit, geo::IParallelInitializationCallback *cb) const
 {
-	IValueDomainScalar::TValueVec vcValues =
-		CFormationLoadRepeaterComponent<TTemperature, CTemperatureGradientComponent, CTemperatureRepeaterComponent, CTemperatureGWCDummyComponent>::ValueElement(elm, unit, cb);
+  IValueDomainScalar::TValueVec vcValues =
+    CFormationLoadRepeaterComponent<TTemperature, CTemperatureGradientComponent, CTemperatureRepeaterComponent, CTemperatureGWCDummyComponent>::ValueElement(elm, unit, cb);
 
-	for(size_t i = 0; i < vcValues.size(); ++i)
-	{
-		if(vcValues[i].Valid() && vcValues[i].Value() < -272.15) // prevent values smaller than 1K (-272.15 C)
-			vcValues[i] = -272.15;
-	}
+  for(size_t i = 0; i < vcValues.size(); ++i)
+  {
+    if(vcValues[i].Valid() && vcValues[i].Value() < -272.15) // prevent values smaller than 1K (-272.15 C)
+      vcValues[i] = -272.15;
+  }
 
-	return vcValues;
+  return vcValues;
 }
 
 ///// CTemperature
@@ -268,57 +268,57 @@ IValueDomainScalar::TValueVec CTemperatureRepeaterComponent::ValueElement(const 
 CTemperature::CTemperature(CFormationBase &f, CDepletionStage &d, bool bEmpty)
 : TTemperatureBase(f, d)
 , m_GlobalTemperatureObserver(
-    new CGlobalValueObserver <CTemperature, CGlobalTemperature> (this,
+  new CGlobalValueObserver <CTemperature, CGlobalTemperature> (this,
       &(static_cast <CModelBase&> (f.Model()).InitialTemperature())))
 {
-	LinkTo(d);	// Link to depletion stage
-	reParent(&f);	// Link to formation
+  LinkTo(d);	// Link to depletion stage
+  reParent(&f);	// Link to formation
 
-	if(!bEmpty)
-	{
-		new CTemperatureRepeaterComponent(*this);
-		new CTemperatureGradientComponent(*this);
-	}
+  if(!bEmpty)
+  {
+    new CTemperatureRepeaterComponent(*this);
+    new CTemperatureGradientComponent(*this);
+  }
 }
 
 CTemperature::CTemperature(CFormationBase &f, 
-			 CDepletionStage &d,
-			 const double &dReferenceTemperature,
-			 const double &dReferenceDepth,
-			 const double &dGradient,
-			 const CQuantity::UNIT unit)
+       CDepletionStage &d,
+       const double &dReferenceTemperature,
+       const double &dReferenceDepth,
+       const double &dGradient,
+       const CQuantity::UNIT unit)
 : TTemperatureBase(f, d)
 , m_GlobalTemperatureObserver(
-    new CGlobalValueObserver <CTemperature, CGlobalTemperature> (this,
+  new CGlobalValueObserver <CTemperature, CGlobalTemperature> (this,
       &(static_cast <CModelBase&> (f.Model()).InitialTemperature())))
 {
-	LinkTo(d);	// Link to depletion stage
-	reParent(&f);	// Link to formation
+  LinkTo(d);	// Link to depletion stage
+  reParent(&f);	// Link to formation
 
-	new CTemperatureRepeaterComponent(*this);		// Create repeater component
-	new CTemperatureGradientComponent(*this);		// Create constant component
+  new CTemperatureRepeaterComponent(*this);		// Create repeater component
+  new CTemperatureGradientComponent(*this);		// Create constant component
 
-	Constant().Set(dReferenceTemperature,
-				   dReferenceDepth,
-				   dGradient,
-				   unit);
+  Constant().Set(dReferenceTemperature,
+           dReferenceDepth,
+           dGradient,
+           unit);
 
-	assert(Type() == CONSTANT_MODE);
+  assert(Type() == CONSTANT_MODE);
 }
  // Constant initialisation
 CTemperature::CTemperature(CFormationBase &f, 
-						   CDepletionStage &d,
-						   TTemperature &/*p*/)
+               CDepletionStage &d,
+               TTemperature &/*p*/)
 : TTemperatureBase(f, d)
 , m_GlobalTemperatureObserver(
-    new CGlobalValueObserver <CTemperature, CGlobalTemperature> (this,
+  new CGlobalValueObserver <CTemperature, CGlobalTemperature> (this,
       &(static_cast <CModelBase&> (f.Model()).InitialTemperature())))
 {
-	LinkTo(d);	// Link to depletion stage
-	reParent(&f);	// Link to formation
+  LinkTo(d);	// Link to depletion stage
+  reParent(&f);	// Link to formation
 
-	new CTemperatureRepeaterComponent(*this);		// Create repeater component
-	new CTemperatureGradientComponent(*this);		// Create constant component
+  new CTemperatureRepeaterComponent(*this);		// Create repeater component
+  new CTemperatureGradientComponent(*this);		// Create constant component
 }
 
 CTemperature::CTemperature(const CTemperature& rhs)
@@ -344,21 +344,21 @@ CTemperature::~CTemperature()
 
 unsigned int CTemperature::TypeId() const
 {
-	return IDT_VALUETYPE_TEMPERATURE;
+  return IDT_VALUETYPE_TEMPERATURE;
 }
 
 QString CTemperature::TypeName() const
 {
-	return getStringTableEntry(IDS_VALUENAME_TEMPERATURE);
+  return getStringTableEntry(IDS_VALUENAME_TEMPERATURE);
 }
 
 void CTemperature::OnNeighbourDeleted(const CGraphNode& node)
 {
   if(dynamic_cast<const TTemperature*>(&node))
   {
-    CModelBase* pModel = dynamic_cast<CModelBase*> (&Model());
-    if(!pModel->getDeleting())
-	    pModel->ResultRegister().ClearAll();
+  CModelBase* pModel = dynamic_cast<CModelBase*> (&Model());
+  if(!pModel->getDeleting())
+    pModel->ResultRegister().ClearAll();
   }
 
   TTemperatureBase::OnNeighbourDeleted(node);
@@ -368,8 +368,8 @@ void CTemperature::OnNewNeighbour(const CGraphNode& node)
 {
   if(dynamic_cast<const TTemperature*>(&node))
   {
-    CModelBase* pModel = static_cast<CModelBase*> (&Model());
-	  pModel->ResultRegister().ClearAll();
+  CModelBase* pModel = static_cast<CModelBase*> (&Model());
+    pModel->ResultRegister().ClearAll();
   }
 
   TTemperatureBase::OnNewNeighbour(node);
@@ -382,34 +382,34 @@ bool CTemperature::IsFirstValidDepletionStage() const
 
 void CTemperature::LoadComponents(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress)
 {
-	new CTemperatureRepeaterComponent(*this);			// Create repeater component
+  new CTemperatureRepeaterComponent(*this);			// Create repeater component
 
-	switch(Type())
-	{
-	case REPEAT_MODE:
-		new CTemperatureGradientComponent(*this);
-		break;
-	case CONSTANT_MODE:
-		{
-			CTemperatureGradientComponent* pConstant = new CTemperatureGradientComponent(*this, true);
-			pConstant->LoadStream(stream, version, progress);
-		}
-		break;
-	default:
-		assert(false);
-		break;
-	};
+  switch(Type())
+  {
+  case REPEAT_MODE:
+    new CTemperatureGradientComponent(*this);
+    break;
+  case CONSTANT_MODE:
+    {
+      CTemperatureGradientComponent* pConstant = new CTemperatureGradientComponent(*this, true);
+      pConstant->LoadStream(stream, version, progress);
+    }
+    break;
+  default:
+    assert(false);
+    break;
+  };
 }
 
 void CTemperature::SaveComponents(TSTREAM& stream, TPROGRESS& progress)
 {
-	if(Type() == CONSTANT_MODE)
-		Constant().SaveStream(stream, progress);
+  if(Type() == CONSTANT_MODE)
+    Constant().SaveStream(stream, progress);
 }
 
 TTemperatureBase& CTemperature::FormationStageLoad(CFormationBase& formation, CDepletionStage& stage)
 {
-	return formation.UserTemperature(stage);
+  return formation.UserTemperature(stage);
 }
 
 
@@ -419,7 +419,7 @@ const CTemperature *CTemperature::ParentTemperature() const
   const CTemperature *pParentTemperature = 0;
 
   if (pFormation && pFormation->ParentFormation())
-    pParentTemperature = &pFormation->ParentFormation()->UserTemperature(static_cast<const CModelBase&>(pFormation->Model()).ParentEquivalentDepletionStage(DepletionStage()));
+  pParentTemperature = &pFormation->ParentFormation()->UserTemperature(static_cast<const CModelBase&>(pFormation->Model()).ParentEquivalentDepletionStage(DepletionStage()));
 
   return pParentTemperature;
 }

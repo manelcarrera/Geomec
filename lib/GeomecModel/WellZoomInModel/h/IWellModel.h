@@ -25,140 +25,140 @@ public:
   class CPositionDef : public CGraphNode
   {
   public:
-    typedef enum
-    {
+  typedef enum
+  {
       PDM_DEFAULT = 0,
       PDM_AHD,
       PDM_FORMATION
-    } TMethod;
+  } TMethod;
 
-    /*
-    enum
-    {
+  /*
+  enum
+  {
       PD_POSCHANGED = 1
-    };
-    */
+  };
+  */
   public:
-    CPositionDef(IWellModel& model, bool bStart);
-    CPositionDef(const CPositionDef& rhs);
+  CPositionDef(IWellModel& model, bool bStart);
+  CPositionDef(const CPositionDef& rhs);
 
-    CPositionDef& operator=(const CPositionDef& rhs);
-    bool operator==(const CPositionDef& rhs) const;
+  CPositionDef& operator=(const CPositionDef& rhs);
+  bool operator==(const CPositionDef& rhs) const;
 
-    virtual unsigned int IconId() const { return 0; }
-    virtual unsigned int TypeId() const { return 0; }
+  virtual unsigned int IconId() const { return 0; }
+  virtual unsigned int TypeId() const { return 0; }
 
-    virtual void OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint);
+  virtual void OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint);
 
-    // input method
-    TMethod Method() const;
+  // input method
+  TMethod Method() const;
 
-    // the resulting AHD and formation
-    double AHD() const;
-    bool InsideFormation() const; // is the position inside a formation?
-    const CFormationBase& Formation() const;
+  // the resulting AHD and formation
+  double AHD() const;
+  bool InsideFormation() const; // is the position inside a formation?
+  const CFormationBase& Formation() const;
 
-    void SetDefault();
-    void SetAHD(double dAHD);
-    void SetFormation(const CFormationBase& formation);
+  void SetDefault();
+  void SetAHD(double dAHD);
+  void SetFormation(const CFormationBase& formation);
 
-    void LoadStream(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& progress);
-	  void SaveStream(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS& progress);
+  void LoadStream(CStorageNode::TSTREAM& stream, CStreamVersion& version, CStorageNode::TPROGRESS& progress);
+    void SaveStream(CStorageNode::TSTREAM& stream, CStorageNode::TPROGRESS& progress);
 
   private:
-    IWellModel& m_model;
-    TMethod m_nMethod;
-    double m_dAHD;
-    const CFormationBase* m_pFormation;
-    bool m_bStart;
+  IWellModel& m_model;
+  TMethod m_nMethod;
+  double m_dAHD;
+  const CFormationBase* m_pFormation;
+  bool m_bStart;
   };
 
   /*
   enum
   {
-    GEOMETRY_CHANGED = 1
+  GEOMETRY_CHANGED = 1
   };
   */
 
   class CBoundary : public CBoundaryBase
   {
   public:
-    class IWellSupportNode : public CBaseSupportNode
-    {
-    public:
+  class IWellSupportNode : public CBaseSupportNode
+  {
+  public:
       IWellSupportNode(unsigned int uName, IWellModel::CBoundary& boundary);
-	    virtual unsigned int TypeId() const;
-	    virtual bool Empty() const;
-	    virtual int DisplayListSize() const;
-	    virtual const geo::IObject& DisplayList(int nIndex) const;
-	    virtual TColor Color() const;
+    virtual unsigned int TypeId() const;
+    virtual bool Empty() const;
+    virtual int DisplayListSize() const;
+    virtual const geo::IObject& DisplayList(int nIndex) const;
+    virtual TColor Color() const;
 
-    private:
+  private:
       IWellModel::CBoundary& m_boundary;
-    };
+  };
 
-    class CDisplacementSupport : public IWellSupportNode
-    {
-    public:
+  class CDisplacementSupport : public IWellSupportNode
+  {
+  public:
       CDisplacementSupport(IWellModel::CBoundary& boundary);
       virtual bool IsValidValueTypeId(unsigned int uValueType) const;
-	    virtual unsigned int IconId() const;
-    };
+    virtual unsigned int IconId() const;
+  };
 
-    class CPressureSupport : public IWellSupportNode
-    {
-    public:
+  class CPressureSupport : public IWellSupportNode
+  {
+  public:
       CPressureSupport(IWellModel::CBoundary& boundary);
       virtual bool IsValidValueTypeId(unsigned int uValueType) const;
-	    virtual unsigned int IconId() const;
-    };
+    virtual unsigned int IconId() const;
+  };
 
   public:
-    CBoundary(CFemAppModel& model);
-    ~CBoundary();
+  CBoundary(CFemAppModel& model);
+  ~CBoundary();
 
   	virtual TMinMax SnapToGrid(const TMinMax& minmax) const;
 
-	  virtual const geo::IObject& DisplayList(int nIndex) const;
-	  virtual int DisplayListSize() const;
-    virtual void OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint);
+    virtual const geo::IObject& DisplayList(int nIndex) const;
+    virtual int DisplayListSize() const;
+  virtual void OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint);
 
-    void Clear();
-    void AddBoundaryElement(geo::CInterfaceElement& iface, CBoundaryInterfaceDef::TBoundarySurface surfacetype);
+  void Clear();
+  void AddBoundaryElement(geo::CInterfaceElement& iface, CBoundaryInterfaceDef::TBoundarySurface surfacetype);
   	const CBoundaryInterfaceDef &InterfaceDefinition() const;
 
-    int BoundaryElementSize() const;
-    const geo::CInterfaceElement& BoundaryElement(int nIndex) const;
+  int BoundaryElementSize() const;
+  const geo::CInterfaceElement& BoundaryElement(int nIndex) const;
 
-    CBoundaryInterfaceDef::TBoundarySurface BoundarySurfaceDef(const geo::CInterfaceElement& iface) const;
-    const CBoundaryInterfaceMaterial& InterfaceMaterial(const geo::CInterfaceElement& iface) const;
+  CBoundaryInterfaceDef::TBoundarySurface BoundarySurfaceDef(const geo::CInterfaceElement& iface) const;
+  const CBoundaryInterfaceMaterial& InterfaceMaterial(const geo::CInterfaceElement& iface) const;
 
-	  virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
-	  virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
-	  virtual long SavedItems() const;
+    virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
+    virtual void SaveStream(TSTREAM& stream, TPROGRESS& progress);
+    virtual long SavedItems() const;
 
-    virtual bool HasInterfaces() const;
-	  virtual int InterfaceNodeSize() const;
-	  virtual const geo::INode& InterfaceNode( int nIndex ) const;
+  virtual bool HasInterfaces() const;
+    virtual int InterfaceNodeSize() const;
+    virtual const geo::INode& InterfaceNode( int nIndex ) const;
 
-    const CDisplacementSupport& DisplacementSupport() const;
-    const CPressureSupport& PressureSupport() const;
+  const CDisplacementSupport& DisplacementSupport() const;
+  const CPressureSupport& PressureSupport() const;
 
   protected:
-    virtual bool InvalidateMeshOnSet() const { return false; }
+  virtual bool InvalidateMeshOnSet() const { return false; }
 
   private:
-    void CreateChildren();
+  void CreateChildren();
 
   private:
-    geo::CPtrArray<geo::CInterfaceElement> m_arBoundaryElements;
+  geo::CPtrArray<geo::CInterfaceElement> m_arBoundaryElements;
    	CBoundaryInterfaceDef *m_pBoundaryInterfaceDef;
-    typedef std::map<const geo::CInterfaceElement*, CBoundaryInterfaceDef::TBoundarySurface> TFace2BoundarySurfaceMap;
-    TFace2BoundarySurfaceMap m_mpFace2BoundarySurface;
-    typedef std::vector<const geo::INode*> TNodeVec;
-    mutable TNodeVec m_vcInterfaceNode;
-    CDisplacementSupport* m_pDisplacementSupport;
-    CPressureSupport* m_pPressureSupport;
+  typedef std::map<const geo::CInterfaceElement*, CBoundaryInterfaceDef::TBoundarySurface> TFace2BoundarySurfaceMap;
+  TFace2BoundarySurfaceMap m_mpFace2BoundarySurface;
+  typedef std::vector<const geo::INode*> TNodeVec;
+  mutable TNodeVec m_vcInterfaceNode;
+  CDisplacementSupport* m_pDisplacementSupport;
+  CPressureSupport* m_pPressureSupport;
   };
 
 protected:
@@ -173,13 +173,13 @@ public:
   IWellModel& operator=(const IWellModel& rhs);
   bool operator==(const IWellModel& rhs) const;
 
-	virtual void createDefaults();
+  virtual void createDefaults();
   virtual void createContainers();
   virtual void CreateChildren();
 
   virtual const double &Depth(const geo::ICoordinate &coord) const;
-	virtual double Northing(const geo::ICoordinate& coord) const;
-	virtual double Easting(const geo::ICoordinate& coord) const;
+  virtual double Northing(const geo::ICoordinate& coord) const;
+  virtual double Easting(const geo::ICoordinate& coord) const;
 
   virtual const CModelBase& ParentModel() const = 0;
   virtual CModelBase& ParentModel() = 0;
@@ -192,8 +192,8 @@ public:
   virtual bool CanUseCalculatedTemperatures() const;
 
   virtual void OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint);
-	virtual bool OnLoad(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &prog);
-	virtual bool OnSave(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &progress);
+  virtual bool OnLoad(CStorageNode::TSTREAM &stream, CStreamVersion &version, CStorageNode::TPROGRESS &prog);
+  virtual bool OnSave(CStorageNode::TSTREAM &stream, CStorageNode::TPROGRESS &progress);
 
   double Radius() const;
   void Radius(double dRadius);
@@ -249,7 +249,7 @@ private:
   void ClearFormations();
   const CFormationSection* FormationSection(const CFormationBase& formation) const;
   const CNewFormationSection* NewFormationSection
-    (const CFormationBase& formation) const;
+  (const CFormationBase& formation) const;
 
 private:
   double m_dRadius; // the radius, measured from the center to a node

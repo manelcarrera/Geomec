@@ -45,10 +45,10 @@ typedef GeomecRGI::CLoadPropertyTemplate <IDT_VALUETYPE_VOLUMETRICSTRAIN>
   TLoadPropertyVolumetricStrain;
 typedef GeomecRGI::CLoadPropertyTemplateWithFactor
   <IDT_VALUETYPE_YOUNGMODULUS_NORM>
-    TLoadPropertyYoungNormal;
+  TLoadPropertyYoungNormal;
 typedef GeomecRGI::CLoadPropertyTemplateWithFactor
   <IDT_VALUETYPE_YOUNGMODULUS_TRANS>
-    TLoadPropertyYoungPlane;
+  TLoadPropertyYoungPlane;
 typedef GeomecRGI::CLoadPropertyTemplate <IDT_VALUETYPE_POISSONRATIO_NORM>
   TLoadPropertyPoissonNormal;
 typedef GeomecRGI::CLoadPropertyTemplate <IDT_VALUETYPE_POISSONRATIO_TRANS>
@@ -56,18 +56,18 @@ typedef GeomecRGI::CLoadPropertyTemplate <IDT_VALUETYPE_POISSONRATIO_TRANS>
 
 typedef GeomecRGI::CLoadPropertyTemplateRadials2Degrees
   <IDT_VALUETYPE_LAYER_NORMAL_INCL>
-    TLoadPropertyOrientation_Dip;
+  TLoadPropertyOrientation_Dip;
 typedef GeomecRGI::CLoadPropertyTemplateRadials2Degrees
   <IDT_VALUETYPE_LAYER_NORMAL_AZI>
-    TLoadPropertyOrientation_Azimuth;
+  TLoadPropertyOrientation_Azimuth;
 
 typedef GeomecRGI::CLoadPropertyTemplateWithFactor
   <IDT_VALUETYPE_ANISOTROPIC_SHEARMODULUS>
-    TLoadPropertyShearNormal;
+  TLoadPropertyShearNormal;
 
 typedef GeomecRGI::CLoadPropertyTemplateWithFactor
   <IDT_VALUETYPE_GRAINSTIFFNESS>
-    TLoadPropertyGrainBulkModulus;
+  TLoadPropertyGrainBulkModulus;
 
 typedef GeomecRGI::CLoadPropertyTemplate <IDT_VALUETYPE_NRMSTRAIN>
   TLoadPropertyStrainLoadingNormal;
@@ -87,165 +87,165 @@ QSharedPointer <GeomecRGI::CLoadPropertyBase> selectLoadProperty(
 
   switch (rgProperty.getType())
   {
-    case RGPropertyType::propElementFluidPressure:
+  case RGPropertyType::propElementFluidPressure:
       return QSharedPointer <GeomecRGI::CLoadPropertyFluidPressure> (
-        new GeomecRGI::CLoadPropertyFluidPressure(rgProperty, rgi, modelBase,
+    new GeomecRGI::CLoadPropertyFluidPressure(rgProperty, rgi, modelBase,
           rmp));
       break;
-    case RGPropertyType::propElementDeltaFluidPressure:
+  case RGPropertyType::propElementDeltaFluidPressure:
       return QSharedPointer <GeomecRGI::CLoadPropertyDeltaFluidPressure> (
-        new GeomecRGI::CLoadPropertyDeltaFluidPressure(rgProperty, rgi,
+    new GeomecRGI::CLoadPropertyDeltaFluidPressure(rgProperty, rgi,
           modelBase, rmp));
       break;
-    case RGPropertyType::propElementFluidPressureFrac:
+  case RGPropertyType::propElementFluidPressureFrac:
       return QSharedPointer <GeomecRGI::CLoadPropertyFluidPressureFrac> (
-        new GeomecRGI::CLoadPropertyFluidPressureFrac(rgProperty, rgi,
+    new GeomecRGI::CLoadPropertyFluidPressureFrac(rgProperty, rgi,
           modelBase, rmp));
       break;
-    case RGPropertyType::propElementDeltaFluidPressureFrac:
+  case RGPropertyType::propElementDeltaFluidPressureFrac:
       return QSharedPointer <GeomecRGI::CLoadPropertyDeltaFluidPressureFrac> (
-        new GeomecRGI::CLoadPropertyDeltaFluidPressureFrac(rgProperty, rgi,
+    new GeomecRGI::CLoadPropertyDeltaFluidPressureFrac(rgProperty, rgi,
           modelBase, rmp));
       break;
-    case RGPropertyType::propElementTemperature:
+  case RGPropertyType::propElementTemperature:
       return QSharedPointer <GeomecRGI::CLoadPropertyTemperature> (
-        new GeomecRGI::CLoadPropertyTemperature(rgProperty, rgi, modelBase,
+    new GeomecRGI::CLoadPropertyTemperature(rgProperty, rgi, modelBase,
           rmp));
       break;
-    case RGPropertyType::propElementDeltaTemperature:
+  case RGPropertyType::propElementDeltaTemperature:
       return QSharedPointer <GeomecRGI::CLoadPropertyDeltaTemperature> (
-        new GeomecRGI::CLoadPropertyDeltaTemperature(rgProperty, rgi, modelBase,
+    new GeomecRGI::CLoadPropertyDeltaTemperature(rgProperty, rgi, modelBase,
           rmp));
       break;
-    case RGPropertyType::propElementFormation:
+  case RGPropertyType::propElementFormation:
       return QSharedPointer <GeomecRGI::CLoadPropertyFormation> (
-        new GeomecRGI::CLoadPropertyFormation(rgProperty, rgi, modelBase, rmp));
+    new GeomecRGI::CLoadPropertyFormation(rgProperty, rgi, modelBase, rmp));
       break;
-    case RGPropertyType::propElementYoung:
+  case RGPropertyType::propElementYoung:
       return QSharedPointer <GeomecRGI::CLoadPropertyYoung> (
-        new GeomecRGI::CLoadPropertyYoung(rgProperty, rgi, modelBase, rmp));
+    new GeomecRGI::CLoadPropertyYoung(rgProperty, rgi, modelBase, rmp));
       break;
-    case RGPropertyType::propElementPoisson:
+  case RGPropertyType::propElementPoisson:
       return QSharedPointer <GeomecRGI::CLoadPropertyPoisson> (
-        new GeomecRGI::CLoadPropertyPoisson(rgProperty, rgi, modelBase, rmp));
+    new GeomecRGI::CLoadPropertyPoisson(rgProperty, rgi, modelBase, rmp));
       break;
-    case RGPropertyType::propElementPorosity:
+  case RGPropertyType::propElementPorosity:
       return QSharedPointer <TLoadPropertyPorosity> (
-        new TLoadPropertyPorosity(rgProperty, rgi, modelBase, rmp));
+    new TLoadPropertyPorosity(rgProperty, rgi, modelBase, rmp));
       break;
-    case RGPropertyType::propSaturatedRockDensity:
+  case RGPropertyType::propSaturatedRockDensity:
       return QSharedPointer <TLoadPropertySaturatedRockDensity> (
-        new TLoadPropertySaturatedRockDensity(rgProperty, rgi, modelBase, rmp));
+    new TLoadPropertySaturatedRockDensity(rgProperty, rgi, modelBase, rmp));
       break;
-    case RGPropertyType::propElementVolumetricStrain:
+  case RGPropertyType::propElementVolumetricStrain:
       return QSharedPointer <TLoadPropertyVolumetricStrain> (
-        new TLoadPropertyVolumetricStrain(rgProperty, rgi, modelBase, rmp));
+    new TLoadPropertyVolumetricStrain(rgProperty, rgi, modelBase, rmp));
       break;
-    case RGPropertyType::propDeltaDesorptionStrain:
+  case RGPropertyType::propDeltaDesorptionStrain:
       return QSharedPointer <TLoadPropertyDeltaDesorptionStrain> (
-        new TLoadPropertyDeltaDesorptionStrain(rgProperty, rgi, modelBase,
+    new TLoadPropertyDeltaDesorptionStrain(rgProperty, rgi, modelBase,
           rmp));
       break;
-    case RGPropertyType::propBodyIndex:
+  case RGPropertyType::propBodyIndex:
       return QSharedPointer <GeomecRGI::CLoadPropertyBodyIndex> (
-        new GeomecRGI::CLoadPropertyBodyIndex(rgProperty, rgi, modelBase, rmp));
+    new GeomecRGI::CLoadPropertyBodyIndex(rgProperty, rgi, modelBase, rmp));
       break;
-    case RGPropertyType::propElementShearModulus:
+  case RGPropertyType::propElementShearModulus:
       return QSharedPointer <GeomecRGI::CLoadPropertyShearModulus> (
-        new GeomecRGI::CLoadPropertyShearModulus(rgProperty, rgi, modelBase,
+    new GeomecRGI::CLoadPropertyShearModulus(rgProperty, rgi, modelBase,
           rmp));
       break;
-    case RGPropertyType::propElementOrientation_Dip:
+  case RGPropertyType::propElementOrientation_Dip:
       return QSharedPointer <TLoadPropertyOrientation_Dip> (
-        new TLoadPropertyOrientation_Dip(rgProperty, rgi, modelBase, rmp));
+    new TLoadPropertyOrientation_Dip(rgProperty, rgi, modelBase, rmp));
       break;
-    case RGPropertyType::propElementOrientation_Azimuth:
+  case RGPropertyType::propElementOrientation_Azimuth:
       return QSharedPointer <TLoadPropertyOrientation_Azimuth> (
-        new TLoadPropertyOrientation_Azimuth(rgProperty, rgi, modelBase, rmp));
+    new TLoadPropertyOrientation_Azimuth(rgProperty, rgi, modelBase, rmp));
       break;
-    case RGPropertyType::propElementYoungNormal:
+  case RGPropertyType::propElementYoungNormal:
       return QSharedPointer <TLoadPropertyYoungNormal> (
-        new TLoadPropertyYoungNormal(rgProperty, rgi, modelBase, rmp, 1e-6));
+    new TLoadPropertyYoungNormal(rgProperty, rgi, modelBase, rmp, 1e-6));
       break;
-    case RGPropertyType::propElementYoungPlane:
+  case RGPropertyType::propElementYoungPlane:
       return QSharedPointer <TLoadPropertyYoungPlane> (
-        new TLoadPropertyYoungPlane(rgProperty, rgi, modelBase, rmp, 1e-6));
+    new TLoadPropertyYoungPlane(rgProperty, rgi, modelBase, rmp, 1e-6));
       break;
-    case RGPropertyType::propElementPoissonNormal:
+  case RGPropertyType::propElementPoissonNormal:
       return QSharedPointer <TLoadPropertyPoissonNormal> (
-        new TLoadPropertyPoissonNormal(rgProperty, rgi, modelBase, rmp));
+    new TLoadPropertyPoissonNormal(rgProperty, rgi, modelBase, rmp));
       break;
-    case RGPropertyType::propElementPoissonPlane:
+  case RGPropertyType::propElementPoissonPlane:
       return QSharedPointer <TLoadPropertyPoissonPlane> (
-        new TLoadPropertyPoissonPlane(rgProperty, rgi, modelBase, rmp));
+    new TLoadPropertyPoissonPlane(rgProperty, rgi, modelBase, rmp));
       break;
-    case RGPropertyType::propElementShearNormal:
+  case RGPropertyType::propElementShearNormal:
       return QSharedPointer <TLoadPropertyShearNormal> (
-        new TLoadPropertyShearNormal(rgProperty, rgi, modelBase, rmp, 1e-6));
+    new TLoadPropertyShearNormal(rgProperty, rgi, modelBase, rmp, 1e-6));
       break;
-    case RGPropertyType::propElementMaterialType:
+  case RGPropertyType::propElementMaterialType:
       return QSharedPointer <GeomecRGI::CLoadPropertyMaterialType> (
-        new GeomecRGI::CLoadPropertyMaterialType(rgProperty, rgi, modelBase,
+    new GeomecRGI::CLoadPropertyMaterialType(rgProperty, rgi, modelBase,
           rmp));
       break;
-    case RGPropertyType::propElementGrainBulkModulus:
+  case RGPropertyType::propElementGrainBulkModulus:
       return QSharedPointer <TLoadPropertyGrainBulkModulus> (
-        new TLoadPropertyGrainBulkModulus(rgProperty, rgi, modelBase, rmp,
+    new TLoadPropertyGrainBulkModulus(rgProperty, rgi, modelBase, rmp,
           1e-6));
       break;
-    case RGPropertyType::propElementStrainLoadingNormal:
+  case RGPropertyType::propElementStrainLoadingNormal:
       return QSharedPointer <TLoadPropertyStrainLoadingNormal> (
-        new TLoadPropertyStrainLoadingNormal(rgProperty, rgi, modelBase, rmp));
+    new TLoadPropertyStrainLoadingNormal(rgProperty, rgi, modelBase, rmp));
       break;
-    case RGPropertyType::propElementStrainLoadingPlane:
+  case RGPropertyType::propElementStrainLoadingPlane:
       return QSharedPointer <TLoadPropertyStrainLoadingPlane> (
-        new TLoadPropertyStrainLoadingPlane(rgProperty, rgi, modelBase, rmp));
+    new TLoadPropertyStrainLoadingPlane(rgProperty, rgi, modelBase, rmp));
       break;
-    case RGPropertyType::propElementResidualStrainLoading_NN:
+  case RGPropertyType::propElementResidualStrainLoading_NN:
       return QSharedPointer <GeomecRGI::CLoadPropertyBase> (
-        new GeomecRGI::CLoadPropertyResidualStrainLoading(rgProperty, rgi,
+    new GeomecRGI::CLoadPropertyResidualStrainLoading(rgProperty, rgi,
           modelBase, rmp, ITensorGroup::CComponentComposite::TC_XX));
       break;
-    case RGPropertyType::propElementResidualStrainLoading_EE:
+  case RGPropertyType::propElementResidualStrainLoading_EE:
       return QSharedPointer <GeomecRGI::CLoadPropertyBase> (
-        new GeomecRGI::CLoadPropertyResidualStrainLoading(rgProperty, rgi,
+    new GeomecRGI::CLoadPropertyResidualStrainLoading(rgProperty, rgi,
           modelBase, rmp, ITensorGroup::CComponentComposite::TC_YY));
       break;
-    case RGPropertyType::propElementResidualStrainLoading_DD:
+  case RGPropertyType::propElementResidualStrainLoading_DD:
       return QSharedPointer <GeomecRGI::CLoadPropertyBase> (
-        new GeomecRGI::CLoadPropertyResidualStrainLoading(rgProperty, rgi,
+    new GeomecRGI::CLoadPropertyResidualStrainLoading(rgProperty, rgi,
           modelBase, rmp, ITensorGroup::CComponentComposite::TC_ZZ));
       break;
-    case RGPropertyType::propElementResidualStrainLoading_NE:
+  case RGPropertyType::propElementResidualStrainLoading_NE:
       return QSharedPointer <GeomecRGI::CLoadPropertyBase> (
-        new GeomecRGI::CLoadPropertyResidualStrainLoading(rgProperty, rgi,
+    new GeomecRGI::CLoadPropertyResidualStrainLoading(rgProperty, rgi,
           modelBase, rmp, ITensorGroup::CComponentComposite::TC_XY));
       break;
-    case RGPropertyType::propElementResidualStrainLoading_ND:
+  case RGPropertyType::propElementResidualStrainLoading_ND:
       return QSharedPointer <GeomecRGI::CLoadPropertyBase> (
-        new GeomecRGI::CLoadPropertyResidualStrainLoading(rgProperty, rgi,
+    new GeomecRGI::CLoadPropertyResidualStrainLoading(rgProperty, rgi,
           modelBase, rmp, ITensorGroup::CComponentComposite::TC_ZX));
       break;
-    case RGPropertyType::propElementResidualStrainLoading_ED:
+  case RGPropertyType::propElementResidualStrainLoading_ED:
       return QSharedPointer <GeomecRGI::CLoadPropertyBase> (
-        new GeomecRGI::CLoadPropertyResidualStrainLoading(rgProperty, rgi,
+    new GeomecRGI::CLoadPropertyResidualStrainLoading(rgProperty, rgi,
           modelBase, rmp, ITensorGroup::CComponentComposite::TC_YZ));
       break;
-	case RGPropertyType::propElementYoungUndrained:
-		return QSharedPointer <TLoadPropertyYoungUndrained>(
-			new TLoadPropertyYoungUndrained(rgProperty, rgi, modelBase, rmp, 1e-6));
-		break;
-	case RGPropertyType::propElementPoissonUndrained:
-		return QSharedPointer <TLoadPropertyPoissonUndrained>(
-			new TLoadPropertyPoissonUndrained(rgProperty, rgi, modelBase, rmp));
-		break;
-	case RGPropertyType::propLast:
+  case RGPropertyType::propElementYoungUndrained:
+    return QSharedPointer <TLoadPropertyYoungUndrained>(
+      new TLoadPropertyYoungUndrained(rgProperty, rgi, modelBase, rmp, 1e-6));
+    break;
+  case RGPropertyType::propElementPoissonUndrained:
+    return QSharedPointer <TLoadPropertyPoissonUndrained>(
+      new TLoadPropertyPoissonUndrained(rgProperty, rgi, modelBase, rmp));
+    break;
+  case RGPropertyType::propLast:
       throw QString("The loading of property propLast is currently "
-        "not implemented");
+    "not implemented");
       break;
-    default:
+  default:
       QString errorMessage = QString("The loading of property %1 is currently "
-        "not implemented").arg(rgProperty.toString().c_str());
+    "not implemented").arg(rgProperty.toString().c_str());
       throw errorMessage;
       break;
   }

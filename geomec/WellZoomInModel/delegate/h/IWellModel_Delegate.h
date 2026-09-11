@@ -14,74 +14,74 @@ public:
   class CBoundary_Delegate : public CBoundaryBase_Delegate
   {
   public:
-    class IWellSupportNode_Delegate : public CBaseSupportNode_Delegate
-    {
-    public:
+  class IWellSupportNode_Delegate : public CBaseSupportNode_Delegate
+  {
+  public:
       IWellSupportNode_Delegate(
-        IWellModel::CBoundary::IWellSupportNode* wellSupportNode);
+    IWellModel::CBoundary::IWellSupportNode* wellSupportNode);
 
-    private:
+  private:
       IWellSupportNode_Delegate(const IWellSupportNode_Delegate& rhs);
       IWellSupportNode_Delegate& operator = (
-        const IWellSupportNode_Delegate& rhs);
+    const IWellSupportNode_Delegate& rhs);
 
       IWellModel::CBoundary::IWellSupportNode* m_wellSupportNode;
 
       REGISTER_DELEGATE(IWellModel::CBoundary::IWellSupportNode,
-        IWellSupportNode_Delegate);
-    };
+    IWellSupportNode_Delegate);
+  };
 
-    class CDisplacementSupport_Delegate : public IWellSupportNode_Delegate
-    {
-    public:
+  class CDisplacementSupport_Delegate : public IWellSupportNode_Delegate
+  {
+  public:
       CDisplacementSupport_Delegate(
-        IWellModel::CBoundary::CDisplacementSupport* displacementSupport);
+    IWellModel::CBoundary::CDisplacementSupport* displacementSupport);
 
-    private:
+  private:
       CDisplacementSupport_Delegate(const CDisplacementSupport_Delegate& rhs);
       CDisplacementSupport_Delegate& operator = (
-        const CDisplacementSupport_Delegate& rhs);
+    const CDisplacementSupport_Delegate& rhs);
 
       IWellModel::CBoundary::CDisplacementSupport* m_displacementSupport;
 
       REGISTER_DELEGATE(IWellModel::CBoundary::CDisplacementSupport,
-        CDisplacementSupport_Delegate);
-    };
+    CDisplacementSupport_Delegate);
+  };
 
-    class CPressureSupport_Delegate : public IWellSupportNode_Delegate
-    {
-    public:
+  class CPressureSupport_Delegate : public IWellSupportNode_Delegate
+  {
+  public:
       CPressureSupport_Delegate(
-        IWellModel::CBoundary::CPressureSupport* pressureSupport);
+    IWellModel::CBoundary::CPressureSupport* pressureSupport);
 
-    private:
+  private:
       CPressureSupport_Delegate(const CPressureSupport_Delegate& rhs);
       CPressureSupport_Delegate& operator = (
-        const CPressureSupport_Delegate& rhs);
+    const CPressureSupport_Delegate& rhs);
 
       IWellModel::CBoundary::CPressureSupport* m_pressureSupport;
 
       REGISTER_DELEGATE(IWellModel::CBoundary::CPressureSupport,
-        CPressureSupport_Delegate);
-    };
+    CPressureSupport_Delegate);
+  };
 
-    CBoundary_Delegate(IWellModel::CBoundary* boundary);
+  CBoundary_Delegate(IWellModel::CBoundary* boundary);
 
-    virtual void AppendContextMenu(CContextMenuInvoker& invoker);
+  virtual void AppendContextMenu(CContextMenuInvoker& invoker);
 
-    virtual bool CanEdit() const;
+  virtual bool CanEdit() const;
 
-    virtual bool CanModify() const;
+  virtual bool CanModify() const;
 
-    void InterfaceAttributes();
+  void InterfaceAttributes();
 
   private:
-    CBoundary_Delegate(const CBoundary_Delegate& rhs);
-    CBoundary_Delegate& operator = (const CBoundary_Delegate& rhs);
+  CBoundary_Delegate(const CBoundary_Delegate& rhs);
+  CBoundary_Delegate& operator = (const CBoundary_Delegate& rhs);
 
-    IWellModel::CBoundary* m_boundary;
+  IWellModel::CBoundary* m_boundary;
 
-    REGISTER_DELEGATE(IWellModel::CBoundary, CBoundary_Delegate);
+  REGISTER_DELEGATE(IWellModel::CBoundary, CBoundary_Delegate);
   };
 
   IWellModel_Delegate(IWellModel* wellModel);

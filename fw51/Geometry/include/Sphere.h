@@ -22,19 +22,19 @@ namespace geo {
 // Last review : 27-03-2002 
 class GEOMETRY_EXPORT  CSphere  : public ISphere
 {
-	CPoint m_mid_point;
-	double m_radius;
+  CPoint m_mid_point;
+  double m_radius;
 public:
-	// Construction 
-	CSphere();	
-	CSphere(const IPoint& mid_point, const double Radius);
-	CSphere(const ISphere& rhs);
+  // Construction 
+  CSphere();	
+  CSphere(const IPoint& mid_point, const double Radius);
+  CSphere(const ISphere& rhs);
 
-	// Interface of ISphere support
-	virtual const double& Radius() const;
-	virtual void Radius(const double &radius);
-	virtual const IPoint& MidPoint() const;
-	virtual void MidPoint(const IPoint& mid_point);
+  // Interface of ISphere support
+  virtual const double& Radius() const;
+  virtual void Radius(const double &radius);
+  virtual const IPoint& MidPoint() const;
+  virtual void MidPoint(const IPoint& mid_point);
 
 };
 }

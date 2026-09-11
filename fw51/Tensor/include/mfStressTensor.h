@@ -13,18 +13,18 @@
 class TENSOR_EXPORT CStressTensor : public CMechanicalTensor 
 {
 public:
-	CStressTensor();
-	CStressTensor(const ITensor& tensor);
-	CStressTensor(const double &xx, const double &yy, const double &zz,
+  CStressTensor();
+  CStressTensor(const ITensor& tensor);
+  CStressTensor(const double &xx, const double &yy, const double &zz,
                   const double &xy, const double &yz, const double &xz);
-	virtual ~CStressTensor();
+  virtual ~CStressTensor();
 
-	double Tresca() const;
-	double MeanStress() const;
-	virtual double InvarVonMis() const;
-	double AverageStress() const;
+  double Tresca() const;
+  double MeanStress() const;
+  virtual double InvarVonMis() const;
+  double AverageStress() const;
 
-	virtual const CMechanicalTensor *DeviatoricTensor() const;
+  virtual const CMechanicalTensor *DeviatoricTensor() const;
 };
 
 #endif // !defined(AFX_STRESSTENSOR_H__INCLUDED_)

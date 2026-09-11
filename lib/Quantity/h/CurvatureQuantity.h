@@ -15,17 +15,17 @@
 class CCurvatureQuantity : public CDoubleQuantity
 {
 public:
-	CCurvatureQuantity();
-	CCurvatureQuantity(const double value,const UNIT unit);
+  CCurvatureQuantity();
+  CCurvatureQuantity(const double value,const UNIT unit);
 
-	virtual ~CCurvatureQuantity();
+  virtual ~CCurvatureQuantity();
 
-	// Quantity description ...
-	virtual std::string	QuantityName() const;
-	// Unit description ...
-	virtual	std::string UnitName(const UNIT unit = SI_UNIT) const;
-	// Value discription ...
-	virtual double Convert(const double &value, const UNIT out, const UNIT in) const;
+  // Quantity description ...
+  virtual std::string	QuantityName() const;
+  // Unit description ...
+  virtual	std::string UnitName(const UNIT unit = SI_UNIT) const;
+  // Value discription ...
+  virtual double Convert(const double &value, const UNIT out, const UNIT in) const;
 
 };
 

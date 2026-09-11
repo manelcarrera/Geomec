@@ -29,7 +29,7 @@ private:
 };
 
 BEGIN_MESSAGE_MAP(CGocadSolidListCtrl, CListCtrlBase)
-	ON_NOTIFY_REFLECT(LVN_ITEMCHANGED, OnItemChanged)
+  ON_NOTIFY_REFLECT(LVN_ITEMCHANGED, OnItemChanged)
 END_MESSAGE_MAP()
 
 CGocadSolidListCtrl::CGocadSolidListCtrl(CSelectGocadSolidDlg& dlg)
@@ -96,15 +96,15 @@ void CSelectGocadSolidDlg::OnDoubleClick(int nIndex)
 
 void CSelectGocadSolidDlg::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
+  CDialog::DoDataExchange(pDX);
 
-	DDX_Control(pDX, IDC_LIST, *m_plcList);
+  DDX_Control(pDX, IDC_LIST, *m_plcList);
 
   if(pDX->m_bSaveAndValidate)
   {
-    m_vcSelected.clear();
-    POSITION pos = m_plcList->GetFirstSelectedItemPosition();
-    while(pos)
+  m_vcSelected.clear();
+  POSITION pos = m_plcList->GetFirstSelectedItemPosition();
+  while(pos)
       m_vcSelected.push_back(m_plcList->GetNextSelectedItem(pos));
   }
 }
@@ -113,26 +113,26 @@ BOOL CSelectGocadSolidDlg::OnInitDialog()
 {
   CDialog::OnInitDialog();
 
-	CRect rect;
-	m_plcList->GetWindowRect(&rect);
+  CRect rect;
+  m_plcList->GetWindowRect(&rect);
 
-	m_plcList->InsertColumn(0, _T("Name"), LVCFMT_LEFT, (rect.Width() - 3) * 0.70, 0);
-	m_plcList->InsertColumn(1, _T("Volumes"), LVCFMT_LEFT, (rect.Width() - 3) * 0.15, 1);
-	m_plcList->InsertColumn(2, _T("Tetras"), LVCFMT_LEFT, (rect.Width() - 3) * 0.15, 1);
+  m_plcList->InsertColumn(0, _T("Name"), LVCFMT_LEFT, (rect.Width() - 3) * 0.70, 0);
+  m_plcList->InsertColumn(1, _T("Volumes"), LVCFMT_LEFT, (rect.Width() - 3) * 0.15, 1);
+  m_plcList->InsertColumn(2, _T("Tetras"), LVCFMT_LEFT, (rect.Width() - 3) * 0.15, 1);
 
   for(size_t i = 0; i < m_solids.size(); ++i)
   {
 #ifdef SKUA_NEW
-    const gm_skua::SKUAParseData& tsolid = *m_solids[i];
-    new CGocadSolidListObject(*m_plcList, tsolid.name.data, tsolid.model_region_names.size(), tsolid.tetras.size());
+  const gm_skua::SKUAParseData& tsolid = *m_solids[i];
+  new CGocadSolidListObject(*m_plcList, tsolid.name.data, tsolid.model_region_names.size(), tsolid.tetras.size());
 #else
-    const CGocadData::CTSolid& tsolid = *m_solids[i];
-    int nTetras = 0;
-    int j;
-    for(j = 0; j < tsolid.VolumeSize(); ++j)
+  const CGocadData::CTSolid& tsolid = *m_solids[i];
+  int nTetras = 0;
+  int j;
+  for(j = 0; j < tsolid.VolumeSize(); ++j)
       nTetras += tsolid.Volume(j).TetraSize();
 
-    new CGocadSolidListObject(*m_plcList, tsolid.Name().toStdString().c_str(), tsolid.VolumeSize(), nTetras);
+  new CGocadSolidListObject(*m_plcList, tsolid.Name().toStdString().c_str(), tsolid.VolumeSize(), nTetras);
 #endif
   }
 
@@ -148,7 +148,7 @@ CSelectGocadSolidDlg::CGocadSolidListObject::CGocadSolidListObject(CListCtrlBase
 : IListObject(ctrl),
   m_sName(sName)
 {
-	Ctrl().SetItemData(Ctrl().GetItemCount() - 1, (DWORD_PTR) this);
+  Ctrl().SetItemData(Ctrl().GetItemCount() - 1, (DWORD_PTR) this);
   new CIntSubListObject(*this, 1, nVolumes);
   new CIntSubListObject(*this, 2, nTetras);
 }

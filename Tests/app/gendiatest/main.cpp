@@ -36,8 +36,8 @@ struct TArgs
 {
   TArgs()
   : antype(NONE),
-    quadratic(false),
-    restart(false)
+  quadratic(false),
+  restart(false)
   {
   }
 
@@ -51,85 +51,85 @@ static bool ParseArguments(TArgs& args, int argc, char* argv[])
 {
   for(int i = 1; i < argc; ++i)
   {
-    char* p = argv[i];
-    if(p)
-    {
+  char* p = argv[i];
+  if(p)
+  {
       if(*p == '-')
       {
-        ++p;
-        while(*p)
-        {
+    ++p;
+    while(*p)
+    {
           switch(*p)
           {
           case 'l':
           case 'L':
-            if(args.antype != NONE)
+      if(args.antype != NONE)
               return false;
-            args.antype = L;
-            break;
+      args.antype = L;
+      break;
           case 'n':
           case 'N':
-            if(args.antype != NONE)
+      if(args.antype != NONE)
               return false;
-            args.antype = N;
-            break;
+      args.antype = N;
+      break;
           case 'm':
           case 'M':
-            if(args.antype != NONE)
+      if(args.antype != NONE)
               return false;
-            args.antype = M;
-            break;
+      args.antype = M;
+      break;
           case 'h':
           case 'H':
-            if(args.antype != NONE)
+      if(args.antype != NONE)
               return false;
-            args.antype = H;
-            break;
+      args.antype = H;
+      break;
           case 'q':
           case 'Q':
-            if(args.quadratic)
+      if(args.quadratic)
               return false;
-            args.quadratic = true;
-            break;
+      args.quadratic = true;
+      break;
           case 'r':
           case 'R':
-            if(args.restart)
+      if(args.restart)
               return false;
-            args.restart = true;
-            break;
+      args.restart = true;
+      break;
           default:
-            return false;
+      return false;
           }
 
           ++p;
-        }
+    }
       }
       else
       {
-        // assume model file name
-        if(!args.modelfile.isEmpty())
+    // assume model file name
+    if(!args.modelfile.isEmpty())
           return false;
-        args.modelfile = argv[i];
+    args.modelfile = argv[i];
       }
-    }
+  }
   }
 
   if(args.antype == NONE)
-    return false;
+  return false;
 
   if(args.modelfile.isEmpty())
-    return false;
+  return false;
 
   if(args.quadratic && args.antype != L && args.antype != N)
   {
-    fprintf(stderr, "warning: -q flag not used in combination with -l or -n, ignored\n");
-    args.quadratic = false;
+  fprintf(stderr, "warning: -q flag not used in combination with -l or -n, ignored\n");
+  args.quadratic = false;
   }
 
   if(args.restart && args.antype != N)
   {
-    fprintf(stderr, "warning: -r flag not used in combination with -n, ignored\n");
-    args.restart = false;
+  fprintf(stderr, "warning: -r flag not used in combination with -n, ignored\n");
+  args.restart = false;
   }
 
   return true;
@@ -139,13 +139,13 @@ static const char* ProgName(const char* argv0)
 {
   const char* p = strrchr(argv0, '/');
   if(!p)
-    p = strrchr(argv0, '\\');
+  p = strrchr(argv0, '\\');
 
   if(p)
-    ++p;
+  ++p;
 
   if(p && *p)
-    return p;
+  return p;
 
   return argv0;
 }
@@ -185,8 +185,8 @@ int main(int argc, char* argv[])
   TArgs args;
   if(!ParseArguments(args, argc, argv))
   {
-    Usage(argv[0]);
-    return 1;
+  Usage(argv[0]);
+  return 1;
   }
 
   SetDianaEnvironment();
@@ -195,71 +195,71 @@ int main(int argc, char* argv[])
   CModelBase* pModel = openDocument(args.modelfile, logger);
   if(pModel)
   {
-    QString sModelPath;
-    QString sModelFileName;
-    SplitPathAndFileName(args.modelfile, sModelPath, sModelFileName);
-    QString sModelName = RemoveExtension(sModelFileName);
+  QString sModelPath;
+  QString sModelFileName;
+  SplitPathAndFileName(args.modelfile, sModelPath, sModelFileName);
+  QString sModelName = RemoveExtension(sModelFileName);
 
-    CDianaExecuter diaexec;
-    CSaveModelConsole smc(*pModel, APP_VERSION);
-    CRetrieveDianaFileNamesConsole retr(strCurrentDir);
+  CDianaExecuter diaexec;
+  CSaveModelConsole smc(*pModel, APP_VERSION);
+  CRetrieveDianaFileNamesConsole retr(strCurrentDir);
 
-    CAnalysisType::TAnalysisType antype = CAnalysisType::AT_LINEAR;
-    switch(args.antype)
-    {
-    case L:
+  CAnalysisType::TAnalysisType antype = CAnalysisType::AT_LINEAR;
+  switch(args.antype)
+  {
+  case L:
       antype = CAnalysisType::AT_LINEAR;
       sModelName += "_l";
       break;
-    case N:
+  case N:
       antype = CAnalysisType::AT_NONLIN;
       sModelName += "_n";
       break;
-    case M:
+  case M:
       antype = CAnalysisType::AT_MIXTURE;
       sModelName += "_m";
       break;
-    case C:
+  case C:
       antype = CAnalysisType::AT_MIXTURE_CONTAINMENT;
       sModelName += "_c";
       break;
-    case H:
+  case H:
       antype = CAnalysisType::AT_HEAT;
       sModelName += "_h";
       break;
-    default:
+  default:
       assert(false);
-    }
+  }
 
-    if(args.quadratic)
+  if(args.quadratic)
       sModelName += "_q";
 
-    if(args.restart)
-    {
+  if(args.restart)
+  {
       sModelName += "_r";
 
       // set restart mode for all depletion stages
       CDepletionStageEntry::iterator it;
       for(it = pModel->DepletionStageEntry().begin(); it != pModel->DepletionStageEntry().end(); ++it)
       {
-        if(it->OutputType() != CDepletionStage::BRANCH && it->OutputType() != CDepletionStage::PHASE)
+    if(it->OutputType() != CDepletionStage::BRANCH && it->OutputType() != CDepletionStage::PHASE)
           it->setOutputType(CDepletionStage::PHASE); // we're only interested in the restart, not in the generated files
       }
-    }
+  }
 
-    pModel->WriteFilosModel(args.modelfile,
-                            &diaexec,
-                            sModelName.toStdString(),
-                            antype,
-                            true,
-                            args.quadratic,
-                            smc,
-                            retr);
+  pModel->WriteFilosModel(args.modelfile,
+              &diaexec,
+              sModelName.toStdString(),
+              antype,
+              true,
+              args.quadratic,
+              smc,
+              retr);
   }
   else
   {
-    std::cerr << "Unable to open modelfile " << args.modelfile.toStdString().c_str() << std::endl;
+  std::cerr << "Unable to open modelfile " << args.modelfile.toStdString().c_str() << std::endl;
   }
 
-	return 0;
+  return 0;
 }

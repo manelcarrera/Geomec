@@ -35,57 +35,57 @@ class CWellSectionList;
 class CWellSectionListBase : public QObject// , protected QList<IWellSection*>
 {
 
-	Q_OBJECT;
+  Q_OBJECT;
 
 public:
 
   typedef QList<IWellSection*>::iterator Iterator;
 
-	//return all sections containing this point
-	//autodelete of return value = false
-	CWellSectionList GetSections(const CWellPoint& point, bool IncludeEdge =true) const;
+  //return all sections containing this point
+  //autodelete of return value = false
+  CWellSectionList GetSections(const CWellPoint& point, bool IncludeEdge =true) const;
 
 
-	CWellSectionListBase(const CWellPathBase& WellPath,  bool bAutoDelete=true);
-	virtual ~CWellSectionListBase();
-	CWellSectionListBase& operator=(const CWellSectionListBase& rhs);
-	CWellSectionListBase(const CWellSectionListBase& rhs);
-		
+  CWellSectionListBase(const CWellPathBase& WellPath,  bool bAutoDelete=true);
+  virtual ~CWellSectionListBase();
+  CWellSectionListBase& operator=(const CWellSectionListBase& rhs);
+  CWellSectionListBase(const CWellSectionListBase& rhs);
+    
 
-	//list operations
-	int NrOfSections() const;
+  //list operations
+  int NrOfSections() const;
 
-	bool AutoDelete() const;
-	void AutoDelete(bool autodelete);
+  bool AutoDelete() const;
+  void AutoDelete(bool autodelete);
 
-	int GetIndex(IWellSection* section) const; //return -1 if not exists
-	bool Exist(IWellSection* section) const; 
+  int GetIndex(IWellSection* section) const; //return -1 if not exists
+  bool Exist(IWellSection* section) const; 
 
-	const IWellSection* LookUpNext(IWellSection* section) const;
-	const IWellSection* LookUpPrevious(IWellSection* section) const;
+  const IWellSection* LookUpNext(IWellSection* section) const;
+  const IWellSection* LookUpPrevious(IWellSection* section) const;
 
 
-	//state
-	bool AllSectionsDefined() const;
-	
-	//
-	CWellPathBase& WellPath();
-	const CWellPathBase& WellPath() const;
+  //state
+  bool AllSectionsDefined() const;
+  
+  //
+  CWellPathBase& WellPath();
+  const CWellPathBase& WellPath() const;
 
-	QString GetDescription() const;
-	
-	Iterator begin() const;
+  QString GetDescription() const;
+  
+  Iterator begin() const;
   Iterator end() const;
   void clear();
 
 public slots:
-	void SetDescription(QString description);
+  void SetDescription(QString description);
 
 protected:
-	const CWellPathBase* m_pWellPath;
-	QString m_Description;
+  const CWellPathBase* m_pWellPath;
+  QString m_Description;
   mutable QList<IWellSection*> m_lstSections;
-	int compareItems(IWellSection* item1, IWellSection* item2 );
+  int compareItems(IWellSection* item1, IWellSection* item2 );
 
 private:
   bool m_bAutoDelete;

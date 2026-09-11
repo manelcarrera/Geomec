@@ -26,37 +26,37 @@ CCLIParser::TStringList CCLIParser::split(const QString& cmd)
 
   for(int i = 0; i < cmd.size(); ++i)
   {
-    const QChar& c = cmd[i];
-    QString s;
-    if(c == ' ')
-    {
+  const QChar& c = cmd[i];
+  QString s;
+  if(c == ' ')
+  {
       if(!bInQuote)
       {
-        s = cmd.mid(idxLastPos + 1, i - idxLastPos - 1);
-        idxLastPos = i;
+    s = cmd.mid(idxLastPos + 1, i - idxLastPos - 1);
+    idxLastPos = i;
       }
-    }
-    else if(c == '"')
-    {
+  }
+  else if(c == '"')
+  {
       if(!bInQuote)
       {
-        bInQuote = true;
-        idxLastPos = i;
+    bInQuote = true;
+    idxLastPos = i;
       }
       else
       {
-        s = cmd.mid(idxLastPos + 1, i - idxLastPos - 1);
-        bInQuote = false;
-        idxLastPos = i;
+    s = cmd.mid(idxLastPos + 1, i - idxLastPos - 1);
+    bInQuote = false;
+    idxLastPos = i;
       }
-    }
+  }
 
-    if(!s.isEmpty())
+  if(!s.isEmpty())
       lst.push_back(s);
   }
 
   if(bInQuote) // closing quote missing
-    lst.clear();
+  lst.clear();
 
   return lst;
 }
@@ -64,26 +64,26 @@ CCLIParser::TStringList CCLIParser::split(const QString& cmd)
 bool CCLIParser::recursiveParse(CGraphNode& node, TStringList& lst, TStringList::iterator it)
 {
   if(it == lst.end())
-    return true;
+  return true;
 
   CCLIVisitor v(*it);
   node.Accept(v);
   if(v.selectedNode())
   {
-    m_selectedNode = v.selectedNode();
-    ++it;
-    // try command
-    CCLICommandVisitor cv(lst, it);
-    bool bRet = node.Accept(cv);
-    if(!bRet)
-    {
+  m_selectedNode = v.selectedNode();
+  ++it;
+  // try command
+  CCLICommandVisitor cv(lst, it);
+  bool bRet = node.Accept(cv);
+  if(!bRet)
+  {
       // try children
       for(size_t i = 0; i < node.childSize(); ++i)
-        if(recursiveParse(node.childAt(i), lst, it))
+    if(recursiveParse(node.childAt(i), lst, it))
           bRet = true;
-    }
+  }
 
-    return bRet;
+  return bRet;
   }
 
   return false;

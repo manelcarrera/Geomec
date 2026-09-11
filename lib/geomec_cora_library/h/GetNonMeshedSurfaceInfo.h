@@ -9,25 +9,25 @@ namespace cora
 class CGetNonMeshedSurfaceInfo
 {
   public:
-    static CGetNonMeshedSurfaceInfo& instance(CModelBase* modelBase);
+  static CGetNonMeshedSurfaceInfo& instance(CModelBase* modelBase);
 
-    const TObjects getObjects() const;
+  const TObjects getObjects() const;
 
-    std::ostream& operator () (std::ostream& os) const;
+  std::ostream& operator () (std::ostream& os) const;
 
   private:
-    CGetNonMeshedSurfaceInfo(CModelBase* modelBase);
-    ~CGetNonMeshedSurfaceInfo();
+  CGetNonMeshedSurfaceInfo(CModelBase* modelBase);
+  ~CGetNonMeshedSurfaceInfo();
 
-    CGetNonMeshedSurfaceInfo(const CGetNonMeshedSurfaceInfo& rhs);
-    CGetNonMeshedSurfaceInfo& operator = (CGetNonMeshedSurfaceInfo rhs);
+  CGetNonMeshedSurfaceInfo(const CGetNonMeshedSurfaceInfo& rhs);
+  CGetNonMeshedSurfaceInfo& operator = (CGetNonMeshedSurfaceInfo rhs);
 
-    static TObjects getObjects(CModelBase* modelBase);
-    static void cleanup();
+  static TObjects getObjects(CModelBase* modelBase);
+  static void cleanup();
 
-    static CGetNonMeshedSurfaceInfo* m_getNonMeshedSurfaceInfo;
-    CModelBase* m_modelBase;
-    TObjects m_objects;
+  static CGetNonMeshedSurfaceInfo* m_getNonMeshedSurfaceInfo;
+  CModelBase* m_modelBase;
+  TObjects m_objects;
 };
 
 } // namespace cora

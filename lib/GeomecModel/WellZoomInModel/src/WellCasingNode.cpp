@@ -15,34 +15,34 @@ CWellCasingNode::CWellCasingNode(CWellCasingModel& model)
 {
   if(!model.Loading())
   {
-    // create the casing steel node
-    m_pSteel = new CWellCasingSteel("Casing Steel", model);
-    m_pSteel->reParent(this);
+  // create the casing steel node
+  m_pSteel = new CWellCasingSteel("Casing Steel", model);
+  m_pSteel->reParent(this);
 
-    // create new casing steel material
-    CWellCasingSteelMaterialEntry& steel_entry = (CWellCasingSteelMaterialEntry&)(*model.GraphEntry(MD_WELLCASING_STEELMATERIAL_ENTRY));
-    CWellCasingSteelMaterial& steel_mat = steel_entry.InsertNew();
+  // create new casing steel material
+  CWellCasingSteelMaterialEntry& steel_entry = (CWellCasingSteelMaterialEntry&)(*model.GraphEntry(MD_WELLCASING_STEELMATERIAL_ENTRY));
+  CWellCasingSteelMaterial& steel_mat = steel_entry.InsertNew();
 
-    // link casing steel material to the casing
-    assert(!steel_entry.EntryNodes().empty());
-    CWellCasingMaterialServer& casingmatserver = m_pSteel->Material(model.InitialDepletionStage());
-    casingmatserver.LinkTo(steel_mat);
+  // link casing steel material to the casing
+  assert(!steel_entry.EntryNodes().empty());
+  CWellCasingMaterialServer& casingmatserver = m_pSteel->Material(model.InitialDepletionStage());
+  casingmatserver.LinkTo(steel_mat);
 
-    // create the casing-cement interface node
-    m_pCementInterface = new CWellCasingCementInterface("Steel-Cement Interface", model);
-    m_pCementInterface->reParent(this);
+  // create the casing-cement interface node
+  m_pCementInterface = new CWellCasingCementInterface("Steel-Cement Interface", model);
+  m_pCementInterface->reParent(this);
 
-    // create new interface material if necessary
-    CInterfaceMaterialEntry& iface_entry = (CInterfaceMaterialEntry&)(*model.GraphEntry(MD_BASE_INTERFACEMATERIAL));
-    CInterfaceMaterial& iface_mat = iface_entry.InsertNew();
+  // create new interface material if necessary
+  CInterfaceMaterialEntry& iface_entry = (CInterfaceMaterialEntry&)(*model.GraphEntry(MD_BASE_INTERFACEMATERIAL));
+  CInterfaceMaterial& iface_mat = iface_entry.InsertNew();
 
-    // link interface material to the casing-cement interface
-    assert(!iface_entry.EntryNodes().empty());
-    CWellCasingCementInterfaceMaterialServer& ifacematserver = m_pCementInterface->Material(model.InitialDepletionStage());
-    ifacematserver.LinkTo(iface_mat);
+  // link interface material to the casing-cement interface
+  assert(!iface_entry.EntryNodes().empty());
+  CWellCasingCementInterfaceMaterialServer& ifacematserver = m_pCementInterface->Material(model.InitialDepletionStage());
+  ifacematserver.LinkTo(iface_mat);
 
-    LinkTo(model.DepletionStageEntry());
-    UpdatePressuresAndTemperatures();
+  LinkTo(model.DepletionStageEntry());
+  UpdatePressuresAndTemperatures();
   }
 }
 
@@ -64,7 +64,7 @@ bool CWellCasingNode::Empty() const
 int CWellCasingNode::DisplayListSize() const
 {
   if(m_pSteel && m_pCementInterface)
-    return m_pSteel->DisplayListSize() + m_pCementInterface->DisplayListSize();
+  return m_pSteel->DisplayListSize() + m_pCementInterface->DisplayListSize();
 
   return 0;
 }
@@ -73,7 +73,7 @@ const geo::IObject& CWellCasingNode::DisplayList(int nIndex) const
 {
   assert(m_pSteel && m_pCementInterface);
   if(nIndex < m_pSteel->DisplayListSize())
-    return m_pSteel->DisplayList(nIndex);
+  return m_pSteel->DisplayList(nIndex);
 
   nIndex -= m_pSteel->DisplayListSize();
   assert(nIndex < m_pCementInterface->DisplayListSize());
@@ -93,20 +93,20 @@ std::vector<CDrawDef::TColor> CWellCasingNode::OnColor(const geo::IObject &objec
   int i;
   for(i = 0; i < m_pSteel->DisplayListSize(); ++i)
   {
-    const geo::IObject& displaylist = m_pSteel->DisplayList(i);
-    const geo::IElementSet* pElSet = dynamic_cast<const geo::IElementSet*>(&displaylist);
-    if(pElSet)
-    {
+  const geo::IObject& displaylist = m_pSteel->DisplayList(i);
+  const geo::IElementSet* pElSet = dynamic_cast<const geo::IElementSet*>(&displaylist);
+  if(pElSet)
+  {
       for(int j = 0; j < pElSet->ElementSize(); ++j)
       {
-        if(&pElSet->Element(j) == &object)
+    if(&pElSet->Element(j) == &object)
           return m_pSteel->OnColor(object);
       }
-    }
-    else if(&displaylist == &object)
-    {
+  }
+  else if(&displaylist == &object)
+  {
       return m_pSteel->OnColor(object);
-    }
+  }
   }
 
   return m_pCementInterface->OnColor(object);
@@ -116,11 +116,11 @@ void CWellCasingNode::OnNewNeighbour(const CGraphNode& node)
 {
   const CWellCasingInternalPressure* pPressure = dynamic_cast<const CWellCasingInternalPressure*>(&node);
   if(pPressure)
-    m_mpPressures.insert(TPressureMap::value_type(&pPressure->Stage(), const_cast<CWellCasingInternalPressure*>(pPressure)));
+  m_mpPressures.insert(TPressureMap::value_type(&pPressure->Stage(), const_cast<CWellCasingInternalPressure*>(pPressure)));
 
   const CWellCasingInternalTemperature* pTemperature = dynamic_cast<const CWellCasingInternalTemperature*>(&node);
   if(pTemperature)
-    m_mpTemperatures.insert(TTemperatureMap::value_type(&pTemperature->Stage(), const_cast<CWellCasingInternalTemperature*>(pTemperature)));
+  m_mpTemperatures.insert(TTemperatureMap::value_type(&pTemperature->Stage(), const_cast<CWellCasingInternalTemperature*>(pTemperature)));
 
   COpenGLNode::OnNewNeighbour(node);
 }
@@ -130,21 +130,21 @@ void CWellCasingNode::OnNeighbourDeleted(const CGraphNode& node)
   TPressureMap::iterator itp;
   for(itp = m_mpPressures.begin(); itp != m_mpPressures.end(); ++itp)
   {
-    if(itp->second == &node)
-    {
+  if(itp->second == &node)
+  {
       m_mpPressures.erase(itp);
       return;
-    }
+  }
   }
 
   TTemperatureMap::iterator itt;
   for(itt = m_mpTemperatures.begin(); itt != m_mpTemperatures.end(); ++itt)
   {
-    if(itt->second == &node)
-    {
+  if(itt->second == &node)
+  {
       m_mpTemperatures.erase(itt);
       return;
-    }
+  }
   }
 
   COpenGLNode::OnNeighbourDeleted(node);
@@ -154,10 +154,10 @@ void CWellCasingNode::OnNeighbourModified(const CGraphNode &node, enum ModifiedH
 {
   const CModelBase& model = static_cast<const CModelBase&>(Model());
   if(&node == &model.DepletionStageEntry())
-    UpdatePressuresAndTemperatures();
+  UpdatePressuresAndTemperatures();
 
   if(&node == m_pSteel || &node == m_pCementInterface)
-    Modified(); // may require redraw
+  Modified(); // may require redraw
 
   COpenGLNode::OnNeighbourModified(node, uHint);
 }
@@ -222,8 +222,8 @@ void CWellCasingNode::SaveStream(TSTREAM& stream, TPROGRESS& progress)
   CDepletionStageEntry::iterator it;
   for(it = model.DepletionStageEntry().begin(); it != model.DepletionStageEntry().end(); ++it)
   {
-    InternalPressure(*it).SaveStream(stream, progress);
-    InternalTemperature(*it).SaveStream(stream, progress);
+  InternalPressure(*it).SaveStream(stream, progress);
+  InternalTemperature(*it).SaveStream(stream, progress);
   }
 }
 
@@ -248,13 +248,13 @@ void CWellCasingNode::LoadStream(TSTREAM& stream, CStreamVersion& version, TPROG
   CDepletionStageEntry::iterator it;
   for(it = model.DepletionStageEntry().begin(); it != model.DepletionStageEntry().end(); ++it)
   {
-    CWellCasingInternalPressure* pPressure = new CWellCasingInternalPressure(*it);
-    pPressure->LoadStream(stream, version, progress);
-    pPressure->reParent(this);
+  CWellCasingInternalPressure* pPressure = new CWellCasingInternalPressure(*it);
+  pPressure->LoadStream(stream, version, progress);
+  pPressure->reParent(this);
 
-    CWellCasingInternalTemperature* pTemperature = new CWellCasingInternalTemperature(*it);
-    pTemperature->LoadStream(stream, version, progress);
-    pTemperature->reParent(this);
+  CWellCasingInternalTemperature* pTemperature = new CWellCasingInternalTemperature(*it);
+  pTemperature->LoadStream(stream, version, progress);
+  pTemperature->reParent(this);
   }
 
   m_pSteel->reParent(this);
@@ -271,11 +271,11 @@ long CWellCasingNode::SavedItems() const
 
   TPressureMap::const_iterator itp;
   for(itp = m_mpPressures.begin(); itp != m_mpPressures.end(); ++itp)
-    lRet += itp->second->SavedItems();
+  lRet += itp->second->SavedItems();
 
   TTemperatureMap::const_iterator itt;
   for(itt = m_mpTemperatures.begin(); itt != m_mpTemperatures.end(); ++itt)
-    lRet += itt->second->SavedItems();
+  lRet += itt->second->SavedItems();
 
   return lRet;
 }
@@ -289,13 +289,13 @@ void CWellCasingNode::UpdatePressuresAndTemperatures()
 
   for(it = entry.begin(); it != entry.end(); ++it)
   {
-    CDepletionStage& stage = *it;
-    stStages.insert(&stage);
+  CDepletionStage& stage = *it;
+  stStages.insert(&stage);
 
-    if(m_mpPressures.find(&stage) == m_mpPressures.end())
+  if(m_mpPressures.find(&stage) == m_mpPressures.end())
       (new CWellCasingInternalPressure(stage))->reParent(this);
 
-    if(m_mpTemperatures.find(&stage) == m_mpTemperatures.end())
+  if(m_mpTemperatures.find(&stage) == m_mpTemperatures.end())
       (new CWellCasingInternalTemperature(stage))->reParent(this);
   }
 
@@ -303,7 +303,7 @@ void CWellCasingNode::UpdatePressuresAndTemperatures()
   TPressureMap::iterator itp;;
   for(itp = m_mpPressures.begin(); itp != m_mpPressures.end(); ++itp)
   {
-    if(stStages.find(itp->first) == stStages.end())
+  if(stStages.find(itp->first) == stStages.end())
       vcDeletePressures.push_back(itp->second);
   }
 
@@ -311,14 +311,14 @@ void CWellCasingNode::UpdatePressuresAndTemperatures()
   TTemperatureMap::iterator itt;
   for(itt = m_mpTemperatures.begin(); itt != m_mpTemperatures.end(); ++itt)
   {
-    if(stStages.find(itt->first) == stStages.end())
+  if(stStages.find(itt->first) == stStages.end())
       vcDeleteTemperatures.push_back(itt->second);
   }
 
   size_t i;
   for(i = 0; i < vcDeletePressures.size(); ++i)
-    delete vcDeletePressures[i];
+  delete vcDeletePressures[i];
 
   for(i = 0; i < vcDeleteTemperatures.size(); ++i)
-    delete vcDeleteTemperatures[i];
+  delete vcDeleteTemperatures[i];
 }

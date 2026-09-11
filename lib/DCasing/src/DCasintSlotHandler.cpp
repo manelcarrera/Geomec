@@ -26,14 +26,14 @@ CDCasintSlotHandler::~CDCasintSlotHandler()
 
 void CDCasintSlotHandler::Connect(const CDCasing & Casing)
 {
-	m_SlotHandler.Connect(Casing);
+  m_SlotHandler.Connect(Casing);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 
 void CDCasintSlotHandler::Disconnect()
 {
-	m_SlotHandler.Disconnect();
+  m_SlotHandler.Disconnect();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -68,58 +68,58 @@ void CDCasintSlotHandler::OnFinished()
 CSlotHandler::CSlotHandler(CDCasintSlotHandler & Handler) : m_Parent(Handler)
 , m_slotHandlerDianaSignals(0)
 {
-	
+  
 }
 
 /////////////////////////////////////////////////////////////////////////////
 
 CSlotHandler::~CSlotHandler()
 {
-	
+  
 }
 
 /////////////////////////////////////////////////////////////////////////////
 
 void CSlotHandler::Connect(const CDCasing & Casing)
 {
-	assert(m_slotHandlerDianaSignals == 0);
-	m_slotHandlerDianaSignals = new CSlotHandlerDianaSignals(&Casing, this);
+  assert(m_slotHandlerDianaSignals == 0);
+  m_slotHandlerDianaSignals = new CSlotHandlerDianaSignals(&Casing, this);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 
 void CSlotHandler::Disconnect()
 {
-	delete m_slotHandlerDianaSignals;
-	m_slotHandlerDianaSignals = 0;
+  delete m_slotHandlerDianaSignals;
+  m_slotHandlerDianaSignals = 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 
 void CSlotHandler::slotOnMessage(QString str)
 {
-	m_Parent.OnMessage(str);
+  m_Parent.OnMessage(str);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 
 void CSlotHandler::slotOnError(QString str)
 {
-	m_Parent.OnError(str);
+  m_Parent.OnError(str);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 
 void CSlotHandler::slotOnWarning(QString str)
 {
-	m_Parent.OnWarning(str);
+  m_Parent.OnWarning(str);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 
 void CSlotHandler::slotOnFinished()
 {
-	m_Parent.OnFinished();
+  m_Parent.OnFinished();
 }
 
 /////////////////////////////////////////////////////////////////////////////

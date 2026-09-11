@@ -7,7 +7,7 @@
 
 CWellCasingInternalTemperature_Delegate::
   CWellCasingInternalTemperature_Delegate(
-    CWellCasingInternalTemperature* wellCasingInternalTemperature)
+  CWellCasingInternalTemperature* wellCasingInternalTemperature)
 : IWellCasingInternalLoad_Delegate <TTemperature> (wellCasingInternalTemperature)
 , m_wellCasingInternalTemperature(wellCasingInternalTemperature)
 {
@@ -16,13 +16,13 @@ CWellCasingInternalTemperature_Delegate::
 bool CWellCasingInternalTemperature_Delegate::Attributes()
 {
   CAttriWellCasingInternalLoadDlg <CWellCasingInternalTemperature,
-    CTemperatureGradientQuantity> dlg(*m_wellCasingInternalTemperature,
+  CTemperatureGradientQuantity> dlg(*m_wellCasingInternalTemperature,
       FemAppGetMainWnd());
   bool bRet = (dlg.DoModal() == IDOK);
 
   if (bRet)
   {
-    m_wellCasingInternalTemperature->Modified();
+  m_wellCasingInternalTemperature->Modified();
   }
 
   return bRet;

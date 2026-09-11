@@ -16,7 +16,7 @@ CAttriUpscalingTargetPointsets::~CAttriUpscalingTargetPointsets()
 
 void CAttriUpscalingTargetPointsets::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
+  CDialog::DoDataExchange(pDX);
   DDX_Radio(pDX, IDC_RADIO_ANY, m_nAll);
 }
 

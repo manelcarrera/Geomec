@@ -36,7 +36,7 @@ class MoMeshTensor : public MoMeshRepresentation
   size_t  m_scalarSet1Timestamp;
   size_t  m_scalarSet2Timestamp;
   size_t  m_colorMapTimestamp;
-    
+  
   size_t  m_bboxTopologyTimestamp;
   size_t  m_bboxGeometryTimestamp;
 

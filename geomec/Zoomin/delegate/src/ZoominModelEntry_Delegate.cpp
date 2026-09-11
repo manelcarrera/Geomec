@@ -25,9 +25,9 @@ void CZoominModelEntry_Delegate::AppendContextMenu(CContextMenuInvoker& invoker)
   typedef CSingleCommandTemplate<CZoominModelEntry_Delegate> TZoominModel_DelegateCommand;
 
   invoker.AddCommand(QObject::tr("New Zoomin Model").toStdString(),
-    *new TZoominModel_DelegateCommand(*this, &CZoominModelEntry_Delegate::NewZoominModel));
+  *new TZoominModel_DelegateCommand(*this, &CZoominModelEntry_Delegate::NewZoominModel));
   invoker.AddCommand(QObject::tr("Import...").toStdString(),
-    *new TZoominModel_DelegateCommand(*this, &CZoominModelEntry_Delegate::Import));
+  *new TZoominModel_DelegateCommand(*this, &CZoominModelEntry_Delegate::Import));
 }
 
 void CZoominModelEntry_Delegate::NewZoominModel()
@@ -54,17 +54,17 @@ void CZoominModelEntry_Delegate::NewZoominModel()
 
   if(dlg.DoModal() == IDOK)
   {
-    int nSelected = dlg.SelectedModel();
+  int nSelected = dlg.SelectedModel();
 
-    switch (nSelected)
-    {
-    case HEXA_MODEL:
-    case GOCAD_MODEL:
+  switch (nSelected)
+  {
+  case HEXA_MODEL:
+  case GOCAD_MODEL:
       pChild = IModelLifetimeFacade::NewChild(nSelected, model.Logger(), model.getVersionManager());
-    }
+  }
 
-    assert(pChild);
-    m_zoominModelEntry->AddChildModel(*pChild);
+  assert(pChild);
+  m_zoominModelEntry->AddChildModel(*pChild);
   }
 }
 
@@ -75,9 +75,9 @@ void CZoominModelEntry_Delegate::Import()
   CTnoFileDialog dlg(TRUE, GEOMEC_DEFAULT_EXTENSION, 0, OFN_HIDEREADONLY, getStringTableEntry(IDS_FILE_OPEN_FILTER));
   if(dlg.DoModal() == IDOK)
   {
-    POSITION pos = dlg.GetStartPosition();
-    while(pos)
-    {
+  POSITION pos = dlg.GetStartPosition();
+  while(pos)
+  {
       CString strFileName = dlg.GetNextPathName(pos);
 
       CConsistencyGuard *guard = model.GetConsistencyGuard();
@@ -87,14 +87,14 @@ void CZoominModelEntry_Delegate::Import()
 
       if(pChildModel)
       {
-        // clear stored results from loaded child
-        pChildModel->ResultRegister().ClearAll();
+    // clear stored results from loaded child
+    pChildModel->ResultRegister().ClearAll();
 
-        pChildModel->RemoveModelNumbering();
+    pChildModel->RemoveModelNumbering();
 
-        // transfer data storage items
-        for(std::set<unsigned int>::const_iterator it = CModelBase::DataStorageEntryTypes().begin(); it != CModelBase::DataStorageEntryTypes().end(); ++it)
-        {
+    // transfer data storage items
+    for(std::set<unsigned int>::const_iterator it = CModelBase::DataStorageEntryTypes().begin(); it != CModelBase::DataStorageEntryTypes().end(); ++it)
+    {
           // get the child model's "real" entry
           CGraphEntry* pChildEntry = pChildModel->CFemAppModel::GraphEntry(*it);
 
@@ -103,19 +103,19 @@ void CZoominModelEntry_Delegate::Import()
 /*
           if(pChildEntry && pParentEntry)
           {
-            CGraphEntry::TEntryNodeSet stNodes = pChildEntry->GraphEntryNodes();
-            for(CGraphEntry::TEntryNodeSet::iterator it = stNodes.begin(); it != stNodes.end(); ++it)
-            {
+      CGraphEntry::TEntryNodeSet stNodes = pChildEntry->GraphEntryNodes();
+      for(CGraphEntry::TEntryNodeSet::iterator it = stNodes.begin(); it != stNodes.end(); ++it)
+      {
               (*it)->reParent(pParentEntry);
               if(pChildEntry->IsLinkedTo(**it))
-                pChildEntry->UnLink(**it);
-            }
+        pChildEntry->UnLink(**it);
+      }
           }
 */
-        }
+    }
       }
 
       guard->ChildIsLoading(false);
-    }
+  }
   }
 }

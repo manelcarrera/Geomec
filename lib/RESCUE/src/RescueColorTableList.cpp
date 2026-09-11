@@ -39,8 +39,8 @@ RescueColorTableList::~RescueColorTableList()
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    free(typeNames[loop]);
-    delete tables[loop];
+  free(typeNames[loop]);
+  delete tables[loop];
   }
   free(typeNames);
   free(tables);
@@ -52,10 +52,10 @@ RescueColorTable *RescueColorTableList::TableFor(RESCUECHAR *typeName)
   RESCUEINT64 loop;
   for (loop = 0; loop < count && myReturn == 0; loop++)
   {
-    if (strcasecmp(typeName, typeNames[loop]) == 0)
-    {
+  if (strcasecmp(typeName, typeNames[loop]) == 0)
+  {
       myReturn = tables[loop];
-    }
+  }
   }
   return myReturn;
 }
@@ -67,25 +67,25 @@ RESCUEBOOL RescueColorTableList::DeleteTableFor(RESCUECHAR *typeName)
   RESCUEINT64 loop;
   for (loop = 0; loop < count && myReturn == FALSE; loop++)
   {
-    if (strcasecmp(typeName, typeNames[loop]) == 0)
-    {
+  if (strcasecmp(typeName, typeNames[loop]) == 0)
+  {
       myReturn = TRUE;
       ndx = loop;
-    }
+  }
   }
   if (myReturn == TRUE)
   {
-    tables[ndx]->RescueDeleteFile();
+  tables[ndx]->RescueDeleteFile();
 
-    free(typeNames[ndx]);
-    delete tables[ndx];
-    RESCUEINT64 numberToMove = (count - ndx) - 1;
-    if (numberToMove > 0)
-    {
+  free(typeNames[ndx]);
+  delete tables[ndx];
+  RESCUEINT64 numberToMove = (count - ndx) - 1;
+  if (numberToMove > 0)
+  {
       memmove(&typeNames[(int) ndx], &typeNames[(int) (ndx + 1)], (size_t) numberToMove * sizeof(RESCUECHAR *));
       memmove(&tables[(int) ndx]   , &tables[(int) (ndx + 1)]   , (size_t) numberToMove * sizeof(RescueColorTable *));
-    }
-    count--;
+  }
+  count--;
   }
   return myReturn;
 }
@@ -97,27 +97,27 @@ RESCUEBOOL RescueColorTableList::AddTableFor(RESCUECHAR *typeName, RescueColorTa
   RESCUEINT64 loop;
   for (loop = 0; loop < count && myReturn == FALSE; loop++)
   {
-    if (strcasecmp(typeName, typeNames[loop]) == 0)
-    {
+  if (strcasecmp(typeName, typeNames[loop]) == 0)
+  {
       myReturn = TRUE;
       ndx = loop;
-    }
+  }
   }
   if (myReturn == TRUE)
   {
-    delete tables[ndx];
-    tables[ndx] = table;
+  delete tables[ndx];
+  tables[ndx] = table;
   }
   else
   {
-    if (count >= allocated)
-    {
+  if (count >= allocated)
+  {
       allocated += MAX(10, allocated / 2);
       typeNames = (RESCUECHAR **) realloc(typeNames, sizeof(RESCUECHAR *) * (size_t) allocated);
       tables = (RescueColorTable **) realloc(tables, sizeof(RescueColorTable *) * (size_t) allocated);
-    }
-    typeNames[count] = _strdup(typeName);
-    tables[count++] = table;
+  }
+  typeNames[count] = _strdup(typeName);
+  tables[count++] = table;
   }
   return myReturn;
 }
@@ -128,19 +128,19 @@ void RescueColorTableList::Archive(RescueContext *context, FILE *archiveFile)
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    RESCUEINT64 length = (RESCUEINT64) strlen(typeNames[loop]);
-    myfprintf(context, archiveFile, length);
-    myfprintf(context, archiveFile, typeNames[loop]);
-    tables[loop]->Archive(archiveFile);
+  RESCUEINT64 length = (RESCUEINT64) strlen(typeNames[loop]);
+  myfprintf(context, archiveFile, length);
+  myfprintf(context, archiveFile, typeNames[loop]);
+  tables[loop]->Archive(archiveFile);
   }
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
 RescueColorTableList::RescueColorTableList(RescueContext *context, FILE *archiveFile)
-                                    :RescueObject(context)
+                  :RescueObject(context)
 {
   myfscanf(context, archiveFile, &count);
   allocated = MAX(10, count);
@@ -149,23 +149,23 @@ RescueColorTableList::RescueColorTableList(RescueContext *context, FILE *archive
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    RESCUEINT64 length;
-    myfscanf(context, archiveFile, &length);
-    length++;
-    typeNames[loop] = (RESCUECHAR *) malloc((size_t) length);
-    myfgets(context, typeNames[loop], length, archiveFile);
-    tables[loop] = new RescueColorTable(context, archiveFile);
+  RESCUEINT64 length;
+  myfscanf(context, archiveFile, &length);
+  length++;
+  typeNames[loop] = (RESCUECHAR *) malloc((size_t) length);
+  myfgets(context, typeNames[loop], length, archiveFile);
+  tables[loop] = new RescueColorTable(context, archiveFile);
   }
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -174,7 +174,7 @@ void RescueColorTableList::Relink(RescueObject *parentModel)
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    tables[loop]->Relink(parentModel);
+  tables[loop]->Relink(parentModel);
   }
 }
 

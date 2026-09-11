@@ -28,21 +28,21 @@ static PointManager_t *PointManagerCreate(
 
   /* Get the active points */
   {
-    Iterator_t     surfSetIter;
-    Surface_t     *surface = SurfaceSetFirst( surfaceSet, &surfSetIter );
-    while ( surface ) {
+  Iterator_t     surfSetIter;
+  Surface_t     *surface = SurfaceSetFirst( surfaceSet, &surfSetIter );
+  while ( surface ) {
       Iterator_t    iter;
       Triangle_t   *triangle = SurfaceFirst( surface, NULL, &iter );
       while ( triangle ) {
-        const int *points = TrianglePoints( triangle );
-        int        n;
-        for ( n = 0; n < 3; n++ ) {
+    const int *points = TrianglePoints( triangle );
+    int        n;
+    for ( n = 0; n < 3; n++ ) {
           RBTreeSearch( result->activeTree, points+n );
-        }
-        triangle = SurfaceNext( surface, NULL, &iter );
+    }
+    triangle = SurfaceNext( surface, NULL, &iter );
       }
       surface = SurfaceSetNext( surfaceSet, &surfSetIter );
-    }
+  }
   }
   result->activeSize = (int)RBTreeSize( result->activeTree );
   return result;
@@ -52,8 +52,8 @@ static PointManager_t *PointManagerDelete(
                   PointManager_t             *pointManager )
 {
   if ( pointManager ) {
-    RBTreeDelete( pointManager->activeTree );
-    DIFREE( pointManager );
+  RBTreeDelete( pointManager->activeTree );
+  DIFREE( pointManager );
   }
   return NULL;
 }
@@ -81,12 +81,12 @@ static int PointManagerGetTotalId(
 {
   int   totalId = -1;
   if ( activeId < pointManager->activeSize ) {
-    /* Point exists in model */
-    const int *totalIdP = RBTreeGet( pointManager->activeTree, activeId );
-    totalId = *totalIdP;
+  /* Point exists in model */
+  const int *totalIdP = RBTreeGet( pointManager->activeTree, activeId );
+  totalId = *totalIdP;
   } else {
-    /* New point in the mesh */
-    totalId = pointManager->totalSize + activeId - pointManager->activeSize;
+  /* New point in the mesh */
+  totalId = pointManager->totalSize + activeId - pointManager->activeSize;
   }
   return totalId;
 }
@@ -101,12 +101,12 @@ static int PointManagerAddActivePoint(
 {
   int   totalId = PointManagerGetTotalId( pointManager, activeId );
   if ( totalId == PointSetSize( pointManager->pointSet ) ) {
-    /* New point, not in model */
-    totalId = PointSetAdd( pointManager->pointSet, x, y, z );
-    /* Must be new point */
-    if ( totalId != PointSetSize( pointManager->pointSet ) - 1 ) {
+  /* New point, not in model */
+  totalId = PointSetAdd( pointManager->pointSet, x, y, z );
+  /* Must be new point */
+  if ( totalId != PointSetSize( pointManager->pointSet ) - 1 ) {
       totalId = -1;
-    }
+  }
   }
   return totalId;
 }
@@ -120,10 +120,10 @@ static void FemGvWritePoints(
 
   fprintf( fp, "%10d\n", nActive );
   for ( activeId = 0; activeId < nActive; activeId++ ) {
-    const int   totalId = PointManagerGetTotalId( pointManager, activeId );
-    double      cor[ 3 ];
-    PointManagerGet( pointManager, totalId, cor+0, cor+1, cor+2 );
-    fprintf( fp, "%25.15e%25.15e%25.15e\n", cor[0], cor[1], cor[2] );
+  const int   totalId = PointManagerGetTotalId( pointManager, activeId );
+  double      cor[ 3 ];
+  PointManagerGet( pointManager, totalId, cor+0, cor+1, cor+2 );
+  fprintf( fp, "%25.15e%25.15e%25.15e\n", cor[0], cor[1], cor[2] );
   }
 }
 
@@ -139,20 +139,20 @@ static void FemGvWriteTriangles(
 
   fprintf( fp, "%10d\n", nTriangles );
   while ( surface ) {
-    Iterator_t    iter;
-    Triangle_t   *triangle = SurfaceFirst( surface, NULL, &iter );
-    while ( triangle ) {
+  Iterator_t    iter;
+  Triangle_t   *triangle = SurfaceFirst( surface, NULL, &iter );
+  while ( triangle ) {
       const int *points = TrianglePoints( triangle );
       int        activeId[3], n;
       for ( n = 0; n < 3; n++ ) {
-        activeId[n] = PointManagerGetActiveId( pointManager, points[n] );
-        assert( activeId[n] >= 0 && activeId[n] < pointManager->activeSize );
+    activeId[n] = PointManagerGetActiveId( pointManager, points[n] );
+    assert( activeId[n] >= 0 && activeId[n] < pointManager->activeSize );
       }
       /* Add 1 for fortran type numbering */
       fprintf( fp, "%10d%10d%10d\n", activeId[0]+1, activeId[1]+1, activeId[2]+1 );
       triangle = SurfaceNext( surface, NULL, &iter );
-    }
-    surface = SurfaceSetNext( surfaceSet, &surfSetIter );
+  }
+  surface = SurfaceSetNext( surfaceSet, &surfSetIter );
   }
 }
 
@@ -164,11 +164,11 @@ static bool_t FemGvWriteModel(
   bool_t       errFlag = FALSE;
   FILE        *fp = fopen( fileName, "w" );
   if ( fp ) {
-    FemGvWritePoints( fp, pointManager );
-    FemGvWriteTriangles( fp, pointManager, surfaceSet );
-    fclose( fp );
+  FemGvWritePoints( fp, pointManager );
+  FemGvWriteTriangles( fp, pointManager, surfaceSet );
+  fclose( fp );
   } else {
-    errFlag = TRUE;
+  errFlag = TRUE;
   }
   return errFlag;
 }
@@ -188,49 +188,49 @@ static bool_t FemGvReadModel(
   /* Read number of points */
   errFlag = ( fgets( line, sizeof(line), file ) == NULL );
   if ( !errFlag ) {
-    scanStatus = sscanf( line, "%d", &(nPoints) );
-    errFlag = ( scanStatus != 1 );
+  scanStatus = sscanf( line, "%d", &(nPoints) );
+  errFlag = ( scanStatus != 1 );
   }
 
   /* Read and create new points */
   for ( n = 0; n < nPoints && !errFlag ; n++ ) {
-    int      totalId = -1;
-    double   cor[3];
-    errFlag = ( fgets( line, sizeof(line), file ) == NULL );
-    if ( errFlag ) break;
-    scanStatus =  sscanf( line, "%le %le %le", cor+0, cor+1, cor+2 );
-    errFlag = ( scanStatus != 3 );
-    if ( errFlag ) break;
-    totalId =
+  int      totalId = -1;
+  double   cor[3];
+  errFlag = ( fgets( line, sizeof(line), file ) == NULL );
+  if ( errFlag ) break;
+  scanStatus =  sscanf( line, "%le %le %le", cor+0, cor+1, cor+2 );
+  errFlag = ( scanStatus != 3 );
+  if ( errFlag ) break;
+  totalId =
       PointManagerAddActivePoint( pointManager, n, cor[0], cor[1], cor[2] );
-    errFlag = ( totalId < 0 );
+  errFlag = ( totalId < 0 );
   }
 
   /* Read number of tetrahedra */
   if ( !errFlag ) {
-    errFlag = ( fgets( line, sizeof(line), file ) == NULL );
-    if ( !errFlag ) {
+  errFlag = ( fgets( line, sizeof(line), file ) == NULL );
+  if ( !errFlag ) {
       scanStatus =  sscanf( line, "%d", &(nTet) );
       errFlag = ( scanStatus != 1 );
-    }
+  }
   }
 
   /* Read the tetrahedra */
   for ( n = 0; n < nTet && !errFlag ; n++ ) {
-    int active[4], total[4], tp;
-    errFlag = ( fgets( line, sizeof(line), file ) == NULL );
-    if ( errFlag ) break;
-    scanStatus =
+  int active[4], total[4], tp;
+  errFlag = ( fgets( line, sizeof(line), file ) == NULL );
+  if ( errFlag ) break;
+  scanStatus =
       sscanf( line, "%d %d %d %d", active+0, active+1, active+2, active+3 );
-    errFlag = ( scanStatus != 4 );
-    if ( errFlag ) break;
-    for ( tp = 0; tp < 4; tp++ )  {
+  errFlag = ( scanStatus != 4 );
+  if ( errFlag ) break;
+  for ( tp = 0; tp < 4; tp++ )  {
       total[tp] = PointManagerGetTotalId( pointManager, active[tp] - 1 );
       errFlag = ( total[tp] < 0 );
       if ( errFlag ) break;
-    }
-    if ( errFlag ) break;
-    TetrahedronSetAdd( tetSet, total[0], total[1], total[2], total[3] );
+  }
+  if ( errFlag ) break;
+  TetrahedronSetAdd( tetSet, total[0], total[1], total[2], total[3] );
   }
 
   fclose( file );
@@ -243,7 +243,7 @@ bool_t RunFemGV(const FemGvPath_t* pPath)
   const char *p;
   char *argv[4];
   const char *path =
-    "${DCPB}/bin;${DIABIN};${DIAPATH}/release/bin;${DIAPATH}/bin";
+  "${DCPB}/bin;${DIABIN};${DIAPATH}/release/bin;${DIAPATH}/bin";
   char *exe_name;
   int   add_exe = 0;
 #ifdef _MSC_VER
@@ -295,20 +295,20 @@ extern TetrahedronSet_t *FemGvMeshBody(
 
   /* Clean existing files */
   {
-    FILE        *fp = fopen( MODEL_FILE, "w" );
-    fclose( fp );
+  FILE        *fp = fopen( MODEL_FILE, "w" );
+  fclose( fp );
   }
 
   if ( !errFlag ) {
-    RunFemGV( FemGvPath );
+  RunFemGV( FemGvPath );
   }
   if ( !errFlag ) {
-    errFlag = FemGvReadModel( MODEL_FILE, pointManager, tetSet );
+  errFlag = FemGvReadModel( MODEL_FILE, pointManager, tetSet );
   }
   /* Return empty tetset if error seen */
   if ( errFlag ) {
-    TetrahedronSetDelete( tetSet );
-    tetSet = TetrahedronSetCreate();
+  TetrahedronSetDelete( tetSet );
+  tetSet = TetrahedronSetCreate();
   }
   PointManagerDelete( pointManager );
   return tetSet;

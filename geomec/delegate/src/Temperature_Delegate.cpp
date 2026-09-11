@@ -18,9 +18,9 @@ bool CTemperature_Delegate::Attributes()
 
   if (dlg.DoModal() == IDOK)
   {
-    m_temperature->AssertValid();
+  m_temperature->AssertValid();
 
-    return true;
+  return true;
   }
 
   return false;

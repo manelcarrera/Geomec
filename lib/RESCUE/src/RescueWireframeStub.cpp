@@ -30,11 +30,11 @@ RESCUEBOOL RescueWireframeStub::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueWireframeStub)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueObject::IsOfType(thisType);
+  return RescueObject::IsOfType(thisType);
   }
 }
 
@@ -42,7 +42,7 @@ RescueWireframe *RescueWireframeStub::Wireframe(RescueModel *model)
 {
   if (wireframeObj == 0)
   {
-    wireframeObj = model->WireframeIdentifiedBy(wireframeId);
+  wireframeObj = model->WireframeIdentifiedBy(wireframeId);
   }
   return wireframeObj;
 }
@@ -54,7 +54,7 @@ void RescueWireframeStub::ArchiveStub(RescueContext *context, FILE *archiveFile)
 }
 
 RescueWireframeStub::RescueWireframeStub(RescueContext *context, FILE *archiveFile)
-                    :RescueObject(context),loadNo(-1),wireframeObj(0)
+          :RescueObject(context),loadNo(-1),wireframeObj(0)
 {
   myfscanf(context, archiveFile, &wireframeId);
   myfscanf(context, archiveFile, &objectId);
@@ -68,15 +68,15 @@ RescueWireframeStub::RescueWireframeStub(RescueContext *context, RESCUEINT64 wir
 }
 
 RescueWireframeStub::RescueWireframeStub(RescueContext *context, RescueWireframe *wireframeIn, RESCUEINT64 objectIdIn)
-                                                :RescueObject(context)
-                                                ,wireframeId(0)
-                                                ,objectId(objectIdIn)
-                                                ,loadNo(-1)
-                                                ,wireframeObj(wireframeIn)
+                        :RescueObject(context)
+                        ,wireframeId(0)
+                        ,objectId(objectIdIn)
+                        ,loadNo(-1)
+                        ,wireframeObj(wireframeIn)
 {
   if (wireframeObj != 0)
   {
-    wireframeId = wireframeObj->Identifier();
+  wireframeId = wireframeObj->Identifier();
   }
 }
 

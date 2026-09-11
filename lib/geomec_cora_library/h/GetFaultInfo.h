@@ -25,25 +25,25 @@ namespace cora
 class CGetFaultInfo
 {
   public:
-    static CGetFaultInfo& instance(CModelBase* modelBase);
+  static CGetFaultInfo& instance(CModelBase* modelBase);
 
-    const TObjects getObjects() const;
+  const TObjects getObjects() const;
 
-    std::ostream& operator () (std::ostream& os) const;
+  std::ostream& operator () (std::ostream& os) const;
 
   private:
-    CGetFaultInfo(CModelBase* modelBase);
-    ~CGetFaultInfo();
+  CGetFaultInfo(CModelBase* modelBase);
+  ~CGetFaultInfo();
 
-    CGetFaultInfo(const CGetFaultInfo& rhs);
-    CGetFaultInfo& operator = (CGetFaultInfo rhs);
+  CGetFaultInfo(const CGetFaultInfo& rhs);
+  CGetFaultInfo& operator = (CGetFaultInfo rhs);
 
-    static TObjects getObjects(CModelBase* modelBase);
-    static void cleanup();
+  static TObjects getObjects(CModelBase* modelBase);
+  static void cleanup();
 
-    static CGetFaultInfo* m_getFaultInfo;
-    CModelBase* m_modelBase;
-    TObjects m_objects;
+  static CGetFaultInfo* m_getFaultInfo;
+  CModelBase* m_modelBase;
+  TObjects m_objects;
 };
 
 } // namespace cora

@@ -9,14 +9,14 @@ class CLibraryMaterialParameter : public ml::CMatParam
 {
 public:
   CLibraryMaterialParameter(const QString& strName,
-                            double dValue,
-                            CLibraryMaterial& parentMat,
-                            const CUnitType& unitConversion,
-                            unsigned int uiValueTypeID,
-                            const CCheckStrategy* pCheckStrategy = 0,
-                            const CSetStrategy* pSetStrategy = 0,
-                            const QString& strCalibrationPath = QString(),
-                            bool bFixedCalibrationParam = false);
+              double dValue,
+              CLibraryMaterial& parentMat,
+              const CUnitType& unitConversion,
+              unsigned int uiValueTypeID,
+              const CCheckStrategy* pCheckStrategy = 0,
+              const CSetStrategy* pSetStrategy = 0,
+              const QString& strCalibrationPath = QString(),
+              bool bFixedCalibrationParam = false);
 
   CLibraryMaterialParameter(CLibraryMaterial& parentMat);
   virtual ~CLibraryMaterialParameter();

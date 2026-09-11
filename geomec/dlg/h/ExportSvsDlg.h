@@ -18,7 +18,7 @@ class CModelBase;
 
 class CExportSvsDlg : public IExportDlg
 {
-	DECLARE_DYNAMIC(CExportSvsDlg)
+  DECLARE_DYNAMIC(CExportSvsDlg)
 
   CModelBase &m_Model;
   IOpenGLNodeSubSelection* m_pCurrentSelection;
@@ -28,12 +28,12 @@ class CExportSvsDlg : public IExportDlg
   std::vector<IOpenGLNodeSubSelection*> m_vcSelection;
 
 public:
-	CExportSvsDlg(CModelBase &model, CWnd* pParent = NULL);   // standard constructor
-	virtual ~CExportSvsDlg();
+  CExportSvsDlg(CModelBase &model, CWnd* pParent = NULL);   // standard constructor
+  virtual ~CExportSvsDlg();
 
   // Dialog Data
   //{{AFX_DATA(CExportSvsDlg)
-	enum { IDD = IDD_EXPORT_SVS };
+  enum { IDD = IDD_EXPORT_SVS };
   BOOL m_bLinear;
   BOOL m_bNonLinear;
   BOOL m_bMixture;
@@ -46,13 +46,13 @@ public:
   virtual void TimeStep(const CDepletionStage& stage, bool bEnable);
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
   //{{AFX_MSG(CExportSvsDlg)
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
+  virtual BOOL OnInitDialog();
+  //}}AFX_MSG
 
-	DECLARE_MESSAGE_MAP()
+  DECLARE_MESSAGE_MAP()
 private:
   CTreeCtrlBase m_tcCategories;
   CListCtrlBase m_lcDeplStages;

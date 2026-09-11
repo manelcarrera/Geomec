@@ -6,20 +6,20 @@ class CFaultFracture;
 class CHandleDefaultFaultParameters
 {
   public:
-    CHandleDefaultFaultParameters(CFaultFracture *faultFracture);
+  CHandleDefaultFaultParameters(CFaultFracture *faultFracture);
 
-    void DoDataExchange(CDataExchange* pDX);
+  void DoDataExchange(CDataExchange* pDX);
 
   private:
-    CHandleDefaultFaultParameters(const CHandleDefaultFaultParameters& rhs);
-    CHandleDefaultFaultParameters& operator=(const CHandleDefaultFaultParameters& rhs);
+  CHandleDefaultFaultParameters(const CHandleDefaultFaultParameters& rhs);
+  CHandleDefaultFaultParameters& operator=(const CHandleDefaultFaultParameters& rhs);
 
-    CFaultFracture* m_faultFracture;
+  CFaultFracture* m_faultFracture;
 
-    CString m_cohesionUnit;
-    CString m_frictionAngleUnit;
-    double m_cohesion;
-    double m_frictionAngle;
+  CString m_cohesionUnit;
+  CString m_frictionAngleUnit;
+  double m_cohesion;
+  double m_frictionAngle;
 };
 
 #endif  // _HandleDefaultFaultParameters_h_

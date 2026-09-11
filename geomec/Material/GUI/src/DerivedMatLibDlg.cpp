@@ -19,7 +19,7 @@ BOOL CDerivedMatLibDlg::OnInitDialog()
   GetDlgItem(IDC_EXPORT_MATERIAL)->EnableWindow(FALSE);
 
   return TRUE;  // return TRUE unless you set the focus to a control
-                // EXCEPTION: OCX Property Pages should return FALSE
+        // EXCEPTION: OCX Property Pages should return FALSE
 }
 
 // private

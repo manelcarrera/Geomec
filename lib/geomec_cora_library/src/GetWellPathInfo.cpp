@@ -10,7 +10,7 @@ CGetWellPathInfo& CGetWellPathInfo::instance(const CModelBase* modelBase)
 {
   if (m_getWellPathInfo == 0)
   {
-    m_getWellPathInfo = new CGetWellPathInfo(modelBase);
+  m_getWellPathInfo = new CGetWellPathInfo(modelBase);
   }
 
   return *m_getWellPathInfo;
@@ -51,18 +51,18 @@ TObjects CGetWellPathInfo::getObjects(const CModelBase* modelBase)
 
   if (modelBase != 0)
   {
-    const CNewWellPathEntry* newWellPathEntry =
+  const CNewWellPathEntry* newWellPathEntry =
       dynamic_cast <const CNewWellPathEntry*> (
-        modelBase->GraphEntry(MD_NEW_WELLPATH));
-    const CNewWellPathEntry::TSortedNodeSet entryNodes =
+    modelBase->GraphEntry(MD_NEW_WELLPATH));
+  const CNewWellPathEntry::TSortedNodeSet entryNodes =
       newWellPathEntry->SortedEntryNodes();
 
-    for (CNewWellPathEntry::TSortedNodeSet::const_iterator
+  for (CNewWellPathEntry::TSortedNodeSet::const_iterator
       entryNode = entryNodes.begin(); entryNode != entryNodes.end();
       ++entryNode)
-    {
+  {
       objects.push_back(TObject(new CObject(CObject::wellObject, *entryNode)));
-    }
+  }
   }
 
   return objects;

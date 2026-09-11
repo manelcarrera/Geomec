@@ -41,18 +41,18 @@ public:
   cSetRescuePolyLineNode *PolyLineNodes() {return polyLineNodes;}
 /****************************************************************************************************
 
-    The stub methods let you find out if you are stepping into a part of the model
-    that has not been loaded.  From the RescueTrimVertexStub you can find the
-    RescueWireframe involved in the node, and you can find out if that node is
-    loaded.
+  The stub methods let you find out if you are stepping into a part of the model
+  that has not been loaded.  From the RescueTrimVertexStub you can find the
+  RescueWireframe involved in the node, and you can find out if that node is
+  loaded.
 
 *************************************************************************************************/
   RescueTrimVertexStub *LeftVertexObj() {return leftVertex;}
   RescueTrimVertexStub *RightVertexObj() {return rightVertex;}
 /*********************************************************************************************
 
-    These methods will automatically load the wireframe if the part you need for
-    the traversal is not yet loaded.
+  These methods will automatically load the wireframe if the part you need for
+  the traversal is not yet loaded.
 
 **********************************************************************************************/
   RescueTrimVertex *LeftVertex();
@@ -71,7 +71,7 @@ public:
   RescuePolyLineNode *NthInnerNode(RESCUEINT64 zeroBasedNdx) {return polyLineNodes->NthObject(zeroBasedNdx);}
 /**********************************************************************************************
 
-    Normal type-handling function.
+  Normal type-handling function.
 
 ********************************************************************************************/
   virtual RESCUEBOOL IsOfType(_RescueObjectType thisType);

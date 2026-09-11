@@ -17,10 +17,10 @@
 #include <string.h>
 
 RescueLookup::RescueLookup(const RESCUECHAR *newName, RESCUEINT64 size, RescueModel *newParentModel)
-                                        :RescueHistoryObject(newParentModel->Context())
-                                        ,name(0)
-                                        ,parentModel(newParentModel)
-                                        ,count(size)
+                    :RescueHistoryObject(newParentModel->Context())
+                    ,name(0)
+                    ,parentModel(newParentModel)
+                    ,count(size)
 {
   name = new RCHString(newName);
   isA = R_RescueLookup;
@@ -29,7 +29,7 @@ RescueLookup::RescueLookup(const RESCUECHAR *newName, RESCUEINT64 size, RescueMo
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    lookups[loop] = 0;
+  lookups[loop] = 0;
   }
 }
 
@@ -37,15 +37,15 @@ RescueLookup::~RescueLookup()
 {
   if (name != 0)
   {
-    delete name;
+  delete name;
   }
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    if (lookups[loop] != 0)
-    {
+  if (lookups[loop] != 0)
+  {
       delete lookups[loop];
-    }
+  }
   }
   free(lookups);
 }
@@ -54,11 +54,11 @@ RescueLookupItem *RescueLookup::NthItem(RESCUEINT64 zeroBasedIndex)
 {
   if (zeroBasedIndex < 0 || zeroBasedIndex >= count)
   {
-    return 0;
+  return 0;
   }
   else
   {
-    return lookups[zeroBasedIndex];
+  return lookups[zeroBasedIndex];
   }
 }
 
@@ -66,11 +66,11 @@ void RescueLookup::SetNthItem(RESCUEINT64 zeroBasedIndex, RescueLookupItem *newI
 {
   if (zeroBasedIndex >= 0 && zeroBasedIndex < count)
   {
-    if (lookups[zeroBasedIndex] != 0)
-    {
+  if (lookups[zeroBasedIndex] != 0)
+  {
       delete lookups[zeroBasedIndex];
-    }
-    lookups[zeroBasedIndex] = newItem;
+  }
+  lookups[zeroBasedIndex] = newItem;
   }
 }
 
@@ -78,11 +78,11 @@ RESCUEBOOL RescueLookup::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueLookup)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueHistoryObject::IsOfType(thisType);
+  return RescueHistoryObject::IsOfType(thisType);
   }
 }
 
@@ -96,24 +96,24 @@ void RescueLookup::Archive(FILE *archiveFile)
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    if (lookups[loop] == 0)
-    {
+  if (lookups[loop] == 0)
+  {
       myfprintf(context, archiveFile, (RESCUEINT64) 0);
-    }
-    else
-    {
+  }
+  else
+  {
       myfprintf(context, archiveFile, (RESCUEINT64) lookups[loop]->IsA());
       lookups[loop]->Archive(context, archiveFile);
-    }
+  }
   }
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
 RescueLookup::RescueLookup(RescueContext *context, FILE *archiveFile)
-                        :RescueHistoryObject(context),name(0)
+            :RescueHistoryObject(context),name(0)
 {
   RESCUECHAR myString[255];
 
@@ -126,32 +126,32 @@ RescueLookup::RescueLookup(RescueContext *context, FILE *archiveFile)
   RESCUEINT64 loop;
   for (loop = 0; loop < count; loop++)
   {
-    RESCUEINT64 flag;
+  RESCUEINT64 flag;
 
-    myfscanf(context, archiveFile, &flag);
-    if (flag == 0)
-    {
+  myfscanf(context, archiveFile, &flag);
+  if (flag == 0)
+  {
       lookups[loop] = 0;
-    }
-    else if (flag == R_RescueLookupString)
-    {
+  }
+  else if (flag == R_RescueLookupString)
+  {
       lookups[loop] = new RescueLookupString(context, archiveFile);
-    }
-    else if (flag == R_RescueLookupTable)
-    {
+  }
+  else if (flag == R_RescueLookupTable)
+  {
       lookups[loop] = new RescueLookupTable(context, archiveFile);
-    }
+  }
   }
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -165,15 +165,15 @@ RESCUEINT32 RescueLookup::Count(RESCUEBOOL throwIfTrue)
   RESCUEINT64 output = Count64();
   if (output > 2147483647)
   {
-    if (throwIfTrue)
-    {
+  if (throwIfTrue)
+  {
       throw "Model is too large to be accessed in 32 bit mode.";
-    }
-    return 0;
+  }
+  return 0;
   }
   else
   {
-    return (RESCUEINT32) output;
+  return (RESCUEINT32) output;
   }
 }
 

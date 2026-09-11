@@ -14,35 +14,35 @@
 class CGeomecTime  
 {
 public:
-	CGeomecTime();
-	CGeomecTime(int nYear, int nMonth);
+  CGeomecTime();
+  CGeomecTime(int nYear, int nMonth);
   CGeomecTime(int nYear, int nMonth, int nDay);
   CGeomecTime(const QDateTime& datetime);
-	CGeomecTime(const CGeomecTime& rhs);
-	virtual ~CGeomecTime();
+  CGeomecTime(const CGeomecTime& rhs);
+  virtual ~CGeomecTime();
 
   CGeomecTime& operator=(const CGeomecTime& rhs);
-	bool operator==(const CGeomecTime& rhs) const;
-	bool operator!=(const CGeomecTime& rhs) const;
-	bool operator<(const CGeomecTime& rhs) const;
-	bool operator>(const CGeomecTime& rhs) const;
-	bool operator<=(const CGeomecTime& rhs) const;
-	bool operator>=(const CGeomecTime& rhs) const;
+  bool operator==(const CGeomecTime& rhs) const;
+  bool operator!=(const CGeomecTime& rhs) const;
+  bool operator<(const CGeomecTime& rhs) const;
+  bool operator>(const CGeomecTime& rhs) const;
+  bool operator<=(const CGeomecTime& rhs) const;
+  bool operator>=(const CGeomecTime& rhs) const;
   operator QDateTime() const;
 
   long long SecondsTo(const CGeomecTime& rhs) const;
   int DaysTo(const CGeomecTime& rhs) const;
 //	double operator-(const CGeomecTime& rhs) const;	// Returns the days between CGeomecTime's
-	CGeomecTime operator+(int nDays) const;
+  CGeomecTime operator+(int nDays) const;
 
-	QString Month() const;
-	int GetYear() const;
-	int GetMonth() const;
+  QString Month() const;
+  int GetYear() const;
+  int GetMonth() const;
   int GetDay() const;
   int GetHour() const;
   int GetMinute() const;
   int GetSecond() const;
-	void Set(int nYear, int nMonth);
+  void Set(int nYear, int nMonth);
   void Set(int nYear, int nMonth, int nDay, int nHour, int nMinute, int nSecond);
   void SetOneMonthEarlier();
   void SetOneMonthLater();

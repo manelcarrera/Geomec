@@ -28,12 +28,12 @@ CQuantityNode::CQuantityNode(UINT uInstanceName)
 
 const COpenGLNode* CQuantityNode::ProjectOn() const
 {
-	return 0;
+  return 0;
 }
 
 UINT CQuantityNode::TypeNameId() const
 {
-	return 0;
+  return 0;
 }
 
 

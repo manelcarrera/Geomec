@@ -48,29 +48,29 @@ geo::CValue CGVTFactor::CGVTFactorComponent::getElementFactor(const geo::IElemen
   std::map<CFormationBase*, CGVTVelocityModel*>::iterator it = mp.find(const_cast<CFormationBase *>(f));
   if (it != mp.end())
   {
-    CGVTVelocityModel *vm = it->second;
+  CGVTVelocityModel *vm = it->second;
 
-    if (vm->ModelName() == "R")
-    {
+  if (vm->ModelName() == "R")
+  {
       switch (Parent().TypeId())
       {
       case IDT_VALUETYPE_GVT_FACTOR_R_EX:
-        return vm->Parameter(RFactor_EX);
+    return vm->Parameter(RFactor_EX);
       case IDT_VALUETYPE_GVT_FACTOR_R_C:
-        return vm->Parameter(RFactor_C);
+    return vm->Parameter(RFactor_C);
       }
-    }
-    else
-    {
+  }
+  else
+  {
       assert(vm->ModelName() == "S");
       switch (Parent().TypeId())
       {
       case IDT_VALUETYPE_GVT_FACTOR_S_S:
-        return vm->Parameter(SFactor_S);
+    return vm->Parameter(SFactor_S);
       case IDT_VALUETYPE_GVT_FACTOR_S_NB:
-        return vm->Parameter(SFactor_NB);
+    return vm->Parameter(SFactor_NB);
       }
-    }
+  }
   }
 
   return geo::CValue();
@@ -85,11 +85,11 @@ IValueDomainScalar::TValue CGVTFactor::CGVTFactorComponent::ValuePoint(const geo
 
    for (std::set<int>::const_iterator it = stCandidates.begin(); it != stCandidates.end(); ++it)
   {
-    const geo::IElement& elm = mesh.Element(*it);
-    if (elm.Contains(pt, true))
-    {
+  const geo::IElement& elm = mesh.Element(*it);
+  if (elm.Contains(pt, true))
+  {
       return getElementFactor(elm);
-    }
+  }
   }
 
   return geo::CValue();
@@ -112,13 +112,13 @@ QString CGVTFactor::CGVTFactorComponent::ExportLabel() const
   switch (Parent().TypeId())
   {
   case IDT_VALUETYPE_GVT_FACTOR_R_EX:
-    return getStringTableEntry(IDS_ET_GVT_FACTOR_R_EX);
+  return getStringTableEntry(IDS_ET_GVT_FACTOR_R_EX);
   case IDT_VALUETYPE_GVT_FACTOR_R_C:
-    return getStringTableEntry(IDS_ET_GVT_FACTOR_R_C);
+  return getStringTableEntry(IDS_ET_GVT_FACTOR_R_C);
   case IDT_VALUETYPE_GVT_FACTOR_S_NB:
-    return getStringTableEntry(IDS_ET_GVT_FACTOR_S_NB);
+  return getStringTableEntry(IDS_ET_GVT_FACTOR_S_NB);
   case IDT_VALUETYPE_GVT_FACTOR_S_S:
-    return getStringTableEntry(IDS_ET_GVT_FACTOR_S_S);
+  return getStringTableEntry(IDS_ET_GVT_FACTOR_S_S);
   }
   return Parent().ExportLabel();
 }
@@ -134,13 +134,13 @@ bool CGVTFactor::CGVTFactorComponent::PrepareMapping(const geo::IElementSet *pEl
   CValueMapper *vm = CValueMapper::instance();
 
   if (!vm->PrepareMappingElementSet(pElementSet, &mesh.Mesh()))
-    retval = false;
+  retval = false;
 
   if (!vm->PrepareMappingSurfaces(model, pElementSet, Stage()))
-    retval = false;
+  retval = false;
 
   if (!vm->PrepareMappingMaterial(model, pElementSet, Stage()))
-    retval = false;
+  retval = false;
 
   return retval;
 }
@@ -200,7 +200,7 @@ bool CGVTFactor::CanMap(const COpenGLNode& /*node*/, int /*nRegister*/) const
 QString CGVTFactor::ExportLabel(int /*nComponent*/) const
 {
   if (m_vcComponents.size() == 1)
-    return m_vcComponents[0]->ExportLabel();
+  return m_vcComponents[0]->ExportLabel();
   assert(FALSE);
   return QString();
 }
@@ -210,7 +210,7 @@ void CGVTFactor::OnNeighbourDeleted(const CGraphNode& node)
   const CGVTFactorComponent *c = reinterpret_cast<const CGVTFactorComponent *>(&node);
   TComponentVector::iterator it = std::find(m_vcComponents.begin(), m_vcComponents.end(), c);
   if (it != m_vcComponents.end())
-    m_vcComponents.erase(it);
+  m_vcComponents.erase(it);
   IResult::OnNeighbourDeleted(node);
 }
 
@@ -232,15 +232,15 @@ double CGVTFactor::UnitFactor(const UNIT unit) const
 void CGVTFactor::BuildComponent(const CDepletionStage& stage, const CAnalysisType& antype, int nRegister)
 {
   if (m_vcComponents.size() == 0)
-    m_vcComponents.push_back(new CGVTFactorComponent(Name(), *this, stage, antype, nRegister));
+  m_vcComponents.push_back(new CGVTFactorComponent(Name(), *this, stage, antype, nRegister));
   else
-    RegisterMode(stage, antype, nRegister);
+  RegisterMode(stage, antype, nRegister);
 }
 
 IResultComponent* CGVTFactor::OnGetResultComponent(int nTimeStep, const CAnalysisType& /*antype*/, int /*nRegister*/, unsigned int /*nComponent*/) const
 {
   if (m_vcComponents.size() > 0)
-    return m_vcComponents[0];
+  return m_vcComponents[0];
 
   return 0;
 }
@@ -281,12 +281,12 @@ bool CGVTResultGroup::CanConnectItem(const CGraphNode& item) const
 {
   if (dynamic_cast<const TDeltaV *>(&item) || dynamic_cast<const TDeltaT *>(&item))
   {
-    for (int i = 0; i < ChildSize(); ++i)
-    {
+  for (int i = 0; i < ChildSize(); ++i)
+  {
       if (&Child(i) == &item)
-        return false;
-    }
-    return true;
+    return false;
+  }
+  return true;
   }
   return false;
 }
@@ -297,8 +297,8 @@ bool CGVTResultGroup::ConnectItem(const CGraphNode& item)
 
   if (CResultGroup::ConnectItem(item))
   {
-    PushBack(const_cast<CGraphNode&>(item));
-    Modified();
+  PushBack(const_cast<CGraphNode&>(item));
+  Modified();
   }
 
   return true;
@@ -318,10 +318,10 @@ void CGVTResultGroup::LoadStream(CStorageNode::TSTREAM& stream, CGVTResultVersio
 
   for (int i = 0; i < nComponents; ++i)
   {
-    int nIdx;
-    stream >> nIdx;
-    IValueComposite *pComposite = composite_entry.FindIndex(nIdx);
-    if (pComposite)
+  int nIdx;
+  stream >> nIdx;
+  IValueComposite *pComposite = composite_entry.FindIndex(nIdx);
+  if (pComposite)
       ConnectItem(*pComposite);
   }
 }
@@ -334,7 +334,7 @@ void CGVTResultGroup::SaveStream(CStorageNode::TSTREAM& stream, CStorageNode::TP
 
   for (std::set<IValueComposite *>::iterator it = stNodes.begin(); it != stNodes.end(); ++it)
   {
-    stream << (*it)->Index();
+  stream << (*it)->Index();
   }
 }
 

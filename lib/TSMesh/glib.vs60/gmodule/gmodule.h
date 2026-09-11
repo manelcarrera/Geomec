@@ -59,7 +59,7 @@ gboolean	g_module_supported	   (void) G_GNUC_CONST;
 
 /* open a module `file_name' and return handle, which is NULL on error */
 GModule*	g_module_open		   (const gchar		*file_name,
-					    GModuleFlags	 flags);
+            GModuleFlags	 flags);
 
 /* close a previously opened module, returns TRUE on success */
 gboolean	g_module_close		   (GModule		*module);
@@ -72,8 +72,8 @@ gchar*		g_module_error		   (void);
 
 /* retrive a symbol pointer from `module', returns TRUE on success */
 gboolean	g_module_symbol		   (GModule		*module,
-					    const gchar		*symbol_name,
-					    gpointer		*symbol);
+            const gchar		*symbol_name,
+            gpointer		*symbol);
 
 /* retrive the file name from an existing module */
 gchar*		g_module_name		   (GModule		*module);
@@ -91,7 +91,7 @@ gchar*		g_module_name		   (GModule		*module);
  * No checks are made that the file exists, or is of correct type.
  */
 gchar*		g_module_build_path	  (const gchar		*directory,
-					   const gchar		*module_name);
+             const gchar		*module_name);
 
 #ifdef __cplusplus
 }

@@ -23,7 +23,7 @@ IValueTable::IValueTable(const IDianaRunner &runner)
 IValueTable::~IValueTable()
 {
   for(size_t i = 0; i < m_vcTimes.size(); ++i)
-    delete m_vcTimes[i];
+  delete m_vcTimes[i];
 }
 
 const IValueTable::CTimePoint& IValueTable::AddTime(double dTime)
@@ -47,7 +47,7 @@ const IValueTable::CTimePoint& IValueTable::Time(int nIndex) const
 
 void IValueTable::Write(IProgressBase &progress)
 {
-	bool bValuesWritten = false;
+  bool bValuesWritten = false;
 
   size_t timeSize = m_vcTimes.size();
   size_t meshSize = m_mesh.ElementSize();
@@ -59,37 +59,37 @@ void IValueTable::Write(IProgressBase &progress)
 
   if (oldTime > timeSize) // something odd is going on, so start fresh
   {
-    DoCleanUp();
-    oldTime = 0;
+  DoCleanUp();
+  oldTime = 0;
   }
 
   m_vcElementNodeBasedValues.resize(timeSize); // time X elements X nodes, indexed below by t, e and n
 
 
-	for(size_t t = oldTime; t < timeSize; ++t) // in case of incremental building of m_vcElementNodeBasedValues, we need to add the new times 
-	{
-    m_vcElementNodeBasedValues[t].resize(meshSize);
+  for(size_t t = oldTime; t < timeSize; ++t) // in case of incremental building of m_vcElementNodeBasedValues, we need to add the new times 
+  {
+  m_vcElementNodeBasedValues[t].resize(meshSize);
 
   	for(size_t e = 0; e < meshSize; e++)
-	  {
-		  if(HasValue(m_mesh.Element(e)))
-		  {
-        m_vcElementNodeBasedValues[t][e].resize(m_mesh.Element(e).NrOfNodes());
+    {
+      if(HasValue(m_mesh.Element(e)))
+      {
+    m_vcElementNodeBasedValues[t][e].resize(m_mesh.Element(e).NrOfNodes());
 
-				std::vector<double> vcValues; // values for all nodes in element(e)
-				ValueAt(m_mesh.Element(e), *m_vcTimes[t], vcValues);
+        std::vector<double> vcValues; // values for all nodes in element(e)
+        ValueAt(m_mesh.Element(e), *m_vcTimes[t], vcValues);
 
-        assert(m_mesh.Element(e).NrOfNodes() == vcValues.size());
+    assert(m_mesh.Element(e).NrOfNodes() == vcValues.size());
 
-				for(size_t n = 0; n < m_mesh.Element(e).NrOfNodes(); ++n)
-				{
-					m_vcElementNodeBasedValues[t][e][n] = vcValues[n];
+        for(size_t n = 0; n < m_mesh.Element(e).NrOfNodes(); ++n)
+        {
+          m_vcElementNodeBasedValues[t][e][n] = vcValues[n];
 
           m_dMaxVal = std::max(m_dMaxVal, vcValues[n]);
           m_dMinVal = std::min(m_dMinVal, vcValues[n]);
-				}
-			}
-    }
+        }
+      }
+  }
   }
 
   double dRange = m_dMaxVal - m_dMinVal;
@@ -111,109 +111,109 @@ void IValueTable::Write(IProgressBase &progress)
 
   if (!CompressTable()) // write all
   {
-    for (size_t t = 1; t < timeSize - 1; ++t)
+  for (size_t t = 1; t < timeSize - 1; ++t)
       vcWriteValues[t] = 1;
   }
   else
   {
-    for(size_t t = 1; t < timeSize - 1; ++t)
-    {
+  for(size_t t = 1; t < timeSize - 1; ++t)
+  {
       for(size_t e = 0; e < meshSize && !vcWriteValues[t]; ++e)
       {
-        for(size_t n = 0; n < m_vcElementNodeBasedValues[t][e].size(); ++n) // loop over element e's nodes
-        {
+    for(size_t n = 0; n < m_vcElementNodeBasedValues[t][e].size(); ++n) // loop over element e's nodes
+    {
           double dir1 = (m_vcElementNodeBasedValues[t][e][n]   - m_vcElementNodeBasedValues[t-1][e][n]) / (m_vcTimes[t]   - m_vcTimes[t-1]);
           double dir2 = (m_vcElementNodeBasedValues[t+1][e][n] - m_vcElementNodeBasedValues[t][e][n]  ) / (m_vcTimes[t+1] - m_vcTimes[t]  );
           if(fabs(dir1 - dir2) > 1e-8 * dRelRange)
           {
-            vcWriteValues[t] = 1;
-            break; // no need to look further, we can start processing next t
+      vcWriteValues[t] = 1;
+      break; // no need to look further, we can start processing next t
           }
-        }
-      }
     }
+      }
+  }
   }
 
   // this compression (only write single values when all nodal values are equal) is always performed
   // switching t- and e-loop, as we can stop for element e as soon as we find different values in any t
   for(size_t e = 0; e < meshSize; ++e)
   {
-    for(size_t t = 0; t < timeSize && !vcNodalValues[e]; ++t)
-    {
+  for(size_t t = 0; t < timeSize && !vcNodalValues[e]; ++t)
+  {
       for(size_t n = 1; n < m_vcElementNodeBasedValues[t][e].size(); ++n)
       {
-        if(fabs(m_vcElementNodeBasedValues[t][e][n] - m_vcElementNodeBasedValues[t][e][n-1]) > 1e-8 * dRange)
-        {
+    if(fabs(m_vcElementNodeBasedValues[t][e][n] - m_vcElementNodeBasedValues[t][e][n-1]) > 1e-8 * dRange)
+    {
           vcNodalValues[e] = 1;
           break;
-        }
-      }
     }
+      }
+  }
   }
 
   size_t ns = 0;
   for(size_t t = 0; t < timeSize; ++t)
-    ns += vcWriteValues[t];
+  ns += vcWriteValues[t];
 
   size_t msize = 0;
   ftn_double_t* values = 0;
   for(size_t e = 0; e < meshSize; ++e)
   {
-    if(!m_vcElementNodeBasedValues[0][e].empty())
-    {
-		  PushDir();
+  if(!m_vcElementNodeBasedValues[0][e].empty())
+  {
+      PushDir();
 
-		  ftn_int_t idx = (ftn_int_t) (e + 1);
-		  ChangeIndexedDir("/ELEMEN/", &idx);
-		  size_t size = m_vcElementNodeBasedValues[0][e].size() * ns;
+      ftn_int_t idx = (ftn_int_t) (e + 1);
+      ChangeIndexedDir("/ELEMEN/", &idx);
+      size_t size = m_vcElementNodeBasedValues[0][e].size() * ns;
       if(size > msize)
-		    values = (ftn_double_t *) DiRealloc(values, msize * sizeof (ftn_double_t), size * sizeof (ftn_double_t), "IValueTable::Write");
+      values = (ftn_double_t *) DiRealloc(values, msize * sizeof (ftn_double_t), size * sizeof (ftn_double_t), "IValueTable::Write");
       size_t values_idx = 0;
       bool bNonZero = false;
       size_t nodeSize = vcNodalValues[e] ? m_vcElementNodeBasedValues[0][e].size() : 1; // write all or only first one
       for(size_t n = 0; n < nodeSize; ++n)
       {
-        for(size_t t = 0; t < timeSize; ++t)
-        {
+    for(size_t t = 0; t < timeSize; ++t)
+    {
           if(vcWriteValues[t])
           {
-            assert(values_idx < size);
-            values[values_idx] = (ftn_double_t)(m_vcElementNodeBasedValues[t][e][n]);
-            if(!bNonZero && fabs(values[values_idx]) > 1e-8 * dRange)
+      assert(values_idx < size);
+      values[values_idx] = (ftn_double_t)(m_vcElementNodeBasedValues[t][e][n]);
+      if(!bNonZero && fabs(values[values_idx]) > 1e-8 * dRange)
               bNonZero = true;
-            ++values_idx;
+      ++values_idx;
           }
-        }
+    }
       }
 
       if(bNonZero)
       {
-        bValuesWritten = true;
-        PutItemLength(TableName().c_str(), values, values_idx);
+    bValuesWritten = true;
+    PutItemLength(TableName().c_str(), values, values_idx);
       }
 
       PopDir();
-    }
+  }
 
-    progress.Step();
+  progress.Step();
   }
 
   DiFree(values, "IValueTable::Write");
 
   if(bValuesWritten)
   {
-    for(int t = timeSize - 1; t >= 0; --t)
-    {
+  for(int t = timeSize - 1; t >= 0; --t)
+  {
       if(!vcWriteValues[t])
-        m_vcTimes.erase(m_vcTimes.begin() + t);
-    }
+    m_vcTimes.erase(m_vcTimes.begin() + t);
+  }
 
-    WriteTable();
+  WriteTable();
   }
 
   if (m_bCleanUp)
   {
-    DoCleanUp();
+  DoCleanUp();
   }
 }
 
@@ -240,24 +240,24 @@ void IValueTable::DoCleanUp()
 
 void IValueTable::WriteTable()
 {
-	// the table is written in a karray
-	ftn_int_t ref[1]; // the reference array
-	ftn_int_t lout;
+  // the table is written in a karray
+  ftn_int_t ref[1]; // the reference array
+  ftn_int_t lout;
 
   std::string sKarrayName = TimeTableName();
 
-	// F_WKarray returns a Fortran index, so decrease with 1
-	ftn_int_t idx = F_WKarray(sKarrayName.c_str(), ref, 'R', m_vcTimes.size(), &lout) - 1;
+  // F_WKarray returns a Fortran index, so decrease with 1
+  ftn_int_t idx = F_WKarray(sKarrayName.c_str(), ref, 'R', m_vcTimes.size(), &lout) - 1;
 
-	// the real array
-	ftn_double_t *ar = (ftn_double_t *) &ref[idx];
+  // the real array
+  ftn_double_t *ar = (ftn_double_t *) &ref[idx];
 
-	for(size_t i = 0; i < m_vcTimes.size(); ++i)
-	{
-		ar[i] = (ftn_double_t) m_vcTimes[i]->Time();
-	}
+  for(size_t i = 0; i < m_vcTimes.size(); ++i)
+  {
+    ar[i] = (ftn_double_t) m_vcTimes[i]->Time();
+  }
 
-	F_Release(sKarrayName.c_str());
+  F_Release(sKarrayName.c_str());
 }
 
 

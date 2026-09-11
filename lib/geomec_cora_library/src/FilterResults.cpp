@@ -35,16 +35,16 @@ namespace
 class CFilter
 {
   public:
-    CFilter(unsigned int f);
-    CFilter(const char* f);
+  CFilter(unsigned int f);
+  CFilter(const char* f);
 
-    operator QString() const;
+  operator QString() const;
 
   private:
-    CFilter(const CFilter& rhs);
-    CFilter& operator = (CFilter rhs);
+  CFilter(const CFilter& rhs);
+  CFilter& operator = (CFilter rhs);
 
-    QString m_filter;
+  QString m_filter;
 };
 
 CFilter::CFilter(unsigned int f)

@@ -49,7 +49,7 @@
       <MsiPackage
         Id="SetupCORA"
         Compressed="yes"
-        SourceFile="$(var.DevelopRoot)\3rdParty\CORA\CORA 1.5.0.5_release.msi"
+        SourceFile="$(var.DevelopRoot)\third_party\CORA\CORA 1.5.0.5_release.msi"
         DisplayInternalUI="yes"
         ForcePerMachine="yes"
         Vital="yes">
@@ -78,7 +78,7 @@
                   Permanent="yes"
                   Protocol="netfx4"
                   Vital="yes"
-                  SourceFile="$(var.DevelopRoot)\3rdParty\dotNet\dotNetFx40_Full_x86_x64.exe"
+                  SourceFile="$(var.DevelopRoot)\third_party\dotNet\dotNetFx40_Full_x86_x64.exe"
                   InstallCommand="/q /norestart /ChainingPackage SetupGeomec"
                   RepairCommand="/q /norestart /ChainingPackage SetupGeomec"
                   UninstallCommand="/q /norestart /ChainingPackage SetupGeomec"

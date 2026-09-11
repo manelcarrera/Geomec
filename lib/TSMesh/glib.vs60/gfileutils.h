@@ -85,8 +85,8 @@ int     g_mkstemp            (char         *tmpl);
 
 /* Wrapper for g_mkstemp */
 int     g_file_open_tmp      (const char   *tmpl,
-			      char        **name_used,
-			      GError      **error);
+            char        **name_used,
+            GError      **error);
 
 G_END_DECLS
 

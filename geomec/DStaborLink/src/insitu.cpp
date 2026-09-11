@@ -13,194 +13,194 @@
 
 double CInSitu::GetPore()
 {
-	double result;
-	GetProperty(0x1, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x1, VT_R8, (void*)&result);
+  return result;
 }
 
 void CInSitu::SetPore(double propVal)
 {
-	SetProperty(0x1, VT_R8, propVal);
+  SetProperty(0x1, VT_R8, propVal);
 }
 
 double CInSitu::GetVertical()
 {
-	double result;
-	GetProperty(0x2, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x2, VT_R8, (void*)&result);
+  return result;
 }
 
 void CInSitu::SetVertical(double propVal)
 {
-	SetProperty(0x2, VT_R8, propVal);
+  SetProperty(0x2, VT_R8, propVal);
 }
 
 double CInSitu::GetMinimum()
 {
-	double result;
-	GetProperty(0x3, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x3, VT_R8, (void*)&result);
+  return result;
 }
 
 void CInSitu::SetMinimum(double propVal)
 {
-	SetProperty(0x3, VT_R8, propVal);
+  SetProperty(0x3, VT_R8, propVal);
 }
 
 double CInSitu::GetMaximum()
 {
-	double result;
-	GetProperty(0x4, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x4, VT_R8, (void*)&result);
+  return result;
 }
 
 void CInSitu::SetMaximum(double propVal)
 {
-	SetProperty(0x4, VT_R8, propVal);
+  SetProperty(0x4, VT_R8, propVal);
 }
 
 double CInSitu::GetThermalInsituGradient()
 {
-	double result;
-	GetProperty(0x5, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x5, VT_R8, (void*)&result);
+  return result;
 }
 
 void CInSitu::SetThermalInsituGradient(double propVal)
 {
-	SetProperty(0x5, VT_R8, propVal);
+  SetProperty(0x5, VT_R8, propVal);
 }
 
 double CInSitu::GetMudTemperatureGradient()
 {
-	double result;
-	GetProperty(0x6, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x6, VT_R8, (void*)&result);
+  return result;
 }
 
 void CInSitu::SetMudTemperatureGradient(double propVal)
 {
-	SetProperty(0x6, VT_R8, propVal);
+  SetProperty(0x6, VT_R8, propVal);
 }
 
 double CInSitu::GetSurfaceRefTemperature()
 {
-	double result;
-	GetProperty(0x7, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x7, VT_R8, (void*)&result);
+  return result;
 }
 
 void CInSitu::SetSurfaceRefTemperature(double propVal)
 {
-	SetProperty(0x7, VT_R8, propVal);
+  SetProperty(0x7, VT_R8, propVal);
 }
 
 double CInSitu::GetAzimuth()
 {
-	double result;
-	GetProperty(0x8, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x8, VT_R8, (void*)&result);
+  return result;
 }
 
 void CInSitu::SetAzimuth(double propVal)
 {
-	SetProperty(0x8, VT_R8, propVal);
+  SetProperty(0x8, VT_R8, propVal);
 }
 
 long CInSitu::GetStressDefinition()
 {
-	long result;
-	GetProperty(0x9, VT_I4, (void*)&result);
-	return result;
+  long result;
+  GetProperty(0x9, VT_I4, (void*)&result);
+  return result;
 }
 
 void CInSitu::SetStressDefinition(long propVal)
 {
-	SetProperty(0x9, VT_I4, propVal);
+  SetProperty(0x9, VT_I4, propVal);
 }
 
 double CInSitu::GetDirectNorthStress()
 {
-	double result;
-	GetProperty(0xa, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0xa, VT_R8, (void*)&result);
+  return result;
 }
 
 void CInSitu::SetDirectNorthStress(double propVal)
 {
-	SetProperty(0xa, VT_R8, propVal);
+  SetProperty(0xa, VT_R8, propVal);
 }
 
 double CInSitu::GetDirectEastStress()
 {
-	double result;
-	GetProperty(0xb, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0xb, VT_R8, (void*)&result);
+  return result;
 }
 
 void CInSitu::SetDirectEastStress(double propVal)
 {
-	SetProperty(0xb, VT_R8, propVal);
+  SetProperty(0xb, VT_R8, propVal);
 }
 
 double CInSitu::GetDirectDepthStress()
 {
-	double result;
-	GetProperty(0xc, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0xc, VT_R8, (void*)&result);
+  return result;
 }
 
 void CInSitu::SetDirectDepthStress(double propVal)
 {
-	SetProperty(0xc, VT_R8, propVal);
+  SetProperty(0xc, VT_R8, propVal);
 }
 
 double CInSitu::GetNorthEastShearStress()
 {
-	double result;
-	GetProperty(0xd, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0xd, VT_R8, (void*)&result);
+  return result;
 }
 
 void CInSitu::SetNorthEastShearStress(double propVal)
 {
-	SetProperty(0xd, VT_R8, propVal);
+  SetProperty(0xd, VT_R8, propVal);
 }
 
 double CInSitu::GetNorthDepthShearStress()
 {
-	double result;
-	GetProperty(0xe, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0xe, VT_R8, (void*)&result);
+  return result;
 }
 
 void CInSitu::SetNorthDepthShearStress(double propVal)
 {
-	SetProperty(0xe, VT_R8, propVal);
+  SetProperty(0xe, VT_R8, propVal);
 }
 
 double CInSitu::GetEastDepthShearStress()
 {
-	double result;
-	GetProperty(0xf, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0xf, VT_R8, (void*)&result);
+  return result;
 }
 
 void CInSitu::SetEastDepthShearStress(double propVal)
 {
-	SetProperty(0xf, VT_R8, propVal);
+  SetProperty(0xf, VT_R8, propVal);
 }
 
 double CInSitu::GetGeneralPorePressure()
 {
-	double result;
-	GetProperty(0x10, VT_R8, (void*)&result);
-	return result;
+  double result;
+  GetProperty(0x10, VT_R8, (void*)&result);
+  return result;
 }
 
 void CInSitu::SetGeneralPorePressure(double propVal)
 {
-	SetProperty(0x10, VT_R8, propVal);
+  SetProperty(0x10, VT_R8, propVal);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -208,24 +208,24 @@ void CInSitu::SetGeneralPorePressure(double propVal)
 
 BOOL CInSitu::GetPrincipalStress(BOOL blnOrder, double* MaxStress, VARIANT* MaxStressDirection, double* MidStress, VARIANT* MidStressDirection, double* MinStress, VARIANT* MinStressDirection)
 {
-	BOOL result;
-	static BYTE parms[] =
-		VTS_BOOL VTS_PR8 VTS_PVARIANT VTS_PR8 VTS_PVARIANT VTS_PR8 VTS_PVARIANT;
-	InvokeHelper(0x11, DISPATCH_METHOD, VT_BOOL, (void*)&result, parms,
-		blnOrder, MaxStress, MaxStressDirection, MidStress, MidStressDirection, MinStress, MinStressDirection);
-	return result;
+  BOOL result;
+  static BYTE parms[] =
+    VTS_BOOL VTS_PR8 VTS_PVARIANT VTS_PR8 VTS_PVARIANT VTS_PR8 VTS_PVARIANT;
+  InvokeHelper(0x11, DISPATCH_METHOD, VT_BOOL, (void*)&result, parms,
+    blnOrder, MaxStress, MaxStressDirection, MidStress, MidStressDirection, MinStress, MinStressDirection);
+  return result;
 }
 
 BOOL CInSitu::TransferGeneral()
 {
-	BOOL result;
-	InvokeHelper(0x12, DISPATCH_METHOD, VT_BOOL, (void*)&result, NULL);
-	return result;
+  BOOL result;
+  InvokeHelper(0x12, DISPATCH_METHOD, VT_BOOL, (void*)&result, NULL);
+  return result;
 }
 
 BOOL CInSitu::TransferVertical()
 {
-	BOOL result;
-	InvokeHelper(0x13, DISPATCH_METHOD, VT_BOOL, (void*)&result, NULL);
-	return result;
+  BOOL result;
+  InvokeHelper(0x13, DISPATCH_METHOD, VT_BOOL, (void*)&result, NULL);
+  return result;
 }

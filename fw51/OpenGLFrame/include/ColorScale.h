@@ -14,34 +14,34 @@
 
 class OPENGLFRAME_EXPORT CColorScale  
 {
-	typedef QRgb TColor;
-	typedef std::pair<double, TColor> TColorPair;
+  typedef QRgb TColor;
+  typedef std::pair<double, TColor> TColorPair;
 
-	class OPENGLFRAME_EXPORT CColorPairLess
-	{
-	public:
-		typedef QRgb TColor;
-		typedef std::pair<double, TColor> TColorPair;	
-		bool operator() (const TColorPair &p1,const TColorPair &p2)
-		{
-			return p1.first < p2.first;
-		}
-	};
+  class OPENGLFRAME_EXPORT CColorPairLess
+  {
+  public:
+    typedef QRgb TColor;
+    typedef std::pair<double, TColor> TColorPair;	
+    bool operator() (const TColorPair &p1,const TColorPair &p2)
+    {
+      return p1.first < p2.first;
+    }
+  };
 
-	typedef std::set<TColorPair,CColorPairLess> TColorPairSet;
-	TColorPairSet m_ColorPairSet;
+  typedef std::set<TColorPair,CColorPairLess> TColorPairSet;
+  TColorPairSet m_ColorPairSet;
 
 
 public:
-	TColor GetColor(const double &value) const;
-	void Insert(const TColorPair &p);
-	void Clear();
+  TColor GetColor(const double &value) const;
+  void Insert(const TColorPair &p);
+  void Clear();
 
-	CColorScale(const CColorScale& right);
-	CColorScale& operator=(const CColorScale& right);
+  CColorScale(const CColorScale& right);
+  CColorScale& operator=(const CColorScale& right);
 
-	CColorScale();
-	virtual ~CColorScale();
+  CColorScale();
+  virtual ~CColorScale();
 
 };
 

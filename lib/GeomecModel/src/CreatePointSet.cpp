@@ -17,16 +17,16 @@ CPointSet* CCreatePointSet::create(CModelBase& modelBase,
 
   switch (m_pointSetCoordinates().size())
   {
-    case 1:
+  case 1:
       pointSet = new CPointSet(name, modelBase, 0, CPointSet::DIM_1D, true);
       break;
-    case 2:
+  case 2:
       pointSet = new CPointSet(name, modelBase, 0, CPointSet::DIM_2D, true);
       break;
-    case 3:
+  case 3:
       pointSet = new CPointSet(name, modelBase, 0, CPointSet::DIM_3D, true);
       break;
-    default:
+  default:
       assert(false);
       break;
   }
@@ -37,9 +37,9 @@ CPointSet* CCreatePointSet::create(CModelBase& modelBase,
 
   for (size_t i = 0; i < m_pointSetCoordinates().size(); i++)
   {
-    m_pointSetCoordinates()[i].m_min = lengthQuantity.Convert(
+  m_pointSetCoordinates()[i].m_min = lengthQuantity.Convert(
       m_pointSetCoordinates()[i].m_min, CQuantity::SI_UNIT, unitNode.Unit());
-    m_pointSetCoordinates()[i].m_max = lengthQuantity.Convert(
+  m_pointSetCoordinates()[i].m_max = lengthQuantity.Convert(
       m_pointSetCoordinates()[i].m_max, CQuantity::SI_UNIT, unitNode.Unit());
   }
 
@@ -66,7 +66,7 @@ void CCreatePointSet::createPointSetRecursive(size_t index, geo::CPoint& point,
 
   if (fabs(delta) < EPS)
   {
-    density = 0; // a single point
+  density = 0; // a single point
   }
 
   double value;
@@ -74,29 +74,29 @@ void CCreatePointSet::createPointSetRecursive(size_t index, geo::CPoint& point,
 
   for (value = minimum, i = 0; i <= density; value += delta, i++)
   {
-    switch (m_pointSetCoordinates()[index].m_index)
-    {
+  switch (m_pointSetCoordinates()[index].m_index)
+  {
       case 0:
-        point.X(value);
-        break;
+    point.X(value);
+    break;
       case 1:
-        point.Y(value);
-        break;
+    point.Y(value);
+    break;
       case 2:
-        point.Z(value);
-        break;
+    point.Z(value);
+    break;
       default:
-        assert(false);
-        break;
-    }
+    assert(false);
+    break;
+  }
 
-    if ((index + 1) == m_pointSetCoordinates().size())
-    {
+  if ((index + 1) == m_pointSetCoordinates().size())
+  {
       pointSet->PushBack(point, std::vector <double> ());
-    }
-    else
-    {
+  }
+  else
+  {
       createPointSetRecursive(index + 1, point, pointSet);
-    }
+  }
   }
 }

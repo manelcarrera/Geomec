@@ -13,17 +13,17 @@ namespace cora
 class CXMLComponents
 {
   public:
-    CXMLComponents(CModelData& modelData);
+  CXMLComponents(CModelData& modelData);
 
-    std::ostream& operator () (std::ostream& stream) const;
+  std::ostream& operator () (std::ostream& stream) const;
 
   private:
-    CXMLComponents(const CXMLComponents& rhs);
-    CXMLComponents& operator = (CXMLComponents rhs);
+  CXMLComponents(const CXMLComponents& rhs);
+  CXMLComponents& operator = (CXMLComponents rhs);
 
-    static TXMLComponents createComponents(CModelData& modelData);
+  static TXMLComponents createComponents(CModelData& modelData);
 
-    TXMLComponents m_components;
+  TXMLComponents m_components;
 };
 
 } // namespace cora

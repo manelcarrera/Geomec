@@ -25,7 +25,7 @@ protected:
   class CXYLess
   {
   public:
-    bool operator()(const geo::IPoint &P1, const geo::IPoint &P2) const;
+  bool operator()(const geo::IPoint &P1, const geo::IPoint &P2) const;
   };
 
   virtual void CreateTyings(IProgressBase& progress) = 0;

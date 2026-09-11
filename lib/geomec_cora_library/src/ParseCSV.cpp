@@ -21,27 +21,27 @@ std::vector <QString> CParseCSV::readLine() const
 
   while (m_csvFile.good() && ((character != m_newline) || inQuote))
   {
-    if ((character == m_delimiter) && !inQuote)
-    {
+  if ((character == m_delimiter) && !inQuote)
+  {
       line.push_back(string.c_str());
       string.clear();
-    }
-    else
-    {
+  }
+  else
+  {
       if (character == m_quote)
       {
-        inQuote = !inQuote;
+    inQuote = !inQuote;
       }
 
       string += character;
-    }
+  }
 
-    character = m_csvFile.get();
+  character = m_csvFile.get();
   }
 
   if (!string.empty())
   {
-    line.push_back(string.c_str());
+  line.push_back(string.c_str());
   }
 
   return line;

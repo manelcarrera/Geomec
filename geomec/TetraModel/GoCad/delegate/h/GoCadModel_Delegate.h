@@ -43,7 +43,7 @@ public:
 private:
   CGoCadSubModelEntry_Delegate(const CGoCadSubModelEntry_Delegate& rhs);
   CGoCadSubModelEntry_Delegate& operator = (
-    const CGoCadSubModelEntry_Delegate& rhs);
+  const CGoCadSubModelEntry_Delegate& rhs);
 
   CGoCadSubModelEntry* m_goCadSubModelEntry;
 

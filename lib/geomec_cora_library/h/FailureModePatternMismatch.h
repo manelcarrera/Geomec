@@ -11,7 +11,7 @@ namespace cora
 class CFailureModePatternMismatch : public std::runtime_error
 {
   public:
-    CFailureModePatternMismatch(const QString& failureMode,
+  CFailureModePatternMismatch(const QString& failureMode,
       const QString& pattern);
 };
 

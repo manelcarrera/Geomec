@@ -12,9 +12,9 @@ namespace GeomecRGI
 struct TCompareCBodyTriangle
 {
   bool operator () (
-    const geo::CBodyTriangle* lhs, const geo::CBodyTriangle* rhs) const
+  const geo::CBodyTriangle* lhs, const geo::CBodyTriangle* rhs) const
   {
-    return *lhs < *rhs;
+  return *lhs < *rhs;
   }
 };
 
@@ -36,19 +36,19 @@ struct TBoundingBox
 class CCalculateBoundingBox : public CCalculateBoundingSurfaces
 {
   public:
-    CCalculateBoundingBox(geo::IElementSet& elementSet);
+  CCalculateBoundingBox(geo::IElementSet& elementSet);
 
-    TTriangleSurfaces
+  TTriangleSurfaces
       collectTriangleSurfaces();
 
   private:
-    CCalculateBoundingBox(const CCalculateBoundingBox& rhs);
-    CCalculateBoundingBox& operator = (
+  CCalculateBoundingBox(const CCalculateBoundingBox& rhs);
+  CCalculateBoundingBox& operator = (
       const CCalculateBoundingBox& rhs);
 
-    TTriangleMap getTriangleMap() const;
+  TTriangleMap getTriangleMap() const;
 
-    TBoundingBox m_BoundingBox;
+  TBoundingBox m_BoundingBox;
 };
 
 } // namespace GeomecRGI

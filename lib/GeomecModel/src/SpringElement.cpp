@@ -13,7 +13,7 @@
 
 CSpringElement::CSpringElement(geo::IMesh &mesh, int nNodeIndex): m_mesh(mesh), m_nNodeIndex(nNodeIndex)
 {
-	mesh.RegisterElement(*this);
+  mesh.RegisterElement(*this);
 }
 
 CSpringElement::~CSpringElement()
@@ -23,29 +23,29 @@ CSpringElement::~CSpringElement()
 
 const geo::INode &CSpringElement::Node(int nIndex) const
 {
-	assert(!nIndex); // it can only be 0
-	return m_mesh.Node(PointIndex(nIndex));
+  assert(!nIndex); // it can only be 0
+  return m_mesh.Node(PointIndex(nIndex));
 }
 
 size_t CSpringElement::NrOfNodes() const
 {
-	return 1;
+  return 1;
 }
 
 std::string CSpringElement::Type() const
 {
-	return std::string("SP1TR");	
+  return std::string("SP1TR");	
 }
 
 const geo::IElementSet* CSpringElement::IndexingElementSet() const
 {
-	return &m_mesh;
+  return &m_mesh;
 }
 
 int CSpringElement::PointIndex(int nIndex) const
 {
-	assert(!nIndex);
-	return m_nNodeIndex;
+  assert(!nIndex);
+  return m_nNodeIndex;
 }
 
 //const geo::IPoint &CSpringElement::Point(int nIndex) const

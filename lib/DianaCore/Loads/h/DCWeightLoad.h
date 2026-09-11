@@ -16,11 +16,11 @@ namespace dia {
 class CWeightLoad : public IDirectedLoad  
 {
 public:
-	// size is gravity acceleration g
-	CWeightLoad(CLoadCase &loadcase, double size, const geo::IVector &vecDirection);
-	virtual ~CWeightLoad();
+  // size is gravity acceleration g
+  CWeightLoad(CLoadCase &loadcase, double size, const geo::IVector &vecDirection);
+  virtual ~CWeightLoad();
 
-	virtual bool WriteFilos() const;
+  virtual bool WriteFilos() const;
 };
 
 }

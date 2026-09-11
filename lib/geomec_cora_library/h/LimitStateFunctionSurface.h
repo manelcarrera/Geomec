@@ -9,14 +9,14 @@ namespace cora
 class CLimitStateFunctionSurface : public CLimitStateFunctionBase
 {
   public:
-    CLimitStateFunctionSurface(CSummaryResultFile& summaryResultFile,
+  CLimitStateFunctionSurface(CSummaryResultFile& summaryResultFile,
       std::vector <QString>& function, CGetModelInfo& modelInfo,
       const QString& versionNumber);
-    virtual ~CLimitStateFunctionSurface();
+  virtual ~CLimitStateFunctionSurface();
 
   private:
-    CLimitStateFunctionSurface(const CLimitStateFunctionSurface& rhs);
-    CLimitStateFunctionSurface& operator = (CLimitStateFunctionSurface rhs);
+  CLimitStateFunctionSurface(const CLimitStateFunctionSurface& rhs);
+  CLimitStateFunctionSurface& operator = (CLimitStateFunctionSurface rhs);
 };
 
 } // namespace cora

@@ -13,30 +13,30 @@ template <typename ParametersNode>
   class CValueTypeWrapper
 {
   public:
-    CValueTypeWrapper(const ParametersNode& parametersNode,
+  CValueTypeWrapper(const ParametersNode& parametersNode,
       unsigned int valueTypeID);
-    ~CValueTypeWrapper();
+  ~CValueTypeWrapper();
 
-    bool isValid() const;
+  bool isValid() const;
 
-    bool hasDistributedValueType() const;
-    const std::vector <double> getDistributedValueType(
+  bool hasDistributedValueType() const;
+  const std::vector <double> getDistributedValueType(
       const geo::IElement& element, const CQuantity::UNIT unit) const;
-    const CDoubleQuantity& getDistributedValueTypeQuantity() const;
-    
+  const CDoubleQuantity& getDistributedValueTypeQuantity() const;
+  
   private:
-    CValueTypeWrapper(const CValueTypeWrapper& rhs);
-    CValueTypeWrapper& operator = (const CValueTypeWrapper& rhs);
+  CValueTypeWrapper(const CValueTypeWrapper& rhs);
+  CValueTypeWrapper& operator = (const CValueTypeWrapper& rhs);
 
-    static TValueTypeWrapper selectValueTypeWrapper(
+  static TValueTypeWrapper selectValueTypeWrapper(
       const ParametersNode& parametersNode, unsigned int valueTypeID);
 
-    TValueTypeWrapper m_valueTypeWrapper;
+  TValueTypeWrapper m_valueTypeWrapper;
 };
 
 template <typename ParametersNode>
   CValueTypeWrapper <ParametersNode> ::CValueTypeWrapper(
-    const ParametersNode& parametersNode, unsigned int valueTypeID)
+  const ParametersNode& parametersNode, unsigned int valueTypeID)
   : m_valueTypeWrapper(selectValueTypeWrapper(parametersNode, valueTypeID))
 {
 }
@@ -60,14 +60,14 @@ template <typename ParametersNode>
 
 template <typename ParametersNode>
   const std::vector <double> CValueTypeWrapper <ParametersNode> ::getDistributedValueType(
-    const geo::IElement& element, const CQuantity::UNIT unit) const
+  const geo::IElement& element, const CQuantity::UNIT unit) const
 {
   return m_valueTypeWrapper->getDistributedValueType(element, unit);
 }
 
 template <typename ParametersNode>
   const CDoubleQuantity& CValueTypeWrapper <ParametersNode> ::getDistributedValueTypeQuantity()
-    const
+  const
 {
   return m_valueTypeWrapper->getDistributedValueTypeQuantity();
 }
@@ -78,23 +78,23 @@ template <typename ParametersNode>
 
 template <typename ParametersNode>
   TValueTypeWrapper CValueTypeWrapper <ParametersNode> ::selectValueTypeWrapper(
-    const ParametersNode& parametersNode, unsigned int valueTypeID)
+  const ParametersNode& parametersNode, unsigned int valueTypeID)
 {
   TValueTypeWrapper valueTypeWrapper(0);
 
   if (valueTypeID == IDT_VALUETYPE_COHESION)
   {
-    valueTypeWrapper = TValueTypeWrapper(
+  valueTypeWrapper = TValueTypeWrapper(
       new CCohesionValueTypeWrapper <ParametersNode> (parametersNode));
   }
   else if (valueTypeID == IDT_VALUETYPE_FRICTION_ANGLE)
   {
-    valueTypeWrapper = TValueTypeWrapper(
+  valueTypeWrapper = TValueTypeWrapper(
       new CFrictionAngleValueTypeWrapper <ParametersNode> (parametersNode));
   }
   else
   {
-    assert(false);
+  assert(false);
   }
 
   return valueTypeWrapper;

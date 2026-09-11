@@ -37,12 +37,12 @@ class RescueGeometryLGRList
 public:
   RescueGeometryLGRList(RescueGeometry *geometry, 
                              RESCUEBOOL byTimeStep,             // TRUE if order of rows is by time step, by group, by geometry.
-                                                                // FALSE for by group, by time step by geometry.  Of course,
-                                                                // if you limit to a single group or time step this
-                                                                // is immaterial.
+                                // FALSE for by group, by time step by geometry.  Of course,
+                                // if you limit to a single group or time step this
+                                // is immaterial.
                              RescuePropertyGroup *nullOrGroup,  // Non-null, limit to particular RescuePropertyGroup.
                              RESCUECHAR *nullOrTimeStepName);   // Non-null, limit to particular time step name.
-                                                                // See the time manager.
+                                // See the time manager.
   ~RescueGeometryLGRList();
 
   RESCUEINT32 Count() {return count;}              // Number of rows.
@@ -53,7 +53,7 @@ public:
 private:
   void AddGeometry(RescueGeometry *geometry, RESCUECHAR *nullOrTimeStepName);
   void AddGroup(RescuePropertyGroup *group, RescueGeometry *geometry, 
-                RESCUECHAR *nullOrTimeStepName);
+        RESCUECHAR *nullOrTimeStepName);
   void AddRow(RescueGeometry *geom,
               RescueTimeStepGroup *ts, 
               RescuePropertyGroup *group);

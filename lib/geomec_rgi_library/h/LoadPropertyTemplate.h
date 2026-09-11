@@ -10,21 +10,21 @@ template <unsigned int VALUETYPE>
   class CLoadPropertyTemplate : public CLoadPropertyBase
 {
   public:
-    CLoadPropertyTemplate(const RGProperty& rgProperty, RGInterface& rgi,
+  CLoadPropertyTemplate(const RGProperty& rgProperty, RGInterface& rgi,
       CModelBase& modelBase, CRockMechProcessor& rmp);
-    virtual ~CLoadPropertyTemplate();
+  virtual ~CLoadPropertyTemplate();
 
-    virtual bool loadProperty();
+  virtual bool loadProperty();
 
   private:
-    CLoadPropertyTemplate(const CLoadPropertyTemplate& rhs);
-    CLoadPropertyTemplate& operator = (const CLoadPropertyTemplate& rhs);
+  CLoadPropertyTemplate(const CLoadPropertyTemplate& rhs);
+  CLoadPropertyTemplate& operator = (const CLoadPropertyTemplate& rhs);
 };
 
 template <unsigned int VALUETYPE>
   CLoadPropertyTemplate <VALUETYPE> ::CLoadPropertyTemplate(
-    const RGProperty& rgProperty, RGInterface& rgi, CModelBase& modelBase,
-    CRockMechProcessor& rmp)
+  const RGProperty& rgProperty, RGInterface& rgi, CModelBase& modelBase,
+  CRockMechProcessor& rmp)
   : CLoadPropertyBase(rgProperty, rgi, modelBase, rmp)
 {
 }

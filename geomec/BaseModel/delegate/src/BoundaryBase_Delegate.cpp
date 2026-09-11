@@ -18,12 +18,12 @@ CBoundaryBase_Delegate::CBoundaryBase_Delegate(CBoundaryBase* boundaryBase)
 void CBoundaryBase_Delegate::AppendContextMenu(CContextMenuInvoker& invoker)
 {
   typedef CSingleCommandTemplate <CBoundaryBase_Delegate>
-    TBoundaryBase_DelegateCommand;
+  TBoundaryBase_DelegateCommand;
 
   // Add own item
 
   invoker.AddCommand(_T("&Modify"),
-    *(new TBoundaryBase_DelegateCommand(*this,
+  *(new TBoundaryBase_DelegateCommand(*this,
       &CBoundaryBase_Delegate::Edit, &CBoundaryBase_Delegate::CanModify)));
 
   invoker.AddSeparator();
@@ -36,7 +36,7 @@ void CBoundaryBase_Delegate::AppendContextMenu(CContextMenuInvoker& invoker)
 bool CBoundaryBase_Delegate::CanEdit() const
 {
   return !(static_cast <const CModelBase&> (m_boundaryBase->Model())).
-    BranchState().IsBranch();
+  BranchState().IsBranch();
 }
 
 bool CBoundaryBase_Delegate::Edit()

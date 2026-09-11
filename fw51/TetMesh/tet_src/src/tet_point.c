@@ -14,11 +14,11 @@ static int PointCompare( const void *cor0V, const void *cor1V )
   const double  *cor0 = cor0V;
   const double  *cor1 = cor1V;
   for ( d = 0; d<3 && !result; d++ ) {
-    if ( cor0[d] - cor1[d] < -smallDistance ) {
+  if ( cor0[d] - cor1[d] < -smallDistance ) {
       result = -1;
-    } else if ( cor0[d] - cor1[d] > smallDistance ) {
+  } else if ( cor0[d] - cor1[d] > smallDistance ) {
       result =  1;
-    }
+  }
   }
   return result;
 }
@@ -34,8 +34,8 @@ extern PointSet_t *PointSetCreate( double eps )
 extern PointSet_t *PointSetDelete( PointSet_t *pointSet )
 {
   if ( pointSet ) {
-    RBTreeDelete( pointSet->tree );
-    DIFREE( pointSet );
+  RBTreeDelete( pointSet->tree );
+  DIFREE( pointSet );
   }
   return NULL;
 }
@@ -102,7 +102,7 @@ extern void PointSetPrint( PointSet_t *pointSet, FILE *fp )
   int               n;
   fprintf( fp, "\nPOINTSET   size=%d  eps=%f\n", len, pointSet->eps );
   for ( n = 0; n < len; n++ ) {
-    PointSetPrintPoint( pointSet, n, fp );
+  PointSetPrintPoint( pointSet, n, fp );
   }
 }
 
@@ -158,25 +158,25 @@ extern double PointSetMinimumDistance(
          bool_t selfFound = FALSE;
          const double *cor = PointSetGet( pointSet, n );
          for ( d = 0; d < 3; d++ ) {
-            corMin[d] = cor[d] - result;
-            corMax[d] = cor[d] + result;
+      corMin[d] = cor[d] - result;
+      corMax[d] = cor[d] + result;
          }
          BoundBoxInit( &bb );
          BoundBoxAdd( &bb , corMin );
          BoundBoxAdd( &bb , corMax );
          box = BoundBoxTreeFind( box, bbTree, &bb, BoundBoxOverlap );
          for ( d = 0; d < SetSize( box ); d++ ) {
-            const int   *id = SetElmGet( box, d );
-            if ( *id != n ) {
+      const int   *id = SetElmGet( box, d );
+      if ( *id != n ) {
                const double dist = PointSetDistance( pointSet, n, *id ) ;
                if ( dist < result ) {
                   result = dist;
                   *id1 = n;
                   *id2 = *id;
                }
-            } else {
+      } else {
                selfFound = TRUE;
-            }
+      }
          }
          assert( selfFound );
       }

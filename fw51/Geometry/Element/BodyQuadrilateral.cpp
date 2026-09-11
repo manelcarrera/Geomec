@@ -20,18 +20,18 @@ const IBody* CBodyQuadrilateral::Parent() const
 
 int CBodyQuadrilateral::PointIndex(int nIndex) const
 {
-    return Parent()->PointIndex(BodyNode(nIndex));
+  return Parent()->PointIndex(BodyNode(nIndex));
 }
 
 size_t CBodyQuadrilateral::NrOfNodes() const
 {
   switch(Order())
   {
-    case 1:
+  case 1:
       return 4;
-    case 2:
+  case 2:
       return 8;
-    case 3:
+  case 3:
       return 12;
   }
 

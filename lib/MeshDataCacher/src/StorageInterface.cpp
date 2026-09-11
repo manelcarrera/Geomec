@@ -81,9 +81,9 @@ CStorageInterfaceDefault::CStorageInterfaceDefault(const char *directory)
 {
   if (directory)
 #ifdef _WIN32
-    m_dir = _strdup(directory);
+  m_dir = _strdup(directory);
 #else
-    m_dir = strdup(directory);
+  m_dir = strdup(directory);
 #endif
 
   m_dir_exists = DirExists();
@@ -103,16 +103,16 @@ void CStorageInterfaceDefault::Directory(const char *directory)
 {
   if (m_dir)
   {
-    assert(!directory || strcmp(m_dir, directory) == 0);
-    free(m_dir);
-    m_dir = 0;
+  assert(!directory || strcmp(m_dir, directory) == 0);
+  free(m_dir);
+  m_dir = 0;
   }
 
   if (directory)
 #ifdef _WIN32
-    m_dir = _strdup(directory);
+  m_dir = _strdup(directory);
 #else
-    m_dir = strdup(directory);
+  m_dir = strdup(directory);
 #endif
 
   m_dir_exists = DirExists();
@@ -129,12 +129,12 @@ bool CStorageInterfaceDefault::ReadBlock(CDataCell& cell)
   char *fname = FileNameExists(cell.m_nColumn);
 
   if (!fname)
-    return true;
+  return true;
 
   int fh = open(fname, _O_RDONLY | _O_BINARY);
   DiFree(fname, "CStorageInterfaceDefault::ReadBlock");
   if (fh == -1)
-    return true;
+  return true;
 
   cell.InitData();
 
@@ -147,10 +147,10 @@ bool CStorageInterfaceDefault::ReadBlock(CDataCell& cell)
 #ifdef READ_BUF_SIZE
   for (int i = 0; i < nBytesToRead; i += READ_BUF_SIZE)
   {
-    int nToRead = ::std::min(nBytesToRead - i, READ_BUF_SIZE);
-    int nRead = read(fh, (uchar *)cell.m_pData + i, nToRead);
+  int nToRead = ::std::min(nBytesToRead - i, READ_BUF_SIZE);
+  int nRead = read(fh, (uchar *)cell.m_pData + i, nToRead);
 
-    nBytesRead += nRead;
+  nBytesRead += nRead;
   }
 #else
   nBytesRead += read(fh, cell.m_pData, nBytesToRead);
@@ -170,7 +170,7 @@ bool CStorageInterfaceDefault::WriteBlock(CDataCell& cell)
   char *fname = FileName(cell.m_nColumn);
 
   if (!fname)
-    return true;
+  return true;
 
   int fh = open(fname, _O_WRONLY | _O_CREAT | _O_BINARY, _S_IWRITE | _S_IREAD);
   DiFree(fname, "CDataCell::WriteData");
@@ -188,10 +188,10 @@ bool CStorageInterfaceDefault::WriteBlock(CDataCell& cell)
 
   for (int i = 0; i < nBytesToWrite; i += WRITE_BUF_SIZE)
   {
-    int nToWrite = ::std::min(nBytesToWrite - i, WRITE_BUF_SIZE);
-    int nWritten = write(fh, (uchar *)cell.m_pData + i, nToWrite);
+  int nToWrite = ::std::min(nBytesToWrite - i, WRITE_BUF_SIZE);
+  int nWritten = write(fh, (uchar *)cell.m_pData + i, nToWrite);
 
-    nBytesWritten += nWritten;
+  nBytesWritten += nWritten;
   }
 #else
   nBytesWritten += write(fh, cell.m_pData, nBytesToWrite);
@@ -201,13 +201,13 @@ bool CStorageInterfaceDefault::WriteBlock(CDataCell& cell)
 
   if (nBytesToWrite + sizeof(CChecksum) == nBytesWritten) // if we failed to write, this cell remains dirty
   {
-    cell.m_bDirty = false;
-    return true;
+  cell.m_bDirty = false;
+  return true;
   }
   else
   {
-    remove(fname);
-    return false;
+  remove(fname);
+  return false;
   }
 }
 
@@ -217,10 +217,10 @@ char *CStorageInterfaceDefault::FileNameExists(int block)
 
   char *fn = FileName(block);
   if (!fn)
-    return 0;
+  return 0;
 
   if (stat(fn, &buf) == 0)
-    return fn;
+  return fn;
 
   DiFree(fn, "CStorageInterfaceDefault::FileNameExists");
   return 0;
@@ -229,7 +229,7 @@ char *CStorageInterfaceDefault::FileNameExists(int block)
 char *CStorageInterfaceDefault::FileName(int block)
 {
   if (!m_dir_exists)
-    return 0;
+  return 0;
 
   char filename[127];
   char *ret;
@@ -248,16 +248,16 @@ bool CStorageInterfaceDefault::DirExists()
   struct stat buf;
 
   if (!m_dir)
-    return false;
+  return false;
 
   // check existence of directory
   int status = stat(m_dir, &buf);
   if (status != 0)
-    return false; // does not exist
+  return false; // does not exist
   if (!(buf.st_mode | _S_IFDIR))
-    return false; // not a directory
+  return false; // not a directory
   if (!(buf.st_mode & _S_IWRITE))
-    return false; // read only
+  return false; // read only
 
   return true;
 }

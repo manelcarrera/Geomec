@@ -28,11 +28,11 @@ public slots:
   void stop();
 
   void start(	const QString& name, 
-				const QStringList& args,
-				const QProcessEnvironment* env = nullptr );
+        const QStringList& args,
+        const QProcessEnvironment* env = nullptr );
 
   void start(	const QString& name, 
-				const QProcessEnvironment* env = nullptr );
+        const QProcessEnvironment* env = nullptr );
 
   void stop_( const QString& name ); // FIXME: why can't be named just 'stop' 
                                      // Answer: https://stackoverflow.com/questions/16794695/connecting-overloaded-signals-and-slots-in-qt-5

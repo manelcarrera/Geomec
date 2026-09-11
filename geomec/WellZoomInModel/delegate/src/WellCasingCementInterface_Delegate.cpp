@@ -6,21 +6,21 @@
 
 CWellCasingCementInterfaceMaterialServer_Delegate::
   CWellCasingCementInterfaceMaterialServer_Delegate(
-    CWellCasingCementInterfaceMaterialServer*
+  CWellCasingCementInterfaceMaterialServer*
       wellCasingCementInterfaceMaterialServer)
 : IMaterialServerTempl_Delegate <CInterfaceMaterial,
-    CInterfaceMaterial_Delegate,
-    TWellCasingCementInterfaceMaterialServerParent> (
+  CInterfaceMaterial_Delegate,
+  TWellCasingCementInterfaceMaterialServerParent> (
       wellCasingCementInterfaceMaterialServer)
 , m_wellCasingCementInterfaceMaterialServer(
-    wellCasingCementInterfaceMaterialServer)
+  wellCasingCementInterfaceMaterialServer)
 {
 }
 
 CWellCasingCementInterface_Delegate::CWellCasingCementInterface_Delegate(
   CWellCasingCementInterface* wellCasingCementInterface)
 : TWellCasingCementInterfaceMaterialServerParent_Delegate(
-    wellCasingCementInterface)
+  wellCasingCementInterface)
 , m_wellCasingCementInterface(wellCasingCementInterface)
 {
 }

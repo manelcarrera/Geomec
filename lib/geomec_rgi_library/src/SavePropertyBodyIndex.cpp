@@ -21,7 +21,7 @@ bool CSavePropertyBodyIndex::saveProperty(RGInterface& rgi,
 {
   CGeomecFormationVolumeIDs2RGI geomecFormationVolumeIDs2RGI(rgi, modelBase);
   std::vector <int> values =
-    geomecFormationVolumeIDs2RGI.getFormationVolumeIDs();
+  geomecFormationVolumeIDs2RGI.getFormationVolumeIDs();
 
   propertyValuesMayNotContainNull(m_RGProperty.getType(), values);
   rgi.saveProperty(m_RGProperty, values);

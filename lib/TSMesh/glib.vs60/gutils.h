@@ -131,16 +131,16 @@ struct _GDebugKey
 /* Miscellaneous utility functions
  */
 guint	g_parse_debug_string	(const gchar *string,
-				 GDebugKey   *keys,
-				 guint	      nkeys);
+         GDebugKey   *keys,
+         guint	      nkeys);
 gint	g_snprintf		(gchar	     *string,
-				 gulong	      n,
-				 gchar const *format,
-				 ...) G_GNUC_PRINTF (3, 4);
+         gulong	      n,
+         gchar const *format,
+         ...) G_GNUC_PRINTF (3, 4);
 gint	g_vsnprintf		(gchar	     *string,
-				 gulong	      n,
-				 gchar const *format,
-				 va_list      args);
+         gulong	      n,
+         gchar const *format,
+         va_list      args);
 /* Check if a file name is an absolute path */
 gboolean g_path_is_absolute	(const gchar *file_name);
 /* In case of absolute paths, skip the root part */
@@ -189,9 +189,9 @@ gchar*  g_find_program_in_path  (const gchar *program);
 /* Bit tests
  */
 G_INLINE_FUNC gint	g_bit_nth_lsf (guint32 mask,
-				       gint    nth_bit);
+               gint    nth_bit);
 G_INLINE_FUNC gint	g_bit_nth_msf (guint32 mask,
-				       gint    nth_bit);
+               gint    nth_bit);
 G_INLINE_FUNC guint	g_bit_storage (guint number);
 
 /* Trash Stacks
@@ -204,7 +204,7 @@ struct _GTrashStack
 };
 
 G_INLINE_FUNC void	g_trash_stack_push	(GTrashStack **stack_p,
-						 gpointer      data_p);
+             gpointer      data_p);
 G_INLINE_FUNC gpointer	g_trash_stack_pop	(GTrashStack **stack_p);
 G_INLINE_FUNC gpointer	g_trash_stack_peek	(GTrashStack **stack_p);
 G_INLINE_FUNC guint	g_trash_stack_height	(GTrashStack **stack_p);
@@ -214,29 +214,29 @@ G_INLINE_FUNC guint	g_trash_stack_height	(GTrashStack **stack_p);
 #if defined (G_CAN_INLINE) || defined (__G_UTILS_C__)
 G_INLINE_FUNC gint
 g_bit_nth_lsf (guint32 mask,
-	       gint    nth_bit)
+         gint    nth_bit)
 {
   do
-    {
+  {
       nth_bit++;
       if (mask & (1 << (guint) nth_bit))
-	return nth_bit;
-    }
+  return nth_bit;
+  }
   while (nth_bit < 32);
   return -1;
 }
 G_INLINE_FUNC gint
 g_bit_nth_msf (guint32 mask,
-	       gint    nth_bit)
+         gint    nth_bit)
 {
   if (nth_bit < 0)
-    nth_bit = 32;
+  nth_bit = 32;
   do
-    {
+  {
       nth_bit--;
       if (mask & (1 << (guint) nth_bit))
-	return nth_bit;
-    }
+  return nth_bit;
+  }
   while (nth_bit > 0);
   return -1;
 }
@@ -246,16 +246,16 @@ g_bit_storage (guint number)
   register guint n_bits = 0;
   
   do
-    {
+  {
       n_bits++;
       number >>= 1;
-    }
+  }
   while (number);
   return n_bits;
 }
 G_INLINE_FUNC void
 g_trash_stack_push (GTrashStack **stack_p,
-		    gpointer      data_p)
+      gpointer      data_p)
 {
   GTrashStack *data = (GTrashStack *) data_p;
 
@@ -269,13 +269,13 @@ g_trash_stack_pop (GTrashStack **stack_p)
 
   data = *stack_p;
   if (data)
-    {
+  {
       *stack_p = data->next;
       /* NULLify private pointer here, most platforms store NULL as
        * subsequent 0 bytes
        */
       data->next = NULL;
-    }
+  }
 
   return data;
 }
@@ -295,7 +295,7 @@ g_trash_stack_height (GTrashStack **stack_p)
   guint i = 0;
 
   for (data = *stack_p; data; data = data->next)
-    i++;
+  i++;
 
   return i;
 }
@@ -322,7 +322,7 @@ GLIB_VAR const guint glib_interface_age;
 GLIB_VAR const guint glib_binary_age;
 
 #define GLIB_CHECK_VERSION(major,minor,micro)    \
-    (GLIB_MAJOR_VERSION > (major) || \
+  (GLIB_MAJOR_VERSION > (major) || \
      (GLIB_MAJOR_VERSION == (major) && GLIB_MINOR_VERSION > (minor)) || \
      (GLIB_MAJOR_VERSION == (major) && GLIB_MINOR_VERSION == (minor) && \
       GLIB_MICRO_VERSION >= (micro)))

@@ -35,7 +35,7 @@ void CGoCadGUI::Convert(const CHexaModel& model)
 
   while (pos != NULL)
   {
-    GetGeomecDoc()->GetNextView(pos)->OnInitialUpdate();
+  GetGeomecDoc()->GetNextView(pos)->OnInitialUpdate();
   }
 }
 

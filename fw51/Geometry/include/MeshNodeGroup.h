@@ -22,35 +22,35 @@ class IMesh;
 class INode;
 class GEOMETRY_EXPORT  CMeshNodeGroup : public IObject  
 {
-	IMesh& m_mesh;
-	std::vector<const INode*> m_vcNode;
-	int m_nIndex;
+  IMesh& m_mesh;
+  std::vector<const INode*> m_vcNode;
+  int m_nIndex;
 
 public:
-	CMeshNodeGroup(IMesh& mesh);
-	virtual ~CMeshNodeGroup();
+  CMeshNodeGroup(IMesh& mesh);
+  virtual ~CMeshNodeGroup();
 
-	int Index() const;
+  int Index() const;
 
-	bool AddMeshNode(const INode& node);
+  bool AddMeshNode(const INode& node);
 
-	int NodeSize() const;
-	const INode &Node(int nIndex) const;
+  int NodeSize() const;
+  const INode &Node(int nIndex) const;
 
-	//Overrides of IObject
-	virtual void Rotate(const IVector &vec, const double &dAngleDeg);
-	virtual void Move(const IVector &vec);
-	virtual void Transform(const IMatrix &matrix);
-	virtual void AssertValid() const;
-	virtual bool Empty() const;
-	virtual CPoint Min() const;
-	virtual CPoint Max() const;
+  //Overrides of IObject
+  virtual void Rotate(const IVector &vec, const double &dAngleDeg);
+  virtual void Move(const IVector &vec);
+  virtual void Transform(const IMatrix &matrix);
+  virtual void AssertValid() const;
+  virtual bool Empty() const;
+  virtual CPoint Min() const;
+  virtual CPoint Max() const;
 
-	virtual bool Visit(IVisitor &visitor)
-	{
-		assert(dynamic_cast<CVisitorBase *>(&visitor));
-		return static_cast<CVisitorBase &>(visitor).HandleMeshNodeGroup(*this);
-	}
+  virtual bool Visit(IVisitor &visitor)
+  {
+    assert(dynamic_cast<CVisitorBase *>(&visitor));
+    return static_cast<CVisitorBase &>(visitor).HandleMeshNodeGroup(*this);
+  }
 };
 
 }

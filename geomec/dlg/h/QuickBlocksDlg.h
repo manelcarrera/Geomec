@@ -8,22 +8,22 @@ class CQBSettings;
 
 class CQuickBlocksDlg : public CDialog
 {
-	DECLARE_DYNAMIC(CQuickBlocksDlg)
+  DECLARE_DYNAMIC(CQuickBlocksDlg)
   
   CQBSettings &m_Source;
  
 public:
-	CQuickBlocksDlg(CQBSettings &grid, CWnd* pParent = NULL);   // standard constructor
-	virtual ~CQuickBlocksDlg();
+  CQuickBlocksDlg(CQBSettings &grid, CWnd* pParent = NULL);   // standard constructor
+  virtual ~CQuickBlocksDlg();
 
 // Dialog Data
-	enum { IDD = IDD_QB_DLG };
+  enum { IDD = IDD_QB_DLG };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
   virtual BOOL OnInitDialog();
 
-	DECLARE_MESSAGE_MAP()
+  DECLARE_MESSAGE_MAP()
 
   double m_dNorth;
   double m_dEast;

@@ -38,62 +38,62 @@ public:
 private:
   class CNodeBase
   {
-    int m_nId;
+  int m_nId;
 
   protected:
-    void AppendValues(FILE* fp, const TElementValueVec& vcElementValues, int nLocalIndex) const;
+  void AppendValues(FILE* fp, const TElementValueVec& vcElementValues, int nLocalIndex) const;
 
   public:
-    CNodeBase();
-    CNodeBase(const CNodeBase& rhs);
-    virtual ~CNodeBase();
+  CNodeBase();
+  CNodeBase(const CNodeBase& rhs);
+  virtual ~CNodeBase();
 
-    virtual void Write(FILE* fp, int iUnit, const TElementValueVec& vcElementValues, int nLocalIndex) const = 0;
-    int Id() const;
-    void Id(int id);
+  virtual void Write(FILE* fp, int iUnit, const TElementValueVec& vcElementValues, int nLocalIndex) const = 0;
+  int Id() const;
+  void Id(int id);
   };
 
   class CVertex : public CNodeBase
   {
-    const geo::INode& m_node;
+  const geo::INode& m_node;
 
   public:
-    CVertex(const geo::INode& node);
-    CVertex(const CVertex& rhs);
+  CVertex(const geo::INode& node);
+  CVertex(const CVertex& rhs);
 
-    virtual void Write(FILE* fp, int iUnit, const TElementValueVec& vcElementValues, int nLocalIndex) const;
+  virtual void Write(FILE* fp, int iUnit, const TElementValueVec& vcElementValues, int nLocalIndex) const;
   };
 
   class CAtom : public CNodeBase
   {
-    const CVertex& m_vertex;
+  const CVertex& m_vertex;
 
   public:
-    CAtom(const CVertex& vertex);
+  CAtom(const CVertex& vertex);
 
-    virtual void Write(FILE* fp, int iUnit, const TElementValueVec& vcElementValues, int nLocalIndex) const;
+  virtual void Write(FILE* fp, int iUnit, const TElementValueVec& vcElementValues, int nLocalIndex) const;
   };
 
   class CTetra
   {
-    const geo::IElement& m_element;
-    CNodeBase* m_pNode[4];
+  const geo::IElement& m_element;
+  CNodeBase* m_pNode[4];
 
   public:
-    CTetra(const geo::IElement& element, CNodeBase** pNode);
-    ~CTetra();
-    void Write(FILE* fp, const IValueDomainScalar::TValueVec& vcAverageElementValues, const QString* pstrFormationName) const;
-    const geo::IElement& Element() const;
+  CTetra(const geo::IElement& element, CNodeBase** pNode);
+  ~CTetra();
+  void Write(FILE* fp, const IValueDomainScalar::TValueVec& vcAverageElementValues, const QString* pstrFormationName) const;
+  const geo::IElement& Element() const;
   };
 
   class CTrgl
   {
-    CNodeBase* m_pNode[3];
+  CNodeBase* m_pNode[3];
 
   public:
-    CTrgl(CNodeBase** pNode);
-    ~CTrgl();
-    void Write(FILE* fp) const;
+  CTrgl(CNodeBase** pNode);
+  ~CTrgl();
+  void Write(FILE* fp) const;
   };
 
   typedef std::set<const CDepletionStage*> TTimeStepSet;
@@ -102,14 +102,14 @@ private:
   class CObjectLess
   {
   public:
-    bool operator()(const OBJECT* pLhs, const OBJECT* pRhs) const;
+  bool operator()(const OBJECT* pLhs, const OBJECT* pRhs) const;
   };
 
   typedef std::set<const CFormationBase*, CObjectLess<CFormationBase> > TFormationSet;
   typedef std::set<const CHorizonBase*, CObjectLess<CHorizonBase> > THorizonSet;
   typedef std::set<const CPointSet*, CObjectLess<CPointSet> > TPointSetSet;
 
-	CModelBase& m_model;
+  CModelBase& m_model;
   TTimeStepSet m_stTimeSteps;
   TFormationSet m_stFormations;
   THorizonSet m_stHorizons;
@@ -183,7 +183,7 @@ private:
 public:
   CGocadExport(CModelBase& model);
   CGocadExport(const CGocadExport& rhs);
-	virtual ~CGocadExport();
+  virtual ~CGocadExport();
 
   CGocadExport& operator=(const CGocadExport& rhs);
   bool operator==(const CGocadExport& rhs) const;

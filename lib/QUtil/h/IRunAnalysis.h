@@ -10,11 +10,11 @@
 class IRunAnalysis : public IListener
 {
 public:
-	IRunAnalysis(const IListenerDefinition& d);
-	IRunAnalysis(
-		CEvents::eEventsHandler eh_id = CEvents::Undefined_EH,
-		std::vector<eCmd> events_v_={});
-	virtual ~IRunAnalysis();
+  IRunAnalysis(const IListenerDefinition& d);
+  IRunAnalysis(
+    CEvents::eEventsHandler eh_id = CEvents::Undefined_EH,
+    std::vector<eCmd> events_v_={});
+  virtual ~IRunAnalysis();
 protected:
-	virtual void handle(Cmd cmd)=0;
+  virtual void handle(Cmd cmd)=0;
 };

@@ -17,11 +17,11 @@ RescueVertex::~RescueVertex()
 {
   if (vertexName != 0)
   {
-    delete vertexName;
+  delete vertexName;
   }
   if (parentModel != 0)
   {
-    parentModel->UnRegisterObject(this);
+  parentModel->UnRegisterObject(this);
   }
 }
 
@@ -51,12 +51,12 @@ void RescueVertex::RegisterWith(RescueModel *parentModelIn)
 {
   if (parentModel == 0)
   {
-    parentModel = parentModelIn;
-    parentModel->RegisterObject(this);
-    if (coordinateSystem != 0)
-    {
+  parentModel = parentModelIn;
+  parentModel->RegisterObject(this);
+  if (coordinateSystem != 0)
+  {
       coordinateSystem->RegisterWith(parentModel);
-    }
+  }
   }
 }
   
@@ -64,11 +64,11 @@ RESCUEBOOL RescueVertex::IsOfType(_RescueObjectType thisType)
 {
   if (thisType == R_RescueVertex)
   {
-    return TRUE;
+  return TRUE;
   }
   else
   {
-    return RescueObject::IsOfType(thisType);
+  return RescueObject::IsOfType(thisType);
   }
 }
 
@@ -90,18 +90,18 @@ RescueVertex::RescueVertex(RescueContext *context, FILE *archiveFile)
   myfscanf(context, archiveFile, &csFlag);
   if (csFlag == 1)
   {
-    coordinateSystem = new RescueCoordinateSystem(context, archiveFile);
+  coordinateSystem = new RescueCoordinateSystem(context, archiveFile);
   }
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -114,16 +114,16 @@ void RescueVertex::Archive(RescueContext *context, FILE *archiveFile)
   myfprintf(context, archiveFile, z);
   if (coordinateSystem == 0)
   {
-    myfprintf(context, archiveFile, (RESCUEINT64) 0);
+  myfprintf(context, archiveFile, (RESCUEINT64) 0);
   }
   else
   {
-    myfprintf(context, archiveFile, (RESCUEINT64) 1);
-    coordinateSystem->Archive(archiveFile);
+  myfprintf(context, archiveFile, (RESCUEINT64) 1);
+  coordinateSystem->Archive(archiveFile);
   }
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 

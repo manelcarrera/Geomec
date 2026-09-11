@@ -17,14 +17,14 @@ namespace geo {
 class CRingFactory;
 class CRingPolygon : public IPolygon
 {
-	const CRingFactory::TRing& m_ring;
-	const CRingFactory& m_factory;
+  const CRingFactory::TRing& m_ring;
+  const CRingFactory& m_factory;
 public:
-	CRingPolygon(const CRingFactory& factory, const CRingFactory::TRing& ring);
-	virtual const IPoint &Point(int nIndex) const;
-	virtual void Point(int nIndex, const IPoint &pt);
-	virtual int NrOfPoints() const;
-	virtual size_t Order() const;
+  CRingPolygon(const CRingFactory& factory, const CRingFactory::TRing& ring);
+  virtual const IPoint &Point(int nIndex) const;
+  virtual void Point(int nIndex, const IPoint &pt);
+  virtual int NrOfPoints() const;
+  virtual size_t Order() const;
 };
 
 }

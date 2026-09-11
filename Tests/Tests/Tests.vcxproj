@@ -182,7 +182,7 @@
     <ProjectReference Include="..\..\lib\blosc_filter\blosc_filter.vcxproj">
       <Project>{49b5a2c2-90a9-4205-954b-bdc6aece8e22}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\lib\c-blosc-1.9.0\build\blosc\blosc_shared.vcxproj">
+    <ProjectReference Include="..\..\third_party\c-blosc-1.9.0\build\blosc\blosc_shared.vcxproj">
       <Project>{9e79b5fd-f368-386f-a1b2-481cb5992aa6}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\lib\CommonWellScheme\CommonWellScheme.vcxproj">
@@ -219,7 +219,7 @@
     <ProjectReference Include="..\..\lib\DianaStartup\DianaStartup.vcxproj">
       <Project>{9dd2d3b7-87c1-42d2-99c6-6dd2dbd71507}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\lib\FemAppGUI\FemAppGUI.vcxproj">
+    <ProjectReference Include="..\..\platform\FemAppGUI\FemAppGUI.vcxproj">
       <Project>{d123fa8c-5a4d-44a8-a1bb-04b5b8fe86ef}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\lib\FemAppModel\FemAppModel.vcxproj">
@@ -252,7 +252,7 @@
     <ProjectReference Include="..\..\lib\geomec_rgi_library\geomec_rgi_library.vcxproj">
       <Project>{3f5693c3-5060-4f23-837a-57d3c2deb768}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\lib\gmock-1.7.0\gtest\msvc\gtest-md.vcxproj">
+    <ProjectReference Include="..\..\third_party\gmock-1.7.0\gtest\msvc\gtest-md.vcxproj">
       <Project>{c8f6c172-56f2-4e76-b5fa-c3b423b31be8}</Project>
       <Private>false</Private>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -352,7 +352,7 @@
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
-    <ProjectReference Include="..\..\lib\zlib-1.2.6\contrib\vstudio\vc10\zlibvc.vcxproj">
+    <ProjectReference Include="..\..\third_party\zlib-1.2.6\contrib\vstudio\vc10\zlibvc.vcxproj">
       <Project>{8fd826f8-3739-44e6-8cc8-997122e53b8d}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\Prototypes\ModularGeomec\ModGMBus\ModGMBus.vcxproj">

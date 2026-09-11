@@ -105,22 +105,22 @@ bool RGFileLock::waitFor(int timeout)
       {
          if (timeout == -1)
          {
-            m_impl->wait();
+      m_impl->wait();
          }
          else
          {
-            // get the current time so we can
-            // determine if we have waited long enough.
-            time(&now);
-            double diff = difftime(now, start);
-            if (diff > timeout) 
-            {
+      // get the current time so we can
+      // determine if we have waited long enough.
+      time(&now);
+      double diff = difftime(now, start);
+      if (diff > timeout) 
+      {
                ok = false;
-            }
-            else
-            {
+      }
+      else
+      {
                m_impl->wait();
-            }
+      }
          }    
       }
    }

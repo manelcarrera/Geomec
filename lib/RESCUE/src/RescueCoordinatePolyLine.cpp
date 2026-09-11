@@ -14,7 +14,7 @@
 #include <string.h>
 
 RescueCoordinatePolyLine::RescueCoordinatePolyLine(RescueGeometry *geometry, RESCUEFLOAT *stackValuesIn)
-    :value(stackValuesIn),kLayers(geometry->Grid()->Axis(2)->Count64()) 
+  :value(stackValuesIn),kLayers(geometry->Grid()->Axis(2)->Count64()) 
 {}
 
 void RescueCoordinatePolyLine::ZValue(RESCUEINT64 k, RESCUEFLOAT newZValue)
@@ -28,7 +28,7 @@ void RescueCoordinatePolyLine::ZStack(RescueGeometry *geometry, RESCUEFLOAT *new
   RESCUEINT64 loop;
   for (loop = 0; loop < howMany; loop++)
   {
-    value[(2 * kLayers) + loop] = newZValues[loop];
+  value[(2 * kLayers) + loop] = newZValues[loop];
   }
 }
 
@@ -63,7 +63,7 @@ void RescueCoordinatePolyLine::Archive(RescueContext *context, RESCUEINT64 kLaye
   myfprintf(context, archiveFile, value, kLayers * 3, compress);
   if (context->FileVersion() >= 37)
   {
-    myfprintf(context, archiveFile, "EOD");
+  myfprintf(context, archiveFile, "EOD");
   }
 }
 
@@ -75,14 +75,14 @@ RescueCoordinatePolyLine::RescueCoordinatePolyLine(RescueContext *context, RESCU
   myfscanf(context, archiveFile, value, kLayers * 3, compress);
   if (context->ReadFileVersion() >= 37)
   {
-    RESCUECHAR myString[255];
+  RESCUECHAR myString[255];
 
-    myfgets(context, myString, 255, archiveFile);
-    while (strcmp(myString, "EOD") != 0)
-    {
+  myfgets(context, myString, 255, archiveFile);
+  while (strcmp(myString, "EOD") != 0)
+  {
       RescueBuffer buf(context, archiveFile);
       myfgets(context, myString, 255, archiveFile);
-    }
+  }
   }
 }
 
@@ -90,7 +90,7 @@ void RescueCoordinatePolyLine::SwapKAxis(RESCUEINT64 kNodes)
 {
   if (value != 0)
   {
-    RescueContext::SwapAxes(value, false, 3, true, kNodes);
+  RescueContext::SwapAxes(value, false, 3, true, kNodes);
   }
 /*
   There are three kNodes * xyz values, and the xyz values lie

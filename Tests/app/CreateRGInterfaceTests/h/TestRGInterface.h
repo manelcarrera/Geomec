@@ -10,25 +10,25 @@ class RGInterface;
 class ITestRGInterface
 {
   public:
-    ITestRGInterface();
+  ITestRGInterface();
 
-    virtual void createNodes(RGInterface& rgInterface) = 0;
-    virtual void createElements(RGInterface& rgInterface) = 0;
-    virtual void createProperties(RGInterface& rgInterface) = 0;
-    virtual void createFormationNames(RGInterface& rgInterface) = 0;
+  virtual void createNodes(RGInterface& rgInterface) = 0;
+  virtual void createElements(RGInterface& rgInterface) = 0;
+  virtual void createProperties(RGInterface& rgInterface) = 0;
+  virtual void createFormationNames(RGInterface& rgInterface) = 0;
 
-    void createDepletionStage(RGInterface& rgInterface);
-    void createCommands(RGInterface& rgInterface);
+  void createDepletionStage(RGInterface& rgInterface);
+  void createCommands(RGInterface& rgInterface);
 
   protected:
-    template <typename T>
+  template <typename T>
       std::vector <T> createNodes(T n0, T n1, T n2, T n3);
 
-    void createTest(const QString& modelName);
+  void createTest(const QString& modelName);
 
   private:
-    ITestRGInterface(const ITestRGInterface& rhs);
-    ITestRGInterface& operator = (const ITestRGInterface& rhs);
+  ITestRGInterface(const ITestRGInterface& rhs);
+  ITestRGInterface& operator = (const ITestRGInterface& rhs);
 };
 
 template <typename T>

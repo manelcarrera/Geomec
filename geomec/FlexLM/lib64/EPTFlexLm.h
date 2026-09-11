@@ -65,22 +65,22 @@ extern "C"
 {
 #endif
 
-	int EPTFlexLmInit(char *);
-        int EPTFlexLmGetHostid(char *);
-	int EPTFlexLmCheckOut(char *, char *, char *) ;
-	void EPTFlexLmCheckIn(char *);
-        int EPTFlexLmExpDays(char *, char *);
-        int EPTFlexLmMaxBorrowDays(char *);
-        int EPTFlexLmSetBorrow(char *, char *);
-        int EPTFlexLmSetBorrowDays(int, char *);
-        int EPTFlexLmGetBorrow(	char *, char *);
-        int EPTFlexLmShowBorrow(char *);
-        int EPTFlexLmReturnBorrow( char *, char * );
-	void EPTFlexLmTerminate(void);
-        void EPTFlexLmAddDays(int, char *);
-        int EPTFlexLmLeapYear(int);
-        int EPTFlexLmDaysInYear(int);
-	void EPTFlexLMVersionString(char *);
+  int EPTFlexLmInit(char *);
+    int EPTFlexLmGetHostid(char *);
+  int EPTFlexLmCheckOut(char *, char *, char *) ;
+  void EPTFlexLmCheckIn(char *);
+    int EPTFlexLmExpDays(char *, char *);
+    int EPTFlexLmMaxBorrowDays(char *);
+    int EPTFlexLmSetBorrow(char *, char *);
+    int EPTFlexLmSetBorrowDays(int, char *);
+    int EPTFlexLmGetBorrow(	char *, char *);
+    int EPTFlexLmShowBorrow(char *);
+    int EPTFlexLmReturnBorrow( char *, char * );
+  void EPTFlexLmTerminate(void);
+    void EPTFlexLmAddDays(int, char *);
+    int EPTFlexLmLeapYear(int);
+    int EPTFlexLmDaysInYear(int);
+  void EPTFlexLMVersionString(char *);
 
 #ifdef __cplusplus
 }

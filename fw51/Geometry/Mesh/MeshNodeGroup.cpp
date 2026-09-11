@@ -17,54 +17,54 @@ namespace geo {
 CMeshNodeGroup::CMeshNodeGroup(IMesh& mesh)
 : m_mesh(mesh), m_nIndex(m_mesh.NodeGroupSize())
 {
-	m_mesh.AddNodeGroup(*this);
+  m_mesh.AddNodeGroup(*this);
 }
 
 CMeshNodeGroup::~CMeshNodeGroup()
 {
-	m_mesh.RemoveNodeGroup(*this);
+  m_mesh.RemoveNodeGroup(*this);
 }
 
 int CMeshNodeGroup::Index() const
 {
-	return m_nIndex;
+  return m_nIndex;
 }
 
 bool CMeshNodeGroup::AddMeshNode(const INode& node)
 {
-	assert(node.IndexingElementSet() == &m_mesh);
+  assert(node.IndexingElementSet() == &m_mesh);
 
-	m_vcNode.push_back(&node);
+  m_vcNode.push_back(&node);
 
-	return true;
+  return true;
 }
 
 int CMeshNodeGroup::NodeSize() const
 {
-	return (int)m_vcNode.size();
+  return (int)m_vcNode.size();
 }
 
 const INode& CMeshNodeGroup::Node(int nIndex) const
 {
-	assert(nIndex>=0);
-	assert(nIndex<m_vcNode.size());
-	return *m_vcNode[nIndex];
+  assert(nIndex>=0);
+  assert(nIndex<m_vcNode.size());
+  return *m_vcNode[nIndex];
 }
 
 //Overrides of IObject
 void CMeshNodeGroup::Rotate(const IVector &/*vec*/, const double &/*dAngleDeg*/)
 {
-	assert(false);	//Nodes are const
+  assert(false);	//Nodes are const
 }
 
 void CMeshNodeGroup::Move(const IVector &/*vec*/)
 {
-	assert(false);	//Nodes are const
+  assert(false);	//Nodes are const
 }
 
 void CMeshNodeGroup::Transform(const IMatrix &/*matrix*/)
 {
-	assert(false);	//Nodes are const
+  assert(false);	//Nodes are const
 }
 
 void CMeshNodeGroup::AssertValid() const
@@ -73,47 +73,47 @@ void CMeshNodeGroup::AssertValid() const
 
 bool CMeshNodeGroup::Empty() const
 {
-	return (NodeSize()==0);
+  return (NodeSize()==0);
 }
 
 CPoint CMeshNodeGroup::Min() const
 {
-	AssertValid();
+  AssertValid();
 
-	int nodes = NodeSize();
-	if(nodes == 0)
-		return CPoint();
+  int nodes = NodeSize();
+  if(nodes == 0)
+    return CPoint();
 
-	CPoint ptMin(Node(0));
+  CPoint ptMin(Node(0));
 
-	for(int i = 1; i < nodes; i++)
-	{
-		ptMin = ptMin.Min(Node(i));
-	}
+  for(int i = 1; i < nodes; i++)
+  {
+    ptMin = ptMin.Min(Node(i));
+  }
 
-	ptMin.AssertValid();
+  ptMin.AssertValid();
 
-	return ptMin;
+  return ptMin;
 }
 
 CPoint CMeshNodeGroup::Max() const
 {
-	AssertValid();
+  AssertValid();
 
-	int nodes = NodeSize();
-	if(nodes == 0)
-		return CPoint();
+  int nodes = NodeSize();
+  if(nodes == 0)
+    return CPoint();
 
-	CPoint ptMax(Node(0));
+  CPoint ptMax(Node(0));
 
-	for(int i = 1; i < nodes; i++)
-	{
-		ptMax = ptMax.Max(Node(i));
-	}
+  for(int i = 1; i < nodes; i++)
+  {
+    ptMax = ptMax.Max(Node(i));
+  }
 
-	ptMax.AssertValid();
+  ptMax.AssertValid();
 
-	return ptMax;
+  return ptMax;
 }
 
 } // namespace geo

@@ -17,14 +17,14 @@ CFaultFracture::CFaultFracture(CHorizonBase* horizonBase, CDoubleQuantity::UNIT 
 
   if (m_horizonBase->Slip() && m_horizonBase->hasFaultParameters(initialDepletionStage))
   {
-    m_faultParametersNode = &m_horizonBase->FaultParameters(initialDepletionStage);
+  m_faultParametersNode = &m_horizonBase->FaultParameters(initialDepletionStage);
 
-    m_cohesionUnitName = m_faultParametersNode->Cohesion().UnitName(m_unit).c_str();
-    m_frictionAngleUnitName = m_faultParametersNode->FrictionAngle().UnitName(m_unit).c_str();
+  m_cohesionUnitName = m_faultParametersNode->Cohesion().UnitName(m_unit).c_str();
+  m_frictionAngleUnitName = m_faultParametersNode->FrictionAngle().UnitName(m_unit).c_str();
 
-    // waij TFS 100415 SI/FIELD
-    m_cohesion = m_faultParametersNode->Cohesion().Value(m_unit);
-    m_frictionAngle = m_faultParametersNode->FrictionAngle().Value(m_unit);
+  // waij TFS 100415 SI/FIELD
+  m_cohesion = m_faultParametersNode->Cohesion().Value(m_unit);
+  m_frictionAngle = m_faultParametersNode->FrictionAngle().Value(m_unit);
   }
 
 }
@@ -131,12 +131,12 @@ void CFaultFracture::FinalizeInitD0()
 {
   if (m_faultParametersNode)
   {
-    CCohesionQuantity cohesionQuantity = m_faultParametersNode->Cohesion();
+  CCohesionQuantity cohesionQuantity = m_faultParametersNode->Cohesion();
 
-    double dCohesion = cohesionQuantity.Convert(m_cohesion, CDoubleQuantity::SI_UNIT, m_unit);
+  double dCohesion = cohesionQuantity.Convert(m_cohesion, CDoubleQuantity::SI_UNIT, m_unit);
 
-    m_faultParametersNode->Cohesion(dCohesion);
-    m_faultParametersNode->FrictionAngle(m_frictionAngle);
+  m_faultParametersNode->Cohesion(dCohesion);
+  m_faultParametersNode->FrictionAngle(m_frictionAngle);
   }
 }
 

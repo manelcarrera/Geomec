@@ -45,40 +45,40 @@ class AFX_EXT_CLASS_LICENSE RegisterDialog : public CDialog
 {
 // Construction
 public:
-	RegisterDialog(CWnd* pParent = NULL);   // standard constructor
+  RegisterDialog(CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
-	//{{AFX_DATA(RegisterDialog)
-	enum { IDD = IDD_REGISTRATIONBOX };
-	CButton	m_cDemoButton;
-	CButton	m_cRegisterText;
-	CStatic	m_csOptionText;
-	//}}AFX_DATA
-	CString m_csAppName;
-	BOOL GetShowDemo() { return m_bShowDemo; };
-	void SetShowDemo(BOOL p_bShowDemo) { m_bShowDemo = p_bShowDemo; };
+  //{{AFX_DATA(RegisterDialog)
+  enum { IDD = IDD_REGISTRATIONBOX };
+  CButton	m_cDemoButton;
+  CButton	m_cRegisterText;
+  CStatic	m_csOptionText;
+  //}}AFX_DATA
+  CString m_csAppName;
+  BOOL GetShowDemo() { return m_bShowDemo; };
+  void SetShowDemo(BOOL p_bShowDemo) { m_bShowDemo = p_bShowDemo; };
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(RegisterDialog)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+  // ClassWizard generated virtual function overrides
+  //{{AFX_VIRTUAL(RegisterDialog)
+  protected:
+  virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+  //}}AFX_VIRTUAL
 
 // Implementation
 protected:
-	// Generated message map functions
-	//{{AFX_MSG(RegisterDialog)
-		// NOTE: the ClassWizard will add member functions here
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+  // Generated message map functions
+  //{{AFX_MSG(RegisterDialog)
+    // NOTE: the ClassWizard will add member functions here
+  //}}AFX_MSG
+  DECLARE_MESSAGE_MAP()
 public:
-	void OnRegister();
-	void OnDemoMode(); 
-	void OnBrowseForLicense();
+  void OnRegister();
+  void OnDemoMode(); 
+  void OnBrowseForLicense();
 private:
-	void OnInitialUpdate(); 
-	BOOL m_bShowDemo;
+  void OnInitialUpdate(); 
+  BOOL m_bShowDemo;
 
 };
 

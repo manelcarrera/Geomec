@@ -5,17 +5,17 @@
 ///// define 'BEGIN_MESSAGE_MAP' macro for a template with 2 parameters
 
 #define BEGIN_TEMPLATE_2_MESSAGE_MAP(theClass, type_name1, type_name2, baseClass)			\
-	PTM_WARNING_DISABLE														\
-	template < typename type_name1, typename type_name2 >											\
-	const AFX_MSGMAP* theClass< type_name1, type_name2 >::GetMessageMap() const			\
-		{ return GetThisMessageMap(); }										\
-	template < typename type_name1, typename type_name2 >											\
-	const AFX_MSGMAP* PASCAL theClass< type_name1, type_name2 >::GetThisMessageMap()		\
-	{																		\
-		typedef theClass< type_name1, type_name2 > ThisClass;							\
-		typedef baseClass TheBaseClass;										\
-		static const AFX_MSGMAP_ENTRY _messageEntries[] =					\
-		{
+  PTM_WARNING_DISABLE														\
+  template < typename type_name1, typename type_name2 >											\
+  const AFX_MSGMAP* theClass< type_name1, type_name2 >::GetMessageMap() const			\
+    { return GetThisMessageMap(); }										\
+  template < typename type_name1, typename type_name2 >											\
+  const AFX_MSGMAP* PASCAL theClass< type_name1, type_name2 >::GetThisMessageMap()		\
+  {																		\
+    typedef theClass< type_name1, type_name2 > ThisClass;							\
+    typedef baseClass TheBaseClass;										\
+    static const AFX_MSGMAP_ENTRY _messageEntries[] =					\
+    {
 
 /////
 
@@ -37,7 +37,7 @@ protected:
 
   afx_msg void OnRadio();
 
-	DECLARE_MESSAGE_MAP()
+  DECLARE_MESSAGE_MAP()
 
 private:
   double ControlValue(CDataExchange* pDX, const CString& strValue, unsigned int idc) const;
@@ -97,29 +97,29 @@ void CAttriWellCasingInternalLoadDlg<LOAD, GRADIENT_QTY>::DoDataExchange(CDataEx
 
   if(!pDX->m_bSaveAndValidate)
   {
-    iDistributed = (Copy().DistributedOnly() ? 0 : 1);
-    if(Copy().DistributedSize() == 0)
+  iDistributed = (Copy().DistributedOnly() ? 0 : 1);
+  if(Copy().DistributedSize() == 0)
       iDistributed = -1;
 
-    iGradient = (Copy().LoadingMode() == LOAD::LM_REPEATER ? 0 : 1);
-    if(iDistributed == 0)
+  iGradient = (Copy().LoadingMode() == LOAD::LM_REPEATER ? 0 : 1);
+  if(iDistributed == 0)
       iGradient = -1;
 
-    strValueUnit = Copy().Gradient().UnitName(unit).toStdString().c_str();
-    strDepthUnit = qnLength.UnitName(unit).c_str();
-    strGradientUnit = qnGradient.UnitName(unit).c_str();
+  strValueUnit = Copy().Gradient().UnitName(unit).toStdString().c_str();
+  strDepthUnit = qnLength.UnitName(unit).c_str();
+  strGradientUnit = qnGradient.UnitName(unit).c_str();
 
-    strReferenceValue.Format("%g", Copy().Gradient().ReferenceValue() * Copy().Gradient().UnitFactor(unit));
-    strReferenceDepth.Format("%g", qnLength.Convert(Copy().Gradient().ReferenceDepth(), unit, CDoubleQuantity::SI_UNIT));
-    strGradient.Format("%g", qnGradient.Convert(Copy().Gradient().Gradient(), unit, CDoubleQuantity::SI_UNIT));
+  strReferenceValue.Format("%g", Copy().Gradient().ReferenceValue() * Copy().Gradient().UnitFactor(unit));
+  strReferenceDepth.Format("%g", qnLength.Convert(Copy().Gradient().ReferenceDepth(), unit, CDoubleQuantity::SI_UNIT));
+  strGradient.Format("%g", qnGradient.Convert(Copy().Gradient().Gradient(), unit, CDoubleQuantity::SI_UNIT));
 
-    if(iDistributed == 0 || iGradient == 0)
-    {
+  if(iDistributed == 0 || iGradient == 0)
+  {
       // disabled
       strReferenceValue = "";
       strReferenceDepth = "";
       strGradient = "";
-    }
+  }
   }
 
   DDX_Radio(pDX, IDC_RD_EXTRA_POLATE, iDistributed);
@@ -133,17 +133,17 @@ void CAttriWellCasingInternalLoadDlg<LOAD, GRADIENT_QTY>::DoDataExchange(CDataEx
 
   if(pDX->m_bSaveAndValidate)
   {
-    if((Copy().DistributedSize() == 0 || !Copy().DistributedOnly()) && Copy().LoadingMode() == LOAD::LM_GRADIENT)
-    {
+  if((Copy().DistributedSize() == 0 || !Copy().DistributedOnly()) && Copy().LoadingMode() == LOAD::LM_GRADIENT)
+  {
       Copy().Gradient().ReferenceValue(ControlValue(pDX, strReferenceValue, IDC_ED_CONSTANT_PRESSURE) / Copy().Gradient().UnitFactor(unit));
       Copy().Gradient().ReferenceDepth(qnLength.Convert(ControlValue(pDX, strReferenceDepth, IDC_ED_CONSTANT_DEPTH), CDoubleQuantity::SI_UNIT, unit));
       Copy().Gradient().Gradient(qnGradient.Convert(ControlValue(pDX, strGradient, IDC_ED_CONSTANT_GRADIENT), CDoubleQuantity::SI_UNIT, unit));
-    }
+  }
 
-    if(iDistributed >= 0)
+  if(iDistributed >= 0)
       Copy().DistributedOnly(iDistributed == 0);
 
-    if(iGradient >= 0)
+  if(iGradient >= 0)
       Copy().LoadingMode(iGradient == 0 ? LOAD::LM_REPEATER : LOAD::LM_GRADIENT);
   }
 }
@@ -163,9 +163,9 @@ double CAttriWellCasingInternalLoadDlg<LOAD, GRADIENT_QTY>::ControlValue(CDataEx
   double d = qsValue.toDouble(&ok);
   if(!ok)
   {
-    _m()->msg("Please enter a valid value");
-    pDX->PrepareEditCtrl(idc);
-    pDX->Fail();
+  _m()->msg("Please enter a valid value");
+  pDX->PrepareEditCtrl(idc);
+  pDX->Fail();
   }
 
   return d;

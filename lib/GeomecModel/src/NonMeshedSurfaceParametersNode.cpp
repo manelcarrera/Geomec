@@ -28,8 +28,8 @@ CNonMeshedSurfaceParametersNode::CNonMeshedSurfaceParametersNode(const CNonMeshe
   m_surface(rhs.m_surface),
   m_bCohesionExtrapolated(rhs.m_bCohesionExtrapolated),
   m_bFrictionExtrapolated(rhs.m_bFrictionExtrapolated),
-	m_Cohesion(rhs.m_Cohesion),
-	m_FrictionAngle(rhs.m_FrictionAngle),
+  m_Cohesion(rhs.m_Cohesion),
+  m_FrictionAngle(rhs.m_FrictionAngle),
   m_pValueTypeCohesion(rhs.m_pValueTypeCohesion),
   m_pValueTypeFriction(rhs.m_pValueTypeFriction)
 {
@@ -57,75 +57,75 @@ CNonMeshedSurfaceParametersNode& CNonMeshedSurfaceParametersNode::operator=(cons
 bool CNonMeshedSurfaceParametersNode::operator==(const CNonMeshedSurfaceParametersNode& rhs) const
 {
   return (
-    &m_surface                == &rhs.m_surface                &&
-    m_bCohesionExtrapolated   == rhs.m_bCohesionExtrapolated   &&
-    m_bFrictionExtrapolated   == rhs.m_bFrictionExtrapolated   &&
-    m_Cohesion                == rhs.m_Cohesion                &&
-    m_FrictionAngle           == rhs.m_FrictionAngle           &&
-    m_pValueTypeCohesion      == rhs.m_pValueTypeCohesion      &&
-    m_pValueTypeFriction      == rhs.m_pValueTypeFriction);
+  &m_surface                == &rhs.m_surface                &&
+  m_bCohesionExtrapolated   == rhs.m_bCohesionExtrapolated   &&
+  m_bFrictionExtrapolated   == rhs.m_bFrictionExtrapolated   &&
+  m_Cohesion                == rhs.m_Cohesion                &&
+  m_FrictionAngle           == rhs.m_FrictionAngle           &&
+  m_pValueTypeCohesion      == rhs.m_pValueTypeCohesion      &&
+  m_pValueTypeFriction      == rhs.m_pValueTypeFriction);
 }
 
 void CNonMeshedSurfaceParametersNode::OnNewNeighbour(const CGraphNode& node)
 {
-	const CValueType* pValueType = dynamic_cast<const CValueType*>(&node);
-	if(pValueType)
-	{
-		assert((pValueType->TypeId() == IDT_VALUETYPE_COHESION)         ||
+  const CValueType* pValueType = dynamic_cast<const CValueType*>(&node);
+  if(pValueType)
+  {
+    assert((pValueType->TypeId() == IDT_VALUETYPE_COHESION)         ||
            (pValueType->TypeId() == IDT_VALUETYPE_FRICTION_ANGLE));
-		
-		if(pValueType->TypeId() == IDT_VALUETYPE_COHESION)
-		{
-			assert(m_pValueTypeCohesion == 0);
-			m_pValueTypeCohesion = pValueType;
-		}
-		else if(pValueType->TypeId() == IDT_VALUETYPE_FRICTION_ANGLE)
-		{
-			assert(m_pValueTypeFriction == 0);
-			m_pValueTypeFriction = pValueType;
-		}
+    
+    if(pValueType->TypeId() == IDT_VALUETYPE_COHESION)
+    {
+      assert(m_pValueTypeCohesion == 0);
+      m_pValueTypeCohesion = pValueType;
+    }
+    else if(pValueType->TypeId() == IDT_VALUETYPE_FRICTION_ANGLE)
+    {
+      assert(m_pValueTypeFriction == 0);
+      m_pValueTypeFriction = pValueType;
+    }
 
-		Modified();
-	}
+    Modified();
+  }
 
   CStorageNode::OnNewNeighbour(node);
 }
 
 void CNonMeshedSurfaceParametersNode::OnNeighbourDeleted(const CGraphNode& node)
 {
-	if(m_pValueTypeCohesion == &node)
-	{
-		m_pValueTypeCohesion = 0;
-		Modified();
-	}
-	else if(m_pValueTypeFriction == &node)
-	{
-		m_pValueTypeFriction = 0;
-		Modified();
-	}
+  if(m_pValueTypeCohesion == &node)
+  {
+    m_pValueTypeCohesion = 0;
+    Modified();
+  }
+  else if(m_pValueTypeFriction == &node)
+  {
+    m_pValueTypeFriction = 0;
+    Modified();
+  }
 
   CStorageNode::OnNeighbourDeleted(node);
 }
 
 void CNonMeshedSurfaceParametersNode::OnNeighbourModified(const CGraphNode& node, enum ModifiedHint /*uHint*/)
 {
-	if(m_pValueTypeCohesion == &node || m_pValueTypeFriction == &node)
-		Modified();
+  if(m_pValueTypeCohesion == &node || m_pValueTypeFriction == &node)
+    Modified();
 }
 
 bool CNonMeshedSurfaceParametersNode::CanConnectItem(const CGraphNode& item) const
 {
-	if(IsLinkedTo(item))
-		return false;
+  if(IsLinkedTo(item))
+    return false;
 
-	const CValueType* pValueType = dynamic_cast<const CValueType*>(&item);
-	if(pValueType)
-	{
-		return ((pValueType->TypeId() == IDT_VALUETYPE_COHESION       && !m_pValueTypeCohesion) || 
-            (pValueType->TypeId() == IDT_VALUETYPE_FRICTION_ANGLE && !m_pValueTypeFriction));
-	}
+  const CValueType* pValueType = dynamic_cast<const CValueType*>(&item);
+  if(pValueType)
+  {
+    return ((pValueType->TypeId() == IDT_VALUETYPE_COHESION       && !m_pValueTypeCohesion) || 
+      (pValueType->TypeId() == IDT_VALUETYPE_FRICTION_ANGLE && !m_pValueTypeFriction));
+  }
 
-	return CStorageNode::CanConnectItem(item);
+  return CStorageNode::CanConnectItem(item);
 }
 
 unsigned int CNonMeshedSurfaceParametersNode::IconId() const
@@ -169,12 +169,12 @@ void CNonMeshedSurfaceParametersNode::LoadStream(TSTREAM& stream, CStreamVersion
   int i;
   for(i = 0; i < 2; ++i)
   {
-    TValueCompositeEntry& composite_entry = (TValueCompositeEntry&)*Model().GraphEntry(MD_BASE_VALUE_COMPOSITE);
-    stream >> n;
-    if(n >= 0)
-    {
+  TValueCompositeEntry& composite_entry = (TValueCompositeEntry&)*Model().GraphEntry(MD_BASE_VALUE_COMPOSITE);
+  stream >> n;
+  if(n >= 0)
+  {
       composite_entry.LinkNodeToIndex(*this, n);
-    }
+  }
   }
 
   progress.Step();
@@ -197,14 +197,14 @@ void CNonMeshedSurfaceParametersNode::SaveStream(TSTREAM& stream, TPROGRESS& pro
   stream << dFriction;
 
   if(m_pValueTypeCohesion)
-    stream << m_pValueTypeCohesion->Index();
+  stream << m_pValueTypeCohesion->Index();
   else
-    stream << -1;
+  stream << -1;
 
   if(m_pValueTypeFriction)
-    stream << m_pValueTypeFriction->Index();
+  stream << m_pValueTypeFriction->Index();
   else
-    stream << -1;
+  stream << -1;
 
   progress.Step();
 }
@@ -261,88 +261,88 @@ void CNonMeshedSurfaceParametersNode::FrictionExtrapolated(bool b)
 
 double CNonMeshedSurfaceParametersNode::Cohesion(const geo::IPoint& point, const CQuantity::UNIT unit) const
 {
-	if(m_pValueTypeCohesion)
-	{
-		if(m_bCohesionExtrapolated || m_pValueTypeCohesion->PointSet().PointInConvexHull(point))
-		{
-			geo::CValue value = m_pValueTypeCohesion->Component().ScalarData().ValuePoint(point, unit);
-			if(value.Valid())
-        return value.Value();
-		}
-	}
+  if(m_pValueTypeCohesion)
+  {
+    if(m_bCohesionExtrapolated || m_pValueTypeCohesion->PointSet().PointInConvexHull(point))
+    {
+      geo::CValue value = m_pValueTypeCohesion->Component().ScalarData().ValuePoint(point, unit);
+      if(value.Valid())
+    return value.Value();
+    }
+  }
 
-	return Cohesion().Value(unit);
+  return Cohesion().Value(unit);
 }
 
 std::vector<double> CNonMeshedSurfaceParametersNode::Cohesion(const geo::IElement& element, const CQuantity::UNIT unit) const
 {
-	std::vector<double> vcResult(element.NrOfPoints());
+  std::vector<double> vcResult(element.NrOfPoints());
 
-	if(m_pValueTypeCohesion)
-	{
-		if(m_bCohesionExtrapolated || m_pValueTypeCohesion->PointSet().ElementInConvexHull(element))
-		{
-			IValueDomainScalar::TValueVec vcValue = m_pValueTypeCohesion->Component().ScalarData().ValueElement(element, unit);
-			assert(vcValue.size() == vcResult.size());
-			for(size_t j = 0; j < vcResult.size(); ++j)
-			{
-				if(vcValue[j].Valid())
-					vcResult[j] = vcValue[j].Value();
-				else
-					vcResult[j] = Cohesion().Value(unit);
-			}
+  if(m_pValueTypeCohesion)
+  {
+    if(m_bCohesionExtrapolated || m_pValueTypeCohesion->PointSet().ElementInConvexHull(element))
+    {
+      IValueDomainScalar::TValueVec vcValue = m_pValueTypeCohesion->Component().ScalarData().ValueElement(element, unit);
+      assert(vcValue.size() == vcResult.size());
+      for(size_t j = 0; j < vcResult.size(); ++j)
+      {
+        if(vcValue[j].Valid())
+          vcResult[j] = vcValue[j].Value();
+        else
+          vcResult[j] = Cohesion().Value(unit);
+      }
 
-			return vcResult;
-		}
-	}
+      return vcResult;
+    }
+  }
 
-	for(size_t i = 0; i < vcResult.size(); ++i)
-    vcResult[i] = Cohesion().Value(unit);
+  for(size_t i = 0; i < vcResult.size(); ++i)
+  vcResult[i] = Cohesion().Value(unit);
 
-	return vcResult;
+  return vcResult;
 }
 
 double CNonMeshedSurfaceParametersNode::FrictionAngle(const geo::IPoint& point, const CQuantity::UNIT unit) const
 {
-	if(m_pValueTypeFriction)
-	{
-		if(m_bFrictionExtrapolated || m_pValueTypeFriction->PointSet().PointInConvexHull(point))
-		{
-			geo::CValue value = m_pValueTypeFriction->Component().ScalarData().ValuePoint(point, unit);
-			if(value.Valid())
-        return value.Value();
-		}
-	}
+  if(m_pValueTypeFriction)
+  {
+    if(m_bFrictionExtrapolated || m_pValueTypeFriction->PointSet().PointInConvexHull(point))
+    {
+      geo::CValue value = m_pValueTypeFriction->Component().ScalarData().ValuePoint(point, unit);
+      if(value.Valid())
+    return value.Value();
+    }
+  }
 
-	return FrictionAngle().Value(unit);
+  return FrictionAngle().Value(unit);
 }
 
 std::vector<double> CNonMeshedSurfaceParametersNode::FrictionAngle(const geo::IElement& element, const CQuantity::UNIT unit) const
 {
-	std::vector<double> vcResult(element.NrOfPoints());
+  std::vector<double> vcResult(element.NrOfPoints());
 
-	if(m_pValueTypeFriction)
-	{
-		if(m_bFrictionExtrapolated || m_pValueTypeFriction->PointSet().ElementInConvexHull(element))
-		{
-			IValueDomainScalar::TValueVec vcValue = m_pValueTypeFriction->Component().ScalarData().ValueElement(element, unit);
-			assert(vcValue.size() == vcResult.size());
-			for(size_t j = 0; j < vcResult.size(); j++)
-			{
-				if(vcValue[j].Valid())
-					vcResult[j] = vcValue[j].Value();
-				else
-					vcResult[j] = FrictionAngle().Value(unit);
-			}
+  if(m_pValueTypeFriction)
+  {
+    if(m_bFrictionExtrapolated || m_pValueTypeFriction->PointSet().ElementInConvexHull(element))
+    {
+      IValueDomainScalar::TValueVec vcValue = m_pValueTypeFriction->Component().ScalarData().ValueElement(element, unit);
+      assert(vcValue.size() == vcResult.size());
+      for(size_t j = 0; j < vcResult.size(); j++)
+      {
+        if(vcValue[j].Valid())
+          vcResult[j] = vcValue[j].Value();
+        else
+          vcResult[j] = FrictionAngle().Value(unit);
+      }
 
-			return vcResult;
-		}
-	}
+      return vcResult;
+    }
+  }
 
-	for(size_t i = 0; i < vcResult.size(); i++)
-    vcResult[i] = FrictionAngle().Value(unit);
+  for(size_t i = 0; i < vcResult.size(); i++)
+  vcResult[i] = FrictionAngle().Value(unit);
 
-	return vcResult;
+  return vcResult;
 }
 
 const CNonMeshedSurface& CNonMeshedSurfaceParametersNode::Surface() const

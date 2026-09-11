@@ -34,8 +34,8 @@ guint gts_graph_partition_edges_cut (GSList * partition)
   guint cuts = 0;
 
   while (partition) {
-    cuts += gts_graph_edges_cut (partition->data);
-    partition = partition->next;
+  cuts += gts_graph_edges_cut (partition->data);
+  partition = partition->next;
   }
 
   return cuts/2;
@@ -52,8 +52,8 @@ gfloat gts_graph_partition_edges_cut_weight (GSList * partition)
   gfloat weight = 0.;
 
   while (partition) {
-    weight += gts_graph_edges_cut_weight (partition->data);
-    partition = partition->next;
+  weight += gts_graph_edges_cut_weight (partition->data);
+  partition = partition->next;
   }
 
   return weight/2.0f;
@@ -67,7 +67,7 @@ gfloat gts_graph_partition_edges_cut_weight (GSList * partition)
  * Writes to @fp a summary of the properties of @partition.
  */
 void gts_graph_partition_print_stats (GSList * partition,
-				      FILE * fp)
+              FILE * fp)
 {
   GtsRange weight;
   GSList * i;
@@ -78,18 +78,18 @@ void gts_graph_partition_print_stats (GSList * partition,
   gts_range_init (&weight);
   i = partition;
   while (i) {
-    gts_range_add_value (&weight, gts_graph_weight (i->data));
-    i = i->next;
+  gts_range_add_value (&weight, gts_graph_weight (i->data));
+  i = i->next;
   }
   gts_range_update (&weight);
 
   fprintf (fp, 
-	   "# parts: %lld\n"
-	   "#   edge cuts: %5lld edge cuts weight: %5g\n"
-	   "#   weight: ",
-	   g_slist_length (partition),
-	   gts_graph_partition_edges_cut (partition),
-	   gts_graph_partition_edges_cut_weight (partition));
+     "# parts: %lld\n"
+     "#   edge cuts: %5lld edge cuts weight: %5g\n"
+     "#   weight: ",
+     g_slist_length (partition),
+     gts_graph_partition_edges_cut (partition),
+     gts_graph_partition_edges_cut_weight (partition));
   gts_range_print (&weight, fp);
   fputc ('\n', fp);
 }
@@ -109,12 +109,12 @@ gfloat gts_graph_partition_balance (GSList * partition)
   g_return_val_if_fail (partition != NULL, 0.);
 
   while (partition) {
-    gfloat weight = gts_graph_weight (partition->data);
-    if (weight < wmin)
+  gfloat weight = gts_graph_weight (partition->data);
+  if (weight < wmin)
       wmin = weight;
-    if (weight > wmax)
+  if (weight > wmax)
       wmax = weight;
-    partition = partition->next;
+  partition = partition->next;
   }
   return wmax - wmin;
 }
@@ -131,10 +131,10 @@ GSList * gts_graph_partition_clone (GSList * partition)
   GSList * cparts = NULL;
 
   while (partition) {
-    cparts = 
+  cparts = 
       g_slist_prepend (cparts, 
-		       gts_object_clone (GTS_OBJECT (partition->data)));
-    partition = partition->next;
+           gts_object_clone (GTS_OBJECT (partition->data)));
+  partition = partition->next;
   }
   return cparts;
 }
@@ -150,8 +150,8 @@ void gts_graph_partition_destroy (GSList * partition)
   GSList * i = partition;
 
   while (i) {
-    gts_object_destroy (GTS_OBJECT (i->data));
-    i = i->next;
+  gts_object_destroy (GTS_OBJECT (i->data));
+  i = i->next;
   }
   g_slist_free (partition);
 }
@@ -164,15 +164,15 @@ static void find_smallest_degree (GtsGNode * n, gpointer * data)
   guint degree = gts_gnode_degree (n, g);
 
   if (degree < *min) {
-    *min = degree;
-    *nmin = n;
+  *min = degree;
+  *nmin = n;
   }
 }
 
 static gint graph_comp_weight (GtsGraph * g1, GtsGraph * g2)
 {
   if (gts_graph_weight (g1) > gts_graph_weight (g2))
-    return 1;
+  return 1;
   return -1;
 }
 
@@ -186,36 +186,36 @@ static void partition_update (GSList * list, GtsGraph * g)
   /* initialize traversals */
   i = list;
   while (i) {
-    GtsGNode * seed = GTS_OBJECT (i->data)->reserved;
-    GTS_OBJECT (seed)->reserved = 
+  GtsGNode * seed = GTS_OBJECT (i->data)->reserved;
+  GTS_OBJECT (seed)->reserved = 
       gts_graph_traverse_new (g, seed, GTS_BREADTH_FIRST, reinit);
-    reinit = FALSE;
-    i = i->next;
+  reinit = FALSE;
+  i = i->next;
   }
   
   size_heap = gts_heap_new ((GCompareFunc) graph_comp_weight);
   i = list;
   while (i) {
-    gts_heap_insert (size_heap, i->data);
-    i = i->next;
+  gts_heap_insert (size_heap, i->data);
+  i = i->next;
   }
   while ((g1 = gts_heap_remove_top (size_heap))) {
-    GtsGraphTraverse * t = GTS_OBJECT (GTS_OBJECT (g1)->reserved)->reserved;
-    GtsGNode * n = gts_graph_traverse_next (t);
-    if (n) {
+  GtsGraphTraverse * t = GTS_OBJECT (GTS_OBJECT (g1)->reserved)->reserved;
+  GtsGNode * n = gts_graph_traverse_next (t);
+  if (n) {
       gts_container_add (GTS_CONTAINER (g1), GTS_CONTAINEE (n));
       gts_heap_insert (size_heap, g1);
-    }
+  }
   }
   gts_heap_destroy (size_heap);
 
   /* destroy traversals */
   i = list;
   while (i) {
-    GtsGNode * seed = GTS_OBJECT (i->data)->reserved;
-    gts_graph_traverse_destroy (GTS_OBJECT (seed)->reserved);
-    GTS_OBJECT (seed)->reserved = NULL;
-    i = i->next;
+  GtsGNode * seed = GTS_OBJECT (i->data)->reserved;
+  gts_graph_traverse_destroy (GTS_OBJECT (seed)->reserved);
+  GTS_OBJECT (seed)->reserved = NULL;
+  i = i->next;
   }
 }
 
@@ -227,8 +227,8 @@ static void better_seed (GtsGNode * n, gpointer * data)
   guint sum1 = gts_graph_distance_sum (g, n);
   
   if (sum1 < *sum) {
-    *sum = sum1;
-    *seed = n;
+  *sum = sum1;
+  *seed = n;
   }
 }
 
@@ -265,10 +265,10 @@ static GtsGNode * graph_new_seed (GtsGraph * g, GtsGNode * seed)
  * Returns: a list of @np new #GtsGraph representing the partition.  
  */
 GSList * gts_graph_bubble_partition (GtsGraph * g, 
-				     guint np, 
-				     guint niter,
-				     GtsFunc step_info,
-				     gpointer data)
+             guint np, 
+             guint niter,
+             GtsFunc step_info,
+             gpointer data)
 {
   GSList * list = NULL, * seeds = NULL;
   GtsGNode * seed = NULL;
@@ -284,10 +284,10 @@ GSList * gts_graph_bubble_partition (GtsGraph * g,
   info[1] = g;
   info[2] = &min;
   gts_container_foreach (GTS_CONTAINER (g), 
-			 (GtsFunc) find_smallest_degree,
-			 info);
+       (GtsFunc) find_smallest_degree,
+       info);
   if (seed == NULL)
-    return NULL;
+  return NULL;
 
   g1 = GTS_GRAPH (gts_object_new (GTS_OBJECT (g)->klass));
   gts_container_add (GTS_CONTAINER (g1), GTS_CONTAINEE (seed));
@@ -296,49 +296,49 @@ GSList * gts_graph_bubble_partition (GtsGraph * g,
   seeds = g_slist_prepend (seeds, seed);
 
   while (--np && seed)
-    if ((seed = gts_graph_farthest (g, seeds))) {
+  if ((seed = gts_graph_farthest (g, seeds))) {
       g1 = GTS_GRAPH (gts_object_new (GTS_OBJECT (g)->klass));
       gts_container_add (GTS_CONTAINER (g1), GTS_CONTAINEE (seed));
       list = g_slist_prepend (list, g1);
       GTS_OBJECT (g1)->reserved = seed;
       seeds = g_slist_prepend (seeds, seed);
-    }
+  }
   g_slist_free (seeds);
   
   partition_update (list, g);
 
   while (changed && niter--) {
-    GSList * i;
+  GSList * i;
 
-    changed = FALSE;
-    i = list;
-    while (i) {
+  changed = FALSE;
+  i = list;
+  while (i) {
       GtsGraph * g1 = i->data;
       GtsGNode * seed = GTS_OBJECT (g1)->reserved;
       GtsGNode * new_seed = graph_new_seed (g1, seed);
       if (new_seed != seed) {
-	changed = TRUE;
-	GTS_OBJECT (g1)->reserved = new_seed;
+  changed = TRUE;
+  GTS_OBJECT (g1)->reserved = new_seed;
       }
       i = i->next;
-    }
+  }
 
-    if (changed) {
+  if (changed) {
       i = list;
       while (i) {
-	GtsGraph * g1 = i->data;
-	GtsGNode * seed = GTS_OBJECT (g1)->reserved;
+  GtsGraph * g1 = i->data;
+  GtsGNode * seed = GTS_OBJECT (g1)->reserved;
 
-	gts_object_destroy (GTS_OBJECT (g1));
-	i->data = g1 = GTS_GRAPH (gts_object_new (GTS_OBJECT (g)->klass));
-	gts_container_add (GTS_CONTAINER (g1), GTS_CONTAINEE (seed));
-	GTS_OBJECT (g1)->reserved = seed;
-	i = i->next;
+  gts_object_destroy (GTS_OBJECT (g1));
+  i->data = g1 = GTS_GRAPH (gts_object_new (GTS_OBJECT (g)->klass));
+  gts_container_add (GTS_CONTAINER (g1), GTS_CONTAINEE (seed));
+  GTS_OBJECT (g1)->reserved = seed;
+  i = i->next;
       }
       partition_update (list, g);
       if (step_info)
-	(* step_info) (list, data);
-    }
+  (* step_info) (list, data);
+  }
   }
   g_slist_foreach (list, (GFunc) gts_object_reset_reserved, NULL);
   return list;
@@ -354,16 +354,16 @@ static gdouble node_cost (GtsGNode * n, gpointer * data)
   gdouble cost = 0.;
 
   while (i) {
-    GtsGEdge * e = i->data;
-    GtsGNode * n1 = GTS_GNODE_NEIGHBOR (n, e);
+  GtsGEdge * e = i->data;
+  GtsGNode * n1 = GTS_GNODE_NEIGHBOR (n, e);
 
-    if (gts_containee_is_contained (GTS_CONTAINEE (n1), GTS_CONTAINER (g))) {
+  if (gts_containee_is_contained (GTS_CONTAINEE (n1), GTS_CONTAINER (g))) {
       if (gts_containee_is_contained (GTS_CONTAINEE (n1), GTS_CONTAINER (g1)))
-	cost -= gts_gedge_weight (e);
+  cost -= gts_gedge_weight (e);
       else 
-	cost += gts_gedge_weight (e);
-    }
-    i = i->next;
+  cost += gts_gedge_weight (e);
+  }
+  i = i->next;
   }
 
   return cost;
@@ -372,18 +372,18 @@ static gdouble node_cost (GtsGNode * n, gpointer * data)
 static void add_neighbor (GtsGNode * n, GtsEHeap * heap)
 {
   if (GTS_OBJECT (n)->reserved == n)
-    return;
+  return;
   if (GTS_OBJECT (n)->reserved)
-    gts_eheap_remove (heap, GTS_OBJECT (n)->reserved);
+  gts_eheap_remove (heap, GTS_OBJECT (n)->reserved);
   GTS_OBJECT (n)->reserved = gts_eheap_insert (heap, n);
 }
 
 static void add_unused (GtsGNode * n, GtsGraph * g2)
 {
   if (GTS_OBJECT (n)->reserved)
-    GTS_OBJECT (n)->reserved = NULL;
+  GTS_OBJECT (n)->reserved = NULL;
   else
-    gts_container_add (GTS_CONTAINER (g2), GTS_CONTAINEE (n));
+  gts_container_add (GTS_CONTAINER (g2), GTS_CONTAINEE (n));
 }
 
 static gdouble degree_cost (GtsGNode * n, GtsGraph * g)
@@ -401,13 +401,13 @@ static void boundary_node1 (GtsGNode * n, GtsGraphBisection * bg)
   GSList * i = GTS_SLIST_CONTAINER (n)->items;
 
   while (i) {
-    GtsGNode * n1 = GTS_GNODE_NEIGHBOR (n, i->data);
-    if (gts_containee_is_contained (GTS_CONTAINEE (n1), 
-				    GTS_CONTAINER (bg->g2))) {
+  GtsGNode * n1 = GTS_GNODE_NEIGHBOR (n, i->data);
+  if (gts_containee_is_contained (GTS_CONTAINEE (n1), 
+          GTS_CONTAINER (bg->g2))) {
       g_hash_table_insert (bg->bg1, n, n1);
       return;
-    }
-    i = i->next;
+  }
+  i = i->next;
   }
 }
 
@@ -416,13 +416,13 @@ static void boundary_node2 (GtsGNode * n, GtsGraphBisection * bg)
   GSList * i = GTS_SLIST_CONTAINER (n)->items;
 
   while (i) {
-    GtsGNode * n1 = GTS_GNODE_NEIGHBOR (n, i->data);
-    if (gts_containee_is_contained (GTS_CONTAINEE (n1), 
-				    GTS_CONTAINER (bg->g1))) {
+  GtsGNode * n1 = GTS_GNODE_NEIGHBOR (n, i->data);
+  if (gts_containee_is_contained (GTS_CONTAINEE (n1), 
+          GTS_CONTAINER (bg->g1))) {
       g_hash_table_insert (bg->bg2, n, n1);
       return;
-    }
-    i = i->next;
+  }
+  i = i->next;
   }
 }
 
@@ -435,12 +435,12 @@ static void check_bg (GtsGNode * n, gpointer * data)
   guint nn = gts_gnode_degree (n, g);
 
   if (nn > 0)
-    (*nb)++;
+  (*nb)++;
   if ((nn > 0 && !g_hash_table_lookup (bg, n)) ||
       (nn == 0 && g_hash_table_lookup (bg, n))) {
-    g_warning ("nn: %d lookup: %p\n",
-	       nn, g_hash_table_lookup (bg, n));
-    *ok = FALSE;
+  g_warning ("nn: %d lookup: %p\n",
+         nn, g_hash_table_lookup (bg, n));
+  *ok = FALSE;
   }
 }
 
@@ -512,64 +512,64 @@ GtsGraphBisection * gts_graph_ggg_bisection (GtsGraph * g, guint ntry)
   gts_eheap_thaw (degree_heap);
 
   while (ntry && ((seed = gts_eheap_remove_top (degree_heap, NULL)))) {
-    GtsGraph * g1, * g2;
-    GtsGNode * n;
-    gdouble cost;
-    gpointer data[2];
-    GtsEHeap * heap;
+  GtsGraph * g1, * g2;
+  GtsGNode * n;
+  gdouble cost;
+  gpointer data[2];
+  GtsEHeap * heap;
   
-    g1 = gts_graph_new (GTS_GRAPH_CLASS (GTS_OBJECT (g)->klass),
-			g->node_class, g->edge_class);
-    g2 = gts_graph_new (GTS_GRAPH_CLASS (GTS_OBJECT (g)->klass),
-			g->node_class, g->edge_class);
-    
-    data[0] = g;
-    data[1] = g1;
-    heap = gts_eheap_new ((GtsKeyFunc) node_cost, data);
+  g1 = gts_graph_new (GTS_GRAPH_CLASS (GTS_OBJECT (g)->klass),
+      g->node_class, g->edge_class);
+  g2 = gts_graph_new (GTS_GRAPH_CLASS (GTS_OBJECT (g)->klass),
+      g->node_class, g->edge_class);
+  
+  data[0] = g;
+  data[1] = g1;
+  heap = gts_eheap_new ((GtsKeyFunc) node_cost, data);
 
-    gts_container_add (GTS_CONTAINER (g1), GTS_CONTAINEE (seed));
-    GTS_OBJECT (seed)->reserved = seed;
-    gts_gnode_foreach_neighbor (seed, g, (GtsFunc) add_neighbor, heap);
+  gts_container_add (GTS_CONTAINER (g1), GTS_CONTAINEE (seed));
+  GTS_OBJECT (seed)->reserved = seed;
+  gts_gnode_foreach_neighbor (seed, g, (GtsFunc) add_neighbor, heap);
 
-    while ((n = gts_eheap_remove_top (heap, &cost)))
+  while ((n = gts_eheap_remove_top (heap, &cost)))
       if (gts_graph_weight (g1) + gts_gnode_weight (n) <= size) {
-	gts_container_add (GTS_CONTAINER (g1), GTS_CONTAINEE (n));
-	GTS_OBJECT (n)->reserved = n;
-	gts_gnode_foreach_neighbor (n, g, (GtsFunc) add_neighbor, heap);
+  gts_container_add (GTS_CONTAINER (g1), GTS_CONTAINEE (n));
+  GTS_OBJECT (n)->reserved = n;
+  gts_gnode_foreach_neighbor (n, g, (GtsFunc) add_neighbor, heap);
       }
       else
-	GTS_OBJECT (n)->reserved = NULL;
-    gts_eheap_destroy (heap);
-    
-    gts_container_foreach (GTS_CONTAINER (g), (GtsFunc) add_unused, g2);
+  GTS_OBJECT (n)->reserved = NULL;
+  gts_eheap_destroy (heap);
+  
+  gts_container_foreach (GTS_CONTAINER (g), (GtsFunc) add_unused, g2);
 
-    cost = gts_graph_edges_cut_weight (g1);
-    if (!bestg1 || (cost < bestcost && gts_graph_weight (g1) >= smin)) {
+  cost = gts_graph_edges_cut_weight (g1);
+  if (!bestg1 || (cost < bestcost && gts_graph_weight (g1) >= smin)) {
       if (bestg1)
-	bestcost = (gfloat)cost;
+  bestcost = (gfloat)cost;
       if (bestg1)
-	gts_object_destroy (GTS_OBJECT (bestg1));
+  gts_object_destroy (GTS_OBJECT (bestg1));
       if (bestg2)
-	gts_object_destroy (GTS_OBJECT (bestg2));
+  gts_object_destroy (GTS_OBJECT (bestg2));
       bestg1 = g1;
       bestg2 = g2;
-    }
-    else {
+  }
+  else {
       gts_object_destroy (GTS_OBJECT (g1));
       gts_object_destroy (GTS_OBJECT (g2));
-    }
+  }
 
-    ntry--;
+  ntry--;
   }
   gts_eheap_destroy (degree_heap);
 
 #ifdef DEBUG
   fprintf (stderr, "bestcost: %5g g1: %5g|%5d g2: %5g|%5d\n",
-	   bestcost, 
-	   gts_graph_weight (bestg1), 
-	   gts_container_size (GTS_CONTAINER (bestg1)),
-	   gts_graph_weight (bestg2), 
-	   gts_container_size (GTS_CONTAINER (bestg2)));
+     bestcost, 
+     gts_graph_weight (bestg1), 
+     gts_container_size (GTS_CONTAINER (bestg1)),
+     gts_graph_weight (bestg2), 
+     gts_container_size (GTS_CONTAINER (bestg2)));
 #endif
 
   bg->g1 = bestg1;
@@ -617,53 +617,53 @@ GtsGraphBisection * gts_graph_bfgg_bisection (GtsGraph * g, guint ntry)
   gts_eheap_thaw (degree_heap);
 
   while (ntry && ((seed = gts_eheap_remove_top (degree_heap, NULL)))) {
-    GtsGraph * g1, * g2;
-    GtsGNode * n;
-    gdouble cost;
-    GtsGraphTraverse * t = gts_graph_traverse_new (g, seed, 
-						   GTS_BREADTH_FIRST, TRUE);
-    
-    g1 = gts_graph_new (GTS_GRAPH_CLASS (GTS_OBJECT (g)->klass),
-			g->node_class, g->edge_class);
-    g2 = gts_graph_new (GTS_GRAPH_CLASS (GTS_OBJECT (g)->klass),
-			g->node_class, g->edge_class);
+  GtsGraph * g1, * g2;
+  GtsGNode * n;
+  gdouble cost;
+  GtsGraphTraverse * t = gts_graph_traverse_new (g, seed, 
+               GTS_BREADTH_FIRST, TRUE);
+  
+  g1 = gts_graph_new (GTS_GRAPH_CLASS (GTS_OBJECT (g)->klass),
+      g->node_class, g->edge_class);
+  g2 = gts_graph_new (GTS_GRAPH_CLASS (GTS_OBJECT (g)->klass),
+      g->node_class, g->edge_class);
 
-    while ((n = gts_graph_traverse_next (t)))
+  while ((n = gts_graph_traverse_next (t)))
       if (gts_graph_weight (g1) + gts_gnode_weight (n) <= size) {
-	gts_container_add (GTS_CONTAINER (g1), GTS_CONTAINEE (n));
-	GTS_OBJECT (n)->reserved = n;
+  gts_container_add (GTS_CONTAINER (g1), GTS_CONTAINEE (n));
+  GTS_OBJECT (n)->reserved = n;
       }
-    gts_graph_traverse_destroy (t);
-    
-    gts_container_foreach (GTS_CONTAINER (g), (GtsFunc) add_unused, g2);
+  gts_graph_traverse_destroy (t);
+  
+  gts_container_foreach (GTS_CONTAINER (g), (GtsFunc) add_unused, g2);
 
-    cost = gts_graph_edges_cut_weight (g1);
-    if (!bestg1 || (cost < bestcost && gts_graph_weight (g1) >= smin)) {
+  cost = gts_graph_edges_cut_weight (g1);
+  if (!bestg1 || (cost < bestcost && gts_graph_weight (g1) >= smin)) {
       if (bestg1)
-	bestcost = (gfloat)cost;
+  bestcost = (gfloat)cost;
       if (bestg1)
-	gts_object_destroy (GTS_OBJECT (bestg1));
+  gts_object_destroy (GTS_OBJECT (bestg1));
       if (bestg2)
-	gts_object_destroy (GTS_OBJECT (bestg2));
+  gts_object_destroy (GTS_OBJECT (bestg2));
       bestg1 = g1;
       bestg2 = g2;
-    }
-    else {
+  }
+  else {
       gts_object_destroy (GTS_OBJECT (g1));
       gts_object_destroy (GTS_OBJECT (g2));
-    }
+  }
 
-    ntry--;
+  ntry--;
   }
   gts_eheap_destroy (degree_heap);
 
 #ifdef DEBUG
   fprintf (stderr, "bestcost: %5g g1: %5g|%5d g2: %5g|%5d\n",
-	   bestcost, 
-	   gts_graph_weight (bestg1), 
-	   gts_container_size (GTS_CONTAINER (bestg1)),
-	   gts_graph_weight (bestg2), 
-	   gts_container_size (GTS_CONTAINER (bestg2)));
+     bestcost, 
+     gts_graph_weight (bestg1), 
+     gts_container_size (GTS_CONTAINER (bestg1)),
+     gts_graph_weight (bestg2), 
+     gts_container_size (GTS_CONTAINER (bestg2)));
 #endif
 
   bg->g1 = bestg1;
@@ -709,7 +709,7 @@ static void build_heap (GtsGNode * n, GtsEHeap * heap)
  * Returns: the decrease in the weight of the edges cut by the bisection.  
  */
 gdouble gts_graph_bisection_kl_refine (GtsGraphBisection * bg,
-				       guint mmax)
+               guint mmax)
 {
   GtsEHeap * h1, * h2;
   GtsGNode * n;
@@ -733,20 +733,20 @@ gdouble gts_graph_bisection_kl_refine (GtsGraphBisection * bg,
   moves = g_malloc (sizeof (GtsGNode *)*mmax);
 
   do {
-    GtsGraph * g1, * g2;
-    gdouble cost;
+  GtsGraph * g1, * g2;
+  gdouble cost;
 
-    if (gts_graph_weight (bg->g1) > gts_graph_weight (bg->g2)) {
+  if (gts_graph_weight (bg->g1) > gts_graph_weight (bg->g2)) {
       n = gts_eheap_remove_top (h1, &cost);
       g1 = bg->g1;
       g2 = bg->g2;
-    }
-    else {
+  }
+  else {
       n = gts_eheap_remove_top (h2, &cost);
       g1 = bg->g2;
       g2 = bg->g1;
-    }
-    if (n) {
+  }
+  if (n) {
       GSList * i;
 
       GTS_OBJECT (n)->reserved = NULL;
@@ -755,27 +755,27 @@ gdouble gts_graph_bisection_kl_refine (GtsGraphBisection * bg,
 
       totalcost += cost;
       if (totalcost < bestcost) {
-	bestcost = totalcost;
-	nm = 0;
+  bestcost = totalcost;
+  nm = 0;
       }
       else
-	moves[nm++] = n;
+  moves[nm++] = n;
 
       i = GTS_SLIST_CONTAINER (n)->items;
       while (i) {
-	GtsGNode * n1 = GTS_GNODE_NEIGHBOR (n, i->data);
-	if (GTS_OBJECT (n1)->reserved && 
-	    gts_containee_is_contained (GTS_CONTAINEE (n1), 
-					GTS_CONTAINER (bg->g))) {
-	  GtsEHeap * h = 
-	    gts_containee_is_contained (GTS_CONTAINEE (n1), 
-					GTS_CONTAINER (bg->g1)) ? h1 : h2;
-	  gts_eheap_remove (h, GTS_OBJECT (n1)->reserved);
-	  GTS_OBJECT (n1)->reserved = gts_eheap_insert (h, n1);
-	}
-	i = i->next;
+  GtsGNode * n1 = GTS_GNODE_NEIGHBOR (n, i->data);
+  if (GTS_OBJECT (n1)->reserved && 
+    gts_containee_is_contained (GTS_CONTAINEE (n1), 
+          GTS_CONTAINER (bg->g))) {
+    GtsEHeap * h = 
+    gts_containee_is_contained (GTS_CONTAINEE (n1), 
+          GTS_CONTAINER (bg->g1)) ? h1 : h2;
+    gts_eheap_remove (h, GTS_OBJECT (n1)->reserved);
+    GTS_OBJECT (n1)->reserved = gts_eheap_insert (h, n1);
+  }
+  i = i->next;
       }
-    }
+  }
   } while (n && nm < mmax);
 
   gts_eheap_foreach (h1, (GFunc) gts_object_reset_reserved, NULL);
@@ -785,14 +785,14 @@ gdouble gts_graph_bisection_kl_refine (GtsGraphBisection * bg,
 
   /* undo last nm moves */
   for (i = 0; i < nm; i++) {
-    GtsGNode * n = moves[i];
-    GtsGraph * g1 = 
+  GtsGNode * n = moves[i];
+  GtsGraph * g1 = 
       gts_containee_is_contained (GTS_CONTAINEE (n),
-				  GTS_CONTAINER (bg->g1)) ? bg->g1 : bg->g2;
-    GtsGraph * g2 = g1 == bg->g1 ? bg->g2 : bg->g1;
-    
-    gts_container_add (GTS_CONTAINER (g2), GTS_CONTAINEE (n));
-    gts_container_remove (GTS_CONTAINER (g1), GTS_CONTAINEE (n));
+          GTS_CONTAINER (bg->g1)) ? bg->g1 : bg->g2;
+  GtsGraph * g2 = g1 == bg->g1 ? bg->g2 : bg->g1;
+  
+  gts_container_add (GTS_CONTAINER (g2), GTS_CONTAINEE (n));
+  gts_container_remove (GTS_CONTAINER (g1), GTS_CONTAINEE (n));
   }
   g_free (moves);
 
@@ -806,42 +806,42 @@ static void build_bheap (GtsGNode * n, GtsGNode * n1, GtsEHeap * heap)
 }
 
 static void update_neighbors (GtsGNode * n, GtsGraphBisection * bg,
-			      GtsEHeap * h1, GtsEHeap * h2)
+            GtsEHeap * h1, GtsEHeap * h2)
 {
   GSList * i;
 
   i = GTS_SLIST_CONTAINER (n)->items;
   while (i) {
-    GtsGNode * n1 = GTS_GNODE_NEIGHBOR (n, i->data);
-    if (gts_containee_is_contained (GTS_CONTAINEE (n1), 
-				    GTS_CONTAINER (bg->g))) {
+  GtsGNode * n1 = GTS_GNODE_NEIGHBOR (n, i->data);
+  if (gts_containee_is_contained (GTS_CONTAINEE (n1), 
+          GTS_CONTAINER (bg->g))) {
       GtsEHeap * h;
       GtsGraph * g2;
       GHashTable * bg1;
 
       if (gts_containee_is_contained (GTS_CONTAINEE (n1),
-				      GTS_CONTAINER (bg->g1))) {
-	h = h1;
-	g2 = bg->g2;
-	bg1 = bg->bg1;
+              GTS_CONTAINER (bg->g1))) {
+  h = h1;
+  g2 = bg->g2;
+  bg1 = bg->bg1;
       }
       else {
-	h = h2;
-	g2 = bg->g1;
-	bg1 = bg->bg2;
+  h = h2;
+  g2 = bg->g1;
+  bg1 = bg->bg2;
       }
       g_hash_table_remove (bg1, n1);
       if (h && GTS_OBJECT (n1)->reserved && GTS_OBJECT (n1)->reserved != n1) {
-	gts_eheap_remove (h, GTS_OBJECT (n1)->reserved);
-	GTS_OBJECT (n1)->reserved = NULL;
+  gts_eheap_remove (h, GTS_OBJECT (n1)->reserved);
+  GTS_OBJECT (n1)->reserved = NULL;
       }
       if (gts_gnode_degree (n1, g2)) {
-	g_hash_table_insert (bg1, n1, n1);
-	if (h && GTS_OBJECT (n1)->reserved != n1)
-	  GTS_OBJECT (n1)->reserved = gts_eheap_insert (h, n1);
+  g_hash_table_insert (bg1, n1, n1);
+  if (h && GTS_OBJECT (n1)->reserved != n1)
+    GTS_OBJECT (n1)->reserved = gts_eheap_insert (h, n1);
       }
-    }
-    i = i->next;
+  }
+  i = i->next;
   }  
 }
 
@@ -861,7 +861,7 @@ static void update_neighbors (GtsGNode * n, GtsGraphBisection * bg,
  * Returns: the decrease in the weight of the edges cut by the bisection.  
  */
 gdouble gts_graph_bisection_bkl_refine (GtsGraphBisection * bg,
-					guint mmax)
+          guint mmax)
 {
   GtsEHeap * h1, * h2;
   GtsGNode * n;
@@ -885,76 +885,76 @@ gdouble gts_graph_bisection_bkl_refine (GtsGraphBisection * bg,
   moves = g_malloc (sizeof (GtsGNode *)*mmax);
 
   do {
-    GtsGraph * g1, * g2;
-    GHashTable * bg1, * bg2;
-    gdouble cost;
+  GtsGraph * g1, * g2;
+  GHashTable * bg1, * bg2;
+  gdouble cost;
 
-    if (gts_graph_weight (bg->g1) > gts_graph_weight (bg->g2)) {
+  if (gts_graph_weight (bg->g1) > gts_graph_weight (bg->g2)) {
       n = gts_eheap_remove_top (h1, &cost);
       g1 = bg->g1;
       g2 = bg->g2;
       bg1 = bg->bg1;
       bg2 = bg->bg2;
-    }
-    else {
+  }
+  else {
       n = gts_eheap_remove_top (h2, &cost);
       g1 = bg->g2;
       g2 = bg->g1;
       bg1 = bg->bg2;
       bg2 = bg->bg1;
-    }
-    if (n) {
+  }
+  if (n) {
       GTS_OBJECT (n)->reserved = n;
       gts_container_add (GTS_CONTAINER (g2), GTS_CONTAINEE (n));
       gts_container_remove (GTS_CONTAINER (g1), GTS_CONTAINEE (n));
       g_hash_table_remove (bg1, n);
       if (gts_gnode_degree (n, g1))
-	g_hash_table_insert (bg2, n, n);
+  g_hash_table_insert (bg2, n, n);
 
       update_neighbors (n, bg, h1, h2);
   
       totalcost += cost;
       if (totalcost < bestcost) {
-	bestcost = totalcost;
-	nm = 0;
+  bestcost = totalcost;
+  nm = 0;
       }
       else
-	moves[nm++] = n;
-    }
+  moves[nm++] = n;
+  }
   } while (n && nm < mmax);
 
   gts_container_foreach (GTS_CONTAINER (bg->g), 
-			 (GtsFunc) gts_object_reset_reserved, NULL);
+       (GtsFunc) gts_object_reset_reserved, NULL);
   gts_eheap_destroy (h1);
   gts_eheap_destroy (h2);
 
   /* undo last nm moves */
   for (i = 0; i < nm; i++) {
-    GtsGNode * n = moves[i];
-    GtsGraph * g1, * g2;
-    GHashTable * bg1, * bg2;
+  GtsGNode * n = moves[i];
+  GtsGraph * g1, * g2;
+  GHashTable * bg1, * bg2;
 
-    if (gts_containee_is_contained (GTS_CONTAINEE (n),
-				    GTS_CONTAINER (bg->g1))) {
+  if (gts_containee_is_contained (GTS_CONTAINEE (n),
+          GTS_CONTAINER (bg->g1))) {
       g1 = bg->g1;
       g2 = bg->g2;
       bg1 = bg->bg1;
       bg2 = bg->bg2;
-    }
-    else {
+  }
+  else {
       g1 = bg->g2;
       g2 = bg->g1;
       bg1 = bg->bg2;
       bg2 = bg->bg1;
-    }
-    
-    gts_container_add (GTS_CONTAINER (g2), GTS_CONTAINEE (n));
-    gts_container_remove (GTS_CONTAINER (g1), GTS_CONTAINEE (n));
-    g_hash_table_remove (bg1, n);
-    if (gts_gnode_degree (n, g1))
+  }
+  
+  gts_container_add (GTS_CONTAINER (g2), GTS_CONTAINEE (n));
+  gts_container_remove (GTS_CONTAINER (g1), GTS_CONTAINEE (n));
+  g_hash_table_remove (bg1, n);
+  if (gts_gnode_degree (n, g1))
       g_hash_table_insert (bg2, n, n);
 
-    update_neighbors (n, bg, NULL, NULL);
+  update_neighbors (n, bg, NULL, NULL);
   }
   g_free (moves);
 
@@ -971,15 +971,15 @@ static void bisection_children (GtsGNodeSplit * ns, GtsGraphBisection * bg)
   GtsGNode * n2 = GTS_GNODE_SPLIT_N2 (ns);
 
   if (gts_containee_is_contained (GTS_CONTAINEE (ns->n),
-				  GTS_CONTAINER (bg->g1))) {
-    g = bg->g1;
-    g1 = bg->g2;
-    bbg = bg->bg1;
+          GTS_CONTAINER (bg->g1))) {
+  g = bg->g1;
+  g1 = bg->g2;
+  bbg = bg->bg1;
   }
   else {
-    g = bg->g2;
-    g1 = bg->g1;
-    bbg = bg->bg2;
+  g = bg->g2;
+  g1 = bg->g1;
+  bbg = bg->bg2;
   }
 
   gts_allow_floating_gnodes = TRUE;
@@ -989,10 +989,10 @@ static void bisection_children (GtsGNodeSplit * ns, GtsGraphBisection * bg)
   gts_container_add (GTS_CONTAINER (g), GTS_CONTAINEE (n2));
 
   if (g_hash_table_lookup (bbg, ns->n)) {
-    g_hash_table_remove (bbg, ns->n);
-    if (gts_gnode_degree (n1, g1) > 0)
+  g_hash_table_remove (bbg, ns->n);
+  if (gts_gnode_degree (n1, g1) > 0)
       g_hash_table_insert (bbg, n1, n1);
-    if (gts_gnode_degree (n2, g1) > 0)
+  if (gts_gnode_degree (n2, g1) > 0)
       g_hash_table_insert (bbg, n2, n2);
   }
 }
@@ -1014,9 +1014,9 @@ static void bisection_children (GtsGNodeSplit * ns, GtsGraphBisection * bg)
  * Returns: a new #GtsGraphBisection of @wg.  
  */
 GtsGraphBisection * gts_graph_bisection_new (GtsWGraph * wg,
-					     guint ntry,
-					     guint mmax,
-					     guint nmin)
+               guint ntry,
+               guint mmax,
+               guint nmin)
 {
   GtsGraph * g;
   GtsPGraph * pg;
@@ -1027,53 +1027,53 @@ GtsGraphBisection * gts_graph_bisection_new (GtsWGraph * wg,
 
   g = GTS_GRAPH (wg);
   pg = gts_pgraph_new (gts_pgraph_class (), g, 
-		       gts_gnode_split_class (),
-		       gts_wgnode_class (),
-		       gts_wgedge_class (),
-		       nmin);
+           gts_gnode_split_class (),
+           gts_wgnode_class (),
+           gts_wgedge_class (),
+           nmin);
 
   bg = gts_graph_ggg_bisection (g, ntry);
 #ifdef DEBUG
   fprintf (stderr, "before size: %5d weight: %5g cuts: %5d cweight: %5g\n",
-	   gts_container_size (GTS_CONTAINER (bg->g1)),
-	   gts_graph_weight (bg->g1),
-	   gts_graph_edges_cut (bg->g1),
-	   gts_graph_edges_cut_weight (bg->g1));
+     gts_container_size (GTS_CONTAINER (bg->g1)),
+     gts_graph_weight (bg->g1),
+     gts_graph_edges_cut (bg->g1),
+     gts_graph_edges_cut_weight (bg->g1));
   g_assert (gts_graph_bisection_check (bg));
 #endif
   while ((cost = gts_graph_bisection_bkl_refine (bg, mmax))) {
 #ifdef DEBUG
-    fprintf (stderr, "  cost: %g\n", cost);
-    g_assert (gts_graph_bisection_check (bg));
+  fprintf (stderr, "  cost: %g\n", cost);
+  g_assert (gts_graph_bisection_check (bg));
 #endif
   }
 #ifdef DEBUG
   fprintf (stderr, "after  size: %5d weight: %5g cuts: %5d cweight: %5g\n",
-	   gts_container_size (GTS_CONTAINER (bg->g1)),
-	   gts_graph_weight (bg->g1),
-	   gts_graph_edges_cut (bg->g1),
-	   gts_graph_edges_cut_weight (bg->g1));
+     gts_container_size (GTS_CONTAINER (bg->g1)),
+     gts_graph_weight (bg->g1),
+     gts_graph_edges_cut (bg->g1),
+     gts_graph_edges_cut_weight (bg->g1));
 #endif
   while (gts_pgraph_down (pg, (GtsFunc) bisection_children, bg)) {
 #ifdef DEBUG
-    fprintf (stderr, "before size: %5d weight: %5g cuts: %5d cweight: %5g\n",
-	     gts_container_size (GTS_CONTAINER (bg->g1)),
-	     gts_graph_weight (bg->g1),
-	     gts_graph_edges_cut (bg->g1),
-	     gts_graph_edges_cut_weight (bg->g1));	   
+  fprintf (stderr, "before size: %5d weight: %5g cuts: %5d cweight: %5g\n",
+       gts_container_size (GTS_CONTAINER (bg->g1)),
+       gts_graph_weight (bg->g1),
+       gts_graph_edges_cut (bg->g1),
+       gts_graph_edges_cut_weight (bg->g1));	   
 #endif
-    while ((cost = gts_graph_bisection_bkl_refine (bg, mmax))) {
+  while ((cost = gts_graph_bisection_bkl_refine (bg, mmax))) {
 #ifdef DEBUG
       fprintf (stderr, "  cost: %g\n", cost);
       g_assert (gts_graph_bisection_check (bg));
 #endif
-    }
+  }
 #ifdef DEBUG
-    fprintf (stderr, "after  size: %5d weight: %5g cuts: %5d cweight: %5g\n",
-	     gts_container_size (GTS_CONTAINER (bg->g1)),
-	     gts_graph_weight (bg->g1),
-	     gts_graph_edges_cut (bg->g1),
-	     gts_graph_edges_cut_weight (bg->g1));
+  fprintf (stderr, "after  size: %5d weight: %5g cuts: %5d cweight: %5g\n",
+       gts_container_size (GTS_CONTAINER (bg->g1)),
+       gts_graph_weight (bg->g1),
+       gts_graph_edges_cut (bg->g1),
+       gts_graph_edges_cut_weight (bg->g1));
 #endif
   }
   gts_object_destroy (GTS_OBJECT (pg));
@@ -1090,7 +1090,7 @@ GtsGraphBisection * gts_graph_bisection_new (GtsWGraph * wg,
  * the graphs created by @bg are destroyed.  
  */
 void gts_graph_bisection_destroy (GtsGraphBisection * bg,
-				  gboolean destroy_graphs)
+          gboolean destroy_graphs)
 {
   g_return_if_fail (bg != NULL);
 
@@ -1098,31 +1098,31 @@ void gts_graph_bisection_destroy (GtsGraphBisection * bg,
   g_hash_table_destroy (bg->bg2);
 
   if (destroy_graphs) {
-    gts_object_destroy (GTS_OBJECT (bg->g1));
-    gts_object_destroy (GTS_OBJECT (bg->g2));
+  gts_object_destroy (GTS_OBJECT (bg->g1));
+  gts_object_destroy (GTS_OBJECT (bg->g2));
   }
 
   g_free (bg);
 }
 
 static void recursive_bisection (GtsWGraph * wg,
-				 guint np,
-				 guint ntry,
-				 guint mmax,
-				 guint nmin,
-				 GSList ** list)
+         guint np,
+         guint ntry,
+         guint mmax,
+         guint nmin,
+         GSList ** list)
 {
   if (np == 0)
-    *list = g_slist_prepend (*list, wg);
+  *list = g_slist_prepend (*list, wg);
   else {
-    GtsGraphBisection * bg = gts_graph_bisection_new (wg, ntry, mmax, nmin);
-    GtsGraph * g1 = bg->g1;
-    GtsGraph * g2 = bg->g2;
+  GtsGraphBisection * bg = gts_graph_bisection_new (wg, ntry, mmax, nmin);
+  GtsGraph * g1 = bg->g1;
+  GtsGraph * g2 = bg->g2;
 
-    gts_object_destroy (GTS_OBJECT (wg));
-    gts_graph_bisection_destroy (bg, FALSE);
-    recursive_bisection (GTS_WGRAPH (g1), np - 1, ntry, mmax, nmin, list);
-    recursive_bisection (GTS_WGRAPH (g2), np - 1, ntry, mmax, nmin, list);
+  gts_object_destroy (GTS_OBJECT (wg));
+  gts_graph_bisection_destroy (bg, FALSE);
+  recursive_bisection (GTS_WGRAPH (g1), np - 1, ntry, mmax, nmin, list);
+  recursive_bisection (GTS_WGRAPH (g2), np - 1, ntry, mmax, nmin, list);
   }
 }
 
@@ -1140,10 +1140,10 @@ static void recursive_bisection (GtsWGraph * wg,
  * Returns: a list of 2^@n new #GtsGraph representing the partition.
  */
 GSList * gts_graph_recursive_bisection (GtsWGraph * wg,
-					guint n,
-					guint ntry,
-					guint mmax,
-					guint nmin)
+          guint n,
+          guint ntry,
+          guint mmax,
+          guint nmin)
 {
   GtsGraphBisection * bg;
   GtsGraph * g1, * g2;

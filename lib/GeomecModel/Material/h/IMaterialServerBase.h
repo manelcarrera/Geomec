@@ -19,7 +19,7 @@ public:
   IMaterialServerBase(const QString& strName, CFemAppModel& model);
   virtual ~IMaterialServerBase();
 
-	virtual bool ReadOnly() const = 0;
+  virtual bool ReadOnly() const = 0;
   virtual const IMaterialBase* Material() const = 0;
 
   virtual void AddToCache(CMaterialKey& /*key*/, CFFMaterial * /*material*/) const {}

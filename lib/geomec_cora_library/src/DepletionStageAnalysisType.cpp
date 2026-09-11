@@ -6,7 +6,7 @@ namespace cora
 
 CDepletionStageAnalysisType::CDepletionStageAnalysisType(CModelBase* modelBase)
 : m_depletionStageAnalysisTypeVector(
-    createDepletionStageAnalysisTypeVector(modelBase))
+  createDepletionStageAnalysisTypeVector(modelBase))
 {
 }
 
@@ -25,19 +25,19 @@ TDepletionStageAnalysisTypeVector CDepletionStageAnalysisType::
 {
   TDepletionStageAnalysisTypeVector depletionStageAnalysisTypeVector;
   const CDepletionStage* depletionStage =
-    &(modelBase->InitialDepletionStage());
+  &(modelBase->InitialDepletionStage());
 
   while ((depletionStage =
-    (depletionStage->Last()) ? 0 : &(depletionStage->Next())) != 0)
+  (depletionStage->Last()) ? 0 : &(depletionStage->Next())) != 0)
   {
-    CAnalysisType analysisType = CAnalysisType::FirstType();
+  CAnalysisType analysisType = CAnalysisType::FirstType();
 
-    while (analysisType.Valid())
-    {
+  while (analysisType.Valid())
+  {
       depletionStageAnalysisTypeVector.
-        push_back(TDepletionStageAnalysisType(depletionStage, analysisType));
+    push_back(TDepletionStageAnalysisType(depletionStage, analysisType));
       analysisType = analysisType.NextType();
-    }
+  }
   }
 
   return depletionStageAnalysisTypeVector;

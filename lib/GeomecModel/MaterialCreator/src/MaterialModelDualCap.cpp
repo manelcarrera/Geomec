@@ -43,8 +43,8 @@ bool CMaterialDualCapPreconsolidationCheckStrategy::operator()(double dValue, co
   double dSecPrecon = pSecPrecon->ValueToUserUnit(nUnitDef);
   if(dValue >= dSecPrecon)
   {
-    strErrorMsg = QObject::tr("Preconsolidation stress must be less than Secondary Preconsolidation Stress");
-    return false;
+  strErrorMsg = QObject::tr("Preconsolidation stress must be less than Secondary Preconsolidation Stress");
+  return false;
   }
 
   return true;
@@ -61,8 +61,8 @@ bool CMaterialDualCapSecondaryPreconCheckStrategy::operator()(double dValue, con
   double dPrecon = pPrecon->ValueToUserUnit(nUnitDef);
   if(dValue <= dPrecon)
   {
-    strErrorMsg = QObject::tr("Secondary Preconsolidation Stress must be greater than Preconsolidation Stress");
-    return false;
+  strErrorMsg = QObject::tr("Secondary Preconsolidation Stress must be greater than Preconsolidation Stress");
+  return false;
   }
 
   return true;
@@ -93,9 +93,9 @@ void CMaterialDualCapYoungSetStrategy::operator()(double dValue, ml::CMatParam& 
   double dElasticHard;
   if(ElasticValue(nu, Pc0, n0, dValue, dElasticHard))
   {
-    ml::CMatParam* pElasticHard = mat.MatParameter(MLD_ELASTIC_HARDENING);
-    assert(pElasticHard);
-    if(fabs(pElasticHard->Value() - dElasticHard) > 1e-8)
+  ml::CMatParam* pElasticHard = mat.MatParameter(MLD_ELASTIC_HARDENING);
+  assert(pElasticHard);
+  if(fabs(pElasticHard->Value() - dElasticHard) > 1e-8)
       pElasticHard->Value(dElasticHard);
   }
 
@@ -121,9 +121,9 @@ void CMaterialDualCapPoissonSetStrategy::operator()(double dValue, ml::CMatParam
   double dYoung;
   if(ElasticValue(dValue, Pc0, n0, dElasticHard, dYoung))
   {
-    ml::CMatParam* pYoung = mat.MatParameter(MLD_YOUNGMODULUS);
-    assert(pYoung);
-    if(fabs(pYoung->Value() - dYoung) > 1e-8)
+  ml::CMatParam* pYoung = mat.MatParameter(MLD_YOUNGMODULUS);
+  assert(pYoung);
+  if(fabs(pYoung->Value() - dYoung) > 1e-8)
       pYoung->Value(dYoung); // route through set strategy
   }
 
@@ -149,9 +149,9 @@ void CMaterialDualCapPorositySetStrategy::operator()(double dValue, ml::CMatPara
   double dYoung;
   if(ElasticValue(nu, Pc0, dValue, dElasticHard, dYoung))
   {
-    ml::CMatParam* pYoung = mat.MatParameter(MLD_YOUNGMODULUS);
-    assert(pYoung);
-    if(fabs(pYoung->Value() - dYoung) > 1e-8)
+  ml::CMatParam* pYoung = mat.MatParameter(MLD_YOUNGMODULUS);
+  assert(pYoung);
+  if(fabs(pYoung->Value() - dYoung) > 1e-8)
       pYoung->Value(dYoung); // route through set strategy
   }
 
@@ -177,9 +177,9 @@ void CMaterialDualCapPreconsolidationSetStrategy::operator()(double dValue, ml::
   double dYoung;
   if(ElasticValue(nu, dValue, n0, dElasticHard, dYoung))
   {
-    ml::CMatParam* pYoung = mat.MatParameter(MLD_YOUNGMODULUS);
-    assert(pYoung);
-    if(fabs(pYoung->Value() - dYoung) > 1e-8)
+  ml::CMatParam* pYoung = mat.MatParameter(MLD_YOUNGMODULUS);
+  assert(pYoung);
+  if(fabs(pYoung->Value() - dYoung) > 1e-8)
       pYoung->Value(dYoung); // route through set strategy
   }
 
@@ -205,9 +205,9 @@ void CMaterialDualCapElasticHardeningSetStrategy::operator()(double dValue, ml::
   double dYoung;
   if(ElasticValue(nu, Pc0, n0, dValue, dYoung))
   {
-    ml::CMatParam* pYoung = mat.MatParameter(MLD_YOUNGMODULUS);
-    assert(pYoung);
-    if(fabs(pYoung->Value() - dYoung) > 1e-8)
+  ml::CMatParam* pYoung = mat.MatParameter(MLD_YOUNGMODULUS);
+  assert(pYoung);
+  if(fabs(pYoung->Value() - dYoung) > 1e-8)
       pYoung->Value(dYoung); // route through set strategy
   }
 

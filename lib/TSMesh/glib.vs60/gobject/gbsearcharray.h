@@ -36,7 +36,7 @@ extern "C" {
 /* --- typedefs --- */
 typedef struct _GBSearchArray         GBSearchArray;
 typedef gint  (*GBSearchCompareFunc) (gconstpointer bsearch_node1,
-				      gconstpointer bsearch_node2);
+              gconstpointer bsearch_node2);
 typedef enum
 {
   G_BSEARCH_ALIGN_POWER2	= 1 << 0,
@@ -57,28 +57,28 @@ struct _GBSearchArray
 
 /* --- prototypes --- */
 gpointer	g_bsearch_array_insert		(GBSearchArray	*barray,
-						 gconstpointer	 key_node,
-						 gboolean	 replace_existing);
+             gconstpointer	 key_node,
+             gboolean	 replace_existing);
 void		g_bsearch_array_remove		(GBSearchArray	*barray,
-						 gconstpointer	 key_node);
+             gconstpointer	 key_node);
 void		g_bsearch_array_remove_node	(GBSearchArray	*barray,
-						 gpointer	 node_in_array);
+             gpointer	 node_in_array);
 G_INLINE_FUNC
 gpointer	g_bsearch_array_lookup		(GBSearchArray	*barray,
-						 gconstpointer	 key_node);
+             gconstpointer	 key_node);
 G_INLINE_FUNC
 gpointer	g_bsearch_array_get_nth		(GBSearchArray	*barray,
-						 guint		 n);
+             guint		 n);
 
 
 /* --- implementation details --- */
 #if defined (G_CAN_INLINE) || defined (__G_BSEARCHARRAY_C__)
 G_INLINE_FUNC gpointer
 g_bsearch_array_lookup (GBSearchArray *barray,
-			gconstpointer  key_node)
+      gconstpointer  key_node)
 {
   if (barray->n_nodes > 0)
-    {
+  {
       GBSearchCompareFunc cmp_func = barray->cmp_func;
       gint sizeof_node = barray->sizeof_node;
       guint n_nodes = barray->n_nodes;
@@ -86,41 +86,41 @@ g_bsearch_array_lookup (GBSearchArray *barray,
       
       nodes -= sizeof_node;
       do
-	{
-	  guint8 *check;
-	  guint i;
-	  register gint cmp;
-	  
-	  i = (n_nodes + 1) >> 1;
-	  check = nodes + i * sizeof_node;
-	  cmp = cmp_func (key_node, check);
-	  if (cmp == 0)
-	    return check;
-	  else if (cmp > 0)
-	    {
-	      n_nodes -= i;
-	      nodes = check;
-	    }
-	  else /* if (cmp < 0) */
-	    n_nodes = i - 1;
-	}
-      while (n_nodes);
+  {
+    guint8 *check;
+    guint i;
+    register gint cmp;
+    
+    i = (n_nodes + 1) >> 1;
+    check = nodes + i * sizeof_node;
+    cmp = cmp_func (key_node, check);
+    if (cmp == 0)
+    return check;
+    else if (cmp > 0)
+    {
+        n_nodes -= i;
+        nodes = check;
     }
+    else /* if (cmp < 0) */
+    n_nodes = i - 1;
+  }
+      while (n_nodes);
+  }
   
   return NULL;
 }
 G_INLINE_FUNC gpointer
 g_bsearch_array_get_nth (GBSearchArray *barray,
-			 guint		n)
+       guint		n)
 {
   if (n < barray->n_nodes)
-    {
+  {
       guint8 *nodes = (guint8 *) barray->nodes;
 
       return nodes + n * barray->sizeof_node;
-    }
+  }
   else
-    return NULL;
+  return NULL;
 }
 #endif  /* G_CAN_INLINE && __G_BSEARCHARRAY_C__ */
 

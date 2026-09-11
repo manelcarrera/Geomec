@@ -28,8 +28,8 @@ class IProgressBase;
 class CWellCasingDianaRunnerHelper
 {
 private:
-	typedef std::map<const CDepletionStage *, dia::CLoadCase *> TStageMap;
-	IProgressBase* m_progress;
+  typedef std::map<const CDepletionStage *, dia::CLoadCase *> TStageMap;
+  IProgressBase* m_progress;
 
 public:
   CWellCasingDianaRunnerHelper(const IWellModel& model, const CDianaRunController& controller, bool bParentLinearResults);
@@ -71,10 +71,10 @@ void CWellCasingDianaRunnerHelper::InterfaceElementPressures(RUNNER& runner, con
   int iNodeOffset = 0;
   if(!pBody || CasingModel().Mesh().IsSteelElement(*pBody))
   {
-    // use back
-    assert(dynamic_cast<const geo::CBodyQuadrilateral*>(iface.BackFace()));
-    pBody = (static_cast<const geo::CBodyQuadrilateral&>(*iface.BackFace())).Parent();
-    iNodeOffset = 4;
+  // use back
+  assert(dynamic_cast<const geo::CBodyQuadrilateral*>(iface.BackFace()));
+  pBody = (static_cast<const geo::CBodyQuadrilateral&>(*iface.BackFace())).Parent();
+  iNodeOffset = 4;
   }
 
   assert(!CasingModel().Mesh().IsSteelElement(*pBody));
@@ -84,7 +84,7 @@ void CWellCasingDianaRunnerHelper::InterfaceElementPressures(RUNNER& runner, con
   vcValues.resize(8);
   int i;
   for(i = 0; i < 4; ++i)
-    vcValues[i] = vcValues[i+4] = vcBodyPressures[iface.BodyNode(i + iNodeOffset)];
+  vcValues[i] = vcValues[i+4] = vcBodyPressures[iface.BodyNode(i + iNodeOffset)];
 }
 
 #endif // _WELLCASINGDIANARUNNERHELPER_H_

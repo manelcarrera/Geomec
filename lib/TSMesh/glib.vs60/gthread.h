@@ -146,40 +146,40 @@ GMutex* g_static_mutex_get_mutex_impl   (GMutex **mutex);
 /* shorthands for conditional and unconditional function calls */
 
 #define G_THREAD_UF(op, arglist)					\
-    (*g_thread_functions_for_glib_use . op) arglist
+  (*g_thread_functions_for_glib_use . op) arglist
 #define G_THREAD_CF(op, fail, arg) 					\
-    (g_thread_supported () ? G_THREAD_UF (op, arg) : (fail))
+  (g_thread_supported () ? G_THREAD_UF (op, arg) : (fail))
 #define G_THREAD_ECF(op, fail, mutex, type)				\
-    (g_thread_supported () ? ((type(*)(GMutex*, gulong, gchar*))	\
+  (g_thread_supported () ? ((type(*)(GMutex*, gulong, gchar*))	\
       (*g_thread_functions_for_glib_use . op))				\
      (mutex, G_MUTEX_DEBUG_MAGIC, G_STRLOC) : (fail))
 
 #ifndef G_ERRORCHECK_MUTEXES
 # define g_mutex_lock(mutex)     					\
-    G_THREAD_CF (mutex_lock,     (void)0, (mutex))
+  G_THREAD_CF (mutex_lock,     (void)0, (mutex))
 # define g_mutex_trylock(mutex)  					\
-    G_THREAD_CF (mutex_trylock,  TRUE,    (mutex))
+  G_THREAD_CF (mutex_trylock,  TRUE,    (mutex))
 # define g_mutex_unlock(mutex)  					\
-    G_THREAD_CF (mutex_unlock,   (void)0, (mutex))
+  G_THREAD_CF (mutex_unlock,   (void)0, (mutex))
 # define g_cond_wait(cond, mutex) 					\
-    G_THREAD_CF (cond_wait,      (void)0, (cond, mutex))
+  G_THREAD_CF (cond_wait,      (void)0, (cond, mutex))
 # define g_cond_timed_wait(cond, mutex, abs_time) 			\
-    G_THREAD_CF (cond_timed_wait, TRUE,   (cond, mutex, abs_time))
+  G_THREAD_CF (cond_timed_wait, TRUE,   (cond, mutex, abs_time))
 #else /* G_ERRORCHECK_MUTEXES */
 # define g_mutex_lock(mutex)   						\
-    G_THREAD_ECF (mutex_lock,    (void)0, mutex, void)
+  G_THREAD_ECF (mutex_lock,    (void)0, mutex, void)
 # define g_mutex_trylock(mutex) 					\
-    G_THREAD_ECF (mutex_trylock, TRUE,    mutex, gboolean)
+  G_THREAD_ECF (mutex_trylock, TRUE,    mutex, gboolean)
 # define g_mutex_unlock(mutex)  					\
-    G_THREAD_ECF (mutex_unlock,  (void)0, mutex, void)
+  G_THREAD_ECF (mutex_unlock,  (void)0, mutex, void)
 # define g_cond_wait(cond, mutex)					\
-    (g_thread_supported () ? ((void(*)(GCond*, GMutex*, gulong, gchar*))\
+  (g_thread_supported () ? ((void(*)(GCond*, GMutex*, gulong, gchar*))\
       g_thread_functions_for_glib_use.cond_wait)			\
-        (cond, mutex, G_MUTEX_DEBUG_MAGIC, G_STRLOC) : (void) 0)
+    (cond, mutex, G_MUTEX_DEBUG_MAGIC, G_STRLOC) : (void) 0)
 # define g_cond_timed_wait(cond, mutex, abs_time) 			\
-    (g_thread_supported () ? 						\
+  (g_thread_supported () ? 						\
       ((gboolean(*)(GCond*, GMutex*, GTimeVal*, gulong, gchar*))	\
-        g_thread_functions_for_glib_use.cond_timed_wait) 		\
+    g_thread_functions_for_glib_use.cond_timed_wait) 		\
           (cond, mutex, abs_time, G_MUTEX_DEBUG_MAGIC, G_STRLOC) : TRUE)
 #endif /* G_ERRORCHECK_MUTEXES */
 
@@ -192,11 +192,11 @@ GMutex* g_static_mutex_get_mutex_impl   (GMutex **mutex);
 #define g_cond_free(cond)        G_THREAD_CF (cond_free,      (void)0, (cond))
 #define g_private_new(destructor) G_THREAD_UF (private_new, (destructor))
 #define g_private_get(private_key) G_THREAD_CF (private_get, \
-                                                ((gpointer)private_key), \
-                                                (private_key))
+                        ((gpointer)private_key), \
+                        (private_key))
 #define g_private_set(private_key, value) G_THREAD_CF (private_set, \
                                                        (void) (private_key = \
-                                                        (GPrivate*) (value)), \
+                            (GPrivate*) (value)), \
                                                        (private_key, value))
 #define g_thread_yield()              G_THREAD_CF (thread_yield, (void)0, ())
 #define g_thread_exit()               G_THREAD_CF (thread_exit, (void)0, ())
@@ -211,7 +211,7 @@ GThread* g_thread_create (GThreadFunc            thread_func,
 GThread* g_thread_self (void);
 void g_thread_join (GThread *thread);
 void g_thread_set_priority (GThread         *thread,
-                            GThreadPriority  priority);
+              GThreadPriority  priority);
 
 /* GStaticMutexes can be statically initialized with the value
  * G_STATIC_MUTEX_INIT, and then they can directly be used, that is
@@ -219,11 +219,11 @@ void g_thread_set_priority (GThread         *thread,
  * use
  */
 #define g_static_mutex_lock(mutex) \
-    g_mutex_lock (g_static_mutex_get_mutex (mutex))
+  g_mutex_lock (g_static_mutex_get_mutex (mutex))
 #define g_static_mutex_trylock(mutex) \
-    g_mutex_trylock (g_static_mutex_get_mutex (mutex))
+  g_mutex_trylock (g_static_mutex_get_mutex (mutex))
 #define g_static_mutex_unlock(mutex) \
-    g_mutex_unlock (g_static_mutex_get_mutex (mutex))
+  g_mutex_unlock (g_static_mutex_get_mutex (mutex))
 
 struct _GStaticPrivate
 {
@@ -292,26 +292,26 @@ extern void glib_dummy_decl (void);
 #ifdef  G_THREADS_ENABLED
 #  define G_LOCK_DEFINE_STATIC(name)    static G_LOCK_DEFINE (name)
 #  define G_LOCK_DEFINE(name)           \
-    GStaticMutex G_LOCK_NAME (name) = G_STATIC_MUTEX_INIT
+  GStaticMutex G_LOCK_NAME (name) = G_STATIC_MUTEX_INIT
 #  define G_LOCK_EXTERN(name)           extern GStaticMutex G_LOCK_NAME (name)
 
 #  ifdef G_DEBUG_LOCKS
 #    define G_LOCK(name)                G_STMT_START{             \
-        g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,                   \
+    g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,                   \
                "file %s: line %d (%s): locking: %s ",             \
                __FILE__,        __LINE__, G_GNUC_PRETTY_FUNCTION, \
                #name);                                            \
-        g_static_mutex_lock (&G_LOCK_NAME (name));                \
+    g_static_mutex_lock (&G_LOCK_NAME (name));                \
      }G_STMT_END
 #    define G_UNLOCK(name)              G_STMT_START{             \
-        g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,                   \
+    g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,                   \
                "file %s: line %d (%s): unlocking: %s ",           \
                __FILE__,        __LINE__, G_GNUC_PRETTY_FUNCTION, \
                #name);                                            \
        g_static_mutex_unlock (&G_LOCK_NAME (name));               \
      }G_STMT_END
 #    define G_TRYLOCK(name)                                       \
-        (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,                  \
+    (g_log (G_LOG_DOMAIN, G_LOG_LEVEL_DEBUG,                  \
                "file %s: line %d (%s): try locking: %s ",         \
                __FILE__,        __LINE__, G_GNUC_PRETTY_FUNCTION, \
                #name), g_static_mutex_trylock (&G_LOCK_NAME (name)))

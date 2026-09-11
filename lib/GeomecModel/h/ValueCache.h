@@ -82,13 +82,13 @@ template <typename T>
 typename
 #endif  // (_MSC_VER == 1500)
   const typename CValueCache <T> ::TValuePair&
-    CValueCache <T> ::find(const geo::INode* node) const
+  CValueCache <T> ::find(const geo::INode* node) const
 {
   size_t nodeIndex = node->Index();
 
   if (nodeIndex < m_NodeSize)
   {
-    return m_ValueCache[nodeIndex];
+  return m_ValueCache[nodeIndex];
   }
 
   return emptyValuePair;
@@ -100,24 +100,24 @@ template <typename T>
   size_t nodeIndex = node->Index();
 
   if (!m_Linked && (m_MeshObserver.getMesh() != 0) &&
-    m_MeshObserver.getMesh()->IsMesh())
+  m_MeshObserver.getMesh()->IsMesh())
   {
-    m_MeshObserver.LinkTo(*m_MeshObserver.getMesh());
-    m_Linked = true;
+  m_MeshObserver.LinkTo(*m_MeshObserver.getMesh());
+  m_Linked = true;
   }
 
   if (nodeIndex >= m_NodeSize)
   {
-    size_t nodeSize = node->Mesh().NodeSize();
+  size_t nodeSize = node->Mesh().NodeSize();
 
-    assert(nodeSize > nodeIndex);
+  assert(nodeSize > nodeIndex);
 
-    while (nodeSize >= m_NodeSize)
-    {
+  while (nodeSize >= m_NodeSize)
+  {
       m_NodeSize = (2 * m_NodeSize) + 1;
-    }
+  }
 
-    m_ValueCache.resize(m_NodeSize, emptyValuePair);
+  m_ValueCache.resize(m_NodeSize, emptyValuePair);
   }
 
   m_ValueCache[nodeIndex] = std::make_pair(true, value);
@@ -128,13 +128,13 @@ template <typename T>
 typename
 #endif  // (_MSC_VER == 1500)
   const typename CValueCache <T> ::TValuePair&
-    CValueCache <T> ::find(const geo::IElement& element) const
+  CValueCache <T> ::find(const geo::IElement& element) const
 {
   size_t nodeIndex = element.Index();
 
   if (nodeIndex < m_NodeSize)
   {
-    return m_ValueCache[nodeIndex];
+  return m_ValueCache[nodeIndex];
   }
 
   return emptyValuePair;
@@ -146,24 +146,24 @@ template <typename T>
   size_t nodeIndex = element.Index();
 
   if (!m_Linked && (m_MeshObserver.getMesh() != 0) &&
-    m_MeshObserver.getMesh()->IsMesh())
+  m_MeshObserver.getMesh()->IsMesh())
   {
-    m_MeshObserver.LinkTo(*m_MeshObserver.getMesh());
-    m_Linked = true;
+  m_MeshObserver.LinkTo(*m_MeshObserver.getMesh());
+  m_Linked = true;
   }
 
   if (nodeIndex >= m_NodeSize)
   {
-    size_t nodeSize = element.IndexingElementSet()->ElementSize();
+  size_t nodeSize = element.IndexingElementSet()->ElementSize();
 
-    assert(nodeSize > nodeIndex);
+  assert(nodeSize > nodeIndex);
 
-    while (nodeSize >= m_NodeSize)
-    {
+  while (nodeSize >= m_NodeSize)
+  {
       m_NodeSize = (2 * m_NodeSize) + 1;
-    }
+  }
 
-    m_ValueCache.resize(m_NodeSize, emptyValuePair);
+  m_ValueCache.resize(m_NodeSize, emptyValuePair);
   }
 
   m_ValueCache[nodeIndex] = std::make_pair(true, value);

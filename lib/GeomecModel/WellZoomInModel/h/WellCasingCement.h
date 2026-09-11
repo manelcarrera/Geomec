@@ -16,19 +16,19 @@ public:
   CWellCasingCement(CWellCasingModel& model);
   ~CWellCasingCement();
 
-	virtual unsigned int IconId() const;
-	virtual unsigned int TypeId() const;
+  virtual unsigned int IconId() const;
+  virtual unsigned int TypeId() const;
   virtual QString TypeName() const;
   virtual bool Less(const CGraphNode& node) const;
 
   virtual void OnNeighbourModified(const CGraphNode& node, enum ModifiedHint uHint);
 
-	virtual bool Empty() const;
+  virtual bool Empty() const;
 
   virtual void LoadStream(TSTREAM& stream, CStreamVersion& version, TPROGRESS& progress);
 
   virtual int DisplayListSize() const;
-	virtual const geo::IObject& DisplayList(int nIndex) const;
+  virtual const geo::IObject& DisplayList(int nIndex) const;
 
   const CWellCasingCementInitialMaterial& GetCementMaterial(const CFFMaterial& base) const;
 
@@ -44,7 +44,7 @@ private:
   class CMaterialLess
   {
   public:
-    bool operator()(const CWellCasingCementInitialMaterial* m1, const CWellCasingCementInitialMaterial* m2) const;
+  bool operator()(const CWellCasingCementInitialMaterial* m1, const CWellCasingCementInitialMaterial* m2) const;
   };
 
   typedef std::set<CWellCasingCementInitialMaterial*, CMaterialLess> TMaterialSet;

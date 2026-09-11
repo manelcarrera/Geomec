@@ -21,7 +21,7 @@ void IMaterialBase::OnNewNeighbour(const CGraphNode &node)
 {
   const IMaterialServerBase* pServer = dynamic_cast<const IMaterialServerBase*>(&node);
   if(pServer)
-    m_stServers.insert(pServer);
+  m_stServers.insert(pServer);
 }
 
 void IMaterialBase::OnNeighbourDeleted(const CGraphNode &node)
@@ -31,7 +31,7 @@ void IMaterialBase::OnNeighbourDeleted(const CGraphNode &node)
   const IMaterialServerBase* pServer = static_cast<const IMaterialServerBase*>(&node);
   TServerSet::iterator it = m_stServers.find(pServer);
   if(it != m_stServers.end())
-    m_stServers.erase(it);
+  m_stServers.erase(it);
 }
 
 bool IMaterialBase::ReadOnly() const
@@ -39,7 +39,7 @@ bool IMaterialBase::ReadOnly() const
   TServerSet::const_iterator it;
   for(it = m_stServers.begin(); it != m_stServers.end(); ++it)
   {
-    if((*it)->ReadOnly())
+  if((*it)->ReadOnly())
       return true;
   }
 
@@ -56,8 +56,8 @@ bool IMaterialBase::Less(const CGraphNode& node) const
   const IMaterialBase* pMat = dynamic_cast<const IMaterialBase*>(&node);
   if(pMat)
   {
-    // sort on type
-    return typeid(*this).before(typeid(*pMat));
+  // sort on type
+  return typeid(*this).before(typeid(*pMat));
   }
 
   return CStorageNode::Less(node);
